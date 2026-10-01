@@ -841,3 +841,29 @@ ul.products li.bs-product {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+/* Product sliders: one row of equal slides, not the shop grid columns. */
+.woocommerce ul.products.bs-slider__track,
+ul.products.bs-slider__track {
+	grid-template-columns: none;
+	gap: var(--bs-slide-gap, 20px);
+}
+
+/* Product and category names use the text color; the heading color is for real headings. */
+.woocommerce ul.products li.product .bs-product__title a,
+.bs-product__title a,
+.bs-cat__name,
+.bs-product-list__title {
+	color: var(--bs-text);
+}
+
+.bs-product__title a:hover,
+.bs-cat:hover .bs-cat__name,
+.bs-product-list__title:hover {
+	color: var(--bs-primary);
+}
+
+.bs-cats--overlay .bs-cat__name,
+.bs-cats--overlay .bs-cat:hover .bs-cat__name {
+	color: #fff;
+}

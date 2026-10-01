@@ -245,9 +245,13 @@ function bst_social_icons( $class = '' ) {
 function bst_search_form( $class = '' ) {
 	$products = bst_mod( 'search_products' ) && class_exists( 'WooCommerce' );
 	$id       = wp_unique_id( 'bs-search-' );
+	$hint     = trim( (string) bst_mod( 'search_placeholder' ) );
+	if ( '' === $hint ) {
+		$hint = $products ? __( 'Search products…', 'bigspy-theme' ) : __( 'Search…', 'bigspy-theme' );
+	}
 	$out      = '<form role="search" method="get" class="bs-search-form ' . esc_attr( $class ) . '" action="' . esc_url( home_url( '/' ) ) . '">';
 	$out     .= '<label class="screen-reader-text" for="' . esc_attr( $id ) . '">' . esc_html__( 'Search for:', 'bigspy-theme' ) . '</label>';
-	$out     .= '<input type="search" id="' . esc_attr( $id ) . '" class="bs-search-form__input" name="s" value="' . esc_attr( get_search_query() ) . '" placeholder="' . esc_attr( $products ? __( 'Search products…', 'bigspy-theme' ) : __( 'Search…', 'bigspy-theme' ) ) . '">';
+	$out     .= '<input type="search" id="' . esc_attr( $id ) . '" class="bs-search-form__input" name="s" value="' . esc_attr( get_search_query() ) . '" placeholder="' . esc_attr( $hint ) . '">';
 	if ( $products ) {
 		$out .= '<input type="hidden" name="post_type" value="product">';
 	}

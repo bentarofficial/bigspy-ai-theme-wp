@@ -2146,3 +2146,13 @@ a.page-numbers:hover {
 	position: static;
 	margin-top: 12px;
 }
+
+/* Bottom row: compact menu so it shares the row with the categories button and other elements. */
+.bs-header-row--bottom .bs-menu > li > a {
+	padding: 6px 10px;
+	font-size: min(var(--bs-nav-size), 15px);
+}
+
+.bs-header-row--bottom .bs-menu {
+	gap: 0;
+}

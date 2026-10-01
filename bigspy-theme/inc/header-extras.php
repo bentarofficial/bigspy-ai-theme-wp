@@ -19,6 +19,7 @@ function bst_header_extras_defaults( $defaults ) {
 		'vmenu_source'     => 'auto',
 		'vmenu_limit'      => 12,
 		'vmenu_home_open'  => false,
+		'search_placeholder' => '',
 		'live_search'      => true,
 		'live_search_count' => 6,
 	);
@@ -42,6 +43,7 @@ function bst_header_extras_fields( $fields ) {
 	$fields[] = array( 'id' => 'vmenu_limit', 'section' => 'bst_header_nav', 'type' => 'number', 'label' => __( 'Max product categories', 'bigspy-theme' ), 'input_attrs' => array( 'min' => 1, 'max' => 40, 'step' => 1 ) );
 	$fields[] = array( 'id' => 'vmenu_home_open', 'section' => 'bst_header_nav', 'type' => 'checkbox', 'label' => __( 'Keep the menu open on the homepage (desktop)', 'bigspy-theme' ) );
 
+	$fields[] = array( 'id' => 'search_placeholder', 'section' => 'bst_header_search', 'type' => 'text', 'label' => __( 'Search field placeholder (empty = default)', 'bigspy-theme' ) );
 	$fields[] = array( 'id' => 'live_search', 'section' => 'bst_header_search', 'type' => 'checkbox', 'label' => __( 'Live search suggestions while typing', 'bigspy-theme' ) );
 	$fields[] = array( 'id' => 'live_search_count', 'section' => 'bst_header_search', 'type' => 'number', 'label' => __( 'Number of suggestions', 'bigspy-theme' ), 'input_attrs' => array( 'min' => 3, 'max' => 12, 'step' => 1 ) );
 	return $fields;

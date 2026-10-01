@@ -1,0 +1,156 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY Theme\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: bigspy-theme\n"
+
+msgid "Skip to content"
+msgstr "Chuyển đến nội dung"
+
+msgid "Search…"
+msgstr "Tìm kiếm…"
+
+msgid "Search products…"
+msgstr "Tìm sản phẩm…"
+
+msgid "Search for:"
+msgstr "Tìm kiếm:"
+
+msgid "Submit search"
+msgstr "Tìm"
+
+msgid "Close search"
+msgstr "Đóng tìm kiếm"
+
+msgid "Open menu"
+msgstr "Mở menu"
+
+msgid "Close menu"
+msgstr "Đóng menu"
+
+msgid "Mobile menu"
+msgstr "Menu di động"
+
+msgid "My account"
+msgstr "Tài khoản"
+
+msgid "Login"
+msgstr "Đăng nhập"
+
+msgid "Cart"
+msgstr "Giỏ hàng"
+
+msgid "Previous"
+msgstr "Trước"
+
+msgid "Next"
+msgstr "Tiếp"
+
+msgid "Back to top"
+msgstr "Lên đầu trang"
+
+msgid "Call now"
+msgstr "Gọi ngay"
+
+msgid "Home"
+msgstr "Trang chủ"
+
+msgid "Blog"
+msgstr "Tin tức"
+
+msgid "Breadcrumb"
+msgstr "Đường dẫn"
+
+msgid "Sidebar"
+msgstr "Thanh bên"
+
+msgid "Page not found"
+msgstr "Không tìm thấy trang"
+
+msgid "Search results for “%s”"
+msgstr "Kết quả tìm kiếm cho “%s”"
+
+msgid "Share:"
+msgstr "Chia sẻ:"
+
+msgid "Copy link"
+msgstr "Sao chép liên kết"
+
+msgid "Copy"
+msgstr "Sao chép"
+
+msgid "Copied!"
+msgstr "Đã sao chép!"
+
+msgid "Related posts"
+msgstr "Bài viết liên quan"
+
+msgid "Comments are closed."
+msgstr "Bình luận đã đóng."
+
+msgid "Oops! That page can not be found."
+msgstr "Rất tiếc! Không tìm thấy trang này."
+
+msgid "The page you are looking for may have been moved or deleted. Try searching instead."
+msgstr "Trang bạn tìm có thể đã được chuyển hoặc xóa. Hãy thử tìm kiếm."
+
+msgid "Back to home"
+msgstr "Về trang chủ"
+
+msgid "Nothing matched your search. Please try different keywords."
+msgstr "Không có kết quả phù hợp. Vui lòng thử từ khóa khác."
+
+msgid "There is nothing here yet."
+msgstr "Chưa có nội dung."
+
+msgid "Load more"
+msgstr "Xem thêm"
+
+msgid "Loading…"
+msgstr "Đang tải…"
+
+msgid "Sold out"
+msgstr "Hết hàng"
+
+msgid "Sale"
+msgstr "Giảm giá"
+
+msgid "New"
+msgstr "Mới"
+
+msgid "Hot"
+msgstr "Hot"
+
+msgid "No results found."
+msgstr "Không tìm thấy kết quả."
+
+msgid "View all results"
+msgstr "Xem tất cả kết quả"
+
+msgid "No posts found."
+msgstr "Chưa có bài viết."
+
+msgid "No products found."
+msgstr "Chưa có sản phẩm."
+
+msgid "Open link"
+msgstr "Mở liên kết"
+
+msgid "Call to action"
+msgstr "Kêu gọi hành động"
+
+msgid "Rated %d out of 5"
+msgstr "Được đánh giá %d trên 5"
+
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] "%s bình luận"
+
+msgid "%s product"
+msgid_plural "%s products"
+msgstr[0] "%s sản phẩm"
+

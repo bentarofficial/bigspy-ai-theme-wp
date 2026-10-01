@@ -656,3 +656,8 @@
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }
+
+/* The banner background color shows when there is no image. */
+.bs-legacy-banner .bs-banner__bg {
+	background: none;
+}

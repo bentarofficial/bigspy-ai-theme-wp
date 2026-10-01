@@ -90,6 +90,11 @@ input[type="submit"]:hover,
 	color: var(--bs-link-hover);
 }
 
+/* The hidden attribute always wins over component display rules (search panel, off-canvas…). */
+[hidden] {
+	display: none !important;
+}
+
 /* ---------------------------------------------------------------- Responsive visibility */
 @media (min-width: 850px) {
 	.bs-hide-desktop {
@@ -1957,4 +1962,18 @@ input[type="submit"]:hover,
 	font-size: .88em;
 	text-align: center;
 	opacity: .75;
+}
+
+@media (max-width: 549px) {
+	.bs-cat__body {
+		padding: 8px 2px 2px;
+	}
+
+	.bs-cat__name {
+		font-size: 12px;
+	}
+
+	.bs-cat__count {
+		font-size: 11px;
+	}
 }

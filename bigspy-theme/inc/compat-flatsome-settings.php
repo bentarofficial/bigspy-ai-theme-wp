@@ -286,6 +286,7 @@ function bst_flatsome_translate( $m ) {
 		$set( 'search_style', 'lightbox' === $m['header_search_style'] ? 'lightbox' : 'dropdown' );
 	}
 	$set( 'vmenu_label', $text( 'header_nav_vertical_text' ) );
+	$set( 'search_placeholder', $text( 'search_placeholder' ) );
 
 	// Header buttons and HTML.
 	foreach ( array( 1, 2 ) as $i ) {
