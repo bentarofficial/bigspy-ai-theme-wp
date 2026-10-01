@@ -9,6 +9,47 @@ defined( 'ABSPATH' ) || exit;
 
 require_once BST_DIR . '/inc/woocommerce-elements.php';
 
+/**
+ * Is this request rendering the theme only as a preview (it is not the site's saved theme)?
+ */
+function bst_is_theme_preview() {
+	if ( ! empty( $_GET['wp_theme_preview'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return true;
+	}
+	global $wp_customize;
+	return is_customize_preview() && $wp_customize && ! $wp_customize->is_theme_active();
+}
+
+/**
+ * WooCommerce stores resolved template paths in the object cache. A preview
+ * request would leave paths of this theme behind for the live site (and read
+ * the live theme's paths itself), so the template cache is emptied before and
+ * after every preview request.
+ */
+function bst_wc_purge_template_cache() {
+	if ( function_exists( 'wc_clear_template_cache' ) ) {
+		wc_clear_template_cache();
+	}
+	// Some object caches lose WooCommerce's list of cached templates, so the
+	// entries for the templates this theme overrides are also removed by key.
+	$version = defined( 'WC_VERSION' ) ? WC_VERSION : '';
+	foreach ( array( 'content-product' ) as $template ) {
+		$parts = explode( '-', $template, 2 );
+		wp_cache_delete( sanitize_key( implode( '-', array( 'template-part', $parts[0], $parts[1] ?? '', $version ) ) ), 'woocommerce' );
+		wp_cache_delete( sanitize_key( implode( '-', array( 'template', $template . '.php', '', '', $version ) ) ), 'woocommerce' );
+	}
+}
+
+function bst_wc_isolate_preview_templates() {
+	if ( bst_is_theme_preview() ) {
+		bst_wc_purge_template_cache();
+		add_action( 'shutdown', 'bst_wc_purge_template_cache', 0 );
+	}
+}
+add_action( 'init', 'bst_wc_isolate_preview_templates', 1 );
+add_action( 'switch_theme', 'bst_wc_purge_template_cache' );
+add_action( 'after_switch_theme', 'bst_wc_purge_template_cache' );
+
 function bst_wc_setup() {
 	add_theme_support(
 		'woocommerce',

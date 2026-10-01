@@ -647,3 +647,12 @@
 .bs-legacy-search {
 	margin-bottom: 1em;
 }
+
+/* Flatsome utility classes used inside stored HTML. */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.is-small { font-size: .85em; }
+.is-large { font-size: 1.15em; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }

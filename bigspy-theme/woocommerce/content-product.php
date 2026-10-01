@@ -11,6 +11,30 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/*
+ * Safety net: WooCommerce caches template paths in the object cache. After a
+ * theme preview, a site running another theme can still be handed this file.
+ * Without the theme's functions it must not fatal – use the active theme's
+ * or WooCommerce's own template instead.
+ */
+if ( ! function_exists( 'bst_mod' ) || ! function_exists( 'bst_wc_badges_html' ) ) {
+	$bst_fallback = '';
+	foreach ( array_unique( array( get_stylesheet_directory(), get_template_directory() ) ) as $bst_dir ) {
+		$bst_file = $bst_dir . '/woocommerce/content-product.php';
+		if ( __FILE__ !== wp_normalize_path( $bst_file ) && realpath( $bst_file ) !== realpath( __FILE__ ) && is_readable( $bst_file ) ) {
+			$bst_fallback = $bst_file;
+			break;
+		}
+	}
+	if ( ! $bst_fallback && function_exists( 'WC' ) ) {
+		$bst_fallback = WC()->plugin_path() . '/templates/content-product.php';
+	}
+	if ( $bst_fallback && is_readable( $bst_fallback ) ) {
+		include $bst_fallback;
+	}
+	return;
+}
+
 global $product;
 
 if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {

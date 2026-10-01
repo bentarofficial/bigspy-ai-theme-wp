@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.2.0' );
+define( 'BST_VERSION', '1.2.1' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -27,6 +27,7 @@ $bst_includes = array(
 	'inc/patterns.php',
 	'inc/compat-flatsome.php',
 	'inc/compat-flatsome-elements.php',
+	'inc/compat-flatsome-settings.php',
 	'inc/admin/dashboard.php',
 );
 

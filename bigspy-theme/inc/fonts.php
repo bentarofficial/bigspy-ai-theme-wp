@@ -74,13 +74,15 @@ function bst_google_fonts_url() {
 		return '';
 	}
 
+	// The v1 endpoint skips weights a family does not have (css2 rejects the
+	// whole request), which matters for single-weight fonts such as Questrial.
 	$parts = array();
 	foreach ( $families as $family => $weights ) {
 		$weights = array_unique( array_filter( $weights ) );
 		sort( $weights );
-		$parts[] = 'family=' . str_replace( ' ', '+', $family ) . ':wght@' . implode( ';', $weights );
+		$parts[] = str_replace( ' ', '+', $family ) . ':' . implode( ',', $weights );
 	}
-	return 'https://fonts.googleapis.com/css2?' . implode( '&', $parts ) . '&display=swap';
+	return 'https://fonts.googleapis.com/css?family=' . implode( '%7C', $parts ) . '&subset=latin,latin-ext,vietnamese&display=swap';
 }
 
 function bst_font_resource_hints( $urls, $relation ) {
