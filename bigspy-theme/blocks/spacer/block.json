@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/spacer",
+	"title": "Spacer",
+	"category": "bigspy",
+	"icon": "image-flip-vertical",
+	"description": "Empty vertical space with a height per device.",
+	"textdomain": "bigspy-theme",
+	"attributes": {
+		"heightDesktop": {
+			"type": "number",
+			"default": 60
+		},
+		"heightTablet": {
+			"type": "number",
+			"default": 40
+		},
+		"heightMobile": {
+			"type": "number",
+			"default": 30
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

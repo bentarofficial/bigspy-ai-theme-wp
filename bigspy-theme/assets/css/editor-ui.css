@@ -1,0 +1,72 @@
+/* BIGSPY Theme – block inspector UI. */
+.bst-icon-picker {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 4px;
+	margin-top: 4px;
+}
+
+.bst-icon-picker__item.components-button {
+	justify-content: center;
+	height: 34px;
+	padding: 0;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.bst-icon-picker__item.is-selected {
+	background: #2271b1;
+	color: #fff;
+	border-color: #2271b1;
+}
+
+.bst-media-picker img {
+	display: block;
+	max-width: 100%;
+	max-height: 140px;
+	margin-bottom: 8px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.bst-media-picker__actions {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.bst-row-presets {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 6px;
+	margin-bottom: 10px;
+}
+
+.bst-row-preset.components-button {
+	display: flex;
+	gap: 3px;
+	height: 32px;
+	padding: 4px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.bst-row-preset.components-button:hover {
+	border-color: #2271b1;
+}
+
+.bst-row-preset span {
+	display: block;
+	height: 100%;
+	background: #c3d4e6;
+	border-radius: 2px;
+}
+
+.bst-row-preset:hover span {
+	background: #2271b1;
+}
+
+.bst-global-panel .components-toggle-control {
+	margin-bottom: 12px;
+}

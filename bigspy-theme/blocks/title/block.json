@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/title",
+	"title": "Section Title",
+	"category": "bigspy",
+	"icon": "heading",
+	"description": "Heading with decorative line, subtitle and optional “view all” link.",
+	"textdomain": "bigspy-theme",
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"subtitle": {
+			"type": "string",
+			"default": ""
+		},
+		"tag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"style": {
+			"type": "string",
+			"default": "bottom-line"
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"size": {
+			"type": "number",
+			"default": 0
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"lineColor": {
+			"type": "string",
+			"default": ""
+		},
+		"linkText": {
+			"type": "string",
+			"default": ""
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			]
+		}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,44 @@
+/* BIGSPY Theme – editor canvas typography (scoped to .editor-styles-wrapper by WordPress). */
+body {
+	background: var(--bs-body-bg, #fff);
+	color: var(--bs-text, #333);
+	font-family: var(--bs-font-body);
+	font-size: var(--bs-fs-base, 16px);
+	line-height: var(--bs-lh, 1.65);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: var(--bs-heading, #111);
+	font-family: var(--bs-font-heading);
+	font-weight: var(--bs-fw-heading, 700);
+	line-height: 1.25;
+	text-transform: var(--bs-heading-transform, none);
+}
+
+h1 { font-size: var(--bs-h1, 40px); }
+h2 { font-size: var(--bs-h2, 32px); }
+h3 { font-size: var(--bs-h3, 24px); }
+h4 { font-size: var(--bs-h4, 20px); }
+
+a {
+	color: var(--bs-link);
+}
+
+.wp-block-button__link {
+	background: var(--bs-primary);
+	color: #fff;
+	font-weight: var(--bs-btn-weight, 600);
+	text-transform: var(--bs-btn-transform, none);
+	border-radius: var(--bs-btn-radius, 6px);
+	padding: .75em 1.5em;
+}
+
+.is-style-outline > .wp-block-button__link {
+	background: transparent;
+	color: var(--bs-primary);
+	border: 2px solid currentColor;
+}
+
+.wp-block-post-title {
+	font-size: var(--bs-h1, 40px);
+}

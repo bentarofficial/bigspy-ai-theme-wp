@@ -1,0 +1,238 @@
+<?php
+/**
+ * Appearance → BIGSPY Theme: quick links and theme options import / export / reset.
+ *
+ * @package BigspyTheme
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+function bst_admin_menu() {
+	add_theme_page( __( 'BIGSPY Theme', 'bigspy-theme' ), __( 'BIGSPY Theme', 'bigspy-theme' ), 'edit_theme_options', 'bigspy-theme', 'bst_dashboard_page' );
+}
+add_action( 'admin_menu', 'bst_admin_menu' );
+
+function bst_customizer_link( $type, $id ) {
+	return admin_url( 'customize.php?autofocus[' . $type . ']=' . $id );
+}
+
+function bst_dashboard_page() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		return;
+	}
+	$links = array(
+		__( 'Header builder', 'bigspy-theme' )       => bst_customizer_link( 'section', 'bst_header_builder' ),
+		__( 'Logo & site identity', 'bigspy-theme' ) => bst_customizer_link( 'section', 'title_tagline' ),
+		__( 'Colors', 'bigspy-theme' )               => bst_customizer_link( 'section', 'bst_colors' ),
+		__( 'Typography', 'bigspy-theme' )           => bst_customizer_link( 'section', 'bst_typography' ),
+		__( 'Layout', 'bigspy-theme' )               => bst_customizer_link( 'panel', 'bst_layout' ),
+		__( 'Blog', 'bigspy-theme' )                 => bst_customizer_link( 'panel', 'bst_blog' ),
+		__( 'Footer', 'bigspy-theme' )               => bst_customizer_link( 'panel', 'bst_footer' ),
+		__( 'Floating contact buttons', 'bigspy-theme' ) => bst_customizer_link( 'section', 'bst_float' ),
+		__( 'Menus', 'bigspy-theme' )                => admin_url( 'nav-menus.php' ),
+		__( 'Widgets (sidebar & footer)', 'bigspy-theme' ) => admin_url( 'widgets.php' ),
+	);
+	if ( class_exists( 'WooCommerce' ) ) {
+		$links[ __( 'Shop layout', 'bigspy-theme' ) ] = bst_customizer_link( 'section', 'bst_shop' );
+	}
+
+	$notice = isset( $_GET['bst-notice'] ) ? sanitize_key( $_GET['bst-notice'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$notices = array(
+		'imported' => array( 'success', __( 'Theme options imported.', 'bigspy-theme' ) ),
+		'reset'    => array( 'success', __( 'Theme options reset to defaults.', 'bigspy-theme' ) ),
+		'invalid'  => array( 'error', __( 'The file is not a valid BIGSPY Theme export.', 'bigspy-theme' ) ),
+	);
+	?>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'BIGSPY Theme', 'bigspy-theme' ); ?> <small style="font-size:13px;color:#646970">v<?php echo esc_html( BST_VERSION ); ?></small></h1>
+
+		<?php if ( isset( $notices[ $notice ] ) ) : ?>
+			<div class="notice notice-<?php echo esc_attr( $notices[ $notice ][0] ); ?> is-dismissible"><p><?php echo esc_html( $notices[ $notice ][1] ); ?></p></div>
+		<?php endif; ?>
+
+		<div class="card" style="max-width:none">
+			<h2><?php esc_html_e( 'Quick start', 'bigspy-theme' ); ?></h2>
+			<ol>
+				<li><?php esc_html_e( 'Upload your logo and choose colors & fonts in the Customizer.', 'bigspy-theme' ); ?></li>
+				<li><?php esc_html_e( 'Arrange the header with the drag & drop Header builder.', 'bigspy-theme' ); ?></li>
+				<li><?php esc_html_e( 'Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY – Sections” (or the full “Homepage – business” pattern).', 'bigspy-theme' ); ?></li>
+				<li><?php esc_html_e( 'Every block has “Visibility & animation” settings to hide it per device or animate it on scroll.', 'bigspy-theme' ); ?></li>
+			</ol>
+			<p>
+				<?php foreach ( $links as $label => $url ) : ?>
+					<a class="button" style="margin:0 6px 6px 0" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>
+				<?php endforeach; ?>
+			</p>
+		</div>
+
+		<div class="card" style="max-width:none">
+			<h2><?php esc_html_e( 'Service website or online shop', 'bigspy-theme' ); ?></h2>
+			<?php if ( class_exists( 'WooCommerce' ) ) : ?>
+				<p><strong style="color:#008a20"><?php esc_html_e( 'WooCommerce is active – shop mode is on.', 'bigspy-theme' ); ?></strong></p>
+				<ul style="list-style:disc;padding-left:20px">
+					<li><?php esc_html_e( 'Blocks: “Products” (latest, featured, sale, best selling, top rated – grid or slider) and “Product Categories”.', 'bigspy-theme' ); ?></li>
+					<li><?php esc_html_e( 'Patterns: “BIGSPY – Shop” sections and the full “Homepage – online shop”.', 'bigspy-theme' ); ?></li>
+					<li><?php esc_html_e( 'Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY.', 'bigspy-theme' ); ?></li>
+				</ul>
+			<?php else : ?>
+				<p><?php esc_html_e( 'The theme works as a service / business website without any plugin.', 'bigspy-theme' ); ?></p>
+				<p><?php esc_html_e( 'To build an online shop, install WooCommerce. The “Products” and “Product Categories” blocks, the shop patterns, the header cart and all shop options then appear automatically – nothing else to set up.', 'bigspy-theme' ); ?></p>
+				<?php if ( current_user_can( 'install_plugins' ) ) : ?>
+					<p><a class="button" href="<?php echo esc_url( admin_url( 'plugin-install.php?s=woocommerce&tab=search&type=term' ) ); ?>"><?php esc_html_e( 'Install WooCommerce', 'bigspy-theme' ); ?></a></p>
+				<?php endif; ?>
+			<?php endif; ?>
+		</div>
+
+		<div class="card" style="max-width:none">
+			<h2><?php esc_html_e( 'Export theme options', 'bigspy-theme' ); ?></h2>
+			<p><?php esc_html_e( 'Download all Customizer settings (colors, fonts, header layout, footer, blog, shop, Additional CSS) as a JSON file. Import it on another website to start from the same design.', 'bigspy-theme' ); ?></p>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="bst_export">
+				<?php wp_nonce_field( 'bst_export' ); ?>
+				<?php submit_button( __( 'Download export file', 'bigspy-theme' ), 'primary', 'submit', false ); ?>
+			</form>
+		</div>
+
+		<div class="card" style="max-width:none">
+			<h2><?php esc_html_e( 'Import theme options', 'bigspy-theme' ); ?></h2>
+			<p><?php esc_html_e( 'Upload a file exported from BIGSPY Theme. Current settings will be overwritten.', 'bigspy-theme' ); ?></p>
+			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="bst_import">
+				<?php wp_nonce_field( 'bst_import' ); ?>
+				<input type="file" name="bst_file" accept=".json,application/json" required>
+				<?php submit_button( __( 'Import', 'bigspy-theme' ), 'secondary', 'submit', false ); ?>
+			</form>
+		</div>
+
+		<div class="card" style="max-width:none">
+			<h2><?php esc_html_e( 'Reset', 'bigspy-theme' ); ?></h2>
+			<p><?php esc_html_e( 'Restore every theme option to its default value. Menus, widgets, logo and content are not affected.', 'bigspy-theme' ); ?></p>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Reset all theme options?', 'bigspy-theme' ) ); ?>');">
+				<input type="hidden" name="action" value="bst_reset">
+				<?php wp_nonce_field( 'bst_reset' ); ?>
+				<?php submit_button( __( 'Reset theme options', 'bigspy-theme' ), 'delete', 'submit', false ); ?>
+			</form>
+		</div>
+	</div>
+	<?php
+}
+
+function bst_dashboard_redirect( $notice ) {
+	wp_safe_redirect( add_query_arg( 'bst-notice', $notice, admin_url( 'themes.php?page=bigspy-theme' ) ) );
+	exit;
+}
+
+function bst_handle_export() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-theme' ) );
+	}
+	check_admin_referer( 'bst_export' );
+
+	$options = array();
+	foreach ( array_keys( bst_defaults() ) as $key ) {
+		$value = get_theme_mod( $key, null );
+		if ( null !== $value ) {
+			$options[ $key ] = $value;
+		}
+	}
+
+	$data = array(
+		'theme'   => 'bigspy-theme',
+		'version' => BST_VERSION,
+		'site'    => home_url( '/' ),
+		'date'    => gmdate( 'c' ),
+		'options' => $options,
+		'css'     => wp_get_custom_css(),
+	);
+
+	nocache_headers();
+	header( 'Content-Type: application/json; charset=utf-8' );
+	header( 'Content-Disposition: attachment; filename=bigspy-theme-options-' . gmdate( 'Y-m-d' ) . '.json' );
+	echo wp_json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
+	exit;
+}
+add_action( 'admin_post_bst_export', 'bst_handle_export' );
+
+/**
+ * Sanitize one imported value according to the type of its default.
+ */
+function bst_sanitize_imported( $key, $value, $default ) {
+	if ( 'header_layout' === $key ) {
+		return wp_json_encode( bst_normalize_header_layout( $value ) );
+	}
+	if ( 0 === strpos( $key, 'scripts_' ) ) {
+		return current_user_can( 'unfiltered_html' ) ? (string) $value : null;
+	}
+	if ( is_bool( $default ) ) {
+		return (bool) $value;
+	}
+	if ( is_int( $default ) || is_float( $default ) ) {
+		return is_numeric( $value ) ? $value + 0 : $default;
+	}
+	if ( ! is_scalar( $value ) ) {
+		return $default;
+	}
+	$value = (string) $value;
+	if ( is_string( $default ) && preg_match( '/^#[0-9a-f]{3,6}$/i', $default ) ) {
+		return sanitize_hex_color( $value ) ? sanitize_hex_color( $value ) : $default;
+	}
+	return wp_kses_post( $value );
+}
+
+function bst_handle_import() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-theme' ) );
+	}
+	check_admin_referer( 'bst_import' );
+
+	$file = $_FILES['bst_file'] ?? null; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	if ( ! $file || ! empty( $file['error'] ) || empty( $file['tmp_name'] ) || ! is_uploaded_file( $file['tmp_name'] ) || $file['size'] > 2 * MB_IN_BYTES ) {
+		bst_dashboard_redirect( 'invalid' );
+	}
+
+	$data = json_decode( (string) file_get_contents( $file['tmp_name'] ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	if ( ! is_array( $data ) || 'bigspy-theme' !== ( $data['theme'] ?? '' ) || ! is_array( $data['options'] ?? null ) ) {
+		bst_dashboard_redirect( 'invalid' );
+	}
+
+	$defaults = bst_defaults();
+	foreach ( $data['options'] as $key => $value ) {
+		if ( ! array_key_exists( $key, $defaults ) ) {
+			continue;
+		}
+		$clean = bst_sanitize_imported( $key, $value, $defaults[ $key ] );
+		if ( null !== $clean ) {
+			set_theme_mod( $key, $clean );
+		}
+	}
+
+	if ( isset( $data['css'] ) && is_string( $data['css'] ) && '' !== trim( $data['css'] ) ) {
+		wp_update_custom_css_post( wp_strip_all_tags( $data['css'] ) );
+	}
+
+	bst_dashboard_redirect( 'imported' );
+}
+add_action( 'admin_post_bst_import', 'bst_handle_import' );
+
+function bst_handle_reset() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-theme' ) );
+	}
+	check_admin_referer( 'bst_reset' );
+	foreach ( array_keys( bst_defaults() ) as $key ) {
+		remove_theme_mod( $key );
+	}
+	bst_dashboard_redirect( 'reset' );
+}
+add_action( 'admin_post_bst_reset', 'bst_handle_reset' );
+
+/**
+ * Link to the dashboard right after the theme is activated.
+ */
+function bst_activation_notice() {
+	global $pagenow;
+	if ( 'themes.php' === $pagenow && isset( $_GET['activated'] ) && current_user_can( 'edit_theme_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'BIGSPY Theme is active.', 'bigspy-theme' ) . ' <a href="' . esc_url( admin_url( 'themes.php?page=bigspy-theme' ) ) . '">' . esc_html__( 'Open the quick start guide', 'bigspy-theme' ) . '</a></p></div>';
+	}
+}
+add_action( 'admin_notices', 'bst_activation_notice' );

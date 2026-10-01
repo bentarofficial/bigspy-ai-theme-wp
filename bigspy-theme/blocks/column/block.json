@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/column",
+	"title": "Column",
+	"category": "bigspy",
+	"icon": "align-center",
+	"description": "Column inside a Row.",
+	"textdomain": "bigspy-theme",
+	"parent": [
+		"bst/row"
+	],
+	"attributes": {
+		"spanDesktop": {
+			"type": "number",
+			"default": 6
+		},
+		"spanTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"spanMobile": {
+			"type": "number",
+			"default": 12
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "top"
+		},
+		"textAlign": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true,
+			"gradients": true
+		},
+		"spacing": {
+			"padding": true
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"color": true,
+			"width": true,
+			"style": true
+		}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

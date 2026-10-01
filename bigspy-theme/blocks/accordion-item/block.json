@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/accordion-item",
+	"title": "Accordion Item",
+	"category": "bigspy",
+	"icon": "arrow-down-alt2",
+	"description": "One collapsible item.",
+	"textdomain": "bigspy-theme",
+	"parent": [
+		"bst/accordion"
+	],
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"open": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

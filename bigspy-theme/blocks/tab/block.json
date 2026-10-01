@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/tab",
+	"title": "Tab",
+	"category": "bigspy",
+	"icon": "excerpt-view",
+	"description": "A tab panel.",
+	"textdomain": "bigspy-theme",
+	"parent": [
+		"bst/tabs"
+	],
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Tab"
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

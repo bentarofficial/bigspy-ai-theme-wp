@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/product-categories",
+	"title": "Product Categories",
+	"category": "bigspy",
+	"icon": "category",
+	"description": "WooCommerce product categories with image, as grid or slider.",
+	"textdomain": "bigspy-theme",
+	"attributes": {
+		"count": { "type": "number", "default": 6 },
+		"parent": { "type": "number", "default": 0 },
+		"topLevelOnly": { "type": "boolean", "default": true },
+		"hideEmpty": { "type": "boolean", "default": true },
+		"orderBy": { "type": "string", "default": "menu_order" },
+		"style": { "type": "string", "default": "overlay" },
+		"ratio": { "type": "string", "default": "1-1" },
+		"showCount": { "type": "boolean", "default": true },
+		"layout": { "type": "string", "default": "grid" },
+		"columns": { "type": "number", "default": 6 },
+		"columnsTablet": { "type": "number", "default": 3 },
+		"columnsMobile": { "type": "number", "default": 2 },
+		"autoplay": { "type": "number", "default": 0 }
+	},
+	"supports": { "anchor": true, "html": false, "align": [ "wide", "full" ] },
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

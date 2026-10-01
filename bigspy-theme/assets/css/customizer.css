@@ -1,0 +1,135 @@
+/* BIGSPY Theme – Customizer controls. */
+.bst-customizer-heading {
+	margin: 18px -12px 6px;
+	padding: 10px 12px;
+	background: #f0f0f1;
+	border-top: 1px solid #dcdcde;
+	border-bottom: 1px solid #dcdcde;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+
+.bst-hb__tabs {
+	display: flex;
+	gap: 6px;
+	margin: 8px 0 12px;
+}
+
+.bst-hb__tabs .button {
+	flex: 1;
+	text-align: center;
+}
+
+.bst-hb__row,
+.bst-hb__pool {
+	margin-bottom: 12px;
+	padding: 8px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.bst-hb__pool {
+	background: #f6f7f7;
+	border-style: dashed;
+}
+
+.bst-hb__row-title {
+	margin-bottom: 6px;
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	color: #50575e;
+}
+
+.bst-hb__zones {
+	display: grid;
+	gap: 6px;
+}
+
+.bst-hb__zone {
+	display: grid;
+	grid-template-columns: 52px 1fr;
+	align-items: start;
+	gap: 6px;
+}
+
+.bst-hb__zone-title {
+	padding-top: 6px;
+	font-size: 11px;
+	color: #8c8f94;
+}
+
+.bst-hb__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	min-height: 30px;
+	margin: 0;
+	padding: 3px;
+	background: #f6f7f7;
+	border: 1px dashed #c3c4c7;
+	border-radius: 3px;
+}
+
+.bst-hb__list--pool {
+	background: transparent;
+	border: 0;
+}
+
+.bst-hb__chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	margin: 0;
+	padding: 3px 4px 3px 8px;
+	background: #2271b1;
+	color: #fff;
+	border-radius: 3px;
+	font-size: 12px;
+	line-height: 18px;
+	cursor: move;
+	user-select: none;
+}
+
+.bst-hb__list--pool .bst-hb__chip {
+	background: #fff;
+	color: #1d2327;
+	border: 1px solid #c3c4c7;
+}
+
+.bst-hb__chip-edit {
+	display: inline-flex;
+	padding: 0;
+	background: none;
+	border: 0;
+	color: inherit;
+	opacity: .75;
+	cursor: pointer;
+}
+
+.bst-hb__chip-edit:hover,
+.bst-hb__chip-edit:focus {
+	opacity: 1;
+}
+
+.bst-hb__chip-edit .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.bst-hb__placeholder {
+	width: 60px;
+	height: 24px;
+	background: #c5d9ed;
+	border-radius: 3px;
+	list-style: none;
+}
+
+.bst-hb__reset {
+	color: #b32d2e !important;
+}
