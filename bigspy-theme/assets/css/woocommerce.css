@@ -828,3 +828,16 @@ ul.products li.bs-product {
 	margin: 0;
 	text-align: center;
 }
+
+/* Add-to-cart label stays on one centered line (long translations such as Vietnamese). */
+.woocommerce ul.products li.product .bs-product__actions .button,
+.bs-product__actions .button {
+	justify-content: center;
+	padding-left: .6em;
+	padding-right: .6em;
+	overflow: hidden;
+	font-size: 13px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

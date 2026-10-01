@@ -350,8 +350,8 @@ function bst_product_categories_html( $raw, $class = '' ) {
 	}
 
 	$d = (int) bst_clamp( $raw['d'] ?? 6, 1, 8, 6 );
-	$t = (int) bst_clamp( $raw['t'] ?? 3, 1, 6, 3 );
-	$m = (int) bst_clamp( $raw['m'] ?? 2, 1, 3, 2 );
+	$t = (int) bst_clamp( $raw['t'] ?? 3, 1, 8, 3 );
+	$m = (int) bst_clamp( $raw['m'] ?? 2, 1, 4, 2 );
 
 	if ( 'slider' === $layout ) {
 		$html = bst_slider_markup( $items, array( 'd' => $d, 't' => $t, 'm' => $m, 'gap' => 20, 'autoplay' => (int) bst_clamp( $raw['autoplay'] ?? 0, 0, 30000, 0 ), 'dots' => false, 'loop' => false ), 'bs-slider--cards' );

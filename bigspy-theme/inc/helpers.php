@@ -395,6 +395,11 @@ function bst_sidebar_position() {
 	}
 
 	$position = in_array( $position, array( 'none', 'left', 'right' ), true ) ? $position : 'none';
+
+	// A sidebar without widgets must not reserve an empty column.
+	if ( 'none' !== $position && ! is_active_sidebar( bst_sidebar_id() ) ) {
+		$position = 'none';
+	}
 	return apply_filters( 'bst_sidebar_position', $position );
 }
 
