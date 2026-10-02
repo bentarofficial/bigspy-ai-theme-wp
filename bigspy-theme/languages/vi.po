@@ -110,6 +110,9 @@ msgstr "Chưa có nội dung."
 msgid "Load more"
 msgstr "Xem thêm"
 
+msgid "Read more"
+msgstr "Đọc tiếp"
+
 msgid "Loading…"
 msgstr "Đang tải…"
 

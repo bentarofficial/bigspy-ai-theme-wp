@@ -236,7 +236,9 @@ function bst_post_card( $args = array() ) {
 				echo '<div class="bs-card__excerpt">' . wp_kses_post( wpautop( get_the_excerpt() ) ) . '</div>';
 			}
 			if ( $args['more'] ) {
-				echo '<a class="bs-card__more" href="' . esc_url( get_permalink() ) . '">' . esc_html( $args['more'] ) . bst_icon( 'arrow-right', 16 ) . '<span class="screen-reader-text"> ' . esc_html( get_the_title() ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// The untouched default label follows the site language.
+				$more = 'Read more' === $args['more'] ? __( 'Read more', 'bigspy-theme' ) : $args['more'];
+				echo '<a class="bs-card__more" href="' . esc_url( get_permalink() ) . '">' . esc_html( $more ) . bst_icon( 'arrow-right', 16 ) . '<span class="screen-reader-text"> ' . esc_html( get_the_title() ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			?>
 		</div>

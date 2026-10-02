@@ -47,6 +47,7 @@ const strings = [
 	['Nothing matched your search. Please try different keywords.', 'Không có kết quả phù hợp. Vui lòng thử từ khóa khác.'],
 	['There is nothing here yet.', 'Chưa có nội dung.'],
 	['Load more', 'Xem thêm'],
+	['Read more', 'Đọc tiếp'],
 	['Loading…', 'Đang tải…'],
 	['Sold out', 'Hết hàng'],
 	['Sale', 'Giảm giá'],
