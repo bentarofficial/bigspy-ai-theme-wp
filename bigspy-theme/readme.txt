@@ -18,6 +18,7 @@ See README.md in the source repository for the full feature list and the site-bu
 = 1.2.4 =
 * Banner: optional mobile image (shown up to 549px) so a portrait crop can keep the text area clear on phones.
 * Slider: “Arrows on mobile” option – hide the arrows on phones and rely on swipe and dots.
+* Posts block: the default “Read more” label is translated again (it bypassed the option translation).
 
 = 1.2.3 =
 * Banners and other fixed-height block images now fill their frame inside page content (the content image rule no longer overrides them).

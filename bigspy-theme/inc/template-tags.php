@@ -218,6 +218,10 @@ function bst_post_card( $args = array() ) {
 			'heading' => 'h2',
 		)
 	);
+	// The untouched default label follows the site language (the Posts block passes it as its own default).
+	if ( 'Read more' === $args['more'] ) {
+		$args['more'] = __( 'Read more', 'bigspy-theme' );
+	}
 	$heading = bst_choice( $args['heading'], array( 'h2', 'h3', 'h4', 'h5' ), 'h2' );
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'bs-card bs-card--' . sanitize_html_class( $args['style'] ) ); ?>>
