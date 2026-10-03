@@ -5,9 +5,12 @@
 /* ---------------------------------------------------------------- Product grid */
 .woocommerce ul.products,
 .woocommerce-page ul.products {
+	--bs-shop-gap: 24px;
 	display: grid;
-	grid-template-columns: repeat(var(--bs-shop-cols, 4), minmax(0, 1fr));
-	gap: 30px 24px;
+	/* At most --bs-shop-cols columns, fewer when the column gets narrower than
+	   --bs-card-min (e.g. next to a sidebar on a small laptop). */
+	grid-template-columns: repeat(auto-fill, minmax(max(var(--bs-card-min, 190px), calc((100% - (var(--bs-shop-cols, 4) - 1) * var(--bs-shop-gap)) / var(--bs-shop-cols, 4))), 1fr));
+	gap: 30px var(--bs-shop-gap);
 	margin: 0 0 2em;
 	padding: 0;
 }
@@ -832,6 +835,8 @@ ul.products li.bs-product {
 /* Add-to-cart label stays on one centered line (long translations such as Vietnamese). */
 .woocommerce ul.products li.product .bs-product__actions .button,
 .bs-product__actions .button {
+	/* block, not flex: ellipsis only applies to a block's own text */
+	display: block;
 	justify-content: center;
 	padding-left: .6em;
 	padding-right: .6em;

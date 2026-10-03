@@ -17,6 +17,7 @@ See README.md in the source repository for the full feature list and the site-bu
 
 = 1.2.3 =
 * Banners and other fixed-height block images now fill their frame inside page content (the content image rule no longer overrides them).
+* Shop grid drops to fewer columns when the content column is narrow (e.g. next to a sidebar), instead of squeezing cards; long “Add to cart” labels end with an ellipsis.
 * Products block: the “Order by” setting is now applied, with a new control in the editor (custom order, price, name, best selling, rating, random).
 * New block icons for beauty, shop and service sites: leaf, droplet, sun, sparkles, flask, award, tag, refresh, card, smile.
 * Default option labels (header button, footer call-to-action, copyright, catalog mode, read more) follow the site language until they are edited.
