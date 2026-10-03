@@ -113,6 +113,21 @@ msgstr "Xem thêm"
 msgid "Read more"
 msgstr "Đọc tiếp"
 
+msgid "Contact us"
+msgstr "Liên hệ"
+
+msgid "Ready to start your project?"
+msgstr "Bạn đã sẵn sàng bắt đầu?"
+
+msgid "Get a free consultation and a quote within 24 hours."
+msgstr "Nhận tư vấn miễn phí và báo giá trong vòng 24 giờ."
+
+msgid "Copyright © [year] [site_title]. All rights reserved."
+msgstr "Bản quyền © [year] [site_title]. Bảo lưu mọi quyền."
+
+msgid "Contact for price"
+msgstr "Liên hệ để biết giá"
+
 msgid "Loading…"
 msgstr "Đang tải…"
 

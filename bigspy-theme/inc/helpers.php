@@ -220,7 +220,20 @@ function bst_defaults() {
  */
 function bst_mod( $key ) {
 	$defaults = bst_defaults();
-	return get_theme_mod( $key, $defaults[ $key ] ?? null );
+	$value    = get_theme_mod( $key, $defaults[ $key ] ?? null );
+
+	// Untouched default labels follow the site language; text typed by the user is kept as is.
+	if ( is_string( $value ) && '' !== $value && isset( $defaults[ $key ] ) && $value === $defaults[ $key ] && in_array( $key, bst_translatable_defaults(), true ) ) {
+		$value = translate( $value, 'bigspy-theme' ); // phpcs:ignore WordPress.WP.I18n
+	}
+	return $value;
+}
+
+/**
+ * Option keys whose English default text is shown to visitors and must be translated.
+ */
+function bst_translatable_defaults() {
+	return array( 'header_button_1_text', 'blog_read_more', 'footer_cta_title', 'footer_cta_text', 'footer_cta_button', 'footer_copyright', 'catalog_mode_text' );
 }
 
 /**
@@ -510,6 +523,16 @@ function bst_icon_paths() {
 		'home'      => '<path ' . $s . ' d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
 		'camera'    => '<path ' . $s . ' d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle ' . $s . ' cx="12" cy="13" r="4"/>',
 		'message'   => '<path ' . $s . ' d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+		'leaf'      => '<path ' . $s . ' d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path ' . $s . ' d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/>',
+		'droplet'   => '<path ' . $s . ' d="M12 2.7l5.7 5.7a8 8 0 1 1-11.3 0z"/>',
+		'sun'       => '<circle ' . $s . ' cx="12" cy="12" r="4"/><path ' . $s . ' d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/>',
+		'sparkles'  => '<path ' . $s . ' d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path ' . $s . ' d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+		'flask'     => '<path ' . $s . ' d="M9 2h6M10 2v6.5L4.5 18A2.5 2.5 0 0 0 6.7 22h10.6a2.5 2.5 0 0 0 2.2-4L14 8.5V2M7 15h10"/>',
+		'award'     => '<circle ' . $s . ' cx="12" cy="8" r="6"/><path ' . $s . ' d="M8.2 13.3L7 22l5-3 5 3-1.2-8.7"/>',
+		'tag'       => '<path ' . $s . ' d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle fill="currentColor" cx="7" cy="7" r="1.5"/>',
+		'refresh'   => '<path ' . $s . ' d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/>',
+		'card'      => '<rect ' . $s . ' x="2" y="5" width="20" height="14" rx="2"/><path ' . $s . ' d="M2 10h20M6 15h4"/>',
+		'smile'     => '<circle ' . $s . ' cx="12" cy="12" r="9"/><path ' . $s . ' d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>',
 		'quote'     => '<path fill="currentColor" d="M7.2 6C4.3 7.3 2.5 9.9 2.5 13.3V18h7v-7H6.1c.2-1.7 1.2-3 3-3.8zm11 0c-2.9 1.3-4.7 3.9-4.7 7.3V18h7v-7h-3.4c.2-1.7 1.2-3 3-3.8z"/>',
 		'play'      => '<path fill="currentColor" d="M8 5v14l11-7z"/>',
 		'facebook'  => '<path fill="currentColor" d="M14 8.5V6.6c0-.9.2-1.4 1.6-1.4H17V2.1C16.7 2 15.7 2 14.6 2 12.2 2 10.6 3.4 10.6 6.1v2.4H8V12h2.6v10H14V12h2.7l.4-3.5z"/>',
@@ -529,7 +552,7 @@ function bst_icon_paths() {
  * Icon names offered to editors in blocks.
  */
 function bst_block_icon_names() {
-	return array( 'check', 'star', 'heart', 'shield', 'truck', 'gift', 'support', 'rocket', 'chart', 'code', 'globe', 'lightbulb', 'users', 'settings', 'home', 'camera', 'message', 'phone', 'mail', 'pin', 'clock', 'search', 'cart', 'bag', 'user', 'arrow-right', 'play', 'quote' );
+	return array( 'check', 'star', 'heart', 'shield', 'truck', 'gift', 'support', 'rocket', 'chart', 'code', 'globe', 'lightbulb', 'users', 'settings', 'home', 'camera', 'message', 'phone', 'mail', 'pin', 'clock', 'search', 'cart', 'bag', 'user', 'arrow-right', 'play', 'quote', 'leaf', 'droplet', 'sun', 'sparkles', 'flask', 'award', 'tag', 'refresh', 'card', 'smile' );
 }
 
 /**

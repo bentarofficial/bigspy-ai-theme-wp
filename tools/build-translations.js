@@ -48,6 +48,12 @@ const strings = [
 	['There is nothing here yet.', 'Chưa có nội dung.'],
 	['Load more', 'Xem thêm'],
 	['Read more', 'Đọc tiếp'],
+	// Default option labels (see bst_translatable_defaults()).
+	['Contact us', 'Liên hệ'],
+	['Ready to start your project?', 'Bạn đã sẵn sàng bắt đầu?'],
+	['Get a free consultation and a quote within 24 hours.', 'Nhận tư vấn miễn phí và báo giá trong vòng 24 giờ.'],
+	['Copyright © [year] [site_title]. All rights reserved.', 'Bản quyền © [year] [site_title]. Bảo lưu mọi quyền.'],
+	['Contact for price', 'Liên hệ để biết giá'],
 	['Loading…', 'Đang tải…'],
 	['Sold out', 'Hết hàng'],
 	['Sale', 'Giảm giá'],
