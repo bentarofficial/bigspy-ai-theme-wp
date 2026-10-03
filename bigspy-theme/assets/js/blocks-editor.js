@@ -903,6 +903,7 @@
 				el(Panel, { title: __('Products', 'bigspy-theme') },
 					el(Select, Object.assign({ label: __('Show', 'bigspy-theme'), options: { latest: __('Latest', 'bigspy-theme'), featured: __('Featured', 'bigspy-theme'), sale: __('On sale', 'bigspy-theme'), best_selling: __('Best selling', 'bigspy-theme'), top_rated: __('Top rated', 'bigspy-theme'), random: __('Random', 'bigspy-theme') } }, bind('type'))),
 					el(c.SelectControl, { label: __('Category', 'bigspy-theme'), value: a.category, options: termOptions(cats), onChange: function (v) { props.setAttributes({ category: parseInt(v, 10) || 0 }); }, __nextHasNoMarginBottom: true }),
+					el(Select, Object.assign({ label: __('Order by', 'bigspy-theme'), options: { '': __('Default (follows “Show”)', 'bigspy-theme'), menu_order: __('Custom order (drag & drop in WooCommerce)', 'bigspy-theme'), date: __('Newest', 'bigspy-theme'), title: __('Name A–Z', 'bigspy-theme'), price: __('Price: low to high', 'bigspy-theme'), 'price-desc': __('Price: high to low', 'bigspy-theme'), popularity: __('Best selling', 'bigspy-theme'), rating: __('Top rated', 'bigspy-theme'), rand: __('Random', 'bigspy-theme') } }, bind('orderBy'))),
 					el(Range, Object.assign({ label: __('Number of products', 'bigspy-theme'), min: 1, max: 48 }, bind('count'))),
 					a.layout === 'grid' ? el(Toggle, Object.assign({ label: __('“Load more” button', 'bigspy-theme'), help: __('Loads the next products without reloading the page.', 'bigspy-theme') }, bind('loadMore', true))) : null
 				),

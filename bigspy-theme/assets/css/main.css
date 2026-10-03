@@ -1894,7 +1894,9 @@ a.page-numbers:hover {
 	opacity: .8;
 }
 
-.bs-content img {
+/* :where() keeps this at element specificity so block images with a fixed
+   height (banner, ratio frames, avatars) are not squashed back to auto. */
+:where(.bs-content) img {
 	max-width: 100%;
 	height: auto;
 }

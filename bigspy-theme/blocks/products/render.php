@@ -17,6 +17,7 @@ $html = bst_products_html(
 		'type'      => $a['type'] ?? 'latest',
 		'cats'      => ! empty( $a['category'] ) ? array( (int) $a['category'] ) : array(),
 		'count'     => $a['count'] ?? 8,
+		'orderby'   => $a['orderBy'] ?? '',
 		'layout'    => $a['layout'] ?? 'grid',
 		'd'         => $a['columns'] ?? 4,
 		't'         => $a['columnsTablet'] ?? 3,

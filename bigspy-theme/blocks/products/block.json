@@ -22,7 +22,7 @@
 		},
 		"orderBy": {
 			"type": "string",
-			"default": "date"
+			"default": ""
 		},
 		"layout": {
 			"type": "string",

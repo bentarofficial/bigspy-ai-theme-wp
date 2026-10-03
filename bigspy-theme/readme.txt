@@ -15,6 +15,12 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.2.3 =
+* Banners and other fixed-height block images now fill their frame inside page content (the content image rule no longer overrides them).
+* Products block: the “Order by” setting is now applied, with a new control in the editor (custom order, price, name, best selling, rating, random).
+* New block icons for beauty, shop and service sites: leaf, droplet, sun, sparkles, flask, award, tag, refresh, card, smile.
+* Default option labels (header button, footer call-to-action, copyright, catalog mode, read more) follow the site language until they are edited.
+
 = 1.2.2 =
 * Fixes from the second live preview: the full-screen search panel no longer opens on load, product sliders keep equal slide widths, product and category names use the text color, compact menu in the bottom header row, legacy banners show their background color when the image is missing.
 * Search field placeholder option (inherited from Flatsome).
