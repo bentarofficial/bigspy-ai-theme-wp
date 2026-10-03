@@ -331,6 +331,7 @@
 			el(Inspector, null,
 				el(Panel, { title: __('Image', 'bigspy-theme') },
 					el(B.MediaPicker, { id: a.imageId, url: a.imageUrl, onChange: setImage }),
+					a.imageUrl ? el(B.MediaPicker, { label: __('Mobile image (optional)', 'bigspy-theme'), id: a.imageMobileId, url: a.imageMobileUrl, onChange: function (m) { props.setAttributes({ imageMobileId: m.id, imageMobileUrl: m.url }); } }) : null,
 					a.imageUrl ? el(c.FocalPointPicker, {
 						label: __('Focal point', 'bigspy-theme'),
 						url: a.imageUrl,
@@ -393,6 +394,7 @@
 				el(Panel, { title: __('Behaviour', 'bigspy-theme') },
 					el(Range, Object.assign({ label: __('Autoplay every (seconds, 0 = off)', 'bigspy-theme'), max: 30 }, bind('autoplay'))),
 					el(Toggle, Object.assign({ label: __('Arrows', 'bigspy-theme') }, bind('arrows', true))),
+					a.arrows ? el(Toggle, Object.assign({ label: __('Arrows on mobile', 'bigspy-theme') }, bind('arrowsMobile', true))) : null,
 					el(Select, Object.assign({ label: __('Arrow style', 'bigspy-theme'), options: { circle: __('Circle', 'bigspy-theme'), square: __('Square', 'bigspy-theme'), minimal: __('Minimal', 'bigspy-theme') } }, bind('arrowStyle'))),
 					el(Toggle, Object.assign({ label: __('Dots', 'bigspy-theme') }, bind('dots', true))),
 					el(Toggle, Object.assign({ label: __('Loop', 'bigspy-theme') }, bind('loop', true)))

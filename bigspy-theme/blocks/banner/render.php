@@ -35,6 +35,22 @@ if ( ! empty( $a['imageId'] ) ) {
 if ( ! $image && ! empty( $a['imageUrl'] ) ) {
 	$image = '<img class="bs-banner__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="" loading="lazy" decoding="async" style="object-position:' . esc_attr( $focal ) . '">';
 }
+
+// Optional phone image (<= 549px), e.g. a portrait crop with the text area kept clear.
+if ( $image ) {
+	$mobile_src = '';
+	$mobile_set = '';
+	if ( ! empty( $a['imageMobileId'] ) ) {
+		$mobile_src = (string) wp_get_attachment_image_url( (int) $a['imageMobileId'], 'large' );
+		$mobile_set = (string) wp_get_attachment_image_srcset( (int) $a['imageMobileId'], 'large' );
+	}
+	if ( '' === $mobile_src && ! empty( $a['imageMobileUrl'] ) ) {
+		$mobile_src = esc_url_raw( $a['imageMobileUrl'] );
+	}
+	if ( '' !== $mobile_src ) {
+		$image = '<picture class="bs-banner__picture"><source media="(max-width: 549px)" srcset="' . esc_attr( '' !== $mobile_set ? $mobile_set : $mobile_src ) . '" sizes="100vw">' . $image . '</picture>';
+	}
+}
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => $classes, 'style' => $style ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="bs-banner__bg" aria-hidden="true"><?php echo $image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

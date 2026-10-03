@@ -16,6 +16,14 @@
 			"type": "number",
 			"default": 0
 		},
+		"imageMobileId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageMobileUrl": {
+			"type": "string",
+			"default": ""
+		},
 		"focalX": {
 			"type": "number",
 			"default": 50

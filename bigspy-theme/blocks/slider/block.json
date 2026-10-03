@@ -32,6 +32,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"arrowsMobile": {
+			"type": "boolean",
+			"default": true
+		},
 		"dots": {
 			"type": "boolean",
 			"default": true

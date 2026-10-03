@@ -371,6 +371,10 @@ input[type="submit"]:hover,
 	background: var(--bs-light, #eee);
 }
 
+.bs-banner__picture {
+	display: contents;
+}
+
 .bs-banner__img {
 	width: 100%;
 	height: 100%;
@@ -523,6 +527,12 @@ input[type="submit"]:hover,
 .bs-slider__arrow:disabled {
 	opacity: 0 !important;
 	pointer-events: none;
+}
+
+@media (max-width: 549px) {
+	.bs-slider--no-arrows-m .bs-slider__arrow {
+		display: none;
+	}
 }
 
 .bs-slider__arrow--prev { left: 12px; }

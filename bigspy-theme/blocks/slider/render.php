@@ -22,7 +22,7 @@ $slider = bst_slider_markup(
 		'dots'     => ! empty( $a['dots'] ),
 		'loop'     => ! empty( $a['loop'] ),
 	),
-	'bs-slider--arrows-' . $style
+	'bs-slider--arrows-' . $style . ( ( $a['arrowsMobile'] ?? true ) ? '' : ' bs-slider--no-arrows-m' )
 );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-slider-block' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo $slider; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

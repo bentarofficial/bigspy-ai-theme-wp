@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.2.4 =
+* Banner: optional mobile image (shown up to 549px) so a portrait crop can keep the text area clear on phones.
+* Slider: “Arrows on mobile” option – hide the arrows on phones and rely on swipe and dots.
+
 = 1.2.3 =
 * Banners and other fixed-height block images now fill their frame inside page content (the content image rule no longer overrides them).
 * Shop grid drops to fewer columns when the content column is narrow (e.g. next to a sidebar), instead of squeezing cards; long “Add to cart” labels end with an ellipsis.
