@@ -1,0 +1,30 @@
+/* Optional presentation: native classic checkout and WooCommerce blocks. */
+.bs-cart-layout--focused .bs-layout__content,
+.bs-checkout-layout--focused .bs-layout__content { width: 100%; max-width: 960px; margin-inline: auto; }
+.bs-cart-layout--simple .woocommerce-cart-form,
+.bs-checkout-layout--simple #customer_details { padding: 24px; border: 1px solid var(--bs-border); border-radius: 16px; background: var(--bs-content-bg); }
+.bs-cart-layout--focused .cart-collaterals .cart_totals,
+.bs-checkout-layout--focused #order_review { border: 1px solid var(--bs-border); box-shadow: 0 10px 35px rgb(0 0 0 / 5%); }
+.bs-cart-layout--simple .wp-block-woocommerce-cart,
+.bs-checkout-layout--simple .wp-block-woocommerce-checkout { padding: 20px; border: 1px solid var(--bs-border); border-radius: 16px; }
+.bs-purchase-content { margin-block: 16px; padding: 16px; background: var(--bs-light); border: 1px solid var(--bs-border); border-radius: 12px; font-size: .94em; }
+.bs-purchase-content > :last-child { margin-bottom: 0; }
+.bs-product-tabs--pills.woocommerce div.product .woocommerce-tabs ul.tabs { padding: 0; gap: 8px; }
+.bs-product-tabs--pills.woocommerce div.product .woocommerce-tabs ul.tabs li { border: 1px solid var(--bs-border); border-radius: 999px; margin: 0; background: var(--bs-light); }
+.bs-product-tabs--pills.woocommerce div.product .woocommerce-tabs ul.tabs li.active { background: var(--bs-primary); border-color: var(--bs-primary); }
+.bs-product-tabs--pills.woocommerce div.product .woocommerce-tabs ul.tabs li.active a { color: #fff; }
+.bs-product-tabs--pills.woocommerce div.product .woocommerce-tabs ul.tabs li::before,
+.bs-product-tabs--pills.woocommerce div.product .woocommerce-tabs ul.tabs li::after,
+.bs-product-tabs--pills.woocommerce div.product .woocommerce-tabs ul.tabs::before { display: none; }
+.bs-product-tabs--underline.woocommerce div.product .woocommerce-tabs ul.tabs li { border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: none; }
+.bs-product-tabs--underline.woocommerce div.product .woocommerce-tabs ul.tabs li.active { border-bottom-color: var(--bs-primary); }
+.bs-product-tabs--underline.woocommerce div.product .woocommerce-tabs ul.tabs li::before,
+.bs-product-tabs--underline.woocommerce div.product .woocommerce-tabs ul.tabs li::after { display: none; }
+@media (min-width: 850px) {
+	.bs-commerce-sticky-totals .cart-collaterals .cart_totals,
+	.bs-commerce-sticky-totals #order_review { position: sticky; top: calc(var(--bs-sticky-h, 64px) + 24px); }
+}
+@media (max-width: 549px) {
+	.bs-cart-layout--simple .woocommerce-cart-form,
+	.bs-checkout-layout--simple #customer_details { padding: 14px; }
+}

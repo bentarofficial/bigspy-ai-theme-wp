@@ -98,6 +98,7 @@
 			icon: 'layout'
 		},
 		el('div', { className: 'bst-pattern-studio' },
+			el(SelectedBlockTools),
 			el('p', { className: 'bst-pattern-studio__intro' }, __('Choose a ready-made design, then change its text, images and colors on the page.', 'bigspy-theme')),
 			el(SearchControl, {
 				label: __('Search designs', 'bigspy-theme'),
@@ -123,6 +124,48 @@
 			})) : el('p', { className: 'bst-pattern-studio__empty' }, 'saved' === activeGroup ? __('No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here.', 'bigspy-theme') : __('No designs found. Try another search.', 'bigspy-theme')),
 			el('p', { className: 'bst-pattern-studio__hint' }, __('Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready.', 'bigspy-theme'))
 		));
+	}
+
+	function SelectedBlockTools() {
+		var selected = useSelect(function (select) {
+			var store = select('core/block-editor');
+			var block = store.getSelectedBlock();
+			if (!block) return null;
+			var root = store.getBlockRootClientId(block.clientId);
+			return { block: block, root: root, index: store.getBlockIndex(block.clientId, root), count: store.getBlockOrder(root).length, locked: !store.canMoveBlock(block.clientId), canEdit: store.canEditBlock(block.clientId), canInsert: store.canInsertBlockType(block.name, root) };
+		}, []);
+		var copiedState = useState(null);
+		var copied = copiedState[0];
+		var setCopied = copiedState[1];
+		var keys = ['style', 'backgroundColor', 'textColor', 'fontSize', 'bsHideDesktop', 'bsHideTablet', 'bsHideMobile', 'bsAnimation', 'bsAnimationDelay', 'bsAnimationDuration', 'bsHoverEffect'];
+		if (!selected) return el('p', null, __('Select a block in the page to edit its layout.', 'bigspy-theme'));
+		var block = selected.block;
+		var actions = wp.data.dispatch('core/block-editor');
+		var definition = wp.blocks.getBlockType(block.name);
+		var title = definition ? definition.title : block.name;
+		return el('section', { className: 'bst-studio-tools' },
+			el('strong', null, title),
+			el('div', { className: 'bst-studio-tools__actions' },
+				el(Button, { variant: 'secondary', disabled: !selected.canInsert, onClick: function () {
+					var copy = wp.blocks.cloneBlock(block, { anchor: undefined });
+					actions.insertBlocks(copy, selected.index + 1, selected.root);
+					actions.selectBlock(copy.clientId);
+				} }, __('Duplicate', 'bigspy-theme')),
+				el(Button, { variant: 'secondary', disabled: selected.locked || selected.index === 0, onClick: function () { actions.moveBlocksUp([block.clientId], selected.root); } }, __('Move up', 'bigspy-theme')),
+				el(Button, { variant: 'secondary', disabled: selected.locked || selected.index >= selected.count - 1, onClick: function () { actions.moveBlocksDown([block.clientId], selected.root); } }, __('Move down', 'bigspy-theme')),
+				el(Button, { variant: 'secondary', onClick: function () {
+					var value = {};
+					keys.forEach(function (key) { if (typeof block.attributes[key] !== 'undefined') value[key] = JSON.parse(JSON.stringify(block.attributes[key])); });
+					setCopied(value);
+				} }, __('Copy appearance', 'bigspy-theme')),
+				el(Button, { variant: 'secondary', disabled: !copied || !selected.canEdit, onClick: function () {
+					var value = {};
+					Object.keys(copied).forEach(function (key) { if (definition && definition.attributes && definition.attributes[key]) value[key] = JSON.parse(JSON.stringify(copied[key])); });
+					actions.updateBlockAttributes(block.clientId, value);
+				} }, __('Paste appearance', 'bigspy-theme'))
+			),
+			el('p', null, __('Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs.', 'bigspy-theme'))
+		);
 	}
 
 	wp.plugins.registerPlugin('bst-pattern-studio', { render: StudioSidebar });

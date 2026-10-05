@@ -2,7 +2,15 @@
 
 Ngày kiểm tra: 05/10/2026  
 Flatsome trên site tham chiếu: 3.20.10  
-BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.11.0
+BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.13.0
+
+## Cập nhật 1.13.0
+
+- Studio thêm nhân bản, di chuyển và sao chép/dán kiểu dáng cho block được chọn; chưa phải canvas builder riêng.
+- Shop thêm phân trang AJAX tùy chọn với history và fallback; chưa có lọc AJAX hoặc infinite scroll.
+- Giỏ hàng/checkout thêm kiểu Simple/Focused, tổng tiền ghim và tự cập nhật số lượng cho giỏ hàng classic.
+- Sản phẩm thêm kiểu tab, tab bổ sung dùng chung và nội dung trước/sau form mua hàng; sửa stacked gallery để tắt FlexSlider.
+- Chưa hoàn thiện product template builder, Buy Now, portfolio/feed, công cụ bảo trì và bộ quản lý asset. Chưa kiểm tra các bổ sung này trên website đang chạy.
 
 ## Phạm vi
 
@@ -30,7 +38,7 @@ Chỉ đọc giao diện và file manager của site Flatsome, không sửa tran
 | **P1 — Trang chi tiết sản phẩm** | Bố cục ảnh rộng tùy chọn; gallery slide/fade, lightbox, zoom, gallery ghim; sticky add-to-cart, Buy Now; nhiều kiểu product tabs; upsell/related slider/grid; chèn nội dung trước/sau nút mua | BIGSPY chủ yếu kế thừa trang sản phẩm chuẩn WooCommerce và có tùy chỉnh card/sidebar. Chưa có builder bố cục sản phẩm hay gallery controls tương đương | BIGSPY 1.9.0 bổ sung stacked gallery, thumbnails trái, sticky summary và thanh mua nhanh mobile. Còn thiếu product template builder, tabs presets, Buy Now và vị trí nội dung tùy chỉnh |
 | **P1 — Duyệt shop** | AJAX/PJAX cho trang, phân trang blog/shop, infinite scroll, lọc category/widget và kiểu loader | BIGSPY có tải thêm trong block sản phẩm và tìm kiếm AJAX, chưa có điều khiển AJAX cho archive shop/filter/pagination | BIGSPY 1.10.0 thêm filter drawer mobile dùng lại widget sidebar hiện có. Còn thiếu AJAX archive, infinite scroll, trạng thái loader tùy chọn và giữ URL/history; PJAX của Flatsome được hãng ghi là thử nghiệm nên cần xử lý tương thích/fallback trước |
 | **P1 — Cài đặt giỏ hàng/checkout** | Layout Simple/Focused, sidebar ghim, tự cập nhật số lượng, hiển thị ước tính vận chuyển/ngưỡng miễn phí, vị trí coupon và nội dung bổ sung | BIGSPY để phần lớn hành vi và layout cho WooCommerce mặc định | Thêm lớp trình bày tùy chọn và preview; không tự sửa trường/thứ tự nghiệp vụ đơn hàng nếu người bán chưa bật |
-| **P2 — Tìm kiếm** | Gộp sản phẩm/bài viết/trang; độ trễ gợi ý; bố cục hàng/masonry/slider; sắp xếp sản phẩm; tìm SKU và tag | BIGSPY 1.12.0 đã có chọn nguồn dữ liệu, số gợi ý, debounce và SKU/tag tùy chọn. Còn thiếu các kiểu trình bày hàng/masonry/slider và sắp xếp kết quả sản phẩm |
+| **P2 — Tìm kiếm** | Gộp sản phẩm/bài viết/trang; độ trễ gợi ý; bố cục hàng/masonry/slider; sắp xếp sản phẩm; tìm SKU và tag | BIGSPY 1.12.0 đã có chọn nguồn dữ liệu, số gợi ý, debounce và SKU/tag tùy chọn | Còn thiếu các kiểu trình bày hàng/masonry/slider và sắp xếp kết quả sản phẩm |
 | **P2 — Công cụ site** | Site Loader; trang bảo trì; lựa chọn trang 404; Portfolio post type; Instagram/Google integrations | BIGSPY có trang 404 thiết kế sẵn, Google Maps block, script tùy chỉnh và công cụ chuyển cấu hình; chưa có loader/bảo trì/portfolio/feed tích hợp | Chỉ thêm các công cụ dùng thường xuyên, bật/tắt riêng; portfolio thành post type/plugin tùy mục đích, không ép mọi site phải mang thêm tính năng |
 | **P2 — Hiệu năng** | Preload trang, lazy-load, tắt block CSS/MediaElement/jQuery Migrate | BIGSPY hiện có tắt emoji và dựa vào native lazy-load; chưa có bộ công tắc dọn asset theo plugin/theme | Làm màn hình kiểm tra tương thích trước khi tắt asset; không bật mặc định các tùy chọn có thể làm hỏng plugin hoặc nội dung media |
 

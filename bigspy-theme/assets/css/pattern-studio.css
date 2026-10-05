@@ -165,3 +165,7 @@
 	padding-top: 10px;
 	border-top: 1px solid #e2e4e7;
 }
+/* Compact contextual actions for the selected native block. */
+.bst-studio-tools { padding: 12px; margin-bottom: 16px; border: 1px solid #dcdcde; border-radius: 8px; background: #f6f7f7; }
+.bst-studio-tools__actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.bst-studio-tools p { font-size: 12px; line-height: 1.5; margin-bottom: 0; }

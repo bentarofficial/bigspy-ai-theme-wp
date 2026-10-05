@@ -50,7 +50,7 @@ function bst_customizer_sections() {
 		$sections['bst_catalog'] = array( 'title' => __( 'BIGSPY: catalog mode', 'bigspy-theme' ), 'panel' => 'woocommerce', 'priority' => 3, 'description' => __( 'Hide prices and add-to-cart buttons, show a contact button instead. Useful for showroom / quotation websites.', 'bigspy-theme' ) );
 	}
 
-	return $sections;
+	return apply_filters( 'bst_customizer_sections', $sections );
 }
 
 function bst_customizer_fields() {

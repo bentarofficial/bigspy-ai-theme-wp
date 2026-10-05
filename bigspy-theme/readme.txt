@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.12.0
+Stable tag: 1.13.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,13 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.13.0 =
+* Added selected-block tools for duplicate, move and copy/paste appearance in BIGSPY Studio.
+* Added opt-in classic shop pagination with browser history and full-navigation fallback.
+* Added default/simple/focused cart and checkout presentation, classic sticky totals and automatic cart quantity updates.
+* Added product tab styles, a shared additional tab and content before/after the purchase form.
+* Disabled WooCommerce FlexSlider for the stacked gallery layout.
 
 = 1.12.0 =
 * Added live search scope settings for products, pages/posts, or mixed results.

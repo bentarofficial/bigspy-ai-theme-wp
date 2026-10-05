@@ -17,6 +17,15 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 ## Features
 
+### Added in 1.13.0
+
+- BIGSPY Studio: duplicate/move the selected block and copy/paste appearance, respecting editor locks.
+- Customizer → WooCommerce: optional classic shop AJAX pagination, native URL/history and full-navigation fallback. Sorting and filters still navigate normally; plugins may need to initialize on `bst:shop-updated`.
+- Cart & checkout: Default/Simple/Focused presentation, optional classic sticky totals and debounced native cart quantity updates. WooCommerce blocks retain their native behavior.
+- Product: pill/underline tabs, an additional shared tab and content before/after the purchase form. Stacked galleries disable FlexSlider.
+
+These additions require live compatibility checks with the store's payment, filtering and checkout plugins before enabling them in production. Product template building, AJAX filters and infinite scrolling remain future work.
+
 | Area | Features |
 | --- | --- |
 | **BIGSPY Studio** | Guided start for business/service pages and WooCommerce shops. Creates a full-width **draft** from a native BIGSPY page pattern and opens it in the editor; the live site is not published or changed until the user chooses to publish. The editor shelf includes BIGSPY patterns and published WordPress synced patterns saved by the site owner. |
