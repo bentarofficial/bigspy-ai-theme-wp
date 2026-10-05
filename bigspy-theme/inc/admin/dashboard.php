@@ -25,6 +25,7 @@ function bst_dashboard_page() {
 		__( 'Logo & site identity', 'bigspy-theme' ) => bst_customizer_link( 'section', 'title_tagline' ),
 		__( 'Colors', 'bigspy-theme' )               => bst_customizer_link( 'section', 'bst_colors' ),
 		__( 'Typography', 'bigspy-theme' )           => bst_customizer_link( 'section', 'bst_typography' ),
+		__( 'Thư viện CSS · bật/tắt', 'bigspy-theme' ) => bst_customizer_link( 'section', 'custom_css' ),
 		__( 'Layout', 'bigspy-theme' )               => bst_customizer_link( 'panel', 'bst_layout' ),
 		__( 'Blog', 'bigspy-theme' )                 => bst_customizer_link( 'panel', 'bst_blog' ),
 		__( 'Footer', 'bigspy-theme' )               => bst_customizer_link( 'panel', 'bst_footer' ),
@@ -157,6 +158,9 @@ add_action( 'admin_post_bst_export', 'bst_handle_export' );
  * Sanitize one imported value according to the type of its default.
  */
 function bst_sanitize_imported( $key, $value, $default ) {
+	if ( 'css_presets' === $key ) {
+		return bst_sanitize_css_presets( $value );
+	}
 	if ( 'header_layout' === $key ) {
 		return wp_json_encode( bst_normalize_header_layout( $value ) );
 	}

@@ -55,7 +55,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 - Add a header element: filters `bst_header_elements` and `bst_header_element_{key}`.
 - Prefixes: PHP functions `bst_`, CSS classes `bs-`, blocks `bst/…`, text domain `bigspy-theme`.
 - Breakpoints: mobile ≤ 549px · tablet 550–849px · desktop ≥ 850px.
-- All strings are in English and translation-ready.
+- Strings are translation-ready. The CSS library uses Vietnamese task names; existing controls use English source strings.
 
 ## Packaging
 
@@ -64,6 +64,26 @@ powershell -ExecutionPolicy Bypass -File build.ps1
 ```
 
 Creates `releases/bigspy-theme-<version>.zip` with a single top-level `bigspy-theme/` folder (required so WordPress updates the existing theme instead of installing a duplicate).
+After a successful build, older versioned theme ZIPs in `releases/` are removed; Git history retains prior versions.
+
+## Release 1.3.0: CSS library for service sites and shops
+
+**Appearance → Customize → Additional CSS → BIGSPY · Thư viện CSS**, directly above the code editor. A quick link is also available on the BIGSPY Theme dashboard.
+
+- 64 opt-in recipes in 10 collapsible groups; each row shows a checkbox and a task name, with no code editor for the recipe.
+- Check/uncheck to preview immediately, then use WordPress **Publish** to save. Leaving without publishing does not save the changed selection.
+- Search accepts Vietnamese with or without accents. Use **Chỉ đang bật** to inspect selected recipes, or **Tắt tất cả / Hoàn tác** to clear and restore the selection.
+- Different button shapes and image fits are mutually exclusive. Choosing a new variant clears the previous variant, including on sanitized imports.
+- Every recipe defaults to off. Only selected CSS is printed on the front end; preview recipe metadata is loaded only inside Customizer.
+- Colors inherit the theme configuration. The library applies to BIGSPY components, core WordPress blocks and the explicitly supported WooCommerce markup. It cannot style every third-party builder or form plugin.
+- Existing Additional CSS is preserved and follows library CSS. Normal cascade rules still apply: a more specific selector, inline style or `!important` in existing CSS can override a recipe.
+- Export/import/reset includes the selection. Stored/imported values are allowlisted IDs, never uploaded executable CSS or arbitrary selectors.
+
+Full Vietnamese task catalog and usage: [docs/css-library.md](docs/css-library.md).
+
+Developer extension: add an entry to `bst_css_presets()` in `inc/css-presets.php` using `ID => array(group, translated label, fixed CSS, exclusive family or empty string, translated scope hint)`. Keep IDs stable for saved configurations. PHP and JavaScript output CSS in the same catalog order. Avoid hiding purchase disclosures, changing review content or overriding interaction state with CSS.
+
+Implementation follows WordPress's [Customizer API](https://developer.wordpress.org/themes/classic-themes/customize-api/customizer-objects/) and [inline style API](https://developer.wordpress.org/reference/functions/wp_add_inline_style/).
 
 ## Release 1.2.5: product reviews and customer forms
 

@@ -20,6 +20,7 @@ function bst_defaults() {
 	}
 
 	$defaults = array(
+		'css_presets'            => array(),
 		// Layout.
 		'site_layout'            => 'full',
 		'boxed_bg'               => '#e9edf2',

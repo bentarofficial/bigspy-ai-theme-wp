@@ -114,9 +114,31 @@ function bst_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'bst_customize_register' );
 
+/** Register after core's Additional CSS section so the library sits above its editor. */
+function bst_customize_css_presets( $wp_customize ) {
+	if ( ! $wp_customize->get_section( 'custom_css' ) ) {
+		return;
+	}
+	$wp_customize->add_setting( 'css_presets', array(
+		'default' => array(),
+		'type' => 'theme_mod',
+		'capability' => 'edit_theme_options',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'bst_sanitize_css_presets',
+	) );
+	$wp_customize->add_control( new BST_CSS_Presets_Control( $wp_customize, 'css_presets', array(
+		'section' => 'custom_css',
+		'priority' => 0,
+		'label' => __( 'BIGSPY · Thư viện CSS', 'bigspy-theme' ),
+		'description' => __( 'Tích để bật, bỏ tích để tắt. Xem trước rồi nhấn Đăng để lưu. Màu lấy từ theme. Các kiểu cùng loại sẽ thay thế nhau. CSS tự nhập bên dưới có thể ghi đè các lựa chọn này.', 'bigspy-theme' ),
+	) ) );
+}
+add_action( 'customize_register', 'bst_customize_css_presets', 30 );
+
 function bst_customize_controls_assets() {
 	wp_enqueue_style( 'bst-customizer', BST_URI . '/assets/css/customizer.css', array(), bst_asset_version( 'assets/css/customizer.css' ) );
 	wp_enqueue_script( 'bst-customizer', BST_URI . '/assets/js/customizer-controls.js', array( 'customize-controls', 'jquery', 'jquery-ui-sortable' ), bst_asset_version( 'assets/js/customizer-controls.js' ), true );
+	wp_enqueue_script( 'bst-css-presets-controls', BST_URI . '/assets/js/css-presets-controls.js', array( 'customize-controls' ), bst_asset_version( 'assets/js/css-presets-controls.js' ), true );
 	wp_localize_script(
 		'bst-customizer',
 		'bstCustomizer',
@@ -144,5 +166,11 @@ add_action( 'customize_controls_enqueue_scripts', 'bst_customize_controls_assets
 function bst_customize_preview_assets() {
 	wp_enqueue_script( 'bst-customizer-preview', BST_URI . '/assets/js/customizer-preview.js', array( 'customize-preview' ), bst_asset_version( 'assets/js/customizer-preview.js' ), true );
 	wp_localize_script( 'bst-customizer-preview', 'bstPreviewVars', bst_css_var_map() );
+	wp_enqueue_script( 'bst-css-presets-preview', BST_URI . '/assets/js/css-presets-preview.js', array( 'customize-preview' ), bst_asset_version( 'assets/js/css-presets-preview.js' ), true );
+	$recipes = array();
+	foreach ( bst_css_presets() as $id => $recipe ) {
+		$recipes[ $id ] = array( 'css' => $recipe[2], 'exclusive' => $recipe[3] );
+	}
+	wp_localize_script( 'bst-css-presets-preview', 'bstCSSPresets', $recipes );
 }
 add_action( 'customize_preview_init', 'bst_customize_preview_assets' );

@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.2.5
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,13 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.3.0 =
+* Opt-in CSS library above the native Additional CSS editor: 64 checkbox recipes in 10 collapsible groups for service sites and shops.
+* Live CSS preview, accent-insensitive search, active-only filter, group counts, disable-all and undo.
+* Conflicting button shapes and image fits replace each other; only allowlisted recipe IDs are saved.
+* CSS library selections are included in theme configuration export, import and reset. All recipes default to off.
+* Recipes use theme colors and target BIGSPY/core/WooCommerce components. No review data or checkout behavior is changed.
 
 = 1.2.5 =
 * Native WooCommerce reviews: responsive cards, readable customer avatars, themed rating colors, focus states and a two-column desktop review/form layout.

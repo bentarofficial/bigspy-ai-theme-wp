@@ -1,4 +1,24 @@
 /* BIGSPY Theme – Customizer controls. */
+/* CSS library is kept compact above the native Additional CSS editor. */
+.bst-css-presets { padding: 14px; background: #fff; border: 1px solid #dcdcde; border-radius: 8px; }
+.bst-css-presets [hidden] { display: none !important; }
+.bst-css-presets__search { width: 100%; margin: 6px 0 10px; }
+.bst-css-presets__toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; font-size: 12px; }
+.bst-css-presets__toolbar label { display: flex; align-items: center; gap: 4px; }
+.bst-css-presets__toolbar input[type=checkbox] { margin: 0; }
+.bst-css-presets__toolbar button:disabled { color: #646970; cursor: default; text-decoration: none; }
+.bst-css-presets__status { margin: 10px 0; font-size: 12px; color: #50575e; }
+.bst-css-presets__group { margin-bottom: 7px; border: 1px solid #dcdcde; border-radius: 6px; }
+.bst-css-presets__group > summary { padding: 10px; background: #f6f7f7; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 6px; }
+.bst-css-presets__group-count { margin-inline-start: 4px; font-weight: 400; color: #50575e; white-space: nowrap; }
+.bst-css-presets__row { border-top: 1px solid #f0f0f1; }
+.bst-css-presets__row label { display: flex; align-items: flex-start; gap: 8px; padding: 10px; margin: 0; cursor: pointer; font-size: 12px; line-height: 1.5; }
+.bst-css-presets__row input[type=checkbox] { flex: 0 0 auto; margin: 2px 0 0; }
+.bst-css-presets__row:has(input:checked) { background: #f0f6fc; }
+.bst-css-presets__row label:hover { background: #f6f7f7; }
+.bst-css-presets :is(summary,button,input):focus-visible { outline: 2px solid #2271b1; outline-offset: 2px; }
+.bst-css-presets__empty { padding: 8px; background: #f6f7f7; }
+
 .bst-customizer-heading {
 	margin: 18px -12px 6px;
 	padding: 10px 12px;
