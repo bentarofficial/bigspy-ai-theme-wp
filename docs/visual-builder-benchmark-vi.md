@@ -49,11 +49,12 @@ Mục tiêu phát triển không nên là đổi tên block hoặc tăng số l�
 
 ## Lộ trình đề xuất
 
-### Giai đoạn 1 — Điểm vào và thư viện mẫu (đã triển khai trong 1.4.0)
+### Giai đoạn 1 — Điểm vào và thư viện mẫu (đã triển khai trong 1.4.0–1.5.0)
 
 - BIGSPY Studio có lựa chọn tạo trang doanh nghiệp/dịch vụ, cửa hàng (khi WooCommerce bật) hoặc dựng từ đầu.
 - Trang bắt đầu tạo bản nháp toàn chiều rộng từ mẫu trang BIGSPY và mở editor; không xuất bản tự động.
 - Editor có sidebar BIGSPY Studio với tìm kiếm và nhóm trang hoàn chỉnh, sections và shop; chọn mẫu sẽ chèn các block BIGSPY vào trang hiện tại.
+- Người dùng có thể tạo mẫu đồng bộ bằng lệnh **Tạo mẫu** của WordPress và chèn lại từ nhóm **Mẫu đã lưu** trong BIGSPY Studio.
 - Thư viện hiện dùng bản minh họa bố cục dựng bằng CSS; bước kế tiếp là thumbnail xem trước thật cho từng mẫu.
 
 ### Giai đoạn 2 — Điều khiển trên canvas

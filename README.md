@@ -19,7 +19,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 | Area | Features |
 | --- | --- |
-| **BIGSPY Studio** | Guided start for business/service pages and WooCommerce shops. Creates a full-width **draft** from a native BIGSPY page pattern and opens it in the editor; the live site is not published or changed until the user chooses to publish. |
+| **BIGSPY Studio** | Guided start for business/service pages and WooCommerce shops. Creates a full-width **draft** from a native BIGSPY page pattern and opens it in the editor; the live site is not published or changed until the user chooses to publish. The editor shelf includes BIGSPY patterns and published WordPress synced patterns saved by the site owner. |
 | **Header builder** | Drag & drop 16 elements into 3 rows (Top bar / Main / Bottom) × 3 zones (left / center / right), **separately for desktop and mobile**. Logo, main menu, top bar menu, off-canvas menu icon, search (dropdown / lightbox), search form, account, cart (mini cart), 2 buttons, 3 HTML blocks, contact info, social icons, divider. Sticky header, transparent header (per page or homepage), full width, height and colors per row. |
 | **Style** | Brand colors (primary, secondary, success, alert, text, heading, links…), 20+ Google fonts plus system fonts, H1–H4 sizes, menu font, button style. Colors sync to the block editor palette. Live preview without reloading. |
 | **Layout** | Full width / boxed, container width, left / right / no sidebar for blog, pages, posts and shop. Full-width title bar with background image and breadcrumbs. |
@@ -74,6 +74,10 @@ After a successful build, older versioned theme ZIPs in `releases/` are removed;
 The post editor adds a **BIGSPY Studio** sidebar with searchable visual cards grouped into full pages, sections and shop designs. **Add to page** parses and inserts the selected BIGSPY pattern into the current document. A page remains a draft until the editor explicitly saves or publishes it. The flow uses the WordPress block-pattern registry and does not load or depend on Flatsome code, assets, or UX Builder.
 
 This is the first step toward a more direct editing workflow. Existing WordPress/Gutenberg content and native BIGSPY blocks remain compatible.
+
+## Release 1.5.0: reuse your own saved designs
+
+BIGSPY Studio adds a **Saved designs** group next to its built-in page, section and shop patterns. It lists published synced patterns (`wp_block`) from the current WordPress site. Choose **Add to page** to insert a native synced block; later edits to that saved source are reflected in its instances. Create saved designs with WordPress’s **Create pattern** command from a block’s options. BIGSPY only uses WordPress’s public block editor/core-data APIs here; it does not use Flatsome source code or assets.
 
 ## Release 1.3.0: CSS library for service sites and shops
 

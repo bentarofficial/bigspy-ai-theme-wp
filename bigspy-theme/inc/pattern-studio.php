@@ -54,7 +54,7 @@ function bst_enqueue_pattern_studio() {
 	wp_register_script(
 		$script,
 		BST_URI . '/assets/js/pattern-studio.js',
-		array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-blocks', 'wp-i18n' ),
+		array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-core-data', 'wp-blocks', 'wp-i18n' ),
 		bst_asset_version( 'assets/js/pattern-studio.js' ),
 		true
 	);

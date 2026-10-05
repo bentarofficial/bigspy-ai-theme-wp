@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.5.0 =
+* BIGSPY Studio now includes published WordPress synced patterns in a Saved designs group.
+* Saved designs are inserted as native synced blocks, so they remain editable in WordPress and can update every instance when their source changes.
+* Uses WordPress core data and block APIs; no Flatsome code or assets are included.
 
 = 1.3.0 =
 * Opt-in CSS library above the native Additional CSS editor: 64 checkbox recipes in 10 collapsible groups for service sites and shops.

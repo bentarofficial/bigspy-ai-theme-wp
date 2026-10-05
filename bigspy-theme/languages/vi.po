@@ -74,6 +74,21 @@ msgstr "Các phần nội dung"
 msgid "Shop"
 msgstr "Cửa hàng"
 
+msgid "Saved designs"
+msgstr "Mẫu đã lưu"
+
+msgid "Untitled design"
+msgstr "Mẫu chưa đặt tên"
+
+msgid "A reusable design saved in WordPress."
+msgstr "Mẫu có thể tái sử dụng đã lưu trong WordPress."
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "Đã thêm dưới dạng mẫu đồng bộ. Khi sửa mẫu gốc, các bản dùng mẫu này cũng được cập nhật."
+
+msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
+msgstr "Chưa có mẫu đã lưu. Trong trình soạn thảo, mở tùy chọn của block và chọn Tạo mẫu để lưu thiết kế tại đây."
+
 msgid "Choose a ready-made design, then change its text, images and colors on the page."
 msgstr "Chọn mẫu có sẵn rồi thay nội dung, hình ảnh và màu sắc ngay trên trang."
 
