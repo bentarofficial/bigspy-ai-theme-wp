@@ -20,7 +20,10 @@ function bst_layout_close() {
 	$sidebar = bst_sidebar_position();
 	if ( 'none' !== $sidebar ) {
 		$id = bst_sidebar_id();
-		echo '<aside class="bs-layout__sidebar widget-area" aria-label="' . esc_attr__( 'Sidebar', 'bigspy-theme' ) . '">';
+		$is_shop_sidebar = function_exists( 'is_woocommerce' ) && ! is_product() && ( is_shop() || is_product_taxonomy() );
+		$sidebar_id      = $is_shop_sidebar ? 'bs-shop-sidebar' : 'bs-layout-sidebar';
+		$sidebar_class   = 'bs-layout__sidebar widget-area' . ( $is_shop_sidebar ? ' bs-shop-sidebar' : '' );
+		echo '<aside id="' . esc_attr( $sidebar_id ) . '" class="' . esc_attr( $sidebar_class ) . '" aria-label="' . esc_attr( $is_shop_sidebar ? __( 'Product filters and shop widgets', 'bigspy-theme' ) : __( 'Sidebar', 'bigspy-theme' ) ) . '"' . ( $is_shop_sidebar ? ' tabindex="-1"' : '' ) . '>';
 		if ( is_active_sidebar( $id ) ) {
 			dynamic_sidebar( $id );
 		} elseif ( current_user_can( 'edit_theme_options' ) ) {

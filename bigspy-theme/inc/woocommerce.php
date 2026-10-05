@@ -71,6 +71,9 @@ add_action( 'after_setup_theme', 'bst_wc_setup' );
 
 function bst_wc_assets() {
 	wp_enqueue_style( 'bst-woocommerce', BST_URI . '/assets/css/woocommerce.css', array( 'bst-main' ), bst_asset_version( 'assets/css/woocommerce.css' ) );
+	if ( ! is_product() && ( is_shop() || is_product_taxonomy() ) && 'none' !== bst_mod( 'shop_sidebar' ) && is_active_sidebar( 'sidebar-shop' ) ) {
+		wp_enqueue_script( 'bst-woocommerce-shop', BST_URI . '/assets/js/woocommerce-shop.js', array(), bst_asset_version( 'assets/js/woocommerce-shop.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+	}
 	if ( is_product() && ( bst_mod( 'product_mobile_bar' ) || bst_mod( 'product_sticky_summary' ) ) ) {
 		wp_enqueue_script( 'bst-woocommerce-product', BST_URI . '/assets/js/woocommerce-product.js', array(), bst_asset_version( 'assets/js/woocommerce-product.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	}
@@ -109,6 +112,14 @@ function bst_wc_archive_header() {
 	bst_simple_title();
 }
 add_action( 'woocommerce_before_main_content', 'bst_wc_archive_header', 20 );
+
+/** Mobile drawer trigger for the existing shop sidebar and filter widgets. */
+function bst_wc_shop_filter_trigger() {
+	if ( ! is_product() && ( is_shop() || is_product_taxonomy() ) && 'none' !== bst_mod( 'shop_sidebar' ) && is_active_sidebar( 'sidebar-shop' ) ) {
+		echo '<button class="bs-shop-filter-trigger" type="button" aria-controls="bs-shop-sidebar" aria-expanded="false" data-bs-shop-filter-open data-close-label="' . esc_attr__( 'Close filters', 'bigspy-theme' ) . '">' . esc_html__( 'Filters', 'bigspy-theme' ) . '</button><div class="bs-shop-filter-scrim" data-bs-shop-filter-close hidden></div>';
+	}
+}
+add_action( 'woocommerce_before_shop_loop', 'bst_wc_shop_filter_trigger', 5 );
 
 /* ---------------------------------------------------------------- Loop */
 function bst_wc_loop_columns() {

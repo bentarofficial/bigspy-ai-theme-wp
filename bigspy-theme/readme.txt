@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.9.0
+Stable tag: 1.10.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.10.0 =
+* Added a mobile drawer for existing WooCommerce shop sidebar and filter widgets.
+* Added accessible open/close controls, background scrim, Escape-key close and desktop breakpoint reset.
+* The drawer is shown only when the shop sidebar is configured and has widgets.
 
 = 1.9.0 =
 * Added optional stacked and left-thumbnail product gallery layouts.

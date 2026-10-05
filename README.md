@@ -30,7 +30,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 | **Blog** | Grid / list, columns, card style (shadow / bordered / plain / text over image), image ratio, share buttons, author box, related posts, previous / next links. |
 | **Footer** | Two widget rows (0–4 columns), copyright bar with `[year]` and `[site_title]` tokens, footer menu, social icons, back-to-top button. |
 | **Floating contact buttons** | Call, Zalo, Messenger, WhatsApp, email – round buttons or a bottom bar on mobile. |
-| **WooCommerce** | Products per row on desktop / tablet / mobile, shop sidebar, product card style, second-image or zoom hover, **-%** sale badge, AJAX header cart count, mini cart, **catalog mode** (hide prices, show a “Contact for price” button), single-product stacked/left-thumbnail gallery, sticky summary and optional mobile quick-purchase bar. |
+| **WooCommerce** | Products per row on desktop / tablet / mobile, shop sidebar and mobile filter drawer, product card style, second-image or zoom hover, **-%** sale badge, AJAX header cart count, mini cart, **catalog mode** (hide prices, show a “Contact for price” button), single-product stacked/left-thumbnail gallery, sticky summary and optional mobile quick-purchase bar. |
 | **Tools** | **Export / import / reset** all theme options as JSON – configure once, reuse on the next website. Head / body / footer scripts (Analytics, Pixel…), disable emoji. |
 
 ## Installation
@@ -50,6 +50,10 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 7. **Appearance → BIGSPY Theme → Export** to save the configuration as a starting point for the next project.
 
 ## Development
+
+## Release 1.10.0: mobile shop filter drawer
+
+When a configured shop sidebar contains widgets, shop and category pages show a **Filters** button on small screens. It opens the same WordPress widget area in an accessible drawer with a scrim, close button and Escape-key support. Existing WooCommerce filter widgets keep their native form behavior; no AJAX/PJAX navigation or filter plugin assumptions are introduced.
 
 ## Release 1.9.0: better single-product shopping flow
 
