@@ -2158,3 +2158,12 @@ a.page-numbers:hover {
 .bs-header-row--bottom .bs-menu {
 	gap: 0;
 }
+
+/* Compact main navigation between the mobile switch and wide desktop layout. */
+@media (min-width: 850px) and (max-width: 1199px) {
+	.bs-header-row--desktop .bs-header-row__inner { gap: 12px; }
+	.bs-header-row--desktop .bs-header-zone { gap: 10px; }
+	.bs-header-row--desktop .bs-nav--primary .bs-menu { gap: 2px; }
+	.bs-header-row--desktop .bs-nav--primary .bs-menu > li > a { padding-inline: clamp(4px, .6vw, 8px); white-space: nowrap; }
+	.bs-header-row--desktop .bs-btn { white-space: nowrap; }
+}

@@ -64,3 +64,11 @@ powershell -ExecutionPolicy Bypass -File build.ps1
 ```
 
 Creates `releases/bigspy-theme-<version>.zip` with a single top-level `bigspy-theme/` folder (required so WordPress updates the existing theme instead of installing a duplicate).
+
+## Release 1.2.5: product reviews and customer forms
+
+Native WooCommerce reviews now use responsive cards, avatar spacing, themed colors and visible keyboard focus. Desktop places reviews beside the form; tablet/mobile stacks the panels. Login, registration and edit-account forms use consistent cards. Primary navigation spacing compacts between 850px and 1199px while preserving wrapping for longer menus.
+
+These styles inherit Customizer colors and button settings. Logos, favicon, banners, menu items and marketing content remain per-site WordPress configuration. Older Additional CSS may override the theme styles; remove only the duplicated review/account rules after reviewing the updated theme on your website.
+
+For customer-profile fields, uploaded avatars, photo reviews, masked names, moderation, store replies and hearts, install the separate [BigSpy Customer Accounts & Product Reviews](https://github.com/bentarofficial/BigSpy-Customer-Accounts-Product-Reviews) plugin. The theme controls presentation and does not register those account/review behaviors.

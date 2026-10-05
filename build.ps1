@@ -15,4 +15,15 @@ if (Test-Path $zip) { Remove-Item $zip -Force }
 tar -a -c -f $zip --exclude '.DS_Store' --exclude 'Thumbs.db' 'bigspy-theme'
 if ($LASTEXITCODE -ne 0) { throw 'tar failed' }
 
+# Keep only the current theme archive after a successful build.
+$releaseRoot = (Resolve-Path -LiteralPath 'releases').Path
+Get-ChildItem -LiteralPath $releaseRoot -File | Where-Object {
+    $_.Name -match '^bigspy-theme-[0-9]+(?:\.[0-9]+)*\.zip$' -and $_.Name -ne "bigspy-theme-$version.zip"
+} | ForEach-Object {
+    $archivePath = [System.IO.Path]::GetFullPath($_.FullName)
+    if ([System.IO.Path]::GetDirectoryName($archivePath) -ne $releaseRoot) {
+        throw 'Archive path is outside the releases directory'
+    }
+    Remove-Item -LiteralPath $archivePath -Force
+}
 Write-Host "Created $zip"

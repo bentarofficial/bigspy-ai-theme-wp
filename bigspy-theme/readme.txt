@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,12 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.2.5 =
+* Native WooCommerce reviews: responsive cards, readable customer avatars, themed rating colors, focus states and a two-column desktop review/form layout.
+* My Account: responsive login/registration cards and a consistent edit-account form surface.
+* Compact primary-menu spacing on narrow desktop headers; long menus can still wrap safely.
+* Customer accounts, review photos, masking, moderation and store reactions remain in the optional BigSpy Customer Accounts & Product Reviews plugin.
 
 = 1.2.4 =
 * Banner: optional mobile image (shown up to 549px) so a portrait crop can keep the text area clear on phones.
