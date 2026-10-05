@@ -1,0 +1,167 @@
+/* BIGSPY Studio — visual pattern shelf inside the block editor sidebar. */
+.bst-pattern-studio {
+	padding: 14px;
+}
+
+.bst-pattern-studio__intro,
+.bst-pattern-studio__hint,
+.bst-pattern-studio__empty {
+	color: #5c6675;
+	font-size: 12px;
+	line-height: 1.55;
+}
+
+.bst-pattern-studio__intro {
+	margin: 0 0 12px;
+}
+
+.bst-pattern-groups {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin: 10px 0 14px;
+}
+
+.bst-pattern-groups .components-button {
+	min-height: 30px;
+	padding: 4px 9px;
+	font-size: 11px;
+}
+
+.bst-pattern-list {
+	display: grid;
+	gap: 12px;
+}
+
+.bst-pattern-card {
+	overflow: hidden;
+	border: 1px solid #dcdcde;
+	border-radius: 7px;
+	background: #fff;
+}
+
+.bst-pattern-preview {
+	min-height: 104px;
+	padding: 9px 11px;
+	background: linear-gradient(135deg, #ecf1f9, #f6f0ea);
+}
+
+.bst-pattern-preview--shop {
+	background: linear-gradient(135deg, #fbf0e2, #edf2e8);
+}
+
+.bst-pattern-preview--section {
+	background: linear-gradient(135deg, #ecf2f0, #eff0f8);
+}
+
+.bst-pattern-preview__nav {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	height: 10px;
+	padding: 0 5px;
+	border-radius: 3px 3px 0 0;
+	background: rgba(255, 255, 255, .9);
+}
+
+.bst-pattern-preview__nav i {
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: #c0c8d4;
+}
+
+.bst-pattern-preview__nav b {
+	width: 28%;
+	height: 3px;
+	margin-left: auto;
+	border-radius: 3px;
+	background: #d8dee8;
+}
+
+.bst-pattern-preview__hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+	min-height: 48px;
+	padding: 8px 11px;
+	background: linear-gradient(105deg, rgba(28, 43, 68, .8), rgba(38, 69, 85, .3)), linear-gradient(135deg, #b9d0c4, #d7bca6);
+}
+
+.bst-pattern-preview--shop .bst-pattern-preview__hero {
+	background: linear-gradient(105deg, rgba(75, 49, 31, .74), rgba(125, 74, 42, .22)), linear-gradient(135deg, #dfbd94, #b8c8ae);
+}
+
+.bst-pattern-preview__hero i,
+.bst-pattern-preview__hero b {
+	width: 38%;
+	height: 4px;
+	border-radius: 3px;
+	background: rgba(255, 255, 255, .9);
+}
+
+.bst-pattern-preview__hero i {
+	width: 23%;
+	height: 3px;
+	opacity: .72;
+}
+
+.bst-pattern-preview__hero span {
+	width: 15%;
+	height: 7px;
+	margin-top: 2px;
+	border: 1px solid rgba(255, 255, 255, .92);
+	border-radius: 5px;
+}
+
+.bst-pattern-preview__blocks {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 6px;
+	padding-top: 6px;
+}
+
+.bst-pattern-preview__blocks i {
+	min-height: 19px;
+	border: 1px solid rgba(79, 93, 116, .1);
+	border-radius: 3px;
+	background: rgba(255, 255, 255, .9);
+}
+
+.bst-pattern-card__body {
+	padding: 10px;
+}
+
+.bst-pattern-card__body h3 {
+	margin: 0 0 4px;
+	font-size: 13px;
+	line-height: 1.35;
+}
+
+.bst-pattern-card__body p {
+	margin: 0 0 9px;
+	color: #5c6675;
+	font-size: 11px;
+	line-height: 1.45;
+}
+
+.bst-pattern-card__insert.components-button {
+	width: 100%;
+	justify-content: center;
+	min-height: 34px;
+}
+
+.bst-pattern-studio__notice {
+	padding: 8px 10px;
+	border-left: 3px solid #2271b1;
+	background: #f0f6fc;
+	color: #243449;
+	font-size: 12px;
+}
+
+.bst-pattern-studio__hint {
+	margin: 14px 0 0;
+	padding-top: 10px;
+	border-top: 1px solid #e2e4e7;
+}

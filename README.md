@@ -19,6 +19,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 | Area | Features |
 | --- | --- |
+| **BIGSPY Studio** | Guided start for business/service pages and WooCommerce shops. Creates a full-width **draft** from a native BIGSPY page pattern and opens it in the editor; the live site is not published or changed until the user chooses to publish. |
 | **Header builder** | Drag & drop 16 elements into 3 rows (Top bar / Main / Bottom) × 3 zones (left / center / right), **separately for desktop and mobile**. Logo, main menu, top bar menu, off-canvas menu icon, search (dropdown / lightbox), search form, account, cart (mini cart), 2 buttons, 3 HTML blocks, contact info, social icons, divider. Sticky header, transparent header (per page or homepage), full width, height and colors per row. |
 | **Style** | Brand colors (primary, secondary, success, alert, text, heading, links…), 20+ Google fonts plus system fonts, H1–H4 sizes, menu font, button style. Colors sync to the block editor palette. Live preview without reloading. |
 | **Layout** | Full width / boxed, container width, left / right / no sidebar for blog, pages, posts and shop. Full-width title bar with background image and breadcrumbs. |
@@ -65,6 +66,14 @@ powershell -ExecutionPolicy Bypass -File build.ps1
 
 Creates `releases/bigspy-theme-<version>.zip` with a single top-level `bigspy-theme/` folder (required so WordPress updates the existing theme instead of installing a duplicate).
 After a successful build, older versioned theme ZIPs in `releases/` are removed; Git history retains prior versions.
+
+## Release 1.4.0: BIGSPY Studio guided page starters and pattern shelf
+
+**Appearance → BIGSPY Studio** begins with a clear choice: create a business/service homepage, create a shop homepage when WooCommerce is active, or build from scratch. Starter pages are created as unpublished drafts using BIGSPY's own registered patterns, then opened in the WordPress editor.
+
+The post editor adds a **BIGSPY Studio** sidebar with searchable visual cards grouped into full pages, sections and shop designs. **Add to page** parses and inserts the selected BIGSPY pattern into the current document. A page remains a draft until the editor explicitly saves or publishes it. The flow uses the WordPress block-pattern registry and does not load or depend on Flatsome code, assets, or UX Builder.
+
+This is the first step toward a more direct editing workflow. Existing WordPress/Gutenberg content and native BIGSPY blocks remain compatible.
 
 ## Release 1.3.0: CSS library for service sites and shops
 

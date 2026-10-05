@@ -1,0 +1,221 @@
+/* BIGSPY Studio — guided page starters, scoped to the theme dashboard. */
+.bst-studio-intro {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 28px;
+	max-width: 1120px;
+	margin: 24px 0 18px;
+	padding: 30px 34px;
+	border: 1px solid #dbe3ee;
+	border-radius: 14px;
+	background: linear-gradient(120deg, #fff 0%, #f3f7ff 100%);
+}
+
+.bst-studio-intro h2 {
+	margin: 4px 0 8px;
+	color: #17233b;
+	font-size: 26px;
+	line-height: 1.25;
+}
+
+.bst-studio-intro p:not(.bst-studio-kicker) {
+	max-width: 680px;
+	margin: 0;
+	color: #536176;
+	font-size: 14px;
+}
+
+.bst-studio-kicker {
+	margin: 0;
+	color: #3858a6;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: .12em;
+}
+
+.bst-studio-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 18px;
+	max-width: 1120px;
+}
+
+.bst-studio-card {
+	min-width: 0;
+	overflow: hidden;
+	border: 1px solid #dcdcde;
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: 0 2px 7px rgba(20, 32, 54, .045);
+}
+
+.bst-studio-preview {
+	position: relative;
+	min-height: 190px;
+	overflow: hidden;
+	padding: 13px 16px;
+	background: #f1f4f9;
+}
+
+.bst-studio-preview--business {
+	background: linear-gradient(145deg, #edf5f4, #e6ecf7 58%, #f8eee8);
+}
+
+.bst-studio-preview--shop {
+	background: linear-gradient(145deg, #fff3e7, #f0edf8 60%, #eaf3ef);
+}
+
+.bst-studio-preview__top {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	height: 14px;
+	padding: 0 8px;
+	border-radius: 4px 4px 0 0;
+	background: rgba(255, 255, 255, .86);
+}
+
+.bst-studio-preview__top i {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: #c7cfdb;
+}
+
+.bst-studio-preview__top b {
+	width: 36%;
+	height: 4px;
+	margin-left: auto;
+	border-radius: 4px;
+	background: #d7deea;
+}
+
+.bst-studio-preview__hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 8px;
+	min-height: 96px;
+	padding: 14px 18px;
+	background: linear-gradient(105deg, rgba(32, 48, 76, .84), rgba(54, 82, 116, .28)), linear-gradient(135deg, #a9c4bc, #d8b7a2);
+}
+
+.bst-studio-preview--shop .bst-studio-preview__hero {
+	background: linear-gradient(105deg, rgba(63, 42, 33, .74), rgba(120, 69, 39, .18)), linear-gradient(135deg, #dfb98f, #b6c5ad);
+}
+
+.bst-studio-preview__hero span {
+	width: 38%;
+	height: 7px;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, .88);
+}
+
+.bst-studio-preview__hero span:first-child {
+	width: 23%;
+	height: 4px;
+	opacity: .7;
+}
+
+.bst-studio-preview__hero span:last-child {
+	width: 16%;
+	height: 13px;
+	margin-top: 4px;
+	border: 1px solid rgba(255, 255, 255, .9);
+	background: transparent;
+}
+
+.bst-studio-preview__row {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 9px;
+	padding: 10px 0 0;
+}
+
+.bst-studio-preview__row i {
+	height: 32px;
+	border: 1px solid rgba(90, 105, 129, .1);
+	border-radius: 4px;
+	background: rgba(255, 255, 255, .9);
+}
+
+.bst-studio-card__body {
+	padding: 20px;
+}
+
+.bst-studio-card__body h2 {
+	margin: 0 0 8px;
+	color: #17233b;
+	font-size: 17px;
+}
+
+.bst-studio-card__body > p {
+	min-height: 42px;
+	margin: 0 0 17px;
+	color: #5e6878;
+}
+
+.bst-studio-card form {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: end;
+	gap: 10px;
+}
+
+.bst-studio-card__label {
+	grid-column: 1 / -1;
+	margin-bottom: -6px;
+	font-weight: 600;
+}
+
+.bst-studio-card form input.regular-text {
+	width: 100%;
+	max-width: none;
+}
+
+.bst-studio-card form .button {
+	min-height: 36px;
+}
+
+.bst-studio-next {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px 12px;
+	max-width: 1120px;
+	margin: 16px 0 30px;
+	padding: 14px 18px;
+	border-left: 3px solid #3858a6;
+	background: #f6f8fb;
+	color: #4f5d72;
+}
+
+.bst-studio-next strong {
+	color: #233553;
+}
+
+@media (max-width: 900px) {
+	.bst-studio-grid {
+		grid-template-columns: minmax(0, 1fr);
+		max-width: 680px;
+	}
+
+	.bst-studio-intro {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 520px) {
+	.bst-studio-intro {
+		padding: 22px;
+	}
+
+	.bst-studio-card form {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.bst-studio-card__label {
+		grid-column: auto;
+	}
+}

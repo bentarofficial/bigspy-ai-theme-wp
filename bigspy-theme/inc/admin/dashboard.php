@@ -8,9 +8,69 @@
 defined( 'ABSPATH' ) || exit;
 
 function bst_admin_menu() {
-	add_theme_page( __( 'BIGSPY Theme', 'bigspy-theme' ), __( 'BIGSPY Theme', 'bigspy-theme' ), 'edit_theme_options', 'bigspy-theme', 'bst_dashboard_page' );
+	$page = add_theme_page( __( 'BIGSPY Studio', 'bigspy-theme' ), __( 'BIGSPY Studio', 'bigspy-theme' ), 'edit_theme_options', 'bigspy-theme', 'bst_dashboard_page' );
+	add_action(
+		'admin_enqueue_scripts',
+		static function ( $hook ) use ( $page ) {
+			if ( $page === $hook ) {
+				wp_enqueue_style( 'bst-admin-studio', BST_URI . '/assets/css/admin-studio.css', array(), bst_asset_version( 'assets/css/admin-studio.css' ) );
+			}
+		}
+	);
 }
 add_action( 'admin_menu', 'bst_admin_menu' );
+
+/** Create a safe, unpublished page from a BIGSPY full-page pattern. */
+function bst_create_starter_page() {
+	if ( ! current_user_can( 'edit_pages' ) ) {
+		wp_die( esc_html__( 'Sorry, you are not allowed to create pages.', 'bigspy-theme' ) );
+	}
+	check_admin_referer( 'bst_create_starter_page' );
+
+	$choice = isset( $_POST['bst_starter'] ) ? sanitize_key( wp_unslash( $_POST['bst_starter'] ) ) : '';
+	$starters = array(
+		'business-home' => array(
+			'pattern' => 'bigspy-theme/page-home',
+			'title'   => __( 'Business homepage', 'bigspy-theme' ),
+			'woo'     => false,
+		),
+		'shop-home' => array(
+			'pattern' => 'bigspy-theme/page-shop-home',
+			'title'   => __( 'Online shop homepage', 'bigspy-theme' ),
+			'woo'     => true,
+		),
+	);
+	if ( ! isset( $starters[ $choice ] ) || ( $starters[ $choice ]['woo'] && ! class_exists( 'WooCommerce' ) ) ) {
+		wp_die( esc_html__( 'This starter page is not available.', 'bigspy-theme' ) );
+	}
+
+	$pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( $starters[ $choice ]['pattern'] );
+	if ( ! $pattern || empty( $pattern['content'] ) ) {
+		wp_die( esc_html__( 'The selected BIGSPY starter pattern could not be found.', 'bigspy-theme' ) );
+	}
+
+	$title = isset( $_POST['bst_title'] ) ? sanitize_text_field( wp_unslash( $_POST['bst_title'] ) ) : '';
+	if ( '' === $title ) {
+		$title = $starters[ $choice ]['title'];
+	}
+	$page_id = wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_status'  => 'draft',
+			'post_title'   => $title,
+			'post_content' => $pattern['content'],
+			'meta_input'   => array( '_wp_page_template' => 'templates/full-width.php' ),
+		),
+		true
+	);
+	if ( is_wp_error( $page_id ) ) {
+		wp_die( esc_html( $page_id->get_error_message() ) );
+	}
+
+	wp_safe_redirect( add_query_arg( array( 'post' => $page_id, 'action' => 'edit', 'bst_starter' => 'created' ), admin_url( 'post.php' ) ) );
+	exit;
+}
+add_action( 'admin_post_bst_create_starter_page', 'bst_create_starter_page' );
 
 function bst_customizer_link( $type, $id ) {
 	return admin_url( 'customize.php?autofocus[' . $type . ']=' . $id );
@@ -45,11 +105,65 @@ function bst_dashboard_page() {
 	);
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'BIGSPY Theme', 'bigspy-theme' ); ?> <small style="font-size:13px;color:#646970">v<?php echo esc_html( BST_VERSION ); ?></small></h1>
+		<h1><?php esc_html_e( 'BIGSPY Studio', 'bigspy-theme' ); ?> <small style="font-size:13px;color:#646970">v<?php echo esc_html( BST_VERSION ); ?></small></h1>
 
 		<?php if ( isset( $notices[ $notice ] ) ) : ?>
 			<div class="notice notice-<?php echo esc_attr( $notices[ $notice ][0] ); ?> is-dismissible"><p><?php echo esc_html( $notices[ $notice ][1] ); ?></p></div>
 		<?php endif; ?>
+
+		<section class="bst-studio-intro">
+			<div>
+				<p class="bst-studio-kicker"><?php esc_html_e( 'DESIGN YOUR WEBSITE', 'bigspy-theme' ); ?></p>
+				<h2><?php esc_html_e( 'Start with a page. Make it yours.', 'bigspy-theme' ); ?></h2>
+				<p><?php esc_html_e( 'Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design.', 'bigspy-theme' ); ?></p>
+			</div>
+			<a class="button button-secondary" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=page' ) ); ?>"><?php esc_html_e( 'Build from scratch', 'bigspy-theme' ); ?></a>
+		</section>
+
+		<div class="bst-studio-grid">
+			<?php
+			$studio_cards = array(
+				'business-home' => array(
+					'title'       => __( 'Business or service website', 'bigspy-theme' ),
+					'description' => __( 'A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact.', 'bigspy-theme' ),
+					'kind'        => 'business',
+				),
+			);
+			if ( class_exists( 'WooCommerce' ) ) {
+				$studio_cards['shop-home'] = array(
+					'title'       => __( 'Online shop', 'bigspy-theme' ),
+					'description' => __( 'A shop homepage with a hero, benefits, categories, product collections and more.', 'bigspy-theme' ),
+					'kind'        => 'shop',
+				);
+			}
+			foreach ( $studio_cards as $starter_id => $card ) :
+				?>
+				<article class="bst-studio-card">
+					<div class="bst-studio-preview bst-studio-preview--<?php echo esc_attr( $card['kind'] ); ?>" aria-hidden="true">
+						<div class="bst-studio-preview__top"><i></i><i></i><i></i><b></b></div>
+						<div class="bst-studio-preview__hero"><span></span><span></span><span></span></div>
+						<div class="bst-studio-preview__row"><i></i><i></i><i></i></div>
+					</div>
+					<div class="bst-studio-card__body">
+						<h2><?php echo esc_html( $card['title'] ); ?></h2>
+						<p><?php echo esc_html( $card['description'] ); ?></p>
+						<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+							<input type="hidden" name="action" value="bst_create_starter_page">
+							<input type="hidden" name="bst_starter" value="<?php echo esc_attr( $starter_id ); ?>">
+							<?php wp_nonce_field( 'bst_create_starter_page' ); ?>
+							<label class="bst-studio-card__label" for="bst-title-<?php echo esc_attr( $starter_id ); ?>"><?php esc_html_e( 'Page name', 'bigspy-theme' ); ?></label>
+							<input class="regular-text" id="bst-title-<?php echo esc_attr( $starter_id ); ?>" name="bst_title" type="text" value="<?php echo esc_attr( $card['title'] ); ?>" required>
+							<button class="button button-primary" type="submit"><?php esc_html_e( 'Create draft and open editor', 'bigspy-theme' ); ?></button>
+						</form>
+					</div>
+				</article>
+			<?php endforeach; ?>
+		</div>
+
+		<div class="bst-studio-next">
+			<strong><?php esc_html_e( 'Your design stays in draft until you publish it.', 'bigspy-theme' ); ?></strong>
+			<span><?php esc_html_e( 'Replace the example text and images, adjust the layout, preview the page, then publish when it is ready.', 'bigspy-theme' ); ?></span>
+		</div>
 
 		<div class="card" style="max-width:none">
 			<h2><?php esc_html_e( 'Quick start', 'bigspy-theme' ); ?></h2>

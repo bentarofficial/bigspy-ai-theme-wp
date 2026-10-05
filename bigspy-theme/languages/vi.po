@@ -8,6 +8,99 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: bigspy-theme\n"
 
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "DESIGN YOUR WEBSITE"
+msgstr "THIẾT KẾ WEBSITE CỦA BẠN"
+
+msgid "Start with a page. Make it yours."
+msgstr "Bắt đầu từ một trang mẫu, rồi biến nó thành website của bạn."
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "Chọn điểm bắt đầu. BIGSPY tạo bản nháp chưa xuất bản và mở trình soạn thảo để bạn thiết kế mà không ảnh hưởng website đang hoạt động."
+
+msgid "Build from scratch"
+msgstr "Tự dựng từ đầu"
+
+msgid "Business or service website"
+msgstr "Website doanh nghiệp hoặc dịch vụ"
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "Trang chủ hoàn chỉnh gồm phần giới thiệu, dịch vụ, về chúng tôi, cảm nhận khách hàng, bảng giá, câu hỏi thường gặp và liên hệ."
+
+msgid "Online shop"
+msgstr "Cửa hàng trực tuyến"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "Trang chủ cửa hàng gồm banner chính, lợi ích, danh mục, bộ sưu tập sản phẩm và nhiều phần khác."
+
+msgid "Page name"
+msgstr "Tên trang"
+
+msgid "Create draft and open editor"
+msgstr "Tạo bản nháp và mở trình soạn thảo"
+
+msgid "Your design stays in draft until you publish it."
+msgstr "Thiết kế vẫn là bản nháp cho đến khi bạn xuất bản."
+
+msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
+msgstr "Thay nội dung và hình ảnh mẫu, chỉnh bố cục, xem trước trang rồi xuất bản khi đã sẵn sàng."
+
+msgid "Business homepage"
+msgstr "Trang chủ doanh nghiệp"
+
+msgid "Online shop homepage"
+msgstr "Trang chủ cửa hàng trực tuyến"
+
+msgid "Sorry, you are not allowed to create pages."
+msgstr "Bạn không có quyền tạo trang."
+
+msgid "This starter page is not available."
+msgstr "Mẫu trang này hiện không khả dụng."
+
+msgid "The selected BIGSPY starter pattern could not be found."
+msgstr "Không tìm thấy mẫu trang BIGSPY đã chọn."
+
+msgid "All designs"
+msgstr "Tất cả mẫu thiết kế"
+
+msgid "Full pages"
+msgstr "Trang hoàn chỉnh"
+
+msgid "Sections"
+msgstr "Các phần nội dung"
+
+msgid "Shop"
+msgstr "Cửa hàng"
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "Chọn mẫu có sẵn rồi thay nội dung, hình ảnh và màu sắc ngay trên trang."
+
+msgid "Search designs"
+msgstr "Tìm mẫu thiết kế"
+
+msgid "Try “hero”, “services” or “products”…"
+msgstr "Thử tìm “banner”, “dịch vụ” hoặc “sản phẩm”…"
+
+msgid "Design categories"
+msgstr "Nhóm mẫu thiết kế"
+
+msgid "This design could not be added. Please try another one."
+msgstr "Không thể chèn mẫu này. Vui lòng thử mẫu khác."
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "Đã thêm vào trang. Bạn có thể sửa nội dung và hình ảnh trong vùng xem trước."
+
+msgid "Add to page"
+msgstr "Thêm vào trang"
+
+msgid "No designs found. Try another search."
+msgstr "Không tìm thấy mẫu phù hợp. Hãy thử từ khóa khác."
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "Thêm mẫu không xuất bản trang. Hãy xem trước, rồi lưu nháp hoặc xuất bản khi đã hoàn tất."
+
 msgid "Skip to content"
 msgstr "Chuyển đến nội dung"
 
