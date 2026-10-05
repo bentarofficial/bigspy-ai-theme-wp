@@ -293,6 +293,9 @@ function bst_customizer_fields() {
 				array( 'id' => 'new_badge_days', 'section' => 'bst_product', 'type' => 'number', 'label' => __( '“New” badge for products added in the last N days (0 = off)', 'bigspy-theme' ), 'input_attrs' => $px( 0, 365 ) ),
 				array( 'id' => 'featured_badge', 'section' => 'bst_product', 'type' => 'checkbox', 'label' => __( '“Hot” badge on featured products', 'bigspy-theme' ) ),
 				array( 'id' => 'product_sidebar', 'section' => 'bst_product', 'type' => 'select', 'label' => __( 'Product page sidebar', 'bigspy-theme' ), 'choices' => $sidebar ),
+				array( 'id' => 'product_gallery_layout', 'section' => 'bst_product', 'type' => 'select', 'label' => __( 'Product gallery layout', 'bigspy-theme' ), 'choices' => array( 'default' => __( 'Default', 'bigspy-theme' ), 'stacked' => __( 'Stacked images', 'bigspy-theme' ), 'thumbnails-left' => __( 'Thumbnails on the left', 'bigspy-theme' ) ) ),
+				array( 'id' => 'product_sticky_summary', 'section' => 'bst_product', 'type' => 'checkbox', 'label' => __( 'Keep purchase details visible while scrolling (desktop)', 'bigspy-theme' ) ),
+				array( 'id' => 'product_mobile_bar', 'section' => 'bst_product', 'type' => 'checkbox', 'label' => __( 'Show a quick purchase bar on mobile', 'bigspy-theme' ) ),
 				array( 'id' => 'related_columns', 'section' => 'bst_product', 'type' => 'select', 'label' => __( 'Related products per row', 'bigspy-theme' ), 'choices' => array_slice( $cols, 1, 4, true ) ),
 
 				array( 'id' => 'catalog_mode', 'section' => 'bst_catalog', 'type' => 'checkbox', 'label' => __( 'Enable catalog mode', 'bigspy-theme' ) ),

@@ -200,6 +200,9 @@ function bst_defaults() {
 		'cart_icon'              => 'bag',
 		'mini_cart'              => true,
 		'related_columns'        => 4,
+		'product_gallery_layout' => 'default',
+		'product_sticky_summary' => false,
+		'product_mobile_bar'     => false,
 
 		// Advanced.
 		'scripts_head'           => '',

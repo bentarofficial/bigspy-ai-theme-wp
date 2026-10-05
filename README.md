@@ -30,7 +30,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 | **Blog** | Grid / list, columns, card style (shadow / bordered / plain / text over image), image ratio, share buttons, author box, related posts, previous / next links. |
 | **Footer** | Two widget rows (0–4 columns), copyright bar with `[year]` and `[site_title]` tokens, footer menu, social icons, back-to-top button. |
 | **Floating contact buttons** | Call, Zalo, Messenger, WhatsApp, email – round buttons or a bottom bar on mobile. |
-| **WooCommerce** | Products per row on desktop / tablet / mobile, shop sidebar, product card style, second-image or zoom hover, **-%** sale badge, AJAX header cart count, mini cart, **catalog mode** (hide prices, show a “Contact for price” button). |
+| **WooCommerce** | Products per row on desktop / tablet / mobile, shop sidebar, product card style, second-image or zoom hover, **-%** sale badge, AJAX header cart count, mini cart, **catalog mode** (hide prices, show a “Contact for price” button), single-product stacked/left-thumbnail gallery, sticky summary and optional mobile quick-purchase bar. |
 | **Tools** | **Export / import / reset** all theme options as JSON – configure once, reuse on the next website. Head / body / footer scripts (Analytics, Pixel…), disable emoji. |
 
 ## Installation
@@ -50,6 +50,10 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 7. **Appearance → BIGSPY Theme → Export** to save the configuration as a starting point for the next project.
 
 ## Development
+
+## Release 1.9.0: better single-product shopping flow
+
+WooCommerce product-page controls now include stacked gallery images, thumbnails on the left on desktop, an optional sticky purchase summary, and a mobile quick-purchase bar. The bar reuses the native WooCommerce add-to-cart form, asks shoppers to choose a variation when needed, hides while the form is visible, and is disabled by default. Settings are in **Customize → WooCommerce → BIGSPY: product cards & page**.
 
 - No build step: editor scripts use `wp.element.createElement`, styles are plain CSS driven by CSS custom properties.
 - Options are declared in one place: defaults in `inc/helpers.php` (`bst_defaults()`), Customizer fields in `inc/customizer/fields.php`, CSS variables in `inc/dynamic-css.php`.

@@ -71,6 +71,9 @@ add_action( 'after_setup_theme', 'bst_wc_setup' );
 
 function bst_wc_assets() {
 	wp_enqueue_style( 'bst-woocommerce', BST_URI . '/assets/css/woocommerce.css', array( 'bst-main' ), bst_asset_version( 'assets/css/woocommerce.css' ) );
+	if ( is_product() && ( bst_mod( 'product_mobile_bar' ) || bst_mod( 'product_sticky_summary' ) ) ) {
+		wp_enqueue_script( 'bst-woocommerce-product', BST_URI . '/assets/js/woocommerce-product.js', array(), bst_asset_version( 'assets/js/woocommerce-product.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'bst_wc_assets', 20 );
 
@@ -132,6 +135,15 @@ function bst_wc_body_class( $classes ) {
 	$classes[] = 'bs-product-hover--' . sanitize_html_class( bst_mod( 'product_hover' ) );
 	$classes[] = 'bs-sale-badge--' . sanitize_html_class( bst_mod( 'sale_badge_style' ) );
 	$classes[] = 'bs-product-btn--' . sanitize_html_class( bst_mod( 'product_button' ) );
+	if ( is_product() ) {
+		$classes[] = 'bs-product-gallery--' . sanitize_html_class( bst_choice( bst_mod( 'product_gallery_layout' ), array( 'default', 'stacked', 'thumbnails-left' ), 'default' ) );
+		if ( bst_mod( 'product_sticky_summary' ) ) {
+			$classes[] = 'bs-product-sticky-summary';
+		}
+		if ( bst_mod( 'product_mobile_bar' ) && ! bst_mod( 'catalog_mode' ) ) {
+			$classes[] = 'bs-product-mobile-bar';
+		}
+	}
 	if ( bst_mod( 'catalog_mode' ) ) {
 		$classes[] = 'bs-catalog-mode';
 	}
@@ -217,6 +229,20 @@ function bst_wc_single_badges() {
 	echo bst_wc_badges_html( $product ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 add_action( 'woocommerce_before_single_product_summary', 'bst_wc_single_badges', 9 );
+
+/** Add a compact mobile purchase bar using the native WooCommerce form as its source. */
+function bst_wc_mobile_purchase_bar() {
+	if ( ! is_product() || ! bst_mod( 'product_mobile_bar' ) || bst_mod( 'catalog_mode' ) ) {
+		return;
+	}
+	global $product;
+	if ( ! $product || ! $product->is_purchasable() || ! $product->is_in_stock() ) {
+		return;
+	}
+	$label = $product->is_type( 'variable' ) ? __( 'Choose options', 'bigspy-theme' ) : __( 'Add to cart', 'bigspy-theme' );
+	echo '<div class="bs-product-mobile-purchase" data-product-purchase-bar><span class="bs-product-mobile-purchase__price">' . wp_kses_post( $product->get_price_html() ) . '</span><button type="button" class="bs-btn bs-btn--primary" data-product-purchase-trigger>' . esc_html( $label ) . '</button></div>';
+}
+add_action( 'wp_footer', 'bst_wc_mobile_purchase_bar', 30 );
 
 /**
  * Loop add-to-cart link with the theme icon and classes.

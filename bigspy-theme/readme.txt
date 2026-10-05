@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.8.0
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.9.0 =
+* Added optional stacked and left-thumbnail product gallery layouts.
+* Added optional sticky product summary and mobile quick-purchase bar using the native WooCommerce form.
+* All new product page controls are disabled or use the default layout unless configured.
 
 = 1.8.0 =
 * Added a per-block Preview animation action in the editor to replay the selected scroll effect using its configured delay and duration, without saving or publishing the page.
