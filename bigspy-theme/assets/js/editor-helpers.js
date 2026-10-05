@@ -194,7 +194,8 @@
 		bsHideTablet: { type: 'boolean', default: false },
 		bsHideMobile: { type: 'boolean', default: false },
 		bsAnimation: { type: 'string', default: '' },
-		bsAnimationDelay: { type: 'number', default: 0 }
+		bsAnimationDelay: { type: 'number', default: 0 },
+		bsAnimationDuration: { type: 'number', default: 700 }
 	};
 
 	function skip(name) {
@@ -247,11 +248,15 @@
 								'fade-right': __('Fade from left', 'bigspy-theme'),
 								'zoom-in': __('Zoom in', 'bigspy-theme'),
 								'zoom-out': __('Zoom out', 'bigspy-theme'),
-								'flip-up': __('Flip up', 'bigspy-theme')
+								'flip-up': __('Flip up', 'bigspy-theme'),
+								'blur-in': __('Soft focus', 'bigspy-theme'),
+								'rotate-in': __('Gentle rotate', 'bigspy-theme'),
+								'bounce-in': __('Soft bounce', 'bigspy-theme')
 							},
 							onChange: set('bsAnimation')
 						}),
 						a.bsAnimation ? el(Range, { label: __('Delay (ms)', 'bigspy-theme'), min: 0, max: 2000, step: 50, value: a.bsAnimationDelay || 0, onChange: set('bsAnimationDelay') }) : null,
+						a.bsAnimation ? el(Range, { label: __('Duration (ms)', 'bigspy-theme'), min: 300, max: 1800, step: 100, value: a.bsAnimationDuration || 700, onChange: set('bsAnimationDuration') }) : null,
 						hidden.length ? el('p', { className: 'description' }, __('Still visible in the editor. Hidden on the live site for: ', 'bigspy-theme') + hidden.join(', ')) : null
 					)
 				)

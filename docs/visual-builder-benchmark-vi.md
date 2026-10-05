@@ -17,11 +17,13 @@ Mục tiêu phát triển không nên là đổi tên block hoặc tăng số l�
 - Phần tử đã đặt trên trang hiện ngay trong bản xem trước, nên người dùng có thể liên hệ thao tác với kết quả.
 - Có nút cập nhật dễ nhận biết và điều khiển hoàn tác/làm lại, xem theo thiết bị ở cạnh canvas.
 - Với trang mẫu được mở, canvas thể hiện header, lưới sản phẩm, giá và footer thực tế. Đây là ưu điểm trực quan; chất lượng hiển thị trang mẫu cũng cho thấy canvas cần phản hồi nhanh và giữ khả năng đọc khi ảnh hoặc nội dung chưa tải hoàn chỉnh.
+- BIGSPY phát triển chuyển động bằng mã riêng, không dùng script, CSS hay thư viện của Flatsome. Hiệu ứng chạy khi phần tử vào khung nhìn, chỉ chạy một lần và tôn trọng cài đặt giảm chuyển động của hệ điều hành.
 
 ## BIGSPY hiện có
 
 - Block editor Gutenberg với nhóm block BIGSPY như Section, Row, Column, Banner, Slider, Icon Box, Tabs, Accordion, Posts, Products và các block nội dung khác.
 - Inspector Controls cho cài đặt block, thiết kế đáp ứng, animation và màu sắc.
+- BIGSPY có 8 kiểu reveal cơ bản, độ trễ theo block, hover riêng cho ảnh/banner/sản phẩm và tùy chọn giảm chuyển động. Bản 1.6.0 bổ sung soft focus, gentle rotate, soft bounce và điều chỉnh thời lượng từng block.
 - Patterns cho section và trang hoàn chỉnh; Header Builder kéo thả; thư viện CSS tích chọn.
 - Đây là các nền móng có thể giữ lại. Khoảng cách chính nằm ở cách người dùng tìm, chọn, sắp xếp và chỉnh nội dung, không phải thiếu hoàn toàn các thành phần dựng trang.
 

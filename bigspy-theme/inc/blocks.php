@@ -61,13 +61,14 @@ function bst_global_block_attributes( $args ) {
 		'bsHideMobile'     => array( 'type' => 'boolean', 'default' => false ),
 		'bsAnimation'      => array( 'type' => 'string', 'default' => '' ),
 		'bsAnimationDelay' => array( 'type' => 'number', 'default' => 0 ),
+		'bsAnimationDuration' => array( 'type' => 'number', 'default' => 700 ),
 	);
 	return $args;
 }
 add_filter( 'register_block_type_args', 'bst_global_block_attributes' );
 
 function bst_block_animations() {
-	return array( 'fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom-in', 'zoom-out', 'flip-up' );
+	return array( 'fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom-in', 'zoom-out', 'flip-up', 'blur-in', 'rotate-in', 'bounce-in' );
 }
 
 /**
@@ -106,6 +107,11 @@ function bst_apply_global_block_attributes( $content, $block ) {
 	if ( $animation && $delay ) {
 		$style = (string) $tags->get_attribute( 'style' );
 		$tags->set_attribute( 'style', rtrim( $style, '; ' ) . ( $style ? ';' : '' ) . '--bs-delay:' . min( 3000, $delay ) . 'ms' );
+	}
+	if ( $animation ) {
+		$style = (string) $tags->get_attribute( 'style' );
+		$duration = isset( $attrs['bsAnimationDuration'] ) ? absint( $attrs['bsAnimationDuration'] ) : 700;
+		$tags->set_attribute( 'style', rtrim( $style, '; ' ) . ( $style ? ';' : '' ) . '--bs-duration:' . min( 2500, max( 300, $duration ) ) . 'ms' );
 	}
 	return $tags->get_updated_html();
 }

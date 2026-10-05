@@ -25,7 +25,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 | **Layout** | Full width / boxed, container width, left / right / no sidebar for blog, pages, posts and shop. Full-width title bar with background image and breadcrumbs. |
 | **Per-page options** | Header: default / solid / transparent / hidden · hide title · hide footer · sidebar · remove top/bottom spacing. **Full width** and **Blank canvas** (landing page) templates. |
 | **Layout blocks** | Section, Row (12-column grid, one-click presets), Column (width per desktop / tablet / mobile), Banner, Slider, Icon Box, Section Title, Tabs, Accordion / FAQ, Blog Posts (grid / list / slider), Testimonial, Counter, Google Map – plus Products and Product Categories when WooCommerce is active. |
-| **Every block** | Hide per device (desktop / tablet / mobile) and scroll animations (fade, zoom, flip) with delay. |
+| **Every block** | Hide per device (desktop / tablet / mobile) and scroll animations (fade, zoom, flip, soft focus, gentle rotate and soft bounce) with per-block duration and delay. Animations honor the visitor’s reduced-motion setting. |
 | **Patterns** | Service sites: hero, services, about, stats, testimonials, pricing, FAQ, news, call to action, contact, plus a complete **business homepage**. Shops (WooCommerce): banner slider, benefits bar, categories, featured products, sale slider, product tabs, plus a complete **online shop homepage**. |
 | **Blog** | Grid / list, columns, card style (shadow / bordered / plain / text over image), image ratio, share buttons, author box, related posts, previous / next links. |
 | **Footer** | Two widget rows (0–4 columns), copyright bar with `[year]` and `[site_title]` tokens, footer menu, social icons, back-to-top button. |
@@ -78,6 +78,10 @@ This is the first step toward a more direct editing workflow. Existing WordPress
 ## Release 1.5.0: reuse your own saved designs
 
 BIGSPY Studio adds a **Saved designs** group next to its built-in page, section and shop patterns. It lists published synced patterns (`wp_block`) from the current WordPress site. Choose **Add to page** to insert a native synced block; later edits to that saved source are reflected in its instances. Create saved designs with WordPress’s **Create pattern** command from a block’s options. BIGSPY only uses WordPress’s public block editor/core-data APIs here; it does not use Flatsome source code or assets.
+
+## Release 1.6.0: more expressive motion controls
+
+The shared **Visibility & animation** panel adds three restrained scroll effects: **Soft focus** (blur clears as the block appears), **Gentle rotate** and **Soft bounce**. Every selected effect now has a duration control in addition to its existing delay. The animations still wait for the element to enter the viewport, run once, and respect the visitor’s system reduced-motion preference; no animation library or Flatsome script is loaded.
 
 ## Release 1.3.0: CSS library for service sites and shops
 

@@ -74,6 +74,18 @@ msgstr "Các phần nội dung"
 msgid "Shop"
 msgstr "Cửa hàng"
 
+msgid "Soft focus"
+msgstr "Làm rõ nhẹ"
+
+msgid "Gentle rotate"
+msgstr "Xoay nhẹ"
+
+msgid "Soft bounce"
+msgstr "Nảy nhẹ"
+
+msgid "Duration (ms)"
+msgstr "Thời lượng (ms)"
+
 msgid "Saved designs"
 msgstr "Mẫu đã lưu"
 

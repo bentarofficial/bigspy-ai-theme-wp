@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.6.0 =
+* Added Soft focus, Gentle rotate and Soft bounce scroll effects to the shared block animation panel.
+* Animation duration can now be tuned per block, alongside the existing delay setting.
+* Reduced-motion settings also clear blur and compositor hints.
 
 = 1.5.0 =
 * BIGSPY Studio now includes published WordPress synced patterns in a Saved designs group.
