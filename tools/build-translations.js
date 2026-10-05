@@ -44,6 +44,7 @@ const strings = [
 	['Soft zoom', 'Phóng to nhẹ'],
 	['Soft shadow', 'Bóng đổ nhẹ'],
 	['Grayscale to color', 'Từ trắng đen sang màu'],
+	['Preview animation', 'Xem thử hiệu ứng'],
 	['Saved designs', 'Mẫu đã lưu'],
 	['Untitled design', 'Mẫu chưa đặt tên'],
 	['A reusable design saved in WordPress.', 'Mẫu có thể tái sử dụng đã lưu trong WordPress.'],

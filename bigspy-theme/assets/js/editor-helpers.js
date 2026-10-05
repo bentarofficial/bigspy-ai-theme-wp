@@ -225,6 +225,52 @@
 				};
 			};
 			var hidden = [a.bsHideDesktop && __('desktop', 'bigspy-theme'), a.bsHideTablet && __('tablet', 'bigspy-theme'), a.bsHideMobile && __('mobile', 'bigspy-theme')].filter(Boolean);
+			function previewAnimation() {
+				var editorDocuments = [document];
+				document.querySelectorAll('iframe').forEach(function (frame) {
+					try {
+						if (frame.contentDocument) editorDocuments.push(frame.contentDocument);
+					} catch (error) { /* Ignore cross-origin frames. */ }
+				});
+				var target = null;
+				var editorDocument = document;
+				editorDocuments.some(function (candidate) {
+					target = candidate.querySelector('[data-block="' + props.clientId + '"]');
+					if (target) editorDocument = candidate;
+					return !!target;
+				});
+				if (!target || !a.bsAnimation || ['fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom-in', 'zoom-out', 'flip-up', 'blur-in', 'rotate-in', 'bounce-in'].indexOf(a.bsAnimation) === -1) {
+					return;
+				}
+				editorDocument.querySelectorAll('.bst-motion-preview').forEach(function (previous) {
+					if (previous._bstMotionTimer) previous.ownerDocument.defaultView.clearTimeout(previous._bstMotionTimer);
+					previous.classList.remove('bs-animate', 'is-visible', 'bst-motion-preview');
+					Array.prototype.slice.call(previous.classList).forEach(function (className) {
+						if (className.indexOf('bs-animate--') === 0) previous.classList.remove(className);
+					});
+					previous.style.removeProperty('--bs-delay');
+					previous.style.removeProperty('--bs-duration');
+					if (previous._bstAddedBodyAnimationsClass) editorDocument.body.classList.remove('bs-animations');
+				});
+				var bodyAlreadyAnimated = editorDocument.body.classList.contains('bs-animations');
+				var duration = Math.max(300, Math.min(2500, a.bsAnimationDuration || 700));
+				var delay = Math.max(0, Math.min(2000, a.bsAnimationDelay || 0));
+				editorDocument.body.classList.add('bs-animations');
+				target.classList.remove('is-visible');
+				target.classList.add('bs-animate', 'bs-animate--' + a.bsAnimation, 'bst-motion-preview');
+				target.style.setProperty('--bs-delay', delay + 'ms');
+				target.style.setProperty('--bs-duration', duration + 'ms');
+				target._bstAddedBodyAnimationsClass = !bodyAlreadyAnimated;
+				target.offsetWidth;
+				editorDocument.defaultView.requestAnimationFrame(function () { target.classList.add('is-visible'); });
+				target._bstMotionTimer = editorDocument.defaultView.setTimeout(function () {
+					target.classList.remove('bs-animate', 'is-visible', 'bst-motion-preview', 'bs-animate--' + a.bsAnimation);
+					target.style.removeProperty('--bs-delay');
+					target.style.removeProperty('--bs-duration');
+					if (target._bstAddedBodyAnimationsClass) editorDocument.body.classList.remove('bs-animations');
+					target._bstAddedBodyAnimationsClass = false;
+				}, duration + delay + 250);
+			}
 
 			return el(Fragment, null,
 				el(BlockEdit, props),
@@ -256,6 +302,7 @@
 							},
 							onChange: set('bsAnimation')
 						}),
+						a.bsAnimation ? el(c.Button, { variant: 'secondary', onClick: previewAnimation, className: 'bst-animation-preview' }, __('Preview animation', 'bigspy-theme')) : null,
 						a.bsAnimation ? el(Range, { label: __('Delay (ms)', 'bigspy-theme'), min: 0, max: 2000, step: 50, value: a.bsAnimationDelay || 0, onChange: set('bsAnimationDelay') }) : null,
 						a.bsAnimation ? el(Range, { label: __('Duration (ms)', 'bigspy-theme'), min: 300, max: 1800, step: 100, value: a.bsAnimationDuration || 700, onChange: set('bsAnimationDuration') }) : null,
 						el(Select, {

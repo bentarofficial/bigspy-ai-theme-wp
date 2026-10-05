@@ -101,6 +101,9 @@ msgstr "Bóng đổ nhẹ"
 msgid "Grayscale to color"
 msgstr "Từ trắng đen sang màu"
 
+msgid "Preview animation"
+msgstr "Xem thử hiệu ứng"
+
 msgid "Saved designs"
 msgstr "Mẫu đã lưu"
 

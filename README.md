@@ -25,7 +25,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 | **Layout** | Full width / boxed, container width, left / right / no sidebar for blog, pages, posts and shop. Full-width title bar with background image and breadcrumbs. |
 | **Per-page options** | Header: default / solid / transparent / hidden · hide title · hide footer · sidebar · remove top/bottom spacing. **Full width** and **Blank canvas** (landing page) templates. |
 | **Layout blocks** | Section, Row (12-column grid, one-click presets), Column (width per desktop / tablet / mobile), Banner, Slider, Icon Box, Section Title, Tabs, Accordion / FAQ, Blog Posts (grid / list / slider), Testimonial, Counter, Google Map – plus Products and Product Categories when WooCommerce is active. |
-| **Every block** | Hide per device (desktop / tablet / mobile); scroll animations (fade, zoom, flip, soft focus, gentle rotate and soft bounce) with per-block duration and delay; and optional hover motion (lift, zoom, shadow or grayscale-to-color). Motion honors device preferences. |
+| **Every block** | Hide per device (desktop / tablet / mobile); scroll animations (fade, zoom, flip, soft focus, gentle rotate and soft bounce) with per-block duration and delay plus an editor preview button; and optional hover motion (lift, zoom, shadow or grayscale-to-color). Motion honors device preferences. |
 | **Patterns** | Service sites: hero, services, about, stats, testimonials, pricing, FAQ, news, call to action, contact, plus a complete **business homepage**. Shops (WooCommerce): banner slider, benefits bar, categories, featured products, sale slider, product tabs, plus a complete **online shop homepage**. |
 | **Blog** | Grid / list, columns, card style (shadow / bordered / plain / text over image), image ratio, share buttons, author box, related posts, previous / next links. |
 | **Footer** | Two widget rows (0–4 columns), copyright bar with `[year]` and `[site_title]` tokens, footer menu, social icons, back-to-top button. |
@@ -86,6 +86,10 @@ The shared **Visibility & animation** panel adds three restrained scroll effects
 ## Release 1.7.0: reusable hover motion
 
 The same shared block panel now offers **Lift gently**, **Soft zoom**, **Soft shadow** and **Grayscale to color**. These can be applied to BIGSPY, WordPress and WooCommerce blocks and preview on hover in the editor. They run only where hover is available and system motion is allowed, and keyboard focus receives the same visual cue where applicable.
+
+## Release 1.8.0: preview scroll motion before publishing
+
+Each block’s **Visibility & animation** panel has a **Preview animation** button. It replays the selected effect in the editor using the saved duration and delay, then clears its temporary classes and styles. The preview does not change block settings, save the page or publish it.
 
 ## Release 1.3.0: CSS library for service sites and shops
 
