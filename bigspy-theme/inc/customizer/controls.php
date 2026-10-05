@@ -39,6 +39,34 @@ class BST_Header_Builder_Control extends WP_Customize_Control {
 	}
 }
 
+/** One-click, editable layout presets for header and footer settings. */
+class BST_Layout_Presets_Control extends WP_Customize_Control {
+	public $type = 'bst-layout-presets';
+	public $presets = array();
+	public $help_url = '';
+	public $help_label = '';
+	public $help_url_2 = '';
+	public $help_label_2 = '';
+
+	public function render_content() {
+		echo '<span class="customize-control-title">' . esc_html( $this->label ) . '</span>';
+		if ( $this->description ) {
+			echo '<p class="description">' . wp_kses_post( $this->description ) . '</p>';
+		}
+		echo '<div class="bst-layout-presets" data-bst-layout-presets>';
+		foreach ( $this->presets as $key => $preset ) {
+			echo '<button type="button" class="button bst-layout-presets__button" data-preset="' . esc_attr( $key ) . '" data-settings="' . esc_attr( wp_json_encode( $preset['settings'] ) ) . '"><strong>' . esc_html( $preset['label'] ) . '</strong><span>' . esc_html( $preset['description'] ) . '</span></button>';
+		}
+		echo '</div><p class="bst-layout-presets__status" role="status" aria-live="polite"></p>';
+		if ( $this->help_url && $this->help_label ) {
+			echo '<p><a class="button-link" href="' . esc_url( $this->help_url ) . '" target="_blank" rel="noopener">' . esc_html( $this->help_label ) . '</a></p>';
+		}
+		if ( $this->help_url_2 && $this->help_label_2 ) {
+			echo '<p><a class="button-link" href="' . esc_url( $this->help_url_2 ) . '" target="_blank" rel="noopener">' . esc_html( $this->help_label_2 ) . '</a></p>';
+		}
+	}
+}
+
 /** Accessible checkbox rows; recipe code stays out of the controls interface. */
 class BST_CSS_Presets_Control extends WP_Customize_Control {
 	public $type = 'bst-css-presets';

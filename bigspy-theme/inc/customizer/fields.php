@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 function bst_customizer_sections() {
 	$sections = array(
 		// Header.
-		'bst_header_builder' => array( 'title' => __( 'Header builder', 'bigspy-theme' ), 'panel' => 'bst_header', 'priority' => 1, 'description' => __( 'Drag elements between the rows. Rows with no visible element are hidden automatically. Click an element to open its settings.', 'bigspy-theme' ) ),
+		'bst_header_builder' => array( 'title' => __( 'Header builder', 'bigspy-theme' ), 'panel' => 'bst_header', 'priority' => 1, 'description' => __( 'Start with a ready-made layout or drag elements between rows. Click the gear on an element to edit it. Preview desktop and mobile separately, then press Publish to save.', 'bigspy-theme' ) ),
 		'bst_header_general' => array( 'title' => __( 'Header layout & sticky', 'bigspy-theme' ), 'panel' => 'bst_header', 'priority' => 2 ),
 		'bst_header_rows'    => array( 'title' => __( 'Rows: height & colors', 'bigspy-theme' ), 'panel' => 'bst_header', 'priority' => 3 ),
 		'bst_header_logo'    => array( 'title' => __( 'Logo', 'bigspy-theme' ), 'panel' => 'bst_header', 'priority' => 4, 'description' => __( 'Upload the logo in Site Identity.', 'bigspy-theme' ) ),
@@ -35,7 +35,7 @@ function bst_customizer_sections() {
 
 		// Footer.
 		'bst_footer_cta'     => array( 'title' => __( 'Call-to-action band', 'bigspy-theme' ), 'panel' => 'bst_footer', 'priority' => 0, 'description' => __( 'A colored band shown above the footer on every page, e.g. “Ready to start? → Contact us”.', 'bigspy-theme' ) ),
-		'bst_footer_widgets' => array( 'title' => __( 'Footer widgets', 'bigspy-theme' ), 'panel' => 'bst_footer', 'priority' => 1, 'description' => __( 'Add widgets in Appearance → Widgets → “Footer 1/2 – Column N”.', 'bigspy-theme' ) ),
+		'bst_footer_widgets' => array( 'title' => __( 'Footer widgets', 'bigspy-theme' ), 'panel' => 'bst_footer', 'priority' => 1, 'description' => __( 'Choose a column layout here, then add content to each column in Widgets. Your existing widget content is kept when changing a layout.', 'bigspy-theme' ) ),
 		'bst_footer_bottom'  => array( 'title' => __( 'Footer bottom (copyright)', 'bigspy-theme' ), 'panel' => 'bst_footer', 'priority' => 2 ),
 		'bst_float'          => array( 'title' => __( 'Floating contact buttons', 'bigspy-theme' ), 'panel' => 'bst_footer', 'priority' => 3 ),
 
@@ -86,6 +86,18 @@ function bst_customizer_fields() {
 
 	$fields = array(
 		// ---------------------------------------------------------------- Header builder.
+		array(
+			'id' => 'header_layout_presets', 'section' => 'bst_header_builder', 'type' => 'layout_presets', 'priority' => 1,
+			'label' => __( 'Start with a header layout', 'bigspy-theme' ),
+			'description' => __( 'Choose a starting layout. It changes only the arrangement of header items; logo, menus, colors and button text stay yours. You can still drag every item below.', 'bigspy-theme' ),
+			'help_url' => admin_url( 'customize.php?autofocus[section]=title_tagline' ), 'help_label' => __( 'Set logo and site title', 'bigspy-theme' ),
+			'help_url_2' => admin_url( 'nav-menus.php' ), 'help_label_2' => __( 'Create and assign menus', 'bigspy-theme' ),
+			'presets' => array(
+				'shop' => array( 'label' => __( 'Online store', 'bigspy-theme' ), 'description' => __( 'Logo, search, account, cart and navigation.', 'bigspy-theme' ), 'settings' => array( 'header_layout' => bst_header_layout_preset( 'shop' ) ) ),
+				'service' => array( 'label' => __( 'Services', 'bigspy-theme' ), 'description' => __( 'Contact details, social links and clear navigation.', 'bigspy-theme' ), 'settings' => array( 'header_layout' => bst_header_layout_preset( 'service' ) ) ),
+				'minimal' => array( 'label' => __( 'Minimal', 'bigspy-theme' ), 'description' => __( 'Logo, menu and search with fewer rows.', 'bigspy-theme' ), 'settings' => array( 'header_layout' => bst_header_layout_preset( 'minimal' ) ) ),
+			),
+		),
 		array( 'id' => 'header_layout', 'section' => 'bst_header_builder', 'type' => 'header_builder', 'label' => __( 'Header layout', 'bigspy-theme' ) ),
 
 		// Header general.
@@ -225,6 +237,17 @@ function bst_customizer_fields() {
 			array( 'id' => 'single_related', 'section' => 'bst_blog_single', 'type' => 'checkbox', 'label' => __( 'Related posts', 'bigspy-theme' ) ),
 
 			// ---------------------------------------------------------------- Footer.
+			array(
+				'id' => 'footer_layout_presets', 'section' => 'bst_footer_widgets', 'type' => 'layout_presets', 'priority' => 1,
+				'label' => __( 'Choose a footer layout', 'bigspy-theme' ),
+				'description' => __( 'A preset changes column counts and display toggles only. It does not delete or rewrite your widgets, text, links or colors.', 'bigspy-theme' ),
+				'help_url' => admin_url( 'widgets.php' ), 'help_label' => __( 'Add or edit footer content in Widgets', 'bigspy-theme' ),
+				'presets' => array(
+					'store' => array( 'label' => __( 'Store', 'bigspy-theme' ), 'description' => __( 'Four columns for help, policies, contact and payments.', 'bigspy-theme' ), 'settings' => array( 'footer_1_columns' => 4, 'footer_2_columns' => 0, 'footer_cta_enable' => false, 'footer_bottom_enable' => true, 'footer_social' => true ) ),
+				'service' => array( 'label' => __( 'Services', 'bigspy-theme' ), 'description' => __( 'Three content columns; keeps your current contact-band setting.', 'bigspy-theme' ), 'settings' => array( 'footer_1_columns' => 3, 'footer_2_columns' => 0, 'footer_bottom_enable' => true, 'footer_social' => true ) ),
+					'minimal' => array( 'label' => __( 'Minimal', 'bigspy-theme' ), 'description' => __( 'Two columns and a simple copyright bar.', 'bigspy-theme' ), 'settings' => array( 'footer_1_columns' => 2, 'footer_2_columns' => 0, 'footer_cta_enable' => false, 'footer_bottom_enable' => true, 'footer_social' => false ) ),
+				),
+			),
 			array( 'id' => 'footer_cta_enable', 'section' => 'bst_footer_cta', 'type' => 'checkbox', 'label' => __( 'Show call-to-action band', 'bigspy-theme' ) ),
 			array( 'id' => 'footer_cta_title', 'section' => 'bst_footer_cta', 'type' => 'text', 'label' => __( 'Title', 'bigspy-theme' ) ),
 			array( 'id' => 'footer_cta_text', 'section' => 'bst_footer_cta', 'type' => 'html', 'label' => __( 'Text', 'bigspy-theme' ) ),

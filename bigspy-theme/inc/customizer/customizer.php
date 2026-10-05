@@ -47,6 +47,23 @@ function bst_customize_register( $wp_customize ) {
 		$id   = $field['id'];
 		$type = $field['type'];
 
+		if ( 'layout_presets' === $type ) {
+			$preset_args = array(
+				'settings'     => array(),
+				'section'      => $field['section'],
+				'label'        => $field['label'],
+				'description'  => $field['description'] ?? '',
+				'priority'     => $field['priority'] ?? 1,
+				'presets'      => $field['presets'],
+				'help_url'     => $field['help_url'] ?? '',
+				'help_label'   => $field['help_label'] ?? '',
+				'help_url_2'   => $field['help_url_2'] ?? '',
+				'help_label_2' => $field['help_label_2'] ?? '',
+			);
+			$wp_customize->add_control( new BST_Layout_Presets_Control( $wp_customize, $id, $preset_args ) );
+			continue;
+		}
+
 		if ( 'heading' === $type ) {
 			$wp_customize->add_setting( $id, array( 'sanitize_callback' => '__return_empty_string' ) );
 			$wp_customize->add_control( new BST_Heading_Control( $wp_customize, $id, array( 'section' => $field['section'], 'label' => $field['label'], 'description' => $field['description'] ?? '', 'priority' => $field['priority'] ?? 10 ) ) );
@@ -157,6 +174,7 @@ function bst_customize_controls_assets() {
 				'available' => __( 'Available elements (drag into a row)', 'bigspy-theme' ),
 				'reset'     => __( 'Reset to default layout', 'bigspy-theme' ),
 				'confirm'   => __( 'Reset the header layout for this device?', 'bigspy-theme' ),
+				'presetApplied' => __( 'Layout applied. Preview it, then Publish to save.', 'bigspy-theme' ),
 			),
 		)
 	);

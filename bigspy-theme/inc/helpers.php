@@ -293,6 +293,49 @@ function bst_default_header_layout() {
 	);
 }
 
+/** Build simple, editable header layouts for the one-click Customizer presets. */
+function bst_header_layout_preset( $kind ) {
+	$layouts = array(
+		'shop' => array(
+			'desktop' => array(
+				'top'    => array( 'left' => array( 'nav_secondary' ), 'center' => array(), 'right' => array( 'contact' ) ),
+				'main'   => array( 'left' => array( 'logo' ), 'center' => array( 'search_form' ), 'right' => array( 'account', 'cart' ) ),
+				'bottom' => array( 'left' => array(), 'center' => array( 'nav' ), 'right' => array() ),
+			),
+			'mobile'  => array(
+				'top'    => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+				'main'   => array( 'left' => array( 'nav_icon' ), 'center' => array( 'logo' ), 'right' => array( 'search', 'cart' ) ),
+				'bottom' => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+			),
+		),
+		'service' => array(
+			'desktop' => array(
+				'top'    => array( 'left' => array( 'contact' ), 'center' => array(), 'right' => array( 'social' ) ),
+				'main'   => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'nav' ) ),
+				'bottom' => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+			),
+			'mobile'  => array(
+				'top'    => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+				'main'   => array( 'left' => array( 'nav_icon' ), 'center' => array( 'logo' ), 'right' => array( 'button_1' ) ),
+				'bottom' => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+			),
+		),
+		'minimal' => array(
+			'desktop' => array(
+				'top'    => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+				'main'   => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'nav', 'search' ) ),
+				'bottom' => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+			),
+			'mobile'  => array(
+				'top'    => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+				'main'   => array( 'left' => array( 'nav_icon' ), 'center' => array( 'logo' ), 'right' => array( 'search' ) ),
+				'bottom' => array( 'left' => array(), 'center' => array(), 'right' => array() ),
+			),
+		),
+	);
+	return bst_normalize_header_layout( $layouts[ $kind ] ?? bst_default_header_layout() );
+}
+
 /**
  * Normalise a header layout (JSON string or array) to the full structure,
  * dropping unknown elements and duplicates within a device.

@@ -172,4 +172,24 @@
 			new HeaderBuilder(this.container, this.setting);
 		}
 	});
+
+	api.controlConstructor['bst-layout-presets'] = api.Control.extend({
+		ready: function () {
+			var $root = this.container.find('[data-bst-layout-presets]');
+			var $status = this.container.find('.bst-layout-presets__status');
+			$root.on('click', '[data-settings]', function () {
+				var settings;
+				try {
+					settings = JSON.parse($(this).attr('data-settings'));
+				} catch (error) {
+					return;
+				}
+				Object.keys(settings).forEach(function (key) {
+					var setting = api(key);
+					if (setting) setting.set('header_layout' === key ? JSON.stringify(settings[key]) : settings[key]);
+				});
+				$status.text(data.i18n.presetApplied || 'Layout applied. Preview it, then Publish to save.');
+			});
+		}
+	});
 })(jQuery, wp.customize);

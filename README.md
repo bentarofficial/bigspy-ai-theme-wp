@@ -20,7 +20,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 | Area | Features |
 | --- | --- |
 | **BIGSPY Studio** | Guided start for business/service pages and WooCommerce shops. Creates a full-width **draft** from a native BIGSPY page pattern and opens it in the editor; the live site is not published or changed until the user chooses to publish. The editor shelf includes BIGSPY patterns and published WordPress synced patterns saved by the site owner. |
-| **Header builder** | Drag & drop 16 elements into 3 rows (Top bar / Main / Bottom) × 3 zones (left / center / right), **separately for desktop and mobile**. Logo, main menu, top bar menu, off-canvas menu icon, search (dropdown / lightbox), search form, account, cart (mini cart), 2 buttons, 3 HTML blocks, contact info, social icons, divider. Sticky header, transparent header (per page or homepage), full width, height and colors per row. |
+| **Header builder** | One-click online store, service and minimal starter layouts, then drag & drop 16 elements into 3 rows (Top bar / Main / Bottom) × 3 zones (left / center / right), **separately for desktop and mobile**. Logo, main menu, top bar menu, off-canvas menu icon, search (dropdown / lightbox), search form, account, cart (mini cart), 2 buttons, 3 HTML blocks, contact info, social icons, divider. Sticky header, transparent header (per page or homepage), full width, height and colors per row. Direct links to Site Identity and Menus. |
 | **Style** | Brand colors (primary, secondary, success, alert, text, heading, links…), 20+ Google fonts plus system fonts, H1–H4 sizes, menu font, button style. Colors sync to the block editor palette. Live preview without reloading. |
 | **Layout** | Full width / boxed, container width, left / right / no sidebar for blog, pages, posts and shop. Full-width title bar with background image and breadcrumbs. |
 | **Per-page options** | Header: default / solid / transparent / hidden · hide title · hide footer · sidebar · remove top/bottom spacing. **Full width** and **Blank canvas** (landing page) templates. |
@@ -28,7 +28,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 | **Every block** | Hide per device (desktop / tablet / mobile); scroll animations (fade, zoom, flip, soft focus, gentle rotate and soft bounce) with per-block duration and delay plus an editor preview button; and optional hover motion (lift, zoom, shadow or grayscale-to-color). Motion honors device preferences. |
 | **Patterns** | Service sites: hero, services, about, stats, testimonials, pricing, FAQ, news, call to action, contact, plus a complete **business homepage**. Shops (WooCommerce): banner slider, benefits bar, categories, featured products, sale slider, product tabs, plus a complete **online shop homepage**. |
 | **Blog** | Grid / list, columns, card style (shadow / bordered / plain / text over image), image ratio, share buttons, author box, related posts, previous / next links. |
-| **Footer** | Two widget rows (0–4 columns), copyright bar with `[year]` and `[site_title]` tokens, footer menu, social icons, back-to-top button. |
+| **Footer** | One-click store, service and minimal layouts; two widget rows (0–4 columns), copyright bar with `[year]` and `[site_title]` tokens, footer menu, social icons, back-to-top button. Layout presets preserve widget content, links, copy and colors. Direct link to Widgets. |
 | **Floating contact buttons** | Call, Zalo, Messenger, WhatsApp, email – round buttons or a bottom bar on mobile. |
 | **WooCommerce** | Products per row on desktop / tablet / mobile, shop sidebar and mobile filter drawer, product card style, second-image or zoom hover, **-%** sale badge, AJAX header cart count, mini cart, **catalog mode** (hide prices, show a “Contact for price” button), single-product stacked/left-thumbnail gallery, sticky summary and optional mobile quick-purchase bar. |
 | **Tools** | **Export / import / reset** all theme options as JSON – configure once, reuse on the next website. Head / body / footer scripts (Analytics, Pixel…), disable emoji. |
@@ -50,6 +50,10 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 7. **Appearance → BIGSPY Theme → Export** to save the configuration as a starting point for the next project.
 
 ## Development
+
+## Release 1.11.0: quicker header and footer setup
+
+Customizer now offers online store, service and minimal header starting layouts that apply to both desktop and mobile. They change only element placement; the existing drag-and-drop builder remains available. Footer starting layouts set column counts and display toggles while preserving widget contents, links, copy and colors. Direct links open Site Identity, Menus and Widgets, and section guidance explains the steps before publishing.
 
 ## Release 1.10.0: mobile shop filter drawer
 

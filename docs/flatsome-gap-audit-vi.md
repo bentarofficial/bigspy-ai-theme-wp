@@ -2,7 +2,7 @@
 
 Ngày kiểm tra: 05/10/2026  
 Flatsome trên site tham chiếu: 3.20.10  
-BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.10.0
+BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.11.0
 
 ## Phạm vi
 
@@ -12,11 +12,12 @@ Chỉ đọc giao diện và file manager của site Flatsome, không sửa tran
 
 | Nhóm | Flatsome | BIGSPY hiện tại |
 | --- | --- | --- |
-| Header | Header Builder, hàng/khu vực, thiết lập desktop/mobile, preset | Header Builder kéo thả, desktop/mobile riêng, sticky/transparent, nhiều phần tử |
+| Header | Header Builder, hàng/khu vực, thiết lập desktop/mobile, preset | Header Builder kéo thả, desktop/mobile riêng, sticky/transparent, nhiều phần tử; 1.11.0 thêm layout mẫu shop/dịch vụ/tối giản và liên kết thẳng tới Logo/Menus |
 | Bắt đầu thiết kế | Flatsome Studio và UX Blocks | BIGSPY Studio, thư viện pattern, mẫu đồng bộ WordPress |
 | Thành phần nội dung | UX Builder elements và UX Blocks | Gutenberg blocks cho layout, shop, bài viết, FAQ, testimonial, banner, slider… |
 | Kiểu dáng | Style, màu, phông, CSS tùy chỉnh | Customizer màu/font, Additional CSS và thư viện CSS tích chọn |
 | Shop cơ bản | Lưới sản phẩm, card và tùy chọn WooCommerce | Số cột theo thiết bị, sidebar, kiểu card, hover ảnh, tỉ lệ ảnh, nút giỏ, catalog mode |
+| Footer | Cấu hình footer và nhiều vùng hiển thị | Hàng widget, CTA, copyright, social và back-to-top; 1.11.0 thêm mẫu Store/Services/Minimal và lối tắt sang Widgets |
 | Tìm kiếm | Live search cho sản phẩm, bài viết và trang | Tìm kiếm gợi ý AJAX; có số lượng kết quả và tìm sản phẩm |
 | Responsive | Các điều khiển responsive trong builder | Ẩn theo thiết bị, cột theo kích thước và motion tôn trọng reduced-motion |
 | Tùy chỉnh và di chuyển cấu hình | Custom CSS, script và import/export theme options | CSS, head/body/footer scripts, export/import/reset tùy chọn theme |

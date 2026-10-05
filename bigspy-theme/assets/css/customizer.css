@@ -1,5 +1,12 @@
 /* BIGSPY Theme – Customizer controls. */
 /* CSS library is kept compact above the native Additional CSS editor. */
+.bst-layout-presets { display: grid; gap: 7px; margin: 10px 0; }
+.bst-layout-presets__button { display: grid !important; gap: 3px; width: 100%; padding: 9px 11px !important; text-align: left; white-space: normal !important; }
+.bst-layout-presets__button strong { font-size: 12px; }
+.bst-layout-presets__button span { color: #50575e; font-size: 11px; line-height: 1.45; }
+.bst-layout-presets__button:hover { border-color: #2271b1 !important; background: #f0f6fc !important; }
+.bst-layout-presets__button:focus-visible { outline: 2px solid #2271b1; outline-offset: 2px; }
+.bst-layout-presets__status { min-height: 1.4em; margin: 6px 0; color: #2271b1; font-size: 12px; }
 .bst-css-presets { padding: 14px; background: #fff; border: 1px solid #dcdcde; border-radius: 8px; }
 .bst-css-presets [hidden] { display: none !important; }
 .bst-css-presets__search { width: 100%; margin: 6px 0 10px; }
