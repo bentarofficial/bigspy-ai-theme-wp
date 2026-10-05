@@ -86,6 +86,21 @@ msgstr "Nảy nhẹ"
 msgid "Duration (ms)"
 msgstr "Thời lượng (ms)"
 
+msgid "Effect on hover"
+msgstr "Hiệu ứng khi rê chuột"
+
+msgid "Lift gently"
+msgstr "Nhấc nhẹ"
+
+msgid "Soft zoom"
+msgstr "Phóng to nhẹ"
+
+msgid "Soft shadow"
+msgstr "Bóng đổ nhẹ"
+
+msgid "Grayscale to color"
+msgstr "Từ trắng đen sang màu"
+
 msgid "Saved designs"
 msgstr "Mẫu đã lưu"
 

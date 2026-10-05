@@ -62,6 +62,7 @@ function bst_global_block_attributes( $args ) {
 		'bsAnimation'      => array( 'type' => 'string', 'default' => '' ),
 		'bsAnimationDelay' => array( 'type' => 'number', 'default' => 0 ),
 		'bsAnimationDuration' => array( 'type' => 'number', 'default' => 700 ),
+		'bsHoverEffect'    => array( 'type' => 'string', 'default' => '' ),
 	);
 	return $args;
 }
@@ -69,6 +70,10 @@ add_filter( 'register_block_type_args', 'bst_global_block_attributes' );
 
 function bst_block_animations() {
 	return array( 'fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom-in', 'zoom-out', 'flip-up', 'blur-in', 'rotate-in', 'bounce-in' );
+}
+
+function bst_block_hover_effects() {
+	return array( 'lift', 'zoom', 'glow', 'grayscale' );
 }
 
 /**
@@ -91,6 +96,11 @@ function bst_apply_global_block_attributes( $content, $block ) {
 	if ( in_array( $animation, bst_block_animations(), true ) ) {
 		$classes[] = 'bs-animate';
 		$classes[] = 'bs-animate--' . $animation;
+	}
+	$hover = isset( $attrs['bsHoverEffect'] ) ? (string) $attrs['bsHoverEffect'] : '';
+	if ( in_array( $hover, bst_block_hover_effects(), true ) ) {
+		$classes[] = 'bs-hover';
+		$classes[] = 'bs-hover--' . $hover;
 	}
 	if ( ! $classes || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
 		return $content;

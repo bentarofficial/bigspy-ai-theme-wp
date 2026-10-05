@@ -24,6 +24,7 @@ Mục tiêu phát triển không nên là đổi tên block hoặc tăng số l�
 - Block editor Gutenberg với nhóm block BIGSPY như Section, Row, Column, Banner, Slider, Icon Box, Tabs, Accordion, Posts, Products và các block nội dung khác.
 - Inspector Controls cho cài đặt block, thiết kế đáp ứng, animation và màu sắc.
 - BIGSPY có 8 kiểu reveal cơ bản, độ trễ theo block, hover riêng cho ảnh/banner/sản phẩm và tùy chọn giảm chuyển động. Bản 1.6.0 bổ sung soft focus, gentle rotate, soft bounce và điều chỉnh thời lượng từng block.
+- Quan sát UX Builder: toolbar có nút chạy thử animation; menu phần tử có Options, Duplicate, Copy options và Save as preset. BIGSPY 1.7.0 mở rộng chuyển động hover dùng chung cho mọi block; các thao tác sao chép/lưu thiết kế được xây bằng pattern đồng bộ của WordPress.
 - Patterns cho section và trang hoàn chỉnh; Header Builder kéo thả; thư viện CSS tích chọn.
 - Đây là các nền móng có thể giữ lại. Khoảng cách chính nằm ở cách người dùng tìm, chọn, sắp xếp và chỉnh nội dung, không phải thiếu hoàn toàn các thành phần dựng trang.
 

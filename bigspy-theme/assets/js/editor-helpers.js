@@ -195,7 +195,8 @@
 		bsHideMobile: { type: 'boolean', default: false },
 		bsAnimation: { type: 'string', default: '' },
 		bsAnimationDelay: { type: 'number', default: 0 },
-		bsAnimationDuration: { type: 'number', default: 700 }
+		bsAnimationDuration: { type: 'number', default: 700 },
+		bsHoverEffect: { type: 'string', default: '' }
 	};
 
 	function skip(name) {
@@ -229,7 +230,7 @@
 				el(BlockEdit, props),
 				el(be.InspectorControls, null,
 					el(c.PanelBody, {
-						title: __('Visibility & animation', 'bigspy-theme') + (hidden.length || a.bsAnimation ? ' •' : ''),
+						title: __('Visibility & animation', 'bigspy-theme') + (hidden.length || a.bsAnimation || a.bsHoverEffect ? ' •' : ''),
 						initialOpen: false,
 						className: 'bst-global-panel'
 					},
@@ -257,6 +258,18 @@
 						}),
 						a.bsAnimation ? el(Range, { label: __('Delay (ms)', 'bigspy-theme'), min: 0, max: 2000, step: 50, value: a.bsAnimationDelay || 0, onChange: set('bsAnimationDelay') }) : null,
 						a.bsAnimation ? el(Range, { label: __('Duration (ms)', 'bigspy-theme'), min: 300, max: 1800, step: 100, value: a.bsAnimationDuration || 700, onChange: set('bsAnimationDuration') }) : null,
+						el(Select, {
+							label: __('Effect on hover', 'bigspy-theme'),
+							value: a.bsHoverEffect || '',
+							options: {
+								'': __('None', 'bigspy-theme'),
+								'lift': __('Lift gently', 'bigspy-theme'),
+								'zoom': __('Soft zoom', 'bigspy-theme'),
+								'glow': __('Soft shadow', 'bigspy-theme'),
+								'grayscale': __('Grayscale to color', 'bigspy-theme')
+							},
+							onChange: set('bsHoverEffect')
+						}),
 						hidden.length ? el('p', { className: 'description' }, __('Still visible in the editor. Hidden on the live site for: ', 'bigspy-theme') + hidden.join(', ')) : null
 					)
 				)
@@ -270,10 +283,14 @@
 	var withHiddenClass = wp.compose.createHigherOrderComponent(function (BlockListBlock) {
 		return function (props) {
 			var a = props.attributes || {};
+			var classes = (props.className || '').split(/\s+/).filter(Boolean);
 			if (a.bsHideDesktop || a.bsHideTablet || a.bsHideMobile) {
-				return el(BlockListBlock, assign(props, { className: ((props.className || '') + ' bst-editor-has-visibility').trim() }));
+				classes.push('bst-editor-has-visibility');
 			}
-			return el(BlockListBlock, props);
+			if (['lift', 'zoom', 'glow', 'grayscale'].indexOf(a.bsHoverEffect) !== -1) {
+				classes.push('bs-hover', 'bs-hover--' + a.bsHoverEffect);
+			}
+			return el(BlockListBlock, assign(props, { className: classes.join(' ') }));
 		};
 	}, 'withBstHiddenClass');
 

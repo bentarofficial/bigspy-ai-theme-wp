@@ -133,6 +133,20 @@ input[type="submit"]:hover,
 .bs-animations .bs-animate--rotate-in { transform: rotate(-7deg) scale(.96); }
 .bs-animations .bs-animate--bounce-in { transform: translateY(22px) scale(.88); transition-timing-function: cubic-bezier(.2, .8, .25, 1.18); }
 
+/* ---------------------------------------------------------------- Reusable hover effects */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+	.bs-hover { transition: transform .24s cubic-bezier(.2, .7, .2, 1), box-shadow .24s ease, filter .24s ease; }
+	.bs-hover--lift:hover,
+	.bs-hover--lift:focus-within { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(28, 38, 53, .14); }
+	.bs-hover--zoom:hover,
+	.bs-hover--zoom:focus-within { transform: scale(1.025); }
+	.bs-hover--glow:hover,
+	.bs-hover--glow:focus-within { transform: translateY(-2px); filter: drop-shadow(0 7px 14px rgba(28, 38, 53, .2)); }
+	.bs-hover--grayscale { filter: grayscale(1); }
+	.bs-hover--grayscale:hover,
+	.bs-hover--grayscale:focus-within { filter: grayscale(0); }
+}
+
 .bs-animations .bs-animate.is-visible {
 	opacity: 1;
 	transform: none;
