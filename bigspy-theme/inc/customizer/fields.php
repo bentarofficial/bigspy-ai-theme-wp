@@ -139,7 +139,7 @@ function bst_customizer_fields() {
 
 		// Search.
 		array( 'id' => 'search_style', 'section' => 'bst_header_search', 'type' => 'radio', 'label' => __( 'Search icon opens', 'bigspy-theme' ), 'choices' => array( 'dropdown' => __( 'Dropdown under header', 'bigspy-theme' ), 'lightbox' => __( 'Full-screen lightbox', 'bigspy-theme' ) ) ),
-		array( 'id' => 'search_products', 'section' => 'bst_header_search', 'type' => 'checkbox', 'label' => __( 'Search products only (WooCommerce)', 'bigspy-theme' ) ),
+		array( 'id' => 'search_products', 'section' => 'bst_header_search', 'type' => 'checkbox', 'label' => __( 'Force products-only search (overrides scope)', 'bigspy-theme' ), 'description' => __( 'For older settings and sites that always want product results.', 'bigspy-theme' ) ),
 
 		// Buttons.
 		array( 'id' => 'bst_h_btn1', 'section' => 'bst_header_buttons', 'type' => 'heading', 'label' => __( 'Button 1', 'bigspy-theme' ) ),

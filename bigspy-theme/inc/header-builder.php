@@ -243,7 +243,7 @@ function bst_social_icons( $class = '' ) {
  * Search form used in the header, off-canvas panel and searchform.php.
  */
 function bst_search_form( $class = '' ) {
-	$products = bst_mod( 'search_products' ) && class_exists( 'WooCommerce' );
+	$products = class_exists( 'WooCommerce' ) && ( bst_mod( 'search_products' ) || 'products' === bst_choice( bst_mod( 'search_scope' ), array( 'all', 'products', 'content' ), 'all' ) );
 	$id       = wp_unique_id( 'bs-search-' );
 	$hint     = trim( (string) bst_mod( 'search_placeholder' ) );
 	if ( '' === $hint ) {

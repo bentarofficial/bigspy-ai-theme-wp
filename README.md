@@ -20,7 +20,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 | Area | Features |
 | --- | --- |
 | **BIGSPY Studio** | Guided start for business/service pages and WooCommerce shops. Creates a full-width **draft** from a native BIGSPY page pattern and opens it in the editor; the live site is not published or changed until the user chooses to publish. The editor shelf includes BIGSPY patterns and published WordPress synced patterns saved by the site owner. |
-| **Header builder** | One-click online store, service and minimal starter layouts, then drag & drop 16 elements into 3 rows (Top bar / Main / Bottom) × 3 zones (left / center / right), **separately for desktop and mobile**. Logo, main menu, top bar menu, off-canvas menu icon, search (dropdown / lightbox), search form, account, cart (mini cart), 2 buttons, 3 HTML blocks, contact info, social icons, divider. Sticky header, transparent header (per page or homepage), full width, height and colors per row. Direct links to Site Identity and Menus. |
+| **Header builder** | One-click online store, service and minimal starter layouts, then drag & drop 16 elements into 3 rows (Top bar / Main / Bottom) × 3 zones (left / center / right), **separately for desktop and mobile**. Logo, main menu, top bar menu, off-canvas menu icon, search (dropdown / lightbox), live search scope/count/delay, optional SKU/tag matching, search form, account, cart (mini cart), 2 buttons, 3 HTML blocks, contact info, social icons, divider. Sticky header, transparent header (per page or homepage), full width, height and colors per row. Direct links to Site Identity and Menus. |
 | **Style** | Brand colors (primary, secondary, success, alert, text, heading, links…), 20+ Google fonts plus system fonts, H1–H4 sizes, menu font, button style. Colors sync to the block editor palette. Live preview without reloading. |
 | **Layout** | Full width / boxed, container width, left / right / no sidebar for blog, pages, posts and shop. Full-width title bar with background image and breadcrumbs. |
 | **Per-page options** | Header: default / solid / transparent / hidden · hide title · hide footer · sidebar · remove top/bottom spacing. **Full width** and **Blank canvas** (landing page) templates. |
@@ -50,6 +50,10 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 7. **Appearance → BIGSPY Theme → Export** to save the configuration as a starting point for the next project.
 
 ## Development
+
+## Release 1.12.0: flexible live search
+
+Search settings now choose products only, pages/posts only, or mixed results; adjust suggestion count and delay; and optionally include product SKU or tag matches. Product-only and content-only choices also apply to the full search results page. Mixed WooCommerce searches query products separately from pages/posts so product visibility rules do not discard regular content. Requests are debounced per search form, and stale responses are ignored.
 
 ## Release 1.11.0: quicker header and footer setup
 

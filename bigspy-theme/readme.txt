@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.11.0
+Stable tag: 1.12.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,12 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.12.0 =
+* Added live search scope settings for products, pages/posts, or mixed results.
+* Added configurable suggestion count and debounce delay.
+* Added optional product SKU and product-tag matches; these queries run only when enabled.
+* Mixed suggestions retain both content and WooCommerce product results, with independent debouncing for each search form.
 
 = 1.11.0 =
 * Added one-click online store, service and minimal header layouts, editable in the existing drag-and-drop builder.

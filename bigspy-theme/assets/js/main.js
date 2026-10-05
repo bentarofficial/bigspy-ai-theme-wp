@@ -220,8 +220,11 @@
 	/* ------------------------------------------------------------ Live search suggestions */
 	var live = window.bstLiveSearch;
 	if (live && window.fetch) {
-		var timer = null;
-		var lastTerm = '';
+		var states = new WeakMap();
+		var stateFor = function (form) {
+			if (!states.has(form)) states.set(form, { timer: null, request: 0 });
+			return states.get(form);
+		};
 
 		var escapeHtml = function (text) {
 			var div = doc.createElement('div');
@@ -276,13 +279,15 @@
 			}
 			var form = input.closest('form');
 			var term = input.value.trim();
-			window.clearTimeout(timer);
+			var state = stateFor(form);
+			window.clearTimeout(state.timer);
+			state.request += 1;
 			if (term.length < 2) {
 				hideAll();
 				return;
 			}
-			timer = window.setTimeout(function () {
-				lastTerm = term;
+			state.timer = window.setTimeout(function () {
+				var request = state.request;
 				var postType = form.querySelector('input[name="post_type"]');
 				var url = live.url + '?action=bst_live_search&s=' + encodeURIComponent(term) + (postType ? '&post_type=' + encodeURIComponent(postType.value) : '');
 				fetch(url, { credentials: 'same-origin' })
@@ -291,12 +296,12 @@
 					})
 					.then(function (json) {
 						// Ignore answers to a query the visitor has already replaced.
-						if (json && json.success && lastTerm === term && input.value.trim() === term) {
+						if (json && json.success && state.request === request && input.value.trim() === term) {
 							render(form, json.data.items || [], term);
 						}
 					})
 					.catch(function () {});
-			}, 280);
+			}, Math.max(0, Math.min(700, Number(live.debounce) || 0)));
 		});
 
 		doc.addEventListener('focusin', function (event) {
