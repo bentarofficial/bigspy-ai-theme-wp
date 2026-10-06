@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.14.2
+Stable tag: 1.14.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,9 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.14.3 =
+* Updated cover wordmarks to BIGSPY AI / THEME WP, including desktop and mobile mockup branding.
 
 = 1.14.2 =
 * Renamed the theme to BIGSPY AI Theme WP for the BIGSPY AI ecosystem. Existing theme identifiers and saved settings remain compatible.
