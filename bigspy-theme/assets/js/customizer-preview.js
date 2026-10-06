@@ -1,4 +1,4 @@
-/* BIGSPY Theme – live preview of CSS-variable options without a page refresh. */
+/* BIGSPY AI Theme WP – live preview of CSS-variable options without a page refresh. */
 (function (api) {
 	'use strict';
 

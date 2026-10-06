@@ -1,13 +1,13 @@
 <?php
 /**
- * BIGSPY Theme bootstrap.
+ * BIGSPY AI Theme WP bootstrap.
  *
  * @package BigspyTheme
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.14.1' );
+define( 'BST_VERSION', '1.14.2' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 

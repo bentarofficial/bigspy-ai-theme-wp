@@ -1,9 +1,9 @@
-=== BIGSPY Theme ===
+=== BIGSPY AI Theme WP ===
 Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.14.1
+Stable tag: 1.14.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,9 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.14.2 =
+* Renamed the theme to BIGSPY AI Theme WP for the BIGSPY AI ecosystem. Existing theme identifiers and saved settings remain compatible.
 
 = 1.14.1 =
 * Aligned the theme cover with the BIGSPY AI ecosystem: navy, teal and a light background.
@@ -123,5 +126,5 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Copyright ==
 
-BIGSPY Theme, (C) 2026 Bentar. Distributed under the terms of the GNU GPL v2 or later.
+BIGSPY AI Theme WP, (C) 2026 Bentar. Distributed under the terms of the GNU GPL v2 or later.
 Bundled icons are simple inline SVG paths shipped with the theme. Social network names and logos are trademarks of their respective owners.

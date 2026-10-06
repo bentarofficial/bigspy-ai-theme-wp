@@ -1,6 +1,6 @@
 <?php
 /**
- * Appearance → BIGSPY Theme: quick links and theme options import / export / reset.
+ * Appearance → BIGSPY AI Theme WP: quick links and theme options import / export / reset.
  *
  * @package BigspyTheme
  */
@@ -101,7 +101,7 @@ function bst_dashboard_page() {
 	$notices = array(
 		'imported' => array( 'success', __( 'Theme options imported.', 'bigspy-theme' ) ),
 		'reset'    => array( 'success', __( 'Theme options reset to defaults.', 'bigspy-theme' ) ),
-		'invalid'  => array( 'error', __( 'The file is not a valid BIGSPY Theme export.', 'bigspy-theme' ) ),
+		'invalid'  => array( 'error', __( 'The file is not a valid BIGSPY AI Theme WP export.', 'bigspy-theme' ) ),
 	);
 	?>
 	<div class="wrap">
@@ -210,7 +210,7 @@ function bst_dashboard_page() {
 
 		<div class="card" style="max-width:none">
 			<h2><?php esc_html_e( 'Import theme options', 'bigspy-theme' ); ?></h2>
-			<p><?php esc_html_e( 'Upload a file exported from BIGSPY Theme. Current settings will be overwritten.', 'bigspy-theme' ); ?></p>
+			<p><?php esc_html_e( 'Upload a file exported from BIGSPY AI Theme WP. Current settings will be overwritten.', 'bigspy-theme' ); ?></p>
 			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="bst_import">
 				<?php wp_nonce_field( 'bst_import' ); ?>
@@ -350,7 +350,7 @@ add_action( 'admin_post_bst_reset', 'bst_handle_reset' );
 function bst_activation_notice() {
 	global $pagenow;
 	if ( 'themes.php' === $pagenow && isset( $_GET['activated'] ) && current_user_can( 'edit_theme_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'BIGSPY Theme is active.', 'bigspy-theme' ) . ' <a href="' . esc_url( admin_url( 'themes.php?page=bigspy-theme' ) ) . '">' . esc_html__( 'Open the quick start guide', 'bigspy-theme' ) . '</a></p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'BIGSPY AI Theme WP is active.', 'bigspy-theme' ) . ' <a href="' . esc_url( admin_url( 'themes.php?page=bigspy-theme' ) ) . '">' . esc_html__( 'Open the quick start guide', 'bigspy-theme' ) . '</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'bst_activation_notice' );

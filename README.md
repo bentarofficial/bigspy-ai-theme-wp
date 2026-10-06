@@ -1,4 +1,4 @@
-# BIGSPY Theme
+# BIGSPY AI Theme WP
 
 A multipurpose, fully customizable WordPress theme in the spirit of Flatsome – licensed under the GPL, so it can be used on **an unlimited number of websites**. Built for agencies that design websites for clients, both **service / business sites** and **online shops**.
 
@@ -55,7 +55,7 @@ These additions require live compatibility checks with the store's payment, filt
 
 1. Run `build.ps1` (or take the file from `releases/`) to get `bigspy-theme-x.y.z.zip`.
 2. WordPress Admin → Appearance → Themes → Add New → Upload Theme → choose the ZIP → Activate.
-3. Open **Appearance → BIGSPY Theme** for the quick start guide and links to the Customizer.
+3. Open **Appearance → BIGSPY AI Theme WP** for the quick start guide and links to the Customizer.
 
 ## Building a new website
 
@@ -65,7 +65,7 @@ These additions require live compatibility checks with the store's payment, filt
 4. **Appearance → Menus**: assign menus to “Main menu”, “Top bar menu”, “Mobile menu” and “Footer bottom menu”.
 5. Create the homepage → choose the **Full width** template → insert **Patterns → BIGSPY – Full pages → Homepage – business** (or **Homepage – online shop**) → edit the content. In the “BIGSPY – Page layout” box set Header = *Transparent* for a header over the hero.
 6. **Settings → Reading**: use a static page as the homepage.
-7. **Appearance → BIGSPY Theme → Export** to save the configuration as a starting point for the next project.
+7. **Appearance → BIGSPY AI Theme WP → Export** to save the configuration as a starting point for the next project.
 
 ## Development
 
@@ -127,7 +127,7 @@ Each block’s **Visibility & animation** panel has a **Preview animation** butt
 
 ## Release 1.3.0: CSS library for service sites and shops
 
-**Appearance → Customize → Additional CSS → BIGSPY · Thư viện CSS**, directly above the code editor. A quick link is also available on the BIGSPY Theme dashboard.
+**Appearance → Customize → Additional CSS → BIGSPY · Thư viện CSS**, directly above the code editor. A quick link is also available on the BIGSPY AI Theme WP dashboard.
 
 - 64 opt-in recipes in 10 collapsible groups; each row shows a checkbox and a task name, with no code editor for the recipe.
 - Check/uncheck to preview immediately, then use WordPress **Publish** to save. Leaving without publishing does not save the changed selection.

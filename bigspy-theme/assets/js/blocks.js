@@ -1,4 +1,4 @@
-/* BIGSPY Theme – front-end behaviour for theme blocks: slider, tabs, accordion, counter. */
+/* BIGSPY AI Theme WP – front-end behaviour for theme blocks: slider, tabs, accordion, counter. */
 (function () {
 	'use strict';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Product card – BIGSPY Theme design.
+ * Product card – BIGSPY AI Theme WP design.
  *
  * Overrides woocommerce/templates/content-product.php. Used by the shop,
  * category pages, related / up-sell products and the Products block.

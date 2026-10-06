@@ -1,4 +1,4 @@
-/* BIGSPY Theme – shared editor components + responsive/animation panel for every block. */
+/* BIGSPY AI Theme WP – shared editor components + responsive/animation panel for every block. */
 (function (wp) {
 	'use strict';
 

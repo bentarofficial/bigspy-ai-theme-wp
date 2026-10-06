@@ -1,4 +1,4 @@
-/* BIGSPY Theme – drag & drop header builder for the Customizer. */
+/* BIGSPY AI Theme WP – drag & drop header builder for the Customizer. */
 (function ($, api) {
 	'use strict';
 

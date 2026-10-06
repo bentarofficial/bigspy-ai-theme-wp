@@ -1,4 +1,4 @@
-/* BIGSPY Theme – editor UI for all theme blocks (no build step required). */
+/* BIGSPY AI Theme WP – editor UI for all theme blocks (no build step required). */
 (function (wp) {
 	'use strict';
 

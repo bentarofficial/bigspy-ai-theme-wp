@@ -1,4 +1,4 @@
-/* BIGSPY Theme – header, off-canvas menu, search, back-to-top, animations. */
+/* BIGSPY AI Theme WP – header, off-canvas menu, search, back-to-top, animations. */
 (function () {
 	'use strict';
 
