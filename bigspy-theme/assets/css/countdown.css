@@ -1,0 +1,1 @@
+.bs-countdown{display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding:20px;border:1px solid var(--bs-border,#d5dde5);border-radius:12px}.bs-countdown time{font-size:1.3em;font-weight:700;font-variant-numeric:tabular-nums;color:var(--bs-primary,#00888c)}

@@ -151,3 +151,6 @@ Native WooCommerce reviews now use responsive cards, avatar spacing, themed colo
 These styles inherit Customizer colors and button settings. Logos, favicon, banners, menu items and marketing content remain per-site WordPress configuration. Older Additional CSS may override the theme styles; remove only the duplicated review/account rules after reviewing the updated theme on your website.
 
 For customer-profile fields, uploaded avatars, photo reviews, masked names, moderation, store replies and hearts, install the separate [BigSpy Customer Accounts & Product Reviews](https://github.com/bentarofficial/BigSpy-Customer-Accounts-Product-Reviews) plugin. The theme controls presentation and does not register those account/review behaviors.
+
+## 1.15.0 — BIGSPY AI visual workspace
+A separate visual page workspace with native WordPress blocks, patterns, inspector, block ordering and safe save. Optional page-based header/footer/product templates, text variation buttons, Buy Now, Quick View, native classic shop filters/load more, fixed-date countdown and portfolio are included. See [Vietnamese workflow and limitations](docs/visual-builder-vi.md). This release does not claim full UX Builder parity.

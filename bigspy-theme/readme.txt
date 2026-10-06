@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.14.3
+Stable tag: 1.15.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,12 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.15.0 =
+* Added a standalone BIGSPY AI visual page workspace with native blocks, patterns, inspector, responsive widths, undo/redo and revision-aware save.
+* Added optional text variation buttons, buy-now checkout flow and previous/next product navigation.
+* Added optional page-based header/footer/product designs and WooCommerce product-part blocks.
+* Added read-only Quick View, classic native AJAX price/sort filters, load-more/infinite scrolling, fixed-date countdown and optional portfolio content.
 
 = 1.14.3 =
 * Updated cover wordmarks to BIGSPY AI / THEME WP, including desktop and mobile mockup branding.

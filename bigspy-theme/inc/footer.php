@@ -11,8 +11,10 @@ function bst_render_footer() {
 	bst_footer_cta();
 	echo '<footer id="colophon" class="bs-footer">';
 	do_action( 'bst_footer_start' );
-	bst_footer_widgets_row( 1 );
-	bst_footer_widgets_row( 2 );
+	if ( ! bst_footer_design() ) {
+		bst_footer_widgets_row( 1 );
+		bst_footer_widgets_row( 2 );
+	}
 	bst_footer_bottom();
 	echo '</footer>';
 }

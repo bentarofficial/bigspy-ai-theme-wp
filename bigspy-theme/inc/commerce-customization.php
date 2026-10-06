@@ -7,6 +7,7 @@ function bst_commerce_defaults( $defaults ) {
 		'cart_layout' => 'default', 'checkout_layout' => 'default',
 		'commerce_sticky_totals' => false, 'cart_auto_update' => false,
 		'shop_ajax_pagination' => false,
+		'shop_ajax_filters' => false, 'shop_load_mode' => 'pages',
 		'product_tabs_style' => 'default', 'product_extra_tab_title' => '',
 		'product_extra_tab_content' => '', 'product_before_cart' => '', 'product_after_cart' => '',
 	);
@@ -21,6 +22,8 @@ add_filter( 'bst_customizer_sections', 'bst_commerce_sections' );
 
 function bst_commerce_fields( $fields ) {
 	$fields[] = array( 'id' => 'shop_ajax_pagination', 'section' => 'bst_shop', 'type' => 'checkbox', 'label' => __( 'Load classic shop pagination without a full page reload', 'bigspy-theme' ), 'description' => __( 'Keeps page URLs and browser history. Filters and sorting keep their native navigation.', 'bigspy-theme' ) );
+	$fields[] = array( 'id' => 'shop_ajax_filters', 'section' => 'bst_shop', 'type' => 'checkbox', 'label' => 'Lọc giá và sắp xếp WooCommerce bằng AJAX', 'description' => 'Hỗ trợ form lọc giá và sắp xếp chuẩn WooCommerce. Plugin lọc khác giữ điều hướng của plugin.' );
+	$fields[] = array( 'id' => 'shop_load_mode', 'section' => 'bst_shop', 'type' => 'select', 'label' => 'Cách tải thêm sản phẩm', 'choices' => array( 'pages' => 'Phân trang', 'more' => 'Nút tải thêm', 'infinite' => 'Tự tải khi cuộn' ) );
 	$layouts = array( 'default' => __( 'Default', 'bigspy-theme' ), 'simple' => __( 'Simple', 'bigspy-theme' ), 'focused' => __( 'Focused', 'bigspy-theme' ) );
 	$fields[] = array( 'id' => 'cart_layout', 'section' => 'bst_checkout', 'type' => 'select', 'label' => __( 'Cart layout', 'bigspy-theme' ), 'choices' => $layouts );
 	$fields[] = array( 'id' => 'checkout_layout', 'section' => 'bst_checkout', 'type' => 'select', 'label' => __( 'Checkout layout', 'bigspy-theme' ), 'choices' => $layouts );
@@ -52,8 +55,9 @@ function bst_commerce_classes( $classes ) {
 add_filter( 'body_class', 'bst_commerce_classes' );
 
 function bst_commerce_assets() {
-	if ( ( is_shop() || is_product_taxonomy() ) && bst_mod( 'shop_ajax_pagination' ) ) {
+	if ( ( is_shop() || is_product_taxonomy() ) && bst_shop_ajax_enabled() ) {
 		wp_enqueue_script( 'bst-shop-pagination', BST_URI . '/assets/js/shop-pagination.js', array(), bst_asset_version( 'assets/js/shop-pagination.js' ), true );
+		wp_localize_script( 'bst-shop-pagination', 'bstShopAjax', array( 'filters' => (bool) bst_mod( 'shop_ajax_filters' ), 'mode' => bst_choice( bst_mod( 'shop_load_mode' ), array( 'pages', 'more', 'infinite' ), 'pages' ) ) );
 	}
 	if ( is_product() || is_cart() || is_checkout() ) {
 		wp_enqueue_style( 'bst-commerce-controls', BST_URI . '/assets/css/commerce-controls.css', array( 'bst-woocommerce' ), bst_asset_version( 'assets/css/commerce-controls.css' ) );
@@ -97,14 +101,17 @@ function bst_product_gallery_slider_enabled( $enabled ) {
 add_filter( 'woocommerce_single_product_flexslider_enabled', 'bst_product_gallery_slider_enabled' );
 
 function bst_shop_results_open() {
-	if ( ( is_shop() || is_product_taxonomy() ) && bst_mod( 'shop_ajax_pagination' ) ) {
+	if ( ( is_shop() || is_product_taxonomy() ) && bst_shop_ajax_enabled() ) {
 		echo '<div data-bst-shop-results tabindex="-1" aria-label="' . esc_attr__( 'Products', 'bigspy-theme' ) . '">';
 	}
 }
 function bst_shop_results_close() {
-	if ( ( is_shop() || is_product_taxonomy() ) && bst_mod( 'shop_ajax_pagination' ) ) {
+	if ( ( is_shop() || is_product_taxonomy() ) && bst_shop_ajax_enabled() ) {
 		echo '</div>';
 	}
 }
 add_action( 'woocommerce_before_shop_loop', 'bst_shop_results_open', 10 );
 add_action( 'woocommerce_after_shop_loop', 'bst_shop_results_close', 99 );
+function bst_shop_ajax_enabled() {
+	return bst_mod( 'shop_ajax_pagination' ) || bst_mod( 'shop_ajax_filters' ) || in_array( bst_mod( 'shop_load_mode' ), array( 'more', 'infinite' ), true );
+}

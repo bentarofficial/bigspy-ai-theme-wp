@@ -9,6 +9,9 @@ defined( 'ABSPATH' ) || exit;
 
 require_once BST_DIR . '/inc/woocommerce-elements.php';
 require_once BST_DIR . '/inc/commerce-customization.php';
+require_once BST_DIR . '/inc/product-options.php';
+require_once BST_DIR . '/inc/product-design.php';
+require_once BST_DIR . '/inc/quick-view.php';
 
 /**
  * Is this request rendering the theme only as a preview (it is not the site's saved theme)?
