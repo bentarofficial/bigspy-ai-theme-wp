@@ -11,6 +11,7 @@ function bst_sanitize_callback_for( $type ) {
 	$map = array(
 		'color'          => 'bst_sanitize_color',
 		'number'         => 'bst_sanitize_number',
+		'dropdown-pages' => 'absint',
 		'select'         => 'bst_sanitize_choice',
 		'radio'          => 'bst_sanitize_choice',
 		'checkbox'       => 'bst_sanitize_checkbox',

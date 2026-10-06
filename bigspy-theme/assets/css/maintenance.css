@@ -1,0 +1,5 @@
+.bs-maintenance { min-height: 100vh; }
+.bs-maintenance__content { min-height: 100vh; }
+.bs-maintenance__card { max-width: 720px; margin-inline: auto; padding: clamp(60px, 12vh, 160px) 24px; text-align: center; }
+.bs-maintenance__brand { color: var(--bs-primary); font-weight: 700; letter-spacing: .08em; }
+.bs-maintenance__card h1 { font-size: clamp(32px, 5vw, 64px); line-height: 1.1; }

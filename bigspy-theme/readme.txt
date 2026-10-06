@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.13.0
+Stable tag: 1.14.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,14 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.14.0 =
+* Replaced the wireframe theme cover with a clear desktop/mobile website showcase.
+* Added a published-page design selector for 404 errors, keeping the HTTP 404 response.
+* Added opt-in maintenance presentation with HTTP 503, no-cache/noindex and administrator access.
+* Added optional section menu highlighting with native anchor navigation and sticky-header spacing.
+* Added three opt-in CSS recipes derived from the active child-theme audit: three-line product titles, branded coupon button and Countix countdown hiding on cart/checkout.
+* Added Vietnamese translations for site tools and Studio block actions.
 
 = 1.13.0 =
 * Added selected-block tools for duplicate, move and copy/paste appearance in BIGSPY Studio.

@@ -1,6 +1,8 @@
 # BIGSPY · Thư viện CSS
 
-64 tác vụ trong 10 nhóm dành cho website dịch vụ và bán hàng dùng BIGSPY Theme.
+67 tác vụ trong 10 nhóm dành cho website dịch vụ và bán hàng dùng BIGSPY Theme.
+
+Bản 1.14.0 thêm tiêu đề sản phẩm 3 dòng, nút coupon theo màu thương hiệu và ẩn đồng hồ Countix layout 1 trong giỏ hàng/thanh toán. Hai lựa chọn tiêu đề 2/3 dòng thay thế nhau. Countix là tùy chọn tích hợp plugin, không bắt buộc cài plugin để dùng theme.
 
 ## Cách sử dụng
 

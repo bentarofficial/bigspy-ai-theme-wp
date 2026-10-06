@@ -2,7 +2,11 @@
 
 Ngày kiểm tra: 05/10/2026  
 Flatsome trên site tham chiếu: 3.20.10  
-BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.13.0
+BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.14.0
+
+## Cập nhật 06/10/2026 — kiểm tra cả theme con
+
+Đã đọc toàn bộ CSS/PHP và kiểm kê thư mục Flatsome Child đang kích hoạt. Xem [đối chiếu cha/con](flatsome-child-audit-vi.md). BIGSPY 1.14.0 thêm ảnh đại diện desktop/mobile, trang 404/bảo trì từ page tự thiết kế, đánh dấu menu theo anchor và ba tác vụ CSS. Các bản vá jQuery/Countix đặc thù chưa được đưa vào mặc định.
 
 ## Cập nhật 1.13.0
 

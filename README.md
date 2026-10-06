@@ -17,6 +17,15 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 ## Features
 
+### Added in 1.14.0
+
+- New 1200 × 900 theme cover showing a desktop/mobile website design. This is a showcase mockup, not an installed demo.
+- Customizer → Advanced → Site tools: choose public published pages for a custom 404 or maintenance screen. Draft/private/password pages fall back to the built-in screen. A custom 404 keeps its HTTP status.
+- Maintenance is off by default. Visitors receive 503/Retry-After/noindex; administrators can keep working. Login, admin and API endpoints are unaffected. Purge page/CDN caches when toggling it; this presentation feature does not restrict direct file/API access.
+- Customizer → Layout → Site layout: optional section menu highlighting. Set an HTML anchor on a block and link to `#anchor` in a menu. Scrolling updates the active item; anchor spacing accounts for the sticky header. Native navigation remains available without JavaScript.
+- Additional CSS library: three-line product titles, brand-colored coupon button and an optional Countix layout-1 countdown hide on cart/checkout. These were reviewed against Flatsome Child, adapted for BIGSPY markup and remain off by default.
+- See [parent/child audit](docs/flatsome-child-audit-vi.md) for the source of each addition and plugin-specific fixes that remain separate.
+
 ### Added in 1.13.0
 
 - BIGSPY Studio: duplicate/move the selected block and copy/paste appearance, respecting editor locks.

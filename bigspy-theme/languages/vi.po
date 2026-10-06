@@ -8,6 +8,72 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: bigspy-theme\n"
 
+msgid "Site tools: 404 & maintenance"
+msgstr "Công cụ website: 404 & bảo trì"
+
+msgid "Highlight menu links to page sections"
+msgstr "Đánh dấu menu theo phần đang xem"
+
+msgid "Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll."
+msgstr "Đặt neo HTML cho block, rồi thêm liên kết #neo vào menu. Mục tương ứng được đánh dấu khi cuộn trang."
+
+msgid "Page design for 404 errors"
+msgstr "Trang thiết kế cho lỗi 404"
+
+msgid "Only public, published pages without a password are shown. The response remains 404. Select no page to use the default design."
+msgstr "Chỉ hiển thị trang công khai đã xuất bản và không có mật khẩu. Phản hồi vẫn là 404. Không chọn trang để dùng thiết kế mặc định."
+
+msgid "Show maintenance screen to visitors"
+msgstr "Hiển thị màn hình bảo trì cho khách"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "Quản trị viên vẫn xem được website. Khách nhận phản hồi HTTP 503. Đăng nhập, quản trị và API vẫn hoạt động. Xóa cache trang/CDN khi bật hoặc tắt tùy chọn này."
+
+msgid "Page design for maintenance"
+msgstr "Trang thiết kế cho bảo trì"
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "Thiết kế một trang bằng block và xuất bản. Nội dung hiển thị không kèm đầu/chân trang website. Không chọn trang để dùng màn hình mặc định."
+
+msgid "Maintenance message"
+msgstr "Thông báo bảo trì"
+
+msgid "Used on the default maintenance screen."
+msgstr "Dùng cho màn hình bảo trì mặc định."
+
+msgid "We will be back soon"
+msgstr "Chúng tôi sẽ trở lại sớm"
+
+msgid "Our website is being updated. Please check back soon."
+msgstr "Website đang được cập nhật. Vui lòng quay lại sau ít phút."
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "BIGSPY đang bật chế độ bảo trì. Khách chưa thể xem cửa hàng."
+
+msgid "Manage maintenance mode"
+msgstr "Quản lý chế độ bảo trì"
+
+msgid "Select a block in the page to edit its layout."
+msgstr "Chọn một block trên trang để chỉnh bố cục."
+
+msgid "Duplicate"
+msgstr "Nhân bản"
+
+msgid "Move up"
+msgstr "Di chuyển lên"
+
+msgid "Move down"
+msgstr "Di chuyển xuống"
+
+msgid "Copy appearance"
+msgstr "Sao chép kiểu dáng"
+
+msgid "Paste appearance"
+msgstr "Dán kiểu dáng"
+
+msgid "Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs."
+msgstr "Dùng menu của block để tạo mẫu tái sử dụng. Các mẫu đã lưu nằm trong mục Mẫu đã lưu."
+
 msgid "BIGSPY Studio"
 msgstr "BIGSPY Studio"
 

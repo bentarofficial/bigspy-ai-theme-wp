@@ -1,0 +1,6 @@
+.bs-section-anchor { scroll-margin-top: var(--bst-anchor-offset, 96px); }
+.bs-nav a.is-current-section,
+.bs-offcanvas-menu a.is-current-section { color: var(--bs-primary); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+}

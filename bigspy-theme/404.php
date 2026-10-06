@@ -7,6 +7,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
+$bst_error_design = bst_site_design_page( 'custom_404_page' );
+if ( $bst_error_design ) {
+	$bst_error_content = bst_site_design_content( $bst_error_design );
+	add_filter( 'bst_show_title', '__return_false' );
+	get_header();
+	echo '<div class="bs-full-width bs-content">' . $bst_error_content . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- published page through the_content.
+	get_footer();
+	return;
+}
+
 get_header();
 ?>
 <div class="bs-container bs-404">
