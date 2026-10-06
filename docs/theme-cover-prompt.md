@@ -1,5 +1,11 @@
 # BIGSPY theme cover
 
+## Brand revision — 1.14.1
+
+Revised with the built-in imagegen tool using the owner's BIGSPY AI Listing screenshot as a color reference. Target palette: navy `#00366B`, teal `#00888C`, near-white `#FAFAFC`, light cyan accents. These are visual reference targets, not colors sampled from an original brand specification.
+
+Revision prompt: Edit the existing cover, preserving the desktop/mobile showcase, architecture imagery and text. Replace orange wordmark/buttons/accents with teal. Use navy brand typography on a near-white outer backdrop with subtle cyan network lines. Keep the website hero navy with white text, teal calls to action, and natural interior lighting. Exclude the reference image's sponsor badge. Preserve a 4:3 composition. Final project asset remains `bigspy-theme/screenshot.png`, 1200 × 900.
+
 Created with the built-in imagegen tool on 2026-10-06. Project asset: `bigspy-theme/screenshot.png`, 1200 × 900. This is a designed showcase mockup, not a screenshot of an installed demo. The generated 1448 × 1086 image was proportionally resized for WordPress.
 
 ## Prompt
