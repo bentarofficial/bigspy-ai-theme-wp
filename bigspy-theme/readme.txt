@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.16.4
+Stable tag: 1.16.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,10 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.16.5 =
+* Replaced unreliable native outline dragging with pointer-based sorting and clear before, inside, and after drop feedback.
+* Added compatible block movement checks and corrected disclosure spacing so arrows no longer overlap root labels.
 
 = 1.16.4 =
 * Made the full structure row a native drag source and removed reliance on the undocumented move-position selector.
