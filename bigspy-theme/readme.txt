@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.16.1
+Stable tag: 1.16.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,10 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.16.2 =
+* Aligned top-level page structure labels with the sidebar guide and replaced reorder arrows with drag handles.
+* Added validated drag and drop between compatible Sections, Rows, Columns, and sibling positions.
 
 = 1.16.1 =
 * Tightened visual builder page-tree indentation and controls so nested columns and blocks remain readable in the sidebar.
