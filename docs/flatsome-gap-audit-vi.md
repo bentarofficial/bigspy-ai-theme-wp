@@ -4,14 +4,15 @@ Ngày kiểm tra: 05/10/2026
 Flatsome trên site tham chiếu: 3.20.10  
 BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.14.0
 
-## Cập nhật 07/10/2026 — BIGSPY 1.17.1
+## Cập nhật 07/10/2026 — BIGSPY 1.17.2
 
-Site tham chiếu Flatsome là Home Fresh Mart với Flatsome Child đang kích hoạt; BIGSPY đang chạy trên site TT Orico Store. Source trong repo hiện ở 1.17.1; site TT Orico đã được cập nhật tới 1.17.0.
+Site tham chiếu Flatsome là Home Fresh Mart với Flatsome Child đang kích hoạt; BIGSPY đang chạy trên site TT Orico Store. Source trong repo và site TT Orico hiện ở 1.17.2.
 
 - 1.15.0 bổ sung BIGSPY AI Builder canvas, header/footer/product page design, Buy Now, Quick View, classic archive load more/infinite scroll, Portfolio, countdown và mega menu nhiều cột.
 - 1.17.0 bổ sung swatch label/màu/ảnh theo global WooCommerce attribute và term trên trang sản phẩm. Mặc định không bật; WooCommerce select vẫn là nguồn dữ liệu cho tổ hợp biến thể và kiểm tra add-to-cart.
 - 1.17.1 bổ sung lọc AJAX tùy chọn cho widget WooCommerce native: danh mục, thuộc tính, đánh giá, giá và sắp xếp; URL/history và fallback điều hướng toàn trang được giữ lại.
-- Còn thiếu: swatch trên thẻ archive, thư viện ảnh bổ sung riêng theo từng biến thể, lọc AJAX cho plugin bên thứ ba, chuyển đổi trực quan nội dung UX Builder cũ, mega menu có block, hotspot/Lottie/Instagram feed cấu hình nguồn và các công tắc quản lý asset/site loader. Xem [roadmap](roadmap-vi.md).
+- 1.17.2 bổ sung swatch màu/ảnh tùy chọn trên thẻ sản phẩm ở trang shop/danh mục; liên kết mở sản phẩm với giá trị đã chọn. Mặc định tắt.
+- Còn thiếu: thư viện ảnh bổ sung riêng theo từng biến thể, lọc AJAX cho plugin bên thứ ba, chuyển đổi trực quan nội dung UX Builder cũ, mega menu có block, hotspot/Lottie/Instagram feed cấu hình nguồn và các công tắc quản lý asset/site loader. Xem [roadmap](roadmap-vi.md).
 - Bản vá Countix/jQuery của child theme vẫn không được đưa vào core; cần adapter riêng sau khi xác định phiên bản và markup plugin trên site đích.
 
 ## Cập nhật 06/10/2026 — kiểm tra cả theme con

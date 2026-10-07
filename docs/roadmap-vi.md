@@ -1,6 +1,6 @@
 # Roadmap BIGSPY AI Theme WP
 
-**Mốc hiện tại:** 1.17.1 · **Đối chiếu tham chiếu:** Flatsome 3.20.10 trên Home Fresh Mart.  
+**Mốc hiện tại:** 1.17.2 · **Đối chiếu tham chiếu:** Flatsome 3.20.10 trên Home Fresh Mart.
 Roadmap này sắp xếp các khoảng trống đã ghi nhận theo tác động đến shop và người làm nội dung. Đây là thứ tự ưu tiên đề xuất, không phải cam kết ngày phát hành.
 
 ## Đã có trong 1.17.x
@@ -8,6 +8,7 @@ Roadmap này sắp xếp các khoảng trống đã ghi nhận theo tác động
 - BIGSPY AI Builder dùng block WordPress, có canvas, danh sách cấu trúc, sắp xếp và thiết kế header/footer/trang sản phẩm.
 - Tùy chọn Buy Now, Quick View, Portfolio, countdown, mega menu nhiều cột, load more/infinite scroll cho archive classic.
 - Swatch nhãn/màu/ảnh trên trang sản phẩm cho global WooCommerce attributes; mặc định tắt.
+- Swatch màu/ảnh tùy chọn trên thẻ sản phẩm trang shop/danh mục; mở trang sản phẩm với giá trị được chọn sẵn.
 - Điều hướng AJAX tùy chọn cho widget lọc WooCommerce native: danh mục, thuộc tính, đánh giá, giá và sắp xếp; có history, thông báo trạng thái và tải lại toàn trang khi không thể cập nhật an toàn.
 
 ## Ưu tiên tiếp theo
@@ -15,9 +16,8 @@ Roadmap này sắp xếp các khoảng trống đã ghi nhận theo tác động
 ### P0 — Hoàn thiện trải nghiệm shop
 
 1. **Ảnh bổ sung theo biến thể:** cho phép chọn nhiều ảnh cho từng variation trong màn hình sửa sản phẩm; khi khách chọn biến thể, cập nhật gallery và phục hồi gallery gốc khi reset. Tương thích gallery WooCommerce, zoom/lightbox và ảnh đại diện variation.
-2. **Swatch trên danh sách sản phẩm:** hiển thị lựa chọn màu/ảnh ở product card; giữ nguyên biến thể, giá, tồn kho và URL sản phẩm. Có thể bật riêng theo archive và giữ nút mua nhanh an toàn khi cần chọn thêm thuộc tính.
-3. **Kiểm tra tương thích lọc:** xác nhận widget native với phân trang, load more, lịch sử trình duyệt, bộ nhớ đệm và markup phổ biến. Tài liệu hóa cách plugin lọc bên thứ ba có thể nối sự kiện hoặc dùng điều hướng gốc; không giả định mọi plugin có cùng API.
-4. **Tùy chọn checkout còn thiếu:** xem xét hiển thị ngưỡng miễn phí vận chuyển và vị trí coupon/nội dung bổ sung như lựa chọn giao diện, không thay đổi quy tắc tính phí hay thứ tự nghiệp vụ WooCommerce.
+2. **Kiểm tra tương thích lọc:** xác nhận widget native với phân trang, load more, lịch sử trình duyệt, bộ nhớ đệm và markup phổ biến. Tài liệu hóa cách plugin lọc bên thứ ba có thể nối sự kiện hoặc dùng điều hướng gốc; không giả định mọi plugin có cùng API.
+3. **Tùy chọn checkout còn thiếu:** xem xét hiển thị ngưỡng miễn phí vận chuyển và vị trí coupon/nội dung bổ sung như lựa chọn giao diện, không thay đổi quy tắc tính phí hay thứ tự nghiệp vụ WooCommerce.
 
 ### P1 — Dựng trang và nội dung
 

@@ -14,6 +14,49 @@ function bst_swatch_attribute_type( $taxonomy ) {
 	return in_array( $type, array( 'label', 'color', 'image' ), true ) ? $type : 'label';
 }
 
+/** Render compact global-attribute swatches on shop archive product cards. */
+function bst_archive_product_swatches_html( $product ) {
+	if ( ! bst_mod( 'product_archive_swatches' ) || ! ( is_shop() || is_product_taxonomy() ) || ! $product || ! $product->is_type( 'variable' ) ) {
+		return '';
+	}
+	$attributes = $product->get_variation_attributes();
+	foreach ( $attributes as $key => $values ) {
+		$taxonomy = str_replace( 'attribute_', '', (string) $key );
+		if ( ! taxonomy_exists( $taxonomy ) || 0 !== strpos( $taxonomy, 'pa_' ) || ! in_array( bst_swatch_attribute_type( $taxonomy ), array( 'color', 'image' ), true ) ) {
+			continue;
+		}
+		$terms = get_terms( array( 'taxonomy' => $taxonomy, 'hide_empty' => false, 'slug' => array_map( 'sanitize_title', (array) $values ) ) );
+		if ( is_wp_error( $terms ) || ! $terms ) {
+			continue;
+		}
+		$type = bst_swatch_attribute_type( $taxonomy );
+		$out  = '<div class="bst-archive-swatches" role="group" aria-label="' . esc_attr( wc_attribute_label( $taxonomy ) ) . '">';
+		foreach ( $terms as $term ) {
+			$label = (string) ( get_term_meta( $term->term_id, 'bst_swatch_label', true ) ?: $term->name );
+			$url   = add_query_arg( 'attribute_' . $taxonomy, $term->slug, get_permalink( $product->get_id() ) );
+			$out  .= '<a class="bst-archive-swatch bst-archive-swatch--' . esc_attr( $type ) . '" href="' . esc_url( $url ) . '" aria-label="' . esc_attr( $label ) . '" title="' . esc_attr( $label ) . '">';
+			if ( 'color' === $type ) {
+				$color = sanitize_hex_color( get_term_meta( $term->term_id, 'bst_swatch_color', true ) );
+				if ( $color ) {
+					$out .= '<span class="bst-archive-swatch__color" style="--bst-swatch-color:' . esc_attr( $color ) . '"></span>';
+				} else {
+					$out .= '<span class="bst-archive-swatch__label">' . esc_html( $label ) . '</span>';
+				}
+			} else {
+				$image_id = absint( get_term_meta( $term->term_id, 'bst_swatch_image', true ) );
+				if ( $image_id ) {
+					$out .= wp_get_attachment_image( $image_id, 'thumbnail', false, array( 'class' => 'bst-archive-swatch__image', 'alt' => '', 'loading' => 'lazy' ) );
+				} else {
+					$out .= '<span class="bst-archive-swatch__label">' . esc_html( $label ) . '</span>';
+				}
+			}
+			$out .= '</a>';
+		}
+		return $out . '</div>';
+	}
+	return '';
+}
+
 function bst_swatch_attribute_fields() {
 	$attribute_id = isset( $_GET['edit'] ) ? absint( $_GET['edit'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$type = $attribute_id ? get_option( 'bst_swatch_attribute_' . $attribute_id, 'label' ) : 'label';

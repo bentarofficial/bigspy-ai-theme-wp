@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.17.1
+Stable tag: 1.17.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,10 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.17.2 =
+* Added optional archive product-card swatches for configured global color/image attributes, linking to the product with the chosen value preselected.
+* Added accessible labels, keyboard focus styling, and kept the feature disabled by default.
 
 = 1.17.1 =
 * Added optional AJAX navigation for native WooCommerce category, attribute, rating, price and sorting filters.

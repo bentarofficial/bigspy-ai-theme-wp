@@ -82,6 +82,7 @@ if ( bst_mod( 'product_show_category' ) ) {
 	<div class="bs-product__body">
 		<?php echo $bst_category; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<h2 class="woocommerce-loop-product__title bs-product__title"><a href="<?php echo esc_url( $bst_link ); ?>"><?php echo esc_html( $bst_title ); ?></a></h2>
+		<?php echo function_exists( 'bst_archive_product_swatches_html' ) ? bst_archive_product_swatches_html( $product ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 		<?php if ( wc_review_ratings_enabled() && $product->get_rating_count() ) : ?>
 			<div class="bs-product__rating">

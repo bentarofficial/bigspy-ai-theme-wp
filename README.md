@@ -19,6 +19,11 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIGSPY roadmap](docs/roadmap-vi.md) for the current parity status and planned work.
 
+### Added in 1.17.2
+
+- Optional product-card swatches on WooCommerce shop and category archives for global attributes configured as color or image swatches.
+- Each swatch opens the product page with that attribute selected. The option is off by default and is enabled in **Customizer → WooCommerce → BIGSPY: product cards & page**.
+
 ### Added in 1.17.1
 
 - Optional AJAX shop navigation now supports WooCommerce's native category, attribute, rating, price and sorting filters. Matching filter widgets refresh with the results; the address bar and browser back/forward remain in sync.
@@ -28,7 +33,7 @@ See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIG
 
 - WooCommerce global attributes can use BIGSPY label, color, or image swatches. Choose the type under **Products → Attributes** and set each term's color, image, and optional short label under **Configure terms**.
 - Swatches replace the visible dropdown only when **Customizer → WooCommerce → BIGSPY: product cards & page → Chọn biến thể bằng nút** is enabled. WooCommerce's native select remains the source of truth, including availability, variation matching, reset, add-to-cart validation, and keyboard focus.
-- This release covers global product attributes on single-product pages. Custom product attributes remain text buttons; catalog card swatches and additional image galleries per variation are not included yet.
+- This release covers global product attributes on single-product pages. Custom product attributes remain text buttons; additional image galleries per variation are not included yet.
 
 ### Added in 1.14.0
 
