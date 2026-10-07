@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.15.0
+Stable tag: 1.15.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
-= 1.15.0 =
+= 1.15.1 =
 * Added a standalone BIGSPY AI visual page workspace with native blocks, patterns, inspector, responsive widths, undo/redo and revision-aware save.
 * Added optional text variation buttons, buy-now checkout flow and previous/next product navigation.
 * Added optional page-based header/footer/product designs and WooCommerce product-part blocks.
@@ -137,3 +137,6 @@ See README.md in the source repository for the full feature list and the site-bu
 
 BIGSPY AI Theme WP, (C) 2026 Bentar. Distributed under the terms of the GNU GPL v2 or later.
 Bundled icons are simple inline SVG paths shipped with the theme. Social network names and logos are trademarks of their respective owners.
+
+= 1.15.2 =
+* Prevent a page selected as a custom header from rendering itself inside the header area; retain the normal site header on that page.
