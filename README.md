@@ -33,7 +33,7 @@ See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIG
 
 - WooCommerce global attributes can use BIGSPY label, color, or image swatches. Choose the type under **Products → Attributes** and set each term's color, image, and optional short label under **Configure terms**.
 - Swatches replace the visible dropdown only when **Customizer → WooCommerce → BIGSPY: product cards & page → Chọn biến thể bằng nút** is enabled. WooCommerce's native select remains the source of truth, including availability, variation matching, reset, add-to-cart validation, and keyboard focus.
-- This release covers global product attributes on single-product pages. Custom product attributes remain text buttons; additional image galleries per variation are not included yet.
+- This release covers global product attributes on single-product pages. Custom product attributes remain text buttons. Per-variation image galleries use WooCommerce's native Variation Gallery when the installed WooCommerce version provides and enables it; BIGSPY keeps the standard WooCommerce gallery markup and zoom/lightbox/slider support.
 
 ### Added in 1.14.0
 

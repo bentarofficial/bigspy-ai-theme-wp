@@ -1,7 +1,7 @@
 # Đối chiếu trải nghiệm dựng trang: BIGSPY và Flatsome UX Builder
 
 Ngày quan sát: 05/10/2026
-Tham chiếu: trang quản trị Home Fresh Mart do chủ website cung cấp, Flatsome 3.20.10, trang mẫu “1-Trang mẫu”. Chỉ quan sát; không cập nhật nội dung trang.
+Tham chiếu tại thời điểm quan sát: trang quản trị Home Fresh Mart do chủ website cung cấp, Flatsome 3.20.10, trang mẫu “1-Trang mẫu”. Chỉ quan sát; không cập nhật nội dung trang. Flatsome Classic 3.20.11 là mốc phát hành mới hơn; UX-Themes cũng công bố Site Builder beta riêng ngày 30-09-2026.
 
 ## Kết luận
 
