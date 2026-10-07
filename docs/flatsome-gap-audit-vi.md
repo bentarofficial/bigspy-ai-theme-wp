@@ -4,31 +4,27 @@ Ngày kiểm tra: 05/10/2026
 Flatsome trên site tham chiếu: 3.20.10  
 BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.14.0
 
-## Cập nhật 07/10/2026 — BIGSPY 1.17.0
+## Cập nhật 07/10/2026 — BIGSPY 1.17.1
 
-Site tham chiếu Flatsome hiện là Home Fresh Mart với Flatsome Child đang kích hoạt; BIGSPY đang chạy trên site TT Orico Store. Source trong workspace được nâng lên 1.17.0.
+Site tham chiếu Flatsome là Home Fresh Mart với Flatsome Child đang kích hoạt; BIGSPY đang chạy trên site TT Orico Store. Source trong repo hiện ở 1.17.1; site TT Orico đã được cập nhật tới 1.17.0.
 
 - 1.15.0 bổ sung BIGSPY AI Builder canvas, header/footer/product page design, Buy Now, Quick View, classic archive load more/infinite scroll, Portfolio, countdown và mega menu nhiều cột.
 - 1.17.0 bổ sung swatch label/màu/ảnh theo global WooCommerce attribute và term trên trang sản phẩm. Mặc định không bật; WooCommerce select vẫn là nguồn dữ liệu cho tổ hợp biến thể và kiểm tra add-to-cart.
-- Còn thiếu: swatch trên thẻ archive, thư viện ảnh bổ sung riêng theo từng biến thể, lọc AJAX cho widget/plugin tùy ý, chuyển đổi trực quan nội dung UX Builder cũ, mega menu có block, hotspot/Lottie/Instagram feed cấu hình nguồn và các công tắc quản lý asset/site loader.
+- 1.17.1 bổ sung lọc AJAX tùy chọn cho widget WooCommerce native: danh mục, thuộc tính, đánh giá, giá và sắp xếp; URL/history và fallback điều hướng toàn trang được giữ lại.
+- Còn thiếu: swatch trên thẻ archive, thư viện ảnh bổ sung riêng theo từng biến thể, lọc AJAX cho plugin bên thứ ba, chuyển đổi trực quan nội dung UX Builder cũ, mega menu có block, hotspot/Lottie/Instagram feed cấu hình nguồn và các công tắc quản lý asset/site loader. Xem [roadmap](roadmap-vi.md).
 - Bản vá Countix/jQuery của child theme vẫn không được đưa vào core; cần adapter riêng sau khi xác định phiên bản và markup plugin trên site đích.
-
-## Cập nhật 07/10/2026 — BIGSPY 1.17.1
-
-- Lọc archive AJAX tùy chọn hiện hỗ trợ widget WooCommerce chuẩn cho danh mục, thuộc tính, đánh giá, giá và sắp xếp; đồng bộ widget, thông báo trạng thái và lịch sử URL.
-- Bộ lọc của plugin bên thứ ba tiếp tục dùng điều hướng gốc để tránh giả định về markup/plugin. Chưa tuyên bố tương thích với mọi filter plugin.
 
 ## Cập nhật 06/10/2026 — kiểm tra cả theme con
 
 Đã đọc toàn bộ CSS/PHP và kiểm kê thư mục Flatsome Child đang kích hoạt. Xem [đối chiếu cha/con](flatsome-child-audit-vi.md). BIGSPY 1.14.0 thêm ảnh đại diện desktop/mobile, trang 404/bảo trì từ page tự thiết kế, đánh dấu menu theo anchor và ba tác vụ CSS. Các bản vá jQuery/Countix đặc thù chưa được đưa vào mặc định.
 
-## Cập nhật 1.13.0
+## Ghi nhận tại 1.13.0
 
 - Studio thêm nhân bản, di chuyển và sao chép/dán kiểu dáng cho block được chọn; chưa phải canvas builder riêng.
 - Shop thêm phân trang AJAX tùy chọn với history và fallback; chưa có lọc AJAX hoặc infinite scroll.
 - Giỏ hàng/checkout thêm kiểu Simple/Focused, tổng tiền ghim và tự cập nhật số lượng cho giỏ hàng classic.
 - Sản phẩm thêm kiểu tab, tab bổ sung dùng chung và nội dung trước/sau form mua hàng; sửa stacked gallery để tắt FlexSlider.
-- Chưa hoàn thiện product template builder, Buy Now, portfolio/feed, công cụ bảo trì và bộ quản lý asset. Chưa kiểm tra các bổ sung này trên website đang chạy.
+- Ở mốc 1.13.0, product template builder, Buy Now, Portfolio/feed, công cụ bảo trì và bộ quản lý asset còn thiếu; các bản sau bổ sung một phần như ghi nhận ở đầu tài liệu.
 
 ## Phạm vi
 

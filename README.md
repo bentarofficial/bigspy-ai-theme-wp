@@ -17,6 +17,8 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 ## Features
 
+See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIGSPY roadmap](docs/roadmap-vi.md) for the current parity status and planned work.
+
 ### Added in 1.17.1
 
 - Optional AJAX shop navigation now supports WooCommerce's native category, attribute, rating, price and sorting filters. Matching filter widgets refresh with the results; the address bar and browser back/forward remain in sync.
