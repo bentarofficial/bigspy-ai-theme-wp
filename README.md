@@ -17,6 +17,17 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 ## Features
 
+### Added in 1.17.1
+
+- Optional AJAX shop navigation now supports WooCommerce's native category, attribute, rating, price and sorting filters. Matching filter widgets refresh with the results; the address bar and browser back/forward remain in sync.
+- Loading and result updates are announced accessibly. If the response or markup is incompatible, navigation falls back to a full page load. Third-party filter plugins keep their own navigation.
+
+### Added in 1.17.0
+
+- WooCommerce global attributes can use BIGSPY label, color, or image swatches. Choose the type under **Products → Attributes** and set each term's color, image, and optional short label under **Configure terms**.
+- Swatches replace the visible dropdown only when **Customizer → WooCommerce → BIGSPY: product cards & page → Chọn biến thể bằng nút** is enabled. WooCommerce's native select remains the source of truth, including availability, variation matching, reset, add-to-cart validation, and keyboard focus.
+- This release covers global product attributes on single-product pages. Custom product attributes remain text buttons; catalog card swatches and additional image galleries per variation are not included yet.
+
 ### Added in 1.14.0
 
 - New 1200 × 900 theme cover showing a desktop/mobile website design. This is a showcase mockup, not an installed demo.
@@ -33,7 +44,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 - Cart & checkout: Default/Simple/Focused presentation, optional classic sticky totals and debounced native cart quantity updates. WooCommerce blocks retain their native behavior.
 - Product: pill/underline tabs, an additional shared tab and content before/after the purchase form. Stacked galleries disable FlexSlider.
 
-These additions require live compatibility checks with the store's payment, filtering and checkout plugins before enabling them in production. Product template building, AJAX filters and infinite scrolling remain future work.
+These additions require live compatibility checks with the store's payment and checkout plugins before enabling them in production. The visual workspace, product templates, Buy Now, Quick View, Portfolio, countdown, mega menu, classic archive load-more and native WooCommerce AJAX filters were added in later releases. Third-party filters still need compatibility work.
 
 | Area | Features |
 | --- | --- |
@@ -48,7 +59,7 @@ These additions require live compatibility checks with the store's payment, filt
 | **Blog** | Grid / list, columns, card style (shadow / bordered / plain / text over image), image ratio, share buttons, author box, related posts, previous / next links. |
 | **Footer** | One-click store, service and minimal layouts; two widget rows (0–4 columns), copyright bar with `[year]` and `[site_title]` tokens, footer menu, social icons, back-to-top button. Layout presets preserve widget content, links, copy and colors. Direct link to Widgets. |
 | **Floating contact buttons** | Call, Zalo, Messenger, WhatsApp, email – round buttons or a bottom bar on mobile. |
-| **WooCommerce** | Products per row on desktop / tablet / mobile, shop sidebar and mobile filter drawer, product card style, second-image or zoom hover, **-%** sale badge, AJAX header cart count, mini cart, **catalog mode** (hide prices, show a “Contact for price” button), single-product stacked/left-thumbnail gallery, sticky summary and optional mobile quick-purchase bar. |
+| **WooCommerce** | Products per row on desktop / tablet / mobile, shop sidebar and mobile filter drawer, optional AJAX filtering for native category/attribute/rating/price/sort widgets with URL history and fallback, product card style, second-image or zoom hover, **-%** sale badge, AJAX header cart count, mini cart, **catalog mode** (hide prices, show a “Contact for price” button), single-product stacked/left-thumbnail gallery, sticky summary, optional mobile quick-purchase bar, and optional label/color/image variation swatches for global attributes. |
 | **Tools** | **Export / import / reset** all theme options as JSON – configure once, reuse on the next website. Head / body / footer scripts (Analytics, Pixel…), disable emoji. |
 
 ## Installation

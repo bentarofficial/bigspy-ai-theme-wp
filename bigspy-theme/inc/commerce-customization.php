@@ -22,7 +22,7 @@ add_filter( 'bst_customizer_sections', 'bst_commerce_sections' );
 
 function bst_commerce_fields( $fields ) {
 	$fields[] = array( 'id' => 'shop_ajax_pagination', 'section' => 'bst_shop', 'type' => 'checkbox', 'label' => __( 'Load classic shop pagination without a full page reload', 'bigspy-theme' ), 'description' => __( 'Keeps page URLs and browser history. Filters and sorting keep their native navigation.', 'bigspy-theme' ) );
-	$fields[] = array( 'id' => 'shop_ajax_filters', 'section' => 'bst_shop', 'type' => 'checkbox', 'label' => 'Lọc giá và sắp xếp WooCommerce bằng AJAX', 'description' => 'Hỗ trợ form lọc giá và sắp xếp chuẩn WooCommerce. Plugin lọc khác giữ điều hướng của plugin.' );
+	$fields[] = array( 'id' => 'shop_ajax_filters', 'section' => 'bst_shop', 'type' => 'checkbox', 'label' => 'Lọc sản phẩm WooCommerce không tải lại trang', 'description' => 'Hỗ trợ bộ lọc danh mục, thuộc tính, đánh giá, giá và sắp xếp chuẩn WooCommerce; đồng bộ URL, nút quay lại và widget lọc. Bộ lọc của plugin khác tiếp tục dùng điều hướng riêng.' );
 	$fields[] = array( 'id' => 'shop_load_mode', 'section' => 'bst_shop', 'type' => 'select', 'label' => 'Cách tải thêm sản phẩm', 'choices' => array( 'pages' => 'Phân trang', 'more' => 'Nút tải thêm', 'infinite' => 'Tự tải khi cuộn' ) );
 	$layouts = array( 'default' => __( 'Default', 'bigspy-theme' ), 'simple' => __( 'Simple', 'bigspy-theme' ), 'focused' => __( 'Focused', 'bigspy-theme' ) );
 	$fields[] = array( 'id' => 'cart_layout', 'section' => 'bst_checkout', 'type' => 'select', 'label' => __( 'Cart layout', 'bigspy-theme' ), 'choices' => $layouts );

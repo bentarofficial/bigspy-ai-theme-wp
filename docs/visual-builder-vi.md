@@ -1,4 +1,4 @@
-# BIGSPY AI Builder — phiên bản 1.15.0
+# BIGSPY AI Builder — phiên bản 1.17.0
 
 ## Mở trình thiết kế
 
@@ -32,7 +32,7 @@ Chọn trang mẫu đã xuất bản trong Tùy chỉnh → WooCommerce → tran
 
 ## Các bổ sung khác
 
-- Nút biến thể dạng chữ; không phải swatches màu/ảnh.
+- Nút biến thể dạng chữ; BIGSPY 1.17.0 bổ sung cấu hình label/màu/ảnh theo thuộc tính toàn cục và term. Bật trong Tùy chỉnh → WooCommerce → BIGSPY: product cards & page; cấu hình tại Sản phẩm → Thuộc tính → Cấu hình terms.
 - Mua ngay: sau khi WooCommerce thêm sản phẩm thành công, chuyển sang checkout; giữ các sản phẩm đang có trong giỏ.
 - Điều hướng sản phẩm trước/sau.
 - Quick View chỉ xem ảnh/giá/mô tả; mua trên trang sản phẩm đầy đủ. Không công khai sản phẩm nháp, ẩn hoặc có mật khẩu.
@@ -47,6 +47,6 @@ Chọn trang mẫu đã xuất bản trong Tùy chỉnh → WooCommerce → tran
 
 Đây là bản phát triển đầu của workspace, chưa tương đương toàn bộ UX Builder. Khung thiết bị mô phỏng độ rộng vùng chỉnh sửa, không phải kiểm tra website trong viewport thật; các media query dựa viewport và plugin phải kiểm tra trên frontend. Nội dung Flatsome shortcode cũ vẫn là nội dung legacy, chưa tự biến thành cây native blocks để kéo thả từng phần. Chưa hỗ trợ mọi block editor của plugin bên thứ ba.
 
-Những mục còn cần làm: chuyển đổi legacy có xem trước/hoàn tác, swatches màu/ảnh và gallery biến thể, mega menu có nội dung block, hotspot/Lottie/feed Instagram có cấu hình nguồn, thư viện mẫu có ảnh preview, và adapter Countix dựa phiên bản thực tế. Không đánh dấu các mục này đã hoàn thành.
+Những mục còn cần làm: chuyển đổi legacy có xem trước/hoàn tác, gallery ảnh bổ sung theo biến thể, swatches trên thẻ sản phẩm archive, mega menu có nội dung block, hotspot/Lottie/feed Instagram có cấu hình nguồn, thư viện mẫu có ảnh preview, và adapter Countix dựa phiên bản thực tế. Swatches màu/ảnh cho trang sản phẩm đã có ở 1.17.0.
 
 Nguồn API: https://developer.wordpress.org/block-editor/how-to-guides/platform/custom-block-editor/ và https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/.

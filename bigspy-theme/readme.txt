@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.16.5
+Stable tag: 1.17.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,13 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.17.1 =
+* Added optional AJAX navigation for native WooCommerce category, attribute, rating, price and sorting filters.
+* Refreshes native filter widgets and announces product updates while preserving browser history and full-page fallback.
+
+= 1.17.0 =
+* Added opt-in label, color and image swatches for global WooCommerce product attributes.
 
 = 1.16.5 =
 * Replaced unreliable native outline dragging with pointer-based sorting and clear before, inside, and after drop feedback.

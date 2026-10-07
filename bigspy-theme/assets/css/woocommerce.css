@@ -1148,3 +1148,7 @@ ul.products.bs-slider__track {
 	.bs-shop-filter-scrim,
 	.bs-shop-sidebar.bs-layout__sidebar { transition-duration: .01ms !important; }
 }
+
+.bs-shop-ajax-status { margin: 0 0 12px; padding: 9px 12px; border-radius: 6px; background: #f1f7fa; color: #40566b; font-size: .9em; }
+[data-bst-shop-results][aria-busy="true"] { opacity: .68; pointer-events: none; transition: opacity .15s ease; }
+.bs-shop-load-more { display: block; margin: 24px auto; }
