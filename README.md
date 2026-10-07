@@ -19,6 +19,8 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIGSPY roadmap](docs/roadmap-vi.md) for the current parity status and planned work.
 
+**Page editing:** use **Pages → Edit** and build with BIGSPY blocks in the native WordPress editor. This is the recommended everyday workflow. The separate BIGSPY AI Builder is optional; existing Flatsome UX Builder content remains readable through compatibility support, with safe conversion planned for legacy pages.
+
 ### Added in 1.17.2
 
 - Optional product-card swatches on WooCommerce shop and category archives for global attributes configured as color or image swatches.
