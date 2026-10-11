@@ -7,7 +7,9 @@ add_filter( 'bst_customizer_fields', function ( $fields ) {
 	return $fields;
 } );
 function bst_product_design_page() {
-	$page = get_post( absint( bst_mod( 'product_design_page' ) ) );
+	$id = absint( bst_mod( 'product_design_page' ) );
+	if ( ! $id ) { return null; }
+	$page = get_post( $id );
 	return $page && 'page' === $page->post_type && 'publish' === $page->post_status && ! $page->post_password ? $page : null;
 }
 add_filter( 'wc_get_template_part', function ( $template, $slug, $name ) {

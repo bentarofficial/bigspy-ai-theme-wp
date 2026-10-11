@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.18.0
+Stable tag: 1.18.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.18.1 =
+* Fixed empty page-design selections incorrectly loading the current page as the footer.
+* Prevented a page from rendering itself as its own footer and kept native footer widgets as the fallback.
+* Added explicit empty-ID handling for header and product page designs.
 
 = 1.18.0 =
 * Removed the separate BIGSPY AI Builder workspace, its page actions, admin-bar link, assets and save endpoint.

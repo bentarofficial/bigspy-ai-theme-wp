@@ -8,6 +8,7 @@ add_filter( 'bst_customizer_fields', function ( $fields ) {
 } );
 function bst_footer_design() {
 	$id = absint( bst_mod( 'footer_design_page' ) );
+	if ( ! $id || is_page( $id ) ) { return false; }
 	$page = get_post( $id );
 	if ( ! $page || 'page' !== $page->post_type || 'publish' !== $page->post_status || $page->post_password ) { return false; }
 	static $rendering = false;
