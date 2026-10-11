@@ -3,6 +3,10 @@
 Ngày quan sát: 05/10/2026
 Tham chiếu tại thời điểm quan sát: trang quản trị Home Fresh Mart do chủ website cung cấp, Flatsome 3.20.10, trang mẫu “1-Trang mẫu”. Chỉ quan sát; không cập nhật nội dung trang. Flatsome Classic 3.20.11 là mốc phát hành mới hơn; UX-Themes cũng công bố Site Builder beta riêng ngày 30-09-2026.
 
+## Hướng phát triển cập nhật ngày 11/10/2026
+
+Theo lựa chọn của chủ site, bản 1.18.0 gỡ workspace BIGSPY AI Builder riêng. Luồng chính là Sửa trang WordPress với các khối BIGSPY và thư viện mẫu. Những ghi nhận bên dưới là đối chiếu lịch sử, không phải kế hoạch tái tạo editor UX Builder.
+
 ## Kết luận
 
 BIGSPY đã có nền tảng block và pattern để tạo trang, nhưng trải nghiệm hiện tại vẫn là Gutenberg có thêm block BIGSPY. UX Builder tạo cảm giác như một công cụ dựng trang riêng: bản xem trước chiếm trung tâm, danh sách phần tử có hình minh họa, chọn nội dung trực tiếp trên canvas và khu vực chỉnh sửa theo ngữ cảnh.

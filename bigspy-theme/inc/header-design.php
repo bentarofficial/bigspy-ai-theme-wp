@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 add_filter( 'bst_defaults', function ( $d ) { return $d + array( 'header_design_page' => 0 ); } );
 add_filter( 'bst_customizer_fields', function ( $fields ) {
-	$fields[] = array( 'id' => 'header_design_page', 'section' => 'bst_header_builder', 'type' => 'dropdown-pages', 'label' => 'Header tự do bằng BIGSPY AI Builder', 'description' => 'Trang công khai đã xuất bản thay toàn bộ header hàng/cột. Dùng các khối logo, menu và tìm kiếm WordPress; các tùy chọn sticky/transparent của header mặc định không áp dụng.' );
+	$fields[] = array( 'id' => 'header_design_page', 'section' => 'bst_header_builder', 'type' => 'dropdown-pages', 'label' => 'Header tự do bằng khối BIGSPY', 'description' => 'Trang công khai đã xuất bản thay toàn bộ header hàng/cột. Dùng các khối logo, menu và tìm kiếm WordPress; các tùy chọn sticky/transparent của header mặc định không áp dụng.' );
 	return $fields;
 } );
 function bst_header_design() {

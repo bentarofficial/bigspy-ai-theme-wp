@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.17.2
+Stable tag: 1.18.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.18.0 =
+* Removed the separate BIGSPY AI Builder workspace, its page actions, admin-bar link, assets and save endpoint.
+* Page design now uses BIGSPY blocks and patterns directly in the native WordPress page editor.
+* Updated header/footer/product template instructions to use the native page editor; existing block content and template selections are preserved.
 
 = 1.17.2 =
 * Added optional archive product-card swatches for configured global color/image attributes, linking to the product with the chosen value preselected.

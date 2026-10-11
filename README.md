@@ -19,7 +19,12 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIGSPY roadmap](docs/roadmap-vi.md) for the current parity status and planned work.
 
-**Page editing:** use **Pages → Edit** and build with BIGSPY blocks in the native WordPress editor. This is the recommended everyday workflow. The separate BIGSPY AI Builder is optional; existing Flatsome UX Builder content remains readable through compatibility support, with safe conversion planned for legacy pages.
+**Page editing:** use **Pages → Edit** and build with BIGSPY blocks in the native WordPress editor. This is the recommended everyday workflow. The separate BIGSPY AI Builder workspace was removed in 1.18.0; existing Flatsome UX Builder content remains readable through compatibility support, with safe conversion planned for legacy pages.
+
+### Changed in 1.18.0
+
+- Removed the standalone BIGSPY AI Builder workspace, its launch links and custom save endpoint.
+- Design pages with BIGSPY blocks and patterns directly in the WordPress page editor. Existing block content and page-based header/footer/product template selections continue to work.
 
 ### Added in 1.17.2
 
@@ -173,4 +178,4 @@ These styles inherit Customizer colors and button settings. Logos, favicon, bann
 For customer-profile fields, uploaded avatars, photo reviews, masked names, moderation, store replies and hearts, install the separate [BigSpy Customer Accounts & Product Reviews](https://github.com/bentarofficial/BigSpy-Customer-Accounts-Product-Reviews) plugin. The theme controls presentation and does not register those account/review behaviors.
 
 ## 1.15.0 — BIGSPY AI visual workspace
-A separate visual page workspace with native WordPress blocks, patterns, inspector, block ordering and safe save. Optional page-based header/footer/product templates, text variation buttons, Buy Now, Quick View, native classic shop filters/load more, fixed-date countdown and portfolio are included. See [Vietnamese workflow and limitations](docs/visual-builder-vi.md). This release does not claim full UX Builder parity.
+Version 1.15.0 introduced a separate visual workspace, which was removed in 1.18.0 in favor of BIGSPY blocks in the native WordPress page editor. Optional page-based header/footer/product templates, text variation buttons, Buy Now, Quick View, native classic shop filters/load more, fixed-date countdown and portfolio are included. See [Vietnamese workflow and limitations](docs/visual-builder-vi.md). This release does not claim full UX Builder parity.

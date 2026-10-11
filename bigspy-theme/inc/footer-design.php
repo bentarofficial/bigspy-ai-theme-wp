@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 add_filter( 'bst_defaults', function ( $d ) { return $d + array( 'footer_design_page' => 0 ); } );
 add_filter( 'bst_customizer_fields', function ( $fields ) {
-	$fields[] = array( 'id' => 'footer_design_page', 'section' => 'bst_footer_widgets', 'type' => 'dropdown-pages', 'label' => 'Footer thiết kế bằng BIGSPY AI Builder', 'description' => 'Chọn trang đã xuất bản công khai để thay hai hàng widget. Thanh bản quyền vẫn giữ. Chọn Không để dùng footer mặc định.' );
+	$fields[] = array( 'id' => 'footer_design_page', 'section' => 'bst_footer_widgets', 'type' => 'dropdown-pages', 'label' => 'Footer thiết kế bằng khối BIGSPY', 'description' => 'Chọn trang đã xuất bản công khai để thay hai hàng widget. Thanh bản quyền vẫn giữ. Chọn Không để dùng footer mặc định.' );
 	return $fields;
 } );
 function bst_footer_design() {
