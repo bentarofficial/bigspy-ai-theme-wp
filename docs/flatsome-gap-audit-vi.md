@@ -29,7 +29,7 @@ Site tham chiếu Flatsome là Home Fresh Mart với Flatsome Child đang kích 
 
 ## Phạm vi
 
-Chỉ đọc giao diện và file manager của site Flatsome, không sửa trang, cài đặt hay mã nguồn trên site đó. Đã xem UX Builder, Flatsome Customizer, WooCommerce và Advanced Options; sau đó đối chiếu với mã trong `bigspy-theme/`. Đây là kiểm tra theo các màn hình và nhóm đã quan sát, không phải kiểm định toàn bộ mọi plugin/tính năng có thể cài.
+Chỉ đọc giao diện và file manager của site Flatsome, không sửa trang, cài đặt hay mã nguồn trên site đó. Đã xem UX Builder, Flatsome Customizer, WooCommerce và Advanced Options; sau đó đối chiếu với mã trong `bigspy-ai-theme-wp/`. Đây là kiểm tra theo các màn hình và nhóm đã quan sát, không phải kiểm định toàn bộ mọi plugin/tính năng có thể cài.
 
 ## Đã có ở cả hai hoặc BIGSPY có nền tương đương
 
@@ -74,4 +74,4 @@ Chỉ đọc giao diện và file manager của site Flatsome, không sửa tran
 
 - Giao diện quản trị Flatsome 3.20.10 và UX Builder do chủ site mở trong phiên này.
 - [Flatsome Studio](https://docs.uxthemes.com/article/246-how-to-use-flatsome-studio), [Flatsome PJAX](https://docs.uxthemes.com/article/430-pjax), [custom product page](https://docs.uxthemes.com/article/245-how-to-create-a-custom-product-page), [Portfolio post type](https://docs.uxthemes.com/article/58-featured-item-custom-postype).
-- BIGSPY: `README.md`, `bigspy-theme/inc/`, `bigspy-theme/blocks/`, `bigspy-theme/assets/`.
+- BIGSPY: `README.md`, `bigspy-ai-theme-wp/inc/`, `bigspy-ai-theme-wp/blocks/`, `bigspy-ai-theme-wp/assets/`.

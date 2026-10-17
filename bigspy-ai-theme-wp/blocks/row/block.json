@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/row",
+	"title": "Row",
+	"category": "bigspy",
+	"icon": "columns",
+	"description": "12-column responsive grid. Add Column blocks and set their width per device.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"gap": {
+			"type": "string",
+			"default": "medium"
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"justify": {
+			"type": "string",
+			"default": "start"
+		},
+		"reverseMobile": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			]
+		}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

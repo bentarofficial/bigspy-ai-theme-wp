@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/button",
+	"title": "Button",
+	"category": "bigspy",
+	"icon": "admin-links",
+	"description": "Button with style, size, icon and link.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": "Learn more"
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"newTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"style": {
+			"type": "string",
+			"default": "primary"
+		},
+		"size": {
+			"type": "string",
+			"default": "md"
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"iconPosition": {
+			"type": "string",
+			"default": "after"
+		},
+		"fullWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"radius": {
+			"type": "number",
+			"default": -1
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

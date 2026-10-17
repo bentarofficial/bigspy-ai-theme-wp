@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/counter",
+	"title": "Counter",
+	"category": "bigspy",
+	"icon": "performance",
+	"description": "Animated number (years, customers, projects…).",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"number": {
+			"type": "string",
+			"default": "1000"
+		},
+		"prefix": {
+			"type": "string",
+			"default": ""
+		},
+		"suffix": {
+			"type": "string",
+			"default": "+"
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		},
+		"separator": {
+			"type": "string",
+			"default": "."
+		},
+		"duration": {
+			"type": "number",
+			"default": 1600
+		},
+		"size": {
+			"type": "number",
+			"default": 44
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

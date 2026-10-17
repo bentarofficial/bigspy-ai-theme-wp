@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/text",
+	"title": "Text",
+	"category": "bigspy",
+	"icon": "editor-paragraph",
+	"description": "Rich text: paragraphs, H1–H6, lists, quotes, links – with Visual and Code editing.",
+	"keywords": [ "paragraph", "content", "rich text", "wysiwyg" ],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"html": { "type": "string", "default": "<p>Add your text here. Use the toolbar for headings, lists, links and more.</p>" },
+		"align": { "type": "string", "default": "" },
+		"size": { "type": "number", "default": 0 },
+		"color": { "type": "string", "default": "" },
+		"maxWidth": { "type": "number", "default": 0 }
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"spacing": { "margin": [ "top", "bottom" ] }
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

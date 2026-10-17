@@ -1,0 +1,378 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY Theme\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: bigspy-ai-theme-wp\n"
+
+msgid "Site tools: 404 & maintenance"
+msgstr "Công cụ website: 404 & bảo trì"
+
+msgid "Highlight menu links to page sections"
+msgstr "Đánh dấu menu theo phần đang xem"
+
+msgid "Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll."
+msgstr "Đặt neo HTML cho block, rồi thêm liên kết #neo vào menu. Mục tương ứng được đánh dấu khi cuộn trang."
+
+msgid "Page design for 404 errors"
+msgstr "Trang thiết kế cho lỗi 404"
+
+msgid "Only public, published pages without a password are shown. The response remains 404. Select no page to use the default design."
+msgstr "Chỉ hiển thị trang công khai đã xuất bản và không có mật khẩu. Phản hồi vẫn là 404. Không chọn trang để dùng thiết kế mặc định."
+
+msgid "Show maintenance screen to visitors"
+msgstr "Hiển thị màn hình bảo trì cho khách"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "Quản trị viên vẫn xem được website. Khách nhận phản hồi HTTP 503. Đăng nhập, quản trị và API vẫn hoạt động. Xóa cache trang/CDN khi bật hoặc tắt tùy chọn này."
+
+msgid "Page design for maintenance"
+msgstr "Trang thiết kế cho bảo trì"
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "Thiết kế một trang bằng block và xuất bản. Nội dung hiển thị không kèm đầu/chân trang website. Không chọn trang để dùng màn hình mặc định."
+
+msgid "Maintenance message"
+msgstr "Thông báo bảo trì"
+
+msgid "Used on the default maintenance screen."
+msgstr "Dùng cho màn hình bảo trì mặc định."
+
+msgid "We will be back soon"
+msgstr "Chúng tôi sẽ trở lại sớm"
+
+msgid "Our website is being updated. Please check back soon."
+msgstr "Website đang được cập nhật. Vui lòng quay lại sau ít phút."
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "BIGSPY đang bật chế độ bảo trì. Khách chưa thể xem cửa hàng."
+
+msgid "Manage maintenance mode"
+msgstr "Quản lý chế độ bảo trì"
+
+msgid "Select a block in the page to edit its layout."
+msgstr "Chọn một block trên trang để chỉnh bố cục."
+
+msgid "Duplicate"
+msgstr "Nhân bản"
+
+msgid "Move up"
+msgstr "Di chuyển lên"
+
+msgid "Move down"
+msgstr "Di chuyển xuống"
+
+msgid "Copy appearance"
+msgstr "Sao chép kiểu dáng"
+
+msgid "Paste appearance"
+msgstr "Dán kiểu dáng"
+
+msgid "Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs."
+msgstr "Dùng menu của block để tạo mẫu tái sử dụng. Các mẫu đã lưu nằm trong mục Mẫu đã lưu."
+
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "DESIGN YOUR WEBSITE"
+msgstr "THIẾT KẾ WEBSITE CỦA BẠN"
+
+msgid "Start with a page. Make it yours."
+msgstr "Bắt đầu từ một trang mẫu, rồi biến nó thành website của bạn."
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "Chọn điểm bắt đầu. BIGSPY tạo bản nháp chưa xuất bản và mở trình soạn thảo để bạn thiết kế mà không ảnh hưởng website đang hoạt động."
+
+msgid "Build from scratch"
+msgstr "Tự dựng từ đầu"
+
+msgid "Business or service website"
+msgstr "Website doanh nghiệp hoặc dịch vụ"
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "Trang chủ hoàn chỉnh gồm phần giới thiệu, dịch vụ, về chúng tôi, cảm nhận khách hàng, bảng giá, câu hỏi thường gặp và liên hệ."
+
+msgid "Online shop"
+msgstr "Cửa hàng trực tuyến"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "Trang chủ cửa hàng gồm banner chính, lợi ích, danh mục, bộ sưu tập sản phẩm và nhiều phần khác."
+
+msgid "Page name"
+msgstr "Tên trang"
+
+msgid "Create draft and open editor"
+msgstr "Tạo bản nháp và mở trình soạn thảo"
+
+msgid "Your design stays in draft until you publish it."
+msgstr "Thiết kế vẫn là bản nháp cho đến khi bạn xuất bản."
+
+msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
+msgstr "Thay nội dung và hình ảnh mẫu, chỉnh bố cục, xem trước trang rồi xuất bản khi đã sẵn sàng."
+
+msgid "Business homepage"
+msgstr "Trang chủ doanh nghiệp"
+
+msgid "Online shop homepage"
+msgstr "Trang chủ cửa hàng trực tuyến"
+
+msgid "Sorry, you are not allowed to create pages."
+msgstr "Bạn không có quyền tạo trang."
+
+msgid "This starter page is not available."
+msgstr "Mẫu trang này hiện không khả dụng."
+
+msgid "The selected BIGSPY starter pattern could not be found."
+msgstr "Không tìm thấy mẫu trang BIGSPY đã chọn."
+
+msgid "All designs"
+msgstr "Tất cả mẫu thiết kế"
+
+msgid "Full pages"
+msgstr "Trang hoàn chỉnh"
+
+msgid "Sections"
+msgstr "Các phần nội dung"
+
+msgid "Shop"
+msgstr "Cửa hàng"
+
+msgid "Soft focus"
+msgstr "Làm rõ nhẹ"
+
+msgid "Gentle rotate"
+msgstr "Xoay nhẹ"
+
+msgid "Soft bounce"
+msgstr "Nảy nhẹ"
+
+msgid "Duration (ms)"
+msgstr "Thời lượng (ms)"
+
+msgid "Effect on hover"
+msgstr "Hiệu ứng khi rê chuột"
+
+msgid "Lift gently"
+msgstr "Nhấc nhẹ"
+
+msgid "Soft zoom"
+msgstr "Phóng to nhẹ"
+
+msgid "Soft shadow"
+msgstr "Bóng đổ nhẹ"
+
+msgid "Grayscale to color"
+msgstr "Từ trắng đen sang màu"
+
+msgid "Preview animation"
+msgstr "Xem thử hiệu ứng"
+
+msgid "Saved designs"
+msgstr "Mẫu đã lưu"
+
+msgid "Untitled design"
+msgstr "Mẫu chưa đặt tên"
+
+msgid "A reusable design saved in WordPress."
+msgstr "Mẫu có thể tái sử dụng đã lưu trong WordPress."
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "Đã thêm dưới dạng mẫu đồng bộ. Khi sửa mẫu gốc, các bản dùng mẫu này cũng được cập nhật."
+
+msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
+msgstr "Chưa có mẫu đã lưu. Trong trình soạn thảo, mở tùy chọn của block và chọn Tạo mẫu để lưu thiết kế tại đây."
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "Chọn mẫu có sẵn rồi thay nội dung, hình ảnh và màu sắc ngay trên trang."
+
+msgid "Search designs"
+msgstr "Tìm mẫu thiết kế"
+
+msgid "Try “hero”, “services” or “products”…"
+msgstr "Thử tìm “banner”, “dịch vụ” hoặc “sản phẩm”…"
+
+msgid "Design categories"
+msgstr "Nhóm mẫu thiết kế"
+
+msgid "This design could not be added. Please try another one."
+msgstr "Không thể chèn mẫu này. Vui lòng thử mẫu khác."
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "Đã thêm vào trang. Bạn có thể sửa nội dung và hình ảnh trong vùng xem trước."
+
+msgid "Add to page"
+msgstr "Thêm vào trang"
+
+msgid "No designs found. Try another search."
+msgstr "Không tìm thấy mẫu phù hợp. Hãy thử từ khóa khác."
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "Thêm mẫu không xuất bản trang. Hãy xem trước, rồi lưu nháp hoặc xuất bản khi đã hoàn tất."
+
+msgid "Skip to content"
+msgstr "Chuyển đến nội dung"
+
+msgid "Search…"
+msgstr "Tìm kiếm…"
+
+msgid "Search products…"
+msgstr "Tìm sản phẩm…"
+
+msgid "Search for:"
+msgstr "Tìm kiếm:"
+
+msgid "Submit search"
+msgstr "Tìm"
+
+msgid "Close search"
+msgstr "Đóng tìm kiếm"
+
+msgid "Open menu"
+msgstr "Mở menu"
+
+msgid "Close menu"
+msgstr "Đóng menu"
+
+msgid "Mobile menu"
+msgstr "Menu di động"
+
+msgid "My account"
+msgstr "Tài khoản"
+
+msgid "Login"
+msgstr "Đăng nhập"
+
+msgid "Cart"
+msgstr "Giỏ hàng"
+
+msgid "Previous"
+msgstr "Trước"
+
+msgid "Next"
+msgstr "Tiếp"
+
+msgid "Back to top"
+msgstr "Lên đầu trang"
+
+msgid "Call now"
+msgstr "Gọi ngay"
+
+msgid "Home"
+msgstr "Trang chủ"
+
+msgid "Blog"
+msgstr "Tin tức"
+
+msgid "Breadcrumb"
+msgstr "Đường dẫn"
+
+msgid "Sidebar"
+msgstr "Thanh bên"
+
+msgid "Page not found"
+msgstr "Không tìm thấy trang"
+
+msgid "Search results for “%s”"
+msgstr "Kết quả tìm kiếm cho “%s”"
+
+msgid "Share:"
+msgstr "Chia sẻ:"
+
+msgid "Copy link"
+msgstr "Sao chép liên kết"
+
+msgid "Copy"
+msgstr "Sao chép"
+
+msgid "Copied!"
+msgstr "Đã sao chép!"
+
+msgid "Related posts"
+msgstr "Bài viết liên quan"
+
+msgid "Comments are closed."
+msgstr "Bình luận đã đóng."
+
+msgid "Oops! That page can not be found."
+msgstr "Rất tiếc! Không tìm thấy trang này."
+
+msgid "The page you are looking for may have been moved or deleted. Try searching instead."
+msgstr "Trang bạn tìm có thể đã được chuyển hoặc xóa. Hãy thử tìm kiếm."
+
+msgid "Back to home"
+msgstr "Về trang chủ"
+
+msgid "Nothing matched your search. Please try different keywords."
+msgstr "Không có kết quả phù hợp. Vui lòng thử từ khóa khác."
+
+msgid "There is nothing here yet."
+msgstr "Chưa có nội dung."
+
+msgid "Load more"
+msgstr "Xem thêm"
+
+msgid "Read more"
+msgstr "Đọc tiếp"
+
+msgid "Contact us"
+msgstr "Liên hệ"
+
+msgid "Ready to start your project?"
+msgstr "Bạn đã sẵn sàng bắt đầu?"
+
+msgid "Get a free consultation and a quote within 24 hours."
+msgstr "Nhận tư vấn miễn phí và báo giá trong vòng 24 giờ."
+
+msgid "Copyright © [year] [site_title]. All rights reserved."
+msgstr "Bản quyền © [year] [site_title]. Bảo lưu mọi quyền."
+
+msgid "Contact for price"
+msgstr "Liên hệ để biết giá"
+
+msgid "Loading…"
+msgstr "Đang tải…"
+
+msgid "Sold out"
+msgstr "Hết hàng"
+
+msgid "Sale"
+msgstr "Giảm giá"
+
+msgid "New"
+msgstr "Mới"
+
+msgid "Hot"
+msgstr "Hot"
+
+msgid "No results found."
+msgstr "Không tìm thấy kết quả."
+
+msgid "View all results"
+msgstr "Xem tất cả kết quả"
+
+msgid "No posts found."
+msgstr "Chưa có bài viết."
+
+msgid "No products found."
+msgstr "Chưa có sản phẩm."
+
+msgid "Open link"
+msgstr "Mở liên kết"
+
+msgid "Call to action"
+msgstr "Kêu gọi hành động"
+
+msgid "Rated %d out of 5"
+msgstr "Được đánh giá %d trên 5"
+
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] "%s bình luận"
+
+msgid "%s product"
+msgid_plural "%s products"
+msgstr[0] "%s sản phẩm"
+

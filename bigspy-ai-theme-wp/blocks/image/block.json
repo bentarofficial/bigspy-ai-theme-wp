@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/image",
+	"title": "Image",
+	"category": "bigspy",
+	"icon": "format-image",
+	"description": "Image with width, ratio, corner radius, shadow, hover effect, caption and link.",
+	"keywords": [ "photo", "picture", "media" ],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"alt": { "type": "string", "default": "" },
+		"size": { "type": "string", "default": "large" },
+		"width": { "type": "number", "default": 100 },
+		"ratio": { "type": "string", "default": "auto" },
+		"align": { "type": "string", "default": "center" },
+		"radius": { "type": "number", "default": 0 },
+		"shadow": { "type": "boolean", "default": false },
+		"hover": { "type": "string", "default": "none" },
+		"caption": { "type": "string", "default": "" },
+		"link": { "type": "string", "default": "" },
+		"newTab": { "type": "boolean", "default": false }
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"spacing": { "margin": [ "top", "bottom" ] }
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

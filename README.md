@@ -6,7 +6,7 @@ A multipurpose, fully customizable WordPress theme in the spirit of Flatsome –
 
 ## Repository structure
 
-- `bigspy-theme/` – theme source (this folder is what goes into `wp-content/themes/`).
+- `bigspy-ai-theme-wp/` – theme source (this folder is what goes into `wp-content/themes/`).
 - `build.ps1` – packages the theme as a ZIP for upload through WordPress Admin.
 - `releases/` – packaged ZIP files.
 
@@ -83,7 +83,7 @@ These additions require live compatibility checks with the store's payment and c
 
 ## Installation
 
-1. Run `build.ps1` (or take the file from `releases/`) to get `bigspy-theme-x.y.z.zip`.
+1. Run `build.ps1` (or take the file from `releases/`) to get `bigspy-ai-theme-wp-x.y.z.zip`.
 2. WordPress Admin → Appearance → Themes → Add New → Upload Theme → choose the ZIP → Activate.
 3. Open **Appearance → BIGSPY AI Theme WP** for the quick start guide and links to the Customizer.
 
@@ -118,7 +118,7 @@ WooCommerce product-page controls now include stacked gallery images, thumbnails
 - No build step: editor scripts use `wp.element.createElement`, styles are plain CSS driven by CSS custom properties.
 - Options are declared in one place: defaults in `inc/helpers.php` (`bst_defaults()`), Customizer fields in `inc/customizer/fields.php`, CSS variables in `inc/dynamic-css.php`.
 - Add a header element: filters `bst_header_elements` and `bst_header_element_{key}`.
-- Prefixes: PHP functions `bst_`, CSS classes `bs-`, blocks `bst/…`, text domain `bigspy-theme`.
+- Prefixes: PHP functions `bst_`, CSS classes `bs-`, blocks `bst/…`, text domain `bigspy-ai-theme-wp`.
 - Breakpoints: mobile ≤ 549px · tablet 550–849px · desktop ≥ 850px.
 - Strings are translation-ready. The CSS library uses Vietnamese task names; existing controls use English source strings.
 
@@ -128,7 +128,7 @@ WooCommerce product-page controls now include stacked gallery images, thumbnails
 powershell -ExecutionPolicy Bypass -File build.ps1
 ```
 
-Creates `releases/bigspy-theme-<version>.zip` with a single top-level `bigspy-theme/` folder (required so WordPress updates the existing theme instead of installing a duplicate).
+Creates `releases/bigspy-ai-theme-wp-<version>.zip` with a single top-level `bigspy-ai-theme-wp/` folder (required so WordPress updates the existing theme instead of installing a duplicate).
 After a successful build, older versioned theme ZIPs in `releases/` are removed; Git history retains prior versions.
 
 ## Release 1.4.0: BIGSPY Studio guided page starters and pattern shelf

@@ -4,12 +4,12 @@
  * Front-end strings and the guided BIGSPY Studio admin workflow are translated.
  * Generic admin and developer-only labels are intentionally left out.
  * Run: node tools/build-translations.js
- * Output: bigspy-theme/languages/vi.po, vi.mo and vi.l10n.php
+ * Output: bigspy-ai-theme-wp/languages/vi.po, vi.mo and vi.l10n.php
  */
 const fs = require('fs');
 const path = require('path');
 
-const outDir = path.join(__dirname, '..', 'bigspy-theme', 'languages');
+const outDir = path.join(__dirname, '..', 'bigspy-ai-theme-wp', 'languages');
 
 // msgid => msgstr. Plurals: [singular, plural] => [form] (Vietnamese has one plural form).
 const strings = [
@@ -145,7 +145,7 @@ const header = [
 	'Content-Type: text/plain; charset=UTF-8',
 	'Content-Transfer-Encoding: 8bit',
 	'Plural-Forms: nplurals=1; plural=0;',
-	'X-Domain: bigspy-theme',
+	'X-Domain: bigspy-ai-theme-wp',
 	'',
 ].join('\n');
 
@@ -191,7 +191,7 @@ fs.writeFileSync(path.join(outDir, 'vi.mo'), Buffer.concat(mo));
 
 // ---- .l10n.php (WordPress 6.5+ native format)
 const php = s => "'" + s.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
-let l10n = "<?php\nreturn array(\n\t'domain' => 'bigspy-theme',\n\t'plural-forms' => 'nplurals=1; plural=0;',\n\t'language' => 'vi',\n\t'messages' => array(\n";
+let l10n = "<?php\nreturn array(\n\t'domain' => 'bigspy-ai-theme-wp',\n\t'plural-forms' => 'nplurals=1; plural=0;',\n\t'language' => 'vi',\n\t'messages' => array(\n";
 for (const [id, str] of strings) {
 	l10n += '\t\t' + php(Array.isArray(id) ? id[0] : id) + ' => ' + php(Array.isArray(str) ? str.join('\0') : str) + ',\n';
 }

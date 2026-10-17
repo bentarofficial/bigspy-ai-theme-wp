@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/divider",
+	"title": "Divider",
+	"category": "bigspy",
+	"icon": "minus",
+	"description": "Horizontal line with style, width, thickness and color.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"style": {
+			"type": "string",
+			"default": "solid"
+		},
+		"width": {
+			"type": "number",
+			"default": 100
+		},
+		"thickness": {
+			"type": "number",
+			"default": 1
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"spacing": {
+			"type": "number",
+			"default": 24
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}
