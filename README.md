@@ -21,6 +21,11 @@ See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIG
 
 **Page editing:** use **Pages → Edit** and build with BIGSPY blocks in the native WordPress editor. This is the recommended everyday workflow. The separate BIGSPY AI Builder workspace was removed in 1.18.0; existing Flatsome UX Builder content remains readable through compatibility support, with safe conversion planned for legacy pages.
 
+### Changed in 1.19.1
+
+- Renamed the native WordPress block inserter category to **BIGSPY AI Builder**. Existing blocks, saved content and the native editor workflow are preserved.
+- Synchronized the runtime version constant with the release version.
+
 ### Fixed in 1.18.1
 
 - Empty header/footer/product page selections now use the default layout instead of loading the current page. This fixes repeated homepage content replacing footer widgets.

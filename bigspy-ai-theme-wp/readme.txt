@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.19.0
+Stable tag: 1.19.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,10 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.19.1 =
+* Renamed the native block inserter category to BIGSPY AI Builder; all existing blocks and the native editing workflow are preserved.
+* Synchronized the runtime version with the theme release version.
 
 = 1.19.0 =
 * Renamed the theme folder, text domain and pattern slugs to bigspy-ai-theme-wp to match the repository. Install as a new theme; export options from the old theme first and import them here (old export files are still accepted).

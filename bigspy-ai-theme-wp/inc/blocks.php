@@ -31,7 +31,7 @@ function bst_register_blocks() {
 add_action( 'init', 'bst_register_blocks', 20 );
 
 function bst_block_category( $categories ) {
-	array_unshift( $categories, array( 'slug' => 'bigspy', 'title' => __( 'BIGSPY Builder', 'bigspy-ai-theme-wp' ), 'icon' => null ) );
+	array_unshift( $categories, array( 'slug' => 'bigspy', 'title' => __( 'BIGSPY AI Builder', 'bigspy-ai-theme-wp' ), 'icon' => null ) );
 	return $categories;
 }
 add_filter( 'block_categories_all', 'bst_block_category' );
