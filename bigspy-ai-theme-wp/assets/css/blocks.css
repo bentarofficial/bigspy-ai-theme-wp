@@ -1977,6 +1977,7 @@ input[type="submit"]:hover,
 }
 
 .bs-image__frame.bs-ratio .bs-image__img {
+	object-position: var(--bs-image-position, 50% 50%);
 	height: 100%;
 	object-fit: cover;
 }

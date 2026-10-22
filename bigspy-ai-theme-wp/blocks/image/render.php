@@ -40,6 +40,7 @@ $style   = bst_style_vars(
 	array(
 		'--bs-image-width'  => bst_block_num( $a, 'width', 100, 5, 100 ) . '%',
 		'--bs-image-radius' => bst_block_num( $a, 'radius', 0, 0, 200 ) . 'px',
+		'--bs-image-position' => bst_block_num( $a, 'focalX', 50, 0, 100 ) . '% ' . bst_block_num( $a, 'focalY', 50, 0, 100 ) . '%',
 	)
 );
 ?>

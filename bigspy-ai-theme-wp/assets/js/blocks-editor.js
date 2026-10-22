@@ -747,7 +747,7 @@
 		};
 		var blockProps = useBlockProps({
 			className: 'bs-image bs-image--' + a.align + (a.shadow ? ' has-shadow' : ''),
-			style: { '--bs-image-width': a.width + '%', '--bs-image-radius': a.radius + 'px' }
+			style: { '--bs-image-width': a.width + '%', '--bs-image-radius': a.radius + 'px', '--bs-image-position': a.focalX + '% ' + a.focalY + '%' }
 		});
 		return el(Fragment, null,
 			el(Inspector, null,
@@ -760,6 +760,8 @@
 					el(Range, Object.assign({ label: __('Width (%)', 'bigspy-ai-theme-wp'), min: 5, max: 100 }, bind('width'))),
 					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
 					el(Select, Object.assign({ label: __('Crop ratio', 'bigspy-ai-theme-wp'), options: { auto: __('Original', 'bigspy-ai-theme-wp'), '1-1': '1:1', '4-3': '4:3', '3-2': '3:2', '16-9': '16:9', '3-4': '3:4' } }, bind('ratio'))),
+					a.ratio !== 'auto' ? el(Range, Object.assign({ label: __('Crop focus horizontal (%)', 'bigspy-ai-theme-wp'), max: 100 }, bind('focalX'))) : null,
+					a.ratio !== 'auto' ? el(Range, Object.assign({ label: __('Crop focus vertical (%)', 'bigspy-ai-theme-wp'), max: 100 }, bind('focalY'))) : null,
 					el(Range, Object.assign({ label: __('Corner radius (px)', 'bigspy-ai-theme-wp'), max: 200 }, bind('radius'))),
 					el(Toggle, Object.assign({ label: __('Shadow', 'bigspy-ai-theme-wp') }, bind('shadow', true))),
 					el(Select, Object.assign({ label: __('Hover effect', 'bigspy-ai-theme-wp'), options: { none: __('None', 'bigspy-ai-theme-wp'), zoom: __('Zoom', 'bigspy-ai-theme-wp'), lift: __('Lift', 'bigspy-ai-theme-wp'), grayscale: __('Grayscale to color', 'bigspy-ai-theme-wp') } }, bind('hover')))

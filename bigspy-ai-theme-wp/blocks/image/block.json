@@ -15,6 +15,8 @@
 		"size": { "type": "string", "default": "large" },
 		"width": { "type": "number", "default": 100 },
 		"ratio": { "type": "string", "default": "auto" },
+		"focalX": { "type": "number", "default": 50 },
+		"focalY": { "type": "number", "default": 50 },
 		"align": { "type": "string", "default": "center" },
 		"radius": { "type": "number", "default": 0 },
 		"shadow": { "type": "boolean", "default": false },

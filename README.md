@@ -21,6 +21,10 @@ See the [Vietnamese Flatsome comparison](docs/flatsome-gap-audit-vi.md) and [BIG
 
 **Page editing:** use **Pages → Edit** and build with BIGSPY blocks in the native WordPress editor. This is the recommended everyday workflow. The separate BIGSPY AI Builder workspace was removed in 1.18.0; existing Flatsome UX Builder content remains readable through compatibility support, with safe conversion planned for legacy pages.
 
+### Added in 1.20.1
+
+- Cropped Image elements have horizontal/vertical focus sliders so users can keep faces, signs and products in view without writing CSS. Editor and front-end use the same focus position; existing images remain centered.
+
 ### Added in 1.20.0
 
 - Heading elements now offer desktop/tablet/mobile sizes, line height, maximum width and balanced wrapping in the native block inspector. Zero values retain existing theme defaults; older headings remain compatible.
