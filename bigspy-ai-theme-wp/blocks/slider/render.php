@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $a     = (array) $attributes;
-$style = bst_choice( $a['arrowStyle'] ?? 'circle', array( 'circle', 'square', 'minimal' ), 'circle' );
+$style = bst_choice( $a['arrowStyle'] ?? 'circle', array( 'circle', 'square', 'minimal', 'line' ), 'circle' );
 
 $slider = bst_slider_markup(
 	$content,
@@ -21,8 +21,27 @@ $slider = bst_slider_markup(
 		'arrows'   => ! empty( $a['arrows'] ),
 		'dots'     => ! empty( $a['dots'] ),
 		'loop'     => ! empty( $a['loop'] ),
+		'fade'     => 'fade' === ( $a['effect'] ?? 'slide' ),
+		'peek'     => 'fade' === ( $a['effect'] ?? 'slide' ) ? 0 : bst_block_num( $a, 'peek', 0, 0, 40 ),
+		'progress' => ! empty( $a['progress'] ),
+		'pause'    => ! isset( $a['pauseHover'] ) || ! empty( $a['pauseHover'] ),
 	),
-	'bs-slider--arrows-' . $style . ( ( $a['arrowsMobile'] ?? true ) ? '' : ' bs-slider--no-arrows-m' )
+	implode(
+		' ',
+		array_filter(
+			array(
+				'bs-slider--arrows-' . $style,
+				( $a['arrowsMobile'] ?? true ) ? '' : 'bs-slider--no-arrows-m',
+				'bs-slider--arrows-pos-' . bst_choice( $a['arrowPosition'] ?? 'inside', array( 'inside', 'outside', 'bottom' ), 'inside' ),
+				'bs-slider--arrows-' . bst_choice( $a['arrowColor'] ?? 'light', array( 'light', 'dark', 'brand' ), 'light' ),
+				'bs-slider--arrows-' . bst_choice( $a['arrowSize'] ?? 'md', array( 'sm', 'md', 'lg' ), 'md' ),
+				! empty( $a['arrowsAlways'] ) ? 'bs-slider--arrows-always' : '',
+				'bs-slider--dots-' . bst_choice( $a['dotStyle'] ?? 'pill', array( 'pill', 'dot', 'dash', 'square' ), 'pill' ),
+				! empty( $a['dotsInside'] ) ? 'bs-slider--dots-inside' : '',
+			)
+		)
+	)
 );
+$slider = str_replace( 'class="bs-slider ', 'style="' . esc_attr( bst_style_vars( array( '--bs-slider-min' => ! empty( $a['minHeight'] ) ? bst_block_num( $a, 'minHeight', 0, 0, 1200 ) . 'px' : '', '--bs-slide-radius' => ! empty( $a['slideRadius'] ) ? bst_block_num( $a, 'slideRadius', 0, 0, 60 ) . 'px' : '' ) ) ) . '" class="bs-slider ', $slider );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-slider-block' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo $slider; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

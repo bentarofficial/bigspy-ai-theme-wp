@@ -4,6 +4,36 @@ Ngày kiểm tra: 05/10/2026
 Flatsome trên site tham chiếu: 3.20.10  
 BIGSPY trong repo khi audit ban đầu: 1.8.0; các bản đã phát triển tiếp: 1.9.0–1.14.0
 
+## Cập nhật 22/10/2026 — BIGSPY 1.22.0: nút liên hệ nổi (thay plugin Button Contact VR)
+
+Đối chiếu plugin button-contact-vr trên site tham chiếu (nhiều số điện thoại/màu riêng, Zalo, Messenger, WhatsApp, Telegram, Viber, TikTok, YouTube, Instagram, Fanpage, Google Map, link liên hệ, thanh số điện thoại, tỉ lệ kích thước, trái/phải, cách đáy, tắt hiệu ứng, ẩn desktop/mobile, All in one). BIGSPY 1.22.0 tích hợp vào Customizer → Floating contact buttons (`inc/floating-contact.php`, `assets/css/float-contact.css`):
+- Kiểu riêng cho desktop/tablet và mobile: tròn xếp dọc, nút có chữ, All in one, thanh dưới đáy (mobile), ẩn.
+- Trái/phải, cách lề cạnh, cách đáy desktop và mobile, kích thước, khoảng cách, chữ cạnh icon (hover/luôn/không), thanh số điện thoại, hiện sau khi cuộn N px.
+- Hiệu ứng: rung + sóng toả, sóng nhịp, lắc, nảy, không; áp dụng nút đầu hoặc tất cả; tôn trọng reduced-motion.
+- Thanh mobile: màu theo nút / nền trắng / nền tối, bật/tắt chữ, safe-area iPhone.
+- 14 nút, mỗi nút có link, chữ, màu và thứ tự tùy chỉnh. Thiết lập cũ (float_phone, float_zalo, float_mobile_bar…) vẫn dùng được.
+
+## Cập nhật 22/10/2026 — BIGSPY 1.21.0: tùy chọn phần tử ngang Flatsome
+
+Đọc lại option của từng element trong `flatsome/inc/builder/shortcodes/` (và `commons/`) trên site Home Fresh Mart; Flatsome Child chỉ có script riêng cho countdown sản phẩm, không thêm element/option.
+
+Đã bổ sung trong 1.21.0:
+- **Bảng "Design" chung cho mọi khối `bst/*`** (tương đương commons advanced/border/position của Flatsome): margin/padding 4 cạnh theo desktop/tablet/mobile (px, em, %, vh, auto, âm), max-width theo thiết bị + căn giữa, nền, màu chữ, viền (độ dày/kiểu/màu), bo góc, depth 1–5 và depth khi hover, z-index. Lưu một thuộc tính `bsDesign`; CSS in trong `<head>` (pre-scan) hoặc footer với khối render ngoài luồng.
+- **Image**: lightbox, chiều cao cố định cắt ảnh, lớp phủ màu/độ mờ/chỉ khi hover, hover zoom-fade/blur/brighten/darken, link rel.
+- **Button**: cỡ xs/xl, chữ hoa/viết hoa chữ đầu, màu nền/chữ/viền + màu hover, link rel, aria-label.
+- **Section**: shape divider trên/dưới (wave, waves, curve, curve-inverse, tilt, triangle, arrow, mountains, zigzag) có chiều cao/lật/màu/đưa lên trước; nền video YouTube hoặc mp4/webm (tùy chọn tắt trên mobile).
+- **Accordion**: FAQ schema (FAQPage JSON-LD), tắt được khi plugin SEO đã xuất.
+- Khối mới: **Gallery** (grid/masonry/slider, cột theo thiết bị, gap, tỉ lệ, lightbox nhóm, caption, link riêng, hover), **Video** (YouTube/Vimeo/mp4, tỉ lệ, poster tải player khi bấm, autoplay/mute/loop/controls), **Social follow** (12 mạng gồm Zalo/TikTok/Messenger, filled/outline/icon, tròn/bo/vuông, màu thương hiệu).
+- Footer có thể chọn từ UX Block (Customizer → Footer widgets → Footer từ UX Block); UX Block render được khối BIGSPY.
+
+Còn thiếu so với option Flatsome (đề xuất làm tiếp):
+- Row: kiểu cột (boxed/dashed/solid/divided), nền/bo góc chung cho cột, width full/custom, depth cột. Column: sticky, tooltip, parallax, text depth (nền/padding/viền/shadow đã có qua Design).
+- Slider: kiểu nav/bullets, vị trí/màu mũi tên, freescroll, slide width, pause hover. Tabs: kiểu nav/kích thước/dọc, mở bằng hover.
+- Map: tọa độ lat/long, hộp nội dung trên bản đồ, màu/độ bão hòa, tắt control.
+- Banner: text box rotate/scale/parallax/depth chữ; Banner grid.
+- Khối chưa có: Team member, Price table, Message box, Hotspot, Lottie, Page header, Scroll to, Stack, Search, Share, Logo.
+- Chưa có thao tác "Copy options / Save as preset" ngay tại phần tử.
+
 ## Cập nhật 07/10/2026 — BIGSPY 1.17.2
 
 Site tham chiếu Flatsome là Home Fresh Mart với Flatsome Child đang kích hoạt; BIGSPY đang chạy trên site TT Orico Store. Source trong repo và site TT Orico hiện ở 1.17.2.

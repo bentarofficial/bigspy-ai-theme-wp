@@ -105,7 +105,15 @@ function bst_header_element( $element, $device ) {
 			break;
 
 		case 'nav_icon':
-			$html = '<button type="button" class="bs-icon-btn bs-nav-toggle" data-bs-offcanvas-open aria-controls="bs-offcanvas" aria-expanded="false" aria-label="' . esc_attr__( 'Open menu', 'bigspy-ai-theme-wp' ) . '">' . bst_icon( 'menu', 24 ) . '</button>';
+			$nav_type  = function_exists( 'bst_he' ) ? bst_choice( (string) bst_he( 'nav_icon', 'type' ), array( 'menu', 'menu-short', 'dots', 'grid' ), 'menu' ) : 'menu';
+			$nav_label = function_exists( 'bst_he' ) ? trim( (string) bst_he( 'nav_icon', 'label' ) ) : '';
+			$nav_svg   = array(
+				'menu'       => bst_icon( 'menu', 24 ),
+				'menu-short' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 6h18M3 12h18M3 18h11"/></svg>',
+				'dots'       => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>',
+				'grid'       => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>',
+			);
+			$html = '<button type="button" class="bs-icon-btn bs-nav-toggle" data-bs-offcanvas-open aria-controls="bs-offcanvas" aria-expanded="false" aria-label="' . esc_attr__( 'Open menu', 'bigspy-ai-theme-wp' ) . '">' . $nav_svg[ $nav_type ] . ( '' !== $nav_label ? '<span class="bs-he-label">' . esc_html( $nav_label ) . '</span>' : '' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			break;
 
 		case 'search':
@@ -157,7 +165,7 @@ function bst_header_element( $element, $device ) {
 	if ( '' === trim( $html ) ) {
 		return '';
 	}
-	return '<div class="bs-header-el bs-header-el--' . esc_attr( str_replace( '_', '-', $element ) ) . '">' . $html . '</div>';
+	return '<div class="bs-header-el bs-header-el--' . esc_attr( str_replace( '_', '-', $element ) ) . ( function_exists( 'bst_he_classes' ) ? esc_attr( bst_he_classes( $element ) ) : '' ) . '">' . $html . '</div>';
 }
 
 function bst_logo() {
@@ -172,7 +180,8 @@ function bst_logo() {
 	if ( ! $inner ) {
 		$inner = '<span class="bs-logo__text">' . esc_html( $name ) . '</span>';
 	}
-	return '<a class="bs-logo" href="' . $home . '" rel="home">' . $inner . '</a>';
+	$tagline = function_exists( 'bst_he' ) && bst_he( 'logo', 'tagline' ) ? trim( (string) get_bloginfo( 'description' ) ) : '';
+	return '<a class="bs-logo" href="' . $home . '" rel="home">' . $inner . ( '' !== $tagline ? '<span class="bs-logo__tagline">' . esc_html( $tagline ) . '</span>' : '' ) . '</a>';
 }
 
 function bst_header_button( $prefix ) {
@@ -181,9 +190,13 @@ function bst_header_button( $prefix ) {
 	if ( '' === $text || '' === $url ) {
 		return '';
 	}
-	$style  = bst_choice( bst_mod( $prefix . '_style' ), array( 'primary', 'secondary', 'outline', 'white', 'link' ), 'primary' );
+	$style  = bst_choice( bst_mod( $prefix . '_style' ), array( 'primary', 'secondary', 'outline', 'white', 'link', 'gradient', 'soft' ), 'primary' );
 	$target = bst_mod( $prefix . '_new_tab' ) ? ' target="_blank" rel="noopener"' : '';
-	return '<a class="bs-btn bs-btn--' . esc_attr( $style ) . ' bs-btn--sm" href="' . esc_url( $url ) . '"' . $target . '>' . esc_html( $text ) . '</a>';
+	$key    = str_replace( 'header_', '', $prefix );
+	$size   = function_exists( 'bst_he' ) ? bst_choice( (string) bst_he( $key, 'size' ), array( 'sm', 'md', 'lg' ), 'sm' ) : 'sm';
+	$icon   = function_exists( 'bst_he' ) ? sanitize_key( (string) bst_he( $key, 'icon' ) ) : '';
+	$extra  = in_array( $style, array( 'gradient', 'soft' ), true ) ? ' has-custom-colors' : '';
+	return '<a class="bs-btn bs-btn--' . esc_attr( $style ) . ( 'md' !== $size ? ' bs-btn--' . esc_attr( $size ) : '' ) . $extra . '" href="' . esc_url( $url ) . '"' . $target . '>' . ( $icon ? bst_icon( $icon, 'lg' === $size ? 20 : 17 ) : '' ) . '<span>' . esc_html( $text ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 function bst_account_link() {
@@ -193,6 +206,10 @@ function bst_account_link() {
 		$url = is_user_logged_in() ? admin_url( 'profile.php' ) : wp_login_url();
 	}
 	$label = is_user_logged_in() ? __( 'My account', 'bigspy-ai-theme-wp' ) : __( 'Login', 'bigspy-ai-theme-wp' );
+	if ( function_exists( 'bst_he' ) ) {
+		$custom = trim( (string) bst_he( 'account', is_user_logged_in() ? 'label_in' : 'label_out' ) );
+		$label  = '' !== $custom ? $custom : $label;
+	}
 	return '<a class="bs-account-link" href="' . esc_url( $url ) . '">' . bst_icon( 'user', 20 ) . '<span class="bs-account-link__label">' . esc_html( $label ) . '</span></a>';
 }
 
@@ -208,6 +225,13 @@ function bst_contact_list( $class = '' ) {
 		'pin'     => array( bst_mod( 'contact_address' ), '' ),
 		'clock'   => array( bst_mod( 'contact_hours' ), '' ),
 	);
+	if ( false !== strpos( $class, 'bs-contact--inline' ) && function_exists( 'bst_he' ) ) {
+		$only = (string) bst_he( 'contact', 'items' );
+		$keep = array( 'phone' => array( 'phone' ), 'phone_mail' => array( 'phone', 'mail' ), 'phone_pin' => array( 'phone', 'pin' ) );
+		if ( isset( $keep[ $only ] ) ) {
+			$items = array_intersect_key( $items, array_flip( $keep[ $only ] ) );
+		}
+	}
 	$out = '';
 	foreach ( $items as $icon => $item ) {
 		$value = trim( (string) $item[0] );

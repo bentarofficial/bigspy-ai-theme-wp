@@ -12,14 +12,21 @@ function bst_block_names() {
 	// Shop blocks are always registered so pages keep working if WooCommerce is
 	// deactivated later; they only appear in the inserter while WooCommerce is active
 	// (see blocks-editor.js) and render nothing without it.
-	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'product-categories' );
+	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'product-categories' );
 }
 
 function bst_register_blocks() {
 	wp_register_script(
+		'bst-block-design',
+		BST_URI . '/assets/js/block-design.js',
+		array( 'bst-editor-helpers', 'wp-hooks', 'wp-compose', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-data', 'wp-i18n' ),
+		bst_asset_version( 'assets/js/block-design.js' ),
+		true
+	);
+	wp_register_script(
 		'bst-blocks-editor',
 		BST_URI . '/assets/js/blocks-editor.js',
-		array( 'bst-editor-helpers', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data' ),
+		array( 'bst-editor-helpers', 'bst-block-design', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data' ),
 		bst_asset_version( 'assets/js/blocks-editor.js' ),
 		true
 	);
@@ -63,17 +70,24 @@ function bst_global_block_attributes( $args ) {
 		'bsAnimationDelay' => array( 'type' => 'number', 'default' => 0 ),
 		'bsAnimationDuration' => array( 'type' => 'number', 'default' => 700 ),
 		'bsHoverEffect'    => array( 'type' => 'string', 'default' => '' ),
+		'bsEase'           => array( 'type' => 'string', 'default' => '' ),
+		'bsDistance'       => array( 'type' => 'number', 'default' => 0 ),
+		'bsRepeat'         => array( 'type' => 'boolean', 'default' => false ),
+		'bsStagger'        => array( 'type' => 'number', 'default' => 0 ),
+		'bsLoop'           => array( 'type' => 'string', 'default' => '' ),
+		'bsScroll'         => array( 'type' => 'string', 'default' => '' ),
+		'bsScrollStrength' => array( 'type' => 'number', 'default' => 5 ),
 	);
 	return $args;
 }
 add_filter( 'register_block_type_args', 'bst_global_block_attributes' );
 
 function bst_block_animations() {
-	return array( 'fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom-in', 'zoom-out', 'flip-up', 'blur-in', 'rotate-in', 'bounce-in' );
+	return array( 'fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'zoom-in', 'zoom-out', 'zoom-in-up', 'zoom-in-down', 'bounce-in', 'bounce-up', 'bounce-down', 'bounce-left', 'bounce-right', 'flip-up', 'flip-x', 'flip-y', 'rotate-in', 'roll-in', 'swing-in', 'reveal-up', 'reveal-left', 'reveal-right', 'reveal-center', 'blur-in', 'skew-in', 'light-speed', 'pop' );
 }
 
 function bst_block_hover_effects() {
-	return array( 'lift', 'zoom', 'glow', 'grayscale' );
+	return array( 'lift', 'zoom', 'glow', 'grayscale', 'tilt', 'shine', 'border-glow', 'bounce', 'rotate', 'shrink' );
 }
 
 /**
@@ -102,7 +116,33 @@ function bst_apply_global_block_attributes( $content, $block ) {
 		$classes[] = 'bs-hover';
 		$classes[] = 'bs-hover--' . $hover;
 	}
-	if ( ! $classes || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+	$motion = array();
+	$loop   = isset( $attrs['bsLoop'] ) ? (string) $attrs['bsLoop'] : '';
+	if ( in_array( $loop, array( 'float', 'pulse', 'heartbeat', 'swing', 'wobble', 'spin', 'glow', 'shake' ), true ) ) {
+		$classes[] = 'bs-loop';
+		$classes[] = 'bs-loop--' . $loop;
+	}
+	$scroll = isset( $attrs['bsScroll'] ) ? (string) $attrs['bsScroll'] : '';
+	if ( in_array( $scroll, array( 'up', 'down', 'left', 'right', 'zoom', 'rotate', 'fade' ), true ) ) {
+		$motion['data-bs-scroll'] = $scroll;
+		$motion['data-bs-scroll-strength'] = (string) max( 1, min( 10, (int) ( $attrs['bsScrollStrength'] ?? 5 ) ) );
+	}
+	if ( $animation ) {
+		$ease = isset( $attrs['bsEase'] ) ? (string) $attrs['bsEase'] : '';
+		if ( in_array( $ease, array( 'spring', 'soft', 'snappy', 'linear' ), true ) ) {
+			$classes[] = 'bs-ease--' . $ease;
+		}
+		if ( ! empty( $attrs['bsRepeat'] ) ) {
+			$motion['data-bs-repeat'] = '1';
+		}
+		if ( ! empty( $attrs['bsStagger'] ) ) {
+			$motion['data-bs-stagger'] = (string) max( 40, min( 600, (int) $attrs['bsStagger'] ) );
+		}
+	}
+	if ( ! $classes && ! $motion ) {
+		return $content;
+	}
+	if ( ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
 		return $content;
 	}
 
@@ -112,6 +152,13 @@ function bst_apply_global_block_attributes( $content, $block ) {
 	}
 	foreach ( $classes as $class ) {
 		$tags->add_class( $class );
+	}
+	foreach ( $motion as $name => $value ) {
+		$tags->set_attribute( $name, $value );
+	}
+	if ( $animation && ! empty( $attrs['bsDistance'] ) ) {
+		$style = (string) $tags->get_attribute( 'style' );
+		$tags->set_attribute( 'style', rtrim( $style, '; ' ) . ( $style ? ';' : '' ) . '--bs-dist:' . max( 5, min( 300, (int) $attrs['bsDistance'] ) ) . 'px' );
 	}
 	$delay = isset( $attrs['bsAnimationDelay'] ) ? absint( $attrs['bsAnimationDelay'] ) : 0;
 	if ( $animation && $delay ) {
@@ -217,6 +264,10 @@ function bst_slider_markup( $items, $opts, $class = '' ) {
 			'loop'        => true,
 			'track_tag'   => 'div',
 			'track_class' => '',
+			'fade'        => false,
+			'peek'        => 0,
+			'progress'    => false,
+			'pause'       => true,
 		)
 	);
 	$style = bst_style_vars(
@@ -225,10 +276,13 @@ function bst_slider_markup( $items, $opts, $class = '' ) {
 			'--bs-slides-t' => (int) $opts['t'],
 			'--bs-slides-m' => (int) $opts['m'],
 			'--bs-slide-gap' => (int) $opts['gap'] . 'px',
+			'--bs-peek'      => $opts['peek'] ? round( (int) $opts['peek'] / 100, 2 ) : '',
+			'--bs-peek-on'   => $opts['peek'] ? 1 : '',
 		)
 	);
 	$tag  = in_array( $opts['track_tag'], array( 'div', 'ul' ), true ) ? $opts['track_tag'] : 'div';
-	$out  = '<div class="bs-slider ' . esc_attr( $class ) . '" data-bs-slider data-autoplay="' . (int) $opts['autoplay'] . '" data-loop="' . ( $opts['loop'] ? '1' : '0' ) . '" style="' . esc_attr( $style ) . '">';
+	$class .= $opts['fade'] ? ' bs-slider--fade' : '';
+	$out    = '<div class="bs-slider ' . esc_attr( trim( $class ) ) . '" data-bs-slider data-autoplay="' . (int) $opts['autoplay'] . '" data-loop="' . ( $opts['loop'] || $opts['fade'] ? '1' : '0' ) . '"' . ( $opts['fade'] ? ' data-fade="1"' : '' ) . ( $opts['pause'] ? '' : ' data-pause="0"' ) . ' style="' . esc_attr( $style ) . '">';
 	$out .= '<' . $tag . ' class="bs-slider__track ' . esc_attr( $opts['track_class'] ) . '" data-bs-slider-track>' . $items . '</' . $tag . '>';
 	if ( $opts['arrows'] ) {
 		$out .= '<button type="button" class="bs-slider__arrow bs-slider__arrow--prev" data-bs-slider-prev aria-label="' . esc_attr__( 'Previous', 'bigspy-ai-theme-wp' ) . '">' . bst_icon( 'chevron-left', 22 ) . '</button>';
@@ -236,6 +290,9 @@ function bst_slider_markup( $items, $opts, $class = '' ) {
 	}
 	if ( $opts['dots'] ) {
 		$out .= '<div class="bs-slider__dots" data-bs-slider-dots></div>';
+	}
+	if ( $opts['progress'] && $opts['autoplay'] ) {
+		$out .= '<div class="bs-slider__progress" aria-hidden="true"><span data-bs-slider-progress></span></div>';
 	}
 	$out .= '</div>';
 	return $out;

@@ -25,5 +25,8 @@
 		"reusable": false
 	},
 	"editorScript": "bst-blocks-editor",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"usesContext": [
+		"bst/accordionTitleTag"
+	]
 }

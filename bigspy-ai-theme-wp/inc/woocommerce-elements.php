@@ -294,7 +294,7 @@ function bst_products_list_html( $o, $class = '' ) {
  */
 function bst_product_categories_html( $raw, $class = '' ) {
 	$raw    = is_array( $raw ) ? $raw : array();
-	$style  = bst_choice( $raw['style'] ?? 'overlay', array( 'overlay', 'card', 'circle' ), 'overlay' );
+	$style  = bst_choice( $raw['style'] ?? 'overlay', array( 'overlay', 'card', 'circle', 'gradient', 'tile', 'pill', 'ring', 'split', 'minimal' ), 'overlay' );
 	$ratio  = bst_choice( $raw['ratio'] ?? '1-1', array( '1-1', '4-3', '3-4', '16-9' ), '1-1' );
 	$layout = bst_choice( $raw['layout'] ?? 'grid', array( 'grid', 'slider' ), 'grid' );
 	$order  = bst_choice( $raw['orderby'] ?? 'menu_order', array( 'menu_order', 'name', 'count' ), 'menu_order' );
@@ -336,9 +336,12 @@ function bst_product_categories_html( $raw, $class = '' ) {
 		if ( ! $image ) {
 			$image = '<img src="' . esc_url( wc_placeholder_img_src() ) . '" alt="" loading="lazy">';
 		}
-		$items .= '<a class="bs-cat" href="' . esc_url( get_term_link( $term ) ) . '">';
+		$items .= '<a class="bs-cat" href="' . esc_url( get_term_link( $term ) ) . '" style="' . esc_attr( '--bs-cat-i:' . ( substr_count( $items, 'class="bs-cat"' ) % 6 ) ) . '">';
 		$items .= '<span class="bs-cat__media bs-ratio bs-ratio--' . esc_attr( $ratio ) . '">' . $image . '</span>';
 		$items .= '<span class="bs-cat__body"><span class="bs-cat__name">' . esc_html( $term->name ) . '</span>';
+		if ( in_array( $style, array( 'split', 'tile' ), true ) ) {
+			$items .= '<span class="bs-cat__arrow" aria-hidden="true">' . bst_icon( 'arrow-right', 16 ) . '</span>';
+		}
 		if ( ! empty( $raw['show_count'] ) ) {
 			/* translators: %s: number of products */
 			$items .= '<span class="bs-cat__count">' . esc_html( sprintf( _n( '%s product', '%s products', $term->count, 'bigspy-ai-theme-wp' ), number_format_i18n( $term->count ) ) ) . '</span>';

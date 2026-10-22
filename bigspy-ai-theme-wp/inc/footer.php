@@ -121,58 +121,6 @@ function bst_footer_bottom() {
 /**
  * Floating call / Zalo / Messenger buttons – a common request for Vietnamese business sites.
  */
-function bst_floating_contact() {
-	if ( ! bst_mod( 'float_enable' ) ) {
-		return;
-	}
-
-	$items  = array();
-	$phone  = preg_replace( '/[^0-9+]/', '', (string) bst_mod( 'float_phone' ) );
-	$zalo   = trim( (string) bst_mod( 'float_zalo' ) );
-	$mess   = trim( (string) bst_mod( 'float_messenger' ) );
-	$wa     = preg_replace( '/[^0-9]/', '', (string) bst_mod( 'float_whatsapp' ) );
-	$email  = sanitize_email( (string) bst_mod( 'float_email' ) );
-
-	if ( $phone ) {
-		$items[] = array( 'phone', 'tel:' . $phone, __( 'Call now', 'bigspy-ai-theme-wp' ), false );
-	}
-	if ( $zalo ) {
-		$url     = preg_match( '/^[0-9 +.]+$/', $zalo ) ? 'https://zalo.me/' . preg_replace( '/[^0-9]/', '', $zalo ) : $zalo;
-		$items[] = array( 'zalo', $url, 'Zalo', true );
-	}
-	if ( $mess ) {
-		$url     = preg_match( '#^https?://#', $mess ) ? $mess : 'https://m.me/' . rawurlencode( $mess );
-		$items[] = array( 'messenger', $url, 'Messenger', true );
-	}
-	if ( $wa ) {
-		$items[] = array( 'whatsapp', 'https://wa.me/' . $wa, 'WhatsApp', true );
-	}
-	if ( $email ) {
-		$items[] = array( 'mail', 'mailto:' . $email, __( 'Email', 'bigspy-ai-theme-wp' ), false );
-	}
-	if ( ! $items ) {
-		return;
-	}
-
-	$position = bst_choice( bst_mod( 'float_position' ), array( 'left', 'right' ), 'right' );
-	$bar      = bst_mod( 'float_mobile_bar' ) ? ' has-mobile-bar' : '';
-
-	echo '<div class="bs-float-contact bs-float-contact--' . esc_attr( $position . $bar ) . '">';
-	foreach ( $items as $item ) {
-		list( $icon, $url, $label, $external ) = $item;
-		printf(
-			'<a class="bs-float-contact__btn bs-float-contact__btn--%1$s" href="%2$s"%3$s aria-label="%4$s">%5$s<span class="bs-float-contact__label">%6$s</span></a>',
-			esc_attr( $icon ),
-			esc_url( $url, array( 'http', 'https', 'tel', 'mailto' ) ),
-			$external ? ' target="_blank" rel="noopener"' : '',
-			esc_attr( $label ),
-			bst_icon( $icon, 22 ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			esc_html( $label )
-		);
-	}
-	echo '</div>';
-}
-
 function bst_back_to_top() {
 	if ( ! bst_mod( 'back_to_top' ) ) {
 		return;

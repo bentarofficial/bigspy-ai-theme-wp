@@ -37,4 +37,13 @@ if ( '' === $html ) {
 	return;
 }
 ?>
-<div <?php echo get_block_wrapper_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+<?php
+$vars = bst_style_vars(
+	array(
+		'--bs-cat-accent' => bst_block_color( $a, 'accent' ),
+		'--bs-cat-name'   => ! empty( $a['nameSize'] ) ? bst_block_num( $a, 'nameSize', 15, 10, 40 ) . 'px' : '',
+	)
+);
+$hover = bst_choice( $a['hover'] ?? 'zoom', array( 'zoom', 'lift', 'none' ), 'zoom' );
+?>
+<div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-cats-hover--' . $hover, 'style' => $vars ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

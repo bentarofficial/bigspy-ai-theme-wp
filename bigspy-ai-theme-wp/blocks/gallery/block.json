@@ -1,0 +1,88 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/gallery",
+	"title": "Gallery",
+	"category": "bigspy",
+	"icon": "format-gallery",
+	"description": "Image gallery: grid, masonry or slider, with lightbox, ratio, gap, captions and hover effects.",
+	"keywords": [
+		"images",
+		"photos",
+		"lightbox",
+		"masonry"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"images": {
+			"type": "array",
+			"default": []
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"columns": {
+			"type": "number",
+			"default": 4
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 2
+		},
+		"gap": {
+			"type": "number",
+			"default": 12
+		},
+		"ratio": {
+			"type": "string",
+			"default": "1-1"
+		},
+		"size": {
+			"type": "string",
+			"default": "large"
+		},
+		"radius": {
+			"type": "number",
+			"default": 8
+		},
+		"lightbox": {
+			"type": "boolean",
+			"default": true
+		},
+		"captions": {
+			"type": "boolean",
+			"default": false
+		},
+		"hover": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"autoplay": {
+			"type": "number",
+			"default": 0
+		},
+		"arrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"dots": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

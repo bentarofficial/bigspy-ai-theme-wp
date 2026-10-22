@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/video-button",
+	"title": "Video popup",
+	"category": "bigspy",
+	"icon": "controls-play",
+	"description": "Play button (optionally over an image) that opens a YouTube / Vimeo / mp4 video in a lightbox.",
+	"keywords": [
+		"video",
+		"popup",
+		"play",
+		"youtube"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		},
+		"size": {
+			"type": "number",
+			"default": 72
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"pulse": {
+			"type": "boolean",
+			"default": true
+		},
+		"ratio": {
+			"type": "string",
+			"default": "16-9"
+		},
+		"radius": {
+			"type": "number",
+			"default": 16
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

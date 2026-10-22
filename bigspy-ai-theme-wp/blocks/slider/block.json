@@ -47,6 +47,54 @@
 		"arrowStyle": {
 			"type": "string",
 			"default": "circle"
+		},
+		"effect": {
+			"type": "string",
+			"default": "slide"
+		},
+		"peek": {
+			"type": "number",
+			"default": 0
+		},
+		"arrowPosition": {
+			"type": "string",
+			"default": "inside"
+		},
+		"arrowColor": {
+			"type": "string",
+			"default": "light"
+		},
+		"arrowSize": {
+			"type": "string",
+			"default": "md"
+		},
+		"arrowsAlways": {
+			"type": "boolean",
+			"default": false
+		},
+		"dotStyle": {
+			"type": "string",
+			"default": "pill"
+		},
+		"dotsInside": {
+			"type": "boolean",
+			"default": false
+		},
+		"progress": {
+			"type": "boolean",
+			"default": false
+		},
+		"pauseHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"minHeight": {
+			"type": "number",
+			"default": 0
+		},
+		"slideRadius": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"supports": {

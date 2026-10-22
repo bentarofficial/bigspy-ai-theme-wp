@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/alert",
+	"title": "Message box",
+	"category": "bigspy",
+	"icon": "warning",
+	"description": "Highlighted notice: info, success, warning, error or custom colors, with icon, title and optional close button.",
+	"keywords": [
+		"alert",
+		"notice",
+		"callout",
+		"message"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"type": {
+			"type": "string",
+			"default": "info"
+		},
+		"title": {
+			"type": "string",
+			"default": "Lưu ý"
+		},
+		"text": {
+			"type": "string",
+			"default": "Nội dung thông báo ngắn gọn."
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"dismiss": {
+			"type": "boolean",
+			"default": false
+		},
+		"bgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
+			"type": "string",
+			"default": "soft"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"type": "success",
+			"title": "Đã nhận đơn",
+			"text": "Tiệm sẽ gọi lại trong 15 phút."
+		}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

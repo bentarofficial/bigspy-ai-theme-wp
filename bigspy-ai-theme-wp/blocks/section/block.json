@@ -71,6 +71,64 @@
 		"verticalAlign": {
 			"type": "string",
 			"default": "center"
+		},
+		"dividerTop": {
+			"type": "string",
+			"default": ""
+		},
+		"dividerTopColor": {
+			"type": "string",
+			"default": ""
+		},
+		"dividerTopHeight": {
+			"type": "number",
+			"default": 80
+		},
+		"dividerTopFlip": {
+			"type": "boolean",
+			"default": false
+		},
+		"dividerTopFront": {
+			"type": "boolean",
+			"default": false
+		},
+		"dividerBottom": {
+			"type": "string",
+			"default": ""
+		},
+		"dividerBottomColor": {
+			"type": "string",
+			"default": ""
+		},
+		"dividerBottomHeight": {
+			"type": "number",
+			"default": 80
+		},
+		"dividerBottomFlip": {
+			"type": "boolean",
+			"default": false
+		},
+		"dividerBottomFront": {
+			"type": "boolean",
+			"default": false
+		},
+		"videoUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"videoMobile": {
+			"type": "boolean",
+			"default": false
+		},
+		"bgPreset": {
+			"type": "string",
+			"default": ""
+		},
+		"bgBlur": { "type": "number", "default": 0 },
+		"bgBrightness": { "type": "number", "default": 100 },
+		"parallax": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"supports": {

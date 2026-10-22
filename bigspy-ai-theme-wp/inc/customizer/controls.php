@@ -55,7 +55,11 @@ class BST_Layout_Presets_Control extends WP_Customize_Control {
 		}
 		echo '<div class="bst-layout-presets" data-bst-layout-presets>';
 		foreach ( $this->presets as $key => $preset ) {
-			echo '<button type="button" class="button bst-layout-presets__button" data-preset="' . esc_attr( $key ) . '" data-settings="' . esc_attr( wp_json_encode( $preset['settings'] ) ) . '"><strong>' . esc_html( $preset['label'] ) . '</strong><span>' . esc_html( $preset['description'] ) . '</span></button>';
+			$swatches = '';
+			foreach ( (array) ( $preset['swatches'] ?? array() ) as $swatch ) {
+				$swatches .= '<i style="background:' . esc_attr( sanitize_hex_color( $swatch ) ) . '"></i>';
+			}
+			echo '<button type="button" class="button bst-layout-presets__button' . ( $swatches ? ' has-swatches' : '' ) . '" data-preset="' . esc_attr( $key ) . '" data-settings="' . esc_attr( wp_json_encode( $preset['settings'] ) ) . '">' . ( $swatches ? '<em class="bst-swatches" aria-hidden="true">' . $swatches . '</em>' : '' ) . '<strong>' . esc_html( $preset['label'] ) . '</strong><span>' . esc_html( $preset['description'] ) . '</span></button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div><p class="bst-layout-presets__status" role="status" aria-live="polite"></p>';
 		if ( $this->help_url && $this->help_label ) {

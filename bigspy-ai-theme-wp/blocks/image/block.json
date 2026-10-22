@@ -6,29 +6,107 @@
 	"category": "bigspy",
 	"icon": "format-image",
 	"description": "Image with width, ratio, corner radius, shadow, hover effect, caption and link.",
-	"keywords": [ "photo", "picture", "media" ],
+	"keywords": [
+		"photo",
+		"picture",
+		"media"
+	],
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
-		"imageId": { "type": "number", "default": 0 },
-		"imageUrl": { "type": "string", "default": "" },
-		"alt": { "type": "string", "default": "" },
-		"size": { "type": "string", "default": "large" },
-		"width": { "type": "number", "default": 100 },
-		"ratio": { "type": "string", "default": "auto" },
-		"focalX": { "type": "number", "default": 50 },
-		"focalY": { "type": "number", "default": 50 },
-		"align": { "type": "string", "default": "center" },
-		"radius": { "type": "number", "default": 0 },
-		"shadow": { "type": "boolean", "default": false },
-		"hover": { "type": "string", "default": "none" },
-		"caption": { "type": "string", "default": "" },
-		"link": { "type": "string", "default": "" },
-		"newTab": { "type": "boolean", "default": false }
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"alt": {
+			"type": "string",
+			"default": ""
+		},
+		"size": {
+			"type": "string",
+			"default": "large"
+		},
+		"width": {
+			"type": "number",
+			"default": 100
+		},
+		"ratio": {
+			"type": "string",
+			"default": "auto"
+		},
+		"focalX": {
+			"type": "number",
+			"default": 50
+		},
+		"focalY": {
+			"type": "number",
+			"default": 50
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"radius": {
+			"type": "number",
+			"default": 0
+		},
+		"shadow": {
+			"type": "boolean",
+			"default": false
+		},
+		"hover": {
+			"type": "string",
+			"default": "none"
+		},
+		"caption": {
+			"type": "string",
+			"default": ""
+		},
+		"link": {
+			"type": "string",
+			"default": ""
+		},
+		"newTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"lightbox": {
+			"type": "boolean",
+			"default": false
+		},
+		"height": {
+			"type": "string",
+			"default": ""
+		},
+		"overlay": {
+			"type": "string",
+			"default": ""
+		},
+		"overlayOpacity": {
+			"type": "number",
+			"default": 30
+		},
+		"overlayHover": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkRel": {
+			"type": "string",
+			"default": ""
+		}
 	},
 	"supports": {
 		"anchor": true,
 		"html": false,
-		"spacing": { "margin": [ "top", "bottom" ] }
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			]
+		}
 	},
 	"editorScript": "bst-blocks-editor",
 	"render": "file:./render.php"

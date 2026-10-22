@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/star-rating",
+	"title": "Star rating",
+	"category": "bigspy",
+	"icon": "star-filled",
+	"description": "Star rating (supports halves) with size, color, alignment and an optional label like \"4.9/5 từ 320 đánh giá\".",
+	"keywords": [
+		"stars",
+		"review",
+		"rating"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"rating": {
+			"type": "number",
+			"default": 5
+		},
+		"max": {
+			"type": "number",
+			"default": 5
+		},
+		"size": {
+			"type": "number",
+			"default": 22
+		},
+		"color": {
+			"type": "string",
+			"default": "#f5a623"
+		},
+		"emptyColor": {
+			"type": "string",
+			"default": "#d1d5db"
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"showNumber": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"rating": 4.5,
+			"label": "4.9/5 từ 320 đánh giá"
+		}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

@@ -52,8 +52,9 @@ function bst_register_editor_helpers() {
 		'bst-editor-helpers',
 		'bstEditor',
 		array(
-			'icons'    => array_intersect_key( bst_icon_paths(), array_flip( bst_block_icon_names() ) ),
+			'icons'    => array_intersect_key( bst_icon_paths(), array_flip( array_merge( bst_block_icon_names(), array( 'facebook', 'instagram', 'youtube', 'tiktok', 'zalo', 'x', 'linkedin', 'pinterest', 'messenger', 'whatsapp', 'telegram', 'viber', 'close', 'chevron-down', 'arrow-up' ) ) ) ),
 			'hasWoo'   => class_exists( 'WooCommerce' ),
+			'disabledBlocks' => function_exists( 'bst_disabled_blocks' ) ? bst_disabled_blocks() : array(),
 		)
 	);
 }
@@ -63,5 +64,6 @@ function bst_editor_assets() {
 	// Responsive visibility + animation controls for every block.
 	wp_enqueue_script( 'bst-editor-helpers' );
 	wp_enqueue_style( 'bst-editor-ui', BST_URI . '/assets/css/editor-ui.css', array(), bst_asset_version( 'assets/css/editor-ui.css' ) );
+	wp_add_inline_style( 'bst-editor-ui', '.bst-btn-styles,.bst-bg-presets,.bst-form-templates{--bst-primary:' . sanitize_hex_color( (string) bst_mod( 'color_primary' ) ) . ';--bst-secondary:' . sanitize_hex_color( (string) bst_mod( 'color_secondary' ) ) . '}' );
 }
 add_action( 'enqueue_block_editor_assets', 'bst_editor_assets' );

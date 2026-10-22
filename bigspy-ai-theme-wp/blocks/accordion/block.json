@@ -15,6 +15,62 @@
 		"single": {
 			"type": "boolean",
 			"default": true
+		},
+		"faqSchema": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconStyle": {
+			"type": "string",
+			"default": "chevron"
+		},
+		"iconPosition": {
+			"type": "string",
+			"default": "right"
+		},
+		"numbered": {
+			"type": "boolean",
+			"default": false
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "div"
+		},
+		"titleSize": {
+			"type": "number",
+			"default": 0
+		},
+		"titleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"titleBg": {
+			"type": "string",
+			"default": ""
+		},
+		"activeColor": {
+			"type": "string",
+			"default": ""
+		},
+		"activeBg": {
+			"type": "string",
+			"default": ""
+		},
+		"contentBg": {
+			"type": "string",
+			"default": ""
+		},
+		"radius": {
+			"type": "number",
+			"default": -1
+		},
+		"gap": {
+			"type": "number",
+			"default": -1
+		},
+		"smooth": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {
@@ -22,5 +78,8 @@
 		"html": false
 	},
 	"editorScript": "bst-blocks-editor",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"providesContext": {
+		"bst/accordionTitleTag": "titleTag"
+	}
 }

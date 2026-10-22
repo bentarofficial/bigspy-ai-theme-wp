@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/price-table",
+	"title": "Price table",
+	"category": "bigspy",
+	"icon": "money-alt",
+	"description": "Pricing plan: title, price, period, feature list with check / cross, button and a highlighted \"popular\" badge.",
+	"keywords": [
+		"pricing",
+		"plan",
+		"bảng giá",
+		"package"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Gói cơ bản"
+		},
+		"price": {
+			"type": "string",
+			"default": "199.000đ"
+		},
+		"oldPrice": {
+			"type": "string",
+			"default": ""
+		},
+		"period": {
+			"type": "string",
+			"default": "/ tháng"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"features": {
+			"type": "string",
+			"default": "Giặt sấy 10kg\nNhận trả tại nhà\n-Giặt chăn ga"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Chọn gói"
+		},
+		"buttonUrl": {
+			"type": "string",
+			"default": "#"
+		},
+		"featured": {
+			"type": "boolean",
+			"default": false
+		},
+		"badge": {
+			"type": "string",
+			"default": "Phổ biến"
+		},
+		"style": {
+			"type": "string",
+			"default": "card"
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"featured": true
+		}
+	}
+}

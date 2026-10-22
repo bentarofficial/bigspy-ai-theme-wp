@@ -191,6 +191,11 @@ function bst_post_meta( $parts = array( 'date', 'author', 'comments' ) ) {
 					$out[] = '<a class="bs-meta__cat" href="' . esc_url( get_category_link( $cats[0] ) ) . '">' . esc_html( $cats[0]->name ) . '</a>';
 				}
 				break;
+			case 'readtime':
+				$words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', get_the_ID() ) ) );
+				/* translators: %s: minutes */
+				$out[] = '<span class="bs-meta__time">' . esc_html( sprintf( __( '%s min read', 'bigspy-ai-theme-wp' ), max( 1, (int) ceil( $words / 220 ) ) ) ) . '</span>';
+				break;
 			case 'comments':
 				if ( comments_open() && get_comments_number() ) {
 					/* translators: %s: comment count */
@@ -219,6 +224,11 @@ function bst_post_card( $args = array() ) {
 			'excerpt' => bst_mod( 'blog_show_excerpt' ),
 			'more'    => bst_mod( 'blog_read_more' ),
 			'heading' => 'h2',
+			'show'        => null,
+			'date_badge'  => false,
+			'cat_badge'   => false,
+			'excerpt_len' => 0,
+			'more_style'  => 'link',
 		)
 	);
 	// The untouched default label follows the site language (the Posts block passes it as its own default).
@@ -231,19 +241,35 @@ function bst_post_card( $args = array() ) {
 		<?php if ( has_post_thumbnail() ) : ?>
 			<a class="bs-card__media bs-ratio bs-ratio--<?php echo esc_attr( $args['ratio'] ); ?>" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
 				<?php the_post_thumbnail( 'bst-card', array( 'alt' => '' ) ); ?>
+				<?php if ( $args['date_badge'] ) : ?>
+					<span class="bs-card__date-badge"><b><?php echo esc_html( get_the_date( 'd' ) ); ?></b><?php echo esc_html( get_the_date( 'M' ) ); ?></span>
+				<?php endif; ?>
+				<?php
+				if ( $args['cat_badge'] ) {
+					$bst_cats = get_the_category();
+					if ( $bst_cats ) {
+						echo '<span class="bs-card__cat-badge">' . esc_html( $bst_cats[0]->name ) . '</span>';
+					}
+				}
+				?>
 			</a>
 		<?php endif; ?>
 		<div class="bs-card__body">
 			<?php
-			if ( $args['meta'] ) {
+			if ( is_array( $args['show'] ) ) {
+				if ( $args['show'] ) {
+					bst_post_meta( $args['show'] );
+				}
+			} elseif ( $args['meta'] ) {
 				bst_post_meta( array( 'category', 'date' ) );
 			}
 			printf( '<%1$s class="bs-card__title"><a href="%2$s">%3$s</a></%1$s>', esc_html( $heading ), esc_url( get_permalink() ), esc_html( get_the_title() ) );
 			if ( $args['excerpt'] ) {
-				echo '<div class="bs-card__excerpt">' . wp_kses_post( wpautop( get_the_excerpt() ) ) . '</div>';
+				$bst_excerpt = $args['excerpt_len'] ? wp_trim_words( get_the_excerpt(), (int) $args['excerpt_len'], '&hellip;' ) : get_the_excerpt();
+				echo '<div class="bs-card__excerpt">' . wp_kses_post( wpautop( $bst_excerpt ) ) . '</div>';
 			}
-			if ( $args['more'] ) {
-				echo '<a class="bs-card__more" href="' . esc_url( get_permalink() ) . '">' . esc_html( $args['more'] ) . bst_icon( 'arrow-right', 16 ) . '<span class="screen-reader-text"> ' . esc_html( get_the_title() ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( $args['more'] && 'none' !== $args['more_style'] ) {
+				echo '<a class="bs-card__more' . ( 'button' === $args['more_style'] ? ' bs-card__more--button' : '' ) . '" href="' . esc_url( get_permalink() ) . '">' . esc_html( $args['more'] ) . bst_icon( 'arrow-right', 16 ) . '<span class="screen-reader-text"> ' . esc_html( get_the_title() ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			?>
 		</div>

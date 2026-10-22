@@ -1,0 +1,108 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/social",
+	"title": "Social follow",
+	"category": "bigspy",
+	"icon": "share",
+	"description": "Social profile icons (Facebook, Zalo, TikTok, YouTube…) with shape, size, brand colors and alignment.",
+	"keywords": [
+		"facebook",
+		"zalo",
+		"follow",
+		"icons"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"facebook": {
+			"type": "string",
+			"default": ""
+		},
+		"instagram": {
+			"type": "string",
+			"default": ""
+		},
+		"youtube": {
+			"type": "string",
+			"default": ""
+		},
+		"tiktok": {
+			"type": "string",
+			"default": ""
+		},
+		"zalo": {
+			"type": "string",
+			"default": ""
+		},
+		"messenger": {
+			"type": "string",
+			"default": ""
+		},
+		"whatsapp": {
+			"type": "string",
+			"default": ""
+		},
+		"x": {
+			"type": "string",
+			"default": ""
+		},
+		"linkedin": {
+			"type": "string",
+			"default": ""
+		},
+		"pinterest": {
+			"type": "string",
+			"default": ""
+		},
+		"mail": {
+			"type": "string",
+			"default": ""
+		},
+		"phone": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
+			"type": "string",
+			"default": "fill"
+		},
+		"shape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"size": {
+			"type": "number",
+			"default": 40
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"gap": {
+			"type": "number",
+			"default": 10
+		},
+		"brand": {
+			"type": "boolean",
+			"default": true
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

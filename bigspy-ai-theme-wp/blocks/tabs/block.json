@@ -15,6 +15,30 @@
 		"align": {
 			"type": "string",
 			"default": "left"
+		},
+		"event": {
+			"type": "string",
+			"default": "click"
+		},
+		"stretch": {
+			"type": "boolean",
+			"default": false
+		},
+		"navSize": {
+			"type": "number",
+			"default": 0
+		},
+		"activeColor": {
+			"type": "string",
+			"default": ""
+		},
+		"activeText": {
+			"type": "string",
+			"default": ""
+		},
+		"fade": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {

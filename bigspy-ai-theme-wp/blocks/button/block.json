@@ -43,6 +43,58 @@
 		"radius": {
 			"type": "number",
 			"default": -1
+		},
+		"letterCase": {
+			"type": "string",
+			"default": ""
+		},
+		"bgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"hoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"hoverText": {
+			"type": "string",
+			"default": ""
+		},
+		"linkRel": {
+			"type": "string",
+			"default": ""
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"scheme": {
+			"type": "string",
+			"default": ""
+		},
+		"hoverEffect": {
+			"type": "string",
+			"default": ""
+		},
+		"bgColor2": {
+			"type": "string",
+			"default": ""
+		},
+		"gradientAngle": {
+			"type": "number",
+			"default": 135
+		},
+		"subtext": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

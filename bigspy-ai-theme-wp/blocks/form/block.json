@@ -1,0 +1,207 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/form",
+	"title": "Form",
+	"category": "bigspy",
+	"icon": "feedback",
+	"description": "Show a Contact Form 7 or WPForms form with a title, styled fields, colored button and card layout.",
+	"keywords": [
+		"contact form 7",
+		"cf7",
+		"wpforms",
+		"form",
+		"liên hệ"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"provider": {
+			"type": "string",
+			"default": "cf7"
+		},
+		"formId": {
+			"type": "number",
+			"default": 0
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"formStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"buttonFull": {
+			"type": "boolean",
+			"default": false
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"fieldBg": {
+			"type": "string",
+			"default": ""
+		},
+		"radius": {
+			"type": "number",
+			"default": 10
+		},
+		"card": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideLabels": {
+			"type": "boolean",
+			"default": false
+		},
+		"twoColumns": {
+			"type": "boolean",
+			"default": false
+		},
+		"boxStyle": {
+			"type": "string",
+			"default": "card"
+		},
+		"layout": {
+			"type": "string",
+			"default": "2col"
+		},
+		"labelStyle": {
+			"type": "string",
+			"default": "small"
+		},
+		"fieldSize": {
+			"type": "string",
+			"default": "md"
+		},
+		"buttonStyle": {
+			"type": "string",
+			"default": "gradient"
+		},
+		"buttonAlign": {
+			"type": "string",
+			"default": "full"
+		},
+		"accent2": {
+			"type": "string",
+			"default": ""
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"labelColor": {
+			"type": "string",
+			"default": ""
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"boxBg": {
+			"type": "string",
+			"default": ""
+		},
+		"gap": {
+			"type": "number",
+			"default": -1
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": -1
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"kicker": {
+			"type": "string",
+			"default": ""
+		},
+		"note": {
+			"type": "string",
+			"default": ""
+		},
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"imageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"imagePosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"buttonBg": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverText": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonEffect": {
+			"type": "string",
+			"default": "lift"
+		},
+		"boxBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"boxBorderWidth": {
+			"type": "number",
+			"default": -1
+		},
+		"boxShadow": {
+			"type": "number",
+			"default": -1
+		},
+		"boxPadding": {
+			"type": "number",
+			"default": -1
+		},
+		"focusColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonIcon": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"title": "Đặt lịch tư vấn",
+			"kicker": "Liên hệ"
+		}
+	}
+}

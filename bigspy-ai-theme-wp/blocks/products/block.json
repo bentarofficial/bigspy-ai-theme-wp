@@ -47,6 +47,74 @@
 		"loadMore": {
 			"type": "boolean",
 			"default": false
+		},
+		"ids": {
+			"type": "string",
+			"default": ""
+		},
+		"tag": {
+			"type": "number",
+			"default": 0
+		},
+		"offset": {
+			"type": "number",
+			"default": 0
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"gap": {
+			"type": "number",
+			"default": -1
+		},
+		"titleLines": {
+			"type": "number",
+			"default": 0
+		},
+		"showCat": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showPrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"showButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"showBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"priceColor": {
+			"type": "string",
+			"default": ""
+		},
+		"badgeColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBg": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

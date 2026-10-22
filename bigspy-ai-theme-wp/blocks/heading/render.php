@@ -25,12 +25,21 @@ $style = bst_style_vars(
 		'--bs-heading-max' => ! empty( $a['maxWidth'] ) ? bst_block_num( $a, 'maxWidth', 0, 200, 1600 ) . 'px' : '',
 		'--bs-heading-color'  => bst_block_color( $a, 'color' ),
 		'--bs-heading-weight' => bst_choice( (string) ( $a['weight'] ?? '' ), array( '', '300', '400', '500', '600', '700', '800', '900' ), '' ),
+		'--bs-grad-from'      => bst_block_color( $a, 'gradientFrom' ),
+		'--bs-grad-to'        => bst_block_color( $a, 'gradientTo' ),
+		'--bs-grad-angle'     => ! empty( $a['gradient'] ) ? bst_block_num( $a, 'gradientAngle', 90, 0, 360 ) . 'deg' : '',
+		'--bs-hl-color'       => bst_block_color( $a, 'highlightColor' ),
 	)
 );
+$hl     = bst_choice( (string) ( $a['highlight'] ?? '' ), array( '', 'underline', 'marker', 'brush', 'strike' ), '' );
+$extra  = ( ! empty( $a['gradient'] ) ? ' bs-heading--gradient' : '' ) . ( $hl ? ' bs-heading--hl bs-heading--hl-' . $hl : '' );
+if ( ! empty( $a['gradient'] ) || $hl ) {
+	$text = '<span class="bs-heading__text">' . $text . '</span>';
+}
 
 printf(
 	'<%1$s %2$s>%3$s</%1$s>',
 	esc_html( $tag ),
-	get_block_wrapper_attributes( array( 'class' => 'bs-heading' . ( ! empty( $a['balance'] ) ? ' bs-heading--balanced' : '' ) . ( $align ? ' has-text-align-' . $align : '' ), 'style' => $style ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	get_block_wrapper_attributes( array( 'class' => 'bs-heading' . ( ! empty( $a['balance'] ) ? ' bs-heading--balanced' : '' ) . ( $align ? ' has-text-align-' . $align : '' ) . $extra, 'style' => $style ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$link ? '<a href="' . $link . '">' . $text . '</a>' : $text // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 );

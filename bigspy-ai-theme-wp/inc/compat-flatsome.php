@@ -89,6 +89,9 @@ add_action( 'after_switch_theme', 'flush_rewrite_rules' );
  */
 function bst_legacy_content( $content ) {
 	$content = trim( (string) $content );
+	if ( has_blocks( $content ) ) {
+		$content = do_blocks( $content );
+	}
 	$content = preg_replace( '#^(?:\s*</p>)+|(?:<p>\s*)+$#i', '', $content );
 	$html    = do_shortcode( shortcode_unautop( $content ) );
 	return preg_replace( '#<p>(?:\s|&nbsp;|<br\s*/?>)*</p>#i', '', $html );
@@ -855,6 +858,9 @@ add_filter( 'bst_sidebar_position', 'bst_legacy_sidebar' );
  * is shown at the top of the site footer, as it was with the previous theme.
  */
 function bst_legacy_footer_block() {
+	if ( function_exists( 'bst_footer_block_post' ) && bst_footer_block_post() ) {
+		return; // Chosen in Customizer → Footer widgets → Footer từ UX Block.
+	}
 	$id = absint( get_theme_mod( 'legacy_footer_block', 0 ) );
 	if ( $id ) {
 		$post = get_post( $id );

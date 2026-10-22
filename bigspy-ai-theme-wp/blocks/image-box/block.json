@@ -1,0 +1,95 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/image-box",
+	"title": "Image box",
+	"category": "bigspy",
+	"icon": "format-image",
+	"description": "Image with title, text and link: image on top, on the side or text over the image. Great for service and category cards.",
+	"keywords": [
+		"card",
+		"service",
+		"feature",
+		"box"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"alt": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": "Tiêu đề hộp ảnh"
+		},
+		"text": {
+			"type": "string",
+			"default": "Mô tả ngắn cho dịch vụ hoặc danh mục."
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h3"
+		},
+		"link": {
+			"type": "string",
+			"default": ""
+		},
+		"linkText": {
+			"type": "string",
+			"default": ""
+		},
+		"newTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"layout": {
+			"type": "string",
+			"default": "top"
+		},
+		"ratio": {
+			"type": "string",
+			"default": "4-3"
+		},
+		"imageWidth": {
+			"type": "number",
+			"default": 40
+		},
+		"radius": {
+			"type": "number",
+			"default": 12
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"hover": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"card": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"title": "Giặt chăn ga",
+			"text": "Giặt sạch, sấy khô, gấp gọn.",
+			"linkText": "Xem dịch vụ"
+		}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}
