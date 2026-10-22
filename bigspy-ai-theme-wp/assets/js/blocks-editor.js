@@ -676,8 +676,8 @@
 		var a = props.attributes;
 		var bind = B.binder(props);
 		var blockProps = useBlockProps({
-			className: 'bs-heading' + (a.align ? ' has-text-align-' + a.align : ''),
-			style: styleVars({ '--bs-heading-size': a.size ? a.size + 'px' : '', '--bs-heading-color': a.color, '--bs-heading-weight': a.weight || '' })
+			className: 'bs-heading' + (a.balance ? ' bs-heading--balanced' : '') + (a.align ? ' has-text-align-' + a.align : ''),
+			style: styleVars({ '--bs-heading-size': a.size ? a.size + 'px' : '', '--bs-heading-size-tablet': a.sizeTablet ? a.sizeTablet + 'px' : '', '--bs-heading-size-mobile': a.sizeMobile ? a.sizeMobile + 'px' : '', '--bs-heading-leading': a.lineHeight || '', '--bs-heading-max': a.maxWidth ? a.maxWidth + 'px' : '', '--bs-heading-color': a.color, '--bs-heading-weight': a.weight || '' })
 		});
 		return el(Fragment, null,
 			el(be.BlockControls, null,
@@ -692,6 +692,11 @@
 				el(Panel, { title: __('Heading', 'bigspy-ai-theme-wp') },
 					el(Select, Object.assign({ label: __('HTML tag', 'bigspy-ai-theme-wp'), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6', p: 'P', div: 'DIV' } }, bind('tag'))),
 					el(Range, Object.assign({ label: __('Font size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120 }, bind('size'))),
+					el(Range, Object.assign({ label: __('Tablet font size (px, 0 = inherit)', 'bigspy-ai-theme-wp'), max: 120 }, bind('sizeTablet'))),
+					el(Range, Object.assign({ label: __('Mobile font size (px, 0 = inherit)', 'bigspy-ai-theme-wp'), max: 120 }, bind('sizeMobile'))),
+					el(Range, Object.assign({ label: __('Line height (0 = theme default)', 'bigspy-ai-theme-wp'), max: 2.5, step: 0.05 }, bind('lineHeight'))),
+					el(Range, Object.assign({ label: __('Heading max width (px, 0 = full)', 'bigspy-ai-theme-wp'), max: 1600, step: 20 }, bind('maxWidth'))),
+					el(Toggle, Object.assign({ label: __('Balance heading lines', 'bigspy-ai-theme-wp') }, bind('balance', true))),
 					el(Select, Object.assign({ label: __('Font weight', 'bigspy-ai-theme-wp'), options: { '': __('Default', 'bigspy-ai-theme-wp'), '300': '300', '400': '400', '500': '500', '600': '600', '700': '700', '800': '800', '900': '900' } }, bind('weight'))),
 					el(Text, Object.assign({ label: __('Link (URL)', 'bigspy-ai-theme-wp'), type: 'url' }, bind('link')))
 				),

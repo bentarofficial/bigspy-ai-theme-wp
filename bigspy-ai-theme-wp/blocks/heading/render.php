@@ -19,6 +19,10 @@ $link  = esc_url( $a['link'] ?? '' );
 $style = bst_style_vars(
 	array(
 		'--bs-heading-size'   => ! empty( $a['size'] ) ? bst_block_num( $a, 'size', 0, 10, 160 ) . 'px' : '',
+		'--bs-heading-size-tablet' => ! empty( $a['sizeTablet'] ) ? bst_block_num( $a, 'sizeTablet', 0, 10, 160 ) . 'px' : '',
+		'--bs-heading-size-mobile' => ! empty( $a['sizeMobile'] ) ? bst_block_num( $a, 'sizeMobile', 0, 10, 160 ) . 'px' : '',
+		'--bs-heading-leading' => ! empty( $a['lineHeight'] ) ? bst_block_num( $a, 'lineHeight', 0, 0.8, 2.5 ) : '',
+		'--bs-heading-max' => ! empty( $a['maxWidth'] ) ? bst_block_num( $a, 'maxWidth', 0, 200, 1600 ) . 'px' : '',
 		'--bs-heading-color'  => bst_block_color( $a, 'color' ),
 		'--bs-heading-weight' => bst_choice( (string) ( $a['weight'] ?? '' ), array( '', '300', '400', '500', '600', '700', '800', '900' ), '' ),
 	)
@@ -27,6 +31,6 @@ $style = bst_style_vars(
 printf(
 	'<%1$s %2$s>%3$s</%1$s>',
 	esc_html( $tag ),
-	get_block_wrapper_attributes( array( 'class' => 'bs-heading' . ( $align ? ' has-text-align-' . $align : '' ), 'style' => $style ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	get_block_wrapper_attributes( array( 'class' => 'bs-heading' . ( ! empty( $a['balance'] ) ? ' bs-heading--balanced' : '' ) . ( $align ? ' has-text-align-' . $align : '' ), 'style' => $style ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$link ? '<a href="' . $link . '">' . $text . '</a>' : $text // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 );

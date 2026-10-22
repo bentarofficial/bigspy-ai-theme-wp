@@ -1529,11 +1529,26 @@ input[type="submit"]:hover,
 .bs-heading {
 	color: var(--bs-heading-color, var(--bs-heading));
 	font-weight: var(--bs-heading-weight, var(--bs-fw-heading));
+	max-width: var(--bs-heading-max, none);
+	overflow-wrap: break-word;
 }
 
+.bs-heading[style*="--bs-heading-leading"] { line-height: var(--bs-heading-leading); }
+.bs-heading--balanced { text-wrap: balance; }
+.bs-heading.has-text-align-center { margin-inline: auto; }
+.bs-heading.has-text-align-right { margin-left: auto; }
+
 /* Custom size only when set, otherwise the H1–H6 size from the Customizer applies. */
-.bs-heading[style*="--bs-heading-size"] {
+.bs-heading[style*="--bs-heading-size:"] {
 	font-size: var(--bs-heading-size);
+}
+
+@media (max-width: 849px) {
+	.bs-heading[style*="--bs-heading-size-tablet"] { font-size: var(--bs-heading-size-tablet); }
+}
+@media (max-width: 549px) {
+	.bs-heading[style*="--bs-heading-size-mobile"],
+	.bs-heading[style*="--bs-heading-size-tablet"] { font-size: var(--bs-heading-size-mobile, var(--bs-heading-size-tablet)); }
 }
 
 .bs-heading a {

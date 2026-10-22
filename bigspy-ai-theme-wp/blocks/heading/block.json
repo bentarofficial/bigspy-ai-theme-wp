@@ -13,6 +13,11 @@
 		"tag": { "type": "string", "default": "h2" },
 		"align": { "type": "string", "default": "" },
 		"size": { "type": "number", "default": 0 },
+		"sizeTablet": { "type": "number", "default": 0 },
+		"sizeMobile": { "type": "number", "default": 0 },
+		"lineHeight": { "type": "number", "default": 0 },
+		"maxWidth": { "type": "number", "default": 0 },
+		"balance": { "type": "boolean", "default": false },
 		"weight": { "type": "string", "default": "" },
 		"color": { "type": "string", "default": "" },
 		"link": { "type": "string", "default": "" }

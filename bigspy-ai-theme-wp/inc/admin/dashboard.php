@@ -354,3 +354,22 @@ function bst_activation_notice() {
 	}
 }
 add_action( 'admin_notices', 'bst_activation_notice' );
+
+/** Explain why theme elements are unavailable without changing editor preferences. */
+function bst_classic_editor_notice() {
+	if ( ! current_user_can( 'manage_options' ) || ! class_exists( 'Classic_Editor' ) ) {
+		return;
+	}
+	$screen = get_current_screen();
+	if ( ! $screen || ! in_array( $screen->base, array( 'post', 'edit', 'appearance_page_bigspy-ai-theme-wp' ), true ) ) {
+		return;
+	}
+	if ( 'classic' !== get_option( 'classic-editor-replace', 'classic' ) ) {
+		return;
+	}
+	echo '<div class="notice notice-info"><p>';
+	echo esc_html__( 'BIGSPY elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually.', 'bigspy-ai-theme-wp' );
+	echo ' <a href="' . esc_url( admin_url( 'options-writing.php#classic-editor-options' ) ) . '">' . esc_html__( 'Writing settings', 'bigspy-ai-theme-wp' ) . '</a>';
+	echo '</p></div>';
+}
+add_action( 'admin_notices', 'bst_classic_editor_notice' );
