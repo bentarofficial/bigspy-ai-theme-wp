@@ -391,6 +391,11 @@
 				cmd(el('span', { className: 'bst-fb-align bst-fb-align--justify' }), __('Justify', 'bigspy-ai-theme-wp'), 'justifyFull'),
 				sep(5),
 				btn('🔗', __('Insert link', 'bigspy-ai-theme-wp'), link),
+				el(be.MediaUploadCheck, { key: 'img' }, el(be.MediaUpload, {
+					allowedTypes: ['image'],
+					onSelect: function (m) { insertImageInto(getEditor(), m); },
+					render: function (o) { return btn('🖼', __('Insert image (click it, then drag its corner to resize)', 'bigspy-ai-theme-wp'), o.open); }
+				})),
 				cmd('⛓̸', __('Remove link', 'bigspy-ai-theme-wp'), 'unlink'),
 				cmd('“ ”', __('Quote', 'bigspy-ai-theme-wp'), 'formatBlock', 'blockquote'),
 				cmd('—', __('Horizontal line', 'bigspy-ai-theme-wp'), 'insertHorizontalRule'),
