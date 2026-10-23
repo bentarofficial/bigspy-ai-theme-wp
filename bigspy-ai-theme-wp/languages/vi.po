@@ -1463,6 +1463,9 @@ msgstr "Công chứng, sang tên và nhận bàn giao."
 msgid "Nothing matched your search. Please try different keywords."
 msgstr "Không có kết quả phù hợp. Vui lòng thử từ khóa khác."
 
+msgid "Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title."
+msgstr "Tắt: trang không tự in tiêu đề, bạn tự đặt H1 bằng khối Tiêu đề. Bài viết, chuyên mục và cửa hàng vẫn hiện tiêu đề."
+
 msgid "Office skills"
 msgstr "Tin học văn phòng"
 
@@ -1912,6 +1915,9 @@ msgstr "Cửa hàng"
 
 msgid "Show maintenance screen to visitors"
 msgstr "Hiển thị màn hình bảo trì cho khách"
+
+msgid "Show the page name as H1 on pages"
+msgstr "Dùng tên trang làm thẻ H1 trên các trang"
 
 msgid "Shuttle to project viewings"
 msgstr "Xe đưa đón xem dự án"

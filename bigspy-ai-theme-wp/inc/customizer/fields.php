@@ -214,6 +214,7 @@ function bst_customizer_fields() {
 			array( 'id' => 'page_sidebar', 'section' => 'bst_layout_site', 'type' => 'select', 'label' => __( 'Default sidebar on pages', 'bigspy-ai-theme-wp' ), 'choices' => $sidebar ),
 
 			array( 'id' => 'title_bar_style', 'section' => 'bst_title_bar', 'type' => 'radio', 'label' => __( 'Page title style', 'bigspy-ai-theme-wp' ), 'choices' => array( 'simple' => __( 'Simple (inside content)', 'bigspy-ai-theme-wp' ), 'bar' => __( 'Full-width title bar', 'bigspy-ai-theme-wp' ), 'none' => __( 'Hidden', 'bigspy-ai-theme-wp' ) ) ),
+			array( 'id' => 'page_title_h1', 'section' => 'bst_title_bar', 'type' => 'checkbox', 'label' => __( 'Show the page name as H1 on pages', 'bigspy-ai-theme-wp' ), 'description' => __( 'Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title.', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'title_bar_bg', 'section' => 'bst_title_bar', 'type' => 'color', 'label' => __( 'Title bar background', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'title_bar_color', 'section' => 'bst_title_bar', 'type' => 'color', 'label' => __( 'Title bar text color', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'title_bar_image', 'section' => 'bst_title_bar', 'type' => 'image', 'label' => __( 'Title bar background image', 'bigspy-ai-theme-wp' ) ),

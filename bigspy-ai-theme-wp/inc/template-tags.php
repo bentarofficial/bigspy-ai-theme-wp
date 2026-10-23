@@ -68,6 +68,9 @@ function bst_show_title() {
 		$show = false;
 	} elseif ( is_page_template( array( 'templates/full-width.php', 'templates/blank.php' ) ) ) {
 		$show = false;
+	} elseif ( is_page() && ! bst_mod( 'page_title_h1' ) && ! ( function_exists( 'is_woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) ) {
+		// Page names are only names: the H1 is whatever heading the user puts in the content (like the homepage).
+		$show = false;
 	} elseif ( '1' === bst_post_option( 'hide_title' ) ) {
 		$show = false;
 	} else {
