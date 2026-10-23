@@ -94,3 +94,6 @@ a {
 .bst-col-resizer.is-dragging .bst-col-resizer__badge { padding: 5px 10px; font-size: 13px; }
 .bs-row:has(.bst-col-resizer.is-dragging) { background-image: repeating-linear-gradient(90deg, rgba(56,88,233,.08) 0 calc(100% / 12 - 1px), rgba(56,88,233,.35) calc(100% / 12 - 1px) calc(100% / 12)); }
 .bs-row:has(.bst-col-resizer.is-dragging), .bs-row:has(.bst-col-resizer.is-dragging) * { cursor: col-resize !important; user-select: none; }
+
+/* Accordion question tag badge (1.49.1) */
+.bst-acc-tag { margin-left: auto; margin-right: 8px; padding: 1px 6px; font: 600 10px/1.5 system-ui, sans-serif; color: #757575; border: 1px solid #ddd; border-radius: 4px; }

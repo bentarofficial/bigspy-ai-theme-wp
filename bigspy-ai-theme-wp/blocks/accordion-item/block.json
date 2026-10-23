@@ -18,6 +18,10 @@
 		"open": {
 			"type": "boolean",
 			"default": false
+		},
+		"titleTag": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

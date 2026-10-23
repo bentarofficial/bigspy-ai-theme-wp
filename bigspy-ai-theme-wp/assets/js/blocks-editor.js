@@ -1026,7 +1026,7 @@
 					el(Toggle, Object.assign({ label: __('Add FAQ schema (Google rich results)', 'bigspy-ai-theme-wp'), help: __('Turn off if an SEO plugin already outputs FAQ schema for this page.', 'bigspy-ai-theme-wp') }, bind('faqSchema', true))),
 					el(Toggle, Object.assign({ label: __('Smooth open / close animation', 'bigspy-ai-theme-wp') }, bind('smooth', true))),
 					el(Toggle, Object.assign({ label: __('Number the items (01, 02…)', 'bigspy-ai-theme-wp') }, bind('numbered', true))),
-					el(Select, Object.assign({ label: __('Title tag (SEO)', 'bigspy-ai-theme-wp'), options: { div: __('Normal text', 'bigspy-ai-theme-wp'), h2: 'H2', h3: 'H3', h4: 'H4' } }, bind('titleTag')))
+					el(Select, Object.assign({ label: __('Question tag for all items (SEO)', 'bigspy-ai-theme-wp'), help: __('Each item can override it in its own settings.', 'bigspy-ai-theme-wp'), options: { div: __('Normal text (div)', 'bigspy-ai-theme-wp'), p: __('Paragraph (p)', 'bigspy-ai-theme-wp'), h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6' } }, bind('titleTag')))
 				),
 				el(Panel, { title: __('Icon', 'bigspy-ai-theme-wp') },
 					sliderChoice(props, __('Icon', 'bigspy-ai-theme-wp'), 'iconStyle', [['chevron', '⌄ ' + __('Chevron', 'bigspy-ai-theme-wp')], ['plus', '+ ' + __('Plus', 'bigspy-ai-theme-wp')], ['circle', '⊕ ' + __('Circle', 'bigspy-ai-theme-wp')], ['arrow', '→ ' + __('Arrow', 'bigspy-ai-theme-wp')], ['none', __('None', 'bigspy-ai-theme-wp')]]),
@@ -1056,12 +1056,14 @@
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Item', 'bigspy-ai-theme-wp') },
-					el(Toggle, { label: __('Open by default', 'bigspy-ai-theme-wp'), checked: a.open, onChange: function (v) { props.setAttributes({ open: v }); } })
+					el(Toggle, { label: __('Open by default', 'bigspy-ai-theme-wp'), checked: a.open, onChange: function (v) { props.setAttributes({ open: v }); } }),
+					el(c.SelectControl, { label: __('Question tag (SEO)', 'bigspy-ai-theme-wp'), help: __('Same as accordion = the tag set on the Accordion block.', 'bigspy-ai-theme-wp'), value: a.titleTag || '', options: [{ value: '', label: __('Same as accordion', 'bigspy-ai-theme-wp') + (props.context && props.context['bst/accordionTitleTag'] ? ' (' + props.context['bst/accordionTitleTag'].toUpperCase() + ')' : '') }, { value: 'div', label: __('Normal text (div)', 'bigspy-ai-theme-wp') }, { value: 'p', label: __('Paragraph (p)', 'bigspy-ai-theme-wp') }, { value: 'h2', label: 'H2' }, { value: 'h3', label: 'H3' }, { value: 'h4', label: 'H4' }, { value: 'h5', label: 'H5' }, { value: 'h6', label: 'H6' }], onChange: function (v) { props.setAttributes({ titleTag: v }); }, __nextHasNoMarginBottom: true })
 				)
 			),
 			el('div', blockProps,
 				el('div', { className: 'bs-accordion__title' },
 					el(RichText, { tagName: 'span', className: 'bs-accordion__text', value: a.title, placeholder: __('Question / title', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ title: v }); } }),
+					el('span', { className: 'bst-acc-tag', title: __('Question tag', 'bigspy-ai-theme-wp') }, (a.titleTag || (props.context && props.context['bst/accordionTitleTag']) || 'div').toUpperCase()),
 					el('span', { className: 'bs-accordion__icon', 'aria-hidden': true, onClick: function () { props.setAttributes({ open: !a.open }); } }, el(B.Icon, { name: 'chevron-down', size: 18 }))
 				),
 				el('div', innerProps)
