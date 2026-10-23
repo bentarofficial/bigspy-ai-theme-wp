@@ -368,6 +368,8 @@
 			return btn(label, title, function () { exec(command, value); });
 		};
 		var sep = function (k) { return el('span', { key: 'sep' + k, className: 'bst-format-bar__sep' }); };
+		var ic = function (name) { return el('span', { className: 'dashicons dashicons-' + name, 'aria-hidden': true }); };
+		var group = function (k, kids) { return el('span', { key: 'g' + k, className: 'bst-format-bar__group' }, kids); };
 		var select = function (key, title, options, onPick) {
 			return el('select', {
 				key: key, className: 'bst-format-bar__select', title: title, 'aria-label': title, value: '',
@@ -425,53 +427,65 @@
 
 		return el('div', { className: 'bst-format-bar', role: 'toolbar', 'aria-label': __('Text formatting', 'bigspy-ai-theme-wp') },
 			el('div', { className: 'bst-format-bar__row' },
-				select('block', __('Paragraph format', 'bigspy-ai-theme-wp'), [['', __('Format', 'bigspy-ai-theme-wp')], ['p', __('Paragraph', 'bigspy-ai-theme-wp')], ['h1', 'Heading 1'], ['h2', 'Heading 2'], ['h3', 'Heading 3'], ['h4', 'Heading 4'], ['h5', 'Heading 5'], ['h6', 'Heading 6'], ['blockquote', __('Quote', 'bigspy-ai-theme-wp')], ['pre', __('Preformatted', 'bigspy-ai-theme-wp')]], function (v) { if (v) { exec('formatBlock', v); } }),
-				select('font', __('Font family', 'bigspy-ai-theme-wp'), FB_FONTS, function (v) { wrapStyle('fontFamily', v); }),
-				select('size', __('Font size', 'bigspy-ai-theme-wp'), FB_SIZES.map(function (s) { return [s, s ? s + 'px' : __('Size', 'bigspy-ai-theme-wp')]; }), function (v) { wrapStyle('fontSize', v ? v + 'px' : ''); }),
-				sep(1),
-				cmd(el('b', null, 'B'), __('Bold', 'bigspy-ai-theme-wp'), 'bold'),
-				cmd(el('i', null, 'I'), __('Italic', 'bigspy-ai-theme-wp'), 'italic'),
-				cmd(el('u', null, 'U'), __('Underline', 'bigspy-ai-theme-wp'), 'underline'),
-				cmd(el('s', null, 'S'), __('Strikethrough', 'bigspy-ai-theme-wp'), 'strikeThrough'),
-				cmd(el('span', null, 'x', el('sup', null, '2')), __('Superscript', 'bigspy-ai-theme-wp'), 'superscript'),
-				cmd(el('span', null, 'x', el('sub', null, '2')), __('Subscript', 'bigspy-ai-theme-wp'), 'subscript'),
-				sep(2),
-				color('fore', __('Text color', 'bigspy-ai-theme-wp'), 'A', 'foreColor'),
-				color('back', __('Highlight color', 'bigspy-ai-theme-wp'), '▇', 'hiliteColor'),
-				sep(3),
-				cmd('↶', __('Undo', 'bigspy-ai-theme-wp'), 'undo'),
-				cmd('↷', __('Redo', 'bigspy-ai-theme-wp'), 'redo')
+				group(1, [
+					select('block', __('Paragraph format', 'bigspy-ai-theme-wp'), [['', __('Paragraph style', 'bigspy-ai-theme-wp')], ['p', __('Paragraph', 'bigspy-ai-theme-wp')], ['h1', 'Heading 1'], ['h2', 'Heading 2'], ['h3', 'Heading 3'], ['h4', 'Heading 4'], ['h5', 'Heading 5'], ['h6', 'Heading 6'], ['blockquote', __('Quote', 'bigspy-ai-theme-wp')], ['pre', __('Preformatted', 'bigspy-ai-theme-wp')]], function (v) { if (v) { exec('formatBlock', v); } }),
+					select('font', __('Font family', 'bigspy-ai-theme-wp'), FB_FONTS, function (v) { wrapStyle('fontFamily', v); }),
+					select('size', __('Font size', 'bigspy-ai-theme-wp'), FB_SIZES.map(function (s) { return [s, s ? s + 'px' : __('Size', 'bigspy-ai-theme-wp')]; }), function (v) { wrapStyle('fontSize', v ? v + 'px' : ''); })
+				]),
+				group(2, [
+					cmd(ic('editor-bold'), __('Bold', 'bigspy-ai-theme-wp'), 'bold'),
+					cmd(ic('editor-italic'), __('Italic', 'bigspy-ai-theme-wp'), 'italic'),
+					cmd(ic('editor-underline'), __('Underline', 'bigspy-ai-theme-wp'), 'underline'),
+					cmd(ic('editor-strikethrough'), __('Strikethrough', 'bigspy-ai-theme-wp'), 'strikeThrough'),
+					cmd(el('span', { className: 'bst-fb-txt' }, 'x', el('sup', null, '2')), __('Superscript', 'bigspy-ai-theme-wp'), 'superscript'),
+					cmd(el('span', { className: 'bst-fb-txt' }, 'x', el('sub', null, '2')), __('Subscript', 'bigspy-ai-theme-wp'), 'subscript')
+				]),
+				group(3, [
+					color('fore', __('Text color', 'bigspy-ai-theme-wp'), ic('editor-textcolor'), 'foreColor'),
+					color('back', __('Highlight color', 'bigspy-ai-theme-wp'), ic('admin-customizer'), 'hiliteColor')
+				]),
+				group(4, [
+					cmd(ic('undo'), __('Undo', 'bigspy-ai-theme-wp'), 'undo'),
+					cmd(ic('redo'), __('Redo', 'bigspy-ai-theme-wp'), 'redo')
+				])
 			),
 			el('div', { className: 'bst-format-bar__row' },
-				cmd('• ≡', __('Bulleted list', 'bigspy-ai-theme-wp'), 'insertUnorderedList'),
-				cmd('1. ≡', __('Numbered list', 'bigspy-ai-theme-wp'), 'insertOrderedList'),
-				cmd('⇤', __('Decrease indent', 'bigspy-ai-theme-wp'), 'outdent'),
-				cmd('⇥', __('Increase indent', 'bigspy-ai-theme-wp'), 'indent'),
-				sep(4),
-				cmd(el('span', { className: 'bst-fb-align bst-fb-align--left' }), __('Align left', 'bigspy-ai-theme-wp'), 'justifyLeft'),
-				cmd(el('span', { className: 'bst-fb-align bst-fb-align--center' }), __('Align center', 'bigspy-ai-theme-wp'), 'justifyCenter'),
-				cmd(el('span', { className: 'bst-fb-align bst-fb-align--right' }), __('Align right', 'bigspy-ai-theme-wp'), 'justifyRight'),
-				cmd(el('span', { className: 'bst-fb-align bst-fb-align--justify' }), __('Justify', 'bigspy-ai-theme-wp'), 'justifyFull'),
-				sep(5),
-				btn('🔗', __('Insert link', 'bigspy-ai-theme-wp'), link),
-				el(be.MediaUploadCheck, { key: 'img' }, el(be.MediaUpload, {
-					allowedTypes: ['image'],
-					onSelect: function (m) { insertImageInto(getEditor(), m); },
-					render: function (o) { return btn('🖼', __('Insert image (click it, then drag its corner to resize)', 'bigspy-ai-theme-wp'), o.open); }
-				})),
-				cmd('⛓̸', __('Remove link', 'bigspy-ai-theme-wp'), 'unlink'),
-				cmd('“ ”', __('Quote', 'bigspy-ai-theme-wp'), 'formatBlock', 'blockquote'),
-				cmd('—', __('Horizontal line', 'bigspy-ai-theme-wp'), 'insertHorizontalRule'),
-				btn('⊞', __('Insert table', 'bigspy-ai-theme-wp'), table),
-				el('span', { key: 'chars', className: 'bst-format-bar__chars' },
-					btn('Ω', __('Special characters', 'bigspy-ai-theme-wp'), function () { charsOpen[1](!charsOpen[0]); }),
-					charsOpen[0] ? el('div', { className: 'bst-format-bar__charmap' }, FB_CHARS.map(function (ch) {
-						return el('button', { key: ch, type: 'button', onMouseDown: function (e) { e.preventDefault(); exec('insertText', ch); charsOpen[1](false); } }, ch);
-					})) : null
-				),
-				sep(6),
-				btn('T̶', __('Paste as plain text', 'bigspy-ai-theme-wp') + (props.plainPaste ? ' ✓' : ''), function () { props.onTogglePlain(!props.plainPaste); }, { 'aria-pressed': !!props.plainPaste, className: 'bst-format-bar__btn' + (props.plainPaste ? ' is-active' : '') }),
-				cmd('✕', __('Clear formatting', 'bigspy-ai-theme-wp'), 'removeFormat')
+				group(5, [
+					cmd(ic('editor-ul'), __('Bulleted list', 'bigspy-ai-theme-wp'), 'insertUnorderedList'),
+					cmd(ic('editor-ol'), __('Numbered list', 'bigspy-ai-theme-wp'), 'insertOrderedList'),
+					cmd(ic('editor-outdent'), __('Decrease indent', 'bigspy-ai-theme-wp'), 'outdent'),
+					cmd(ic('editor-indent'), __('Increase indent', 'bigspy-ai-theme-wp'), 'indent')
+				]),
+				group(6, [
+					cmd(ic('editor-alignleft'), __('Align left', 'bigspy-ai-theme-wp'), 'justifyLeft'),
+					cmd(ic('editor-aligncenter'), __('Align center', 'bigspy-ai-theme-wp'), 'justifyCenter'),
+					cmd(ic('editor-alignright'), __('Align right', 'bigspy-ai-theme-wp'), 'justifyRight'),
+					cmd(ic('editor-justify'), __('Justify', 'bigspy-ai-theme-wp'), 'justifyFull')
+				]),
+				group(7, [
+					btn(ic('admin-links'), __('Insert link', 'bigspy-ai-theme-wp'), link),
+					cmd(ic('editor-unlink'), __('Remove link', 'bigspy-ai-theme-wp'), 'unlink'),
+					el(be.MediaUploadCheck, { key: 'img' }, el(be.MediaUpload, {
+						allowedTypes: ['image'],
+						onSelect: function (m) { insertImageInto(getEditor(), m); },
+						render: function (o) { return btn(ic('format-image'), __('Insert image (click it, then drag its corner to resize)', 'bigspy-ai-theme-wp'), o.open); }
+					}))
+				]),
+				group(8, [
+					cmd(ic('editor-quote'), __('Quote', 'bigspy-ai-theme-wp'), 'formatBlock', 'blockquote'),
+					cmd(ic('minus'), __('Horizontal line', 'bigspy-ai-theme-wp'), 'insertHorizontalRule'),
+					btn(ic('editor-table'), __('Insert table', 'bigspy-ai-theme-wp'), table),
+					el('span', { key: 'chars', className: 'bst-format-bar__chars' },
+						btn(ic('editor-customchar'), __('Special characters', 'bigspy-ai-theme-wp'), function () { charsOpen[1](!charsOpen[0]); }),
+						charsOpen[0] ? el('div', { className: 'bst-format-bar__charmap' }, FB_CHARS.map(function (ch) {
+							return el('button', { key: ch, type: 'button', onMouseDown: function (e) { e.preventDefault(); exec('insertText', ch); charsOpen[1](false); } }, ch);
+						})) : null
+					)
+				]),
+				group(9, [
+					btn(ic('editor-paste-text'), __('Paste as plain text', 'bigspy-ai-theme-wp') + (props.plainPaste ? ' ✓' : ''), function () { props.onTogglePlain(!props.plainPaste); }, { 'aria-pressed': !!props.plainPaste, className: 'bst-format-bar__btn' + (props.plainPaste ? ' is-active' : '') }),
+					cmd(ic('editor-removeformatting'), __('Clear formatting', 'bigspy-ai-theme-wp'), 'removeFormat')
+				])
 			)
 		);
 	}
