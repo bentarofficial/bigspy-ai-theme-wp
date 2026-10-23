@@ -2105,3 +2105,27 @@ a.page-numbers:hover {
 	:root { --bs-gutter-fluid: 16px; --bs-edge: 16px; }
 	.bs-header-is-fluid { --bs-edge: var(--bs-gutter-fluid); }
 }
+
+/* Sidebar & widgets options (1.43) */
+.bs-layout:not(.bs-layout--none) { gap: var(--bs-sb-gap, 40px); }
+.bs-layout__sidebar .widget + .widget { margin-top: var(--bs-sb-wgap, 32px); }
+.bs-layout__sidebar .widget { margin-bottom: 0; }
+.bs-layout__sidebar { font-size: var(--bs-sb-fs, inherit); }
+@media (min-width: 850px) {
+	.bs-sidebar-static .bs-layout__sidebar { position: static; }
+	.bs-sb-divider .bs-layout--right .bs-layout__sidebar { padding-left: calc(var(--bs-sb-gap, 40px) / 2); border-left: 1px solid var(--bs-border); }
+	.bs-sb-divider .bs-layout--left .bs-layout__sidebar { padding-right: calc(var(--bs-sb-gap, 40px) / 2); border-right: 1px solid var(--bs-border); }
+}
+.bs-sb-panel .bs-layout__sidebar { padding: 24px; background: var(--bs-light); border-radius: 16px; }
+.bs-sb-boxed .bs-layout__sidebar .widget { padding: 20px; border: 1px solid var(--bs-border); border-radius: 14px; background: var(--bs-content-bg, #fff); }
+.bs-sb-shadow .bs-layout__sidebar .widget { padding: 20px; border-radius: 14px; background: var(--bs-content-bg, #fff); box-shadow: 0 8px 26px rgba(15, 23, 42, .09); }
+.bs-layout__sidebar .widget-title { margin-top: 0; }
+.bs-sbt-underline .bs-layout__sidebar .widget-title::after { content: ""; display: block; width: 40px; height: 3px; margin-top: 8px; background: var(--bs-primary); border-radius: 3px; }
+.bs-sbt-line .bs-layout__sidebar .widget-title { padding-bottom: 10px; border-bottom: 1px solid var(--bs-border); }
+.bs-sbt-bar .bs-layout__sidebar .widget-title { padding-left: 12px; border-left: 4px solid var(--bs-primary); }
+.bs-sbt-filled .bs-layout__sidebar .widget-title { padding: 10px 14px; color: #fff; background: var(--bs-primary); border-radius: 8px; }
+.bs-sbt-upper .bs-layout__sidebar .widget-title { font-size: .85em; letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 849px) {
+	.bs-sbm-hide .bs-layout__sidebar:not(.bs-shop-sidebar) { display: none; }
+	.bs-sbm-above .bs-layout__sidebar:not(.bs-shop-sidebar) { order: -1; }
+}

@@ -468,11 +468,21 @@ function bst_sidebar_position() {
  * Widget area that belongs to the current request.
  */
 function bst_sidebar_id() {
+	// Own areas for single posts, archives and single products; empty ones fall back.
+	if ( function_exists( 'is_product' ) && is_product() ) {
+		return is_active_sidebar( 'sidebar-product' ) ? 'sidebar-product' : 'sidebar-shop';
+	}
 	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
 		return 'sidebar-shop';
 	}
 	if ( is_page() ) {
 		return 'sidebar-page';
+	}
+	if ( is_single() && is_active_sidebar( 'sidebar-single' ) ) {
+		return 'sidebar-single';
+	}
+	if ( ( is_category() || is_tag() || is_tax() || is_search() || is_date() || is_author() ) && is_active_sidebar( 'sidebar-archive' ) ) {
+		return 'sidebar-archive';
 	}
 	return 'sidebar-blog';
 }
