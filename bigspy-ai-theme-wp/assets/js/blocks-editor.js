@@ -427,44 +427,87 @@
 		var key = device === 'Tablet' ? 'spanTablet' : (device === 'Mobile' ? 'spanMobile' : 'spanDesktop');
 		var current = props.attributes[key] || props.attributes.spanDesktop;
 		var drag = wp.element.useState(null);
+		var ed = useDispatch('core/block-editor');
+		var info = useSelect(function (select) {
+			var store = select('core/block-editor');
+			var root = store.getBlockRootClientId(props.clientId);
+			var ids = store.getBlockOrder(root);
+			var i = ids.indexOf(props.clientId);
+			var next = ids[i + 1] ? store.getBlock(ids[i + 1]) : null;
+			return { next: next && next.name === 'bst/column' ? next : null };
+		}, [props.clientId]);
+		var spanOf = function (attrs) {
+			return attrs[key] || attrs.spanDesktop || 12;
+		};
 		var onDown = function (e) {
+			if (e.button !== 0) {
+				return;
+			}
 			e.preventDefault();
 			e.stopPropagation();
-			var col = e.currentTarget.closest('.bs-column');
+			var handle = e.currentTarget;
+			var col = handle.closest('.bs-column');
 			var row = col && col.parentElement;
 			if (!row) {
 				return;
 			}
+			try { handle.setPointerCapture(e.pointerId); } catch (err) {}
 			var rowRect = row.getBoundingClientRect();
 			var colRect = col.getBoundingClientRect();
 			var unit = rowRect.width / 12;
-			var win = col.ownerDocument.defaultView;
-			var last = current;
+			var start = current;
+			var next = info.next;
+			var nextStart = next ? spanOf(next.attributes) : 0;
+			// Elementor-style: the column on the right gives / takes the space (unless Alt is held or they don't share a line).
+			var pair = !!next && !e.altKey && start + nextStart <= 12;
+			var last = start;
 			var move = function (ev) {
 				var span = Math.max(1, Math.min(12, Math.round((ev.clientX - colRect.left) / unit)));
+				var nextSpan = 0;
+				if (pair && !ev.altKey) {
+					span = Math.min(span, start + nextStart - 1);
+					nextSpan = start + nextStart - span;
+				}
 				if (span !== last) {
 					last = span;
 					var o = {};
 					o[key] = span;
 					props.setAttributes(o);
+					if (nextSpan) {
+						var n = {};
+						n[key] = nextSpan;
+						ed.updateBlockAttributes(next.clientId, n);
+					}
 				}
-				drag[1](span);
+				drag[1](nextSpan ? span + ' | ' + nextSpan : String(span));
 			};
 			var up = function () {
-				win.removeEventListener('pointermove', move);
-				win.removeEventListener('pointerup', up);
+				handle.removeEventListener('pointermove', move);
+				handle.removeEventListener('pointerup', up);
+				handle.removeEventListener('pointercancel', up);
 				drag[1](null);
 			};
-			win.addEventListener('pointermove', move);
-			win.addEventListener('pointerup', up);
-			drag[1](current);
+			handle.addEventListener('pointermove', move);
+			handle.addEventListener('pointerup', up);
+			handle.addEventListener('pointercancel', up);
+			drag[1](String(start));
 		};
+		var label = drag[0] ? drag[0].split(' | ').map(function (n) { return n + '/12'; }).join('  ·  ') : current + '/12';
 		return el('div', {
 			className: 'bst-col-resizer' + (drag[0] ? ' is-dragging' : ''),
 			onPointerDown: onDown,
-			title: __('Drag to resize the column', 'bigspy-ai-theme-wp'),
+			onDoubleClick: function (e) {
+				e.stopPropagation();
+				var o = {};
+				o[key] = device === 'Desktop' ? 6 : 0;
+				props.setAttributes(o);
+			},
+			title: __('Drag to resize. The next column adjusts too; hold Alt to resize only this one. Double-click to reset.', 'bigspy-ai-theme-wp'),
 			contentEditable: false
-		}, el('span', { className: 'bst-col-resizer__badge' }, (drag[0] || current) + '/12' + (device !== 'Desktop' ? ' · ' + (device === 'Tablet' ? __('Tablet', 'bigspy-ai-theme-wp') : __('Mobile', 'bigspy-ai-theme-wp')) : '')));
+		},
+			el('span', { className: 'bst-col-resizer__grip', 'aria-hidden': true }),
+			el('span', { className: 'bst-col-resizer__badge' }, label + (device !== 'Desktop' ? ' · ' + (device === 'Tablet' ? __('Tablet', 'bigspy-ai-theme-wp') : __('Mobile', 'bigspy-ai-theme-wp')) : ''))
+		);
 	}
 
 	/* ================================================================ Row & Column */
