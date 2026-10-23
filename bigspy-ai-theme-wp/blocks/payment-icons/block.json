@@ -1,0 +1,58 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/payment-icons",
+	"title": "Payment icons",
+	"category": "bigspy",
+	"icon": "money-alt",
+	"description": "Accepted payment methods: cards, e-wallets, bank transfer, COD.",
+	"keywords": [
+		"payment",
+		"visa",
+		"momo",
+		"vnpay",
+		"cod",
+		"bank"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"methods": {
+			"type": "array",
+			"default": [
+				"visa",
+				"mastercard",
+				"momo",
+				"vnpay",
+				"zalopay",
+				"bank",
+				"cod"
+			]
+		},
+		"style": {
+			"type": "string",
+			"default": "color"
+		},
+		"size": {
+			"type": "number",
+			"default": 36
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-blocks-extra",
+	"render": "file:./render.php"
+}

@@ -12,7 +12,7 @@ function bst_block_names() {
 	// Shop blocks are always registered so pages keep working if WooCommerce is
 	// deactivated later; they only appear in the inserter while WooCommerce is active
 	// (see blocks-editor.js) and render nothing without it.
-	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'product-categories' );
+	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons' );
 }
 
 function bst_register_blocks() {
@@ -30,6 +30,19 @@ function bst_register_blocks() {
 		bst_asset_version( 'assets/js/blocks-editor.js' ),
 		true
 	);
+
+	wp_register_script(
+		'bst-blocks-extra',
+		BST_URI . '/assets/js/blocks-extra.js',
+		array( 'bst-editor-helpers', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data' ),
+		bst_asset_version( 'assets/js/blocks-extra.js' ),
+		true
+	);
+	$areas = array();
+	foreach ( (array) ( $GLOBALS['wp_registered_sidebars'] ?? array() ) as $sidebar ) {
+		$areas[] = array( 'id' => $sidebar['id'], 'name' => $sidebar['name'] );
+	}
+	wp_add_inline_script( 'bst-blocks-extra', 'window.bstWidgetAreas=' . wp_json_encode( $areas ) . ';', 'before' );
 
 	foreach ( bst_block_names() as $block ) {
 		register_block_type( BST_DIR . '/blocks/' . $block );

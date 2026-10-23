@@ -1,0 +1,68 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/hotspot",
+	"title": "Image hotspots",
+	"category": "bigspy",
+	"icon": "location",
+	"description": "Image with clickable points that open tooltips: products, rooms, features, maps.",
+	"keywords": [
+		"hotspot",
+		"pin",
+		"tooltip",
+		"lookbook"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"alt": {
+			"type": "string",
+			"default": ""
+		},
+		"points": {
+			"type": "array",
+			"default": []
+		},
+		"marker": {
+			"type": "string",
+			"default": "pulse"
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"trigger": {
+			"type": "string",
+			"default": "hover"
+		},
+		"radius": {
+			"type": "number",
+			"default": 12
+		},
+		"tipWidth": {
+			"type": "number",
+			"default": 240
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-blocks-extra",
+	"render": "file:./render.php"
+}

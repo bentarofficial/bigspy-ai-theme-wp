@@ -52,7 +52,7 @@
 					allowedTypes: ['image'],
 					value: props.id || 0,
 					onSelect: function (media) {
-						props.onChange({ id: media.id || 0, url: media.url || '' });
+						props.onChange({ id: media.id || 0, url: media.url || '', width: media.width || 0, height: media.height || 0, alt: media.alt || '' });
 					},
 					render: function (o) {
 						return el('div', { className: 'bst-media-picker' },
