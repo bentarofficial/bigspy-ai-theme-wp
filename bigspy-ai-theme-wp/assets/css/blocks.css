@@ -2976,3 +2976,32 @@ input[type="submit"]:hover,
 .bs-text img.alignright { float: right; margin: .3em 0 .6em 1.2em; }
 .bs-text img.aligncenter { display: block; margin: .6em auto; }
 .bs-text::after { content: ""; display: table; clear: both; }
+
+/* Form block success (1.51) */
+.bs-form__success { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 16px 18px; color: #065f46; background: #ecfdf3; border: 1px solid #a7f3d0; border-radius: var(--bs-form-radius, 10px); }
+.bs-form__success[hidden] { display: none; }
+.bs-form__success p { margin: 0; font-weight: 600; }
+.bs-form__success svg { flex: none; color: #059669; }
+
+/* Contact Form 7 anywhere (core CF7 block, shortcode, widgets): clean theme look (1.51) */
+.wpcf7-form { --cf7-r: var(--bs-btn-radius, 8px); }
+.wpcf7-form p { margin: 0 0 14px; }
+.wpcf7-form p > br, .wpcf7-form label > br { display: none; }
+.wpcf7-form label { display: block; margin-bottom: 4px; font-weight: 600; font-size: .95em; }
+.wpcf7-form .wpcf7-form-control-wrap { display: block; }
+.wpcf7-form :is(input[type=text], input[type=email], input[type=tel], input[type=url], input[type=number], input[type=date], select, textarea) { width: 100%; max-width: 100%; box-sizing: border-box; min-height: 46px; padding: 10px 14px; font: inherit; color: var(--bs-text); background: #fff; border: 1px solid var(--bs-border, #dcdfe4); border-radius: var(--cf7-r); transition: border-color .15s, box-shadow .15s; }
+.wpcf7-form textarea { min-height: 110px; resize: vertical; }
+.wpcf7-form :is(input, select, textarea):focus { outline: none; border-color: var(--bs-primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bs-primary) 18%, transparent); }
+.wpcf7-form .wpcf7-radio, .wpcf7-form .wpcf7-checkbox { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.wpcf7-form .wpcf7-list-item { margin: 0; }
+.wpcf7-form .wpcf7-list-item label { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-weight: 500; cursor: pointer; }
+.wpcf7-form :is(input[type=radio], input[type=checkbox]) { width: 18px; height: 18px; margin: 0; accent-color: var(--bs-primary); }
+.wpcf7-form :is(input[type=submit], button[type=submit]) { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 26px; color: #fff; font: 600 1rem/1 inherit; background: var(--bs-primary); border: 0; border-radius: var(--cf7-r); cursor: pointer; transition: filter .15s, transform .15s; }
+.wpcf7-form :is(input[type=submit], button[type=submit]):hover { filter: brightness(1.08); transform: translateY(-1px); }
+.wpcf7-form .wpcf7-spinner { margin: 0 10px; vertical-align: middle; }
+.wpcf7-form .wpcf7-not-valid-tip { margin-top: 4px; font-size: .85em; }
+.wpcf7-form .wpcf7-not-valid { border-color: #dc2626 !important; }
+.wpcf7 form .wpcf7-response-output { margin: 12px 0 0; padding: 12px 14px; border-width: 1px; border-radius: var(--cf7-r); font-size: .95em; }
+.wpcf7 form.sent .wpcf7-response-output { color: #065f46; background: #ecfdf3; border-color: #a7f3d0; }
+.wpcf7 form:is(.invalid, .unaccepted, .payment-required) .wpcf7-response-output { color: #92400e; background: #fffbeb; border-color: #fcd34d; }
+.wpcf7 form:is(.failed, .aborted, .spam) .wpcf7-response-output { color: #991b1b; background: #fef2f2; border-color: #fecaca; }

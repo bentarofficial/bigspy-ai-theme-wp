@@ -56,7 +56,30 @@ function bst_form_editor_data() {
 		'forms'         => bst_form_list(),
 		'formProviders' => (object) $providers,
 		'formNewUrl'    => $new_url,
+		'formEditUrl'   => admin_url( 'admin.php?page=wpcf7&action=edit&post=' ),
+		'formMail'      => bst_form_mail_status(),
 	);
 	wp_add_inline_script( 'bst-editor-helpers', 'Object.assign(window.bstEditor || {}, ' . wp_json_encode( $data ) . ');', 'after' );
 }
 add_action( 'enqueue_block_editor_assets', 'bst_form_editor_data' );
+
+/**
+ * How WordPress sends email on this site, for the Form block's "Sending" panel.
+ *
+ * @return array{smtp:bool,mailer:string,from:string,settings:string,test:string,install:string,redirectPlugin:bool}
+ */
+function bst_form_mail_status() {
+	$smtp   = defined( 'WPMS_PLUGIN_VER' ) || class_exists( 'WPMailSMTP\\Core' );
+	$opts   = get_option( 'wp_mail_smtp', array() );
+	$mailer = is_array( $opts ) && ! empty( $opts['mail']['mailer'] ) ? (string) $opts['mail']['mailer'] : '';
+	$from   = is_array( $opts ) && ! empty( $opts['mail']['from_email'] ) ? (string) $opts['mail']['from_email'] : (string) get_option( 'admin_email' );
+	return array(
+		'smtp'           => $smtp,
+		'mailer'         => $smtp ? ( $mailer ? $mailer : 'mail' ) : 'mail',
+		'from'           => $from,
+		'settings'       => admin_url( 'admin.php?page=wp-mail-smtp' ),
+		'test'           => admin_url( 'admin.php?page=wp-mail-smtp-tools&tab=test' ),
+		'install'        => admin_url( 'plugin-install.php?s=wp+mail+smtp&tab=search&type=term' ),
+		'redirectPlugin' => defined( 'WPCF7_PRO_REDIRECT_PLUGIN_VERSION' ) || class_exists( 'WPCF7r_Form' ),
+	);
+}

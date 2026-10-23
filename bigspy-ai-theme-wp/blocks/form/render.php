@@ -89,9 +89,22 @@ $image = '';
 if ( ! empty( $a['imageUrl'] ) ) {
 	$image = '<div class="bs-form__image" style="' . esc_attr( 'background-image:url(' . esc_url( $a['imageUrl'] ) . ')' ) . '" role="img" aria-label="' . esc_attr( (string) ( $a['imageAlt'] ?? '' ) ) . '"></div>';
 }
+$after = array( 'class' => implode( ' ', $classes ), 'style' => $vars );
+$redirect = esc_url( (string) ( $a['redirectUrl'] ?? '' ) );
+if ( $redirect ) {
+	$after['data-bs-redirect']       = $redirect;
+	$after['data-bs-redirect-delay'] = (string) bst_block_num( $a, 'redirectDelay', 0, 0, 30 );
+}
+if ( ! empty( $a['hideOnSuccess'] ) ) {
+	$after['data-bs-hide-on-success'] = '1';
+}
+$success = trim( (string) ( $a['successText'] ?? '' ) );
+if ( '' !== $success ) {
+	$note .= '<div class="bs-form__success" hidden>' . bst_icon( 'check', 22 ) . '<p>' . esc_html( $success ) . '</p></div>';
+}
 printf(
 	'<div %1$s>%2$s<div class="bs-form__inner">%3$s<div class="bs-form__body">%4$s</div>%5$s</div></div>',
-	get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ), 'style' => $vars ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	get_block_wrapper_attributes( $after ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$image, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$head, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$form, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

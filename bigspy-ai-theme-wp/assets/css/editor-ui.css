@@ -574,3 +574,12 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-format-bar__more { margin-left: auto; display: inline-flex; padding: 2px; background: #f6f7f7; border: 1px solid #e2e4e7; border-radius: 6px; }
 .bst-format-bar__more .components-button { min-width: 34px; height: 34px; justify-content: center; }
 .bst-format-bar__more .components-button svg { transform: rotate(90deg); }
+
+/* Form block "Sending" panel (1.51) */
+.bst-form-send__label { margin: 16px 0 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; color: #1e1e1e; }
+.bst-form-send__label:first-child { margin-top: 0; }
+.bst-form-send__row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px; }
+.bst-form-send__msg { margin: 8px 0 0; color: #007017; font-size: 12px; }
+.bst-form-send__smtp { display: grid; gap: 4px; padding: 10px 12px; font-size: 12px; border-radius: 6px; }
+.bst-form-send__smtp.is-ok { background: #edfaef; border: 1px solid #b8e6bf; }
+.bst-form-send__smtp.is-warn { background: #fcf9e8; border: 1px solid #f0d866; }

@@ -794,3 +794,25 @@
 		}
 	});
 })();
+
+/* Form block: redirect, thank-you message and hide-on-success after Contact Form 7 sends (1.51). */
+document.addEventListener('wpcf7mailsent', function (e) {
+	var box = e.target && e.target.closest && e.target.closest('.bs-form');
+	if (!box) {
+		return;
+	}
+	var ok = box.querySelector('.bs-form__success');
+	if (ok) {
+		ok.hidden = false;
+	}
+	if (box.getAttribute('data-bs-hide-on-success') === '1') {
+		var body = box.querySelector('.bs-form__body');
+		if (body) {
+			body.hidden = true;
+		}
+	}
+	var url = box.getAttribute('data-bs-redirect');
+	if (url) {
+		setTimeout(function () { window.location.href = url; }, parseFloat(box.getAttribute('data-bs-redirect-delay') || '0') * 1000);
+	}
+}, false);

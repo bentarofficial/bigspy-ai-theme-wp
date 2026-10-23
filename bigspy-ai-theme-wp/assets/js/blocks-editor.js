@@ -2562,6 +2562,69 @@
 		});
 	}
 
+
+	/*
+	 * "Sending & after submit" for the Form block: who receives the email (saved into the
+	 * Contact Form 7 form itself through its REST API), redirect / success message, and SMTP status.
+	 */
+	function FormSending(props) {
+		var a = props.attributes;
+		var T = 'bigspy-ai-theme-wp';
+		var mail = B.formMail || {};
+		var st = wp.element.useState({ loading: false, recipient: '', subject: '', loadedFor: 0, saving: false, msg: '' });
+		var s = st[0];
+		var set = function (o) { st[1](function (prev) { return Object.assign({}, prev, o); }); };
+		var isCf7 = (a.provider || 'cf7') === 'cf7' && a.formId;
+		wp.element.useEffect(function () {
+			if (!isCf7 || s.loadedFor === a.formId) {
+				return;
+			}
+			set({ loading: true, msg: '' });
+			wp.apiFetch({ path: '/contact-form-7/v1/contact-forms/' + a.formId }).then(function (f) {
+				var m = (f.properties && f.properties.mail) || {};
+				set({ loading: false, loadedFor: a.formId, recipient: m.recipient || '', subject: m.subject || '' });
+			}).catch(function () { set({ loading: false, loadedFor: a.formId, msg: __('Could not read the form. Open it in Contact Form 7 to edit the mail settings.', T) }); });
+		}, [a.formId, a.provider]);
+		var saveMail = function () {
+			set({ saving: true, msg: '' });
+			wp.apiFetch({ path: '/contact-form-7/v1/contact-forms/' + a.formId }).then(function (f) {
+				var props2 = f.properties || {};
+				var m = Object.assign({}, props2.mail || {}, { recipient: s.recipient, subject: s.subject });
+				return wp.apiFetch({ path: '/contact-form-7/v1/contact-forms/' + a.formId, method: 'POST', data: { title: f.title, locale: f.locale, form: props2.form, mail: m, mail_2: props2.mail_2, messages: props2.messages, additional_settings: props2.additional_settings } });
+			}).then(function () { set({ saving: false, msg: __('Saved to the form.', T) }); })
+				.catch(function (e) { set({ saving: false, msg: (e && e.message) || __('Could not save. Edit it in Contact Form 7.', T) }); });
+		};
+		var mailerNames = { mail: __('PHP mail (default, may land in spam)', T), smtp: 'Other SMTP', gmail: 'Google / Gmail', outlook: 'Microsoft 365 / Outlook', sendlayer: 'SendLayer', smtpcom: 'SMTP.com', sendinblue: 'Brevo', mailgun: 'Mailgun', sendgrid: 'SendGrid', postmark: 'Postmark', sparkpost: 'SparkPost', amazonses: 'Amazon SES', zoho: 'Zoho Mail', elasticemail: 'Elastic Email', mailjet: 'Mailjet', smtp2go: 'SMTP2GO', resend: 'Resend' };
+		var smtpOk = mail.smtp && mail.mailer && mail.mailer !== 'mail';
+		return el(Panel, { title: __('Sending & after submit', T), initialOpen: !!a.formId },
+			!a.formId ? el('p', { className: 'description' }, __('Choose a form first.', T)) : null,
+			isCf7 ? el(Fragment, null,
+				el('p', { className: 'bst-form-send__label' }, __('Email notification', T)),
+				s.loading ? el(c.Spinner) : el(Fragment, null,
+					el(c.TextControl, { label: __('Send to (comma for several)', T), value: s.recipient, placeholder: 'you@example.com', onChange: function (v) { set({ recipient: v }); }, help: __('[_site_admin_email] = the site admin email.', T), __nextHasNoMarginBottom: true }),
+					el(c.TextControl, { label: __('Email subject', T), value: s.subject, onChange: function (v) { set({ subject: v }); }, __nextHasNoMarginBottom: true }),
+					el('div', { className: 'bst-form-send__row' },
+						el(c.Button, { variant: 'secondary', isBusy: s.saving, disabled: s.saving, onClick: saveMail }, __('Save to form', T)),
+						el(c.ExternalLink, { href: (B.formEditUrl || '') + a.formId }, __('All form & mail settings', T))
+					)
+				),
+				s.msg ? el('p', { className: 'bst-form-send__msg' }, s.msg) : null
+			) : (a.formId ? el(c.ExternalLink, { href: B.formNewUrl }, __('Edit this form in WPForms', T)) : null),
+			el('p', { className: 'bst-form-send__label' }, __('After a successful send', T)),
+			el(c.TextControl, { label: __('Redirect to (URL, optional)', T), value: a.redirectUrl || '', placeholder: '/cam-on/', type: 'url', onChange: function (v) { props.setAttributes({ redirectUrl: v }); }, help: __('e.g. a thank-you page, useful for Google Ads / Analytics conversions.', T), __nextHasNoMarginBottom: true }),
+			a.redirectUrl ? el(c.RangeControl, { label: __('Wait before redirect (seconds)', T), min: 0, max: 30, value: a.redirectDelay || 0, onChange: function (v) { props.setAttributes({ redirectDelay: v || 0 }); }, __nextHasNoMarginBottom: true }) : null,
+			el(c.TextControl, { label: __('Thank-you message (optional)', T), value: a.successText || '', placeholder: __('Thanks! We will call you back shortly.', T), onChange: function (v) { props.setAttributes({ successText: v }); }, __nextHasNoMarginBottom: true }),
+			el(c.ToggleControl, { label: __('Hide the form after sending', T), checked: !!a.hideOnSuccess, onChange: function (v) { props.setAttributes({ hideOnSuccess: v }); }, __nextHasNoMarginBottom: true }),
+			el('p', { className: 'bst-form-send__label' }, __('Email delivery (SMTP)', T)),
+			el('div', { className: 'bst-form-send__smtp ' + (smtpOk ? 'is-ok' : 'is-warn') },
+				el('strong', null, smtpOk ? __('Sending through WP Mail SMTP', T) : (mail.smtp ? __('WP Mail SMTP is active but not set up', T) : __('No SMTP plugin', T))),
+				el('span', null, __('Mailer:', T) + ' ' + (mailerNames[mail.mailer] || mail.mailer || 'mail') + (mail.from ? ' · ' + __('From:', T) + ' ' + mail.from : '')),
+				mail.smtp ? el('span', { className: 'bst-form-send__links' }, el(c.ExternalLink, { href: mail.settings }, __('SMTP settings', T)), ' · ', el(c.ExternalLink, { href: mail.test }, __('Send a test email', T)))
+					: el(c.ExternalLink, { href: mail.install }, __('Install WP Mail SMTP (recommended)', T))
+			)
+		);
+	}
+
 	register('form', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
@@ -2628,6 +2691,7 @@
 					noPlugin ? el('p', null, __('Install and activate Contact Form 7 (or WPForms) to use this block.', 'bigspy-ai-theme-wp')) : pick,
 					el(c.ExternalLink, { href: B.formNewUrl }, noPlugin ? __('Install Contact Form 7', 'bigspy-ai-theme-wp') : __('Create a new form', 'bigspy-ai-theme-wp'))
 				),
+				!noPlugin ? el(FormSending, props) : null,
 				el(Panel, { title: __('Ready-made looks', 'bigspy-ai-theme-wp') },
 					el('p', { className: 'description' }, __('Click a look to apply it, then fine-tune below.', 'bigspy-ai-theme-wp')),
 					el('div', { className: 'bst-form-templates' }, FORM_TEMPLATES.map(function (t) {

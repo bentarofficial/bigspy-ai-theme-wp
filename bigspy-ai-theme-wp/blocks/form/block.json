@@ -190,6 +190,22 @@
 		"buttonIcon": {
 			"type": "boolean",
 			"default": false
+		},
+		"redirectUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"redirectDelay": {
+			"type": "number",
+			"default": 0
+		},
+		"hideOnSuccess": {
+			"type": "boolean",
+			"default": false
+		},
+		"successText": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

@@ -26,7 +26,7 @@ function bst_register_blocks() {
 	wp_register_script(
 		'bst-blocks-editor',
 		BST_URI . '/assets/js/blocks-editor.js',
-		array( 'bst-editor-helpers', 'bst-block-design', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data' ),
+		array( 'bst-editor-helpers', 'bst-block-design', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-api-fetch' ),
 		bst_asset_version( 'assets/js/blocks-editor.js' ),
 		true
 	);
