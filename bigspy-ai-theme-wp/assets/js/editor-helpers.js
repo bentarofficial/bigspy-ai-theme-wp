@@ -464,4 +464,55 @@
 	}, 'withBstPresetPanel');
 
 	wp.hooks.addFilter('editor.BlockEdit', 'bst/style-presets', withPresetPanel);
+
+	/* Pattern previews in modals (Choose a pattern, pattern explorer): fixed-height cards that
+	   scroll through the whole page on hover, like browsing the real site. */
+	(function () {
+		var bind = function (item) {
+			if (item.bstScroll) {
+				return;
+			}
+			item.bstScroll = true;
+			var box = item.querySelector('.block-editor-block-preview__container');
+			if (!box) {
+				item.bstScroll = false;
+				return;
+			}
+			box.classList.add('bst-pattern-scroll');
+			// WordPress renders at most 2000px of a pattern in its preview iframe; lift that cap
+			// and slide the iframe so the whole page scrolls by inside the fixed-height card.
+			var frame = function () {
+					var ifr = box.querySelector('iframe');
+				var m = inner && (inner.style.transform || '').match(/scale\(([\d.]+)\)/);
+				return ifr && inner ? { inner: inner, ifr: ifr, scale: m ? parseFloat(m[1]) : 1 } : null;
+			};
+			item.addEventListener('mouseenter', function () {
+				var f = frame();
+				if (!f) {
+					return;
+				}
+				f.inner.style.maxHeight = 'none';
+				f.inner.style.overflow = 'visible';
+				f.ifr.style.maxHeight = 'none';
+				var full = f.ifr.contentDocument ? f.ifr.contentDocument.documentElement.scrollHeight : f.ifr.offsetHeight;
+				f.ifr.style.height = full + 'px';
+				var dist = full - box.getBoundingClientRect().height / f.scale;
+				if (dist > 10) {
+					f.ifr.style.transition = 'translate ' + Math.min(16, Math.max(3, dist * f.scale / 120)) + 's linear';
+					f.ifr.style.translate = '0 ' + (-dist) + 'px';
+				}
+			});
+			item.addEventListener('mouseleave', function () {
+				var f = frame();
+				if (f) {
+					f.ifr.style.transition = 'translate .7s ease';
+					f.ifr.style.translate = '0 0';
+				}
+			});
+		};
+		var scan = function () {
+			document.querySelectorAll('.components-modal__content .block-editor-block-patterns-list__item').forEach(bind);
+		};
+		new MutationObserver(function () { scan(); }).observe(document.body, { childList: true, subtree: true });
+	})();
 })(window.wp);
