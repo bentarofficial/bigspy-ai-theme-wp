@@ -89,75 +89,21 @@
 			e.preventDefault();
 			e.currentTarget.ownerDocument.execCommand('insertText', false, text);
 		};
-		var imgState = wp.element.useState(null);
-		var tick = wp.element.useState(0);
-		var img = imgState[0];
-		var pick = function (e) {
-			var t = e.target;
-			if (t && t.tagName === 'IMG' && ref.current && ref.current.contains(t)) {
-				imgState[1](t);
-				tick[1](tick[0] + 1);
-			} else if (img) {
-				imgState[1](null);
+		wp.element.useEffect(function () {
+			var node = ref.current;
+			if (!node) {
+				return;
 			}
-		};
-		var commit = function () {
-			if (ref.current) {
-				props.onChange(ref.current.innerHTML);
-			}
-			tick[1](tick[0] + 1);
-		};
-		var box = null;
-		if (img && ref.current && ref.current.contains(img)) {
-			var wrap = ref.current.parentNode.getBoundingClientRect();
-			var r = img.getBoundingClientRect();
-			box = { left: r.left - wrap.left, top: r.top - wrap.top, width: r.width, height: r.height };
-		}
-		var startResize = function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-			var handle = e.currentTarget;
-			try { handle.setPointerCapture(e.pointerId); } catch (err) {}
-			var startX = e.clientX;
-			var startW = img.getBoundingClientRect().width;
-			var max = ref.current.getBoundingClientRect().width;
-			var move = function (ev) {
-				var w = Math.round(Math.max(16, Math.min(max, startW + (ev.clientX - startX))));
-				img.style.width = w + 'px';
-				img.style.height = 'auto';
-				img.removeAttribute('height');
-				img.setAttribute('width', w);
-				tick[1](function (n) { return n + 1; });
-			};
-			var up = function () {
-				handle.removeEventListener('pointermove', move);
-				handle.removeEventListener('pointerup', up);
-				commit();
-			};
-			handle.addEventListener('pointermove', move);
-			handle.addEventListener('pointerup', up);
-		};
-		var align = function (mode) {
-			img.classList.remove('alignleft', 'alignright', 'aligncenter');
-			img.style.float = '';
-			img.style.display = '';
-			img.style.margin = '';
-			if (mode) {
-				img.classList.add('align' + mode);
-			}
-			commit();
-		};
-		var setWidth = function (w) {
-			if (w) {
-				img.style.width = w;
-				img.style.height = 'auto';
-				img.removeAttribute('width');
-				img.removeAttribute('height');
-			} else {
-				img.style.width = '';
-			}
-			commit();
-		};
+			return attachImageTools(node, function (html) { props.onChange(html); }, {
+				drag: __('Drag to resize', 'bigspy-ai-theme-wp'),
+				left: __('Float left', 'bigspy-ai-theme-wp'),
+				center: __('Center', 'bigspy-ai-theme-wp'),
+				right: __('Float right', 'bigspy-ai-theme-wp'),
+				inline: __('Inline (no alignment)', 'bigspy-ai-theme-wp'),
+				original: __('Original size', 'bigspy-ai-theme-wp'),
+				remove: __('Remove image', 'bigspy-ai-theme-wp')
+			});
+		}, []);
 		return el('div', { className: 'bst-visual-wrap' },
 			el('div', {
 				ref: ref,
@@ -169,24 +115,141 @@
 				'aria-label': props.label,
 				onInput: sync,
 				onBlur: sync,
-				onPaste: paste,
-				onClick: pick,
-				onKeyDown: function () { if (img) { imgState[1](null); } }
-			}),
-			box ? el('div', { className: 'bst-img-resize', style: { left: box.left + 'px', top: box.top + 'px', width: box.width + 'px', height: box.height + 'px' }, contentEditable: false },
-				el('span', { className: 'bst-img-resize__size' }, Math.round(box.width) + ' × ' + Math.round(box.height)),
-				el('span', { className: 'bst-img-resize__handle', onPointerDown: startResize, title: __('Drag to resize', 'bigspy-ai-theme-wp') }),
-				el('div', { className: 'bst-img-resize__bar', onMouseDown: function (e) { e.preventDefault(); } },
-					el(c.Button, { size: 'small', icon: 'align-left', label: __('Float left', 'bigspy-ai-theme-wp'), onClick: function () { align('left'); } }),
-					el(c.Button, { size: 'small', icon: 'align-center', label: __('Center', 'bigspy-ai-theme-wp'), onClick: function () { align('center'); } }),
-					el(c.Button, { size: 'small', icon: 'align-right', label: __('Float right', 'bigspy-ai-theme-wp'), onClick: function () { align('right'); } }),
-					el(c.Button, { size: 'small', icon: 'editor-removeformatting', label: __('Inline (no alignment)', 'bigspy-ai-theme-wp'), onClick: function () { align(''); } }),
-					['25%', '50%', '100%'].map(function (w) { return el(c.Button, { key: w, size: 'small', onClick: function () { setWidth(w); } }, w); }),
-					el(c.Button, { size: 'small', icon: 'image-rotate', label: __('Original size', 'bigspy-ai-theme-wp'), onClick: function () { setWidth(''); } }),
-					el(c.Button, { size: 'small', icon: 'trash', isDestructive: true, label: __('Remove image', 'bigspy-ai-theme-wp'), onClick: function () { var i = img; imgState[1](null); i.parentNode.removeChild(i); commit(); } })
-				)
-			) : null
+				onPaste: paste
+			})
 		);
+	}
+
+	/*
+	 * Image tools for a contentEditable editor: click an image to get a resize
+	 * handle on its corner plus a small toolbar (align, quick widths, remove).
+	 * Plain DOM so it works inside the editor iframe whatever React does.
+	 */
+	function attachImageTools(node, commit, labels) {
+		var doc = node.ownerDocument;
+		var wrap = node.parentNode;
+		var img = null;
+		var box = doc.createElement('div');
+		box.className = 'bst-img-resize';
+		box.setAttribute('contenteditable', 'false');
+		box.hidden = true;
+		box.innerHTML = '<span class="bst-img-resize__size"></span><span class="bst-img-resize__handle" title="' + labels.drag + '"></span><div class="bst-img-resize__bar"></div>';
+		wrap.appendChild(box);
+		var size = box.querySelector('.bst-img-resize__size');
+		var handle = box.querySelector('.bst-img-resize__handle');
+		var bar = box.querySelector('.bst-img-resize__bar');
+		var place = function () {
+			if (!img || !node.contains(img)) {
+				hide();
+				return;
+			}
+			var w = wrap.getBoundingClientRect();
+			var r = img.getBoundingClientRect();
+			box.style.left = (r.left - w.left) + 'px';
+			box.style.top = (r.top - w.top) + 'px';
+			box.style.width = r.width + 'px';
+			box.style.height = r.height + 'px';
+			size.textContent = Math.round(r.width) + ' × ' + Math.round(r.height);
+		};
+		var hide = function () {
+			img = null;
+			box.hidden = true;
+		};
+		var show = function (target) {
+			img = target;
+			box.hidden = false;
+			place();
+		};
+		var save = function () {
+			commit(node.innerHTML);
+			place();
+		};
+		var tools = [
+			['⇤', labels.left, function () { setAlign('left'); }],
+			['↔', labels.center, function () { setAlign('center'); }],
+			['⇥', labels.right, function () { setAlign('right'); }],
+			['∅', labels.inline, function () { setAlign(''); }],
+			['25%', '25%', function () { setWidth('25%'); }],
+			['50%', '50%', function () { setWidth('50%'); }],
+			['100%', '100%', function () { setWidth('100%'); }],
+			['↺', labels.original, function () { setWidth(''); }],
+			['✕', labels.remove, function () { var i = img; hide(); i.parentNode.removeChild(i); commit(node.innerHTML); }]
+		];
+		tools.forEach(function (t) {
+			var b = doc.createElement('button');
+			b.type = 'button';
+			b.textContent = t[0];
+			b.title = t[1];
+			b.setAttribute('aria-label', t[1]);
+			b.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); });
+			b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); if (img) { t[2](); } });
+			bar.appendChild(b);
+		});
+		var setAlign = function (mode) {
+			img.classList.remove('alignleft', 'alignright', 'aligncenter');
+			if (mode) {
+				img.classList.add('align' + mode);
+			}
+			save();
+		};
+		var setWidth = function (w) {
+			img.removeAttribute('width');
+			img.removeAttribute('height');
+			img.style.width = w;
+			img.style.height = w ? 'auto' : '';
+			save();
+		};
+		var onPick = function (e) {
+			var t = e.target;
+			if (t && t.tagName === 'IMG' && node.contains(t)) {
+				show(t);
+			} else if (!box.contains(t)) {
+				hide();
+			}
+		};
+		handle.addEventListener('pointerdown', function (e) {
+			if (!img) {
+				return;
+			}
+			e.preventDefault();
+			e.stopPropagation();
+			try { handle.setPointerCapture(e.pointerId); } catch (err) {}
+			var startX = e.clientX;
+			var startW = img.getBoundingClientRect().width;
+			var max = node.getBoundingClientRect().width;
+			var move = function (ev) {
+				var w = Math.round(Math.max(16, Math.min(max, startW + ev.clientX - startX)));
+				img.removeAttribute('height');
+				img.setAttribute('width', w);
+				img.style.width = w + 'px';
+				img.style.height = 'auto';
+				place();
+			};
+			var up = function () {
+				handle.removeEventListener('pointermove', move);
+				handle.removeEventListener('pointerup', up);
+				handle.removeEventListener('pointercancel', up);
+				save();
+			};
+			handle.addEventListener('pointermove', move);
+			handle.addEventListener('pointerup', up);
+			handle.addEventListener('pointercancel', up);
+		});
+		node.addEventListener('mousedown', onPick);
+		node.addEventListener('click', onPick);
+		node.addEventListener('keydown', hide);
+		node.addEventListener('input', place);
+		doc.addEventListener('mousedown', function (e) { if (!node.contains(e.target) && !box.contains(e.target)) { hide(); } });
+		var win = doc.defaultView;
+		win.addEventListener('resize', place);
+		win.addEventListener('scroll', place, true);
+		return function () {
+			win.removeEventListener('resize', place);
+			win.removeEventListener('scroll', place, true);
+			if (box.parentNode) {
+				box.parentNode.removeChild(box);
+			}
+		};
 	}
 
 	/* Insert an image at the caret of a visual (contentEditable) editor. */

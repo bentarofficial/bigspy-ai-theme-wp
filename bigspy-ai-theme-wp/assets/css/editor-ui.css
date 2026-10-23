@@ -536,3 +536,9 @@
 .bst-typo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
 .bst-typo-grid--2 { grid-template-columns: 1fr 1fr; }
 .bst-typo-panel .components-select-control { margin-bottom: 10px; }
+
+/* Format bar (1.50.2): show every tool on one wide panel; hide it while the media library is open */
+.components-popover:has(.bst-format-bar) .components-popover__content { width: max-content; max-width: min(calc(100vw - 32px), 1100px); }
+.bst-format-bar__row { flex-wrap: nowrap !important; }
+@media (max-width: 1100px) { .bst-format-bar__row { flex-wrap: wrap !important; } }
+body.modal-open .components-popover:has(.bst-format-bar) { display: none !important; }
