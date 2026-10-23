@@ -24,35 +24,94 @@ function bst_block_presets() {
 	$hover     = '@media(hover:hover) and (prefers-reduced-motion:no-preference){';
 
 	$card_groups = function ( $part, $prefix ) use ( $t, $shadow_sm, $shadow_md, $shadow_lg, $hover ) {
+		$x = $part ? "& $part" : '&';
 		return array(
 			'shape'  => array( $t( 'Corners' ), true, array(
-				$prefix . '-r0'  => array( $t( 'Square' ), "& {$part}{border-radius:0}" ),
-				$prefix . '-r12' => array( $t( 'Soft' ), "& {$part}{border-radius:12px}" ),
-				$prefix . '-r20' => array( $t( 'Round' ), "& {$part}{border-radius:20px}" ),
-				$prefix . '-r32' => array( $t( 'Extra round' ), "& {$part}{border-radius:32px}" ),
+				$prefix . '-r0'  => array( $t( 'Square' ), "{$x}{border-radius:0}" ),
+				$prefix . '-r12' => array( $t( 'Soft' ), "{$x}{border-radius:12px}" ),
+				$prefix . '-r20' => array( $t( 'Round' ), "{$x}{border-radius:20px}" ),
+				$prefix . '-r32' => array( $t( 'Extra round' ), "{$x}{border-radius:32px}" ),
+			) ),
+			'frame'  => array( $t( 'Background & frame' ), true, array(
+				$prefix . '-wc'  => array( $t( 'White card' ), "{$x}{background:#fff;border:1px solid color-mix(in srgb,var(--bs-primary) 10%,#e6edf2)}" ),
+				$prefix . '-bd'  => array( $t( 'Thin border' ), "{$x}{border:1px solid var(--bs-border)}" ),
+				$prefix . '-bdp' => array( $t( 'Brand border' ), "{$x}{border:2px solid var(--bs-primary)}" ),
+				$prefix . '-bdt' => array( $t( 'Top accent' ), "{$x}{border-top:4px solid var(--bs-primary)}" ),
+				$prefix . '-bdl' => array( $t( 'Left accent (2nd color)' ), "{$x}{border-left:3px solid var(--bs-secondary,var(--bs-primary))}" ),
+				$prefix . '-bg'  => array( $t( 'Light background' ), "{$x}{background:var(--bs-light)}" ),
+				$prefix . '-note' => array( $t( 'Note (2nd color)' ), "{$x}{background:color-mix(in srgb,var(--bs-secondary,#f5cf4c) 14%,#fff);border-left:4px solid var(--bs-secondary,#f5cf4c);border-radius:0 14px 14px 0}" ),
+				$prefix . '-gl'  => array( $t( 'Glass' ), "{$x}{background:rgba(255,255,255,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.7)}" ),
+				$prefix . '-dk'  => array( $t( 'Dark' ), "{$x}{background:var(--bs-heading,#111827);color:#fff}{$x} :is(h1,h2,h3,h4,p,li){color:inherit}" ),
 			) ),
 			'shadow' => array( $t( 'Shadow' ), true, array(
-				$prefix . '-sh1' => array( $t( 'Light' ), "& {$part}{box-shadow:$shadow_sm}" ),
-				$prefix . '-sh2' => array( $t( 'Medium' ), "& {$part}{box-shadow:$shadow_md}" ),
-				$prefix . '-sh3' => array( $t( 'Deep' ), "& {$part}{box-shadow:$shadow_lg}" ),
-				$prefix . '-shc' => array( $t( 'Brand glow' ), "& {$part}{box-shadow:0 12px 32px -10px color-mix(in srgb,var(--bs-primary) 55%,transparent)}" ),
+				$prefix . '-sh0' => array( $t( 'Whisper' ), "{$x}{box-shadow:0 10px 32px rgba(17,66,96,.05)}" ),
+				$prefix . '-sh1' => array( $t( 'Light' ), "{$x}{box-shadow:$shadow_sm}" ),
+				$prefix . '-sh2' => array( $t( 'Medium' ), "{$x}{box-shadow:$shadow_md}" ),
+				$prefix . '-sh3' => array( $t( 'Deep' ), "{$x}{box-shadow:$shadow_lg}" ),
+				$prefix . '-shc' => array( $t( 'Brand glow' ), "{$x}{box-shadow:0 12px 32px -10px color-mix(in srgb,var(--bs-primary) 55%,transparent)}" ),
 			) ),
-			'frame'  => array( $t( 'Frame' ), true, array(
-				$prefix . '-bd'  => array( $t( 'Thin border' ), "& {$part}{border:1px solid var(--bs-border)}" ),
-				$prefix . '-bdp' => array( $t( 'Brand border' ), "& {$part}{border:2px solid var(--bs-primary)}" ),
-				$prefix . '-bdt' => array( $t( 'Top accent' ), "& {$part}{border-top:4px solid var(--bs-primary)}" ),
-				$prefix . '-bg'  => array( $t( 'Light background' ), "& {$part}{background:var(--bs-light)}" ),
-				$prefix . '-gl'  => array( $t( 'Glass' ), "& {$part}{background:rgba(255,255,255,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.7)}" ),
+			'pad'    => array( $t( 'Inner space' ), true, array(
+				$prefix . '-p16' => array( $t( 'Compact' ), "{$x}{padding:16px}" ),
+				$prefix . '-p26' => array( $t( 'Comfortable' ), "{$x}{padding:26px}@media(max-width:849px){{$x}{padding:22px}}" ),
+				$prefix . '-p40' => array( $t( 'Spacious' ), "{$x}{padding:40px}@media(max-width:849px){{$x}{padding:26px}}" ),
+				$prefix . '-pm'  => array( $t( 'Media card (image to the edge)' ), "{$x}{padding:16px 16px 24px}{$x}>:not(.bs-image):not(.bs-image-box){margin-inline:8px}{$x}>.bs-image{margin-bottom:22px}" ),
+			) ),
+			'layout' => array( $t( 'Layout' ), false, array(
+				$prefix . '-eq'  => array( $t( 'Equal height, buttons at bottom' ), "{$x}{height:100%;display:flex;flex-direction:column;box-sizing:border-box}{$x} .bs-buttons{margin-top:auto;padding-top:12px}" ),
+				$prefix . '-mut' => array( $t( 'Muted text' ), "{$x} .bs-text{color:color-mix(in srgb,var(--bs-text) 80%,#fff)}" ),
 			) ),
 			'hover'  => array( $t( 'On hover' ), true, array(
-				$prefix . '-hl' => array( $t( 'Lift' ), "$hover& {$part}{transition:transform .25s,box-shadow .25s}& $part:hover{transform:translateY(-5px);box-shadow:$shadow_md}}" ),
-				$prefix . '-hb' => array( $t( 'Brand border' ), "& {$part}{transition:border-color .2s}& $part:hover{border-color:var(--bs-primary)}" ),
-				$prefix . '-hs' => array( $t( 'Grow' ), "$hover& {$part}{transition:transform .25s}& $part:hover{transform:scale(1.03)}}" ),
+				$prefix . '-hl' => array( $t( 'Lift' ), "$hover{$x}{transition:transform .25s,box-shadow .25s}{$x}:hover{transform:translateY(-5px);box-shadow:$shadow_md}}" ),
+				$prefix . '-hls' => array( $t( 'Lift a little' ), "$hover{$x}{transition:transform .2s,box-shadow .2s}{$x}:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(17,66,96,.1)}}" ),
+				$prefix . '-hb' => array( $t( 'Brand border' ), "{$x}{transition:border-color .2s}{$x}:hover{border-color:var(--bs-primary)}" ),
+				$prefix . '-hs' => array( $t( 'Grow' ), "$hover{$x}{transition:transform .25s}{$x}:hover{transform:scale(1.03)}}" ),
 			) ),
 		);
 	};
 
 	return array(
+		'bst/section'     => array(
+			'bg'    => array( $t( 'Background' ), true, array(
+				'sec-soft'  => array( $t( 'Soft brand gradient' ), '&{background:linear-gradient(115deg,color-mix(in srgb,var(--bs-primary) 8%,#fff),color-mix(in srgb,var(--bs-primary) 3%,#fff))!important}' ),
+				'sec-light' => array( $t( 'Light' ), '&{background:var(--bs-light)!important}' ),
+				'sec-white' => array( $t( 'White' ), '&{background:#fff!important}' ),
+				'sec-brand' => array( $t( 'Brand gradient (white text)' ), '&{background:linear-gradient(135deg,var(--bs-primary),color-mix(in srgb,var(--bs-primary) 60%,#000))!important;color:#fff}& :is(h1,h2,h3,h4,p,li){color:inherit}' ),
+				'sec-dark'  => array( $t( 'Dark (white text)' ), '&{background:var(--bs-heading,#111827)!important;color:#fff}& :is(h1,h2,h3,h4,p,li){color:inherit}' ),
+				'sec-dots'  => array( $t( 'Dotted pattern' ), '&{background-image:radial-gradient(color-mix(in srgb,var(--bs-primary) 18%,transparent) 1px,transparent 1px)!important;background-size:18px 18px!important}' ),
+				'sec-warm'  => array( $t( 'Warm (2nd color tint)' ), '&{background:color-mix(in srgb,var(--bs-secondary,#f5cf4c) 12%,#fff)!important}' ),
+			) ),
+			'lines' => array( $t( 'Lines' ), false, array(
+				'sec-lb' => array( $t( 'Line at the bottom' ), '&{border-bottom:1px solid color-mix(in srgb,var(--bs-primary) 10%,#e3edf3)}' ),
+				'sec-lt' => array( $t( 'Line at the top' ), '&{border-top:1px solid color-mix(in srgb,var(--bs-primary) 10%,#e3edf3)}' ),
+				'sec-at' => array( $t( 'Brand bar at the top' ), '&{border-top:4px solid var(--bs-primary)}' ),
+			) ),
+			'title' => array( $t( 'Headings inside' ), false, array(
+				'sec-htight' => array( $t( 'Slightly tight headings' ), '& .bs-heading{letter-spacing:-.025em}' ),
+				'sec-hnarrow' => array( $t( 'Headings max 850px' ), '& .bs-heading{max-width:850px}' ),
+				'sec-hsm' => array( $t( 'Smaller headings on phones' ), '@media(max-width:549px){& .bs-heading{font-size:min(32px,1em)!important;overflow-wrap:normal}}' ),
+			) ),
+			'shape' => array( $t( 'Shape' ), true, array(
+				'sec-r24' => array( $t( 'Rounded box' ), '&{border-radius:24px;overflow:hidden}' ),
+				'sec-inset' => array( $t( 'Floating card' ), '&{margin-inline:clamp(12px,3vw,40px);border-radius:28px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(15,23,42,.25)}' ),
+			) ),
+		),
+		'bst/row'         => array(
+			'cols' => array( $t( 'Columns' ), false, array(
+				'row-mid'  => array( $t( 'Center columns vertically' ), '&{align-items:center}' ),
+				'row-gap20' => array( $t( 'Tighter gap on phones' ), '@media(max-width:549px){&{gap:20px}}' ),
+				'row-div'  => array( $t( 'Divider lines between columns' ), '@media(min-width:850px){&>.bs-column+.bs-column{border-left:1px solid var(--bs-border)}}' ),
+			) ),
+		),
+		'bst/buttons'     => array(
+			'align' => array( $t( 'Alignment' ), true, array(
+				'bts-end'  => array( $t( 'Right on desktop, left on phones' ), '&{justify-content:flex-end}@media(max-width:849px){&{justify-content:flex-start}}' ),
+				'bts-push' => array( $t( 'Pushed to the bottom of a card' ), '&{margin-top:auto;padding-top:12px}' ),
+			) ),
+			'gap'   => array( $t( 'Spacing' ), true, array(
+				'bts-g10' => array( $t( 'Close (10px)' ), '&{gap:10px}' ),
+				'bts-g24' => array( $t( 'Wide (24px)' ), '&{gap:24px}' ),
+			) ),
+		),
 		'bst/image'       => array(
 			'shape'  => array( $t( 'Corners' ), true, array(
 				'img-r12'  => array( $t( 'Soft' ), '& .bs-image__frame,& img{border-radius:12px}' ),
@@ -89,6 +148,19 @@ function bst_block_presets() {
 			) ),
 		),
 		'bst/banner'      => array(
+			'mobile' => array( $t( 'On phones' ), true, array(
+				'ban-mstack' => array( $t( 'Text on top, image below' ), '@media(max-width:549px){& .bs-banner__bg{top:auto;height:230px;bottom:0}& .bs-banner__img{object-position:78% 50%!important}& .bs-banner__content{padding:32px 22px 240px!important;align-items:flex-start}& .bs-banner__box{width:100%!important}& :is(h1,h2){font-size:30px!important;line-height:1.16}}' ),
+				'ban-mfull'  => array( $t( 'Text box full width' ), '@media(max-width:849px){& .bs-banner__box{width:100%!important}}' ),
+				'ban-mhalf'  => array( $t( 'Text box half width on tablets' ), '@media(max-width:849px) and (min-width:550px){& .bs-banner__box{width:52%!important}}' ),
+			) ),
+			'space'  => array( $t( 'Content spacing' ), true, array(
+				'ban-cwide' => array( $t( 'Site width, roomy' ), '& .bs-banner__content{max-width:1240px;margin:0 auto;padding:48px 40px}@media(max-width:849px){& .bs-banner__content{padding:36px 28px}}' ),
+				'ban-ctight' => array( $t( 'Tight' ), '& .bs-banner__content{padding:20px}' ),
+			) ),
+			'bg'     => array( $t( 'Background behind image' ), true, array(
+				'ban-bgl' => array( $t( 'Light' ), '&{background:var(--bs-light)}' ),
+				'ban-bgd' => array( $t( 'Dark' ), '&{background:var(--bs-heading,#111827)}' ),
+			) ),
 			'shape' => array( $t( 'Corners' ), true, array(
 				'ban-r16' => array( $t( 'Soft' ), '&{border-radius:16px;overflow:hidden}' ),
 				'ban-r28' => array( $t( 'Round' ), '&{border-radius:28px;overflow:hidden}' ),
@@ -172,6 +244,11 @@ function bst_block_presets() {
 		) ),
 		'bst/column'      => $card_groups( '', 'col' ),
 		'bst/accordion'   => array(
+			'width'  => array( $t( 'Width' ), true, array(
+				'acc-w700' => array( $t( 'Narrow (700px)' ), '&{max-width:700px}' ),
+				'acc-w900' => array( $t( 'Medium (900px)' ), '&{max-width:900px}' ),
+				'acc-wc'   => array( $t( 'Centered 900px' ), '&{max-width:900px;margin-inline:auto}' ),
+			) ),
 			'items'  => array( $t( 'Items' ), true, array(
 				'acc-cards' => array( $t( 'Separate cards' ), '& .bs-accordion__item{margin-bottom:12px;border:1px solid var(--bs-border);border-radius:12px;background:var(--bs-content-bg,#fff)}& .bs-accordion__title{padding:16px 20px}& .bs-accordion__content{padding:0 20px 18px}' ),
 				'acc-shadow' => array( $t( 'Shadow cards' ), "& .bs-accordion__item{margin-bottom:12px;border:0;border-radius:14px;background:#fff;box-shadow:$shadow_sm}& .bs-accordion__title{padding:16px 20px}& .bs-accordion__content{padding:0 20px 18px}" ),
@@ -187,6 +264,10 @@ function bst_block_presets() {
 			) ),
 		),
 		'bst/posts'       => array_merge( $card_groups( '.bs-card', 'post' ), array(
+			'cpad'  => array( $t( 'Card padding' ), true, array(
+				'post-p20' => array( $t( 'Comfortable (20px)' ), '& .bs-card{padding:20px}' ),
+				'post-p0'  => array( $t( 'None' ), '& .bs-card{padding:0}' ),
+			) ),
 			'image' => array( $t( 'Image' ), true, array(
 				'post-icontain' => array( $t( 'Show whole image' ), '& .bs-card__media img{object-fit:contain;background:var(--bs-light)}' ),
 				'post-izoom'    => array( $t( 'Zoom on hover' ), "& .bs-card__media{overflow:hidden}$hover& .bs-card__media img{transition:transform .5s}& .bs-card:hover .bs-card__media img{transform:scale(1.07)}}" ),
@@ -251,18 +332,28 @@ function bst_block_presets() {
 				'hd-mark'  => array( $t( 'Highlighter' ), '&{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--bs-secondary,var(--bs-primary)) 45%,transparent) 0);display:inline}' ),
 				'hd-grad'  => array( $t( 'Gradient text' ), '&{background:linear-gradient(90deg,var(--bs-primary),var(--bs-secondary,var(--bs-primary)));-webkit-background-clip:text;background-clip:text;color:transparent}' ),
 				'hd-side'  => array( $t( 'Side bar' ), '&{padding-left:16px;border-left:5px solid var(--bs-primary)}' ),
+				'hd-dot'   => array( $t( 'Brand dot before' ), '&::before{content:"";display:inline-block;width:.45em;height:.45em;margin-right:.4em;vertical-align:middle;background:var(--bs-primary);border-radius:50%}' ),
 			) ),
 			'text' => array( $t( 'Text' ), true, array(
 				'hd-balance' => array( $t( 'Balanced lines' ), '&{text-wrap:balance}' ),
 				'hd-tight'   => array( $t( 'Tight & bold' ), '&{letter-spacing:-.02em;font-weight:800}' ),
 				'hd-up'      => array( $t( 'Uppercase, spaced' ), '&{text-transform:uppercase;letter-spacing:.08em}' ),
+				'hd-tight2'  => array( $t( 'Slightly tight' ), '&{letter-spacing:-.025em}' ),
+				'hd-kicker'  => array( $t( 'Small label above a title' ), '&{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--bs-primary);margin-bottom:14px}' ),
 			) ),
 		),
 		'bst/text'        => array(
+			'role'  => array( $t( 'Role' ), true, array(
+				'tx-kicker'  => array( $t( 'Small label above a title' ), '&{font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--bs-primary);margin-bottom:14px!important}&>p{margin-bottom:0}' ),
+				'tx-caption' => array( $t( 'Photo caption (small, muted)' ), '&{font-size:13px;color:color-mix(in srgb,var(--bs-text) 65%,#fff)}' ),
+				'tx-muted'   => array( $t( 'Muted color' ), '&{color:color-mix(in srgb,var(--bs-text) 78%,#fff)}' ),
+			) ),
 			'read'  => array( $t( 'Reading' ), true, array(
 				'tx-airy'  => array( $t( 'Airy lines' ), '&{line-height:1.85}' ),
 				'tx-narrow' => array( $t( 'Comfortable width' ), '&{max-width:68ch}' ),
 				'tx-lead'  => array( $t( 'Lead paragraph' ), '&{font-size:1.2em;line-height:1.7;opacity:.9}' ),
+				'tx-intro' => array( $t( 'Intro under a title (muted, 740px)' ), '&{max-width:740px;color:color-mix(in srgb,var(--bs-text) 78%,#fff);margin-bottom:30px}' ),
+				'tx-n500'  => array( $t( 'Narrow (500px)' ), '&{max-width:500px}' ),
 			) ),
 			'links' => array( $t( 'Links' ), true, array(
 				'tx-ulink' => array( $t( 'Underlined links' ), '& a{text-decoration:underline;text-underline-offset:.2em}' ),
@@ -271,6 +362,7 @@ function bst_block_presets() {
 			'box'   => array( $t( 'Box' ), true, array(
 				'tx-quote' => array( $t( 'Quote box' ), '&{padding:20px 24px;background:var(--bs-light);border-left:4px solid var(--bs-primary);border-radius:12px}' ),
 				'tx-drop'  => array( $t( 'Drop cap' ), '&>p:first-child::first-letter{float:left;margin:.05em .12em 0 0;font-size:3.4em;line-height:.85;font-weight:800;color:var(--bs-primary)}' ),
+				'tx-note'  => array( $t( 'Note box (2nd color)' ), '&{padding:22px 26px;background:color-mix(in srgb,var(--bs-secondary,#f5cf4c) 14%,#fff);border-left:4px solid var(--bs-secondary,#f5cf4c);border-radius:0 14px 14px 0}@media(max-width:549px){&{padding:20px}}' ),
 			) ),
 		),
 	);
