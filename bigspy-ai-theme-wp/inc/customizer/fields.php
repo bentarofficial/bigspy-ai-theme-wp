@@ -101,7 +101,8 @@ function bst_customizer_fields() {
 		array( 'id' => 'header_layout', 'section' => 'bst_header_builder', 'type' => 'header_builder', 'label' => __( 'Header layout', 'bigspy-ai-theme-wp' ) ),
 
 		// Header general.
-		array( 'id' => 'header_full_width', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Full-width header', 'bigspy-ai-theme-wp' ) ),
+		array( 'id' => 'header_full_width', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Full-width header', 'bigspy-ai-theme-wp' ), 'description' => __( 'Logo, menu and the text of full-width banners / sections line up on the same side spacing.', 'bigspy-ai-theme-wp' ) ),
+		array( 'id' => 'fluid_gutter', 'section' => 'bst_header_general', 'type' => 'number', 'label' => __( 'Side spacing for full-width header & blocks (px, 0 = auto)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 0, 'max' => 200 ) ),
 		array( 'id' => 'header_shadow', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Shadow under header', 'bigspy-ai-theme-wp' ) ),
 		array( 'id' => 'header_sticky', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Sticky header', 'bigspy-ai-theme-wp' ), 'description' => __( 'The main and bottom rows stay on screen while scrolling.', 'bigspy-ai-theme-wp' ) ),
 		array( 'id' => 'header_sticky_height', 'section' => 'bst_header_general', 'type' => 'number', 'label' => __( 'Sticky main row height (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 140 ) ),
@@ -274,14 +275,6 @@ function bst_customizer_fields() {
 			array( 'id' => 'footer_bottom_color', 'section' => 'bst_footer_bottom', 'type' => 'color', 'label' => __( 'Text color', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'back_to_top', 'section' => 'bst_footer_bottom', 'type' => 'checkbox', 'label' => __( 'Back-to-top button', 'bigspy-ai-theme-wp' ) ),
 
-			array( 'id' => 'float_enable', 'section' => 'bst_float', 'type' => 'checkbox', 'label' => __( 'Enable floating contact buttons', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'float_position', 'section' => 'bst_float', 'type' => 'radio', 'label' => __( 'Position', 'bigspy-ai-theme-wp' ), 'choices' => array( 'left' => __( 'Bottom left', 'bigspy-ai-theme-wp' ), 'right' => __( 'Bottom right', 'bigspy-ai-theme-wp' ) ) ),
-			array( 'id' => 'float_mobile_bar', 'section' => 'bst_float', 'type' => 'checkbox', 'label' => __( 'Show as a bottom bar on mobile', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'float_phone', 'section' => 'bst_float', 'type' => 'text', 'label' => __( 'Phone number', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'float_zalo', 'section' => 'bst_float', 'type' => 'text', 'label' => __( 'Zalo (phone number or zalo.me link)', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'float_messenger', 'section' => 'bst_float', 'type' => 'text', 'label' => __( 'Messenger (page username or m.me link)', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'float_whatsapp', 'section' => 'bst_float', 'type' => 'text', 'label' => __( 'WhatsApp number (with country code)', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'float_email', 'section' => 'bst_float', 'type' => 'text', 'label' => __( 'Email', 'bigspy-ai-theme-wp' ) ),
 
 			// ---------------------------------------------------------------- Advanced.
 			array( 'id' => 'scripts_head', 'section' => 'bst_scripts', 'type' => 'code', 'label' => __( 'Scripts in <head>', 'bigspy-ai-theme-wp' ) ),

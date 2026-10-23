@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/shortcode",
+	"title": "Shortcode",
+	"category": "bigspy",
+	"icon": "shortcode",
+	"description": "Run a plugin shortcode, e.g. [contact-form-7 id=\"…\"], with a live preview.",
+	"keywords": [
+		"shortcode",
+		"plugin",
+		"embed"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"code": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-blocks-extra",
+	"render": "file:./render.php"
+}

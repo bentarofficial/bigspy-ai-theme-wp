@@ -1,0 +1,69 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/logos",
+	"title": "Logo showcase",
+	"category": "bigspy",
+	"icon": "images-alt2",
+	"description": "Partner / client / brand logos as a grid or an endless scrolling strip.",
+	"keywords": [
+		"logo",
+		"partners",
+		"clients",
+		"brands",
+		"marquee"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"images": {
+			"type": "array",
+			"default": []
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"columns": {
+			"type": "number",
+			"default": 5
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 3
+		},
+		"height": {
+			"type": "number",
+			"default": 56
+		},
+		"gap": {
+			"type": "number",
+			"default": 32
+		},
+		"grayscale": {
+			"type": "boolean",
+			"default": true
+		},
+		"speed": {
+			"type": "number",
+			"default": 30
+		},
+		"boxed": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-blocks-extra",
+	"render": "file:./render.php"
+}

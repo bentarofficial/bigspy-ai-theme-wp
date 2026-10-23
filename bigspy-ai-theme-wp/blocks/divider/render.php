@@ -20,4 +20,10 @@ $vars  = bst_style_vars(
 	)
 );
 ?>
-<hr <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-divider bs-divider--' . $align, 'style' => $vars ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<?php if ( ! empty( $a['text'] ) || ! empty( $a['icon'] ) ) : ?>
+<div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-divider-x bs-divider-x--' . $align . ( ! empty( $a['gradient'] ) ? ' is-gradient' : '' ), 'style' => $vars . ( bst_block_color( $a, 'contentColor' ) ? ';--bs-divider-content:' . bst_block_color( $a, 'contentColor' ) : '' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="separator">
+	<span class="bs-divider-x__content"><?php echo ! empty( $a['icon'] ) ? bst_icon( sanitize_key( $a['icon'] ), 20 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo ! empty( $a['text'] ) ? '<span>' . esc_html( $a['text'] ) . '</span>' : ''; ?></span>
+</div>
+<?php else : ?>
+<hr <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-divider bs-divider--' . $align . ( ! empty( $a['gradient'] ) ? ' is-gradient' : '' ), 'style' => $vars ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<?php endif; ?>

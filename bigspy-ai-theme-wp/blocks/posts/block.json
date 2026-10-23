@@ -63,6 +63,90 @@
 		"autoplay": {
 			"type": "number",
 			"default": 0
+		},
+		"tag": {
+			"type": "number",
+			"default": 0
+		},
+		"ids": {
+			"type": "string",
+			"default": ""
+		},
+		"excludeCurrent": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleSize": {
+			"type": "number",
+			"default": 0
+		},
+		"titleLines": {
+			"type": "number",
+			"default": 0
+		},
+		"excerptLength": {
+			"type": "number",
+			"default": 0
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAuthor": {
+			"type": "boolean",
+			"default": false
+		},
+		"showReadTime": {
+			"type": "boolean",
+			"default": false
+		},
+		"dateBadge": {
+			"type": "boolean",
+			"default": false
+		},
+		"catBadge": {
+			"type": "boolean",
+			"default": false
+		},
+		"moreStyle": {
+			"type": "string",
+			"default": "link"
+		},
+		"imageHover": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"gap": {
+			"type": "number",
+			"default": -1
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBg": {
+			"type": "string",
+			"default": ""
+		},
+		"arrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"dots": {
+			"type": "boolean",
+			"default": true
+		},
+		"peek": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"supports": {

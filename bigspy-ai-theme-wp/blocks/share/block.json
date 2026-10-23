@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/share",
+	"title": "Share buttons",
+	"category": "bigspy",
+	"icon": "share-alt2",
+	"description": "Share the current page on Facebook, Zalo, X, LinkedIn, Pinterest, email or copy the link.",
+	"keywords": [
+		"share",
+		"social",
+		"chia sẻ"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Chia sẻ:"
+		},
+		"networks": {
+			"type": "string",
+			"default": "facebook,zalo,x,linkedin,pinterest,mail,copy"
+		},
+		"style": {
+			"type": "string",
+			"default": "fill"
+		},
+		"shape": {
+			"type": "string",
+			"default": "circle"
+		},
+		"size": {
+			"type": "number",
+			"default": 38
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"brand": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

@@ -12,7 +12,9 @@ New-Item -ItemType Directory -Force -Path 'releases' | Out-Null
 $zip = "releases/bigspy-ai-theme-wp-$version.zip"
 if (Test-Path $zip) { Remove-Item $zip -Force }
 
-tar -a -c -f $zip --exclude '.DS_Store' --exclude 'Thumbs.db' 'bigspy-ai-theme-wp'
+# Always use Windows bsdtar: the GNU tar from Git Bash ignores -a and writes a .tar named .zip.
+$tar = Join-Path $env:SystemRoot 'System32\tar.exe'
+& $tar -a -c -f $zip --exclude '.DS_Store' --exclude 'Thumbs.db' 'bigspy-ai-theme-wp'
 if ($LASTEXITCODE -ne 0) { throw 'tar failed' }
 
 # Keep only the current theme archive after a successful build.

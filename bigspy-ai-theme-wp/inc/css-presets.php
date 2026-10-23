@@ -7,6 +7,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/** Groups now picked inside blocks (Style presets panel); stored ids keep working. */
+function bst_css_preset_moved_groups() {
+	return array( 'media', 'buttons', 'services', 'blog' );
+}
+
 function bst_css_preset_groups() {
 	return array(
 		'content'  => __( 'Chữ & nội dung', 'bigspy-ai-theme-wp' ),

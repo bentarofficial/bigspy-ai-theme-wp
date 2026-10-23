@@ -1,0 +1,74 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/progress",
+	"title": "Progress bars",
+	"category": "bigspy",
+	"icon": "chart-bar",
+	"description": "Skill / progress bars with label, percentage, color, height, stripes and fill animation when scrolled into view.",
+	"keywords": [
+		"skills",
+		"percent",
+		"bar",
+		"progress"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"label": "Khách hàng hài lòng",
+					"value": 98,
+					"color": ""
+				},
+				{
+					"label": "Đơn trả đúng hẹn",
+					"value": 95,
+					"color": ""
+				}
+			]
+		},
+		"height": {
+			"type": "number",
+			"default": 10
+		},
+		"radius": {
+			"type": "number",
+			"default": 999
+		},
+		"showValue": {
+			"type": "boolean",
+			"default": true
+		},
+		"striped": {
+			"type": "boolean",
+			"default": false
+		},
+		"animate": {
+			"type": "boolean",
+			"default": true
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"track": {
+			"type": "string",
+			"default": ""
+		},
+		"labelInside": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

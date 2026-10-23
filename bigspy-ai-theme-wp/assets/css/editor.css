@@ -42,3 +42,58 @@ a {
 .wp-block-post-title {
 	font-size: var(--bs-h1, 40px);
 }
+
+/* 1.23 – on-canvas drag & edit helpers */
+.bs-column { position: relative; }
+.bst-column-inner { display: flex; flex: 1; flex-direction: column; min-height: 40px; }
+.bs-column--valign-center > .bst-column-inner { justify-content: center; }
+.bs-column--valign-bottom > .bst-column-inner { justify-content: flex-end; }
+.bst-column-inner > * { margin-top: 0; }
+.bst-spacer-resize { position: relative; display: flex; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg, rgba(56, 88, 233, .05), rgba(56, 88, 233, .05) 6px, transparent 6px, transparent 12px); outline: 1px dashed rgba(56, 88, 233, .35); }
+.bst-spacer-resize__label { font: 600 11px/1 system-ui, sans-serif; color: var(--wp-admin-theme-color, #3858e9); opacity: .8; }
+.bst-spacer-editor { height: auto !important; }
+.bst-il-item { position: relative; }
+.bst-icon-toggle { padding: 0; color: inherit; background: none; border: 0; cursor: pointer; border-radius: 4px; }
+.bst-icon-toggle:hover { outline: 1px dashed currentColor; }
+.bst-il-remove { position: absolute; top: 0; right: -24px; width: 20px; height: 20px; padding: 0; color: #cc1818; background: #fff; border: 1px solid #ddd; border-radius: 50%; font-size: 14px; line-height: 1; cursor: pointer; }
+.bst-il-add { list-style: none; }
+.bst-stars-pick { cursor: pointer; }
+
+.bst-ssr-loading { display: flex; align-items: center; gap: 8px; min-height: 120px; justify-content: center; color: #64748b; background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #f1f5f9 10px, #f1f5f9 20px); border-radius: 8px; }
+.bst-ssr-preview a { pointer-events: none; }
+
+/* 1.30 – blocks look like the live page on the canvas */
+.bst-text-inline, .bst-code-block { border: 0; background: none; }
+.bst-inline-edit { min-height: 1.6em; padding: 0; outline: none; }
+.bst-inline-edit:focus { box-shadow: none; }
+.bst-inline-edit:empty::before { content: attr(aria-label); opacity: .45; }
+.is-selected > .bst-inline-edit, .bst-text-inline.is-selected { outline: 1px dashed rgba(56, 88, 233, .45); outline-offset: 4px; }
+.bst-tab-label { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; padding: 2px 8px; font: 600 11px/1.6 system-ui, sans-serif; color: #3858e9; background: rgba(56, 88, 233, .08); border-radius: 4px; }
+
+/* "+" above the first block (1.39) */
+.bst-top-ins { position: absolute; top: 0; left: 50%; z-index: 31; width: 0; height: 0; }
+.bst-top-ins__btn { position: absolute; top: -13px; left: -13px; display: grid; place-items: center; width: 26px; height: 26px; padding: 0; color: #fff; background: #1e1e1e; border: 0; border-radius: 4px; box-shadow: 0 0 0 2px #fff; cursor: pointer; opacity: 0; transform: scale(.8); transition: opacity .15s, transform .15s, background .15s; }
+.bst-top-ins__btn:hover, .bst-top-ins__btn:focus-visible { background: var(--wp-admin-theme-color, #3858e9); opacity: 1; transform: none; }
+.bst-top-ins:hover .bst-top-ins__btn,
+.bst-top-ins:has(+ .block-editor-block-list__block:hover) .bst-top-ins__btn,
+.bst-top-ins:has(+ .block-editor-block-list__block.is-selected) .bst-top-ins__btn { opacity: 1; transform: none; }
+.bst-top-ins:has(+ .block-editor-block-list__block:hover)::before,
+.bst-top-ins:hover::before { content: ""; position: absolute; top: -1px; left: -40px; width: 80px; height: 2px; background: var(--wp-admin-theme-color, #3858e9); border-radius: 2px; }
+:where(*:has(> .bst-top-ins)) { position: relative; }
+
+/* Column resize handle (1.49): wider target, grip, always shown on the selected column */
+.bs-column { overflow: visible !important; }
+.bst-col-resizer { position: absolute; top: 0; right: -12px; bottom: 0; z-index: 30; width: 24px; cursor: col-resize; opacity: 0; transition: opacity .15s; touch-action: none; user-select: none; }
+.bst-col-resizer::before { content: ""; position: absolute; top: 6px; bottom: 6px; left: 11px; width: 2px; border-radius: 2px; background: var(--wp-admin-theme-color, #3858e9); }
+.bst-col-resizer__grip { position: absolute; top: 50%; left: 50%; width: 10px; height: 36px; margin: -52px 0 0 -5px; background: #fff; border: 2px solid var(--wp-admin-theme-color, #3858e9); border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+.bst-col-resizer__grip::before { content: ""; position: absolute; inset: 9px 2px; background: repeating-linear-gradient(0deg, var(--wp-admin-theme-color, #3858e9) 0 2px, transparent 2px 5px); }
+.bs-row:hover > .bs-column > .bst-col-resizer { opacity: .45; }
+.bs-column:hover > .bst-col-resizer, .bs-column.is-selected > .bst-col-resizer, .bs-column.has-child-selected > .bst-col-resizer, .bst-col-resizer.is-dragging { opacity: 1; }
+.bst-col-resizer:hover::before, .bst-col-resizer.is-dragging::before { left: 10px; width: 4px; }
+.bst-col-resizer__badge { position: absolute; top: 50%; left: 50%; padding: 3px 8px; color: #fff; background: var(--wp-admin-theme-color, #3858e9); border-radius: 4px; font: 600 11px/1.4 system-ui, sans-serif; white-space: nowrap; transform: translate(-50%, -50%); pointer-events: none; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+.bst-col-resizer.is-dragging .bst-col-resizer__badge { padding: 5px 10px; font-size: 13px; }
+.bs-row:has(.bst-col-resizer.is-dragging) { background-image: repeating-linear-gradient(90deg, rgba(56,88,233,.08) 0 calc(100% / 12 - 1px), rgba(56,88,233,.35) calc(100% / 12 - 1px) calc(100% / 12)); }
+.bs-row:has(.bst-col-resizer.is-dragging), .bs-row:has(.bst-col-resizer.is-dragging) * { cursor: col-resize !important; user-select: none; }
+
+/* Accordion question tag badge (1.49.1) */
+.bst-acc-tag { margin-left: auto; margin-right: 8px; padding: 1px 6px; font: 600 10px/1.5 system-ui, sans-serif; color: #757575; border: 1px solid #ddd; border-radius: 4px; }

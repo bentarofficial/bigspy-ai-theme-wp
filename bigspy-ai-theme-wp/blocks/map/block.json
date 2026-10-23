@@ -23,6 +23,38 @@
 		"radius": {
 			"type": "number",
 			"default": 8
+		},
+		"lat": {
+			"type": "string",
+			"default": ""
+		},
+		"lng": {
+			"type": "string",
+			"default": ""
+		},
+		"grayscale": {
+			"type": "boolean",
+			"default": false
+		},
+		"boxTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"boxText": {
+			"type": "string",
+			"default": ""
+		},
+		"boxPosition": {
+			"type": "string",
+			"default": "left"
+		},
+		"directions": {
+			"type": "boolean",
+			"default": true
+		},
+		"embed": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

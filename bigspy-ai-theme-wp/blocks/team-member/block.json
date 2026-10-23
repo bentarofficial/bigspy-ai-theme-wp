@@ -1,0 +1,94 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/team-member",
+	"title": "Team member",
+	"category": "bigspy",
+	"icon": "businessperson",
+	"description": "Photo, name, role, short bio and social links. Card, overlay or round photo styles.",
+	"keywords": [
+		"team",
+		"staff",
+		"person",
+		"nhân viên"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"name": {
+			"type": "string",
+			"default": "Nguyễn Văn A"
+		},
+		"role": {
+			"type": "string",
+			"default": "Quản lý cửa hàng"
+		},
+		"bio": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
+			"type": "string",
+			"default": "card"
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"facebook": {
+			"type": "string",
+			"default": ""
+		},
+		"zalo": {
+			"type": "string",
+			"default": ""
+		},
+		"instagram": {
+			"type": "string",
+			"default": ""
+		},
+		"tiktok": {
+			"type": "string",
+			"default": ""
+		},
+		"linkedin": {
+			"type": "string",
+			"default": ""
+		},
+		"mail": {
+			"type": "string",
+			"default": ""
+		},
+		"phone": {
+			"type": "string",
+			"default": ""
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"ratio": {
+			"type": "string",
+			"default": "1-1"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"name": "Nguyễn Văn A",
+			"role": "Quản lý cửa hàng"
+		}
+	}
+}

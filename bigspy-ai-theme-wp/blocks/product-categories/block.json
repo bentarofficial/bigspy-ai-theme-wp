@@ -8,21 +8,79 @@
 	"description": "WooCommerce product categories with image, as grid or slider.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
-		"count": { "type": "number", "default": 6 },
-		"parent": { "type": "number", "default": 0 },
-		"topLevelOnly": { "type": "boolean", "default": true },
-		"hideEmpty": { "type": "boolean", "default": true },
-		"orderBy": { "type": "string", "default": "menu_order" },
-		"style": { "type": "string", "default": "overlay" },
-		"ratio": { "type": "string", "default": "1-1" },
-		"showCount": { "type": "boolean", "default": true },
-		"layout": { "type": "string", "default": "grid" },
-		"columns": { "type": "number", "default": 6 },
-		"columnsTablet": { "type": "number", "default": 3 },
-		"columnsMobile": { "type": "number", "default": 2 },
-		"autoplay": { "type": "number", "default": 0 }
+		"count": {
+			"type": "number",
+			"default": 6
+		},
+		"parent": {
+			"type": "number",
+			"default": 0
+		},
+		"topLevelOnly": {
+			"type": "boolean",
+			"default": true
+		},
+		"hideEmpty": {
+			"type": "boolean",
+			"default": true
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "menu_order"
+		},
+		"style": {
+			"type": "string",
+			"default": "overlay"
+		},
+		"ratio": {
+			"type": "string",
+			"default": "1-1"
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"columns": {
+			"type": "number",
+			"default": 6
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 2
+		},
+		"autoplay": {
+			"type": "number",
+			"default": 0
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"hover": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"nameSize": {
+			"type": "number",
+			"default": 0
+		}
 	},
-	"supports": { "anchor": true, "html": false, "align": [ "wide", "full" ] },
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
 	"editorScript": "bst-blocks-editor",
 	"render": "file:./render.php"
 }

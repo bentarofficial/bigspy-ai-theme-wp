@@ -6,21 +6,96 @@
 	"category": "bigspy",
 	"icon": "heading",
 	"description": "H1–H6 heading with size, weight, color, alignment and optional link.",
-	"keywords": [ "title", "h1", "h2", "h3" ],
+	"keywords": [
+		"title",
+		"h1",
+		"h2",
+		"h3"
+	],
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
-		"text": { "type": "string", "default": "" },
-		"tag": { "type": "string", "default": "h2" },
-		"align": { "type": "string", "default": "" },
-		"size": { "type": "number", "default": 0 },
-		"weight": { "type": "string", "default": "" },
-		"color": { "type": "string", "default": "" },
-		"link": { "type": "string", "default": "" }
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"tag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"size": {
+			"type": "number",
+			"default": 0
+		},
+		"sizeTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"sizeMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"lineHeight": {
+			"type": "number",
+			"default": 0
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"balance": {
+			"type": "boolean",
+			"default": false
+		},
+		"weight": {
+			"type": "string",
+			"default": ""
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"link": {
+			"type": "string",
+			"default": ""
+		},
+		"gradient": {
+			"type": "boolean",
+			"default": false
+		},
+		"gradientFrom": {
+			"type": "string",
+			"default": ""
+		},
+		"gradientTo": {
+			"type": "string",
+			"default": ""
+		},
+		"gradientAngle": {
+			"type": "number",
+			"default": 90
+		},
+		"highlight": {
+			"type": "string",
+			"default": ""
+		},
+		"highlightColor": {
+			"type": "string",
+			"default": ""
+		}
 	},
 	"supports": {
 		"anchor": true,
 		"html": false,
-		"spacing": { "margin": [ "top", "bottom" ] }
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			]
+		}
 	},
 	"editorScript": "bst-blocks-editor",
 	"render": "file:./render.php"

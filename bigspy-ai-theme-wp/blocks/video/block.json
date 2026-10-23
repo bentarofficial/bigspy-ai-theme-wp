@@ -1,0 +1,68 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/video",
+	"title": "Video",
+	"category": "bigspy",
+	"icon": "video-alt3",
+	"description": "Responsive YouTube, Vimeo or self-hosted video with ratio, poster (click to play) and playback options.",
+	"keywords": [
+		"youtube",
+		"vimeo",
+		"mp4",
+		"embed"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"ratio": {
+			"type": "string",
+			"default": "16-9"
+		},
+		"posterId": {
+			"type": "number",
+			"default": 0
+		},
+		"posterUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"muted": {
+			"type": "boolean",
+			"default": false
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"controls": {
+			"type": "boolean",
+			"default": true
+		},
+		"radius": {
+			"type": "number",
+			"default": 8
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

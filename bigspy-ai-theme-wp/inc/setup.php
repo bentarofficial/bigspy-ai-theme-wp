@@ -70,6 +70,9 @@ add_action( 'widgets_init', 'bst_widgets_init' );
 function bst_body_classes( $classes ) {
 	$classes[] = 'bs-layout-' . sanitize_html_class( bst_mod( 'site_layout' ) );
 	$classes[] = 'bs-sidebar-' . bst_sidebar_position();
+	if ( bst_mod( 'header_full_width' ) ) {
+		$classes[] = 'bs-header-is-fluid';
+	}
 	if ( bst_header_is_transparent() && bst_show_header() ) {
 		$classes[] = 'bs-has-transparent-header';
 	}
@@ -79,7 +82,7 @@ function bst_body_classes( $classes ) {
 	if ( 'none' === bst_post_option( 'content_padding' ) ) {
 		$classes[] = 'bs-no-content-padding';
 	}
-	if ( bst_mod( 'float_enable' ) && bst_mod( 'float_mobile_bar' ) ) {
+	if ( bst_mod( 'float_enable' ) && function_exists( 'bst_float_mobile_style' ) && 'bar' === bst_float_mobile_style() ) {
 		$classes[] = 'bs-has-mobile-bar';
 	}
 	return $classes;

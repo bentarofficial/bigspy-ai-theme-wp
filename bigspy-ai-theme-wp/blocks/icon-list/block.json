@@ -1,0 +1,85 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/icon-list",
+	"title": "Icon list",
+	"category": "bigspy",
+	"icon": "editor-ul",
+	"description": "List with an icon per line (check marks, phone, pin…), vertical, inline or in columns, with optional links and dividers.",
+	"keywords": [
+		"list",
+		"features",
+		"check",
+		"usp"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"icon": "check",
+					"text": "Nhận và trả đồ tại nhà",
+					"link": ""
+				},
+				{
+					"icon": "check",
+					"text": "Giặt sạch, thơm, giao đúng hẹn",
+					"link": ""
+				},
+				{
+					"icon": "check",
+					"text": "Ba cơ sở tại Bắc Ninh",
+					"link": ""
+				}
+			]
+		},
+		"layout": {
+			"type": "string",
+			"default": "vertical"
+		},
+		"columns": {
+			"type": "number",
+			"default": 2
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 20
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"iconBg": {
+			"type": "boolean",
+			"default": false
+		},
+		"textSize": {
+			"type": "number",
+			"default": 0
+		},
+		"gap": {
+			"type": "number",
+			"default": 10
+		},
+		"divider": {
+			"type": "boolean",
+			"default": false
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"layout": "vertical"
+		}
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

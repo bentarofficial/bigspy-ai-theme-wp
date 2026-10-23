@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/widget-area",
+	"title": "Widget area (sidebar)",
+	"category": "bigspy",
+	"icon": "welcome-widgets-menus",
+	"description": "Show any sidebar / widget area inside a page, e.g. the Shop filters or the Blog sidebar.",
+	"keywords": [
+		"sidebar",
+		"widget",
+		"widgets"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"area": {
+			"type": "string",
+			"default": "sidebar-blog"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-blocks-extra",
+	"render": "file:./render.php"
+}

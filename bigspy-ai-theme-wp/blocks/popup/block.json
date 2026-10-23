@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/popup",
+	"title": "Popup",
+	"category": "bigspy",
+	"icon": "admin-comments",
+	"description": "Popup / lightbox with any blocks inside. Opens from a button, a #link, after a delay, on scroll or when leaving the page.",
+	"keywords": [
+		"popup",
+		"modal",
+		"lightbox",
+		"newsletter",
+		"exit intent"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"popupId": {
+			"type": "string",
+			"default": ""
+		},
+		"trigger": {
+			"type": "string",
+			"default": "button"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Mở popup"
+		},
+		"delay": {
+			"type": "number",
+			"default": 5
+		},
+		"scroll": {
+			"type": "number",
+			"default": 50
+		},
+		"frequency": {
+			"type": "number",
+			"default": 1
+		},
+		"size": {
+			"type": "string",
+			"default": "md"
+		},
+		"position": {
+			"type": "string",
+			"default": "center"
+		},
+		"overlay": {
+			"type": "number",
+			"default": 60
+		},
+		"radius": {
+			"type": "number",
+			"default": 16
+		},
+		"bgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"closeOutside": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-blocks-extra",
+	"render": "file:./render.php"
+}

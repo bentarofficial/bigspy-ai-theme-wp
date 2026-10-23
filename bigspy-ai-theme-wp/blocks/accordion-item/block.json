@@ -18,6 +18,10 @@
 		"open": {
 			"type": "boolean",
 			"default": false
+		},
+		"titleTag": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
@@ -25,5 +29,8 @@
 		"reusable": false
 	},
 	"editorScript": "bst-blocks-editor",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"usesContext": [
+		"bst/accordionTitleTag"
+	]
 }

@@ -1,15 +1,21 @@
 <?php
 /**
- * Accordion item block.
+ * Accordion item.
  *
  * @package BigspyTheme
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$a = (array) $attributes;
+$a   = (array) $attributes;
+$tags = array( 'div', 'p', 'h2', 'h3', 'h4', 'h5', 'h6' );
+$tag  = bst_choice( (string) ( $block->context['bst/accordionTitleTag'] ?? 'div' ), $tags, 'div' );
+// Each item can override the tag chosen on the Accordion.
+if ( ! empty( $a['titleTag'] ) ) {
+	$tag = bst_choice( (string) $a['titleTag'], $tags, $tag );
+}
 ?>
 <details class="bs-accordion__item"<?php echo ! empty( $a['open'] ) ? ' open' : ''; ?>>
-	<summary class="bs-accordion__title"><span><?php echo wp_kses_post( $a['title'] ?? '' ); ?></span><?php echo bst_icon( 'chevron-down', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></summary>
+	<summary class="bs-accordion__title"><<?php echo esc_html( $tag ); ?> class="bs-accordion__heading"><span class="bs-accordion__text"><?php echo wp_kses_post( $a['title'] ?? '' ); ?></span></<?php echo esc_html( $tag ); ?>><span class="bs-accordion__icon" aria-hidden="true"><?php echo bst_icon( 'chevron-down', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span></summary>
 	<div class="bs-accordion__content"><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 </details>

@@ -31,6 +31,22 @@
 		"spacing": {
 			"type": "number",
 			"default": 24
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"contentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"gradient": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

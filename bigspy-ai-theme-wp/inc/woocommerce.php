@@ -307,7 +307,17 @@ function bst_header_cart( $device = 'desktop' ) {
 	}
 	$icon = bst_choice( bst_mod( 'cart_icon' ), array( 'bag', 'cart' ), 'bag' );
 	$out  = '<div class="bs-cart' . ( 'desktop' === $device && bst_mod( 'mini_cart' ) ? ' has-dropdown' : '' ) . '">';
-	$out .= '<a class="bs-cart__link" href="' . esc_url( wc_get_cart_url() ) . '" aria-label="' . esc_attr__( 'Cart', 'bigspy-ai-theme-wp' ) . '">' . bst_icon( $icon, 22 ) . bst_cart_count_html() . '</a>';
+	$extra = '';
+	if ( function_exists( 'bst_he' ) ) {
+		$label = trim( (string) bst_he( 'cart', 'label' ) );
+		if ( '' !== $label ) {
+			$extra .= '<span class="bs-he-label">' . esc_html( $label ) . '</span>';
+		}
+		if ( bst_he( 'cart', 'total' ) ) {
+			$extra .= '<span class="bs-cart__total">' . wp_kses_post( WC()->cart->get_cart_subtotal() ) . '</span>';
+		}
+	}
+	$out .= '<a class="bs-cart__link" href="' . esc_url( wc_get_cart_url() ) . '" aria-label="' . esc_attr__( 'Cart', 'bigspy-ai-theme-wp' ) . '"><span class="bs-cart__icon">' . bst_icon( $icon, 22 ) . bst_cart_count_html() . '</span>' . $extra . '</a>';
 	if ( 'desktop' === $device && bst_mod( 'mini_cart' ) && ! is_cart() && ! is_checkout() ) {
 		$out .= '<div class="bs-cart__dropdown"><div class="widget_shopping_cart_content">';
 		ob_start();
@@ -326,6 +336,9 @@ function bst_cart_count_html() {
 
 function bst_wc_cart_fragments( $fragments ) {
 	$fragments['span.bs-cart__count'] = bst_cart_count_html();
+	if ( WC()->cart ) {
+		$fragments['span.bs-cart__total'] = '<span class="bs-cart__total">' . wp_kses_post( WC()->cart->get_cart_subtotal() ) . '</span>';
+	}
 	return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'bst_wc_cart_fragments' );

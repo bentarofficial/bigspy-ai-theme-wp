@@ -55,7 +55,11 @@ class BST_Layout_Presets_Control extends WP_Customize_Control {
 		}
 		echo '<div class="bst-layout-presets" data-bst-layout-presets>';
 		foreach ( $this->presets as $key => $preset ) {
-			echo '<button type="button" class="button bst-layout-presets__button" data-preset="' . esc_attr( $key ) . '" data-settings="' . esc_attr( wp_json_encode( $preset['settings'] ) ) . '"><strong>' . esc_html( $preset['label'] ) . '</strong><span>' . esc_html( $preset['description'] ) . '</span></button>';
+			$swatches = '';
+			foreach ( (array) ( $preset['swatches'] ?? array() ) as $swatch ) {
+				$swatches .= '<i style="background:' . esc_attr( sanitize_hex_color( $swatch ) ) . '"></i>';
+			}
+			echo '<button type="button" class="button bst-layout-presets__button' . ( $swatches ? ' has-swatches' : '' ) . '" data-preset="' . esc_attr( $key ) . '" data-settings="' . esc_attr( wp_json_encode( $preset['settings'] ) ) . '">' . ( $swatches ? '<em class="bst-swatches" aria-hidden="true">' . $swatches . '</em>' : '' ) . '<strong>' . esc_html( $preset['label'] ) . '</strong><span>' . esc_html( $preset['description'] ) . '</span></button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</div><p class="bst-layout-presets__status" role="status" aria-live="polite"></p>';
 		if ( $this->help_url && $this->help_label ) {
@@ -72,7 +76,10 @@ class BST_CSS_Presets_Control extends WP_Customize_Control {
 	public $type = 'bst-css-presets';
 
 	public function render_content() {
-		$recipes = bst_css_presets();
+		$moved   = bst_css_preset_moved_groups();
+		$recipes = array_filter( bst_css_presets(), function ( $recipe ) use ( $moved ) {
+			return ! in_array( $recipe[0], $moved, true );
+		} );
 		$enabled = bst_sanitize_css_presets( $this->value() );
 		$prefix  = 'bst-css-presets-' . sanitize_html_class( $this->id );
 		?>
@@ -87,7 +94,7 @@ class BST_CSS_Presets_Control extends WP_Customize_Control {
 				<button type="button" class="button-link bst-css-presets__undo" hidden><?php esc_html_e( 'Hoàn tác', 'bigspy-ai-theme-wp' ); ?></button>
 			</div>
 			<p class="bst-css-presets__status" role="status" aria-live="polite"><?php esc_html_e( 'Đang bật:', 'bigspy-ai-theme-wp' ); ?> <span data-bst-enabled-count><?php echo (int) count( $enabled ); ?></span> / <?php echo (int) count( $recipes ); ?></p>
-			<?php foreach ( bst_css_preset_groups() as $group => $title ) : ?>
+			<?php foreach ( array_diff_key( bst_css_preset_groups(), array_flip( $moved ) ) as $group => $title ) : ?>
 				<details class="bst-css-presets__group" data-group="<?php echo esc_attr( $group ); ?>">
 					<summary><?php echo esc_html( $title ); ?> <span class="bst-css-presets__group-count" aria-hidden="true"></span></summary>
 					<?php foreach ( $recipes as $id => $recipe ) : ?>
