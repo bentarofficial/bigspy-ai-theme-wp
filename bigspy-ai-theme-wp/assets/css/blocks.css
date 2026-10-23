@@ -3023,7 +3023,9 @@ input[type="submit"]:hover,
 .bs-native-form .wpcf7-not-valid-tip { display: block; margin-top: 4px; color: #dc2626; font-size: .85em; }
 
 /* Form spacing (1.54.3): no trailing gap under the last row, no empty first line from CF7 templates */
-.bs-form .wpcf7-form > :last-child, .bs-form .wpcf7-form > :not(.wpcf7-response-output):nth-last-child(2), .bs-form .wpcf7-form > div > :last-child, .bs-form .wpcf7-form p:last-child { margin-bottom: 0; }
+/* Only the row with the send button loses its bottom margin (a broad :last-child rule glued fields together inside template wrappers). */
+.bs-form .wpcf7-form p:has(> [type="submit"], > .wpcf7-submit) { margin-bottom: 0; }
+.bs-form .wpcf7-form :is(.wpcf7-radio, .wpcf7-checkbox, .wpcf7-acceptance) { margin: 4px 0 14px; }
 .bs-form .wpcf7-form > div > p:first-child, .bs-form .wpcf7-form > p:first-child { margin-top: 0; }
 .bs-form .wpcf7-form p:empty { display: none; }
 .bs-form .bs-form__body > .wpcf7 > .screen-reader-response { position: absolute; }
