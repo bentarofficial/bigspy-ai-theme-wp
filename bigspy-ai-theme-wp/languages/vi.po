@@ -1859,6 +1859,27 @@ msgstr "Cam kết đầu ra"
 msgid "Review & certificate"
 msgstr "Đánh giá & cấp chứng nhận"
 
+msgid "Rounded – filled"
+msgstr "Bo góc – nền đặc"
+
+msgid "Rounded – frosted glass"
+msgstr "Bo góc – kính mờ"
+
+msgid "Rounded – gradient"
+msgstr "Bo góc – chuyển màu"
+
+msgid "Rounded – soft tint"
+msgstr "Bo góc – nền nhạt"
+
+msgid "Rounded – thin outline"
+msgstr "Bo góc – viền mảnh"
+
+msgid "Rounded – tint + outline"
+msgstr "Bo góc – nền nhạt + viền"
+
+msgid "Rounded – white card with shadow"
+msgstr "Bo góc – thẻ trắng đổ bóng"
+
 msgid "Ryan Cooper"
 msgstr "Lê Đức Anh"
 

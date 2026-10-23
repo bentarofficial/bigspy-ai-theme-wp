@@ -19,7 +19,7 @@ function bst_he_common( $key, $what = array() ) {
 	};
 	if ( in_array( 'icon', $what, true ) ) {
 		$add( 'h_icon', 'heading', __( 'Icon', 'bigspy-ai-theme-wp' ) );
-		$add( 'icon_style', 'select', __( 'Icon style', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Plain icon', 'bigspy-ai-theme-wp' ), 'circle' => __( 'Filled circle', 'bigspy-ai-theme-wp' ), 'square' => __( 'Filled square', 'bigspy-ai-theme-wp' ), 'outline' => __( 'Outline circle', 'bigspy-ai-theme-wp' ), 'outline-sq' => __( 'Outline square', 'bigspy-ai-theme-wp' ), 'soft' => __( 'Soft tinted circle', 'bigspy-ai-theme-wp' ), 'soft-sq' => __( 'Soft tinted square', 'bigspy-ai-theme-wp' ) ) ) );
+		$add( 'icon_style', 'select', __( 'Icon style', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Plain icon', 'bigspy-ai-theme-wp' ), 'circle' => __( 'Filled circle', 'bigspy-ai-theme-wp' ), 'square' => __( 'Filled square', 'bigspy-ai-theme-wp' ), 'outline' => __( 'Outline circle', 'bigspy-ai-theme-wp' ), 'outline-sq' => __( 'Outline square', 'bigspy-ai-theme-wp' ), 'soft' => __( 'Soft tinted circle', 'bigspy-ai-theme-wp' ), 'soft-sq' => __( 'Soft tinted square', 'bigspy-ai-theme-wp' ), 'rd-fill' => __( 'Rounded – filled', 'bigspy-ai-theme-wp' ), 'rd-outline' => __( 'Rounded – thin outline', 'bigspy-ai-theme-wp' ), 'rd-soft' => __( 'Rounded – soft tint', 'bigspy-ai-theme-wp' ), 'rd-card' => __( 'Rounded – white card with shadow', 'bigspy-ai-theme-wp' ), 'rd-gradient' => __( 'Rounded – gradient', 'bigspy-ai-theme-wp' ), 'rd-glass' => __( 'Rounded – frosted glass', 'bigspy-ai-theme-wp' ), 'rd-ring' => __( 'Rounded – tint + outline', 'bigspy-ai-theme-wp' ) ) ) );
 		$add( 'icon_size', 'number', __( 'Icon size (px, 0 = default)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 48 ) ) );
 		$add( 'icon_bg', 'color', __( 'Icon background (filled styles)', 'bigspy-ai-theme-wp' ) );
 		$add( 'icon_pad', 'number', __( 'Space between icon and frame (px, empty = default)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 24 ) ) );
@@ -293,7 +293,7 @@ function bst_he( $key, $opt ) {
 function bst_he_classes( $key ) {
 	$c = array();
 	$style = (string) bst_he( $key, 'icon_style' );
-	if ( in_array( $style, array( 'circle', 'square', 'outline', 'outline-sq', 'soft', 'soft-sq' ), true ) ) {
+	if ( in_array( $style, array( 'circle', 'square', 'outline', 'outline-sq', 'soft', 'soft-sq', 'rd-fill', 'rd-outline', 'rd-soft', 'rd-card', 'rd-gradient', 'rd-glass', 'rd-ring' ), true ) ) {
 		$c[] = 'bs-he-icon--' . $style;
 	}
 	if ( bst_he( $key, 'hide_sticky' ) ) {
