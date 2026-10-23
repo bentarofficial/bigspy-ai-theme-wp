@@ -528,3 +528,11 @@
 .bst-presets-panel__chip { padding: 5px 10px; font-size: 12px; line-height: 1.3; color: #1e1e1e; background: #fff; border: 1px solid #ddd; border-radius: 999px; cursor: pointer; transition: border-color .15s, background .15s; }
 .bst-presets-panel__chip:hover { border-color: var(--wp-admin-theme-color, #3858e9); }
 .bst-presets-panel__chip.is-on { color: #fff; background: var(--wp-admin-theme-color, #3858e9); border-color: var(--wp-admin-theme-color, #3858e9); }
+
+/* Typography & alignment panel (1.48) */
+.bst-typo-align { display: flex; gap: 4px; }
+.bst-typo-align .components-button { border: 1px solid #ddd; }
+.bst-typo-align .components-button.is-pressed { color: #fff; background: var(--wp-admin-theme-color, #3858e9); border-color: var(--wp-admin-theme-color, #3858e9); }
+.bst-typo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+.bst-typo-grid--2 { grid-template-columns: 1fr 1fr; }
+.bst-typo-panel .components-select-control { margin-bottom: 10px; }

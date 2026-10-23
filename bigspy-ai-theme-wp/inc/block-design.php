@@ -86,6 +86,23 @@ function bst_design_rules( $d, $suffix ) {
 	} elseif ( '' !== bst_design_len( $w ) ) {
 		$out[] = 'width:' . bst_design_len( $w );
 	}
+	$ta = (string) ( $d[ 'ta' . $suffix ] ?? '' );
+	if ( in_array( $ta, array( 'left', 'center', 'right', 'justify' ), true ) ) {
+		$jc    = array( 'left' => 'flex-start', 'center' => 'center', 'right' => 'flex-end', 'justify' => 'space-between' );
+		$out[] = "text-align:$ta;justify-content:{$jc[ $ta ]};--bs-ta:$ta";
+	}
+	$fs = bst_design_len( $d[ 'fs' . $suffix ] ?? '' );
+	if ( '' !== $fs ) {
+		$out[] = "font-size:$fs;--bs-fs:$fs";
+	}
+	$lh = trim( (string) ( $d[ 'lh' . $suffix ] ?? '' ) );
+	if ( '' !== $lh && preg_match( '/^[0-9.]+(px|em|rem)?$/', $lh ) ) {
+		$out[] = "line-height:$lh";
+	}
+	$ls = bst_design_len( $d[ 'ls' . $suffix ] ?? '' );
+	if ( '' !== $ls ) {
+		$out[] = "letter-spacing:$ls";
+	}
 	$pos = (string) ( $d[ 'pos' . $suffix ] ?? '' );
 	if ( in_array( $pos, array( 'relative', 'absolute', 'fixed', 'static' ), true ) ) {
 		$out[] = "position:$pos";
@@ -99,6 +116,26 @@ function bst_design_rules( $d, $suffix ) {
 	if ( '' === $suffix ) {
 		if ( $mw && ! empty( $d['mwc'] ) ) {
 			$out[] = 'margin-left:auto;margin-right:auto';
+		}
+		$fonts = array( 'heading' => 'var(--bs-font-heading)', 'body' => 'var(--bs-font-body,inherit)', 'serif' => 'Georgia,"Times New Roman",serif', 'mono' => 'ui-monospace,Menlo,Consolas,monospace', 'system' => 'system-ui,-apple-system,"Segoe UI",Roboto,sans-serif' );
+		if ( isset( $fonts[ $d['ff'] ?? '' ] ) ) {
+			$out[] = 'font-family:' . $fonts[ $d['ff'] ];
+		}
+		if ( in_array( (string) ( $d['fw'] ?? '' ), array( '300', '400', '500', '600', '700', '800', '900' ), true ) ) {
+			$out[] = 'font-weight:' . $d['fw'];
+		}
+		if ( in_array( $d['tt'] ?? '', array( 'uppercase', 'lowercase', 'capitalize', 'none' ), true ) ) {
+			$out[] = 'text-transform:' . $d['tt'];
+		}
+		if ( 'italic' === ( $d['fst'] ?? '' ) ) {
+			$out[] = 'font-style:italic';
+		}
+		if ( in_array( $d['td'] ?? '', array( 'underline', 'line-through', 'overline' ), true ) ) {
+			$out[] = 'text-decoration:' . $d['td'];
+		}
+		$tsh = array( 1 => '0 1px 2px rgba(0,0,0,.25)', 2 => '0 2px 10px rgba(0,0,0,.35)', 3 => '0 4px 24px rgba(0,0,0,.5)' );
+		if ( isset( $tsh[ absint( $d['tsh'] ?? 0 ) ] ) ) {
+			$out[] = 'text-shadow:' . $tsh[ absint( $d['tsh'] ) ];
 		}
 		$bg = bst_design_color( $d['bg'] ?? '' );
 		if ( $bg ) {
@@ -134,7 +171,7 @@ function bst_design_rules( $d, $suffix ) {
 }
 
 function bst_design_has_hover( $d ) {
-	foreach ( array( 'depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale' ) as $key ) {
+	foreach ( array( 'depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale' ) as $key ) { // Typography keys need no transition.
 		if ( isset( $d[ $key ] ) && '' !== $d[ $key ] && 0 !== $d[ $key ] ) {
 			return true;
 		}
@@ -185,7 +222,13 @@ function bst_design_css( $d, $selector ) {
 			continue;
 		}
 		$block = $selector . '{' . implode( ';', $rules ) . '}';
-		$css  .= $media ? $media . '{' . $block . '}' : $block;
+		$ta    = (string) ( $d[ 'ta' . $suffix ] ?? '' );
+		if ( in_array( $ta, array( 'left', 'center', 'right' ), true ) ) {
+			$m      = array( 'left' => 'margin-left:0;margin-right:auto', 'center' => 'margin-left:auto;margin-right:auto', 'right' => 'margin-left:auto;margin-right:0' );
+			$ai     = array( 'left' => 'flex-start', 'center' => 'center', 'right' => 'flex-end' );
+			$block .= $selector . ' :is(img,.bs-image__frame,.bs-icon,.bs-icon-box__icon,.bs-stars,.bs-countdown,.bs-video-button){' . $m[ $ta ] . '}' . $selector . ' :is(.bs-buttons,.bs-social,.bs-share__list,.bs-pay,.bs-icon-list){justify-content:' . $ai[ $ta ] . '}' . $selector . '.bs-column,' . $selector . ' > .bs-column__inner{align-items:' . $ai[ $ta ] . '}';
+		}
+		$css .= $media ? $media . '{' . $block . '}' : $block;
 	}
 	$hover = bst_design_hover_rules( $d );
 	if ( $hover ) {

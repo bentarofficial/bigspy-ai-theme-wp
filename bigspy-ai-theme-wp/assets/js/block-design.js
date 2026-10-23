@@ -57,6 +57,19 @@
 		} else if (len(w) !== '') {
 			out.push('width:' + len(w));
 		}
+		var JC = { left: 'flex-start', center: 'center', right: 'flex-end', justify: 'space-between' };
+		if (JC[d['ta' + s]]) {
+			out.push('text-align:' + d['ta' + s] + ';justify-content:' + JC[d['ta' + s]] + ';--bs-ta:' + d['ta' + s]);
+		}
+		if (len(d['fs' + s]) !== '') {
+			out.push('font-size:' + len(d['fs' + s]) + ';--bs-fs:' + len(d['fs' + s]));
+		}
+		if (d['lh' + s] && /^[0-9.]+(px|em|rem)?$/.test(String(d['lh' + s]))) {
+			out.push('line-height:' + d['lh' + s]);
+		}
+		if (len(d['ls' + s]) !== '') {
+			out.push('letter-spacing:' + len(d['ls' + s]));
+		}
 		if (['relative', 'absolute', 'fixed', 'static'].indexOf(d['pos' + s]) !== -1) {
 			out.push('position:' + (d['pos' + s] === 'fixed' ? 'absolute' : d['pos' + s]));
 		}
@@ -69,6 +82,26 @@
 		if (s === '') {
 			if (mw && d.mwc) {
 				out.push('margin-left:auto;margin-right:auto');
+			}
+			var FONTS = { heading: 'var(--bs-font-heading)', body: 'var(--bs-font-body,inherit)', serif: 'Georgia,"Times New Roman",serif', mono: 'ui-monospace,Menlo,Consolas,monospace', system: 'system-ui,-apple-system,"Segoe UI",Roboto,sans-serif' };
+			if (FONTS[d.ff]) {
+				out.push('font-family:' + FONTS[d.ff]);
+			}
+			if (d.fw) {
+				out.push('font-weight:' + d.fw);
+			}
+			if (d.tt) {
+				out.push('text-transform:' + d.tt);
+			}
+			if (d.fst === 'italic') {
+				out.push('font-style:italic');
+			}
+			if (d.td) {
+				out.push('text-decoration:' + d.td);
+			}
+			var TSH = { 1: '0 1px 2px rgba(0,0,0,.25)', 2: '0 2px 10px rgba(0,0,0,.35)', 3: '0 4px 24px rgba(0,0,0,.5)' };
+			if (TSH[d.tsh]) {
+				out.push('text-shadow:' + TSH[d.tsh]);
 			}
 			if (d.bg) {
 				out.push('background-color:' + d.bg);
@@ -136,6 +169,12 @@
 			var r = rules(d, dev[0]);
 			if (r.length) {
 				var block = sel + '{' + r.join(';') + '}';
+				var ta = d['ta' + dev[0]];
+				var M = { left: 'margin-left:0;margin-right:auto', center: 'margin-left:auto;margin-right:auto', right: 'margin-left:auto;margin-right:0' };
+				var AI = { left: 'flex-start', center: 'center', right: 'flex-end' };
+				if (M[ta]) {
+					block += sel + ' :is(img,.bs-image__frame,.bs-icon,.bs-icon-box__icon,.bs-stars,.bs-countdown,.bs-video-button){' + M[ta] + '}' + sel + ' :is(.bs-buttons,.bs-social,.bs-share__list,.bs-pay,.bs-icon-list){justify-content:' + AI[ta] + '}' + sel + '.bs-column,' + sel + ' > .bs-column__inner{align-items:' + AI[ta] + '}';
+				}
 				out += dev[1] ? dev[1] + '{' + block + '}' : block;
 			}
 		});
@@ -336,6 +375,99 @@
 		);
 	}
 
+	/* Typography & alignment (Elementor / Flatsome style), responsive. */
+	function TypographyPanel(props) {
+		var d = props.attributes.bsDesign || {};
+		var device = wp.data.useSelect(function (select) {
+			var ed = select('core/editor');
+			var type = ed && ed.getDeviceType ? ed.getDeviceType() : 'Desktop';
+			return type === 'Tablet' ? 'T' : (type === 'Mobile' ? 'M' : '');
+		}, []);
+		var set = function (key, value) {
+			var next = Object.assign({}, d);
+			if (value === '' || value === undefined || value === null || value === 0 || value === false) {
+				delete next[key];
+			} else {
+				next[key] = value;
+			}
+			props.setAttributes({ bsDesign: next });
+		};
+		var setDevice = function (v) {
+			var ed = wp.data.dispatch('core/editor');
+			if (ed && ed.setDeviceType) {
+				ed.setDeviceType(v === 'T' ? 'Tablet' : (v === 'M' ? 'Mobile' : 'Desktop'));
+			}
+		};
+		var any = ['ta', 'taT', 'taM', 'fs', 'fsT', 'fsM', 'lh', 'lhT', 'lhM', 'ls', 'lsT', 'lsM', 'ff', 'fw', 'tt', 'fst', 'td', 'tsh'].some(function (k) { return d[k]; });
+		var ALIGN = [['left', 'editor-alignleft', __('Left', T)], ['center', 'editor-aligncenter', __('Center', T)], ['right', 'editor-alignright', __('Right', T)], ['justify', 'editor-justify', __('Justify', T)]];
+		var opt = function (label, key, list) {
+			return el(c.SelectControl, { label: label, value: d[key] || '', options: list.map(function (o) { return { value: o[0], label: o[1] }; }), onChange: function (v) { set(key, v); }, __nextHasNoMarginBottom: true });
+		};
+		return el(c.PanelBody, { title: __('Typography & alignment', T) + (any ? ' •' : ''), initialOpen: false, className: 'bst-typo-panel' },
+			el('div', { className: 'bst-design-devices' }, DEVICES.map(function (dev) {
+				return el(c.Button, { key: dev[0] || 'd', variant: device === dev[0] ? 'primary' : 'secondary', size: 'small', onClick: function () { setDevice(dev[0]); } }, dev[1]);
+			})),
+			el(c.BaseControl, { label: __('Alignment', T) + (device ? ' (' + (device === 'T' ? __('tablet', T) : __('mobile', T)) + ')' : ''), __nextHasNoMarginBottom: true },
+				el('div', { className: 'bst-typo-align' },
+					ALIGN.map(function (a) {
+						var on = d['ta' + device] === a[0];
+						return el(c.Button, { key: a[0], icon: a[1], label: a[2], isPressed: on, onClick: function () { set('ta' + device, on ? '' : a[0]); } });
+					})
+				)
+			),
+			el('div', { className: 'bst-typo-grid' },
+				el(c.TextControl, { label: __('Font size', T), value: d['fs' + device] || '', placeholder: device ? __('inherit', T) : 'e.g. 18, 1.2em', onChange: function (v) { set('fs' + device, v); }, __nextHasNoMarginBottom: true }),
+				el(c.TextControl, { label: __('Line height', T), value: d['lh' + device] || '', placeholder: device ? __('inherit', T) : 'e.g. 1.6', onChange: function (v) { set('lh' + device, v); }, __nextHasNoMarginBottom: true }),
+				el(c.TextControl, { label: __('Letter spacing', T), value: d['ls' + device] || '', placeholder: device ? __('inherit', T) : 'e.g. 1, -0.02em', onChange: function (v) { set('ls' + device, v); }, __nextHasNoMarginBottom: true })
+			),
+			!device ? el(Fragment, null,
+				opt(__('Font', T), 'ff', [['', __('Default', T)], ['heading', __('Heading font', T)], ['body', __('Body font', T)], ['serif', __('Serif', T)], ['mono', __('Monospace', T)], ['system', __('System UI', T)]]),
+				el('div', { className: 'bst-typo-grid bst-typo-grid--2' },
+					opt(__('Weight', T), 'fw', [['', __('Default', T)], ['300', __('Light 300', T)], ['400', __('Regular 400', T)], ['500', __('Medium 500', T)], ['600', __('Semi bold 600', T)], ['700', __('Bold 700', T)], ['800', __('Extra bold 800', T)], ['900', __('Black 900', T)]]),
+					opt(__('Transform', T), 'tt', [['', __('Default', T)], ['uppercase', 'UPPERCASE'], ['lowercase', 'lowercase'], ['capitalize', 'Capitalize'], ['none', __('As typed', T)]])
+				),
+				el('div', { className: 'bst-typo-grid bst-typo-grid--2' },
+					opt(__('Style', T), 'fst', [['', __('Normal', T)], ['italic', __('Italic', T)]]),
+					opt(__('Decoration', T), 'td', [['', __('None', T)], ['underline', __('Underline', T)], ['line-through', __('Strike', T)], ['overline', __('Overline', T)]])
+				),
+				opt(__('Text shadow', T), 'tsh', [['', __('None', T)], ['1', __('Subtle', T)], ['2', __('Medium', T)], ['3', __('Strong (on photos)', T)]])
+			) : el('p', { className: 'description' }, __('Font, weight and style are set on Desktop and apply everywhere.', T)),
+			any ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () {
+				var next = Object.assign({}, d);
+				['ta', 'taT', 'taM', 'fs', 'fsT', 'fsM', 'lh', 'lhT', 'lhM', 'ls', 'lsT', 'lsM', 'ff', 'fw', 'tt', 'fst', 'td', 'tsh'].forEach(function (k) { delete next[k]; });
+				props.setAttributes({ bsDesign: next });
+			} }, __('Reset typography', T)) : null
+		);
+	}
+
+	function AlignToolbar(props) {
+		var d = props.attributes.bsDesign || {};
+		var device = wp.data.useSelect(function (select) {
+			var ed = select('core/editor');
+			var type = ed && ed.getDeviceType ? ed.getDeviceType() : 'Desktop';
+			return type === 'Tablet' ? 'T' : (type === 'Mobile' ? 'M' : '');
+		}, []);
+		var hasOwn = props.attributes.textAlign !== undefined || props.attributes.align !== undefined && props.name === 'bst/heading';
+		if (hasOwn) {
+			return null;
+		}
+		return el(be.BlockControls, { group: 'block' },
+			el(be.AlignmentControl, {
+				value: d['ta' + device] || undefined,
+				alignmentControls: [{ icon: 'editor-alignleft', title: __('Align left', T), align: 'left' }, { icon: 'editor-aligncenter', title: __('Align center', T), align: 'center' }, { icon: 'editor-alignright', title: __('Align right', T), align: 'right' }, { icon: 'editor-justify', title: __('Justify', T), align: 'justify' }],
+				onChange: function (v) {
+					var next = Object.assign({}, d);
+					if (v) {
+						next['ta' + device] = v;
+					} else {
+						delete next['ta' + device];
+					}
+					props.setAttributes({ bsDesign: next });
+				}
+			})
+		);
+	}
+
 	var withDesignPanel = wp.compose.createHigherOrderComponent(function (BlockEdit) {
 		return function (props) {
 			if (!isBst(props.name)) {
@@ -345,8 +477,9 @@
 			return el(Fragment, null,
 				el(BlockEdit, props),
 				el(WidthControls, props),
+				el(AlignToolbar, props),
 				style ? el('style', null, style) : null,
-				el(be.InspectorControls, { group: 'styles' }, el(DesignPanel, props))
+				el(be.InspectorControls, { group: 'styles' }, el(TypographyPanel, props), el(DesignPanel, props))
 			);
 		};
 	}, 'withBstDesignPanel');
