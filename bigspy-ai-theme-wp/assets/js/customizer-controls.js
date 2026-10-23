@@ -472,4 +472,27 @@
 			}
 		});
 	});
+
+	/* Colors: the palette library and the manual color pickers take turns. */
+	api.bind('ready', function () {
+		api('color_use_palette', function (setting) {
+			var apply = function (usePalette) {
+				var section = api.section('bst_colors');
+				if (!section) {
+					return;
+				}
+				section.controls().forEach(function (control) {
+					if (control.id === 'color_use_palette') {
+						return;
+					}
+					control.container.toggle(control.id === 'color_palette_presets' ? !!usePalette : !usePalette);
+				});
+			};
+			apply(setting.get());
+			setting.bind(apply);
+			api.section('bst_colors', function (section) {
+				section.expanded.bind(function () { apply(setting.get()); });
+			});
+		});
+	});
 })(jQuery, wp.customize);
