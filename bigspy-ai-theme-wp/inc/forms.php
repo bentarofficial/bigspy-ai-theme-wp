@@ -25,6 +25,10 @@ function bst_form_list() {
 	$types = array( 'cf7' => 'wpcf7_contact_form', 'wpforms' => 'wpforms' );
 	$list  = array();
 	foreach ( bst_form_providers() as $key => $label ) {
+		// The built-in form has no stored posts (empty type would list blog posts).
+		if ( empty( $types[ $key ] ) ) {
+			continue;
+		}
 		$posts = get_posts( array( 'post_type' => $types[ $key ], 'post_status' => 'publish', 'numberposts' => 200, 'orderby' => 'title', 'order' => 'ASC' ) );
 		foreach ( $posts as $post ) {
 			$list[] = array( $key, (int) $post->ID, $post->post_title ? $post->post_title : '#' . $post->ID );
