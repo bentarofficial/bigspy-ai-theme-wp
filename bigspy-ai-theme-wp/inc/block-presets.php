@@ -23,8 +23,10 @@ function bst_block_presets() {
 	$shadow_lg = '0 22px 50px -12px rgba(15,23,42,.30)';
 	$hover     = '@media(hover:hover) and (prefers-reduced-motion:no-preference){';
 
-	$card_groups = function ( $part, $prefix ) use ( $t, $shadow_sm, $shadow_md, $shadow_lg, $hover ) {
+	$card_groups = function ( $part, $prefix, $autopad = false ) use ( $t, $shadow_sm, $shadow_md, $shadow_lg, $hover ) {
 		$x = $part ? "& $part" : '&';
+		// Blocks with no padding of their own (Column) get inner space with a frame, so content never touches the edge.
+		$ap = $autopad ? 'padding:24px;' : '';
 		return array(
 			'shape'  => array( $t( 'Corners' ), true, array(
 				$prefix . '-r0'  => array( $t( 'Square' ), "{$x}{border-radius:0}" ),
@@ -33,24 +35,25 @@ function bst_block_presets() {
 				$prefix . '-r32' => array( $t( 'Extra round' ), "{$x}{border-radius:32px}" ),
 			) ),
 			'frame'  => array( $t( 'Background & frame' ), true, array(
-				$prefix . '-wc'  => array( $t( 'White card' ), "{$x}{background:#fff;border:1px solid color-mix(in srgb,var(--bs-primary) 10%,#e6edf2)}" ),
-				$prefix . '-bd'  => array( $t( 'Thin border' ), "{$x}{border:1px solid var(--bs-border)}" ),
-				$prefix . '-bdp' => array( $t( 'Brand border' ), "{$x}{border:2px solid var(--bs-primary)}" ),
-				$prefix . '-bdt' => array( $t( 'Top accent' ), "{$x}{border-top:4px solid var(--bs-primary)}" ),
-				$prefix . '-bdl' => array( $t( 'Left accent (2nd color)' ), "{$x}{border-left:3px solid var(--bs-secondary,var(--bs-primary))}" ),
-				$prefix . '-bg'  => array( $t( 'Light background' ), "{$x}{background:var(--bs-light)}" ),
-				$prefix . '-note' => array( $t( 'Note (2nd color)' ), "{$x}{background:color-mix(in srgb,var(--bs-secondary,#f5cf4c) 14%,#fff);border-left:4px solid var(--bs-secondary,#f5cf4c);border-radius:0 14px 14px 0}" ),
-				$prefix . '-gl'  => array( $t( 'Glass' ), "{$x}{background:rgba(255,255,255,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.7)}" ),
-				$prefix . '-dk'  => array( $t( 'Dark' ), "{$x}{background:var(--bs-heading,#111827);color:#fff}{$x} :is(h1,h2,h3,h4,p,li){color:inherit}" ),
+				$prefix . '-wc'  => array( $t( 'White card' ), "{$x}{{$ap}background:#fff;border:1px solid color-mix(in srgb,var(--bs-primary) 10%,#e6edf2)}" ),
+				$prefix . '-bd'  => array( $t( 'Thin border' ), "{$x}{{$ap}border:1px solid var(--bs-border)}" ),
+				$prefix . '-bdp' => array( $t( 'Brand border' ), "{$x}{{$ap}border:2px solid var(--bs-primary)}" ),
+				$prefix . '-bdt' => array( $t( 'Top accent' ), "{$x}{{$ap}border-top:4px solid var(--bs-primary)}" ),
+				$prefix . '-bdl' => array( $t( 'Left accent (2nd color)' ), "{$x}{{$ap}border-left:3px solid var(--bs-secondary,var(--bs-primary))}" ),
+				$prefix . '-bg'  => array( $t( 'Light background' ), "{$x}{{$ap}background:var(--bs-light)}" ),
+				$prefix . '-note' => array( $t( 'Note (2nd color)' ), "{$x}{{$ap}background:color-mix(in srgb,var(--bs-secondary,#f5cf4c) 14%,#fff);border-left:4px solid var(--bs-secondary,#f5cf4c);border-radius:0 14px 14px 0}" ),
+				$prefix . '-gl'  => array( $t( 'Glass' ), "{$x}{{$ap}background:rgba(255,255,255,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.7)}" ),
+				$prefix . '-dk'  => array( $t( 'Dark' ), "{$x}{{$ap}background:var(--bs-heading,#111827);color:#fff}{$x} :is(h1,h2,h3,h4,p,li){color:inherit}" ),
 			) ),
 			'shadow' => array( $t( 'Shadow' ), true, array(
-				$prefix . '-sh0' => array( $t( 'Whisper' ), "{$x}{box-shadow:0 10px 32px rgba(17,66,96,.05)}" ),
-				$prefix . '-sh1' => array( $t( 'Light' ), "{$x}{box-shadow:$shadow_sm}" ),
-				$prefix . '-sh2' => array( $t( 'Medium' ), "{$x}{box-shadow:$shadow_md}" ),
-				$prefix . '-sh3' => array( $t( 'Deep' ), "{$x}{box-shadow:$shadow_lg}" ),
-				$prefix . '-shc' => array( $t( 'Brand glow' ), "{$x}{box-shadow:0 12px 32px -10px color-mix(in srgb,var(--bs-primary) 55%,transparent)}" ),
+				$prefix . '-sh0' => array( $t( 'Whisper' ), "{$x}{{$ap}box-shadow:0 10px 32px rgba(17,66,96,.05)}" ),
+				$prefix . '-sh1' => array( $t( 'Light' ), "{$x}{{$ap}box-shadow:$shadow_sm}" ),
+				$prefix . '-sh2' => array( $t( 'Medium' ), "{$x}{{$ap}box-shadow:$shadow_md}" ),
+				$prefix . '-sh3' => array( $t( 'Deep' ), "{$x}{{$ap}box-shadow:$shadow_lg}" ),
+				$prefix . '-shc' => array( $t( 'Brand glow' ), "{$x}{{$ap}box-shadow:0 12px 32px -10px color-mix(in srgb,var(--bs-primary) 55%,transparent)}" ),
 			) ),
 			'pad'    => array( $t( 'Inner space' ), true, array(
+				$prefix . '-p0'  => array( $t( 'None' ), "{$x}{padding:0}" ),
 				$prefix . '-p16' => array( $t( 'Compact' ), "{$x}{padding:16px}" ),
 				$prefix . '-p26' => array( $t( 'Comfortable' ), "{$x}{padding:26px}@media(max-width:849px){{$x}{padding:22px}}" ),
 				$prefix . '-p40' => array( $t( 'Spacious' ), "{$x}{padding:40px}@media(max-width:849px){{$x}{padding:26px}}" ),
@@ -233,16 +236,16 @@ function bst_block_presets() {
 				'form-m16' => array( $t( '16px text (no auto-zoom)' ), '@media(max-width:849px){& :is(input,textarea,select){font-size:16px}}' ),
 			) ),
 		),
-		'bst/icon-box'    => $card_groups( '', 'ib' ),
+		'bst/icon-box'    => $card_groups( '', 'ib', true ),
 		'bst/image-box'   => $card_groups( '', 'imb' ),
 		'bst/team-member' => $card_groups( '', 'tm' ),
 		'bst/price-table' => $card_groups( '', 'pt' ),
-		'bst/testimonial' => array_merge( $card_groups( '', 'ts' ), array(
+		'bst/testimonial' => array_merge( $card_groups( '', 'ts', true ), array(
 			'quote' => array( $t( 'Quote mark' ), true, array(
 				'ts-q' => array( $t( 'Big brand quote' ), '&{position:relative}&::before{content:"\201C";position:absolute;top:-.15em;right:.3em;font:700 5rem/1 Georgia,serif;color:var(--bs-primary);opacity:.18}' ),
 			) ),
 		) ),
-		'bst/column'      => $card_groups( '', 'col' ),
+		'bst/column'      => $card_groups( '', 'col', true ),
 		'bst/accordion'   => array(
 			'width'  => array( $t( 'Width' ), true, array(
 				'acc-w700' => array( $t( 'Narrow (700px)' ), '&{max-width:700px}' ),

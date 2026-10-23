@@ -130,6 +130,11 @@
 		return out;
 	}
 
+	function needsSpace(d) {
+		var boxed = !!d.bg || (len(d.bw) !== '' && len(d.bw) !== '0');
+		return boxed && !Object.keys(d).some(function (k) { return /^p[trbl](T|M)?$/.test(k) && String(d[k]).trim() !== ''; });
+	}
+
 	function hasHover(d) {
 		return ['depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale'].some(function (k) { return d[k] !== undefined && d[k] !== '' && d[k] !== 0; });
 	}
@@ -169,6 +174,9 @@
 			var r = rules(d, dev[0]);
 			if (r.length) {
 				var block = sel + '{' + r.join(';') + '}';
+				if (dev[0] === '' && needsSpace(d)) {
+					block += sel + ':where(.bs-column,.bs-row,.bs-text,.bs-heading,.bs-buttons,.bs-icon-list,.bs-counter,.bs-social,.bs-title,.bs-code,.bs-share,.bs-star-rating,.bs-progress){padding:20px}';
+				}
 				var ta = d['ta' + dev[0]];
 				var M = { left: 'margin-left:0;margin-right:auto', center: 'margin-left:auto;margin-right:auto', right: 'margin-left:auto;margin-right:0' };
 				var AI = { left: 'flex-start', center: 'center', right: 'flex-end' };

@@ -170,6 +170,20 @@ function bst_design_rules( $d, $suffix ) {
 	return $out;
 }
 
+/** Background or border set but no padding anywhere: content would touch the edge. */
+function bst_design_needs_space( $d ) {
+	$boxed = ( '' !== bst_design_color( $d['bg'] ?? '' ) ) || ( '' !== bst_design_len( $d['bw'] ?? '' ) && '0' !== bst_design_len( $d['bw'] ?? '' ) );
+	if ( ! $boxed ) {
+		return false;
+	}
+	foreach ( $d as $k => $v ) {
+		if ( preg_match( '/^p[trbl](T|M)?$/', (string) $k ) && '' !== trim( (string) $v ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
 function bst_design_has_hover( $d ) {
 	foreach ( array( 'depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale' ) as $key ) { // Typography keys need no transition.
 		if ( isset( $d[ $key ] ) && '' !== $d[ $key ] && 0 !== $d[ $key ] ) {
@@ -222,6 +236,9 @@ function bst_design_css( $d, $selector ) {
 			continue;
 		}
 		$block = $selector . '{' . implode( ';', $rules ) . '}';
+		if ( '' === $suffix && bst_design_needs_space( $d ) ) {
+			$block .= $selector . ':where(.bs-column,.bs-row,.bs-text,.bs-heading,.bs-buttons,.bs-icon-list,.bs-counter,.bs-social,.bs-title,.bs-code,.bs-share,.bs-star-rating,.bs-progress){padding:20px}';
+		}
 		$ta    = (string) ( $d[ 'ta' . $suffix ] ?? '' );
 		if ( in_array( $ta, array( 'left', 'center', 'right' ), true ) ) {
 			$m      = array( 'left' => 'margin-left:0;margin-right:auto', 'center' => 'margin-left:auto;margin-right:auto', 'right' => 'margin-left:auto;margin-right:0' );
