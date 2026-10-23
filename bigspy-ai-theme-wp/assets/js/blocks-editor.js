@@ -485,8 +485,77 @@
 				group(9, [
 					btn(ic('editor-paste-text'), __('Paste as plain text', 'bigspy-ai-theme-wp') + (props.plainPaste ? ' ✓' : ''), function () { props.onTogglePlain(!props.plainPaste); }, { 'aria-pressed': !!props.plainPaste, className: 'bst-format-bar__btn' + (props.plainPaste ? ' is-active' : '') }),
 					cmd(ic('editor-removeformatting'), __('Clear formatting', 'bigspy-ai-theme-wp'), 'removeFormat')
-				])
+				]),
+				props.clientId ? el('span', { key: 'more', className: 'bst-format-bar__more' }, el(BlockActionsMenu, { clientId: props.clientId })) : null
 			)
+		);
+	}
+
+
+	/* "⋮" block actions inside the format bar: same jobs as the block toolbar menu. */
+	function BlockActionsMenu(props) {
+		var id = props.clientId;
+		var ed = useDispatch('core/block-editor');
+		var block = useSelect(function (select) { return select('core/block-editor').getBlock(id); }, [id]);
+		if (!block) {
+			return null;
+		}
+		var T = 'bigspy-ai-theme-wp';
+		var notice = function (msg) {
+			wp.data.dispatch('core/notices').createNotice('snackbar', msg, { type: 'snackbar' });
+		};
+		var copy = function () {
+			var text = wp.blocks.serialize([block]);
+			var done = function () { notice(__('Copied block to clipboard.', T)); };
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				navigator.clipboard.writeText(text).then(done, function () { window.prompt(__('Copy this block:', T), text); });
+			} else {
+				window.prompt(__('Copy this block:', T), text);
+			}
+		};
+		var a = block.attributes || {};
+		var locked = !!(a.lock && (a.lock.move || a.lock.remove));
+		var hidden = !!(a.bsHideDesktop && a.bsHideTablet && a.bsHideMobile);
+		var sc = function (keys) { return wp.keycodes ? keys : ''; };
+		var groups = [
+			[
+				{ title: __('Copy', T), shortcut: 'Ctrl+C', onClick: copy },
+				{ title: __('Cut', T), shortcut: 'Ctrl+X', onClick: function () { copy(); ed.removeBlock(id, false); } },
+				{ title: __('Duplicate', T), shortcut: 'Ctrl+Shift+D', onClick: function () { ed.duplicateBlocks([id]); } },
+				{ title: __('Add before', T), shortcut: 'Ctrl+Alt+T', onClick: function () { ed.insertBeforeBlock ? ed.insertBeforeBlock(id) : ed.insertDefaultBlock({}, wp.data.select('core/block-editor').getBlockRootClientId(id), wp.data.select('core/block-editor').getBlockIndex(id)); } },
+				{ title: __('Add after', T), shortcut: 'Ctrl+Alt+Y', onClick: function () { ed.insertAfterBlock ? ed.insertAfterBlock(id) : ed.insertDefaultBlock({}, wp.data.select('core/block-editor').getBlockRootClientId(id), wp.data.select('core/block-editor').getBlockIndex(id) + 1); } }
+			],
+			[
+				{ title: __('Group', T), onClick: function () { ed.replaceBlocks([id], wp.blocks.createBlock('core/group', {}, [wp.blocks.cloneBlock(block)])); } },
+				{ title: locked ? __('Unlock', T) : __('Lock', T), icon: locked ? 'unlock' : 'lock', onClick: function () { ed.updateBlockAttributes(id, { lock: locked ? undefined : { move: true, remove: true } }); } },
+				{ title: __('Rename', T), shortcut: 'Ctrl+Alt+R', onClick: function () {
+					var cur = (a.metadata && a.metadata.name) || '';
+					var name = window.prompt(__('Block name (shown in List View):', T), cur);
+					if (name !== null) {
+						ed.updateBlockAttributes(id, { metadata: Object.assign({}, a.metadata || {}, { name: name || undefined }) });
+					}
+				} },
+				{ title: hidden ? __('Show', T) : __('Hide', T), shortcut: 'Ctrl+Shift+H', onClick: function () { ed.updateBlockAttributes(id, { bsHideDesktop: !hidden, bsHideTablet: !hidden, bsHideMobile: !hidden }); notice(hidden ? __('Block shown again.', T) : __('Block hidden on all devices (still editable here).', T)); } },
+				{ title: __('Create pattern', T), icon: 'layout', onClick: function () {
+					var title = window.prompt(__('Pattern name:', T), (a.metadata && a.metadata.name) || __('My pattern', T));
+					if (!title) {
+						return;
+					}
+					wp.data.dispatch('core').saveEntityRecord('postType', 'wp_block', { title: title, content: wp.blocks.serialize([block]), status: 'publish' }).then(function () { notice(__('Pattern created. Find it under Patterns → My patterns.', T)); });
+				} }
+			],
+			[
+				{ title: __('Delete', T), shortcut: 'Shift+Alt+Z', isDestructive: true, onClick: function () { ed.removeBlock(id, true); } }
+			]
+		];
+		return el(c.DropdownMenu, { icon: 'ellipsis', label: __('More block actions', T), className: 'bst-format-bar__more-menu', popoverProps: { placement: 'bottom-end' }, toggleProps: { size: 'compact' } },
+			function (o) {
+				return groups.map(function (g, gi) {
+					return el(c.MenuGroup, { key: gi }, g.map(function (item) {
+						return el(c.MenuItem, { key: item.title, onClick: function () { item.onClick(); o.onClose(); }, shortcut: sc(item.shortcut), icon: item.icon, isDestructive: item.isDestructive, className: item.isDestructive ? 'is-destructive' : '' }, item.title);
+					}));
+				});
+			}
 		);
 	}
 
@@ -1536,7 +1605,7 @@
 				resize: false,
 				flip: true,
 				shift: true
-			}, el(FormatBar, { editorRef: editorRef, onChange: setHtml, plainPaste: a.plainPaste, onTogglePlain: function (v) { props.setAttributes({ plainPaste: v }); } })) : null
+			}, el(FormatBar, { clientId: props.clientId, editorRef: editorRef, onChange: setHtml, plainPaste: a.plainPaste, onTogglePlain: function (v) { props.setAttributes({ plainPaste: v }); } })) : null
 		);
 	});
 

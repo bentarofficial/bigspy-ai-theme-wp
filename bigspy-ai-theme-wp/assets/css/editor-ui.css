@@ -569,3 +569,8 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .block-editor-freeform-modal .mce-menubar .mce-menubtn button { padding: 3px 8px !important; }
 .block-editor-freeform-modal .mce-toolbar .mce-btn button { padding: 3px 5px !important; }
 .block-editor-freeform-modal .mce-edit-area iframe { min-height: 55vh !important; }
+
+/* Block actions menu in the format bar (1.50.6) */
+.bst-format-bar__more { margin-left: auto; display: inline-flex; padding: 2px; background: #f6f7f7; border: 1px solid #e2e4e7; border-radius: 6px; }
+.bst-format-bar__more .components-button { min-width: 34px; height: 34px; justify-content: center; }
+.bst-format-bar__more .components-button svg { transform: rotate(90deg); }
