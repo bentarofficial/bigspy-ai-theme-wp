@@ -704,7 +704,7 @@
 			single: single[0] && data.ids.length > 1,
 			setSingle: single[1],
 			showAll: !single[0],
-			style: single[0] && data.ids.length > 1 ? el('style', null, '#block-' + clientId + ' > .bst-slider-editor__track > *:not(:nth-child(' + (active + 1) + ')){display:none!important}') : null
+			style: single[0] && data.ids.length > 1 ? el('style', null, '#block-' + clientId + ' > .bst-slider-editor__track > .block-editor-block-list__block:not([data-block="' + data.ids[active] + '"]){display:none!important}') : null
 		};
 	}
 
