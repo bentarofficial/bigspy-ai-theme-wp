@@ -115,3 +115,8 @@ a {
 .bst-img-resize[hidden] { display: none; }
 .bst-img-resize__bar button { min-width: 28px; height: 28px; padding: 0 6px; font: 600 12px/1 system-ui, sans-serif; color: #1e1e1e; background: #fff; border: 0; border-radius: 3px; cursor: pointer; }
 .bst-img-resize__bar button:hover { background: #f0f0f0; }
+
+/* 1.50.4: WordPress core sets `.wp-block img:not([draggable]) { pointer-events: none }` in the editor,
+   so images inside the visual text editor never received the click. Re-enable them. */
+.bst-visual-wrap img { pointer-events: auto !important; }
+.bst-img-resize__bar { top: calc(100% + 8px); bottom: auto; }
