@@ -3030,3 +3030,8 @@ input[type="submit"]:hover,
 /* The CF7 spinner sat on its own line under a full-width button, adding empty space below the form. */
 .bs-form .wpcf7-form p:has(> .wpcf7-submit), .bs-form .wpcf7-form p:has(> [type="submit"]) { position: relative; }
 .bs-form .wpcf7-spinner { position: absolute; top: 50%; right: 14px; margin: -12px 0 0; }
+
+/* 1.54.5: "Small caps" labels are for field labels only – radio / checkbox / consent choices keep the case typed in the form. */
+.bs-form--labels-small .wpcf7-list-item label, .bs-form--labels-small .wpforms-field-label-inline { font-size: inherit; letter-spacing: normal; text-transform: none; opacity: 1; }
+/* Space between a heading / text and a Form block that follows it in the same column. */
+:is(.bs-heading, .bs-text, .bs-title, .wp-block-heading, p) + .bs-form { margin-top: 18px; }
