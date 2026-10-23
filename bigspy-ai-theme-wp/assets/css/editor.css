@@ -97,3 +97,17 @@ a {
 
 /* Accordion question tag badge (1.49.1) */
 .bst-acc-tag { margin-left: auto; margin-right: 8px; padding: 1px 6px; font: 600 10px/1.5 system-ui, sans-serif; color: #757575; border: 1px solid #ddd; border-radius: 4px; }
+
+/* Inline image resize in visual text editors (1.50) */
+.bst-visual-wrap { position: relative; }
+.bst-visual-wrap img { max-width: 100%; height: auto; cursor: pointer; }
+.bst-img-resize { position: absolute; z-index: 40; outline: 2px solid var(--wp-admin-theme-color, #3858e9); pointer-events: none; }
+.bst-img-resize__handle { position: absolute; right: -7px; bottom: -7px; width: 14px; height: 14px; background: #fff; border: 2px solid var(--wp-admin-theme-color, #3858e9); border-radius: 3px; cursor: nwse-resize; pointer-events: auto; touch-action: none; }
+.bst-img-resize__size { position: absolute; right: 4px; bottom: 4px; padding: 1px 6px; color: #fff; font: 600 11px/1.5 system-ui, sans-serif; background: rgba(0,0,0,.7); border-radius: 3px; }
+.bst-img-resize__bar { position: absolute; left: 0; bottom: calc(100% + 6px); display: flex; flex-wrap: wrap; gap: 2px; padding: 3px; background: #fff; border: 1px solid #1e1e1e; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,.15); pointer-events: auto; white-space: nowrap; }
+.bst-img-resize__bar .components-button { min-width: 28px; height: 28px; padding: 0 6px; font-size: 12px; }
+
+/* Image block corner resize (1.50) */
+.bs-image .bs-image__frame { position: relative; }
+.bst-img-corner { position: absolute; right: 6px; bottom: 6px; z-index: 5; width: 14px; height: 14px; background: #fff; border: 2px solid var(--wp-admin-theme-color, #3858e9); border-radius: 3px; cursor: nwse-resize; touch-action: none; }
+.bst-img-corner em { position: absolute; right: 18px; bottom: 0; padding: 1px 6px; color: #fff; font: 600 11px/1.5 system-ui, sans-serif; font-style: normal; background: var(--wp-admin-theme-color, #3858e9); border-radius: 3px; white-space: nowrap; }

@@ -2969,3 +2969,10 @@ input[type="submit"]:hover,
 .bs-cookie p { flex: 1 1 260px; margin: 0; }
 .bs-cookie a { color: inherit; text-decoration: underline; }
 .bs-cookie--left { right: auto; max-width: 380px; }
+
+/* Images inside Text blocks (1.50) */
+.bs-text img { max-width: 100%; height: auto; vertical-align: middle; }
+.bs-text img.alignleft { float: left; margin: .3em 1.2em .6em 0; }
+.bs-text img.alignright { float: right; margin: .3em 0 .6em 1.2em; }
+.bs-text img.aligncenter { display: block; margin: .6em auto; }
+.bs-text::after { content: ""; display: table; clear: both; }

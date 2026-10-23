@@ -89,18 +89,129 @@
 			e.preventDefault();
 			e.currentTarget.ownerDocument.execCommand('insertText', false, text);
 		};
-		return el('div', {
-			ref: ref,
-			className: 'bst-code-editor__visual ' + (props.className || ''),
-			contentEditable: true,
-			suppressContentEditableWarning: true,
-			role: 'textbox',
-			'aria-multiline': 'true',
-			'aria-label': props.label,
-			onInput: sync,
-			onBlur: sync,
-			onPaste: paste
-		});
+		var imgState = wp.element.useState(null);
+		var tick = wp.element.useState(0);
+		var img = imgState[0];
+		var pick = function (e) {
+			var t = e.target;
+			if (t && t.tagName === 'IMG' && ref.current && ref.current.contains(t)) {
+				imgState[1](t);
+				tick[1](tick[0] + 1);
+			} else if (img) {
+				imgState[1](null);
+			}
+		};
+		var commit = function () {
+			if (ref.current) {
+				props.onChange(ref.current.innerHTML);
+			}
+			tick[1](tick[0] + 1);
+		};
+		var box = null;
+		if (img && ref.current && ref.current.contains(img)) {
+			var wrap = ref.current.parentNode.getBoundingClientRect();
+			var r = img.getBoundingClientRect();
+			box = { left: r.left - wrap.left, top: r.top - wrap.top, width: r.width, height: r.height };
+		}
+		var startResize = function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+			var handle = e.currentTarget;
+			try { handle.setPointerCapture(e.pointerId); } catch (err) {}
+			var startX = e.clientX;
+			var startW = img.getBoundingClientRect().width;
+			var max = ref.current.getBoundingClientRect().width;
+			var move = function (ev) {
+				var w = Math.round(Math.max(16, Math.min(max, startW + (ev.clientX - startX))));
+				img.style.width = w + 'px';
+				img.style.height = 'auto';
+				img.removeAttribute('height');
+				img.setAttribute('width', w);
+				tick[1](function (n) { return n + 1; });
+			};
+			var up = function () {
+				handle.removeEventListener('pointermove', move);
+				handle.removeEventListener('pointerup', up);
+				commit();
+			};
+			handle.addEventListener('pointermove', move);
+			handle.addEventListener('pointerup', up);
+		};
+		var align = function (mode) {
+			img.classList.remove('alignleft', 'alignright', 'aligncenter');
+			img.style.float = '';
+			img.style.display = '';
+			img.style.margin = '';
+			if (mode) {
+				img.classList.add('align' + mode);
+			}
+			commit();
+		};
+		var setWidth = function (w) {
+			if (w) {
+				img.style.width = w;
+				img.style.height = 'auto';
+				img.removeAttribute('width');
+				img.removeAttribute('height');
+			} else {
+				img.style.width = '';
+			}
+			commit();
+		};
+		return el('div', { className: 'bst-visual-wrap' },
+			el('div', {
+				ref: ref,
+				className: 'bst-code-editor__visual ' + (props.className || ''),
+				contentEditable: true,
+				suppressContentEditableWarning: true,
+				role: 'textbox',
+				'aria-multiline': 'true',
+				'aria-label': props.label,
+				onInput: sync,
+				onBlur: sync,
+				onPaste: paste,
+				onClick: pick,
+				onKeyDown: function () { if (img) { imgState[1](null); } }
+			}),
+			box ? el('div', { className: 'bst-img-resize', style: { left: box.left + 'px', top: box.top + 'px', width: box.width + 'px', height: box.height + 'px' }, contentEditable: false },
+				el('span', { className: 'bst-img-resize__size' }, Math.round(box.width) + ' × ' + Math.round(box.height)),
+				el('span', { className: 'bst-img-resize__handle', onPointerDown: startResize, title: __('Drag to resize', 'bigspy-ai-theme-wp') }),
+				el('div', { className: 'bst-img-resize__bar', onMouseDown: function (e) { e.preventDefault(); } },
+					el(c.Button, { size: 'small', icon: 'align-left', label: __('Float left', 'bigspy-ai-theme-wp'), onClick: function () { align('left'); } }),
+					el(c.Button, { size: 'small', icon: 'align-center', label: __('Center', 'bigspy-ai-theme-wp'), onClick: function () { align('center'); } }),
+					el(c.Button, { size: 'small', icon: 'align-right', label: __('Float right', 'bigspy-ai-theme-wp'), onClick: function () { align('right'); } }),
+					el(c.Button, { size: 'small', icon: 'editor-removeformatting', label: __('Inline (no alignment)', 'bigspy-ai-theme-wp'), onClick: function () { align(''); } }),
+					['25%', '50%', '100%'].map(function (w) { return el(c.Button, { key: w, size: 'small', onClick: function () { setWidth(w); } }, w); }),
+					el(c.Button, { size: 'small', icon: 'image-rotate', label: __('Original size', 'bigspy-ai-theme-wp'), onClick: function () { setWidth(''); } }),
+					el(c.Button, { size: 'small', icon: 'trash', isDestructive: true, label: __('Remove image', 'bigspy-ai-theme-wp'), onClick: function () { var i = img; imgState[1](null); i.parentNode.removeChild(i); commit(); } })
+				)
+			) : null
+		);
+	}
+
+	/* Insert an image at the caret of a visual (contentEditable) editor. */
+	function insertImageInto(node, media) {
+		if (!node || !media || !media.url) {
+			return;
+		}
+		var doc = node.ownerDocument;
+		node.focus();
+		var range = node._bstRange;
+		var sel = doc.getSelection();
+		if (range && node.contains(range.startContainer)) {
+			sel.removeAllRanges();
+			sel.addRange(range);
+		} else {
+			range = doc.createRange();
+			range.selectNodeContents(node);
+			range.collapse(false);
+			sel.removeAllRanges();
+			sel.addRange(range);
+		}
+		var w = media.width ? Math.min(media.width, 320) : 240;
+		var html = '<img src="' + media.url + '" alt="' + (media.alt || '').replace(/"/g, '&quot;') + '" width="' + w + '" style="width:' + w + 'px;height:auto" class="wp-image-' + (media.id || 0) + '">';
+		doc.execCommand('insertHTML', false, html);
+		node.dispatchEvent(new (doc.defaultView.Event)('input', { bubbles: true }));
 	}
 
 	function editorTabs(tabs, current, setTab, label) {
@@ -1322,6 +1433,13 @@
 					{ label: __('Links', 'bigspy-ai-theme-wp'), value: a.linkColor, onChange: function (v) { props.setAttributes({ linkColor: v || '' }); } }
 				] })
 			),
+			el(be.BlockControls, { group: 'other' },
+				el(be.MediaUploadCheck, null, el(be.MediaUpload, {
+					allowedTypes: ['image'],
+					onSelect: function (m) { insertImageInto(editorRef.current, m); },
+					render: function (o) { return el(c.ToolbarButton, { icon: 'format-image', label: __('Add image into the text (drag its corner to resize)', 'bigspy-ai-theme-wp'), onClick: o.open }); }
+				}))
+			),
 			el('div', blockProps,
 				el(VisualHtml, { value: a.html, onChange: setHtml, editorRef: editorRef, onReady: anchorState[1], plainPaste: a.plainPaste, className: 'bs-text__content bst-inline-edit', label: __('Text content', 'bigspy-ai-theme-wp') })
 			),
@@ -1383,7 +1501,19 @@
 			),
 			el('figure', blockProps,
 				a.imageUrl
-					? el('span', { className: 'bs-image__frame' + (a.ratio !== 'auto' ? ' bs-ratio bs-ratio--' + a.ratio : '') + (a.ratio === 'auto' && a.height ? ' has-height' : ''), style: a.ratio === 'auto' && a.height ? { '--bs-image-h': /^[0-9.]+$/.test(a.height) ? a.height + 'px' : a.height } : {} }, el('img', { className: 'bs-image__img', src: a.imageUrl, alt: '' }), a.overlay ? el('span', { className: 'bs-image__overlay' + (a.overlayHover ? ' is-hover' : ''), style: { background: a.overlay, '--bs-ov-o': a.overlayOpacity / 100 } }) : null)
+					? el('span', { className: 'bs-image__frame' + (a.ratio !== 'auto' ? ' bs-ratio bs-ratio--' + a.ratio : '') + (a.ratio === 'auto' && a.height ? ' has-height' : ''), style: a.ratio === 'auto' && a.height ? { '--bs-image-h': /^[0-9.]+$/.test(a.height) ? a.height + 'px' : a.height } : {} }, el('img', { className: 'bs-image__img', src: a.imageUrl, alt: '' }), props.isSelected ? el('span', { className: 'bst-img-corner', title: __('Drag to resize (width %)', 'bigspy-ai-theme-wp'), onPointerDown: function (e) {
+						e.preventDefault();
+						e.stopPropagation();
+						var h = e.currentTarget;
+						try { h.setPointerCapture(e.pointerId); } catch (err) {}
+						var fig = h.closest('figure');
+						var parentW = fig.parentElement.getBoundingClientRect().width || 1;
+						var left = fig.querySelector('.bs-image__frame').getBoundingClientRect().left;
+						var move = function (ev) { props.setAttributes({ width: Math.max(5, Math.min(100, Math.round((ev.clientX - left) / parentW * 100))) }); };
+						var up = function () { h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', up); };
+						h.addEventListener('pointermove', move);
+						h.addEventListener('pointerup', up);
+					} }, el('em', null, a.width + '%')) : null, a.overlay ? el('span', { className: 'bs-image__overlay' + (a.overlayHover ? ' is-hover' : ''), style: { background: a.overlay, '--bs-ov-o': a.overlayOpacity / 100 } }) : null)
 					: el(be.MediaPlaceholder, { icon: 'format-image', labels: { title: __('Image', 'bigspy-ai-theme-wp') }, accept: 'image/*', allowedTypes: ['image'], onSelect: setImage }),
 				a.imageUrl ? el(RichText, { tagName: 'figcaption', className: 'bs-image__caption', value: a.caption, placeholder: __('Caption (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ caption: v }); } }) : null
 			)
