@@ -1209,4 +1209,4 @@ ul.products.bs-slider__track {
 .bs-cart__link { width: auto; min-width: 40px; gap: 8px; }
 .bs-cart__icon { position: relative; display: inline-flex; }
 .bs-cart__icon .bs-cart__count { top: -8px; right: -10px; }
-.bs-he-icon--circle .bs-cart__icon .bs-cart__count, .bs-he-icon--square .bs-cart__icon .bs-cart__count, .bs-he-icon--outline .bs-cart__icon .bs-cart__count, .bs-he-icon--soft .bs-cart__icon .bs-cart__count { top: -4px; right: -6px; }
+.bs-he-icon--outline-sq .bs-cart__icon .bs-cart__count, .bs-he-icon--soft-sq .bs-cart__icon .bs-cart__count, .bs-he-icon--circle .bs-cart__icon .bs-cart__count, .bs-he-icon--square .bs-cart__icon .bs-cart__count, .bs-he-icon--outline .bs-cart__icon .bs-cart__count, .bs-he-icon--soft .bs-cart__icon .bs-cart__count { top: -4px; right: -6px; }

@@ -19,9 +19,13 @@ function bst_he_common( $key, $what = array() ) {
 	};
 	if ( in_array( 'icon', $what, true ) ) {
 		$add( 'h_icon', 'heading', __( 'Icon', 'bigspy-ai-theme-wp' ) );
-		$add( 'icon_style', 'select', __( 'Icon style', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Plain icon', 'bigspy-ai-theme-wp' ), 'circle' => __( 'Filled circle', 'bigspy-ai-theme-wp' ), 'square' => __( 'Filled square', 'bigspy-ai-theme-wp' ), 'outline' => __( 'Outline circle', 'bigspy-ai-theme-wp' ), 'soft' => __( 'Soft tinted circle', 'bigspy-ai-theme-wp' ) ) ) );
+		$add( 'icon_style', 'select', __( 'Icon style', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Plain icon', 'bigspy-ai-theme-wp' ), 'circle' => __( 'Filled circle', 'bigspy-ai-theme-wp' ), 'square' => __( 'Filled square', 'bigspy-ai-theme-wp' ), 'outline' => __( 'Outline circle', 'bigspy-ai-theme-wp' ), 'outline-sq' => __( 'Outline square', 'bigspy-ai-theme-wp' ), 'soft' => __( 'Soft tinted circle', 'bigspy-ai-theme-wp' ), 'soft-sq' => __( 'Soft tinted square', 'bigspy-ai-theme-wp' ) ) ) );
 		$add( 'icon_size', 'number', __( 'Icon size (px, 0 = default)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 48 ) ) );
 		$add( 'icon_bg', 'color', __( 'Icon background (filled styles)', 'bigspy-ai-theme-wp' ) );
+		$add( 'icon_pad', 'number', __( 'Space between icon and frame (px, empty = default)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 24 ) ) );
+		$add( 'icon_bw', 'number', __( 'Frame border width (px, outline styles)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 6 ) ) );
+		$add( 'icon_bc', 'color', __( 'Frame border color', 'bigspy-ai-theme-wp' ) );
+		$add( 'icon_radius', 'number', __( 'Frame corner radius (px, empty = default)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 50 ) ) );
 	}
 	if ( in_array( 'text', $what, true ) ) {
 		$add( 'h_text', 'heading', __( 'Text', 'bigspy-ai-theme-wp' ) );
@@ -87,7 +91,7 @@ function bst_he_schema() {
 		'',
 		array_merge(
 			array(
-				$o( 'nav_icon', 'type', 'select', __( 'Icon', 'bigspy-ai-theme-wp' ), array( 'choices' => array( 'menu' => __( 'Three lines', 'bigspy-ai-theme-wp' ), 'menu-short' => __( 'Lines (short last)', 'bigspy-ai-theme-wp' ), 'dots' => __( 'Dots', 'bigspy-ai-theme-wp' ), 'grid' => __( 'Grid', 'bigspy-ai-theme-wp' ) ) ) ),
+				$o( 'nav_icon', 'type', 'select', __( 'Icon', 'bigspy-ai-theme-wp' ), array( 'choices' => array( 'menu' => __( 'Three lines', 'bigspy-ai-theme-wp' ), 'menu-short' => __( 'Lines (short last)', 'bigspy-ai-theme-wp' ), 'dots' => __( 'Dots', 'bigspy-ai-theme-wp' ), 'grid' => __( 'Grid', 'bigspy-ai-theme-wp' ), 'menu-thin' => __( 'Thin lines', 'bigspy-ai-theme-wp' ), 'menu-two' => __( 'Two lines', 'bigspy-ai-theme-wp' ), 'menu-mid' => __( 'Lines (short middle)', 'bigspy-ai-theme-wp' ), 'menu-right' => __( 'Lines (short right)', 'bigspy-ai-theme-wp' ), 'menu-steps' => __( 'Lines (stepped)', 'bigspy-ai-theme-wp' ), 'menu-bold' => __( 'Bold lines', 'bigspy-ai-theme-wp' ), 'dots-v' => __( 'Dots (vertical)', 'bigspy-ai-theme-wp' ), 'grid-dots' => __( 'Grid of dots', 'bigspy-ai-theme-wp' ), 'list' => __( 'List', 'bigspy-ai-theme-wp' ) ) ) ),
 				$o( 'nav_icon', 'label', 'text', __( 'Text next to the icon (e.g. Menu)', 'bigspy-ai-theme-wp' ) ),
 				array( 'id' => 'offcanvas_side', 'type' => 'radio', 'label' => __( 'Menu opens from', 'bigspy-ai-theme-wp' ), 'choices' => array( 'left' => __( 'Left', 'bigspy-ai-theme-wp' ), 'right' => __( 'Right', 'bigspy-ai-theme-wp' ) ) ),
 			),
@@ -289,7 +293,7 @@ function bst_he( $key, $opt ) {
 function bst_he_classes( $key ) {
 	$c = array();
 	$style = (string) bst_he( $key, 'icon_style' );
-	if ( in_array( $style, array( 'circle', 'square', 'outline', 'soft' ), true ) ) {
+	if ( in_array( $style, array( 'circle', 'square', 'outline', 'outline-sq', 'soft', 'soft-sq' ), true ) ) {
 		$c[] = 'bs-he-icon--' . $style;
 	}
 	if ( bst_he( $key, 'hide_sticky' ) ) {
@@ -356,6 +360,20 @@ function bst_he_css() {
 		}
 		if ( $c = $col( bst_he( $key, 'icon_bg' ) ) ) {
 			$rules[] = "$sel { --bs-he-icon-bg: $c }";
+		}
+		// Frame options: 0 is a real value here, only empty means default.
+		$frame = array();
+		foreach ( array( 'icon_pad' => '--bs-he-pad', 'icon_bw' => '--bs-he-bw', 'icon_radius' => '--bs-he-r' ) as $opt => $var ) {
+			$v = bst_he( $key, $opt );
+			if ( is_numeric( $v ) && '' !== (string) $v ) {
+				$frame[] = $var . ':' . max( 0, (int) $v ) . 'px';
+			}
+		}
+		if ( $c = $col( bst_he( $key, 'icon_bc' ) ) ) {
+			$frame[] = "--bs-he-bc:$c";
+		}
+		if ( $frame ) {
+			$rules[] = "$sel { " . implode( ';', $frame ) . ' }';
 		}
 		$css .= implode( '', $rules );
 	}

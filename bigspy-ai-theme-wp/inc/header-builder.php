@@ -106,13 +106,22 @@ function bst_header_element( $element, $device ) {
 			break;
 
 		case 'nav_icon':
-			$nav_type  = function_exists( 'bst_he' ) ? bst_choice( (string) bst_he( 'nav_icon', 'type' ), array( 'menu', 'menu-short', 'dots', 'grid' ), 'menu' ) : 'menu';
+			$nav_type  = function_exists( 'bst_he' ) ? bst_choice( (string) bst_he( 'nav_icon', 'type' ), array( 'menu', 'menu-short', 'dots', 'grid', 'menu-thin', 'menu-two', 'menu-mid', 'menu-right', 'menu-steps', 'menu-bold', 'dots-v', 'grid-dots', 'list' ), 'menu' ) : 'menu';
 			$nav_label = function_exists( 'bst_he' ) ? trim( (string) bst_he( 'nav_icon', 'label' ) ) : '';
 			$nav_svg   = array(
 				'menu'       => bst_icon( 'menu', 24 ),
 				'menu-short' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 6h18M3 12h18M3 18h11"/></svg>',
 				'dots'       => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>',
 				'grid'       => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>',
+				'menu-thin' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M3 6h18M3 12h18M3 18h18"/></svg>',
+				'menu-two' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 9h18M3 15h18"/></svg>',
+				'menu-mid' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 6h18M3 12h11M3 18h18"/></svg>',
+				'menu-right' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 6h18M10 12h11M6 18h15"/></svg>',
+				'menu-steps' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 6h18M3 12h14M3 18h9"/></svg>',
+				'menu-bold' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>',
+				'dots-v' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="19" r="2" fill="currentColor"/></svg>',
+				'grid-dots' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></g></svg>',
+				'list' => '<svg class="bs-icon bs-icon--menu" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h12M9 12h12M9 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01" stroke-width="3"/></g></svg>',
 			);
 			$html = '<button type="button" class="bs-icon-btn bs-nav-toggle" data-bs-offcanvas-open aria-controls="bs-offcanvas" aria-expanded="false" aria-label="' . esc_attr__( 'Open menu', 'bigspy-ai-theme-wp' ) . '">' . $nav_svg[ $nav_type ] . ( '' !== $nav_label ? '<span class="bs-he-label">' . esc_html( $nav_label ) . '</span>' : '' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			break;

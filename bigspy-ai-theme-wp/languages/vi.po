@@ -431,6 +431,9 @@ msgstr "Tin tức"
 msgid "Body care"
 msgstr "Chăm sóc body"
 
+msgid "Bold lines"
+msgstr "Ba gạch đậm"
+
 msgid "Book"
 msgstr "Đặt lịch"
 
@@ -746,6 +749,12 @@ msgstr "Nhà hàng có món chay không?"
 msgid "Do you help with bank loans?"
 msgstr "Có hỗ trợ vay ngân hàng không?"
 
+msgid "Dots"
+msgstr "Ba chấm"
+
+msgid "Dots (vertical)"
+msgstr "Ba chấm dọc"
+
 msgid "Duplicate"
 msgstr "Nhân bản"
 
@@ -830,6 +839,12 @@ msgstr "Khoá học nổi bật"
 msgid "Featured projects"
 msgstr "Dự án nổi bật"
 
+msgid "Filled circle"
+msgstr "Tròn nền đặc"
+
+msgid "Filled square"
+msgstr "Vuông nền đặc"
+
 msgid "Finance advisor"
 msgstr "Tư vấn tài chính"
 
@@ -871,6 +886,15 @@ msgstr "Chỉ 4 bước để có bữa ăn hoàn hảo"
 
 msgid "Fragrant coffee and a quiet space. I often bring my laptop and work here in the afternoon."
 msgstr "Cà phê thơm, không gian yên tĩnh. Mình hay mang laptop đến làm việc buổi chiều."
+
+msgid "Frame border color"
+msgstr "Màu viền"
+
+msgid "Frame border width (px, outline styles)"
+msgstr "Độ dày viền (px, kiểu viền)"
+
+msgid "Frame corner radius (px, empty = default)"
+msgstr "Bo góc khung (px, để trống = mặc định)"
 
 msgid "Free"
 msgstr "Miễn phí"
@@ -988,6 +1012,12 @@ msgstr "Từ trắng đen sang màu"
 
 msgid "Great gifts"
 msgstr "Quà tặng hấp dẫn"
+
+msgid "Grid"
+msgstr "Lưới ô"
+
+msgid "Grid of dots"
+msgstr "Lưới chấm"
 
 msgid "Group work, debates and role-play."
 msgstr "Làm việc nhóm, tranh biện, đóng vai."
@@ -1115,6 +1145,9 @@ msgstr "Luyện thi IELTS"
 msgid "IT lecturer"
 msgstr "Giảng viên tin học"
 
+msgid "Icon style"
+msgstr "Kiểu icon"
+
 msgid "In 15 years"
 msgstr "Trong 15 năm"
 
@@ -1225,6 +1258,21 @@ msgstr "Trần Thu Trang"
 
 msgid "Linda"
 msgstr "Chị Mai"
+
+msgid "Lines (short last)"
+msgstr "Ba gạch (dưới ngắn)"
+
+msgid "Lines (short middle)"
+msgstr "Ba gạch (giữa ngắn)"
+
+msgid "Lines (short right)"
+msgstr "Ba gạch (canh phải)"
+
+msgid "Lines (stepped)"
+msgstr "Ba gạch (bậc thang)"
+
+msgid "List"
+msgstr "Danh sách"
 
 msgid "Listed prices guaranteed"
 msgstr "Cam kết đúng giá niêm yết"
@@ -1580,6 +1628,12 @@ msgstr "Tổ chức tiệc tất niên 80 người rất chuyên nghiệp, món 
 msgid "Out of 5,000+ graduates"
 msgstr "Trên hơn 5.000 học viên đã tốt nghiệp"
 
+msgid "Outline circle"
+msgstr "Viền tròn"
+
+msgid "Outline square"
+msgstr "Viền vuông"
+
 msgid "Packages are valid for 6 months and can be shared with family."
 msgstr "Gói có hiệu lực 6 tháng và có thể dùng chung cho người thân."
 
@@ -1642,6 +1696,9 @@ msgstr "Chọn thời gian"
 
 msgid "Placement test"
 msgstr "Kiểm tra đầu vào"
+
+msgid "Plain icon"
+msgstr "Icon trơn"
 
 msgid "Plus 3 private rooms"
 msgstr "Kèm 3 phòng riêng"
@@ -1985,6 +2042,12 @@ msgstr "Làm rõ nhẹ"
 msgid "Soft shadow"
 msgstr "Bóng đổ nhẹ"
 
+msgid "Soft tinted circle"
+msgstr "Tròn nền nhạt"
+
+msgid "Soft tinted square"
+msgstr "Vuông nền nhạt"
+
 msgid "Soft zoom"
 msgstr "Phóng to nhẹ"
 
@@ -2005,6 +2068,9 @@ msgstr "Spa / beauty homepage with 15 sections: hero, highlights, story, treatme
 
 msgid "Spa · Skin care · Massage"
 msgstr "Spa · Chăm sóc da · Massage"
+
+msgid "Space between icon and frame (px, empty = default)"
+msgstr "Khoảng cách từ icon đến viền (px, để trống = mặc định)"
 
 msgid "Spaced repetition to memorise words effectively."
 msgstr "Phương pháp lặp lại ngắt quãng giúp ghi nhớ từ vựng hiệu quả."
@@ -2123,6 +2189,9 @@ msgstr "Hoàn toàn miễn phí, có xe đưa đón khi xem dự án ngoại th�
 msgid "They know the market, they are honest and they put your interests first."
 msgstr "Am hiểu thị trường, trung thực và luôn đặt quyền lợi khách hàng lên đầu."
 
+msgid "Thin lines"
+msgstr "Ba gạch mảnh"
+
 msgid "Third-year student"
 msgstr "Sinh viên năm 3"
 
@@ -2131,6 +2200,9 @@ msgstr "Không thể chèn mẫu này. Vui lòng thử mẫu khác."
 
 msgid "This starter page is not available."
 msgstr "Mẫu trang này hiện không khả dụng."
+
+msgid "Three lines"
+msgstr "Ba gạch"
 
 msgid "Tiramisu, passion fruit cheesecake and mousse, made fresh every morning."
 msgstr "Tiramisu, cheesecake chanh dây và bánh mousse làm mới mỗi sáng."
@@ -2179,6 +2251,9 @@ msgstr "Học phí"
 
 msgid "Turmeric, colostrum and rice bran for naturally bright skin."
 msgstr "Nghệ, sữa non và cám gạo giúp da sáng mịn tự nhiên."
+
+msgid "Two lines"
+msgstr "Hai gạch"
 
 msgid "Two tea breaks"
 msgstr "Tea-break 2 buổi"
