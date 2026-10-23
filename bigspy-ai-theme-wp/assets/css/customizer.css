@@ -228,3 +228,15 @@ li.bst-group-hidden { display: none !important; }
 .bst-csearch__results li.is-empty { color: #646970; cursor: default; }
 .bst-csearch-hit { animation: bst-hit 1.8s ease; }
 @keyframes bst-hit { 0%, 60% { box-shadow: 0 0 0 3px #f59e0b; } 100% { box-shadow: 0 0 0 0 transparent; } }
+
+/* Palette library tools (1.47) */
+.bst-pal-tools { margin: 4px 0 10px; }
+.bst-pal-search { width: 100%; margin-bottom: 8px !important; }
+.bst-pal-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.bst-pal-chip { padding: 3px 10px; font-size: 12px; background: #fff; border: 1px solid #c3c4c7; border-radius: 999px; cursor: pointer; }
+.bst-pal-chip.is-on { color: #fff; background: #2271b1; border-color: #2271b1; }
+.bst-pal-count { margin: 6px 0 0; color: #646970; font-size: 11px; }
+#customize-control-color_palette_presets .bst-layout-presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-height: 60vh; overflow: auto; padding-right: 2px; }
+#customize-control-color_palette_presets .bst-layout-presets__button { margin: 0 !important; padding: 8px !important; }
+#customize-control-color_palette_presets .bst-layout-presets__button span { display: none; }
+#customize-control-color_palette_presets .bst-layout-presets__button strong { font-size: 12px; }

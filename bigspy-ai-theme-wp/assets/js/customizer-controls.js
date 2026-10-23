@@ -495,4 +495,39 @@
 			});
 		});
 	});
+
+	/* Palette library: search box + style filter (100 palettes). */
+	api.bind('ready', function () {
+		api.control('color_palette_presets', function (control) {
+			var $wrap = control.container.find('[data-bst-layout-presets]');
+			var $buttons = $wrap.children('button');
+			var groups = [['', 'All'], ['Vivid', 'Vivid'], ['Pastel', 'Pastel'], ['Deep', 'Deep'], ['Dark', 'Dark']];
+			var $tools = $('<div class="bst-pal-tools"><input type="search" class="bst-pal-search" placeholder="Search: blue, spa, food, gold…"><div class="bst-pal-chips"></div><p class="bst-pal-count"></p></div>');
+			groups.forEach(function (g, i) {
+				$('<button type="button" class="bst-pal-chip" />').toggleClass('is-on', i === 0).attr('data-g', g[0]).text(g[1]).appendTo($tools.find('.bst-pal-chips'));
+			});
+			$wrap.before($tools);
+			var group = '';
+			var filter = function () {
+				var q = String($tools.find('input').val() || '').toLowerCase().trim();
+				var shown = 0;
+				$buttons.each(function () {
+					var t = $(this).text().toLowerCase();
+					var desc = $(this).find('span').text();
+					var ok = (!q || q.split(/\s+/).every(function (w) { return t.indexOf(w) !== -1; })) && (!group || desc.indexOf(group + ' ·') === 0 || group === 'Vivid' && desc.indexOf(' · ') === -1);
+					$(this).toggle(ok);
+					shown += ok ? 1 : 0;
+				});
+				$tools.find('.bst-pal-count').text(shown + ' / ' + $buttons.length);
+			};
+			$tools.on('input', 'input', filter);
+			$tools.on('click', '.bst-pal-chip', function () {
+				group = $(this).attr('data-g');
+				$tools.find('.bst-pal-chip').removeClass('is-on');
+				$(this).addClass('is-on');
+				filter();
+			});
+			filter();
+		});
+	});
 })(jQuery, wp.customize);
