@@ -660,10 +660,111 @@
 		);
 	}
 
+
+	/* ================================================================ Slide navigator (Flatsome-style) */
+	var SLIDE_ADD = [['bst/banner', __('Banner', 'bigspy-ai-theme-wp')], ['bst/image', __('Image', 'bigspy-ai-theme-wp')], ['bst/section', __('Section', 'bigspy-ai-theme-wp')], ['bst/row', __('Grid (row)', 'bigspy-ai-theme-wp')]];
+	function useSlideNav(clientId) {
+		var state = wp.element.useState(0);
+		var single = wp.element.useState(true);
+		var data = useSelect(function (select) {
+			var store = select('core/block-editor');
+			var ids = store.getBlockOrder(clientId);
+			var selected = store.getSelectedBlockClientId();
+			var owner = -1;
+			if (selected) {
+				var chain = [selected].concat(store.getBlockParents(selected, true));
+				for (var i = 0; i < chain.length && owner < 0; i++) {
+					owner = ids.indexOf(chain[i]);
+				}
+			}
+			return {
+				ids: ids,
+				owner: owner,
+				names: ids.map(function (id) {
+					var block = store.getBlock(id);
+					var type = block && wp.blocks.getBlockType(block.name);
+					var meta = block && block.attributes && block.attributes.metadata;
+					return (meta && meta.name) || (type ? type.title : '?');
+				})
+			};
+		}, [clientId]);
+		var active = Math.min(state[0], Math.max(0, data.ids.length - 1));
+		wp.element.useEffect(function () {
+			if (data.owner >= 0 && data.owner !== state[0]) {
+				state[1](data.owner);
+			}
+		}, [data.owner]);
+		return {
+			ids: data.ids,
+			names: data.names,
+			active: active,
+			setActive: state[1],
+			single: single[0] && data.ids.length > 1,
+			setSingle: single[1],
+			showAll: !single[0],
+			style: single[0] && data.ids.length > 1 ? el('style', null, '#block-' + clientId + ' > .bst-slider-editor__track > *:not(:nth-child(' + (active + 1) + ')){display:none!important}') : null
+		};
+	}
+
+	function slideNavBar(nav, clientId) {
+		var ed = wp.data.dispatch('core/block-editor');
+		var go = function (i, select) {
+			nav.setActive(i);
+			if (select && nav.ids[i]) {
+				ed.selectBlock(nav.ids[i]);
+			}
+		};
+		var add = function (name) {
+			var block = wp.blocks.createBlock(name);
+			ed.insertBlocks(block, nav.ids.length, clientId);
+			nav.setActive(nav.ids.length);
+		};
+		var id = nav.ids[nav.active];
+		var stop = function (e) { e.stopPropagation(); };
+		return el('div', { className: 'bst-slidenav', contentEditable: false, onMouseDown: stop, onClick: stop },
+			el('span', { className: 'bst-slidenav__title' }, __('Slider', 'bigspy-ai-theme-wp')),
+			el('div', { className: 'bst-slidenav__chips', role: 'tablist' },
+				nav.ids.map(function (sid, i) {
+					return el('button', { key: sid, type: 'button', role: 'tab', 'aria-selected': i === nav.active, className: 'bst-slidenav__chip' + (i === nav.active ? ' is-active' : ''), onClick: function () { go(i, true); }, title: __('Show and edit this slide', 'bigspy-ai-theme-wp') },
+						el('b', null, i + 1), ' ', nav.names[i]);
+				})
+			),
+			el(c.Dropdown, {
+				className: 'bst-slidenav__add',
+				popoverProps: { placement: 'bottom-end' },
+				renderToggle: function (t) {
+					return el('button', { type: 'button', className: 'bst-slidenav__plus', onClick: t.onToggle, 'aria-expanded': t.isOpen, title: __('Add slide', 'bigspy-ai-theme-wp') }, '+');
+				},
+				renderContent: function (t) {
+					return el('div', { className: 'bst-slidenav__menu' },
+						SLIDE_ADD.map(function (opt) {
+							return el(c.Button, { key: opt[0], onClick: function () { add(opt[0]); t.onClose(); } }, opt[1]);
+						}),
+						el(c.Button, { variant: 'link', onClick: function () {
+							t.onClose();
+							var store = wp.data.dispatch('core/editor') || wp.data.dispatch('core/edit-post');
+							if (store && store.setIsInserterOpened) {
+								store.setIsInserterOpened({ rootClientId: clientId, insertionIndex: nav.ids.length });
+							}
+						} }, __('Any block…', 'bigspy-ai-theme-wp'))
+					);
+				}
+			}),
+			id ? el('span', { className: 'bst-slidenav__tools' },
+				el(c.Button, { icon: 'arrow-left-alt2', label: __('Move slide left', 'bigspy-ai-theme-wp'), size: 'small', disabled: nav.active === 0, onClick: function () { ed.moveBlocksUp([id], clientId); nav.setActive(nav.active - 1); } }),
+				el(c.Button, { icon: 'arrow-right-alt2', label: __('Move slide right', 'bigspy-ai-theme-wp'), size: 'small', disabled: nav.active >= nav.ids.length - 1, onClick: function () { ed.moveBlocksDown([id], clientId); nav.setActive(nav.active + 1); } }),
+				el(c.Button, { icon: 'admin-page', label: __('Duplicate slide', 'bigspy-ai-theme-wp'), size: 'small', onClick: function () { ed.duplicateBlocks([id]); nav.setActive(nav.active + 1); } }),
+				el(c.Button, { icon: 'trash', label: __('Delete slide', 'bigspy-ai-theme-wp'), size: 'small', isDestructive: true, disabled: nav.ids.length < 2, onClick: function () { ed.removeBlock(id, false); nav.setActive(Math.max(0, nav.active - 1)); } }),
+				el(c.Button, { icon: nav.showAll ? 'visibility' : 'grid-view', label: nav.showAll ? __('Show one slide', 'bigspy-ai-theme-wp') : __('Show all slides', 'bigspy-ai-theme-wp'), size: 'small', isPressed: nav.showAll, onClick: function () { nav.setSingle(nav.showAll); } })
+			) : null
+		);
+	}
+
 	register('slider', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({ className: 'bs-slider-block bst-slider-editor', style: { '--bs-slides-d': a.slidesDesktop, '--bs-slide-gap': a.gap + 'px' } });
+		var nav = useSlideNav(props.clientId);
+		var blockProps = useBlockProps({ className: 'bs-slider-block bst-slider-editor' + (nav.single ? ' is-single' : ''), style: { '--bs-slides-d': nav.single ? 1 : a.slidesDesktop, '--bs-slide-gap': a.gap + 'px' } });
 		var innerProps = useInnerBlocksProps({ className: 'bst-slider-editor__track' }, {
 			template: [['bst/banner', {}], ['bst/banner', {}]],
 			orientation: 'horizontal'
@@ -704,7 +805,7 @@
 					a.dots ? el(Toggle, Object.assign({ label: __('Dots over the slides', 'bigspy-ai-theme-wp') }, bind('dotsInside', true))) : null
 				)
 			),
-			el('div', blockProps, el('div', innerProps))
+			el('div', blockProps, slideNavBar(nav, props.clientId), nav.style, el('div', innerProps))
 		);
 	}, saveInner);
 
