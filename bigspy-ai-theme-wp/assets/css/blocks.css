@@ -3027,3 +3027,6 @@ input[type="submit"]:hover,
 .bs-form .wpcf7-form > div > p:first-child, .bs-form .wpcf7-form > p:first-child { margin-top: 0; }
 .bs-form .wpcf7-form p:empty { display: none; }
 .bs-form .bs-form__body > .wpcf7 > .screen-reader-response { position: absolute; }
+/* The CF7 spinner sat on its own line under a full-width button, adding empty space below the form. */
+.bs-form .wpcf7-form p:has(> .wpcf7-submit), .bs-form .wpcf7-form p:has(> [type="submit"]) { position: relative; }
+.bs-form .wpcf7-spinner { position: absolute; top: 50%; right: 14px; margin: -12px 0 0; }
