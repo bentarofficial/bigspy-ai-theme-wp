@@ -680,6 +680,7 @@
 			return {
 				ids: ids,
 				owner: owner,
+				focused: selected === clientId || owner >= 0,
 				names: ids.map(function (id) {
 					var block = store.getBlock(id);
 					var type = block && wp.blocks.getBlockType(block.name);
@@ -697,6 +698,7 @@
 		return {
 			ids: data.ids,
 			names: data.names,
+			focused: data.focused,
 			active: active,
 			setActive: state[1],
 			single: single[0] && data.ids.length > 1,
@@ -805,7 +807,7 @@
 					a.dots ? el(Toggle, Object.assign({ label: __('Dots over the slides', 'bigspy-ai-theme-wp') }, bind('dotsInside', true))) : null
 				)
 			),
-			el('div', blockProps, slideNavBar(nav, props.clientId), nav.style, el('div', innerProps))
+			el('div', blockProps, nav.focused ? slideNavBar(nav, props.clientId) : null, nav.style, el('div', innerProps))
 		);
 	}, saveInner);
 
