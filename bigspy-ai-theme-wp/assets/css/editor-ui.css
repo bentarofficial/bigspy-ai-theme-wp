@@ -558,3 +558,14 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-format-bar__color > span { margin: 0 !important; }
 .bst-format-bar__sep { display: none !important; }
 .bst-format-bar__chars { position: relative; display: inline-flex; }
+
+/* Classic block modal (1.50.5). WordPress core makes every .mce-container-body a vertical flex column
+   in this modal, which stacks the File/Edit/View menu one item per line. Keep menu and toolbars in rows,
+   make buttons compact and give the writing area the space. */
+.block-editor-freeform-modal .block-editor-freeform-modal__content .mce-menubar > .mce-container-body,
+.block-editor-freeform-modal .block-editor-freeform-modal__content .mce-toolbar > .mce-container-body,
+.block-editor-freeform-modal .block-editor-freeform-modal__content .mce-btn-group > .mce-container-body { display: flex !important; flex-direction: row !important; flex-wrap: wrap; align-items: center; height: auto !important; min-width: 0 !important; }
+.block-editor-freeform-modal .mce-menubar .mce-menubtn { display: inline-block !important; float: none !important; width: auto !important; margin: 0 !important; }
+.block-editor-freeform-modal .mce-menubar .mce-menubtn button { padding: 3px 8px !important; }
+.block-editor-freeform-modal .mce-toolbar .mce-btn button { padding: 3px 5px !important; }
+.block-editor-freeform-modal .mce-edit-area iframe { min-height: 55vh !important; }
