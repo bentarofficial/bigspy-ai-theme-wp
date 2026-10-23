@@ -88,7 +88,7 @@ function bst_block_presets() {
 			'title' => array( $t( 'Headings inside' ), false, array(
 				'sec-htight' => array( $t( 'Slightly tight headings' ), '& .bs-heading{letter-spacing:-.025em}' ),
 				'sec-hnarrow' => array( $t( 'Headings max 850px' ), '& .bs-heading{max-width:850px}' ),
-				'sec-hsm' => array( $t( 'Smaller headings on phones' ), '@media(max-width:549px){& .bs-heading{font-size:min(32px,1em)!important;overflow-wrap:normal}}' ),
+				'sec-hsm' => array( $t( 'Main headings 32px on phones' ), '@media(max-width:549px){& :is(h1,h2).bs-heading{font-size:32px!important;line-height:1.2}& .bs-heading{overflow-wrap:normal}}' ),
 			) ),
 			'shape' => array( $t( 'Shape' ), true, array(
 				'sec-r24' => array( $t( 'Rounded box' ), '&{border-radius:24px;overflow:hidden}' ),
@@ -149,12 +149,12 @@ function bst_block_presets() {
 		),
 		'bst/banner'      => array(
 			'mobile' => array( $t( 'On phones' ), true, array(
-				'ban-mstack' => array( $t( 'Text on top, image below' ), '@media(max-width:549px){& .bs-banner__bg{top:auto;height:230px;bottom:0}& .bs-banner__img{object-position:78% 50%!important}& .bs-banner__content{padding:32px 22px 240px!important;align-items:flex-start}& .bs-banner__box{width:100%!important}& :is(h1,h2){font-size:30px!important;line-height:1.16}}' ),
+				'ban-mstack' => array( $t( 'Text on top, image below' ), '@media(max-width:549px){& .bs-banner__bg{top:auto;height:230px;bottom:0}& .bs-banner__img{object-position:78% 50%!important}& .bs-banner__content.bs-banner__content{padding:32px 22px 240px!important;align-items:flex-start}& .bs-banner__box{width:100%!important}& :is(h1,h2){font-size:30px!important;line-height:1.16}& .bs-text{font-size:15px!important;line-height:1.6}& .bs-buttons{gap:10px}}' ),
 				'ban-mfull'  => array( $t( 'Text box full width' ), '@media(max-width:849px){& .bs-banner__box{width:100%!important}}' ),
 				'ban-mhalf'  => array( $t( 'Text box half width on tablets' ), '@media(max-width:849px) and (min-width:550px){& .bs-banner__box{width:52%!important}}' ),
 			) ),
 			'space'  => array( $t( 'Content spacing' ), true, array(
-				'ban-cwide' => array( $t( 'Site width, roomy' ), '& .bs-banner__content{max-width:1240px;margin:0 auto;padding:48px 40px}@media(max-width:849px){& .bs-banner__content{padding:36px 28px}}' ),
+				'ban-cwide' => array( $t( 'Site width, roomy' ), '& .bs-banner__content{max-width:1240px;margin:0 auto;padding:48px 40px!important}@media(max-width:849px){& .bs-banner__content{padding:36px 28px!important}}' ),
 				'ban-ctight' => array( $t( 'Tight' ), '& .bs-banner__content{padding:20px}' ),
 			) ),
 			'bg'     => array( $t( 'Background behind image' ), true, array(
