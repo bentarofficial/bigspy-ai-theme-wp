@@ -2845,3 +2845,17 @@ input[type="submit"]:hover,
 .bs-slider--fade .bs-slider__track { touch-action: pan-y; }
 @media (hover: hover) and (pointer: fine) { .bs-slider__track { cursor: grab; } }
 .bs-slider.is-dragging .bs-slider__track { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
+
+/* Button size & shape (1.39) */
+.bs-btn.bs-btn--sized[style*="--bsb-h:"] { min-height: var(--bsb-h); padding-top: 0; padding-bottom: 0; }
+.bs-btn.bs-btn--sized[style*="--bsb-w:"] { min-width: var(--bsb-w); justify-content: center; }
+.bs-btn.bs-btn--sized[style*="--bsb-px:"] { padding-left: var(--bsb-px); padding-right: var(--bsb-px); }
+.bs-btn.bs-btn--sized[style*="--bsb-fs:"] { font-size: var(--bsb-fs); }
+.bs-btn.bs-btn--sized[style*="--bsb-fw:"] { font-weight: var(--bsb-fw); }
+.bs-btn.bs-btn--sized[style*="--bsb-bw:"] { border-width: var(--bsb-bw); border-style: solid; }
+.bs-btn.bs-btn--sized[style*="--bsb-sh:"] { box-shadow: var(--bsb-sh); }
+.bs-btn.bs-btn--sized[style*="--bsb-is:"] svg { width: var(--bsb-is); height: var(--bsb-is); }
+@media (max-width: 767px) {
+	.bs-btn.bs-btn--sized[style*="--bsb-hm:"] { min-height: var(--bsb-hm); padding-top: 0; padding-bottom: 0; }
+	.bs-btn.bs-btn--sized[style*="--bsb-fsm:"] { font-size: var(--bsb-fsm); }
+}

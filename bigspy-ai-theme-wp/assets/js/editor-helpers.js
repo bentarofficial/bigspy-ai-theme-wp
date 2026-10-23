@@ -352,4 +352,67 @@
 	}, 'withBstHiddenClass');
 
 	wp.hooks.addFilter('editor.BlockListBlock', 'bst/hidden-class', withHiddenClass);
+
+	/* "+" on the top edge of the first block of every level, so blocks can be added above it directly. */
+	var openInserterAt = function (rootClientId, index) {
+		var stores = ['core/editor', 'core/edit-post', 'core/edit-site'];
+		for (var i = 0; i < stores.length; i++) {
+			var store = wp.data.dispatch(stores[i]);
+			if (store && typeof store.setIsInserterOpened === 'function') {
+				store.setIsInserterOpened({ rootClientId: rootClientId || undefined, insertionIndex: index });
+				return;
+			}
+		}
+	};
+	/* Sit on the top edge of the block that follows, centred on it (the parent may be wider, e.g. a row). */
+	var placeTopInserter = function (node) {
+		if (!node) {
+			return;
+		}
+		var place = function () {
+			var next = node.nextElementSibling;
+			if (!next) {
+				return;
+			}
+			node.style.top = next.offsetTop + 'px';
+			node.style.left = (next.offsetLeft + next.offsetWidth / 2) + 'px';
+		};
+		place();
+		(node.ownerDocument.defaultView || window).requestAnimationFrame(place);
+		if (!node.bstPlaced && node.nextElementSibling) {
+			node.bstPlaced = true;
+			node.nextElementSibling.addEventListener('mouseenter', place);
+		}
+	};
+	var withTopInserter = wp.compose.createHigherOrderComponent(function (BlockEdit) {
+		return function (props) {
+			var info = wp.data.useSelect(function (select) {
+				var store = select('core/block-editor');
+				var root = store.getBlockRootClientId(props.clientId);
+				return { root: root, first: store.getBlockIndex(props.clientId) === 0, canInsert: !store.getTemplateLock || !store.getTemplateLock(root) };
+			}, [props.clientId]);
+			if (!info.first || !info.canInsert) {
+				return el(BlockEdit, props);
+			}
+			return el(wp.element.Fragment, null,
+				el('div', { className: 'bst-top-ins', contentEditable: false, ref: placeTopInserter, onMouseEnter: function (e) { placeTopInserter(e.currentTarget); } },
+					el('button', {
+						type: 'button',
+						className: 'bst-top-ins__btn',
+						title: __('Add a block above', 'bigspy-ai-theme-wp'),
+						'aria-label': __('Add a block above', 'bigspy-ai-theme-wp'),
+						onMouseDown: function (e) { e.preventDefault(); e.stopPropagation(); },
+						onClick: function (e) {
+							e.preventDefault();
+							e.stopPropagation();
+							openInserterAt(info.root, 0);
+						}
+					}, el('svg', { viewBox: '0 0 24 24', width: 16, height: 16, 'aria-hidden': true }, el('path', { d: 'M11 5h2v14h-2zM5 11h14v2H5z', fill: 'currentColor' })))
+				),
+				el(BlockEdit, props)
+			);
+		};
+	}, 'withBstTopInserter');
+
+	wp.hooks.addFilter('editor.BlockEdit', 'bst/top-inserter', withTopInserter);
 })(window.wp);

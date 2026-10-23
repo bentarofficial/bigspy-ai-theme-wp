@@ -1269,6 +1269,13 @@
 		if (a.radius >= 0) {
 			bstyle.borderRadius = a.radius + 'px';
 		}
+		var px = function (v) { return v > 0 ? v + 'px' : ''; };
+		var SHADOWS = { sm: '0 2px 6px rgba(0,0,0,.12)', md: '0 8px 20px -6px rgba(0,0,0,.25)', lg: '0 16px 34px -10px rgba(0,0,0,.35)', glow: '0 6px 22px -4px color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 60%, transparent)' };
+		var sizing = styleVars({ '--bsb-h': px(a.btnHeight), '--bsb-hm': px(a.btnHeightMobile), '--bsb-w': px(a.btnWidth), '--bsb-px': a.padX >= 0 ? a.padX + 'px' : '', '--bsb-fs': px(a.fontSize), '--bsb-fsm': px(a.fontSizeMobile), '--bsb-fw': a.fontWeight, '--bsb-bw': a.borderWidth >= 0 ? a.borderWidth + 'px' : '', '--bsb-sh': SHADOWS[a.btnShadow] || '', '--bsb-is': px(a.iconSize) });
+		if (Object.keys(sizing).length) {
+			Object.assign(bstyle, sizing);
+			cls += ' bs-btn--sized';
+		}
 		var blockProps = useBlockProps({ className: cls, style: bstyle });
 		var icon = a.icon ? el(B.Icon, { name: a.icon, size: a.size === 'lg' ? 20 : 17 }) : null;
 		return el(Fragment, null,
@@ -1292,8 +1299,20 @@
 					a.style === 'gradient' ? el(Range, Object.assign({ label: __('Gradient angle (°)', 'bigspy-ai-theme-wp'), min: 0, max: 360 }, bind('gradientAngle'))) : null,
 					el(Select, Object.assign({ label: __('Size', 'bigspy-ai-theme-wp'), options: { xs: __('Extra small', 'bigspy-ai-theme-wp'), sm: __('Small', 'bigspy-ai-theme-wp'), md: __('Medium', 'bigspy-ai-theme-wp'), lg: __('Large', 'bigspy-ai-theme-wp'), xl: __('Extra large', 'bigspy-ai-theme-wp') } }, bind('size'))),
 					el(Select, Object.assign({ label: __('Letter case', 'bigspy-ai-theme-wp'), options: { '': __('Theme default', 'bigspy-ai-theme-wp'), uppercase: __('UPPERCASE', 'bigspy-ai-theme-wp'), capitalize: __('Capitalize', 'bigspy-ai-theme-wp'), none: __('As typed', 'bigspy-ai-theme-wp') } }, bind('letterCase'))),
-					el(Toggle, Object.assign({ label: __('Full width', 'bigspy-ai-theme-wp') }, bind('fullWidth', true))),
-					el(Range, Object.assign({ label: __('Corner radius (px, -1 = theme default)', 'bigspy-ai-theme-wp'), min: -1, max: 60 }, bind('radius')))
+					el(Toggle, Object.assign({ label: __('Full width', 'bigspy-ai-theme-wp') }, bind('fullWidth', true)))
+				),
+				el(Panel, { title: __('Size & shape', 'bigspy-ai-theme-wp') },
+					el(Range, Object.assign({ label: __('Corner radius (px, -1 = theme default, 99 = pill)', 'bigspy-ai-theme-wp'), min: -1, max: 99, reset: -1 }, bind('radius'))),
+					el(Range, Object.assign({ label: __('Height (px, 0 = auto)', 'bigspy-ai-theme-wp'), max: 120, reset: 0 }, bind('btnHeight'))),
+					el(Range, Object.assign({ label: __('Height on mobile (px, 0 = same)', 'bigspy-ai-theme-wp'), max: 120, reset: 0 }, bind('btnHeightMobile'))),
+					!a.fullWidth ? el(Range, Object.assign({ label: __('Minimum width (px, 0 = auto)', 'bigspy-ai-theme-wp'), max: 600, step: 5, reset: 0 }, bind('btnWidth'))) : null,
+					el(Range, Object.assign({ label: __('Side padding (px, -1 = size default)', 'bigspy-ai-theme-wp'), min: -1, max: 80, reset: -1 }, bind('padX'))),
+					el(Range, Object.assign({ label: __('Font size (px, 0 = size default)', 'bigspy-ai-theme-wp'), max: 40, reset: 0 }, bind('fontSize'))),
+					el(Range, Object.assign({ label: __('Font size on mobile (px, 0 = same)', 'bigspy-ai-theme-wp'), max: 40, reset: 0 }, bind('fontSizeMobile'))),
+					el(Select, Object.assign({ label: __('Font weight', 'bigspy-ai-theme-wp'), options: { '': __('Theme default', 'bigspy-ai-theme-wp'), 400: __('Regular', 'bigspy-ai-theme-wp'), 500: __('Medium', 'bigspy-ai-theme-wp'), 600: __('Semi bold', 'bigspy-ai-theme-wp'), 700: __('Bold', 'bigspy-ai-theme-wp'), 800: __('Extra bold', 'bigspy-ai-theme-wp') } }, bind('fontWeight'))),
+					el(Range, Object.assign({ label: __('Border width (px, -1 = style default)', 'bigspy-ai-theme-wp'), min: -1, max: 10, reset: -1 }, bind('borderWidth'))),
+					el(Select, Object.assign({ label: __('Shadow', 'bigspy-ai-theme-wp'), options: { '': __('Style default', 'bigspy-ai-theme-wp'), sm: __('Small', 'bigspy-ai-theme-wp'), md: __('Medium', 'bigspy-ai-theme-wp'), lg: __('Large', 'bigspy-ai-theme-wp'), glow: __('Colored glow', 'bigspy-ai-theme-wp') } }, bind('btnShadow'))),
+					a.icon ? el(Range, Object.assign({ label: __('Icon size (px, 0 = auto)', 'bigspy-ai-theme-wp'), max: 48, reset: 0 }, bind('iconSize'))) : null
 				),
 				el(B.ColorPanel, { title: __('Button colors', 'bigspy-ai-theme-wp'), settings: [
 					{ label: __('Background', 'bigspy-ai-theme-wp'), value: a.bgColor, onChange: function (v) { props.setAttributes({ bgColor: v || '' }); } },

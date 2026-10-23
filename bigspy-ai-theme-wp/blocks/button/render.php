@@ -47,6 +47,34 @@ $grad = bst_style_vars(
 		'--bsb-angle' => 'gradient' === $style ? bst_block_num( $a, 'gradientAngle', 135, 0, 360 ) . 'deg' : '',
 	)
 );
+$num     = function ( $key, $max ) use ( $a ) {
+	$v = isset( $a[ $key ] ) ? (float) $a[ $key ] : 0;
+	return $v > 0 ? min( $max, $v ) . 'px' : '';
+};
+$shadows = array(
+	'sm'   => '0 2px 6px rgba(0,0,0,.12)',
+	'md'   => '0 8px 20px -6px rgba(0,0,0,.25)',
+	'lg'   => '0 16px 34px -10px rgba(0,0,0,.35)',
+	'glow' => '0 6px 22px -4px color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 60%, transparent)',
+);
+$sizing  = bst_style_vars(
+	array(
+		'--bsb-h'   => $num( 'btnHeight', 200 ),
+		'--bsb-hm'  => $num( 'btnHeightMobile', 200 ),
+		'--bsb-w'   => $num( 'btnWidth', 800 ),
+		'--bsb-px'  => isset( $a['padX'] ) && $a['padX'] >= 0 ? min( 100, (int) $a['padX'] ) . 'px' : '',
+		'--bsb-fs'  => $num( 'fontSize', 60 ),
+		'--bsb-fsm' => $num( 'fontSizeMobile', 60 ),
+		'--bsb-fw'  => in_array( (string) ( $a['fontWeight'] ?? '' ), array( '400', '500', '600', '700', '800' ), true ) ? $a['fontWeight'] : '',
+		'--bsb-bw'  => isset( $a['borderWidth'] ) && $a['borderWidth'] >= 0 ? min( 10, (int) $a['borderWidth'] ) . 'px' : '',
+		'--bsb-sh'  => $shadows[ $a['btnShadow'] ?? '' ] ?? '',
+		'--bsb-is'  => $num( 'iconSize', 60 ),
+	)
+);
+if ( $sizing ) {
+	$css     .= ( $css ? ';' : '' ) . $sizing;
+	$classes .= ' bs-btn--sized';
+}
 if ( $grad ) {
 	$css .= ( $css ? ';' : '' ) . $grad;
 }

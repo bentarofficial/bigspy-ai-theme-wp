@@ -40,6 +40,16 @@
 			"type": "boolean",
 			"default": false
 		},
+		"btnHeight": { "type": "number", "default": 0 },
+		"btnHeightMobile": { "type": "number", "default": 0 },
+		"btnWidth": { "type": "number", "default": 0 },
+		"padX": { "type": "number", "default": -1 },
+		"fontSize": { "type": "number", "default": 0 },
+		"fontSizeMobile": { "type": "number", "default": 0 },
+		"fontWeight": { "type": "string", "default": "" },
+		"borderWidth": { "type": "number", "default": -1 },
+		"btnShadow": { "type": "string", "default": "" },
+		"iconSize": { "type": "number", "default": 0 },
 		"radius": {
 			"type": "number",
 			"default": -1

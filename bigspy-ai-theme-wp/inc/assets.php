@@ -44,7 +44,7 @@ function bst_register_editor_helpers() {
 	wp_register_script(
 		'bst-editor-helpers',
 		BST_URI . '/assets/js/editor-helpers.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-hooks', 'wp-compose' ),
+		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-hooks', 'wp-compose', 'wp-data' ),
 		bst_asset_version( 'assets/js/editor-helpers.js' ),
 		true
 	);
