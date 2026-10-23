@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Active form plugins: key => label. */
 function bst_form_providers() {
-	$out = array();
+	$out = array( 'bigspy' => __( 'Built-in BIGSPY form', 'bigspy-ai-theme-wp' ) );
 	if ( defined( 'WPCF7_VERSION' ) || post_type_exists( 'wpcf7_contact_form' ) ) {
 		$out['cf7'] = 'Contact Form 7';
 	}
@@ -58,6 +58,8 @@ function bst_form_editor_data() {
 		'formNewUrl'    => $new_url,
 		'formEditUrl'   => admin_url( 'admin.php?page=wpcf7&action=edit&post=' ),
 		'formMail'      => bst_form_mail_status(),
+		'formNative'    => function_exists( 'bst_native_form_defaults' ) ? bst_native_form_defaults() : array(),
+		'formEntries'   => admin_url( 'edit.php?post_type=bst_form_entry' ),
 	);
 	wp_add_inline_script( 'bst-editor-helpers', 'Object.assign(window.bstEditor || {}, ' . wp_json_encode( $data ) . ');', 'after' );
 }

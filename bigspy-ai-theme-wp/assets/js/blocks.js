@@ -811,8 +811,97 @@ document.addEventListener('wpcf7mailsent', function (e) {
 			body.hidden = true;
 		}
 	}
-	var url = box.getAttribute('data-bs-redirect');
+	var url = e.detail && e.detail.native ? '' : box.getAttribute('data-bs-redirect');
 	if (url) {
 		setTimeout(function () { window.location.href = url; }, parseFloat(box.getAttribute('data-bs-redirect-delay') || '0') * 1000);
 	}
 }, false);
+
+/* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */
+document.addEventListener('submit', function (e) {
+	var form = e.target;
+	if (!form.matches || !form.matches('[data-bs-native-form]')) {
+		return;
+	}
+	e.preventDefault();
+	var out = form.querySelector('.wpcf7-response-output');
+	var btn = form.querySelector('[type="submit"]');
+	form.querySelectorAll('.wpcf7-not-valid-tip').forEach(function (n) { n.remove(); });
+	form.querySelectorAll('.wpcf7-not-valid').forEach(function (n) { n.classList.remove('wpcf7-not-valid'); });
+	var tip = function (name, msg) {
+		var wrap = form.querySelector('.wpcf7-form-control-wrap[data-name="' + name + '"]');
+		if (!wrap) {
+			return;
+		}
+		var ctl = wrap.querySelector('input, select, textarea');
+		if (ctl) {
+			ctl.classList.add('wpcf7-not-valid');
+		}
+		var s = document.createElement('span');
+		s.className = 'wpcf7-not-valid-tip';
+		s.textContent = msg;
+		wrap.appendChild(s);
+	};
+	var bad = false;
+	form.querySelectorAll('[required]').forEach(function (ctl) {
+		var empty = ctl.type === 'checkbox' ? !ctl.checked : !String(ctl.value).trim();
+		if (empty) {
+			bad = true;
+			tip(ctl.name.replace('[]', ''), form.getAttribute('data-msg-required'));
+		}
+	});
+	form.querySelectorAll('input[type="email"]').forEach(function (ctl) {
+		if (ctl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ctl.value)) {
+			bad = true;
+			tip(ctl.name, form.getAttribute('data-msg-email'));
+		}
+	});
+	var show = function (msg, ok) {
+		out.hidden = false;
+		out.textContent = msg;
+		form.classList.remove('sent', 'invalid', 'failed');
+		form.classList.add(ok ? 'sent' : (ok === null ? 'invalid' : 'failed'));
+	};
+	if (bad) {
+		return;
+	}
+	var data = new FormData(form);
+	data.append('action', 'bst_form_submit');
+	data.append('bst_form_key', form.getAttribute('data-key'));
+	data.append('bst_form_post', form.getAttribute('data-post') || '0');
+	data.append('bst_form_ts', form.getAttribute('data-ts') || '0');
+	form.classList.add('submitting');
+	if (btn) {
+		btn.disabled = true;
+	}
+	fetch(form.getAttribute('action'), { method: 'POST', body: data, credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (res) {
+		if (res.errors) {
+			Object.keys(res.errors).forEach(function (n) { tip(n, res.errors[n]); });
+			show(res.message, null);
+			return;
+		}
+		show(res.message, !!res.ok);
+		if (res.ok) {
+			form.reset();
+			form.dispatchEvent(new CustomEvent('wpcf7mailsent', { bubbles: true, detail: { native: true } }));
+			if (res.redirect) {
+				var box = form.closest('.bs-form');
+				var delay = box ? parseFloat(box.getAttribute('data-bs-redirect-delay') || '0') : 0;
+				setTimeout(function () {
+					if (form.getAttribute('data-new-tab') === '1') {
+						window.open(res.redirect, '_blank', 'noopener');
+					} else {
+						window.location.href = res.redirect;
+					}
+				}, delay * 1000);
+			}
+		}
+	}).catch(function () {
+		show(form.querySelector('.wpcf7-submit') ? 'Network error, please try again.' : '', false);
+	}).then(function () {
+		form.classList.remove('submitting');
+		if (btn) {
+			btn.disabled = false;
+		}
+	});
+});

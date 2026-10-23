@@ -15,6 +15,7 @@
 	var useInnerBlocksProps = be.useInnerBlocksProps;
 	var useSelect = wp.data.useSelect;
 	var useDispatch = wp.data.useDispatch;
+	var useState = wp.element.useState;
 	var SSR = wp.serverSideRender;
 	var Panel = c.PanelBody;
 	var Select = B.Select;
@@ -2567,6 +2568,130 @@
 	 * "Sending & after submit" for the Form block: who receives the email (saved into the
 	 * Contact Form 7 form itself through its REST API), redirect / success message, and SMTP status.
 	 */
+
+	/*
+	 * Built-in form (provider "bigspy"): Contact Form 7 style tabs inside the block –
+	 * Fields, Mail, Mail (2), Messages, Actions. Empty texts fall back to the defaults.
+	 */
+	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL']];
+	function nfSlug(label, taken) {
+		var base = String(label || 'field').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'field';
+		var n = base, i = 2;
+		while (taken.indexOf(n) !== -1) { n = base + '-' + i++; }
+		return n;
+	}
+	function NativeFormPanels(props) {
+		var a = props.attributes;
+		var T = 'bigspy-ai-theme-wp';
+		var D = B.formNative || {};
+		var mail = B.formMail || {};
+		wp.element.useEffect(function () {
+			var patch = {};
+			if (!a.formKey) { patch.formKey = 'f' + Math.random().toString(36).slice(2, 10); }
+			if (!a.fields || !a.fields.length) { patch.fields = (D.fields || []).map(function (f) { return Object.assign({}, f); }); }
+			if (Object.keys(patch).length) { props.setAttributes(patch); }
+		}, []);
+		var tab = useState('fields');
+		var openField = useState(0);
+		var fields = a.fields && a.fields.length ? a.fields : (D.fields || []);
+		var setFields = function (next) { props.setAttributes({ fields: next }); };
+		var upd = function (i, key, v) {
+			setFields(fields.map(function (f, j) { if (j !== i) { return f; } var n = Object.assign({}, f); n[key] = v; if (key === 'label' && f.autoName !== false && !f.lockName) { n.name = nfSlug(v, fields.filter(function (x, k) { return k !== i; }).map(function (x) { return x.name; })); } return n; }));
+		};
+		var move = function (i, d) { var n = fields.slice(); var t = n[i]; n[i] = n[i + d]; n[i + d] = t; setFields(n); openField[1](i + d); };
+		var txt = function (key, label, help, rows) {
+			var ctl = rows ? c.TextareaControl : c.TextControl;
+			return el(ctl, { label: label, help: help, rows: rows, value: a[key] || '', placeholder: D[key] || '', onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true });
+		};
+		var tog = function (key, label) { return el(c.ToggleControl, { label: label, checked: a[key] === undefined ? !!D[key] : !!a[key], onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true }); };
+		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]';
+		var TABS = [['fields', __('Fields', T)], ['mail', __('Mail', T)], ['mail2', __('Mail (2)', T)], ['messages', __('Messages', T)], ['actions', __('Actions', T)]];
+		var body;
+		if (tab[0] === 'fields') {
+			body = el(Fragment, null,
+				fields.map(function (f, i) {
+					var open = openField[0] === i;
+					var needsOpts = ['select', 'radio', 'checkbox'].indexOf(f.type) !== -1;
+					return el('div', { key: i, className: 'bst-nf-item' + (open ? ' is-open' : '') },
+						el('div', { className: 'bst-nf-item__head' },
+							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : ''))),
+							el(c.Button, { size: 'small', icon: 'arrow-up-alt2', label: __('Move up', T), disabled: i === 0, onClick: function () { move(i, -1); } }),
+							el(c.Button, { size: 'small', icon: 'arrow-down-alt2', label: __('Move down', T), disabled: i === fields.length - 1, onClick: function () { move(i, 1); } })
+						),
+						open ? el('div', { className: 'bst-nf-item__body' },
+							el(c.SelectControl, { label: __('Type', T), value: f.type, options: NF_TYPES.map(function (t) { return { value: t[0], label: t[1] }; }), onChange: function (v) { upd(i, 'type', v); }, __nextHasNoMarginBottom: true }),
+							el(c.TextControl, { label: __('Label', T), value: f.label || '', onChange: function (v) { upd(i, 'label', v); }, __nextHasNoMarginBottom: true }),
+							el(c.TextControl, { label: f.type === 'acceptance' ? __('Consent text', T) : __('Placeholder', T), value: f.placeholder || '', onChange: function (v) { upd(i, 'placeholder', v); }, __nextHasNoMarginBottom: true }),
+							needsOpts ? el(c.TextareaControl, { label: __('Options (one per line)', T), value: f.options || '', rows: 4, onChange: function (v) { upd(i, 'options', v); }, __nextHasNoMarginBottom: true }) : null,
+							el(c.TextControl, { label: __('Field name (mail tag)', T), help: '[' + f.name + ']', value: f.name, onChange: function (v) { var n = fields.slice(); n[i] = Object.assign({}, f, { name: nfSlug(v, []), lockName: true }); setFields(n); }, __nextHasNoMarginBottom: true }),
+							el('div', { className: 'bst-nf-row' },
+								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
+								el(c.ToggleControl, { label: __('Half width', T), checked: f.width === 'half', onChange: function (v) { upd(i, 'width', v ? 'half' : 'full'); }, __nextHasNoMarginBottom: true })
+							),
+							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1); } }, __('Remove field', T))
+						) : null
+					);
+				}),
+				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
+				txt('submitText', __('Send button text', T)),
+				txt('formName', __('Form name (shown in Form entries)', T))
+			);
+		} else if (tab[0] === 'mail') {
+			body = el(Fragment, null,
+				el('p', { className: 'description' }, __('Mail tags you can use:', T), el('code', { className: 'bst-nf-tags' }, tags)),
+				txt('mailTo', __('To', T), __('Comma for several addresses.', T)),
+				txt('mailFrom', __('From', T), __('Use an address on your own domain so SMTP accepts it.', T)),
+				txt('mailSubject', __('Subject', T)),
+				txt('mailHeaders', __('Additional headers', T), 'Reply-To / Cc / Bcc', 3),
+				txt('mailBody', __('Message body', T), null, 9),
+				tog('mailExcludeBlank', __('Exclude lines with blank mail tags', T)),
+				tog('mailHtml', __('Use HTML content type', T))
+			);
+		} else if (tab[0] === 'mail2') {
+			body = el(Fragment, null,
+				el('p', { className: 'description' }, __('Mail (2) is an extra email, e.g. an auto-reply to the visitor.', T)),
+				tog('mail2Active', __('Use Mail (2)', T)),
+				(a.mail2Active) ? el(Fragment, null,
+					txt('mail2To', __('To', T), __('[your-email] = the visitor’s email field.', T)),
+					txt('mail2From', __('From', T)),
+					txt('mail2Subject', __('Subject', T)),
+					txt('mail2Headers', __('Additional headers', T), null, 3),
+					txt('mail2Body', __('Message body', T), null, 8)
+				) : null
+			);
+		} else if (tab[0] === 'messages') {
+			body = el(Fragment, null,
+				txt('msgSuccess', __('Sender’s message was sent successfully', T)),
+				txt('msgError', __('Sender’s message failed to send', T)),
+				txt('msgInvalid', __('Validation errors occurred', T)),
+				txt('msgRequired', __('There is a field the sender must fill in', T)),
+				txt('msgEmail', __('Email address that the sender entered is invalid', T)),
+				txt('msgTel', __('Telephone number that the sender entered is invalid', T)),
+				txt('msgSpam', __('Submission was referred to as spam', T))
+			);
+		} else {
+			body = el(Fragment, null,
+				el(c.TextControl, { label: __('Redirect to (URL or /page/)', T), value: a.redirectUrl || '', placeholder: '/cam-on/', onChange: function (v) { props.setAttributes({ redirectUrl: v }); }, __nextHasNoMarginBottom: true }),
+				a.redirectUrl ? el(c.RangeControl, { label: __('Delay before redirect (seconds)', T), min: 0, max: 30, value: a.redirectDelay || 0, onChange: function (v) { props.setAttributes({ redirectDelay: v || 0 }); }, __nextHasNoMarginBottom: true }) : null,
+				a.redirectUrl ? tog('redirectNewTab', __('Open in a new tab', T)) : null,
+				a.redirectUrl ? tog('redirectPass', __('Pass the fields as URL query parameters', T)) : null,
+				el(c.TextControl, { label: __('Thank-you message under the form (optional)', T), value: a.successText || '', onChange: function (v) { props.setAttributes({ successText: v }); }, __nextHasNoMarginBottom: true }),
+				el(c.ToggleControl, { label: __('Hide the form after sending', T), checked: !!a.hideOnSuccess, onChange: function (v) { props.setAttributes({ hideOnSuccess: v }); }, __nextHasNoMarginBottom: true }),
+				tog('saveEntries', __('Save every entry in Form entries', T)),
+				el(c.ExternalLink, { href: B.formEntries }, __('Open Form entries', T))
+			);
+		}
+		var smtpOk = mail.smtp && mail.mailer && mail.mailer !== 'mail';
+		return el(Panel, { title: __('Built-in form settings', T), initialOpen: true, className: 'bst-nf-panel' },
+			el('div', { className: 'bst-nf-tabs', role: 'tablist' }, TABS.map(function (t) { return el('button', { key: t[0], type: 'button', role: 'tab', 'aria-selected': tab[0] === t[0], className: 'bst-nf-tab' + (tab[0] === t[0] ? ' is-active' : ''), onClick: function () { tab[1](t[0]); } }, t[1]); })),
+			body,
+			el('div', { className: 'bst-form-send__smtp ' + (smtpOk ? 'is-ok' : 'is-warn'), style: { marginTop: 14 } },
+				el('strong', null, smtpOk ? __('Emails go through WP Mail SMTP', T) : __('Install / set up WP Mail SMTP so emails are delivered', T)),
+				mail.smtp ? el('span', { className: 'bst-form-send__links' }, el(c.ExternalLink, { href: mail.settings }, __('SMTP settings', T)), ' · ', el(c.ExternalLink, { href: mail.test }, __('Send a test email', T))) : el(c.ExternalLink, { href: mail.install }, __('Install WP Mail SMTP', T))
+			)
+		);
+	}
+
 	function FormSending(props) {
 		var a = props.attributes;
 		var T = 'bigspy-ai-theme-wp';
@@ -2630,17 +2755,17 @@
 		var bind = B.binder(props);
 		var forms = B.forms || [];
 		var providers = B.formProviders || {};
-		var options = [{ value: '', label: forms.length ? __('— Choose a form —', 'bigspy-ai-theme-wp') : __('No forms yet', 'bigspy-ai-theme-wp') }].concat(forms.map(function (f) {
+		var options = [{ value: '', label: __('— Choose a form —', 'bigspy-ai-theme-wp') }, { value: 'bigspy:0', label: __('★ Built-in form (no plugin needed)', 'bigspy-ai-theme-wp') }].concat(forms.map(function (f) {
 			return { value: f[0] + ':' + f[1], label: f[2] + (Object.keys(providers).length > 1 ? ' (' + providers[f[0]] + ')' : '') };
 		}));
 		var pick = el(c.SelectControl, {
 			label: __('Form', 'bigspy-ai-theme-wp'),
-			value: a.formId ? a.provider + ':' + a.formId : '',
+			value: a.provider === 'bigspy' ? 'bigspy:0' : (a.formId ? a.provider + ':' + a.formId : ''),
 			options: options,
 			onChange: function (v) { var p = v.split(':'); props.setAttributes({ provider: p[0] || 'cf7', formId: parseInt(p[1], 10) || 0 }); },
 			__nextHasNoMarginBottom: true
 		});
-		var noPlugin = !Object.keys(providers).length;
+		var noPlugin = false;
 		var applyTemplate = function (t) {
 			var next = Object.assign({}, FORM_RESET, { imagePosition: a.imagePosition || 'left', align: 'left' }, t[2]);
 			if (!t[2].imagePosition && a.imagePosition === 'background') {
@@ -2656,7 +2781,7 @@
 				}))
 			);
 		};
-		var blockPreview = a.formId ? dynamicPreview('form', props) : el(FormSample, Object.assign({}, props, {
+		var blockPreview = a.formId || a.provider === 'bigspy' ? dynamicPreview('form', props) : el(FormSample, Object.assign({}, props, {
 			hint: noPlugin ? __('Preview with sample fields. Install Contact Form 7 to collect real messages.', 'bigspy-ai-theme-wp') : __('Preview with sample fields — choose your form in the toolbar or sidebar.', 'bigspy-ai-theme-wp')
 		}));
 		var toolbar = el(be.BlockControls, null,
@@ -2691,7 +2816,7 @@
 					noPlugin ? el('p', null, __('Install and activate Contact Form 7 (or WPForms) to use this block.', 'bigspy-ai-theme-wp')) : pick,
 					el(c.ExternalLink, { href: B.formNewUrl }, noPlugin ? __('Install Contact Form 7', 'bigspy-ai-theme-wp') : __('Create a new form', 'bigspy-ai-theme-wp'))
 				),
-				!noPlugin ? el(FormSending, props) : null,
+				a.provider === 'bigspy' ? el(NativeFormPanels, props) : el(FormSending, props),
 				el(Panel, { title: __('Ready-made looks', 'bigspy-ai-theme-wp') },
 					el('p', { className: 'description' }, __('Click a look to apply it, then fine-tune below.', 'bigspy-ai-theme-wp')),
 					el('div', { className: 'bst-form-templates' }, FORM_TEMPLATES.map(function (t) {

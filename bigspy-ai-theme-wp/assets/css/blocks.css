@@ -3005,3 +3005,19 @@ input[type="submit"]:hover,
 .wpcf7 form.sent .wpcf7-response-output { color: #065f46; background: #ecfdf3; border-color: #a7f3d0; }
 .wpcf7 form:is(.invalid, .unaccepted, .payment-required) .wpcf7-response-output { color: #92400e; background: #fffbeb; border-color: #fcd34d; }
 .wpcf7 form:is(.failed, .aborted, .spam) .wpcf7-response-output { color: #991b1b; background: #fef2f2; border-color: #fecaca; }
+
+/* Built-in form (1.54) */
+.bs-native-form { display: flex; flex-wrap: wrap; gap: 0 16px; }
+.bs-native-form > * { flex: 1 1 100%; }
+.bs-native-form > .bs-nf-half { flex: 1 1 calc(50% - 8px); min-width: 200px; }
+.bs-native-form .bs-nf-label { display: block; margin-bottom: 6px; font-weight: 600; font-size: .95em; }
+.bs-form--labels-hidden .bs-native-form .bs-nf-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.bs-native-form .bs-nf-req { color: #dc2626; }
+.bs-native-form .bs-nf-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.bs-native-form .bs-nf-submit { display: flex; align-items: center; gap: 10px; }
+.bs-native-form.submitting .wpcf7-submit { opacity: .7; cursor: wait; }
+.bs-native-form .wpcf7-response-output { margin: 4px 0 0; padding: 12px 14px; border: 1px solid; border-radius: var(--bs-form-radius, 8px); font-size: .95em; }
+.bs-native-form.sent .wpcf7-response-output { color: #065f46; background: #ecfdf3; border-color: #a7f3d0; }
+.bs-native-form.invalid .wpcf7-response-output { color: #92400e; background: #fffbeb; border-color: #fcd34d; }
+.bs-native-form.failed .wpcf7-response-output { color: #991b1b; background: #fef2f2; border-color: #fecaca; }
+.bs-native-form .wpcf7-not-valid-tip { display: block; margin-top: 4px; color: #dc2626; font-size: .85em; }

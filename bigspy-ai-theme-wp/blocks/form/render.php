@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $a    = (array) $attributes;
-$form = function_exists( 'bst_form_markup' ) ? bst_form_markup( sanitize_key( $a['provider'] ?? 'cf7' ), $a['formId'] ?? 0 ) : '';
+$form = 'bigspy' === ( $a['provider'] ?? '' ) && function_exists( 'bst_native_form_markup' ) ? bst_native_form_markup( $a ) : ( function_exists( 'bst_form_markup' ) ? bst_form_markup( sanitize_key( $a['provider'] ?? 'cf7' ), $a['formId'] ?? 0 ) : '' );
 if ( '' === trim( $form ) ) {
 	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 		echo '<p class="bs-form__empty">' . esc_html__( 'Choose a form in the block settings (Contact Form 7 or WPForms must be active).', 'bigspy-ai-theme-wp' ) . '</p>';

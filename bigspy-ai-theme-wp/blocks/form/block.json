@@ -206,6 +206,114 @@
 		"successText": {
 			"type": "string",
 			"default": ""
+		},
+		"formKey": {
+			"type": "string",
+			"default": ""
+		},
+		"formName": {
+			"type": "string",
+			"default": ""
+		},
+		"fields": {
+			"type": "array",
+			"default": []
+		},
+		"submitText": {
+			"type": "string",
+			"default": ""
+		},
+		"mailTo": {
+			"type": "string",
+			"default": ""
+		},
+		"mailFrom": {
+			"type": "string",
+			"default": ""
+		},
+		"mailSubject": {
+			"type": "string",
+			"default": ""
+		},
+		"mailHeaders": {
+			"type": "string",
+			"default": ""
+		},
+		"mailBody": {
+			"type": "string",
+			"default": ""
+		},
+		"mailExcludeBlank": {
+			"type": "boolean",
+			"default": true
+		},
+		"mailHtml": {
+			"type": "boolean",
+			"default": false
+		},
+		"mail2Active": {
+			"type": "boolean",
+			"default": false
+		},
+		"mail2To": {
+			"type": "string",
+			"default": ""
+		},
+		"mail2From": {
+			"type": "string",
+			"default": ""
+		},
+		"mail2Subject": {
+			"type": "string",
+			"default": ""
+		},
+		"mail2Headers": {
+			"type": "string",
+			"default": ""
+		},
+		"mail2Body": {
+			"type": "string",
+			"default": ""
+		},
+		"msgSuccess": {
+			"type": "string",
+			"default": ""
+		},
+		"msgError": {
+			"type": "string",
+			"default": ""
+		},
+		"msgInvalid": {
+			"type": "string",
+			"default": ""
+		},
+		"msgRequired": {
+			"type": "string",
+			"default": ""
+		},
+		"msgEmail": {
+			"type": "string",
+			"default": ""
+		},
+		"msgTel": {
+			"type": "string",
+			"default": ""
+		},
+		"msgSpam": {
+			"type": "string",
+			"default": ""
+		},
+		"redirectPass": {
+			"type": "boolean",
+			"default": false
+		},
+		"redirectNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"saveEntries": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {
