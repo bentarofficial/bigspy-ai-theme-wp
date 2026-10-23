@@ -1178,6 +1178,9 @@ msgstr "Máy soi da công nghệ mới"
 msgid "Laura Hughes"
 msgstr "Trần Bảo Ngọc"
 
+msgid "Layout"
+msgstr "Bố cục"
+
 msgid "Learn & practise"
 msgstr "Học & thực hành"
 
@@ -1591,6 +1594,9 @@ msgstr "Tên trang"
 
 msgid "Page not found"
 msgstr "Không tìm thấy trang"
+
+msgid "Page title & breadcrumbs"
+msgstr "Tiêu đề trang & breadcrumb"
 
 msgid "Parent"
 msgstr "Phụ huynh"
@@ -2128,6 +2134,9 @@ msgstr "Mẫu trang này hiện không khả dụng."
 
 msgid "Tiramisu, passion fruit cheesecake and mousse, made fresh every morning."
 msgstr "Tiramisu, cheesecake chanh dây và bánh mousse làm mới mỗi sáng."
+
+msgid "Title bar"
+msgstr "Thanh tiêu đề"
 
 msgid "Today the restaurant seats over 120 guests, has 3 private rooms and a team of 40 – but the spirit is the same as on day one: we serve every guest like family."
 msgstr "Hôm nay, nhà hàng có hơn 120 chỗ ngồi, 3 phòng riêng và đội ngũ 40 nhân viên – nhưng tinh thần vẫn như ngày đầu: phục vụ mỗi vị khách như người nhà."
