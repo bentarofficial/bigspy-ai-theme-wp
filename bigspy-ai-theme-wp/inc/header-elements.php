@@ -66,7 +66,7 @@ function bst_he_schema() {
 		__( 'Edit menu items in Menus. Style everything else here.', 'bigspy-ai-theme-wp' ),
 		array_merge(
 			array(
-				array( 'id' => 'nav_style', 'type' => 'select', 'label' => __( 'Menu style', 'bigspy-ai-theme-wp' ), 'choices' => array( 'underline' => __( 'Underline', 'bigspy-ai-theme-wp' ), 'plain' => __( 'Plain', 'bigspy-ai-theme-wp' ), 'pills' => __( 'Pills', 'bigspy-ai-theme-wp' ), 'bold' => __( 'Bold', 'bigspy-ai-theme-wp' ) ) ),
+				array( 'id' => 'nav_style', 'type' => 'select', 'label' => __( 'Menu style', 'bigspy-ai-theme-wp' ), 'choices' => bst_nav_styles() ),
 				$o( 'nav', 'gap', 'number', __( 'Space between items (px, 0 = default)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 80 ) ) ),
 				$o( 'nav', 'active', 'color', __( 'Current page / active color', 'bigspy-ai-theme-wp' ) ),
 				$o( 'nav', 'indicator', 'color', __( 'Underline / pill color', 'bigspy-ai-theme-wp' ) ),

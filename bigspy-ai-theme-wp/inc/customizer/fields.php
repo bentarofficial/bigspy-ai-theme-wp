@@ -131,7 +131,7 @@ function bst_customizer_fields() {
 		array( 'id' => 'logo_width_mobile', 'section' => 'bst_header_logo', 'type' => 'number', 'label' => __( 'Logo max width – mobile (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 400 ) ),
 
 		// Navigation.
-		array( 'id' => 'nav_style', 'section' => 'bst_header_nav', 'type' => 'select', 'label' => __( 'Main menu style', 'bigspy-ai-theme-wp' ), 'choices' => array( 'plain' => __( 'Plain', 'bigspy-ai-theme-wp' ), 'underline' => __( 'Underline on hover', 'bigspy-ai-theme-wp' ), 'pill' => __( 'Pill background', 'bigspy-ai-theme-wp' ), 'divided' => __( 'Divided', 'bigspy-ai-theme-wp' ) ) ),
+		array( 'id' => 'nav_style', 'section' => 'bst_header_nav', 'type' => 'select', 'label' => __( 'Main menu style', 'bigspy-ai-theme-wp' ), 'choices' => bst_nav_styles() ),
 		array( 'id' => 'font_nav', 'section' => 'bst_header_nav', 'type' => 'select', 'label' => __( 'Menu font', 'bigspy-ai-theme-wp' ), 'choices' => $fonts ),
 		array( 'id' => 'nav_size', 'section' => 'bst_header_nav', 'type' => 'number', 'label' => __( 'Menu font size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 11, 24 ) ),
 		array( 'id' => 'nav_weight', 'section' => 'bst_header_nav', 'type' => 'select', 'label' => __( 'Menu font weight', 'bigspy-ai-theme-wp' ), 'choices' => $weights ),

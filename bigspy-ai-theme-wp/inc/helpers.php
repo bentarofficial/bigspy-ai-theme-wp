@@ -428,6 +428,11 @@ function bst_social_networks() {
 /**
  * Sidebar position for the current request: none, left or right.
  */
+/** Main menu styles: key => label (shared by the Header and Main menu sections). */
+function bst_nav_styles() {
+	return array( 'plain' => __( 'Plain', 'bigspy-ai-theme-wp' ), 'underline' => __( 'Underline (grows from left)', 'bigspy-ai-theme-wp' ), 'underline-center' => __( 'Underline (grows from center)', 'bigspy-ai-theme-wp' ), 'underline-thick' => __( 'Thick bar under active', 'bigspy-ai-theme-wp' ), 'overline' => __( 'Bar on top', 'bigspy-ai-theme-wp' ), 'dot' => __( 'Dot below', 'bigspy-ai-theme-wp' ), 'pill' => __( 'Pill background', 'bigspy-ai-theme-wp' ), 'pill-soft' => __( 'Soft tinted pill', 'bigspy-ai-theme-wp' ), 'pill-outline' => __( 'Outlined pill', 'bigspy-ai-theme-wp' ), 'pill-gradient' => __( 'Gradient pill', 'bigspy-ai-theme-wp' ), 'pill-shadow' => __( 'Floating pill with shadow', 'bigspy-ai-theme-wp' ), 'box' => __( 'Square block', 'bigspy-ai-theme-wp' ), 'tabs' => __( 'Tabs', 'bigspy-ai-theme-wp' ), 'bracket' => __( 'Brackets [ ]', 'bigspy-ai-theme-wp' ), 'highlight' => __( 'Highlighter marker', 'bigspy-ai-theme-wp' ), 'bold' => __( 'Colour + bold only', 'bigspy-ai-theme-wp' ), 'lift' => __( 'Lift on hover', 'bigspy-ai-theme-wp' ), 'glow' => __( 'Soft glow', 'bigspy-ai-theme-wp' ), 'divided' => __( 'Divided by lines', 'bigspy-ai-theme-wp' ), 'divided-dot' => __( 'Divided by dots', 'bigspy-ai-theme-wp' ) );
+}
+
 function bst_sidebar_position() {
 	$position = 'none';
 

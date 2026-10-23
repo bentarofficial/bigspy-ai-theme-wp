@@ -95,7 +95,8 @@ function bst_header_element( $element, $device ) {
 		case 'nav_secondary':
 			$location = 'nav' === $element ? 'primary' : 'secondary';
 			if ( has_nav_menu( $location ) ) {
-				$menu_class = 'bs-menu bs-menu--' . ( 'nav' === $element ? sanitize_html_class( bst_mod( 'nav_style' ) ) : 'plain' );
+				$nav_style  = 'pills' === bst_mod( 'nav_style' ) ? 'pill' : sanitize_html_class( bst_mod( 'nav_style' ) );
+				$menu_class = 'bs-menu bs-menu--' . ( 'nav' === $element ? $nav_style : 'plain' );
 				$html       = '<nav class="bs-nav bs-nav--' . esc_attr( $location ) . '" aria-label="' . esc_attr( 'nav' === $element ? __( 'Main menu', 'bigspy-ai-theme-wp' ) : __( 'Top bar menu', 'bigspy-ai-theme-wp' ) ) . '">'
 					. wp_nav_menu( array( 'theme_location' => $location, 'container' => false, 'menu_class' => $menu_class, 'depth' => 3, 'fallback_cb' => false, 'echo' => false ) )
 					. '</nav>';
