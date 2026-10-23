@@ -197,6 +197,7 @@
 		bsAnimationDelay: { type: 'number', default: 0 },
 		bsAnimationDuration: { type: 'number', default: 700 },
 		bsHoverEffect: { type: 'string', default: '' },
+		bsPresets: { type: 'string', default: '' },
 		bsEase: { type: 'string', default: '' },
 		bsDistance: { type: 'number', default: 0 },
 		bsRepeat: { type: 'boolean', default: false },
@@ -347,6 +348,9 @@
 			if (a.bsLoop) {
 				classes.push('bs-loop', 'bs-loop--' + a.bsLoop);
 			}
+			if (a.bsPresets && (window.bstBlockPresets || {})[props.name]) {
+				a.bsPresets.split(/\s+/).filter(Boolean).forEach(function (id) { classes.push('bsp-' + id); });
+			}
 			return el(BlockListBlock, assign(props, { className: classes.join(' ') }));
 		};
 	}, 'withBstHiddenClass');
@@ -415,4 +419,49 @@
 	}, 'withBstTopInserter');
 
 	wp.hooks.addFilter('editor.BlockEdit', 'bst/top-inserter', withTopInserter);
+
+	/* Style presets: per-block looks (formerly the Customizer CSS library), previewed live. */
+	var withPresetPanel = wp.compose.createHigherOrderComponent(function (BlockEdit) {
+		return function (props) {
+			var groups = (window.bstBlockPresets || {})[props.name];
+			if (!groups || !props.isSelected) {
+				return el(BlockEdit, props);
+			}
+			var current = (props.attributes.bsPresets || '').split(/\s+/).filter(Boolean);
+			var count = current.length;
+			var toggle = function (group, id) {
+				var next = current.filter(function (x) { return x !== id; });
+				if (next.length === current.length) {
+					if (group.exclusive) {
+						var ids = group.options.map(function (o) { return o[0]; });
+						next = next.filter(function (x) { return ids.indexOf(x) === -1; });
+					}
+					next.push(id);
+				}
+				props.setAttributes({ bsPresets: next.join(' ') });
+			};
+			return el(wp.element.Fragment, null,
+				el(BlockEdit, props),
+				el(wp.blockEditor.InspectorControls, null,
+					el(c.PanelBody, { title: __('Style presets', 'bigspy-ai-theme-wp') + (count ? ' (' + count + ')' : ''), initialOpen: false, className: 'bst-presets-panel' },
+						el('p', { className: 'bst-presets-panel__hint' }, __('Click to apply, click again to remove. Colors follow your theme. Settings above still work.', 'bigspy-ai-theme-wp')),
+						groups.map(function (group) {
+							return el('div', { key: group.key, className: 'bst-presets-panel__group' },
+								el('p', { className: 'bst-presets-panel__label' }, group.label, group.exclusive ? null : el('small', null, ' · ' + __('combine', 'bigspy-ai-theme-wp'))),
+								el('div', { className: 'bst-presets-panel__chips' },
+									group.options.map(function (o) {
+										var on = current.indexOf(o[0]) !== -1;
+										return el('button', { key: o[0], type: 'button', className: 'bst-presets-panel__chip' + (on ? ' is-on' : ''), 'aria-pressed': on, onClick: function () { toggle(group, o[0]); } }, o[1]);
+									})
+								)
+							);
+						}),
+						count ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { props.setAttributes({ bsPresets: '' }); } }, __('Clear all presets', 'bigspy-ai-theme-wp')) : null
+					)
+				)
+			);
+		};
+	}, 'withBstPresetPanel');
+
+	wp.hooks.addFilter('editor.BlockEdit', 'bst/style-presets', withPresetPanel);
 })(window.wp);

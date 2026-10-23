@@ -70,6 +70,7 @@ function bst_global_block_attributes( $args ) {
 		'bsAnimationDelay' => array( 'type' => 'number', 'default' => 0 ),
 		'bsAnimationDuration' => array( 'type' => 'number', 'default' => 700 ),
 		'bsHoverEffect'    => array( 'type' => 'string', 'default' => '' ),
+		'bsPresets'        => array( 'type' => 'string', 'default' => '' ),
 		'bsEase'           => array( 'type' => 'string', 'default' => '' ),
 		'bsDistance'       => array( 'type' => 'number', 'default' => 0 ),
 		'bsRepeat'         => array( 'type' => 'boolean', 'default' => false ),

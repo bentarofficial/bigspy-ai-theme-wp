@@ -76,7 +76,10 @@ class BST_CSS_Presets_Control extends WP_Customize_Control {
 	public $type = 'bst-css-presets';
 
 	public function render_content() {
-		$recipes = bst_css_presets();
+		$moved   = bst_css_preset_moved_groups();
+		$recipes = array_filter( bst_css_presets(), function ( $recipe ) use ( $moved ) {
+			return ! in_array( $recipe[0], $moved, true );
+		} );
 		$enabled = bst_sanitize_css_presets( $this->value() );
 		$prefix  = 'bst-css-presets-' . sanitize_html_class( $this->id );
 		?>
@@ -91,7 +94,7 @@ class BST_CSS_Presets_Control extends WP_Customize_Control {
 				<button type="button" class="button-link bst-css-presets__undo" hidden><?php esc_html_e( 'Hoàn tác', 'bigspy-ai-theme-wp' ); ?></button>
 			</div>
 			<p class="bst-css-presets__status" role="status" aria-live="polite"><?php esc_html_e( 'Đang bật:', 'bigspy-ai-theme-wp' ); ?> <span data-bst-enabled-count><?php echo (int) count( $enabled ); ?></span> / <?php echo (int) count( $recipes ); ?></p>
-			<?php foreach ( bst_css_preset_groups() as $group => $title ) : ?>
+			<?php foreach ( array_diff_key( bst_css_preset_groups(), array_flip( $moved ) ) as $group => $title ) : ?>
 				<details class="bst-css-presets__group" data-group="<?php echo esc_attr( $group ); ?>">
 					<summary><?php echo esc_html( $title ); ?> <span class="bst-css-presets__group-count" aria-hidden="true"></span></summary>
 					<?php foreach ( $recipes as $id => $recipe ) : ?>

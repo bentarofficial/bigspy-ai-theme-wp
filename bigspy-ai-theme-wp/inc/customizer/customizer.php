@@ -146,8 +146,8 @@ function bst_customize_css_presets( $wp_customize ) {
 	$wp_customize->add_control( new BST_CSS_Presets_Control( $wp_customize, 'css_presets', array(
 		'section' => 'custom_css',
 		'priority' => 0,
-		'label' => __( 'BIGSPY · Thư viện CSS', 'bigspy-ai-theme-wp' ),
-		'description' => __( 'Tích để bật, bỏ tích để tắt. Xem trước rồi nhấn Đăng để lưu. Màu lấy từ theme. Các kiểu cùng loại sẽ thay thế nhau. CSS tự nhập bên dưới có thể ghi đè các lựa chọn này.', 'bigspy-ai-theme-wp' ),
+		'label' => __( 'BIGSPY · Kiểu toàn trang', 'bigspy-ai-theme-wp' ),
+		'description' => __( 'Chỉ còn các kiểu áp dụng cho toàn trang (đầu trang, chân trang, trang WooCommerce, mobile). Kiểu cho ảnh, banner, nút, biểu mẫu, thẻ dịch vụ, FAQ, bài viết… nay nằm ngay trong từng khối: chọn khối → panel "Style presets". CSS tự nhập bên dưới vẫn ghi đè được.', 'bigspy-ai-theme-wp' ),
 	) ) );
 }
 add_action( 'customize_register', 'bst_customize_css_presets', 30 );
