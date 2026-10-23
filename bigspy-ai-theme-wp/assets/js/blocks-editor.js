@@ -580,13 +580,14 @@
 	register('banner', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var classes = 'bs-banner bs-banner--x-' + a.posX + ' bs-banner--y-' + a.posY + ' is-scheme-' + a.textScheme + ' has-text-align-' + a.textAlign;
+		var classes = 'bs-banner bs-banner--x-' + a.posX + ' bs-banner--y-' + a.posY + ' is-scheme-' + a.textScheme + ' has-text-align-' + a.textAlign + (a.heightMode === 'image' && a.imgRatio ? ' bs-banner--h-image' : '');
 		var blockProps = useBlockProps({
 			className: classes,
 			style: {
-				'--bs-banner-hd': a.heightDesktop + 'px',
-				'--bs-banner-ht': a.heightTablet + 'px',
-				'--bs-banner-hm': a.heightMobile + 'px',
+				'--bs-banner-hd': a.heightMode === 'vh' ? a.heightVhD + 'vh' : a.heightDesktop + 'px',
+				'--bs-banner-ht': a.heightMode === 'vh' ? a.heightVhT + 'vh' : a.heightTablet + 'px',
+				'--bs-banner-hm': a.heightMode === 'vh' ? a.heightVhM + 'vh' : a.heightMobile + 'px',
+				'--bs-banner-ar': a.heightMode === 'image' && a.imgRatio ? a.imgRatio : undefined,
 				'--bs-banner-width': a.contentWidth + '%',
 				'--bs-banner-radius': a.radius + 'px'
 			}
@@ -599,7 +600,7 @@
 			]
 		});
 		var setImage = function (m) {
-			props.setAttributes({ imageId: m.id, imageUrl: m.url });
+			props.setAttributes({ imageId: m.id, imageUrl: m.url, imgRatio: m.width && m.height ? Math.round(m.width / m.height * 10000) / 10000 : 0 });
 		};
 
 		return el(Fragment, null,
@@ -618,9 +619,14 @@
 					el(Select, Object.assign({ label: __('Hover effect', 'bigspy-ai-theme-wp'), options: { none: __('None', 'bigspy-ai-theme-wp'), zoom: __('Zoom image', 'bigspy-ai-theme-wp'), glow: __('Lighten overlay', 'bigspy-ai-theme-wp') } }, bind('hover')))
 				),
 				el(Panel, { title: __('Size', 'bigspy-ai-theme-wp') },
-					el(Range, Object.assign({ label: __('Height – desktop (px)', 'bigspy-ai-theme-wp'), min: 100, max: 1200, reset: 500 }, bind('heightDesktop'))),
-					el(Range, Object.assign({ label: __('Height – tablet (px)', 'bigspy-ai-theme-wp'), min: 100, max: 1200, reset: 420 }, bind('heightTablet'))),
-					el(Range, Object.assign({ label: __('Height – mobile (px)', 'bigspy-ai-theme-wp'), min: 100, max: 1200, reset: 340 }, bind('heightMobile'))),
+					sliderChoice(props, __('Height', 'bigspy-ai-theme-wp'), 'heightMode', [['px', __('Fixed (px)', 'bigspy-ai-theme-wp')], ['vh', __('% of screen', 'bigspy-ai-theme-wp')], ['image', __('Fit image', 'bigspy-ai-theme-wp')]]),
+					a.heightMode === 'image' ? el('p', { className: 'description' }, a.imgRatio ? __('The banner follows the image proportions, so the whole image shows. Inside a slider with a common height, that height wins.', 'bigspy-ai-theme-wp') : __('Re-select the image once so its proportions are known.', 'bigspy-ai-theme-wp')) : null,
+					a.heightMode === 'vh' ? el(Range, Object.assign({ label: __('Height – desktop (% of screen)', 'bigspy-ai-theme-wp'), min: 10, max: 100, reset: 100 }, bind('heightVhD'))) : null,
+					a.heightMode === 'vh' ? el(Range, Object.assign({ label: __('Height – tablet (% of screen)', 'bigspy-ai-theme-wp'), min: 10, max: 100, reset: 80 }, bind('heightVhT'))) : null,
+					a.heightMode === 'vh' ? el(Range, Object.assign({ label: __('Height – mobile (% of screen)', 'bigspy-ai-theme-wp'), min: 10, max: 100, reset: 70 }, bind('heightVhM'))) : null,
+					!a.heightMode || a.heightMode === 'px' ? el(Range, Object.assign({ label: __('Height – desktop (px)', 'bigspy-ai-theme-wp'), min: 100, max: 1200, reset: 500 }, bind('heightDesktop'))) : null,
+					!a.heightMode || a.heightMode === 'px' ? el(Range, Object.assign({ label: __('Height – tablet (px)', 'bigspy-ai-theme-wp'), min: 100, max: 1200, reset: 420 }, bind('heightTablet'))) : null,
+					!a.heightMode || a.heightMode === 'px' ? el(Range, Object.assign({ label: __('Height – mobile (px)', 'bigspy-ai-theme-wp'), min: 100, max: 1200, reset: 340 }, bind('heightMobile'))) : null,
 					el(Range, Object.assign({ label: __('Corner radius (px)', 'bigspy-ai-theme-wp'), max: 60 }, bind('radius')))
 				),
 				el(Panel, { title: __('Content position', 'bigspy-ai-theme-wp') },
@@ -766,7 +772,7 @@
 		var a = props.attributes;
 		var bind = B.binder(props);
 		var nav = useSlideNav(props.clientId);
-		var blockProps = useBlockProps({ className: 'bs-slider-block bst-slider-editor' + (nav.single ? ' is-single' : ''), style: { '--bs-slides-d': nav.single ? 1 : a.slidesDesktop, '--bs-slide-gap': a.gap + 'px' } });
+		var blockProps = useBlockProps({ className: 'bs-slider-block bst-slider-editor' + (nav.single ? ' is-single' : '') + (a.slideHeightD ? ' bs-slider--same-h' : ''), style: { '--bs-slides-d': nav.single ? 1 : a.slidesDesktop, '--bs-slide-gap': a.gap + 'px', '--bs-sh-d': a.slideHeightD ? a.slideHeightD + 'px' : undefined, '--bs-sh-t': a.slideHeightD ? (a.slideHeightT || a.slideHeightD) + 'px' : undefined, '--bs-sh-m': a.slideHeightD ? (a.slideHeightM || a.slideHeightT || a.slideHeightD) + 'px' : undefined } });
 		var innerProps = useInnerBlocksProps({ className: 'bst-slider-editor__track' }, {
 			template: [['bst/banner', {}], ['bst/banner', {}]],
 			orientation: 'horizontal'
@@ -787,7 +793,10 @@
 					a.autoplay ? el(Toggle, Object.assign({ label: __('Pause when the mouse is over the slider', 'bigspy-ai-theme-wp') }, bind('pauseHover', true))) : null,
 					a.autoplay ? el(Toggle, Object.assign({ label: __('Progress bar (time until next slide)', 'bigspy-ai-theme-wp') }, bind('progress', true))) : null,
 					el(Toggle, Object.assign({ label: __('Loop', 'bigspy-ai-theme-wp') }, bind('loop', true))),
-					el(Range, Object.assign({ label: __('Minimum height (px, 0 = auto)', 'bigspy-ai-theme-wp'), max: 1200, step: 10 }, bind('minHeight'))),
+					el(Range, Object.assign({ label: __('Same height for all slides – desktop (px, 0 = each slide its own)', 'bigspy-ai-theme-wp'), help: __('Every slide gets this height and its image stretches and crops to fill it, so the slider never jumps between tall and short slides.', 'bigspy-ai-theme-wp'), max: 1200, step: 10, reset: 0 }, bind('slideHeightD'))),
+					a.slideHeightD ? el(Range, Object.assign({ label: __('Same height – tablet (px, 0 = as desktop)', 'bigspy-ai-theme-wp'), max: 1200, step: 10, reset: 0 }, bind('slideHeightT'))) : null,
+					a.slideHeightD ? el(Range, Object.assign({ label: __('Same height – mobile (px, 0 = as tablet)', 'bigspy-ai-theme-wp'), max: 1200, step: 10, reset: 0 }, bind('slideHeightM'))) : null,
+					!a.slideHeightD ? el(Range, Object.assign({ label: __('Minimum height (px, 0 = auto)', 'bigspy-ai-theme-wp'), max: 1200, step: 10 }, bind('minHeight'))) : null,
 					el(Range, Object.assign({ label: __('Slide corner radius (px)', 'bigspy-ai-theme-wp'), max: 60 }, bind('slideRadius')))
 				),
 				el(Panel, { title: __('Arrows', 'bigspy-ai-theme-wp') },

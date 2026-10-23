@@ -32,6 +32,11 @@
 			"type": "number",
 			"default": 50
 		},
+		"heightMode": { "type": "string", "default": "px" },
+		"heightVhD": { "type": "number", "default": 100 },
+		"heightVhT": { "type": "number", "default": 80 },
+		"heightVhM": { "type": "number", "default": 70 },
+		"imgRatio": { "type": "number", "default": 0 },
 		"heightDesktop": {
 			"type": "number",
 			"default": 500

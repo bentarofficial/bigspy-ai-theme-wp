@@ -26,6 +26,20 @@ $style   = bst_style_vars(
 		'--bs-banner-radius' => bst_block_num( $a, 'radius', 0, 0, 80 ) . 'px',
 	)
 );
+$h_mode = bst_choice( $a['heightMode'] ?? 'px', array( 'px', 'image', 'vh' ), 'px' );
+if ( 'vh' === $h_mode ) {
+	$style .= ';--bs-banner-hd:' . bst_block_num( $a, 'heightVhD', 100, 10, 100 ) . 'vh;--bs-banner-ht:' . bst_block_num( $a, 'heightVhT', 80, 10, 100 ) . 'vh;--bs-banner-hm:' . bst_block_num( $a, 'heightVhM', 70, 10, 100 ) . 'vh';
+} elseif ( 'image' === $h_mode ) {
+	$ratio = isset( $a['imgRatio'] ) ? (float) $a['imgRatio'] : 0;
+	if ( $ratio <= 0 && ! empty( $a['imageId'] ) ) {
+		$meta  = wp_get_attachment_metadata( (int) $a['imageId'] );
+		$ratio = ! empty( $meta['width'] ) && ! empty( $meta['height'] ) ? $meta['width'] / $meta['height'] : 0;
+	}
+	if ( $ratio > 0 ) {
+		$classes .= ' bs-banner--h-image';
+		$style   .= ';--bs-banner-ar:' . round( $ratio, 4 );
+	}
+}
 $focal = bst_block_num( $a, 'focalX', 50, 0, 100 ) . '% ' . bst_block_num( $a, 'focalY', 50, 0, 100 ) . '%';
 
 $image = '';

@@ -88,6 +88,9 @@
 			"type": "boolean",
 			"default": true
 		},
+		"slideHeightD": { "type": "number", "default": 0 },
+		"slideHeightT": { "type": "number", "default": 0 },
+		"slideHeightM": { "type": "number", "default": 0 },
 		"minHeight": {
 			"type": "number",
 			"default": 0
