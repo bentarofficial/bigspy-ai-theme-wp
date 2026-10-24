@@ -23,6 +23,10 @@ $items    = '';
 foreach ( $images as $image ) {
 	$id  = absint( $image['id'] ?? 0 );
 	$alt = (string) ( $image['alt'] ?? '' );
+	// No alt set in the block: use the alt text from the Media Library instead of an empty one.
+	if ( '' === trim( $alt ) && $id ) {
+		$alt = (string) get_post_meta( $id, '_wp_attachment_image_alt', true );
+	}
 	$cap = (string) ( $image['caption'] ?? '' );
 	$img = $id ? wp_get_attachment_image( $id, $size, false, array( 'class' => 'bs-gallery__img', 'alt' => $alt ) ) : '';
 	if ( ! $img && ! empty( $image['url'] ) ) {
