@@ -64,6 +64,8 @@ function bst_editor_assets() {
 	// Responsive visibility + animation controls for every block.
 	wp_enqueue_script( 'bst-editor-helpers' );
 	// Type or paste a color / gradient code under every picker.
+	// Let Rank Math / Yoast read the text inside BIGSPY blocks.
+	wp_enqueue_script( 'bst-seo-content', BST_URI . '/assets/js/seo-content.js', array( 'wp-hooks', 'wp-data' ), bst_asset_version( 'assets/js/seo-content.js' ), true );
 	wp_enqueue_script( 'bst-color-input', BST_URI . '/assets/js/color-input.js', array( 'wp-i18n' ), bst_asset_version( 'assets/js/color-input.js' ), true );
 	wp_enqueue_style( 'bst-editor-ui', BST_URI . '/assets/css/editor-ui.css', array(), bst_asset_version( 'assets/css/editor-ui.css' ) );
 	wp_add_inline_style( 'bst-editor-ui', '.bst-btn-styles,.bst-bg-presets,.bst-form-templates{--bst-primary:' . sanitize_hex_color( (string) bst_mod( 'color_primary' ) ) . ';--bst-secondary:' . sanitize_hex_color( (string) bst_mod( 'color_secondary' ) ) . '}' );
