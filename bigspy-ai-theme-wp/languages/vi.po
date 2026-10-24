@@ -347,6 +347,9 @@ msgstr "CSS bổ sung"
 msgid "Address"
 msgstr "Địa chỉ"
 
+msgid "Admin & Customizer"
+msgstr "Trang quản trị & Tùy biến"
+
 msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
 msgstr "Quản trị viên vẫn xem được website. Khách nhận phản hồi HTTP 503. Đăng nhập, quản trị và API vẫn hoạt động. Xóa cache trang/CDN khi bật hoặc tắt tùy chọn này."
 
@@ -472,6 +475,9 @@ msgstr "BIGSPY Studio"
 
 msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
 msgstr "BIGSPY đang bật chế độ bảo trì. Khách chưa thể xem cửa hàng."
+
+msgid "BIGSPY settings"
+msgstr "Cài đặt BIGSPY"
 
 msgid "Back to home"
 msgstr "Về trang chủ"
@@ -634,6 +640,9 @@ msgstr "Website doanh nghiệp hoặc dịch vụ"
 
 msgid "Button"
 msgstr "Nút bấm"
+
+msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
+msgstr "Nút và nhãn do theme in ra, ví dụ “Đọc tiếp”, “Chia sẻ:”, “Bài viết liên quan”."
 
 msgid "Buy a package to save up to 30% and share it with family."
 msgstr "Mua theo gói để tiết kiệm đến 30% và dùng chung cho người thân."
@@ -1484,6 +1493,9 @@ msgstr "Độ rộng cột ảnh"
 msgid "Image, then title"
 msgstr "Ảnh trước, rồi đến tiêu đề"
 
+msgid "Important theme-wide settings."
+msgstr "Các cài đặt quan trọng áp dụng cho toàn bộ theme."
+
 msgid "In 15 years"
 msgstr "Trong 15 năm"
 
@@ -1540,6 +1552,9 @@ msgstr "Am hiểu quy hoạch các quận trung tâm."
 
 msgid "Lakeside villa"
 msgstr "Biệt thự ven hồ"
+
+msgid "Language of the theme’s own texts. WordPress and plugins keep their own language (Settings → General and Users → Profile)."
+msgstr "Ngôn ngữ của các chữ do theme hiển thị. WordPress và plugin vẫn dùng ngôn ngữ riêng (Cài đặt → Tổng quan và Thành viên → Hồ sơ)."
 
 msgid "Large first letter (drop cap)"
 msgstr "Chữ cái đầu lớn (drop cap)"
@@ -2414,6 +2429,9 @@ msgstr "Nhãn giảm giá (dùng {percent} để hiện % giảm)"
 msgid "Sales director"
 msgstr "Giám đốc kinh doanh"
 
+msgid "Same as WordPress"
+msgstr "Theo WordPress"
+
 msgid "Same category"
 msgstr "Cùng danh mục"
 
@@ -2527,6 +2545,9 @@ msgstr "Thực đơn trọn gói cho mọi dịp"
 
 msgid "Set your budget, area and type of home."
 msgstr "Xác định ngân sách, vị trí và loại hình phù hợp."
+
+msgid "Settings"
+msgstr "Cài đặt"
 
 msgid "Settings saved."
 msgstr "Đã lưu cài đặt."
@@ -2876,6 +2897,9 @@ msgstr "Theme Builder"
 msgid "Theme Options"
 msgstr "Cài đặt theme"
 
+msgid "Theme language"
+msgstr "Ngôn ngữ của theme"
+
 msgid "Themed decoration"
 msgstr "Trang trí theo chủ đề"
 
@@ -3071,6 +3095,9 @@ msgstr "Có thực đơn chay hơn 15 món, bạn báo trước để bếp chu�
 msgid "We will be back soon"
 msgstr "Chúng tôi sẽ trở lại sớm"
 
+msgid "Website (what visitors see)"
+msgstr "Website (phần khách xem)"
+
 msgid "What are your opening hours?"
 msgstr "Nhà hàng mở cửa lúc mấy giờ?"
 
@@ -3244,6 +3271,9 @@ msgstr "— Không chọn —"
 
 msgid "“Read more” style"
 msgstr "Kiểu nút “Đọc tiếp”"
+
+msgid "“Same as WordPress” follows each user’s profile language."
+msgstr "“Theo WordPress” sẽ dùng ngôn ngữ trong hồ sơ của từng người dùng."
 
 msgid "← Older posts"
 msgstr "← Bài cũ hơn"

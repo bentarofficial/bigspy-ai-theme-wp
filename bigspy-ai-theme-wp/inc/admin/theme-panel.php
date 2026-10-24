@@ -128,6 +128,8 @@ function bst_panel_tabs() {
 		'speed'    => array( __( 'Performance', 'bigspy-ai-theme-wp' ), array( 'bst_performance', 'bst_tweaks' ) ),
 		'tools'    => array( __( '404 & maintenance', 'bigspy-ai-theme-wp' ), array( 'bst_site_tools' ) ),
 		'extras'   => array( __( 'Cookie notice & reading', 'bigspy-ai-theme-wp' ), array( 'bst_site_extras' ) ),
+		// Shown on BIGSPY → Settings, not as a Theme Options tab.
+		'settings' => array( __( 'Settings', 'bigspy-ai-theme-wp' ), array( 'bst_theme_settings' ) ),
 	);
 }
 
@@ -144,6 +146,7 @@ add_action(
 		add_submenu_page( $main, __( 'Additional CSS', 'bigspy-ai-theme-wp' ), __( 'Custom CSS', 'bigspy-ai-theme-wp' ), $cap, 'customize.php?autofocus[section]=custom_css' );
 		add_submenu_page( $main, __( 'Floating contact buttons', 'bigspy-ai-theme-wp' ), __( 'Floating contact buttons', 'bigspy-ai-theme-wp' ), $cap, 'customize.php?autofocus[section]=bst_float' );
 		add_submenu_page( $main, __( 'UX Blocks', 'bigspy-ai-theme-wp' ), __( 'UX Blocks', 'bigspy-ai-theme-wp' ), $cap, 'edit.php?post_type=blocks' );
+		add_submenu_page( $main, __( 'Settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-settings', 'bst_panel_settings_page' );
 		add_submenu_page( $main, __( 'System status', 'bigspy-ai-theme-wp' ), __( 'System status', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-status', 'bst_panel_status_page' );
 		add_submenu_page( $main, __( 'Help & guides', 'bigspy-ai-theme-wp' ), __( 'Help & guides', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-help', 'bst_panel_help_page' );
 		if ( ! post_type_exists( 'blocks' ) ) {
@@ -224,7 +227,8 @@ add_action(
 			}
 			set_theme_mod( $field['id'], bst_panel_sanitize( $field, $input[ $field['id'] ] ?? '' ) );
 		}
-		wp_safe_redirect( add_query_arg( array( 'page' => 'bigspy-options', 'tab' => $tab, 'saved' => 1 ), admin_url( 'admin.php' ) ) );
+		$page = 'settings' === $tab ? 'bigspy-settings' : 'bigspy-options';
+		wp_safe_redirect( add_query_arg( array( 'page' => $page, 'tab' => $tab, 'saved' => 1 ), admin_url( 'admin.php' ) ) );
 		exit;
 	}
 );
@@ -282,12 +286,13 @@ function bst_panel_header( $title, $lead ) {
 function bst_panel_options_page() {
 	$tabs = bst_panel_tabs();
 	$tab  = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'scripts'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$tab  = isset( $tabs[ $tab ] ) ? $tab : 'scripts';
+	$tab  = ( isset( $tabs[ $tab ] ) && 'settings' !== $tab ) ? $tab : 'scripts';
 	bst_panel_header( __( 'Theme Options', 'bigspy-ai-theme-wp' ), __( 'Site-wide settings that do not need a live preview. They are the same settings as in Appearance → Customize → Advanced.', 'bigspy-ai-theme-wp' ) );
 	if ( ! empty( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
 	}
 	echo '<nav class="nav-tab-wrapper">';
+	unset( $tabs['settings'] );
 	foreach ( $tabs as $key => $t ) {
 		echo '<a class="nav-tab' . ( $key === $tab ? ' nav-tab-active' : '' ) . '" href="' . esc_url( add_query_arg( array( 'page' => 'bigspy-options', 'tab' => $key ), admin_url( 'admin.php' ) ) ) . '">' . esc_html( $t[0] ) . '</a>';
 	}
@@ -295,6 +300,23 @@ function bst_panel_options_page() {
 	wp_nonce_field( 'bst_panel_save' );
 	echo '<input type="hidden" name="action" value="bst_panel_save"><input type="hidden" name="tab" value="' . esc_attr( $tab ) . '"><table class="form-table" role="presentation"><tbody>';
 	foreach ( bst_panel_fields_for( $tabs[ $tab ][1] ) as $field ) {
+		bst_panel_field_html( $field );
+	}
+	echo '</tbody></table>';
+	submit_button( __( 'Save changes', 'bigspy-ai-theme-wp' ) );
+	echo '</form></div>';
+}
+
+/* ---------------------------------------------------------------- Settings */
+function bst_panel_settings_page() {
+	bst_panel_header( __( 'BIGSPY settings', 'bigspy-ai-theme-wp' ), __( 'Important theme-wide settings.', 'bigspy-ai-theme-wp' ) );
+	if ( ! empty( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
+	}
+	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+	wp_nonce_field( 'bst_panel_save' );
+	echo '<input type="hidden" name="action" value="bst_panel_save"><input type="hidden" name="tab" value="settings"><table class="form-table" role="presentation"><tbody>';
+	foreach ( bst_panel_fields_for( array( 'bst_theme_settings' ) ) as $field ) {
 		bst_panel_field_html( $field );
 	}
 	echo '</tbody></table>';
