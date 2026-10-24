@@ -2106,7 +2106,8 @@ a.page-numbers:hover {
    Fluid header → same as the header padding; boxed header → lines up with the container (and the logo). */
 :root {
 	--bs-gutter-fluid: clamp(16px, 3vw, 48px);
-	--bs-edge: max(15px, calc((100vw - var(--bs-container, 1200px)) / 2));
+	/* 100% = the full-width block itself, so the scrollbar never shifts it off the logo. */
+	--bs-edge: max(15px, calc((100% - var(--bs-container, 1200px)) / 2));
 }
 .bs-header-is-fluid { --bs-edge: var(--bs-gutter-fluid); }
 .bs-container--fluid { padding-left: var(--bs-gutter-fluid); padding-right: var(--bs-gutter-fluid); }
