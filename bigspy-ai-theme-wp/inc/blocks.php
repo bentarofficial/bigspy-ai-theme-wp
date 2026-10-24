@@ -189,6 +189,24 @@ function bst_apply_global_block_attributes( $content, $block ) {
 add_filter( 'render_block', 'bst_apply_global_block_attributes', 10, 2 );
 
 /**
+ * HTML anchor (Advanced → HTML anchor) on dynamic BIGSPY blocks: core only saves it
+ * into static markup, so print it as the id of the block's first tag.
+ */
+function bst_apply_block_anchor( $content, $block ) {
+	$anchor = isset( $block['attrs']['anchor'] ) ? sanitize_title( (string) $block['attrs']['anchor'] ) : '';
+	if ( '' === $anchor || 0 !== strpos( (string) ( $block['blockName'] ?? '' ), 'bst/' ) || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+		return $content;
+	}
+	$tags = new WP_HTML_Tag_Processor( $content );
+	if ( ! $tags->next_tag() || $tags->get_attribute( 'id' ) ) {
+		return $content;
+	}
+	$tags->set_attribute( 'id', $anchor );
+	return $tags->get_updated_html();
+}
+add_filter( 'render_block', 'bst_apply_block_anchor', 10, 2 );
+
+/**
  * Feed Customizer colors and container width into theme.json so the editor
  * palette and layout always match the site.
  */
