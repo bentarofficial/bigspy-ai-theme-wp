@@ -18,6 +18,32 @@ function bst_admin_menu() {
 		}
 	);
 }
+/** Mini page mockup for a starter card: browser bar, menu, hero, then services or products. */
+function bst_studio_mock( $kind ) {
+	$shop = 'shop' === $kind;
+	$e    = 'esc_html__';
+	$nav  = $shop
+		? array( $e( 'Home', 'bigspy-ai-theme-wp' ), $e( 'Shop', 'bigspy-ai-theme-wp' ), $e( 'Sale', 'bigspy-ai-theme-wp' ) )
+		: array( $e( 'Home', 'bigspy-ai-theme-wp' ), $e( 'Services', 'bigspy-ai-theme-wp' ), $e( 'Contact', 'bigspy-ai-theme-wp' ) );
+	$out  = '<div class="bst-mock__bar"><i></i><i></i><i></i><span>' . ( $shop ? 'yourshop.com' : 'yourbusiness.com' ) . '</span></div>';
+	$out .= '<div class="bst-mock__nav"><b class="bst-mock__logo">' . ( $shop ? 'SHOP' : 'BRAND' ) . '</b><span>' . implode( '</span><span>', $nav ) . '</span>' . ( $shop ? '<em class="bst-mock__cart">🛒 2</em>' : '<em class="bst-mock__cta">' . $e( 'Call us', 'bigspy-ai-theme-wp' ) . '</em>' ) . '</div>';
+	$out .= '<div class="bst-mock__hero"><div class="bst-mock__copy"><small>' . ( $shop ? $e( 'New collection', 'bigspy-ai-theme-wp' ) : $e( 'Trusted local service', 'bigspy-ai-theme-wp' ) ) . '</small><strong>' . ( $shop ? $e( 'Style for every day', 'bigspy-ai-theme-wp' ) : $e( 'Quality service you can count on', 'bigspy-ai-theme-wp' ) ) . '</strong><span class="bst-mock__btns"><u>' . ( $shop ? $e( 'Shop now', 'bigspy-ai-theme-wp' ) : $e( 'Book now', 'bigspy-ai-theme-wp' ) ) . '</u><u class="is-ghost">' . ( $shop ? $e( 'Sale', 'bigspy-ai-theme-wp' ) : $e( 'Our services', 'bigspy-ai-theme-wp' ) ) . '</u></span></div><div class="bst-mock__pic">' . ( $shop ? '👜' : '🏢' ) . '</div></div>';
+	if ( $shop ) {
+		$items = array( array( '👟', '590.000đ' ), array( '⌚', '1.290.000đ' ), array( '🧥', '890.000đ' ) );
+		$out  .= '<div class="bst-mock__grid">';
+		foreach ( $items as $it ) {
+			$out .= '<div class="bst-mock__card bst-mock__product"><span class="bst-mock__thumb">' . $it[0] . '</span><i></i><b>' . $it[1] . '</b><u>' . $e( 'Add to cart', 'bigspy-ai-theme-wp' ) . '</u></div>';
+		}
+	} else {
+		$items = array( array( '⭐', $e( 'Expert team', 'bigspy-ai-theme-wp' ) ), array( '⚡', $e( 'Fast service', 'bigspy-ai-theme-wp' ) ), array( '💬', $e( 'Free advice', 'bigspy-ai-theme-wp' ) ) );
+		$out  .= '<div class="bst-mock__grid">';
+		foreach ( $items as $it ) {
+			$out .= '<div class="bst-mock__card"><span class="bst-mock__icon">' . $it[0] . '</span><b>' . $it[1] . '</b><i></i></div>';
+		}
+	}
+	return $out . '</div>';
+}
+
 // Studio now lives in the top-level BIGSPY menu (inc/admin/theme-panel.php).
 
 /** Create a safe, unpublished page from a BIGSPY full-page pattern. */
@@ -140,9 +166,7 @@ function bst_dashboard_page() {
 				?>
 				<article class="bst-studio-card">
 					<div class="bst-studio-preview bst-studio-preview--<?php echo esc_attr( $card['kind'] ); ?>" aria-hidden="true">
-						<div class="bst-studio-preview__top"><i></i><i></i><i></i><b></b></div>
-						<div class="bst-studio-preview__hero"><span></span><span></span><span></span></div>
-						<div class="bst-studio-preview__row"><i></i><i></i><i></i></div>
+						<?php echo bst_studio_mock( $card['kind'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup built from escaped strings. ?>
 					</div>
 					<div class="bst-studio-card__body">
 						<h2><?php echo esc_html( $card['title'] ); ?></h2>

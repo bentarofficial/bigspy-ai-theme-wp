@@ -1,0 +1,790 @@
+# BIGSPY AI Theme WP - Indonesian translation (machine-assisted, review recommended).
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY AI Theme WP\n"
+"Language: id_ID\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: bigspy-ai-theme-wp\n"
+
+msgid "%s comment"
+msgstr "%s komentar"
+
+msgid "%s product"
+msgstr "%s produk"
+
+msgid "-Deep skin analysis"
+msgstr "-Analisis kulit mendalam"
+
+msgid "-Mortgage paperwork"
+msgstr "-Dokumen KPR"
+
+msgid "-Private room"
+msgstr "-Ruang privat"
+
+msgid "-Results guarantee"
+msgstr "-Jaminan hasil"
+
+msgid "/ 10 guests"
+msgstr "/ 10 orang"
+
+msgid "/ 3 months"
+msgstr "/ 3 bulan"
+
+msgid "/ 4 guests"
+msgstr "/ 4 orang"
+
+msgid "/ 5 sessions"
+msgstr "/ 5 sesi"
+
+msgid "/ course"
+msgstr "/ kursus"
+
+msgid "/ guest"
+msgstr "/ orang"
+
+msgid "/ of value"
+msgstr "/ dari nilai"
+
+msgid "/ on sale"
+msgstr "/ dijual"
+
+msgid "/ package"
+msgstr "/ paket"
+
+msgid "/ session"
+msgstr "/ sesi"
+
+msgid "1,200+ deals"
+msgstr "1.200+ transaksi"
+
+msgid "10 years of deep skin care experience."
+msgstr "10 tahun pengalaman perawatan kulit mendalam."
+
+msgid "10% off for groups of 3, and 0% instalments by credit card."
+msgstr "Diskon 10% untuk grup 3 orang, dan cicilan 0% dengan kartu kredit."
+
+msgid "100% genuine"
+msgstr "100% asli"
+
+msgid "100% natural"
+msgstr "100% alami"
+
+msgid "12 Garden Avenue, City Centre"
+msgstr "Jl. Taman 12, Pusat Kota"
+
+msgid "12 partner banks"
+msgstr "12 bank mitra"
+
+msgid "15 minutes to the centre"
+msgstr "15 menit ke pusat kota"
+
+msgid "15 years in five-star hotel kitchens."
+msgstr "15 tahun di dapur hotel bintang lima."
+
+msgid "15 years in the housing market."
+msgstr "15 tahun di pasar properti."
+
+msgid "15% off your first visit"
+msgstr "Diskon 15% untuk kunjungan pertama"
+
+msgid "2 free trial lessons"
+msgstr "2 kelas percobaan gratis"
+
+msgid "2-bedroom apartment"
+msgstr "Apartemen 2 kamar tidur"
+
+msgid "2-bedroom city apartment"
+msgstr "Apartemen 2 kamar tidur di kota"
+
+msgid "2-hour delivery"
+msgstr "Pengiriman 2 jam"
+
+msgid "24 lessons, twice a week"
+msgstr "24 pertemuan, dua kali seminggu"
+
+msgid "24/7 support"
+msgstr "Dukungan 24/7"
+
+msgid "24K gold mask"
+msgstr "Masker emas 24K"
+
+msgid "25 Main Street, City Centre"
+msgstr "Jl. Utama 25, Pusat Kota"
+
+msgid "30-dish Asian & European buffet"
+msgstr "Prasmanan Asia & Eropa 30 hidangan"
+
+msgid "300 m² plot, private garden, 24/7 security."
+msgstr "Lahan 300 m², taman pribadi, keamanan 24/7."
+
+msgid "35 m², ideal for young people and renting out."
+msgstr "35 m², cocok untuk anak muda dan disewakan."
+
+msgid "35+ projects on offer"
+msgstr "35+ proyek tersedia"
+
+msgid "4 steps to your goal"
+msgstr "4 langkah menuju tujuan Anda"
+
+msgid "4.9 ★ on Google"
+msgstr "4,9 ★ di Google"
+
+msgid "4.9/5 from more than 1,200 reviews"
+msgstr "4,9/5 dari lebih dari 1.200 ulasan"
+
+msgid "40+ experienced teachers"
+msgstr "40+ pengajar berpengalaman"
+
+msgid "404 & maintenance"
+msgstr "404 & pemeliharaan"
+
+msgid "404 page"
+msgstr "Halaman 404"
+
+msgid "45 College Road, City Centre"
+msgstr "Jl. Sekolah 45, Pusat Kota"
+
+msgid "5 checks at handover"
+msgstr "5 pemeriksaan saat serah terima"
+
+msgid "5 facials"
+msgstr "5 perawatan wajah"
+
+msgid "5 mains + soup"
+msgstr "5 menu utama + sup"
+
+msgid "5 steps for evening skin care"
+msgstr "5 langkah perawatan kulit malam hari"
+
+msgid "5x20 m, four floors, live and do business."
+msgstr "5x20 m, empat lantai, untuk tinggal dan berbisnis."
+
+msgid "60 consultants"
+msgstr "60 konsultan"
+
+msgid "60-minute hot stone massage"
+msgstr "Pijat batu panas 60 menit"
+
+msgid "68 m², river view, basic furniture, from $210,000."
+msgstr "68 m², pemandangan sungai, perabot dasar, mulai $210.000."
+
+msgid "7-day returns"
+msgstr "Retur 7 hari"
+
+msgid "70% of class time is practice."
+msgstr "70% waktu kelas untuk praktik."
+
+msgid "7:00 am – 10:00 pm, every day"
+msgstr "07.00 – 22.00, setiap hari"
+
+msgid "7:00 am – 10:00 pm, holidays too"
+msgstr "07.00 – 22.00, hari libur juga buka"
+
+msgid "8 facial + body sessions"
+msgstr "8 sesi wajah + tubuh"
+
+msgid "8 mains + hot pot"
+msgstr "8 menu utama + hot pot"
+
+msgid "8 private treatment rooms"
+msgstr "8 ruang perawatan privat"
+
+msgid "80+ Asian and European dishes"
+msgstr "80+ hidangan Asia dan Eropa"
+
+msgid "8:00 am – 8:00 pm, Monday – Sunday"
+msgstr "08.00 – 20.00, Senin – Minggu"
+
+msgid "8:00 am – 9:00 pm, Monday – Sunday"
+msgstr "08.00 – 21.00, Senin – Minggu"
+
+msgid "8–12% a year"
+msgstr "8–12% per tahun"
+
+msgid "96% reach their goal"
+msgstr "96% mencapai targetnya"
+
+msgid "9:00 am – 9:00 pm, every day"
+msgstr "09.00 – 21.00, setiap hari"
+
+msgid "A 6-month plan with free materials and how to train each skill."
+msgstr "Rencana 6 bulan dengan materi gratis dan cara melatih setiap keterampilan."
+
+msgid "A caring advisory team"
+msgstr "Tim konsultan yang peduli"
+
+msgid "A certificate when you complete the course."
+msgstr "Sertifikat setelah menyelesaikan kursus."
+
+msgid "A checklist for power, water, walls and doors before you sign."
+msgstr "Daftar periksa listrik, air, dinding, dan pintu sebelum tanda tangan."
+
+msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
+msgstr "Jalur yang jelas dan masukan yang sangat detail. Nilai saya naik 1,5 poin hanya dalam 4 bulan."
+
+msgid "A complete dining experience"
+msgstr "Pengalaman bersantap yang lengkap"
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "Halaman beranda lengkap dengan pengantar, layanan, tentang kami, testimoni, harga, FAQ, dan kontak."
+
+msgid "A consultant is with you at every step."
+msgstr "Konsultan mendampingi Anda di setiap langkah."
+
+msgid "A cosy weekend dinner"
+msgstr "Makan malam akhir pekan yang hangat"
+
+msgid "A day at the centre"
+msgstr "Sehari di pusat kami"
+
+msgid "A free 30-minute level check."
+msgstr "Tes level gratis 30 menit."
+
+msgid "A free mask with every package."
+msgstr "Masker gratis di setiap paket."
+
+msgid "A green space where you can truly rest"
+msgstr "Ruang hijau untuk benar-benar beristirahat"
+
+msgid "A kitchen certified for hygiene and food safety."
+msgstr "Dapur bersertifikat kebersihan dan keamanan pangan."
+
+msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
+msgstr "Pemeriksaan cepat server dan pengaturan WordPress. Item bertanda ! berada di bawah nilai yang disarankan."
+
+msgid "A reusable design saved in WordPress."
+msgstr "Desain yang dapat dipakai ulang, tersimpan di WordPress."
+
+msgid "A service for every need"
+msgstr "Layanan untuk setiap kebutuhan"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "Beranda toko dengan hero, keunggulan, kategori, koleksi produk, dan lainnya."
+
+msgid "A trained team that always welcomes you with a smile."
+msgstr "Tim terlatih yang selalu menyambut Anda dengan senyuman."
+
+msgid "A trained team with professional certificates."
+msgstr "Tim terlatih dengan sertifikat profesional."
+
+msgid "About 720–800px is easiest to read."
+msgstr "Sekitar 720–800 px paling nyaman dibaca."
+
+msgid "About the centre"
+msgstr "Tentang pusat kami"
+
+msgid "About us"
+msgstr "Tentang kami"
+
+msgid "Accountant"
+msgstr "Akuntan"
+
+msgid "Active dot fills up"
+msgstr "Titik aktif terisi penuh"
+
+msgid "Active plugins"
+msgstr "Plugin aktif"
+
+msgid "Activities"
+msgstr "Aktivitas"
+
+msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
+msgstr "Tambahkan halaman dan sisipkan blok BIGSPY atau pola halaman awal."
+
+msgid "Add layout"
+msgstr "Tambah tata letak"
+
+msgid "Add new layout"
+msgstr "Tambah tata letak baru"
+
+msgid "Add to page"
+msgstr "Tambahkan ke halaman"
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "Ditambahkan sebagai desain tersinkron. Perubahan pada sumbernya memperbarui semua salinan."
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "Ditambahkan ke halaman Anda. Edit teks dan gambar di pratinjau."
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "Menambahkan desain tidak menerbitkan halaman. Gunakan Pratinjau, lalu Simpan draf atau Terbitkan bila sudah siap."
+
+msgid "Additional CSS"
+msgstr "CSS tambahan"
+
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Admin & Customizer"
+msgstr "Admin & Customizer"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "Administrator tetap bisa melihat situs. Pengunjung menerima HTTP 503. Login, admin, dan API tetap tersedia. Bersihkan cache halaman/CDN saat mengubah opsi ini."
+
+msgid "Advice and viewings"
+msgstr "Konsultasi dan survei"
+
+msgid "Advice by chat and hotline 24/7."
+msgstr "Konsultasi lewat chat dan hotline 24/7."
+
+msgid "After the header"
+msgstr "Setelah header"
+
+msgid "After the page content"
+msgstr "Setelah konten halaman"
+
+msgid "After-sales"
+msgstr "Purnajual"
+
+msgid "Agree the best price and prepare the loan file."
+msgstr "Sepakati harga terbaik dan siapkan berkas pinjaman."
+
+msgid "Air-conditioned rooms with projectors"
+msgstr "Ruang kelas ber-AC dengan proyektor"
+
+msgid "Airy garden seating"
+msgstr "Area taman yang sejuk"
+
+msgid "All archives (category, tag, author, date)"
+msgstr "Semua arsip (kategori, tag, penulis, tanggal)"
+
+msgid "All designs"
+msgstr "Semua desain"
+
+msgid "All pages"
+msgstr "Semua halaman"
+
+msgid "All posts"
+msgstr "Semua pos"
+
+msgid "All products"
+msgstr "Semua produk"
+
+msgid "Also on these post / page IDs (comma separated)"
+msgstr "Juga pada ID pos / halaman ini (pisahkan dengan koma)"
+
+msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+msgstr "Selalu lebar penuh; tingginya mengikuti kode atau gambar Anda. Contoh: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+
+msgid "Always listening to make every meal better."
+msgstr "Selalu mendengarkan agar setiap hidangan semakin baik."
+
+msgid "Always listens to find the right treatment."
+msgstr "Selalu mendengarkan untuk menemukan perawatan yang tepat."
+
+msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
+msgstr "Halaman tentang penulis atau profil publik (LinkedIn, Facebook…)."
+
+msgid "Analytics and pixel code, performance tweaks, 404 and maintenance pages."
+msgstr "Kode analitik dan pixel, pengaturan performa, halaman 404 dan pemeliharaan."
+
+msgid "And still growing"
+msgstr "Dan terus berkembang"
+
+msgid "Anna"
+msgstr "Anna"
+
+msgid "Any other questions? Send us a message for a free consultation."
+msgstr "Ada pertanyaan lain? Kirim pesan untuk konsultasi gratis."
+
+msgid "Apartment specialist"
+msgstr "Spesialis apartemen"
+
+msgid "Apply what you learn to real situations."
+msgstr "Terapkan yang Anda pelajari dalam situasi nyata."
+
+msgid "Arabica beans roasted every week, brewed as filter or espresso."
+msgstr "Biji arabika disangrai setiap minggu, diseduh filter atau espresso."
+
+msgid "Archive layouts, cards, table of contents, author box, related posts."
+msgstr "Tata letak arsip, kartu, daftar isi, kotak penulis, pos terkait."
+
+msgid "Arrive on time – your table and dishes are ready."
+msgstr "Datang tepat waktu – meja dan hidangan Anda sudah siap."
+
+msgid "As peaceful as a resort"
+msgstr "Setenang resor"
+
+msgid "Author"
+msgstr "Penulis"
+
+msgid "Author avatar"
+msgstr "Avatar penulis"
+
+msgid "Author bio"
+msgstr "Bio penulis"
+
+msgid "Author box heading (empty = “Written by”)"
+msgstr "Judul kotak penulis (kosong = “Ditulis oleh”)"
+
+msgid "Author box style"
+msgstr "Gaya kotak penulis"
+
+msgid "Author details come from"
+msgstr "Data penulis diambil dari"
+
+msgid "Author information"
+msgstr "Informasi penulis"
+
+msgid "Author name"
+msgstr "Nama penulis"
+
+msgid "Author profile URL"
+msgstr "URL profil penulis"
+
+msgid "Award-winning national coffee champion."
+msgstr "Juara kopi nasional peraih penghargaan."
+
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "Mode pemeliharaan BIGSPY aktif. Pengunjung tidak dapat menjelajahi toko."
+
+msgid "BIGSPY settings"
+msgstr "Pengaturan BIGSPY"
+
+msgid "Back to home"
+msgstr "Kembali ke beranda"
+
+msgid "Back to top"
+msgstr "Kembali ke atas"
+
+msgid "Badge and faded card"
+msgstr "Lencana dan kartu memudar"
+
+msgid "Badge and grayscale image"
+msgstr "Lencana dan gambar hitam putih"
+
+msgid "Badge only"
+msgstr "Hanya lencana"
+
+msgid "Badge texts (empty = default)"
+msgstr "Teks lencana (kosong = bawaan)"
+
+msgid "Band score guarantee"
+msgstr "Jaminan skor"
+
+msgid "Bank loan file"
+msgstr "Berkas pinjaman bank"
+
+msgid "Banner code (HTML, inline CSS)"
+msgstr "Kode banner (HTML, CSS inline)"
+
+msgid "Barista"
+msgstr "Barista"
+
+msgid "Basic conversation"
+msgstr "Percakapan dasar"
+
+msgid "Beautiful websites that sell"
+msgstr "Website cantik yang menjual"
+
+msgid "Beauty tips"
+msgstr "Tips kecantikan"
+
+msgid "Beer or soft drinks"
+msgstr "Bir atau minuman ringan"
+
+msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
+msgstr "Sebelum setiap perawatan, terapis kami menganalisis kulit Anda dan merekomendasikan produk yang paling cocok untuk kulit dan tubuh Anda."
+
+msgid "Before the footer"
+msgstr "Sebelum footer"
+
+msgid "Before the header"
+msgstr "Sebelum header"
+
+msgid "Before the page content"
+msgstr "Sebelum konten halaman"
+
+msgid "Benefits of regular massage"
+msgstr "Manfaat pijat rutin"
+
+msgid "Best sellers"
+msgstr "Terlaris"
+
+msgid "Better skin after 3–5 sessions"
+msgstr "Kulit lebih baik setelah 3–5 sesi"
+
+msgid "Birthdays, team dinners, events"
+msgstr "Ulang tahun, makan bersama tim, acara"
+
+msgid "Black pepper beef"
+msgstr "Daging sapi lada hitam"
+
+msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
+msgstr "Memblokir target umum serangan brute-force. Biarkan nonaktif jika Anda memakai aplikasi WordPress atau Jetpack."
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Blog & single post"
+msgstr "Blog & pos tunggal"
+
+msgid "Blog posts page"
+msgstr "Halaman pos blog"
+
+msgid "Body care"
+msgstr "Perawatan tubuh"
+
+msgid "Bold lines"
+msgstr "Garis tebal"
+
+msgid "Book"
+msgstr "Pesan"
+
+msgid "Book 2 free trial lessons and get a learning-path consultation within 24 hours."
+msgstr "Pesan 2 kelas percobaan gratis dan dapatkan konsultasi jalur belajar dalam 24 jam."
+
+msgid "Book a free trial"
+msgstr "Pesan kelas percobaan gratis"
+
+msgid "Book a table"
+msgstr "Pesan meja"
+
+msgid "Book a table for tonight?"
+msgstr "Pesan meja untuk malam ini?"
+
+msgid "Book a viewing"
+msgstr "Jadwalkan survei"
+
+msgid "Book an appointment"
+msgstr "Buat janji"
+
+msgid "Book by phone, chat or the website – our team confirms within 5 minutes."
+msgstr "Pesan lewat telepon, chat, atau website – tim kami mengonfirmasi dalam 5 menit."
+
+msgid "Book one day ahead to get your preferred time. Walk-ins are welcome when a room is free."
+msgstr "Pesan sehari sebelumnya untuk mendapatkan jam favorit Anda. Tanpa janji juga bisa jika ada ruang kosong."
+
+msgid "Book today and get 15% off your first visit."
+msgstr "Pesan hari ini dan dapatkan diskon 15% untuk kunjungan pertama."
+
+msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
+msgstr "Disarankan memesan untuk Jumat sampai Minggu malam. Hari biasa bisa langsung datang."
+
+msgid "Bordered"
+msgstr "Berbingkai"
+
+msgid "Bottom corner radius (px)"
+msgstr "Radius sudut bawah (px)"
+
+msgid "Brand colors, palettes, typography and button styles."
+msgstr "Warna merek, palet, tipografi, dan gaya tombol."
+
+msgid "Brand line on the left"
+msgstr "Garis merek di kiri"
+
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
+
+msgid "Brewing the perfect filter coffee"
+msgstr "Menyeduh kopi filter yang sempurna"
+
+msgid "Bridal care packages"
+msgstr "Paket perawatan pengantin"
+
+msgid "Bridal package"
+msgstr "Paket pengantin"
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "Buat halaman terbit dengan blok. Kontennya tampil tanpa header/footer situs. Jangan pilih halaman untuk memakai layar bawaan."
+
+msgid "Build from scratch"
+msgstr "Mulai dari nol"
+
+msgid "Build pages with blocks"
+msgstr "Bangun halaman dengan blok"
+
+msgid "Business homepage"
+msgstr "Beranda bisnis"
+
+msgid "Business or service website"
+msgstr "Website bisnis atau jasa"
+
+msgid "Button"
+msgstr "Tombol"
+
+msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
+msgstr "Tombol dan label yang ditampilkan tema, mis. “Baca selengkapnya”, “Bagikan:”, “Pos terkait”."
+
+msgid "Buy a package to save up to 30% and share it with family."
+msgstr "Beli paket untuk hemat hingga 30% dan bagikan dengan keluarga."
+
+msgid "Buy now"
+msgstr "Beli sekarang"
+
+msgid "Buy your home in 4 easy steps"
+msgstr "Beli rumah Anda dalam 4 langkah mudah"
+
+msgid "Buyers"
+msgstr "Pembeli"
+
+msgid "Buyers get free advice. Owners who list with us only pay when the deal closes."
+msgstr "Pembeli mendapat konsultasi gratis. Pemilik yang memasarkan lewat kami hanya membayar saat transaksi selesai."
+
+msgid "Buying process"
+msgstr "Proses pembelian"
+
+msgid "Cakes baked today"
+msgstr "Kue yang dipanggang hari ini"
+
+msgid "Call now"
+msgstr "Telepon sekarang"
+
+msgid "Call now to get the best seats, book a party or order takeaway."
+msgstr "Telepon sekarang untuk mendapatkan kursi terbaik, memesan acara, atau pesan bawa pulang."
+
+msgid "Call to action"
+msgstr "Ajakan bertindak"
+
+msgid "Call us"
+msgstr "Hubungi kami"
+
+msgid "Can I get an invoice?"
+msgstr "Apakah saya bisa mendapatkan faktur?"
+
+msgid "Can I list my home for sale?"
+msgstr "Bisakah saya menjual rumah saya di sini?"
+
+msgid "Can I make up missed lessons?"
+msgstr "Bisakah saya mengganti kelas yang terlewat?"
+
+msgid "Can I pay in instalments?"
+msgstr "Bisakah saya membayar dengan cicilan?"
+
+msgid "Can I try a lesson first?"
+msgstr "Bisakah saya mencoba kelas dulu?"
+
+msgid "Can’t find your answer? Call or message us – we are always happy to help."
+msgstr "Tidak menemukan jawabannya? Telepon atau kirim pesan – kami selalu senang membantu."
+
+msgid "Caramelised fish, sour soup and crispy clay pot rice."
+msgstr "Ikan karamel, sup asam, dan nasi kerak dalam kendil."
+
+msgid "Card corner radius (px, -1 = default)"
+msgstr "Radius sudut kartu (px, -1 = bawaan)"
+
+msgid "Card details"
+msgstr "Detail kartu"
+
+msgid "Card inner space (px, -1 = default)"
+msgstr "Ruang dalam kartu (px, -1 = bawaan)"
+
+msgid "Caring service"
+msgstr "Layanan yang peduli"
+
+msgid "Caring support"
+msgstr "Dukungan yang peduli"
+
+msgid "Caring therapists"
+msgstr "Terapis yang peduli"
+
+msgid "Cart"
+msgstr "Keranjang"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Category badge on the image"
+msgstr "Lencana kategori di gambar"
+
+msgid "Center"
+msgstr "Tengah"
+
+msgid "Centered title, then image"
+msgstr "Judul di tengah, lalu gambar"
+
+msgid "Certificates"
+msgstr "Sertifikat"
+
+msgid "Certified in Thai therapeutic massage."
+msgstr "Bersertifikat pijat terapi Thailand."
+
+msgid "Chat / Messenger"
+msgstr "Chat / Messenger"
+
+msgid "Child theme"
+msgstr "Tema anak"
+
+msgid "Chloe"
+msgstr "Chloe"
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "Pilih desain siap pakai, lalu ubah teks, gambar, dan warnanya di halaman."
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "Pilih titik awal. BIGSPY membuat draf yang belum terbit dan membuka editor, sehingga website live Anda tetap sama selama Anda mendesain."
+
+msgid "Choose a treatment and time by phone or chat."
+msgstr "Pilih perawatan dan jam lewat telepon atau chat."
+
+msgid "Choose the course for your goal, with evening and weekend classes for working adults."
+msgstr "Pilih kursus sesuai tujuan Anda, dengan kelas malam dan akhir pekan untuk karyawan."
+
+msgid "Choose this plan"
+msgstr "Pilih paket ini"
+
+msgid "Choose your area"
+msgstr "Pilih area Anda"
+
+msgid "Choosing a course for your child"
+msgstr "Memilih kursus untuk anak Anda"
+
+msgid "Choosing the right sunscreen"
+msgstr "Memilih tabir surya yang tepat"
+
+msgid "Classic (one large post per row)"
+msgstr "Klasik (satu pos besar per baris)"
+
+msgid "Clay pot fish"
+msgstr "Ikan kendil"
+
+msgid "Clean ingredients"
+msgstr "Bahan yang bersih"
+
+msgid "Clean up WordPress"
+msgstr "Bersihkan WordPress"
+
+msgid "Clean, fragrant and quiet. Booking by chat is very quick."
+msgstr "Bersih, harum, dan tenang. Memesan lewat chat sangat cepat."
+
+msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
+msgstr "Saran jelas tanpa paksaan. Pinjaman bank diurus dari awal sampai akhir."
+
+msgid "Clear legal status"
+msgstr "Status hukum jelas"
+
+msgid "Clear tuition, plenty of offers"
+msgstr "Biaya jelas, banyak penawaran"
+
+msgid "Clients"
+msgstr "Klien"
+
+msgid "Clinical acne care"
+msgstr "Perawatan jerawat klinis"
+
+msgid "Close menu"
+msgstr "Tutup menu"
+
+msgid "Close search"
+msgstr "Tutup pencarian"
+
+msgid "Closed in 15 years"
+msgstr "Selesai dalam 15 tahun"
+
+msgid "Coding basics"
+msgstr "Dasar pemrograman"
+
+msgid "Coffee ratio, water temperature and brewing time for a rich cup."
+msgstr "Rasio kopi, suhu air, dan waktu seduh untuk secangkir kopi yang kaya rasa."
+
+msgid "Collect points and enjoy 10% off as a regular."
+msgstr "Kumpulkan poin dan nikmati diskon 10% sebagai pelanggan setia."
+
+msgid "Colors & fonts"
+msgstr "Warna & font"

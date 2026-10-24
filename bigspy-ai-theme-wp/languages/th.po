@@ -1,0 +1,790 @@
+# BIGSPY AI Theme WP - Thai translation (machine-assisted, review recommended).
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY AI Theme WP\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: bigspy-ai-theme-wp\n"
+
+msgid "%s comment"
+msgstr "%s ความคิดเห็น"
+
+msgid "%s product"
+msgstr "%s สินค้า"
+
+msgid "-Deep skin analysis"
+msgstr "-วิเคราะห์ผิวเชิงลึก"
+
+msgid "-Mortgage paperwork"
+msgstr "-เอกสารสินเชื่อบ้าน"
+
+msgid "-Private room"
+msgstr "-ห้องส่วนตัว"
+
+msgid "-Results guarantee"
+msgstr "-รับประกันผลลัพธ์"
+
+msgid "/ 10 guests"
+msgstr "/ 10 ท่าน"
+
+msgid "/ 3 months"
+msgstr "/ 3 เดือน"
+
+msgid "/ 4 guests"
+msgstr "/ 4 ท่าน"
+
+msgid "/ 5 sessions"
+msgstr "/ 5 ครั้ง"
+
+msgid "/ course"
+msgstr "/ คอร์ส"
+
+msgid "/ guest"
+msgstr "/ ท่าน"
+
+msgid "/ of value"
+msgstr "/ ของมูลค่า"
+
+msgid "/ on sale"
+msgstr "/ ขาย"
+
+msgid "/ package"
+msgstr "/ แพ็กเกจ"
+
+msgid "/ session"
+msgstr "/ ครั้ง"
+
+msgid "1,200+ deals"
+msgstr "ปิดการขายแล้วกว่า 1,200 รายการ"
+
+msgid "10 years of deep skin care experience."
+msgstr "ประสบการณ์ดูแลผิวเชิงลึก 10 ปี"
+
+msgid "10% off for groups of 3, and 0% instalments by credit card."
+msgstr "ลด 10% สำหรับกลุ่ม 3 คน และผ่อน 0% ด้วยบัตรเครดิต"
+
+msgid "100% genuine"
+msgstr "ของแท้ 100%"
+
+msgid "100% natural"
+msgstr "ธรรมชาติ 100%"
+
+msgid "12 Garden Avenue, City Centre"
+msgstr "12 ถนนการ์เดน ใจกลางเมือง"
+
+msgid "12 partner banks"
+msgstr "ธนาคารพันธมิตร 12 แห่ง"
+
+msgid "15 minutes to the centre"
+msgstr "15 นาทีถึงใจกลางเมือง"
+
+msgid "15 years in five-star hotel kitchens."
+msgstr "15 ปีในครัวโรงแรมระดับห้าดาว"
+
+msgid "15 years in the housing market."
+msgstr "15 ปีในตลาดอสังหาริมทรัพย์"
+
+msgid "15% off your first visit"
+msgstr "ลด 15% สำหรับการมาครั้งแรก"
+
+msgid "2 free trial lessons"
+msgstr "เรียนทดลองฟรี 2 ครั้ง"
+
+msgid "2-bedroom apartment"
+msgstr "อพาร์ตเมนต์ 2 ห้องนอน"
+
+msgid "2-bedroom city apartment"
+msgstr "อพาร์ตเมนต์ 2 ห้องนอนในเมือง"
+
+msgid "2-hour delivery"
+msgstr "จัดส่งภายใน 2 ชั่วโมง"
+
+msgid "24 lessons, twice a week"
+msgstr "24 ครั้ง สัปดาห์ละสองครั้ง"
+
+msgid "24/7 support"
+msgstr "บริการตลอด 24 ชั่วโมง"
+
+msgid "24K gold mask"
+msgstr "มาส์กทองคำ 24K"
+
+msgid "25 Main Street, City Centre"
+msgstr "25 ถนนเมน ใจกลางเมือง"
+
+msgid "30-dish Asian & European buffet"
+msgstr "บุฟเฟต์เอเชียและยุโรป 30 เมนู"
+
+msgid "300 m² plot, private garden, 24/7 security."
+msgstr "ที่ดิน 300 ตร.ม. สวนส่วนตัว รักษาความปลอดภัย 24 ชั่วโมง"
+
+msgid "35 m², ideal for young people and renting out."
+msgstr "35 ตร.ม. เหมาะสำหรับคนรุ่นใหม่และปล่อยเช่า"
+
+msgid "35+ projects on offer"
+msgstr "โครงการกว่า 35 แห่ง"
+
+msgid "4 steps to your goal"
+msgstr "4 ขั้นตอนสู่เป้าหมายของคุณ"
+
+msgid "4.9 ★ on Google"
+msgstr "4.9 ★ บน Google"
+
+msgid "4.9/5 from more than 1,200 reviews"
+msgstr "4.9/5 จากรีวิวกว่า 1,200 รีวิว"
+
+msgid "40+ experienced teachers"
+msgstr "ครูผู้มีประสบการณ์กว่า 40 คน"
+
+msgid "404 & maintenance"
+msgstr "404 และการบำรุงรักษา"
+
+msgid "404 page"
+msgstr "หน้า 404"
+
+msgid "45 College Road, City Centre"
+msgstr "45 ถนนคอลเลจ ใจกลางเมือง"
+
+msgid "5 checks at handover"
+msgstr "ตรวจ 5 รายการตอนส่งมอบ"
+
+msgid "5 facials"
+msgstr "ทรีตเมนต์ผิวหน้า 5 ครั้ง"
+
+msgid "5 mains + soup"
+msgstr "อาหารจานหลัก 5 อย่าง + ซุป"
+
+msgid "5 steps for evening skin care"
+msgstr "5 ขั้นตอนดูแลผิวยามค่ำ"
+
+msgid "5x20 m, four floors, live and do business."
+msgstr "5x20 ม. สี่ชั้น อยู่อาศัยและทำธุรกิจได้"
+
+msgid "60 consultants"
+msgstr "ที่ปรึกษา 60 คน"
+
+msgid "60-minute hot stone massage"
+msgstr "นวดหินร้อน 60 นาที"
+
+msgid "68 m², river view, basic furniture, from $210,000."
+msgstr "68 ตร.ม. วิวแม่น้ำ เฟอร์นิเจอร์พื้นฐาน เริ่มต้น $210,000"
+
+msgid "7-day returns"
+msgstr "คืนสินค้าภายใน 7 วัน"
+
+msgid "70% of class time is practice."
+msgstr "70% ของเวลาเรียนคือการฝึกปฏิบัติ"
+
+msgid "7:00 am – 10:00 pm, every day"
+msgstr "07:00 – 22:00 น. ทุกวัน"
+
+msgid "7:00 am – 10:00 pm, holidays too"
+msgstr "07:00 – 22:00 น. เปิดวันหยุดด้วย"
+
+msgid "8 facial + body sessions"
+msgstr "ทรีตเมนต์ผิวหน้าและผิวกาย 8 ครั้ง"
+
+msgid "8 mains + hot pot"
+msgstr "อาหารจานหลัก 8 อย่าง + หม้อไฟ"
+
+msgid "8 private treatment rooms"
+msgstr "ห้องทรีตเมนต์ส่วนตัว 8 ห้อง"
+
+msgid "80+ Asian and European dishes"
+msgstr "อาหารเอเชียและยุโรปกว่า 80 เมนู"
+
+msgid "8:00 am – 8:00 pm, Monday – Sunday"
+msgstr "08:00 – 20:00 น. จันทร์ – อาทิตย์"
+
+msgid "8:00 am – 9:00 pm, Monday – Sunday"
+msgstr "08:00 – 21:00 น. จันทร์ – อาทิตย์"
+
+msgid "8–12% a year"
+msgstr "8–12% ต่อปี"
+
+msgid "96% reach their goal"
+msgstr "96% บรรลุเป้าหมาย"
+
+msgid "9:00 am – 9:00 pm, every day"
+msgstr "09:00 – 21:00 น. ทุกวัน"
+
+msgid "A 6-month plan with free materials and how to train each skill."
+msgstr "แผน 6 เดือนพร้อมเอกสารฟรีและวิธีฝึกแต่ละทักษะ"
+
+msgid "A caring advisory team"
+msgstr "ทีมที่ปรึกษาที่ใส่ใจ"
+
+msgid "A certificate when you complete the course."
+msgstr "ใบประกาศนียบัตรเมื่อเรียนจบคอร์ส"
+
+msgid "A checklist for power, water, walls and doors before you sign."
+msgstr "รายการตรวจไฟฟ้า น้ำ ผนัง และประตูก่อนเซ็นสัญญา"
+
+msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
+msgstr "เส้นทางชัดเจนและคำแนะนำละเอียดมาก คะแนนเพิ่มขึ้น 1.5 ภายในเพียง 4 เดือน"
+
+msgid "A complete dining experience"
+msgstr "ประสบการณ์การรับประทานอาหารที่ครบถ้วน"
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "หน้าแรกที่สมบูรณ์ พร้อมส่วนแนะนำ บริการ เกี่ยวกับเรา รีวิว ราคา คำถามที่พบบ่อย และติดต่อ"
+
+msgid "A consultant is with you at every step."
+msgstr "มีที่ปรึกษาดูแลคุณทุกขั้นตอน"
+
+msgid "A cosy weekend dinner"
+msgstr "มื้อค่ำสุดอบอุ่นช่วงสุดสัปดาห์"
+
+msgid "A day at the centre"
+msgstr "หนึ่งวันที่ศูนย์ของเรา"
+
+msgid "A free 30-minute level check."
+msgstr "ทดสอบระดับฟรี 30 นาที"
+
+msgid "A free mask with every package."
+msgstr "รับมาส์กฟรีทุกแพ็กเกจ"
+
+msgid "A green space where you can truly rest"
+msgstr "พื้นที่สีเขียวให้คุณได้พักผ่อนอย่างแท้จริง"
+
+msgid "A kitchen certified for hygiene and food safety."
+msgstr "ครัวได้รับการรับรองด้านสุขอนามัยและความปลอดภัยของอาหาร"
+
+msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
+msgstr "ตรวจสุขภาพเซิร์ฟเวอร์และการตั้งค่า WordPress อย่างรวดเร็ว รายการที่มีเครื่องหมาย ! ต่ำกว่าค่าที่แนะนำ"
+
+msgid "A reusable design saved in WordPress."
+msgstr "ดีไซน์ที่ใช้ซ้ำได้ บันทึกไว้ใน WordPress"
+
+msgid "A service for every need"
+msgstr "บริการสำหรับทุกความต้องการ"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "หน้าแรกร้านค้าพร้อมแบนเนอร์ จุดเด่น หมวดหมู่ คอลเลกชันสินค้า และอื่นๆ"
+
+msgid "A trained team that always welcomes you with a smile."
+msgstr "ทีมงานที่ผ่านการฝึกอบรม ต้อนรับคุณด้วยรอยยิ้มเสมอ"
+
+msgid "A trained team with professional certificates."
+msgstr "ทีมงานที่ผ่านการฝึกอบรมและมีใบรับรองวิชาชีพ"
+
+msgid "About 720–800px is easiest to read."
+msgstr "ประมาณ 720–800 px อ่านง่ายที่สุด"
+
+msgid "About the centre"
+msgstr "เกี่ยวกับศูนย์"
+
+msgid "About us"
+msgstr "เกี่ยวกับเรา"
+
+msgid "Accountant"
+msgstr "นักบัญชี"
+
+msgid "Active dot fills up"
+msgstr "จุดที่เลือกค่อยๆ เต็ม"
+
+msgid "Active plugins"
+msgstr "ปลั๊กอินที่เปิดใช้งาน"
+
+msgid "Activities"
+msgstr "กิจกรรม"
+
+msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
+msgstr "เพิ่มหน้าใหม่แล้วแทรกบล็อก BIGSPY หรือแพตเทิร์นหน้าเริ่มต้น"
+
+msgid "Add layout"
+msgstr "เพิ่มเลย์เอาต์"
+
+msgid "Add new layout"
+msgstr "เพิ่มเลย์เอาต์ใหม่"
+
+msgid "Add to page"
+msgstr "เพิ่มลงในหน้า"
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "เพิ่มเป็นดีไซน์แบบซิงก์แล้ว การแก้ไขต้นฉบับจะอัปเดตทุกสำเนา"
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "เพิ่มลงในหน้าของคุณแล้ว แก้ไขข้อความและรูปภาพในตัวอย่าง"
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "การเพิ่มดีไซน์ไม่ได้เผยแพร่หน้า ใช้ดูตัวอย่าง แล้วบันทึกฉบับร่างหรือเผยแพร่เมื่อพร้อม"
+
+msgid "Additional CSS"
+msgstr "CSS เพิ่มเติม"
+
+msgid "Address"
+msgstr "ที่อยู่"
+
+msgid "Admin & Customizer"
+msgstr "ผู้ดูแลระบบและปรับแต่ง"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "ผู้ดูแลระบบยังเห็นเว็บไซต์ได้ตามปกติ ผู้เข้าชมจะได้รับ HTTP 503 การเข้าสู่ระบบ หน้าผู้ดูแล และ API ยังใช้งานได้ ล้างแคชหน้า/CDN เมื่อเปลี่ยนตัวเลือกนี้"
+
+msgid "Advice and viewings"
+msgstr "ให้คำปรึกษาและพาชม"
+
+msgid "Advice by chat and hotline 24/7."
+msgstr "ปรึกษาผ่านแชทและสายด่วนตลอด 24 ชั่วโมง"
+
+msgid "After the header"
+msgstr "หลังส่วนหัว"
+
+msgid "After the page content"
+msgstr "หลังเนื้อหาของหน้า"
+
+msgid "After-sales"
+msgstr "บริการหลังการขาย"
+
+msgid "Agree the best price and prepare the loan file."
+msgstr "ต่อรองราคาที่ดีที่สุดและเตรียมเอกสารกู้"
+
+msgid "Air-conditioned rooms with projectors"
+msgstr "ห้องเรียนติดแอร์พร้อมโปรเจกเตอร์"
+
+msgid "Airy garden seating"
+msgstr "ที่นั่งในสวนโปร่งสบาย"
+
+msgid "All archives (category, tag, author, date)"
+msgstr "หน้าคลังทั้งหมด (หมวดหมู่ แท็ก ผู้เขียน วันที่)"
+
+msgid "All designs"
+msgstr "ดีไซน์ทั้งหมด"
+
+msgid "All pages"
+msgstr "ทุกหน้า"
+
+msgid "All posts"
+msgstr "ทุกโพสต์"
+
+msgid "All products"
+msgstr "สินค้าทั้งหมด"
+
+msgid "Also on these post / page IDs (comma separated)"
+msgstr "รวมถึง ID โพสต์ / หน้าเหล่านี้ (คั่นด้วยจุลภาค)"
+
+msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+msgstr "เต็มความกว้างเสมอ ความสูงขึ้นอยู่กับโค้ดหรือรูปภาพของคุณ ตัวอย่าง: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+
+msgid "Always listening to make every meal better."
+msgstr "รับฟังเสมอเพื่อทำให้ทุกมื้ออร่อยยิ่งขึ้น"
+
+msgid "Always listens to find the right treatment."
+msgstr "รับฟังเสมอเพื่อหาทรีตเมนต์ที่เหมาะสม"
+
+msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
+msgstr "หน้าเกี่ยวกับผู้เขียนหรือโปรไฟล์สาธารณะ (LinkedIn, Facebook…)"
+
+msgid "Analytics and pixel code, performance tweaks, 404 and maintenance pages."
+msgstr "โค้ด Analytics และ Pixel การปรับแต่งประสิทธิภาพ หน้า 404 และหน้าบำรุงรักษา"
+
+msgid "And still growing"
+msgstr "และยังคงเติบโต"
+
+msgid "Anna"
+msgstr "แอนนา"
+
+msgid "Any other questions? Send us a message for a free consultation."
+msgstr "มีคำถามเพิ่มเติม? ส่งข้อความหาเราเพื่อรับคำปรึกษาฟรี"
+
+msgid "Apartment specialist"
+msgstr "ผู้เชี่ยวชาญด้านอพาร์ตเมนต์"
+
+msgid "Apply what you learn to real situations."
+msgstr "นำสิ่งที่เรียนไปใช้ในสถานการณ์จริง"
+
+msgid "Arabica beans roasted every week, brewed as filter or espresso."
+msgstr "เมล็ดอาราบิก้าคั่วทุกสัปดาห์ ชงแบบดริปหรือเอสเปรสโซ"
+
+msgid "Archive layouts, cards, table of contents, author box, related posts."
+msgstr "เลย์เอาต์หน้าคลัง การ์ด สารบัญ กล่องผู้เขียน โพสต์ที่เกี่ยวข้อง"
+
+msgid "Arrive on time – your table and dishes are ready."
+msgstr "มาถึงตรงเวลา – โต๊ะและอาหารของคุณพร้อมแล้ว"
+
+msgid "As peaceful as a resort"
+msgstr "สงบเหมือนรีสอร์ท"
+
+msgid "Author"
+msgstr "ผู้เขียน"
+
+msgid "Author avatar"
+msgstr "รูปประจำตัวผู้เขียน"
+
+msgid "Author bio"
+msgstr "ประวัติผู้เขียน"
+
+msgid "Author box heading (empty = “Written by”)"
+msgstr "หัวข้อกล่องผู้เขียน (ว่าง = “เขียนโดย”)"
+
+msgid "Author box style"
+msgstr "รูปแบบกล่องผู้เขียน"
+
+msgid "Author details come from"
+msgstr "ข้อมูลผู้เขียนมาจาก"
+
+msgid "Author information"
+msgstr "ข้อมูลผู้เขียน"
+
+msgid "Author name"
+msgstr "ชื่อผู้เขียน"
+
+msgid "Author profile URL"
+msgstr "URL โปรไฟล์ผู้เขียน"
+
+msgid "Award-winning national coffee champion."
+msgstr "แชมป์กาแฟระดับประเทศ"
+
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "เปิดโหมดบำรุงรักษา BIGSPY อยู่ ผู้เข้าชมไม่สามารถเลือกดูร้านค้าได้"
+
+msgid "BIGSPY settings"
+msgstr "การตั้งค่า BIGSPY"
+
+msgid "Back to home"
+msgstr "กลับหน้าแรก"
+
+msgid "Back to top"
+msgstr "กลับขึ้นด้านบน"
+
+msgid "Badge and faded card"
+msgstr "ป้ายและการ์ดจางลง"
+
+msgid "Badge and grayscale image"
+msgstr "ป้ายและภาพขาวดำ"
+
+msgid "Badge only"
+msgstr "เฉพาะป้าย"
+
+msgid "Badge texts (empty = default)"
+msgstr "ข้อความบนป้าย (ว่าง = ค่าเริ่มต้น)"
+
+msgid "Band score guarantee"
+msgstr "รับประกันคะแนน"
+
+msgid "Bank loan file"
+msgstr "เอกสารสินเชื่อธนาคาร"
+
+msgid "Banner code (HTML, inline CSS)"
+msgstr "โค้ดแบนเนอร์ (HTML, CSS แบบอินไลน์)"
+
+msgid "Barista"
+msgstr "บาริสต้า"
+
+msgid "Basic conversation"
+msgstr "การสนทนาพื้นฐาน"
+
+msgid "Beautiful websites that sell"
+msgstr "เว็บไซต์สวยที่ขายได้"
+
+msgid "Beauty tips"
+msgstr "เคล็ดลับความงาม"
+
+msgid "Beer or soft drinks"
+msgstr "เบียร์หรือน้ำอัดลม"
+
+msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
+msgstr "ก่อนทรีตเมนต์ทุกครั้ง นักบำบัดจะวิเคราะห์ผิวและแนะนำผลิตภัณฑ์ที่เหมาะกับผิวและร่างกายของคุณที่สุด"
+
+msgid "Before the footer"
+msgstr "ก่อนส่วนท้าย"
+
+msgid "Before the header"
+msgstr "ก่อนส่วนหัว"
+
+msgid "Before the page content"
+msgstr "ก่อนเนื้อหาของหน้า"
+
+msgid "Benefits of regular massage"
+msgstr "ประโยชน์ของการนวดเป็นประจำ"
+
+msgid "Best sellers"
+msgstr "สินค้าขายดี"
+
+msgid "Better skin after 3–5 sessions"
+msgstr "ผิวดีขึ้นหลัง 3–5 ครั้ง"
+
+msgid "Birthdays, team dinners, events"
+msgstr "วันเกิด เลี้ยงทีม งานอีเวนต์"
+
+msgid "Black pepper beef"
+msgstr "เนื้อผัดพริกไทยดำ"
+
+msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
+msgstr "ปิดกั้นเป้าหมายยอดนิยมของการโจมตีแบบเดารหัสผ่าน ปล่อยปิดไว้หากใช้แอป WordPress หรือ Jetpack"
+
+msgid "Blog"
+msgstr "บล็อก"
+
+msgid "Blog & single post"
+msgstr "บล็อกและโพสต์เดี่ยว"
+
+msgid "Blog posts page"
+msgstr "หน้ารวมโพสต์บล็อก"
+
+msgid "Body care"
+msgstr "ดูแลผิวกาย"
+
+msgid "Bold lines"
+msgstr "เส้นหนา"
+
+msgid "Book"
+msgstr "จอง"
+
+msgid "Book 2 free trial lessons and get a learning-path consultation within 24 hours."
+msgstr "จองเรียนทดลองฟรี 2 ครั้ง และรับคำปรึกษาเส้นทางการเรียนภายใน 24 ชั่วโมง"
+
+msgid "Book a free trial"
+msgstr "จองเรียนทดลองฟรี"
+
+msgid "Book a table"
+msgstr "จองโต๊ะ"
+
+msgid "Book a table for tonight?"
+msgstr "จองโต๊ะสำหรับคืนนี้ไหม?"
+
+msgid "Book a viewing"
+msgstr "นัดชมโครงการ"
+
+msgid "Book an appointment"
+msgstr "จองนัดหมาย"
+
+msgid "Book by phone, chat or the website – our team confirms within 5 minutes."
+msgstr "จองทางโทรศัพท์ แชท หรือเว็บไซต์ – ทีมงานยืนยันภายใน 5 นาที"
+
+msgid "Book one day ahead to get your preferred time. Walk-ins are welcome when a room is free."
+msgstr "จองล่วงหน้าหนึ่งวันเพื่อได้เวลาที่ต้องการ walk-in ได้หากมีห้องว่าง"
+
+msgid "Book today and get 15% off your first visit."
+msgstr "จองวันนี้รับส่วนลด 15% สำหรับการมาครั้งแรก"
+
+msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
+msgstr "แนะนำให้จองช่วงเย็นวันศุกร์ถึงอาทิตย์ วันธรรมดาเข้ามาได้เลย"
+
+msgid "Bordered"
+msgstr "มีเส้นขอบ"
+
+msgid "Bottom corner radius (px)"
+msgstr "รัศมีมุมล่าง (px)"
+
+msgid "Brand colors, palettes, typography and button styles."
+msgstr "สีแบรนด์ ชุดสี ตัวอักษร และรูปแบบปุ่ม"
+
+msgid "Brand line on the left"
+msgstr "เส้นสีแบรนด์ด้านซ้าย"
+
+msgid "Breadcrumb"
+msgstr "เบรดครัมบ์"
+
+msgid "Brewing the perfect filter coffee"
+msgstr "ชงกาแฟดริปให้สมบูรณ์แบบ"
+
+msgid "Bridal care packages"
+msgstr "แพ็กเกจดูแลผิวเจ้าสาว"
+
+msgid "Bridal package"
+msgstr "แพ็กเกจเจ้าสาว"
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "สร้างหน้าที่เผยแพร่ด้วยบล็อก เนื้อหาจะแสดงโดยไม่มีส่วนหัว/ส่วนท้ายของเว็บไซต์ ไม่เลือกหน้าเพื่อใช้หน้าจอเริ่มต้น"
+
+msgid "Build from scratch"
+msgstr "สร้างจากศูนย์"
+
+msgid "Build pages with blocks"
+msgstr "สร้างหน้าด้วยบล็อก"
+
+msgid "Business homepage"
+msgstr "หน้าแรกธุรกิจ"
+
+msgid "Business or service website"
+msgstr "เว็บไซต์ธุรกิจหรือบริการ"
+
+msgid "Button"
+msgstr "ปุ่ม"
+
+msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
+msgstr "ปุ่มและป้ายข้อความที่ธีมแสดง เช่น “อ่านต่อ” “แชร์:” “โพสต์ที่เกี่ยวข้อง”"
+
+msgid "Buy a package to save up to 30% and share it with family."
+msgstr "ซื้อแพ็กเกจประหยัดสูงสุด 30% และใช้ร่วมกับครอบครัวได้"
+
+msgid "Buy now"
+msgstr "ซื้อเลย"
+
+msgid "Buy your home in 4 easy steps"
+msgstr "ซื้อบ้านใน 4 ขั้นตอนง่ายๆ"
+
+msgid "Buyers"
+msgstr "ผู้ซื้อ"
+
+msgid "Buyers get free advice. Owners who list with us only pay when the deal closes."
+msgstr "ผู้ซื้อได้รับคำปรึกษาฟรี เจ้าของที่ฝากขายกับเราจ่ายเมื่อปิดการขายเท่านั้น"
+
+msgid "Buying process"
+msgstr "ขั้นตอนการซื้อ"
+
+msgid "Cakes baked today"
+msgstr "เค้กอบใหม่วันนี้"
+
+msgid "Call now"
+msgstr "โทรเลย"
+
+msgid "Call now to get the best seats, book a party or order takeaway."
+msgstr "โทรเลยเพื่อจองที่นั่งดีที่สุด จัดงานเลี้ยง หรือสั่งกลับบ้าน"
+
+msgid "Call to action"
+msgstr "คำกระตุ้นให้ดำเนินการ"
+
+msgid "Call us"
+msgstr "โทรหาเรา"
+
+msgid "Can I get an invoice?"
+msgstr "ขอใบกำกับภาษีได้ไหม?"
+
+msgid "Can I list my home for sale?"
+msgstr "ฝากขายบ้านได้ไหม?"
+
+msgid "Can I make up missed lessons?"
+msgstr "ชดเชยคลาสที่ขาดได้ไหม?"
+
+msgid "Can I pay in instalments?"
+msgstr "ผ่อนชำระได้ไหม?"
+
+msgid "Can I try a lesson first?"
+msgstr "ขอทดลองเรียนก่อนได้ไหม?"
+
+msgid "Can’t find your answer? Call or message us – we are always happy to help."
+msgstr "ไม่พบคำตอบ? โทรหรือส่งข้อความหาเรา – เรายินดีช่วยเหลือเสมอ"
+
+msgid "Caramelised fish, sour soup and crispy clay pot rice."
+msgstr "ปลาเคี่ยวคาราเมล ต้มเปรี้ยว และข้าวตังหม้อดิน"
+
+msgid "Card corner radius (px, -1 = default)"
+msgstr "รัศมีมุมการ์ด (px, -1 = ค่าเริ่มต้น)"
+
+msgid "Card details"
+msgstr "รายละเอียดการ์ด"
+
+msgid "Card inner space (px, -1 = default)"
+msgstr "ระยะขอบในการ์ด (px, -1 = ค่าเริ่มต้น)"
+
+msgid "Caring service"
+msgstr "บริการที่ใส่ใจ"
+
+msgid "Caring support"
+msgstr "การดูแลที่ใส่ใจ"
+
+msgid "Caring therapists"
+msgstr "นักบำบัดที่ใส่ใจ"
+
+msgid "Cart"
+msgstr "ตะกร้า"
+
+msgid "Category"
+msgstr "หมวดหมู่"
+
+msgid "Category badge on the image"
+msgstr "ป้ายหมวดหมู่บนรูป"
+
+msgid "Center"
+msgstr "กึ่งกลาง"
+
+msgid "Centered title, then image"
+msgstr "หัวข้อกึ่งกลาง แล้วตามด้วยรูป"
+
+msgid "Certificates"
+msgstr "ใบรับรอง"
+
+msgid "Certified in Thai therapeutic massage."
+msgstr "ได้รับใบรับรองนวดแผนไทยเพื่อการบำบัด"
+
+msgid "Chat / Messenger"
+msgstr "แชท / Messenger"
+
+msgid "Child theme"
+msgstr "ธีมลูก"
+
+msgid "Chloe"
+msgstr "โคลอี้"
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "เลือกดีไซน์สำเร็จรูป แล้วเปลี่ยนข้อความ รูปภาพ และสีบนหน้าได้เลย"
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "เลือกจุดเริ่มต้น BIGSPY จะสร้างฉบับร่างที่ยังไม่เผยแพร่และเปิดตัวแก้ไข เว็บไซต์ที่ใช้งานอยู่จะไม่เปลี่ยนระหว่างที่คุณออกแบบ"
+
+msgid "Choose a treatment and time by phone or chat."
+msgstr "เลือกทรีตเมนต์และเวลาทางโทรศัพท์หรือแชท"
+
+msgid "Choose the course for your goal, with evening and weekend classes for working adults."
+msgstr "เลือกคอร์สตามเป้าหมาย มีคลาสตอนเย็นและวันหยุดสำหรับคนทำงาน"
+
+msgid "Choose this plan"
+msgstr "เลือกแพ็กเกจนี้"
+
+msgid "Choose your area"
+msgstr "เลือกพื้นที่ของคุณ"
+
+msgid "Choosing a course for your child"
+msgstr "เลือกคอร์สเรียนให้ลูก"
+
+msgid "Choosing the right sunscreen"
+msgstr "เลือกครีมกันแดดให้เหมาะ"
+
+msgid "Classic (one large post per row)"
+msgstr "คลาสสิก (หนึ่งโพสต์ใหญ่ต่อแถว)"
+
+msgid "Clay pot fish"
+msgstr "ปลาหม้อดิน"
+
+msgid "Clean ingredients"
+msgstr "วัตถุดิบสะอาด"
+
+msgid "Clean up WordPress"
+msgstr "ทำความสะอาด WordPress"
+
+msgid "Clean, fragrant and quiet. Booking by chat is very quick."
+msgstr "สะอาด หอม และเงียบสงบ จองผ่านแชทได้รวดเร็วมาก"
+
+msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
+msgstr "ให้คำแนะนำชัดเจน ไม่กดดัน ดูแลเรื่องสินเชื่อตั้งแต่ต้นจนจบ"
+
+msgid "Clear legal status"
+msgstr "สถานะทางกฎหมายชัดเจน"
+
+msgid "Clear tuition, plenty of offers"
+msgstr "ค่าเรียนชัดเจน โปรโมชันมากมาย"
+
+msgid "Clients"
+msgstr "ลูกค้า"
+
+msgid "Clinical acne care"
+msgstr "รักษาสิวทางคลินิก"
+
+msgid "Close menu"
+msgstr "ปิดเมนู"
+
+msgid "Close search"
+msgstr "ปิดการค้นหา"
+
+msgid "Closed in 15 years"
+msgstr "ปิดการขายใน 15 ปี"
+
+msgid "Coding basics"
+msgstr "พื้นฐานการเขียนโค้ด"
+
+msgid "Coffee ratio, water temperature and brewing time for a rich cup."
+msgstr "อัตราส่วนกาแฟ อุณหภูมิน้ำ และเวลาชงเพื่อกาแฟรสเข้ม"
+
+msgid "Collect points and enjoy 10% off as a regular."
+msgstr "สะสมแต้มและรับส่วนลด 10% สำหรับลูกค้าประจำ"
+
+msgid "Colors & fonts"
+msgstr "สีและแบบอักษร"

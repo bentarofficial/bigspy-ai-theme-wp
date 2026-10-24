@@ -1,0 +1,790 @@
+# BIGSPY AI Theme WP - Portuguese (Brazil) translation (machine-assisted, review recommended).
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY AI Theme WP\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: bigspy-ai-theme-wp\n"
+
+msgid "%s comment"
+msgstr "%s comentário"
+
+msgid "%s product"
+msgstr "%s produto"
+
+msgid "-Deep skin analysis"
+msgstr "-Análise profunda da pele"
+
+msgid "-Mortgage paperwork"
+msgstr "-Documentação do financiamento"
+
+msgid "-Private room"
+msgstr "-Sala privativa"
+
+msgid "-Results guarantee"
+msgstr "-Garantia de resultados"
+
+msgid "/ 10 guests"
+msgstr "/ 10 pessoas"
+
+msgid "/ 3 months"
+msgstr "/ 3 meses"
+
+msgid "/ 4 guests"
+msgstr "/ 4 pessoas"
+
+msgid "/ 5 sessions"
+msgstr "/ 5 sessões"
+
+msgid "/ course"
+msgstr "/ curso"
+
+msgid "/ guest"
+msgstr "/ pessoa"
+
+msgid "/ of value"
+msgstr "/ de valor"
+
+msgid "/ on sale"
+msgstr "/ à venda"
+
+msgid "/ package"
+msgstr "/ pacote"
+
+msgid "/ session"
+msgstr "/ sessão"
+
+msgid "1,200+ deals"
+msgstr "Mais de 1.200 negócios"
+
+msgid "10 years of deep skin care experience."
+msgstr "10 anos de experiência em cuidados profundos da pele."
+
+msgid "10% off for groups of 3, and 0% instalments by credit card."
+msgstr "10% de desconto para grupos de 3 e parcelamento sem juros no cartão."
+
+msgid "100% genuine"
+msgstr "100% original"
+
+msgid "100% natural"
+msgstr "100% natural"
+
+msgid "12 Garden Avenue, City Centre"
+msgstr "Avenida do Jardim, 12, Centro"
+
+msgid "12 partner banks"
+msgstr "12 bancos parceiros"
+
+msgid "15 minutes to the centre"
+msgstr "15 minutos do centro"
+
+msgid "15 years in five-star hotel kitchens."
+msgstr "15 anos em cozinhas de hotéis cinco estrelas."
+
+msgid "15 years in the housing market."
+msgstr "15 anos no mercado imobiliário."
+
+msgid "15% off your first visit"
+msgstr "15% de desconto na primeira visita"
+
+msgid "2 free trial lessons"
+msgstr "2 aulas experimentais grátis"
+
+msgid "2-bedroom apartment"
+msgstr "Apartamento de 2 quartos"
+
+msgid "2-bedroom city apartment"
+msgstr "Apartamento de 2 quartos na cidade"
+
+msgid "2-hour delivery"
+msgstr "Entrega em 2 horas"
+
+msgid "24 lessons, twice a week"
+msgstr "24 aulas, duas vezes por semana"
+
+msgid "24/7 support"
+msgstr "Suporte 24/7"
+
+msgid "24K gold mask"
+msgstr "Máscara de ouro 24K"
+
+msgid "25 Main Street, City Centre"
+msgstr "Rua Principal, 25, Centro"
+
+msgid "30-dish Asian & European buffet"
+msgstr "Bufê asiático e europeu com 30 pratos"
+
+msgid "300 m² plot, private garden, 24/7 security."
+msgstr "Terreno de 300 m², jardim privativo, segurança 24/7."
+
+msgid "35 m², ideal for young people and renting out."
+msgstr "35 m², ideal para jovens e para alugar."
+
+msgid "35+ projects on offer"
+msgstr "Mais de 35 empreendimentos à venda"
+
+msgid "4 steps to your goal"
+msgstr "4 passos para o seu objetivo"
+
+msgid "4.9 ★ on Google"
+msgstr "4,9 ★ no Google"
+
+msgid "4.9/5 from more than 1,200 reviews"
+msgstr "4,9/5 em mais de 1.200 avaliações"
+
+msgid "40+ experienced teachers"
+msgstr "Mais de 40 professores experientes"
+
+msgid "404 & maintenance"
+msgstr "404 e manutenção"
+
+msgid "404 page"
+msgstr "Página 404"
+
+msgid "45 College Road, City Centre"
+msgstr "Rua do Colégio, 45, Centro"
+
+msgid "5 checks at handover"
+msgstr "5 verificações na entrega"
+
+msgid "5 facials"
+msgstr "5 tratamentos faciais"
+
+msgid "5 mains + soup"
+msgstr "5 pratos principais + sopa"
+
+msgid "5 steps for evening skin care"
+msgstr "5 passos para cuidar da pele à noite"
+
+msgid "5x20 m, four floors, live and do business."
+msgstr "5x20 m, quatro andares, para morar e trabalhar."
+
+msgid "60 consultants"
+msgstr "60 consultores"
+
+msgid "60-minute hot stone massage"
+msgstr "Massagem com pedras quentes de 60 minutos"
+
+msgid "68 m², river view, basic furniture, from $210,000."
+msgstr "68 m², vista para o rio, mobília básica, a partir de US$ 210.000."
+
+msgid "7-day returns"
+msgstr "Devolução em 7 dias"
+
+msgid "70% of class time is practice."
+msgstr "70% da aula é prática."
+
+msgid "7:00 am – 10:00 pm, every day"
+msgstr "7h – 22h, todos os dias"
+
+msgid "7:00 am – 10:00 pm, holidays too"
+msgstr "7h – 22h, inclusive feriados"
+
+msgid "8 facial + body sessions"
+msgstr "8 sessões faciais e corporais"
+
+msgid "8 mains + hot pot"
+msgstr "8 pratos principais + hot pot"
+
+msgid "8 private treatment rooms"
+msgstr "8 salas privativas de tratamento"
+
+msgid "80+ Asian and European dishes"
+msgstr "Mais de 80 pratos asiáticos e europeus"
+
+msgid "8:00 am – 8:00 pm, Monday – Sunday"
+msgstr "8h – 20h, de segunda a domingo"
+
+msgid "8:00 am – 9:00 pm, Monday – Sunday"
+msgstr "8h – 21h, de segunda a domingo"
+
+msgid "8–12% a year"
+msgstr "8–12% ao ano"
+
+msgid "96% reach their goal"
+msgstr "96% atingem o objetivo"
+
+msgid "9:00 am – 9:00 pm, every day"
+msgstr "9h – 21h, todos os dias"
+
+msgid "A 6-month plan with free materials and how to train each skill."
+msgstr "Um plano de 6 meses com materiais gratuitos e como treinar cada habilidade."
+
+msgid "A caring advisory team"
+msgstr "Uma equipe de consultoria atenciosa"
+
+msgid "A certificate when you complete the course."
+msgstr "Certificado ao concluir o curso."
+
+msgid "A checklist for power, water, walls and doors before you sign."
+msgstr "Uma checklist de energia, água, paredes e portas antes de assinar."
+
+msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
+msgstr "Um caminho claro e feedback muito detalhado. Subi 1,5 ponto em apenas 4 meses."
+
+msgid "A complete dining experience"
+msgstr "Uma experiência gastronômica completa"
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "Uma página inicial completa com apresentação, serviços, seção sobre nós, depoimentos, preços, perguntas frequentes e contato."
+
+msgid "A consultant is with you at every step."
+msgstr "Um consultor acompanha você em cada etapa."
+
+msgid "A cosy weekend dinner"
+msgstr "Um jantar aconchegante de fim de semana"
+
+msgid "A day at the centre"
+msgstr "Um dia no centro"
+
+msgid "A free 30-minute level check."
+msgstr "Teste de nível gratuito de 30 minutos."
+
+msgid "A free mask with every package."
+msgstr "Uma máscara grátis em cada pacote."
+
+msgid "A green space where you can truly rest"
+msgstr "Um espaço verde para descansar de verdade"
+
+msgid "A kitchen certified for hygiene and food safety."
+msgstr "Cozinha certificada em higiene e segurança alimentar."
+
+msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
+msgstr "Uma verificação rápida do servidor e do WordPress. Itens marcados com ! estão abaixo do valor recomendado."
+
+msgid "A reusable design saved in WordPress."
+msgstr "Um design reutilizável salvo no WordPress."
+
+msgid "A service for every need"
+msgstr "Um serviço para cada necessidade"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "Uma página inicial de loja com destaque, benefícios, categorias, coleções de produtos e mais."
+
+msgid "A trained team that always welcomes you with a smile."
+msgstr "Uma equipe treinada que sempre recebe você com um sorriso."
+
+msgid "A trained team with professional certificates."
+msgstr "Uma equipe treinada com certificados profissionais."
+
+msgid "About 720–800px is easiest to read."
+msgstr "Cerca de 720–800 px é o mais fácil de ler."
+
+msgid "About the centre"
+msgstr "Sobre o centro"
+
+msgid "About us"
+msgstr "Sobre nós"
+
+msgid "Accountant"
+msgstr "Contador"
+
+msgid "Active dot fills up"
+msgstr "O ponto ativo é preenchido"
+
+msgid "Active plugins"
+msgstr "Plugins ativos"
+
+msgid "Activities"
+msgstr "Atividades"
+
+msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
+msgstr "Adicione uma página e insira blocos BIGSPY ou um padrão de página inicial."
+
+msgid "Add layout"
+msgstr "Adicionar layout"
+
+msgid "Add new layout"
+msgstr "Adicionar novo layout"
+
+msgid "Add to page"
+msgstr "Adicionar à página"
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "Adicionado como design sincronizado. Alterações na origem atualizam todas as cópias."
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "Adicionado à sua página. Edite os textos e as imagens na pré-visualização."
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "Adicionar um design não publica a página. Use Visualizar e depois Salvar rascunho ou Publicar quando estiver pronto."
+
+msgid "Additional CSS"
+msgstr "CSS adicional"
+
+msgid "Address"
+msgstr "Endereço"
+
+msgid "Admin & Customizer"
+msgstr "Admin e Personalizar"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "Administradores continuam vendo o site. Visitantes recebem HTTP 503. Login, admin e API continuam disponíveis. Limpe o cache de página/CDN ao alterar esta opção."
+
+msgid "Advice and viewings"
+msgstr "Consultoria e visitas"
+
+msgid "Advice by chat and hotline 24/7."
+msgstr "Atendimento por chat e telefone 24/7."
+
+msgid "After the header"
+msgstr "Depois do cabeçalho"
+
+msgid "After the page content"
+msgstr "Depois do conteúdo da página"
+
+msgid "After-sales"
+msgstr "Pós-venda"
+
+msgid "Agree the best price and prepare the loan file."
+msgstr "Negociar o melhor preço e preparar a documentação do financiamento."
+
+msgid "Air-conditioned rooms with projectors"
+msgstr "Salas climatizadas com projetor"
+
+msgid "Airy garden seating"
+msgstr "Área externa arejada com jardim"
+
+msgid "All archives (category, tag, author, date)"
+msgstr "Todos os arquivos (categoria, tag, autor, data)"
+
+msgid "All designs"
+msgstr "Todos os designs"
+
+msgid "All pages"
+msgstr "Todas as páginas"
+
+msgid "All posts"
+msgstr "Todos os posts"
+
+msgid "All products"
+msgstr "Todos os produtos"
+
+msgid "Also on these post / page IDs (comma separated)"
+msgstr "Também nestes IDs de posts / páginas (separados por vírgula)"
+
+msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+msgstr "Sempre em largura total; a altura depende do seu código ou imagem. Exemplo: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+
+msgid "Always listening to make every meal better."
+msgstr "Sempre ouvindo para tornar cada refeição melhor."
+
+msgid "Always listens to find the right treatment."
+msgstr "Sempre escuta para encontrar o tratamento certo."
+
+msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
+msgstr "Uma página sobre o autor ou um perfil público (LinkedIn, Facebook…)."
+
+msgid "Analytics and pixel code, performance tweaks, 404 and maintenance pages."
+msgstr "Código de analytics e pixel, ajustes de desempenho, páginas 404 e de manutenção."
+
+msgid "And still growing"
+msgstr "E continuamos crescendo"
+
+msgid "Anna"
+msgstr "Anna"
+
+msgid "Any other questions? Send us a message for a free consultation."
+msgstr "Mais alguma dúvida? Envie uma mensagem para uma consultoria gratuita."
+
+msgid "Apartment specialist"
+msgstr "Especialista em apartamentos"
+
+msgid "Apply what you learn to real situations."
+msgstr "Aplique o que aprende em situações reais."
+
+msgid "Arabica beans roasted every week, brewed as filter or espresso."
+msgstr "Grãos arábica torrados toda semana, em coado ou espresso."
+
+msgid "Archive layouts, cards, table of contents, author box, related posts."
+msgstr "Layouts de arquivo, cards, sumário, caixa do autor, posts relacionados."
+
+msgid "Arrive on time – your table and dishes are ready."
+msgstr "Chegue no horário – sua mesa e seus pratos estarão prontos."
+
+msgid "As peaceful as a resort"
+msgstr "Tranquilo como um resort"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Author avatar"
+msgstr "Avatar do autor"
+
+msgid "Author bio"
+msgstr "Biografia do autor"
+
+msgid "Author box heading (empty = “Written by”)"
+msgstr "Título da caixa do autor (vazio = “Escrito por”)"
+
+msgid "Author box style"
+msgstr "Estilo da caixa do autor"
+
+msgid "Author details come from"
+msgstr "Dados do autor vêm de"
+
+msgid "Author information"
+msgstr "Informações do autor"
+
+msgid "Author name"
+msgstr "Nome do autor"
+
+msgid "Author profile URL"
+msgstr "URL do perfil do autor"
+
+msgid "Award-winning national coffee champion."
+msgstr "Campeão nacional de café premiado."
+
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "O modo de manutenção do BIGSPY está ativado. Os visitantes não podem navegar na loja."
+
+msgid "BIGSPY settings"
+msgstr "Configurações do BIGSPY"
+
+msgid "Back to home"
+msgstr "Voltar ao início"
+
+msgid "Back to top"
+msgstr "Voltar ao topo"
+
+msgid "Badge and faded card"
+msgstr "Selo e card esmaecido"
+
+msgid "Badge and grayscale image"
+msgstr "Selo e imagem em tons de cinza"
+
+msgid "Badge only"
+msgstr "Apenas selo"
+
+msgid "Badge texts (empty = default)"
+msgstr "Textos dos selos (vazio = padrão)"
+
+msgid "Band score guarantee"
+msgstr "Garantia de pontuação"
+
+msgid "Bank loan file"
+msgstr "Documentação do financiamento bancário"
+
+msgid "Banner code (HTML, inline CSS)"
+msgstr "Código do banner (HTML, CSS inline)"
+
+msgid "Barista"
+msgstr "Barista"
+
+msgid "Basic conversation"
+msgstr "Conversação básica"
+
+msgid "Beautiful websites that sell"
+msgstr "Sites bonitos que vendem"
+
+msgid "Beauty tips"
+msgstr "Dicas de beleza"
+
+msgid "Beer or soft drinks"
+msgstr "Cerveja ou refrigerante"
+
+msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
+msgstr "Antes de cada tratamento, nossa terapeuta analisa sua pele e recomenda os produtos mais adequados para sua pele e seu corpo."
+
+msgid "Before the footer"
+msgstr "Antes do rodapé"
+
+msgid "Before the header"
+msgstr "Antes do cabeçalho"
+
+msgid "Before the page content"
+msgstr "Antes do conteúdo da página"
+
+msgid "Benefits of regular massage"
+msgstr "Benefícios da massagem regular"
+
+msgid "Best sellers"
+msgstr "Mais vendidos"
+
+msgid "Better skin after 3–5 sessions"
+msgstr "Pele melhor após 3–5 sessões"
+
+msgid "Birthdays, team dinners, events"
+msgstr "Aniversários, confraternizações, eventos"
+
+msgid "Black pepper beef"
+msgstr "Carne com pimenta-do-reino"
+
+msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
+msgstr "Bloqueia um alvo comum de ataques de força bruta. Deixe desativado se usa o app do WordPress ou o Jetpack."
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Blog & single post"
+msgstr "Blog e post individual"
+
+msgid "Blog posts page"
+msgstr "Página de posts do blog"
+
+msgid "Body care"
+msgstr "Cuidados com o corpo"
+
+msgid "Bold lines"
+msgstr "Linhas grossas"
+
+msgid "Book"
+msgstr "Reservar"
+
+msgid "Book 2 free trial lessons and get a learning-path consultation within 24 hours."
+msgstr "Agende 2 aulas experimentais grátis e receba orientação sobre seu plano de estudos em até 24 horas."
+
+msgid "Book a free trial"
+msgstr "Agende uma aula grátis"
+
+msgid "Book a table"
+msgstr "Reservar mesa"
+
+msgid "Book a table for tonight?"
+msgstr "Reservar uma mesa para hoje?"
+
+msgid "Book a viewing"
+msgstr "Agendar uma visita"
+
+msgid "Book an appointment"
+msgstr "Agendar horário"
+
+msgid "Book by phone, chat or the website – our team confirms within 5 minutes."
+msgstr "Agende por telefone, chat ou pelo site – nossa equipe confirma em 5 minutos."
+
+msgid "Book one day ahead to get your preferred time. Walk-ins are welcome when a room is free."
+msgstr "Agende com um dia de antecedência para garantir seu horário. Sem agendamento, quando houver sala livre."
+
+msgid "Book today and get 15% off your first visit."
+msgstr "Agende hoje e ganhe 15% de desconto na primeira visita."
+
+msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
+msgstr "Recomendamos reservar de sexta a domingo à noite. Durante a semana, é só chegar."
+
+msgid "Bordered"
+msgstr "Com borda"
+
+msgid "Bottom corner radius (px)"
+msgstr "Raio dos cantos inferiores (px)"
+
+msgid "Brand colors, palettes, typography and button styles."
+msgstr "Cores da marca, paletas, tipografia e estilos de botões."
+
+msgid "Brand line on the left"
+msgstr "Linha da marca à esquerda"
+
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
+
+msgid "Brewing the perfect filter coffee"
+msgstr "Como preparar o café coado perfeito"
+
+msgid "Bridal care packages"
+msgstr "Pacotes de cuidados para noivas"
+
+msgid "Bridal package"
+msgstr "Pacote noiva"
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "Crie uma página publicada com blocos. O conteúdo aparece sem o cabeçalho e o rodapé do site. Não escolha nenhuma página para usar a tela padrão."
+
+msgid "Build from scratch"
+msgstr "Criar do zero"
+
+msgid "Build pages with blocks"
+msgstr "Criar páginas com blocos"
+
+msgid "Business homepage"
+msgstr "Página inicial de empresa"
+
+msgid "Business or service website"
+msgstr "Site de empresa ou serviços"
+
+msgid "Button"
+msgstr "Botão"
+
+msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
+msgstr "Botões e rótulos exibidos pelo tema, p. ex. “Leia mais”, “Compartilhar:”, “Posts relacionados”."
+
+msgid "Buy a package to save up to 30% and share it with family."
+msgstr "Compre um pacote para economizar até 30% e compartilhe com a família."
+
+msgid "Buy now"
+msgstr "Comprar agora"
+
+msgid "Buy your home in 4 easy steps"
+msgstr "Compre seu imóvel em 4 passos simples"
+
+msgid "Buyers"
+msgstr "Compradores"
+
+msgid "Buyers get free advice. Owners who list with us only pay when the deal closes."
+msgstr "Compradores recebem consultoria gratuita. Proprietários que anunciam conosco só pagam quando o negócio é fechado."
+
+msgid "Buying process"
+msgstr "Processo de compra"
+
+msgid "Cakes baked today"
+msgstr "Bolos assados hoje"
+
+msgid "Call now"
+msgstr "Ligar agora"
+
+msgid "Call now to get the best seats, book a party or order takeaway."
+msgstr "Ligue agora para garantir os melhores lugares, reservar uma festa ou pedir para viagem."
+
+msgid "Call to action"
+msgstr "Chamada para ação"
+
+msgid "Call us"
+msgstr "Ligue para nós"
+
+msgid "Can I get an invoice?"
+msgstr "Posso receber nota fiscal?"
+
+msgid "Can I list my home for sale?"
+msgstr "Posso anunciar meu imóvel?"
+
+msgid "Can I make up missed lessons?"
+msgstr "Posso repor aulas perdidas?"
+
+msgid "Can I pay in instalments?"
+msgstr "Posso parcelar?"
+
+msgid "Can I try a lesson first?"
+msgstr "Posso fazer uma aula experimental?"
+
+msgid "Can’t find your answer? Call or message us – we are always happy to help."
+msgstr "Não encontrou a resposta? Ligue ou envie mensagem – estamos sempre prontos para ajudar."
+
+msgid "Caramelised fish, sour soup and crispy clay pot rice."
+msgstr "Peixe caramelizado, sopa azeda e arroz crocante na panela de barro."
+
+msgid "Card corner radius (px, -1 = default)"
+msgstr "Raio dos cantos do card (px, -1 = padrão)"
+
+msgid "Card details"
+msgstr "Detalhes do card"
+
+msgid "Card inner space (px, -1 = default)"
+msgstr "Espaço interno do card (px, -1 = padrão)"
+
+msgid "Caring service"
+msgstr "Atendimento atencioso"
+
+msgid "Caring support"
+msgstr "Suporte atencioso"
+
+msgid "Caring therapists"
+msgstr "Terapeutas atenciosas"
+
+msgid "Cart"
+msgstr "Carrinho"
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Category badge on the image"
+msgstr "Selo de categoria na imagem"
+
+msgid "Center"
+msgstr "Centro"
+
+msgid "Centered title, then image"
+msgstr "Título centralizado e depois imagem"
+
+msgid "Certificates"
+msgstr "Certificados"
+
+msgid "Certified in Thai therapeutic massage."
+msgstr "Certificada em massagem terapêutica tailandesa."
+
+msgid "Chat / Messenger"
+msgstr "Chat / Messenger"
+
+msgid "Child theme"
+msgstr "Tema filho"
+
+msgid "Chloe"
+msgstr "Chloe"
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "Escolha um design pronto e altere textos, imagens e cores na página."
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "Escolha um ponto de partida. O BIGSPY cria um rascunho não publicado e abre o editor, assim seu site no ar não muda enquanto você cria."
+
+msgid "Choose a treatment and time by phone or chat."
+msgstr "Escolha o tratamento e o horário por telefone ou chat."
+
+msgid "Choose the course for your goal, with evening and weekend classes for working adults."
+msgstr "Escolha o curso para o seu objetivo, com turmas à noite e nos fins de semana para quem trabalha."
+
+msgid "Choose this plan"
+msgstr "Escolher este plano"
+
+msgid "Choose your area"
+msgstr "Escolha sua região"
+
+msgid "Choosing a course for your child"
+msgstr "Como escolher um curso para seu filho"
+
+msgid "Choosing the right sunscreen"
+msgstr "Como escolher o protetor solar certo"
+
+msgid "Classic (one large post per row)"
+msgstr "Clássico (um post grande por linha)"
+
+msgid "Clay pot fish"
+msgstr "Peixe na panela de barro"
+
+msgid "Clean ingredients"
+msgstr "Ingredientes limpos"
+
+msgid "Clean up WordPress"
+msgstr "Limpar o WordPress"
+
+msgid "Clean, fragrant and quiet. Booking by chat is very quick."
+msgstr "Limpo, perfumado e silencioso. Agendar pelo chat é muito rápido."
+
+msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
+msgstr "Orientação clara e sem pressão. O financiamento foi resolvido do início ao fim."
+
+msgid "Clear legal status"
+msgstr "Documentação regularizada"
+
+msgid "Clear tuition, plenty of offers"
+msgstr "Mensalidade clara, muitas ofertas"
+
+msgid "Clients"
+msgstr "Clientes"
+
+msgid "Clinical acne care"
+msgstr "Tratamento clínico da acne"
+
+msgid "Close menu"
+msgstr "Fechar menu"
+
+msgid "Close search"
+msgstr "Fechar busca"
+
+msgid "Closed in 15 years"
+msgstr "Fechado em 15 anos"
+
+msgid "Coding basics"
+msgstr "Fundamentos de programação"
+
+msgid "Coffee ratio, water temperature and brewing time for a rich cup."
+msgstr "Proporção de café, temperatura da água e tempo de extração para uma xícara encorpada."
+
+msgid "Collect points and enjoy 10% off as a regular."
+msgstr "Acumule pontos e ganhe 10% de desconto como cliente fiel."
+
+msgid "Colors & fonts"
+msgstr "Cores e fontes"

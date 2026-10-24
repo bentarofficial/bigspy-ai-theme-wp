@@ -1,0 +1,790 @@
+# BIGSPY AI Theme WP - Chinese (Simplified) translation (machine-assisted, review recommended).
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY AI Theme WP\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: bigspy-ai-theme-wp\n"
+
+msgid "%s comment"
+msgstr "%s 条评论"
+
+msgid "%s product"
+msgstr "%s 件商品"
+
+msgid "-Deep skin analysis"
+msgstr "-深层皮肤分析"
+
+msgid "-Mortgage paperwork"
+msgstr "-房贷手续"
+
+msgid "-Private room"
+msgstr "-私人包间"
+
+msgid "-Results guarantee"
+msgstr "-效果保障"
+
+msgid "/ 10 guests"
+msgstr "/ 10 位"
+
+msgid "/ 3 months"
+msgstr "/ 3 个月"
+
+msgid "/ 4 guests"
+msgstr "/ 4 位"
+
+msgid "/ 5 sessions"
+msgstr "/ 5 次"
+
+msgid "/ course"
+msgstr "/ 课程"
+
+msgid "/ guest"
+msgstr "/ 位"
+
+msgid "/ of value"
+msgstr "/ 价值"
+
+msgid "/ on sale"
+msgstr "/ 在售"
+
+msgid "/ package"
+msgstr "/ 套餐"
+
+msgid "/ session"
+msgstr "/ 次"
+
+msgid "1,200+ deals"
+msgstr "成交 1,200+ 笔"
+
+msgid "10 years of deep skin care experience."
+msgstr "10 年深层护肤经验。"
+
+msgid "10% off for groups of 3, and 0% instalments by credit card."
+msgstr "3 人同行享 9 折，信用卡 0 利息分期。"
+
+msgid "100% genuine"
+msgstr "100% 正品"
+
+msgid "100% natural"
+msgstr "100% 天然"
+
+msgid "12 Garden Avenue, City Centre"
+msgstr "花园大道 12 号，市中心"
+
+msgid "12 partner banks"
+msgstr "12 家合作银行"
+
+msgid "15 minutes to the centre"
+msgstr "15 分钟到市中心"
+
+msgid "15 years in five-star hotel kitchens."
+msgstr "五星级酒店厨房 15 年经验。"
+
+msgid "15 years in the housing market."
+msgstr "15 年房地产从业经验。"
+
+msgid "15% off your first visit"
+msgstr "首次到店享 85 折"
+
+msgid "2 free trial lessons"
+msgstr "2 节免费试听课"
+
+msgid "2-bedroom apartment"
+msgstr "两居室公寓"
+
+msgid "2-bedroom city apartment"
+msgstr "市区两居室公寓"
+
+msgid "2-hour delivery"
+msgstr "2 小时送达"
+
+msgid "24 lessons, twice a week"
+msgstr "24 节课，每周两次"
+
+msgid "24/7 support"
+msgstr "全天候 24/7 支持"
+
+msgid "24K gold mask"
+msgstr "24K 黄金面膜"
+
+msgid "25 Main Street, City Centre"
+msgstr "主街 25 号，市中心"
+
+msgid "30-dish Asian & European buffet"
+msgstr "30 道亚洲与欧洲菜式自助餐"
+
+msgid "300 m² plot, private garden, 24/7 security."
+msgstr "300 m² 地块，私家花园，24 小时安保。"
+
+msgid "35 m², ideal for young people and renting out."
+msgstr "35 m²，适合年轻人及出租。"
+
+msgid "35+ projects on offer"
+msgstr "35+ 个在售项目"
+
+msgid "4 steps to your goal"
+msgstr "实现目标的 4 个步骤"
+
+msgid "4.9 ★ on Google"
+msgstr "Google 评分 4.9 ★"
+
+msgid "4.9/5 from more than 1,200 reviews"
+msgstr "1,200 多条评价，平均 4.9/5"
+
+msgid "40+ experienced teachers"
+msgstr "40+ 位资深教师"
+
+msgid "404 & maintenance"
+msgstr "404 与维护"
+
+msgid "404 page"
+msgstr "404 页面"
+
+msgid "45 College Road, City Centre"
+msgstr "学院路 45 号，市中心"
+
+msgid "5 checks at handover"
+msgstr "交房时 5 项检查"
+
+msgid "5 facials"
+msgstr "5 次面部护理"
+
+msgid "5 mains + soup"
+msgstr "5 道主菜 + 汤"
+
+msgid "5 steps for evening skin care"
+msgstr "晚间护肤 5 步骤"
+
+msgid "5x20 m, four floors, live and do business."
+msgstr "5x20 米，四层，可居住可经营。"
+
+msgid "60 consultants"
+msgstr "60 位顾问"
+
+msgid "60-minute hot stone massage"
+msgstr "60 分钟热石按摩"
+
+msgid "68 m², river view, basic furniture, from $210,000."
+msgstr "68 m²，河景，基础家具，210,000 美元起。"
+
+msgid "7-day returns"
+msgstr "7 天退货"
+
+msgid "70% of class time is practice."
+msgstr "70% 的课堂时间用于练习。"
+
+msgid "7:00 am – 10:00 pm, every day"
+msgstr "每天 7:00 – 22:00"
+
+msgid "7:00 am – 10:00 pm, holidays too"
+msgstr "7:00 – 22:00，节假日照常营业"
+
+msgid "8 facial + body sessions"
+msgstr "8 次面部 + 身体护理"
+
+msgid "8 mains + hot pot"
+msgstr "8 道主菜 + 火锅"
+
+msgid "8 private treatment rooms"
+msgstr "8 间私人护理室"
+
+msgid "80+ Asian and European dishes"
+msgstr "80+ 道亚洲与欧洲菜式"
+
+msgid "8:00 am – 8:00 pm, Monday – Sunday"
+msgstr "周一至周日 8:00 – 20:00"
+
+msgid "8:00 am – 9:00 pm, Monday – Sunday"
+msgstr "周一至周日 8:00 – 21:00"
+
+msgid "8–12% a year"
+msgstr "年化 8–12%"
+
+msgid "96% reach their goal"
+msgstr "96% 达成目标"
+
+msgid "9:00 am – 9:00 pm, every day"
+msgstr "每天 9:00 – 21:00"
+
+msgid "A 6-month plan with free materials and how to train each skill."
+msgstr "6 个月学习计划，含免费资料和各项技能的训练方法。"
+
+msgid "A caring advisory team"
+msgstr "贴心的顾问团队"
+
+msgid "A certificate when you complete the course."
+msgstr "完成课程后颁发证书。"
+
+msgid "A checklist for power, water, walls and doors before you sign."
+msgstr "签约前检查水电、墙面和门窗的清单。"
+
+msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
+msgstr "路径清晰，反馈非常详细。仅 4 个月我就提高了 1.5 分。"
+
+msgid "A complete dining experience"
+msgstr "完整的用餐体验"
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "完整的首页，包含简介、服务、关于我们、客户评价、价格、常见问题和联系方式。"
+
+msgid "A consultant is with you at every step."
+msgstr "每一步都有顾问陪伴。"
+
+msgid "A cosy weekend dinner"
+msgstr "温馨的周末晚餐"
+
+msgid "A day at the centre"
+msgstr "在中心的一天"
+
+msgid "A free 30-minute level check."
+msgstr "免费 30 分钟水平测试。"
+
+msgid "A free mask with every package."
+msgstr "每个套餐赠送一片面膜。"
+
+msgid "A green space where you can truly rest"
+msgstr "让你真正放松的绿色空间"
+
+msgid "A kitchen certified for hygiene and food safety."
+msgstr "厨房通过卫生与食品安全认证。"
+
+msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
+msgstr "快速检查服务器和 WordPress 设置。带 ! 的项目低于推荐值。"
+
+msgid "A reusable design saved in WordPress."
+msgstr "保存在 WordPress 中的可复用设计。"
+
+msgid "A service for every need"
+msgstr "满足各种需求的服务"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "商店首页，包含主视觉、优势、分类、商品系列等。"
+
+msgid "A trained team that always welcomes you with a smile."
+msgstr "训练有素的团队，总是笑脸相迎。"
+
+msgid "A trained team with professional certificates."
+msgstr "持有专业证书的训练有素的团队。"
+
+msgid "About 720–800px is easiest to read."
+msgstr "约 720–800 px 最便于阅读。"
+
+msgid "About the centre"
+msgstr "关于中心"
+
+msgid "About us"
+msgstr "关于我们"
+
+msgid "Accountant"
+msgstr "会计"
+
+msgid "Active dot fills up"
+msgstr "当前圆点逐渐填满"
+
+msgid "Active plugins"
+msgstr "已启用的插件"
+
+msgid "Activities"
+msgstr "活动"
+
+msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
+msgstr "添加页面并插入 BIGSPY 区块或起始页面模板。"
+
+msgid "Add layout"
+msgstr "添加布局"
+
+msgid "Add new layout"
+msgstr "添加新布局"
+
+msgid "Add to page"
+msgstr "添加到页面"
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "已作为同步设计添加。修改原设计会更新所有副本。"
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "已添加到页面。请在预览中编辑文字和图片。"
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "添加设计不会发布页面。请先预览，准备好后保存草稿或发布。"
+
+msgid "Additional CSS"
+msgstr "额外 CSS"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Admin & Customizer"
+msgstr "后台与自定义"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "管理员仍可查看网站。访客将收到 HTTP 503。登录、后台和 API 仍可使用。切换此选项时请清除页面/CDN 缓存。"
+
+msgid "Advice and viewings"
+msgstr "咨询与看房"
+
+msgid "Advice by chat and hotline 24/7."
+msgstr "通过聊天和热线 24 小时咨询。"
+
+msgid "After the header"
+msgstr "页眉之后"
+
+msgid "After the page content"
+msgstr "页面内容之后"
+
+msgid "After-sales"
+msgstr "售后"
+
+msgid "Agree the best price and prepare the loan file."
+msgstr "商定最优价格并准备贷款材料。"
+
+msgid "Air-conditioned rooms with projectors"
+msgstr "配有投影仪的空调教室"
+
+msgid "Airy garden seating"
+msgstr "通风的花园座位"
+
+msgid "All archives (category, tag, author, date)"
+msgstr "所有归档（分类、标签、作者、日期）"
+
+msgid "All designs"
+msgstr "所有设计"
+
+msgid "All pages"
+msgstr "所有页面"
+
+msgid "All posts"
+msgstr "所有文章"
+
+msgid "All products"
+msgstr "所有商品"
+
+msgid "Also on these post / page IDs (comma separated)"
+msgstr "同时显示在这些文章 / 页面 ID 上（用逗号分隔）"
+
+msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+msgstr "始终全宽显示；高度取决于你的代码或图片。示例：<a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+
+msgid "Always listening to make every meal better."
+msgstr "始终倾听，让每一餐更美味。"
+
+msgid "Always listens to find the right treatment."
+msgstr "始终倾听，找到合适的护理方案。"
+
+msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
+msgstr "作者介绍页或公开个人资料（LinkedIn、Facebook…）。"
+
+msgid "Analytics and pixel code, performance tweaks, 404 and maintenance pages."
+msgstr "统计与像素代码、性能优化、404 和维护页面。"
+
+msgid "And still growing"
+msgstr "并且仍在成长"
+
+msgid "Anna"
+msgstr "安娜"
+
+msgid "Any other questions? Send us a message for a free consultation."
+msgstr "还有其他问题？给我们留言，免费咨询。"
+
+msgid "Apartment specialist"
+msgstr "公寓专家"
+
+msgid "Apply what you learn to real situations."
+msgstr "将所学应用于真实场景。"
+
+msgid "Arabica beans roasted every week, brewed as filter or espresso."
+msgstr "每周烘焙的阿拉比卡咖啡豆，可选手冲或意式浓缩。"
+
+msgid "Archive layouts, cards, table of contents, author box, related posts."
+msgstr "归档布局、卡片、目录、作者框、相关文章。"
+
+msgid "Arrive on time – your table and dishes are ready."
+msgstr "准时到店——您的座位和菜品已准备就绪。"
+
+msgid "As peaceful as a resort"
+msgstr "宁静如度假村"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "Author avatar"
+msgstr "作者头像"
+
+msgid "Author bio"
+msgstr "作者简介"
+
+msgid "Author box heading (empty = “Written by”)"
+msgstr "作者框标题（留空 =“作者”）"
+
+msgid "Author box style"
+msgstr "作者框样式"
+
+msgid "Author details come from"
+msgstr "作者信息来源"
+
+msgid "Author information"
+msgstr "作者信息"
+
+msgid "Author name"
+msgstr "作者名称"
+
+msgid "Author profile URL"
+msgstr "作者主页网址"
+
+msgid "Award-winning national coffee champion."
+msgstr "屡获殊荣的全国咖啡冠军。"
+
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "BIGSPY 维护模式已开启。访客无法浏览商店。"
+
+msgid "BIGSPY settings"
+msgstr "BIGSPY 设置"
+
+msgid "Back to home"
+msgstr "返回首页"
+
+msgid "Back to top"
+msgstr "返回顶部"
+
+msgid "Badge and faded card"
+msgstr "徽标和淡化卡片"
+
+msgid "Badge and grayscale image"
+msgstr "徽标和灰度图片"
+
+msgid "Badge only"
+msgstr "仅徽标"
+
+msgid "Badge texts (empty = default)"
+msgstr "徽标文字（留空 = 默认）"
+
+msgid "Band score guarantee"
+msgstr "分数保障"
+
+msgid "Bank loan file"
+msgstr "银行贷款材料"
+
+msgid "Banner code (HTML, inline CSS)"
+msgstr "横幅代码（HTML、内联 CSS）"
+
+msgid "Barista"
+msgstr "咖啡师"
+
+msgid "Basic conversation"
+msgstr "基础会话"
+
+msgid "Beautiful websites that sell"
+msgstr "能带来销量的精美网站"
+
+msgid "Beauty tips"
+msgstr "美容小贴士"
+
+msgid "Beer or soft drinks"
+msgstr "啤酒或软饮"
+
+msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
+msgstr "每次护理前，理疗师都会分析您的肌肤，推荐最适合您肌肤和身体的产品。"
+
+msgid "Before the footer"
+msgstr "页脚之前"
+
+msgid "Before the header"
+msgstr "页眉之前"
+
+msgid "Before the page content"
+msgstr "页面内容之前"
+
+msgid "Benefits of regular massage"
+msgstr "定期按摩的好处"
+
+msgid "Best sellers"
+msgstr "热销商品"
+
+msgid "Better skin after 3–5 sessions"
+msgstr "3–5 次后肌肤明显改善"
+
+msgid "Birthdays, team dinners, events"
+msgstr "生日、团队聚餐、活动"
+
+msgid "Black pepper beef"
+msgstr "黑椒牛肉"
+
+msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
+msgstr "屏蔽暴力破解攻击的常见目标。如使用 WordPress 移动应用或 Jetpack，请保持关闭。"
+
+msgid "Blog"
+msgstr "博客"
+
+msgid "Blog & single post"
+msgstr "博客与单篇文章"
+
+msgid "Blog posts page"
+msgstr "文章列表页"
+
+msgid "Body care"
+msgstr "身体护理"
+
+msgid "Bold lines"
+msgstr "粗线"
+
+msgid "Book"
+msgstr "预约"
+
+msgid "Book 2 free trial lessons and get a learning-path consultation within 24 hours."
+msgstr "预约 2 节免费试听课，24 小时内获得学习规划咨询。"
+
+msgid "Book a free trial"
+msgstr "预约免费试听"
+
+msgid "Book a table"
+msgstr "订座"
+
+msgid "Book a table for tonight?"
+msgstr "要预订今晚的座位吗？"
+
+msgid "Book a viewing"
+msgstr "预约看房"
+
+msgid "Book an appointment"
+msgstr "预约"
+
+msgid "Book by phone, chat or the website – our team confirms within 5 minutes."
+msgstr "通过电话、聊天或网站预约——团队将在 5 分钟内确认。"
+
+msgid "Book one day ahead to get your preferred time. Walk-ins are welcome when a room is free."
+msgstr "提前一天预约可选到心仪时段。有空房时也可直接到店。"
+
+msgid "Book today and get 15% off your first visit."
+msgstr "今日预约，首次到店享 85 折。"
+
+msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
+msgstr "周五至周日晚上建议提前订座，工作日可直接到店。"
+
+msgid "Bordered"
+msgstr "带边框"
+
+msgid "Bottom corner radius (px)"
+msgstr "底部圆角（px）"
+
+msgid "Brand colors, palettes, typography and button styles."
+msgstr "品牌色、配色方案、字体和按钮样式。"
+
+msgid "Brand line on the left"
+msgstr "左侧品牌线"
+
+msgid "Breadcrumb"
+msgstr "面包屑导航"
+
+msgid "Brewing the perfect filter coffee"
+msgstr "冲出完美手冲咖啡"
+
+msgid "Bridal care packages"
+msgstr "新娘护理套餐"
+
+msgid "Bridal package"
+msgstr "新娘套餐"
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "用区块制作一个已发布页面。其内容将不带网站页眉/页脚显示。不选择页面则使用默认界面。"
+
+msgid "Build from scratch"
+msgstr "从零开始创建"
+
+msgid "Build pages with blocks"
+msgstr "用区块搭建页面"
+
+msgid "Business homepage"
+msgstr "企业首页"
+
+msgid "Business or service website"
+msgstr "企业或服务网站"
+
+msgid "Button"
+msgstr "按钮"
+
+msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
+msgstr "主题显示的按钮和标签，例如“阅读更多”“分享：”“相关文章”。"
+
+msgid "Buy a package to save up to 30% and share it with family."
+msgstr "购买套餐最多可省 30%，还可与家人共享。"
+
+msgid "Buy now"
+msgstr "立即购买"
+
+msgid "Buy your home in 4 easy steps"
+msgstr "4 个简单步骤买到心仪的家"
+
+msgid "Buyers"
+msgstr "买家"
+
+msgid "Buyers get free advice. Owners who list with us only pay when the deal closes."
+msgstr "买家免费咨询。委托我们出售的业主仅在成交时付费。"
+
+msgid "Buying process"
+msgstr "购买流程"
+
+msgid "Cakes baked today"
+msgstr "当天现烤蛋糕"
+
+msgid "Call now"
+msgstr "立即致电"
+
+msgid "Call now to get the best seats, book a party or order takeaway."
+msgstr "立即致电，抢占好位、预订聚会或外带点餐。"
+
+msgid "Call to action"
+msgstr "行动号召"
+
+msgid "Call us"
+msgstr "致电我们"
+
+msgid "Can I get an invoice?"
+msgstr "可以开发票吗？"
+
+msgid "Can I list my home for sale?"
+msgstr "可以挂牌出售我的房子吗？"
+
+msgid "Can I make up missed lessons?"
+msgstr "缺课可以补吗？"
+
+msgid "Can I pay in instalments?"
+msgstr "可以分期付款吗？"
+
+msgid "Can I try a lesson first?"
+msgstr "可以先试听一节课吗？"
+
+msgid "Can’t find your answer? Call or message us – we are always happy to help."
+msgstr "没找到答案？欢迎来电或留言，我们随时乐意帮忙。"
+
+msgid "Caramelised fish, sour soup and crispy clay pot rice."
+msgstr "焦糖鱼、酸汤和砂锅锅巴饭。"
+
+msgid "Card corner radius (px, -1 = default)"
+msgstr "卡片圆角（px，-1 = 默认）"
+
+msgid "Card details"
+msgstr "卡片细节"
+
+msgid "Card inner space (px, -1 = default)"
+msgstr "卡片内边距（px，-1 = 默认）"
+
+msgid "Caring service"
+msgstr "贴心服务"
+
+msgid "Caring support"
+msgstr "贴心支持"
+
+msgid "Caring therapists"
+msgstr "贴心的理疗师"
+
+msgid "Cart"
+msgstr "购物车"
+
+msgid "Category"
+msgstr "分类"
+
+msgid "Category badge on the image"
+msgstr "图片上的分类徽标"
+
+msgid "Center"
+msgstr "居中"
+
+msgid "Centered title, then image"
+msgstr "标题居中，然后是图片"
+
+msgid "Certificates"
+msgstr "证书"
+
+msgid "Certified in Thai therapeutic massage."
+msgstr "持有泰式理疗按摩证书。"
+
+msgid "Chat / Messenger"
+msgstr "聊天 / Messenger"
+
+msgid "Child theme"
+msgstr "子主题"
+
+msgid "Chloe"
+msgstr "克洛伊"
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "选择现成的设计，然后在页面上修改文字、图片和颜色。"
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "选择一个起点。BIGSPY 会创建未发布的草稿并打开编辑器，设计期间线上网站保持不变。"
+
+msgid "Choose a treatment and time by phone or chat."
+msgstr "通过电话或聊天选择护理项目和时间。"
+
+msgid "Choose the course for your goal, with evening and weekend classes for working adults."
+msgstr "按目标选择课程，为上班族提供晚间和周末班。"
+
+msgid "Choose this plan"
+msgstr "选择此方案"
+
+msgid "Choose your area"
+msgstr "选择您的区域"
+
+msgid "Choosing a course for your child"
+msgstr "如何为孩子选课程"
+
+msgid "Choosing the right sunscreen"
+msgstr "如何选对防晒霜"
+
+msgid "Classic (one large post per row)"
+msgstr "经典（每行一篇大文章）"
+
+msgid "Clay pot fish"
+msgstr "砂锅鱼"
+
+msgid "Clean ingredients"
+msgstr "干净的食材"
+
+msgid "Clean up WordPress"
+msgstr "清理 WordPress"
+
+msgid "Clean, fragrant and quiet. Booking by chat is very quick."
+msgstr "干净、芳香又安静。通过聊天预约非常快。"
+
+msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
+msgstr "建议清晰，毫无压力。银行贷款从头到尾都有人办理。"
+
+msgid "Clear legal status"
+msgstr "产权清晰"
+
+msgid "Clear tuition, plenty of offers"
+msgstr "学费透明，优惠多多"
+
+msgid "Clients"
+msgstr "客户"
+
+msgid "Clinical acne care"
+msgstr "临床祛痘护理"
+
+msgid "Close menu"
+msgstr "关闭菜单"
+
+msgid "Close search"
+msgstr "关闭搜索"
+
+msgid "Closed in 15 years"
+msgstr "15 年累计成交"
+
+msgid "Coding basics"
+msgstr "编程基础"
+
+msgid "Coffee ratio, water temperature and brewing time for a rich cup."
+msgstr "咖啡粉量、水温和萃取时间，冲出浓郁的一杯。"
+
+msgid "Collect points and enjoy 10% off as a regular."
+msgstr "积分累计，老顾客享 9 折。"
+
+msgid "Colors & fonts"
+msgstr "颜色与字体"

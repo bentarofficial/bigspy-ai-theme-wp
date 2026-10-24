@@ -1,0 +1,790 @@
+# BIGSPY AI Theme WP - Japanese translation (machine-assisted, review recommended).
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY AI Theme WP\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: bigspy-ai-theme-wp\n"
+
+msgid "%s comment"
+msgstr "%s 件のコメント"
+
+msgid "%s product"
+msgstr "%s 件の商品"
+
+msgid "-Deep skin analysis"
+msgstr "-肌の徹底分析"
+
+msgid "-Mortgage paperwork"
+msgstr "-住宅ローン書類"
+
+msgid "-Private room"
+msgstr "-個室"
+
+msgid "-Results guarantee"
+msgstr "-効果保証"
+
+msgid "/ 10 guests"
+msgstr "/ 10名"
+
+msgid "/ 3 months"
+msgstr "/ 3か月"
+
+msgid "/ 4 guests"
+msgstr "/ 4名"
+
+msgid "/ 5 sessions"
+msgstr "/ 5回"
+
+msgid "/ course"
+msgstr "/ コース"
+
+msgid "/ guest"
+msgstr "/ 1名"
+
+msgid "/ of value"
+msgstr "/ 相当"
+
+msgid "/ on sale"
+msgstr "/ 販売中"
+
+msgid "/ package"
+msgstr "/ パッケージ"
+
+msgid "/ session"
+msgstr "/ 1回"
+
+msgid "1,200+ deals"
+msgstr "成約1,200件以上"
+
+msgid "10 years of deep skin care experience."
+msgstr "肌の集中ケア歴10年。"
+
+msgid "10% off for groups of 3, and 0% instalments by credit card."
+msgstr "3名様以上で10%オフ、クレジットカードで金利0%の分割払い。"
+
+msgid "100% genuine"
+msgstr "100%正規品"
+
+msgid "100% natural"
+msgstr "100%天然"
+
+msgid "12 Garden Avenue, City Centre"
+msgstr "ガーデン通り12、市中心部"
+
+msgid "12 partner banks"
+msgstr "提携銀行12行"
+
+msgid "15 minutes to the centre"
+msgstr "中心部まで15分"
+
+msgid "15 years in five-star hotel kitchens."
+msgstr "五つ星ホテルの厨房で15年。"
+
+msgid "15 years in the housing market."
+msgstr "不動産業界で15年。"
+
+msgid "15% off your first visit"
+msgstr "初回来店15%オフ"
+
+msgid "2 free trial lessons"
+msgstr "無料体験レッスン2回"
+
+msgid "2-bedroom apartment"
+msgstr "2ベッドルームのアパート"
+
+msgid "2-bedroom city apartment"
+msgstr "都心の2ベッドルームアパート"
+
+msgid "2-hour delivery"
+msgstr "2時間配送"
+
+msgid "24 lessons, twice a week"
+msgstr "全24回、週2回"
+
+msgid "24/7 support"
+msgstr "24時間365日サポート"
+
+msgid "24K gold mask"
+msgstr "24金ゴールドマスク"
+
+msgid "25 Main Street, City Centre"
+msgstr "メイン通り25、市中心部"
+
+msgid "30-dish Asian & European buffet"
+msgstr "アジア＆ヨーロッパ料理30品のビュッフェ"
+
+msgid "300 m² plot, private garden, 24/7 security."
+msgstr "300m²の敷地、専用庭、24時間セキュリティ。"
+
+msgid "35 m², ideal for young people and renting out."
+msgstr "35m²、若い方や賃貸にぴったり。"
+
+msgid "35+ projects on offer"
+msgstr "35以上の物件を掲載"
+
+msgid "4 steps to your goal"
+msgstr "目標達成への4ステップ"
+
+msgid "4.9 ★ on Google"
+msgstr "Googleで4.9★"
+
+msgid "4.9/5 from more than 1,200 reviews"
+msgstr "1,200件以上のレビューで4.9/5"
+
+msgid "40+ experienced teachers"
+msgstr "経験豊富な講師40名以上"
+
+msgid "404 & maintenance"
+msgstr "404とメンテナンス"
+
+msgid "404 page"
+msgstr "404ページ"
+
+msgid "45 College Road, City Centre"
+msgstr "カレッジ通り45、市中心部"
+
+msgid "5 checks at handover"
+msgstr "引き渡し時の5項目チェック"
+
+msgid "5 facials"
+msgstr "フェイシャル5回"
+
+msgid "5 mains + soup"
+msgstr "メイン料理5品＋スープ"
+
+msgid "5 steps for evening skin care"
+msgstr "夜のスキンケア5ステップ"
+
+msgid "5x20 m, four floors, live and do business."
+msgstr "5x20m、4階建て、住居兼店舗に。"
+
+msgid "60 consultants"
+msgstr "コンサルタント60名"
+
+msgid "60-minute hot stone massage"
+msgstr "60分ホットストーンマッサージ"
+
+msgid "68 m², river view, basic furniture, from $210,000."
+msgstr "68m²、リバービュー、基本家具付き、210,000ドルから。"
+
+msgid "7-day returns"
+msgstr "7日間返品可能"
+
+msgid "70% of class time is practice."
+msgstr "授業時間の70%が実践。"
+
+msgid "7:00 am – 10:00 pm, every day"
+msgstr "7:00～22:00、毎日"
+
+msgid "7:00 am – 10:00 pm, holidays too"
+msgstr "7:00～22:00、祝日も営業"
+
+msgid "8 facial + body sessions"
+msgstr "フェイシャル＋ボディ8回"
+
+msgid "8 mains + hot pot"
+msgstr "メイン料理8品＋鍋"
+
+msgid "8 private treatment rooms"
+msgstr "個室トリートメントルーム8室"
+
+msgid "80+ Asian and European dishes"
+msgstr "アジア・ヨーロッパ料理80品以上"
+
+msgid "8:00 am – 8:00 pm, Monday – Sunday"
+msgstr "8:00～20:00、月曜～日曜"
+
+msgid "8:00 am – 9:00 pm, Monday – Sunday"
+msgstr "8:00～21:00、月曜～日曜"
+
+msgid "8–12% a year"
+msgstr "年8～12%"
+
+msgid "96% reach their goal"
+msgstr "96%が目標を達成"
+
+msgid "9:00 am – 9:00 pm, every day"
+msgstr "9:00～21:00、毎日"
+
+msgid "A 6-month plan with free materials and how to train each skill."
+msgstr "無料教材付きの6か月プランと各スキルの練習方法。"
+
+msgid "A caring advisory team"
+msgstr "親身なアドバイザーチーム"
+
+msgid "A certificate when you complete the course."
+msgstr "修了時に修了証を発行。"
+
+msgid "A checklist for power, water, walls and doors before you sign."
+msgstr "契約前に電気・水道・壁・ドアを確認するチェックリスト。"
+
+msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
+msgstr "道筋が明確で、フィードバックがとても丁寧。わずか4か月でスコアが1.5上がりました。"
+
+msgid "A complete dining experience"
+msgstr "充実のお食事体験"
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "紹介、サービス、会社概要、お客様の声、料金、FAQ、お問い合わせを備えた完全なホームページ。"
+
+msgid "A consultant is with you at every step."
+msgstr "すべてのステップでコンサルタントがサポート。"
+
+msgid "A cosy weekend dinner"
+msgstr "くつろぎの週末ディナー"
+
+msgid "A day at the centre"
+msgstr "センターでの一日"
+
+msgid "A free 30-minute level check."
+msgstr "30分の無料レベルチェック。"
+
+msgid "A free mask with every package."
+msgstr "すべてのパッケージにマスクを1枚プレゼント。"
+
+msgid "A green space where you can truly rest"
+msgstr "心から休める緑の空間"
+
+msgid "A kitchen certified for hygiene and food safety."
+msgstr "衛生・食品安全の認証を受けたキッチン。"
+
+msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
+msgstr "サーバーとWordPress設定の簡易チェックです。! の付いた項目は推奨値を下回っています。"
+
+msgid "A reusable design saved in WordPress."
+msgstr "WordPressに保存された再利用可能なデザイン。"
+
+msgid "A service for every need"
+msgstr "あらゆるニーズに応えるサービス"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "ヒーロー、特長、カテゴリー、商品コレクションなどを備えたショップのホームページ。"
+
+msgid "A trained team that always welcomes you with a smile."
+msgstr "いつも笑顔でお迎えする研修済みのスタッフ。"
+
+msgid "A trained team with professional certificates."
+msgstr "専門資格を持つ研修済みのスタッフ。"
+
+msgid "About 720–800px is easiest to read."
+msgstr "720～800px 程度が最も読みやすい幅です。"
+
+msgid "About the centre"
+msgstr "センターについて"
+
+msgid "About us"
+msgstr "私たちについて"
+
+msgid "Accountant"
+msgstr "会計士"
+
+msgid "Active dot fills up"
+msgstr "アクティブなドットが満ちていく"
+
+msgid "Active plugins"
+msgstr "有効なプラグイン"
+
+msgid "Activities"
+msgstr "アクティビティ"
+
+msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
+msgstr "ページを追加し、BIGSPYブロックまたはスターターページパターンを挿入します。"
+
+msgid "Add layout"
+msgstr "レイアウトを追加"
+
+msgid "Add new layout"
+msgstr "新規レイアウトを追加"
+
+msgid "Add to page"
+msgstr "ページに追加"
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "同期デザインとして追加しました。元のデザインを変更するとすべてのコピーが更新されます。"
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "ページに追加しました。プレビューでテキストと画像を編集してください。"
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "デザインを追加してもページは公開されません。プレビューで確認し、準備ができたら下書き保存または公開してください。"
+
+msgid "Additional CSS"
+msgstr "追加CSS"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Admin & Customizer"
+msgstr "管理画面とカスタマイザー"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "管理者は引き続きサイトを閲覧できます。訪問者には HTTP 503 が返されます。ログイン、管理画面、API は利用可能です。切り替え時はページ/CDN キャッシュを削除してください。"
+
+msgid "Advice and viewings"
+msgstr "ご相談と内覧"
+
+msgid "Advice by chat and hotline 24/7."
+msgstr "チャットとホットラインで24時間ご相談受付。"
+
+msgid "After the header"
+msgstr "ヘッダーの後"
+
+msgid "After the page content"
+msgstr "ページコンテンツの後"
+
+msgid "After-sales"
+msgstr "アフターサービス"
+
+msgid "Agree the best price and prepare the loan file."
+msgstr "最適な価格で合意し、ローン書類を準備します。"
+
+msgid "Air-conditioned rooms with projectors"
+msgstr "プロジェクター付きの冷房完備教室"
+
+msgid "Airy garden seating"
+msgstr "開放的なガーデン席"
+
+msgid "All archives (category, tag, author, date)"
+msgstr "すべてのアーカイブ（カテゴリー、タグ、投稿者、日付）"
+
+msgid "All designs"
+msgstr "すべてのデザイン"
+
+msgid "All pages"
+msgstr "すべての固定ページ"
+
+msgid "All posts"
+msgstr "すべての投稿"
+
+msgid "All products"
+msgstr "すべての商品"
+
+msgid "Also on these post / page IDs (comma separated)"
+msgstr "次の投稿 / ページ ID にも表示（カンマ区切り）"
+
+msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+msgstr "常に全幅で表示され、高さはコードや画像に合わせて決まります。例：<a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+
+msgid "Always listening to make every meal better."
+msgstr "毎回のお食事をより良くするため、いつもお声をお聞きしています。"
+
+msgid "Always listens to find the right treatment."
+msgstr "最適なトリートメントを見つけるため、いつもお話をお聞きします。"
+
+msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
+msgstr "著者紹介ページまたは公開プロフィール（LinkedIn、Facebook など）。"
+
+msgid "Analytics and pixel code, performance tweaks, 404 and maintenance pages."
+msgstr "アナリティクスとピクセルのコード、パフォーマンス調整、404 とメンテナンスページ。"
+
+msgid "And still growing"
+msgstr "そしてさらに成長中"
+
+msgid "Anna"
+msgstr "アンナ"
+
+msgid "Any other questions? Send us a message for a free consultation."
+msgstr "ほかにご質問は？無料相談のメッセージをお送りください。"
+
+msgid "Apartment specialist"
+msgstr "マンション専門スタッフ"
+
+msgid "Apply what you learn to real situations."
+msgstr "学んだことを実際の場面で活用します。"
+
+msgid "Arabica beans roasted every week, brewed as filter or espresso."
+msgstr "毎週焙煎するアラビカ豆を、ドリップまたはエスプレッソで。"
+
+msgid "Archive layouts, cards, table of contents, author box, related posts."
+msgstr "アーカイブのレイアウト、カード、目次、著者ボックス、関連投稿。"
+
+msgid "Arrive on time – your table and dishes are ready."
+msgstr "時間通りにお越しください。お席とお料理をご用意しています。"
+
+msgid "As peaceful as a resort"
+msgstr "リゾートのような静けさ"
+
+msgid "Author"
+msgstr "投稿者"
+
+msgid "Author avatar"
+msgstr "著者のアバター"
+
+msgid "Author bio"
+msgstr "著者の経歴"
+
+msgid "Author box heading (empty = “Written by”)"
+msgstr "著者ボックスの見出し（空欄 =「執筆者」）"
+
+msgid "Author box style"
+msgstr "著者ボックスのスタイル"
+
+msgid "Author details come from"
+msgstr "著者情報の取得元"
+
+msgid "Author information"
+msgstr "著者情報"
+
+msgid "Author name"
+msgstr "著者名"
+
+msgid "Author profile URL"
+msgstr "著者プロフィールの URL"
+
+msgid "Award-winning national coffee champion."
+msgstr "受賞歴のある全国コーヒーチャンピオン。"
+
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "BIGSPY メンテナンスモードが有効です。訪問者はストアを閲覧できません。"
+
+msgid "BIGSPY settings"
+msgstr "BIGSPY 設定"
+
+msgid "Back to home"
+msgstr "ホームに戻る"
+
+msgid "Back to top"
+msgstr "トップに戻る"
+
+msgid "Badge and faded card"
+msgstr "バッジとカードを薄く表示"
+
+msgid "Badge and grayscale image"
+msgstr "バッジとグレースケール画像"
+
+msgid "Badge only"
+msgstr "バッジのみ"
+
+msgid "Badge texts (empty = default)"
+msgstr "バッジのテキスト（空欄 = 既定）"
+
+msgid "Band score guarantee"
+msgstr "スコア保証"
+
+msgid "Bank loan file"
+msgstr "銀行ローン書類"
+
+msgid "Banner code (HTML, inline CSS)"
+msgstr "バナーコード（HTML、インライン CSS）"
+
+msgid "Barista"
+msgstr "バリスタ"
+
+msgid "Basic conversation"
+msgstr "基礎会話"
+
+msgid "Beautiful websites that sell"
+msgstr "売れる美しいウェブサイト"
+
+msgid "Beauty tips"
+msgstr "美容のヒント"
+
+msgid "Beer or soft drinks"
+msgstr "ビールまたはソフトドリンク"
+
+msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
+msgstr "施術の前に、セラピストが肌を分析し、肌と体に最も合う製品をご提案します。"
+
+msgid "Before the footer"
+msgstr "フッターの前"
+
+msgid "Before the header"
+msgstr "ヘッダーの前"
+
+msgid "Before the page content"
+msgstr "ページコンテンツの前"
+
+msgid "Benefits of regular massage"
+msgstr "定期的なマッサージの効果"
+
+msgid "Best sellers"
+msgstr "売れ筋"
+
+msgid "Better skin after 3–5 sessions"
+msgstr "3～5回で肌が変わる"
+
+msgid "Birthdays, team dinners, events"
+msgstr "誕生日、チームの食事会、イベント"
+
+msgid "Black pepper beef"
+msgstr "牛肉の黒胡椒炒め"
+
+msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
+msgstr "ブルートフォース攻撃の主な標的をブロックします。WordPress モバイルアプリや Jetpack を使う場合はオフのままにしてください。"
+
+msgid "Blog"
+msgstr "ブログ"
+
+msgid "Blog & single post"
+msgstr "ブログと個別投稿"
+
+msgid "Blog posts page"
+msgstr "投稿ページ"
+
+msgid "Body care"
+msgstr "ボディケア"
+
+msgid "Bold lines"
+msgstr "太線"
+
+msgid "Book"
+msgstr "予約"
+
+msgid "Book 2 free trial lessons and get a learning-path consultation within 24 hours."
+msgstr "無料体験レッスンを2回予約すると、24時間以内に学習プランのご相談をお届けします。"
+
+msgid "Book a free trial"
+msgstr "無料体験を予約"
+
+msgid "Book a table"
+msgstr "席を予約"
+
+msgid "Book a table for tonight?"
+msgstr "今夜の席を予約しますか？"
+
+msgid "Book a viewing"
+msgstr "内覧を予約"
+
+msgid "Book an appointment"
+msgstr "予約する"
+
+msgid "Book by phone, chat or the website – our team confirms within 5 minutes."
+msgstr "電話・チャット・ウェブサイトで予約できます。5分以内にスタッフが確定のご連絡をします。"
+
+msgid "Book one day ahead to get your preferred time. Walk-ins are welcome when a room is free."
+msgstr "ご希望の時間をお取りするには前日までのご予約がおすすめです。空きがあれば予約なしでもご利用いただけます。"
+
+msgid "Book today and get 15% off your first visit."
+msgstr "今日のご予約で初回15%オフ。"
+
+msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
+msgstr "金曜～日曜の夜はご予約をおすすめします。平日は予約なしでどうぞ。"
+
+msgid "Bordered"
+msgstr "枠線あり"
+
+msgid "Bottom corner radius (px)"
+msgstr "下側の角の丸み（px）"
+
+msgid "Brand colors, palettes, typography and button styles."
+msgstr "ブランドカラー、パレット、タイポグラフィ、ボタンスタイル。"
+
+msgid "Brand line on the left"
+msgstr "左にブランドライン"
+
+msgid "Breadcrumb"
+msgstr "パンくずリスト"
+
+msgid "Brewing the perfect filter coffee"
+msgstr "完璧なドリップコーヒーの淹れ方"
+
+msgid "Bridal care packages"
+msgstr "ブライダルケアパッケージ"
+
+msgid "Bridal package"
+msgstr "ブライダルパッケージ"
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "ブロックで作成した公開ページを選びます。サイトのヘッダー/フッターなしで表示されます。既定の画面を使う場合はページを選択しないでください。"
+
+msgid "Build from scratch"
+msgstr "ゼロから作成"
+
+msgid "Build pages with blocks"
+msgstr "ブロックでページを作成"
+
+msgid "Business homepage"
+msgstr "ビジネス向けホームページ"
+
+msgid "Business or service website"
+msgstr "企業・サービスのウェブサイト"
+
+msgid "Button"
+msgstr "ボタン"
+
+msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
+msgstr "テーマが表示するボタンやラベル（例：「続きを読む」「シェア：」「関連投稿」）。"
+
+msgid "Buy a package to save up to 30% and share it with family."
+msgstr "パッケージ購入で最大30%お得、ご家族とシェアもできます。"
+
+msgid "Buy now"
+msgstr "今すぐ購入"
+
+msgid "Buy your home in 4 easy steps"
+msgstr "かんたん4ステップで住まいを購入"
+
+msgid "Buyers"
+msgstr "購入者"
+
+msgid "Buyers get free advice. Owners who list with us only pay when the deal closes."
+msgstr "購入者のご相談は無料。掲載いただいたオーナー様は成約時のみお支払いです。"
+
+msgid "Buying process"
+msgstr "購入の流れ"
+
+msgid "Cakes baked today"
+msgstr "本日焼き上げのケーキ"
+
+msgid "Call now"
+msgstr "今すぐ電話"
+
+msgid "Call now to get the best seats, book a party or order takeaway."
+msgstr "お電話で、良いお席の確保、パーティーのご予約、テイクアウトのご注文を。"
+
+msgid "Call to action"
+msgstr "行動喚起"
+
+msgid "Call us"
+msgstr "お電話ください"
+
+msgid "Can I get an invoice?"
+msgstr "領収書はもらえますか？"
+
+msgid "Can I list my home for sale?"
+msgstr "自宅の売却を掲載できますか？"
+
+msgid "Can I make up missed lessons?"
+msgstr "欠席したレッスンの振替はできますか？"
+
+msgid "Can I pay in instalments?"
+msgstr "分割払いはできますか？"
+
+msgid "Can I try a lesson first?"
+msgstr "まず体験レッスンを受けられますか？"
+
+msgid "Can’t find your answer? Call or message us – we are always happy to help."
+msgstr "答えが見つかりませんか？お電話またはメッセージでお気軽にご相談ください。"
+
+msgid "Caramelised fish, sour soup and crispy clay pot rice."
+msgstr "魚のキャラメル煮、酸っぱいスープ、土鍋のおこげご飯。"
+
+msgid "Card corner radius (px, -1 = default)"
+msgstr "カードの角の丸み（px、-1 = 既定）"
+
+msgid "Card details"
+msgstr "カードの詳細"
+
+msgid "Card inner space (px, -1 = default)"
+msgstr "カードの内側の余白（px、-1 = 既定）"
+
+msgid "Caring service"
+msgstr "心のこもったサービス"
+
+msgid "Caring support"
+msgstr "親身なサポート"
+
+msgid "Caring therapists"
+msgstr "親身なセラピスト"
+
+msgid "Cart"
+msgstr "カート"
+
+msgid "Category"
+msgstr "カテゴリー"
+
+msgid "Category badge on the image"
+msgstr "画像上のカテゴリーバッジ"
+
+msgid "Center"
+msgstr "中央"
+
+msgid "Centered title, then image"
+msgstr "中央揃えのタイトル、次に画像"
+
+msgid "Certificates"
+msgstr "資格"
+
+msgid "Certified in Thai therapeutic massage."
+msgstr "タイ古式セラピーマッサージの資格を保有。"
+
+msgid "Chat / Messenger"
+msgstr "チャット / Messenger"
+
+msgid "Child theme"
+msgstr "子テーマ"
+
+msgid "Chloe"
+msgstr "クロエ"
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "既成のデザインを選び、ページ上でテキスト・画像・色を変更します。"
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "開始点を選んでください。BIGSPY が未公開の下書きを作成してエディターを開くので、デザイン中も公開中のサイトはそのままです。"
+
+msgid "Choose a treatment and time by phone or chat."
+msgstr "電話またはチャットでメニューと時間をお選びください。"
+
+msgid "Choose the course for your goal, with evening and weekend classes for working adults."
+msgstr "目標に合ったコースを選べます。社会人向けに夜間・週末クラスもあります。"
+
+msgid "Choose this plan"
+msgstr "このプランを選ぶ"
+
+msgid "Choose your area"
+msgstr "エリアを選択"
+
+msgid "Choosing a course for your child"
+msgstr "お子様のコースの選び方"
+
+msgid "Choosing the right sunscreen"
+msgstr "日焼け止めの選び方"
+
+msgid "Classic (one large post per row)"
+msgstr "クラシック（1行に大きな投稿1件）"
+
+msgid "Clay pot fish"
+msgstr "魚の土鍋煮"
+
+msgid "Clean ingredients"
+msgstr "安心の食材"
+
+msgid "Clean up WordPress"
+msgstr "WordPress を整理"
+
+msgid "Clean, fragrant and quiet. Booking by chat is very quick."
+msgstr "清潔で良い香り、静かです。チャット予約もとても早いです。"
+
+msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
+msgstr "押し付けのない明確なアドバイス。銀行ローンも最初から最後まで対応してもらえました。"
+
+msgid "Clear legal status"
+msgstr "明確な権利関係"
+
+msgid "Clear tuition, plenty of offers"
+msgstr "明朗な料金、充実の特典"
+
+msgid "Clients"
+msgstr "お客様"
+
+msgid "Clinical acne care"
+msgstr "ニキビの医療ケア"
+
+msgid "Close menu"
+msgstr "メニューを閉じる"
+
+msgid "Close search"
+msgstr "検索を閉じる"
+
+msgid "Closed in 15 years"
+msgstr "15年間の成約"
+
+msgid "Coding basics"
+msgstr "プログラミングの基礎"
+
+msgid "Coffee ratio, water temperature and brewing time for a rich cup."
+msgstr "濃厚な一杯のためのコーヒー量、湯温、抽出時間。"
+
+msgid "Collect points and enjoy 10% off as a regular."
+msgstr "ポイントを貯めて、常連のお客様は10%オフ。"
+
+msgid "Colors & fonts"
+msgstr "色とフォント"

@@ -329,6 +329,9 @@ msgstr "Thêm layout"
 msgid "Add new layout"
 msgstr "Thêm layout mới"
 
+msgid "Add to cart"
+msgstr "Thêm vào giỏ"
+
 msgid "Add to page"
 msgstr "Thêm vào trang"
 
@@ -590,6 +593,9 @@ msgstr "Đặt lịch hẹn"
 msgid "Book by phone, chat or the website – our team confirms within 5 minutes."
 msgstr "Đặt bàn qua điện thoại, Zalo hoặc website – nhân viên xác nhận trong vòng 5 phút."
 
+msgid "Book now"
+msgstr "Đặt lịch"
+
 msgid "Book one day ahead to get your preferred time. Walk-ins are welcome when a room is free."
 msgstr "Nên đặt trước 1 ngày để chọn được giờ đẹp. Khách lẻ vẫn được phục vụ nếu còn phòng trống."
 
@@ -675,7 +681,7 @@ msgid "Call to action"
 msgstr "Kêu gọi hành động"
 
 msgid "Call us"
-msgstr "Gọi tư vấn"
+msgstr "Gọi ngay"
 
 msgid "Can I get an invoice?"
 msgstr "Có xuất hoá đơn VAT không?"
@@ -847,6 +853,9 @@ msgstr "Tư vấn viên"
 
 msgid "Consultants"
 msgstr "Chuyên viên"
+
+msgid "Contact"
+msgstr "Liên hệ"
 
 msgid "Contact for price"
 msgstr "Liên hệ để biết giá"
@@ -1085,6 +1094,9 @@ msgstr "Đầu bếp và quản lý giàu kinh nghiệm, luôn chăm chút từn
 msgid "Expert in herbal head spa rituals."
 msgstr "Am hiểu thảo dược gội đầu dưỡng sinh."
 
+msgid "Expert team"
+msgstr "Đội ngũ chuyên môn"
+
 msgid "FAQ"
 msgstr "Hỏi đáp"
 
@@ -1102,6 +1114,9 @@ msgstr "Rau củ từ trang trại riêng, thịt cá có nguồn gốc rõ ràn
 
 msgid "Fast delivery"
 msgstr "Giao hàng nhanh"
+
+msgid "Fast service"
+msgstr "Phục vụ nhanh"
 
 msgid "Featured badge"
 msgstr "Nhãn sản phẩm nổi bật"
@@ -1195,6 +1210,9 @@ msgstr "Bo góc khung (px, để trống = mặc định)"
 
 msgid "Free"
 msgstr "Miễn phí"
+
+msgid "Free advice"
+msgstr "Tư vấn miễn phí"
 
 msgid "Free consultation"
 msgstr "Tư vấn miễn phí"
@@ -1898,6 +1916,9 @@ msgstr "Mới"
 msgid "New badge"
 msgstr "Nhãn hàng mới"
 
+msgid "New collection"
+msgstr "Bộ sưu tập mới"
+
 msgid "New methods"
 msgstr "Phương pháp mới"
 
@@ -2071,6 +2092,9 @@ msgstr "Công thức riêng"
 
 msgid "Our promise"
 msgstr "Cam kết của chúng tôi"
+
+msgid "Our services"
+msgstr "Dịch vụ"
 
 msgid "Our spa"
 msgstr "Không gian spa"
@@ -2285,6 +2309,9 @@ msgstr "Lọc khách tiềm năng"
 msgid "Qualified, with many years of teaching experience."
 msgstr "Có bằng cấp chuyên môn và nhiều năm kinh nghiệm giảng dạy."
 
+msgid "Quality service you can count on"
+msgstr "Dịch vụ chất lượng, đáng tin cậy"
+
 msgid "Quick to the table"
 msgstr "Lên món nhanh"
 
@@ -2421,7 +2448,7 @@ msgid "Safe – Effective – Private"
 msgstr "An toàn – Hiệu quả – Riêng tư"
 
 msgid "Sale"
-msgstr "Giảm giá"
+msgstr "Khuyến mãi"
 
 msgid "Sale badge (use {percent} for the discount)"
 msgstr "Nhãn giảm giá (dùng {percent} để hiện % giảm)"
@@ -2529,7 +2556,7 @@ msgid "Sell with us"
 msgstr "Ký gửi bán"
 
 msgid "Services"
-msgstr "Gói dịch vụ"
+msgstr "Dịch vụ"
 
 msgid "Serving since 2012"
 msgstr "Phục vụ từ năm 2012"
@@ -2560,6 +2587,9 @@ msgstr "Cửa hàng"
 
 msgid "Shop & product categories"
 msgstr "Cửa hàng & danh mục sản phẩm"
+
+msgid "Shop now"
+msgstr "Mua ngay"
 
 msgid "Short description length (words)"
 msgstr "Độ dài mô tả ngắn (số từ)"
@@ -2792,6 +2822,9 @@ msgstr "Căn hộ studio"
 msgid "Study corner"
 msgstr "Góc học tập"
 
+msgid "Style for every day"
+msgstr "Phong cách mỗi ngày"
+
 msgid "Submit search"
 msgstr "Tìm"
 
@@ -2992,6 +3025,9 @@ msgstr "Trị liệu"
 
 msgid "Treatments"
 msgstr "Liệu trình"
+
+msgid "Trusted local service"
+msgstr "Dịch vụ uy tín"
 
 msgid "Try “hero”, “services” or “products”…"
 msgstr "Thử tìm “banner”, “dịch vụ” hoặc “sản phẩm”…"
