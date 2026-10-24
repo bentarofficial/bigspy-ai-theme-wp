@@ -70,6 +70,7 @@ function bst_defaults() {
 		'header_round_bottom'    => false,
 		'header_round_size'      => 16,
 		'fluid_gutter'           => 0,
+		'fullwidth_text_edge'    => 'header',
 		'header_sticky'          => true,
 		'header_sticky_height'   => 64,
 		'header_shadow'          => true,

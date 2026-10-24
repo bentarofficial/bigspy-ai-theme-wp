@@ -2110,6 +2110,7 @@ a.page-numbers:hover {
 }
 .bs-header-is-fluid { --bs-edge: var(--bs-gutter-fluid); }
 .bs-container--fluid { padding-left: var(--bs-gutter-fluid); padding-right: var(--bs-gutter-fluid); }
+@media (min-width: 550px) { .bs-header-is-fluid.bs-edge-container { --bs-edge: max(15px, calc((100% - var(--bs-container, 1200px)) / 2)); } }
 .alignfull .bs-banner__content, .bs-banner.alignfull .bs-banner__content, .bs-width-full .bs-banner__content, .bs-banner.bs-width-full .bs-banner__content,
 .bs-full-width > .bs-banner .bs-banner__content { padding-left: var(--bs-edge); padding-right: var(--bs-edge); }
 .bs-section--full .bs-section__inner { padding-left: var(--bs-edge); padding-right: var(--bs-edge); }

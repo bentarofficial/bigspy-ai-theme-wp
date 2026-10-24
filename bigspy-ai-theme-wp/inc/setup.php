@@ -72,6 +72,9 @@ function bst_body_classes( $classes ) {
 	$classes[] = 'bs-sidebar-' . bst_sidebar_position();
 	if ( bst_mod( 'header_full_width' ) ) {
 		$classes[] = 'bs-header-is-fluid';
+		if ( 'container' === bst_mod( 'fullwidth_text_edge' ) ) {
+			$classes[] = 'bs-edge-container';
+		}
 	}
 	if ( bst_header_is_transparent() && bst_show_header() ) {
 		$classes[] = 'bs-has-transparent-header';

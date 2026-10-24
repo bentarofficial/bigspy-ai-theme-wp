@@ -803,6 +803,9 @@ msgstr "Nhóm mẫu thiết kế"
 msgid "Desktop and mobile"
 msgstr "Máy tính và di động"
 
+msgid "Desktop and tablet. With a boxed header both are the same."
+msgstr "Áp dụng cho máy tính và máy tính bảng. Khi header không bật full width thì hai lựa chọn như nhau."
+
 msgid "Desktop only"
 msgstr "Chỉ máy tính"
 
@@ -2489,6 +2492,9 @@ msgstr "Nhà phố liền kề"
 msgid "Text alignment"
 msgstr "Căn chữ"
 
+msgid "Text in full-width banners, sliders and sections lines up with"
+msgstr "Chữ trong banner, slider và section toàn chiều rộng thẳng hàng với"
+
 msgid "Text over image"
 msgstr "Chữ đè lên ảnh"
 
@@ -2501,8 +2507,14 @@ msgstr "Thị trường căn hộ quý này"
 msgid "The best places to live"
 msgstr "Lựa chọn đáng sống nhất"
 
+msgid "The container width (page content)"
+msgstr "Container width (nội dung trang)"
+
 msgid "The hands that care for you"
 msgstr "Đôi bàn tay chăm sóc bạn"
+
+msgid "The header (logo) edge"
+msgstr "Mép header (logo)"
 
 msgid "The hot stone massage is amazing, like recharging my energy after a long week."
 msgstr "Massage đá nóng tuyệt vời, cảm giác như được nạp lại năng lượng sau tuần làm việc."

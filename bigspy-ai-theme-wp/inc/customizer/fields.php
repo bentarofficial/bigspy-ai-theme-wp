@@ -211,6 +211,7 @@ function bst_customizer_fields() {
 			// ---------------------------------------------------------------- Layout.
 			array( 'id' => 'site_layout', 'section' => 'bst_layout_site', 'type' => 'radio', 'label' => __( 'Site layout', 'bigspy-ai-theme-wp' ), 'choices' => array( 'full' => __( 'Full width', 'bigspy-ai-theme-wp' ), 'boxed' => __( 'Boxed', 'bigspy-ai-theme-wp' ) ) ),
 			array( 'id' => 'boxed_bg', 'section' => 'bst_layout_site', 'type' => 'color', 'label' => __( 'Outside background (boxed layout)', 'bigspy-ai-theme-wp' ) ),
+			array( 'id' => 'fullwidth_text_edge', 'section' => 'bst_layout_site', 'type' => 'select', 'label' => __( 'Text in full-width banners, sliders and sections lines up with', 'bigspy-ai-theme-wp' ), 'choices' => array( 'header' => __( 'The header (logo) edge', 'bigspy-ai-theme-wp' ), 'container' => __( 'The container width (page content)', 'bigspy-ai-theme-wp' ) ), 'description' => __( 'Desktop and tablet. With a boxed header both are the same.', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'container_width', 'section' => 'bst_layout_site', 'type' => 'number', 'label' => __( 'Container width (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 960, 1920, 10 ) ),
 			array( 'id' => 'sidebar_width', 'section' => 'bst_layout_site', 'type' => 'number', 'label' => __( 'Sidebar width (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 200, 480, 10 ) ),
 			array( 'id' => 'page_sidebar', 'section' => 'bst_layout_site', 'type' => 'select', 'label' => __( 'Default sidebar on pages', 'bigspy-ai-theme-wp' ), 'choices' => $sidebar ),
