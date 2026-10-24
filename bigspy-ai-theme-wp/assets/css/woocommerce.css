@@ -1210,3 +1210,20 @@ ul.products.bs-slider__track {
 .bs-cart__icon { position: relative; display: inline-flex; }
 .bs-cart__icon .bs-cart__count { top: -8px; right: -10px; }
 .bs-he-icon--rd-fill .bs-cart__icon .bs-cart__count, .bs-he-icon--rd-outline .bs-cart__icon .bs-cart__count, .bs-he-icon--rd-soft .bs-cart__icon .bs-cart__count, .bs-he-icon--rd-card .bs-cart__icon .bs-cart__count, .bs-he-icon--rd-gradient .bs-cart__icon .bs-cart__count, .bs-he-icon--rd-glass .bs-cart__icon .bs-cart__count, .bs-he-icon--rd-ring .bs-cart__icon .bs-cart__count, .bs-he-icon--outline-sq .bs-cart__icon .bs-cart__count, .bs-he-icon--soft-sq .bs-cart__icon .bs-cart__count, .bs-he-icon--circle .bs-cart__icon .bs-cart__count, .bs-he-icon--square .bs-cart__icon .bs-cart__count, .bs-he-icon--outline .bs-cart__icon .bs-cart__count, .bs-he-icon--soft .bs-cart__icon .bs-cart__count { top: -4px; right: -6px; }
+
+/* ---- Shop / product options (inc/shop-options.php) ---- */
+.bs-shop-align--center .bs-product__body { text-align: center; align-items: center; }
+.bs-shop-align--right .bs-product__body { text-align: right; align-items: flex-end; }
+.bs-shop-align--center .bs-product__rating, .bs-shop-align--center .bs-product__actions { justify-content: center; }
+.bs-shop-align--right .bs-product__rating, .bs-shop-align--right .bs-product__actions { justify-content: flex-end; }
+.bs-product__desc { margin: 4px 0 8px; color: var(--bs-text-light, #6b7280); font-size: .9em; line-height: 1.5; }
+.bs-shop-oos--fade li.bs-product.outofstock { opacity: .6; }
+.bs-shop-oos--gray li.bs-product.outofstock .bs-product__img { filter: grayscale(1); }
+.bs-product-note { margin: -4px 0 14px; color: var(--bs-success, #15803d); font-size: .92em; font-weight: 500; }
+.bs-product-nav { float: right; display: flex; gap: 6px; margin: 0 0 8px 12px; }
+.bs-product-nav a { display: inline-grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--bs-border); border-radius: 8px; color: inherit; }
+.bs-product-nav a:hover { border-color: var(--bs-primary); color: var(--bs-primary); }
+.bs-share--product { margin-top: 18px; }
+.bs-product-summary--center.woocommerce div.product div.summary { text-align: center; }
+.bs-product-summary--center.woocommerce div.product form.cart, .bs-product-summary--center.woocommerce div.product .bs-share--product { justify-content: center; }
+.bs-product-tabs--center.woocommerce div.product .woocommerce-tabs ul.tabs { text-align: center; justify-content: center; }

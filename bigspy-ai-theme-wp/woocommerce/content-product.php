@@ -84,13 +84,18 @@ if ( bst_mod( 'product_show_category' ) ) {
 		<h2 class="woocommerce-loop-product__title bs-product__title"><a href="<?php echo esc_url( $bst_link ); ?>"><?php echo esc_html( $bst_title ); ?></a></h2>
 		<?php echo function_exists( 'bst_archive_product_swatches_html' ) ? bst_archive_product_swatches_html( $product ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-		<?php if ( wc_review_ratings_enabled() && $product->get_rating_count() ) : ?>
+		<?php if ( wc_review_ratings_enabled() && bst_mod( 'shop_show_rating' ) && ( $product->get_rating_count() || bst_mod( 'shop_empty_rating' ) ) ) : ?>
 			<div class="bs-product__rating">
-				<?php echo wc_get_rating_html( $product->get_average_rating() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo $product->get_rating_count() ? wc_get_rating_html( $product->get_average_rating() ) : '<div class="star-rating bs-star-empty" role="img" aria-label="' . esc_attr__( 'No reviews yet', 'bigspy-ai-theme-wp' ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span class="bs-product__reviews">(<?php echo (int) $product->get_review_count(); ?>)</span>
 			</div>
 		<?php endif; ?>
 
+		<?php
+		if ( bst_mod( 'shop_short_desc' ) && $product->get_short_description() ) {
+			echo '<p class="bs-product__desc">' . esc_html( wp_trim_words( wp_strip_all_tags( $product->get_short_description() ), max( 5, (int) bst_mod( 'shop_short_desc_words' ) ) ) ) . '</p>';
+		}
+		?>
 		<?php if ( ! $bst_catalog ) : ?>
 			<?php $bst_price = $product->get_price_html(); ?>
 			<?php if ( $bst_price ) : ?>

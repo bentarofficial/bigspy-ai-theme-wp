@@ -111,7 +111,9 @@ add_filter( 'woocommerce_show_page_title', '__return_false' );
 
 function bst_wc_archive_header() {
 	if ( is_product() ) {
-		bst_breadcrumbs();
+		if ( bst_mod( 'product_breadcrumb' ) ) {
+			bst_breadcrumbs();
+		}
 		return;
 	}
 	bst_simple_title();

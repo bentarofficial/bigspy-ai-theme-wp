@@ -398,6 +398,18 @@ msgstr "Về trang chủ"
 msgid "Back to top"
 msgstr "Lên đầu trang"
 
+msgid "Badge and faded card"
+msgstr "Nhãn và làm mờ thẻ"
+
+msgid "Badge and grayscale image"
+msgstr "Nhãn và ảnh đen trắng"
+
+msgid "Badge only"
+msgstr "Chỉ hiện nhãn"
+
+msgid "Badge texts (empty = default)"
+msgstr "Chữ trên nhãn (để trống = mặc định)"
+
 msgid "Band score guarantee"
 msgstr "Cam kết band điểm"
 
@@ -569,6 +581,9 @@ msgstr "Bo góc thẻ (px, -1 = mặc định)"
 msgid "Card details"
 msgstr "Chi tiết thẻ bài viết"
 
+msgid "Card inner space (px, -1 = default)"
+msgstr "Khoảng đệm trong thẻ (px, -1 = mặc định)"
+
 msgid "Caring service"
 msgstr "Phục vụ tận tâm"
 
@@ -673,6 +688,9 @@ msgstr "Tỷ lệ cà phê, nhiệt độ nước và thời gian ủ để có 
 
 msgid "Collect points and enjoy 10% off as a regular."
 msgstr "Tích điểm đổi quà, giảm 10% cho khách thân thiết."
+
+msgid "Colors & spacing"
+msgstr "Màu sắc & khoảng cách"
 
 msgid "Columns"
 msgstr "Số cột"
@@ -895,6 +913,9 @@ msgstr "Rau củ từ trang trại riêng, thịt cá có nguồn gốc rõ ràn
 
 msgid "Fast delivery"
 msgstr "Giao hàng nhanh"
+
+msgid "Featured badge"
+msgstr "Nhãn sản phẩm nổi bật"
 
 msgid "Featured categories"
 msgstr "Danh mục nổi bật"
@@ -1238,6 +1259,9 @@ msgstr "Giảng viên tin học"
 msgid "Icon style"
 msgstr "Kiểu icon"
 
+msgid "Image column width"
+msgstr "Độ rộng cột ảnh"
+
 msgid "Image, then title"
 msgstr "Ảnh trước, rồi đến tiêu đề"
 
@@ -1523,6 +1547,9 @@ msgstr "Báo cáo tiến độ hằng tháng"
 msgid "More posts"
 msgstr "Cách xem thêm bài"
 
+msgid "More products"
+msgstr "Sản phẩm khác"
+
 msgid "More than 2,300 guest reviews"
 msgstr "Hơn 2.300 đánh giá từ thực khách"
 
@@ -1610,6 +1637,9 @@ msgstr "Không để khách chờ quá 5 phút."
 msgid "New"
 msgstr "Mới"
 
+msgid "New badge"
+msgstr "Nhãn hàng mới"
+
 msgid "New methods"
 msgstr "Phương pháp mới"
 
@@ -1640,6 +1670,9 @@ msgstr "Chưa có sản phẩm."
 msgid "No results found."
 msgstr "Không tìm thấy kết quả."
 
+msgid "No reviews yet"
+msgstr "Chưa có đánh giá"
+
 msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
 msgstr "Chưa có mẫu đã lưu. Trong trình soạn thảo, mở tùy chọn của block và chọn Tạo mẫu để lưu thiết kế tại đây."
 
@@ -1657,6 +1690,9 @@ msgstr "Không có kết quả phù hợp. Vui lòng thử từ khóa khác."
 
 msgid "Number of posts"
 msgstr "Số bài"
+
+msgid "Number of related products (0 = one row)"
+msgstr "Số sản phẩm liên quan (0 = một hàng)"
 
 msgid "Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title."
 msgstr "Tắt: trang không tự in tiêu đề, bạn tự đặt H1 bằng khối Tiêu đề. Bài viết, chuyên mục và cửa hàng vẫn hiện tiêu đề."
@@ -1717,6 +1753,9 @@ msgstr "Rất tiếc! Không tìm thấy trang này."
 
 msgid "Open every day"
 msgstr "Mở cửa cả tuần"
+
+msgid "Open images in a lightbox"
+msgstr "Mở ảnh dạng lightbox"
 
 msgid "Open link"
 msgstr "Mở liên kết"
@@ -1883,8 +1922,14 @@ msgstr "Xem thử hiệu ứng"
 msgid "Previous"
 msgstr "Trước"
 
+msgid "Previous / next product links"
+msgstr "Nút sản phẩm trước / sau"
+
 msgid "Price and growth reports for every area."
 msgstr "Báo cáo giá và tiềm năng từng khu vực."
+
+msgid "Price color"
+msgstr "Màu giá"
 
 msgid "Prices"
 msgstr "Bảng giá"
@@ -1906,6 +1951,15 @@ msgstr "Phòng riêng cho tiệc"
 
 msgid "Private treatment rooms"
 msgstr "Phòng trị liệu riêng tư"
+
+msgid "Product cards"
+msgstr "Thẻ sản phẩm"
+
+msgid "Product name size (px, 0 = default)"
+msgstr "Cỡ tên sản phẩm (px, 0 = mặc định)"
+
+msgid "Product page layout"
+msgstr "Bố cục trang sản phẩm"
 
 msgid "Progress tracking"
 msgstr "Theo dõi tiến độ"
@@ -1985,8 +2039,14 @@ msgstr "Khách quen 3 năm"
 msgid "Regular tests and a completion certificate."
 msgstr "Kiểm tra định kỳ và cấp chứng nhận hoàn thành."
 
+msgid "Related & upsell products"
+msgstr "Sản phẩm liên quan & bán kèm"
+
 msgid "Related posts"
 msgstr "Bài viết liên quan"
+
+msgid "Related products heading (empty = default)"
+msgstr "Tiêu đề sản phẩm liên quan (để trống = mặc định)"
 
 msgid "Relax completely, glow from within"
 msgstr "Thư giãn trọn vẹn, đẹp rạng rỡ từ bên trong"
@@ -2024,6 +2084,9 @@ msgstr "Cam kết đầu ra"
 msgid "Review & certificate"
 msgstr "Đánh giá & cấp chứng nhận"
 
+msgid "Right"
+msgstr "Phải"
+
 msgid "Rounded – filled"
 msgstr "Bo góc – nền đặc"
 
@@ -2059,6 +2122,9 @@ msgstr "An toàn – Hiệu quả – Riêng tư"
 
 msgid "Sale"
 msgstr "Giảm giá"
+
+msgid "Sale badge (use {percent} for the discount)"
+msgstr "Nhãn giảm giá (dùng {percent} để hiện % giảm)"
 
 msgid "Sales director"
 msgstr "Giám đốc kinh doanh"
@@ -2168,11 +2234,23 @@ msgstr "Chia sẻ:"
 msgid "Shop"
 msgstr "Cửa hàng"
 
+msgid "Short description length (words)"
+msgstr "Độ dài mô tả ngắn (số từ)"
+
 msgid "Show %s"
 msgstr "Hiện %s"
 
+msgid "Show SKU, categories and tags"
+msgstr "Hiện mã SKU, danh mục và thẻ"
+
+msgid "Show breadcrumbs"
+msgstr "Hiện breadcrumb"
+
 msgid "Show comments"
 msgstr "Hiện bình luận"
+
+msgid "Show empty stars when there are no reviews"
+msgstr "Hiện sao rỗng khi chưa có đánh giá"
 
 msgid "Show it from this many headings"
 msgstr "Hiện khi có từ số tiêu đề này"
@@ -2183,6 +2261,27 @@ msgstr "Hiển thị màn hình bảo trì cho khách"
 msgid "Show meta (choose items below)"
 msgstr "Hiện thông tin bài (chọn mục bên dưới)"
 
+msgid "Show product count on category boxes"
+msgstr "Hiện số sản phẩm trên ô danh mục"
+
+msgid "Show related products"
+msgstr "Hiện sản phẩm liên quan"
+
+msgid "Show result count"
+msgstr "Hiện số kết quả"
+
+msgid "Show share buttons"
+msgstr "Hiện nút chia sẻ"
+
+msgid "Show short description"
+msgstr "Hiện mô tả ngắn"
+
+msgid "Show sorting dropdown"
+msgstr "Hiện ô sắp xếp"
+
+msgid "Show star rating"
+msgstr "Hiện sao đánh giá"
+
 msgid "Show tags"
 msgstr "Hiện thẻ (tag)"
 
@@ -2191,6 +2290,9 @@ msgstr "Hiện banner trên"
 
 msgid "Show the page name as H1 on pages"
 msgstr "Dùng tên trang làm thẻ H1 trên các trang"
+
+msgid "Show upsell products"
+msgstr "Hiện sản phẩm bán kèm"
 
 msgid "Shown above the top bar, always full width. HTML, CSS, JavaScript, animations: anything works. Leave empty to hide."
 msgstr "Hiện phía trên Top bar, luôn rộng hết màn hình. Nhận mọi loại code: HTML, CSS, JavaScript, hiệu ứng chuyển động. Để trống để ẩn."
@@ -2270,6 +2372,12 @@ msgstr "Kỹ sư phần mềm, 6 năm giảng dạy."
 msgid "Sold out"
 msgstr "Hết hàng"
 
+msgid "Sold-out badge"
+msgstr "Nhãn hết hàng"
+
+msgid "Sold-out products"
+msgstr "Sản phẩm hết hàng"
+
 msgid "Sophie Bennett"
 msgstr "Lê Thu Hằng"
 
@@ -2333,11 +2441,17 @@ msgstr "Giao dịch thành công"
 msgid "Sum up what makes you stand out in one or two sentences."
 msgstr "Giới thiệu ngắn gọn giá trị nổi bật của bạn trong một hoặc hai câu."
 
+msgid "Summary text alignment"
+msgstr "Căn chữ phần thông tin"
+
 msgid "TESOL certified, 8 years of teaching."
 msgstr "Chứng chỉ TESOL, 8 năm tại Việt Nam."
 
 msgid "Table of contents (from H2 / H3)"
 msgstr "Mục lục tự động (từ H2 / H3)"
+
+msgid "Tabs alignment"
+msgstr "Căn các tab"
 
 msgid "Take an afternoon for yourself"
 msgstr "Dành một buổi chiều cho chính bạn"
@@ -2371,6 +2485,9 @@ msgstr "Căn chữ"
 
 msgid "Text over image"
 msgstr "Chữ đè lên ảnh"
+
+msgid "Text under the price (e.g. Free shipping over $50)"
+msgstr "Dòng chữ dưới giá (vd: Miễn phí giao hàng từ 500.000đ)"
 
 msgid "The apartment market this quarter"
 msgstr "Thị trường căn hộ quý này"
@@ -2452,6 +2569,9 @@ msgstr "Hôm nay, nhà hàng có hơn 120 chỗ ngồi, 3 phòng riêng và đ�
 
 msgid "Tom"
 msgstr "Anh Tuấn"
+
+msgid "Toolbar above products"
+msgstr "Thanh công cụ trên danh sách sản phẩm"
 
 msgid "Tools sterilised after every guest"
 msgstr "Dụng cụ tiệt trùng mỗi lượt"
@@ -2612,6 +2732,24 @@ msgstr "Vì sao khách hàng chọn chúng tôi"
 msgid "Why guests come back"
 msgstr "Vì sao thực khách quay lại"
 
+msgid "Widget background"
+msgstr "Nền widget"
+
+msgid "Widget corner radius (px, -1 = style default)"
+msgstr "Bo góc widget (px, -1 = theo kiểu)"
+
+msgid "Widget inner space (px, -1 = style default)"
+msgstr "Khoảng đệm trong widget (px, -1 = theo kiểu)"
+
+msgid "Widget link color"
+msgstr "Màu liên kết trong widget"
+
+msgid "Widget title color"
+msgstr "Màu tiêu đề widget"
+
+msgid "Widget title size (px, 0 = default)"
+msgstr "Cỡ tiêu đề widget (px, 0 = mặc định)"
+
 msgid "With you on the road to your new home"
 msgstr "Đồng hành cùng bạn trên hành trình an cư"
 
@@ -2677,6 +2815,9 @@ msgstr "Danh sách so le (ảnh trái / phải)"
 
 msgid "Zoom image"
 msgstr "Phóng to ảnh"
+
+msgid "Zoom image on hover"
+msgstr "Phóng to ảnh khi rê chuột"
 
 msgid "admissions@academy.edu"
 msgstr "tuyensinh@trungtam.edu.vn"
