@@ -164,6 +164,9 @@ msgstr "4.9/5 từ hơn 1.200 đánh giá"
 msgid "40+ experienced teachers"
 msgstr "40+ giáo viên giàu kinh nghiệm"
 
+msgid "404 & maintenance"
+msgstr "404 & bảo trì"
+
 msgid "45 College Road, City Centre"
 msgstr "45 Trần Hưng Đạo, Quận 5, TP.HCM"
 
@@ -272,6 +275,9 @@ msgstr "Không gian xanh để bạn thật sự nghỉ ngơi"
 msgid "A kitchen certified for hygiene and food safety."
 msgstr "Bếp đạt chứng nhận vệ sinh an toàn thực phẩm."
 
+msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
+msgstr "Kiểm tra nhanh máy chủ và cài đặt WordPress. Mục có dấu ! đang thấp hơn mức khuyến nghị."
+
 msgid "A reusable design saved in WordPress."
 msgstr "Mẫu có thể tái sử dụng đã lưu trong WordPress."
 
@@ -305,8 +311,14 @@ msgstr "Kế toán"
 msgid "Active dot fills up"
 msgstr "Chấm đang chọn đầy dần"
 
+msgid "Active plugins"
+msgstr "Plugin đang bật"
+
 msgid "Activities"
 msgstr "Hoạt động"
+
+msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
+msgstr "Thêm trang và chèn khối BIGSPY hoặc mẫu trang có sẵn."
 
 msgid "Add to page"
 msgstr "Thêm vào trang"
@@ -319,6 +331,9 @@ msgstr "Đã thêm vào trang. Bạn có thể sửa nội dung và hình ảnh 
 
 msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
 msgstr "Thêm mẫu không xuất bản trang. Hãy xem trước, rồi lưu nháp hoặc xuất bản khi đã hoàn tất."
+
+msgid "Additional CSS"
+msgstr "CSS bổ sung"
 
 msgid "Address"
 msgstr "Địa chỉ"
@@ -362,6 +377,9 @@ msgstr "Luôn lắng nghe để chọn liệu trình phù hợp."
 msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
 msgstr "Trang giới thiệu tác giả hoặc hồ sơ công khai (LinkedIn, Facebook…)."
 
+msgid "Analytics and pixel code, performance tweaks, 404 and maintenance pages."
+msgstr "Mã Analytics, Pixel, tối ưu tốc độ, trang 404 và bảo trì."
+
 msgid "And still growing"
 msgstr "Và con số vẫn tăng"
 
@@ -379,6 +397,9 @@ msgstr "Áp dụng kiến thức vào tình huống thực tế."
 
 msgid "Arabica beans roasted every week, brewed as filter or espresso."
 msgstr "Hạt Arabica Cầu Đất rang mộc mỗi tuần, pha phin hoặc espresso tuỳ thích."
+
+msgid "Archive layouts, cards, table of contents, author box, related posts."
+msgstr "Bố cục trang tin, thẻ bài, mục lục, hộp tác giả, bài liên quan."
 
 msgid "Arrive on time – your table and dishes are ready."
 msgstr "Đến đúng giờ, bàn và món đã sẵn sàng phục vụ."
@@ -482,8 +503,14 @@ msgstr "Sinh nhật, liên hoan, hội nghị"
 msgid "Black pepper beef"
 msgstr "Bò sốt tiêu đen"
 
+msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
+msgstr "Chặn một điểm hay bị dò mật khẩu. Để tắt nếu bạn dùng ứng dụng WordPress trên điện thoại hoặc Jetpack."
+
 msgid "Blog"
 msgstr "Tin tức"
+
+msgid "Blog & single post"
+msgstr "Blog & bài viết"
 
 msgid "Body care"
 msgstr "Chăm sóc body"
@@ -530,6 +557,9 @@ msgstr "Có viền"
 msgid "Bottom corner radius (px)"
 msgstr "Độ bo góc dưới (px)"
 
+msgid "Brand colors, palettes, typography and button styles."
+msgstr "Màu thương hiệu, bảng màu, kiểu chữ và kiểu nút."
+
 msgid "Brand line on the left"
 msgstr "Vạch màu thương hiệu bên trái"
 
@@ -550,6 +580,9 @@ msgstr "Thiết kế một trang bằng block và xuất bản. Nội dung hiể
 
 msgid "Build from scratch"
 msgstr "Tự dựng từ đầu"
+
+msgid "Build pages with blocks"
+msgstr "Dựng trang bằng khối"
 
 msgid "Business homepage"
 msgstr "Trang chủ doanh nghiệp"
@@ -656,6 +689,9 @@ msgstr "Chứng chỉ massage trị liệu Thái Lan."
 msgid "Chat / Messenger"
 msgstr "Zalo / Messenger"
 
+msgid "Child theme"
+msgstr "Theme con"
+
 msgid "Chloe"
 msgstr "Hoài Thương"
 
@@ -692,6 +728,9 @@ msgstr "Cơm niêu cá kho"
 msgid "Clean ingredients"
 msgstr "Nguyên liệu sạch"
 
+msgid "Clean up WordPress"
+msgstr "Dọn dẹp WordPress"
+
 msgid "Clean, fragrant and quiet. Booking by chat is very quick."
 msgstr "Không gian sạch sẽ, thơm và yên tĩnh. Đặt lịch qua Zalo rất nhanh."
 
@@ -727,6 +766,9 @@ msgstr "Tỷ lệ cà phê, nhiệt độ nước và thời gian ủ để có 
 
 msgid "Collect points and enjoy 10% off as a regular."
 msgstr "Tích điểm đổi quà, giảm 10% cho khách thân thiết."
+
+msgid "Colors & fonts"
+msgstr "Màu sắc & phông chữ"
 
 msgid "Colors & spacing"
 msgstr "Màu sắc & khoảng cách"
@@ -770,6 +812,9 @@ msgstr "Chiều rộng nội dung (px, 0 = toàn bộ)"
 msgid "Contents"
 msgstr "Mục lục"
 
+msgid "Cookie notice & reading"
+msgstr "Thông báo cookie & đọc bài"
+
 msgid "Copied!"
 msgstr "Đã sao chép!"
 
@@ -797,6 +842,9 @@ msgstr "Khoá học"
 msgid "Create draft and open editor"
 msgstr "Tạo bản nháp và mở trình soạn thảo"
 
+msgid "Custom CSS"
+msgstr "CSS tùy chỉnh"
+
 msgid "Custom fields left empty fall back to the writer’s profile."
 msgstr "Ô nào để trống sẽ lấy từ hồ sơ người viết."
 
@@ -809,17 +857,26 @@ msgstr "Cảm nhận khách hàng"
 msgid "Customers"
 msgstr "Khách hàng"
 
+msgid "Customize"
+msgstr "Tùy biến"
+
 msgid "DESIGN YOUR WEBSITE"
 msgstr "THIẾT KẾ WEBSITE CỦA BẠN"
 
 msgid "Daniel Carter"
 msgstr "Trần Minh Đức"
 
+msgid "Database"
+msgstr "Cơ sở dữ liệu"
+
 msgid "Date"
 msgstr "Ngày đăng"
 
 msgid "Date badge on the image"
 msgstr "Nhãn ngày trên ảnh"
+
+msgid "Debug mode"
+msgstr "Chế độ gỡ lỗi"
 
 msgid "Dedicated teachers"
 msgstr "Đội ngũ giáo viên tận tâm"
@@ -857,6 +914,12 @@ msgstr "Phân tích dự án chi tiết, minh bạch về pháp lý. Rất đán
 msgid "Details →"
 msgstr "Xem chi tiết →"
 
+msgid "Disable XML-RPC"
+msgstr "Tắt XML-RPC"
+
+msgid "Disable oEmbed scripts"
+msgstr "Tắt script oEmbed"
+
 msgid "Dishes on the menu"
 msgstr "Món trong thực đơn"
 
@@ -865,6 +928,9 @@ msgstr "Cam kết lên món trong 15 phút giờ cao điểm."
 
 msgid "Do I need to book a table?"
 msgstr "Có cần đặt bàn trước không?"
+
+msgid "Do not load Dashicons for visitors who are not logged in"
+msgstr "Không tải Dashicons cho khách chưa đăng nhập"
 
 msgid "Do packages expire?"
 msgstr "Gói liệu trình có thời hạn không?"
@@ -886,6 +952,9 @@ msgstr "Ba chấm"
 
 msgid "Dots (vertical)"
 msgstr "Ba chấm dọc"
+
+msgid "Drag elements in the header builder, set the logo, menus and buttons."
+msgstr "Kéo thả phần tử trong trình tạo header, đặt logo, menu và nút."
 
 msgid "Duplicate"
 msgstr "Nhân bản"
@@ -1015,6 +1084,12 @@ msgstr "Tầng 12, 68 Lê Duẩn, Quận 1, TP.HCM"
 
 msgid "Food safety"
 msgstr "An toàn thực phẩm"
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Footer columns, a footer built with blocks, copyright and floating contact buttons."
+msgstr "Cột footer, footer dựng bằng khối, bản quyền và nút liên hệ nổi."
 
 msgid "For ages 5–11"
 msgstr "Dành cho bé 5–11 tuổi"
@@ -1181,6 +1256,9 @@ msgstr "Tiềm năng tăng giá"
 msgid "Guests a year"
 msgstr "Thực khách mỗi năm"
 
+msgid "HTTPS"
+msgstr "HTTPS"
+
 msgid "Hair care"
 msgstr "Chăm sóc tóc"
 
@@ -1202,6 +1280,12 @@ msgstr "Đầu bếp chính 12 năm kinh nghiệm"
 msgid "Head of IELTS"
 msgstr "Trưởng bộ môn IELTS"
 
+msgid "Header & menu"
+msgstr "Header & menu"
+
+msgid "Header builder"
+msgstr "Trình tạo header"
+
 msgid "Header style"
 msgstr "Kiểu phần đầu bài viết"
 
@@ -1210,6 +1294,9 @@ msgstr "Tiêu đề (để trống = “Bài viết liên quan”)"
 
 msgid "Helen"
 msgstr "Chị Hạnh"
+
+msgid "Help & guides"
+msgstr "Trợ giúp & hướng dẫn"
 
 msgid "Help renting out or reselling later."
 msgstr "Hỗ trợ cho thuê, bán lại khi cần."
@@ -1228,6 +1315,12 @@ msgstr "Trà thảo mộc sau liệu trình"
 
 msgid "Hidden"
 msgstr "Ẩn"
+
+msgid "Hidden automatically after at most 3 seconds."
+msgstr "Tự ẩn sau tối đa 3 giây."
+
+msgid "Hide the WordPress version from the page source"
+msgstr "Ẩn phiên bản WordPress trong mã nguồn trang"
 
 msgid "Highlight menu links to page sections"
 msgstr "Đánh dấu menu theo phần đang xem"
@@ -1484,6 +1577,9 @@ msgstr "Tải thêm bài viết"
 msgid "Load while scrolling"
 msgstr "Tự tải khi cuộn"
 
+msgid "Loader color (empty = primary color)"
+msgstr "Màu vòng tải (để trống = màu chính)"
+
 msgid "Loading…"
 msgstr "Đang tải…"
 
@@ -1555,6 +1651,12 @@ msgstr "Tối đa 12 học viên"
 
 msgid "Max 12 students per class"
 msgstr "Lớp tối đa 12 học viên"
+
+msgid "Max execution time"
+msgstr "Thời gian chạy tối đa"
+
+msgid "Max upload size"
+msgstr "Dung lượng tải lên tối đa"
 
 msgid "Member card with 20% off"
 msgstr "Thẻ thành viên ưu đãi 20%"
@@ -1709,6 +1811,9 @@ msgstr "Tin tức & chia sẻ"
 msgid "Next"
 msgstr "Tiếp"
 
+msgid "No"
+msgstr "Không"
+
 msgid "No corticoids, no harsh chemicals."
 msgstr "Không corticoid, không chất tẩy mạnh."
 
@@ -1735,6 +1840,12 @@ msgstr "Chưa có mẫu đã lưu. Trong trình soạn thảo, mở tùy chọn 
 
 msgid "None"
 msgstr "Không"
+
+msgid "Not active"
+msgstr "Chưa bật"
+
+msgid "Not used"
+msgstr "Không dùng"
 
 msgid "Notary and transfer"
 msgstr "Công chứng, sang tên"
@@ -1768,6 +1879,9 @@ msgstr "Liên kết bài cũ / mới hơn"
 
 msgid "Olivia Brooks"
 msgstr "Lê Hoài An"
+
+msgid "On"
+msgstr "Bật"
 
 msgid "On every treatment this month"
 msgstr "Áp dụng cho mọi liệu trình trong tháng"
@@ -1936,6 +2050,9 @@ msgstr "Trà đào cam sả, trà vải hoa hồng mát lạnh cho ngày nắng.
 
 msgid "Perfect for a first visit"
 msgstr "Phù hợp lần đầu trải nghiệm"
+
+msgid "Performance"
+msgstr "Tốc độ"
 
 msgid "Permits, zoning and progress verified."
 msgstr "Kiểm tra giấy phép, quy hoạch, tiến độ."
@@ -2126,6 +2243,9 @@ msgstr "Gói thư giãn"
 msgid "Remember vocabulary for longer"
 msgstr "Mẹo nhớ từ vựng lâu"
 
+msgid "Removes wp-embed. Pasted YouTube links still work through blocks."
+msgstr "Bỏ wp-embed. Link YouTube dán vào vẫn hiển thị qua khối."
+
 msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
 msgstr "Thay nội dung và hình ảnh mẫu, chỉnh bố cục, xem trước trang rồi xuất bản khi đã sẵn sàng."
 
@@ -2216,11 +2336,20 @@ msgstr "Hài lòng"
 msgid "Sauces and spice blends made by the head chef."
 msgstr "Nước sốt và gia vị được bếp trưởng tự pha chế."
 
+msgid "Save changes"
+msgstr "Lưu thay đổi"
+
 msgid "Saved designs"
 msgstr "Mẫu đã lưu"
 
 msgid "Scores and feedback after every lesson."
 msgstr "Bảng điểm và nhận xét sau mỗi buổi."
+
+msgid "Scripts & code"
+msgstr "Script & mã"
+
+msgid "Scripts, speed & maintenance"
+msgstr "Script, tốc độ & bảo trì"
 
 msgid "Seafood hot pot"
 msgstr "Lẩu hải sản"
@@ -2300,6 +2429,9 @@ msgstr "Thực đơn trọn gói cho mọi dịp"
 msgid "Set your budget, area and type of home."
 msgstr "Xác định ngân sách, vị trí và loại hình phù hợp."
 
+msgid "Settings saved."
+msgstr "Đã lưu cài đặt."
+
 msgid "Share:"
 msgstr "Chia sẻ:"
 
@@ -2314,6 +2446,9 @@ msgstr "Hiện %s"
 
 msgid "Show SKU, categories and tags"
 msgstr "Hiện mã SKU, danh mục và thẻ"
+
+msgid "Show a loading screen until the page is ready"
+msgstr "Hiện màn hình chờ đến khi trang tải xong"
 
 msgid "Show author information"
 msgstr "Hiện thông tin tác giả"
@@ -2393,8 +2528,17 @@ msgstr "Từ năm 2014"
 msgid "Since 2015"
 msgstr "Từ năm 2015"
 
+msgid "Site language"
+msgstr "Ngôn ngữ trang"
+
+msgid "Site loader"
+msgstr "Màn hình chờ"
+
 msgid "Site tools: 404 & maintenance"
 msgstr "Công cụ website: 404 & bảo trì"
+
+msgid "Site-wide settings that do not need a live preview. They are the same settings as in Appearance → Customize → Advanced."
+msgstr "Cài đặt chung không cần xem trước trực tiếp. Đây cũng chính là các cài đặt trong Giao diện → Tùy biến → Nâng cao."
 
 msgid "Skin analysis"
 msgstr "Soi da & tư vấn"
@@ -2459,6 +2603,9 @@ msgstr "Sản phẩm hết hàng"
 msgid "Sophie Bennett"
 msgstr "Lê Thu Hằng"
 
+msgid "Sorry, you are not allowed to change theme options."
+msgstr "Bạn không có quyền thay đổi cài đặt theme."
+
 msgid "Sorry, you are not allowed to create pages."
 msgstr "Bạn không có quyền tạo trang."
 
@@ -2498,11 +2645,17 @@ msgstr "Lấy nhân mụn vô khuẩn, điện di dưỡng chất làm dịu da.
 msgid "Still have questions? Call us for a free learning-path consultation."
 msgstr "Còn thắc mắc? Gọi hotline để được tư vấn lộ trình miễn phí."
 
+msgid "Stop self-pingbacks (links to your own posts)"
+msgstr "Chặn tự pingback (link tới bài của chính bạn)"
+
 msgid "Stories from the kitchen"
 msgstr "Câu chuyện từ căn bếp"
 
 msgid "Students"
 msgstr "Học viên"
+
+msgid "Studio"
+msgstr "Studio"
 
 msgid "Studio apartment"
 msgstr "Căn hộ studio"
@@ -2521,6 +2674,9 @@ msgstr "Giới thiệu ngắn gọn giá trị nổi bật của bạn trong m�
 
 msgid "Summary text alignment"
 msgstr "Căn chữ phần thông tin"
+
+msgid "System status"
+msgstr "Trạng thái hệ thống"
 
 msgid "TESOL certified, 8 years of teaching."
 msgstr "Chứng chỉ TESOL, 8 năm tại Việt Nam."
@@ -2603,6 +2759,12 @@ msgstr "Những người đứng sau món ngon"
 msgid "The selected BIGSPY starter pattern could not be found."
 msgstr "Không tìm thấy mẫu trang BIGSPY đã chọn."
 
+msgid "Theme"
+msgstr "Theme"
+
+msgid "Theme Options"
+msgstr "Cài đặt theme"
+
 msgid "Themed decoration"
 msgstr "Trang trí theo chủ đề"
 
@@ -2638,6 +2800,9 @@ msgstr "Ba gạch"
 
 msgid "Timer (time until next slide)"
 msgstr "Bộ đếm thời gian (đến slide tiếp theo)"
+
+msgid "Timezone"
+msgstr "Múi giờ"
 
 msgid "Tiramisu, passion fruit cheesecake and mousse, made fresh every morning."
 msgstr "Tiramisu, cheesecake chanh dây và bánh mousse làm mới mỗi sáng."
@@ -2711,8 +2876,14 @@ msgstr "Hai gạch"
 msgid "Two tea breaks"
 msgstr "Tea-break 2 buổi"
 
+msgid "UX Blocks"
+msgstr "UX Blocks"
+
 msgid "Under our guarantee"
 msgstr "Theo cam kết đầu ra"
+
+msgid "Unknown options tab."
+msgstr "Không tìm thấy thẻ cài đặt."
 
 msgid "Unlimited make-up lessons"
 msgstr "Học bù không giới hạn"
@@ -2816,6 +2987,9 @@ msgstr "Bao lâu thì thấy kết quả?"
 msgid "Where every student is treated as an individual"
 msgstr "Nơi mỗi học viên được quan tâm như một cá nhân"
 
+msgid "Where to find each part of the theme."
+msgstr "Tìm nhanh từng phần cài đặt của theme."
+
 msgid "Who keep coming back"
 msgstr "Tin tưởng quay lại"
 
@@ -2852,8 +3026,20 @@ msgstr "Cỡ tiêu đề widget (px, 0 = mặc định)"
 msgid "With you on the road to your new home"
 msgstr "Đồng hành cùng bạn trên hành trình an cư"
 
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
 msgid "Word, Excel and PowerPoint you can use at work right away."
 msgstr "Word, Excel, PowerPoint ứng dụng ngay vào công việc."
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "WordPress memory limit"
+msgstr "Giới hạn bộ nhớ WordPress"
+
+msgid "WordPress tweaks & site loader"
+msgstr "Tinh chỉnh WordPress & màn hình chờ"
 
 msgid "Written by"
 msgstr "Tác giả"
@@ -2866,6 +3052,9 @@ msgstr "Năm hoạt động"
 
 msgid "Years teaching"
 msgstr "Năm đào tạo"
+
+msgid "Yes"
+msgstr "Có"
 
 msgid "Yes, 0% instalments by credit card or two payments."
 msgstr "Có trả góp 0% qua thẻ tín dụng hoặc chia 2 đợt đóng học phí."
@@ -2932,6 +3121,9 @@ msgstr "datlich@spa.vn"
 
 msgid "hello@realestate.com"
 msgstr "tuvan@batdongsan.vn"
+
+msgid "— None —"
+msgstr "— Không chọn —"
 
 msgid "“Read more” style"
 msgstr "Kiểu nút “Đọc tiếp”"

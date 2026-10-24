@@ -18,7 +18,7 @@ function bst_admin_menu() {
 		}
 	);
 }
-add_action( 'admin_menu', 'bst_admin_menu' );
+// Studio now lives in the top-level BIGSPY menu (inc/admin/theme-panel.php).
 
 /** Create a safe, unpublished page from a BIGSPY full-page pattern. */
 function bst_create_starter_page() {
@@ -233,7 +233,7 @@ function bst_dashboard_page() {
 }
 
 function bst_dashboard_redirect( $notice ) {
-	wp_safe_redirect( add_query_arg( 'bst-notice', $notice, admin_url( 'themes.php?page=bigspy-ai-theme-wp' ) ) );
+	wp_safe_redirect( add_query_arg( 'bst-notice', $notice, admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) );
 	exit;
 }
 
@@ -350,7 +350,7 @@ add_action( 'admin_post_bst_reset', 'bst_handle_reset' );
 function bst_activation_notice() {
 	global $pagenow;
 	if ( 'themes.php' === $pagenow && isset( $_GET['activated'] ) && current_user_can( 'edit_theme_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'BIGSPY AI Theme WP is active.', 'bigspy-ai-theme-wp' ) . ' <a href="' . esc_url( admin_url( 'themes.php?page=bigspy-ai-theme-wp' ) ) . '">' . esc_html__( 'Open the quick start guide', 'bigspy-ai-theme-wp' ) . '</a></p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'BIGSPY AI Theme WP is active.', 'bigspy-ai-theme-wp' ) . ' <a href="' . esc_url( admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) . '">' . esc_html__( 'Open the quick start guide', 'bigspy-ai-theme-wp' ) . '</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'bst_activation_notice' );
