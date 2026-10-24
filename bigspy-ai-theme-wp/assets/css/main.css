@@ -34,6 +34,15 @@ body {
 	overflow-x: hidden;
 }
 
+/* Phones let the page pan sideways when anything pokes out, even with body overflow hidden.
+   clip on both html and body stops that without breaking sticky elements. */
+@supports (overflow: clip) {
+	html,
+	body {
+		overflow-x: clip;
+	}
+}
+
 @media (max-width: 549px) {
 	body {
 		font-size: var(--bs-fs-mobile);
