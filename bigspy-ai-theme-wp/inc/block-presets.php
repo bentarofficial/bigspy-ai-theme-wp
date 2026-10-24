@@ -72,7 +72,7 @@ function bst_block_presets() {
 		);
 	};
 
-	$catalog = array(
+	return array(
 		'bst/section'     => array(
 			'bg'    => array( $t( 'Background' ), true, array(
 				'sec-soft'  => array( $t( 'Soft brand gradient' ), '&{background:linear-gradient(115deg,color-mix(in srgb,var(--bs-primary) 8%,#fff),color-mix(in srgb,var(--bs-primary) 3%,#fff))!important}' ),
@@ -369,7 +369,6 @@ function bst_block_presets() {
 			) ),
 		),
 	);
-	return bst_add_layout_block_presets( $catalog );
 }
 
 /** Flat id => css map with `&` expanded to the preset class. */

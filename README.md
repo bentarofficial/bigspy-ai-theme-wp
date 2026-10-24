@@ -1,9 +1,5 @@
 # BIGSPY AI Theme WP
 
-### Added in 1.68.4
-
-Eight opt-in layout presets are shared between matching block settings and the Customizer CSS library. Page-specific CSS can be replaced with editable block choices. See [layout options](docs/layout-style-options.md).
-
 A multipurpose, fully customizable WordPress theme in the spirit of Flatsome – licensed under the GPL, so it can be used on **an unlimited number of websites**. Built for agencies that design websites for clients, both **service / business sites** and **online shops**.
 
 > Rebuilt from scratch on the lessons of the BIGSPY AI LIST theme: all listing-specific code was removed, while the Section/Row/Column blocks, header/footer builder and Customizer ideas were kept and extended.

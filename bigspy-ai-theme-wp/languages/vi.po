@@ -8,404 +8,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: bigspy-ai-theme-wp\n"
 
-msgid "Balanced layout"
-msgstr "Bố cục cân đối"
-
-msgid "Readable container with side gutters"
-msgstr "Khung nội dung dễ đọc, có lề hai bên"
-
-msgid "Balanced row spacing"
-msgstr "Khoảng cách hàng cân đối"
-
-msgid "Stack icon boxes without stretching"
-msgstr "Xếp thẻ icon dọc, không kéo giãn"
-
-msgid "Balanced service card"
-msgstr "Thẻ dịch vụ cân đối"
-
-msgid "Light hero with readable copy"
-msgstr "Banner sáng, nội dung dễ đọc"
-
-msgid "Preserve intentional line breaks"
-msgstr "Giữ ngắt dòng chủ động"
-
-msgid "Space above action buttons"
-msgstr "Khoảng cách phía trên nhóm nút"
-
-msgid "Compact readable price card"
-msgstr "Thẻ giá gọn, dễ đọc"
-
-msgid "Site-wide for matching BIGSPY blocks. Use Style presets in a block to apply only there. Uncheck to remove."
-msgstr "Áp dụng chung cho các block BIGSPY tương ứng. Chọn Kiểu dáng có sẵn trong block để chỉ áp dụng tại đó. Bỏ chọn để gỡ."
-
-msgid "Site tools: 404 & maintenance"
-msgstr "Công cụ website: 404 & bảo trì"
-
-msgid "Highlight menu links to page sections"
-msgstr "Đánh dấu menu theo phần đang xem"
-
-msgid "Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll."
-msgstr "Đặt neo HTML cho block, rồi thêm liên kết #neo vào menu. Mục tương ứng được đánh dấu khi cuộn trang."
-
-msgid "Page design for 404 errors"
-msgstr "Trang thiết kế cho lỗi 404"
-
-msgid "Only public, published pages without a password are shown. The response remains 404. Select no page to use the default design."
-msgstr "Chỉ hiển thị trang công khai đã xuất bản và không có mật khẩu. Phản hồi vẫn là 404. Không chọn trang để dùng thiết kế mặc định."
-
-msgid "Show maintenance screen to visitors"
-msgstr "Hiển thị màn hình bảo trì cho khách"
-
-msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
-msgstr "Quản trị viên vẫn xem được website. Khách nhận phản hồi HTTP 503. Đăng nhập, quản trị và API vẫn hoạt động. Xóa cache trang/CDN khi bật hoặc tắt tùy chọn này."
-
-msgid "Page design for maintenance"
-msgstr "Trang thiết kế cho bảo trì"
-
-msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
-msgstr "Thiết kế một trang bằng block và xuất bản. Nội dung hiển thị không kèm đầu/chân trang website. Không chọn trang để dùng màn hình mặc định."
-
-msgid "Maintenance message"
-msgstr "Thông báo bảo trì"
-
-msgid "Used on the default maintenance screen."
-msgstr "Dùng cho màn hình bảo trì mặc định."
-
-msgid "We will be back soon"
-msgstr "Chúng tôi sẽ trở lại sớm"
-
-msgid "Our website is being updated. Please check back soon."
-msgstr "Website đang được cập nhật. Vui lòng quay lại sau ít phút."
-
-msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
-msgstr "BIGSPY đang bật chế độ bảo trì. Khách chưa thể xem cửa hàng."
-
-msgid "Manage maintenance mode"
-msgstr "Quản lý chế độ bảo trì"
-
-msgid "Select a block in the page to edit its layout."
-msgstr "Chọn một block trên trang để chỉnh bố cục."
-
-msgid "Duplicate"
-msgstr "Nhân bản"
-
-msgid "Move up"
-msgstr "Di chuyển lên"
-
-msgid "Move down"
-msgstr "Di chuyển xuống"
-
-msgid "Copy appearance"
-msgstr "Sao chép kiểu dáng"
-
-msgid "Paste appearance"
-msgstr "Dán kiểu dáng"
-
-msgid "Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs."
-msgstr "Dùng menu của block để tạo mẫu tái sử dụng. Các mẫu đã lưu nằm trong mục Mẫu đã lưu."
-
-msgid "BIGSPY Studio"
-msgstr "BIGSPY Studio"
-
-msgid "DESIGN YOUR WEBSITE"
-msgstr "THIẾT KẾ WEBSITE CỦA BẠN"
-
-msgid "Start with a page. Make it yours."
-msgstr "Bắt đầu từ một trang mẫu, rồi biến nó thành website của bạn."
-
-msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
-msgstr "Chọn điểm bắt đầu. BIGSPY tạo bản nháp chưa xuất bản và mở trình soạn thảo để bạn thiết kế mà không ảnh hưởng website đang hoạt động."
-
-msgid "Build from scratch"
-msgstr "Tự dựng từ đầu"
-
-msgid "Business or service website"
-msgstr "Website doanh nghiệp hoặc dịch vụ"
-
-msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
-msgstr "Trang chủ hoàn chỉnh gồm phần giới thiệu, dịch vụ, về chúng tôi, cảm nhận khách hàng, bảng giá, câu hỏi thường gặp và liên hệ."
-
-msgid "Online shop"
-msgstr "Cửa hàng trực tuyến"
-
-msgid "A shop homepage with a hero, benefits, categories, product collections and more."
-msgstr "Trang chủ cửa hàng gồm banner chính, lợi ích, danh mục, bộ sưu tập sản phẩm và nhiều phần khác."
-
-msgid "Page name"
-msgstr "Tên trang"
-
-msgid "Create draft and open editor"
-msgstr "Tạo bản nháp và mở trình soạn thảo"
-
-msgid "Your design stays in draft until you publish it."
-msgstr "Thiết kế vẫn là bản nháp cho đến khi bạn xuất bản."
-
-msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
-msgstr "Thay nội dung và hình ảnh mẫu, chỉnh bố cục, xem trước trang rồi xuất bản khi đã sẵn sàng."
-
-msgid "Business homepage"
-msgstr "Trang chủ doanh nghiệp"
-
-msgid "Online shop homepage"
-msgstr "Trang chủ cửa hàng trực tuyến"
-
-msgid "Sorry, you are not allowed to create pages."
-msgstr "Bạn không có quyền tạo trang."
-
-msgid "This starter page is not available."
-msgstr "Mẫu trang này hiện không khả dụng."
-
-msgid "The selected BIGSPY starter pattern could not be found."
-msgstr "Không tìm thấy mẫu trang BIGSPY đã chọn."
-
-msgid "All designs"
-msgstr "Tất cả mẫu thiết kế"
-
-msgid "Full pages"
-msgstr "Trang hoàn chỉnh"
-
-msgid "Sections"
-msgstr "Các phần nội dung"
-
-msgid "Shop"
-msgstr "Cửa hàng"
-
-msgid "Soft focus"
-msgstr "Làm rõ nhẹ"
-
-msgid "Gentle rotate"
-msgstr "Xoay nhẹ"
-
-msgid "Soft bounce"
-msgstr "Nảy nhẹ"
-
-msgid "Duration (ms)"
-msgstr "Thời lượng (ms)"
-
-msgid "Effect on hover"
-msgstr "Hiệu ứng khi rê chuột"
-
-msgid "Lift gently"
-msgstr "Nhấc nhẹ"
-
-msgid "Soft zoom"
-msgstr "Phóng to nhẹ"
-
-msgid "Soft shadow"
-msgstr "Bóng đổ nhẹ"
-
-msgid "Grayscale to color"
-msgstr "Từ trắng đen sang màu"
-
-msgid "Preview animation"
-msgstr "Xem thử hiệu ứng"
-
-msgid "Saved designs"
-msgstr "Mẫu đã lưu"
-
-msgid "Untitled design"
-msgstr "Mẫu chưa đặt tên"
-
-msgid "A reusable design saved in WordPress."
-msgstr "Mẫu có thể tái sử dụng đã lưu trong WordPress."
-
-msgid "Added as a synced design. Changes to its source update every copy."
-msgstr "Đã thêm dưới dạng mẫu đồng bộ. Khi sửa mẫu gốc, các bản dùng mẫu này cũng được cập nhật."
-
-msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
-msgstr "Chưa có mẫu đã lưu. Trong trình soạn thảo, mở tùy chọn của block và chọn Tạo mẫu để lưu thiết kế tại đây."
-
-msgid "Choose a ready-made design, then change its text, images and colors on the page."
-msgstr "Chọn mẫu có sẵn rồi thay nội dung, hình ảnh và màu sắc ngay trên trang."
-
-msgid "Search designs"
-msgstr "Tìm mẫu thiết kế"
-
-msgid "Try “hero”, “services” or “products”…"
-msgstr "Thử tìm “banner”, “dịch vụ” hoặc “sản phẩm”…"
-
-msgid "Design categories"
-msgstr "Nhóm mẫu thiết kế"
-
-msgid "This design could not be added. Please try another one."
-msgstr "Không thể chèn mẫu này. Vui lòng thử mẫu khác."
-
-msgid "Added to your page. Edit the text and images in the preview."
-msgstr "Đã thêm vào trang. Bạn có thể sửa nội dung và hình ảnh trong vùng xem trước."
-
-msgid "Add to page"
-msgstr "Thêm vào trang"
-
-msgid "No designs found. Try another search."
-msgstr "Không tìm thấy mẫu phù hợp. Hãy thử từ khóa khác."
-
-msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
-msgstr "Thêm mẫu không xuất bản trang. Hãy xem trước, rồi lưu nháp hoặc xuất bản khi đã hoàn tất."
-
-msgid "Skip to content"
-msgstr "Chuyển đến nội dung"
-
-msgid "Search…"
-msgstr "Tìm kiếm…"
-
-msgid "Search products…"
-msgstr "Tìm sản phẩm…"
-
-msgid "Search for:"
-msgstr "Tìm kiếm:"
-
-msgid "Submit search"
-msgstr "Tìm"
-
-msgid "Close search"
-msgstr "Đóng tìm kiếm"
-
-msgid "Open menu"
-msgstr "Mở menu"
-
-msgid "Close menu"
-msgstr "Đóng menu"
-
-msgid "Mobile menu"
-msgstr "Menu di động"
-
-msgid "My account"
-msgstr "Tài khoản"
-
-msgid "Login"
-msgstr "Đăng nhập"
-
-msgid "Cart"
-msgstr "Giỏ hàng"
-
-msgid "Previous"
-msgstr "Trước"
-
-msgid "Next"
-msgstr "Tiếp"
-
-msgid "Back to top"
-msgstr "Lên đầu trang"
-
-msgid "Call now"
-msgstr "Gọi ngay"
-
-msgid "Home"
-msgstr "Trang chủ"
-
-msgid "Blog"
-msgstr "Tin tức"
-
-msgid "Breadcrumb"
-msgstr "Đường dẫn"
-
-msgid "Sidebar"
-msgstr "Thanh bên"
-
-msgid "Page not found"
-msgstr "Không tìm thấy trang"
-
-msgid "Search results for “%s”"
-msgstr "Kết quả tìm kiếm cho “%s”"
-
-msgid "Share:"
-msgstr "Chia sẻ:"
-
-msgid "Copy link"
-msgstr "Sao chép liên kết"
-
-msgid "Copy"
-msgstr "Sao chép"
-
-msgid "Copied!"
-msgstr "Đã sao chép!"
-
-msgid "Related posts"
-msgstr "Bài viết liên quan"
-
-msgid "Comments are closed."
-msgstr "Bình luận đã đóng."
-
-msgid "Oops! That page can not be found."
-msgstr "Rất tiếc! Không tìm thấy trang này."
-
-msgid "The page you are looking for may have been moved or deleted. Try searching instead."
-msgstr "Trang bạn tìm có thể đã được chuyển hoặc xóa. Hãy thử tìm kiếm."
-
-msgid "Back to home"
-msgstr "Về trang chủ"
-
-msgid "Nothing matched your search. Please try different keywords."
-msgstr "Không có kết quả phù hợp. Vui lòng thử từ khóa khác."
-
-msgid "There is nothing here yet."
-msgstr "Chưa có nội dung."
-
-msgid "Load more"
-msgstr "Xem thêm"
-
-msgid "Read more"
-msgstr "Đọc tiếp"
-
-msgid "Contact us"
-msgstr "Liên hệ"
-
-msgid "Ready to start your project?"
-msgstr "Bạn đã sẵn sàng bắt đầu?"
-
-msgid "Get a free consultation and a quote within 24 hours."
-msgstr "Nhận tư vấn miễn phí và báo giá trong vòng 24 giờ."
-
-msgid "Copyright © [year] [site_title]. All rights reserved."
-msgstr "Bản quyền © [year] [site_title]. Bảo lưu mọi quyền."
-
-msgid "Contact for price"
-msgstr "Liên hệ để biết giá"
-
-msgid "Loading…"
-msgstr "Đang tải…"
-
-msgid "Sold out"
-msgstr "Hết hàng"
-
-msgid "Sale"
-msgstr "Giảm giá"
-
-msgid "New"
-msgstr "Mới"
-
-msgid "Hot"
-msgstr "Hot"
-
-msgid "No results found."
-msgstr "Không tìm thấy kết quả."
-
-msgid "View all results"
-msgstr "Xem tất cả kết quả"
-
-msgid "No posts found."
-msgstr "Chưa có bài viết."
-
-msgid "No products found."
-msgstr "Chưa có sản phẩm."
-
-msgid "Open link"
-msgstr "Mở liên kết"
-
-msgid "Call to action"
-msgstr "Kêu gọi hành động"
-
-msgid "Rated %d out of 5"
-msgstr "Được đánh giá %d trên 5"
-
-msgid "%s comment"
-msgid_plural "%s comments"
-msgstr[0] "%s bình luận"
-
-msgid "%s product"
-msgid_plural "%s products"
-msgstr[0] "%s sản phẩm"
-
 msgid "$119"
 msgstr "2.900.000đ"
 
@@ -652,6 +254,9 @@ msgstr "Lộ trình rõ ràng, thầy cô chữa bài rất kỹ. Mình tăng 1.
 msgid "A complete dining experience"
 msgstr "Trải nghiệm ẩm thực trọn vẹn"
 
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr "Trang chủ hoàn chỉnh gồm phần giới thiệu, dịch vụ, về chúng tôi, cảm nhận khách hàng, bảng giá, câu hỏi thường gặp và liên hệ."
+
 msgid "A consultant is with you at every step."
 msgstr "Chuyên viên đồng hành ở mọi bước để bạn yên tâm."
 
@@ -676,8 +281,14 @@ msgstr "Bếp đạt chứng nhận vệ sinh an toàn thực phẩm."
 msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
 msgstr "Kiểm tra nhanh máy chủ và cài đặt WordPress. Mục có dấu ! đang thấp hơn mức khuyến nghị."
 
+msgid "A reusable design saved in WordPress."
+msgstr "Mẫu có thể tái sử dụng đã lưu trong WordPress."
+
 msgid "A service for every need"
 msgstr "Dịch vụ phù hợp mọi nhu cầu"
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr "Trang chủ cửa hàng gồm banner chính, lợi ích, danh mục, bộ sưu tập sản phẩm và nhiều phần khác."
 
 msgid "A trained team that always welcomes you with a smile."
 msgstr "Nhân viên được đào tạo bài bản, luôn niềm nở."
@@ -721,6 +332,18 @@ msgstr "Thêm layout mới"
 msgid "Add to cart"
 msgstr "Thêm vào giỏ"
 
+msgid "Add to page"
+msgstr "Thêm vào trang"
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr "Đã thêm dưới dạng mẫu đồng bộ. Khi sửa mẫu gốc, các bản dùng mẫu này cũng được cập nhật."
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr "Đã thêm vào trang. Bạn có thể sửa nội dung và hình ảnh trong vùng xem trước."
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr "Thêm mẫu không xuất bản trang. Hãy xem trước, rồi lưu nháp hoặc xuất bản khi đã hoàn tất."
+
 msgid "Additional CSS"
 msgstr "CSS bổ sung"
 
@@ -729,6 +352,9 @@ msgstr "Địa chỉ"
 
 msgid "Admin & Customizer"
 msgstr "Trang quản trị & Tùy biến"
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr "Quản trị viên vẫn xem được website. Khách nhận phản hồi HTTP 503. Đăng nhập, quản trị và API vẫn hoạt động. Xóa cache trang/CDN khi bật hoặc tắt tùy chọn này."
 
 msgid "Advice and viewings"
 msgstr "Tư vấn và dẫn xem nhà"
@@ -759,6 +385,9 @@ msgstr "Tất cả"
 
 msgid "All archives (category, tag, author, date)"
 msgstr "Mọi trang lưu trữ (chuyên mục, thẻ, tác giả, ngày)"
+
+msgid "All designs"
+msgstr "Tất cả mẫu thiết kế"
 
 msgid "All pages"
 msgstr "Mọi trang"
@@ -844,8 +473,20 @@ msgstr "URL hồ sơ tác giả"
 msgid "Award-winning national coffee champion."
 msgstr "Barista đạt giải cuộc thi cà phê toàn quốc."
 
+msgid "BIGSPY Studio"
+msgstr "BIGSPY Studio"
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "BIGSPY đang bật chế độ bảo trì. Khách chưa thể xem cửa hàng."
+
 msgid "BIGSPY settings"
 msgstr "Cài đặt BIGSPY"
+
+msgid "Back to home"
+msgstr "Về trang chủ"
+
+msgid "Back to top"
+msgstr "Lên đầu trang"
 
 msgid "Badge and faded card"
 msgstr "Nhãn và làm mờ thẻ"
@@ -913,6 +554,9 @@ msgstr "Bò sốt tiêu đen"
 msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
 msgstr "Chặn một điểm hay bị dò mật khẩu. Để tắt nếu bạn dùng ứng dụng WordPress trên điện thoại hoặc Jetpack."
 
+msgid "Blog"
+msgstr "Tin tức"
+
 msgid "Blog & single post"
 msgstr "Blog & bài viết"
 
@@ -973,6 +617,9 @@ msgstr "Màu thương hiệu, bảng màu, kiểu chữ và kiểu nút."
 msgid "Brand line on the left"
 msgstr "Vạch màu thương hiệu bên trái"
 
+msgid "Breadcrumb"
+msgstr "Đường dẫn"
+
 msgid "Brewing the perfect filter coffee"
 msgstr "Pha cà phê phin đúng chuẩn"
 
@@ -982,8 +629,20 @@ msgstr "Nhận chăm sóc cô dâu"
 msgid "Bridal package"
 msgstr "Gói cô dâu"
 
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr "Thiết kế một trang bằng block và xuất bản. Nội dung hiển thị không kèm đầu/chân trang website. Không chọn trang để dùng màn hình mặc định."
+
+msgid "Build from scratch"
+msgstr "Tự dựng từ đầu"
+
 msgid "Build pages with blocks"
 msgstr "Dựng trang bằng khối"
+
+msgid "Business homepage"
+msgstr "Trang chủ doanh nghiệp"
+
+msgid "Business or service website"
+msgstr "Website doanh nghiệp hoặc dịch vụ"
 
 msgid "Button"
 msgstr "Nút bấm"
@@ -1012,8 +671,14 @@ msgstr "Quy trình mua nhà"
 msgid "Cakes baked today"
 msgstr "Bánh ngọt trong ngày"
 
+msgid "Call now"
+msgstr "Gọi ngay"
+
 msgid "Call now to get the best seats, book a party or order takeaway."
 msgstr "Gọi ngay để giữ chỗ đẹp nhất, đặt tiệc cho nhóm hoặc gọi món mang về."
+
+msgid "Call to action"
+msgstr "Kêu gọi hành động"
 
 msgid "Call us"
 msgstr "Gọi ngay"
@@ -1057,6 +722,9 @@ msgstr "Hỗ trợ tận tâm"
 msgid "Caring therapists"
 msgstr "Chuyên viên tận tâm"
 
+msgid "Cart"
+msgstr "Giỏ hàng"
+
 msgid "Category"
 msgstr "Danh mục"
 
@@ -1083,6 +751,12 @@ msgstr "Theme con"
 
 msgid "Chloe"
 msgstr "Hoài Thương"
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr "Chọn mẫu có sẵn rồi thay nội dung, hình ảnh và màu sắc ngay trên trang."
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "Chọn điểm bắt đầu. BIGSPY tạo bản nháp chưa xuất bản và mở trình soạn thảo để bạn thiết kế mà không ảnh hưởng website đang hoạt động."
 
 msgid "Choose a treatment and time by phone or chat."
 msgstr "Chọn liệu trình và giờ phù hợp qua hotline hoặc Zalo."
@@ -1132,6 +806,12 @@ msgstr "Khách hàng"
 msgid "Clinical acne care"
 msgstr "Trị mụn chuẩn y khoa"
 
+msgid "Close menu"
+msgstr "Đóng menu"
+
+msgid "Close search"
+msgstr "Đóng tìm kiếm"
+
 msgid "Closed in 15 years"
 msgstr "Thành công trong 15 năm hoạt động"
 
@@ -1156,6 +836,9 @@ msgstr "Số cột"
 msgid "Comments"
 msgstr "Bình luận"
 
+msgid "Comments are closed."
+msgstr "Bình luận đã đóng."
+
 msgid "Commercial shophouse"
 msgstr "Shophouse thương mại"
 
@@ -1174,6 +857,12 @@ msgstr "Chuyên viên"
 msgid "Contact"
 msgstr "Liên hệ"
 
+msgid "Contact for price"
+msgstr "Liên hệ để biết giá"
+
+msgid "Contact us"
+msgstr "Liên hệ"
+
 msgid "Content"
 msgstr "Nội dung"
 
@@ -1186,6 +875,21 @@ msgstr "Mục lục"
 msgid "Cookie notice & reading"
 msgstr "Thông báo cookie & đọc bài"
 
+msgid "Copied!"
+msgstr "Đã sao chép!"
+
+msgid "Copy"
+msgstr "Sao chép"
+
+msgid "Copy appearance"
+msgstr "Sao chép kiểu dáng"
+
+msgid "Copy link"
+msgstr "Sao chép liên kết"
+
+msgid "Copyright © [year] [site_title]. All rights reserved."
+msgstr "Bản quyền © [year] [site_title]. Bảo lưu mọi quyền."
+
 msgid "Countdown ring – top right"
 msgstr "Vòng tròn đếm ngược – góc phải trên"
 
@@ -1194,6 +898,9 @@ msgstr "Có phòng đôi cho cặp đôi"
 
 msgid "Courses"
 msgstr "Khoá học"
+
+msgid "Create draft and open editor"
+msgstr "Tạo bản nháp và mở trình soạn thảo"
 
 msgid "Custom CSS"
 msgstr "CSS tùy chỉnh"
@@ -1212,6 +919,9 @@ msgstr "Khách hàng"
 
 msgid "Customize"
 msgstr "Tùy biến"
+
+msgid "DESIGN YOUR WEBSITE"
+msgstr "THIẾT KẾ WEBSITE CỦA BẠN"
 
 msgid "Daniel Carter"
 msgstr "Trần Minh Đức"
@@ -1245,6 +955,9 @@ msgstr "Món ăn ngon, trình bày đẹp và nhân viên rất nhiệt tình. C
 
 msgid "Delivery within 30 minutes"
 msgstr "Giao tận nơi trong 30 phút"
+
+msgid "Design categories"
+msgstr "Nhóm mẫu thiết kế"
 
 msgid "Desktop and mobile"
 msgstr "Máy tính và di động"
@@ -1309,6 +1022,12 @@ msgstr "Ba chấm dọc"
 msgid "Drag elements in the header builder, set the logo, menus and buttons."
 msgstr "Kéo thả phần tử trong trình tạo header, đặt logo, menu và nút."
 
+msgid "Duplicate"
+msgstr "Nhân bản"
+
+msgid "Duration (ms)"
+msgstr "Thời lượng (ms)"
+
 msgid "Each post writer’s profile (Users → Profile)"
 msgstr "Hồ sơ của người viết từng bài (Thành viên → Hồ sơ)"
 
@@ -1320,6 +1039,9 @@ msgstr "Sửa layout"
 
 msgid "Education centre homepage with 15 sections: hero, highlights, about, courses, learning path, numbers, method, tuition, gallery, teachers, student reviews, FAQ, news, enrolment and contact."
 msgstr "Education centre homepage with 15 sections: hero, highlights, about, courses, learning path, numbers, method, tuition, gallery, teachers, student reviews, FAQ, news, enrolment and contact."
+
+msgid "Effect on hover"
+msgstr "Hiệu ứng khi rê chuột"
 
 msgid "Eight new dishes inspired by autumn produce."
 msgstr "Giới thiệu 8 món mới lấy cảm hứng từ nông sản mùa thu."
@@ -1558,6 +1280,9 @@ msgstr "Trang chủ"
 msgid "Fruit teas"
 msgstr "Trà trái cây"
 
+msgid "Full pages"
+msgstr "Trang hoàn chỉnh"
+
 msgid "Full service"
 msgstr "Trọn gói"
 
@@ -1579,11 +1304,17 @@ msgstr "Vô trùng tuyệt đối"
 msgid "Gentle ingredients"
 msgstr "Thành phần lành tính"
 
+msgid "Gentle rotate"
+msgstr "Xoay nhẹ"
+
 msgid "Genuine imported products"
 msgstr "Sản phẩm nhập khẩu chính hãng"
 
 msgid "Get a free consultation"
 msgstr "Nhận tư vấn miễn phí"
+
+msgid "Get a free consultation and a quote within 24 hours."
+msgstr "Nhận tư vấn miễn phí và báo giá trong vòng 24 giờ."
 
 msgid "Get advice"
 msgstr "Đăng ký tư vấn"
@@ -1599,6 +1330,9 @@ msgstr "Nguyễn Ngọc Lan"
 
 msgid "Graduated"
 msgstr "Đã tốt nghiệp"
+
+msgid "Grayscale to color"
+msgstr "Đen trắng sang màu"
 
 msgid "Great gifts"
 msgstr "Quà tặng hấp dẫn"
@@ -1687,6 +1421,12 @@ msgstr "Tự ẩn sau tối đa 3 giây."
 msgid "Hide the WordPress version from the page source"
 msgstr "Ẩn phiên bản WordPress trong mã nguồn trang"
 
+msgid "Highlight menu links to page sections"
+msgstr "Đánh dấu menu theo phần đang xem"
+
+msgid "Home"
+msgstr "Trang chủ"
+
 msgid "Home care"
 msgstr "Chăm sóc tại nhà"
 
@@ -1704,6 +1444,9 @@ msgstr "Trang chủ – Spa & làm đẹp"
 
 msgid "Homes as described"
 msgstr "Nhà đúng mô tả"
+
+msgid "Hot"
+msgstr "Hot"
 
 msgid "Hot stone massage"
 msgstr "Massage đá nóng"
@@ -1888,6 +1631,9 @@ msgstr "Giảm căng thẳng, cải thiện giấc ngủ và tuần hoàn máu."
 msgid "Lift card"
 msgstr "Nâng thẻ lên"
 
+msgid "Lift gently"
+msgstr "Nhấc nhẹ"
+
 msgid "Light card"
 msgstr "Thẻ nền nhạt"
 
@@ -1924,6 +1670,9 @@ msgstr "Cam kết đúng giá niêm yết"
 msgid "Live shrimp, squid and clams in our special sweet-and-sour broth."
 msgstr "Tôm, mực, nghêu tươi sống cùng nước dùng chua cay đặc biệt."
 
+msgid "Load more"
+msgstr "Xem thêm"
+
 msgid "Load more button"
 msgstr "Nút tải thêm"
 
@@ -1935,6 +1684,9 @@ msgstr "Tự tải khi cuộn"
 
 msgid "Loader color (empty = primary color)"
 msgstr "Màu vòng tải (để trống = màu chính)"
+
+msgid "Loading…"
+msgstr "Đang tải…"
 
 msgid "Loan packages that fit your income."
 msgstr "Tư vấn gói vay phù hợp thu nhập."
@@ -1953,6 +1705,9 @@ msgstr "Chỉ người đã đăng nhập"
 
 msgid "Logged-out visitors only"
 msgstr "Chỉ khách chưa đăng nhập"
+
+msgid "Login"
+msgstr "Đăng nhập"
 
 msgid "Looking for a home?"
 msgstr "Bạn đang tìm nhà?"
@@ -1978,8 +1733,14 @@ msgstr "Sảnh chung, sân vườn hay phòng riêng tuỳ dịp."
 msgid "Main-road frontage, ready for business."
 msgstr "Mặt tiền đường lớn, khai thác kinh doanh ngay."
 
+msgid "Maintenance message"
+msgstr "Thông báo bảo trì"
+
 msgid "Make-up trial"
 msgstr "Trang điểm thử"
+
+msgid "Manage maintenance mode"
+msgstr "Quản lý chế độ bảo trì"
 
 msgid "Manager"
 msgstr "Quản lý"
@@ -2038,6 +1799,9 @@ msgstr "Đức Huy"
 msgid "Minimal (titles only)"
 msgstr "Tối giản (chỉ tiêu đề)"
 
+msgid "Mobile menu"
+msgstr "Menu di động"
+
 msgid "Mobile only"
 msgstr "Chỉ di động"
 
@@ -2086,6 +1850,12 @@ msgstr "Được chọn nhiều nhất"
 msgid "Most popular choice"
 msgstr "Lựa chọn phổ biến nhất"
 
+msgid "Move down"
+msgstr "Di chuyển xuống"
+
+msgid "Move up"
+msgstr "Di chuyển lên"
+
 msgid "Mr. Peter Hall"
 msgstr "Mr. Trần Quốc Việt"
 
@@ -2097,6 +1867,9 @@ msgstr "Ms. Nguyễn Thu Hà"
 
 msgid "Multi-channel ads"
 msgstr "Quảng cáo đa kênh"
+
+msgid "My account"
+msgstr "Tài khoản"
 
 msgid "My child loves going to class, and I get a detailed progress report every week."
 msgstr "Con thích đi học, tuần nào cũng nhận được báo cáo tiến độ chi tiết từ cô giáo."
@@ -2137,6 +1910,9 @@ msgstr "Hỗ trợ đàm phán"
 msgid "Never more than 5 minutes’ wait."
 msgstr "Không để khách chờ quá 5 phút."
 
+msgid "New"
+msgstr "Mới"
+
 msgid "New badge"
 msgstr "Nhãn hàng mới"
 
@@ -2152,17 +1928,35 @@ msgstr "Bài mới hơn →"
 msgid "News & tips"
 msgstr "Tin tức & chia sẻ"
 
+msgid "Next"
+msgstr "Tiếp"
+
 msgid "No"
 msgstr "Không"
 
 msgid "No corticoids, no harsh chemicals."
 msgstr "Không corticoid, không chất tẩy mạnh."
 
+msgid "No designs found. Try another search."
+msgstr "Không tìm thấy mẫu phù hợp. Hãy thử từ khóa khác."
+
 msgid "No industrial MSG"
 msgstr "Không dùng bột ngọt công nghiệp"
 
+msgid "No posts found."
+msgstr "Chưa có bài viết."
+
+msgid "No products found."
+msgstr "Chưa có sản phẩm."
+
+msgid "No results found."
+msgstr "Không tìm thấy kết quả."
+
 msgid "No reviews yet"
 msgstr "Chưa có đánh giá"
+
+msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
+msgstr "Chưa có mẫu đã lưu. Trong trình soạn thảo, mở tùy chọn của block và chọn Tạo mẫu để lưu thiết kế tại đây."
 
 msgid "None"
 msgstr "Không"
@@ -2178,6 +1972,9 @@ msgstr "Công chứng, sang tên"
 
 msgid "Notary, transfer and handover."
 msgstr "Công chứng, sang tên và nhận bàn giao."
+
+msgid "Nothing matched your search. Please try different keywords."
+msgstr "Không có kết quả phù hợp. Vui lòng thử từ khóa khác."
 
 msgid "Number of posts"
 msgstr "Số bài"
@@ -2239,11 +2036,29 @@ msgstr "Ứng dụng học online"
 msgid "Online learning app included"
 msgstr "Ứng dụng học online kèm theo"
 
+msgid "Online shop"
+msgstr "Cửa hàng trực tuyến"
+
+msgid "Online shop homepage"
+msgstr "Trang chủ cửa hàng trực tuyến"
+
+msgid "Only public, published pages without a password are shown. The response remains 404. Select no page to use the default design."
+msgstr "Chỉ hiển thị trang công khai đã xuất bản và không có mật khẩu. Phản hồi vẫn là 404. Không chọn trang để dùng thiết kế mặc định."
+
+msgid "Oops! That page can not be found."
+msgstr "Rất tiếc! Không tìm thấy trang này."
+
 msgid "Open every day"
 msgstr "Mở cửa cả tuần"
 
 msgid "Open images in a lightbox"
 msgstr "Mở ảnh dạng lightbox"
+
+msgid "Open link"
+msgstr "Mở liên kết"
+
+msgid "Open menu"
+msgstr "Mở menu"
 
 msgid "Opening hours"
 msgstr "Giờ mở cửa"
@@ -2293,6 +2108,9 @@ msgstr "Câu chuyện của chúng tôi"
 msgid "Our team"
 msgstr "Đội ngũ"
 
+msgid "Our website is being updated. Please check back soon."
+msgstr "Website đang được cập nhật. Vui lòng quay lại sau ít phút."
+
 msgid "Our year-end party for 80 people was perfectly organised and every dish was finished."
 msgstr "Tổ chức tiệc tất niên 80 người rất chuyên nghiệp, món nào cũng hết sạch."
 
@@ -2307,6 +2125,18 @@ msgstr "Viền vuông"
 
 msgid "Packages are valid for 6 months and can be shared with family."
 msgstr "Gói có hiệu lực 6 tháng và có thể dùng chung cho người thân."
+
+msgid "Page design for 404 errors"
+msgstr "Trang thiết kế cho lỗi 404"
+
+msgid "Page design for maintenance"
+msgstr "Trang thiết kế cho bảo trì"
+
+msgid "Page name"
+msgstr "Tên trang"
+
+msgid "Page not found"
+msgstr "Không tìm thấy trang"
 
 msgid "Page numbers"
 msgstr "Số trang"
@@ -2328,6 +2158,9 @@ msgstr "Ngân hàng liên kết"
 
 msgid "Party set"
 msgstr "Set liên hoan"
+
+msgid "Paste appearance"
+msgstr "Dán kiểu dáng"
 
 msgid "Pastry chef"
 msgstr "Bếp bánh"
@@ -2391,6 +2224,12 @@ msgstr "Hỗ trợ hồ sơ vay với 12 ngân hàng."
 
 msgid "Presentation skills"
 msgstr "Kỹ năng thuyết trình"
+
+msgid "Preview animation"
+msgstr "Xem thử hiệu ứng"
+
+msgid "Previous"
+msgstr "Trước"
 
 msgid "Previous / next product links"
 msgstr "Nút sản phẩm trước / sau"
@@ -2479,14 +2318,23 @@ msgstr "Lên món nhanh"
 msgid "Rachel"
 msgstr "Ngọc Trâm"
 
+msgid "Rated %d out of 5"
+msgstr "Được đánh giá %d trên 5"
+
 msgid "Reach their goal"
 msgstr "Đạt mục tiêu"
+
+msgid "Read more"
+msgstr "Đọc tiếp"
 
 msgid "Read more →"
 msgstr "Đọc tiếp →"
 
 msgid "Reading time"
 msgstr "Thời gian đọc"
+
+msgid "Ready to start your project?"
+msgstr "Bạn đã sẵn sàng bắt đầu?"
 
 msgid "Ready to start? Get 20% off today"
 msgstr "Sẵn sàng bắt đầu? Nhận ưu đãi 20% hôm nay"
@@ -2515,6 +2363,9 @@ msgstr "Kiểm tra định kỳ và cấp chứng nhận hoàn thành."
 msgid "Related & upsell products"
 msgstr "Sản phẩm liên quan & bán kèm"
 
+msgid "Related posts"
+msgstr "Bài viết liên quan"
+
 msgid "Related products heading (empty = default)"
 msgstr "Tiêu đề sản phẩm liên quan (để trống = mặc định)"
 
@@ -2529,6 +2380,9 @@ msgstr "Mẹo nhớ từ vựng lâu"
 
 msgid "Removes wp-embed. Pasted YouTube links still work through blocks."
 msgstr "Bỏ wp-embed. Link YouTube dán vào vẫn hiển thị qua khối."
+
+msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
+msgstr "Thay nội dung và hình ảnh mẫu, chỉnh bố cục, xem trước trang rồi xuất bản khi đã sẵn sàng."
 
 msgid "Reply within 5 minutes in office hours"
 msgstr "Phản hồi trong 5 phút giờ làm việc"
@@ -2593,6 +2447,9 @@ msgstr "Sản phẩm hữu cơ an toàn"
 msgid "Safe – Effective – Private"
 msgstr "An toàn – Hiệu quả – Riêng tư"
 
+msgid "Sale"
+msgstr "Khuyến mãi"
+
 msgid "Sale badge (use {percent} for the discount)"
 msgstr "Nhãn giảm giá (dùng {percent} để hiện % giảm)"
 
@@ -2620,6 +2477,9 @@ msgstr "Nước sốt và gia vị được bếp trưởng tự pha chế."
 msgid "Save changes"
 msgstr "Lưu thay đổi"
 
+msgid "Saved designs"
+msgstr "Mẫu đã lưu"
+
 msgid "Scores and feedback after every lesson."
 msgstr "Bảng điểm và nhận xét sau mỗi buổi."
 
@@ -2632,14 +2492,32 @@ msgstr "Script, tốc độ & bảo trì"
 msgid "Seafood hot pot"
 msgstr "Lẩu hải sản"
 
+msgid "Search designs"
+msgstr "Tìm mẫu thiết kế"
+
+msgid "Search for:"
+msgstr "Tìm kiếm:"
+
+msgid "Search products…"
+msgstr "Tìm sản phẩm…"
+
 msgid "Search results"
 msgstr "Kết quả tìm kiếm"
+
+msgid "Search results for “%s”"
+msgstr "Kết quả tìm kiếm cho “%s”"
+
+msgid "Search…"
+msgstr "Tìm kiếm…"
 
 msgid "Seasonal dessert"
 msgstr "Tráng miệng theo mùa"
 
 msgid "Seats"
 msgstr "Chỗ ngồi"
+
+msgid "Sections"
+msgstr "Các phần nội dung"
 
 msgid "See courses"
 msgstr "Xem khoá học"
@@ -2665,6 +2543,9 @@ msgstr "Xem lộ trình →"
 msgid "See treatments"
 msgstr "Xem liệu trình"
 
+msgid "Select a block in the page to edit its layout."
+msgstr "Chọn một block trên trang để chỉnh bố cục."
+
 msgid "Selected categories"
 msgstr "Chuyên mục đã chọn"
 
@@ -2680,6 +2561,9 @@ msgstr "Dịch vụ"
 msgid "Serving since 2012"
 msgstr "Phục vụ từ năm 2012"
 
+msgid "Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll."
+msgstr "Đặt neo HTML cho block, rồi thêm liên kết #neo vào menu. Mục tương ứng được đánh dấu khi cuộn trang."
+
 msgid "Set menus"
 msgstr "Set menu"
 
@@ -2694,6 +2578,12 @@ msgstr "Cài đặt"
 
 msgid "Settings saved."
 msgstr "Đã lưu cài đặt."
+
+msgid "Share:"
+msgstr "Chia sẻ:"
+
+msgid "Shop"
+msgstr "Cửa hàng"
 
 msgid "Shop & product categories"
 msgstr "Cửa hàng & danh mục sản phẩm"
@@ -2727,6 +2617,9 @@ msgstr "Hiện sao rỗng khi chưa có đánh giá"
 
 msgid "Show it from this many headings"
 msgstr "Hiện khi có từ số tiêu đề này"
+
+msgid "Show maintenance screen to visitors"
+msgstr "Hiển thị màn hình bảo trì cho khách"
 
 msgid "Show meta (choose items below)"
 msgstr "Hiện thông tin bài (chọn mục bên dưới)"
@@ -2773,6 +2666,9 @@ msgstr "Hiện phía trên Top bar, luôn rộng hết màn hình. Nhận mọi 
 msgid "Shuttle to project viewings"
 msgstr "Xe đưa đón xem dự án"
 
+msgid "Sidebar"
+msgstr "Thanh bên"
+
 msgid "Sign up this week for a free consultation."
 msgstr "Đăng ký trong tuần này để nhận tư vấn miễn phí."
 
@@ -2797,6 +2693,9 @@ msgstr "Ngôn ngữ trang"
 msgid "Site loader"
 msgstr "Màn hình chờ"
 
+msgid "Site tools: 404 & maintenance"
+msgstr "Công cụ website: 404 & bảo trì"
+
 msgid "Site-wide settings that do not need a live preview. They are the same settings as in Appearance → Customize → Advanced."
 msgstr "Cài đặt chung không cần xem trước trực tiếp. Đây cũng chính là các cài đặt trong Giao diện → Tùy biến → Nâng cao."
 
@@ -2815,6 +2714,9 @@ msgstr "Bảo vệ da"
 msgid "Skin specialist"
 msgstr "Chuyên viên da"
 
+msgid "Skip to content"
+msgstr "Chuyển đến nội dung"
+
 msgid "Slide number 01 / 05 with line"
 msgstr "Số slide 01 / 05 kèm vạch chạy"
 
@@ -2827,14 +2729,29 @@ msgstr "Lớp ít người nên được nói rất nhiều, giờ mình tự ti
 msgid "Small classes with practice in every lesson."
 msgstr "Lớp nhỏ, thực hành liên tục mỗi buổi."
 
+msgid "Soft bounce"
+msgstr "Nảy nhẹ"
+
+msgid "Soft focus"
+msgstr "Làm rõ nhẹ"
+
+msgid "Soft shadow"
+msgstr "Bóng đổ nhẹ"
+
 msgid "Soft tinted circle"
 msgstr "Tròn nền nhạt"
 
 msgid "Soft tinted square"
 msgstr "Vuông nền nhạt"
 
+msgid "Soft zoom"
+msgstr "Phóng to nhẹ"
+
 msgid "Software engineer with 6 years of teaching."
 msgstr "Kỹ sư phần mềm, 6 năm giảng dạy."
+
+msgid "Sold out"
+msgstr "Hết hàng"
 
 msgid "Sold-out badge"
 msgstr "Nhãn hết hàng"
@@ -2847,6 +2764,9 @@ msgstr "Lê Thu Hằng"
 
 msgid "Sorry, you are not allowed to change theme options."
 msgstr "Bạn không có quyền thay đổi cài đặt theme."
+
+msgid "Sorry, you are not allowed to create pages."
+msgstr "Bạn không có quyền tạo trang."
 
 msgid "Spa / beauty homepage with 15 sections: hero, highlights, story, treatments, process, numbers, benefits, packages, gallery, therapists, reviews, FAQ, tips, booking and contact."
 msgstr "Spa / beauty homepage with 15 sections: hero, highlights, story, treatments, process, numbers, benefits, packages, gallery, therapists, reviews, FAQ, tips, booking and contact."
@@ -2871,6 +2791,9 @@ msgstr "Thực hành giao tiếp"
 
 msgid "Special offers for loyal customers."
 msgstr "Ưu đãi riêng cho khách thân thiết."
+
+msgid "Start with a page. Make it yours."
+msgstr "Bắt đầu từ một trang mẫu, rồi biến nó thành website của bạn."
 
 msgid "Start your learning journey today"
 msgstr "Bắt đầu hành trình học tập hôm nay"
@@ -2901,6 +2824,9 @@ msgstr "Góc học tập"
 
 msgid "Style for every day"
 msgstr "Phong cách mỗi ngày"
+
+msgid "Submit search"
+msgstr "Tìm"
 
 msgid "Successful deals"
 msgstr "Giao dịch thành công"
@@ -2986,8 +2912,14 @@ msgstr "Thực đơn thay đổi theo mùa để luôn giữ trọn vị tươi 
 msgid "The numbers say it all"
 msgstr "Con số nói lên tất cả"
 
+msgid "The page you are looking for may have been moved or deleted. Try searching instead."
+msgstr "Trang bạn tìm có thể đã được chuyển hoặc xóa. Hãy thử tìm kiếm."
+
 msgid "The people behind the food"
 msgstr "Những người đứng sau món ngon"
+
+msgid "The selected BIGSPY starter pattern could not be found."
+msgstr "Không tìm thấy mẫu trang BIGSPY đã chọn."
 
 msgid "Theme"
 msgstr "Theme"
@@ -3007,6 +2939,9 @@ msgstr "Trang trí theo chủ đề"
 msgid "Therapists"
 msgstr "Chuyên viên"
 
+msgid "There is nothing here yet."
+msgstr "Chưa có nội dung."
+
 msgid "They are completely free, with a shuttle for projects outside the city."
 msgstr "Hoàn toàn miễn phí, có xe đưa đón khi xem dự án ngoại thành."
 
@@ -3021,6 +2956,12 @@ msgstr "Ba gạch mảnh"
 
 msgid "Third-year student"
 msgstr "Sinh viên năm 3"
+
+msgid "This design could not be added. Please try another one."
+msgstr "Không thể chèn mẫu này. Vui lòng thử mẫu khác."
+
+msgid "This starter page is not available."
+msgstr "Mẫu trang này hiện không khả dụng."
 
 msgid "Three lines"
 msgstr "Ba gạch"
@@ -3088,6 +3029,9 @@ msgstr "Liệu trình"
 msgid "Trusted local service"
 msgstr "Dịch vụ uy tín"
 
+msgid "Try “hero”, “services” or “products”…"
+msgstr "Thử tìm “banner”, “dịch vụ” hoặc “sản phẩm”…"
+
 msgid "Tuition"
 msgstr "Học phí"
 
@@ -3115,8 +3059,17 @@ msgstr "Không tìm thấy thẻ cài đặt."
 msgid "Unlimited make-up lessons"
 msgstr "Học bù không giới hạn"
 
+msgid "Untitled design"
+msgstr "Mẫu chưa đặt tên"
+
 msgid "Updated every week with the latest prices and offers from developers."
 msgstr "Danh sách được cập nhật mỗi tuần với giá bán và chính sách mới nhất từ chủ đầu tư."
+
+msgid "Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs."
+msgstr "Dùng menu của block để tạo mẫu tái sử dụng. Các mẫu đã lưu nằm trong mục Mẫu đã lưu."
+
+msgid "Used on the default maintenance screen."
+msgstr "Dùng cho màn hình bảo trì mặc định."
 
 msgid "Vegetables from our own farm"
 msgstr "Rau sạch từ trang trại riêng"
@@ -3126,6 +3079,9 @@ msgstr "Vạch dọc – mép trái"
 
 msgid "View all"
 msgstr "Xem tất cả"
+
+msgid "View all results"
+msgstr "Xem tất cả kết quả"
 
 msgid "Viewings"
 msgstr "Xem nhà thực tế"
@@ -3171,6 +3127,9 @@ msgstr "Trung tâm cam kết cho học lại miễn phí đến khi đạt mục
 
 msgid "We have a vegetarian menu of more than 15 dishes – let us know in advance."
 msgstr "Có thực đơn chay hơn 15 món, bạn báo trước để bếp chuẩn bị riêng."
+
+msgid "We will be back soon"
+msgstr "Chúng tôi sẽ trở lại sớm"
 
 msgid "Website (what visitors see)"
 msgstr "Website (phần khách xem)"
@@ -3303,6 +3262,9 @@ msgstr "Có, bạn được học thử miễn phí 2 buổi trước khi quyế
 
 msgid "Yes. Your therapist analyses your skin and chooses gentle, non-irritating products."
 msgstr "Có. Chuyên viên sẽ soi da và chọn sản phẩm dịu nhẹ, không gây kích ứng."
+
+msgid "Your design stays in draft until you publish it."
+msgstr "Thiết kế vẫn là bản nháp cho đến khi bạn xuất bản."
 
 msgid "Your learning path"
 msgstr "Xây dựng lộ trình"

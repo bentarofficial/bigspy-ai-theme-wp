@@ -14,7 +14,6 @@ function bst_css_preset_moved_groups() {
 
 function bst_css_preset_groups() {
 	return array(
-		'layout-tools' => __( 'Bố cục cân đối · dùng chung với block', 'bigspy-ai-theme-wp' ),
 		'content'  => __( 'Chữ & nội dung', 'bigspy-ai-theme-wp' ),
 		'media'    => __( 'Hình ảnh & banner', 'bigspy-ai-theme-wp' ),
 		'buttons'  => __( 'Nút & biểu mẫu', 'bigspy-ai-theme-wp' ),
@@ -33,7 +32,7 @@ function bst_css_preset_groups() {
  * Explicit selectors target BIGSPY, core blocks and native WooCommerce markup.
  */
 function bst_css_presets() {
-	$recipes = array(
+	return array(
 		'reading_space' => array( 'content', __( 'Giãn dòng nội dung dễ đọc', 'bigspy-ai-theme-wp' ), '.bs-content p,.bs-content li{line-height:1.85}', '', __( 'Đoạn văn và danh sách trong vùng nội dung.', 'bigspy-ai-theme-wp' ) ),
 		'heading_balance' => array( 'content', __( 'Cân dòng tiêu đề', 'bigspy-ai-theme-wp' ), '.bs-content :is(h1,h2,h3),.bs-title__text,.bs-entry__title{text-wrap:balance}', '', __( 'Trình duyệt hỗ trợ sẽ cân độ dài các dòng tiêu đề.', 'bigspy-ai-theme-wp' ) ),
 		'heading_wrap' => array( 'content', __( 'Ngắt tiêu đề quá dài', 'bigspy-ai-theme-wp' ), '.bs-content :is(h1,h2,h3,h4),.bs-card__title,.bs-product__title{overflow-wrap:anywhere}', '', __( 'Tránh từ hoặc đường dẫn dài tràn khỏi thẻ.', 'bigspy-ai-theme-wp' ) ),
@@ -102,7 +101,6 @@ function bst_css_presets() {
 		'reduce_motion' => array( 'mobile', __( 'Giảm hiệu ứng khi thiết bị yêu cầu', 'bigspy-ai-theme-wp' ), '@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bs-animate{opacity:1!important;transform:none!important}.bs-btn,.bs-card,.bs-icon-box,.bs-product__img,.bs-banner__img,.bs-slider__track{animation:none!important;transition:none!important;scroll-behavior:auto}}', '', __( 'Chỉ khi hệ điều hành bật giảm chuyển động; giữ nguyên slider và menu.', 'bigspy-ai-theme-wp' ) ),
 		'mobile_table_scroll' => array( 'mobile', __( 'Bảng nội dung cuộn ngang trên mobile', 'bigspy-ai-theme-wp' ), '@media(max-width:849px){.bs-content .wp-block-table{overflow-x:auto}.bs-content .wp-block-table table{min-width:560px}}', '', __( 'Bảng block WordPress; không áp dụng bảng thanh toán.', 'bigspy-ai-theme-wp' ) ),
 	);
-	return array_merge( $recipes, bst_layout_customizer_presets() );
 }
 
 /** Unknown IDs, malformed inputs and conflicting variants are discarded. Last choice wins. */
