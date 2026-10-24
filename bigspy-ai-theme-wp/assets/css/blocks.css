@@ -2706,7 +2706,7 @@ input[type="submit"]:hover,
 .bs-price__desc { margin: 0 0 14px; font-size: .92em; opacity: .75; }
 .bs-price__amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; margin: 8px 0 18px; }
 .bs-price--align-center .bs-price__amount { justify-content: center; }
-.bs-price__value { color: var(--pa); font-size: 2.4em; font-weight: 800; line-height: 1; }
+.bs-price__value { color: var(--pa); font-size: min(2.4em, 11vw); font-weight: 800; line-height: 1; overflow-wrap: anywhere; }
 .bs-price--gradient .bs-price__value { color: #fff; }
 .bs-price__period { opacity: .7; }
 .bs-price__old { width: 100%; opacity: .55; }
