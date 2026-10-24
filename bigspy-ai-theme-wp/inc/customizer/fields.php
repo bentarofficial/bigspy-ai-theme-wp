@@ -102,6 +102,8 @@ function bst_customizer_fields() {
 
 		// Header general.
 		array( 'id' => 'header_full_width', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Full-width header', 'bigspy-ai-theme-wp' ), 'description' => __( 'Logo, menu and the text of full-width banners / sections line up on the same side spacing.', 'bigspy-ai-theme-wp' ) ),
+		array( 'id' => 'header_round_bottom', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Round the two bottom corners of the header', 'bigspy-ai-theme-wp' ) ),
+		array( 'id' => 'header_round_size', 'section' => 'bst_header_general', 'type' => 'number', 'label' => __( 'Bottom corner radius (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 2, 'max' => 60 ) ),
 		array( 'id' => 'fluid_gutter', 'section' => 'bst_header_general', 'type' => 'number', 'label' => __( 'Side spacing for full-width header & blocks (px, 0 = auto)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 0, 'max' => 200 ) ),
 		array( 'id' => 'header_shadow', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Shadow under header', 'bigspy-ai-theme-wp' ) ),
 		array( 'id' => 'header_sticky', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Sticky header', 'bigspy-ai-theme-wp' ), 'description' => __( 'The main and bottom rows stay on screen while scrolling.', 'bigspy-ai-theme-wp' ) ),

@@ -2183,3 +2183,9 @@ a.page-numbers:hover {
 .bs-header-banner img { display: block; width: 100%; height: auto; max-width: none; }
 @media (max-width: 849px) { .bs-header-banner--desktop { display: none; } }
 @media (min-width: 850px) { .bs-header-banner--mobile { display: none; } }
+
+/* Rounded bottom corners of the header (Header → General) */
+.bs-header.has-round-bottom { border-radius: 0 0 var(--bs-header-r, 16px) var(--bs-header-r, 16px); }
+.bs-header.has-round-bottom .bs-header-row.is-last { border-radius: 0 0 var(--bs-header-r, 16px) var(--bs-header-r, 16px); }
+.bs-header.has-round-bottom.has-shadow .bs-header__sticky { box-shadow: none; }
+.bs-header.has-round-bottom.has-shadow .bs-header-row.is-last { box-shadow: 0 6px 18px rgba(15, 23, 42, .08); }

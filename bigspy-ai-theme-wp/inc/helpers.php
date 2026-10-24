@@ -67,6 +67,8 @@ function bst_defaults() {
 		// Header.
 		'header_layout'          => '',
 		'header_full_width'      => false,
+		'header_round_bottom'    => false,
+		'header_round_size'      => 16,
 		'fluid_gutter'           => 0,
 		'header_sticky'          => true,
 		'header_sticky_height'   => 64,

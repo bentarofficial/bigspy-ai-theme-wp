@@ -39,10 +39,27 @@ function bst_render_header() {
 		$classes[] = 'has-shadow';
 	}
 
+	if ( bst_mod( 'header_round_bottom' ) ) {
+		$classes[] = 'has-round-bottom';
+	}
+
+	// Last non-empty row per device, so rounded bottom corners land on the row that has the background.
+	$last = array();
+	foreach ( bst_header_rows() as $row ) {
+		foreach ( bst_header_devices() as $device ) {
+			if ( '' !== bst_header_row_html( $device, $row, $layout[ $device ][ $row ] ) ) {
+				$last[ $device ] = $row;
+			}
+		}
+	}
+
 	$rows = array( 'top' => '', 'sticky' => '' );
 	foreach ( bst_header_rows() as $row ) {
 		foreach ( bst_header_devices() as $device ) {
 			$html = bst_header_row_html( $device, $row, $layout[ $device ][ $row ] );
+			if ( '' !== $html && ( $last[ $device ] ?? '' ) === $row ) {
+				$html = preg_replace( '/class="bs-header-row /', 'class="bs-header-row is-last ', $html, 1 );
+			}
 			if ( 'top' === $row ) {
 				$rows['top'] .= $html;
 			} else {
@@ -51,7 +68,8 @@ function bst_render_header() {
 		}
 	}
 
-	echo '<header id="masthead" class="' . esc_attr( implode( ' ', $classes ) ) . '">';
+	$style = bst_mod( 'header_round_bottom' ) ? ' style="--bs-header-r:' . max( 2, min( 60, (int) bst_mod( 'header_round_size' ) ) ) . 'px"' : '';
+	echo '<header id="masthead" class="' . esc_attr( implode( ' ', $classes ) ) . '"' . $style . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- integer only.
 	echo $rows['top']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from escaped parts.
 	echo '<div class="bs-header__sticky">' . $rows['sticky']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	bst_search_panel();

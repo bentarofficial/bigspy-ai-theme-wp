@@ -494,6 +494,9 @@ msgstr "Đặt lịch hôm nay để nhận ưu đãi 15% cho lần đầu trả
 msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
 msgstr "Nên đặt trước vào tối thứ Sáu đến Chủ nhật để có chỗ đẹp. Ngày thường bạn có thể đến trực tiếp."
 
+msgid "Bottom corner radius (px)"
+msgstr "Độ bo góc dưới (px)"
+
 msgid "Breadcrumb"
 msgstr "Đường dẫn"
 
@@ -2086,6 +2089,9 @@ msgstr "Đánh giá & cấp chứng nhận"
 
 msgid "Right"
 msgstr "Phải"
+
+msgid "Round the two bottom corners of the header"
+msgstr "Bo tròn 2 góc dưới của header"
 
 msgid "Rounded – filled"
 msgstr "Bo góc – nền đặc"
