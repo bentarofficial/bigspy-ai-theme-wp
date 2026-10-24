@@ -2177,3 +2177,9 @@ a.page-numbers:hover {
 .bs-menu--glow > li:is(:hover, .current-menu-item, .current-menu-ancestor) > a { color: var(--bs-nav-ind) !important; text-shadow: 0 0 14px color-mix(in srgb, var(--bs-nav-ind) 60%, transparent); }
 .bs-menu--divided-dot > li + li > a::before { content: "•"; position: absolute; left: -4px; opacity: .35; }
 @media (prefers-reduced-motion: reduce) { .bs-menu > li > a, .bs-menu > li > a::before, .bs-menu > li > a::after { transition: none; } }
+
+/* Full-width code banner above the header */
+.bs-header-banner { width: 100%; overflow: hidden; }
+.bs-header-banner img { display: block; width: 100%; height: auto; max-width: none; }
+@media (max-width: 849px) { .bs-header-banner--desktop { display: none; } }
+@media (min-width: 850px) { .bs-header-banner--mobile { display: none; } }

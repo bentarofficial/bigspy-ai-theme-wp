@@ -20,6 +20,7 @@ defined( 'ABSPATH' ) || exit;
 <div id="page" class="bs-site">
 <?php
 if ( bst_show_header() ) {
+	bst_header_banner();
 	if ( ! bst_header_design() ) { bst_render_header(); }
 }
 ?>

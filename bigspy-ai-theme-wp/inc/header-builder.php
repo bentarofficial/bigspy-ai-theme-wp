@@ -10,6 +10,19 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Full-width code banner above the header (promotions, announcements).
+ * Saved through bst_sanitize_code: raw only for users allowed unfiltered HTML.
+ */
+function bst_header_banner() {
+	$code = trim( (string) bst_mod( 'header_banner_code' ) );
+	if ( ! bst_mod( 'header_banner_on' ) || '' === $code ) {
+		return;
+	}
+	$device = bst_choice( (string) bst_mod( 'header_banner_device' ), array( 'all', 'desktop', 'mobile' ), 'all' );
+	echo '<div class="bs-header-banner bs-header-banner--' . esc_attr( $device ) . '">' . do_shortcode( $code ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- admin-authored code.
+}
+
 function bst_render_header() {
 	$layout  = bst_get_header_layout();
 	$classes = array( 'bs-header' );

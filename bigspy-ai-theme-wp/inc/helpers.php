@@ -118,6 +118,9 @@ function bst_defaults() {
 		// Page title bar.
 		'title_bar_style'        => 'simple',
 		'page_title_h1'          => false,
+		'header_banner_on'       => false,
+		'header_banner_code'     => '',
+		'header_banner_device'   => 'all',
 		'title_bar_bg'           => '#f5f7fa',
 		'title_bar_color'        => '#111827',
 		'title_bar_image'        => '',
