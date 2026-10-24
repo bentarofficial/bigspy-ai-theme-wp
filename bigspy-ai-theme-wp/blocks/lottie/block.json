@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/lottie",
+	"title": "Lottie animation",
+	"category": "bigspy",
+	"icon": "controls-play",
+	"description": "A lightweight vector animation from a Lottie JSON file.",
+	"keywords": [
+		"lottie",
+		"animation",
+		"json",
+		"hoạt hình"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"src": {
+			"type": "string",
+			"default": ""
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"hover": {
+			"type": "boolean",
+			"default": false
+		},
+		"speed": {
+			"type": "number",
+			"default": 1
+		},
+		"width": {
+			"type": "number",
+			"default": 320
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,96 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/flip-box",
+	"title": "Flip box",
+	"category": "bigspy",
+	"icon": "image-rotate",
+	"description": "A card that flips on hover to show more text and a button on the back.",
+	"keywords": [
+		"flip",
+		"card",
+		"hover",
+		"lật"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"icon": {
+			"type": "string",
+			"default": "rocket"
+		},
+		"frontTitle": {
+			"type": "string",
+			"default": "Thiết kế website"
+		},
+		"frontText": {
+			"type": "string",
+			"default": "Giao diện đẹp, chuẩn SEO."
+		},
+		"frontBg": {
+			"type": "string",
+			"default": ""
+		},
+		"frontColor": {
+			"type": "string",
+			"default": ""
+		},
+		"frontImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"frontImageId": {
+			"type": "number",
+			"default": 0
+		},
+		"backTitle": {
+			"type": "string",
+			"default": "Bắt đầu ngay"
+		},
+		"backText": {
+			"type": "string",
+			"default": "Nhận tư vấn miễn phí và báo giá trong ngày."
+		},
+		"backBg": {
+			"type": "string",
+			"default": ""
+		},
+		"backColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Liên hệ"
+		},
+		"buttonUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"height": {
+			"type": "number",
+			"default": 300
+		},
+		"direction": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"radius": {
+			"type": "number",
+			"default": 16
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,78 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/banner-grid",
+	"title": "Banner grid",
+	"category": "bigspy",
+	"icon": "grid-view",
+	"description": "Several image banners in a magazine-style grid.",
+	"keywords": [
+		"banner",
+		"grid",
+		"mosaic",
+		"lưới"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"layout": {
+			"type": "string",
+			"default": "1-2"
+		},
+		"height": {
+			"type": "number",
+			"default": 460
+		},
+		"gap": {
+			"type": "number",
+			"default": 12
+		},
+		"radius": {
+			"type": "number",
+			"default": 14
+		},
+		"overlay": {
+			"type": "number",
+			"default": 35
+		},
+		"hover": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"imageUrl": "",
+					"imageId": 0,
+					"title": "Bộ sưu tập mới",
+					"subtitle": "Xem ngay",
+					"link": ""
+				},
+				{
+					"imageUrl": "",
+					"imageId": 0,
+					"title": "Ưu đãi",
+					"subtitle": "Giảm đến 30%",
+					"link": ""
+				},
+				{
+					"imageUrl": "",
+					"imageId": 0,
+					"title": "Bán chạy",
+					"subtitle": "Top tuần",
+					"link": ""
+				}
+			]
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,76 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/marquee",
+	"title": "Scrolling text (marquee)",
+	"category": "bigspy",
+	"icon": "leftright",
+	"description": "Text or keywords that scroll continuously across the screen.",
+	"keywords": [
+		"marquee",
+		"ticker",
+		"scrolling",
+		"chữ chạy"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"items": {
+			"type": "string",
+			"default": "Thiết kế website\nSEO\nQuảng cáo Google Ads\nNội dung số"
+		},
+		"speed": {
+			"type": "number",
+			"default": 30
+		},
+		"direction": {
+			"type": "string",
+			"default": "left"
+		},
+		"pauseHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"separator": {
+			"type": "string",
+			"default": "star"
+		},
+		"size": {
+			"type": "number",
+			"default": 28
+		},
+		"weight": {
+			"type": "string",
+			"default": "700"
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"bgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"gap": {
+			"type": "number",
+			"default": 40
+		},
+		"outline": {
+			"type": "boolean",
+			"default": false
+		},
+		"paddingY": {
+			"type": "number",
+			"default": 18
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

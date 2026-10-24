@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/audio",
+	"title": "Audio player",
+	"category": "bigspy",
+	"icon": "format-audio",
+	"description": "Play an audio file or podcast episode with cover, title and artist.",
+	"keywords": [
+		"audio",
+		"podcast",
+		"music",
+		"âm thanh"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"fileId": {
+			"type": "number",
+			"default": 0
+		},
+		"fileUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": "Tên bài / tập podcast"
+		},
+		"artist": {
+			"type": "string",
+			"default": ""
+		},
+		"coverId": {
+			"type": "number",
+			"default": 0
+		},
+		"coverUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
+			"type": "string",
+			"default": "card"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

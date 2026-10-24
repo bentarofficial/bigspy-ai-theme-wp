@@ -610,3 +610,11 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-color-input__apply { height: 32px; }
 .bst-color-input__note { flex-basis: 100%; font-size: 12px; color: #cc1818; }
 .bst-color-input__note:empty { display: none; }
+
+/* 1.66 blocks in the editor */
+.bst-more-empty { display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; min-height: 120px; padding: 20px; color: #50575e; background: #f6f7f7; border: 1px dashed #c3c4c7; border-radius: 8px; text-align: center; }
+.bst-repeater__item { margin-bottom: 6px; border: 1px solid #dcdcde; border-radius: 6px; }
+.bst-repeater__head { display: flex; align-items: center; gap: 2px; }
+.bst-repeater__head > .components-button:first-child { flex: 1; justify-content: flex-start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bst-repeater__body { display: grid; gap: 10px; padding: 10px; border-top: 1px solid #f0f0f1; }
+.bst-media-picker__file { display: block; margin-bottom: 6px; word-break: break-all; }

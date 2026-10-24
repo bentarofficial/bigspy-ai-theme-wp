@@ -930,3 +930,21 @@ document.addEventListener('submit', function (e) {
 		}
 	});
 });
+
+
+/* Pricing with monthly / yearly switch (1.66). */
+document.addEventListener('click', function (event) {
+	var button = event.target.closest('[data-bs-pricing-toggle] [data-set]');
+	if (!button) {
+		return;
+	}
+	var root = button.closest('[data-bs-pricing-toggle]');
+	var state = button.getAttribute('data-set') === 'b' ? 'b' : 'a';
+	root.setAttribute('data-state', state);
+	root.querySelectorAll('[data-set]').forEach(function (b) {
+		b.setAttribute('aria-pressed', b === button ? 'true' : 'false');
+	});
+	root.querySelectorAll('[data-a]').forEach(function (node) {
+		node.textContent = node.getAttribute('data-' + state) || '';
+	});
+});

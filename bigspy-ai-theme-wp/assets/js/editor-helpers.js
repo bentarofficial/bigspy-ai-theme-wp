@@ -49,16 +49,16 @@
 		return el(c.BaseControl, { label: props.label || __('Image', 'bigspy-ai-theme-wp'), __nextHasNoMarginBottom: true },
 			el(be.MediaUploadCheck, null,
 				el(be.MediaUpload, {
-					allowedTypes: ['image'],
+					allowedTypes: props.allowedTypes || ['image'],
 					value: props.id || 0,
 					onSelect: function (media) {
 						props.onChange({ id: media.id || 0, url: media.url || '', width: media.width || 0, height: media.height || 0, alt: media.alt || '' });
 					},
 					render: function (o) {
 						return el('div', { className: 'bst-media-picker' },
-							props.url ? el('img', { src: props.url, alt: '', onClick: o.open }) : null,
+							props.url ? ((props.allowedTypes && props.allowedTypes[0] !== 'image') ? el('code', { className: 'bst-media-picker__file' }, props.url.split('/').pop()) : el('img', { src: props.url, alt: '', onClick: o.open })) : null,
 							el('div', { className: 'bst-media-picker__actions' },
-								el(c.Button, { variant: 'secondary', onClick: o.open }, props.url ? __('Replace', 'bigspy-ai-theme-wp') : __('Select image', 'bigspy-ai-theme-wp')),
+								el(c.Button, { variant: 'secondary', onClick: o.open }, props.url ? __('Replace', 'bigspy-ai-theme-wp') : ((props.allowedTypes && props.allowedTypes[0] !== 'image') ? __('Select file', 'bigspy-ai-theme-wp') : __('Select image', 'bigspy-ai-theme-wp'))),
 								props.url ? el(c.Button, {
 									variant: 'link',
 									isDestructive: true,

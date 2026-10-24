@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/table",
+	"title": "Table",
+	"category": "bigspy",
+	"icon": "editor-table",
+	"description": "A responsive data table. One row per line, cells separated by |.",
+	"keywords": [
+		"table",
+		"bảng",
+		"compare",
+		"data"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"data": {
+			"type": "string",
+			"default": "Tính năng | Gói A | Gói B\nTên miền | Có | Có\nHosting | 1 năm | 1 năm\nBài viết SEO | 20 | 30"
+		},
+		"header": {
+			"type": "boolean",
+			"default": true
+		},
+		"firstColumn": {
+			"type": "boolean",
+			"default": false
+		},
+		"striped": {
+			"type": "boolean",
+			"default": true
+		},
+		"bordered": {
+			"type": "boolean",
+			"default": true
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"caption": {
+			"type": "string",
+			"default": ""
+		},
+		"size": {
+			"type": "number",
+			"default": 15
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

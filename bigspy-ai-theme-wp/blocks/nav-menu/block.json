@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/nav-menu",
+	"title": "Navigation menu",
+	"category": "bigspy",
+	"icon": "menu",
+	"description": "Show a WordPress menu anywhere: horizontal, vertical, with a mobile toggle.",
+	"keywords": [
+		"menu",
+		"navigation",
+		"nav",
+		"điều hướng"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"menuId": {
+			"type": "number",
+			"default": 0
+		},
+		"layout": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"style": {
+			"type": "string",
+			"default": "plain"
+		},
+		"mobile": {
+			"type": "string",
+			"default": "toggle"
+		},
+		"gap": {
+			"type": "number",
+			"default": 24
+		},
+		"size": {
+			"type": "number",
+			"default": 0
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"hover": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

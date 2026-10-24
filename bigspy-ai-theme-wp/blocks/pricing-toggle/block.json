@@ -1,0 +1,92 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/pricing-toggle",
+	"title": "Pricing with monthly / yearly switch",
+	"category": "bigspy",
+	"icon": "money-alt",
+	"description": "Price cards with a switch between two billing periods.",
+	"keywords": [
+		"pricing",
+		"toggle",
+		"monthly",
+		"yearly",
+		"bảng giá"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"labelA": {
+			"type": "string",
+			"default": "Theo tháng"
+		},
+		"labelB": {
+			"type": "string",
+			"default": "Theo năm"
+		},
+		"badgeB": {
+			"type": "string",
+			"default": "Tiết kiệm 20%"
+		},
+		"periodA": {
+			"type": "string",
+			"default": "/tháng"
+		},
+		"periodB": {
+			"type": "string",
+			"default": "/năm"
+		},
+		"start": {
+			"type": "string",
+			"default": "a"
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"plans": {
+			"type": "array",
+			"default": [
+				{
+					"title": "Cơ bản",
+					"priceA": "199.000đ",
+					"priceB": "1.990.000đ",
+					"desc": "Cho cá nhân mới bắt đầu.",
+					"features": "Tính năng 1\nTính năng 2\nTính năng 3",
+					"button": "Chọn gói",
+					"url": "",
+					"featured": false
+				},
+				{
+					"title": "Nâng cao",
+					"priceA": "399.000đ",
+					"priceB": "3.990.000đ",
+					"desc": "Cho doanh nghiệp nhỏ.",
+					"features": "Tất cả gói Cơ bản\nTính năng 4\nTính năng 5",
+					"button": "Chọn gói",
+					"url": "",
+					"featured": true
+				},
+				{
+					"title": "Doanh nghiệp",
+					"priceA": "799.000đ",
+					"priceB": "7.990.000đ",
+					"desc": "Cho đội nhóm lớn.",
+					"features": "Tất cả gói Nâng cao\nHỗ trợ ưu tiên\nTùy chỉnh riêng",
+					"button": "Liên hệ",
+					"url": "",
+					"featured": false
+				}
+			]
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

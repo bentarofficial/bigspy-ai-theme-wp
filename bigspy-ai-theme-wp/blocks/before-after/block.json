@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/before-after",
+	"title": "Before / after image",
+	"category": "bigspy",
+	"icon": "image-flip-horizontal",
+	"description": "Compare two images with a draggable divider.",
+	"keywords": [
+		"before",
+		"after",
+		"compare",
+		"so sánh"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"beforeId": {
+			"type": "number",
+			"default": 0
+		},
+		"beforeUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"afterId": {
+			"type": "number",
+			"default": 0
+		},
+		"afterUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"beforeLabel": {
+			"type": "string",
+			"default": "Trước"
+		},
+		"afterLabel": {
+			"type": "string",
+			"default": "Sau"
+		},
+		"start": {
+			"type": "number",
+			"default": 50
+		},
+		"radius": {
+			"type": "number",
+			"default": 12
+		},
+		"alt": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}

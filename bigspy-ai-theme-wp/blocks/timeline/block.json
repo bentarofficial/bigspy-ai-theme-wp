@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/timeline",
+	"title": "Timeline",
+	"category": "bigspy",
+	"icon": "backup",
+	"description": "Steps, milestones or a history as a vertical timeline.",
+	"keywords": [
+		"timeline",
+		"history",
+		"steps",
+		"process",
+		"mốc"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"date": "2020",
+					"title": "Thành lập",
+					"text": "Bắt đầu với những dự án đầu tiên."
+				},
+				{
+					"date": "2023",
+					"title": "Mở rộng",
+					"text": "Thêm dịch vụ quảng cáo và nội dung."
+				},
+				{
+					"date": "2026",
+					"title": "Hôm nay",
+					"text": "Đồng hành cùng hàng trăm khách hàng."
+				}
+			]
+		},
+		"layout": {
+			"type": "string",
+			"default": "alternate"
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"marker": {
+			"type": "string",
+			"default": "dot"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-more",
+	"render": "file:./render.php"
+}
