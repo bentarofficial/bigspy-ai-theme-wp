@@ -1,0 +1,9442 @@
+# BIGSPY AI Theme WP - translation template.
+# Copy to <locale>.po (e.g. fr_FR.po), translate, then compile to .mo with Poedit or Loco Translate.
+msgid ""
+msgstr ""
+"Project-Id-Version: BIGSPY AI Theme WP\n"
+"POT-Creation-Date: 2026-10-24\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: bigspy-ai-theme-wp\n"
+
+msgid "$119"
+msgstr ""
+
+msgid "$149"
+msgstr ""
+
+msgid "$159"
+msgstr ""
+
+msgid "$19"
+msgstr ""
+
+msgid "$319"
+msgstr ""
+
+msgid "$399"
+msgstr ""
+
+msgid "$45"
+msgstr ""
+
+msgid "$59"
+msgstr ""
+
+msgid "%s comment"
+msgstr ""
+
+msgid "%s product"
+msgstr ""
+
+msgid "-Deep skin analysis"
+msgstr ""
+
+msgid "-Mortgage paperwork"
+msgstr ""
+
+msgid "-Private room"
+msgstr ""
+
+msgid "-Results guarantee"
+msgstr ""
+
+msgid "/ 10 guests"
+msgstr ""
+
+msgid "/ 3 months"
+msgstr ""
+
+msgid "/ 4 guests"
+msgstr ""
+
+msgid "/ 5 sessions"
+msgstr ""
+
+msgid "/ course"
+msgstr ""
+
+msgid "/ guest"
+msgstr ""
+
+msgid "/ of value"
+msgstr ""
+
+msgid "/ on sale"
+msgstr ""
+
+msgid "/ package"
+msgstr ""
+
+msgid "/ session"
+msgstr ""
+
+msgid "0.5%"
+msgstr ""
+
+msgid "1,200+ deals"
+msgstr ""
+
+msgid "10 years of deep skin care experience."
+msgstr ""
+
+msgid "10% off for groups of 3, and 0% instalments by credit card."
+msgstr ""
+
+msgid "100% genuine"
+msgstr ""
+
+msgid "100% natural"
+msgstr ""
+
+msgid "12 Garden Avenue, City Centre"
+msgstr ""
+
+msgid "12 partner banks"
+msgstr ""
+
+msgid "15 minutes to the centre"
+msgstr ""
+
+msgid "15 years in five-star hotel kitchens."
+msgstr ""
+
+msgid "15 years in the housing market."
+msgstr ""
+
+msgid "15% off your first visit"
+msgstr ""
+
+msgid "2 free trial lessons"
+msgstr ""
+
+msgid "2-bedroom apartment"
+msgstr ""
+
+msgid "2-bedroom city apartment"
+msgstr ""
+
+msgid "2-hour delivery"
+msgstr ""
+
+msgid "24 lessons, twice a week"
+msgstr ""
+
+msgid "24/7 support"
+msgstr ""
+
+msgid "24K gold mask"
+msgstr ""
+
+msgid "25 Main Street, City Centre"
+msgstr ""
+
+msgid "30-dish Asian & European buffet"
+msgstr ""
+
+msgid "300 m² plot, private garden, 24/7 security."
+msgstr ""
+
+msgid "35 m², ideal for young people and renting out."
+msgstr ""
+
+msgid "35+ projects on offer"
+msgstr ""
+
+msgid "4 steps to your goal"
+msgstr ""
+
+msgid "4.9 ★ on Google"
+msgstr ""
+
+msgid "4.9/5 from more than 1,200 reviews"
+msgstr ""
+
+msgid "40+ experienced teachers"
+msgstr ""
+
+msgid "404 & maintenance"
+msgstr ""
+
+msgid "404 page"
+msgstr ""
+
+msgid "45 College Road, City Centre"
+msgstr ""
+
+msgid "5 checks at handover"
+msgstr ""
+
+msgid "5 facials"
+msgstr ""
+
+msgid "5 mains + soup"
+msgstr ""
+
+msgid "5 steps for evening skin care"
+msgstr ""
+
+msgid "5x20 m, four floors, live and do business."
+msgstr ""
+
+msgid "60 consultants"
+msgstr ""
+
+msgid "60-minute hot stone massage"
+msgstr ""
+
+msgid "68 m², river view, basic furniture, from $210,000."
+msgstr ""
+
+msgid "7-day returns"
+msgstr ""
+
+msgid "70% of class time is practice."
+msgstr ""
+
+msgid "7:00 am – 10:00 pm, every day"
+msgstr ""
+
+msgid "7:00 am – 10:00 pm, holidays too"
+msgstr ""
+
+msgid "8 facial + body sessions"
+msgstr ""
+
+msgid "8 mains + hot pot"
+msgstr ""
+
+msgid "8 private treatment rooms"
+msgstr ""
+
+msgid "80+ Asian and European dishes"
+msgstr ""
+
+msgid "8:00 am – 8:00 pm, Monday – Sunday"
+msgstr ""
+
+msgid "8:00 am – 9:00 pm, Monday – Sunday"
+msgstr ""
+
+msgid "8–12% a year"
+msgstr ""
+
+msgid "96% reach their goal"
+msgstr ""
+
+msgid "9:00 am – 9:00 pm, every day"
+msgstr ""
+
+msgid "A 6-month plan with free materials and how to train each skill."
+msgstr ""
+
+msgid "A caring advisory team"
+msgstr ""
+
+msgid "A certificate when you complete the course."
+msgstr ""
+
+msgid "A checklist for power, water, walls and doors before you sign."
+msgstr ""
+
+msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
+msgstr ""
+
+msgid "A complete dining experience"
+msgstr ""
+
+msgid "A complete homepage with an introduction, services, about section, testimonials, pricing, FAQ and contact."
+msgstr ""
+
+msgid "A consultant is with you at every step."
+msgstr ""
+
+msgid "A cosy weekend dinner"
+msgstr ""
+
+msgid "A day at the centre"
+msgstr ""
+
+msgid "A free 30-minute level check."
+msgstr ""
+
+msgid "A free mask with every package."
+msgstr ""
+
+msgid "A green space where you can truly rest"
+msgstr ""
+
+msgid "A kitchen certified for hygiene and food safety."
+msgstr ""
+
+msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
+msgstr ""
+
+msgid "A reusable design saved in WordPress."
+msgstr ""
+
+msgid "A service for every need"
+msgstr ""
+
+msgid "A shop homepage with a hero, benefits, categories, product collections and more."
+msgstr ""
+
+msgid "A trained team that always welcomes you with a smile."
+msgstr ""
+
+msgid "A trained team with professional certificates."
+msgstr ""
+
+msgid "ACHIEVEMENTS"
+msgstr ""
+
+msgid "About 720–800px is easiest to read."
+msgstr ""
+
+msgid "About the centre"
+msgstr ""
+
+msgid "About us"
+msgstr ""
+
+msgid "Accountant"
+msgstr ""
+
+msgid "Active dot fills up"
+msgstr ""
+
+msgid "Active plugins"
+msgstr ""
+
+msgid "Activities"
+msgstr ""
+
+msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
+msgstr ""
+
+msgid "Add layout"
+msgstr ""
+
+msgid "Add new layout"
+msgstr ""
+
+msgid "Add to page"
+msgstr ""
+
+msgid "Added as a synced design. Changes to its source update every copy."
+msgstr ""
+
+msgid "Added to your page. Edit the text and images in the preview."
+msgstr ""
+
+msgid "Adding a design does not publish the page. Use Preview, then Save draft or Publish when it is ready."
+msgstr ""
+
+msgid "Additional CSS"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Admin & Customizer"
+msgstr ""
+
+msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
+msgstr ""
+
+msgid "Advice and viewings"
+msgstr ""
+
+msgid "Advice by chat and hotline 24/7."
+msgstr ""
+
+msgid "After the header"
+msgstr ""
+
+msgid "After the page content"
+msgstr ""
+
+msgid "After-sales"
+msgstr ""
+
+msgid "Agree the best price and prepare the loan file."
+msgstr ""
+
+msgid "Air-conditioned rooms with projectors"
+msgstr ""
+
+msgid "Airy garden seating"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "All archives (category, tag, author, date)"
+msgstr ""
+
+msgid "All designs"
+msgstr ""
+
+msgid "All pages"
+msgstr ""
+
+msgid "All posts"
+msgstr ""
+
+msgid "All products"
+msgstr ""
+
+msgid "Also on these post / page IDs (comma separated)"
+msgstr ""
+
+msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
+msgstr ""
+
+msgid "Always listening to make every meal better."
+msgstr ""
+
+msgid "Always listens to find the right treatment."
+msgstr ""
+
+msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
+msgstr ""
+
+msgid "Analytics and pixel code, performance tweaks, 404 and maintenance pages."
+msgstr ""
+
+msgid "And still growing"
+msgstr ""
+
+msgid "Anna"
+msgstr ""
+
+msgid "Any other questions? Send us a message for a free consultation."
+msgstr ""
+
+msgid "Apartment specialist"
+msgstr ""
+
+msgid "Apply what you learn to real situations."
+msgstr ""
+
+msgid "Arabica beans roasted every week, brewed as filter or espresso."
+msgstr ""
+
+msgid "Archive layouts, cards, table of contents, author box, related posts."
+msgstr ""
+
+msgid "Arrive on time – your table and dishes are ready."
+msgstr ""
+
+msgid "As peaceful as a resort"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Author avatar"
+msgstr ""
+
+msgid "Author bio"
+msgstr ""
+
+msgid "Author box heading (empty = “Written by”)"
+msgstr ""
+
+msgid "Author box style"
+msgstr ""
+
+msgid "Author details come from"
+msgstr ""
+
+msgid "Author information"
+msgstr ""
+
+msgid "Author name"
+msgstr ""
+
+msgid "Author profile URL"
+msgstr ""
+
+msgid "Award-winning national coffee champion."
+msgstr ""
+
+msgid "BIGSPY Studio"
+msgstr ""
+
+msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr ""
+
+msgid "BIGSPY settings"
+msgstr ""
+
+msgid "Back to home"
+msgstr ""
+
+msgid "Back to top"
+msgstr ""
+
+msgid "Badge and faded card"
+msgstr ""
+
+msgid "Badge and grayscale image"
+msgstr ""
+
+msgid "Badge only"
+msgstr ""
+
+msgid "Badge texts (empty = default)"
+msgstr ""
+
+msgid "Band score guarantee"
+msgstr ""
+
+msgid "Bank loan file"
+msgstr ""
+
+msgid "Banner code (HTML, inline CSS)"
+msgstr ""
+
+msgid "Barista"
+msgstr ""
+
+msgid "Basic conversation"
+msgstr ""
+
+msgid "Beautiful websites that sell"
+msgstr ""
+
+msgid "Beauty tips"
+msgstr ""
+
+msgid "Beer or soft drinks"
+msgstr ""
+
+msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
+msgstr ""
+
+msgid "Before the footer"
+msgstr ""
+
+msgid "Before the header"
+msgstr ""
+
+msgid "Before the page content"
+msgstr ""
+
+msgid "Benefits of regular massage"
+msgstr ""
+
+msgid "Best sellers"
+msgstr ""
+
+msgid "Better skin after 3–5 sessions"
+msgstr ""
+
+msgid "Birthdays, team dinners, events"
+msgstr ""
+
+msgid "Black pepper beef"
+msgstr ""
+
+msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
+msgid "Blog & single post"
+msgstr ""
+
+msgid "Blog posts page"
+msgstr ""
+
+msgid "Body care"
+msgstr ""
+
+msgid "Bold lines"
+msgstr ""
+
+msgid "Book"
+msgstr ""
+
+msgid "Book 2 free trial lessons and get a learning-path consultation within 24 hours."
+msgstr ""
+
+msgid "Book a free trial"
+msgstr ""
+
+msgid "Book a table"
+msgstr ""
+
+msgid "Book a table for tonight?"
+msgstr ""
+
+msgid "Book a viewing"
+msgstr ""
+
+msgid "Book an appointment"
+msgstr ""
+
+msgid "Book by phone, chat or the website – our team confirms within 5 minutes."
+msgstr ""
+
+msgid "Book one day ahead to get your preferred time. Walk-ins are welcome when a room is free."
+msgstr ""
+
+msgid "Book today and get 15% off your first visit."
+msgstr ""
+
+msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
+msgstr ""
+
+msgid "Bordered"
+msgstr ""
+
+msgid "Bottom corner radius (px)"
+msgstr ""
+
+msgid "Brand colors, palettes, typography and button styles."
+msgstr ""
+
+msgid "Brand line on the left"
+msgstr ""
+
+msgid "Breadcrumb"
+msgstr ""
+
+msgid "Brewing the perfect filter coffee"
+msgstr ""
+
+msgid "Bridal care packages"
+msgstr ""
+
+msgid "Bridal package"
+msgstr ""
+
+msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
+msgstr ""
+
+msgid "Build from scratch"
+msgstr ""
+
+msgid "Build pages with blocks"
+msgstr ""
+
+msgid "Business homepage"
+msgstr ""
+
+msgid "Business or service website"
+msgstr ""
+
+msgid "Button"
+msgstr ""
+
+msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
+msgstr ""
+
+msgid "Buy a package to save up to 30% and share it with family."
+msgstr ""
+
+msgid "Buy now"
+msgstr ""
+
+msgid "Buy your home in 4 easy steps"
+msgstr ""
+
+msgid "Buyers"
+msgstr ""
+
+msgid "Buyers get free advice. Owners who list with us only pay when the deal closes."
+msgstr ""
+
+msgid "Buying process"
+msgstr ""
+
+msgid "Cakes baked today"
+msgstr ""
+
+msgid "Call now"
+msgstr ""
+
+msgid "Call now to get the best seats, book a party or order takeaway."
+msgstr ""
+
+msgid "Call to action"
+msgstr ""
+
+msgid "Call us"
+msgstr ""
+
+msgid "Can I get an invoice?"
+msgstr ""
+
+msgid "Can I list my home for sale?"
+msgstr ""
+
+msgid "Can I make up missed lessons?"
+msgstr ""
+
+msgid "Can I pay in instalments?"
+msgstr ""
+
+msgid "Can I try a lesson first?"
+msgstr ""
+
+msgid "Can’t find your answer? Call or message us – we are always happy to help."
+msgstr ""
+
+msgid "Caramelised fish, sour soup and crispy clay pot rice."
+msgstr ""
+
+msgid "Card corner radius (px, -1 = default)"
+msgstr ""
+
+msgid "Card details"
+msgstr ""
+
+msgid "Card inner space (px, -1 = default)"
+msgstr ""
+
+msgid "Caring service"
+msgstr ""
+
+msgid "Caring support"
+msgstr ""
+
+msgid "Caring therapists"
+msgstr ""
+
+msgid "Cart"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Category badge on the image"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Centered title, then image"
+msgstr ""
+
+msgid "Certificates"
+msgstr ""
+
+msgid "Certified in Thai therapeutic massage."
+msgstr ""
+
+msgid "Chat / Messenger"
+msgstr ""
+
+msgid "Child theme"
+msgstr ""
+
+msgid "Chloe"
+msgstr ""
+
+msgid "Choose a ready-made design, then change its text, images and colors on the page."
+msgstr ""
+
+msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr ""
+
+msgid "Choose a treatment and time by phone or chat."
+msgstr ""
+
+msgid "Choose the course for your goal, with evening and weekend classes for working adults."
+msgstr ""
+
+msgid "Choose this plan"
+msgstr ""
+
+msgid "Choose your area"
+msgstr ""
+
+msgid "Choosing a course for your child"
+msgstr ""
+
+msgid "Choosing the right sunscreen"
+msgstr ""
+
+msgid "Classic (one large post per row)"
+msgstr ""
+
+msgid "Clay pot fish"
+msgstr ""
+
+msgid "Clean ingredients"
+msgstr ""
+
+msgid "Clean up WordPress"
+msgstr ""
+
+msgid "Clean, fragrant and quiet. Booking by chat is very quick."
+msgstr ""
+
+msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
+msgstr ""
+
+msgid "Clear legal status"
+msgstr ""
+
+msgid "Clear tuition, plenty of offers"
+msgstr ""
+
+msgid "Clients"
+msgstr ""
+
+msgid "Clinical acne care"
+msgstr ""
+
+msgid "Close menu"
+msgstr ""
+
+msgid "Close search"
+msgstr ""
+
+msgid "Closed in 15 years"
+msgstr ""
+
+msgid "Coding basics"
+msgstr ""
+
+msgid "Coffee ratio, water temperature and brewing time for a rich cup."
+msgstr ""
+
+msgid "Collect points and enjoy 10% off as a regular."
+msgstr ""
+
+msgid "Colors & fonts"
+msgstr ""
+
+msgid "Colors & spacing"
+msgstr ""
+
+msgid "Columns"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Comments are closed."
+msgstr ""
+
+msgid "Commercial shophouse"
+msgstr ""
+
+msgid "Company director"
+msgstr ""
+
+msgid "Conference set"
+msgstr ""
+
+msgid "Consultant"
+msgstr ""
+
+msgid "Consultants"
+msgstr ""
+
+msgid "Contact for price"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Content width (px, 0 = full)"
+msgstr ""
+
+msgid "Contents"
+msgstr ""
+
+msgid "Cookie notice & reading"
+msgstr ""
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Copy appearance"
+msgstr ""
+
+msgid "Copy link"
+msgstr ""
+
+msgid "Copyright © [year] [site_title]. All rights reserved."
+msgstr ""
+
+msgid "Countdown ring – top right"
+msgstr ""
+
+msgid "Couple rooms available"
+msgstr ""
+
+msgid "Courses"
+msgstr ""
+
+msgid "Create draft and open editor"
+msgstr ""
+
+msgid "Custom CSS"
+msgstr ""
+
+msgid "Custom fields left empty fall back to the writer’s profile."
+msgstr ""
+
+msgid "Custom party menus"
+msgstr ""
+
+msgid "Customer reviews"
+msgstr ""
+
+msgid "Customers"
+msgstr ""
+
+msgid "Customize"
+msgstr ""
+
+msgid "DESIGN YOUR WEBSITE"
+msgstr ""
+
+msgid "Daniel Carter"
+msgstr ""
+
+msgid "Database"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Date badge on the image"
+msgstr ""
+
+msgid "Debug mode"
+msgstr ""
+
+msgid "Dedicated teachers"
+msgstr ""
+
+msgid "Deep cleansing, exfoliation, a hydrating mask and recovery."
+msgstr ""
+
+msgid "Deep facial care"
+msgstr ""
+
+msgid "Deep hydration"
+msgstr ""
+
+msgid "Delicious food, beautiful plating and a really friendly team. Our family comes every weekend."
+msgstr ""
+
+msgid "Delivery within 30 minutes"
+msgstr ""
+
+msgid "Design categories"
+msgstr ""
+
+msgid "Desktop and mobile"
+msgstr ""
+
+msgid "Desktop and tablet. With a boxed header both are the same."
+msgstr ""
+
+msgid "Desktop only"
+msgstr ""
+
+msgid "Detailed project analysis and transparent legal status. Very trustworthy."
+msgstr ""
+
+msgid "Details →"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Disable XML-RPC"
+msgstr ""
+
+msgid "Disable oEmbed scripts"
+msgstr ""
+
+msgid "Dishes on the menu"
+msgstr ""
+
+msgid "Dishes served within 15 minutes at peak hours."
+msgstr ""
+
+msgid "Do I need to book a table?"
+msgstr ""
+
+msgid "Do not load Dashicons for visitors who are not logged in"
+msgstr ""
+
+msgid "Do not show on"
+msgstr ""
+
+msgid "Do packages expire?"
+msgstr ""
+
+msgid "Do viewings cost anything?"
+msgstr ""
+
+msgid "Do you deliver?"
+msgstr ""
+
+msgid "Do you have vegetarian dishes?"
+msgstr ""
+
+msgid "Do you help with bank loans?"
+msgstr ""
+
+msgid "Dots"
+msgstr ""
+
+msgid "Dots (vertical)"
+msgstr ""
+
+msgid "Drag elements in the header builder, set the logo, menus and buttons."
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Duration (ms)"
+msgstr ""
+
+msgid "Each post writer’s profile (Users → Profile)"
+msgstr ""
+
+msgid "Easy booking"
+msgstr ""
+
+msgid "Edit layout"
+msgstr ""
+
+msgid "Education centre homepage with 15 sections: hero, highlights, about, courses, learning path, numbers, method, tuition, gallery, teachers, student reviews, FAQ, news, enrolment and contact."
+msgstr ""
+
+msgid "Effect on hover"
+msgstr ""
+
+msgid "Eight new dishes inspired by autumn produce."
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Emma Walsh"
+msgstr ""
+
+msgid "English conversation"
+msgstr ""
+
+msgid "English for kids"
+msgstr ""
+
+msgid "Enjoy"
+msgstr ""
+
+msgid "Enjoy your treatment in a quiet private room."
+msgstr ""
+
+msgid "Entire site"
+msgstr ""
+
+msgid "Every project is checked for building permits, detailed zoning and real progress."
+msgstr ""
+
+msgid "Every student gets a personal path based on a placement test."
+msgstr ""
+
+msgid "Every treatment is tailored to your skin and what you want to achieve."
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Everything for buyers"
+msgstr ""
+
+msgid "Exclusive materials"
+msgstr ""
+
+msgid "Experience, skills and what the author writes about – this helps readers and Google trust the content."
+msgstr ""
+
+msgid "Experienced chefs and managers who care about every plate."
+msgstr ""
+
+msgid "Expert in herbal head spa rituals."
+msgstr ""
+
+msgid "FAQ"
+msgstr ""
+
+msgid "Facial treatments, therapeutic massage and herbal hair care with natural products, caring therapists and a calm space in the heart of the city."
+msgstr ""
+
+msgid "Families who found their home"
+msgstr ""
+
+msgid "Family set"
+msgstr ""
+
+msgid "Farm vegetables, meat and fish with clear origins."
+msgstr ""
+
+msgid "Fast delivery"
+msgstr ""
+
+msgid "Featured badge"
+msgstr ""
+
+msgid "Featured categories"
+msgstr ""
+
+msgid "Featured courses"
+msgstr ""
+
+msgid "Featured image shape"
+msgstr ""
+
+msgid "Featured projects"
+msgstr ""
+
+msgid "Filled circle"
+msgstr ""
+
+msgid "Filled square"
+msgstr ""
+
+msgid "Finance advisor"
+msgstr ""
+
+msgid "Finance support"
+msgstr ""
+
+msgid "Find the home that fits your life"
+msgstr ""
+
+msgid "First post large, then grid"
+msgstr ""
+
+msgid "First-time mortgage tips"
+msgstr ""
+
+msgid "Flexible payment"
+msgstr ""
+
+msgid "Flexible schedule"
+msgstr ""
+
+msgid "Floating contact buttons"
+msgstr ""
+
+msgid "Floor 12, 68 Park Avenue, City Centre"
+msgstr ""
+
+msgid "Food safety"
+msgstr ""
+
+msgid "Footer"
+msgstr ""
+
+msgid "Footer (replaces the theme footer)"
+msgstr ""
+
+msgid "Footer columns, a footer built with blocks, copyright and floating contact buttons."
+msgstr ""
+
+msgid "For ages 5–11"
+msgstr ""
+
+msgid "For owners"
+msgstr ""
+
+msgid "For skin, body and hair"
+msgstr ""
+
+msgid "For the single post template, add a Shortcode block with [bst_post_title], [bst_featured_image], [bst_post_meta], [bst_post_content], [bst_author_box], [bst_related_posts] or [bst_post_comments]."
+msgstr ""
+
+msgid "Founded in 2014, the centre has helped more than 5,000 students – from school pupils to working adults – master languages and skills."
+msgstr ""
+
+msgid "Four steps to a perfect meal"
+msgstr ""
+
+msgid "Fragrant coffee and a quiet space. I often bring my laptop and work here in the afternoon."
+msgstr ""
+
+msgid "Frame border color"
+msgstr ""
+
+msgid "Frame border width (px, outline styles)"
+msgstr ""
+
+msgid "Frame corner radius (px, empty = default)"
+msgstr ""
+
+msgid "Free"
+msgstr ""
+
+msgid "Free consultation"
+msgstr ""
+
+msgid "Free learning kit"
+msgstr ""
+
+msgid "Free library"
+msgstr ""
+
+msgid "Free on orders over $30"
+msgstr ""
+
+msgid "Free paperwork support"
+msgstr ""
+
+msgid "Free parking"
+msgstr ""
+
+msgid "Free re-study"
+msgstr ""
+
+msgid "Free re-study until you pass"
+msgstr ""
+
+msgid "Free skin analysis"
+msgstr ""
+
+msgid "Free soft drinks"
+msgstr ""
+
+msgid "Free valuation"
+msgstr ""
+
+msgid "Free viewings"
+msgstr ""
+
+msgid "Frequently asked questions"
+msgstr ""
+
+msgid "Fresh flavours, served with heart"
+msgstr ""
+
+msgid "Fresh ingredients every day"
+msgstr ""
+
+msgid "From 30 guests"
+msgstr ""
+
+msgid "From 4.5 to 7.0+, with detailed writing feedback every week."
+msgstr ""
+
+msgid "From a family kitchen to a much-loved restaurant"
+msgstr ""
+
+msgid "From booking to leaving, every detail is taken care of."
+msgstr ""
+
+msgid "From trusted developers"
+msgstr ""
+
+msgid "Front page"
+msgstr ""
+
+msgid "Fruit teas"
+msgstr ""
+
+msgid "Full pages"
+msgstr ""
+
+msgid "Full service"
+msgstr ""
+
+msgid "Full service: choosing a home, viewings, price negotiation, mortgage support and completing the notary and transfer paperwork."
+msgstr ""
+
+msgid "Full-body scrub and a nourishing moisture wrap."
+msgstr ""
+
+msgid "Full-width banner (any code)"
+msgstr ""
+
+msgid "Full-width banner above the top bar (your code)"
+msgstr ""
+
+msgid "Fully sterilised"
+msgstr ""
+
+msgid "Gentle ingredients"
+msgstr ""
+
+msgid "Gentle rotate"
+msgstr ""
+
+msgid "Genuine imported products"
+msgstr ""
+
+msgid "Get a free consultation"
+msgstr ""
+
+msgid "Get a free consultation and a quote within 24 hours."
+msgstr ""
+
+msgid "Get advice"
+msgstr ""
+
+msgid "Gifts"
+msgstr ""
+
+msgid "Glow on your big day"
+msgstr ""
+
+msgid "Grace Miller"
+msgstr ""
+
+msgid "Graduated"
+msgstr ""
+
+msgid "Grayscale to color"
+msgstr ""
+
+msgid "Great gifts"
+msgstr ""
+
+msgid "Grid"
+msgstr ""
+
+msgid "Grid of dots"
+msgstr ""
+
+msgid "Group work, debates and role-play."
+msgstr ""
+
+msgid "Growth potential"
+msgstr ""
+
+msgid "Guests a year"
+msgstr ""
+
+msgid "HTTPS"
+msgstr ""
+
+msgid "Hair care"
+msgstr ""
+
+msgid "Hair specialist"
+msgstr ""
+
+msgid "Handover inspection"
+msgstr ""
+
+msgid "Hannah"
+msgstr ""
+
+msgid "Head chef"
+msgstr ""
+
+msgid "Head chef with 12 years of experience"
+msgstr ""
+
+msgid "Head of IELTS"
+msgstr ""
+
+msgid "Header & menu"
+msgstr ""
+
+msgid "Header (replaces the theme header)"
+msgstr ""
+
+msgid "Header builder"
+msgstr ""
+
+msgid "Header style"
+msgstr ""
+
+msgid "Heading (empty = “Related posts”)"
+msgstr ""
+
+msgid "Helen"
+msgstr ""
+
+msgid "Help & guides"
+msgstr ""
+
+msgid "Help renting out or reselling later."
+msgstr ""
+
+msgid "Herbal brightening bath"
+msgstr ""
+
+msgid "Herbal head spa"
+msgstr ""
+
+msgid "Herbal tea"
+msgstr ""
+
+msgid "Herbal tea after treatment"
+msgstr ""
+
+msgid "Hidden"
+msgstr ""
+
+msgid "Hidden automatically after at most 3 seconds."
+msgstr ""
+
+msgid "Hide the WordPress version from the page source"
+msgstr ""
+
+msgid "Highlight menu links to page sections"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Home care"
+msgstr ""
+
+msgid "Homepage – Education centre"
+msgstr ""
+
+msgid "Homepage – Real estate"
+msgstr ""
+
+msgid "Homepage – Restaurant & café"
+msgstr ""
+
+msgid "Homepage – Spa & beauty"
+msgstr ""
+
+msgid "Homes as described"
+msgstr ""
+
+msgid "Hot"
+msgstr ""
+
+msgid "Hot stone massage"
+msgstr ""
+
+msgid "Hotline"
+msgstr ""
+
+msgid "House-roasted coffee"
+msgstr ""
+
+msgid "Hover effect"
+msgstr ""
+
+msgid "How are projects checked?"
+msgstr ""
+
+msgid "How far ahead should I book?"
+msgstr ""
+
+msgid "How it works"
+msgstr ""
+
+msgid "How to choose great beef"
+msgstr ""
+
+msgid "How to read SPF and PA and pick one for oily or dry skin."
+msgstr ""
+
+msgid "How to read the grain, colour and freshness so beef stays tender and sweet."
+msgstr ""
+
+msgid "How to use sunscreen properly after treatment."
+msgstr ""
+
+msgid "How to work out what you can repay and choose the right rate."
+msgstr ""
+
+msgid "ID, marital status certificate, household registration and proof of income if you take a loan."
+msgstr ""
+
+msgid "IELTS 7.0 student"
+msgstr ""
+
+msgid "IELTS 8.5, 10 years of exam coaching."
+msgstr ""
+
+msgid "IELTS guarantee"
+msgstr ""
+
+msgid "IELTS preparation"
+msgstr ""
+
+msgid "IT lecturer"
+msgstr ""
+
+msgid "Icon style"
+msgstr ""
+
+msgid "Image column width"
+msgstr ""
+
+msgid "Image, then title"
+msgstr ""
+
+msgid "Important theme-wide settings."
+msgstr ""
+
+msgid "In 15 years"
+msgstr ""
+
+msgid "In 2012 we started in a small kitchen with six tables. What kept guests coming back was not fancy food but familiar flavours, cooked with the best ingredients and care in every detail."
+msgstr ""
+
+msgid "In our after-visit survey"
+msgstr ""
+
+msgid "Individual title for every unit"
+msgstr ""
+
+msgid "Individual titles, finished infrastructure."
+msgstr ""
+
+msgid "Ingredients chosen every morning, chefs with over 12 years of experience and a warm space – the perfect place for a date, a business lunch or a family weekend."
+msgstr ""
+
+msgid "Instalments up to 30 years"
+msgstr ""
+
+msgid "Interactive classes"
+msgstr ""
+
+msgid "Investor"
+msgstr ""
+
+msgid "Is it suitable for sensitive skin?"
+msgstr ""
+
+msgid "Is there parking?"
+msgstr ""
+
+msgid "James Walker"
+msgstr ""
+
+msgid "Jessica"
+msgstr ""
+
+msgid "Kate Morgan"
+msgstr ""
+
+msgid "Kevin"
+msgstr ""
+
+msgid "Kids"
+msgstr ""
+
+msgid "Kids teacher"
+msgstr ""
+
+msgid "Knows city-centre zoning inside out."
+msgstr ""
+
+msgid "Lakeside villa"
+msgstr ""
+
+msgid "Language of the theme’s own texts. WordPress and plugins keep their own language (Settings → General and Users → Profile)."
+msgstr ""
+
+msgid "Large first letter (drop cap)"
+msgstr ""
+
+msgid "Latest posts"
+msgstr ""
+
+msgid "Latest skin analysis device"
+msgstr ""
+
+msgid "Laura Hughes"
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Learn & practise"
+msgstr ""
+
+msgid "Learn anywhere"
+msgstr ""
+
+msgid "Learn better every day"
+msgstr ""
+
+msgid "Learn for real, get really good, move on with confidence"
+msgstr ""
+
+msgid "Learning path"
+msgstr ""
+
+msgid "Learning through games"
+msgstr ""
+
+msgid "Learning through games and songs so children love English."
+msgstr ""
+
+msgid "Learning through real projects"
+msgstr ""
+
+msgid "Leave your number and we will send options that fit your budget within 30 minutes."
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Legal checks"
+msgstr ""
+
+msgid "Legal checks on every project"
+msgstr ""
+
+msgid "Less stress, better sleep and healthier circulation."
+msgstr ""
+
+msgid "Lift card"
+msgstr ""
+
+msgid "Lift gently"
+msgstr ""
+
+msgid "Light card"
+msgstr ""
+
+msgid "Lily Chen"
+msgstr ""
+
+msgid "Linda"
+msgstr ""
+
+msgid "Lines (short last)"
+msgstr ""
+
+msgid "Lines (short middle)"
+msgstr ""
+
+msgid "Lines (short right)"
+msgstr ""
+
+msgid "Lines (stepped)"
+msgstr ""
+
+msgid "Link with arrow"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "List (image left)"
+msgstr ""
+
+msgid "Listed prices guaranteed"
+msgstr ""
+
+msgid "Live shrimp, squid and clams in our special sweet-and-sour broth."
+msgstr ""
+
+msgid "Load more"
+msgstr ""
+
+msgid "Load more button"
+msgstr ""
+
+msgid "Load more posts"
+msgstr ""
+
+msgid "Load while scrolling"
+msgstr ""
+
+msgid "Loader color (empty = primary color)"
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "Loan packages that fit your income."
+msgstr ""
+
+msgid "Local and international"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Locations"
+msgstr ""
+
+msgid "Logged-in users only"
+msgstr ""
+
+msgid "Logged-out visitors only"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Looking for a home?"
+msgstr ""
+
+msgid "Loves children and makes every lesson creative."
+msgstr ""
+
+msgid "Lower numbers run first. When two layouts replace the same part, the lowest number wins."
+msgstr ""
+
+msgid "Loyal client"
+msgstr ""
+
+msgid "Lucas Moreno"
+msgstr ""
+
+msgid "MC and reception help"
+msgstr ""
+
+msgid "Main hall, garden or a private room – whatever suits the occasion."
+msgstr ""
+
+msgid "Main-road frontage, ready for business."
+msgstr ""
+
+msgid "Maintenance message"
+msgstr ""
+
+msgid "Make-up trial"
+msgstr ""
+
+msgid "Manage maintenance mode"
+msgstr ""
+
+msgid "Manager"
+msgstr ""
+
+msgid "Mark"
+msgstr ""
+
+msgid "Market analysis"
+msgstr ""
+
+msgid "Market news"
+msgstr ""
+
+msgid "Masonry"
+msgstr ""
+
+msgid "Massage therapist"
+msgstr ""
+
+msgid "Max 10 children per class"
+msgstr ""
+
+msgid "Max 12 students"
+msgstr ""
+
+msgid "Max 12 students per class"
+msgstr ""
+
+msgid "Max execution time"
+msgstr ""
+
+msgid "Max upload size"
+msgstr ""
+
+msgid "Member card with 20% off"
+msgstr ""
+
+msgid "Member rewards"
+msgstr ""
+
+msgid "Menu highlights"
+msgstr ""
+
+msgid "Message us"
+msgstr ""
+
+msgid "Meta shown on cards"
+msgstr ""
+
+msgid "Mia Turner"
+msgstr ""
+
+msgid "Michael"
+msgstr ""
+
+msgid "Minimal (titles only)"
+msgstr ""
+
+msgid "Mobile menu"
+msgstr ""
+
+msgid "Mobile only"
+msgstr ""
+
+msgid "Modern living spaces"
+msgstr ""
+
+msgid "Money back if not as described."
+msgstr ""
+
+msgid "Money-saving packages"
+msgstr ""
+
+msgid "Monthly mock tests"
+msgstr ""
+
+msgid "Monthly progress reports"
+msgstr ""
+
+msgid "More posts"
+msgstr ""
+
+msgid "More products"
+msgstr ""
+
+msgid "More than 2,300 guest reviews"
+msgstr ""
+
+msgid "More than 300 apartment deals closed."
+msgstr ""
+
+msgid "Morning and evening classes on weekdays plus weekend classes – choose what fits you."
+msgstr ""
+
+msgid "Mornings, evenings and weekends"
+msgstr ""
+
+msgid "Mortgage support up to 70%"
+msgstr ""
+
+msgid "Most chosen"
+msgstr ""
+
+msgid "Most popular"
+msgstr ""
+
+msgid "Most popular choice"
+msgstr ""
+
+msgid "Move down"
+msgstr ""
+
+msgid "Move up"
+msgstr ""
+
+msgid "Mr. Peter Hall"
+msgstr ""
+
+msgid "Ms. Amy Clarke"
+msgstr ""
+
+msgid "Ms. Sarah Lewis"
+msgstr ""
+
+msgid "Multi-channel ads"
+msgstr ""
+
+msgid "My account"
+msgstr ""
+
+msgid "My child loves going to class, and I get a detailed progress report every week."
+msgstr ""
+
+msgid "My skin improved clearly after a month – the therapist is very gentle and gives great advice."
+msgstr ""
+
+msgid "NEW · THIS MONTH’S OFFER"
+msgstr ""
+
+msgid "Natalie"
+msgstr ""
+
+msgid "Native teacher"
+msgstr ""
+
+msgid "Native teachers"
+msgstr ""
+
+msgid "Native-speaker teachers"
+msgstr ""
+
+msgid "Natural herbs and acupressure for the neck and shoulders."
+msgstr ""
+
+msgid "Natural listening and speaking in 3 months with native teachers."
+msgstr ""
+
+msgid "Need more information? Leave your number and a consultant will call back within 30 minutes."
+msgstr ""
+
+msgid "Negotiation & loan"
+msgstr ""
+
+msgid "Negotiation help"
+msgstr ""
+
+msgid "Never more than 5 minutes’ wait."
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "New badge"
+msgstr ""
+
+msgid "New methods"
+msgstr ""
+
+msgid "Newer posts →"
+msgstr ""
+
+msgid "News & tips"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No corticoids, no harsh chemicals."
+msgstr ""
+
+msgid "No designs found. Try another search."
+msgstr ""
+
+msgid "No industrial MSG"
+msgstr ""
+
+msgid "No posts found."
+msgstr ""
+
+msgid "No products found."
+msgstr ""
+
+msgid "No results found."
+msgstr ""
+
+msgid "No reviews yet"
+msgstr ""
+
+msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Not active"
+msgstr ""
+
+msgid "Not used"
+msgstr ""
+
+msgid "Notary and transfer"
+msgstr ""
+
+msgid "Notary, transfer and handover."
+msgstr ""
+
+msgid "Nothing matched your search. Please try different keywords."
+msgstr ""
+
+msgid "Number of posts"
+msgstr ""
+
+msgid "Number of related products (0 = one row)"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title."
+msgstr ""
+
+msgid "Office skills"
+msgstr ""
+
+msgid "Office worker"
+msgstr ""
+
+msgid "Older / newer links"
+msgstr ""
+
+msgid "Olivia Brooks"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "On every treatment this month"
+msgstr ""
+
+msgid "On time"
+msgstr ""
+
+msgid "On-site viewings"
+msgstr ""
+
+msgid "One consultant for the whole journey."
+msgstr ""
+
+msgid "One custom author for all posts (below)"
+msgstr ""
+
+msgid "One free massage"
+msgstr ""
+
+msgid "One therapist with you for the whole treatment."
+msgstr ""
+
+msgid "One-to-one advice"
+msgstr ""
+
+msgid "One-to-one writing feedback"
+msgstr ""
+
+msgid "Online learning app"
+msgstr ""
+
+msgid "Online learning app included"
+msgstr ""
+
+msgid "Online shop"
+msgstr ""
+
+msgid "Online shop homepage"
+msgstr ""
+
+msgid "Only public, published pages without a password are shown. The response remains 404. Select no page to use the default design."
+msgstr ""
+
+msgid "Oops! That page can not be found."
+msgstr ""
+
+msgid "Open every day"
+msgstr ""
+
+msgid "Open images in a lightbox"
+msgstr ""
+
+msgid "Open link"
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
+msgid "Opening hours"
+msgstr ""
+
+msgid "Order ahead so nothing keeps you waiting when you arrive."
+msgstr ""
+
+msgid "Order →"
+msgstr ""
+
+msgid "Organic oils and herbs"
+msgstr ""
+
+msgid "Original"
+msgstr ""
+
+msgid "Our method"
+msgstr ""
+
+msgid "Our most-loved treatments"
+msgstr ""
+
+msgid "Our most-ordered dishes"
+msgstr ""
+
+msgid "Our new autumn menu"
+msgstr ""
+
+msgid "Our own recipes"
+msgstr ""
+
+msgid "Our promise"
+msgstr ""
+
+msgid "Our spa"
+msgstr ""
+
+msgid "Our space"
+msgstr ""
+
+msgid "Our story"
+msgstr ""
+
+msgid "Our team"
+msgstr ""
+
+msgid "Our website is being updated. Please check back soon."
+msgstr ""
+
+msgid "Our year-end party for 80 people was perfectly organised and every dish was finished."
+msgstr ""
+
+msgid "Out of 5,000+ graduates"
+msgstr ""
+
+msgid "Outline circle"
+msgstr ""
+
+msgid "Outline square"
+msgstr ""
+
+msgid "Packages are valid for 6 months and can be shared with family."
+msgstr ""
+
+msgid "Page design for 404 errors"
+msgstr ""
+
+msgid "Page design for maintenance"
+msgstr ""
+
+msgid "Page name"
+msgstr ""
+
+msgid "Page not found"
+msgstr ""
+
+msgid "Page numbers"
+msgstr ""
+
+msgid "Page title & breadcrumbs"
+msgstr ""
+
+msgid "Pagination"
+msgstr ""
+
+msgid "Parent"
+msgstr ""
+
+msgid "Parties of 10–120"
+msgstr ""
+
+msgid "Partner banks"
+msgstr ""
+
+msgid "Party set"
+msgstr ""
+
+msgid "Paste appearance"
+msgstr ""
+
+msgid "Pastry chef"
+msgstr ""
+
+msgid "Peace of mind from choosing to moving in"
+msgstr ""
+
+msgid "Peach lemongrass and lychee rose teas, served iced on sunny days."
+msgstr ""
+
+msgid "Perfect for a first visit"
+msgstr ""
+
+msgid "Performance"
+msgstr ""
+
+msgid "Permits, zoning and progress verified."
+msgstr ""
+
+msgid "Personal learning paths, experienced teachers and small classes help every student make clear progress after each course – with a written results guarantee."
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "Photos and video"
+msgstr ""
+
+msgid "Pick a time"
+msgstr ""
+
+msgid "Pick related posts by"
+msgstr ""
+
+msgid "Placement test"
+msgstr ""
+
+msgid "Plain icon"
+msgstr ""
+
+msgid "Plus 3 private rooms"
+msgstr ""
+
+msgid "Post / page IDs to exclude"
+msgstr ""
+
+msgid "Post header"
+msgstr ""
+
+msgid "Posts in these categories (and their archives)"
+msgstr ""
+
+msgid "Pre-order dishes"
+msgstr ""
+
+msgid "Preferential rates"
+msgstr ""
+
+msgid "Prepares loan files with 12 banks."
+msgstr ""
+
+msgid "Presentation skills"
+msgstr ""
+
+msgid "Preview animation"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Previous / next product links"
+msgstr ""
+
+msgid "Price and growth reports for every area."
+msgstr ""
+
+msgid "Price color"
+msgstr ""
+
+msgid "Prices"
+msgstr ""
+
+msgid "Prices are stable, with new supply mainly in the east and south."
+msgstr ""
+
+msgid "Prices include tax and service. Dishes can be swapped to suit your taste."
+msgstr ""
+
+msgid "Prime locations"
+msgstr ""
+
+msgid "Priority"
+msgstr ""
+
+msgid "Private room with karaoke"
+msgstr ""
+
+msgid "Private rooms for parties"
+msgstr ""
+
+msgid "Private treatment rooms"
+msgstr ""
+
+msgid "Product cards"
+msgstr ""
+
+msgid "Product name size (px, 0 = default)"
+msgstr ""
+
+msgid "Product page layout"
+msgstr ""
+
+msgid "Progress bar – bottom"
+msgstr ""
+
+msgid "Progress bar – top"
+msgstr ""
+
+msgid "Progress tracking"
+msgstr ""
+
+msgid "Project advice"
+msgstr ""
+
+msgid "Project gallery"
+msgstr ""
+
+msgid "Project-based"
+msgstr ""
+
+msgid "Projector and sound"
+msgstr ""
+
+msgid "Projects"
+msgstr ""
+
+msgid "Projects with clear legal status, well-connected locations and consultants who stay with you from choosing a home and negotiating to the mortgage and handover."
+msgstr ""
+
+msgid "Python and computational thinking for students."
+msgstr ""
+
+msgid "Qualified buyers"
+msgstr ""
+
+msgid "Qualified, with many years of teaching experience."
+msgstr ""
+
+msgid "Quick to the table"
+msgstr ""
+
+msgid "Rachel"
+msgstr ""
+
+msgid "Rated %d out of 5"
+msgstr ""
+
+msgid "Reach their goal"
+msgstr ""
+
+msgid "Read more"
+msgstr ""
+
+msgid "Read more →"
+msgstr ""
+
+msgid "Reading time"
+msgstr ""
+
+msgid "Ready to start your project?"
+msgstr ""
+
+msgid "Ready to start? Get 20% off today"
+msgstr ""
+
+msgid "Real estate homepage with 15 sections: hero, highlights, about, listings, buying process, numbers, advantages, packages, gallery, consultants, reviews, FAQ, market news, consultation and contact."
+msgstr ""
+
+msgid "Real estate · Apartments · Townhouses"
+msgstr ""
+
+msgid "Real photos and areas, 100%."
+msgstr ""
+
+msgid "Refreshed every season"
+msgstr ""
+
+msgid "Refund if details are wrong"
+msgstr ""
+
+msgid "Regular for 3 years"
+msgstr ""
+
+msgid "Regular tests and a completion certificate."
+msgstr ""
+
+msgid "Related & upsell products"
+msgstr ""
+
+msgid "Related posts"
+msgstr ""
+
+msgid "Related products heading (empty = default)"
+msgstr ""
+
+msgid "Relax completely, glow from within"
+msgstr ""
+
+msgid "Relax package"
+msgstr ""
+
+msgid "Remember vocabulary for longer"
+msgstr ""
+
+msgid "Removes wp-embed. Pasted YouTube links still work through blocks."
+msgstr ""
+
+msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
+msgstr ""
+
+msgid "Reply within 5 minutes in office hours"
+msgstr ""
+
+msgid "Reports for parents"
+msgstr ""
+
+msgid "Residential plots"
+msgstr ""
+
+msgid "Restaurant / café homepage with 15 sections: hero, highlights, story, menu, process, numbers, signature dishes, set menus, gallery, chefs, reviews, FAQ, news, booking and contact."
+msgstr ""
+
+msgid "Restaurant · Café · Events"
+msgstr ""
+
+msgid "Restores your skin’s natural barrier."
+msgstr ""
+
+msgid "Results guarantee"
+msgstr ""
+
+msgid "Review & certificate"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Round the two bottom corners of the header"
+msgstr ""
+
+msgid "Rounded – filled"
+msgstr ""
+
+msgid "Rounded – frosted glass"
+msgstr ""
+
+msgid "Rounded – gradient"
+msgstr ""
+
+msgid "Rounded – soft tint"
+msgstr ""
+
+msgid "Rounded – thin outline"
+msgstr ""
+
+msgid "Rounded – tint + outline"
+msgstr ""
+
+msgid "Rounded – white card with shadow"
+msgstr ""
+
+msgid "Ryan Cooper"
+msgstr ""
+
+msgid "SHOP"
+msgstr ""
+
+msgid "Safe organic products"
+msgstr ""
+
+msgid "Safe – Effective – Private"
+msgstr ""
+
+msgid "Sale"
+msgstr ""
+
+msgid "Sale badge (use {percent} for the discount)"
+msgstr ""
+
+msgid "Sales director"
+msgstr ""
+
+msgid "Same as WordPress"
+msgstr ""
+
+msgid "Same category"
+msgstr ""
+
+msgid "Same tags"
+msgstr ""
+
+msgid "Same-day delivery in the city."
+msgstr ""
+
+msgid "Satisfied"
+msgstr ""
+
+msgid "Sauces and spice blends made by the head chef."
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Saved designs"
+msgstr ""
+
+msgid "Scores and feedback after every lesson."
+msgstr ""
+
+msgid "Scripts & code"
+msgstr ""
+
+msgid "Scripts, speed & maintenance"
+msgstr ""
+
+msgid "Seafood hot pot"
+msgstr ""
+
+msgid "Search designs"
+msgstr ""
+
+msgid "Search for:"
+msgstr ""
+
+msgid "Search products…"
+msgstr ""
+
+msgid "Search results"
+msgstr ""
+
+msgid "Search results for “%s”"
+msgstr ""
+
+msgid "Search…"
+msgstr ""
+
+msgid "Seasonal dessert"
+msgstr ""
+
+msgid "Seats"
+msgstr ""
+
+msgid "Sections"
+msgstr ""
+
+msgid "See courses"
+msgstr ""
+
+msgid "See desserts →"
+msgstr ""
+
+msgid "See drinks →"
+msgstr ""
+
+msgid "See projects"
+msgstr ""
+
+msgid "See the full menu"
+msgstr ""
+
+msgid "See the menu"
+msgstr ""
+
+msgid "See the path →"
+msgstr ""
+
+msgid "See treatments"
+msgstr ""
+
+msgid "Select a block in the page to edit its layout."
+msgstr ""
+
+msgid "Selected categories"
+msgstr ""
+
+msgid "Self-study plan for IELTS 6.5"
+msgstr ""
+
+msgid "Sell with us"
+msgstr ""
+
+msgid "Services"
+msgstr ""
+
+msgid "Serving since 2012"
+msgstr ""
+
+msgid "Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll."
+msgstr ""
+
+msgid "Set menus"
+msgstr ""
+
+msgid "Set menus for every occasion"
+msgstr ""
+
+msgid "Set your budget, area and type of home."
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "Share:"
+msgstr ""
+
+msgid "Shop"
+msgstr ""
+
+msgid "Shop & product categories"
+msgstr ""
+
+msgid "Short description length (words)"
+msgstr ""
+
+msgid "Show %s"
+msgstr ""
+
+msgid "Show SKU, categories and tags"
+msgstr ""
+
+msgid "Show a loading screen until the page is ready"
+msgstr ""
+
+msgid "Show author information"
+msgstr ""
+
+msgid "Show breadcrumbs"
+msgstr ""
+
+msgid "Show comments"
+msgstr ""
+
+msgid "Show empty stars when there are no reviews"
+msgstr ""
+
+msgid "Show it from this many headings"
+msgstr ""
+
+msgid "Show maintenance screen to visitors"
+msgstr ""
+
+msgid "Show meta (choose items below)"
+msgstr ""
+
+msgid "Show on"
+msgstr ""
+
+msgid "Show product count on category boxes"
+msgstr ""
+
+msgid "Show related products"
+msgstr ""
+
+msgid "Show result count"
+msgstr ""
+
+msgid "Show share buttons"
+msgstr ""
+
+msgid "Show short description"
+msgstr ""
+
+msgid "Show sorting dropdown"
+msgstr ""
+
+msgid "Show star rating"
+msgstr ""
+
+msgid "Show tags"
+msgstr ""
+
+msgid "Show the banner on"
+msgstr ""
+
+msgid "Show the page name as H1 on pages"
+msgstr ""
+
+msgid "Show upsell products"
+msgstr ""
+
+msgid "Shown above the top bar, always full width. HTML, CSS, JavaScript, animations: anything works. Leave empty to hide."
+msgstr ""
+
+msgid "Shuttle to project viewings"
+msgstr ""
+
+msgid "Sidebar"
+msgstr ""
+
+msgid "Sign up this week for a free consultation."
+msgstr ""
+
+msgid "Signing"
+msgstr ""
+
+msgid "Simple habits that help your skin recover and glow every morning."
+msgstr ""
+
+msgid "Since 2014"
+msgstr ""
+
+msgid "Since 2015"
+msgstr ""
+
+msgid "Single post template"
+msgstr ""
+
+msgid "Site language"
+msgstr ""
+
+msgid "Site loader"
+msgstr ""
+
+msgid "Site tools: 404 & maintenance"
+msgstr ""
+
+msgid "Site-wide settings that do not need a live preview. They are the same settings as in Appearance → Customize → Advanced."
+msgstr ""
+
+msgid "Skin analysis"
+msgstr ""
+
+msgid "Skin analysis & advice"
+msgstr ""
+
+msgid "Skin is usually smoother and brighter after 3–5 sessions, depending on its condition."
+msgstr ""
+
+msgid "Skin protection"
+msgstr ""
+
+msgid "Skin specialist"
+msgstr ""
+
+msgid "Skip to content"
+msgstr ""
+
+msgid "Slide number 01 / 05 with line"
+msgstr ""
+
+msgid "Small classes"
+msgstr ""
+
+msgid "Small classes mean I speak a lot – now I present with much more confidence."
+msgstr ""
+
+msgid "Small classes with practice in every lesson."
+msgstr ""
+
+msgid "Soft bounce"
+msgstr ""
+
+msgid "Soft focus"
+msgstr ""
+
+msgid "Soft shadow"
+msgstr ""
+
+msgid "Soft tinted circle"
+msgstr ""
+
+msgid "Soft tinted square"
+msgstr ""
+
+msgid "Soft zoom"
+msgstr ""
+
+msgid "Software engineer with 6 years of teaching."
+msgstr ""
+
+msgid "Sold out"
+msgstr ""
+
+msgid "Sold-out badge"
+msgstr ""
+
+msgid "Sold-out products"
+msgstr ""
+
+msgid "Sophie Bennett"
+msgstr ""
+
+msgid "Sorry, you are not allowed to change theme options."
+msgstr ""
+
+msgid "Sorry, you are not allowed to create pages."
+msgstr ""
+
+msgid "Spa / beauty homepage with 15 sections: hero, highlights, story, treatments, process, numbers, benefits, packages, gallery, therapists, reviews, FAQ, tips, booking and contact."
+msgstr ""
+
+msgid "Spa · Skin care · Massage"
+msgstr ""
+
+msgid "Space between icon and frame (px, empty = default)"
+msgstr ""
+
+msgid "Space between posts (px, 0 = default)"
+msgstr ""
+
+msgid "Spaced repetition to memorise words effectively."
+msgstr ""
+
+msgid "Speak confidently in public after 12 practical sessions."
+msgstr ""
+
+msgid "Speaking practice"
+msgstr ""
+
+msgid "Special offers for loyal customers."
+msgstr ""
+
+msgid "Start with a page. Make it yours."
+msgstr ""
+
+msgid "Start your learning journey today"
+msgstr ""
+
+msgid "Sterile extraction and soothing nutrient infusion."
+msgstr ""
+
+msgid "Still have questions? Call us for a free learning-path consultation."
+msgstr ""
+
+msgid "Stop self-pingbacks (links to your own posts)"
+msgstr ""
+
+msgid "Stories from the kitchen"
+msgstr ""
+
+msgid "Students"
+msgstr ""
+
+msgid "Studio"
+msgstr ""
+
+msgid "Studio apartment"
+msgstr ""
+
+msgid "Study corner"
+msgstr ""
+
+msgid "Submit search"
+msgstr ""
+
+msgid "Successful deals"
+msgstr ""
+
+msgid "Sum up what makes you stand out in one or two sentences."
+msgstr ""
+
+msgid "Summary text alignment"
+msgstr ""
+
+msgid "System status"
+msgstr ""
+
+msgid "TESOL certified, 8 years of teaching."
+msgstr ""
+
+msgid "Table of contents (from H2 / H3)"
+msgstr ""
+
+msgid "Tabs alignment"
+msgstr ""
+
+msgid "Take an afternoon for yourself"
+msgstr ""
+
+msgid "Take home tips to keep your results."
+msgstr ""
+
+msgid "Teacher"
+msgstr ""
+
+msgid "Teachers"
+msgstr ""
+
+msgid "Teachers design a path for your goal."
+msgstr ""
+
+msgid "Teachers follow each student closely, send regular progress reports to parents and adjust the path when needed to reach the target."
+msgstr ""
+
+msgid "Tell us the date, time and number of guests by phone or chat."
+msgstr ""
+
+msgid "Tender Australian tenderloin, rich black pepper sauce and garlic butter potatoes."
+msgstr ""
+
+msgid "Terraced townhouse"
+msgstr ""
+
+msgid "Text alignment"
+msgstr ""
+
+msgid "Text in full-width banners, sliders and sections lines up with"
+msgstr ""
+
+msgid "Text over image"
+msgstr ""
+
+msgid "Text under the price (e.g. Free shipping over $50)"
+msgstr ""
+
+msgid "The apartment market this quarter"
+msgstr ""
+
+msgid "The best places to live"
+msgstr ""
+
+msgid "The container width (page content)"
+msgstr ""
+
+msgid "The hands that care for you"
+msgstr ""
+
+msgid "The header (logo) edge"
+msgstr ""
+
+msgid "The hot stone massage is amazing, like recharging my energy after a long week."
+msgstr ""
+
+msgid "The menu changes with the seasons to keep every flavour fresh. Here are the dishes our guests love most."
+msgstr ""
+
+msgid "The numbers say it all"
+msgstr ""
+
+msgid "The page you are looking for may have been moved or deleted. Try searching instead."
+msgstr ""
+
+msgid "The people behind the food"
+msgstr ""
+
+msgid "The selected BIGSPY starter pattern could not be found."
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "Theme Builder"
+msgstr ""
+
+msgid "Theme Options"
+msgstr ""
+
+msgid "Theme language"
+msgstr ""
+
+msgid "Themed decoration"
+msgstr ""
+
+msgid "Therapists"
+msgstr ""
+
+msgid "There is nothing here yet."
+msgstr ""
+
+msgid "They are completely free, with a shuttle for projects outside the city."
+msgstr ""
+
+msgid "They know the market, they are honest and they put your interests first."
+msgstr ""
+
+msgid "Thick progress bar – bottom"
+msgstr ""
+
+msgid "Thin lines"
+msgstr ""
+
+msgid "Third-year student"
+msgstr ""
+
+msgid "This design could not be added. Please try another one."
+msgstr ""
+
+msgid "This starter page is not available."
+msgstr ""
+
+msgid "Three lines"
+msgstr ""
+
+msgid "Timer (time until next slide)"
+msgstr ""
+
+msgid "Timezone"
+msgstr ""
+
+msgid "Tiramisu, passion fruit cheesecake and mousse, made fresh every morning."
+msgstr ""
+
+msgid "Title bar"
+msgstr ""
+
+msgid "Title lines"
+msgstr ""
+
+msgid "Title over the image"
+msgstr ""
+
+msgid "Title size (px, 0 = default)"
+msgstr ""
+
+msgid "Title, then image"
+msgstr ""
+
+msgid "Today the restaurant seats over 120 guests, has 3 private rooms and a team of 40 – but the spirit is the same as on day one: we serve every guest like family."
+msgstr ""
+
+msgid "Tom"
+msgstr ""
+
+msgid "Toolbar above products"
+msgstr ""
+
+msgid "Tools sterilised after every guest"
+msgstr ""
+
+msgid "Top 10 restaurants"
+msgstr ""
+
+msgid "Townhouse buyer"
+msgstr ""
+
+msgid "Townhouse specialist"
+msgstr ""
+
+msgid "Trained and certified"
+msgstr ""
+
+msgid "Trained in pastry in France."
+msgstr ""
+
+msgid "Training centre · Languages · Skills"
+msgstr ""
+
+msgid "Treatment"
+msgstr ""
+
+msgid "Treatments"
+msgstr ""
+
+msgid "Try “hero”, “services” or “products”…"
+msgstr ""
+
+msgid "Tuition"
+msgstr ""
+
+msgid "Turmeric, colostrum and rice bran for naturally bright skin."
+msgstr ""
+
+msgid "Turn on dots to see this timer."
+msgstr ""
+
+msgid "Two lines"
+msgstr ""
+
+msgid "Two tea breaks"
+msgstr ""
+
+msgid "UX Blocks"
+msgstr ""
+
+msgid "Under our guarantee"
+msgstr ""
+
+msgid "Unknown options tab."
+msgstr ""
+
+msgid "Unlimited make-up lessons"
+msgstr ""
+
+msgid "Untitled design"
+msgstr ""
+
+msgid "Updated every week with the latest prices and offers from developers."
+msgstr ""
+
+msgid "Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs."
+msgstr ""
+
+msgid "Used on the default maintenance screen."
+msgstr ""
+
+msgid "Vegetables from our own farm"
+msgstr ""
+
+msgid "Vertical line – left edge"
+msgstr ""
+
+msgid "View all"
+msgstr ""
+
+msgid "View all results"
+msgstr ""
+
+msgid "Viewings"
+msgstr ""
+
+msgid "Visible results"
+msgstr ""
+
+msgid "Visit projects and compare several options."
+msgstr ""
+
+msgid "Visitors"
+msgstr ""
+
+msgid "Voted by the local food community"
+msgstr ""
+
+msgid "WHY US"
+msgstr ""
+
+msgid "Warm basalt stones and essential oils to release tension and help you sleep."
+msgstr ""
+
+msgid "Warm, elegant and welcoming"
+msgstr ""
+
+msgid "Watch lessons again in the online app."
+msgstr ""
+
+msgid "We are open from 7:00 am to 10:00 pm every day, including holidays."
+msgstr ""
+
+msgid "We are the official agent for many reputable developers. Every project is checked for legal status, zoning and construction progress before we offer it."
+msgstr ""
+
+msgid "We believe beauty starts with feeling relaxed. Every treatment room is quiet and warm, with soft light and a gentle scent of essential oils."
+msgstr ""
+
+msgid "We found a great location within budget, and a year later the price has risen nicely."
+msgstr ""
+
+msgid "We guarantee free re-study until you reach the agreed goal."
+msgstr ""
+
+msgid "We have a vegetarian menu of more than 15 dishes – let us know in advance."
+msgstr ""
+
+msgid "We will be back soon"
+msgstr ""
+
+msgid "Website (what visitors see)"
+msgstr ""
+
+msgid "What are your opening hours?"
+msgstr ""
+
+msgid "What documents do I need to buy?"
+msgstr ""
+
+msgid "What if I don’t reach my goal?"
+msgstr ""
+
+msgid "What is the timetable?"
+msgstr ""
+
+msgid "What our clients say"
+msgstr ""
+
+msgid "What our guests say"
+msgstr ""
+
+msgid "What our students say"
+msgstr ""
+
+msgid "What parents should consider when picking an English class."
+msgstr ""
+
+msgid "When will I see results?"
+msgstr ""
+
+msgid "Where every student is treated as an individual"
+msgstr ""
+
+msgid "Where this layout shows"
+msgstr ""
+
+msgid "Where to find each part of the theme."
+msgstr ""
+
+msgid "Who keep coming back"
+msgstr ""
+
+msgid "Who know the market"
+msgstr ""
+
+msgid "Why choose us"
+msgstr ""
+
+msgid "Why customers choose us"
+msgstr ""
+
+msgid "Why guests come back"
+msgstr ""
+
+msgid "Widget background"
+msgstr ""
+
+msgid "Widget corner radius (px, -1 = style default)"
+msgstr ""
+
+msgid "Widget inner space (px, -1 = style default)"
+msgstr ""
+
+msgid "Widget link color"
+msgstr ""
+
+msgid "Widget title color"
+msgstr ""
+
+msgid "Widget title size (px, 0 = default)"
+msgstr ""
+
+msgid "With you on the road to your new home"
+msgstr ""
+
+msgid "WooCommerce"
+msgstr ""
+
+msgid "Word, Excel and PowerPoint you can use at work right away."
+msgstr ""
+
+msgid "WordPress"
+msgstr ""
+
+msgid "WordPress memory limit"
+msgstr ""
+
+msgid "WordPress tweaks & site loader"
+msgstr ""
+
+msgid "Written by"
+msgstr ""
+
+msgid "Years of experience"
+msgstr ""
+
+msgid "Years open"
+msgstr ""
+
+msgid "Years teaching"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Yes, 0% instalments by credit card or two payments."
+msgstr ""
+
+msgid "Yes, free motorbike and car parking right next to the spa."
+msgstr ""
+
+msgid "Yes, unlimited make-up lessons in classes at the same level."
+msgstr ""
+
+msgid "Yes, we issue electronic invoices for individuals and companies."
+msgstr ""
+
+msgid "Yes, we value it for free and only charge a fee when the sale is done."
+msgstr ""
+
+msgid "Yes, we work with 12 banks offering preferential rates, simple paperwork and fast disbursement."
+msgstr ""
+
+msgid "Yes, within 5 km, free for orders over $30."
+msgstr ""
+
+msgid "Yes, you get 2 free trial lessons before you decide to enrol."
+msgstr ""
+
+msgid "Yes. Your therapist analyses your skin and chooses gentle, non-irritating products."
+msgstr ""
+
+msgid "Your design stays in draft until you publish it."
+msgstr ""
+
+msgid "Your learning path"
+msgstr ""
+
+msgid "Your needs"
+msgstr ""
+
+msgid "Your own therapist"
+msgstr ""
+
+msgid "Your relaxation journey"
+msgstr ""
+
+msgid "Your therapist analyses your skin and suggests a plan."
+msgstr ""
+
+msgid "Zigzag list (image left / right)"
+msgstr ""
+
+msgid "Zoom image"
+msgstr ""
+
+msgid "Zoom image on hover"
+msgstr ""
+
+msgid "admissions@academy.edu"
+msgstr ""
+
+msgid "booking@restaurant.com"
+msgstr ""
+
+msgid "booking@spa.com"
+msgstr ""
+
+msgid "hello@realestate.com"
+msgstr ""
+
+msgid "— None —"
+msgstr ""
+
+msgid "“Read more” style"
+msgstr ""
+
+msgid "“Same as WordPress” follows each user’s profile language."
+msgstr ""
+
+msgid "← Older posts"
+msgstr ""
+
+msgid " to open this popup."
+msgstr ""
+
+msgid "\"Read more\" text (optional)"
+msgstr ""
+
+msgid "% of screen"
+msgstr ""
+
+msgid "% of screen (vh)"
+msgstr ""
+
+msgid "%s min read"
+msgstr ""
+
+msgid "(empty)"
+msgstr ""
+
+msgid "+ Add a custom link button"
+msgstr ""
+
+msgid "1 large + 2 small (right)"
+msgstr ""
+
+msgid "1 large + 3 small"
+msgstr ""
+
+msgid "2 columns"
+msgstr ""
+
+msgid "2 small + 1 large (right)"
+msgstr ""
+
+msgid "2 × 2"
+msgstr ""
+
+msgid "3D shade"
+msgstr ""
+
+msgid "A colored band shown above the footer on every page, e.g. “Ready to start? → Contact us”."
+msgstr ""
+
+msgid "A preset changes column counts and display toggles only. It does not delete or rewrite your widgets, text, links or colors."
+msgstr ""
+
+msgid "Above"
+msgstr ""
+
+msgid "Absolute (free placement inside parent)"
+msgstr ""
+
+msgid "Accent"
+msgstr ""
+
+msgid "Accent (badges, links, buttons)"
+msgstr ""
+
+msgid "Accent (button, focus)"
+msgstr ""
+
+msgid "Accent (icon, border)"
+msgstr ""
+
+msgid "Accent (tiles, rings, pills)"
+msgstr ""
+
+msgid "Accent / focus"
+msgstr ""
+
+msgid "Accent color"
+msgstr ""
+
+msgid "Accepted payment methods"
+msgstr ""
+
+msgid "Accessible label (aria-label)"
+msgstr ""
+
+msgid "Accordion"
+msgstr ""
+
+msgid "Account"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Active tab"
+msgstr ""
+
+msgid "Active tab colors"
+msgstr ""
+
+msgid "Active tab text"
+msgstr ""
+
+msgid "Add FAQ schema (Google rich results)"
+msgstr ""
+
+msgid "Add a block above"
+msgstr ""
+
+msgid "Add after"
+msgstr ""
+
+msgid "Add banner"
+msgstr ""
+
+msgid "Add bar"
+msgstr ""
+
+msgid "Add before"
+msgstr ""
+
+msgid "Add content, Rows, Banners…"
+msgstr ""
+
+msgid "Add field"
+msgstr ""
+
+msgid "Add image"
+msgstr ""
+
+msgid "Add image into the text (drag its corner to resize)"
+msgstr ""
+
+msgid "Add item"
+msgstr ""
+
+msgid "Add milestone"
+msgstr ""
+
+msgid "Add new block"
+msgstr ""
+
+msgid "Add or edit footer content in Widgets"
+msgstr ""
+
+msgid "Add or reorder widgets in Appearance → Widgets."
+msgstr ""
+
+msgid "Add photo"
+msgstr ""
+
+msgid "Add plan"
+msgstr ""
+
+msgid "Add profile links in the block settings."
+msgstr ""
+
+msgid "Add slide"
+msgstr ""
+
+msgid "Add the “Categories menu” element in the header builder."
+msgstr ""
+
+msgid "Add to cart"
+msgstr ""
+
+msgid "Add to cart button"
+msgstr ""
+
+msgid "Add widgets to this sidebar"
+msgstr ""
+
+msgid "Additional headers"
+msgstr ""
+
+msgid "Additional product tab content"
+msgstr ""
+
+msgid "Additional product tab title"
+msgstr ""
+
+msgid "Adds a frosted blur layer over the photo (the photo itself is not zoomed) so text stays easy to read."
+msgstr ""
+
+msgid "Adds published products whose SKU contains the search text."
+msgstr ""
+
+msgid "Adds published products with a matching product tag."
+msgstr ""
+
+msgid "Advanced"
+msgstr ""
+
+msgid "After a delay"
+msgstr ""
+
+msgid "After a successful send"
+msgstr ""
+
+msgid "After image"
+msgstr ""
+
+msgid "After label"
+msgstr ""
+
+msgid "After scrolling"
+msgstr ""
+
+msgid "After text"
+msgstr ""
+
+msgid "Alert (red)"
+msgstr ""
+
+msgid "Alert / sale"
+msgstr ""
+
+msgid "Align"
+msgstr ""
+
+msgid "Align center"
+msgstr ""
+
+msgid "Align left"
+msgstr ""
+
+msgid "Align right"
+msgstr ""
+
+msgid "Alignment"
+msgstr ""
+
+msgid "All Google fonts in this list support Vietnamese."
+msgstr ""
+
+msgid "All buttons"
+msgstr ""
+
+msgid "All devices"
+msgstr ""
+
+msgid "All form & mail settings"
+msgstr ""
+
+msgid "All in one (one button opens the list)"
+msgstr ""
+
+msgid "All in one button"
+msgstr ""
+
+msgid "All on one side"
+msgstr ""
+
+msgid "Also play on mobile"
+msgstr ""
+
+msgid "Alt text"
+msgstr ""
+
+msgid "Alt text (describes the image)"
+msgstr ""
+
+msgid "Alternating left / right"
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid "Always show"
+msgstr ""
+
+msgid "Always visible"
+msgstr ""
+
+msgid "Always visible (not only on hover)"
+msgstr ""
+
+msgid "Amber"
+msgstr ""
+
+msgid "Amber deep"
+msgstr ""
+
+msgid "Amber pastel"
+msgstr ""
+
+msgid "Animate inner items one by one (ms between, 0 = off)"
+msgstr ""
+
+msgid "Animate when scrolled into view"
+msgstr ""
+
+msgid "Animated highlight"
+msgstr ""
+
+msgid "Animation"
+msgstr ""
+
+msgid "Animation duration (ms)"
+msgstr ""
+
+msgid "Announcement"
+msgstr ""
+
+msgid "Announcement bar"
+msgstr ""
+
+msgid "Answer background"
+msgstr ""
+
+msgid "Answer…"
+msgstr ""
+
+msgid "Any block…"
+msgstr ""
+
+msgid "Any link (contact page, form, booking…)"
+msgstr ""
+
+msgid "Any link to #popup-id"
+msgstr ""
+
+msgid "Appear after scrolling (px, 0 = always)"
+msgstr ""
+
+msgid "Applies when BIGSPY variation buttons are enabled. Set each color or image in Configure terms."
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Apply effect to"
+msgstr ""
+
+msgid "Aqua"
+msgstr ""
+
+msgid "Aqua deep"
+msgstr ""
+
+msgid "Aqua pastel"
+msgstr ""
+
+msgid "Arrange the header with the drag & drop Header builder."
+msgstr ""
+
+msgid "Arrow"
+msgstr ""
+
+msgid "Arrow on the button"
+msgstr ""
+
+msgid "Arrows"
+msgstr ""
+
+msgid "Arrows on mobile"
+msgstr ""
+
+msgid "Artist / show"
+msgstr ""
+
+msgid "As typed"
+msgstr ""
+
+msgid "Assign a menu to “Main menu”"
+msgstr ""
+
+msgid "Assign a menu to “Top bar menu” in Menus."
+msgstr ""
+
+msgid "Assign a menu to “Vertical menu”"
+msgstr ""
+
+msgid "Attention effect"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Audio file"
+msgstr ""
+
+msgid "Author box (when the author has a bio)"
+msgstr ""
+
+msgid "Automatic (menu if assigned, else product categories)"
+msgstr ""
+
+msgid "Autoplay (muted)"
+msgstr ""
+
+msgid "Autoplay (seconds, 0 = off)"
+msgstr ""
+
+msgid "Autoplay every (seconds, 0 = off)"
+msgstr ""
+
+msgid "Available elements (drag into a row)"
+msgstr ""
+
+msgid "Azure"
+msgstr ""
+
+msgid "Azure deep"
+msgstr ""
+
+msgid "Azure pastel"
+msgstr ""
+
+msgid "BIGSPY AI Builder"
+msgstr ""
+
+msgid "BIGSPY AI Theme WP is active."
+msgstr ""
+
+msgid "BIGSPY blocks (show / hide)"
+msgstr ""
+
+msgid "BIGSPY classic"
+msgstr ""
+
+msgid "BIGSPY elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually."
+msgstr ""
+
+msgid "BIGSPY swatch color"
+msgstr ""
+
+msgid "BIGSPY swatch image"
+msgstr ""
+
+msgid "BIGSPY swatch label"
+msgstr ""
+
+msgid "BIGSPY swatch type"
+msgstr ""
+
+msgid "BIGSPY · Kiểu toàn trang"
+msgstr ""
+
+msgid "BIGSPY – Full pages"
+msgstr ""
+
+msgid "BIGSPY – Page layout"
+msgstr ""
+
+msgid "BIGSPY – Sections"
+msgstr ""
+
+msgid "BIGSPY – Shop"
+msgstr ""
+
+msgid "BIGSPY: cart & checkout"
+msgstr ""
+
+msgid "BIGSPY: catalog mode"
+msgstr ""
+
+msgid "BIGSPY: product cards & page"
+msgstr ""
+
+msgid "BIGSPY: shop layout"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Back background"
+msgstr ""
+
+msgid "Back text"
+msgstr ""
+
+msgid "Back to Header builder"
+msgstr ""
+
+msgid "Back to top button"
+msgstr ""
+
+msgid "Back-to-top button"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Background blur (px)"
+msgstr ""
+
+msgid "Background brightness (%)"
+msgstr ""
+
+msgid "Background color"
+msgstr ""
+
+msgid "Background color style"
+msgstr ""
+
+msgid "Background image"
+msgstr ""
+
+msgid "Background image & overlay"
+msgstr ""
+
+msgid "Background image (optional)"
+msgstr ""
+
+msgid "Background on hover"
+msgstr ""
+
+msgid "Background video"
+msgstr ""
+
+msgid "Backgrounds & borders"
+msgstr ""
+
+msgid "Badge on the second option"
+msgstr ""
+
+msgid "Badge shape"
+msgstr ""
+
+msgid "Badge text"
+msgstr ""
+
+msgid "Bag"
+msgstr ""
+
+msgid "Bakery, kids, gifts"
+msgstr ""
+
+msgid "Balance heading lines"
+msgstr ""
+
+msgid "Balanced (250 ms)"
+msgstr ""
+
+msgid "Bank transfer"
+msgstr ""
+
+msgid "Banner"
+msgstr ""
+
+msgid "Banner image"
+msgstr ""
+
+msgid "Banner title"
+msgstr ""
+
+msgid "Banners"
+msgstr ""
+
+msgid "Bar"
+msgstr ""
+
+msgid "Bar height (px)"
+msgstr ""
+
+msgid "Bar look"
+msgstr ""
+
+msgid "Bar on the left"
+msgstr ""
+
+msgid "Bar on top"
+msgstr ""
+
+msgid "Bars"
+msgstr ""
+
+msgid "Basic HTML like <strong> works."
+msgstr ""
+
+msgid "Beauty, spa, fashion"
+msgstr ""
+
+msgid "Before image"
+msgstr ""
+
+msgid "Before label"
+msgstr ""
+
+msgid "Before text"
+msgstr ""
+
+msgid "Behaviour"
+msgstr ""
+
+msgid "Below"
+msgstr ""
+
+msgid "Below 100 darkens the photo, above 100 lightens it."
+msgstr ""
+
+msgid "Below the post"
+msgstr ""
+
+msgid "Berry pink"
+msgstr ""
+
+msgid "Best selling"
+msgstr ""
+
+msgid "Bevel"
+msgstr ""
+
+msgid "Billing period"
+msgstr ""
+
+msgid "Black & gold"
+msgstr ""
+
+msgid "Black & white map"
+msgstr ""
+
+msgid "Black 900"
+msgstr ""
+
+msgid "Block Accordion của BIGSPY, không thay đổi cơ chế mở/đóng."
+msgstr ""
+
+msgid "Block Icon Box ở chế độ card hoặc bordered."
+msgstr ""
+
+msgid "Block hidden on all devices (still editable here)."
+msgstr ""
+
+msgid "Block name (shown in List View):"
+msgstr ""
+
+msgid "Block shown again."
+msgstr ""
+
+msgid "Block width"
+msgstr ""
+
+msgid "Block ảnh WordPress và BIGSPY trong nội dung; logo giữ nguyên."
+msgstr ""
+
+msgid "Blocks: “Products” (latest, featured, sale, best selling, top rated – grid or slider) and “Product Categories”."
+msgstr ""
+
+msgid "Blog & bài viết"
+msgstr ""
+
+msgid "Blog archive"
+msgstr ""
+
+msgid "Blog sidebar"
+msgstr ""
+
+msgid "Blur to sharp"
+msgstr ""
+
+msgid "Bo góc banner BIGSPY"
+msgstr ""
+
+msgid "Bo góc menu thả xuống"
+msgstr ""
+
+msgid "Bo góc tab thông tin sản phẩm"
+msgstr ""
+
+msgid "Bo góc thẻ bài viết"
+msgstr ""
+
+msgid "Bo góc thẻ dịch vụ"
+msgstr ""
+
+msgid "Bo góc thẻ sản phẩm"
+msgstr ""
+
+msgid "Bo góc ô nhập biểu mẫu"
+msgstr ""
+
+msgid "Bo góc ảnh chi tiết sản phẩm"
+msgstr ""
+
+msgid "Bo góc ảnh nội dung"
+msgstr ""
+
+msgid "Bo góc ảnh đầu bài viết"
+msgstr ""
+
+msgid "Body font"
+msgstr ""
+
+msgid "Body font size – desktop (px)"
+msgstr ""
+
+msgid "Body font size – mobile (px)"
+msgstr ""
+
+msgid "Body font weight"
+msgstr ""
+
+msgid "Body text"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "Bold 700"
+msgstr ""
+
+msgid "Bold red"
+msgstr ""
+
+msgid "Border"
+msgstr ""
+
+msgid "Border color"
+msgstr ""
+
+msgid "Border color on hover"
+msgstr ""
+
+msgid "Border style"
+msgstr ""
+
+msgid "Border width"
+msgstr ""
+
+msgid "Border width (px, -1 = default)"
+msgstr ""
+
+msgid "Border width (px, -1 = style default)"
+msgstr ""
+
+msgid "Borders"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Bottom bar (full width)"
+msgstr ""
+
+msgid "Bottom header"
+msgstr ""
+
+msgid "Bottom left (slide-in)"
+msgstr ""
+
+msgid "Bottom left box"
+msgstr ""
+
+msgid "Bottom right (slide-in)"
+msgstr ""
+
+msgid "Bottom, centered"
+msgstr ""
+
+msgid "Bounce"
+msgstr ""
+
+msgid "Box"
+msgstr ""
+
+msgid "Box & image"
+msgstr ""
+
+msgid "Box background"
+msgstr ""
+
+msgid "Box border"
+msgstr ""
+
+msgid "Box border width (px, -1 = style default)"
+msgstr ""
+
+msgid "Box padding (px, -1 = auto)"
+msgstr ""
+
+msgid "Box shadow (-1 = style default, 0 = none)"
+msgstr ""
+
+msgid "Box style"
+msgstr ""
+
+msgid "Boxed"
+msgstr ""
+
+msgid "Boxed card"
+msgstr ""
+
+msgid "Boxed items"
+msgstr ""
+
+msgid "Brackets [ ]"
+msgstr ""
+
+msgid "Brand"
+msgstr ""
+
+msgid "Brand bar on the left"
+msgstr ""
+
+msgid "Brand colors"
+msgstr ""
+
+msgid "Brand gradient"
+msgstr ""
+
+msgid "Brand gradient (light text)"
+msgstr ""
+
+msgid "Breadcrumbs"
+msgstr ""
+
+msgid "Brighten"
+msgstr ""
+
+msgid "Bring to front (over content)"
+msgstr ""
+
+msgid "Brush"
+msgstr ""
+
+msgid "Built-in BIGSPY form"
+msgstr ""
+
+msgid "Built-in form settings"
+msgstr ""
+
+msgid "Bulleted list"
+msgstr ""
+
+msgid "Button %s"
+msgstr ""
+
+msgid "Button 1"
+msgstr ""
+
+msgid "Button 2"
+msgstr ""
+
+msgid "Button color"
+msgstr ""
+
+msgid "Button colors"
+msgstr ""
+
+msgid "Button here"
+msgstr ""
+
+msgid "Button hover effect"
+msgstr ""
+
+msgid "Button label"
+msgstr ""
+
+msgid "Button link"
+msgstr ""
+
+msgid "Button link (empty = phone number from Contact info)"
+msgstr ""
+
+msgid "Button on hover"
+msgstr ""
+
+msgid "Button size (px)"
+msgstr ""
+
+msgid "Button text"
+msgstr ""
+
+msgid "Button text on hover"
+msgstr ""
+
+msgid "Buttons"
+msgstr ""
+
+msgid "Buttons with text"
+msgstr ""
+
+msgid "Bảng block WordPress; không áp dụng bảng thanh toán."
+msgstr ""
+
+msgid "Bảng có hàng xen kẽ"
+msgstr ""
+
+msgid "Bảng lịch sử đơn hàng trong tài khoản."
+msgstr ""
+
+msgid "Bảng nội dung WordPress; không đổi giỏ hàng."
+msgstr ""
+
+msgid "Bảng nội dung cuộn ngang trên mobile"
+msgstr ""
+
+msgid "Bảng đơn hàng có hàng xen kẽ"
+msgstr ""
+
+msgid "Bỏ nền thẻ mặc định cho đăng nhập, đăng ký và sửa tài khoản."
+msgstr ""
+
+msgid "Bổ sung dấu hiệu focus, không tắt outline sẵn có."
+msgstr ""
+
+msgid "Call-to-action band"
+msgstr ""
+
+msgid "Can also be enabled per page in the “BIGSPY – Page layout” box."
+msgstr ""
+
+msgid "Candy"
+msgstr ""
+
+msgid "Capitalize"
+msgstr ""
+
+msgid "Caption"
+msgstr ""
+
+msgid "Caption (optional)"
+msgstr ""
+
+msgid "Carbon red"
+msgstr ""
+
+msgid "Card"
+msgstr ""
+
+msgid "Card background"
+msgstr ""
+
+msgid "Card colors"
+msgstr ""
+
+msgid "Card style"
+msgstr ""
+
+msgid "Card style (background + shadow)"
+msgstr ""
+
+msgid "Card with shadow"
+msgstr ""
+
+msgid "Cart & checkout layout"
+msgstr ""
+
+msgid "Cart (WooCommerce)"
+msgstr ""
+
+msgid "Cart icon"
+msgstr ""
+
+msgid "Cart layout"
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+msgid "Categories menu (vertical)"
+msgstr ""
+
+msgid "Category & archive sidebar"
+msgstr ""
+
+msgid "Center when narrower"
+msgstr ""
+
+msgid "Centered"
+msgstr ""
+
+msgid "Change icon"
+msgstr ""
+
+msgid "Change logos"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Check marks"
+msgstr ""
+
+msgid "Checkout layout"
+msgstr ""
+
+msgid "Chevron"
+msgstr ""
+
+msgid "Chi tiết & đánh giá · WooCommerce"
+msgstr ""
+
+msgid "Choose"
+msgstr ""
+
+msgid "Choose a before and an after image in the block settings."
+msgstr ""
+
+msgid "Choose a column layout here, then add content to each column in Widgets. Your existing widget content is kept when changing a layout."
+msgstr ""
+
+msgid "Choose a footer layout"
+msgstr ""
+
+msgid "Choose a form first."
+msgstr ""
+
+msgid "Choose a form in the block settings (Contact Form 7 or WPForms must be active)."
+msgstr ""
+
+msgid "Choose a starting layout. It changes only the arrangement of header items; logo, menus, colors and button text stay yours. You can still drag every item below."
+msgstr ""
+
+msgid "Choose an audio file in the block settings."
+msgstr ""
+
+msgid "Choose form"
+msgstr ""
+
+msgid "Choose from the color palette library"
+msgstr ""
+
+msgid "Choose image"
+msgstr ""
+
+msgid "Choose images"
+msgstr ""
+
+msgid "Choose images from the media library."
+msgstr ""
+
+msgid "Choose options"
+msgstr ""
+
+msgid "Chú thích ảnh BIGSPY, ảnh và thư viện ảnh WordPress."
+msgstr ""
+
+msgid "Chỉ block Banner của BIGSPY."
+msgstr ""
+
+msgid "Chỉ còn các kiểu áp dụng cho toàn trang (đầu trang, chân trang, trang WooCommerce, mobile). Kiểu cho ảnh, banner, nút, biểu mẫu, thẻ dịch vụ, FAQ, bài viết… nay nằm ngay trong từng khối: chọn khối → panel \"Style presets\". CSS tự nhập bên dưới vẫn ghi đè được."
+msgstr ""
+
+msgid "Chỉ có tác dụng khi plugin Countix tạo đồng hồ layout 1; không thay đổi giá hoặc thời hạn ưu đãi."
+msgstr ""
+
+msgid "Chỉ cắt hiển thị danh sách; tiêu đề đầy đủ vẫn trong trang bài."
+msgstr ""
+
+msgid "Chỉ giá trong danh sách; giữ giá cũ/gạch ngang."
+msgstr ""
+
+msgid "Chỉ khi hệ điều hành bật giảm chuyển động; giữ nguyên slider và menu."
+msgstr ""
+
+msgid "Chỉ nút thêm vào giỏ ở trang chi tiết."
+msgstr ""
+
+msgid "Chỉ nội dung bài blog; không thu hẹp trang bán hàng."
+msgstr ""
+
+msgid "Chỉ thiết bị có chuột và không yêu cầu giảm chuyển động."
+msgstr ""
+
+msgid "Chỉ đang bật"
+msgstr ""
+
+msgid "Chỉ định dạng nội dung cảm nhận đã có; không tạo đánh giá."
+msgstr ""
+
+msgid "Chỉ đổi màu; không thay đổi điểm đánh giá."
+msgstr ""
+
+msgid "Chữ & nội dung"
+msgstr ""
+
+msgid "Circle"
+msgstr ""
+
+msgid "Circle + ring"
+msgstr ""
+
+msgid "Cleaning, water, pools"
+msgstr ""
+
+msgid "Clear all presets"
+msgstr ""
+
+msgid "Clear formatting"
+msgstr ""
+
+msgid "Click"
+msgstr ""
+
+msgid "Click a look to apply it, then fine-tune below."
+msgstr ""
+
+msgid "Click on the image to add a point. Drag sliders to move it."
+msgstr ""
+
+msgid "Click to apply, click again to remove. Colors follow your theme. Settings above still work."
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Close filters"
+msgstr ""
+
+msgid "Close when clicking outside"
+msgstr ""
+
+msgid "Clouds"
+msgstr ""
+
+msgid "Cobalt"
+msgstr ""
+
+msgid "Cobalt deep"
+msgstr ""
+
+msgid "Cobalt pastel"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Code / HTML"
+msgstr ""
+
+msgid "Code to display"
+msgstr ""
+
+msgid "Coffee, tea, handmade"
+msgstr ""
+
+msgid "Collapse behind a Menu button"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Color (usually the next/previous section background)"
+msgstr ""
+
+msgid "Color code"
+msgstr ""
+
+msgid "Color gradient"
+msgstr ""
+
+msgid "Color mesh"
+msgstr ""
+
+msgid "Color on hover"
+msgstr ""
+
+msgid "Color palettes"
+msgstr ""
+
+msgid "Color swatches"
+msgstr ""
+
+msgid "Color theme"
+msgstr ""
+
+msgid "Colored glow"
+msgstr ""
+
+msgid "Colored tile"
+msgstr ""
+
+msgid "Colorful"
+msgstr ""
+
+msgid "Colorful (tinted, gradient button)"
+msgstr ""
+
+msgid "Colors"
+msgstr ""
+
+msgid "Colors follow your site palette (Customizer → Colors). Dark styles switch the text to white automatically."
+msgstr ""
+
+msgid "Colour + bold only"
+msgstr ""
+
+msgid "Column layout"
+msgstr ""
+
+msgid "Column width (out of 12)"
+msgstr ""
+
+msgid "Columns on phones"
+msgstr ""
+
+msgid "Columns – desktop"
+msgstr ""
+
+msgid "Columns – mobile"
+msgstr ""
+
+msgid "Columns – tablet"
+msgstr ""
+
+msgid "Comma for several addresses."
+msgstr ""
+
+msgid "Compact menu below this screen width (px, 0 = off)"
+msgstr ""
+
+msgid "Consent text"
+msgstr ""
+
+msgid "Construction, delivery, energy"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Contact details, social links and clear navigation."
+msgstr ""
+
+msgid "Contact info"
+msgstr ""
+
+msgid "Contact info & social"
+msgstr ""
+
+msgid "Contain"
+msgstr ""
+
+msgid "Container"
+msgstr ""
+
+msgid "Container width"
+msgstr ""
+
+msgid "Container width (px)"
+msgstr ""
+
+msgid "Content after purchase form"
+msgstr ""
+
+msgid "Content before purchase form"
+msgstr ""
+
+msgid "Content position"
+msgstr ""
+
+msgid "Content width"
+msgstr ""
+
+msgid "Content width (%)"
+msgstr ""
+
+msgid "Continuous"
+msgstr ""
+
+msgid "Cookie notice"
+msgstr ""
+
+msgid "Cookie notice, speed & reading"
+msgstr ""
+
+msgid "Copied block to clipboard."
+msgstr ""
+
+msgid "Copy button"
+msgstr ""
+
+msgid "Copy design"
+msgstr ""
+
+msgid "Copy this block:"
+msgstr ""
+
+msgid "Copyright text"
+msgstr ""
+
+msgid "Coral"
+msgstr ""
+
+msgid "Coral deep"
+msgstr ""
+
+msgid "Coral pastel"
+msgstr ""
+
+msgid "Corner radius"
+msgstr ""
+
+msgid "Corner radius (px)"
+msgstr ""
+
+msgid "Corner radius (px, -1 = default)"
+msgstr ""
+
+msgid "Corner radius (px, -1 = style default)"
+msgstr ""
+
+msgid "Corner radius (px, -1 = theme default, 99 = pill)"
+msgstr ""
+
+msgid "Corner radius (px, -1 = theme)"
+msgstr ""
+
+msgid "Corner radius on hover"
+msgstr ""
+
+msgid "Could not read the form. Open it in Contact Form 7 to edit the mail settings."
+msgstr ""
+
+msgid "Could not save. Edit it in Contact Form 7."
+msgstr ""
+
+msgid "Count badge background"
+msgstr ""
+
+msgid "Count badge text"
+msgstr ""
+
+msgid "Counter"
+msgstr ""
+
+msgid "Cover"
+msgstr ""
+
+msgid "Cover image"
+msgstr ""
+
+msgid "Cover image (optional — YouTube thumbnail is used otherwise)"
+msgstr ""
+
+msgid "Create a new form"
+msgstr ""
+
+msgid "Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY – Sections” (or the full “Homepage – business” pattern)."
+msgstr ""
+
+msgid "Create and assign menus"
+msgstr ""
+
+msgid "Create pattern"
+msgstr ""
+
+msgid "Crimson"
+msgstr ""
+
+msgid "Crimson deep"
+msgstr ""
+
+msgid "Crimson pastel"
+msgstr ""
+
+msgid "Crop focus horizontal (%)"
+msgstr ""
+
+msgid "Crop focus vertical (%)"
+msgstr ""
+
+msgid "Crop ratio"
+msgstr ""
+
+msgid "Current page / active color"
+msgstr ""
+
+msgid "Curve"
+msgstr ""
+
+msgid "Curve (inverse)"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Custom background"
+msgstr ""
+
+msgid "Custom color (below)"
+msgstr ""
+
+msgid "Custom colors"
+msgstr ""
+
+msgid "Custom link (replaces lightbox)"
+msgstr ""
+
+msgid "Custom order (drag & drop in WooCommerce)"
+msgstr ""
+
+msgid "Custom scripts"
+msgstr ""
+
+msgid "Custom width"
+msgstr ""
+
+msgid "Cut"
+msgstr ""
+
+msgid "Các tab mô tả, thông tin và đánh giá chuẩn."
+msgstr ""
+
+msgid "Cân dòng tiêu đề"
+msgstr ""
+
+msgid "Có thể cắt mép ảnh để phủ đầy khung."
+msgstr ""
+
+msgid "Có thể để khoảng trống quanh ảnh; không cắt nội dung ảnh."
+msgstr ""
+
+msgid "Căn giữa chú thích ảnh"
+msgstr ""
+
+msgid "Căn đều tiêu đề thẻ BIGSPY; tên đầy đủ vẫn hiển thị trong trang sản phẩm."
+msgstr ""
+
+msgid "Căn đều vùng tiêu đề sản phẩm"
+msgstr ""
+
+msgid "Danh sách bài viết do theme hoặc block Posts xuất ra."
+msgstr ""
+
+msgid "Danh sách sản phẩm · WooCommerce"
+msgstr ""
+
+msgid "Danh sách trong các widget chân trang."
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Dark (light text)"
+msgstr ""
+
+msgid "Dark bar, colored icons"
+msgstr ""
+
+msgid "Dark glow"
+msgstr ""
+
+msgid "Dark overlay (%)"
+msgstr ""
+
+msgid "Dark text"
+msgstr ""
+
+msgid "Dark · Auto, sport, tools"
+msgstr ""
+
+msgid "Dark · Gaming, tech, nightlife"
+msgstr ""
+
+msgid "Dark · Luxury, hotels"
+msgstr ""
+
+msgid "Dark · Outdoor, camping"
+msgstr ""
+
+msgid "Darken"
+msgstr ""
+
+msgid "Dash"
+msgstr ""
+
+msgid "Dashed"
+msgstr ""
+
+msgid "Data"
+msgstr ""
+
+msgid "Date / label"
+msgstr ""
+
+msgid "Decoration"
+msgstr ""
+
+msgid "Decrease indent"
+msgstr ""
+
+msgid "Deep · Bakery, honey, tours"
+msgstr ""
+
+msgid "Deep · Banking, insurance"
+msgstr ""
+
+msgid "Deep · Beauty, cafés, kids"
+msgstr ""
+
+msgid "Deep · Clinics, cleaning, water"
+msgstr ""
+
+msgid "Deep · Coffee, furniture"
+msgstr ""
+
+msgid "Deep · Construction, logistics"
+msgstr ""
+
+msgid "Deep · Eco, juice, sport"
+msgstr ""
+
+msgid "Deep · Education, agencies"
+msgstr ""
+
+msgid "Deep · Events, cosmetics"
+msgstr ""
+
+msgid "Deep · Fashion, wine, gifts"
+msgstr ""
+
+msgid "Deep · Finance, law, B2B"
+msgstr ""
+
+msgid "Deep · Food delivery, fitness"
+msgstr ""
+
+msgid "Deep · Garden, farm, organic"
+msgstr ""
+
+msgid "Deep · Handmade, interior"
+msgstr ""
+
+msgid "Deep · Jewelry, bridal"
+msgstr ""
+
+msgid "Deep · Pool, laundry, spa"
+msgstr ""
+
+msgid "Deep · SaaS, startups"
+msgstr ""
+
+msgid "Deep · Sales, food, sport"
+msgstr ""
+
+msgid "Deep · Spa, florist, wedding"
+msgstr ""
+
+msgid "Deep · Tech, minimal"
+msgstr ""
+
+msgid "Deep · Travel, IT, airlines"
+msgstr ""
+
+msgid "Deep · Wellness, tea, pharmacy"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Default (follows “Show”)"
+msgstr ""
+
+msgid "Default sidebar on pages"
+msgstr ""
+
+msgid "Delay (ms)"
+msgstr ""
+
+msgid "Delay (seconds)"
+msgstr ""
+
+msgid "Delay before redirect (seconds)"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete slide"
+msgstr ""
+
+msgid "Delete this point"
+msgstr ""
+
+msgid "Depth (shadow)"
+msgstr ""
+
+msgid "Depth on hover"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Description for screen readers (optional)"
+msgstr ""
+
+msgid "Description…"
+msgstr ""
+
+msgid "Design (spacing, background, border)"
+msgstr ""
+
+msgid "Design copied. Select another block and click \"Paste design\"."
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Desktop & tablet only"
+msgstr ""
+
+msgid "Desktop (px)"
+msgstr ""
+
+msgid "Direction"
+msgstr ""
+
+msgid "Directions"
+msgstr ""
+
+msgid "Disable WordPress emoji script"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Display"
+msgstr ""
+
+msgid "Displayed as text with a copy button – nothing is executed."
+msgstr ""
+
+msgid "Distance from the bottom – desktop (px)"
+msgstr ""
+
+msgid "Distance from the bottom – mobile (px)"
+msgstr ""
+
+msgid "Distance from the side (px)"
+msgstr ""
+
+msgid "Divided by dots"
+msgstr ""
+
+msgid "Divided by lines"
+msgstr ""
+
+msgid "Divider"
+msgstr ""
+
+msgid "Divider between items"
+msgstr ""
+
+msgid "Divider line next to content"
+msgstr ""
+
+msgid "Divider start position (%)"
+msgstr ""
+
+msgid "Dot"
+msgstr ""
+
+msgid "Dot below"
+msgstr ""
+
+msgid "Dots over the slides"
+msgstr ""
+
+msgid "Dotted"
+msgstr ""
+
+msgid "Dotted pattern"
+msgstr ""
+
+msgid "Double"
+msgstr ""
+
+msgid "Download all Customizer settings (colors, fonts, header layout, footer, blog, shop, Additional CSS) as a JSON file. Import it on another website to start from the same design."
+msgstr ""
+
+msgid "Download export file"
+msgstr ""
+
+msgid "Drag to compare the images"
+msgstr ""
+
+msgid "Drag to resize"
+msgstr ""
+
+msgid "Drag to resize (width %)"
+msgstr ""
+
+msgid "Drag to resize. The next column adjusts too; hold Alt to resize only this one. Double-click to reset."
+msgstr ""
+
+msgid "Dropdown"
+msgstr ""
+
+msgid "Dropdown background"
+msgstr ""
+
+msgid "Dropdown corner radius (px)"
+msgstr ""
+
+msgid "Dropdown text"
+msgstr ""
+
+msgid "Dropdown under header"
+msgstr ""
+
+msgid "Drops"
+msgstr ""
+
+msgid "Duplicate slide"
+msgstr ""
+
+msgid "Dành chỗ cho hai dòng tiêu đề giúp hàng sản phẩm đều hơn."
+msgstr ""
+
+msgid "Dùng cho ảnh trong nội dung."
+msgstr ""
+
+msgid "Dịch vụ, FAQ & cảm nhận"
+msgstr ""
+
+msgid "Each button in its own color"
+msgstr ""
+
+msgid "Each item can override it in its own settings."
+msgstr ""
+
+msgid "Each logo in a box"
+msgstr ""
+
+msgid "Each widget in a box"
+msgstr ""
+
+msgid "Each widget in a shadow card"
+msgstr ""
+
+msgid "Earth brown"
+msgstr ""
+
+msgid "Easing"
+msgstr ""
+
+msgid "Edit / add images"
+msgstr ""
+
+msgid "Edit block"
+msgstr ""
+
+msgid "Edit menu items in Menus. Style everything else here."
+msgstr ""
+
+msgid "Edit menus"
+msgstr ""
+
+msgid "Edit the HTML of this text"
+msgstr ""
+
+msgid "Edit this form in WPForms"
+msgstr ""
+
+msgid "Editable HTML preview"
+msgstr ""
+
+msgid "Effect"
+msgstr ""
+
+msgid "Effect & motion"
+msgstr ""
+
+msgid "Effect colors"
+msgstr ""
+
+msgid "Effect for this button"
+msgstr ""
+
+msgid "Electric blue & lime"
+msgstr ""
+
+msgid "Elevated (soft shadow, lifts on hover)"
+msgstr ""
+
+msgid "Email address"
+msgstr ""
+
+msgid "Email address that the sender entered is invalid"
+msgstr ""
+
+msgid "Email delivery (SMTP)"
+msgstr ""
+
+msgid "Email notification"
+msgstr ""
+
+msgid "Email sent"
+msgstr ""
+
+msgid "Email sent:"
+msgstr ""
+
+msgid "Email subject"
+msgstr ""
+
+msgid "Emails go through WP Mail SMTP"
+msgstr ""
+
+msgid "Emerald luxury"
+msgstr ""
+
+msgid "Empty = address from Customizer → Header → Contact info."
+msgstr ""
+
+msgid "Empty stars"
+msgstr ""
+
+msgid "Enable catalog mode"
+msgstr ""
+
+msgid "Enable floating contact buttons"
+msgstr ""
+
+msgid "Enable scroll animations on blocks"
+msgstr ""
+
+msgid "Endless scrolling strip"
+msgstr ""
+
+msgid "Enter a CSS gradient or at least two colors."
+msgstr ""
+
+msgid "Enter an address in the block settings (or leave empty to use the site address)."
+msgstr ""
+
+msgid "Entrance (when scrolled into view)"
+msgstr ""
+
+msgid "Entrance animation"
+msgstr ""
+
+msgid "Entry"
+msgstr ""
+
+msgid "Equal height"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Events, music, nightlife"
+msgstr ""
+
+msgid "Every block has “Visibility & animation” settings to hide it per device or animate it on scroll."
+msgstr ""
+
+msgid "Every block inside the slider is one slide. Banners work great."
+msgstr ""
+
+msgid "Every slide gets this height and its image stretches and crops to fill it, so the slider never jumps between tall and short slides."
+msgstr ""
+
+msgid "Everything filled in"
+msgstr ""
+
+msgid "Example: contact, 42"
+msgstr ""
+
+msgid "Excerpt length (words)"
+msgstr ""
+
+msgid "Excerpt length (words, 0 = default)"
+msgstr ""
+
+msgid "Exclude lines with blank mail tags"
+msgstr ""
+
+msgid "Export theme options"
+msgstr ""
+
+msgid "Extra bold"
+msgstr ""
+
+msgid "Extra bold 800"
+msgstr ""
+
+msgid "Extra large"
+msgstr ""
+
+msgid "Extra small"
+msgstr ""
+
+msgid "Extra-bold 800"
+msgstr ""
+
+msgid "FAQ thành từng thẻ riêng"
+msgstr ""
+
+msgid "Facebook page link"
+msgstr ""
+
+msgid "Fade"
+msgstr ""
+
+msgid "Fade between tabs"
+msgstr ""
+
+msgid "Fast (150 ms)"
+msgstr ""
+
+msgid "Featured"
+msgstr ""
+
+msgid "Features (one per line)"
+msgstr ""
+
+msgid "Features – one per line. Start a line with “-” for a feature NOT included."
+msgstr ""
+
+msgid "Field background"
+msgstr ""
+
+msgid "Field border"
+msgstr ""
+
+msgid "Field focus ring"
+msgstr ""
+
+msgid "Field name (mail tag)"
+msgstr ""
+
+msgid "Field size"
+msgstr ""
+
+msgid "Field style"
+msgstr ""
+
+msgid "Fields"
+msgstr ""
+
+msgid "Fill"
+msgstr ""
+
+msgid "Fill from left"
+msgstr ""
+
+msgid "Filled"
+msgstr ""
+
+msgid "Filled brand background"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Filters"
+msgstr ""
+
+msgid "Fine-tune each column width (per device) by selecting the column."
+msgstr ""
+
+msgid "First button only"
+msgstr ""
+
+msgid "First column is a header"
+msgstr ""
+
+msgid "First menu"
+msgstr ""
+
+msgid "First option"
+msgstr ""
+
+msgid "First row is a header"
+msgstr ""
+
+msgid "Fit content (inline)"
+msgstr ""
+
+msgid "Fit image"
+msgstr ""
+
+msgid "Fixed (px)"
+msgstr ""
+
+msgid "Fixed (stays on screen)"
+msgstr ""
+
+msgid "Fixed background"
+msgstr ""
+
+msgid "Fixed height (e.g. 300px, 60vh) – crops to fill"
+msgstr ""
+
+msgid "Flip direction"
+msgstr ""
+
+msgid "Flip horizontally"
+msgstr ""
+
+msgid "Float left"
+msgstr ""
+
+msgid "Float right"
+msgstr ""
+
+msgid "Floating pill with shadow"
+msgstr ""
+
+msgid "Focal point"
+msgstr ""
+
+msgid "Focused"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "Font family"
+msgstr ""
+
+msgid "Font size"
+msgstr ""
+
+msgid "Font size (px)"
+msgstr ""
+
+msgid "Font size (px, 0 = default)"
+msgstr ""
+
+msgid "Font size (px, 0 = size default)"
+msgstr ""
+
+msgid "Font size on mobile (px, 0 = same)"
+msgstr ""
+
+msgid "Font size – desktop (px, 0 = default)"
+msgstr ""
+
+msgid "Font size – mobile (px, 0 = same)"
+msgstr ""
+
+msgid "Font size – tablet (px, 0 = same)"
+msgstr ""
+
+msgid "Font weight"
+msgstr ""
+
+msgid "Font, weight and style are set on Desktop and apply everywhere."
+msgstr ""
+
+msgid "Food, cafés, travel"
+msgstr ""
+
+msgid "Footer 1 background"
+msgstr ""
+
+msgid "Footer 1 columns"
+msgstr ""
+
+msgid "Footer 1 text"
+msgstr ""
+
+msgid "Footer 1 widget titles"
+msgstr ""
+
+msgid "Footer 1 – Column %d"
+msgstr ""
+
+msgid "Footer 2 background"
+msgstr ""
+
+msgid "Footer 2 columns"
+msgstr ""
+
+msgid "Footer 2 text"
+msgstr ""
+
+msgid "Footer 2 – Column %d"
+msgstr ""
+
+msgid "Footer bottom (copyright)"
+msgstr ""
+
+msgid "Footer bottom menu"
+msgstr ""
+
+msgid "Footer designed with blocks"
+msgstr ""
+
+msgid "Footer row 1"
+msgstr ""
+
+msgid "Footer row 2"
+msgstr ""
+
+msgid "Footer widgets"
+msgstr ""
+
+msgid "For Zalo you can enter just the phone number."
+msgstr ""
+
+msgid "For classic WooCommerce cart/checkout. Block checkout keeps its native layout."
+msgstr ""
+
+msgid "For older settings and sites that always want product results."
+msgstr ""
+
+msgid "Force products-only search (overrides scope)"
+msgstr ""
+
+msgid "Forest night"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Form colors"
+msgstr ""
+
+msgid "Form entries"
+msgstr ""
+
+msgid "Form entry"
+msgstr ""
+
+msgid "Form look"
+msgstr ""
+
+msgid "Form name (shown in Form entries)"
+msgstr ""
+
+msgid "Form not found."
+msgstr ""
+
+msgid "Form on:"
+msgstr ""
+
+msgid "Form title"
+msgstr ""
+
+msgid "Form tài khoản nền phẳng"
+msgstr ""
+
+msgid "Four columns for help, policies, contact and payments."
+msgstr ""
+
+msgid "Free delivery for orders over 300.000đ"
+msgstr ""
+
+msgid "Fresh cyan"
+msgstr ""
+
+msgid "Fresh green"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "From:"
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Front background"
+msgstr ""
+
+msgid "Front text"
+msgstr ""
+
+msgid "Fuchsia"
+msgstr ""
+
+msgid "Fuchsia deep"
+msgstr ""
+
+msgid "Fuchsia pastel"
+msgstr ""
+
+msgid "Full"
+msgstr ""
+
+msgid "Full line below"
+msgstr ""
+
+msgid "Full screen"
+msgstr ""
+
+msgid "Full screen width"
+msgstr ""
+
+msgid "Full size"
+msgstr ""
+
+msgid "Full width"
+msgstr ""
+
+msgid "Full-screen lightbox"
+msgstr ""
+
+msgid "Full-width header"
+msgstr ""
+
+msgid "Full-width title bar"
+msgstr ""
+
+msgid "Full-width underline"
+msgstr ""
+
+msgid "Furniture, wood, bakery"
+msgstr ""
+
+msgid "Gallery"
+msgstr ""
+
+msgid "Gaming, sports, energy"
+msgstr ""
+
+msgid "Gap (px)"
+msgstr ""
+
+msgid "Gap between cards (px, -1 = default)"
+msgstr ""
+
+msgid "Gap between cards (px, -1 = theme)"
+msgstr ""
+
+msgid "Gap between columns"
+msgstr ""
+
+msgid "Get directions"
+msgstr ""
+
+msgid "Get started"
+msgstr ""
+
+msgid "Ghi đè bố cục hai cột của theme trên desktop."
+msgstr ""
+
+msgid "Giãn dòng nội dung dễ đọc"
+msgstr ""
+
+msgid "Giảm hiện tượng tự zoom ô nhập trên trình duyệt mobile."
+msgstr ""
+
+msgid "Giảm hiệu ứng khi thiết bị yêu cầu"
+msgstr ""
+
+msgid "Giỏ hàng & tài khoản · WooCommerce"
+msgstr ""
+
+msgid "Giỏ hàng chuẩn và block Cart; không thay đổi số tiền."
+msgstr ""
+
+msgid "Giới hạn tiêu đề thẻ blog 3 dòng"
+msgstr ""
+
+msgid "Giữ khả năng xuống dòng nếu menu vẫn quá dài."
+msgstr ""
+
+msgid "Glass"
+msgstr ""
+
+msgid "Glass on image"
+msgstr ""
+
+msgid "Gloss"
+msgstr ""
+
+msgid "Glow"
+msgstr ""
+
+msgid "Google Analytics, Facebook Pixel, chat widgets… Custom CSS goes in “Additional CSS”."
+msgstr ""
+
+msgid "Google Map"
+msgstr ""
+
+msgid "Google Maps embed code (recommended)"
+msgstr ""
+
+msgid "Google Maps link or address"
+msgstr ""
+
+msgid "Gradient"
+msgstr ""
+
+msgid "Gradient angle (°)"
+msgstr ""
+
+msgid "Gradient border"
+msgstr ""
+
+msgid "Gradient code"
+msgstr ""
+
+msgid "Gradient end"
+msgstr ""
+
+msgid "Gradient end (gradient style)"
+msgstr ""
+
+msgid "Gradient line (brand colors)"
+msgstr ""
+
+msgid "Gradient pill"
+msgstr ""
+
+msgid "Gradient start"
+msgstr ""
+
+msgid "Gradient text"
+msgstr ""
+
+msgid "Graphite & cyan"
+msgstr ""
+
+msgid "Gray"
+msgstr ""
+
+msgid "Gray → color"
+msgstr ""
+
+msgid "Gray, color on hover"
+msgstr ""
+
+msgid "Great for rows of columns, cards, icons and lists."
+msgstr ""
+
+msgid "Grid (row)"
+msgstr ""
+
+msgid "Grid columns"
+msgstr ""
+
+msgid "Grid pattern"
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Grow"
+msgstr ""
+
+msgid "Gói featured trong mẫu bảng giá BIGSPY."
+msgstr ""
+
+msgid "Gạch chân liên kết khi rê chân trang"
+msgstr ""
+
+msgid "Gạch chân liên kết trong văn bản"
+msgstr ""
+
+msgid "H1 size (px)"
+msgstr ""
+
+msgid "H2 size (px)"
+msgstr ""
+
+msgid "H3 size (px)"
+msgstr ""
+
+msgid "H4 size (px)"
+msgstr ""
+
+msgid "HTML"
+msgstr ""
+
+msgid "HTML (advanced)"
+msgstr ""
+
+msgid "HTML 1"
+msgstr ""
+
+msgid "HTML 2"
+msgstr ""
+
+msgid "HTML 3"
+msgstr ""
+
+msgid "HTML and shortcodes are allowed. Tokens: [year], [site_title], [phone], [email]."
+msgstr ""
+
+msgid "HTML blocks"
+msgstr ""
+
+msgid "HTML tag"
+msgstr ""
+
+msgid "HTML, inline CSS and shortcodes. Scripts only work for administrators / editors. You can also type directly on the page."
+msgstr ""
+
+msgid "Half width"
+msgstr ""
+
+msgid "Header"
+msgstr ""
+
+msgid "Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY."
+msgstr ""
+
+msgid "Header cart icon"
+msgstr ""
+
+msgid "Header color"
+msgstr ""
+
+msgid "Header element: %s"
+msgstr ""
+
+msgid "Header layout"
+msgstr ""
+
+msgid "Header layout & sticky"
+msgstr ""
+
+msgid "Heading"
+msgstr ""
+
+msgid "Heading & text"
+msgstr ""
+
+msgid "Heading align"
+msgstr ""
+
+msgid "Heading font"
+msgstr ""
+
+msgid "Heading font weight"
+msgstr ""
+
+msgid "Heading max width (px, 0 = full)"
+msgstr ""
+
+msgid "Heading sizes (H1–H4)"
+msgstr ""
+
+msgid "Heading text case"
+msgstr ""
+
+msgid "Headings"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Height (px)"
+msgstr ""
+
+msgid "Height (px, 0 = auto)"
+msgstr ""
+
+msgid "Height (px, 0 = default)"
+msgstr ""
+
+msgid "Height on mobile (px, 0 = same)"
+msgstr ""
+
+msgid "Height unit"
+msgstr ""
+
+msgid "Height – desktop (% of screen)"
+msgstr ""
+
+msgid "Height – desktop (px)"
+msgstr ""
+
+msgid "Height – mobile (% of screen)"
+msgstr ""
+
+msgid "Height – mobile (px)"
+msgstr ""
+
+msgid "Height – tablet (% of screen)"
+msgstr ""
+
+msgid "Height – tablet (px)"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Hide \"%s\""
+msgstr ""
+
+msgid "Hide empty categories"
+msgstr ""
+
+msgid "Hide footer"
+msgstr ""
+
+msgid "Hide on desktop"
+msgstr ""
+
+msgid "Hide on mobile"
+msgstr ""
+
+msgid "Hide on pages (IDs or slugs, comma separated)"
+msgstr ""
+
+msgid "Hide on tablet"
+msgstr ""
+
+msgid "Hide page title"
+msgstr ""
+
+msgid "Hide prices and add-to-cart buttons, show a contact button instead. Useful for showroom / quotation websites."
+msgstr ""
+
+msgid "Hide the form after sending"
+msgstr ""
+
+msgid "Hide the post being viewed"
+msgstr ""
+
+msgid "Hide the search field when the screen is narrower than (px, 0 = never)"
+msgstr ""
+
+msgid "Hide when the header is sticky (scrolled)"
+msgstr ""
+
+msgid "Highlight"
+msgstr ""
+
+msgid "Highlight color"
+msgstr ""
+
+msgid "Highlight this plan"
+msgstr ""
+
+msgid "Highlight this plan (popular)"
+msgstr ""
+
+msgid "Highlighter marker"
+msgstr ""
+
+msgid "Hiện toàn bộ ảnh thẻ blog"
+msgstr ""
+
+msgid "Hiện trọn ảnh sản phẩm"
+msgstr ""
+
+msgid "Homepage – online shop"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Horizontal align (when columns do not fill 12)"
+msgstr ""
+
+msgid "Horizontal line"
+msgstr ""
+
+msgid "Hospitals, labs, care"
+msgstr ""
+
+msgid "Hotels, resorts, real estate"
+msgstr ""
+
+msgid "Hotline 2"
+msgstr ""
+
+msgid "Hover"
+msgstr ""
+
+msgid "Hover (click on phones)"
+msgstr ""
+
+msgid "Hover background"
+msgstr ""
+
+msgid "Hover text"
+msgstr ""
+
+msgid "Hoàn tác"
+msgstr ""
+
+msgid "Hình ảnh & banner"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Icon background"
+msgstr ""
+
+msgid "Icon background (filled styles)"
+msgstr ""
+
+msgid "Icon color"
+msgstr ""
+
+msgid "Icon colors"
+msgstr ""
+
+msgid "Icon in a soft circle"
+msgstr ""
+
+msgid "Icon in the middle (optional)"
+msgstr ""
+
+msgid "Icon name (when marker = icon)"
+msgstr ""
+
+msgid "Icon only"
+msgstr ""
+
+msgid "Icon position"
+msgstr ""
+
+msgid "Icon size (px)"
+msgstr ""
+
+msgid "Icon size (px, 0 = auto)"
+msgstr ""
+
+msgid "Icon size (px, 0 = default)"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Image (side or background)"
+msgstr ""
+
+msgid "Image + form"
+msgstr ""
+
+msgid "Image + text row"
+msgstr ""
+
+msgid "Image box"
+msgstr ""
+
+msgid "Image hotspots"
+msgstr ""
+
+msgid "Image hover"
+msgstr ""
+
+msgid "Image hover effect"
+msgstr ""
+
+msgid "Image left"
+msgstr ""
+
+msgid "Image on top"
+msgstr ""
+
+msgid "Image position"
+msgstr ""
+
+msgid "Image ratio"
+msgstr ""
+
+msgid "Image right"
+msgstr ""
+
+msgid "Image swatches"
+msgstr ""
+
+msgid "Image width (%)"
+msgstr ""
+
+msgid "Images"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import theme options"
+msgstr ""
+
+msgid "Include product SKU matches"
+msgstr ""
+
+msgid "Include product tag matches"
+msgstr ""
+
+msgid "Increase indent"
+msgstr ""
+
+msgid "Indigo"
+msgstr ""
+
+msgid "Indigo deep"
+msgstr ""
+
+msgid "Indigo pastel"
+msgstr ""
+
+msgid "Industry, logistics, B2B"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Info box on the map"
+msgstr ""
+
+msgid "Inherit"
+msgstr ""
+
+msgid "Inline (no alignment)"
+msgstr ""
+
+msgid "Inline (one line)"
+msgstr ""
+
+msgid "Inline newsletter"
+msgstr ""
+
+msgid "Insert image (click it, then drag its corner to resize)"
+msgstr ""
+
+msgid "Insert link"
+msgstr ""
+
+msgid "Insert table"
+msgstr ""
+
+msgid "Inside"
+msgstr ""
+
+msgid "Instagram link"
+msgstr ""
+
+msgid "Install / set up WP Mail SMTP so emails are delivered"
+msgstr ""
+
+msgid "Install Contact Form 7"
+msgstr ""
+
+msgid "Install WP Mail SMTP"
+msgstr ""
+
+msgid "Install WP Mail SMTP (recommended)"
+msgstr ""
+
+msgid "Install WooCommerce"
+msgstr ""
+
+msgid "Install and activate Contact Form 7 (or WPForms) to use this block."
+msgstr ""
+
+msgid "Install and activate WooCommerce to display products here. This block shows nothing on the site until then."
+msgstr ""
+
+msgid "Instant"
+msgstr ""
+
+msgid "Instant page: preload a page when the visitor hovers or touches its link"
+msgstr ""
+
+msgid "Interior, eco, skincare"
+msgstr ""
+
+msgid "Italic"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Items (one per line)"
+msgstr ""
+
+msgid "Jade"
+msgstr ""
+
+msgid "Jade deep"
+msgstr ""
+
+msgid "Jade pastel"
+msgstr ""
+
+msgid "Justify"
+msgstr ""
+
+msgid "Keep columns on mobile"
+msgstr ""
+
+msgid "Keep order totals visible on desktop"
+msgstr ""
+
+msgid "Keep purchase details visible while scrolling (desktop)"
+msgstr ""
+
+msgid "Keep the menu and header buttons on one line"
+msgstr ""
+
+msgid "Keep the menu open on the homepage (desktop)"
+msgstr ""
+
+msgid "Keeps menu and buttons on one line on small laptops, e.g. 1150."
+msgstr ""
+
+msgid "Keeps page URLs and browser history. Filters and sorting keep their native navigation."
+msgstr ""
+
+msgid "Khung cảm nhận khách hàng"
+msgstr ""
+
+msgid "Khung trích dẫn nổi bật"
+msgstr ""
+
+msgid "Khung tổng tiền giỏ hàng"
+msgstr ""
+
+msgid "Không có tác vụ phù hợp."
+msgstr ""
+
+msgid "Không tác động đến nút, menu hay thẻ sản phẩm."
+msgstr ""
+
+msgid "Không đổi kiểu thẻ bài viết có chữ phủ trên ảnh."
+msgstr ""
+
+msgid "Không đổi nút dạng liên kết hoặc viền."
+msgstr ""
+
+msgid "Không đổi tên, sao hay nội dung của khách hàng."
+msgstr ""
+
+msgid "Kids, toys, playful shops"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Label (e.g. 4.9/5 from 320 reviews)"
+msgstr ""
+
+msgid "Label (e.g. Happy customers)"
+msgstr ""
+
+msgid "Label (optional)"
+msgstr ""
+
+msgid "Label before icons (optional)"
+msgstr ""
+
+msgid "Label buttons"
+msgstr ""
+
+msgid "Label inside the bar"
+msgstr ""
+
+msgid "Labels"
+msgstr ""
+
+msgid "Labels & layout"
+msgstr ""
+
+msgid "Landscape 4:3"
+msgstr ""
+
+msgid "Language label"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "Large (960px)"
+msgstr ""
+
+msgid "Latest"
+msgstr ""
+
+msgid "Latitude (optional)"
+msgstr ""
+
+msgid "Lavender"
+msgstr ""
+
+msgid "Law, finance, consulting"
+msgstr ""
+
+msgid "Layer order (z-index)"
+msgstr ""
+
+msgid "Layered waves"
+msgstr ""
+
+msgid "Layout & fields"
+msgstr ""
+
+msgid "Layout & style"
+msgstr ""
+
+msgid "Layout applied. Preview it, then Publish to save."
+msgstr ""
+
+msgid "Leaf"
+msgstr ""
+
+msgid "Leaf deep"
+msgstr ""
+
+msgid "Leaf pastel"
+msgstr ""
+
+msgid "Learn more"
+msgstr ""
+
+msgid "Left (%)"
+msgstr ""
+
+msgid "Left / right"
+msgstr ""
+
+msgid "Left bar"
+msgstr ""
+
+msgid "Left sidebar"
+msgstr ""
+
+msgid "Left to right"
+msgstr ""
+
+msgid "Letter case"
+msgstr ""
+
+msgid "Letter spacing"
+msgstr ""
+
+msgid "Letter spacing (px)"
+msgstr ""
+
+msgid "Lift"
+msgstr ""
+
+msgid "Lift on hover"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Light 300"
+msgstr ""
+
+msgid "Light background (cards, boxes)"
+msgstr ""
+
+msgid "Light panel"
+msgstr ""
+
+msgid "Light text (for dark backgrounds)"
+msgstr ""
+
+msgid "Lighten overlay"
+msgstr ""
+
+msgid "Lime"
+msgstr ""
+
+msgid "Lime deep"
+msgstr ""
+
+msgid "Lime pastel"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Line color"
+msgstr ""
+
+msgid "Line height"
+msgstr ""
+
+msgid "Line height (0 = default)"
+msgstr ""
+
+msgid "Line height (0 = theme default)"
+msgstr ""
+
+msgid "Line style"
+msgstr ""
+
+msgid "Lines on both sides"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Link & accessibility"
+msgstr ""
+
+msgid "Link (URL)"
+msgstr ""
+
+msgid "Link (URL, tel:, mailto:)"
+msgstr ""
+
+msgid "Link (optional)"
+msgstr ""
+
+msgid "Link / number"
+msgstr ""
+
+msgid "Link URL (https://, tel:, mailto:)"
+msgstr ""
+
+msgid "Link any button or menu item to #"
+msgstr ""
+
+msgid "Link for logo"
+msgstr ""
+
+msgid "Link rel"
+msgstr ""
+
+msgid "Link text"
+msgstr ""
+
+msgid "Link the whole banner (URL)"
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "Links on hover"
+msgstr ""
+
+msgid "List item…"
+msgstr ""
+
+msgid "Live search suggestions while typing"
+msgstr ""
+
+msgid "Liên kết chân trang khi rê chuột hoặc dùng bàn phím."
+msgstr ""
+
+msgid "Load classic shop pagination without a full page reload"
+msgstr ""
+
+msgid "Loading & filters"
+msgstr ""
+
+msgid "Loading preview…"
+msgstr ""
+
+msgid "Loads the next products without reloading the page."
+msgstr ""
+
+msgid "Lock"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Logo & site identity"
+msgstr ""
+
+msgid "Logo height (px)"
+msgstr ""
+
+msgid "Logo max width – desktop (px)"
+msgstr ""
+
+msgid "Logo max width – mobile (px)"
+msgstr ""
+
+msgid "Logo showcase"
+msgstr ""
+
+msgid "Logo width in compact mode (px, 0 = unchanged)"
+msgstr ""
+
+msgid "Logo, menu and search with fewer rows."
+msgstr ""
+
+msgid "Logo, menu and the text of full-width banners / sections line up on the same side spacing."
+msgstr ""
+
+msgid "Logo, search, account, cart and navigation."
+msgstr ""
+
+msgid "Logos"
+msgstr ""
+
+msgid "Longitude"
+msgstr ""
+
+msgid "Look"
+msgstr ""
+
+msgid "Loop"
+msgstr ""
+
+msgid "Looping effect (draws attention)"
+msgstr ""
+
+msgid "Lottie JSON URL"
+msgstr ""
+
+msgid "Lottie animation"
+msgstr ""
+
+msgid "Lucky red & gold"
+msgstr ""
+
+msgid "Luxury, jewelry, real estate"
+msgstr ""
+
+msgid "Làm nổi câu hỏi đang mở"
+msgstr ""
+
+msgid "Làm nổi giá sản phẩm"
+msgstr ""
+
+msgid "Làm rõ ô đang nhập"
+msgstr ""
+
+msgid "Magazine"
+msgstr ""
+
+msgid "Magenta pop"
+msgstr ""
+
+msgid "Mail"
+msgstr ""
+
+msgid "Mail (2)"
+msgstr ""
+
+msgid "Mail (2) is an extra email, e.g. an auto-reply to the visitor."
+msgstr ""
+
+msgid "Mail tags you can use:"
+msgstr ""
+
+msgid "Mailer:"
+msgstr ""
+
+msgid "Main header"
+msgstr ""
+
+msgid "Main menu"
+msgstr ""
+
+msgid "Main menu style"
+msgstr ""
+
+msgid "Map"
+msgstr ""
+
+msgid "Margin"
+msgstr ""
+
+msgid "Marker"
+msgstr ""
+
+msgid "Marker color"
+msgstr ""
+
+msgid "Max height (px, 0 = auto)"
+msgstr ""
+
+msgid "Max product categories"
+msgstr ""
+
+msgid "Max width"
+msgstr ""
+
+msgid "Max width (px)"
+msgstr ""
+
+msgid "Max width (px, 0 = full)"
+msgstr ""
+
+msgid "Max width – desktop (px)"
+msgstr ""
+
+msgid "Max width – mobile (px)"
+msgstr ""
+
+msgid "Medical blue"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Medium (640px)"
+msgstr ""
+
+msgid "Medium 500"
+msgstr ""
+
+msgid "Medium large"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Menu assigned to “Vertical menu”"
+msgstr ""
+
+msgid "Menu con desktop của BIGSPY."
+msgstr ""
+
+msgid "Menu content"
+msgstr ""
+
+msgid "Menu font"
+msgstr ""
+
+msgid "Menu font size (px)"
+msgstr ""
+
+msgid "Menu font weight"
+msgstr ""
+
+msgid "Menu icon (off-canvas)"
+msgstr ""
+
+msgid "Menu mobile dễ chạm hơn"
+msgstr ""
+
+msgid "Menu opens from"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
+msgid "Menu text case"
+msgstr ""
+
+msgid "Menu tài khoản WooCommerce sau khi đăng nhập."
+msgstr ""
+
+msgid "Menu tài khoản bo góc"
+msgstr ""
+
+msgid "Menus"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Message body"
+msgstr ""
+
+msgid "Message box"
+msgstr ""
+
+msgid "Messages"
+msgstr ""
+
+msgid "Message…"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Midnight gold"
+msgstr ""
+
+msgid "Milestones"
+msgstr ""
+
+msgid "Mini cart dropdown on hover (desktop)"
+msgstr ""
+
+msgid "Minimal"
+msgstr ""
+
+msgid "Minimal (image + name + price)"
+msgstr ""
+
+msgid "Minimal lines"
+msgstr ""
+
+msgid "Minimal, studios, portfolios"
+msgstr ""
+
+msgid "Minimum height"
+msgstr ""
+
+msgid "Minimum height (px, 0 = auto)"
+msgstr ""
+
+msgid "Minimum width (px, 0 = auto)"
+msgstr ""
+
+msgid "Mint"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile & khả năng truy cập"
+msgstr ""
+
+msgid "Mobile (px)"
+msgstr ""
+
+msgid "Mobile bottom bar"
+msgstr ""
+
+msgid "Mobile font size (px, 0 = inherit)"
+msgstr ""
+
+msgid "Mobile image (optional)"
+msgstr ""
+
+msgid "Mobile main row height (px)"
+msgstr ""
+
+msgid "Mobile menu (falls back to Main menu)"
+msgstr ""
+
+msgid "Mocha"
+msgstr ""
+
+msgid "Mocha deep"
+msgstr ""
+
+msgid "Mocha pastel"
+msgstr ""
+
+msgid "Mode"
+msgstr ""
+
+msgid "Modern card"
+msgstr ""
+
+msgid "Modern, friendly brands"
+msgstr ""
+
+msgid "Monochrome"
+msgstr ""
+
+msgid "Monospace"
+msgstr ""
+
+msgid "More block actions"
+msgstr ""
+
+msgid "Mosaic (5)"
+msgstr ""
+
+msgid "Most commented"
+msgstr ""
+
+msgid "Most products"
+msgstr ""
+
+msgid "Motion & size"
+msgstr ""
+
+msgid "Mountains"
+msgstr ""
+
+msgid "Move icon"
+msgstr ""
+
+msgid "Move slide left"
+msgstr ""
+
+msgid "Move slide right"
+msgstr ""
+
+msgid "Move up on hover (px)"
+msgstr ""
+
+msgid "Mua ngay"
+msgstr ""
+
+msgid "Mustard"
+msgstr ""
+
+msgid "Mustard deep"
+msgstr ""
+
+msgid "Mustard pastel"
+msgstr ""
+
+msgid "Muted"
+msgstr ""
+
+msgid "My pattern"
+msgstr ""
+
+msgid "Mục WooCommerce cần plugin WooCommerce. Mục dịch vụ cần block BIGSPY tương ứng. Nếu chưa có thành phần trên trang, tác vụ chưa tạo thay đổi."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Name A–Z"
+msgstr ""
+
+msgid "Name on image"
+msgstr ""
+
+msgid "Name size (px, 0 = default)"
+msgstr ""
+
+msgid "Narrow (800px)"
+msgstr ""
+
+msgid "Navigation"
+msgstr ""
+
+msgid "Navy & gold"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "Never (icon only)"
+msgstr ""
+
+msgid "New banner"
+msgstr ""
+
+msgid "New bar"
+msgstr ""
+
+msgid "New field"
+msgstr ""
+
+msgid "New milestone"
+msgstr ""
+
+msgid "New plan"
+msgstr ""
+
+msgid "New point"
+msgstr ""
+
+msgid "Newest"
+msgstr ""
+
+msgid "Ngắt tiêu đề quá dài"
+msgstr ""
+
+msgid "Nhóm nút WordPress và BIGSPY trong nội dung; không đổi nút header."
+msgstr ""
+
+msgid "Nhận ưu đãi 10%"
+msgstr ""
+
+msgid "Night neon"
+msgstr ""
+
+msgid "No SMTP plugin"
+msgstr ""
+
+msgid "No product categories found."
+msgstr ""
+
+msgid "No sidebar"
+msgstr ""
+
+msgid "None (content touches header / footer)"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Normal 400"
+msgstr ""
+
+msgid "Normal text (div)"
+msgstr ""
+
+msgid "Not a valid color code."
+msgstr ""
+
+msgid "Not used by the bottom bar."
+msgstr ""
+
+msgid "Note under the form (e.g. \"We never share your phone number\")"
+msgstr ""
+
+msgid "Nothing copied yet."
+msgstr ""
+
+msgid "Number"
+msgstr ""
+
+msgid "Number color"
+msgstr ""
+
+msgid "Number of categories"
+msgstr ""
+
+msgid "Number of products"
+msgstr ""
+
+msgid "Number of stars"
+msgstr ""
+
+msgid "Number of suggestions"
+msgstr ""
+
+msgid "Number size (px)"
+msgstr ""
+
+msgid "Number the items (01, 02…)"
+msgstr ""
+
+msgid "Number with country code"
+msgstr ""
+
+msgid "Numbered list"
+msgstr ""
+
+msgid "Numbers"
+msgstr ""
+
+msgid "Numbers are pixels; also accepts em, rem, %, vh, auto. Negative margins allowed. Tablet/mobile values override desktop."
+msgstr ""
+
+msgid "Nút & biểu mẫu"
+msgstr ""
+
+msgid "Nút bo góc mềm"
+msgstr ""
+
+msgid "Nút coupon WooCommerce classic; giữ nguyên ô nhập và chức năng mã giảm giá."
+msgstr ""
+
+msgid "Nút góc vuông"
+msgstr ""
+
+msgid "Nút hình viên thuốc"
+msgstr ""
+
+msgid "Nút mua bên dưới nội dung thẻ BIGSPY."
+msgstr ""
+
+msgid "Nút mua lớn trong chi tiết"
+msgstr ""
+
+msgid "Nút mua nền màu thương hiệu"
+msgstr ""
+
+msgid "Nút nhấc nhẹ khi rê chuột"
+msgstr ""
+
+msgid "Nút nội dung rộng toàn hàng trên mobile"
+msgstr ""
+
+msgid "Nút thanh toán rộng toàn khung"
+msgstr ""
+
+msgid "Nút áp dụng mã giảm giá theo màu thương hiệu"
+msgstr ""
+
+msgid "Nút đi đến thanh toán của giỏ hàng dạng shortcode."
+msgstr ""
+
+msgid "Nền nhẹ phần thông tin sản phẩm"
+msgstr ""
+
+msgid "Nền sáng theo màu theme cho câu hỏi đang mở."
+msgstr ""
+
+msgid "Nền tối giúp chữ banner dễ đọc"
+msgstr ""
+
+msgid "Ocean & coral"
+msgstr ""
+
+msgid "Ocean (light text)"
+msgstr ""
+
+msgid "Ocean blue"
+msgstr ""
+
+msgid "Off-canvas (mobile) menu opens from"
+msgstr ""
+
+msgid "Off-canvas menu (below menu)"
+msgstr ""
+
+msgid "Offsets (top / right / bottom / left)"
+msgstr ""
+
+msgid "Old price (crossed out, optional)"
+msgstr ""
+
+msgid "Olive & sand"
+msgstr ""
+
+msgid "Olive deep"
+msgstr ""
+
+msgid "Olive pastel"
+msgstr ""
+
+msgid "On Google Maps: open your place → Share → Embed a map → Copy HTML, then paste it here. The exact pin, name and reviews are shown. Leave empty to use the address below."
+msgstr ""
+
+msgid "On hover"
+msgstr ""
+
+msgid "On phones"
+msgstr ""
+
+msgid "On phones & tablets"
+msgstr ""
+
+msgid "On sale"
+msgstr ""
+
+msgid "On: pick a ready-made palette. Off: set every color by hand below."
+msgstr ""
+
+msgid "One click sets the brand colors, links, top bar and footer together. Fine-tune any color below, then Publish."
+msgstr ""
+
+msgid "One line"
+msgstr ""
+
+msgid "One row"
+msgstr ""
+
+msgid "One row per line. Separate cells with |. Paste from a spreadsheet and replace tabs with |."
+msgstr ""
+
+msgid "Online store"
+msgstr ""
+
+msgid "Only children of"
+msgstr ""
+
+msgid "Only one item open at a time"
+msgstr ""
+
+msgid "Open Form entries"
+msgstr ""
+
+msgid "Open a tab on"
+msgstr ""
+
+msgid "Open by default"
+msgstr ""
+
+msgid "Open full image in lightbox on click"
+msgstr ""
+
+msgid "Open in a new tab"
+msgstr ""
+
+msgid "Open in a new tab?"
+msgstr ""
+
+msgid "Open in lightbox"
+msgstr ""
+
+msgid "Open in new tab"
+msgstr ""
+
+msgid "Open item – background"
+msgstr ""
+
+msgid "Open item – title"
+msgstr ""
+
+msgid "Open the popup"
+msgstr ""
+
+msgid "Open the quick start guide"
+msgstr ""
+
+msgid "Open tooltip on"
+msgstr ""
+
+msgid "Optional short label shown on the button."
+msgstr ""
+
+msgid "Optional short label shown on the button. Leave empty to use the term name."
+msgstr ""
+
+msgid "Options (one per line)"
+msgstr ""
+
+msgid "Or audio URL"
+msgstr ""
+
+msgid "Orange & charcoal"
+msgstr ""
+
+msgid "Orchid"
+msgstr ""
+
+msgid "Orchid deep"
+msgstr ""
+
+msgid "Orchid pastel"
+msgstr ""
+
+msgid "Order by"
+msgstr ""
+
+msgid "Organic shops, farms, health"
+msgstr ""
+
+msgid "Original size"
+msgstr ""
+
+msgid "Outline"
+msgstr ""
+
+msgid "Outlined pill"
+msgstr ""
+
+msgid "Outlined text"
+msgstr ""
+
+msgid "Outside"
+msgstr ""
+
+msgid "Outside background (boxed layout)"
+msgstr ""
+
+msgid "Overlay"
+msgstr ""
+
+msgid "Overlay & link"
+msgstr ""
+
+msgid "Overlay color"
+msgstr ""
+
+msgid "Overlay darkness (%)"
+msgstr ""
+
+msgid "Overlay opacity (%)"
+msgstr ""
+
+msgid "Overlay options"
+msgstr ""
+
+msgid "Overline"
+msgstr ""
+
+msgid "PHP"
+msgstr ""
+
+msgid "PHP mail (default, may land in spam)"
+msgstr ""
+
+msgid "Padding"
+msgstr ""
+
+msgid "Padding top/bottom – desktop"
+msgstr ""
+
+msgid "Padding top/bottom – mobile"
+msgstr ""
+
+msgid "Padding top/bottom – tablet"
+msgstr ""
+
+msgid "Page background"
+msgstr ""
+
+msgid "Page layout"
+msgstr ""
+
+msgid "Page sidebar"
+msgstr ""
+
+msgid "Page title style"
+msgstr ""
+
+msgid "Page username or m.me link"
+msgstr ""
+
+msgid "Pages and posts only"
+msgstr ""
+
+msgid "Pages open almost instantly. Skipped on data-saver connections, admin, cart and file links."
+msgstr ""
+
+msgid "Paragraph"
+msgstr ""
+
+msgid "Paragraph (p)"
+msgstr ""
+
+msgid "Paragraph format"
+msgstr ""
+
+msgid "Paragraph style"
+msgstr ""
+
+msgid "Pass the fields as URL query parameters"
+msgstr ""
+
+msgid "Paste HTML in the sidebar (Code / HTML panel)."
+msgstr ""
+
+msgid "Paste a .json link (e.g. from LottieFiles). Upload JSON files to Media first if your site allows it."
+msgstr ""
+
+msgid "Paste a Lottie JSON URL in the block settings."
+msgstr ""
+
+msgid "Paste a YouTube, Vimeo or .mp4 URL in the block settings."
+msgstr ""
+
+msgid "Paste as plain text"
+msgstr ""
+
+msgid "Paste as plain text (removes Word/web formatting)"
+msgstr ""
+
+msgid "Paste design"
+msgstr ""
+
+msgid "Pastel · Bakery, honey, tours"
+msgstr ""
+
+msgid "Pastel · Banking, insurance"
+msgstr ""
+
+msgid "Pastel · Beauty, cafés, kids"
+msgstr ""
+
+msgid "Pastel · Clinics, cleaning, water"
+msgstr ""
+
+msgid "Pastel · Coffee, furniture"
+msgstr ""
+
+msgid "Pastel · Construction, logistics"
+msgstr ""
+
+msgid "Pastel · Eco, juice, sport"
+msgstr ""
+
+msgid "Pastel · Education, agencies"
+msgstr ""
+
+msgid "Pastel · Events, cosmetics"
+msgstr ""
+
+msgid "Pastel · Fashion, wine, gifts"
+msgstr ""
+
+msgid "Pastel · Finance, law, B2B"
+msgstr ""
+
+msgid "Pastel · Food delivery, fitness"
+msgstr ""
+
+msgid "Pastel · Garden, farm, organic"
+msgstr ""
+
+msgid "Pastel · Handmade, interior"
+msgstr ""
+
+msgid "Pastel · Jewelry, bridal"
+msgstr ""
+
+msgid "Pastel · Pool, laundry, spa"
+msgstr ""
+
+msgid "Pastel · SaaS, startups"
+msgstr ""
+
+msgid "Pastel · Sales, food, sport"
+msgstr ""
+
+msgid "Pastel · Spa, florist, wedding"
+msgstr ""
+
+msgid "Pastel · Tech, minimal"
+msgstr ""
+
+msgid "Pastel · Travel, IT, airlines"
+msgstr ""
+
+msgid "Pastel · Wellness, tea, pharmacy"
+msgstr ""
+
+msgid "Pattern created. Find it under Patterns → My patterns."
+msgstr ""
+
+msgid "Pattern name:"
+msgstr ""
+
+msgid "Patterns: “BIGSPY – Shop” sections and the full “Homepage – online shop”."
+msgstr ""
+
+msgid "Pause on hover"
+msgstr ""
+
+msgid "Pause when the mouse is over the slider"
+msgstr ""
+
+msgid "Payment methods"
+msgstr ""
+
+msgid "Peach"
+msgstr ""
+
+msgid "Peek next card (%)"
+msgstr ""
+
+msgid "Peek next slide (%)"
+msgstr ""
+
+msgid "Performance & effects"
+msgstr ""
+
+msgid "Period text – first"
+msgstr ""
+
+msgid "Period text – second"
+msgstr ""
+
+msgid "Pharmacy, dental, wellness"
+msgstr ""
+
+msgid "Phone + address"
+msgstr ""
+
+msgid "Phone + email"
+msgstr ""
+
+msgid "Phone / hotline"
+msgstr ""
+
+msgid "Phone number"
+msgstr ""
+
+msgid "Phone only"
+msgstr ""
+
+msgid "Phone, email, address and hours are entered in Contact info & social."
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "Photo ratio"
+msgstr ""
+
+msgid "Phù hợp ảnh bao bì, thiết bị; có thể có khoảng trống quanh ảnh."
+msgstr ""
+
+msgid "Phù hợp ảnh lifestyle; có thể cắt mép ảnh."
+msgstr ""
+
+msgid "Pick an image in the sidebar, then click on it to add points."
+msgstr ""
+
+msgid "Pill"
+msgstr ""
+
+msgid "Pill background"
+msgstr ""
+
+msgid "Pill buttons"
+msgstr ""
+
+msgid "Pill chip"
+msgstr ""
+
+msgid "Pill on hover"
+msgstr ""
+
+msgid "Pills"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Placeholder text"
+msgstr ""
+
+msgid "Plain"
+msgstr ""
+
+msgid "Plain link"
+msgstr ""
+
+msgid "Plan name"
+msgstr ""
+
+msgid "Plans"
+msgstr ""
+
+msgid "Play automatically"
+msgstr ""
+
+msgid "Play button"
+msgstr ""
+
+msgid "Play only on hover"
+msgstr ""
+
+msgid "Play video"
+msgstr ""
+
+msgid "Play: %s"
+msgstr ""
+
+msgid "Playback"
+msgstr ""
+
+msgid "Plays muted and looped behind the content. Set a background image too as the poster/fallback."
+msgstr ""
+
+msgid "Plus"
+msgstr ""
+
+msgid "Points"
+msgstr ""
+
+msgid "Policy link text"
+msgstr ""
+
+msgid "Policy page URL (optional)"
+msgstr ""
+
+msgid "Popup"
+msgstr ""
+
+msgid "Popup ID"
+msgstr ""
+
+msgid "Popup background"
+msgstr ""
+
+msgid "Portrait 3:4 (fashion)"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Position, company"
+msgstr ""
+
+msgid "Post cards"
+msgstr ""
+
+msgid "Poster image (loads the player only on click – faster pages)"
+msgstr ""
+
+msgid "Prefix"
+msgstr ""
+
+msgid "Preformatted"
+msgstr ""
+
+msgid "Preview unavailable"
+msgstr ""
+
+msgid "Preview with sample fields — choose your form in the toolbar or sidebar."
+msgstr ""
+
+msgid "Preview with sample fields. Install Contact Form 7 to collect real messages."
+msgstr ""
+
+msgid "Previous / next post links"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Price table"
+msgstr ""
+
+msgid "Price – first option"
+msgstr ""
+
+msgid "Price – second option"
+msgstr ""
+
+msgid "Price: high to low"
+msgstr ""
+
+msgid "Price: low to high"
+msgstr ""
+
+msgid "Primary"
+msgstr ""
+
+msgid "Primary (light text)"
+msgstr ""
+
+msgid "Primary color"
+msgstr ""
+
+msgid "Product card"
+msgstr ""
+
+msgid "Product card style"
+msgstr ""
+
+msgid "Product cards (shop & categories)"
+msgstr ""
+
+msgid "Product categories (WooCommerce)"
+msgstr ""
+
+msgid "Product filters and shop widgets"
+msgstr ""
+
+msgid "Product gallery layout"
+msgstr ""
+
+msgid "Product grid"
+msgstr ""
+
+msgid "Product image ratio"
+msgstr ""
+
+msgid "Product page sidebar"
+msgstr ""
+
+msgid "Product tab appearance"
+msgstr ""
+
+msgid "Product title max lines"
+msgstr ""
+
+msgid "Products"
+msgstr ""
+
+msgid "Products only"
+msgstr ""
+
+msgid "Products per page"
+msgstr ""
+
+msgid "Products per row – desktop"
+msgstr ""
+
+msgid "Products per row – mobile"
+msgstr ""
+
+msgid "Products per row – tablet"
+msgstr ""
+
+msgid "Products, pages and posts"
+msgstr ""
+
+msgid "Profile links are entered in Contact info & social."
+msgstr ""
+
+msgid "Profiles"
+msgstr ""
+
+msgid "Pulse"
+msgstr ""
+
+msgid "Pulse (attention)"
+msgstr ""
+
+msgid "Pulse animation"
+msgstr ""
+
+msgid "Pulse animation (draws attention)"
+msgstr ""
+
+msgid "Pulse waves"
+msgstr ""
+
+msgid "Pulsing dot"
+msgstr ""
+
+msgid "Pyramids"
+msgstr ""
+
+msgid "Query"
+msgstr ""
+
+msgid "Question / title"
+msgstr ""
+
+msgid "Question 1?"
+msgstr ""
+
+msgid "Question 2?"
+msgstr ""
+
+msgid "Question 3?"
+msgstr ""
+
+msgid "Question tag"
+msgstr ""
+
+msgid "Question tag (SEO)"
+msgstr ""
+
+msgid "Question tag for all items (SEO)"
+msgstr ""
+
+msgid "Quick contact"
+msgstr ""
+
+msgid "Quick start"
+msgstr ""
+
+msgid "Quick view"
+msgstr ""
+
+msgid "Quote"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "Rated %1$s out of %2$s"
+msgstr ""
+
+msgid "Rating"
+msgstr ""
+
+msgid "Rating stars"
+msgstr ""
+
+msgid "Ratio"
+msgstr ""
+
+msgid "Re-select the image once so its proportions are known."
+msgstr ""
+
+msgid "Reading progress bar on blog posts"
+msgstr ""
+
+msgid "Ready-made looks"
+msgstr ""
+
+msgid "Recently updated"
+msgstr ""
+
+msgid "Redirect to (URL or /page/)"
+msgstr ""
+
+msgid "Redirect to (URL, optional)"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Regular"
+msgstr ""
+
+msgid "Regular 400"
+msgstr ""
+
+msgid "Related products"
+msgstr ""
+
+msgid "Related products per row"
+msgstr ""
+
+msgid "Relative (nudge with offsets)"
+msgstr ""
+
+msgid "Relaxed (400 ms)"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove field"
+msgstr ""
+
+msgid "Remove image"
+msgstr ""
+
+msgid "Remove item"
+msgstr ""
+
+msgid "Remove link"
+msgstr ""
+
+msgid "Remove this button"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Render HTML on the page"
+msgstr ""
+
+msgid "Replace"
+msgstr ""
+
+msgid "Replace image"
+msgstr ""
+
+msgid "Replace photo"
+msgstr ""
+
+msgid "Replay every time it scrolls into view"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset all theme options?"
+msgstr ""
+
+msgid "Reset design"
+msgstr ""
+
+msgid "Reset the header layout for this device?"
+msgstr ""
+
+msgid "Reset theme options"
+msgstr ""
+
+msgid "Reset to default layout"
+msgstr ""
+
+msgid "Reset typography"
+msgstr ""
+
+msgid "Resolution"
+msgstr ""
+
+msgid "Restaurants, ceramics, decor"
+msgstr ""
+
+msgid "Restore every theme option to its default value. Menus, widgets, logo and content are not affected."
+msgstr ""
+
+msgid "Reveal icon on hover"
+msgstr ""
+
+msgid "Reverse column order on mobile"
+msgstr ""
+
+msgid "Right side HTML (payment icons, badges…)"
+msgstr ""
+
+msgid "Right sidebar"
+msgstr ""
+
+msgid "Right to left"
+msgstr ""
+
+msgid "Ringing + ripple waves"
+msgstr ""
+
+msgid "Ringing + waves"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "Rose"
+msgstr ""
+
+msgid "Rose deep"
+msgstr ""
+
+msgid "Rose gold"
+msgstr ""
+
+msgid "Rose pastel"
+msgstr ""
+
+msgid "Round icon on the image"
+msgstr ""
+
+msgid "Round icons, stacked"
+msgstr ""
+
+msgid "Round photo"
+msgstr ""
+
+msgid "Rounded"
+msgstr ""
+
+msgid "Rounded + shadow"
+msgstr ""
+
+msgid "Row settings"
+msgstr ""
+
+msgid "Rows"
+msgstr ""
+
+msgid "Rows: height & colors"
+msgstr ""
+
+msgid "Royal purple"
+msgstr ""
+
+msgid "Ruby deep"
+msgstr ""
+
+msgid "Ruby pastel"
+msgstr ""
+
+msgid "Ruby wine"
+msgstr ""
+
+msgid "SMTP settings"
+msgstr ""
+
+msgid "SaaS, apps, startups"
+msgstr ""
+
+msgid "Sage"
+msgstr ""
+
+msgid "Sale & new badges"
+msgstr ""
+
+msgid "Sale / new badges"
+msgstr ""
+
+msgid "Sale badge"
+msgstr ""
+
+msgid "Sales, electronics, marts"
+msgstr ""
+
+msgid "Same as accordion"
+msgstr ""
+
+msgid "Same as accordion = the tag set on the Accordion block."
+msgstr ""
+
+msgid "Same as the general setting"
+msgstr ""
+
+msgid "Same height for all slides – desktop (px, 0 = each slide its own)"
+msgstr ""
+
+msgid "Same height – mobile (px, 0 = as tablet)"
+msgstr ""
+
+msgid "Same height – tablet (px, 0 = as desktop)"
+msgstr ""
+
+msgid "Sao đánh giá theo màu thương hiệu"
+msgstr ""
+
+msgid "Sapphire"
+msgstr ""
+
+msgid "Sapphire deep"
+msgstr ""
+
+msgid "Sapphire pastel"
+msgstr ""
+
+msgid "Save every entry in Form entries"
+msgstr ""
+
+msgid "Save to form"
+msgstr ""
+
+msgid "Saved to the form."
+msgstr ""
+
+msgid "Scale on hover (%)"
+msgstr ""
+
+msgid "Scripts after <body>"
+msgstr ""
+
+msgid "Scripts before </body>"
+msgstr ""
+
+msgid "Scripts in <head>"
+msgstr ""
+
+msgid "Scroll duration (seconds, lower = faster)"
+msgstr ""
+
+msgid "Scroll motion"
+msgstr ""
+
+msgid "Scroll sideways"
+msgstr ""
+
+msgid "Scrolled down (%)"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search button"
+msgstr ""
+
+msgid "Search field placeholder (empty = default)"
+msgstr ""
+
+msgid "Search form"
+msgstr ""
+
+msgid "Search icon"
+msgstr ""
+
+msgid "Search icon opens"
+msgstr ""
+
+msgid "Search in"
+msgstr ""
+
+msgid "Search sources, live suggestions and SKU search: Header → Search."
+msgstr ""
+
+msgid "Second accent (gradients)"
+msgstr ""
+
+msgid "Second button link"
+msgstr ""
+
+msgid "Second button text (optional)"
+msgstr ""
+
+msgid "Second line (e.g. phone number, “Free consultation”)"
+msgstr ""
+
+msgid "Second option"
+msgstr ""
+
+msgid "Second phone number"
+msgstr ""
+
+msgid "Secondary"
+msgstr ""
+
+msgid "Secondary color"
+msgstr ""
+
+msgid "Seconds per loop (lower = faster)"
+msgstr ""
+
+msgid "Section"
+msgstr ""
+
+msgid "Section title"
+msgstr ""
+
+msgid "Select a tab inside to rename it or give it an icon."
+msgstr ""
+
+msgid "Select file"
+msgstr ""
+
+msgid "Select image"
+msgstr ""
+
+msgid "Select logos"
+msgstr ""
+
+msgid "Select logos in the sidebar."
+msgstr ""
+
+msgid "Semi bold"
+msgstr ""
+
+msgid "Semi bold 600"
+msgstr ""
+
+msgid "Semi-bold 600"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Send a test email"
+msgstr ""
+
+msgid "Send button text"
+msgstr ""
+
+msgid "Send to (comma for several)"
+msgstr ""
+
+msgid "Sender’s message failed to send"
+msgstr ""
+
+msgid "Sender’s message was sent successfully"
+msgstr ""
+
+msgid "Sending & after submit"
+msgstr ""
+
+msgid "Sending through WP Mail SMTP"
+msgstr ""
+
+msgid "Separated boxes"
+msgstr ""
+
+msgid "Separator"
+msgstr ""
+
+msgid "Serif"
+msgstr ""
+
+msgid "Service website or online shop"
+msgstr ""
+
+msgid "Set logo and site title"
+msgstr ""
+
+msgid "Shadow"
+msgstr ""
+
+msgid "Shadow on hover"
+msgstr ""
+
+msgid "Shadow under header"
+msgstr ""
+
+msgid "Shake"
+msgstr ""
+
+msgid "Shape"
+msgstr ""
+
+msgid "Shape color"
+msgstr ""
+
+msgid "Shape divider – bottom"
+msgstr ""
+
+msgid "Shape divider – top"
+msgstr ""
+
+msgid "Share buttons"
+msgstr ""
+
+msgid "Shine"
+msgstr ""
+
+msgid "Shine sweep"
+msgstr ""
+
+msgid "Shop layout"
+msgstr ""
+
+msgid "Shop now"
+msgstr ""
+
+msgid "Shop sidebar"
+msgstr ""
+
+msgid "Shop – benefits bar"
+msgstr ""
+
+msgid "Shop – featured products"
+msgstr ""
+
+msgid "Shop – hero slider"
+msgstr ""
+
+msgid "Shop – on sale slider"
+msgstr ""
+
+msgid "Shop – product categories"
+msgstr ""
+
+msgid "Shop – product tabs (new / best selling / sale)"
+msgstr ""
+
+msgid "Short bio (optional)"
+msgstr ""
+
+msgid "Short brand underline"
+msgstr ""
+
+msgid "Short description"
+msgstr ""
+
+msgid "Short description (optional)"
+msgstr ""
+
+msgid "Short description…"
+msgstr ""
+
+msgid "Short line below"
+msgstr ""
+
+msgid "Shortcode"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Show a cookie notice until the visitor accepts"
+msgstr ""
+
+msgid "Show a quick purchase bar on mobile"
+msgstr ""
+
+msgid "Show above the content"
+msgstr ""
+
+msgid "Show again after (days, 0 = every visit)"
+msgstr ""
+
+msgid "Show all slides"
+msgstr ""
+
+msgid "Show and edit this slide"
+msgstr ""
+
+msgid "Show arrows"
+msgstr ""
+
+msgid "Show as code snippet"
+msgstr ""
+
+msgid "Show below the content"
+msgstr ""
+
+msgid "Show call-to-action band"
+msgstr ""
+
+msgid "Show captions"
+msgstr ""
+
+msgid "Show category above the title"
+msgstr ""
+
+msgid "Show controls"
+msgstr ""
+
+msgid "Show discount percentage on sale badge"
+msgstr ""
+
+msgid "Show dots"
+msgstr ""
+
+msgid "Show excerpt"
+msgstr ""
+
+msgid "Show featured image"
+msgstr ""
+
+msgid "Show first"
+msgstr ""
+
+msgid "Show footer bottom bar"
+msgstr ""
+
+msgid "Show icon"
+msgstr ""
+
+msgid "Show meta line"
+msgstr ""
+
+msgid "Show on hover"
+msgstr ""
+
+msgid "Show on hover (desktop)"
+msgstr ""
+
+msgid "Show on mobile"
+msgstr ""
+
+msgid "Show one slide"
+msgstr ""
+
+msgid "Show overlay only on hover"
+msgstr ""
+
+msgid "Show percentage"
+msgstr ""
+
+msgid "Show product count"
+msgstr ""
+
+msgid "Show second gallery image"
+msgstr ""
+
+msgid "Show social icons"
+msgstr ""
+
+msgid "Show text under icons"
+msgstr ""
+
+msgid "Show the announcement bar"
+msgstr ""
+
+msgid "Show the cart total next to the icon"
+msgstr ""
+
+msgid "Show the number"
+msgstr ""
+
+msgid "Show the other side"
+msgstr ""
+
+msgid "Show the phone number next to the call button (desktop)"
+msgstr ""
+
+msgid "Show the site tagline next to the logo"
+msgstr ""
+
+msgid "Shown as absolute inside the editor so it stays editable."
+msgstr ""
+
+msgid "Shown beside single blog posts. Leave empty to use the Blog sidebar."
+msgstr ""
+
+msgid "Shown beside single products. Leave empty to use the Shop sidebar."
+msgstr ""
+
+msgid "Shown on all products. Leave empty to hide."
+msgstr ""
+
+msgid "Shown on categories, tags and search. Leave empty to use the Blog sidebar."
+msgstr ""
+
+msgid "Shows exactly these products, in this order."
+msgstr ""
+
+msgid "Shows part of the next slide so visitors know they can swipe."
+msgstr ""
+
+msgid "Side"
+msgstr ""
+
+msgid "Side padding (px, -1 = size default)"
+msgstr ""
+
+msgid "Side panel right"
+msgstr ""
+
+msgid "Side spacing for full-width header & blocks (px, 0 = auto)"
+msgstr ""
+
+msgid "Sidebar & widgets"
+msgstr ""
+
+msgid "Sidebar style"
+msgstr ""
+
+msgid "Sidebar width (px)"
+msgstr ""
+
+msgid "Sidebars & extras"
+msgstr ""
+
+msgid "Simple"
+msgstr ""
+
+msgid "Simple (inside content)"
+msgstr ""
+
+msgid "Simple dot"
+msgstr ""
+
+msgid "Single post"
+msgstr ""
+
+msgid "Single post sidebar"
+msgstr ""
+
+msgid "Single product page"
+msgstr ""
+
+msgid "Single product sidebar"
+msgstr ""
+
+msgid "Site layout"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Size & shape"
+msgstr ""
+
+msgid "Size & spacing"
+msgstr ""
+
+msgid "Size (px)"
+msgstr ""
+
+msgid "Skip first N posts"
+msgstr ""
+
+msgid "Skip the first N products"
+msgstr ""
+
+msgid "Sky & lemon"
+msgstr ""
+
+msgid "Slate"
+msgstr ""
+
+msgid "Slate deep"
+msgstr ""
+
+msgid "Slate pastel"
+msgstr ""
+
+msgid "Slide"
+msgstr ""
+
+msgid "Slide corner radius (px)"
+msgstr ""
+
+msgid "Slider"
+msgstr ""
+
+msgid "Slides"
+msgstr ""
+
+msgid "Slides per view – desktop"
+msgstr ""
+
+msgid "Slides per view – mobile"
+msgstr ""
+
+msgid "Slides per view – tablet"
+msgstr ""
+
+msgid "Slow (700 ms)"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+msgid "Small (420px)"
+msgstr ""
+
+msgid "Small caps"
+msgstr ""
+
+msgid "Small label above the title"
+msgstr ""
+
+msgid "Small second line (optional, e.g. phone number)"
+msgstr ""
+
+msgid "Small text above"
+msgstr ""
+
+msgid "Small uppercase"
+msgstr ""
+
+msgid "Smaller menu text and spacing between the desktop breakpoint and this width, e.g. 1100."
+msgstr ""
+
+msgid "Smooth open / close animation"
+msgstr ""
+
+msgid "Smooth parallax strength (%, 0 = off)"
+msgstr ""
+
+msgid "Social icons"
+msgstr ""
+
+msgid "Social links"
+msgstr ""
+
+msgid "Social profiles (full URLs)"
+msgstr ""
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft background"
+msgstr ""
+
+msgid "Soft color"
+msgstr ""
+
+msgid "Soft glow"
+msgstr ""
+
+msgid "Soft gradient"
+msgstr ""
+
+msgid "Soft pastel"
+msgstr ""
+
+msgid "Soft peach"
+msgstr ""
+
+msgid "Soft primary"
+msgstr ""
+
+msgid "Soft secondary"
+msgstr ""
+
+msgid "Soft tinted pill"
+msgstr ""
+
+msgid "Solid"
+msgstr ""
+
+msgid "Sorry, you are not allowed to do that."
+msgstr ""
+
+msgid "Spa, yoga, flowers"
+msgstr ""
+
+msgid "Space above & below (px)"
+msgstr ""
+
+msgid "Space between buttons (px)"
+msgstr ""
+
+msgid "Space between content and sidebar (px)"
+msgstr ""
+
+msgid "Space between fields (px, -1 = default)"
+msgstr ""
+
+msgid "Space between icons (px)"
+msgstr ""
+
+msgid "Space between items (px)"
+msgstr ""
+
+msgid "Space between items (px, -1 = default)"
+msgstr ""
+
+msgid "Space between items (px, 0 = default)"
+msgstr ""
+
+msgid "Space between widgets (px)"
+msgstr ""
+
+msgid "Space on the left (px)"
+msgstr ""
+
+msgid "Space on the right (px)"
+msgstr ""
+
+msgid "Spacing"
+msgstr ""
+
+msgid "Sparkle"
+msgstr ""
+
+msgid "Special characters"
+msgstr ""
+
+msgid "Specific post IDs (comma separated)"
+msgstr ""
+
+msgid "Specific product IDs (comma separated)"
+msgstr ""
+
+msgid "Speech bubble"
+msgstr ""
+
+msgid "Speed"
+msgstr ""
+
+msgid "Speed & reading"
+msgstr ""
+
+msgid "Split"
+msgstr ""
+
+msgid "Square"
+msgstr ""
+
+msgid "Square 1:1"
+msgstr ""
+
+msgid "Square block"
+msgstr ""
+
+msgid "Stack items"
+msgstr ""
+
+msgid "Stack on mobile"
+msgstr ""
+
+msgid "Stacked"
+msgstr ""
+
+msgid "Stacked images"
+msgstr ""
+
+msgid "Star"
+msgstr ""
+
+msgid "Star rating (0 = hide)"
+msgstr ""
+
+msgid "Stars"
+msgstr ""
+
+msgid "Start with a header layout"
+msgstr ""
+
+msgid "Start with a ready-made layout or drag elements between rows. Click the gear on an element to edit it. Preview desktop and mobile separately, then press Publish to save."
+msgstr ""
+
+msgid "Static (reset)"
+msgstr ""
+
+msgid "Steel blue"
+msgstr ""
+
+msgid "Sticky header"
+msgstr ""
+
+msgid "Sticky main row height (px)"
+msgstr ""
+
+msgid "Sticky sidebar (follows while scrolling)"
+msgstr ""
+
+msgid "Still visible in the editor. Hidden on the live site for: "
+msgstr ""
+
+msgid "Store"
+msgstr ""
+
+msgid "Strength"
+msgstr ""
+
+msgid "Stretch (equal width)"
+msgstr ""
+
+msgid "Stretch tabs to full width"
+msgstr ""
+
+msgid "Strike"
+msgstr ""
+
+msgid "Strikethrough"
+msgstr ""
+
+msgid "Striped"
+msgstr ""
+
+msgid "Striped rows"
+msgstr ""
+
+msgid "Strong (on photos)"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Style & visibility"
+msgstr ""
+
+msgid "Style default"
+msgstr ""
+
+msgid "Style on desktop & tablet"
+msgstr ""
+
+msgid "Style on mobile"
+msgstr ""
+
+msgid "Style presets"
+msgstr ""
+
+msgid "Style: colors & typography"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Submission was referred to as spam"
+msgstr ""
+
+msgid "Submit button"
+msgstr ""
+
+msgid "Submitted values"
+msgstr ""
+
+msgid "Subscribe"
+msgstr ""
+
+msgid "Subscript"
+msgstr ""
+
+msgid "Subtitle (optional)"
+msgstr ""
+
+msgid "Subtle"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Success (green)"
+msgstr ""
+
+msgid "Suffix"
+msgstr ""
+
+msgid "Suggestion delay"
+msgstr ""
+
+msgid "Sunflower"
+msgstr ""
+
+msgid "Sunrise (light text)"
+msgstr ""
+
+msgid "Sunset"
+msgstr ""
+
+msgid "Superscript"
+msgstr ""
+
+msgid "Sweets, toys, party"
+msgstr ""
+
+msgid "Switch"
+msgstr ""
+
+msgid "Switch buttons on/off, click a button to edit it, drag ☰ to change the order."
+msgstr ""
+
+msgid "System (fastest)"
+msgstr ""
+
+msgid "System UI"
+msgstr ""
+
+msgid "System serif"
+msgstr ""
+
+msgid "Tab"
+msgstr ""
+
+msgid "Tab 1"
+msgstr ""
+
+msgid "Tab 2"
+msgstr ""
+
+msgid "Tab content…"
+msgstr ""
+
+msgid "Tab icon (optional)"
+msgstr ""
+
+msgid "Tab text size (px, 0 = default)"
+msgstr ""
+
+msgid "Tab title"
+msgstr ""
+
+msgid "Table size: columns x rows"
+msgstr ""
+
+msgid "Tablet"
+msgstr ""
+
+msgid "Tablet (0 = same as desktop)"
+msgstr ""
+
+msgid "Tablet (px)"
+msgstr ""
+
+msgid "Tablet font size (px, 0 = inherit)"
+msgstr ""
+
+msgid "Tabs"
+msgstr ""
+
+msgid "Tabs, swatches & page design"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Tangerine"
+msgstr ""
+
+msgid "Tangerine deep"
+msgstr ""
+
+msgid "Tangerine pastel"
+msgstr ""
+
+msgid "Teal & coral"
+msgstr ""
+
+msgid "Teal deep"
+msgstr ""
+
+msgid "Teal pastel"
+msgstr ""
+
+msgid "Team member"
+msgstr ""
+
+msgid "Tech shops, phones, IT"
+msgstr ""
+
+msgid "Tech, education, agencies"
+msgstr ""
+
+msgid "Telephone number that the sender entered is invalid"
+msgstr ""
+
+msgid "Terracotta"
+msgstr ""
+
+msgid "Testimonial"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Text & links"
+msgstr ""
+
+msgid "Text (address, hours, phone)"
+msgstr ""
+
+msgid "Text / icon color"
+msgstr ""
+
+msgid "Text align"
+msgstr ""
+
+msgid "Text case"
+msgstr ""
+
+msgid "Text color"
+msgstr ""
+
+msgid "Text color on hover"
+msgstr ""
+
+msgid "Text color on transparent header"
+msgstr ""
+
+msgid "Text color scheme"
+msgstr ""
+
+msgid "Text columns"
+msgstr ""
+
+msgid "Text content"
+msgstr ""
+
+msgid "Text effects"
+msgstr ""
+
+msgid "Text formatting"
+msgstr ""
+
+msgid "Text in the middle (optional)"
+msgstr ""
+
+msgid "Text link"
+msgstr ""
+
+msgid "Text logo size (px, when no image)"
+msgstr ""
+
+msgid "Text next to round icons"
+msgstr ""
+
+msgid "Text next to the button (optional)"
+msgstr ""
+
+msgid "Text next to the icon"
+msgstr ""
+
+msgid "Text next to the icon (e.g. Giỏ hàng)"
+msgstr ""
+
+msgid "Text next to the icon (e.g. Menu)"
+msgstr ""
+
+msgid "Text on hover"
+msgstr ""
+
+msgid "Text on image"
+msgstr ""
+
+msgid "Text shadow"
+msgstr ""
+
+msgid "Text size (px, 0 = default)"
+msgstr ""
+
+msgid "Text when logged in"
+msgstr ""
+
+msgid "Text when logged out"
+msgstr ""
+
+msgid "Text, HTML or shortcodes."
+msgstr ""
+
+msgid "Thank-you message (optional)"
+msgstr ""
+
+msgid "Thank-you message under the form (optional)"
+msgstr ""
+
+msgid "Thanks! We will call you back shortly."
+msgstr ""
+
+msgid "Thay thế các kiểu bo góc của nút."
+msgstr ""
+
+msgid "Thay thế lựa chọn nút vuông hoặc bo góc mềm."
+msgstr ""
+
+msgid "Thay thế lựa chọn nút vuông hoặc nút viên thuốc."
+msgstr ""
+
+msgid "The animation plays on the published page."
+msgstr ""
+
+msgid "The background moves slower than the page while scrolling. Works on phones too."
+msgstr ""
+
+msgid "The banner follows the image proportions, so the whole image shows. Inside a slider with a common height, that height wins."
+msgstr ""
+
+msgid "The file is not a valid BIGSPY AI Theme WP export."
+msgstr ""
+
+msgid "The highlight draws itself when the heading scrolls into view."
+msgstr ""
+
+msgid "The main and bottom rows stay on screen while scrolling."
+msgstr ""
+
+msgid "The original navy & orange"
+msgstr ""
+
+msgid "The preview could not be loaded. Save the page and reload the editor."
+msgstr ""
+
+msgid "The shop sidebar keeps its \"Filter\" off-canvas button on phones."
+msgstr ""
+
+msgid "The theme works as a service / business website without any plugin."
+msgstr ""
+
+msgid "The “Search products only” override also forces products only. Product choices require WooCommerce."
+msgstr ""
+
+msgid "Theme default"
+msgstr ""
+
+msgid "Theme options imported."
+msgstr ""
+
+msgid "Theme options reset to defaults."
+msgstr ""
+
+msgid "There is a field the sender must fill in"
+msgstr ""
+
+msgid "These colors also appear in the block editor color palette."
+msgstr ""
+
+msgid "Thick bar under active"
+msgstr ""
+
+msgid "Thickness (px)"
+msgstr ""
+
+msgid "This is not a Google Maps embed code. Copy it from Share → Embed a map."
+msgstr ""
+
+msgid "This picker cannot be set from here."
+msgstr ""
+
+msgid "This widget area is empty. Add widgets in Appearance → Widgets."
+msgstr ""
+
+msgid "Thousands separator"
+msgstr ""
+
+msgid "Three content columns; keeps your current contact-band setting."
+msgstr ""
+
+msgid "Thu gọn chiều rộng bài viết"
+msgstr ""
+
+msgid "Thu gọn khoảng cách menu desktop"
+msgstr ""
+
+msgid "Thumbnail"
+msgstr ""
+
+msgid "Thumbnails on the left"
+msgstr ""
+
+msgid "Thêm bóng cho thẻ mà không đổi bố cục lưới."
+msgstr ""
+
+msgid "Thêm viền rõ khi dùng bàn phím hoặc nhập biểu mẫu."
+msgstr ""
+
+msgid "Thêm viền theo màu đường kẻ của theme."
+msgstr ""
+
+msgid "Thư viện CSS · bật/tắt"
+msgstr ""
+
+msgid "Thư viện ảnh sản phẩm chuẩn WooCommerce."
+msgstr ""
+
+msgid "Thẻ dịch vụ BIGSPY có nền hoặc viền."
+msgstr ""
+
+msgid "Thẻ dịch vụ nhấc nhẹ khi rê chuột"
+msgstr ""
+
+msgid "Thẻ sản phẩm BIGSPY trong danh sách WooCommerce."
+msgstr ""
+
+msgid "Tick a block to hide it from the block inserter so the list stays short. Pages that already use it keep working."
+msgstr ""
+
+msgid "TikTok link"
+msgstr ""
+
+msgid "Tilt"
+msgstr ""
+
+msgid "Tip: click the stars on the canvas to set the rating (half stars supported)."
+msgstr ""
+
+msgid "Tip: drag the right edge of the column on the canvas. Switch the preview to Tablet/Mobile to set those widths."
+msgstr ""
+
+msgid "Tip: for landing pages choose the “Full width” or “Blank canvas” template and build with Section blocks."
+msgstr ""
+
+msgid "Tip: give the parent Column/Section \"Position: Relative\"."
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Title (accessibility)"
+msgstr ""
+
+msgid "Title (e.g. shop name)"
+msgstr ""
+
+msgid "Title (optional)"
+msgstr ""
+
+msgid "Title A–Z"
+msgstr ""
+
+msgid "Title background"
+msgstr ""
+
+msgid "Title bar background"
+msgstr ""
+
+msgid "Title bar background image"
+msgstr ""
+
+msgid "Title bar text color"
+msgstr ""
+
+msgid "Title lines (0 = no limit)"
+msgstr ""
+
+msgid "Title link (URL)"
+msgstr ""
+
+msgid "Title tag"
+msgstr ""
+
+msgid "Tiêu đề sản phẩm tối đa 3 dòng"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "To build an online shop, install WooCommerce. The “Products” and “Product Categories” blocks, the shop patterns, the header cart and all shop options then appear automatically – nothing else to set up."
+msgstr ""
+
+msgid "Tokens: [year], [site_title]"
+msgstr ""
+
+msgid "Tools, auto, hardware"
+msgstr ""
+
+msgid "Tooltip width (px)"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Top (%)"
+msgstr ""
+
+msgid "Top / bottom content spacing"
+msgstr ""
+
+msgid "Top / bottom padding (px)"
+msgstr ""
+
+msgid "Top bar"
+msgstr ""
+
+msgid "Top bar menu"
+msgstr ""
+
+msgid "Top rated"
+msgstr ""
+
+msgid "Top-level categories only"
+msgstr ""
+
+msgid "Track"
+msgstr ""
+
+msgid "Trang chi tiết sản phẩm WooCommerce dạng chuẩn."
+msgstr ""
+
+msgid "Transform"
+msgstr ""
+
+msgid "Transition"
+msgstr ""
+
+msgid "Transparent (overlaps first section)"
+msgstr ""
+
+msgid "Transparent header"
+msgstr ""
+
+msgid "Transparent header on the homepage"
+msgstr ""
+
+msgid "Travel distance (px, 0 = default)"
+msgstr ""
+
+msgid "Travel, beach, tours"
+msgstr ""
+
+msgid "Triangle"
+msgstr ""
+
+msgid "Trigger"
+msgstr ""
+
+msgid "Trust, services, laundry, clinics"
+msgstr ""
+
+msgid "Tránh từ hoặc đường dẫn dài tràn khỏi thẻ."
+msgstr ""
+
+msgid "Trình duyệt hỗ trợ sẽ cân độ dài các dòng tiêu đề."
+msgstr ""
+
+msgid "Trích dẫn trong nội dung, không đổi block cảm nhận."
+msgstr ""
+
+msgid "Turn off if an SEO plugin already outputs FAQ schema for this page."
+msgstr ""
+
+msgid "Turn the sidebar on/off and pick left or right per view: <b>Blog &amp; archives</b>, <b>Single posts</b>, <b>Shop</b>, <b>Single product</b> (each in its own section of the Customizer), or per post in the editor. Add, remove and reorder widgets in <b>Widgets</b> (in this Customizer, or <a href=\"%s\" target=\"_blank\">Appearance → Widgets</a>). Each view has its own widget area: Blog, Category &amp; archive, Single post, Shop, Single product."
+msgstr ""
+
+msgid "Two columns and a simple copyright bar."
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Typography"
+msgstr ""
+
+msgid "Typography & alignment"
+msgstr ""
+
+msgid "Tìm tác vụ CSS"
+msgstr ""
+
+msgid "Tìm tác vụ CSS…"
+msgstr ""
+
+msgid "Tôn trọng tùy chọn giảm chuyển động của thiết bị."
+msgstr ""
+
+msgid "Tăng khoảng cách liên kết chân trang"
+msgstr ""
+
+msgid "Tăng khoảng cách thư viện ảnh"
+msgstr ""
+
+msgid "Tăng vùng chạm của liên kết menu offcanvas BIGSPY."
+msgstr ""
+
+msgid "Tạo nền phía sau vùng chữ của banner BIGSPY."
+msgstr ""
+
+msgid "Tắt tất cả"
+msgstr ""
+
+msgid "Tết, gifts, traditional"
+msgstr ""
+
+msgid "UPPERCASE"
+msgstr ""
+
+msgid "URL, tel:+15551234567 or mailto:…"
+msgstr ""
+
+msgid "UX Block"
+msgstr ""
+
+msgid "Underline"
+msgstr ""
+
+msgid "Underline (grows from center)"
+msgstr ""
+
+msgid "Underline (grows from left)"
+msgstr ""
+
+msgid "Underline / pill color"
+msgstr ""
+
+msgid "Underline on hover"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Unlimited"
+msgstr ""
+
+msgid "Unlock"
+msgstr ""
+
+msgid "Up / down"
+msgstr ""
+
+msgid "Update classic cart after quantity changes"
+msgstr ""
+
+msgid "Upload a file exported from BIGSPY AI Theme WP. Current settings will be overwritten."
+msgstr ""
+
+msgid "Upload the logo in Site Identity."
+msgstr ""
+
+msgid "Upload the logo in Site identity. Sizes below override the general logo width."
+msgstr ""
+
+msgid "Upload your logo and choose colors & fonts in the Customizer."
+msgstr ""
+
+msgid "Use HTML content type"
+msgstr ""
+
+msgid "Use Mail (2)"
+msgstr ""
+
+msgid "Use a CSS color value, for example #e83e56."
+msgstr ""
+
+msgid "Use a CSS color value, for example #e83e56. Used when this attribute is set to Color swatches."
+msgstr ""
+
+msgid "Use an address on your own domain so SMTP accepts it."
+msgstr ""
+
+msgid "Use two images with the same size and framing."
+msgstr ""
+
+msgid "Use “selector” to target this block only."
+msgstr ""
+
+msgid "Used by the header, the mobile menu and the footer."
+msgstr ""
+
+msgid "Used when this attribute is set to Image swatches."
+msgstr ""
+
+msgid "Username or t.me link"
+msgstr ""
+
+msgid "Uses Rank Math / Yoast breadcrumbs when those plugins are active."
+msgstr ""
+
+msgid "Uses the native Update cart button. WooCommerce Cart blocks already update quantities automatically."
+msgstr ""
+
+msgid "Validation errors occurred"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Vertical (sidebar)"
+msgstr ""
+
+msgid "Vertical align"
+msgstr ""
+
+msgid "Vertical categories menu"
+msgstr ""
+
+msgid "Vertical menu (categories)"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Video popup"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Violet"
+msgstr ""
+
+msgid "Violet deep"
+msgstr ""
+
+msgid "Violet pastel"
+msgstr ""
+
+msgid "Visibility & motion effects"
+msgstr ""
+
+msgid "Visitors can close it"
+msgstr ""
+
+msgid "Visitors can close it (remembered for 7 days)"
+msgstr ""
+
+msgid "Vivid · Bakery, honey, tours"
+msgstr ""
+
+msgid "Vivid · Banking, insurance"
+msgstr ""
+
+msgid "Vivid · Beauty, cafés, kids"
+msgstr ""
+
+msgid "Vivid · Coffee, furniture"
+msgstr ""
+
+msgid "Vivid · Construction, logistics"
+msgstr ""
+
+msgid "Vivid · Eco, juice, sport"
+msgstr ""
+
+msgid "Vivid · Education, agencies"
+msgstr ""
+
+msgid "Vivid · Events, cosmetics"
+msgstr ""
+
+msgid "Vivid · Finance, law, B2B"
+msgstr ""
+
+msgid "Vivid · Food delivery, fitness"
+msgstr ""
+
+msgid "Vivid · Garden, farm, organic"
+msgstr ""
+
+msgid "Vivid · Jewelry, bridal"
+msgstr ""
+
+msgid "Vivid · Pool, laundry, spa"
+msgstr ""
+
+msgid "Vivid · Sales, food, sport"
+msgstr ""
+
+msgid "Vivid · Spa, florist, wedding"
+msgstr ""
+
+msgid "Vivid · Tech, minimal"
+msgstr ""
+
+msgid "Vivid · Travel, IT, airlines"
+msgstr ""
+
+msgid "Vivid · Wellness, tea, pharmacy"
+msgstr ""
+
+msgid "Viền nhẹ ảnh đại diện đánh giá"
+msgstr ""
+
+msgid "Viền nổi gói dịch vụ được chọn"
+msgstr ""
+
+msgid "Viền rõ cho điều hướng bàn phím"
+msgstr ""
+
+msgid "WP Mail SMTP is active but not set up"
+msgstr ""
+
+msgid "Wait before redirect (seconds)"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Warning (orange)"
+msgstr ""
+
+msgid "Wave"
+msgstr ""
+
+msgid "Wave pattern"
+msgstr ""
+
+msgid "Wedding, jewelry, beauty"
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+msgid "What did the customer say?"
+msgstr ""
+
+msgid "When leaving the page (desktop)"
+msgstr ""
+
+msgid "Where sidebars show"
+msgstr ""
+
+msgid "While scrolling"
+msgstr ""
+
+msgid "White"
+msgstr ""
+
+msgid "White bar, colored icons"
+msgstr ""
+
+msgid "Wide (wider than container)"
+msgstr ""
+
+msgid "Widget area"
+msgstr ""
+
+msgid "Widget text size (px, 0 = theme)"
+msgstr ""
+
+msgid "Widget title style"
+msgstr ""
+
+msgid "Widgets (sidebar & footer)"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Width (%)"
+msgstr ""
+
+msgid "Width (px, 0 = auto)"
+msgstr ""
+
+msgid "Width when sticky (px, 0 = same)"
+msgstr ""
+
+msgid "Wine, restaurants, premium"
+msgstr ""
+
+msgid "WooCommerce is active – shop mode is on."
+msgstr ""
+
+msgid "WooCommerce required"
+msgstr ""
+
+msgid "Works for blocks placed directly on the page. Inside a Section, use the Section “Content width” instead."
+msgstr ""
+
+msgid "Wrap long lines"
+msgstr ""
+
+msgid "Write a heading…"
+msgstr ""
+
+msgid "Writing settings"
+msgstr ""
+
+msgid "YouTube URL or .mp4/.webm file URL"
+msgstr ""
+
+msgid "YouTube link"
+msgstr ""
+
+msgid "YouTube, Vimeo or .mp4 URL"
+msgstr ""
+
+msgid "Your name"
+msgstr ""
+
+msgid "Zalo phone number or zalo.me link"
+msgstr ""
+
+msgid "Zigzag"
+msgstr ""
+
+msgid "Zoom"
+msgstr ""
+
+msgid "Zoom & fade"
+msgstr ""
+
+msgid "[_site_admin_email] = the site admin email."
+msgstr ""
+
+msgid "[your-email] = the visitor’s email field."
+msgstr ""
+
+msgid "combine"
+msgstr ""
+
+msgid "desktop"
+msgstr ""
+
+msgid "e.g. a thank-you page, useful for Google Ads / Analytics conversions."
+msgstr ""
+
+msgid "inherit"
+msgstr ""
+
+msgid "lowercase"
+msgstr ""
+
+msgid "mobile"
+msgstr ""
+
+msgid "no – check the SMTP settings"
+msgstr ""
+
+msgid "not set"
+msgstr ""
+
+msgid "opens after "
+msgstr ""
+
+msgid "opens at "
+msgstr ""
+
+msgid "opens from #links"
+msgstr ""
+
+msgid "opens from its button"
+msgstr ""
+
+msgid "opens on exit intent"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "tablet"
+msgstr ""
+
+msgid "yes"
+msgstr ""
+
+msgid "Áp dụng thư viện ảnh dạng block lồng nhau."
+msgstr ""
+
+msgid "Ô nhập chuẩn và WooCommerce; plugin tự dựng giao diện có thể khác."
+msgstr ""
+
+msgid "Ô nhập mobile tối thiểu 16px"
+msgstr ""
+
+msgid "Đang bật:"
+msgstr ""
+
+msgid "Đoạn văn và danh sách trong vùng nội dung."
+msgstr ""
+
+msgid "Đánh giá và form xếp một cột"
+msgstr ""
+
+msgid "Đường phân cách dưới đầu trang"
+msgstr ""
+
+msgid "Đầu trang & chân trang"
+msgstr ""
+
+msgid "Đầu trang BIGSPY, kể cả khi đã bật sticky trong Header."
+msgstr ""
+
+msgid "Để lại số điện thoại, tiệm gọi lại tư vấn trong giờ làm việc."
+msgstr ""
+
+msgid "Đổ bóng nhẹ cho nút chính"
+msgstr ""
+
+msgid "Đổ bóng nhẹ cho ảnh nội dung"
+msgstr ""
+
+msgid "Đổ bóng nhẹ dưới đầu trang"
+msgstr ""
+
+msgid "Đổ bóng nhẹ thẻ sản phẩm"
+msgstr ""
+
+msgid "Đổ bóng thẻ bài viết"
+msgstr ""
+
+msgid "Đổ bóng thẻ dịch vụ"
+msgstr ""
+
+msgid "Ảnh blog phủ đầy khung"
+msgstr ""
+
+msgid "Ảnh sản phẩm phủ đầy khung"
+msgstr ""
+
+msgid "Ảnh đại diện ở trang bài viết đơn."
+msgstr ""
+
+msgid "Ẩn đồng hồ Countix trong giỏ hàng và thanh toán"
+msgstr ""
+
+msgid "– Author"
+msgstr ""
+
+msgid "– Category"
+msgstr ""
+
+msgid "– Date"
+msgstr ""
+
+msgid "– Reading time"
+msgstr ""
+
+msgid "— Choose a form —"
+msgstr ""
+
+msgid "“Get directions” button"
+msgstr ""
+
+msgid "“Hot” badge on featured products"
+msgstr ""
+
+msgid "“Load more” button"
+msgstr ""
+
+msgid "“New” badge for products added in the last N days (0 = off)"
+msgstr ""
+
+msgid "“Read more” text"
+msgstr ""
+
+msgid "“Read more” text (empty to hide)"
+msgstr ""
+
+msgid "“View all” link"
+msgstr ""
+
+msgid "“View all” text"
+msgstr ""
+
+msgid "…or an address"
+msgstr ""
+
+msgid "…or use an image instead"
+msgstr ""
+
+msgid "★ Built-in form (no plugin needed)"
+msgstr ""

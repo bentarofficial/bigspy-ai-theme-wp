@@ -9,8 +9,25 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** Languages the theme ships translations for, plus English (the source language). */
-function bst_theme_languages() {
+/** Native name of a locale, from the WordPress translation list when available. */
+function bst_theme_language_name( $code ) {
+	static $list = null;
+	if ( null === $list ) {
+		$list = array();
+		if ( ! function_exists( 'wp_get_available_translations' ) && file_exists( ABSPATH . 'wp-admin/includes/translation-install.php' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/translation-install.php';
+		}
+		if ( function_exists( 'wp_get_available_translations' ) && is_admin() ) {
+			foreach ( (array) wp_get_available_translations() as $t ) {
+				$list[ $t['language'] ] = $t['native_name'];
+			}
+		}
+	}
+	return $list[ $code ] ?? $code;
+}
+
+/** Languages the theme has translations for (bundled or installed), plus English (the source language). */
+function bst_theme_languages( $with_names = true ) {
 	$names = array(
 		'vi'    => 'Tiếng Việt',
 		'fr_FR' => 'Français',
@@ -22,10 +39,18 @@ function bst_theme_languages() {
 		'id_ID' => 'Bahasa Indonesia',
 	);
 	$langs = array( 'en_US' => 'English' );
-	foreach ( (array) glob( BST_DIR . '/languages/*.{mo,l10n.php}', GLOB_BRACE ) as $file ) {
-		$code = preg_replace( '/\.(mo|l10n\.php)$/', '', basename( (string) $file ) );
-		if ( $code && 'index' !== $code ) {
-			$langs[ $code ] = $names[ $code ] ?? $code;
+	// Bundled translations, plus ones added later by WordPress.org language packs or Loco Translate.
+	$dirs = array(
+		BST_DIR . '/languages/'                                  => '',
+		WP_LANG_DIR . '/themes/'                                 => 'bigspy-ai-theme-wp-',
+		WP_LANG_DIR . '/loco/themes/'                            => 'bigspy-ai-theme-wp-',
+	);
+	foreach ( $dirs as $dir => $prefix ) {
+		foreach ( (array) glob( $dir . $prefix . '*.{mo,l10n.php}', GLOB_BRACE ) as $file ) {
+			$code = preg_replace( '/\.(mo|l10n\.php)$/', '', substr( basename( (string) $file ), strlen( $prefix ) ) );
+			if ( $code && 'index' !== $code && preg_match( '/^[a-z]{2,3}(_[A-Z]{2})?(_[a-z]+)?$/', $code ) ) {
+				$langs[ $code ] = $with_names ? ( $names[ $code ] ?? bst_theme_language_name( $code ) ) : $code;
+			}
 		}
 	}
 	return $langs;
@@ -65,7 +90,7 @@ add_filter(
 		}
 		$admin  = is_admin() && ! wp_doing_ajax();
 		$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'auto' );
-		return ( 'auto' !== $choice && array_key_exists( $choice, bst_theme_languages() ) ) ? $choice : $locale;
+		return ( 'auto' !== $choice && array_key_exists( $choice, bst_theme_languages( false ) ) ) ? $choice : $locale;
 	},
 	10,
 	2
