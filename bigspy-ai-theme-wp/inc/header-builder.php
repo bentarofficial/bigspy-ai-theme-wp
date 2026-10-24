@@ -12,15 +12,17 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Full-width code banner above the header (promotions, announcements).
- * Saved through bst_sanitize_code: raw only for users allowed unfiltered HTML.
+ * Any code (HTML, CSS, JS) for users allowed unfiltered HTML; filtered for others.
  */
 function bst_header_banner() {
-	$code = trim( (string) bst_mod( 'header_banner_code' ) );
-	if ( ! bst_mod( 'header_banner_on' ) || '' === $code ) {
-		return;
+	$out = '';
+	foreach ( array( 'desktop', 'mobile' ) as $device ) {
+		$code = trim( (string) bst_mod( 'header_banner_' . $device ) );
+		if ( '' !== $code ) {
+			$out .= '<div class="bs-header-banner bs-header-banner--' . $device . '">' . $code . '</div>';
+		}
 	}
-	$device = bst_choice( (string) bst_mod( 'header_banner_device' ), array( 'all', 'desktop', 'mobile' ), 'all' );
-	echo '<div class="bs-header-banner bs-header-banner--' . esc_attr( $device ) . '">' . do_shortcode( $code ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- admin-authored code.
+	echo $out; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- admin-authored code, saved through bst_sanitize_code.
 }
 
 function bst_render_header() {

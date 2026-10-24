@@ -131,6 +131,16 @@ function bst_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'bst_customize_register' );
 
+/** Banner code per device, edited inside the header builder (no control of its own). */
+add_action(
+	'customize_register',
+	function ( $wp_customize ) {
+		foreach ( array( 'desktop', 'mobile' ) as $device ) {
+			$wp_customize->add_setting( 'header_banner_' . $device, array( 'default' => '', 'sanitize_callback' => 'bst_sanitize_code' ) );
+		}
+	}
+);
+
 /** Register after core's Additional CSS section so the library sits above its editor. */
 function bst_customize_css_presets( $wp_customize ) {
 	if ( ! $wp_customize->get_section( 'custom_css' ) ) {
@@ -172,6 +182,8 @@ function bst_customize_controls_assets() {
 				'center'    => __( 'Center', 'bigspy-ai-theme-wp' ),
 				'right'     => __( 'Right', 'bigspy-ai-theme-wp' ),
 				'available' => __( 'Available elements (drag into a row)', 'bigspy-ai-theme-wp' ),
+				'banner'    => __( 'Full-width banner (any code)', 'bigspy-ai-theme-wp' ),
+				'bannerHelp' => __( 'Shown above the top bar, always full width. HTML, CSS, JavaScript, animations: anything works. Leave empty to hide.', 'bigspy-ai-theme-wp' ),
 				'reset'     => __( 'Reset to default layout', 'bigspy-ai-theme-wp' ),
 				'confirm'   => __( 'Reset the header layout for this device?', 'bigspy-ai-theme-wp' ),
 				'presetApplied' => __( 'Layout applied. Preview it, then Publish to save.', 'bigspy-ai-theme-wp' ),

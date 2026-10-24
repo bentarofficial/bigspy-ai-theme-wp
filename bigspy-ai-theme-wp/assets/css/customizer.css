@@ -240,3 +240,6 @@ li.bst-group-hidden { display: none !important; }
 #customize-control-color_palette_presets .bst-layout-presets__button { margin: 0 !important; padding: 8px !important; }
 #customize-control-color_palette_presets .bst-layout-presets__button span { display: none; }
 #customize-control-color_palette_presets .bst-layout-presets__button strong { font-size: 12px; }
+
+.bst-hb__banner-code { width: 100%; min-height: 90px; font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 1.5; tab-size: 2; white-space: pre; }
+.bst-hb__banner .description { margin: 6px 0 0; font-size: 12px; }

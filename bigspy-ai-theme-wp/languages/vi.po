@@ -986,6 +986,9 @@ msgstr "Dịch vụ trọn gói: tư vấn chọn nhà, dẫn xem thực tế, �
 msgid "Full-body scrub and a nourishing moisture wrap."
 msgstr "Tẩy da chết toàn thân và ủ dưỡng ẩm cho làn da mềm mại."
 
+msgid "Full-width banner (any code)"
+msgstr "Banner toàn chiều rộng (code tùy ý)"
+
 msgid "Full-width banner above the top bar (your code)"
 msgstr "Banner toàn chiều rộng phía trên Top bar (code của bạn)"
 
@@ -2023,6 +2026,9 @@ msgstr "Hiện banner trên"
 
 msgid "Show the page name as H1 on pages"
 msgstr "Dùng tên trang làm thẻ H1 trên các trang"
+
+msgid "Shown above the top bar, always full width. HTML, CSS, JavaScript, animations: anything works. Leave empty to hide."
+msgstr "Hiện phía trên Top bar, luôn rộng hết màn hình. Nhận mọi loại code: HTML, CSS, JavaScript, hiệu ứng chuyển động. Để trống để ẩn."
 
 msgid "Shuttle to project viewings"
 msgstr "Xe đưa đón xem dự án"

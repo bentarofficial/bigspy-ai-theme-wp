@@ -98,9 +98,6 @@ function bst_customizer_fields() {
 				'minimal' => array( 'label' => __( 'Minimal', 'bigspy-ai-theme-wp' ), 'description' => __( 'Logo, menu and search with fewer rows.', 'bigspy-ai-theme-wp' ), 'settings' => array( 'header_layout' => bst_header_layout_preset( 'minimal' ) ) ),
 			),
 		),
-		array( 'id' => 'header_banner_on', 'section' => 'bst_header_builder', 'type' => 'checkbox', 'label' => __( 'Full-width banner above the top bar (your code)', 'bigspy-ai-theme-wp' ) ),
-		array( 'id' => 'header_banner_code', 'section' => 'bst_header_builder', 'type' => 'code', 'label' => __( 'Banner code (HTML, inline CSS)', 'bigspy-ai-theme-wp' ), 'description' => __( 'Always full width; its height is whatever your code or image makes it. Example: <a href="/sale"><img src="..." style="width:100%;display:block"></a>', 'bigspy-ai-theme-wp' ) ),
-		array( 'id' => 'header_banner_device', 'section' => 'bst_header_builder', 'type' => 'select', 'label' => __( 'Show the banner on', 'bigspy-ai-theme-wp' ), 'choices' => array( 'all' => __( 'Desktop and mobile', 'bigspy-ai-theme-wp' ), 'desktop' => __( 'Desktop only', 'bigspy-ai-theme-wp' ), 'mobile' => __( 'Mobile only', 'bigspy-ai-theme-wp' ) ) ),
 		array( 'id' => 'header_layout', 'section' => 'bst_header_builder', 'type' => 'header_builder', 'label' => __( 'Header layout', 'bigspy-ai-theme-wp' ) ),
 
 		// Header general.
