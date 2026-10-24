@@ -359,6 +359,9 @@ msgstr "Luôn lắng nghe để mỗi bữa ăn trọn vẹn hơn."
 msgid "Always listens to find the right treatment."
 msgstr "Luôn lắng nghe để chọn liệu trình phù hợp."
 
+msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
+msgstr "Trang giới thiệu tác giả hoặc hồ sơ công khai (LinkedIn, Facebook…)."
+
 msgid "And still growing"
 msgstr "Và con số vẫn tăng"
 
@@ -385,6 +388,30 @@ msgstr "Yên bình như một khu nghỉ dưỡng"
 
 msgid "Author"
 msgstr "Tác giả"
+
+msgid "Author avatar"
+msgstr "Ảnh đại diện tác giả"
+
+msgid "Author bio"
+msgstr "Tiểu sử tác giả"
+
+msgid "Author box heading (empty = “Written by”)"
+msgstr "Tiêu đề hộp tác giả (để trống = “Tác giả”)"
+
+msgid "Author box style"
+msgstr "Kiểu hộp tác giả"
+
+msgid "Author details come from"
+msgstr "Lấy thông tin tác giả từ"
+
+msgid "Author information"
+msgstr "Thông tin tác giả"
+
+msgid "Author name"
+msgstr "Tên tác giả"
+
+msgid "Author profile URL"
+msgstr "URL hồ sơ tác giả"
 
 msgid "Award-winning national coffee champion."
 msgstr "Barista đạt giải cuộc thi cà phê toàn quốc."
@@ -497,8 +524,14 @@ msgstr "Đặt lịch hôm nay để nhận ưu đãi 15% cho lần đầu trả
 msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
 msgstr "Nên đặt trước vào tối thứ Sáu đến Chủ nhật để có chỗ đẹp. Ngày thường bạn có thể đến trực tiếp."
 
+msgid "Bordered"
+msgstr "Có viền"
+
 msgid "Bottom corner radius (px)"
 msgstr "Độ bo góc dưới (px)"
+
+msgid "Brand line on the left"
+msgstr "Vạch màu thương hiệu bên trái"
 
 msgid "Breadcrumb"
 msgstr "Đường dẫn"
@@ -764,6 +797,9 @@ msgstr "Khoá học"
 msgid "Create draft and open editor"
 msgstr "Tạo bản nháp và mở trình soạn thảo"
 
+msgid "Custom fields left empty fall back to the writer’s profile."
+msgstr "Ô nào để trống sẽ lấy từ hồ sơ người viết."
+
 msgid "Custom party menus"
 msgstr "Nhận đặt tiệc theo yêu cầu"
 
@@ -857,6 +893,9 @@ msgstr "Nhân bản"
 msgid "Duration (ms)"
 msgstr "Thời lượng (ms)"
 
+msgid "Each post writer’s profile (Users → Profile)"
+msgstr "Hồ sơ của người viết từng bài (Thành viên → Hồ sơ)"
+
 msgid "Easy booking"
 msgstr "Đặt bàn dễ dàng"
 
@@ -901,6 +940,9 @@ msgstr "Tất cả quyền lợi người mua"
 
 msgid "Exclusive materials"
 msgstr "Giáo trình độc quyền"
+
+msgid "Experience, skills and what the author writes about – this helps readers and Google trust the content."
+msgstr "Kinh nghiệm, chuyên môn và lĩnh vực tác giả viết – giúp người đọc và Google tin tưởng nội dung hơn."
 
 msgid "Experienced chefs and managers who care about every plate."
 msgstr "Đầu bếp và quản lý giàu kinh nghiệm, luôn chăm chút từng đĩa ăn."
@@ -1394,6 +1436,9 @@ msgstr "Nâng thẻ lên"
 msgid "Lift gently"
 msgstr "Nhấc nhẹ"
 
+msgid "Light card"
+msgstr "Thẻ nền nhạt"
+
 msgid "Lily Chen"
 msgstr "Trần Thu Trang"
 
@@ -1735,6 +1780,9 @@ msgstr "Dẫn xem thực tế"
 
 msgid "One consultant for the whole journey."
 msgstr "Một chuyên viên theo bạn suốt quá trình."
+
+msgid "One custom author for all posts (below)"
+msgstr "Một tác giả tùy chỉnh cho mọi bài (bên dưới)"
 
 msgid "One free massage"
 msgstr "Tặng 1 buổi massage"
@@ -2266,6 +2314,9 @@ msgstr "Hiện %s"
 
 msgid "Show SKU, categories and tags"
 msgstr "Hiện mã SKU, danh mục và thẻ"
+
+msgid "Show author information"
+msgstr "Hiện thông tin tác giả"
 
 msgid "Show breadcrumbs"
 msgstr "Hiện breadcrumb"
@@ -2803,6 +2854,9 @@ msgstr "Đồng hành cùng bạn trên hành trình an cư"
 
 msgid "Word, Excel and PowerPoint you can use at work right away."
 msgstr "Word, Excel, PowerPoint ứng dụng ngay vào công việc."
+
+msgid "Written by"
+msgstr "Tác giả"
 
 msgid "Years of experience"
 msgstr "Năm kinh nghiệm"

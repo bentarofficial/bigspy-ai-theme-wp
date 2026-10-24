@@ -1344,7 +1344,44 @@ a.page-numbers:hover {
 }
 
 .bs-author-box img {
+	flex-shrink: 0;
+	width: 80px;
+	height: 80px;
 	border-radius: 50%;
+	object-fit: cover;
+}
+
+.bs-author-box__label {
+	display: block;
+	margin-bottom: 2px;
+	color: var(--bs-text-light, #6b7280);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+.bs-author-box__bio p {
+	margin: 0 0 .6em;
+}
+
+.bs-author-box__bio p:last-child {
+	margin-bottom: 0;
+}
+
+.bs-author-box--bordered {
+	background: transparent;
+	border: 1px solid var(--bs-border);
+}
+
+.bs-author-box--accent {
+	border-left: 4px solid var(--bs-primary);
+}
+
+@media (max-width: 549px) {
+	.bs-author-box {
+		flex-direction: column;
+	}
 }
 
 .bs-author-box__name {

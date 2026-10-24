@@ -317,16 +317,22 @@ function bst_author_box() {
 	if ( ! bst_mod( 'single_author_box' ) ) {
 		return;
 	}
-	$bio = get_the_author_meta( 'description' );
-	if ( ! $bio ) {
+	$author = bst_author_data();
+	if ( '' === $author['name'] ) {
 		return;
 	}
+	$label = trim( (string) bst_mod( 'author_box_title' ) );
+	$style = bst_choice( (string) bst_mod( 'author_box_style' ), array( 'card', 'bordered', 'accent' ), 'card' );
+	$rel   = bst_author_custom_mode() ? ' rel="author noopener"' : ' rel="author"';
 	?>
-	<section class="bs-author-box">
-		<?php echo get_avatar( get_the_author_meta( 'ID' ), 80 ); ?>
-		<div>
-			<h2 class="bs-author-box__name"><?php the_author_posts_link(); ?></h2>
-			<p><?php echo wp_kses_post( $bio ); ?></p>
+	<section class="bs-author-box bs-author-box--<?php echo esc_attr( $style ); ?>">
+		<?php echo $author['avatar']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in bst_author_data(). ?>
+		<div class="bs-author-box__body">
+			<span class="bs-author-box__label"><?php echo esc_html( '' !== $label ? $label : __( 'Written by', 'bigspy-ai-theme-wp' ) ); ?></span>
+			<h2 class="bs-author-box__name"><a href="<?php echo esc_url( $author['url'] ); ?>"<?php echo $rel; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html( $author['name'] ); ?></a></h2>
+			<?php if ( $author['bio'] ) : ?>
+				<div class="bs-author-box__bio"><?php echo wp_kses_post( wpautop( $author['bio'] ) ); ?></div>
+			<?php endif; ?>
 		</div>
 	</section>
 	<?php

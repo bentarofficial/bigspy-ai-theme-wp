@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.63.0' );
+define( 'BST_VERSION', '1.64.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -38,6 +38,7 @@ $bst_includes = array(
 	'inc/sidebar-options.php',
 	'inc/blog-options.php',
 	'inc/shop-options.php',
+	'inc/author-options.php',
 	'inc/header-fit.php',
 	'inc/site-extras.php',
 	'inc/form-native.php',
