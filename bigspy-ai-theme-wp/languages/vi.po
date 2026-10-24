@@ -1079,6 +1079,9 @@ msgstr "Thanh toán linh hoạt"
 msgid "Flexible schedule"
 msgstr "Lịch học linh hoạt"
 
+msgid "Floating contact buttons"
+msgstr "Nút liên hệ nổi"
+
 msgid "Floor 12, 68 Park Avenue, City Centre"
 msgstr "Tầng 12, 68 Lê Duẩn, Quận 1, TP.HCM"
 

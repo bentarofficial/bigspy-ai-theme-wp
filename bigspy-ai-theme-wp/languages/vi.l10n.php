@@ -361,6 +361,7 @@ return array(
 		'First-time mortgage tips' => 'Kinh nghiệm vay mua nhà lần đầu',
 		'Flexible payment' => 'Thanh toán linh hoạt',
 		'Flexible schedule' => 'Lịch học linh hoạt',
+		'Floating contact buttons' => 'Nút liên hệ nổi',
 		'Floor 12, 68 Park Avenue, City Centre' => 'Tầng 12, 68 Lê Duẩn, Quận 1, TP.HCM',
 		'Food safety' => 'An toàn thực phẩm',
 		'Footer' => 'Footer',
