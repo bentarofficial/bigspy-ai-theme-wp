@@ -167,6 +167,9 @@ msgstr "40+ giáo viên giàu kinh nghiệm"
 msgid "404 & maintenance"
 msgstr "404 & bảo trì"
 
+msgid "404 page"
+msgstr "Trang 404"
+
 msgid "45 College Road, City Centre"
 msgstr "45 Trần Hưng Đạo, Quận 5, TP.HCM"
 
@@ -320,6 +323,12 @@ msgstr "Hoạt động"
 msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
 msgstr "Thêm trang và chèn khối BIGSPY hoặc mẫu trang có sẵn."
 
+msgid "Add layout"
+msgstr "Thêm layout"
+
+msgid "Add new layout"
+msgstr "Thêm layout mới"
+
 msgid "Add to page"
 msgstr "Thêm vào trang"
 
@@ -347,6 +356,12 @@ msgstr "Tư vấn và dẫn xem nhà"
 msgid "Advice by chat and hotline 24/7."
 msgstr "Tư vấn qua Zalo và hotline 24/7."
 
+msgid "After the header"
+msgstr "Sau header"
+
+msgid "After the page content"
+msgstr "Sau nội dung trang"
+
 msgid "After-sales"
 msgstr "Hậu mãi"
 
@@ -362,8 +377,23 @@ msgstr "Không gian sân vườn thoáng mát"
 msgid "All"
 msgstr "Tất cả"
 
+msgid "All archives (category, tag, author, date)"
+msgstr "Mọi trang lưu trữ (chuyên mục, thẻ, tác giả, ngày)"
+
 msgid "All designs"
 msgstr "Tất cả mẫu thiết kế"
+
+msgid "All pages"
+msgstr "Mọi trang"
+
+msgid "All posts"
+msgstr "Mọi bài viết"
+
+msgid "All products"
+msgstr "Mọi sản phẩm"
+
+msgid "Also on these post / page IDs (comma separated)"
+msgstr "Thêm các ID bài / trang này (cách nhau bằng dấu phẩy)"
 
 msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
 msgstr "Luôn rộng hết màn hình; chiều cao theo code hoặc hình ảnh của bạn. Ví dụ: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
@@ -488,6 +518,15 @@ msgstr "Bia hoặc nước ngọt"
 msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
 msgstr "Trước mỗi liệu trình, chuyên viên sẽ soi da và tư vấn kỹ để chọn sản phẩm phù hợp nhất với làn da và thể trạng của bạn."
 
+msgid "Before the footer"
+msgstr "Trước footer"
+
+msgid "Before the header"
+msgstr "Trước header"
+
+msgid "Before the page content"
+msgstr "Trước nội dung trang"
+
 msgid "Benefits of regular massage"
 msgstr "Lợi ích của massage định kỳ"
 
@@ -511,6 +550,9 @@ msgstr "Tin tức"
 
 msgid "Blog & single post"
 msgstr "Blog & bài viết"
+
+msgid "Blog posts page"
+msgstr "Trang danh sách bài viết"
 
 msgid "Body care"
 msgstr "Chăm sóc body"
@@ -914,6 +956,9 @@ msgstr "Phân tích dự án chi tiết, minh bạch về pháp lý. Rất đán
 msgid "Details →"
 msgstr "Xem chi tiết →"
 
+msgid "Devices"
+msgstr "Thiết bị"
+
 msgid "Disable XML-RPC"
 msgstr "Tắt XML-RPC"
 
@@ -931,6 +976,9 @@ msgstr "Có cần đặt bàn trước không?"
 
 msgid "Do not load Dashicons for visitors who are not logged in"
 msgstr "Không tải Dashicons cho khách chưa đăng nhập"
+
+msgid "Do not show on"
+msgstr "Không hiện ở"
 
 msgid "Do packages expire?"
 msgstr "Gói liệu trình có thời hạn không?"
@@ -968,6 +1016,9 @@ msgstr "Hồ sơ của người viết từng bài (Thành viên → Hồ sơ)"
 msgid "Easy booking"
 msgstr "Đặt bàn dễ dàng"
 
+msgid "Edit layout"
+msgstr "Sửa layout"
+
 msgid "Education centre homepage with 15 sections: hero, highlights, about, courses, learning path, numbers, method, tuition, gallery, teachers, student reviews, FAQ, news, enrolment and contact."
 msgstr "Education centre homepage with 15 sections: hero, highlights, about, courses, learning path, numbers, method, tuition, gallery, teachers, student reviews, FAQ, news, enrolment and contact."
 
@@ -995,6 +1046,9 @@ msgstr "Thưởng thức"
 msgid "Enjoy your treatment in a quiet private room."
 msgstr "Tận hưởng liệu trình trong phòng riêng yên tĩnh."
 
+msgid "Entire site"
+msgstr "Toàn bộ website"
+
 msgid "Every project is checked for building permits, detailed zoning and real progress."
 msgstr "Mỗi dự án đều được thẩm định giấy phép xây dựng, quy hoạch 1/500 và tiến độ thực tế."
 
@@ -1003,6 +1057,9 @@ msgstr "Mỗi học viên có lộ trình riêng dựa trên kết quả kiểm 
 
 msgid "Every treatment is tailored to your skin and what you want to achieve."
 msgstr "Mỗi liệu trình được cá nhân hoá theo tình trạng da và mong muốn của bạn."
+
+msgid "Everyone"
+msgstr "Mọi người"
 
 msgid "Everything for buyers"
 msgstr "Tất cả quyền lợi người mua"
@@ -1091,6 +1148,9 @@ msgstr "An toàn thực phẩm"
 msgid "Footer"
 msgstr "Footer"
 
+msgid "Footer (replaces the theme footer)"
+msgstr "Footer (thay footer của theme)"
+
 msgid "Footer columns, a footer built with blocks, copyright and floating contact buttons."
 msgstr "Cột footer, footer dựng bằng khối, bản quyền và nút liên hệ nổi."
 
@@ -1102,6 +1162,9 @@ msgstr "Dành cho chủ nhà"
 
 msgid "For skin, body and hair"
 msgstr "Cho da, body, tóc"
+
+msgid "For the single post template, add a Shortcode block with [bst_post_title], [bst_featured_image], [bst_post_meta], [bst_post_content], [bst_author_box], [bst_related_posts] or [bst_post_comments]."
+msgstr "Với mẫu bài viết, thêm khối Shortcode chứa [bst_post_title], [bst_featured_image], [bst_post_meta], [bst_post_content], [bst_author_box], [bst_related_posts] hoặc [bst_post_comments]."
 
 msgid "Founded in 2014, the centre has helped more than 5,000 students – from school pupils to working adults – master languages and skills."
 msgstr "Được thành lập từ năm 2014, trung tâm đã đồng hành cùng hơn 5.000 học viên từ học sinh, sinh viên đến người đi làm trên con đường chinh phục ngoại ngữ và kỹ năng."
@@ -1183,6 +1246,9 @@ msgstr "Từ lúc đặt lịch đến khi ra về, mọi thứ đều được 
 
 msgid "From trusted developers"
 msgstr "Từ chủ đầu tư uy tín"
+
+msgid "Front page"
+msgstr "Trang chủ"
 
 msgid "Fruit teas"
 msgstr "Trà trái cây"
@@ -1285,6 +1351,9 @@ msgstr "Trưởng bộ môn IELTS"
 
 msgid "Header & menu"
 msgstr "Header & menu"
+
+msgid "Header (replaces the theme header)"
+msgstr "Header (thay header của theme)"
 
 msgid "Header builder"
 msgstr "Trình tạo header"
@@ -1592,8 +1661,17 @@ msgstr "Tư vấn gói vay phù hợp thu nhập."
 msgid "Local and international"
 msgstr "Trong và ngoài nước"
 
+msgid "Location"
+msgstr "Vị trí"
+
 msgid "Locations"
 msgstr "Cơ sở"
+
+msgid "Logged-in users only"
+msgstr "Chỉ người đã đăng nhập"
+
+msgid "Logged-out visitors only"
+msgstr "Chỉ khách chưa đăng nhập"
 
 msgid "Login"
 msgstr "Đăng nhập"
@@ -1603,6 +1681,9 @@ msgstr "Bạn đang tìm nhà?"
 
 msgid "Loves children and makes every lesson creative."
 msgstr "Yêu trẻ, sáng tạo trong từng bài học."
+
+msgid "Lower numbers run first. When two layouts replace the same part, the lowest number wins."
+msgstr "Số nhỏ chạy trước. Khi hai layout cùng thay một phần, layout có số nhỏ nhất được dùng."
 
 msgid "Loyal client"
 msgstr "Khách hàng thân thiết"
@@ -2084,8 +2165,14 @@ msgstr "Icon trơn"
 msgid "Plus 3 private rooms"
 msgstr "Kèm 3 phòng riêng"
 
+msgid "Post / page IDs to exclude"
+msgstr "ID bài / trang cần loại trừ"
+
 msgid "Post header"
 msgstr "Phần đầu bài viết"
+
+msgid "Posts in these categories (and their archives)"
+msgstr "Bài trong các chuyên mục này (và trang chuyên mục)"
 
 msgid "Pre-order dishes"
 msgstr "Đặt món trước"
@@ -2125,6 +2212,9 @@ msgstr "Giá đã bao gồm VAT và phục vụ. Có thể thay đổi món theo
 
 msgid "Prime locations"
 msgstr "Vị trí đắc địa"
+
+msgid "Priority"
+msgstr "Thứ tự ưu tiên"
 
 msgid "Private room with karaoke"
 msgstr "Phòng riêng có karaoke"
@@ -2366,6 +2456,9 @@ msgstr "Tìm kiếm:"
 msgid "Search products…"
 msgstr "Tìm sản phẩm…"
 
+msgid "Search results"
+msgstr "Kết quả tìm kiếm"
+
 msgid "Search results for “%s”"
 msgstr "Kết quả tìm kiếm cho “%s”"
 
@@ -2408,6 +2501,9 @@ msgstr "Xem liệu trình"
 msgid "Select a block in the page to edit its layout."
 msgstr "Chọn một block trên trang để chỉnh bố cục."
 
+msgid "Selected categories"
+msgstr "Chuyên mục đã chọn"
+
 msgid "Self-study plan for IELTS 6.5"
 msgstr "Lộ trình tự học IELTS 6.5"
 
@@ -2441,6 +2537,9 @@ msgstr "Chia sẻ:"
 msgid "Shop"
 msgstr "Cửa hàng"
 
+msgid "Shop & product categories"
+msgstr "Cửa hàng & danh mục sản phẩm"
+
 msgid "Short description length (words)"
 msgstr "Độ dài mô tả ngắn (số từ)"
 
@@ -2473,6 +2572,9 @@ msgstr "Hiển thị màn hình bảo trì cho khách"
 
 msgid "Show meta (choose items below)"
 msgstr "Hiện thông tin bài (chọn mục bên dưới)"
+
+msgid "Show on"
+msgstr "Hiện ở"
 
 msgid "Show product count on category boxes"
 msgstr "Hiện số sản phẩm trên ô danh mục"
@@ -2530,6 +2632,9 @@ msgstr "Từ năm 2014"
 
 msgid "Since 2015"
 msgstr "Từ năm 2015"
+
+msgid "Single post template"
+msgstr "Mẫu bài viết"
 
 msgid "Site language"
 msgstr "Ngôn ngữ trang"
@@ -2765,6 +2870,9 @@ msgstr "Không tìm thấy mẫu trang BIGSPY đã chọn."
 msgid "Theme"
 msgstr "Theme"
 
+msgid "Theme Builder"
+msgstr "Theme Builder"
+
 msgid "Theme Options"
 msgstr "Cài đặt theme"
 
@@ -2924,6 +3032,9 @@ msgstr "Hiệu quả rõ rệt"
 msgid "Visit projects and compare several options."
 msgstr "Dẫn xem dự án, so sánh nhiều lựa chọn."
 
+msgid "Visitors"
+msgstr "Người xem"
+
 msgid "Voted by the local food community"
 msgstr "Do cộng đồng ẩm thực bình chọn"
 
@@ -2989,6 +3100,9 @@ msgstr "Bao lâu thì thấy kết quả?"
 
 msgid "Where every student is treated as an individual"
 msgstr "Nơi mỗi học viên được quan tâm như một cá nhân"
+
+msgid "Where this layout shows"
+msgstr "Layout này hiện ở đâu"
 
 msgid "Where to find each part of the theme."
 msgstr "Tìm nhanh từng phần cài đặt của theme."

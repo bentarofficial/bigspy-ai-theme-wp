@@ -21,8 +21,15 @@ defined( 'ABSPATH' ) || exit;
 <?php
 if ( bst_show_header() ) {
 	bst_header_banner();
-	if ( ! bst_header_design() ) { bst_render_header(); }
+	bst_tb_render( 'before_header' );
+	if ( ! bst_tb_render( 'header', true ) && ! bst_header_design() ) {
+		bst_render_header();
+	}
+	bst_tb_render( 'after_header' );
 }
 ?>
 <main id="content" class="bs-main">
-<?php bst_title_bar(); ?>
+<?php
+bst_title_bar();
+bst_tb_render( 'before_content' );
+?>

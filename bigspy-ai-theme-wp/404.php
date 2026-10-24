@@ -7,6 +7,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+if ( bst_tb_for( '404' ) ) {
+	add_filter( 'bst_show_title', '__return_false' );
+	get_header();
+	bst_tb_render( '404', true );
+	get_footer();
+	return;
+}
+
 $bst_error_design = bst_site_design_page( 'custom_404_page' );
 if ( $bst_error_design ) {
 	$bst_error_content = bst_site_design_content( $bst_error_design );
