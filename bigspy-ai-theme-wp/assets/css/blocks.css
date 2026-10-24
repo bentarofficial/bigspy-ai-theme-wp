@@ -2701,7 +2701,8 @@ input[type="submit"]:hover,
 .bs-price--bordered.is-featured { border-color: var(--pa); }
 .bs-price:hover { transform: translateY(-6px); }
 .bs-price.is-featured:hover { transform: translateY(-12px); }
-.bs-price__badge { position: absolute; top: 16px; right: 16px; padding: 4px 12px; color: #fff; background: linear-gradient(135deg, var(--pa), var(--bs-secondary)); border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .03em; }
+/* Badge sits centred on the top edge so it never covers the title. */
+.bs-price__badge { position: absolute; top: 0; left: 50%; z-index: 2; transform: translate(-50%, -50%); white-space: nowrap; max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis; box-shadow: 0 4px 12px rgba(15, 23, 42, .15); padding: 5px 14px; color: #fff; background: linear-gradient(135deg, var(--pa), var(--bs-secondary)); border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .03em; }
 .bs-price__title { margin: 0 0 6px; font-size: 1.2em; }
 .bs-price__desc { margin: 0 0 14px; font-size: .92em; opacity: .75; }
 .bs-price__amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; margin: 8px 0 18px; }
