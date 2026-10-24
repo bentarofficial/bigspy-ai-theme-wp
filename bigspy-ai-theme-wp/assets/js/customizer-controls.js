@@ -54,19 +54,6 @@
 
 	HeaderBuilder.prototype.used = function () {
 		var used = [];
-		// Full-width banner code for the current device (settings header_banner_desktop / _mobile).
-		var bannerId = 'header_banner_' + this.device;
-		if (wp.customize.has(bannerId)) {
-			var $banner = $('<div class="bst-hb__row bst-hb__banner" />').appendTo($root);
-			$('<div class="bst-hb__row-title" />').text(i18n.banner).appendTo($banner);
-			$('<textarea class="bst-hb__banner-code" rows="5" spellcheck="false" />')
-				.attr('placeholder', '<div style="...">...</div>')
-				.val(wp.customize(bannerId).get() || '')
-				.on('input', function () { wp.customize(bannerId).set(this.value); })
-				.appendTo($banner);
-			$('<p class="description" />').text(i18n.bannerHelp).appendTo($banner);
-		}
-
 		var dev = this.layout[this.device];
 		ROWS.forEach(function (row) {
 			ZONES.forEach(function (zone) {
@@ -93,6 +80,19 @@
 				})
 				.appendTo($tabs);
 		});
+
+		// Full-width banner code for the current device (settings header_banner_desktop / _mobile).
+		var bannerId = 'header_banner_' + this.device;
+		if (wp.customize.has(bannerId)) {
+			var $banner = $('<div class="bst-hb__row bst-hb__banner" />').appendTo($root);
+			$('<div class="bst-hb__row-title" />').text(i18n.banner).appendTo($banner);
+			$('<textarea class="bst-hb__banner-code" rows="5" spellcheck="false" />')
+				.attr('placeholder', '<div style="...">...</div>')
+				.val(wp.customize(bannerId).get() || '')
+				.on('input', function () { wp.customize(bannerId).set(this.value); })
+				.appendTo($banner);
+			$('<p class="description" />').text(i18n.bannerHelp).appendTo($banner);
+		}
 
 		var dev = this.layout[this.device];
 		ROWS.forEach(function (row) {
