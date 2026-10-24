@@ -232,6 +232,7 @@ function bst_post_card( $args = array() ) {
 			'cat_badge'   => false,
 			'excerpt_len' => 0,
 			'more_style'  => 'link',
+			'image'       => true,
 		)
 	);
 	// The untouched default label follows the site language (the Posts block passes it as its own default).
@@ -241,7 +242,7 @@ function bst_post_card( $args = array() ) {
 	$heading = bst_choice( $args['heading'], array( 'h2', 'h3', 'h4', 'h5' ), 'h2' );
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'bs-card bs-card--' . sanitize_html_class( $args['style'] ) ); ?>>
-		<?php if ( has_post_thumbnail() ) : ?>
+		<?php if ( $args['image'] && has_post_thumbnail() ) : ?>
 			<a class="bs-card__media bs-ratio bs-ratio--<?php echo esc_attr( $args['ratio'] ); ?>" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
 				<?php the_post_thumbnail( 'bst-card', array( 'alt' => '' ) ); ?>
 				<?php if ( $args['date_badge'] ) : ?>
@@ -335,20 +336,12 @@ function bst_related_posts() {
 	if ( ! bst_mod( 'single_related' ) ) {
 		return;
 	}
-	$query = new WP_Query(
-		array(
-			'post_type'           => 'post',
-			'posts_per_page'      => 3,
-			'post__not_in'        => array( get_the_ID() ),
-			'category__in'        => wp_get_post_categories( get_the_ID() ),
-			'ignore_sticky_posts' => true,
-			'no_found_rows'       => true,
-		)
-	);
+	$query = new WP_Query( bst_related_query_args() );
 	if ( ! $query->have_posts() ) {
 		return;
 	}
-	echo '<section class="bs-related"><h2 class="bs-related__title">' . esc_html__( 'Related posts', 'bigspy-ai-theme-wp' ) . '</h2><div class="bs-grid" style="--bs-cols:3">';
+	$title = trim( (string) bst_mod( 'single_related_title' ) );
+	echo '<section class="bs-related"><h2 class="bs-related__title">' . esc_html( '' !== $title ? $title : __( 'Related posts', 'bigspy-ai-theme-wp' ) ) . '</h2><div class="bs-grid" style="--bs-cols:' . (int) bst_choice( (string) bst_mod( 'single_related_cols' ), array( '2', '3', '4' ), '3' ) . '">';
 	while ( $query->have_posts() ) {
 		$query->the_post();
 		bst_post_card( array( 'excerpt' => false, 'more' => '', 'heading' => 'h3' ) );

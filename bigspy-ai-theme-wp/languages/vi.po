@@ -290,6 +290,9 @@ msgstr "Đội ngũ được đào tạo bài bản, có chứng chỉ hành ngh
 msgid "ACHIEVEMENTS"
 msgstr "THÀNH TỰU"
 
+msgid "About 720–800px is easiest to read."
+msgstr "Khoảng 720–800px là dễ đọc nhất."
+
 msgid "About the centre"
 msgstr "Về trung tâm"
 
@@ -338,6 +341,9 @@ msgstr "Phòng học máy lạnh, máy chiếu"
 msgid "Airy garden seating"
 msgstr "Không gian sân vườn thoáng mát"
 
+msgid "All"
+msgstr "Tất cả"
+
 msgid "All designs"
 msgstr "Tất cả mẫu thiết kế"
 
@@ -373,6 +379,9 @@ msgstr "Đến đúng giờ, bàn và món đã sẵn sàng phục vụ."
 
 msgid "As peaceful as a resort"
 msgstr "Yên bình như một khu nghỉ dưỡng"
+
+msgid "Author"
+msgstr "Tác giả"
 
 msgid "Award-winning national coffee champion."
 msgstr "Barista đạt giải cuộc thi cà phê toàn quốc."
@@ -497,6 +506,9 @@ msgstr "Trang chủ doanh nghiệp"
 msgid "Business or service website"
 msgstr "Website doanh nghiệp hoặc dịch vụ"
 
+msgid "Button"
+msgstr "Nút bấm"
+
 msgid "Buy a package to save up to 30% and share it with family."
 msgstr "Mua theo gói để tiết kiệm đến 30% và dùng chung cho người thân."
 
@@ -551,6 +563,12 @@ msgstr "Không tìm thấy câu trả lời? Gọi hotline hoặc nhắn Zalo, c
 msgid "Caramelised fish, sour soup and crispy clay pot rice."
 msgstr "Cá kho tộ, canh chua và cơm niêu cháy giòn chuẩn vị miền Tây."
 
+msgid "Card corner radius (px, -1 = default)"
+msgstr "Bo góc thẻ (px, -1 = mặc định)"
+
+msgid "Card details"
+msgstr "Chi tiết thẻ bài viết"
+
 msgid "Caring service"
 msgstr "Phục vụ tận tâm"
 
@@ -562,6 +580,18 @@ msgstr "Chuyên viên tận tâm"
 
 msgid "Cart"
 msgstr "Giỏ hàng"
+
+msgid "Category"
+msgstr "Danh mục"
+
+msgid "Category badge on the image"
+msgstr "Nhãn danh mục trên ảnh"
+
+msgid "Center"
+msgstr "Giữa"
+
+msgid "Centered title, then image"
+msgstr "Tiêu đề căn giữa, rồi đến ảnh"
 
 msgid "Certificates"
 msgstr "Chứng nhận"
@@ -598,6 +628,9 @@ msgstr "Chọn khoá học cho con"
 
 msgid "Choosing the right sunscreen"
 msgstr "Chọn kem chống nắng phù hợp"
+
+msgid "Classic (one large post per row)"
+msgstr "Cổ điển (mỗi hàng một bài lớn)"
 
 msgid "Clay pot fish"
 msgstr "Cơm niêu cá kho"
@@ -641,6 +674,12 @@ msgstr "Tỷ lệ cà phê, nhiệt độ nước và thời gian ủ để có 
 msgid "Collect points and enjoy 10% off as a regular."
 msgstr "Tích điểm đổi quà, giảm 10% cho khách thân thiết."
 
+msgid "Columns"
+msgstr "Số cột"
+
+msgid "Comments"
+msgstr "Bình luận"
+
 msgid "Comments are closed."
 msgstr "Bình luận đã đóng."
 
@@ -664,6 +703,15 @@ msgstr "Liên hệ để biết giá"
 
 msgid "Contact us"
 msgstr "Liên hệ"
+
+msgid "Content"
+msgstr "Nội dung"
+
+msgid "Content width (px, 0 = full)"
+msgstr "Chiều rộng nội dung (px, 0 = toàn bộ)"
+
+msgid "Contents"
+msgstr "Mục lục"
 
 msgid "Copied!"
 msgstr "Đã sao chép!"
@@ -703,6 +751,12 @@ msgstr "THIẾT KẾ WEBSITE CỦA BẠN"
 
 msgid "Daniel Carter"
 msgstr "Trần Minh Đức"
+
+msgid "Date"
+msgstr "Ngày đăng"
+
+msgid "Date badge on the image"
+msgstr "Nhãn ngày trên ảnh"
 
 msgid "Dedicated teachers"
 msgstr "Đội ngũ giáo viên tận tâm"
@@ -848,6 +902,9 @@ msgstr "Danh mục nổi bật"
 msgid "Featured courses"
 msgstr "Khoá học nổi bật"
 
+msgid "Featured image shape"
+msgstr "Tỉ lệ ảnh đại diện"
+
 msgid "Featured projects"
 msgstr "Dự án nổi bật"
 
@@ -865,6 +922,9 @@ msgstr "Hỗ trợ tài chính"
 
 msgid "Find the home that fits your life"
 msgstr "Tìm ngôi nhà phù hợp với cuộc sống của bạn"
+
+msgid "First post large, then grid"
+msgstr "Bài đầu lớn, sau đó dạng lưới"
 
 msgid "First-time mortgage tips"
 msgstr "Kinh nghiệm vay mua nhà lần đầu"
@@ -1026,13 +1086,13 @@ msgid "Graduated"
 msgstr "Đã tốt nghiệp"
 
 msgid "Grayscale to color"
-msgstr "Từ trắng đen sang màu"
+msgstr "Đen trắng sang màu"
 
 msgid "Great gifts"
 msgstr "Quà tặng hấp dẫn"
 
 msgid "Grid"
-msgstr "Lưới ô"
+msgstr "Lưới"
 
 msgid "Grid of dots"
 msgstr "Lưới chấm"
@@ -1067,6 +1127,12 @@ msgstr "Đầu bếp chính 12 năm kinh nghiệm"
 msgid "Head of IELTS"
 msgstr "Trưởng bộ môn IELTS"
 
+msgid "Header style"
+msgstr "Kiểu phần đầu bài viết"
+
+msgid "Heading (empty = “Related posts”)"
+msgstr "Tiêu đề (để trống = “Bài viết liên quan”)"
+
 msgid "Helen"
 msgstr "Chị Hạnh"
 
@@ -1084,6 +1150,9 @@ msgstr "Trà thảo mộc"
 
 msgid "Herbal tea after treatment"
 msgstr "Trà thảo mộc sau liệu trình"
+
+msgid "Hidden"
+msgstr "Ẩn"
 
 msgid "Highlight menu links to page sections"
 msgstr "Đánh dấu menu theo phần đang xem"
@@ -1120,6 +1189,9 @@ msgstr "Hotline"
 
 msgid "House-roasted coffee"
 msgstr "Cà phê rang xay"
+
+msgid "Hover effect"
+msgstr "Hiệu ứng khi rê chuột"
 
 msgid "How are projects checked?"
 msgstr "Pháp lý dự án được kiểm tra thế nào?"
@@ -1165,6 +1237,9 @@ msgstr "Giảng viên tin học"
 
 msgid "Icon style"
 msgstr "Kiểu icon"
+
+msgid "Image, then title"
+msgstr "Ảnh trước, rồi đến tiêu đề"
 
 msgid "In 15 years"
 msgstr "Trong 15 năm"
@@ -1223,6 +1298,12 @@ msgstr "Am hiểu quy hoạch các quận trung tâm."
 msgid "Lakeside villa"
 msgstr "Biệt thự ven hồ"
 
+msgid "Large first letter (drop cap)"
+msgstr "Chữ cái đầu lớn (drop cap)"
+
+msgid "Latest posts"
+msgstr "Bài mới nhất"
+
 msgid "Latest skin analysis device"
 msgstr "Máy soi da công nghệ mới"
 
@@ -1259,6 +1340,9 @@ msgstr "Học qua dự án thực tế"
 msgid "Leave your number and we will send options that fit your budget within 30 minutes."
 msgstr "Để lại số điện thoại, chuyên viên sẽ gửi danh sách phù hợp ngân sách trong 30 phút."
 
+msgid "Left"
+msgstr "Trái"
+
 msgid "Legal checks"
 msgstr "Thẩm định pháp lý"
 
@@ -1267,6 +1351,9 @@ msgstr "Pháp lý kiểm tra kỹ"
 
 msgid "Less stress, better sleep and healthier circulation."
 msgstr "Giảm căng thẳng, cải thiện giấc ngủ và tuần hoàn máu."
+
+msgid "Lift card"
+msgstr "Nâng thẻ lên"
 
 msgid "Lift gently"
 msgstr "Nhấc nhẹ"
@@ -1289,8 +1376,14 @@ msgstr "Ba gạch (canh phải)"
 msgid "Lines (stepped)"
 msgstr "Ba gạch (bậc thang)"
 
+msgid "Link with arrow"
+msgstr "Liên kết có mũi tên"
+
 msgid "List"
 msgstr "Danh sách"
+
+msgid "List (image left)"
+msgstr "Danh sách (ảnh bên trái)"
 
 msgid "Listed prices guaranteed"
 msgstr "Cam kết đúng giá niêm yết"
@@ -1300,6 +1393,15 @@ msgstr "Tôm, mực, nghêu tươi sống cùng nước dùng chua cay đặc bi
 
 msgid "Load more"
 msgstr "Xem thêm"
+
+msgid "Load more button"
+msgstr "Nút tải thêm"
+
+msgid "Load more posts"
+msgstr "Tải thêm bài viết"
+
+msgid "Load while scrolling"
+msgstr "Tự tải khi cuộn"
 
 msgid "Loading…"
 msgstr "Đang tải…"
@@ -1358,6 +1460,9 @@ msgstr "Phân tích thị trường"
 msgid "Market news"
 msgstr "Tin thị trường"
 
+msgid "Masonry"
+msgstr "Masonry (so le chiều cao)"
+
 msgid "Massage therapist"
 msgstr "Kỹ thuật viên massage"
 
@@ -1382,11 +1487,17 @@ msgstr "Thực đơn nổi bật"
 msgid "Message us"
 msgstr "Nhắn Zalo"
 
+msgid "Meta shown on cards"
+msgstr "Thông tin hiện trên thẻ"
+
 msgid "Mia Turner"
 msgstr "Phạm Minh Thư"
 
 msgid "Michael"
 msgstr "Đức Huy"
+
+msgid "Minimal (titles only)"
+msgstr "Tối giản (chỉ tiêu đề)"
 
 msgid "Mobile menu"
 msgstr "Menu di động"
@@ -1408,6 +1519,9 @@ msgstr "Thi thử hằng tháng"
 
 msgid "Monthly progress reports"
 msgstr "Báo cáo tiến độ hằng tháng"
+
+msgid "More posts"
+msgstr "Cách xem thêm bài"
 
 msgid "More than 2,300 guest reviews"
 msgstr "Hơn 2.300 đánh giá từ thực khách"
@@ -1499,6 +1613,9 @@ msgstr "Mới"
 msgid "New methods"
 msgstr "Phương pháp mới"
 
+msgid "Newer posts →"
+msgstr "Bài mới hơn →"
+
 msgid "News & tips"
 msgstr "Tin tức & chia sẻ"
 
@@ -1526,6 +1643,9 @@ msgstr "Không tìm thấy kết quả."
 msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
 msgstr "Chưa có mẫu đã lưu. Trong trình soạn thảo, mở tùy chọn của block và chọn Tạo mẫu để lưu thiết kế tại đây."
 
+msgid "None"
+msgstr "Không"
+
 msgid "Notary and transfer"
 msgstr "Công chứng, sang tên"
 
@@ -1535,6 +1655,9 @@ msgstr "Công chứng, sang tên và nhận bàn giao."
 msgid "Nothing matched your search. Please try different keywords."
 msgstr "Không có kết quả phù hợp. Vui lòng thử từ khóa khác."
 
+msgid "Number of posts"
+msgstr "Số bài"
+
 msgid "Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title."
 msgstr "Tắt: trang không tự in tiêu đề, bạn tự đặt H1 bằng khối Tiêu đề. Bài viết, chuyên mục và cửa hàng vẫn hiện tiêu đề."
 
@@ -1543,6 +1666,9 @@ msgstr "Tin học văn phòng"
 
 msgid "Office worker"
 msgstr "Nhân viên văn phòng"
+
+msgid "Older / newer links"
+msgstr "Liên kết bài cũ / mới hơn"
 
 msgid "Olivia Brooks"
 msgstr "Lê Hoài An"
@@ -1610,6 +1736,9 @@ msgstr "Đặt món →"
 msgid "Organic oils and herbs"
 msgstr "Tinh dầu và thảo mộc hữu cơ"
 
+msgid "Original"
+msgstr "Gốc"
+
 msgid "Our method"
 msgstr "Phương pháp"
 
@@ -1670,8 +1799,14 @@ msgstr "Tên trang"
 msgid "Page not found"
 msgstr "Không tìm thấy trang"
 
+msgid "Page numbers"
+msgstr "Số trang"
+
 msgid "Page title & breadcrumbs"
 msgstr "Tiêu đề trang & breadcrumb"
+
+msgid "Pagination"
+msgstr "Phân trang"
 
 msgid "Parent"
 msgstr "Phụ huynh"
@@ -1715,6 +1850,9 @@ msgstr "Chụp ảnh, quay video"
 msgid "Pick a time"
 msgstr "Chọn thời gian"
 
+msgid "Pick related posts by"
+msgstr "Chọn bài liên quan theo"
+
 msgid "Placement test"
 msgstr "Kiểm tra đầu vào"
 
@@ -1723,6 +1861,9 @@ msgstr "Icon trơn"
 
 msgid "Plus 3 private rooms"
 msgstr "Kèm 3 phòng riêng"
+
+msgid "Post header"
+msgstr "Phần đầu bài viết"
 
 msgid "Pre-order dishes"
 msgstr "Đặt món trước"
@@ -1813,6 +1954,9 @@ msgstr "Đọc tiếp"
 
 msgid "Read more →"
 msgstr "Đọc tiếp →"
+
+msgid "Reading time"
+msgstr "Thời gian đọc"
 
 msgid "Ready to start your project?"
 msgstr "Bạn đã sẵn sàng bắt đầu?"
@@ -1919,6 +2063,12 @@ msgstr "Giảm giá"
 msgid "Sales director"
 msgstr "Giám đốc kinh doanh"
 
+msgid "Same category"
+msgstr "Cùng danh mục"
+
+msgid "Same tags"
+msgstr "Cùng thẻ"
+
 msgid "Same-day delivery in the city."
 msgstr "Nhận hàng trong ngày tại nội thành."
 
@@ -2018,8 +2168,23 @@ msgstr "Chia sẻ:"
 msgid "Shop"
 msgstr "Cửa hàng"
 
+msgid "Show %s"
+msgstr "Hiện %s"
+
+msgid "Show comments"
+msgstr "Hiện bình luận"
+
+msgid "Show it from this many headings"
+msgstr "Hiện khi có từ số tiêu đề này"
+
 msgid "Show maintenance screen to visitors"
 msgstr "Hiển thị màn hình bảo trì cho khách"
+
+msgid "Show meta (choose items below)"
+msgstr "Hiện thông tin bài (chọn mục bên dưới)"
+
+msgid "Show tags"
+msgstr "Hiện thẻ (tag)"
 
 msgid "Show the banner on"
 msgstr "Hiện banner trên"
@@ -2120,6 +2285,9 @@ msgstr "Spa · Chăm sóc da · Massage"
 msgid "Space between icon and frame (px, empty = default)"
 msgstr "Khoảng cách từ icon đến viền (px, để trống = mặc định)"
 
+msgid "Space between posts (px, 0 = default)"
+msgstr "Khoảng cách giữa các bài (px, 0 = mặc định)"
+
 msgid "Spaced repetition to memorise words effectively."
 msgstr "Phương pháp lặp lại ngắt quãng giúp ghi nhớ từ vựng hiệu quả."
 
@@ -2168,6 +2336,9 @@ msgstr "Giới thiệu ngắn gọn giá trị nổi bật của bạn trong m�
 msgid "TESOL certified, 8 years of teaching."
 msgstr "Chứng chỉ TESOL, 8 năm tại Việt Nam."
 
+msgid "Table of contents (from H2 / H3)"
+msgstr "Mục lục tự động (từ H2 / H3)"
+
 msgid "Take an afternoon for yourself"
 msgstr "Dành một buổi chiều cho chính bạn"
 
@@ -2194,6 +2365,12 @@ msgstr "Thăn bò Úc mềm, sốt tiêu đen đậm đà, ăn kèm khoai tây n
 
 msgid "Terraced townhouse"
 msgstr "Nhà phố liền kề"
+
+msgid "Text alignment"
+msgstr "Căn chữ"
+
+msgid "Text over image"
+msgstr "Chữ đè lên ảnh"
 
 msgid "The apartment market this quarter"
 msgstr "Thị trường căn hộ quý này"
@@ -2257,6 +2434,18 @@ msgstr "Tiramisu, cheesecake chanh dây và bánh mousse làm mới mỗi sáng.
 
 msgid "Title bar"
 msgstr "Thanh tiêu đề"
+
+msgid "Title lines"
+msgstr "Số dòng tiêu đề"
+
+msgid "Title over the image"
+msgstr "Tiêu đề đè lên ảnh"
+
+msgid "Title size (px, 0 = default)"
+msgstr "Cỡ tiêu đề (px, 0 = mặc định)"
+
+msgid "Title, then image"
+msgstr "Tiêu đề trước, rồi đến ảnh"
 
 msgid "Today the restaurant seats over 120 guests, has 3 private rooms and a team of 40 – but the spirit is the same as on day one: we serve every guest like family."
 msgstr "Hôm nay, nhà hàng có hơn 120 chỗ ngồi, 3 phòng riêng và đội ngũ 40 nhân viên – nhưng tinh thần vẫn như ngày đầu: phục vụ mỗi vị khách như người nhà."
@@ -2483,6 +2672,12 @@ msgstr "Hành trình thư giãn của bạn"
 msgid "Your therapist analyses your skin and suggests a plan."
 msgstr "Chuyên viên phân tích da, đề xuất liệu trình riêng."
 
+msgid "Zigzag list (image left / right)"
+msgstr "Danh sách so le (ảnh trái / phải)"
+
+msgid "Zoom image"
+msgstr "Phóng to ảnh"
+
 msgid "admissions@academy.edu"
 msgstr "tuyensinh@trungtam.edu.vn"
 
@@ -2494,3 +2689,9 @@ msgstr "datlich@spa.vn"
 
 msgid "hello@realestate.com"
 msgstr "tuvan@batdongsan.vn"
+
+msgid "“Read more” style"
+msgstr "Kiểu nút “Đọc tiếp”"
+
+msgid "← Older posts"
+msgstr "← Bài cũ hơn"

@@ -7,4 +7,4 @@
 
 defined( 'ABSPATH' ) || exit;
 
-bst_post_card();
+bst_post_card( bst_blog_card_args() );
