@@ -13,6 +13,16 @@ const outDir = path.join(__dirname, '..', 'bigspy-ai-theme-wp', 'languages');
 
 // msgid => msgstr. Plurals: [singular, plural] => [form] (Vietnamese has one plural form).
 const strings = [
+	['Balanced layout', 'Bố cục cân đối'],
+	['Readable container with side gutters', 'Khung nội dung dễ đọc, có lề hai bên'],
+	['Balanced row spacing', 'Khoảng cách hàng cân đối'],
+	['Stack icon boxes without stretching', 'Xếp thẻ icon dọc, không kéo giãn'],
+	['Balanced service card', 'Thẻ dịch vụ cân đối'],
+	['Light hero with readable copy', 'Banner sáng, nội dung dễ đọc'],
+	['Preserve intentional line breaks', 'Giữ ngắt dòng chủ động'],
+	['Space above action buttons', 'Khoảng cách phía trên nhóm nút'],
+	['Compact readable price card', 'Thẻ giá gọn, dễ đọc'],
+	['Site-wide for matching BIGSPY blocks. Use Style presets in a block to apply only there. Uncheck to remove.', 'Áp dụng chung cho các block BIGSPY tương ứng. Chọn Kiểu dáng có sẵn trong block để chỉ áp dụng tại đó. Bỏ chọn để gỡ.'],
 	['Site tools: 404 & maintenance', 'Công cụ website: 404 & bảo trì'],
 	['Highlight menu links to page sections', 'Đánh dấu menu theo phần đang xem'],
 	['Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll.', 'Đặt neo HTML cho block, rồi thêm liên kết #neo vào menu. Mục tương ứng được đánh dấu khi cuộn trang.'],
@@ -138,6 +148,20 @@ const strings = [
 	[['%s product', '%s products'], ['%s sản phẩm']],
 ];
 
+// Preserve translations maintained outside this starter catalog.
+const existingMo = path.join(outDir, 'vi.mo');
+if (fs.existsSync(existingMo)) {
+ const data = fs.readFileSync(existingMo);
+ if (data.readUInt32LE(0) !== 0x950412de) throw new Error('Unsupported gettext byte order');
+ const count = data.readUInt32LE(8), ids = data.readUInt32LE(12), values = data.readUInt32LE(16);
+ const known = new Set(strings.map(([id]) => Array.isArray(id) ? id.join('\0') : id));
+ for (let i=0;i<count;i++) {
+  const read = table => data.subarray(data.readUInt32LE(table+i*8+4),data.readUInt32LE(table+i*8+4)+data.readUInt32LE(table+i*8)).toString('utf8');
+  const id=read(ids), value=read(values);
+  if (id && !known.has(id)) strings.push(id.includes('\0') ? [id.split('\0'),value.split('\0')] : [id,value]);
+ }
+}
+
 const header = [
 	'Project-Id-Version: BIGSPY Theme',
 	'Language: vi',
@@ -160,7 +184,7 @@ for (const [id, str] of strings) {
 		po += 'msgid ' + q(id) + '\nmsgstr ' + q(str) + '\n\n';
 	}
 }
-fs.writeFileSync(path.join(outDir, 'vi.po'), po);
+fs.writeFileSync(path.join(outDir, 'vi.po'), po.trimEnd() + '\n');
 
 // ---- .mo (GNU gettext binary, little endian, no hash table)
 const entries = [['', header]].concat(strings.map(([id, str]) => Array.isArray(id) ? [id.join('\0'), str.join('\0')] : [id, str]));

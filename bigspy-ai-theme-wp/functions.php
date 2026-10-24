@@ -7,12 +7,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.68.3' );
+define( 'BST_VERSION', '1.68.4' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
 $bst_includes = array(
 	'inc/helpers.php',
+	'inc/layout-style-presets.php',
 	'inc/css-presets.php',
 	'inc/setup.php',
 	'inc/fonts.php',
