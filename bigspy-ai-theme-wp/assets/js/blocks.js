@@ -135,6 +135,10 @@
 		}
 
 		var dotsWrap = root.querySelector('[data-bs-slider-dots]');
+		var dotTimer = !!root.querySelector('[data-bs-slider-dot-timer]') && !!dotsWrap;
+		if (dotTimer) {
+			root.classList.add('bs-slider--dot-timer');
+		}
 		var buildDots = function () {
 			if (!dotsWrap) {
 				return;
@@ -146,6 +150,9 @@
 				var dot = doc.createElement('button');
 				dot.type = 'button';
 				dot.className = 'bs-slider__dot';
+				if (dotTimer) {
+					dot.appendChild(doc.createElement('span')).className = 'bs-slider__dot-fill';
+				}
 				dot.setAttribute('aria-label', String(i + 1));
 				dot.dataset.index = String(i);
 				dotsWrap.appendChild(dot);
@@ -200,15 +207,33 @@
 			root.addEventListener('focusin', pause);
 			root.addEventListener('focusout', resume);
 			root.addEventListener('touchstart', pause, { passive: true });
-			var bar = root.querySelector('[data-bs-slider-progress]');
+			var countEl = root.querySelector('[data-bs-slider-count]');
+			var totalEl = root.querySelector('[data-bs-slider-total]');
+			var pad = function (n) { return (n < 10 ? '0' : '') + n; };
 			var restartBar = function () {
+				var bar = root.querySelector('[data-bs-slider-progress]');
+				if (dotTimer) {
+					Array.prototype.forEach.call(dotsWrap.querySelectorAll('.bs-slider__dot-fill'), function (f) { f.style.animation = 'none'; });
+					bar = dotsWrap.querySelector('.bs-slider__dot.is-active .bs-slider__dot-fill');
+				}
+				if (countEl && totalEl) {
+					countEl.textContent = pad(current() + 1);
+					totalEl.textContent = pad(pages());
+				}
 				if (!bar) {
 					return;
 				}
+				var name = bar.tagName.toLowerCase() === 'circle' ? 'bs-slider-ring' : (root.querySelector('.bs-slider__progress--line-left') ? 'bs-slider-progress-y' : 'bs-slider-progress');
 				bar.style.animation = 'none';
-				void bar.offsetWidth; // restart the CSS animation
-				bar.style.animation = 'bs-slider-progress ' + interval + 'ms linear forwards';
+				void bar.getBoundingClientRect(); // restart the CSS animation
+				bar.style.animation = name + ' ' + interval + 'ms linear forwards';
 			};
+			// Arrows, dots and swipes restart the timer too.
+			var restartSoon;
+			track.addEventListener('scroll', function () {
+				window.clearTimeout(restartSoon);
+				restartSoon = window.setTimeout(restartBar, 150);
+			}, { passive: true });
 			restartBar();
 			window.setInterval(function () {
 				if (paused || doc.hidden) {

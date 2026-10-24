@@ -305,8 +305,18 @@ function bst_slider_markup( $items, $opts, $class = '' ) {
 	if ( $opts['dots'] ) {
 		$out .= '<div class="bs-slider__dots" data-bs-slider-dots></div>';
 	}
-	if ( $opts['progress'] && $opts['autoplay'] ) {
-		$out .= '<div class="bs-slider__progress" aria-hidden="true"><span data-bs-slider-progress></span></div>';
+	// Timer shown while autoplay runs. true = the classic bottom bar.
+	$timer = true === $opts['progress'] ? 'bar' : bst_choice( (string) $opts['progress'], array( 'off', 'bar', 'bar-top', 'bar-thick', 'line-left', 'circle', 'dot', 'number' ), 'off' );
+	if ( $opts['autoplay'] && 'off' !== $timer ) {
+		if ( 'circle' === $timer ) {
+			$out .= '<div class="bs-slider__timer bs-slider__timer--circle" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="bs-slider__ring-bg" cx="18" cy="18" r="15.9"/><circle class="bs-slider__ring" cx="18" cy="18" r="15.9" pathLength="100" data-bs-slider-progress/></svg></div>';
+		} elseif ( 'number' === $timer ) {
+			$out .= '<div class="bs-slider__timer bs-slider__timer--number" aria-hidden="true"><b data-bs-slider-count>01</b><span class="bs-slider__timer-line"><span data-bs-slider-progress></span></span><i data-bs-slider-total>01</i></div>';
+		} elseif ( 'dot' === $timer ) {
+			$out .= '<div class="bs-slider__timer bs-slider__timer--dot" hidden data-bs-slider-dot-timer></div>';
+		} else {
+			$out .= '<div class="bs-slider__progress bs-slider__progress--' . esc_attr( $timer ) . '" aria-hidden="true"><span data-bs-slider-progress></span></div>';
+		}
 	}
 	$out .= '</div>';
 	return $out;

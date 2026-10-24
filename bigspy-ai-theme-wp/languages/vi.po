@@ -302,6 +302,9 @@ msgstr "Về chúng tôi"
 msgid "Accountant"
 msgstr "Kế toán"
 
+msgid "Active dot fills up"
+msgstr "Chấm đang chọn đầy dần"
+
 msgid "Activities"
 msgstr "Hoạt động"
 
@@ -748,6 +751,9 @@ msgstr "Sao chép liên kết"
 
 msgid "Copyright © [year] [site_title]. All rights reserved."
 msgstr "Bản quyền © [year] [site_title]. Bảo lưu mọi quyền."
+
+msgid "Countdown ring – top right"
+msgstr "Vòng tròn đếm ngược – góc phải trên"
 
 msgid "Couple rooms available"
 msgstr "Có phòng đôi cho cặp đôi"
@@ -1700,6 +1706,9 @@ msgstr "Số bài"
 msgid "Number of related products (0 = one row)"
 msgstr "Số sản phẩm liên quan (0 = một hàng)"
 
+msgid "Off"
+msgstr "Tắt"
+
 msgid "Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title."
 msgstr "Tắt: trang không tự in tiêu đề, bạn tự đặt H1 bằng khối Tiêu đề. Bài viết, chuyên mục và cửa hàng vẫn hiện tiêu đề."
 
@@ -1966,6 +1975,12 @@ msgstr "Cỡ tên sản phẩm (px, 0 = mặc định)"
 
 msgid "Product page layout"
 msgstr "Bố cục trang sản phẩm"
+
+msgid "Progress bar – bottom"
+msgstr "Thanh tiến độ – dưới cùng"
+
+msgid "Progress bar – top"
+msgstr "Thanh tiến độ – trên cùng"
 
 msgid "Progress tracking"
 msgstr "Theo dõi tiến độ"
@@ -2348,6 +2363,9 @@ msgstr "Chuyên viên da"
 msgid "Skip to content"
 msgstr "Chuyển đến nội dung"
 
+msgid "Slide number 01 / 05 with line"
+msgstr "Số slide 01 / 05 kèm vạch chạy"
+
 msgid "Small classes"
 msgstr "Lớp sĩ số nhỏ"
 
@@ -2549,6 +2567,9 @@ msgstr "Hoàn toàn miễn phí, có xe đưa đón khi xem dự án ngoại th�
 msgid "They know the market, they are honest and they put your interests first."
 msgstr "Am hiểu thị trường, trung thực và luôn đặt quyền lợi khách hàng lên đầu."
 
+msgid "Thick progress bar – bottom"
+msgstr "Thanh tiến độ dày – dưới cùng"
+
 msgid "Thin lines"
 msgstr "Ba gạch mảnh"
 
@@ -2563,6 +2584,9 @@ msgstr "Mẫu trang này hiện không khả dụng."
 
 msgid "Three lines"
 msgstr "Ba gạch"
+
+msgid "Timer (time until next slide)"
+msgstr "Bộ đếm thời gian (đến slide tiếp theo)"
 
 msgid "Tiramisu, passion fruit cheesecake and mousse, made fresh every morning."
 msgstr "Tiramisu, cheesecake chanh dây và bánh mousse làm mới mỗi sáng."
@@ -2627,6 +2651,9 @@ msgstr "Học phí"
 msgid "Turmeric, colostrum and rice bran for naturally bright skin."
 msgstr "Nghệ, sữa non và cám gạo giúp da sáng mịn tự nhiên."
 
+msgid "Turn on dots to see this timer."
+msgstr "Bật chấm điều hướng (Dots) để thấy bộ đếm này."
+
 msgid "Two lines"
 msgstr "Hai gạch"
 
@@ -2653,6 +2680,9 @@ msgstr "Dùng cho màn hình bảo trì mặc định."
 
 msgid "Vegetables from our own farm"
 msgstr "Rau sạch từ trang trại riêng"
+
+msgid "Vertical line – left edge"
+msgstr "Vạch dọc – mép trái"
 
 msgid "View all"
 msgstr "Xem tất cả"

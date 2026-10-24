@@ -3089,3 +3089,24 @@ input[type="submit"]:hover,
 .bs-toc a { text-decoration: none; }
 .bs-toc a:hover { text-decoration: underline; }
 .bs-content h2[id], .bs-content h3[id] { scroll-margin-top: 100px; }
+
+/* Slider timers (Effect & motion → Timer) */
+.bs-slider__progress--bar-top { top: 0; bottom: auto; }
+.bs-slider__progress--bar-thick { height: 6px; background: rgba(0, 0, 0, .18); }
+.bs-slider__progress--line-left { top: 0; bottom: 0; left: 0; right: auto; width: 4px; height: auto; }
+.bs-slider__progress--line-left span { transform-origin: top; transform: scaleY(0); }
+@keyframes bs-slider-progress-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.bs-slider__timer { position: absolute; z-index: 6; pointer-events: none; }
+.bs-slider__timer--circle { top: 16px; right: 16px; width: 38px; height: 38px; }
+.bs-slider__timer--circle svg { display: block; width: 100%; height: 100%; transform: rotate(-90deg); }
+.bs-slider__timer--circle circle { fill: none; stroke-width: 3; }
+.bs-slider__ring-bg { stroke: rgba(255, 255, 255, .5); }
+.bs-slider__ring { stroke: var(--bs-primary); stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+@keyframes bs-slider-ring { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+.bs-slider__timer--number { left: 24px; bottom: 20px; display: flex; align-items: center; gap: 10px; padding: 6px 12px; color: #fff; background: rgba(15, 23, 42, .45); border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+.bs-slider__timer--number i { font-style: normal; opacity: .7; }
+.bs-slider__timer-line { position: relative; width: 56px; height: 2px; overflow: hidden; background: rgba(255, 255, 255, .35); }
+.bs-slider__timer-line span { position: absolute; inset: 0; background: #fff; transform-origin: left; transform: scaleX(0); }
+.bs-slider--dot-timer .bs-slider__dot { position: relative; overflow: hidden; }
+.bs-slider--dot-timer .bs-slider__dot.is-active { width: 34px; }
+.bs-slider__dot-fill { position: absolute; inset: 0; background: var(--bs-primary); transform-origin: left; transform: scaleX(0); border-radius: inherit; }

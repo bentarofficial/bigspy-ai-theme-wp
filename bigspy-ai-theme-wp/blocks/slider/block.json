@@ -84,6 +84,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"timer": {
+			"type": "string",
+			"default": ""
+		},
 		"pauseHover": {
 			"type": "boolean",
 			"default": true

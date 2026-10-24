@@ -23,7 +23,8 @@ $slider = bst_slider_markup(
 		'loop'     => ! empty( $a['loop'] ),
 		'fade'     => 'fade' === ( $a['effect'] ?? 'slide' ),
 		'peek'     => 'fade' === ( $a['effect'] ?? 'slide' ) ? 0 : bst_block_num( $a, 'peek', 0, 0, 40 ),
-		'progress' => ! empty( $a['progress'] ),
+		// Old sliders only had the on/off progress bar.
+		'progress' => '' !== (string) ( $a['timer'] ?? '' ) ? (string) $a['timer'] : ( ! empty( $a['progress'] ) ? 'bar' : 'off' ),
 		'pause'    => ! isset( $a['pauseHover'] ) || ! empty( $a['pauseHover'] ),
 	),
 	implode(

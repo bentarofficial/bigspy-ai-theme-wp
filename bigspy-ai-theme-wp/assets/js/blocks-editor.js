@@ -1097,7 +1097,22 @@
 					a.effect !== 'fade' ? el(Range, Object.assign({ label: __('Peek next slide (%)', 'bigspy-ai-theme-wp'), help: __('Shows part of the next slide so visitors know they can swipe.', 'bigspy-ai-theme-wp'), max: 40 }, bind('peek'))) : null,
 					el(Range, Object.assign({ label: __('Autoplay every (seconds, 0 = off)', 'bigspy-ai-theme-wp'), max: 30 }, bind('autoplay'))),
 					a.autoplay ? el(Toggle, Object.assign({ label: __('Pause when the mouse is over the slider', 'bigspy-ai-theme-wp') }, bind('pauseHover', true))) : null,
-					a.autoplay ? el(Toggle, Object.assign({ label: __('Progress bar (time until next slide)', 'bigspy-ai-theme-wp') }, bind('progress', true))) : null,
+					a.autoplay ? el(Select, {
+						label: __('Timer (time until next slide)', 'bigspy-ai-theme-wp'),
+						value: a.timer || (a.progress ? 'bar' : 'off'),
+						options: {
+							off: __('Off', 'bigspy-ai-theme-wp'),
+							bar: __('Progress bar – bottom', 'bigspy-ai-theme-wp'),
+							'bar-top': __('Progress bar – top', 'bigspy-ai-theme-wp'),
+							'bar-thick': __('Thick progress bar – bottom', 'bigspy-ai-theme-wp'),
+							'line-left': __('Vertical line – left edge', 'bigspy-ai-theme-wp'),
+							circle: __('Countdown ring – top right', 'bigspy-ai-theme-wp'),
+							dot: __('Active dot fills up', 'bigspy-ai-theme-wp'),
+							number: __('Slide number 01 / 05 with line', 'bigspy-ai-theme-wp')
+						},
+						onChange: function (v) { props.setAttributes({ timer: v, progress: false }); }
+					}) : null,
+					a.autoplay && a.timer === 'dot' && !a.dots ? el('p', { className: 'components-base-control__help' }, __('Turn on dots to see this timer.', 'bigspy-ai-theme-wp')) : null,
 					el(Toggle, Object.assign({ label: __('Loop', 'bigspy-ai-theme-wp') }, bind('loop', true))),
 					el(Range, Object.assign({ label: __('Same height for all slides – desktop (px, 0 = each slide its own)', 'bigspy-ai-theme-wp'), help: __('Every slide gets this height and its image stretches and crops to fill it, so the slider never jumps between tall and short slides.', 'bigspy-ai-theme-wp'), max: 1200, step: 10, reset: 0 }, bind('slideHeightD'))),
 					a.slideHeightD ? el(Range, Object.assign({ label: __('Same height – tablet (px, 0 = as desktop)', 'bigspy-ai-theme-wp'), max: 1200, step: 10, reset: 0 }, bind('slideHeightT'))) : null,
