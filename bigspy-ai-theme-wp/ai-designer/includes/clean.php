@@ -18,7 +18,7 @@ function bst_aid_strip_label( $text ) {
 /** Remove one pair of quotes wrapping the whole text. */
 function bst_aid_strip_quotes( $text ) {
 	$text = trim( (string) $text );
-	if ( preg_match( '/^(["“”„«\'‘’])(.+)(["“”»\'‘’])$/us', $text, $m ) && false === strpbrk( $m[2], '"“”' ) ) {
+	if ( preg_match( '/^(["“”„«\'‘’])(.+)(["“”»\'‘’])$/us', $text, $m ) && ! preg_match( '/["“”]/u', $m[2] ) ) { // Multibyte-safe: strpbrk() compares bytes.
 		return trim( $m[2] );
 	}
 	return $text;

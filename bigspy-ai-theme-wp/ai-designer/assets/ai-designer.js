@@ -429,7 +429,7 @@
 			renderTasks(); renderHead(); renderChat();
 		};
 
-		Promise.all([api('/settings'), api('/tasks')]).then(function (r) {
+		Promise.all([api('/settings?lite=1'), api('/tasks')]).then(function (r) {
 			settings = r[0]; tasks = r[1] || [];
 			build();
 			if (settings.ready && tasks.length) { open(tasks[0].id); }

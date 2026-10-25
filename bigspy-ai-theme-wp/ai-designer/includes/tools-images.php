@@ -311,7 +311,8 @@ function bst_aid_image_in_use( $id ) {
 		return true;
 	}
 	// phpcs:disable WordPress.DB.DirectDatabaseQuery
-	$meta = $wpdb->get_var( $wpdb->prepare( "SELECT meta_id FROM {$wpdb->postmeta} WHERE (meta_key = '_thumbnail_id' AND meta_value = %s) OR (meta_key = '_product_image_gallery' AND FIND_IN_SET(%s, meta_value)) LIMIT 1", (string) $id, (string) $id ) );
+	// Portable SQL (no FIND_IN_SET) so it also works on SQLite hosts.
+	$meta = $wpdb->get_var( $wpdb->prepare( "SELECT meta_id FROM {$wpdb->postmeta} WHERE (meta_key = '_thumbnail_id' AND meta_value = %s) OR (meta_key = '_product_image_gallery' AND (meta_value = %s OR meta_value LIKE %s OR meta_value LIKE %s OR meta_value LIKE %s)) LIMIT 1", (string) $id, (string) $id, $id . ',%', '%,' . $id, '%,' . $id . ',%' ) );
 	if ( $meta ) {
 		return true;
 	}

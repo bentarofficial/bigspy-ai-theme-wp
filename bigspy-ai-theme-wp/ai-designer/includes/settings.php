@@ -176,7 +176,9 @@ function bst_aid_rest_settings( $request = null ) {
 		'allowFallback' => (bool) $s['allow_fallback'],
 		'spentToday'    => bst_aid_spent_today(),
 	);
-	if ( $has_key && $s['connected'] ) {
+	// The workspace asks with lite=1: no calls to the API (models, balance) on every page load.
+	$lite = $request instanceof WP_REST_Request && $request->get_param( 'lite' );
+	if ( $has_key && $s['connected'] && ! $lite ) {
 		$models          = bst_aid_models( $request instanceof WP_REST_Request && $request->get_param( 'refresh' ) );
 		$data['models']  = $models;
 		$data['balance'] = bst_aid_balance();

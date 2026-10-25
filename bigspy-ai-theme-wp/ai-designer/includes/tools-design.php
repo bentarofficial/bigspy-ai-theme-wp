@@ -39,6 +39,11 @@ function bst_aid_block_parents() {
 	);
 }
 
+/** WordPress core blocks the designer may use (patterns mix them into BIGSPY sections). */
+function bst_aid_core_blocks() {
+	return array( 'core/paragraph', 'core/heading', 'core/list', 'core/list-item', 'core/buttons', 'core/button', 'core/image', 'core/spacer', 'core/separator', 'core/group', 'core/columns', 'core/column', 'core/quote', 'core/html', 'core/shortcode', 'core/table', 'core/details' );
+}
+
 /** Registered BIGSPY block types the user has not switched off. */
 function bst_aid_block_types() {
 	$off = function_exists( 'bst_disabled_blocks' ) ? (array) bst_disabled_blocks() : array();
@@ -122,6 +127,13 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 		if ( '' !== $name && false === strpos( $name, '/' ) ) {
 			$name = 'bst/' . $name;
 		}
+		if ( 0 === strpos( $name, 'core/' ) ) {
+			$core = bst_aid_build_core_block( $name, $node, $where, $issues );
+			if ( $core ) {
+				$out[] = $core;
+			}
+			continue;
+		}
 		if ( ! isset( $types[ $name ] ) ) {
 			$issues['errors'][] = "$where: unknown or disabled block \"$name\". Use list_blocks.";
 			continue;
@@ -174,6 +186,62 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 	return $out;
 }
 
+/**
+ * A core block from the model tree. Blocks read with get_page / get_pattern carry their
+ * exact markup in "raw" and are kept as they are; new ones are made from "html" (paragraph,
+ * heading with attrs.level, list, html, shortcode).
+ */
+function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
+	if ( ! in_array( $name, bst_aid_core_blocks(), true ) ) {
+		$issues['errors'][] = "$where: core block \"$name\" is not allowed. Use a BIGSPY block.";
+		return null;
+	}
+	if ( ! empty( $node['raw'] ) ) {
+		$parsed = parse_blocks( (string) $node['raw'] );
+		foreach ( $parsed as $b ) {
+			if ( ( $b['blockName'] ?? '' ) === $name ) {
+				return $b;
+			}
+		}
+		$issues['errors'][] = "$where: the raw markup of $name could not be read; send it again unchanged or use html.";
+		return null;
+	}
+	$html  = (string) ( $node['html'] ?? '' );
+	$attrs = is_array( $node['attrs'] ?? null ) ? $node['attrs'] : array();
+	switch ( $name ) {
+		case 'core/heading':
+			$level = max( 1, min( 6, (int) ( $attrs['level'] ?? 2 ) ) );
+			$text  = bst_aid_clean_heading( wp_strip_all_tags( $html, false ) === $html ? $html : preg_replace( '#^<h[1-6][^>]*>(.*)</h[1-6]>$#is', '$1', trim( $html ) ) );
+			$html  = '<h' . $level . ' class="wp-block-heading">' . wp_kses_post( $text ) . '</h' . $level . '>';
+			$attrs = 2 === $level ? array() : array( 'level' => $level );
+			break;
+		case 'core/paragraph':
+			$text = preg_replace( '#^<p[^>]*>(.*)</p>$#is', '$1', trim( $html ) );
+			$html = '<p>' . wp_kses_post( bst_aid_md_inline( $text ) ) . '</p>';
+			$attrs = array();
+			break;
+		case 'core/html':
+			$html  = bst_aid_clean_code( $html );
+			$attrs = array();
+			break;
+		case 'core/shortcode':
+			$html  = sanitize_text_field( $html );
+			$attrs = array();
+			break;
+		case 'core/spacer':
+		case 'core/separator':
+			$parsed = parse_blocks( 'core/spacer' === $name ? '<!-- wp:spacer --><div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div><!-- /wp:spacer -->' : '<!-- wp:separator --><hr class="wp-block-separator has-alpha-channel-opacity"/><!-- /wp:separator -->' );
+			return $parsed[0] ?? null;
+		default:
+			// Lists, quotes, tables, groups…: easiest as clean HTML in a Custom HTML block.
+			$issues['warnings'][] = "$where: $name was saved as a Custom HTML block; prefer BIGSPY blocks (bst/text, bst/buttons…).";
+			$name  = 'core/html';
+			$html  = wp_kses_post( bst_aid_clean_html( $html ) );
+			$attrs = array();
+	}
+	return array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => $html, 'innerContent' => array( $html ) );
+}
+
 /** Block markup from a model tree, or WP_Error with the problems. */
 function bst_aid_tree_to_markup( $tree ) {
 	$issues = array( 'errors' => array(), 'warnings' => array() );
@@ -202,8 +270,13 @@ function bst_aid_compact_blocks( $blocks ) {
 		if ( ! empty( $b['attrs'] ) ) {
 			$node['attrs'] = $b['attrs'];
 		}
-		if ( 0 !== strpos( $b['blockName'], 'bst/' ) && '' !== trim( (string) $b['innerHTML'] ) ) {
-			$node['html'] = mb_substr( trim( wp_strip_all_tags( $b['innerHTML'] ) ), 0, 400 );
+		if ( 0 !== strpos( $b['blockName'], 'bst/' ) ) {
+			// Core blocks: keep the exact markup ("raw") so they can be sent back unchanged.
+			$node['raw']  = serialize_block( $b );
+			$node['text'] = mb_substr( trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( render_block( $b ) ) ) ), 0, 300 );
+			unset( $node['attrs'] );
+			$out[] = $node;
+			continue;
 		}
 		if ( ! empty( $b['innerBlocks'] ) ) {
 			$node['inner'] = bst_aid_compact_blocks( $b['innerBlocks'] );
@@ -257,8 +330,14 @@ function bst_aid_undo_task( $task ) {
 			case 'menu':
 				bst_aid_restore_menu( $s['old'] );
 				break;
+			case 'menu_created':
+				if ( wp_get_nav_menu_object( (int) $s['key'] ) ) {
+					wp_delete_nav_menu( (int) $s['key'] ); // Only a menu this task created.
+				}
+				break;
 			case 'post':
-				$rev = wp_get_post_revision( (int) $s['old'] );
+				$rev_id = (int) $s['old'];
+				$rev    = wp_get_post_revision( $rev_id );
 				if ( $rev ) {
 					wp_restore_post_revision( $rev->ID );
 				}
@@ -412,7 +491,7 @@ add_filter(
 	function ( $tools ) {
 		$tree = array(
 			'type'        => 'array',
-			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style).',
+			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style). Core blocks from get_page / get_pattern have a "raw" field: keep it unchanged to keep the block, or replace it with { "name": "core/paragraph", "html": "…" } / { "name": "core/heading", "attrs": { "level": 2 }, "html": "…" } to change the text.',
 			'items'       => array( 'type' => 'object' ),
 		);
 		$tools['list_blocks']   = array(
@@ -938,6 +1017,7 @@ function bst_aid_tool_set_menu( $a ) {
 		if ( is_wp_error( $menu_id ) ) {
 			return array( 'error' => $menu_id->get_error_message() );
 		}
+		bst_aid_snapshot( 'menu_created', (string) $menu_id, null ); // Undo removes a menu the task made.
 	}
 	bst_aid_add_menu_items( $menu_id, $a['items'] ?? array() );
 	$loc = (string) ( $a['location'] ?? '' );

@@ -359,7 +359,7 @@ function bst_aid_tool_create_post( $a ) {
 		array(
 			'post_type'    => 'post',
 			'post_title'   => sanitize_text_field( bst_aid_clean_plain( (string) $a['title'] ) ),
-			'post_content' => bst_aid_html_to_blocks( $a['content'] ?? '' ),
+			'post_content' => bst_aid_html_to_blocks( bst_aid_drop_title_heading( bst_aid_clean_html( (string) ( $a['content'] ?? '' ) ), bst_aid_clean_plain( (string) $a['title'] ) ) ),
 			'post_excerpt' => sanitize_textarea_field( bst_aid_clean_plain( (string) ( $a['excerpt'] ?? '' ) ) ),
 			'post_name'    => sanitize_title( (string) ( $a['slug'] ?? '' ) ),
 			'post_status'  => ( 'publish' === ( $a['status'] ?? '' ) && current_user_can( 'publish_posts' ) ) ? 'publish' : 'draft',
@@ -397,7 +397,7 @@ function bst_aid_tool_update_post( $a ) {
 		$data['post_title'] = sanitize_text_field( bst_aid_clean_plain( (string) $a['title'] ) );
 	}
 	if ( isset( $a['content'] ) ) {
-		$data['post_content'] = bst_aid_html_to_blocks( $a['content'] );
+		$data['post_content'] = bst_aid_html_to_blocks( bst_aid_drop_title_heading( bst_aid_clean_html( (string) $a['content'] ), isset( $a['title'] ) ? bst_aid_clean_plain( (string) $a['title'] ) : $p->post_title ) );
 	}
 	if ( isset( $a['excerpt'] ) ) {
 		$data['post_excerpt'] = sanitize_textarea_field( bst_aid_clean_plain( (string) $a['excerpt'] ) );
@@ -436,6 +436,34 @@ function bst_aid_tool_save_guidelines( $a ) {
 	return array( 'saved' => array_keys( $changes ), 'links' => array( array( 'label' => __( 'Guidelines', 'bigspy-ai-theme-wp' ), 'edit' => admin_url( 'admin.php?page=bst-ai-guidelines' ), 'view' => '' ) ) );
 }
 
+/**
+ * Price from the model: "120.000đ", "120,000 VND", "1.250.000", "99.5" → WooCommerce decimal.
+ * Groups of three digits after a dot or comma are thousands separators.
+ */
+function bst_aid_price( $value ) {
+	$v = preg_replace( '/[^0-9.,]/', '', (string) $value );
+	if ( '' === $v ) {
+		return '';
+	}
+	if ( preg_match( '/^\d{1,3}([.,]\d{3})+$/', $v ) ) {
+		$v = preg_replace( '/[.,]/', '', $v );
+	} elseif ( preg_match( '/^\d{1,3}([.,]\d{3})+[.,]\d{1,2}$/', $v ) ) {
+		$v = preg_replace( '/[.,](?=\d{3})/', '', $v );
+	}
+	return wc_format_decimal( str_replace( ',', '.', $v ) );
+}
+
+/** Drop a first heading that only repeats the title (the title is already the H1). */
+function bst_aid_drop_title_heading( $html, $title ) {
+	$norm = function ( $s ) {
+		return mb_strtolower( trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( (string) $s ) ) ) );
+	};
+	if ( preg_match( '/^\s*<h[1-6][^>]*>(.*?)<\/h[1-6]>/is', (string) $html, $m ) && $norm( $m[1] ) === $norm( $title ) ) {
+		return substr( (string) $html, strlen( $m[0] ) );
+	}
+	return $html;
+}
+
 /** Apply product fields to a WC_Product. */
 function bst_aid_fill_product( $prod, $a ) {
 	if ( isset( $a['name'] ) ) {
@@ -443,7 +471,7 @@ function bst_aid_fill_product( $prod, $a ) {
 	}
 	foreach ( array( 'regular_price', 'sale_price' ) as $k ) {
 		if ( isset( $a[ $k ] ) ) {
-			$v = '' === trim( (string) $a[ $k ] ) ? '' : wc_format_decimal( preg_replace( '/[^0-9.,]/', '', (string) $a[ $k ] ) );
+			$v = bst_aid_price( $a[ $k ] );
 			'regular_price' === $k ? $prod->set_regular_price( $v ) : $prod->set_sale_price( $v );
 		}
 	}
