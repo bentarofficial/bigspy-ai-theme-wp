@@ -71,6 +71,9 @@ function bst_show_title() {
 	} elseif ( is_page() && ! bst_mod( 'page_title_h1' ) && ! ( function_exists( 'is_woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) ) {
 		// Page names are only names: the H1 is whatever heading the user puts in the content (like the homepage).
 		$show = false;
+	} elseif ( function_exists( 'is_shop' ) && is_shop() && ! bst_mod( 'page_title_h1' ) && '' !== trim( (string) get_post_field( 'post_content', wc_get_page_id( 'shop' ) ) ) ) {
+		// The shop page has its own content, so its heading block is the H1 (same rule as pages).
+		$show = false;
 	} elseif ( '1' === bst_post_option( 'hide_title' ) ) {
 		$show = false;
 	} else {
