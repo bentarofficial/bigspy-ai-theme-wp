@@ -4,6 +4,12 @@ return array(
 	'plural-forms' => 'nplurals=1; plural=0;',
 	'language' => 'vi',
 	'messages' => array(
+		'Square 1:1' => 'Hình vuông 1:1',
+		'Portrait 3:4 (fashion)' => 'Chân dung 3:4 (thời trang)',
+		'Landscape 4:3' => 'Phong cảnh 4:3',
+		'Widescreen 16:9 (banners)' => 'Màn ảnh rộng 16:9 (banner)',
+		'Landscape 3:2' => 'Phong cảnh 3:2',
+		'Portrait 2:3 (books, posters)' => 'Chân dung 2:3 (sách, poster)',
 		'$119' => '2.900.000đ',
 		'$149' => '2.490.000đ',
 		'$159' => '3.900.000đ',

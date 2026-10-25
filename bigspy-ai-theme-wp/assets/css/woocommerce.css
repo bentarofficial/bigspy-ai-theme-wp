@@ -129,6 +129,13 @@ ul.products li.bs-product {
 	transition: transform .7s cubic-bezier(.2, .7, .2, 1), opacity .45s ease;
 }
 
+.bs-product__media.bs-ratio--1-1 { aspect-ratio: 1 / 1; }
+.bs-product__media.bs-ratio--3-4 { aspect-ratio: 3 / 4; }
+.bs-product__media.bs-ratio--4-3 { aspect-ratio: 4 / 3; }
+.bs-product__media.bs-ratio--3-2 { aspect-ratio: 3 / 2; }
+.bs-product__media.bs-ratio--16-9 { aspect-ratio: 16 / 9; }
+.bs-product__media.bs-ratio--2-3 { aspect-ratio: 2 / 3; }
+
 .bs-ratio--auto .bs-product__img {
 	height: auto;
 }

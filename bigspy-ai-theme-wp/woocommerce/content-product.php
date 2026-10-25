@@ -42,7 +42,7 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 }
 
 $bst_link     = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
-$bst_ratio    = bst_choice( bst_mod( 'product_image_ratio' ), array( '1-1', '3-4', '4-3', 'auto' ), '1-1' );
+$bst_ratio    = bst_choice( bst_mod( 'product_image_ratio' ), array( '1-1', '3-4', '4-3', '3-2', '16-9', '2-3', 'auto' ), '1-1' );
 $bst_button   = bst_choice( bst_mod( 'product_button' ), array( 'always', 'hover', 'icon', 'none' ), 'always' );
 $bst_catalog  = (bool) bst_mod( 'catalog_mode' );
 $bst_image_id = $product->get_image_id();

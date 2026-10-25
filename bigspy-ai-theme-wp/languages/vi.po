@@ -3331,3 +3331,21 @@ msgstr "Gom CSS tạo tự động thành file có cache"
 
 msgid "Customizer colors, fonts and layout CSS go into a file the browser caches, instead of being repeated in every page."
 msgstr "CSS màu, font và bố cục từ Customizer được ghi vào file để trình duyệt lưu cache, thay vì lặp lại trong mọi trang."
+
+msgid "Square 1:1"
+msgstr "Hình vuông 1:1"
+
+msgid "Portrait 3:4 (fashion)"
+msgstr "Chân dung 3:4 (thời trang)"
+
+msgid "Landscape 4:3"
+msgstr "Phong cảnh 4:3"
+
+msgid "Widescreen 16:9 (banners)"
+msgstr "Màn ảnh rộng 16:9 (banner)"
+
+msgid "Landscape 3:2"
+msgstr "Phong cảnh 3:2"
+
+msgid "Portrait 2:3 (books, posters)"
+msgstr "Chân dung 2:3 (sách, poster)"
