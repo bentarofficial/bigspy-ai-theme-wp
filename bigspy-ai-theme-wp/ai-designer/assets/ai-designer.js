@@ -103,6 +103,7 @@
 			var opt = function (m) {
 				var label = m.name + (m.id !== m.name ? ' (' + m.id + ')' : '');
 				if (showPrice && (m.input || m.output)) { label += ' – $' + m.input + ' / $' + m.output; }
+				if (m.price) { label += ' – ' + sprintf(__('$%s per image', T), m.price); }
 				if (m.free) { label += ' – ' + __('free tier', T); }
 				return h('option', { value: m.id, selected: m.id === value, text: label });
 			};
@@ -144,6 +145,30 @@
 					var image = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.image || [], state.imageModel, false));
 					var bTask = h('input', { type: 'number', min: '0', step: '0.5', class: 'small-text', value: state.budgetTask });
 					var bDay = h('input', { type: 'number', min: '0', step: '1', class: 'small-text', value: state.budgetDay });
+					var testBox = h('div', { class: 'bst-aid-test' });
+					var showTest = function (r) {
+						testBox.innerHTML = '';
+						if (r && r.error) { testBox.appendChild(h('div', { class: 'notice notice-error inline' }, h('p', { text: r.error }))); return; }
+						if (r && r.status === 'pending') {
+							testBox.appendChild(h('p', { class: 'bst-aid-working' }, [h('span', { class: 'spinner is-active' }), __('Still creating the image…', T)]));
+							api('/images/job', 'POST', { job_id: r.job_id }).then(showTest).catch(function (e) { showTest({ error: e.message }); });
+							return;
+						}
+						testBox.appendChild(h('div', { class: 'bst-aid-test-ok' }, [
+							h('a', { href: r.url, target: '_blank', rel: 'noopener' }, h('img', { src: r.medium || r.url, alt: r.alt || '' })),
+							h('div', null, [
+								h('p', null, h('strong', { text: __('ImageGen works.', T) })),
+								h('p', { class: 'description', text: sprintf(__('Saved to the Media Library: %1$s × %2$s px, with title, alt text and caption.', T), r.width, r.height) }),
+								h('p', null, [h('a', { href: (r.edit || ('post.php?post=' + r.id + '&action=edit')), target: '_blank', rel: 'noopener', text: __('Open in the Media Library', T) })])
+							])
+						]));
+					};
+					var testBtn = h('button', { class: 'button', disabled: busy || !state.imageModel, title: state.imageModel ? '' : __('Save an image model first.', T), onclick: function () {
+						testBtn.disabled = true;
+						testBox.innerHTML = '';
+						testBox.appendChild(h('p', { class: 'bst-aid-working' }, [h('span', { class: 'spinner is-active' }), __('Creating a test image… this takes about 10–40 seconds.', T)]));
+						api('/images/test', 'POST').then(function (r) { testBtn.disabled = false; showTest(r); }).catch(function (e) { testBtn.disabled = false; showTest({ error: e.message }); });
+					}, text: __('Test ImageGen', T) });
 					kids.push(h('div', { class: 'bst-aid-card' }, [
 						h('h2', { text: __('2. Models and budget', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Text model (writes, designs and calls the tools)', T) }), text]),
@@ -154,8 +179,12 @@
 						h('p', null, [
 							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value }); }, text: __('Save', T) }),
 							' ',
-							h('button', { class: 'button', disabled: busy, onclick: function () { load(true); }, text: __('Refresh model list', T) })
-						])
+							h('button', { class: 'button', disabled: busy, onclick: function () { load(true); }, text: __('Refresh model list', T) }),
+							' ',
+							testBtn
+						]),
+						h('p', { class: 'description', text: __('Test ImageGen creates one low-quality image with the saved image model (a few cents at most) and adds it to the Media Library, so you can check the whole image path before a real task.', T) }),
+						testBox
 					]));
 				}
 			}

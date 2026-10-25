@@ -146,3 +146,9 @@
 .bst-aid [hidden] { display: none !important; }
 .bst-aid-input { box-sizing: border-box; font-family: inherit; }
 .bst-aid-tasks { padding: 0; list-style: none; }
+
+/* Test ImageGen */
+.bst-aid-test { margin-top: 12px; }
+.bst-aid-test-ok { display: flex; gap: 16px; align-items: center; padding: 12px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--aid-r); }
+.bst-aid-test-ok img { width: 140px; height: 105px; object-fit: cover; border-radius: 12px; box-shadow: var(--aid-shadow); }
+.bst-aid-test-ok p { margin: 0 0 6px; }

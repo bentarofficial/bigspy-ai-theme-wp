@@ -3796,3 +3796,39 @@ msgstr "Website"
 
 msgid "AI-generated image (%s) – BIGSPY AI Designer."
 msgstr "Ảnh tạo bằng AI (%s) – BIGSPY AI Designer."
+
+msgid "$%s per image"
+msgstr "$%s mỗi ảnh"
+
+msgid "Still creating the image…"
+msgstr "Vẫn đang tạo ảnh…"
+
+msgid "ImageGen works."
+msgstr "ImageGen hoạt động tốt."
+
+msgid "Saved to the Media Library: %1$s × %2$s px, with title, alt text and caption."
+msgstr "Đã lưu vào Thư viện Media: %1$s × %2$s px, có tiêu đề, alt và chú thích."
+
+msgid "Open in the Media Library"
+msgstr "Mở trong Thư viện Media"
+
+msgid "Save an image model first."
+msgstr "Hãy lưu model hình ảnh trước."
+
+msgid "Creating a test image… this takes about 10–40 seconds."
+msgstr "Đang tạo ảnh thử… mất khoảng 10–40 giây."
+
+msgid "Test ImageGen"
+msgstr "Thử ImageGen"
+
+msgid "Test ImageGen creates one low-quality image with the saved image model (a few cents at most) and adds it to the Media Library, so you can check the whole image path before a real task."
+msgstr "Thử ImageGen tạo một ảnh chất lượng thấp bằng model hình ảnh đã lưu (tối đa vài cent) và đưa vào Thư viện Media, để bạn kiểm tra toàn bộ quy trình tạo ảnh trước khi giao việc thật."
+
+msgid "BIGSPY AI Designer test image: a modern desk with a laptop"
+msgstr "Ảnh thử BIGSPY AI Designer: bàn làm việc hiện đại với laptop"
+
+msgid "BIGSPY AI Designer test image"
+msgstr "Ảnh thử BIGSPY AI Designer"
+
+msgid "Test image created by ImageGen"
+msgstr "Ảnh thử do ImageGen tạo"

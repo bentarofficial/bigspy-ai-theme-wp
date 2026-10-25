@@ -104,15 +104,21 @@ function bst_aid_models( $refresh = false ) {
 			'recommended' => in_array( (string) $m['id'], bst_aid_recommended_text(), true ),
 		);
 	}
-	$image = bst_aid_http( 'GET', '/models?type=image', null, false );
+	$image   = bst_aid_http( 'GET', '/models?type=image', null, false );
+	$svg_ok  = in_array( 'image/svg+xml', get_allowed_mime_types(), true );
 	foreach ( (array) ( $image['data']['data'] ?? array() ) as $m ) {
 		if ( empty( $m['id'] ) ) {
+			continue;
+		}
+		// SVG results cannot be saved to the Media Library unless the site allows SVG uploads.
+		if ( ! $svg_ok && false !== stripos( (string) $m['id'], 'vector' ) ) {
 			continue;
 		}
 		$out['image'][] = array(
 			'id'          => (string) $m['id'],
 			'name'        => (string) ( $m['name'] ?? $m['id'] ),
 			'free'        => ! empty( $m['free_tier'] ),
+			'price'       => (float) ( $m['pricing']['per_image'] ?? $m['pricing']['image'] ?? $m['list_price'] ?? 0 ),
 			'recommended' => in_array( (string) $m['id'], array( 'gpt-image-2', 'gpt-image-2.5-flare' ), true ),
 		);
 	}

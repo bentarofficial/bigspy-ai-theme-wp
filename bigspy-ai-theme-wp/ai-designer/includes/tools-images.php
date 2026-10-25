@@ -190,7 +190,9 @@ function bst_aid_wait_image( $job, $seconds ) {
 			}
 			if ( in_array( $status, array( 'failed', 'refunded', 'expired' ), true ) ) {
 				delete_transient( 'bst_aid_job_' . md5( $job ) );
-				return array( 'error' => 'The image could not be created (' . $status . '). ' . (string) ( $r['data']['error']['message'] ?? 'Try a different description.' ) );
+				$err = $r['data']['error'] ?? '';
+				$err = is_array( $err ) ? (string) ( $err['message'] ?? $err['code'] ?? '' ) : (string) $err;
+				return array( 'error' => 'The image could not be created (' . $status . '). ' . ( '' !== $err ? $err : 'Try a different description.' ) );
 			}
 		}
 		sleep( 2 );
@@ -207,12 +209,36 @@ function bst_aid_wait_image( $job, $seconds ) {
 	return bst_aid_import_image( $url, $meta['args'], $meta['model'], $meta['purpose'] );
 }
 
+/**
+ * Download a result file to a temporary path. Kyma-hosted files are public, but if the host
+ * answers 401/403 the request is repeated with the API key (only for kymaapi.com).
+ *
+ * @return string|WP_Error
+ */
+function bst_aid_download( $url ) {
+	$tmp = download_url( $url, 90 );
+	if ( ! is_wp_error( $tmp ) ) {
+		return $tmp;
+	}
+	$host = (string) wp_parse_url( $url, PHP_URL_HOST );
+	if ( ! preg_match( '/(^|\.)kymaapi\.com$/i', $host ) ) {
+		return $tmp;
+	}
+	$file = wp_tempnam( 'bst-aid-image' );
+	$res  = wp_remote_get( $url, array( 'timeout' => 90, 'stream' => true, 'filename' => $file, 'headers' => array( 'Authorization' => 'Bearer ' . bst_aid_key() ) ) );
+	if ( is_wp_error( $res ) || 200 !== (int) wp_remote_retrieve_response_code( $res ) ) {
+		wp_delete_file( $file ); // Temporary file only.
+		return is_wp_error( $res ) ? $res : new WP_Error( 'download', 'HTTP ' . wp_remote_retrieve_response_code( $res ) );
+	}
+	return $file;
+}
+
 /** Download an image URL, convert to WebP, add to the Media Library with full SEO fields. */
 function bst_aid_import_image( $url, $a, $model, $purpose ) {
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 	require_once ABSPATH . 'wp-admin/includes/media.php';
 	require_once ABSPATH . 'wp-admin/includes/image.php';
-	$tmp = download_url( $url, 60 );
+	$tmp = bst_aid_download( $url );
 	if ( is_wp_error( $tmp ) ) {
 		return array( 'error' => 'Download failed: ' . $tmp->get_error_message() );
 	}
@@ -367,8 +393,35 @@ add_action(
 	'rest_api_init',
 	function () {
 		register_rest_route( bst_aid_rest_ns(), '/images/unused', array( 'methods' => 'GET', 'callback' => 'bst_aid_rest_unused_images', 'permission_callback' => 'bst_aid_rest_can_use' ) );
+		register_rest_route( bst_aid_rest_ns(), '/images/test', array( 'methods' => 'POST', 'callback' => 'bst_aid_rest_image_test', 'permission_callback' => 'bst_aid_rest_can_manage' ) );
+		register_rest_route( bst_aid_rest_ns(), '/images/job', array( 'methods' => 'POST', 'callback' => 'bst_aid_rest_image_job', 'permission_callback' => 'bst_aid_rest_can_manage' ) );
 	}
 );
+
+/** Settings → Test ImageGen: one real image with the chosen model, into the Media Library. */
+function bst_aid_rest_image_test() {
+	if ( '' === bst_aid_key() || ! bst_aid_settings()['connected'] ) {
+		return new WP_Error( 'bst_aid_ready', __( 'The API is not connected. Connect it in AI Designer settings.', 'bigspy-ai-theme-wp' ), array( 'status' => 400 ) );
+	}
+	@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	$r = bst_aid_tool_imagegen(
+		array(
+			'prompt'   => 'A bright, modern workspace desk with a laptop showing a colorful website design, a small plant and a coffee cup, soft morning light, clean minimal style, photo realistic.',
+			'purpose'  => 'card',
+			'quality'  => 'low',
+			'alt'      => __( 'BIGSPY AI Designer test image: a modern desk with a laptop', 'bigspy-ai-theme-wp' ),
+			'title'    => __( 'BIGSPY AI Designer test image', 'bigspy-ai-theme-wp' ),
+			'caption'  => __( 'Test image created by ImageGen', 'bigspy-ai-theme-wp' ),
+			'filename' => 'bigspy-ai-designer-test',
+		)
+	);
+	return rest_ensure_response( $r );
+}
+
+function bst_aid_rest_image_job( WP_REST_Request $request ) {
+	@set_time_limit( 90 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	return rest_ensure_response( bst_aid_wait_image( (string) $request->get_param( 'job_id' ), 40 ) );
+}
 
 function bst_aid_rest_unused_images() {
 	$ids = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 200, 'fields' => 'ids', 'meta_key' => '_bst_aid_generated' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
