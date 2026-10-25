@@ -267,9 +267,11 @@ function bst_handle_export() {
 	}
 	check_admin_referer( 'bst_export' );
 
+	// Export the value each option really has on this site: saved, or its default (which can
+	// come from imported Flatsome settings). Saved-only exports missed colors, fonts and more.
 	$options = array();
-	foreach ( array_keys( bst_defaults() ) as $key ) {
-		$value = get_theme_mod( $key, null );
+	foreach ( bst_defaults() as $key => $default ) {
+		$value = get_theme_mod( $key, $default );
 		if ( null !== $value ) {
 			$options[ $key ] = $value;
 		}
@@ -305,6 +307,10 @@ function bst_sanitize_imported( $key, $value, $default ) {
 	if ( 0 === strpos( $key, 'scripts_' ) ) {
 		return current_user_can( 'unfiltered_html' ) ? (string) $value : null;
 	}
+	// Code fields (banner code, HTML blocks…) keep <style> and <script> like the Customizer does.
+	if ( in_array( $key, bst_code_option_keys(), true ) ) {
+		return is_scalar( $value ) ? bst_sanitize_code( (string) $value ) : $default;
+	}
 	if ( is_bool( $default ) ) {
 		return (bool) $value;
 	}
@@ -319,6 +325,17 @@ function bst_sanitize_imported( $key, $value, $default ) {
 		return sanitize_hex_color( $value ) ? sanitize_hex_color( $value ) : $default;
 	}
 	return wp_kses_post( $value );
+}
+
+/** Option keys edited as code in the Customizer. */
+function bst_code_option_keys() {
+	$keys = array( 'header_banner_desktop', 'header_banner_mobile' );
+	foreach ( bst_customizer_fields() as $field ) {
+		if ( in_array( $field['type'] ?? '', array( 'code', 'html' ), true ) && ! empty( $field['id'] ) ) {
+			$keys[] = $field['id'];
+		}
+	}
+	return $keys;
 }
 
 function bst_handle_import() {
