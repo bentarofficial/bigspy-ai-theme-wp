@@ -72,6 +72,7 @@ function bst_aid_task_summary( $p ) {
 		'modified' => mysql_to_rfc3339( $p->post_modified_gmt ),
 		'cost'     => round( (float) bst_aid_task_get( $p->ID, '_bst_aid_cost', 0 ), 4 ),
 		'running'  => ! empty( bst_aid_task_get( $p->ID, '_bst_aid_run' )['active'] ),
+		'canUndo'  => (bool) ( bst_aid_task_get( $p->ID, '_bst_aid_snapshots' ) || bst_aid_task_get( $p->ID, '_bst_aid_created' ) ),
 	);
 }
 
@@ -94,6 +95,7 @@ add_action(
 		register_rest_route( $ns, $id . '/send', array( 'methods' => 'POST', 'callback' => 'bst_aid_rest_task_send', 'permission_callback' => 'bst_aid_rest_can_use' ) );
 		register_rest_route( $ns, $id . '/step', array( 'methods' => 'POST', 'callback' => 'bst_aid_rest_task_step', 'permission_callback' => 'bst_aid_rest_can_use' ) );
 		register_rest_route( $ns, $id . '/stop', array( 'methods' => 'POST', 'callback' => 'bst_aid_rest_task_stop', 'permission_callback' => 'bst_aid_rest_can_use' ) );
+		register_rest_route( $ns, $id . '/undo', array( 'methods' => 'POST', 'callback' => 'bst_aid_rest_task_undo', 'permission_callback' => 'bst_aid_rest_can_use' ) );
 	}
 );
 
@@ -120,6 +122,20 @@ function bst_aid_rest_task_read( WP_REST_Request $r ) {
 		return new WP_Error( 'bst_aid_task', __( 'Task not found.', 'bigspy-ai-theme-wp' ), array( 'status' => 404 ) );
 	}
 	return rest_ensure_response( array( 'task' => bst_aid_task_summary( $p ), 'log' => bst_aid_task_get( $p->ID, '_bst_aid_log' ), 'effort' => (string) ( bst_aid_task_get( $p->ID, '_bst_aid_run' )['effort'] ?? 'medium' ) ) );
+}
+
+/** Undo everything the task changed: settings, CSS, logo, menus, header, edited pages; trash what it created. */
+function bst_aid_rest_task_undo( WP_REST_Request $r ) {
+	$p = bst_aid_task( $r['id'] );
+	if ( ! $p ) {
+		return new WP_Error( 'bst_aid_task', __( 'Task not found.', 'bigspy-ai-theme-wp' ), array( 'status' => 404 ) );
+	}
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		return new WP_Error( 'bst_aid_cap', __( 'You are not allowed to do this.', 'bigspy-ai-theme-wp' ), array( 'status' => 403 ) );
+	}
+	$done  = function_exists( 'bst_aid_undo_task' ) ? bst_aid_undo_task( $p->ID ) : array();
+	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'info', 'text' => $done ? sprintf( /* translators: %d: number of changes */ __( 'Undone: %d changes restored. Created pages, posts and products were moved to the trash; generated images stay in the Media Library.', 'bigspy-ai-theme-wp' ), count( $done ) ) : __( 'Nothing to undo in this task.', 'bigspy-ai-theme-wp' ) ) );
+	return rest_ensure_response( array( 'events' => array( $event ), 'task' => bst_aid_task_summary( get_post( $p->ID ) ) ) );
 }
 
 function bst_aid_rest_task_rename( WP_REST_Request $r ) {
@@ -274,21 +290,26 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		return bst_aid_finish( $id, 'done', $events );
 	}
 
+	$GLOBALS['bst_aid_task_id'] = $id; // Tools record snapshots and spending on this task.
 	foreach ( $calls as $call ) {
 		$name   = (string) $call['function']['name'];
 		$args   = json_decode( (string) ( $call['function']['arguments'] ?? '{}' ), true );
 		$result = bst_aid_run_tool( $name, is_array( $args ) ? $args : array() );
 		$links  = $result['links'] ?? array();
 		unset( $result['links'] );
-		$events[] = bst_aid_task_log(
-			$id,
-			array(
-				'kind'  => isset( $result['error'] ) && 'needs_confirmation' !== $result['error'] ? 'tool-error' : 'tool',
-				'tool'  => $name,
-				'text'  => isset( $result['error'] ) ? (string) ( $result['message'] ?? $result['error'] ) : '',
-				'links' => $links,
-			)
+		$event = array(
+			'kind'  => isset( $result['error'] ) && 'needs_confirmation' !== $result['error'] ? 'tool-error' : 'tool',
+			'tool'  => $name,
+			'text'  => isset( $result['error'] ) ? (string) ( $result['message'] ?? $result['error'] ) : ( 'pending' === ( $result['status'] ?? '' ) ? (string) $result['message'] : '' ),
+			'links' => $links,
 		);
+		if ( 'show_palette' === $name && ! empty( $result['palettes'] ) ) {
+			$event['palettes'] = $result['palettes'];
+		}
+		if ( ! empty( $result['preview'] ) ) {
+			$event['preview'] = $result['preview'];
+		}
+		$events[] = bst_aid_task_log( $id, $event );
 		$msgs[] = array( 'role' => 'tool', 'tool_call_id' => (string) ( $call['id'] ?? '' ), 'content' => mb_substr( wp_json_encode( $result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ), 0, 12000 ) );
 	}
 	bst_aid_task_set( $id, '_bst_aid_messages', $msgs );

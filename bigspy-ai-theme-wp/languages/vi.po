@@ -3694,3 +3694,105 @@ msgstr "Giọng văn: thân thiện, rõ ràng, chuyên nghiệp; viết như ng
 
 msgid "Style: clean, modern, realistic photo look, soft natural light.\nColors: follow the website colors.\nPeople: Asian people when people appear; natural expressions.\nText on images: none, unless asked.\nRatio: 16:9 for banners, 4:3 for cards, 1:1 for products.\nAvoid: real celebrities, other brands' logos, watermarks, distorted hands or faces."
 msgstr "Phong cách: sạch sẽ, hiện đại, giống ảnh chụp thật, ánh sáng tự nhiên dịu.\nMàu sắc: theo màu của website.\nCon người: người châu Á khi có người; biểu cảm tự nhiên.\nChữ trên ảnh: không có, trừ khi được yêu cầu.\nTỉ lệ: 16:9 cho banner, 4:3 cho thẻ, 1:1 cho sản phẩm.\nTránh: người nổi tiếng có thật, logo thương hiệu khác, watermark, tay hoặc mặt bị méo."
+
+msgid "Checking…"
+msgstr "Đang kiểm tra…"
+
+msgid "%1$d of %2$d AI images are not used anywhere."
+msgstr "%1$d trên %2$d ảnh AI chưa được dùng ở đâu."
+
+msgid "Find unused AI images"
+msgstr "Tìm ảnh AI không dùng"
+
+msgid "AI images"
+msgstr "Ảnh AI"
+
+msgid "ImageGen never deletes media. Find generated images that no page, post, product or setting uses, open them and delete the ones you do not need."
+msgstr "ImageGen không bao giờ tự xoá ảnh. Hãy tìm các ảnh AI không được trang, bài viết, sản phẩm hay cài đặt nào dùng, mở ra và tự xoá những ảnh không cần."
+
+msgid "Reading the blocks"
+msgstr "Đọc danh sách block"
+
+msgid "Reading block options"
+msgstr "Đọc tuỳ chọn block"
+
+msgid "Looking at patterns"
+msgstr "Xem các mẫu section"
+
+msgid "Reading a pattern"
+msgstr "Đọc một mẫu section"
+
+msgid "Created a page"
+msgstr "Đã tạo trang"
+
+msgid "Reading a page"
+msgstr "Đọc trang"
+
+msgid "Updated a page"
+msgstr "Đã cập nhật trang"
+
+msgid "Reading theme settings"
+msgstr "Đọc cài đặt theme"
+
+msgid "Changed theme settings"
+msgstr "Đã đổi cài đặt theme"
+
+msgid "Set the logo"
+msgstr "Đã đặt logo"
+
+msgid "Reading menus"
+msgstr "Đọc menu"
+
+msgid "Saved a menu"
+msgstr "Đã lưu menu"
+
+msgid "Header layout"
+msgstr "Bố cục header"
+
+msgid "Color options"
+msgstr "Phương án màu"
+
+msgid "ImageGen created an image"
+msgstr "ImageGen đã tạo ảnh"
+
+msgid "ImageGen"
+msgstr "ImageGen"
+
+msgid "Optimized an image"
+msgstr "Đã tối ưu ảnh"
+
+msgid "Looking at the Media Library"
+msgstr "Xem Thư viện Media"
+
+msgid "Preview here"
+msgstr "Xem trước tại đây"
+
+msgid "Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash."
+msgstr "Hoàn tác mọi thay đổi của task này? Cài đặt theme, CSS, logo, menu, header và các trang đã sửa sẽ trở về như cũ; trang, bài viết và sản phẩm task đã tạo sẽ được chuyển vào thùng rác."
+
+msgid "Undo task"
+msgstr "Hoàn tác task"
+
+msgid "Close preview"
+msgstr "Đóng xem trước"
+
+msgid "Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY blocks."
+msgstr "Hãy cho tôi biết bạn cần gì: website hay trang mới, màu sắc và logo, bài viết, sản phẩm, hình ảnh… Tôi sẽ hỏi vài câu, trình bày kế hoạch, rồi dựng bản nháp bằng các block BIGSPY."
+
+msgid "Preview"
+msgstr "Xem trước"
+
+msgid "Undone: %d changes restored. Created pages, posts and products were moved to the trash; generated images stay in the Media Library."
+msgstr "Đã hoàn tác: khôi phục %d thay đổi. Trang, bài viết và sản phẩm đã tạo được chuyển vào thùng rác; ảnh đã tạo vẫn nằm trong Thư viện Media."
+
+msgid "Nothing to undo in this task."
+msgstr "Task này không có gì để hoàn tác."
+
+msgid "Today's budget of $%s is used up. Raise the limit in Settings or continue tomorrow."
+msgstr "Đã dùng hết ngân sách $%s của hôm nay. Tăng giới hạn trong Cài đặt hoặc tiếp tục vào ngày mai."
+
+msgid "Site"
+msgstr "Website"
+
+msgid "AI-generated image (%s) – BIGSPY AI Designer."
+msgstr "Ảnh tạo bằng AI (%s) – BIGSPY AI Designer."

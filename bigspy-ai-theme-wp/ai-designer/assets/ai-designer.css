@@ -66,3 +66,23 @@
 	.bst-aid-main { height: 75vh; }
 	.bst-aid-select { min-width: 0; width: 100%; }
 }
+
+/* Phase 2–3: palettes, thumbnails, preview pane */
+.bst-aid-thumb { width: 56px; height: 56px; object-fit: cover; border-radius: 4px; vertical-align: middle; }
+.bst-aid-palettes { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin: 0 0 14px; }
+.bst-aid-palette { padding: 10px; background: #fff; border: 1px solid var(--aid-line); border-radius: 8px; }
+.bst-aid-swatches { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.bst-aid-swatch { display: grid; justify-items: center; gap: 2px; width: 58px; font-size: 10px; text-align: center; }
+.bst-aid-swatch i { display: block; width: 40px; height: 40px; border: 1px solid rgba(0, 0, 0, .12); border-radius: 50%; }
+.bst-aid-swatch code { padding: 0; font-size: 10px; background: none; }
+.bst-aid-fonts { margin: 8px 0 0; font-size: 12px; color: #50575e; }
+.bst-aid-ws.has-preview { grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1fr); }
+.bst-aid-preview { display: flex; min-height: 0; overflow: hidden; background: #fff; border: 1px solid var(--aid-line); border-radius: 10px; }
+.bst-aid-preview[hidden] { display: none; }
+.bst-aid-frame { flex: 1; width: 100%; height: 100%; border: 0; }
+.bst-aid-unused-grid { display: grid; grid-template-columns: repeat(auto-fill, 72px); gap: 6px; }
+.bst-aid-unused-grid img { width: 72px; height: 72px; object-fit: cover; border-radius: 4px; }
+@media (max-width: 1280px) {
+	.bst-aid-ws.has-preview { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+	.bst-aid-ws.has-preview .bst-aid-side { display: none; }
+}

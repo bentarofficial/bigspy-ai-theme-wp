@@ -149,6 +149,23 @@
 					]));
 				}
 			}
+			if (state.hasKey) {
+				var unusedBox = h('div', { class: 'bst-aid-unused' }, h('button', { class: 'button', onclick: function () {
+					unusedBox.textContent = __('Checking…', T);
+					api('/images/unused').then(function (r) {
+						unusedBox.innerHTML = '';
+						unusedBox.appendChild(h('p', { text: sprintf(__('%1$d of %2$d AI images are not used anywhere.', T), r.unused.length, r.total) }));
+						unusedBox.appendChild(h('div', { class: 'bst-aid-unused-grid' }, r.unused.map(function (i) {
+							return h('a', { href: i.edit, target: '_blank', rel: 'noopener', title: i.title }, h('img', { src: i.thumb, alt: i.title }));
+						})));
+					}).catch(function (e) { unusedBox.textContent = e.message; });
+				}, text: __('Find unused AI images', T) }));
+				kids.push(h('div', { class: 'bst-aid-card' }, [
+					h('h2', { text: __('AI images', T) }),
+					h('p', { class: 'description', text: __('ImageGen never deletes media. Find generated images that no page, post, product or setting uses, open them and delete the ones you do not need.', T) }),
+					unusedBox
+				]));
+			}
 			kids.push(h('div', { class: 'bst-aid-card bst-aid-card--danger' }, [
 				h('h2', { text: __('Remove AI Designer data', T) }),
 				h('p', { class: 'description', text: __('Deletes the API key, settings, guidelines and all task history. Pages, posts and products already created stay.', T) }),
@@ -171,7 +188,13 @@
 			var map = {
 				site_info: __('Reading the site', T), list_content: __('Listing content', T), get_post: __('Reading content', T),
 				create_post: __('Created a post', T), update_post: __('Updated a post', T), create_product: __('Created a product', T),
-				update_product: __('Updated a product', T), save_guidelines: __('Saved the guidelines', T)
+				update_product: __('Updated a product', T), save_guidelines: __('Saved the guidelines', T),
+				list_blocks: __('Reading the blocks', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
+				get_pattern: __('Reading a pattern', T), create_page: __('Created a page', T), get_page: __('Reading a page', T), update_page: __('Updated a page', T),
+				get_settings: __('Reading theme settings', T), update_settings: __('Changed theme settings', T), set_logo: __('Set the logo', T),
+				custom_css: __('Additional CSS', T), get_menus: __('Reading menus', T), set_menu: __('Saved a menu', T), header_layout: __('Header layout', T),
+				show_palette: __('Color options', T), ImageGen: __('ImageGen created an image', T), image_status: __('ImageGen', T),
+				optimize_image: __('Optimized an image', T), list_media: __('Looking at the Media Library', T)
 			};
 			return map[name] || name;
 		};
@@ -183,17 +206,37 @@
 			}
 			if (ev.kind === 'tool' || ev.kind === 'tool-error') {
 				var links = (ev.links || []).map(function (l) {
-					return h('span', { class: 'bst-aid-links' }, [l.label ? h('strong', { text: l.label }) : null,
+					return h('span', { class: 'bst-aid-links' }, [
+						l.image ? h('a', { href: l.view, target: '_blank', rel: 'noopener' }, h('img', { class: 'bst-aid-thumb', src: l.image, alt: l.label || '' })) : null,
+						l.label ? h('strong', { text: l.label }) : null,
 						l.edit ? h('a', { href: l.edit, target: '_blank', rel: 'noopener', text: __('Edit', T) }) : null,
 						l.view ? h('a', { href: l.view, target: '_blank', rel: 'noopener', text: __('View', T) }) : null]);
 				});
-				return h('div', { class: 'bst-aid-tool' + (ev.kind === 'tool-error' ? ' is-error' : '') }, [h('span', { class: 'dashicons ' + (ev.kind === 'tool-error' ? 'dashicons-warning' : 'dashicons-yes-alt') }), h('span', { text: toolLabel(ev.tool) + (ev.text ? ': ' + ev.text : '') })].concat(links));
+				if (ev.preview) {
+					links.push(h('button', { type: 'button', class: 'button-link', onclick: function () { showPreview(ev.preview); }, text: __('Preview here', T) }));
+				}
+				var row = h('div', { class: 'bst-aid-tool' + (ev.kind === 'tool-error' ? ' is-error' : '') }, [h('span', { class: 'dashicons ' + (ev.kind === 'tool-error' ? 'dashicons-warning' : 'dashicons-yes-alt') }), h('span', { text: toolLabel(ev.tool) + (ev.text ? ': ' + ev.text : '') })].concat(links));
+				if (!ev.palettes) { return row; }
+				return h('div', null, [row, h('div', { class: 'bst-aid-palettes' }, ev.palettes.map(function (p) {
+					return h('div', { class: 'bst-aid-palette' }, [
+						h('strong', { text: p.name || '' }),
+						h('div', { class: 'bst-aid-swatches' }, Object.keys(p.colors || {}).map(function (role) {
+							return h('span', { class: 'bst-aid-swatch', title: role + ' ' + p.colors[role] }, [h('i', { style: 'background:' + p.colors[role] }), h('small', { text: role }), h('code', { text: p.colors[role] })]);
+						})),
+						p.fonts && (p.fonts.heading || p.fonts.body) ? h('p', { class: 'bst-aid-fonts', text: [p.fonts.heading, p.fonts.body].filter(Boolean).join(' / ') }) : null,
+						p.note ? h('p', { class: 'description', text: p.note }) : null
+					]);
+				}))]);
 			}
 			return h('div', { class: 'bst-aid-note' + (ev.kind === 'error' ? ' is-error' : ''), text: ev.text });
 		};
 		var scroll = function () { if (els.chat) { els.chat.scrollTop = els.chat.scrollHeight; } };
 		var addEvents = function (evs) {
-			(evs || []).forEach(function (ev) { log.push(ev); if (els.chat) { els.chat.insertBefore(eventNode(ev), els.working); } });
+			(evs || []).forEach(function (ev) {
+				log.push(ev);
+				if (els.chat) { els.chat.insertBefore(eventNode(ev), els.working); }
+				if (ev.preview) { showPreview(ev.preview); } // Show a page as soon as it is built or changed.
+			});
 			scroll();
 		};
 		var updateTask = function (t) {
@@ -230,6 +273,15 @@
 			els.head.innerHTML = '';
 			els.head.appendChild(h('strong', { class: 'bst-aid-title', text: current ? current.title : __('BIGSPY AI Designer', T) }));
 			if (current) { els.head.appendChild(h('span', { class: 'bst-aid-cost', text: sprintf(__('Task cost: %s', T), money(current.cost)) })); }
+			if (current && current.canUndo) {
+				els.head.appendChild(h('button', { type: 'button', class: 'button button-small', disabled: running, onclick: function () {
+					if (!window.confirm(__('Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash.', T))) { return; }
+					api('/tasks/' + current.id + '/undo', 'POST').then(function (r) { addEvents(r.events); updateTask(r.task); }).catch(function (e) { addEvents([{ kind: 'error', text: e.message }]); });
+				}, text: __('Undo task', T) }));
+			}
+			if (els.previewWrap && !els.previewWrap.hidden) {
+				els.head.appendChild(h('button', { type: 'button', class: 'button button-small', onclick: function () { showPreview(''); }, text: __('Close preview', T) }));
+			}
 			if (settings) { els.head.appendChild(h('span', { class: 'bst-aid-model', text: settings.textModel || '' })); }
 		};
 		var renderChat = function () {
@@ -237,7 +289,7 @@
 			if (!current) {
 				els.chat.appendChild(h('div', { class: 'bst-aid-welcome' }, [
 					h('h2', { text: __('Hello! I am your website designer.', T) }),
-					h('p', { text: __('Tell me what you need: a new post, products, content for a page… I will ask a few questions, show you the plan, then do it as drafts.', T) }),
+					h('p', { text: __('Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY blocks.', T) }),
 					h('button', { class: 'button button-primary', onclick: function () { newTask(); }, text: __('Start a new task', T) })
 				]));
 			} else {
@@ -263,6 +315,13 @@
 				if (d.task.running) { loop(); }
 				els.input.focus();
 			});
+		};
+		var showPreview = function (url) {
+			if (!els.previewWrap) { return; }
+			els.previewWrap.hidden = !url;
+			root.classList.toggle('has-preview', !!url);
+			if (url) { els.preview.src = url; }
+			renderHead();
 		};
 		var newTask = function () {
 			return api('/tasks', 'POST', {}).then(function (t) { tasks.unshift(t); open(t.id); return t; });
@@ -319,6 +378,9 @@
 				els.head, els.chat,
 				h('div', { class: 'bst-aid-composer' }, [els.input, h('div', { class: 'bst-aid-composer-bar' }, [h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
 			]));
+			els.preview = h('iframe', { class: 'bst-aid-frame', title: __('Preview', T) });
+			els.previewWrap = h('section', { class: 'bst-aid-preview', hidden: true }, [els.preview]);
+			root.appendChild(els.previewWrap);
 			renderTasks(); renderHead(); renderChat();
 		};
 

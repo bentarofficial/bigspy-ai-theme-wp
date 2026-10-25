@@ -65,6 +65,7 @@ function bst_aid_tools() {
 					'categories' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ), 'description' => 'Category names; missing ones are created.' ),
 					'tags'       => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ),
 					'status'     => array( 'type' => 'string', 'enum' => array( 'draft', 'publish' ) ),
+					'featured_image_id' => array( 'type' => 'integer', 'description' => 'Media id (e.g. from ImageGen).' ),
 					'seo'        => $seo,
 				),
 				'required'   => array( 'title', 'content' ),
@@ -84,6 +85,7 @@ function bst_aid_tools() {
 					'categories' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ),
 					'tags'       => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ),
 					'status'     => array( 'type' => 'string', 'enum' => array( 'draft', 'publish' ) ),
+					'featured_image_id' => array( 'type' => 'integer' ),
 					'seo'        => $seo,
 					'confirmed'  => array( 'type' => 'boolean' ),
 				),
@@ -116,6 +118,8 @@ function bst_aid_tools() {
 			'sku'               => array( 'type' => 'string' ),
 			'categories'        => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ),
 			'status'            => array( 'type' => 'string', 'enum' => array( 'draft', 'publish' ) ),
+			'image_id'          => array( 'type' => 'integer', 'description' => 'Main product image (media id).' ),
+			'gallery_ids'       => array( 'type' => 'array', 'items' => array( 'type' => 'integer' ) ),
 			'seo'               => $seo,
 		);
 		$tools['create_product'] = array(
@@ -370,7 +374,13 @@ function bst_aid_tool_create_post( $a ) {
 		wp_set_post_tags( $id, array_map( 'sanitize_text_field', (array) $a['tags'] ) );
 	}
 	bst_aid_set_seo( $id, $a['seo'] ?? null );
+	if ( ! empty( $a['featured_image_id'] ) && wp_attachment_is_image( (int) $a['featured_image_id'] ) ) {
+		set_post_thumbnail( $id, (int) $a['featured_image_id'] );
+	}
 	update_post_meta( $id, '_bst_aid_created', 1 );
+	if ( function_exists( 'bst_aid_track_created' ) ) {
+		bst_aid_track_created( $id );
+	}
 	return array( 'id' => $id, 'status' => get_post_status( $id ), 'links' => bst_aid_links( $id, get_the_title( $id ) ) );
 }
 
@@ -398,7 +408,11 @@ function bst_aid_tool_update_post( $a ) {
 	if ( isset( $a['categories'] ) ) {
 		$data['post_category'] = bst_aid_terms( $a['categories'], 'category' );
 	}
-	wp_save_post_revision( $p->ID );
+	if ( function_exists( 'bst_aid_snapshot_post' ) ) {
+		bst_aid_snapshot_post( $p->ID );
+	} else {
+		wp_save_post_revision( $p->ID );
+	}
 	$r = wp_update_post( $data, true );
 	if ( is_wp_error( $r ) ) {
 		return array( 'error' => $r->get_error_message() );
@@ -407,6 +421,9 @@ function bst_aid_tool_update_post( $a ) {
 		wp_set_post_tags( $p->ID, array_map( 'sanitize_text_field', (array) $a['tags'] ) );
 	}
 	bst_aid_set_seo( $p->ID, $a['seo'] ?? null );
+	if ( ! empty( $a['featured_image_id'] ) && wp_attachment_is_image( (int) $a['featured_image_id'] ) ) {
+		set_post_thumbnail( $p->ID, (int) $a['featured_image_id'] );
+	}
 	return array( 'id' => $p->ID, 'status' => get_post_status( $p->ID ), 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ) );
 }
 
@@ -446,6 +463,12 @@ function bst_aid_fill_product( $prod, $a ) {
 	if ( isset( $a['categories'] ) ) {
 		$prod->set_category_ids( bst_aid_terms( $a['categories'], 'product_cat' ) );
 	}
+	if ( ! empty( $a['image_id'] ) && wp_attachment_is_image( (int) $a['image_id'] ) ) {
+		$prod->set_image_id( (int) $a['image_id'] );
+	}
+	if ( isset( $a['gallery_ids'] ) ) {
+		$prod->set_gallery_image_ids( array_values( array_filter( array_map( 'intval', (array) $a['gallery_ids'] ), 'wp_attachment_is_image' ) ) );
+	}
 	if ( isset( $a['status'] ) ) {
 		$prod->set_status( ( 'publish' === $a['status'] && current_user_can( 'publish_products' ) ) ? 'publish' : 'draft' );
 	}
@@ -461,6 +484,9 @@ function bst_aid_tool_create_product( $a ) {
 	}
 	bst_aid_set_seo( $id, $a['seo'] ?? null );
 	update_post_meta( $id, '_bst_aid_created', 1 );
+	if ( function_exists( 'bst_aid_track_created' ) ) {
+		bst_aid_track_created( $id );
+	}
 	return array( 'id' => $id, 'status' => get_post_status( $id ), 'links' => bst_aid_links( $id, $prod->get_name() ) );
 }
 
@@ -473,7 +499,9 @@ function bst_aid_tool_update_product( $a ) {
 	if ( 'publish' === $prod->get_status() && $price_change && empty( $a['confirmed'] ) ) {
 		return array( 'error' => 'needs_confirmation', 'message' => 'This product is on sale. Ask the user to confirm the new price, then call again with confirmed: true.' );
 	}
-	wp_save_post_revision( $prod->get_id() );
+	if ( function_exists( 'bst_aid_snapshot_post' ) ) {
+		bst_aid_snapshot_post( $prod->get_id() );
+	}
 	bst_aid_fill_product( $prod, $a );
 	$prod->save();
 	bst_aid_set_seo( $prod->get_id(), $a['seo'] ?? null );
