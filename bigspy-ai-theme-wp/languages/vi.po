@@ -3376,3 +3376,321 @@ msgstr "Màu nền chữ"
 
 msgid "Remove color"
 msgstr "Bỏ màu"
+
+msgid "BIGSPY AI Designer"
+msgstr "BIGSPY AI Designer"
+
+msgid "Workspace"
+msgstr "Không gian làm việc"
+
+msgid "Guidelines"
+msgstr "Tiêu chuẩn"
+
+msgid "AI Designer settings"
+msgstr "Cài đặt AI Designer"
+
+msgid "Replace the current text with the template?"
+msgstr "Thay nội dung hiện tại bằng mẫu gợi ý?"
+
+msgid "Done."
+msgstr "Đã xong."
+
+msgid "— Choose a model —"
+msgstr "— Chọn model —"
+
+msgid "free tier"
+msgstr "miễn phí"
+
+msgid "Recommended"
+msgstr "Khuyên dùng"
+
+msgid "All models"
+msgstr "Tất cả model"
+
+msgid "API key"
+msgstr "API key"
+
+msgid "1. Connect the API"
+msgstr "1. Kết nối API"
+
+msgid "Paste your Kyma API key, then press Connect. The key is checked, encrypted and kept on the server only; it is never shown again in full."
+msgstr "Dán API key Kyma của bạn rồi bấm Kết nối. Key được kiểm tra, mã hoá và chỉ lưu trên server, không bao giờ hiển thị lại đầy đủ."
+
+msgid "Connecting…"
+msgstr "Đang kết nối…"
+
+msgid "Connect"
+msgstr "Kết nối"
+
+msgid "No key yet? Create one at "
+msgstr "Chưa có key? Tạo tại "
+
+msgid "Connected"
+msgstr "Đã kết nối"
+
+msgid "Disconnected"
+msgstr "Đã ngắt kết nối"
+
+msgid "Balance: %s"
+msgstr "Số dư: %s"
+
+msgid "1. API connection"
+msgstr "1. Kết nối API"
+
+msgid "Disconnect"
+msgstr "Ngắt kết nối"
+
+msgid "Reconnect"
+msgstr "Kết nối lại"
+
+msgid "Delete the API key from this site? You will need to paste it again to use the AI Designer."
+msgstr "Xoá API key khỏi website? Bạn sẽ phải dán lại key để dùng AI Designer."
+
+msgid "Delete API key"
+msgstr "Xoá API key"
+
+msgid "Disconnect pauses the AI Designer and keeps the key. Delete API key removes it from the database."
+msgstr "Ngắt kết nối sẽ tạm dừng AI Designer và vẫn giữ key. Xoá API key sẽ xoá hẳn key khỏi database."
+
+msgid "2. Models and budget"
+msgstr "2. Model và ngân sách"
+
+msgid "Text model (writes, designs and calls the tools)"
+msgstr "Model text (viết, thiết kế và gọi công cụ)"
+
+msgid "Only models that can call tools are listed. Prices are per million input / output tokens. Strong models such as Claude Sonnet 5 or GPT-5.6 Sol follow instructions best."
+msgstr "Chỉ liệt kê model gọi được công cụ. Giá tính theo một triệu token vào / ra. Các model mạnh như Claude Sonnet 5 hoặc GPT-5.6 Sol làm theo yêu cầu tốt nhất."
+
+msgid "Image model (used by ImageGen)"
+msgstr "Model hình ảnh (dùng cho ImageGen)"
+
+msgid "Budget per task (USD, 0 = no limit) "
+msgstr "Ngân sách mỗi task (USD, 0 = không giới hạn) "
+
+msgid "Budget per day (USD, 0 = no limit) "
+msgstr "Ngân sách mỗi ngày (USD, 0 = không giới hạn) "
+
+msgid "Spent today: %s"
+msgstr "Đã dùng hôm nay: %s"
+
+msgid "Save"
+msgstr "Lưu"
+
+msgid "Refresh model list"
+msgstr "Làm mới danh sách model"
+
+msgid "Remove AI Designer data"
+msgstr "Xoá dữ liệu AI Designer"
+
+msgid "Deletes the API key, settings, guidelines and all task history. Pages, posts and products already created stay."
+msgstr "Xoá API key, cài đặt, tiêu chuẩn và toàn bộ lịch sử task. Các trang, bài viết và sản phẩm đã tạo vẫn được giữ."
+
+msgid "Delete all AI Designer data? This cannot be undone."
+msgstr "Xoá toàn bộ dữ liệu AI Designer? Không thể hoàn tác."
+
+msgid "Delete AI Designer data"
+msgstr "Xoá dữ liệu AI Designer"
+
+msgid "Reading the site"
+msgstr "Đọc thông tin website"
+
+msgid "Listing content"
+msgstr "Liệt kê nội dung"
+
+msgid "Reading content"
+msgstr "Đọc nội dung"
+
+msgid "Created a post"
+msgstr "Đã tạo bài viết"
+
+msgid "Updated a post"
+msgstr "Đã cập nhật bài viết"
+
+msgid "Created a product"
+msgstr "Đã tạo sản phẩm"
+
+msgid "Updated a product"
+msgstr "Đã cập nhật sản phẩm"
+
+msgid "Saved the guidelines"
+msgstr "Đã lưu tiêu chuẩn"
+
+msgid "Edit"
+msgstr "Sửa"
+
+msgid "View"
+msgstr "Xem"
+
+msgid "No tasks yet."
+msgstr "Chưa có task nào."
+
+msgid "Rename"
+msgstr "Đổi tên"
+
+msgid "Task name"
+msgstr "Tên task"
+
+msgid "Delete task"
+msgstr "Xoá task"
+
+msgid "Delete this task and its chat history? Pages, posts and products it created stay."
+msgstr "Xoá task này và lịch sử chat? Các trang, bài viết và sản phẩm đã tạo vẫn được giữ."
+
+msgid "Task cost: %s"
+msgstr "Chi phí task: %s"
+
+msgid "Hello! I am your website designer."
+msgstr "Xin chào! Tôi là người thiết kế website của bạn."
+
+msgid "Tell me what you need: a new post, products, content for a page… I will ask a few questions, show you the plan, then do it as drafts."
+msgstr "Hãy cho tôi biết bạn cần gì: bài viết mới, sản phẩm, nội dung cho một trang… Tôi sẽ hỏi vài câu, trình bày kế hoạch, rồi làm dưới dạng bản nháp."
+
+msgid "Start a new task"
+msgstr "Bắt đầu task mới"
+
+msgid "Working…"
+msgstr "Đang làm…"
+
+msgid "The API is not connected yet"
+msgstr "Chưa kết nối API"
+
+msgid "The AI Designer is disconnected. Reconnect it in Settings to continue."
+msgstr "AI Designer đang ngắt kết nối. Hãy kết nối lại trong Cài đặt để tiếp tục."
+
+msgid "Connect your API key and choose a text model in Settings, then come back here."
+msgstr "Hãy kết nối API key và chọn model text trong Cài đặt, rồi quay lại đây."
+
+msgid "Open Settings"
+msgstr "Mở Cài đặt"
+
+msgid "Ask an administrator to connect the API."
+msgstr "Hãy nhờ quản trị viên kết nối API."
+
+msgid "Message the designer… (Enter to send, Shift+Enter for a new line)"
+msgstr "Nhắn cho người thiết kế… (Enter để gửi, Shift+Enter để xuống dòng)"
+
+msgid "Send"
+msgstr "Gửi"
+
+msgid "Stop"
+msgstr "Dừng"
+
+msgid "Effort"
+msgstr "Effort"
+
+msgid "Low – quick answers"
+msgstr "Thấp – trả lời nhanh"
+
+msgid "Medium – balanced"
+msgstr "Vừa – cân bằng"
+
+msgid "High – more careful"
+msgstr "Cao – kỹ hơn"
+
+msgid "Max – deepest work"
+msgstr "Tối đa – làm sâu nhất"
+
+msgid "New task"
+msgstr "Task mới"
+
+msgid "No API key is stored."
+msgstr "Chưa lưu API key."
+
+msgid "The API key is invalid or was revoked. Create a new key and connect again."
+msgstr "API key không hợp lệ hoặc đã bị thu hồi. Hãy tạo key mới và kết nối lại."
+
+msgid "Not enough API credit (needs about $%1$s, balance $%2$s). Top up your Kyma account."
+msgstr "Không đủ số dư API (cần khoảng $%1$s, đang có $%2$s). Hãy nạp thêm vào tài khoản Kyma."
+
+msgid "This model needs a paid Kyma account. Add credit once or choose a free model."
+msgstr "Model này cần tài khoản Kyma đã nạp tiền. Hãy nạp một lần hoặc chọn model miễn phí."
+
+msgid "Too many requests right now. Wait a moment and try again."
+msgstr "Đang có quá nhiều yêu cầu. Hãy đợi một chút rồi thử lại."
+
+msgid "The chosen model is no longer available. Pick another model in Settings."
+msgstr "Model đã chọn không còn khả dụng. Hãy chọn model khác trong Cài đặt."
+
+msgid "The model service is temporarily unavailable. Try again in a moment."
+msgstr "Dịch vụ model tạm thời gián đoạn. Hãy thử lại sau ít phút."
+
+msgid "API error (HTTP %d)."
+msgstr "Lỗi API (HTTP %d)."
+
+msgid "Business information"
+msgstr "Thông tin doanh nghiệp"
+
+msgid "Name, field, target customers, phone, address, what makes you different. The designer only uses facts written here or told in chat."
+msgstr "Tên, lĩnh vực, khách hàng mục tiêu, số điện thoại, địa chỉ, điểm khác biệt. Người thiết kế chỉ dùng thông tin ghi ở đây hoặc bạn nói trong chat."
+
+msgid "Writing standard"
+msgstr "Tiêu chuẩn viết bài"
+
+msgid "Voice, how to address readers, length, headings, words to avoid, SEO rules. Used for every page, post and product text."
+msgstr "Giọng văn, cách xưng hô, độ dài, heading, từ cần tránh, quy tắc SEO. Áp dụng cho mọi nội dung trang, bài viết và sản phẩm."
+
+msgid "Image standard"
+msgstr "Tiêu chuẩn hình ảnh"
+
+msgid "Style, main colors, ratio, people or not, text on images, what to avoid. Added to every image ImageGen creates."
+msgstr "Phong cách, màu chủ đạo, tỉ lệ, có người hay không, chữ trên ảnh, điều cần tránh. Được thêm vào mọi ảnh ImageGen tạo ra."
+
+msgid "You are not allowed to do this."
+msgstr "Bạn không có quyền thực hiện việc này."
+
+msgid "BIGSPY AI Designer – Guidelines"
+msgstr "BIGSPY AI Designer – Tiêu chuẩn"
+
+msgid "The designer follows these standards in every task. Leave a box empty and it will ask you in chat first, then offer to save your answers here."
+msgstr "Người thiết kế làm theo các tiêu chuẩn này trong mọi task. Ô nào để trống, công cụ sẽ hỏi bạn trong chat trước, rồi đề nghị lưu câu trả lời vào đây."
+
+msgid "Guidelines saved."
+msgstr "Đã lưu tiêu chuẩn."
+
+msgid "Insert suggested template"
+msgstr "Chèn mẫu gợi ý"
+
+msgid "Save guidelines"
+msgstr "Lưu tiêu chuẩn"
+
+msgid "Enter a valid API key."
+msgstr "Hãy nhập API key hợp lệ."
+
+msgid "The API key was not accepted."
+msgstr "API key không được chấp nhận."
+
+msgid "BIGSPY AI Designer – Settings"
+msgstr "BIGSPY AI Designer – Cài đặt"
+
+msgid "AI Designer tasks"
+msgstr "Task AI Designer"
+
+msgid "Task not found."
+msgstr "Không tìm thấy task."
+
+msgid "The API is not connected. Connect it in AI Designer settings."
+msgstr "Chưa kết nối API. Hãy kết nối trong Cài đặt AI Designer."
+
+msgid "Write a message first."
+msgstr "Hãy viết tin nhắn trước."
+
+msgid "Stopped."
+msgstr "Đã dừng."
+
+msgid "This task reached its budget of $%s. Raise the limit in Settings to continue."
+msgstr "Task này đã chạm ngân sách $%s. Tăng giới hạn trong Cài đặt để tiếp tục."
+
+msgid "Paused after the step limit for this effort. Reply \"continue\" to keep going, or raise the effort."
+msgstr "Đã tạm dừng vì chạm giới hạn số bước của mức effort này. Trả lời \"tiếp tục\" để làm tiếp, hoặc tăng mức effort."
+
+msgid "Answered by the fallback model %s."
+msgstr "Được trả lời bởi model dự phòng %s."
+
+msgid "Business name:\nField / services:\nTarget customers:\nPhone / Zalo:\nEmail:\nAddress:\nOpening hours:\nWhat makes us different:\nPrices or packages (if any):"
+msgstr "Tên doanh nghiệp:\nLĩnh vực / dịch vụ:\nKhách hàng mục tiêu:\nĐiện thoại / Zalo:\nEmail:\nĐịa chỉ:\nGiờ mở cửa:\nĐiểm khác biệt:\nGiá hoặc gói dịch vụ (nếu có):"
+
+msgid "Voice: friendly, clear, professional; write like a real person, no hype.\nAddress the reader as: you.\nSentences: short, one idea each; no filler or clichés.\nHeadings: one H1 per page, H2/H3 in order, each heading says what the section gives.\nSEO: main keyword in the H1, first paragraph and one H2; natural, never stuffed.\nPosts: 1,200–1,800 words, a short intro, practical steps or examples, a clear call to action.\nAvoid: unverified claims, made-up numbers, words like “best” or “number 1” without proof."
+msgstr "Giọng văn: thân thiện, rõ ràng, chuyên nghiệp; viết như người thật, không phóng đại.\nXưng hô: gọi người đọc là bạn.\nCâu: ngắn, mỗi câu một ý; không lan man, không sáo rỗng.\nHeading: mỗi trang một H1, H2/H3 đúng thứ tự, mỗi heading nói rõ phần đó mang lại gì.\nSEO: từ khoá chính có trong H1, đoạn đầu và một H2; tự nhiên, không nhồi nhét.\nBài viết: 1.200–1.800 chữ, mở bài ngắn, có bước làm hoặc ví dụ thực tế, kêu gọi hành động rõ ràng.\nTránh: khẳng định chưa kiểm chứng, số liệu bịa, các từ như “tốt nhất”, “số 1” khi không có bằng chứng."
+
+msgid "Style: clean, modern, realistic photo look, soft natural light.\nColors: follow the website colors.\nPeople: Asian people when people appear; natural expressions.\nText on images: none, unless asked.\nRatio: 16:9 for banners, 4:3 for cards, 1:1 for products.\nAvoid: real celebrities, other brands' logos, watermarks, distorted hands or faces."
+msgstr "Phong cách: sạch sẽ, hiện đại, giống ảnh chụp thật, ánh sáng tự nhiên dịu.\nMàu sắc: theo màu của website.\nCon người: người châu Á khi có người; biểu cảm tự nhiên.\nChữ trên ảnh: không có, trừ khi được yêu cầu.\nTỉ lệ: 16:9 cho banner, 4:3 cho thẻ, 1:1 cho sản phẩm.\nTránh: người nổi tiếng có thật, logo thương hiệu khác, watermark, tay hoặc mặt bị méo."

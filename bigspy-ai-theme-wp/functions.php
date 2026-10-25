@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.70.7' );
+define( 'BST_VERSION', '1.71.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -67,4 +67,9 @@ foreach ( $bst_includes as $bst_file ) {
 
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once BST_DIR . '/inc/woocommerce.php';
+}
+
+// BIGSPY AI Designer: optional, self-contained. Delete the ai-designer folder to remove it.
+if ( file_exists( BST_DIR . '/ai-designer/ai-designer.php' ) ) {
+	require_once BST_DIR . '/ai-designer/ai-designer.php';
 }
