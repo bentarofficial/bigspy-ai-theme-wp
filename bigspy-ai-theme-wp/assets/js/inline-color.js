@@ -34,7 +34,17 @@
 		if (/^[0-9a-f]{3,8}$/i.test(v)) {
 			v = '#' + v;
 		}
-		return v && window.CSS && CSS.supports('color', v) ? v : '';
+		if (!v || !(window.CSS && CSS.supports('color', v))) {
+			return '';
+		}
+		// Store HEX when possible (canvas normalises names, rgb() and hsl(); colors with alpha stay rgba()).
+		var ctx = document.createElement('canvas').getContext('2d');
+		if (ctx) {
+			ctx.fillStyle = '#000';
+			ctx.fillStyle = v;
+			return String(ctx.fillStyle);
+		}
+		return v;
 	};
 
 	function Picker(props) {

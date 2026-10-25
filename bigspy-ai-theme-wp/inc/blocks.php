@@ -346,3 +346,20 @@ function bst_slider_markup( $items, $opts, $class = '' ) {
 	$out .= '</div>';
 	return $out;
 }
+
+/*
+ * Text colors in BIGSPY rich text are often rgb() / hsl() (pasted codes, the Text block's
+ * color picker). WordPress kses drops any CSS value with parentheses, so the color showed in
+ * the editor but not on the site. Allow numeric rgb(a) / hsl(a) for color and background-color.
+ */
+add_filter(
+	'safecss_filter_attr_allow_css',
+	function ( $allow, $css ) {
+		if ( ! $allow && preg_match( '/^\s*(background-color|color)\s*:\s*(rgba?|hsla?)\(\s*[0-9.,%\s\/]+(deg)?[0-9.,%\s\/]*\)\s*$/i', (string) $css ) ) {
+			return true;
+		}
+		return $allow;
+	},
+	10,
+	2
+);
