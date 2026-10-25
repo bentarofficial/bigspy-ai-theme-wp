@@ -88,7 +88,7 @@ add_filter(
 		if ( 'bigspy-ai-theme-wp' !== $domain ) {
 			return $locale;
 		}
-		$admin  = is_admin() && ! wp_doing_ajax();
+		$admin  = bst_theme_lang_is_admin_request();
 		$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'auto' );
 		return ( 'auto' !== $choice && array_key_exists( $choice, bst_theme_languages( false ) ) ) ? $choice : $locale;
 	},
@@ -103,7 +103,7 @@ add_filter(
 add_action(
 	'after_setup_theme',
 	function () {
-		$admin  = is_admin() && ! wp_doing_ajax();
+		$admin  = bst_theme_lang_is_admin_request();
 		$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'auto' );
 		if ( 'auto' !== $choice && is_textdomain_loaded( 'bigspy-ai-theme-wp' ) ) {
 			unload_textdomain( 'bigspy-ai-theme-wp', true );
@@ -122,9 +122,67 @@ add_filter(
 		if ( 'bigspy-ai-theme-wp' !== $domain ) {
 			return $override;
 		}
-		$admin = is_admin() && ! wp_doing_ajax();
+		$admin = bst_theme_lang_is_admin_request();
 		return 'en_US' === (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'auto' ) ? true : $override;
 	},
 	10,
 	2
+);
+
+/**
+ * Whether this request shows the admin side: wp-admin pages, plus the REST calls the block
+ * editor makes for block previews (context=edit), so previews match the editor language.
+ */
+function bst_theme_lang_is_admin_request() {
+	if ( is_admin() && ! wp_doing_ajax() ) {
+		return true;
+	}
+	$uri = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$is_rest = false !== strpos( $uri, '/wp-json/' ) || isset( $_GET['rest_route'] ); // phpcs:ignore WordPress.Security.NonceVerification
+	return $is_rest && isset( $_GET['context'] ) && 'edit' === $_GET['context']; // phpcs:ignore WordPress.Security.NonceVerification
+}
+
+/*
+ * Editor and Customizer scripts translate with wp.i18n. Hand them the theme strings already
+ * loaded in PHP, so they follow the chosen admin language without separate JSON files.
+ */
+function bst_theme_lang_script_data() {
+	$translations = get_translations_for_domain( 'bigspy-ai-theme-wp' );
+	if ( ! $translations || empty( $translations->entries ) ) {
+		return;
+	}
+	$data = array( '' => array( 'domain' => 'bigspy-ai-theme-wp' ) );
+	if ( ! empty( $translations->headers['Plural-Forms'] ) ) {
+		$data['']['plural_forms'] = $translations->headers['Plural-Forms'];
+	}
+	foreach ( $translations->entries as $entry ) {
+		if ( empty( $entry->translations ) || '' === (string) $entry->translations[0] ) {
+			continue;
+		}
+		$key          = ( $entry->context ? $entry->context . "\4" : '' ) . $entry->singular;
+		$data[ $key ] = array_values( $entry->translations );
+	}
+	if ( count( $data ) < 2 ) {
+		return;
+	}
+	wp_add_inline_script( 'wp-i18n', 'wp.i18n.setLocaleData(' . wp_json_encode( $data ) . ',"bigspy-ai-theme-wp");', 'after' );
+}
+
+add_action(
+	'admin_enqueue_scripts',
+	function () {
+		static $done = false;
+		if ( ! $done ) {
+			$done = true;
+			bst_theme_lang_script_data();
+		}
+	},
+	1
+);
+add_action(
+	'customize_controls_enqueue_scripts',
+	function () {
+		bst_theme_lang_script_data();
+	},
+	1
 );
