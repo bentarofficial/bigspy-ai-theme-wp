@@ -244,7 +244,9 @@ function bst_aid_import_image( $url, $a, $model, $purpose ) {
 			}
 		}
 	}
-	$title = sanitize_text_field( (string) ( $a['title'] ?? $a['alt'] ?? '' ) );
+	$title = sanitize_text_field( bst_aid_clean_plain( (string) ( $a['title'] ?? $a['alt'] ?? '' ) ) );
+	$a['alt']     = bst_aid_clean_plain( (string) ( $a['alt'] ?? '' ) );
+	$a['caption'] = bst_aid_clean_plain( (string) ( $a['caption'] ?? '' ) );
 	$id    = media_handle_sideload( array( 'name' => $name . '.' . $ext, 'tmp_name' => $file ), 0, $title );
 	if ( is_wp_error( $id ) ) {
 		wp_delete_file( $file ); // Temporary file only.

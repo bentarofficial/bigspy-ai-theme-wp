@@ -40,26 +40,36 @@
 		});
 	};
 	var money = function (v) { return '$' + (Number(v) || 0).toFixed(Number(v) < 1 ? 4 : 2); };
-	/* Minimal, safe Markdown: escape, then bold, italics, code, links, lists, paragraphs. */
+	/* Chat Markdown, rendered safely: text is escaped first, then headings, lists, rules,
+	 * bold / italics / code / links become HTML; leftover markers (**, __, ##) never show. */
+	var inline = function (t) {
+		return t.replace(/`([^`\n]+)`/g, '<code>$1</code>')
+			.replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+			.replace(/(\*\*\*|___)(?=\S)(.+?)(?<=\S)\1/g, '<strong><em>$2</em></strong>')
+			.replace(/(\*\*|__)(?=\S)(.+?)(?<=\S)\1/g, '<strong>$2</strong>')
+			.replace(/(^|[\s(])\*(?=[^\s*])([^*\n]+?)(?<=\S)\*(?![\w*])/g, '$1<em>$2</em>')
+			.split('**').join('').split('__').join('');
+	};
 	var md = function (text) {
-		var esc = String(text || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-		esc = esc.replace(/`([^`]+)`/g, '<code>$1</code>')
-			.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-			.replace(/(^|[\s(])\*([^*\n]+)\*/g, '$1<em>$2</em>')
-			.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-			.replace(/^#{1,6}\s+(.+)$/gm, '<strong>$1</strong>');
-		var out = [], list = null;
+		var esc = String(text || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r/g, '');
+		var out = [], list = null, kind = '';
+		var flush = function () { if (list) { out.push('<' + kind + '>' + list.join('') + '</' + kind + '>'); } list = null; kind = ''; };
 		esc.split('\n').forEach(function (line) {
-			var m = /^\s*(?:[-*•]|\d+[.)])\s+(.*)$/.exec(line);
-			if (m) {
-				if (!list) { list = []; }
-				list.push('<li>' + m[1] + '</li>');
+			var t = line.trim(), m;
+			if (!t) { flush(); return; }
+			if ((m = /^#{1,6}\s+(.+)$/.exec(t))) { flush(); out.push('<h4>' + inline(m[1].replace(/#+\s*$/, '')) + '</h4>'); return; }
+			if (/^(-{3,}|\*{3,}|_{3,})$/.test(t)) { flush(); out.push('<hr>'); return; }
+			if ((m = /^(?:[-*•+]|(\d+)[.)])\s+(.+)$/.exec(t))) {
+				var k = m[1] ? 'ol' : 'ul';
+				if (kind && kind !== k) { flush(); }
+				if (!list) { list = []; kind = k; }
+				list.push('<li>' + inline(m[2]) + '</li>');
 				return;
 			}
-			if (list) { out.push('<ul>' + list.join('') + '</ul>'); list = null; }
-			out.push(line.trim() ? '<p>' + line + '</p>' : '');
+			flush();
+			out.push('<p>' + inline(t.replace(/^&gt;\s*/, '')) + '</p>');
 		});
-		if (list) { out.push('<ul>' + list.join('') + '</ul>'); }
+		flush();
 		return out.join('');
 	};
 

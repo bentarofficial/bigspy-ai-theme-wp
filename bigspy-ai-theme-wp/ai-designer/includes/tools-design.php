@@ -151,6 +151,7 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 			}
 			$attrs[ $key ] = $value;
 		}
+		$attrs = bst_aid_clean_block_attrs( $name, $attrs );
 		if ( 'bst/code' === $name && isset( $attrs['code'] ) ) {
 			$attrs['code'] = bst_aid_clean_code( $attrs['code'] );
 		}
@@ -647,7 +648,7 @@ function bst_aid_tool_create_page( $a ) {
 	$id = wp_insert_post(
 		array(
 			'post_type'    => 'page',
-			'post_title'   => sanitize_text_field( (string) $a['title'] ),
+			'post_title'   => sanitize_text_field( bst_aid_clean_plain( (string) $a['title'] ) ),
 			'post_name'    => sanitize_title( (string) ( $a['slug'] ?? '' ) ),
 			'post_content' => wp_slash( $markup['markup'] ),
 			'post_status'  => ( 'publish' === ( $a['status'] ?? '' ) && current_user_can( 'publish_pages' ) ) ? 'publish' : 'draft',
@@ -708,7 +709,7 @@ function bst_aid_tool_update_page( $a ) {
 		$warnings             = $markup['warnings'];
 	}
 	if ( isset( $a['title'] ) ) {
-		$data['post_title'] = sanitize_text_field( (string) $a['title'] );
+		$data['post_title'] = sanitize_text_field( bst_aid_clean_plain( (string) $a['title'] ) );
 	}
 	if ( isset( $a['status'] ) ) {
 		$data['post_status'] = ( 'publish' === $a['status'] && current_user_can( 'publish_pages' ) ) ? 'publish' : 'draft';

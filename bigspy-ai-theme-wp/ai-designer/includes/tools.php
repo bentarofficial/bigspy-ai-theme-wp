@@ -200,7 +200,7 @@ function bst_aid_set_seo( $post_id, $seo ) {
 	$map = array( 'focus_keyword' => 'rank_math_focus_keyword', 'title' => 'rank_math_title', 'description' => 'rank_math_description' );
 	foreach ( $map as $k => $meta ) {
 		if ( isset( $seo[ $k ] ) && '' !== trim( (string) $seo[ $k ] ) ) {
-			update_post_meta( $post_id, $meta, sanitize_text_field( (string) $seo[ $k ] ) );
+			update_post_meta( $post_id, $meta, sanitize_text_field( bst_aid_clean_plain( (string) $seo[ $k ] ) ) );
 		}
 	}
 }
@@ -210,7 +210,7 @@ function bst_aid_set_seo( $post_id, $seo ) {
  * edits nicely; anything else (tables, quotes…) becomes a Custom HTML block.
  */
 function bst_aid_html_to_blocks( $html ) {
-	$html = wp_kses_post( (string) $html );
+	$html = wp_kses_post( bst_aid_clean_html( (string) $html ) );
 	if ( '' === trim( $html ) || ! class_exists( 'DOMDocument' ) ) {
 		return $html;
 	}
@@ -358,9 +358,9 @@ function bst_aid_tool_create_post( $a ) {
 	$id = wp_insert_post(
 		array(
 			'post_type'    => 'post',
-			'post_title'   => sanitize_text_field( (string) $a['title'] ),
+			'post_title'   => sanitize_text_field( bst_aid_clean_plain( (string) $a['title'] ) ),
 			'post_content' => bst_aid_html_to_blocks( $a['content'] ?? '' ),
-			'post_excerpt' => sanitize_textarea_field( (string) ( $a['excerpt'] ?? '' ) ),
+			'post_excerpt' => sanitize_textarea_field( bst_aid_clean_plain( (string) ( $a['excerpt'] ?? '' ) ) ),
 			'post_name'    => sanitize_title( (string) ( $a['slug'] ?? '' ) ),
 			'post_status'  => ( 'publish' === ( $a['status'] ?? '' ) && current_user_can( 'publish_posts' ) ) ? 'publish' : 'draft',
 			'post_category' => bst_aid_terms( $a['categories'] ?? array(), 'category' ),
@@ -394,13 +394,13 @@ function bst_aid_tool_update_post( $a ) {
 	}
 	$data = array( 'ID' => $p->ID );
 	if ( isset( $a['title'] ) ) {
-		$data['post_title'] = sanitize_text_field( (string) $a['title'] );
+		$data['post_title'] = sanitize_text_field( bst_aid_clean_plain( (string) $a['title'] ) );
 	}
 	if ( isset( $a['content'] ) ) {
 		$data['post_content'] = bst_aid_html_to_blocks( $a['content'] );
 	}
 	if ( isset( $a['excerpt'] ) ) {
-		$data['post_excerpt'] = sanitize_textarea_field( (string) $a['excerpt'] );
+		$data['post_excerpt'] = sanitize_textarea_field( bst_aid_clean_plain( (string) $a['excerpt'] ) );
 	}
 	if ( isset( $a['status'] ) ) {
 		$data['post_status'] = ( 'publish' === $a['status'] && current_user_can( 'publish_posts' ) ) ? 'publish' : 'draft';
@@ -439,7 +439,7 @@ function bst_aid_tool_save_guidelines( $a ) {
 /** Apply product fields to a WC_Product. */
 function bst_aid_fill_product( $prod, $a ) {
 	if ( isset( $a['name'] ) ) {
-		$prod->set_name( sanitize_text_field( (string) $a['name'] ) );
+		$prod->set_name( sanitize_text_field( bst_aid_clean_plain( (string) $a['name'] ) ) );
 	}
 	foreach ( array( 'regular_price', 'sale_price' ) as $k ) {
 		if ( isset( $a[ $k ] ) ) {
@@ -448,10 +448,10 @@ function bst_aid_fill_product( $prod, $a ) {
 		}
 	}
 	if ( isset( $a['short_description'] ) ) {
-		$prod->set_short_description( wp_kses_post( (string) $a['short_description'] ) );
+		$prod->set_short_description( wp_kses_post( bst_aid_clean_html( (string) $a['short_description'] ) ) );
 	}
 	if ( isset( $a['description'] ) ) {
-		$prod->set_description( wp_kses_post( (string) $a['description'] ) );
+		$prod->set_description( wp_kses_post( bst_aid_clean_html( (string) $a['description'] ) ) );
 	}
 	if ( isset( $a['sku'] ) ) {
 		try {
