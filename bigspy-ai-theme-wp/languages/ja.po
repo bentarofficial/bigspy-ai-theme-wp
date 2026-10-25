@@ -9,11 +9,32 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: bigspy-ai-theme-wp\n"
 
+msgid " to open this popup."
+msgstr "でこのポップアップを開きます。"
+
+msgid "\"Read more\" text (optional)"
+msgstr "「続きを読む」テキスト（任意）"
+
+msgid "% of screen"
+msgstr "画面の%"
+
+msgid "% of screen (vh)"
+msgstr "画面の%（vh）"
+
 msgid "%s comment"
 msgstr "%s 件のコメント"
 
+msgid "%s min read"
+msgstr "%s分で読めます"
+
 msgid "%s product"
 msgstr "%s 件の商品"
+
+msgid "(empty)"
+msgstr "（空）"
+
+msgid "+ Add a custom link button"
+msgstr "+ カスタムリンクボタンを追加"
 
 msgid "-Deep skin analysis"
 msgstr "-肌の徹底分析"
@@ -57,6 +78,12 @@ msgstr "/ パッケージ"
 msgid "/ session"
 msgstr "/ 1回"
 
+msgid "1 large + 2 small (right)"
+msgstr "大1 + 小2（右）"
+
+msgid "1 large + 3 small"
+msgstr "大1 + 小3"
+
 msgid "1,200+ deals"
 msgstr "成約1,200件以上"
 
@@ -90,8 +117,14 @@ msgstr "不動産業界で15年。"
 msgid "15% off your first visit"
 msgstr "初回来店15%オフ"
 
+msgid "2 columns"
+msgstr "2カラム"
+
 msgid "2 free trial lessons"
 msgstr "無料体験レッスン2回"
+
+msgid "2 small + 1 large (right)"
+msgstr "小2 + 大1（右）"
 
 msgid "2-bedroom apartment"
 msgstr "2ベッドルームのアパート"
@@ -125,6 +158,9 @@ msgstr "35m²、若い方や賃貸にぴったり。"
 
 msgid "35+ projects on offer"
 msgstr "35以上の物件を掲載"
+
+msgid "3D shade"
+msgstr "3Dシェード"
 
 msgid "4 steps to your goal"
 msgstr "目標達成への4ステップ"
@@ -225,6 +261,9 @@ msgstr "契約前に電気・水道・壁・ドアを確認するチェックリ
 msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
 msgstr "道筋が明確で、フィードバックがとても丁寧。わずか4か月でスコアが1.5上がりました。"
 
+msgid "A colored band shown above the footer on every page, e.g. “Ready to start? → Contact us”."
+msgstr "全ページのフッター上に表示するカラーバンド。例：「始めませんか？ → お問い合わせ」。"
+
 msgid "A complete dining experience"
 msgstr "充実のお食事体験"
 
@@ -251,6 +290,9 @@ msgstr "心から休める緑の空間"
 
 msgid "A kitchen certified for hygiene and food safety."
 msgstr "衛生・食品安全の認証を受けたキッチン。"
+
+msgid "A preset changes column counts and display toggles only. It does not delete or rewrite your widgets, text, links or colors."
+msgstr "プリセットはカラム数と表示切り替えのみを変更します。ウィジェット、テキスト、リンク、色は削除・上書きされません。"
 
 msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
 msgstr "サーバーとWordPress設定の簡易チェックです。! の付いた項目は推奨値を下回っています。"
@@ -279,8 +321,50 @@ msgstr "センターについて"
 msgid "About us"
 msgstr "私たちについて"
 
+msgid "Above"
+msgstr "上"
+
+msgid "Absolute (free placement inside parent)"
+msgstr "絶対配置（親要素内で自由に配置）"
+
+msgid "Accent"
+msgstr "アクセント"
+
+msgid "Accent (badges, links, buttons)"
+msgstr "アクセント（バッジ、リンク、ボタン）"
+
+msgid "Accent (button, focus)"
+msgstr "アクセント（ボタン、フォーカス）"
+
+msgid "Accent (icon, border)"
+msgstr "アクセント（アイコン、枠線）"
+
+msgid "Accent (tiles, rings, pills)"
+msgstr "アクセント（タイル、リング、ピル）"
+
+msgid "Accent / focus"
+msgstr "アクセント／フォーカス"
+
+msgid "Accent color"
+msgstr "アクセントカラー"
+
+msgid "Accepted payment methods"
+msgstr "利用可能なお支払い方法"
+
+msgid "Accessible label (aria-label)"
+msgstr "アクセシブルラベル（aria-label）"
+
+msgid "Accordion"
+msgstr "アコーディオン"
+
+msgid "Account"
+msgstr "アカウント"
+
 msgid "Accountant"
 msgstr "会計士"
+
+msgid "Actions"
+msgstr "操作"
 
 msgid "Active dot fills up"
 msgstr "アクティブなドットが満ちていく"
@@ -288,20 +372,98 @@ msgstr "アクティブなドットが満ちていく"
 msgid "Active plugins"
 msgstr "有効なプラグイン"
 
+msgid "Active tab"
+msgstr "アクティブなタブ"
+
+msgid "Active tab colors"
+msgstr "アクティブなタブの色"
+
+msgid "Active tab text"
+msgstr "アクティブなタブのテキスト"
+
 msgid "Activities"
 msgstr "アクティビティ"
+
+msgid "Add FAQ schema (Google rich results)"
+msgstr "FAQスキーマを追加（Googleリッチリザルト）"
+
+msgid "Add a block above"
+msgstr "上にブロックを追加"
 
 msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
 msgstr "ページを追加し、BIGSPYブロックまたはスターターページパターンを挿入します。"
 
+msgid "Add after"
+msgstr "後に追加"
+
+msgid "Add banner"
+msgstr "バナーを追加"
+
+msgid "Add bar"
+msgstr "バーを追加"
+
+msgid "Add before"
+msgstr "前に追加"
+
+msgid "Add content, Rows, Banners…"
+msgstr "コンテンツ、行、バナーを追加…"
+
+msgid "Add field"
+msgstr "フィールドを追加"
+
+msgid "Add image"
+msgstr "画像を追加"
+
+msgid "Add image into the text (drag its corner to resize)"
+msgstr "テキスト内に画像を追加（角をドラッグしてサイズ変更）"
+
+msgid "Add item"
+msgstr "項目を追加"
+
 msgid "Add layout"
 msgstr "レイアウトを追加"
+
+msgid "Add milestone"
+msgstr "マイルストーンを追加"
+
+msgid "Add new block"
+msgstr "新しいブロックを追加"
 
 msgid "Add new layout"
 msgstr "新規レイアウトを追加"
 
+msgid "Add or edit footer content in Widgets"
+msgstr "ウィジェットでフッターのコンテンツを追加・編集"
+
+msgid "Add or reorder widgets in Appearance → Widgets."
+msgstr "外観 → ウィジェット でウィジェットを追加・並べ替えます。"
+
+msgid "Add photo"
+msgstr "写真を追加"
+
+msgid "Add plan"
+msgstr "プランを追加"
+
+msgid "Add profile links in the block settings."
+msgstr "ブロック設定でプロフィールリンクを追加します。"
+
+msgid "Add slide"
+msgstr "スライドを追加"
+
+msgid "Add the “Categories menu” element in the header builder."
+msgstr "ヘッダービルダーで「カテゴリーメニュー」要素を追加してください。"
+
+msgid "Add to cart"
+msgstr "カートに追加"
+
+msgid "Add to cart button"
+msgstr "「カートに追加」ボタン"
+
 msgid "Add to page"
 msgstr "ページに追加"
+
+msgid "Add widgets to this sidebar"
+msgstr "このサイドバーにウィジェットを追加"
 
 msgid "Added as a synced design. Changes to its source update every copy."
 msgstr "同期デザインとして追加しました。元のデザインを変更するとすべてのコピーが更新されます。"
@@ -315,8 +477,26 @@ msgstr "デザインを追加してもページは公開されません。プレ
 msgid "Additional CSS"
 msgstr "追加CSS"
 
+msgid "Additional headers"
+msgstr "追加のヘッダー"
+
+msgid "Additional product tab content"
+msgstr "追加の商品タブの内容"
+
+msgid "Additional product tab title"
+msgstr "追加の商品タブのタイトル"
+
 msgid "Address"
 msgstr "住所"
+
+msgid "Adds a frosted blur layer over the photo (the photo itself is not zoomed) so text stays easy to read."
+msgstr "写真の上にすりガラス状のぼかしレイヤーを重ね（写真自体は拡大しません）、テキストを読みやすくします。"
+
+msgid "Adds published products whose SKU contains the search text."
+msgstr "SKUに検索テキストを含む公開商品を追加します。"
+
+msgid "Adds published products with a matching product tag."
+msgstr "一致する商品タグを持つ公開商品を追加します。"
 
 msgid "Admin & Customizer"
 msgstr "管理画面とカスタマイザー"
@@ -324,11 +504,32 @@ msgstr "管理画面とカスタマイザー"
 msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
 msgstr "管理者は引き続きサイトを閲覧できます。訪問者には HTTP 503 が返されます。ログイン、管理画面、API は利用可能です。切り替え時はページ/CDN キャッシュを削除してください。"
 
+msgid "Advanced"
+msgstr "詳細設定"
+
 msgid "Advice and viewings"
 msgstr "ご相談と内覧"
 
 msgid "Advice by chat and hotline 24/7."
 msgstr "チャットとホットラインで24時間ご相談受付。"
+
+msgid "After a delay"
+msgstr "一定時間後"
+
+msgid "After a successful send"
+msgstr "送信成功後"
+
+msgid "After image"
+msgstr "After画像"
+
+msgid "After label"
+msgstr "Afterラベル"
+
+msgid "After scrolling"
+msgstr "スクロール後"
+
+msgid "After text"
+msgstr "Afterテキスト"
 
 msgid "After the header"
 msgstr "ヘッダーの後"
@@ -348,11 +549,53 @@ msgstr "プロジェクター付きの冷房完備教室"
 msgid "Airy garden seating"
 msgstr "開放的なガーデン席"
 
+msgid "Alert (red)"
+msgstr "警告（赤）"
+
+msgid "Alert / sale"
+msgstr "警告／セール"
+
+msgid "Align"
+msgstr "配置"
+
+msgid "Align center"
+msgstr "中央揃え"
+
+msgid "Align left"
+msgstr "左揃え"
+
+msgid "Align right"
+msgstr "右揃え"
+
+msgid "Alignment"
+msgstr "配置"
+
+msgid "All Google fonts in this list support Vietnamese."
+msgstr "このリストのGoogleフォントはすべてベトナム語に対応しています。"
+
 msgid "All archives (category, tag, author, date)"
 msgstr "すべてのアーカイブ（カテゴリー、タグ、投稿者、日付）"
 
+msgid "All buttons"
+msgstr "すべてのボタン"
+
 msgid "All designs"
 msgstr "すべてのデザイン"
+
+msgid "All devices"
+msgstr "すべてのデバイス"
+
+msgid "All form & mail settings"
+msgstr "フォームとメールのすべての設定"
+
+msgid "All in one (one button opens the list)"
+msgstr "オールインワン（1つのボタンでリストを開く）"
+
+msgid "All in one button"
+msgstr "オールインワンボタン"
+
+msgid "All on one side"
+msgstr "すべて片側に"
 
 msgid "All pages"
 msgstr "すべての固定ページ"
@@ -366,6 +609,21 @@ msgstr "すべての商品"
 msgid "Also on these post / page IDs (comma separated)"
 msgstr "次の投稿 / ページ ID にも表示（カンマ区切り）"
 
+msgid "Also play on mobile"
+msgstr "モバイルでも再生"
+
+msgid "Alt text"
+msgstr "代替テキスト"
+
+msgid "Alt text (describes the image)"
+msgstr "代替テキスト（画像の説明）"
+
+msgid "Alternating left / right"
+msgstr "左右交互"
+
+msgid "Always"
+msgstr "常に"
+
 msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
 msgstr "常に全幅で表示され、高さはコードや画像に合わせて決まります。例：<a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
 
@@ -374,6 +632,24 @@ msgstr "毎回のお食事をより良くするため、いつもお声をお聞
 
 msgid "Always listens to find the right treatment."
 msgstr "最適なトリートメントを見つけるため、いつもお話をお聞きします。"
+
+msgid "Always show"
+msgstr "常に表示"
+
+msgid "Always visible"
+msgstr "常に表示"
+
+msgid "Always visible (not only on hover)"
+msgstr "常に表示（ホバー時だけでなく）"
+
+msgid "Amber"
+msgstr "アンバー"
+
+msgid "Amber deep"
+msgstr "アンバー（濃）"
+
+msgid "Amber pastel"
+msgstr "アンバー（パステル）"
 
 msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
 msgstr "著者紹介ページまたは公開プロフィール（LinkedIn、Facebook など）。"
@@ -384,8 +660,44 @@ msgstr "アナリティクスとピクセルのコード、パフォーマンス
 msgid "And still growing"
 msgstr "そしてさらに成長中"
 
+msgid "Animate inner items one by one (ms between, 0 = off)"
+msgstr "内側の項目を順番にアニメーション（間隔ms、0 = オフ）"
+
+msgid "Animate when scrolled into view"
+msgstr "表示領域に入ったらアニメーション"
+
+msgid "Animated highlight"
+msgstr "アニメーションハイライト"
+
+msgid "Animation"
+msgstr "アニメーション"
+
+msgid "Animation duration (ms)"
+msgstr "アニメーション時間（ms）"
+
 msgid "Anna"
 msgstr "アンナ"
+
+msgid "Announcement"
+msgstr "お知らせ"
+
+msgid "Announcement bar"
+msgstr "お知らせバー"
+
+msgid "Answer background"
+msgstr "回答の背景"
+
+msgid "Answer…"
+msgstr "回答…"
+
+msgid "Any block…"
+msgstr "任意のブロック…"
+
+msgid "Any link (contact page, form, booking…)"
+msgstr "任意のリンク（お問い合わせページ、フォーム、予約…）"
+
+msgid "Any link to #popup-id"
+msgstr "#popup-id への任意のリンク"
 
 msgid "Any other questions? Send us a message for a free consultation."
 msgstr "ほかにご質問は？無料相談のメッセージをお送りください。"
@@ -393,8 +705,29 @@ msgstr "ほかにご質問は？無料相談のメッセージをお送りくだ
 msgid "Apartment specialist"
 msgstr "マンション専門スタッフ"
 
+msgid "Appear after scrolling (px, 0 = always)"
+msgstr "スクロール後に表示（px、0 = 常に）"
+
+msgid "Applies when BIGSPY variation buttons are enabled. Set each color or image in Configure terms."
+msgstr "BIGSPYのバリエーションボタンが有効な場合に適用されます。各色や画像は「タームを設定」で指定します。"
+
+msgid "Apply"
+msgstr "適用"
+
+msgid "Apply effect to"
+msgstr "効果の適用先"
+
 msgid "Apply what you learn to real situations."
 msgstr "学んだことを実際の場面で活用します。"
+
+msgid "Aqua"
+msgstr "アクア"
+
+msgid "Aqua deep"
+msgstr "アクア（濃）"
+
+msgid "Aqua pastel"
+msgstr "アクア（パステル）"
 
 msgid "Arabica beans roasted every week, brewed as filter or espresso."
 msgstr "毎週焙煎するアラビカ豆を、ドリップまたはエスプレッソで。"
@@ -402,11 +735,50 @@ msgstr "毎週焙煎するアラビカ豆を、ドリップまたはエスプレ
 msgid "Archive layouts, cards, table of contents, author box, related posts."
 msgstr "アーカイブのレイアウト、カード、目次、著者ボックス、関連投稿。"
 
+msgid "Arrange the header with the drag & drop Header builder."
+msgstr "ドラッグ＆ドロップのヘッダービルダーでヘッダーを構成します。"
+
 msgid "Arrive on time – your table and dishes are ready."
 msgstr "時間通りにお越しください。お席とお料理をご用意しています。"
 
+msgid "Arrow"
+msgstr "矢印"
+
+msgid "Arrow on the button"
+msgstr "ボタンの矢印"
+
+msgid "Arrows"
+msgstr "矢印"
+
+msgid "Arrows on mobile"
+msgstr "モバイルの矢印"
+
+msgid "Artist / show"
+msgstr "アーティスト／公演"
+
 msgid "As peaceful as a resort"
 msgstr "リゾートのような静けさ"
+
+msgid "As typed"
+msgstr "入力どおり"
+
+msgid "Assign a menu to “Main menu”"
+msgstr "「メインメニュー」にメニューを割り当て"
+
+msgid "Assign a menu to “Top bar menu” in Menus."
+msgstr "メニューで「トップバーメニュー」にメニューを割り当ててください。"
+
+msgid "Assign a menu to “Vertical menu”"
+msgstr "「縦型メニュー」にメニューを割り当て"
+
+msgid "Attention effect"
+msgstr "注目エフェクト"
+
+msgid "Audio"
+msgstr "オーディオ"
+
+msgid "Audio file"
+msgstr "音声ファイル"
 
 msgid "Author"
 msgstr "投稿者"
@@ -416,6 +788,9 @@ msgstr "著者のアバター"
 
 msgid "Author bio"
 msgstr "著者の経歴"
+
+msgid "Author box (when the author has a bio)"
+msgstr "著者ボックス（著者に紹介文がある場合）"
 
 msgid "Author box heading (empty = “Written by”)"
 msgstr "著者ボックスの見出し（空欄 =「執筆者」）"
@@ -435,11 +810,50 @@ msgstr "著者名"
 msgid "Author profile URL"
 msgstr "著者プロフィールの URL"
 
+msgid "Automatic (menu if assigned, else product categories)"
+msgstr "自動（割り当て済みならメニュー、なければ商品カテゴリー）"
+
+msgid "Autoplay (muted)"
+msgstr "自動再生（ミュート）"
+
+msgid "Autoplay (seconds, 0 = off)"
+msgstr "自動再生（秒、0 = オフ）"
+
+msgid "Autoplay every (seconds, 0 = off)"
+msgstr "自動再生の間隔（秒、0 = オフ）"
+
+msgid "Available elements (drag into a row)"
+msgstr "利用可能な要素（行へドラッグ）"
+
 msgid "Award-winning national coffee champion."
 msgstr "受賞歴のある全国コーヒーチャンピオン。"
 
+msgid "Azure"
+msgstr "アジュール"
+
+msgid "Azure deep"
+msgstr "アジュール（濃）"
+
+msgid "Azure pastel"
+msgstr "アジュール（パステル）"
+
+msgid "BIGSPY AI Builder"
+msgstr "BIGSPY AI Builder"
+
+msgid "BIGSPY AI Theme WP is active."
+msgstr "BIGSPY AI Theme WP は有効です。"
+
 msgid "BIGSPY Studio"
 msgstr "BIGSPY Studio"
+
+msgid "BIGSPY blocks (show / hide)"
+msgstr "BIGSPYブロック（表示／非表示）"
+
+msgid "BIGSPY classic"
+msgstr "BIGSPYクラシック"
+
+msgid "BIGSPY elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually."
+msgstr "BIGSPYの要素はWordPressのブロックエディターを使います。現在はクラシックエディターが既定です。レイアウトを視覚的に編集するには、投稿設定でブロックエディターを選択してください。"
 
 msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
 msgstr "BIGSPY メンテナンスモードが有効です。訪問者はストアを閲覧できません。"
@@ -447,11 +861,101 @@ msgstr "BIGSPY メンテナンスモードが有効です。訪問者はスト�
 msgid "BIGSPY settings"
 msgstr "BIGSPY 設定"
 
+msgid "BIGSPY swatch color"
+msgstr "BIGSPYスウォッチの色"
+
+msgid "BIGSPY swatch image"
+msgstr "BIGSPYスウォッチの画像"
+
+msgid "BIGSPY swatch label"
+msgstr "BIGSPYスウォッチのラベル"
+
+msgid "BIGSPY swatch type"
+msgstr "BIGSPYスウォッチの種類"
+
+msgid "BIGSPY · Kiểu toàn trang"
+msgstr "BIGSPY · フルページ"
+
+msgid "BIGSPY – Full pages"
+msgstr "BIGSPY – フルページ"
+
+msgid "BIGSPY – Page layout"
+msgstr "BIGSPY – ページレイアウト"
+
+msgid "BIGSPY – Sections"
+msgstr "BIGSPY – セクション"
+
+msgid "BIGSPY – Shop"
+msgstr "BIGSPY – ショップ"
+
+msgid "BIGSPY: cart & checkout"
+msgstr "BIGSPY：カートと決済"
+
+msgid "BIGSPY: catalog mode"
+msgstr "BIGSPY：カタログモード"
+
+msgid "BIGSPY: product cards & page"
+msgstr "BIGSPY：商品カードと商品ページ"
+
+msgid "BIGSPY: shop layout"
+msgstr "BIGSPY：ショップレイアウト"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Back background"
+msgstr "裏面の背景"
+
+msgid "Back text"
+msgstr "裏面のテキスト"
+
+msgid "Back to Header builder"
+msgstr "ヘッダービルダーに戻る"
+
 msgid "Back to home"
 msgstr "ホームに戻る"
 
 msgid "Back to top"
 msgstr "トップに戻る"
+
+msgid "Back to top button"
+msgstr "トップへ戻るボタン"
+
+msgid "Back-to-top button"
+msgstr "トップへ戻るボタン"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Background blur (px)"
+msgstr "背景のぼかし（px）"
+
+msgid "Background brightness (%)"
+msgstr "背景の明るさ（%）"
+
+msgid "Background color"
+msgstr "背景色"
+
+msgid "Background color style"
+msgstr "背景色のスタイル"
+
+msgid "Background image"
+msgstr "背景画像"
+
+msgid "Background image & overlay"
+msgstr "背景画像とオーバーレイ"
+
+msgid "Background image (optional)"
+msgstr "背景画像（任意）"
+
+msgid "Background on hover"
+msgstr "ホバー時の背景"
+
+msgid "Background video"
+msgstr "背景動画"
+
+msgid "Backgrounds & borders"
+msgstr "背景と枠線"
 
 msgid "Badge and faded card"
 msgstr "バッジとカードを薄く表示"
@@ -459,11 +963,29 @@ msgstr "バッジとカードを薄く表示"
 msgid "Badge and grayscale image"
 msgstr "バッジとグレースケール画像"
 
+msgid "Badge on the second option"
+msgstr "2番目の選択肢のバッジ"
+
 msgid "Badge only"
 msgstr "バッジのみ"
 
+msgid "Badge shape"
+msgstr "バッジの形"
+
+msgid "Badge text"
+msgstr "バッジのテキスト"
+
 msgid "Badge texts (empty = default)"
 msgstr "バッジのテキスト（空欄 = 既定）"
+
+msgid "Bakery, kids, gifts"
+msgstr "ベーカリー、キッズ、ギフト"
+
+msgid "Balance heading lines"
+msgstr "見出しの行を均等にする"
+
+msgid "Balanced (250 ms)"
+msgstr "バランス（250 ms）"
 
 msgid "Band score guarantee"
 msgstr "スコア保証"
@@ -471,11 +993,44 @@ msgstr "スコア保証"
 msgid "Bank loan file"
 msgstr "銀行ローン書類"
 
+msgid "Bank transfer"
+msgstr "銀行振込"
+
+msgid "Banner"
+msgstr "バナー"
+
 msgid "Banner code (HTML, inline CSS)"
 msgstr "バナーコード（HTML、インライン CSS）"
 
+msgid "Banner image"
+msgstr "バナー画像"
+
+msgid "Banner title"
+msgstr "バナーのタイトル"
+
+msgid "Banners"
+msgstr "バナー"
+
+msgid "Bar height (px)"
+msgstr "バーの高さ（px）"
+
+msgid "Bar look"
+msgstr "バーの見た目"
+
+msgid "Bar on the left"
+msgstr "左にバー"
+
+msgid "Bar on top"
+msgstr "上にバー"
+
 msgid "Barista"
 msgstr "バリスタ"
+
+msgid "Bars"
+msgstr "バー"
+
+msgid "Basic HTML like <strong> works."
+msgstr "<strong> などの基本的なHTMLが使えます。"
 
 msgid "Basic conversation"
 msgstr "基礎会話"
@@ -486,11 +1041,23 @@ msgstr "売れる美しいウェブサイト"
 msgid "Beauty tips"
 msgstr "美容のヒント"
 
+msgid "Beauty, spa, fashion"
+msgstr "美容、スパ、ファッション"
+
 msgid "Beer or soft drinks"
 msgstr "ビールまたはソフトドリンク"
 
 msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
 msgstr "施術の前に、セラピストが肌を分析し、肌と体に最も合う製品をご提案します。"
+
+msgid "Before image"
+msgstr "Before画像"
+
+msgid "Before label"
+msgstr "Beforeラベル"
+
+msgid "Before text"
+msgstr "Beforeテキスト"
 
 msgid "Before the footer"
 msgstr "フッターの前"
@@ -501,38 +1068,161 @@ msgstr "ヘッダーの前"
 msgid "Before the page content"
 msgstr "ページコンテンツの前"
 
+msgid "Behaviour"
+msgstr "動作"
+
+msgid "Below"
+msgstr "下"
+
+msgid "Below 100 darkens the photo, above 100 lightens it."
+msgstr "100未満で写真が暗く、100超で明るくなります。"
+
+msgid "Below the post"
+msgstr "投稿の下"
+
 msgid "Benefits of regular massage"
 msgstr "定期的なマッサージの効果"
 
+msgid "Berry pink"
+msgstr "ベリーピンク"
+
 msgid "Best sellers"
+msgstr "売れ筋"
+
+msgid "Best selling"
 msgstr "売れ筋"
 
 msgid "Better skin after 3–5 sessions"
 msgstr "3～5回で肌が変わる"
 
+msgid "Bevel"
+msgstr "ベベル"
+
+msgid "Billing period"
+msgstr "請求期間"
+
 msgid "Birthdays, team dinners, events"
 msgstr "誕生日、チームの食事会、イベント"
+
+msgid "Black & gold"
+msgstr "ブラック＆ゴールド"
+
+msgid "Black & white map"
+msgstr "白黒マップ"
+
+msgid "Black 900"
+msgstr "ブラック 900"
 
 msgid "Black pepper beef"
 msgstr "牛肉の黒胡椒炒め"
 
+msgid "Block Accordion của BIGSPY, không thay đổi cơ chế mở/đóng."
+msgstr "BIGSPYのアコーディオンブロック。開閉の仕組みは変更しません。"
+
+msgid "Block Icon Box ở chế độ card hoặc bordered."
+msgstr "カードまたは枠線モードのIcon Boxブロック。"
+
+msgid "Block hidden on all devices (still editable here)."
+msgstr "すべてのデバイスでブロックを非表示（ここでは引き続き編集可能）。"
+
+msgid "Block name (shown in List View):"
+msgstr "ブロック名（リスト表示に表示）:"
+
+msgid "Block shown again."
+msgstr "ブロックを再表示しました。"
+
+msgid "Block width"
+msgstr "ブロックの幅"
+
+msgid "Block ảnh WordPress và BIGSPY trong nội dung; logo giữ nguyên."
+msgstr "コンテンツ内のWordPressとBIGSPYの画像ブロック。ロゴは変わりません。"
+
 msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
 msgstr "ブルートフォース攻撃の主な標的をブロックします。WordPress モバイルアプリや Jetpack を使う場合はオフのままにしてください。"
+
+msgid "Blocks: “Products” (latest, featured, sale, best selling, top rated – grid or slider) and “Product Categories”."
+msgstr "ブロック：「商品」（新着、おすすめ、セール、売れ筋、高評価 – グリッドまたはスライダー）と「商品カテゴリー」。"
 
 msgid "Blog"
 msgstr "ブログ"
 
+msgid "Blog & bài viết"
+msgstr "ブログと投稿"
+
 msgid "Blog & single post"
 msgstr "ブログと個別投稿"
+
+msgid "Blog archive"
+msgstr "ブログアーカイブ"
 
 msgid "Blog posts page"
 msgstr "投稿ページ"
 
+msgid "Blog sidebar"
+msgstr "ブログのサイドバー"
+
+msgid "Blur to sharp"
+msgstr "ぼかしからくっきり"
+
+msgid "Bo góc banner BIGSPY"
+msgstr "BIGSPYバナーの角丸"
+
+msgid "Bo góc menu thả xuống"
+msgstr "ドロップダウンメニューの角丸"
+
+msgid "Bo góc tab thông tin sản phẩm"
+msgstr "商品情報タブの角丸"
+
+msgid "Bo góc thẻ bài viết"
+msgstr "投稿カードの角丸"
+
+msgid "Bo góc thẻ dịch vụ"
+msgstr "サービスカードの角丸"
+
+msgid "Bo góc thẻ sản phẩm"
+msgstr "商品カードの角丸"
+
+msgid "Bo góc ô nhập biểu mẫu"
+msgstr "フォーム入力欄の角丸"
+
+msgid "Bo góc ảnh chi tiết sản phẩm"
+msgstr "商品詳細画像の角丸"
+
+msgid "Bo góc ảnh nội dung"
+msgstr "本文画像の角丸"
+
+msgid "Bo góc ảnh đầu bài viết"
+msgstr "投稿アイキャッチ画像の角丸"
+
 msgid "Body care"
 msgstr "ボディケア"
 
+msgid "Body font"
+msgstr "本文フォント"
+
+msgid "Body font size – desktop (px)"
+msgstr "本文フォントサイズ – デスクトップ（px）"
+
+msgid "Body font size – mobile (px)"
+msgstr "本文フォントサイズ – モバイル（px）"
+
+msgid "Body font weight"
+msgstr "本文フォントの太さ"
+
+msgid "Body text"
+msgstr "本文テキスト"
+
+msgid "Bold"
+msgstr "太字"
+
+msgid "Bold 700"
+msgstr "太字 700"
+
 msgid "Bold lines"
 msgstr "太線"
+
+msgid "Bold red"
+msgstr "ボールドレッド"
 
 msgid "Book"
 msgstr "予約"
@@ -567,19 +1257,118 @@ msgstr "今日のご予約で初回15%オフ。"
 msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
 msgstr "金曜～日曜の夜はご予約をおすすめします。平日は予約なしでどうぞ。"
 
+msgid "Border"
+msgstr "枠線"
+
+msgid "Border color"
+msgstr "枠線の色"
+
+msgid "Border color on hover"
+msgstr "ホバー時の枠線の色"
+
+msgid "Border style"
+msgstr "枠線のスタイル"
+
+msgid "Border width"
+msgstr "枠線の太さ"
+
+msgid "Border width (px, -1 = default)"
+msgstr "枠線の太さ（px、-1 = 既定）"
+
+msgid "Border width (px, -1 = style default)"
+msgstr "枠線の太さ（px、-1 = スタイル既定）"
+
 msgid "Bordered"
 msgstr "枠線あり"
+
+msgid "Borders"
+msgstr "枠線"
+
+msgid "Bottom"
+msgstr "下"
+
+msgid "Bottom bar (full width)"
+msgstr "下部バー（全幅）"
 
 msgid "Bottom corner radius (px)"
 msgstr "下側の角の丸み（px）"
 
+msgid "Bottom header"
+msgstr "下部ヘッダー"
+
+msgid "Bottom left (slide-in)"
+msgstr "左下（スライドイン）"
+
+msgid "Bottom left box"
+msgstr "左下のボックス"
+
+msgid "Bottom right (slide-in)"
+msgstr "右下（スライドイン）"
+
+msgid "Bottom, centered"
+msgstr "下・中央"
+
+msgid "Bounce"
+msgstr "バウンス"
+
+msgid "Box & image"
+msgstr "ボックスと画像"
+
+msgid "Box background"
+msgstr "ボックスの背景"
+
+msgid "Box border"
+msgstr "ボックスの枠線"
+
+msgid "Box border width (px, -1 = style default)"
+msgstr "ボックスの枠線の太さ（px、-1 = スタイル既定）"
+
+msgid "Box padding (px, -1 = auto)"
+msgstr "ボックスの内側余白（px、-1 = 自動）"
+
+msgid "Box shadow (-1 = style default, 0 = none)"
+msgstr "ボックスの影（-1 = スタイル既定、0 = なし）"
+
+msgid "Box style"
+msgstr "ボックスのスタイル"
+
+msgid "Boxed"
+msgstr "ボックス"
+
+msgid "Boxed card"
+msgstr "ボックスカード"
+
+msgid "Boxed items"
+msgstr "ボックス型アイテム"
+
+msgid "Brackets [ ]"
+msgstr "角かっこ [ ]"
+
+msgid "Brand"
+msgstr "ブランド"
+
+msgid "Brand bar on the left"
+msgstr "左側にブランドバー"
+
+msgid "Brand colors"
+msgstr "ブランドカラー"
+
 msgid "Brand colors, palettes, typography and button styles."
 msgstr "ブランドカラー、パレット、タイポグラフィ、ボタンスタイル。"
+
+msgid "Brand gradient"
+msgstr "ブランドグラデーション"
+
+msgid "Brand gradient (light text)"
+msgstr "ブランドグラデーション（明るい文字）"
 
 msgid "Brand line on the left"
 msgstr "左にブランドライン"
 
 msgid "Breadcrumb"
+msgstr "パンくずリスト"
+
+msgid "Breadcrumbs"
 msgstr "パンくずリスト"
 
 msgid "Brewing the perfect filter coffee"
@@ -591,6 +1380,15 @@ msgstr "ブライダルケアパッケージ"
 msgid "Bridal package"
 msgstr "ブライダルパッケージ"
 
+msgid "Brighten"
+msgstr "明るく"
+
+msgid "Bring to front (over content)"
+msgstr "最前面へ（コンテンツの上）"
+
+msgid "Brush"
+msgstr "ブラシ"
+
 msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
 msgstr "ブロックで作成した公開ページを選びます。サイトのヘッダー/フッターなしで表示されます。既定の画面を使う場合はページを選択しないでください。"
 
@@ -599,6 +1397,15 @@ msgstr "ゼロから作成"
 
 msgid "Build pages with blocks"
 msgstr "ブロックでページを作成"
+
+msgid "Built-in BIGSPY form"
+msgstr "BIGSPY内蔵フォーム"
+
+msgid "Built-in form settings"
+msgstr "内蔵フォームの設定"
+
+msgid "Bulleted list"
+msgstr "箇条書きリスト"
 
 msgid "Business homepage"
 msgstr "ビジネス向けホームページ"
@@ -609,8 +1416,56 @@ msgstr "企業・サービスのウェブサイト"
 msgid "Button"
 msgstr "ボタン"
 
+msgid "Button %s"
+msgstr "ボタン %s"
+
+msgid "Button 1"
+msgstr "ボタン1"
+
+msgid "Button 2"
+msgstr "ボタン2"
+
+msgid "Button color"
+msgstr "ボタンの色"
+
+msgid "Button colors"
+msgstr "ボタンの色"
+
+msgid "Button here"
+msgstr "ここにボタン"
+
+msgid "Button hover effect"
+msgstr "ボタンのホバー効果"
+
+msgid "Button label"
+msgstr "ボタンのラベル"
+
+msgid "Button link"
+msgstr "ボタンのリンク"
+
+msgid "Button link (empty = phone number from Contact info)"
+msgstr "ボタンのリンク（空欄 = 連絡先情報の電話番号）"
+
+msgid "Button on hover"
+msgstr "ホバー時のボタン"
+
+msgid "Button size (px)"
+msgstr "ボタンのサイズ（px）"
+
+msgid "Button text"
+msgstr "ボタンのテキスト"
+
+msgid "Button text on hover"
+msgstr "ホバー時のボタンのテキスト"
+
+msgid "Buttons"
+msgstr "ボタン"
+
 msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
 msgstr "テーマが表示するボタンやラベル（例：「続きを読む」「シェア：」「関連投稿」）。"
+
+msgid "Buttons with text"
+msgstr "テキスト付きボタン"
 
 msgid "Buy a package to save up to 30% and share it with family."
 msgstr "パッケージ購入で最大30%お得、ご家族とシェアもできます。"
@@ -630,6 +1485,30 @@ msgstr "購入者のご相談は無料。掲載いただいたオーナー様は
 msgid "Buying process"
 msgstr "購入の流れ"
 
+msgid "Bảng block WordPress; không áp dụng bảng thanh toán."
+msgstr "WordPressのテーブルブロック。決済テーブルには適用されません。"
+
+msgid "Bảng có hàng xen kẽ"
+msgstr "行の色が交互のテーブル"
+
+msgid "Bảng lịch sử đơn hàng trong tài khoản."
+msgstr "アカウントの注文履歴テーブル。"
+
+msgid "Bảng nội dung WordPress; không đổi giỏ hàng."
+msgstr "WordPressのコンテンツテーブル。カートは変更しません。"
+
+msgid "Bảng nội dung cuộn ngang trên mobile"
+msgstr "モバイルでコンテンツテーブルを横スクロール"
+
+msgid "Bảng đơn hàng có hàng xen kẽ"
+msgstr "行の色が交互の注文テーブル"
+
+msgid "Bỏ nền thẻ mặc định cho đăng nhập, đăng ký và sửa tài khoản."
+msgstr "ログイン、登録、アカウント編集の既定のカード背景を外します。"
+
+msgid "Bổ sung dấu hiệu focus, không tắt outline sẵn có."
+msgstr "既存のアウトラインを無効にせず、フォーカス表示を追加します。"
+
 msgid "Cakes baked today"
 msgstr "本日焼き上げのケーキ"
 
@@ -644,6 +1523,9 @@ msgstr "行動喚起"
 
 msgid "Call us"
 msgstr "お電話ください"
+
+msgid "Call-to-action band"
+msgstr "CTAバンド"
 
 msgid "Can I get an invoice?"
 msgstr "領収書はもらえますか？"
@@ -660,11 +1542,38 @@ msgstr "分割払いはできますか？"
 msgid "Can I try a lesson first?"
 msgstr "まず体験レッスンを受けられますか？"
 
+msgid "Can also be enabled per page in the “BIGSPY – Page layout” box."
+msgstr "「BIGSPY – ページレイアウト」ボックスでページごとに有効にすることもできます。"
+
+msgid "Candy"
+msgstr "キャンディ"
+
 msgid "Can’t find your answer? Call or message us – we are always happy to help."
 msgstr "答えが見つかりませんか？お電話またはメッセージでお気軽にご相談ください。"
 
+msgid "Capitalize"
+msgstr "先頭を大文字"
+
+msgid "Caption"
+msgstr "キャプション"
+
+msgid "Caption (optional)"
+msgstr "キャプション（任意）"
+
 msgid "Caramelised fish, sour soup and crispy clay pot rice."
 msgstr "魚のキャラメル煮、酸っぱいスープ、土鍋のおこげご飯。"
+
+msgid "Carbon red"
+msgstr "カーボンレッド"
+
+msgid "Card"
+msgstr "カード"
+
+msgid "Card background"
+msgstr "カードの背景"
+
+msgid "Card colors"
+msgstr "カードの色"
 
 msgid "Card corner radius (px, -1 = default)"
 msgstr "カードの角の丸み（px、-1 = 既定）"
@@ -674,6 +1583,15 @@ msgstr "カードの詳細"
 
 msgid "Card inner space (px, -1 = default)"
 msgstr "カードの内側の余白（px、-1 = 既定）"
+
+msgid "Card style"
+msgstr "カードのスタイル"
+
+msgid "Card style (background + shadow)"
+msgstr "カードのスタイル（背景＋影）"
+
+msgid "Card with shadow"
+msgstr "影付きカード"
 
 msgid "Caring service"
 msgstr "心のこもったサービス"
@@ -687,13 +1605,40 @@ msgstr "親身なセラピスト"
 msgid "Cart"
 msgstr "カート"
 
+msgid "Cart & checkout layout"
+msgstr "カートと決済のレイアウト"
+
+msgid "Cart (WooCommerce)"
+msgstr "カート（WooCommerce）"
+
+msgid "Cart icon"
+msgstr "カートアイコン"
+
+msgid "Cart layout"
+msgstr "カートのレイアウト"
+
+msgid "Categories"
+msgstr "カテゴリー"
+
+msgid "Categories menu (vertical)"
+msgstr "カテゴリーメニュー（縦）"
+
 msgid "Category"
 msgstr "カテゴリー"
+
+msgid "Category & archive sidebar"
+msgstr "カテゴリーとアーカイブのサイドバー"
 
 msgid "Category badge on the image"
 msgstr "画像上のカテゴリーバッジ"
 
 msgid "Center"
+msgstr "中央"
+
+msgid "Center when narrower"
+msgstr "狭い場合は中央寄せ"
+
+msgid "Centered"
 msgstr "中央"
 
 msgid "Centered title, then image"
@@ -705,8 +1650,29 @@ msgstr "資格"
 msgid "Certified in Thai therapeutic massage."
 msgstr "タイ古式セラピーマッサージの資格を保有。"
 
+msgid "Change icon"
+msgstr "アイコンを変更"
+
+msgid "Change logos"
+msgstr "ロゴを変更"
+
 msgid "Chat / Messenger"
 msgstr "チャット / Messenger"
+
+msgid "Check"
+msgstr "チェック"
+
+msgid "Check marks"
+msgstr "チェックマーク"
+
+msgid "Checkout layout"
+msgstr "決済のレイアウト"
+
+msgid "Chevron"
+msgstr "シェブロン"
+
+msgid "Chi tiết & đánh giá · WooCommerce"
+msgstr "詳細とレビュー · WooCommerce"
 
 msgid "Child theme"
 msgstr "子テーマ"
@@ -714,14 +1680,56 @@ msgstr "子テーマ"
 msgid "Chloe"
 msgstr "クロエ"
 
+msgid "Choose"
+msgstr "選択"
+
+msgid "Choose a before and an after image in the block settings."
+msgstr "ブロック設定でビフォー画像とアフター画像を選んでください。"
+
+msgid "Choose a column layout here, then add content to each column in Widgets. Your existing widget content is kept when changing a layout."
+msgstr "ここで列レイアウトを選び、ウィジェットで各列にコンテンツを追加します。レイアウトを変えても既存のウィジェットの内容は残ります。"
+
+msgid "Choose a footer layout"
+msgstr "フッターのレイアウトを選択"
+
+msgid "Choose a form first."
+msgstr "先にフォームを選んでください。"
+
+msgid "Choose a form in the block settings (Contact Form 7 or WPForms must be active)."
+msgstr "ブロック設定でフォームを選んでください（Contact Form 7 または WPForms が有効である必要があります）。"
+
 msgid "Choose a ready-made design, then change its text, images and colors on the page."
 msgstr "既成のデザインを選び、ページ上でテキスト・画像・色を変更します。"
+
+msgid "Choose a starting layout. It changes only the arrangement of header items; logo, menus, colors and button text stay yours. You can still drag every item below."
+msgstr "スタートレイアウトを選びます。変わるのはヘッダー項目の配置だけで、ロゴ、メニュー、色、ボタンのテキストはそのままです。下の各項目は引き続きドラッグできます。"
 
 msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
 msgstr "開始点を選んでください。BIGSPY が未公開の下書きを作成してエディターを開くので、デザイン中も公開中のサイトはそのままです。"
 
 msgid "Choose a treatment and time by phone or chat."
 msgstr "電話またはチャットでメニューと時間をお選びください。"
+
+msgid "Choose an audio file in the block settings."
+msgstr "ブロック設定で音声ファイルを選んでください。"
+
+msgid "Choose form"
+msgstr "フォームを選択"
+
+msgid "Choose from the color palette library"
+msgstr "カラーパレットライブラリから選択"
+
+msgid "Choose image"
+msgstr "画像を選択"
+
+msgid "Choose images"
+msgstr "画像を選択"
+
+msgid "Choose images from the media library."
+msgstr "メディアライブラリから画像を選びます。"
+
+msgid "Choose options"
+msgstr "オプションを選択"
 
 msgid "Choose the course for your goal, with evening and weekend classes for working adults."
 msgstr "目標に合ったコースを選べます。社会人向けに夜間・週末クラスもあります。"
@@ -738,6 +1746,54 @@ msgstr "お子様のコースの選び方"
 msgid "Choosing the right sunscreen"
 msgstr "日焼け止めの選び方"
 
+msgid "Chú thích ảnh BIGSPY, ảnh và thư viện ảnh WordPress."
+msgstr "BIGSPY画像、WordPressの画像とギャラリーのキャプション。"
+
+msgid "Chỉ block Banner của BIGSPY."
+msgstr "BIGSPYのバナーブロックのみ。"
+
+msgid "Chỉ còn các kiểu áp dụng cho toàn trang (đầu trang, chân trang, trang WooCommerce, mobile). Kiểu cho ảnh, banner, nút, biểu mẫu, thẻ dịch vụ, FAQ, bài viết… nay nằm ngay trong từng khối: chọn khối → panel \"Style presets\". CSS tự nhập bên dưới vẫn ghi đè được."
+msgstr "ここにはサイト全体に適用するスタイル（ヘッダー、フッター、WooCommerceページ、モバイル）だけが残っています。画像、バナー、ボタン、フォーム、サービスカード、FAQ、投稿などのスタイルは各ブロック内にあります：ブロックを選択 →「Style presets」パネル。下のカスタムCSSで引き続き上書きできます。"
+
+msgid "Chỉ có tác dụng khi plugin Countix tạo đồng hồ layout 1; không thay đổi giá hoặc thời hạn ưu đãi."
+msgstr "プラグインCountixがレイアウト1のタイマーを作成した場合のみ有効。価格やキャンペーン期間は変わりません。"
+
+msgid "Chỉ cắt hiển thị danh sách; tiêu đề đầy đủ vẫn trong trang bài."
+msgstr "一覧での表示だけを省略します。完全なタイトルは投稿ページに残ります。"
+
+msgid "Chỉ giá trong danh sách; giữ giá cũ/gạch ngang."
+msgstr "一覧の価格のみ。取り消し線付きの元の価格は残します。"
+
+msgid "Chỉ khi hệ điều hành bật giảm chuyển động; giữ nguyên slider và menu."
+msgstr "OSで視差効果を減らす設定がオンの場合のみ。スライダーとメニューはそのままです。"
+
+msgid "Chỉ nút thêm vào giỏ ở trang chi tiết."
+msgstr "商品ページのカートに追加ボタンのみ。"
+
+msgid "Chỉ nội dung bài blog; không thu hẹp trang bán hàng."
+msgstr "ブログ投稿の本文のみ。販売ページは狭くしません。"
+
+msgid "Chỉ thiết bị có chuột và không yêu cầu giảm chuyển động."
+msgstr "マウスがあり、動きを減らす設定をしていない端末のみ。"
+
+msgid "Chỉ đang bật"
+msgstr "有効なもののみ"
+
+msgid "Chỉ định dạng nội dung cảm nhận đã có; không tạo đánh giá."
+msgstr "既存のお客様の声を整形するだけで、レビューは作成しません。"
+
+msgid "Chỉ đổi màu; không thay đổi điểm đánh giá."
+msgstr "色を変えるだけで、評価点は変わりません。"
+
+msgid "Chữ & nội dung"
+msgstr "テキストとコンテンツ"
+
+msgid "Circle"
+msgstr "円"
+
+msgid "Circle + ring"
+msgstr "円＋リング"
+
 msgid "Classic (one large post per row)"
 msgstr "クラシック（1行に大きな投稿1件）"
 
@@ -753,8 +1809,17 @@ msgstr "WordPress を整理"
 msgid "Clean, fragrant and quiet. Booking by chat is very quick."
 msgstr "清潔で良い香り、静かです。チャット予約もとても早いです。"
 
+msgid "Cleaning, water, pools"
+msgstr "清掃、水、プール"
+
 msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
 msgstr "押し付けのない明確なアドバイス。銀行ローンも最初から最後まで対応してもらえました。"
+
+msgid "Clear all presets"
+msgstr "すべてのプリセットを解除"
+
+msgid "Clear formatting"
+msgstr "書式をクリア"
 
 msgid "Clear legal status"
 msgstr "明確な権利関係"
@@ -762,11 +1827,29 @@ msgstr "明確な権利関係"
 msgid "Clear tuition, plenty of offers"
 msgstr "明朗な料金、充実の特典"
 
+msgid "Click"
+msgstr "クリック"
+
+msgid "Click a look to apply it, then fine-tune below."
+msgstr "スタイルをクリックして適用し、下で微調整します。"
+
+msgid "Click on the image to add a point. Drag sliders to move it."
+msgstr "画像をクリックしてポイントを追加。スライダーをドラッグして移動します。"
+
+msgid "Click to apply, click again to remove. Colors follow your theme. Settings above still work."
+msgstr "クリックで適用、もう一度クリックで解除。色はテーマに合わせて変わります。上の設定も引き続き使えます。"
+
 msgid "Clients"
 msgstr "お客様"
 
 msgid "Clinical acne care"
 msgstr "ニキビの医療ケア"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Close filters"
+msgstr "フィルターを閉じる"
 
 msgid "Close menu"
 msgstr "メニューを閉じる"
@@ -774,8 +1857,32 @@ msgstr "メニューを閉じる"
 msgid "Close search"
 msgstr "検索を閉じる"
 
+msgid "Close when clicking outside"
+msgstr "外側をクリックで閉じる"
+
 msgid "Closed in 15 years"
 msgstr "15年間の成約"
+
+msgid "Clouds"
+msgstr "雲"
+
+msgid "Cobalt"
+msgstr "コバルト"
+
+msgid "Cobalt deep"
+msgstr "濃いコバルト"
+
+msgid "Cobalt pastel"
+msgstr "パステルコバルト"
+
+msgid "Code"
+msgstr "コード"
+
+msgid "Code / HTML"
+msgstr "コード / HTML"
+
+msgid "Code to display"
+msgstr "表示するコード"
 
 msgid "Coding basics"
 msgstr "プログラミングの基礎"
@@ -783,8 +1890,7445 @@ msgstr "プログラミングの基礎"
 msgid "Coffee ratio, water temperature and brewing time for a rich cup."
 msgstr "濃厚な一杯のためのコーヒー量、湯温、抽出時間。"
 
+msgid "Coffee, tea, handmade"
+msgstr "コーヒー、お茶、ハンドメイド"
+
+msgid "Collapse behind a Menu button"
+msgstr "メニューボタンにまとめる"
+
 msgid "Collect points and enjoy 10% off as a regular."
 msgstr "ポイントを貯めて、常連のお客様は10%オフ。"
 
+msgid "Color"
+msgstr "色"
+
+msgid "Color (usually the next/previous section background)"
+msgstr "色（通常は次／前のセクションの背景）"
+
+msgid "Color code"
+msgstr "カラーコード"
+
+msgid "Color gradient"
+msgstr "カラーグラデーション"
+
+msgid "Color mesh"
+msgstr "カラーメッシュ"
+
+msgid "Color on hover"
+msgstr "ホバー時の色"
+
+msgid "Color palettes"
+msgstr "カラーパレット"
+
+msgid "Color swatches"
+msgstr "カラースウォッチ"
+
+msgid "Color theme"
+msgstr "カラーテーマ"
+
+msgid "Colored glow"
+msgstr "カラーグロー"
+
+msgid "Colored tile"
+msgstr "カラータイル"
+
+msgid "Colorful"
+msgstr "カラフル"
+
+msgid "Colorful (tinted, gradient button)"
+msgstr "カラフル（淡色、グラデーションボタン）"
+
+msgid "Colors"
+msgstr "色"
+
 msgid "Colors & fonts"
 msgstr "色とフォント"
+
+msgid "Colors & spacing"
+msgstr "色と余白"
+
+msgid "Colors follow your site palette (Customizer → Colors). Dark styles switch the text to white automatically."
+msgstr "色はサイトのパレット（カスタマイズ → 色）に従います。ダーク系スタイルでは文字が自動で白になります。"
+
+msgid "Colour + bold only"
+msgstr "色と太字のみ"
+
+msgid "Column layout"
+msgstr "列レイアウト"
+
+msgid "Column width (out of 12)"
+msgstr "列の幅（12分割）"
+
+msgid "Columns"
+msgstr "列"
+
+msgid "Columns on phones"
+msgstr "スマートフォンの列数"
+
+msgid "Columns – desktop"
+msgstr "列数 – デスクトップ"
+
+msgid "Columns – mobile"
+msgstr "列数 – モバイル"
+
+msgid "Columns – tablet"
+msgstr "列数 – タブレット"
+
+msgid "Comma for several addresses."
+msgstr "複数のアドレスはカンマで区切ります。"
+
+msgid "Comments"
+msgstr "コメント"
+
+msgid "Comments are closed."
+msgstr "コメントは受け付けていません。"
+
+msgid "Commercial shophouse"
+msgstr "商業用店舗住宅"
+
+msgid "Compact menu below this screen width (px, 0 = off)"
+msgstr "この画面幅未満でコンパクトメニュー（px、0 = オフ）"
+
+msgid "Company director"
+msgstr "会社役員"
+
+msgid "Conference set"
+msgstr "会議セット"
+
+msgid "Consent text"
+msgstr "同意テキスト"
+
+msgid "Construction, delivery, energy"
+msgstr "建設、配送、エネルギー"
+
+msgid "Consultant"
+msgstr "コンサルタント"
+
+msgid "Consultants"
+msgstr "コンサルタント"
+
+msgid "Contact"
+msgstr "お問い合わせ"
+
+msgid "Contact details, social links and clear navigation."
+msgstr "連絡先、SNSリンク、わかりやすいナビゲーション。"
+
+msgid "Contact for price"
+msgstr "価格はお問い合わせください"
+
+msgid "Contact info"
+msgstr "連絡先情報"
+
+msgid "Contact info & social"
+msgstr "連絡先情報とSNS"
+
+msgid "Contact us"
+msgstr "お問い合わせ"
+
+msgid "Contain"
+msgstr "収める"
+
+msgid "Container"
+msgstr "コンテナ"
+
+msgid "Container width"
+msgstr "コンテナ幅"
+
+msgid "Container width (px)"
+msgstr "コンテナ幅（px）"
+
+msgid "Content"
+msgstr "コンテンツ"
+
+msgid "Content after purchase form"
+msgstr "購入フォームの後のコンテンツ"
+
+msgid "Content before purchase form"
+msgstr "購入フォームの前のコンテンツ"
+
+msgid "Content position"
+msgstr "コンテンツの位置"
+
+msgid "Content width"
+msgstr "コンテンツ幅"
+
+msgid "Content width (%)"
+msgstr "コンテンツ幅（%）"
+
+msgid "Content width (px, 0 = full)"
+msgstr "コンテンツ幅（px、0 = 全幅）"
+
+msgid "Contents"
+msgstr "目次"
+
+msgid "Continuous"
+msgstr "連続"
+
+msgid "Cookie notice"
+msgstr "Cookieのお知らせ"
+
+msgid "Cookie notice & reading"
+msgstr "Cookie 通知と閲覧"
+
+msgid "Cookie notice, speed & reading"
+msgstr "Cookieのお知らせ、速度と読みやすさ"
+
+msgid "Copied block to clipboard."
+msgstr "ブロックをクリップボードにコピーしました。"
+
+msgid "Copied!"
+msgstr "コピーしました！"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Copy appearance"
+msgstr "見た目をコピー"
+
+msgid "Copy button"
+msgstr "コピーボタン"
+
+msgid "Copy design"
+msgstr "デザインをコピー"
+
+msgid "Copy link"
+msgstr "リンクをコピー"
+
+msgid "Copy this block:"
+msgstr "このブロックをコピー:"
+
+msgid "Copyright text"
+msgstr "著作権表示"
+
+msgid "Copyright © [year] [site_title]. All rights reserved."
+msgstr "Copyright © [year] [site_title]. All rights reserved."
+
+msgid "Coral"
+msgstr "コーラル"
+
+msgid "Coral deep"
+msgstr "濃いコーラル"
+
+msgid "Coral pastel"
+msgstr "パステルコーラル"
+
+msgid "Corner radius"
+msgstr "角丸"
+
+msgid "Corner radius (px)"
+msgstr "角丸（px）"
+
+msgid "Corner radius (px, -1 = default)"
+msgstr "角丸（px、-1 = 既定）"
+
+msgid "Corner radius (px, -1 = style default)"
+msgstr "角丸（px、-1 = スタイル既定）"
+
+msgid "Corner radius (px, -1 = theme default, 99 = pill)"
+msgstr "角丸（px、-1 = テーマ既定、99 = ピル型）"
+
+msgid "Corner radius (px, -1 = theme)"
+msgstr "角丸（px、-1 = テーマ）"
+
+msgid "Corner radius on hover"
+msgstr "ホバー時の角丸"
+
+msgid "Could not read the form. Open it in Contact Form 7 to edit the mail settings."
+msgstr "フォームを読み込めませんでした。Contact Form 7で開いてメール設定を編集してください。"
+
+msgid "Could not save. Edit it in Contact Form 7."
+msgstr "保存できませんでした。Contact Form 7で編集してください。"
+
+msgid "Count badge background"
+msgstr "件数バッジの背景"
+
+msgid "Count badge text"
+msgstr "件数バッジの文字"
+
+msgid "Countdown ring – top right"
+msgstr "カウントダウンリング – 右上"
+
+msgid "Counter"
+msgstr "カウンター"
+
+msgid "Couple rooms available"
+msgstr "ペアルームあり"
+
+msgid "Courses"
+msgstr "コース"
+
+msgid "Cover"
+msgstr "カバー"
+
+msgid "Cover image"
+msgstr "カバー画像"
+
+msgid "Cover image (optional — YouTube thumbnail is used otherwise)"
+msgstr "カバー画像（任意 — なければYouTubeのサムネイルを使用）"
+
+msgid "Create a new form"
+msgstr "新しいフォームを作成"
+
+msgid "Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY – Sections” (or the full “Homepage – business” pattern)."
+msgstr "固定ページを作成し、「全幅」テンプレートを選び、パターン →「BIGSPY – Sections」（または完全な「Homepage – business」パターン）から既製のセクションを挿入します。"
+
+msgid "Create and assign menus"
+msgstr "メニューを作成して割り当てる"
+
+msgid "Create draft and open editor"
+msgstr "下書きを作成してエディターを開く"
+
+msgid "Create pattern"
+msgstr "パターンを作成"
+
+msgid "Crimson"
+msgstr "クリムゾン"
+
+msgid "Crimson deep"
+msgstr "濃いクリムゾン"
+
+msgid "Crimson pastel"
+msgstr "パステルクリムゾン"
+
+msgid "Crop focus horizontal (%)"
+msgstr "切り抜き位置 横（%）"
+
+msgid "Crop focus vertical (%)"
+msgstr "切り抜き位置 縦（%）"
+
+msgid "Crop ratio"
+msgstr "切り抜き比率"
+
+msgid "Current page / active color"
+msgstr "現在のページ／アクティブ色"
+
+msgid "Curve"
+msgstr "カーブ"
+
+msgid "Curve (inverse)"
+msgstr "カーブ（反転）"
+
+msgid "Custom"
+msgstr "カスタム"
+
+msgid "Custom CSS"
+msgstr "カスタム CSS"
+
+msgid "Custom background"
+msgstr "カスタム背景"
+
+msgid "Custom color (below)"
+msgstr "カスタムカラー（下）"
+
+msgid "Custom colors"
+msgstr "カスタムカラー"
+
+msgid "Custom fields left empty fall back to the writer’s profile."
+msgstr "空欄のカスタム項目は執筆者のプロフィールを使用します。"
+
+msgid "Custom link (replaces lightbox)"
+msgstr "カスタムリンク（ライトボックスの代わり）"
+
+msgid "Custom order (drag & drop in WooCommerce)"
+msgstr "カスタム順（WooCommerceでドラッグ＆ドロップ）"
+
+msgid "Custom party menus"
+msgstr "パーティー用オーダーメニュー"
+
+msgid "Custom scripts"
+msgstr "カスタムスクリプト"
+
+msgid "Custom width"
+msgstr "カスタム幅"
+
+msgid "Customer reviews"
+msgstr "お客様の声"
+
+msgid "Customers"
+msgstr "お客様"
+
+msgid "Customize"
+msgstr "カスタマイズ"
+
+msgid "Các tab mô tả, thông tin và đánh giá chuẩn."
+msgstr "説明、追加情報、レビューの標準タブ。"
+
+msgid "Cân dòng tiêu đề"
+msgstr "見出しの行をそろえる"
+
+msgid "Có thể cắt mép ảnh để phủ đầy khung."
+msgstr "枠を埋めるため画像の端を切り取ることがあります。"
+
+msgid "Có thể để khoảng trống quanh ảnh; không cắt nội dung ảnh."
+msgstr "画像の周りに余白が残ることがあります。画像の内容は切り取りません。"
+
+msgid "Căn giữa chú thích ảnh"
+msgstr "画像キャプションを中央寄せ"
+
+msgid "Căn đều tiêu đề thẻ BIGSPY; tên đầy đủ vẫn hiển thị trong trang sản phẩm."
+msgstr "BIGSPYカードのタイトルの高さをそろえます。完全な名前は商品ページに表示されます。"
+
+msgid "Căn đều vùng tiêu đề sản phẩm"
+msgstr "商品タイトル領域をそろえる"
+
+msgid "DESIGN YOUR WEBSITE"
+msgstr "ウェブサイトをデザイン"
+
+msgid "Danh sách bài viết do theme hoặc block Posts xuất ra."
+msgstr "テーマまたはPostsブロックが出力する投稿一覧。"
+
+msgid "Danh sách sản phẩm · WooCommerce"
+msgstr "商品一覧 · WooCommerce"
+
+msgid "Danh sách trong các widget chân trang."
+msgstr "フッターウィジェット内のリスト。"
+
+msgid "Daniel Carter"
+msgstr "Daniel Carter"
+
+msgid "Dark"
+msgstr "ダーク"
+
+msgid "Dark (light text)"
+msgstr "ダーク（明るい文字）"
+
+msgid "Dark bar, colored icons"
+msgstr "ダークバー、カラーアイコン"
+
+msgid "Dark glow"
+msgstr "ダークグロー"
+
+msgid "Dark overlay (%)"
+msgstr "暗いオーバーレイ（%）"
+
+msgid "Dark text"
+msgstr "暗い文字"
+
+msgid "Dark · Auto, sport, tools"
+msgstr "ダーク · 自動車、スポーツ、工具"
+
+msgid "Dark · Gaming, tech, nightlife"
+msgstr "ダーク · ゲーム、テック、ナイトライフ"
+
+msgid "Dark · Luxury, hotels"
+msgstr "ダーク · ラグジュアリー、ホテル"
+
+msgid "Dark · Outdoor, camping"
+msgstr "ダーク · アウトドア、キャンプ"
+
+msgid "Darken"
+msgstr "暗く"
+
+msgid "Dash"
+msgstr "ダッシュ"
+
+msgid "Dashed"
+msgstr "破線"
+
+msgid "Data"
+msgstr "データ"
+
+msgid "Database"
+msgstr "データベース"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Date / label"
+msgstr "日付／ラベル"
+
+msgid "Date badge on the image"
+msgstr "画像上の日付バッジ"
+
+msgid "Debug mode"
+msgstr "デバッグモード"
+
+msgid "Decoration"
+msgstr "装飾"
+
+msgid "Decrease indent"
+msgstr "インデントを減らす"
+
+msgid "Dedicated teachers"
+msgstr "熱心な講師陣"
+
+msgid "Deep cleansing, exfoliation, a hydrating mask and recovery."
+msgstr "ディープクレンジング、角質ケア、保湿マスク、リカバリー。"
+
+msgid "Deep facial care"
+msgstr "フェイシャル集中ケア"
+
+msgid "Deep hydration"
+msgstr "集中保湿"
+
+msgid "Deep · Bakery, honey, tours"
+msgstr "濃色 · ベーカリー、はちみつ、ツアー"
+
+msgid "Deep · Banking, insurance"
+msgstr "濃色 · 銀行、保険"
+
+msgid "Deep · Beauty, cafés, kids"
+msgstr "濃色 · 美容、カフェ、キッズ"
+
+msgid "Deep · Clinics, cleaning, water"
+msgstr "濃色 · クリニック、清掃、水"
+
+msgid "Deep · Coffee, furniture"
+msgstr "濃色 · コーヒー、家具"
+
+msgid "Deep · Construction, logistics"
+msgstr "濃色 · 建設、物流"
+
+msgid "Deep · Eco, juice, sport"
+msgstr "濃色 · エコ、ジュース、スポーツ"
+
+msgid "Deep · Education, agencies"
+msgstr "濃色 · 教育、代理店"
+
+msgid "Deep · Events, cosmetics"
+msgstr "濃色 · イベント、化粧品"
+
+msgid "Deep · Fashion, wine, gifts"
+msgstr "濃色 · ファッション、ワイン、ギフト"
+
+msgid "Deep · Finance, law, B2B"
+msgstr "濃色 · 金融、法律、B2B"
+
+msgid "Deep · Food delivery, fitness"
+msgstr "濃色 · フードデリバリー、フィットネス"
+
+msgid "Deep · Garden, farm, organic"
+msgstr "濃色 · ガーデン、農園、オーガニック"
+
+msgid "Deep · Handmade, interior"
+msgstr "濃色 · ハンドメイド、インテリア"
+
+msgid "Deep · Jewelry, bridal"
+msgstr "濃色 · ジュエリー、ブライダル"
+
+msgid "Deep · Pool, laundry, spa"
+msgstr "濃色 · プール、ランドリー、スパ"
+
+msgid "Deep · SaaS, startups"
+msgstr "濃色 · SaaS、スタートアップ"
+
+msgid "Deep · Sales, food, sport"
+msgstr "濃色 · 営業、食品、スポーツ"
+
+msgid "Deep · Spa, florist, wedding"
+msgstr "濃色 · スパ、花屋、ウェディング"
+
+msgid "Deep · Tech, minimal"
+msgstr "濃色 · テック、ミニマル"
+
+msgid "Deep · Travel, IT, airlines"
+msgstr "濃色 · 旅行、IT、航空会社"
+
+msgid "Deep · Wellness, tea, pharmacy"
+msgstr "濃色 · ウェルネス、お茶、薬局"
+
+msgid "Default"
+msgstr "既定"
+
+msgid "Default (follows “Show”)"
+msgstr "既定（「表示」に従う）"
+
+msgid "Default sidebar on pages"
+msgstr "固定ページの既定サイドバー"
+
+msgid "Delay (ms)"
+msgstr "遅延（ms）"
+
+msgid "Delay (seconds)"
+msgstr "遅延（秒）"
+
+msgid "Delay before redirect (seconds)"
+msgstr "リダイレクトまでの遅延（秒）"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Delete slide"
+msgstr "スライドを削除"
+
+msgid "Delete this point"
+msgstr "このポイントを削除"
+
+msgid "Delicious food, beautiful plating and a really friendly team. Our family comes every weekend."
+msgstr "料理がおいしく、盛り付けも美しく、スタッフもとても親切。家族で毎週末通っています。"
+
+msgid "Delivery within 30 minutes"
+msgstr "30分以内にお届け"
+
+msgid "Depth (shadow)"
+msgstr "奥行き（影）"
+
+msgid "Depth on hover"
+msgstr "ホバー時の奥行き"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Description for screen readers (optional)"
+msgstr "スクリーンリーダー用の説明（任意）"
+
+msgid "Description…"
+msgstr "説明…"
+
+msgid "Design (spacing, background, border)"
+msgstr "デザイン（余白、背景、枠線）"
+
+msgid "Design categories"
+msgstr "デザインのカテゴリー"
+
+msgid "Design copied. Select another block and click \"Paste design\"."
+msgstr "デザインをコピーしました。別のブロックを選んで「デザインを貼り付け」をクリックしてください。"
+
+msgid "Desktop"
+msgstr "デスクトップ"
+
+msgid "Desktop & tablet only"
+msgstr "デスクトップとタブレットのみ"
+
+msgid "Desktop (px)"
+msgstr "デスクトップ（px）"
+
+msgid "Desktop and mobile"
+msgstr "パソコンとモバイル"
+
+msgid "Desktop and tablet. With a boxed header both are the same."
+msgstr "パソコンとタブレット。ボックス型ヘッダーの場合はどちらも同じです。"
+
+msgid "Desktop only"
+msgstr "パソコンのみ"
+
+msgid "Detailed project analysis and transparent legal status. Very trustworthy."
+msgstr "物件の詳しい分析と透明な権利関係。とても信頼できます。"
+
+msgid "Details →"
+msgstr "詳細 →"
+
+msgid "Devices"
+msgstr "デバイス"
+
+msgid "Direction"
+msgstr "方向"
+
+msgid "Directions"
+msgstr "道順"
+
+msgid "Disable WordPress emoji script"
+msgstr "WordPressの絵文字スクリプトを無効化"
+
+msgid "Disable XML-RPC"
+msgstr "XML-RPC を無効化"
+
+msgid "Disable oEmbed scripts"
+msgstr "oEmbed スクリプトを無効化"
+
+msgid "Disabled"
+msgstr "無効"
+
+msgid "Dishes on the menu"
+msgstr "メニューの品数"
+
+msgid "Dishes served within 15 minutes at peak hours."
+msgstr "混雑時も15分以内に料理を提供。"
+
+msgid "Display"
+msgstr "表示"
+
+msgid "Displayed as text with a copy button – nothing is executed."
+msgstr "コピーボタン付きのテキストとして表示され、何も実行されません。"
+
+msgid "Distance from the bottom – desktop (px)"
+msgstr "下からの距離 – デスクトップ（px）"
+
+msgid "Distance from the bottom – mobile (px)"
+msgstr "下からの距離 – モバイル（px）"
+
+msgid "Distance from the side (px)"
+msgstr "側面からの距離（px）"
+
+msgid "Divided by dots"
+msgstr "点で区切る"
+
+msgid "Divided by lines"
+msgstr "線で区切る"
+
+msgid "Divider"
+msgstr "区切り線"
+
+msgid "Divider between items"
+msgstr "項目間の区切り線"
+
+msgid "Divider line next to content"
+msgstr "コンテンツ横の区切り線"
+
+msgid "Divider start position (%)"
+msgstr "区切り線の開始位置（%）"
+
+msgid "Do I need to book a table?"
+msgstr "予約は必要ですか？"
+
+msgid "Do not load Dashicons for visitors who are not logged in"
+msgstr "ログインしていない訪問者には Dashicons を読み込まない"
+
+msgid "Do not show on"
+msgstr "表示しない場所"
+
+msgid "Do packages expire?"
+msgstr "パッケージに有効期限はありますか？"
+
+msgid "Do viewings cost anything?"
+msgstr "内覧に費用はかかりますか？"
+
+msgid "Do you deliver?"
+msgstr "配達はしていますか？"
+
+msgid "Do you have vegetarian dishes?"
+msgstr "ベジタリアン料理はありますか？"
+
+msgid "Do you help with bank loans?"
+msgstr "銀行ローンの手伝いはしてもらえますか？"
+
+msgid "Dot below"
+msgstr "下に点"
+
+msgid "Dots"
+msgstr "ドット"
+
+msgid "Dots (vertical)"
+msgstr "ドット（縦）"
+
+msgid "Dots over the slides"
+msgstr "スライド上のドット"
+
+msgid "Dotted"
+msgstr "点線"
+
+msgid "Dotted pattern"
+msgstr "ドット柄"
+
+msgid "Double"
+msgstr "二重線"
+
+msgid "Download all Customizer settings (colors, fonts, header layout, footer, blog, shop, Additional CSS) as a JSON file. Import it on another website to start from the same design."
+msgstr "カスタマイザーのすべての設定（色、フォント、ヘッダーレイアウト、フッター、ブログ、ショップ、追加CSS）をJSONファイルとしてダウンロードします。別のサイトでインポートすれば同じデザインから始められます。"
+
+msgid "Download export file"
+msgstr "エクスポートファイルをダウンロード"
+
+msgid "Drag elements in the header builder, set the logo, menus and buttons."
+msgstr "ヘッダービルダーで要素をドラッグし、ロゴ・メニュー・ボタンを設定します。"
+
+msgid "Drag to compare the images"
+msgstr "ドラッグして画像を比較"
+
+msgid "Drag to resize"
+msgstr "ドラッグでサイズ変更"
+
+msgid "Drag to resize (width %)"
+msgstr "ドラッグでサイズ変更（幅 %）"
+
+msgid "Drag to resize. The next column adjusts too; hold Alt to resize only this one. Double-click to reset."
+msgstr "ドラッグでサイズ変更。隣の列も調整されます。Altを押しながらだとこの列だけ変更します。ダブルクリックでリセット。"
+
+msgid "Dropdown"
+msgstr "ドロップダウン"
+
+msgid "Dropdown background"
+msgstr "ドロップダウンの背景"
+
+msgid "Dropdown corner radius (px)"
+msgstr "ドロップダウンの角丸（px）"
+
+msgid "Dropdown text"
+msgstr "ドロップダウンの文字"
+
+msgid "Dropdown under header"
+msgstr "ヘッダー下のドロップダウン"
+
+msgid "Drops"
+msgstr "しずく"
+
+msgid "Duplicate"
+msgstr "複製"
+
+msgid "Duplicate slide"
+msgstr "スライドを複製"
+
+msgid "Duration (ms)"
+msgstr "時間（ms）"
+
+msgid "Dành chỗ cho hai dòng tiêu đề giúp hàng sản phẩm đều hơn."
+msgstr "タイトル2行分のスペースを確保し、商品の並びをそろえます。"
+
+msgid "Dùng cho ảnh trong nội dung."
+msgstr "本文中の画像に使用します。"
+
+msgid "Dịch vụ, FAQ & cảm nhận"
+msgstr "サービス、FAQ、お客様の声"
+
+msgid "Each button in its own color"
+msgstr "ボタンごとに色を変える"
+
+msgid "Each item can override it in its own settings."
+msgstr "各項目の設定で上書きできます。"
+
+msgid "Each logo in a box"
+msgstr "ロゴをそれぞれボックスに"
+
+msgid "Each post writer’s profile (Users → Profile)"
+msgstr "各投稿の執筆者のプロフィール（ユーザー → プロフィール）"
+
+msgid "Each widget in a box"
+msgstr "ウィジェットをそれぞれボックスに"
+
+msgid "Each widget in a shadow card"
+msgstr "ウィジェットをそれぞれ影付きカードに"
+
+msgid "Earth brown"
+msgstr "アースブラウン"
+
+msgid "Easing"
+msgstr "イージング"
+
+msgid "Easy booking"
+msgstr "かんたん予約"
+
+msgid "Edit / add images"
+msgstr "画像を編集／追加"
+
+msgid "Edit block"
+msgstr "ブロックを編集"
+
+msgid "Edit layout"
+msgstr "レイアウトを編集"
+
+msgid "Edit menu items in Menus. Style everything else here."
+msgstr "メニュー項目は「メニュー」で編集し、その他のスタイルはここで設定します。"
+
+msgid "Edit menus"
+msgstr "メニューを編集"
+
+msgid "Edit the HTML of this text"
+msgstr "このテキストのHTMLを編集"
+
+msgid "Edit this form in WPForms"
+msgstr "このフォームをWPFormsで編集"
+
+msgid "Editable HTML preview"
+msgstr "編集可能なHTMLプレビュー"
+
+msgid "Education centre homepage with 15 sections: hero, highlights, about, courses, learning path, numbers, method, tuition, gallery, teachers, student reviews, FAQ, news, enrolment and contact."
+msgstr "教育機関向けホームページ（15セクション）：ヒーロー、特長、概要、コース、学習の流れ、実績、指導法、料金、ギャラリー、講師、受講生の声、FAQ、ニュース、申し込み、お問い合わせ。"
+
+msgid "Effect"
+msgstr "エフェクト"
+
+msgid "Effect & motion"
+msgstr "エフェクトと動き"
+
+msgid "Effect colors"
+msgstr "エフェクトの色"
+
+msgid "Effect for this button"
+msgstr "このボタンのエフェクト"
+
+msgid "Effect on hover"
+msgstr "ホバー時の効果"
+
+msgid "Eight new dishes inspired by autumn produce."
+msgstr "秋の食材を使った新メニュー8品。"
+
+msgid "Electric blue & lime"
+msgstr "エレクトリックブルー＆ライム"
+
+msgid "Elevated (soft shadow, lifts on hover)"
+msgstr "浮き上がり（やわらかい影、ホバーで上昇）"
+
+msgid "Email"
+msgstr "メール"
+
+msgid "Email address"
+msgstr "メールアドレス"
+
+msgid "Email address that the sender entered is invalid"
+msgstr "送信者が入力したメールアドレスが無効です"
+
+msgid "Email delivery (SMTP)"
+msgstr "メール配信（SMTP）"
+
+msgid "Email notification"
+msgstr "メール通知"
+
+msgid "Email sent"
+msgstr "メールを送信しました"
+
+msgid "Email sent:"
+msgstr "送信済みメール:"
+
+msgid "Email subject"
+msgstr "メールの件名"
+
+msgid "Emails go through WP Mail SMTP"
+msgstr "メールはWP Mail SMTP経由で送信されます"
+
+msgid "Emerald luxury"
+msgstr "エメラルドラグジュアリー"
+
+msgid "Emma Walsh"
+msgstr "Emma Walsh"
+
+msgid "Empty = address from Customizer → Header → Contact info."
+msgstr "空欄 = カスタマイズ → ヘッダー → 連絡先情報 のアドレス。"
+
+msgid "Empty stars"
+msgstr "空の星"
+
+msgid "Enable catalog mode"
+msgstr "カタログモードを有効化"
+
+msgid "Enable floating contact buttons"
+msgstr "フローティング連絡ボタンを有効化"
+
+msgid "Enable scroll animations on blocks"
+msgstr "ブロックのスクロールアニメーションを有効化"
+
+msgid "Endless scrolling strip"
+msgstr "無限スクロールの帯"
+
+msgid "English conversation"
+msgstr "英会話"
+
+msgid "English for kids"
+msgstr "子ども英語"
+
+msgid "Enjoy"
+msgstr "お楽しみください"
+
+msgid "Enjoy your treatment in a quiet private room."
+msgstr "静かな個室でトリートメントをお楽しみください。"
+
+msgid "Enter a CSS gradient or at least two colors."
+msgstr "CSSグラデーションまたは2色以上を入力してください。"
+
+msgid "Enter an address in the block settings (or leave empty to use the site address)."
+msgstr "ブロック設定で住所を入力してください（空欄ならサイトの住所を使用）。"
+
+msgid "Entire site"
+msgstr "サイト全体"
+
+msgid "Entrance (when scrolled into view)"
+msgstr "登場（スクロールで表示されたとき）"
+
+msgid "Entrance animation"
+msgstr "登場アニメーション"
+
+msgid "Entry"
+msgstr "エントリー"
+
+msgid "Equal height"
+msgstr "高さをそろえる"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Events, music, nightlife"
+msgstr "イベント、音楽、ナイトライフ"
+
+msgid "Every block has “Visibility & animation” settings to hide it per device or animate it on scroll."
+msgstr "すべてのブロックに「表示とアニメーション」設定があり、端末ごとに非表示にしたりスクロール時にアニメーションさせたりできます。"
+
+msgid "Every block inside the slider is one slide. Banners work great."
+msgstr "スライダー内の各ブロックが1枚のスライドです。バナーとの相性抜群です。"
+
+msgid "Every project is checked for building permits, detailed zoning and real progress."
+msgstr "すべての物件で建築許可、詳細な用途地域、実際の進捗を確認しています。"
+
+msgid "Every slide gets this height and its image stretches and crops to fill it, so the slider never jumps between tall and short slides."
+msgstr "すべてのスライドがこの高さになり、画像は伸縮・切り抜きされて埋まるため、スライダーの高さが変わってガタつくことはありません。"
+
+msgid "Every student gets a personal path based on a placement test."
+msgstr "レベルチェックに基づき、受講生一人ひとりに合わせた学習プランを作成します。"
+
+msgid "Every treatment is tailored to your skin and what you want to achieve."
+msgstr "お肌とご希望に合わせてトリートメントをカスタマイズします。"
+
+msgid "Everyone"
+msgstr "全員"
+
+msgid "Everything filled in"
+msgstr "すべて入力済み"
+
+msgid "Everything for buyers"
+msgstr "購入者向けのすべて"
+
+msgid "Example: contact, 42"
+msgstr "例: contact, 42"
+
+msgid "Excerpt length (words)"
+msgstr "抜粋の長さ（単語数）"
+
+msgid "Excerpt length (words, 0 = default)"
+msgstr "抜粋の長さ（単語数、0 = 既定）"
+
+msgid "Exclude lines with blank mail tags"
+msgstr "空のメールタグを含む行を除外"
+
+msgid "Exclusive materials"
+msgstr "オリジナル教材"
+
+msgid "Experience, skills and what the author writes about – this helps readers and Google trust the content."
+msgstr "経験、スキル、執筆分野 – 読者と Google がコンテンツを信頼する助けになります。"
+
+msgid "Experienced chefs and managers who care about every plate."
+msgstr "一皿一皿を大切にする経験豊富なシェフとスタッフ。"
+
+msgid "Expert in herbal head spa rituals."
+msgstr "ハーブヘッドスパの専門家。"
+
+msgid "Export theme options"
+msgstr "テーマオプションをエクスポート"
+
+msgid "Extra bold"
+msgstr "極太"
+
+msgid "Extra bold 800"
+msgstr "極太 800"
+
+msgid "Extra large"
+msgstr "特大"
+
+msgid "Extra small"
+msgstr "極小"
+
+msgid "Extra-bold 800"
+msgstr "極太 800"
+
+msgid "FAQ thành từng thẻ riêng"
+msgstr "FAQを個別カードに"
+
+msgid "Facebook page link"
+msgstr "FacebookページのURL"
+
+msgid "Facial treatments, therapeutic massage and herbal hair care with natural products, caring therapists and a calm space in the heart of the city."
+msgstr "天然素材の製品、親身なセラピスト、街の中心にある静かな空間で、フェイシャル、セラピーマッサージ、ハーブヘアケアをご提供します。"
+
+msgid "Fade"
+msgstr "フェード"
+
+msgid "Fade between tabs"
+msgstr "タブ間をフェード"
+
+msgid "Families who found their home"
+msgstr "住まいを見つけたご家族"
+
+msgid "Family set"
+msgstr "ファミリーセット"
+
+msgid "Farm vegetables, meat and fish with clear origins."
+msgstr "産地のはっきりした農園野菜、肉、魚。"
+
+msgid "Fast (150 ms)"
+msgstr "速い（150 ms）"
+
+msgid "Fast delivery"
+msgstr "スピード配送"
+
+msgid "Featured"
+msgstr "おすすめ"
+
+msgid "Featured badge"
+msgstr "注目バッジ"
+
+msgid "Featured categories"
+msgstr "注目のカテゴリー"
+
+msgid "Featured courses"
+msgstr "注目のコース"
+
+msgid "Featured image shape"
+msgstr "アイキャッチ画像の形"
+
+msgid "Featured projects"
+msgstr "注目の物件"
+
+msgid "Features (one per line)"
+msgstr "特長（1行に1つ）"
+
+msgid "Features – one per line. Start a line with “-” for a feature NOT included."
+msgstr "特長 – 1行に1つ。含まれない項目は行頭に「-」を付けます。"
+
+msgid "Field background"
+msgstr "入力欄の背景"
+
+msgid "Field border"
+msgstr "入力欄の枠線"
+
+msgid "Field focus ring"
+msgstr "入力欄のフォーカスリング"
+
+msgid "Field name (mail tag)"
+msgstr "項目名（メールタグ）"
+
+msgid "Field size"
+msgstr "入力欄のサイズ"
+
+msgid "Field style"
+msgstr "入力欄のスタイル"
+
+msgid "Fields"
+msgstr "入力欄"
+
+msgid "Fill"
+msgstr "塗り"
+
+msgid "Fill from left"
+msgstr "左から塗る"
+
+msgid "Filled"
+msgstr "塗りつぶし"
+
+msgid "Filled brand background"
+msgstr "ブランドカラーの背景"
+
+msgid "Filled circle"
+msgstr "塗りつぶしの円"
+
+msgid "Filled square"
+msgstr "塗りつぶしの四角"
+
+msgid "Filter"
+msgstr "絞り込み"
+
+msgid "Filters"
+msgstr "フィルター"
+
+msgid "Finance advisor"
+msgstr "ファイナンシャルアドバイザー"
+
+msgid "Finance support"
+msgstr "資金サポート"
+
+msgid "Find the home that fits your life"
+msgstr "暮らしに合う住まいを見つけよう"
+
+msgid "Fine-tune each column width (per device) by selecting the column."
+msgstr "列を選択すると、端末ごとに各列の幅を微調整できます。"
+
+msgid "First button only"
+msgstr "最初のボタンのみ"
+
+msgid "First column is a header"
+msgstr "最初の列を見出しにする"
+
+msgid "First menu"
+msgstr "最初のメニュー"
+
+msgid "First option"
+msgstr "最初のオプション"
+
+msgid "First post large, then grid"
+msgstr "最初の投稿を大きく、その後はグリッド"
+
+msgid "First row is a header"
+msgstr "最初の行を見出しにする"
+
+msgid "First-time mortgage tips"
+msgstr "初めての住宅ローンのポイント"
+
+msgid "Fit content (inline)"
+msgstr "内容に合わせる（インライン）"
+
+msgid "Fit image"
+msgstr "画像を収める"
+
+msgid "Fixed (px)"
+msgstr "固定（px）"
+
+msgid "Fixed (stays on screen)"
+msgstr "固定（画面に残る）"
+
+msgid "Fixed background"
+msgstr "固定背景"
+
+msgid "Fixed height (e.g. 300px, 60vh) – crops to fill"
+msgstr "固定の高さ（例: 300px、60vh）– 切り抜いて埋める"
+
+msgid "Flexible payment"
+msgstr "柔軟なお支払い"
+
+msgid "Flexible schedule"
+msgstr "柔軟なスケジュール"
+
+msgid "Flip direction"
+msgstr "方向を反転"
+
+msgid "Flip horizontally"
+msgstr "左右反転"
+
+msgid "Float left"
+msgstr "左に回り込み"
+
+msgid "Float right"
+msgstr "右に回り込み"
+
+msgid "Floating contact buttons"
+msgstr "フローティング連絡ボタン"
+
+msgid "Floating pill with shadow"
+msgstr "影付きのフローティングピル"
+
+msgid "Floor 12, 68 Park Avenue, City Centre"
+msgstr "パーク通り68 12階、市中心部"
+
+msgid "Focal point"
+msgstr "焦点"
+
+msgid "Focused"
+msgstr "フォーカス時"
+
+msgid "Font"
+msgstr "フォント"
+
+msgid "Font family"
+msgstr "フォントファミリー"
+
+msgid "Font size"
+msgstr "文字サイズ"
+
+msgid "Font size (px)"
+msgstr "文字サイズ（px）"
+
+msgid "Font size (px, 0 = default)"
+msgstr "文字サイズ（px、0 = 既定）"
+
+msgid "Font size (px, 0 = size default)"
+msgstr "文字サイズ（px、0 = サイズ既定）"
+
+msgid "Font size on mobile (px, 0 = same)"
+msgstr "モバイルの文字サイズ（px、0 = 同じ）"
+
+msgid "Font size – desktop (px, 0 = default)"
+msgstr "文字サイズ – デスクトップ（px、0 = 既定）"
+
+msgid "Font size – mobile (px, 0 = same)"
+msgstr "文字サイズ – モバイル（px、0 = 同じ）"
+
+msgid "Font size – tablet (px, 0 = same)"
+msgstr "文字サイズ – タブレット（px、0 = 同じ）"
+
+msgid "Font weight"
+msgstr "文字の太さ"
+
+msgid "Font, weight and style are set on Desktop and apply everywhere."
+msgstr "フォント、太さ、スタイルはデスクトップで設定し、すべての端末に適用されます。"
+
+msgid "Food safety"
+msgstr "食品安全"
+
+msgid "Food, cafés, travel"
+msgstr "飲食、カフェ、旅行"
+
+msgid "Footer"
+msgstr "フッター"
+
+msgid "Footer (replaces the theme footer)"
+msgstr "フッター（テーマのフッターを置き換え）"
+
+msgid "Footer 1 background"
+msgstr "フッター1の背景"
+
+msgid "Footer 1 columns"
+msgstr "フッター1の列数"
+
+msgid "Footer 1 text"
+msgstr "フッター1の文字"
+
+msgid "Footer 1 widget titles"
+msgstr "フッター1のウィジェットタイトル"
+
+msgid "Footer 1 – Column %d"
+msgstr "フッター1 – 列 %d"
+
+msgid "Footer 2 background"
+msgstr "フッター2の背景"
+
+msgid "Footer 2 columns"
+msgstr "フッター2の列数"
+
+msgid "Footer 2 text"
+msgstr "フッター2の文字"
+
+msgid "Footer 2 – Column %d"
+msgstr "フッター2 – 列 %d"
+
+msgid "Footer bottom (copyright)"
+msgstr "フッター下部（著作権表示）"
+
+msgid "Footer bottom menu"
+msgstr "フッター下部メニュー"
+
+msgid "Footer columns, a footer built with blocks, copyright and floating contact buttons."
+msgstr "フッターの列、ブロックで作るフッター、著作権表示、フローティング連絡ボタン。"
+
+msgid "Footer designed with blocks"
+msgstr "ブロックでデザインしたフッター"
+
+msgid "Footer row 1"
+msgstr "フッター行1"
+
+msgid "Footer row 2"
+msgstr "フッター行2"
+
+msgid "Footer widgets"
+msgstr "フッターウィジェット"
+
+msgid "For Zalo you can enter just the phone number."
+msgstr "Zaloは電話番号だけでも入力できます。"
+
+msgid "For ages 5–11"
+msgstr "5～11歳向け"
+
+msgid "For classic WooCommerce cart/checkout. Block checkout keeps its native layout."
+msgstr "クラシックのWooCommerceカート／決済用。ブロック決済は独自のレイアウトのままです。"
+
+msgid "For older settings and sites that always want product results."
+msgstr "古い設定や、常に商品の検索結果を出したいサイト向け。"
+
+msgid "For owners"
+msgstr "オーナー様向け"
+
+msgid "For skin, body and hair"
+msgstr "肌・体・髪のために"
+
+msgid "For the single post template, add a Shortcode block with [bst_post_title], [bst_featured_image], [bst_post_meta], [bst_post_content], [bst_author_box], [bst_related_posts] or [bst_post_comments]."
+msgstr "個別投稿テンプレートには、[bst_post_title]、[bst_featured_image]、[bst_post_meta]、[bst_post_content]、[bst_author_box]、[bst_related_posts]、[bst_post_comments] を含むショートコードブロックを追加してください。"
+
+msgid "Force products-only search (overrides scope)"
+msgstr "商品のみの検索を強制（検索範囲より優先）"
+
+msgid "Forest night"
+msgstr "森の夜"
+
+msgid "Form"
+msgstr "フォーム"
+
+msgid "Form colors"
+msgstr "フォームの色"
+
+msgid "Form entries"
+msgstr "フォームの送信内容"
+
+msgid "Form entry"
+msgstr "フォームの送信内容"
+
+msgid "Form look"
+msgstr "フォームの見た目"
+
+msgid "Form name (shown in Form entries)"
+msgstr "フォーム名（フォームの送信内容に表示）"
+
+msgid "Form not found."
+msgstr "フォームが見つかりません。"
+
+msgid "Form on:"
+msgstr "フォームの送信元:"
+
+msgid "Form title"
+msgstr "フォームのタイトル"
+
+msgid "Form tài khoản nền phẳng"
+msgstr "フラット背景のアカウントフォーム"
+
+msgid "Founded in 2014, the centre has helped more than 5,000 students – from school pupils to working adults – master languages and skills."
+msgstr "2014年の設立以来、学生から社会人まで5,000人以上の受講生が語学とスキルを身につけてきました。"
+
+msgid "Four columns for help, policies, contact and payments."
+msgstr "ヘルプ、ポリシー、連絡先、支払い方法の4列。"
+
+msgid "Four steps to a perfect meal"
+msgstr "最高のお食事までの4ステップ"
+
+msgid "Fragrant coffee and a quiet space. I often bring my laptop and work here in the afternoon."
+msgstr "香り高いコーヒーと静かな空間。午後はよくノートパソコンを持ってきて仕事をしています。"
+
+msgid "Frame border color"
+msgstr "枠線の色"
+
+msgid "Frame border width (px, outline styles)"
+msgstr "枠線の太さ（px、アウトラインスタイル）"
+
+msgid "Frame corner radius (px, empty = default)"
+msgstr "枠の角の丸み（px、空欄 = 既定）"
+
+msgid "Free"
+msgstr "無料"
+
+msgid "Free consultation"
+msgstr "無料相談"
+
+msgid "Free delivery for orders over 300.000đ"
+msgstr "300.000đ以上のご注文で送料無料"
+
+msgid "Free learning kit"
+msgstr "無料学習キット"
+
+msgid "Free library"
+msgstr "無料ライブラリー"
+
+msgid "Free on orders over $30"
+msgstr "30ドル以上のご注文で無料"
+
+msgid "Free paperwork support"
+msgstr "書類手続きの無料サポート"
+
+msgid "Free parking"
+msgstr "無料駐車場"
+
+msgid "Free re-study"
+msgstr "無料再受講"
+
+msgid "Free re-study until you pass"
+msgstr "合格まで無料で再受講"
+
+msgid "Free skin analysis"
+msgstr "無料肌分析"
+
+msgid "Free soft drinks"
+msgstr "ソフトドリンク無料"
+
+msgid "Free valuation"
+msgstr "無料査定"
+
+msgid "Free viewings"
+msgstr "内覧無料"
+
+msgid "Frequently asked questions"
+msgstr "よくある質問"
+
+msgid "Fresh cyan"
+msgstr "フレッシュシアン"
+
+msgid "Fresh flavours, served with heart"
+msgstr "新鮮な味わいを心を込めて"
+
+msgid "Fresh green"
+msgstr "フレッシュグリーン"
+
+msgid "Fresh ingredients every day"
+msgstr "毎日新鮮な食材"
+
+msgid "From"
+msgstr "から"
+
+msgid "From 30 guests"
+msgstr "30名様から"
+
+msgid "From 4.5 to 7.0+, with detailed writing feedback every week."
+msgstr "4.5から7.0+へ、毎週ライティングの詳しい添削付き。"
+
+msgid "From a family kitchen to a much-loved restaurant"
+msgstr "家族の台所から愛されるレストランへ"
+
+msgid "From booking to leaving, every detail is taken care of."
+msgstr "ご予約からお帰りまで、細部まで心を配ります。"
+
+msgid "From trusted developers"
+msgstr "信頼できるデベロッパーの物件"
+
+msgid "From:"
+msgstr "差出人:"
+
+msgid "Front"
+msgstr "表面"
+
+msgid "Front background"
+msgstr "表面の背景"
+
+msgid "Front page"
+msgstr "フロントページ"
+
+msgid "Front text"
+msgstr "表面のテキスト"
+
+msgid "Fruit teas"
+msgstr "フルーツティー"
+
+msgid "Fuchsia"
+msgstr "フューシャ"
+
+msgid "Fuchsia deep"
+msgstr "濃いフューシャ"
+
+msgid "Fuchsia pastel"
+msgstr "パステルフューシャ"
+
+msgid "Full"
+msgstr "フル"
+
+msgid "Full line below"
+msgstr "下に全幅の線"
+
+msgid "Full pages"
+msgstr "ページ全体"
+
+msgid "Full screen"
+msgstr "全画面"
+
+msgid "Full screen width"
+msgstr "画面の全幅"
+
+msgid "Full service"
+msgstr "フルサービス"
+
+msgid "Full service: choosing a home, viewings, price negotiation, mortgage support and completing the notary and transfer paperwork."
+msgstr "フルサービス：物件選び、内覧、価格交渉、住宅ローンのサポート、登記・名義変更の手続きまで。"
+
+msgid "Full size"
+msgstr "フルサイズ"
+
+msgid "Full width"
+msgstr "全幅"
+
+msgid "Full-body scrub and a nourishing moisture wrap."
+msgstr "全身スクラブと栄養たっぷりの保湿ラップ。"
+
+msgid "Full-screen lightbox"
+msgstr "全画面ライトボックス"
+
+msgid "Full-width banner (any code)"
+msgstr "全幅バナー（任意のコード）"
+
+msgid "Full-width banner above the top bar (your code)"
+msgstr "トップバーの上の全幅バナー（独自コード）"
+
+msgid "Full-width header"
+msgstr "全幅ヘッダー"
+
+msgid "Full-width title bar"
+msgstr "全幅タイトルバー"
+
+msgid "Full-width underline"
+msgstr "全幅の下線"
+
+msgid "Fully sterilised"
+msgstr "完全滅菌"
+
+msgid "Furniture, wood, bakery"
+msgstr "家具、木工、ベーカリー"
+
+msgid "Gallery"
+msgstr "ギャラリー"
+
+msgid "Gaming, sports, energy"
+msgstr "ゲーム、スポーツ、エネルギー"
+
+msgid "Gap (px)"
+msgstr "間隔（px）"
+
+msgid "Gap between cards (px, -1 = default)"
+msgstr "カード間の間隔（px、-1 = 既定）"
+
+msgid "Gap between cards (px, -1 = theme)"
+msgstr "カード間の間隔（px、-1 = テーマ）"
+
+msgid "Gap between columns"
+msgstr "列の間隔"
+
+msgid "Gentle ingredients"
+msgstr "肌にやさしい成分"
+
+msgid "Gentle rotate"
+msgstr "ゆるやかに回転"
+
+msgid "Genuine imported products"
+msgstr "正規輸入品"
+
+msgid "Get a free consultation"
+msgstr "無料相談を受ける"
+
+msgid "Get a free consultation and a quote within 24 hours."
+msgstr "無料相談と24時間以内のお見積もり。"
+
+msgid "Get advice"
+msgstr "相談する"
+
+msgid "Get directions"
+msgstr "道順を調べる"
+
+msgid "Get started"
+msgstr "始める"
+
+msgid "Ghi đè bố cục hai cột của theme trên desktop."
+msgstr "デスクトップでテーマの2カラムレイアウトを上書きします。"
+
+msgid "Gifts"
+msgstr "ギフト"
+
+msgid "Giãn dòng nội dung dễ đọc"
+msgstr "読みやすい本文の行間"
+
+msgid "Giảm hiện tượng tự zoom ô nhập trên trình duyệt mobile."
+msgstr "モバイルブラウザで入力欄が自動ズームされるのを抑えます。"
+
+msgid "Giảm hiệu ứng khi thiết bị yêu cầu"
+msgstr "端末が求める場合は効果を減らす"
+
+msgid "Giỏ hàng & tài khoản · WooCommerce"
+msgstr "カートとアカウント · WooCommerce"
+
+msgid "Giỏ hàng chuẩn và block Cart; không thay đổi số tiền."
+msgstr "標準カートとCartブロック。金額は変わりません。"
+
+msgid "Giới hạn tiêu đề thẻ blog 3 dòng"
+msgstr "ブログカードのタイトルを3行までにする"
+
+msgid "Giữ khả năng xuống dòng nếu menu vẫn quá dài."
+msgstr "メニューが長すぎる場合は改行を許可します。"
+
+msgid "Glass"
+msgstr "ガラス"
+
+msgid "Glass on image"
+msgstr "画像の上にガラス"
+
+msgid "Gloss"
+msgstr "光沢"
+
+msgid "Glow"
+msgstr "グロー"
+
+msgid "Glow on your big day"
+msgstr "特別な日に輝く"
+
+msgid "Google Analytics, Facebook Pixel, chat widgets… Custom CSS goes in “Additional CSS”."
+msgstr "Google Analytics、Facebookピクセル、チャットウィジェットなど。カスタムCSSは「追加CSS」へ。"
+
+msgid "Google Map"
+msgstr "Googleマップ"
+
+msgid "Google Maps embed code (recommended)"
+msgstr "Googleマップの埋め込みコード（推奨）"
+
+msgid "Google Maps link or address"
+msgstr "GoogleマップのURLまたは住所"
+
+msgid "Grace Miller"
+msgstr "Grace Miller"
+
+msgid "Gradient"
+msgstr "グラデーション"
+
+msgid "Gradient angle (°)"
+msgstr "グラデーションの角度（°）"
+
+msgid "Gradient border"
+msgstr "グラデーションの枠線"
+
+msgid "Gradient code"
+msgstr "グラデーションコード"
+
+msgid "Gradient end"
+msgstr "グラデーションの終点"
+
+msgid "Gradient end (gradient style)"
+msgstr "グラデーションの終点（グラデーションスタイル）"
+
+msgid "Gradient line (brand colors)"
+msgstr "グラデーションライン（ブランドカラー）"
+
+msgid "Gradient pill"
+msgstr "グラデーションピル"
+
+msgid "Gradient start"
+msgstr "グラデーションの始点"
+
+msgid "Gradient text"
+msgstr "グラデーションテキスト"
+
+msgid "Graduated"
+msgstr "修了者"
+
+msgid "Graphite & cyan"
+msgstr "グラファイト＆シアン"
+
+msgid "Gray"
+msgstr "グレー"
+
+msgid "Gray → color"
+msgstr "グレー → カラー"
+
+msgid "Gray, color on hover"
+msgstr "グレー、ホバーでカラー"
+
+msgid "Grayscale to color"
+msgstr "グレースケールからカラーへ"
+
+msgid "Great for rows of columns, cards, icons and lists."
+msgstr "列、カード、アイコン、リストの並びに最適です。"
+
+msgid "Great gifts"
+msgstr "うれしい特典"
+
+msgid "Grid"
+msgstr "グリッド"
+
+msgid "Grid (row)"
+msgstr "グリッド（行）"
+
+msgid "Grid columns"
+msgstr "グリッドの列数"
+
+msgid "Grid of dots"
+msgstr "ドットのグリッド"
+
+msgid "Grid pattern"
+msgstr "方眼柄"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "Group work, debates and role-play."
+msgstr "グループワーク、ディベート、ロールプレイ。"
+
+msgid "Grow"
+msgstr "拡大"
+
+msgid "Growth potential"
+msgstr "資産価値の伸び"
+
+msgid "Guests a year"
+msgstr "年間来客数"
+
+msgid "Gói featured trong mẫu bảng giá BIGSPY."
+msgstr "BIGSPY料金表テンプレートのおすすめプラン。"
+
+msgid "Gạch chân liên kết khi rê chân trang"
+msgstr "フッターのリンクにホバー時下線"
+
+msgid "Gạch chân liên kết trong văn bản"
+msgstr "本文中のリンクに下線"
+
+msgid "H1 size (px)"
+msgstr "H1のサイズ（px）"
+
+msgid "H2 size (px)"
+msgstr "H2のサイズ（px）"
+
+msgid "H3 size (px)"
+msgstr "H3のサイズ（px）"
+
+msgid "H4 size (px)"
+msgstr "H4のサイズ（px）"
+
+msgid "HTML (advanced)"
+msgstr "HTML（上級）"
+
+msgid "HTML 1"
+msgstr "HTML 1"
+
+msgid "HTML 2"
+msgstr "HTML 2"
+
+msgid "HTML 3"
+msgstr "HTML 3"
+
+msgid "HTML and shortcodes are allowed. Tokens: [year], [site_title], [phone], [email]."
+msgstr "HTMLとショートコードが使えます。トークン: [year]、[site_title]、[phone]、[email]。"
+
+msgid "HTML blocks"
+msgstr "HTMLブロック"
+
+msgid "HTML tag"
+msgstr "HTMLタグ"
+
+msgid "HTML, inline CSS and shortcodes. Scripts only work for administrators / editors. You can also type directly on the page."
+msgstr "HTML、インラインCSS、ショートコード。スクリプトは管理者／編集者のみ動作します。ページ上で直接入力することもできます。"
+
+msgid "Hair care"
+msgstr "ヘアケア"
+
+msgid "Hair specialist"
+msgstr "ヘアスペシャリスト"
+
+msgid "Half width"
+msgstr "半分の幅"
+
+msgid "Handover inspection"
+msgstr "引き渡し検査"
+
+msgid "Hannah"
+msgstr "Hannah"
+
+msgid "Head chef"
+msgstr "料理長"
+
+msgid "Head chef with 12 years of experience"
+msgstr "経験12年の料理長"
+
+msgid "Head of IELTS"
+msgstr "IELTS 主任"
+
+msgid "Header"
+msgstr "ヘッダー"
+
+msgid "Header & menu"
+msgstr "ヘッダーとメニュー"
+
+msgid "Header (replaces the theme header)"
+msgstr "ヘッダー（テーマのヘッダーを置き換え）"
+
+msgid "Header builder"
+msgstr "ヘッダービルダー"
+
+msgid "Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY."
+msgstr "ヘッダービルダー：「カート」と「アカウント」の要素を追加します。ショップのオプション：カスタマイズ → WooCommerce → BIGSPY。"
+
+msgid "Header cart icon"
+msgstr "ヘッダーのカートアイコン"
+
+msgid "Header color"
+msgstr "ヘッダーの色"
+
+msgid "Header element: %s"
+msgstr "ヘッダー要素: %s"
+
+msgid "Header layout"
+msgstr "ヘッダーのレイアウト"
+
+msgid "Header layout & sticky"
+msgstr "ヘッダーのレイアウトと固定表示"
+
+msgid "Header style"
+msgstr "ヘッダーのスタイル"
+
+msgid "Heading"
+msgstr "見出し"
+
+msgid "Heading & text"
+msgstr "見出しとテキスト"
+
+msgid "Heading (empty = “Related posts”)"
+msgstr "見出し（空欄 =「関連投稿」）"
+
+msgid "Heading align"
+msgstr "見出しの配置"
+
+msgid "Heading font"
+msgstr "見出しのフォント"
+
+msgid "Heading font weight"
+msgstr "見出しの太さ"
+
+msgid "Heading max width (px, 0 = full)"
+msgstr "見出しの最大幅（px、0 = 全幅）"
+
+msgid "Heading sizes (H1–H4)"
+msgstr "見出しのサイズ（H1〜H4）"
+
+msgid "Heading text case"
+msgstr "見出しの大文字・小文字"
+
+msgid "Headings"
+msgstr "見出し"
+
+msgid "Height"
+msgstr "高さ"
+
+msgid "Height (px)"
+msgstr "高さ（px）"
+
+msgid "Height (px, 0 = auto)"
+msgstr "高さ（px、0 = 自動）"
+
+msgid "Height (px, 0 = default)"
+msgstr "高さ（px、0 = 既定）"
+
+msgid "Height on mobile (px, 0 = same)"
+msgstr "モバイルの高さ（px、0 = 同じ）"
+
+msgid "Height unit"
+msgstr "高さの単位"
+
+msgid "Height – desktop (% of screen)"
+msgstr "高さ – デスクトップ（画面の%）"
+
+msgid "Height – desktop (px)"
+msgstr "高さ – デスクトップ（px）"
+
+msgid "Height – mobile (% of screen)"
+msgstr "高さ – モバイル（画面の%）"
+
+msgid "Height – mobile (px)"
+msgstr "高さ – モバイル（px）"
+
+msgid "Height – tablet (% of screen)"
+msgstr "高さ – タブレット（画面の%）"
+
+msgid "Height – tablet (px)"
+msgstr "高さ – タブレット（px）"
+
+msgid "Helen"
+msgstr "Helen"
+
+msgid "Help & guides"
+msgstr "ヘルプとガイド"
+
+msgid "Help renting out or reselling later."
+msgstr "将来の賃貸や売却もサポート。"
+
+msgid "Herbal brightening bath"
+msgstr "ハーブのブライトニングバス"
+
+msgid "Herbal head spa"
+msgstr "ハーブヘッドスパ"
+
+msgid "Herbal tea"
+msgstr "ハーブティー"
+
+msgid "Herbal tea after treatment"
+msgstr "施術後のハーブティー"
+
+msgid "Hidden"
+msgstr "非表示"
+
+msgid "Hidden automatically after at most 3 seconds."
+msgstr "最大3秒後に自動で非表示になります。"
+
+msgid "Hide"
+msgstr "非表示"
+
+msgid "Hide \"%s\""
+msgstr "「%s」を非表示"
+
+msgid "Hide empty categories"
+msgstr "空のカテゴリーを非表示"
+
+msgid "Hide footer"
+msgstr "フッターを非表示"
+
+msgid "Hide on desktop"
+msgstr "デスクトップで非表示"
+
+msgid "Hide on mobile"
+msgstr "モバイルで非表示"
+
+msgid "Hide on pages (IDs or slugs, comma separated)"
+msgstr "非表示にするページ（IDまたはスラッグ、カンマ区切り）"
+
+msgid "Hide on tablet"
+msgstr "タブレットで非表示"
+
+msgid "Hide page title"
+msgstr "ページタイトルを非表示"
+
+msgid "Hide prices and add-to-cart buttons, show a contact button instead. Useful for showroom / quotation websites."
+msgstr "価格とカートに追加ボタンを隠し、代わりにお問い合わせボタンを表示します。ショールームや見積もり型のサイトに便利です。"
+
+msgid "Hide the WordPress version from the page source"
+msgstr "ページのソースから WordPress のバージョンを隠す"
+
+msgid "Hide the form after sending"
+msgstr "送信後にフォームを隠す"
+
+msgid "Hide the post being viewed"
+msgstr "閲覧中の投稿を除外"
+
+msgid "Hide the search field when the screen is narrower than (px, 0 = never)"
+msgstr "画面幅がこれより狭いと検索欄を隠す（px、0 = 隠さない）"
+
+msgid "Hide when the header is sticky (scrolled)"
+msgstr "ヘッダー固定時（スクロール時）に非表示"
+
+msgid "Highlight"
+msgstr "ハイライト"
+
+msgid "Highlight color"
+msgstr "ハイライトの色"
+
+msgid "Highlight menu links to page sections"
+msgstr "ページ内セクションへのメニューリンクをハイライト"
+
+msgid "Highlight this plan"
+msgstr "このプランを強調"
+
+msgid "Highlight this plan (popular)"
+msgstr "このプランを強調（人気）"
+
+msgid "Highlighter marker"
+msgstr "蛍光マーカー"
+
+msgid "Hiện toàn bộ ảnh thẻ blog"
+msgstr "ブログカードの画像を全体表示"
+
+msgid "Hiện trọn ảnh sản phẩm"
+msgstr "商品画像を全体表示"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Home care"
+msgstr "ホームケア"
+
+msgid "Homepage – Education centre"
+msgstr "ホームページ – 教育機関"
+
+msgid "Homepage – Real estate"
+msgstr "ホームページ – 不動産"
+
+msgid "Homepage – Restaurant & café"
+msgstr "ホームページ – レストラン＆カフェ"
+
+msgid "Homepage – Spa & beauty"
+msgstr "ホームページ – スパ＆ビューティー"
+
+msgid "Homepage – online shop"
+msgstr "トップページ – オンラインショップ"
+
+msgid "Homes as described"
+msgstr "説明どおりの物件"
+
+msgid "Horizontal"
+msgstr "横"
+
+msgid "Horizontal align (when columns do not fill 12)"
+msgstr "横方向の配置（列の合計が12に満たない場合）"
+
+msgid "Horizontal line"
+msgstr "横線"
+
+msgid "Hospitals, labs, care"
+msgstr "病院、検査機関、介護"
+
+msgid "Hot stone massage"
+msgstr "ホットストーンマッサージ"
+
+msgid "Hotels, resorts, real estate"
+msgstr "ホテル、リゾート、不動産"
+
+msgid "Hotline"
+msgstr "ホットライン"
+
+msgid "Hotline 2"
+msgstr "ホットライン2"
+
+msgid "House-roasted coffee"
+msgstr "自家焙煎コーヒー"
+
+msgid "Hover"
+msgstr "ホバー"
+
+msgid "Hover (click on phones)"
+msgstr "ホバー（スマホではタップ）"
+
+msgid "Hover background"
+msgstr "ホバー時の背景"
+
+msgid "Hover effect"
+msgstr "ホバー効果"
+
+msgid "Hover text"
+msgstr "ホバー時の文字"
+
+msgid "How are projects checked?"
+msgstr "物件はどのように確認していますか？"
+
+msgid "How far ahead should I book?"
+msgstr "どれくらい前に予約すればいいですか？"
+
+msgid "How it works"
+msgstr "ご利用の流れ"
+
+msgid "How to choose great beef"
+msgstr "おいしい牛肉の選び方"
+
+msgid "How to read SPF and PA and pick one for oily or dry skin."
+msgstr "SPF と PA の見方と、脂性肌・乾燥肌向けの選び方。"
+
+msgid "How to read the grain, colour and freshness so beef stays tender and sweet."
+msgstr "やわらかくおいしい牛肉を選ぶための、繊維・色・鮮度の見分け方。"
+
+msgid "How to use sunscreen properly after treatment."
+msgstr "施術後の正しい日焼け止めの使い方。"
+
+msgid "How to work out what you can repay and choose the right rate."
+msgstr "返済可能額の計算と金利の選び方。"
+
+msgid "Hoàn tác"
+msgstr "元に戻す"
+
+msgid "Hình ảnh & banner"
+msgstr "画像とバナー"
+
+msgid "ID, marital status certificate, household registration and proof of income if you take a loan."
+msgstr "ローンを利用する場合は身分証、婚姻関係の証明、住民票、収入証明が必要です。"
+
+msgid "IELTS 7.0 student"
+msgstr "IELTS 7.0 取得者"
+
+msgid "IELTS 8.5, 10 years of exam coaching."
+msgstr "IELTS 8.5、試験指導歴10年。"
+
+msgid "IELTS guarantee"
+msgstr "IELTS スコア保証"
+
+msgid "IELTS preparation"
+msgstr "IELTS 対策"
+
+msgid "IT lecturer"
+msgstr "IT 講師"
+
+msgid "Icon"
+msgstr "アイコン"
+
+msgid "Icon background"
+msgstr "アイコンの背景"
+
+msgid "Icon background (filled styles)"
+msgstr "アイコンの背景（塗りつぶしスタイル）"
+
+msgid "Icon color"
+msgstr "アイコンの色"
+
+msgid "Icon colors"
+msgstr "アイコンの色"
+
+msgid "Icon in a soft circle"
+msgstr "淡い円の中のアイコン"
+
+msgid "Icon in the middle (optional)"
+msgstr "中央のアイコン（任意）"
+
+msgid "Icon name (when marker = icon)"
+msgstr "アイコン名（マーカー = アイコンのとき）"
+
+msgid "Icon only"
+msgstr "アイコンのみ"
+
+msgid "Icon position"
+msgstr "アイコンの位置"
+
+msgid "Icon size (px)"
+msgstr "アイコンのサイズ（px）"
+
+msgid "Icon size (px, 0 = auto)"
+msgstr "アイコンのサイズ（px、0 = 自動）"
+
+msgid "Icon size (px, 0 = default)"
+msgstr "アイコンのサイズ（px、0 = 既定）"
+
+msgid "Icon style"
+msgstr "アイコンのスタイル"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Image (side or background)"
+msgstr "画像（横または背景）"
+
+msgid "Image + form"
+msgstr "画像＋フォーム"
+
+msgid "Image + text row"
+msgstr "画像＋テキストの行"
+
+msgid "Image box"
+msgstr "画像ボックス"
+
+msgid "Image column width"
+msgstr "画像列の幅"
+
+msgid "Image hotspots"
+msgstr "画像ホットスポット"
+
+msgid "Image hover"
+msgstr "画像ホバー"
+
+msgid "Image hover effect"
+msgstr "画像のホバー効果"
+
+msgid "Image left"
+msgstr "画像左"
+
+msgid "Image on top"
+msgstr "画像上"
+
+msgid "Image position"
+msgstr "画像の位置"
+
+msgid "Image ratio"
+msgstr "画像の比率"
+
+msgid "Image right"
+msgstr "画像右"
+
+msgid "Image swatches"
+msgstr "画像スウォッチ"
+
+msgid "Image width (%)"
+msgstr "画像の幅（%）"
+
+msgid "Image, then title"
+msgstr "画像、次にタイトル"
+
+msgid "Images"
+msgstr "画像"
+
+msgid "Import"
+msgstr "インポート"
+
+msgid "Import theme options"
+msgstr "テーマオプションをインポート"
+
+msgid "Important theme-wide settings."
+msgstr "テーマ全体の重要な設定です。"
+
+msgid "In 15 years"
+msgstr "15年間で"
+
+msgid "In 2012 we started in a small kitchen with six tables. What kept guests coming back was not fancy food but familiar flavours, cooked with the best ingredients and care in every detail."
+msgstr "2012年、テーブル6つの小さな厨房から始まりました。お客様が通い続けてくれたのは、凝った料理ではなく、最高の食材で細部まで丁寧に作る、なじみの味でした。"
+
+msgid "In our after-visit survey"
+msgstr "来店後アンケートより"
+
+msgid "Include product SKU matches"
+msgstr "商品SKUの一致を含める"
+
+msgid "Include product tag matches"
+msgstr "商品タグの一致を含める"
+
+msgid "Increase indent"
+msgstr "インデントを増やす"
+
+msgid "Indigo"
+msgstr "インディゴ"
+
+msgid "Indigo deep"
+msgstr "濃いインディゴ"
+
+msgid "Indigo pastel"
+msgstr "パステルインディゴ"
+
+msgid "Individual title for every unit"
+msgstr "全区画に個別の権利書"
+
+msgid "Individual titles, finished infrastructure."
+msgstr "個別の権利書、インフラ整備済み。"
+
+msgid "Industry, logistics, B2B"
+msgstr "工業、物流、B2B"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "Info box on the map"
+msgstr "地図上の情報ボックス"
+
+msgid "Ingredients chosen every morning, chefs with over 12 years of experience and a warm space – the perfect place for a date, a business lunch or a family weekend."
+msgstr "毎朝選ぶ食材、経験12年以上のシェフ、温かな空間。デート、ビジネスランチ、家族の週末にぴったりです。"
+
+msgid "Inherit"
+msgstr "継承"
+
+msgid "Inline (no alignment)"
+msgstr "インライン（配置なし）"
+
+msgid "Inline (one line)"
+msgstr "インライン（1行）"
+
+msgid "Inline newsletter"
+msgstr "インラインのニュースレター"
+
+msgid "Insert image (click it, then drag its corner to resize)"
+msgstr "画像を挿入（クリックしてから角をドラッグしてサイズ変更）"
+
+msgid "Insert link"
+msgstr "リンクを挿入"
+
+msgid "Insert table"
+msgstr "表を挿入"
+
+msgid "Inside"
+msgstr "内側"
+
+msgid "Instagram link"
+msgstr "InstagramのURL"
+
+msgid "Install / set up WP Mail SMTP so emails are delivered"
+msgstr "メールが届くようWP Mail SMTPをインストール／設定"
+
+msgid "Install Contact Form 7"
+msgstr "Contact Form 7をインストール"
+
+msgid "Install WP Mail SMTP"
+msgstr "WP Mail SMTPをインストール"
+
+msgid "Install WP Mail SMTP (recommended)"
+msgstr "WP Mail SMTPをインストール（推奨）"
+
+msgid "Install WooCommerce"
+msgstr "WooCommerceをインストール"
+
+msgid "Install and activate Contact Form 7 (or WPForms) to use this block."
+msgstr "このブロックを使うにはContact Form 7（またはWPForms）をインストールして有効化してください。"
+
+msgid "Install and activate WooCommerce to display products here. This block shows nothing on the site until then."
+msgstr "ここに商品を表示するにはWooCommerceをインストールして有効化してください。それまでこのブロックはサイトに何も表示しません。"
+
+msgid "Instalments up to 30 years"
+msgstr "最長30年の分割払い"
+
+msgid "Instant"
+msgstr "即時"
+
+msgid "Instant page: preload a page when the visitor hovers or touches its link"
+msgstr "インスタントページ：訪問者がリンクにホバーまたはタッチしたときにページを先読み"
+
+msgid "Interactive classes"
+msgstr "参加型の授業"
+
+msgid "Interior, eco, skincare"
+msgstr "インテリア、エコ、スキンケア"
+
+msgid "Investor"
+msgstr "投資家"
+
+msgid "Is it suitable for sensitive skin?"
+msgstr "敏感肌でも大丈夫ですか？"
+
+msgid "Is there parking?"
+msgstr "駐車場はありますか？"
+
+msgid "Italic"
+msgstr "斜体"
+
+msgid "Item"
+msgstr "項目"
+
+msgid "Items (one per line)"
+msgstr "項目（1行に1つ）"
+
+msgid "Jade"
+msgstr "ジェイド"
+
+msgid "Jade deep"
+msgstr "濃いジェイド"
+
+msgid "Jade pastel"
+msgstr "パステルジェイド"
+
+msgid "James Walker"
+msgstr "James Walker"
+
+msgid "Jessica"
+msgstr "Jessica"
+
+msgid "Justify"
+msgstr "両端揃え"
+
+msgid "Kate Morgan"
+msgstr "Kate Morgan"
+
+msgid "Keep columns on mobile"
+msgstr "モバイルでも列を維持"
+
+msgid "Keep order totals visible on desktop"
+msgstr "デスクトップで注文合計を常に表示"
+
+msgid "Keep purchase details visible while scrolling (desktop)"
+msgstr "スクロール中も購入情報を表示（デスクトップ）"
+
+msgid "Keep the menu and header buttons on one line"
+msgstr "メニューとヘッダーボタンを1行に収める"
+
+msgid "Keep the menu open on the homepage (desktop)"
+msgstr "トップページでメニューを開いたままにする（デスクトップ）"
+
+msgid "Keeps menu and buttons on one line on small laptops, e.g. 1150."
+msgstr "小型ノートPCでもメニューとボタンを1行に保ちます（例: 1150）。"
+
+msgid "Keeps page URLs and browser history. Filters and sorting keep their native navigation."
+msgstr "ページURLとブラウザ履歴を保持します。フィルターと並べ替えは従来のナビゲーションのままです。"
+
+msgid "Kevin"
+msgstr "Kevin"
+
+msgid "Khung cảm nhận khách hàng"
+msgstr "お客様の声の枠"
+
+msgid "Khung trích dẫn nổi bật"
+msgstr "強調引用の枠"
+
+msgid "Khung tổng tiền giỏ hàng"
+msgstr "カート合計の枠"
+
+msgid "Không có tác vụ phù hợp."
+msgstr "該当するタスクはありません。"
+
+msgid "Không tác động đến nút, menu hay thẻ sản phẩm."
+msgstr "ボタン、メニュー、商品カードには影響しません。"
+
+msgid "Không đổi kiểu thẻ bài viết có chữ phủ trên ảnh."
+msgstr "画像の上に文字がある投稿カードのスタイルは変えません。"
+
+msgid "Không đổi nút dạng liên kết hoặc viền."
+msgstr "リンク型や枠線型のボタンは変えません。"
+
+msgid "Không đổi tên, sao hay nội dung của khách hàng."
+msgstr "お客様の名前、星、内容は変わりません。"
+
+msgid "Kids"
+msgstr "キッズ"
+
+msgid "Kids teacher"
+msgstr "キッズ講師"
+
+msgid "Kids, toys, playful shops"
+msgstr "キッズ、おもちゃ、遊び心のあるショップ"
+
+msgid "Knows city-centre zoning inside out."
+msgstr "市中心部の用途地域を熟知。"
+
+msgid "Label"
+msgstr "ラベル"
+
+msgid "Label (e.g. 4.9/5 from 320 reviews)"
+msgstr "ラベル（例: 320件のレビューで4.9/5）"
+
+msgid "Label (e.g. Happy customers)"
+msgstr "ラベル（例: 満足したお客様）"
+
+msgid "Label (optional)"
+msgstr "ラベル（任意）"
+
+msgid "Label before icons (optional)"
+msgstr "アイコンの前のラベル（任意）"
+
+msgid "Label buttons"
+msgstr "ラベル付きボタン"
+
+msgid "Label inside the bar"
+msgstr "バー内のラベル"
+
+msgid "Labels"
+msgstr "ラベル"
+
+msgid "Labels & layout"
+msgstr "ラベルとレイアウト"
+
+msgid "Lakeside villa"
+msgstr "湖畔のヴィラ"
+
+msgid "Landscape 4:3"
+msgstr "横長 4:3"
+
+msgid "Language label"
+msgstr "言語ラベル"
+
+msgid "Language of the theme’s own texts. WordPress and plugins keep their own language (Settings → General and Users → Profile)."
+msgstr "テーマ独自のテキストの言語です。WordPress とプラグインはそれぞれの言語のままです（設定 → 一般、ユーザー → プロフィール）。"
+
+msgid "Large"
+msgstr "大"
+
+msgid "Large (960px)"
+msgstr "大（960px）"
+
+msgid "Large first letter (drop cap)"
+msgstr "大きな頭文字（ドロップキャップ）"
+
+msgid "Latest"
+msgstr "最新"
+
+msgid "Latest posts"
+msgstr "最新の投稿"
+
+msgid "Latest skin analysis device"
+msgstr "最新の肌分析機器"
+
+msgid "Latitude (optional)"
+msgstr "緯度（任意）"
+
+msgid "Laura Hughes"
+msgstr "Laura Hughes"
+
+msgid "Lavender"
+msgstr "ラベンダー"
+
+msgid "Law, finance, consulting"
+msgstr "法律、金融、コンサルティング"
+
+msgid "Layer order (z-index)"
+msgstr "重なり順（z-index）"
+
+msgid "Layered waves"
+msgstr "重なる波"
+
+msgid "Layout"
+msgstr "レイアウト"
+
+msgid "Layout & fields"
+msgstr "レイアウトと入力欄"
+
+msgid "Layout & style"
+msgstr "レイアウトとスタイル"
+
+msgid "Layout applied. Preview it, then Publish to save."
+msgstr "レイアウトを適用しました。プレビューしてから「公開」で保存してください。"
+
+msgid "Leaf"
+msgstr "リーフ"
+
+msgid "Leaf deep"
+msgstr "濃いリーフ"
+
+msgid "Leaf pastel"
+msgstr "パステルリーフ"
+
+msgid "Learn & practise"
+msgstr "学んで練習"
+
+msgid "Learn anywhere"
+msgstr "どこでも学べる"
+
+msgid "Learn better every day"
+msgstr "毎日もっと上手に"
+
+msgid "Learn for real, get really good, move on with confidence"
+msgstr "本当に学び、本当に上達し、自信を持って進む"
+
+msgid "Learn more"
+msgstr "詳しく見る"
+
+msgid "Learning path"
+msgstr "学習の流れ"
+
+msgid "Learning through games"
+msgstr "ゲームで学ぶ"
+
+msgid "Learning through games and songs so children love English."
+msgstr "ゲームや歌で、子どもが英語を大好きに。"
+
+msgid "Learning through real projects"
+msgstr "実際のプロジェクトで学ぶ"
+
+msgid "Leave your number and we will send options that fit your budget within 30 minutes."
+msgstr "電話番号を残していただければ、30分以内にご予算に合った候補をお送りします。"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Left (%)"
+msgstr "左（%）"
+
+msgid "Left / right"
+msgstr "左／右"
+
+msgid "Left bar"
+msgstr "左のバー"
+
+msgid "Left sidebar"
+msgstr "左サイドバー"
+
+msgid "Left to right"
+msgstr "左から右"
+
+msgid "Legal checks"
+msgstr "法的チェック"
+
+msgid "Legal checks on every project"
+msgstr "すべての物件を法的にチェック"
+
+msgid "Less stress, better sleep and healthier circulation."
+msgstr "ストレス軽減、快眠、血行の改善。"
+
+msgid "Letter case"
+msgstr "大文字・小文字"
+
+msgid "Letter spacing"
+msgstr "文字間隔"
+
+msgid "Letter spacing (px)"
+msgstr "文字間隔（px）"
+
+msgid "Lift"
+msgstr "浮き上がり"
+
+msgid "Lift card"
+msgstr "カードを浮かせる"
+
+msgid "Lift gently"
+msgstr "やさしく浮かせる"
+
+msgid "Lift on hover"
+msgstr "ホバーで浮き上がる"
+
+msgid "Light"
+msgstr "ライト"
+
+msgid "Light 300"
+msgstr "細字 300"
+
+msgid "Light background (cards, boxes)"
+msgstr "明るい背景（カード、ボックス）"
+
+msgid "Light card"
+msgstr "ライトカード"
+
+msgid "Light panel"
+msgstr "明るいパネル"
+
+msgid "Light text (for dark backgrounds)"
+msgstr "明るい文字（暗い背景用）"
+
+msgid "Lighten overlay"
+msgstr "明るいオーバーレイ"
+
+msgid "Lily Chen"
+msgstr "Lily Chen"
+
+msgid "Lime"
+msgstr "ライム"
+
+msgid "Lime deep"
+msgstr "濃いライム"
+
+msgid "Lime pastel"
+msgstr "パステルライム"
+
+msgid "Linda"
+msgstr "Linda"
+
+msgid "Line"
+msgstr "線"
+
+msgid "Line color"
+msgstr "線の色"
+
+msgid "Line height"
+msgstr "行の高さ"
+
+msgid "Line height (0 = default)"
+msgstr "行の高さ（0 = 既定）"
+
+msgid "Line height (0 = theme default)"
+msgstr "行の高さ（0 = テーマ既定）"
+
+msgid "Line style"
+msgstr "線のスタイル"
+
+msgid "Lines (short last)"
+msgstr "ライン（最後が短い）"
+
+msgid "Lines (short middle)"
+msgstr "ライン（中央が短い）"
+
+msgid "Lines (short right)"
+msgstr "ライン（右が短い）"
+
+msgid "Lines (stepped)"
+msgstr "ライン（段差）"
+
+msgid "Lines on both sides"
+msgstr "両側に線"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Link & accessibility"
+msgstr "リンクとアクセシビリティ"
+
+msgid "Link (URL)"
+msgstr "リンク（URL）"
+
+msgid "Link (URL, tel:, mailto:)"
+msgstr "リンク（URL、tel:、mailto:）"
+
+msgid "Link (optional)"
+msgstr "リンク（任意）"
+
+msgid "Link / number"
+msgstr "リンク／番号"
+
+msgid "Link URL (https://, tel:, mailto:)"
+msgstr "リンクURL（https://、tel:、mailto:）"
+
+msgid "Link any button or menu item to #"
+msgstr "任意のボタンやメニュー項目を # にリンク"
+
+msgid "Link for logo"
+msgstr "ロゴのリンク"
+
+msgid "Link rel"
+msgstr "リンクのrel"
+
+msgid "Link text"
+msgstr "リンクテキスト"
+
+msgid "Link the whole banner (URL)"
+msgstr "バナー全体をリンク（URL）"
+
+msgid "Link with arrow"
+msgstr "矢印付きリンク"
+
+msgid "Links"
+msgstr "リンク"
+
+msgid "Links on hover"
+msgstr "ホバー時のリンク"
+
+msgid "List"
+msgstr "リスト"
+
+msgid "List (image left)"
+msgstr "リスト（画像左）"
+
+msgid "List item…"
+msgstr "リスト項目…"
+
+msgid "Listed prices guaranteed"
+msgstr "表示価格を保証"
+
+msgid "Live search suggestions while typing"
+msgstr "入力中にライブ検索候補を表示"
+
+msgid "Live shrimp, squid and clams in our special sweet-and-sour broth."
+msgstr "活きエビ、イカ、アサリを特製の甘酢スープで。"
+
+msgid "Liên kết chân trang khi rê chuột hoặc dùng bàn phím."
+msgstr "ホバーまたはキーボード操作時のフッターリンク。"
+
+msgid "Load classic shop pagination without a full page reload"
+msgstr "クラシックのショップのページ送りをページ全体を再読み込みせずに読み込む"
+
+msgid "Load more"
+msgstr "もっと見る"
+
+msgid "Load more button"
+msgstr "「もっと見る」ボタン"
+
+msgid "Load more posts"
+msgstr "投稿をさらに読み込む"
+
+msgid "Load while scrolling"
+msgstr "スクロールで読み込む"
+
+msgid "Loader color (empty = primary color)"
+msgstr "ローダーの色（空欄 = メインカラー）"
+
+msgid "Loading & filters"
+msgstr "読み込みとフィルター"
+
+msgid "Loading preview…"
+msgstr "プレビューを読み込み中…"
+
+msgid "Loading…"
+msgstr "読み込み中…"
+
+msgid "Loads the next products without reloading the page."
+msgstr "ページを再読み込みせずに次の商品を読み込みます。"
+
+msgid "Loan packages that fit your income."
+msgstr "収入に合わせたローンプラン。"
+
+msgid "Local and international"
+msgstr "国内・海外"
+
+msgid "Location"
+msgstr "所在地"
+
+msgid "Locations"
+msgstr "所在地一覧"
+
+msgid "Lock"
+msgstr "鍵"
+
+msgid "Logged-in users only"
+msgstr "ログイン中のユーザーのみ"
+
+msgid "Logged-out visitors only"
+msgstr "未ログインの訪問者のみ"
+
+msgid "Login"
+msgstr "ログイン"
+
+msgid "Logo"
+msgstr "ロゴ"
+
+msgid "Logo & site identity"
+msgstr "ロゴとサイト基本情報"
+
+msgid "Logo height (px)"
+msgstr "ロゴの高さ（px）"
+
+msgid "Logo max width – desktop (px)"
+msgstr "ロゴの最大幅 – デスクトップ（px）"
+
+msgid "Logo max width – mobile (px)"
+msgstr "ロゴの最大幅 – モバイル（px）"
+
+msgid "Logo showcase"
+msgstr "ロゴショーケース"
+
+msgid "Logo width in compact mode (px, 0 = unchanged)"
+msgstr "コンパクトモードのロゴ幅（px、0 = 変更なし）"
+
+msgid "Logo, menu and search with fewer rows."
+msgstr "ロゴ、メニュー、検索を少ない行数で。"
+
+msgid "Logo, menu and the text of full-width banners / sections line up on the same side spacing."
+msgstr "ロゴ、メニュー、全幅バナー／セクションのテキストが同じ左右余白でそろいます。"
+
+msgid "Logo, search, account, cart and navigation."
+msgstr "ロゴ、検索、アカウント、カート、ナビゲーション。"
+
+msgid "Logos"
+msgstr "ロゴ"
+
+msgid "Longitude"
+msgstr "経度"
+
+msgid "Look"
+msgstr "見た目"
+
+msgid "Looking for a home?"
+msgstr "住まいをお探しですか？"
+
+msgid "Loop"
+msgstr "ループ"
+
+msgid "Looping effect (draws attention)"
+msgstr "ループ効果（注目を集める）"
+
+msgid "Lottie JSON URL"
+msgstr "Lottie JSONのURL"
+
+msgid "Lottie animation"
+msgstr "Lottieアニメーション"
+
+msgid "Loves children and makes every lesson creative."
+msgstr "子どもが大好きで、毎回の授業を創造的にします。"
+
+msgid "Lower numbers run first. When two layouts replace the same part, the lowest number wins."
+msgstr "小さい数字から先に実行されます。2つのレイアウトが同じ部分を置き換える場合、最も小さい数字が優先されます。"
+
+msgid "Loyal client"
+msgstr "常連のお客様"
+
+msgid "Lucas Moreno"
+msgstr "Lucas Moreno"
+
+msgid "Lucky red & gold"
+msgstr "縁起の良い赤と金"
+
+msgid "Luxury, jewelry, real estate"
+msgstr "ラグジュアリー、ジュエリー、不動産"
+
+msgid "Làm nổi câu hỏi đang mở"
+msgstr "開いている質問を強調"
+
+msgid "Làm nổi giá sản phẩm"
+msgstr "商品価格を強調"
+
+msgid "Làm rõ ô đang nhập"
+msgstr "入力中の欄をはっきり表示"
+
+msgid "MC and reception help"
+msgstr "司会・受付のサポート"
+
+msgid "Magazine"
+msgstr "マガジン"
+
+msgid "Magenta pop"
+msgstr "マゼンタポップ"
+
+msgid "Mail"
+msgstr "メール"
+
+msgid "Mail (2)"
+msgstr "メール (2)"
+
+msgid "Mail (2) is an extra email, e.g. an auto-reply to the visitor."
+msgstr "メール (2) は追加のメールです（例: 訪問者への自動返信）。"
+
+msgid "Mail tags you can use:"
+msgstr "使用できるメールタグ:"
+
+msgid "Mailer:"
+msgstr "送信方法:"
+
+msgid "Main hall, garden or a private room – whatever suits the occasion."
+msgstr "メインホール、ガーデン、個室 – 用途に合わせて。"
+
+msgid "Main header"
+msgstr "メインヘッダー"
+
+msgid "Main menu"
+msgstr "メインメニュー"
+
+msgid "Main menu style"
+msgstr "メインメニューのスタイル"
+
+msgid "Main-road frontage, ready for business."
+msgstr "大通りに面し、すぐに営業可能。"
+
+msgid "Maintenance message"
+msgstr "メンテナンスメッセージ"
+
+msgid "Make-up trial"
+msgstr "メイクのリハーサル"
+
+msgid "Manage maintenance mode"
+msgstr "メンテナンスモードを管理"
+
+msgid "Manager"
+msgstr "マネージャー"
+
+msgid "Margin"
+msgstr "外側余白"
+
+msgid "Mark"
+msgstr "Mark"
+
+msgid "Marker"
+msgstr "マーカー"
+
+msgid "Marker color"
+msgstr "マーカーの色"
+
+msgid "Market analysis"
+msgstr "市場分析"
+
+msgid "Market news"
+msgstr "市場ニュース"
+
+msgid "Masonry"
+msgstr "メイソンリー"
+
+msgid "Massage therapist"
+msgstr "マッサージセラピスト"
+
+msgid "Max 10 children per class"
+msgstr "1クラス最大10名"
+
+msgid "Max 12 students"
+msgstr "最大12名"
+
+msgid "Max 12 students per class"
+msgstr "1クラス最大12名"
+
+msgid "Max execution time"
+msgstr "最大実行時間"
+
+msgid "Max height (px, 0 = auto)"
+msgstr "最大の高さ（px、0 = 自動）"
+
+msgid "Max product categories"
+msgstr "商品カテゴリーの最大数"
+
+msgid "Max upload size"
+msgstr "最大アップロードサイズ"
+
+msgid "Max width"
+msgstr "最大幅"
+
+msgid "Max width (px)"
+msgstr "最大幅（px）"
+
+msgid "Max width (px, 0 = full)"
+msgstr "最大幅（px、0 = 全幅）"
+
+msgid "Max width – desktop (px)"
+msgstr "最大幅 – デスクトップ（px）"
+
+msgid "Max width – mobile (px)"
+msgstr "最大幅 – モバイル（px）"
+
+msgid "Medical blue"
+msgstr "メディカルブルー"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Medium (640px)"
+msgstr "中（640px）"
+
+msgid "Medium 500"
+msgstr "中太 500"
+
+msgid "Medium large"
+msgstr "中大"
+
+msgid "Member card with 20% off"
+msgstr "20%オフの会員カード"
+
+msgid "Member rewards"
+msgstr "会員特典"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "Menu assigned to “Vertical menu”"
+msgstr "「縦メニュー」に割り当てたメニュー"
+
+msgid "Menu con desktop của BIGSPY."
+msgstr "BIGSPYのデスクトップ用サブメニュー。"
+
+msgid "Menu content"
+msgstr "メニューの内容"
+
+msgid "Menu font"
+msgstr "メニューのフォント"
+
+msgid "Menu font size (px)"
+msgstr "メニューの文字サイズ（px）"
+
+msgid "Menu font weight"
+msgstr "メニューの文字の太さ"
+
+msgid "Menu highlights"
+msgstr "おすすめメニュー"
+
+msgid "Menu icon (off-canvas)"
+msgstr "メニューアイコン（オフキャンバス）"
+
+msgid "Menu mobile dễ chạm hơn"
+msgstr "タップしやすいモバイルメニュー"
+
+msgid "Menu opens from"
+msgstr "メニューが開く方向"
+
+msgid "Menu style"
+msgstr "メニューのスタイル"
+
+msgid "Menu text case"
+msgstr "メニューの大文字・小文字"
+
+msgid "Menu tài khoản WooCommerce sau khi đăng nhập."
+msgstr "ログイン後のWooCommerceアカウントメニュー。"
+
+msgid "Menu tài khoản bo góc"
+msgstr "角丸のアカウントメニュー"
+
+msgid "Menus"
+msgstr "メニュー"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Message body"
+msgstr "メッセージ本文"
+
+msgid "Message box"
+msgstr "メッセージボックス"
+
+msgid "Message us"
+msgstr "メッセージを送る"
+
+msgid "Messages"
+msgstr "メッセージ"
+
+msgid "Message…"
+msgstr "メッセージ…"
+
+msgid "Meta shown on cards"
+msgstr "カードに表示するメタ情報"
+
+msgid "Mia Turner"
+msgstr "Mia Turner"
+
+msgid "Michael"
+msgstr "Michael"
+
+msgid "Middle"
+msgstr "中央"
+
+msgid "Midnight gold"
+msgstr "ミッドナイトゴールド"
+
+msgid "Milestones"
+msgstr "マイルストーン"
+
+msgid "Mini cart dropdown on hover (desktop)"
+msgstr "ホバーでミニカートのドロップダウン（デスクトップ）"
+
+msgid "Minimal"
+msgstr "ミニマル"
+
+msgid "Minimal (image + name + price)"
+msgstr "ミニマル（画像＋名前＋価格）"
+
+msgid "Minimal (titles only)"
+msgstr "ミニマル（タイトルのみ）"
+
+msgid "Minimal lines"
+msgstr "最小限の線"
+
+msgid "Minimal, studios, portfolios"
+msgstr "ミニマル、スタジオ、ポートフォリオ"
+
+msgid "Minimum height"
+msgstr "最小の高さ"
+
+msgid "Minimum height (px, 0 = auto)"
+msgstr "最小の高さ（px、0 = 自動）"
+
+msgid "Minimum width (px, 0 = auto)"
+msgstr "最小幅（px、0 = 自動）"
+
+msgid "Mint"
+msgstr "ミント"
+
+msgid "Mobile"
+msgstr "モバイル"
+
+msgid "Mobile & khả năng truy cập"
+msgstr "モバイルとアクセシビリティ"
+
+msgid "Mobile (px)"
+msgstr "モバイル（px）"
+
+msgid "Mobile bottom bar"
+msgstr "モバイル下部バー"
+
+msgid "Mobile font size (px, 0 = inherit)"
+msgstr "モバイルの文字サイズ（px、0 = 継承）"
+
+msgid "Mobile image (optional)"
+msgstr "モバイル用画像（任意）"
+
+msgid "Mobile main row height (px)"
+msgstr "モバイルのメイン行の高さ（px）"
+
+msgid "Mobile menu"
+msgstr "モバイルメニュー"
+
+msgid "Mobile menu (falls back to Main menu)"
+msgstr "モバイルメニュー（なければメインメニュー）"
+
+msgid "Mobile only"
+msgstr "モバイルのみ"
+
+msgid "Mocha"
+msgstr "モカ"
+
+msgid "Mocha deep"
+msgstr "濃いモカ"
+
+msgid "Mocha pastel"
+msgstr "パステルモカ"
+
+msgid "Mode"
+msgstr "モード"
+
+msgid "Modern card"
+msgstr "モダンカード"
+
+msgid "Modern living spaces"
+msgstr "モダンな住空間"
+
+msgid "Modern, friendly brands"
+msgstr "モダンで親しみやすいブランド"
+
+msgid "Money back if not as described."
+msgstr "説明と違えば返金。"
+
+msgid "Money-saving packages"
+msgstr "お得なパッケージ"
+
+msgid "Monochrome"
+msgstr "モノクロ"
+
+msgid "Monospace"
+msgstr "等幅"
+
+msgid "Monthly mock tests"
+msgstr "毎月の模擬試験"
+
+msgid "Monthly progress reports"
+msgstr "毎月の進捗レポート"
+
+msgid "More block actions"
+msgstr "その他のブロック操作"
+
+msgid "More posts"
+msgstr "その他の投稿"
+
+msgid "More products"
+msgstr "その他の商品"
+
+msgid "More than 2,300 guest reviews"
+msgstr "2,300件以上のお客様レビュー"
+
+msgid "More than 300 apartment deals closed."
+msgstr "マンション成約300件以上。"
+
+msgid "Morning and evening classes on weekdays plus weekend classes – choose what fits you."
+msgstr "平日の朝・夜クラスと週末クラス – ご都合に合わせて選べます。"
+
+msgid "Mornings, evenings and weekends"
+msgstr "朝・夜・週末"
+
+msgid "Mortgage support up to 70%"
+msgstr "住宅ローン最大70%サポート"
+
+msgid "Mosaic (5)"
+msgstr "モザイク（5）"
+
+msgid "Most chosen"
+msgstr "最も選ばれています"
+
+msgid "Most commented"
+msgstr "コメントが多い順"
+
+msgid "Most popular"
+msgstr "一番人気"
+
+msgid "Most popular choice"
+msgstr "一番人気のプラン"
+
+msgid "Most products"
+msgstr "商品が多い順"
+
+msgid "Motion & size"
+msgstr "動きとサイズ"
+
+msgid "Mountains"
+msgstr "山並み"
+
+msgid "Move down"
+msgstr "下へ移動"
+
+msgid "Move icon"
+msgstr "アイコンを移動"
+
+msgid "Move slide left"
+msgstr "スライドを左へ移動"
+
+msgid "Move slide right"
+msgstr "スライドを右へ移動"
+
+msgid "Move up"
+msgstr "上へ移動"
+
+msgid "Move up on hover (px)"
+msgstr "ホバーで上に移動（px）"
+
+msgid "Mr. Peter Hall"
+msgstr "Peter Hall 様"
+
+msgid "Ms. Amy Clarke"
+msgstr "Amy Clarke 様"
+
+msgid "Ms. Sarah Lewis"
+msgstr "Sarah Lewis 様"
+
+msgid "Mua ngay"
+msgstr "今すぐ購入"
+
+msgid "Multi-channel ads"
+msgstr "マルチチャネル広告"
+
+msgid "Mustard"
+msgstr "マスタード"
+
+msgid "Mustard deep"
+msgstr "濃いマスタード"
+
+msgid "Mustard pastel"
+msgstr "パステルマスタード"
+
+msgid "Muted"
+msgstr "落ち着いた色"
+
+msgid "My account"
+msgstr "マイアカウント"
+
+msgid "My child loves going to class, and I get a detailed progress report every week."
+msgstr "子どもは授業が大好きで、毎週詳しい進捗レポートが届きます。"
+
+msgid "My pattern"
+msgstr "マイパターン"
+
+msgid "My skin improved clearly after a month – the therapist is very gentle and gives great advice."
+msgstr "1か月で肌がはっきり改善しました – セラピストはとても丁寧で、アドバイスも的確です。"
+
+msgid "Mục WooCommerce cần plugin WooCommerce. Mục dịch vụ cần block BIGSPY tương ứng. Nếu chưa có thành phần trên trang, tác vụ chưa tạo thay đổi."
+msgstr "WooCommerceの項目にはWooCommerceプラグインが必要です。サービスの項目には対応するBIGSPYブロックが必要です。ページにその要素がまだない場合、タスクは何も変更しません。"
+
+msgid "NEW · THIS MONTH’S OFFER"
+msgstr "NEW · 今月のキャンペーン"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Name A–Z"
+msgstr "名前 A–Z"
+
+msgid "Name on image"
+msgstr "画像の上に名前"
+
+msgid "Name size (px, 0 = default)"
+msgstr "名前のサイズ（px、0 = 既定）"
+
+msgid "Narrow (800px)"
+msgstr "狭い（800px）"
+
+msgid "Natalie"
+msgstr "Natalie"
+
+msgid "Native teacher"
+msgstr "ネイティブ講師"
+
+msgid "Native teachers"
+msgstr "ネイティブ講師陣"
+
+msgid "Native-speaker teachers"
+msgstr "ネイティブスピーカー講師"
+
+msgid "Natural herbs and acupressure for the neck and shoulders."
+msgstr "首と肩のための天然ハーブと指圧。"
+
+msgid "Natural listening and speaking in 3 months with native teachers."
+msgstr "ネイティブ講師と3か月で自然に聞いて話せる。"
+
+msgid "Navigation"
+msgstr "ナビゲーション"
+
+msgid "Navy & gold"
+msgstr "ネイビー＆ゴールド"
+
+msgid "Need more information? Leave your number and a consultant will call back within 30 minutes."
+msgstr "詳しく知りたい方は番号を残してください。30分以内に担当者からお電話します。"
+
+msgid "Negotiation & loan"
+msgstr "交渉とローン"
+
+msgid "Negotiation help"
+msgstr "交渉サポート"
+
+msgid "Never"
+msgstr "しない"
+
+msgid "Never (icon only)"
+msgstr "しない（アイコンのみ）"
+
+msgid "Never more than 5 minutes’ wait."
+msgstr "待ち時間は5分以内。"
+
+msgid "New badge"
+msgstr "NEWバッジ"
+
+msgid "New banner"
+msgstr "新しいバナー"
+
+msgid "New bar"
+msgstr "新しいバー"
+
+msgid "New field"
+msgstr "新しい入力欄"
+
+msgid "New methods"
+msgstr "新しいメソッド"
+
+msgid "New milestone"
+msgstr "新しいマイルストーン"
+
+msgid "New plan"
+msgstr "新しいプラン"
+
+msgid "New point"
+msgstr "新しいポイント"
+
+msgid "Newer posts →"
+msgstr "新しい投稿 →"
+
+msgid "Newest"
+msgstr "新しい順"
+
+msgid "News & tips"
+msgstr "ニュースとヒント"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Ngắt tiêu đề quá dài"
+msgstr "長すぎるタイトルを改行"
+
+msgid "Nhóm nút WordPress và BIGSPY trong nội dung; không đổi nút header."
+msgstr "本文内のWordPressとBIGSPYのボタングループ。ヘッダーのボタンは変えません。"
+
+msgid "Nhận ưu đãi 10%"
+msgstr "10%オフを受け取る"
+
+msgid "Night neon"
+msgstr "ナイトネオン"
+
+msgid "No SMTP plugin"
+msgstr "SMTPプラグインなし"
+
+msgid "No corticoids, no harsh chemicals."
+msgstr "ステロイド不使用、刺激の強い化学物質不使用。"
+
+msgid "No designs found. Try another search."
+msgstr "デザインが見つかりません。別のキーワードで検索してください。"
+
+msgid "No industrial MSG"
+msgstr "化学調味料不使用"
+
+msgid "No posts found."
+msgstr "投稿が見つかりません。"
+
+msgid "No product categories found."
+msgstr "商品カテゴリーが見つかりません。"
+
+msgid "No products found."
+msgstr "商品が見つかりません。"
+
+msgid "No results found."
+msgstr "結果が見つかりません。"
+
+msgid "No reviews yet"
+msgstr "まだレビューはありません"
+
+msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
+msgstr "保存されたデザインはまだありません。エディターでブロックのオプションを開き、「パターンを作成」を選ぶとここに保存されます。"
+
+msgid "No sidebar"
+msgstr "サイドバーなし"
+
+msgid "None"
+msgstr "なし"
+
+msgid "None (content touches header / footer)"
+msgstr "なし（コンテンツがヘッダー／フッターに接する）"
+
+msgid "Normal"
+msgstr "標準"
+
+msgid "Normal 400"
+msgstr "標準 400"
+
+msgid "Normal text (div)"
+msgstr "通常のテキスト（div）"
+
+msgid "Not a valid color code."
+msgstr "有効なカラーコードではありません。"
+
+msgid "Not active"
+msgstr "無効"
+
+msgid "Not used"
+msgstr "未使用"
+
+msgid "Not used by the bottom bar."
+msgstr "下部バーでは使用しません。"
+
+msgid "Notary and transfer"
+msgstr "公証と名義変更"
+
+msgid "Notary, transfer and handover."
+msgstr "公証、名義変更、引き渡し。"
+
+msgid "Note under the form (e.g. \"We never share your phone number\")"
+msgstr "フォーム下の注記（例:「電話番号を共有することはありません」）"
+
+msgid "Nothing copied yet."
+msgstr "まだ何もコピーされていません。"
+
+msgid "Nothing matched your search. Please try different keywords."
+msgstr "検索に一致するものがありません。別のキーワードをお試しください。"
+
+msgid "Number"
+msgstr "数値"
+
+msgid "Number color"
+msgstr "数値の色"
+
+msgid "Number of categories"
+msgstr "カテゴリー数"
+
+msgid "Number of posts"
+msgstr "投稿数"
+
+msgid "Number of products"
+msgstr "商品数"
+
+msgid "Number of related products (0 = one row)"
+msgstr "関連商品の数（0 = 1行）"
+
+msgid "Number of stars"
+msgstr "星の数"
+
+msgid "Number of suggestions"
+msgstr "候補の数"
+
+msgid "Number size (px)"
+msgstr "数値のサイズ（px）"
+
+msgid "Number the items (01, 02…)"
+msgstr "項目に番号を付ける（01、02…）"
+
+msgid "Number with country code"
+msgstr "国番号付きの番号"
+
+msgid "Numbered list"
+msgstr "番号付きリスト"
+
+msgid "Numbers"
+msgstr "数値"
+
+msgid "Numbers are pixels; also accepts em, rem, %, vh, auto. Negative margins allowed. Tablet/mobile values override desktop."
+msgstr "数値はピクセルです。em、rem、%、vh、autoも使えます。マイナスの余白も可能です。タブレット／モバイルの値はデスクトップより優先されます。"
+
+msgid "Nút & biểu mẫu"
+msgstr "ボタンとフォーム"
+
+msgid "Nút bo góc mềm"
+msgstr "やわらかい角丸のボタン"
+
+msgid "Nút coupon WooCommerce classic; giữ nguyên ô nhập và chức năng mã giảm giá."
+msgstr "クラシックWooCommerceのクーポンボタン。入力欄とクーポン機能はそのままです。"
+
+msgid "Nút góc vuông"
+msgstr "角ばったボタン"
+
+msgid "Nút hình viên thuốc"
+msgstr "ピル型ボタン"
+
+msgid "Nút mua bên dưới nội dung thẻ BIGSPY."
+msgstr "BIGSPYカードの本文下の購入ボタン。"
+
+msgid "Nút mua lớn trong chi tiết"
+msgstr "商品ページの大きな購入ボタン"
+
+msgid "Nút mua nền màu thương hiệu"
+msgstr "ブランドカラーの購入ボタン"
+
+msgid "Nút nhấc nhẹ khi rê chuột"
+msgstr "ホバーで少し浮き上がるボタン"
+
+msgid "Nút nội dung rộng toàn hàng trên mobile"
+msgstr "モバイルで本文のボタンを全幅に"
+
+msgid "Nút thanh toán rộng toàn khung"
+msgstr "全幅の決済ボタン"
+
+msgid "Nút áp dụng mã giảm giá theo màu thương hiệu"
+msgstr "ブランドカラーのクーポン適用ボタン"
+
+msgid "Nút đi đến thanh toán của giỏ hàng dạng shortcode."
+msgstr "ショートコード版カートの「決済へ進む」ボタン。"
+
+msgid "Nền nhẹ phần thông tin sản phẩm"
+msgstr "商品情報部分に淡い背景"
+
+msgid "Nền sáng theo màu theme cho câu hỏi đang mở."
+msgstr "開いている質問にテーマカラーの明るい背景。"
+
+msgid "Nền tối giúp chữ banner dễ đọc"
+msgstr "バナーの文字を読みやすくする暗い背景"
+
+msgid "Ocean & coral"
+msgstr "オーシャン＆コーラル"
+
+msgid "Ocean (light text)"
+msgstr "オーシャン（明るい文字）"
+
+msgid "Ocean blue"
+msgstr "オーシャンブルー"
+
+msgid "Off-canvas (mobile) menu opens from"
+msgstr "オフキャンバス（モバイル）メニューが開く方向"
+
+msgid "Off-canvas menu (below menu)"
+msgstr "オフキャンバスメニュー（メニューの下）"
+
+msgid "Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title."
+msgstr "オフ：固定ページは自動タイトルを表示しないため、見出しブロックでH1をご自身で設定します。投稿、アーカイブ、ショップは引き続きタイトルを表示します。"
+
+msgid "Office skills"
+msgstr "オフィススキル"
+
+msgid "Office worker"
+msgstr "会社員"
+
+msgid "Offsets (top / right / bottom / left)"
+msgstr "オフセット（上／右／下／左）"
+
+msgid "Old price (crossed out, optional)"
+msgstr "旧価格（取り消し線、任意）"
+
+msgid "Older / newer links"
+msgstr "前後の投稿リンク"
+
+msgid "Olive & sand"
+msgstr "オリーブ＆サンド"
+
+msgid "Olive deep"
+msgstr "濃いオリーブ"
+
+msgid "Olive pastel"
+msgstr "パステルオリーブ"
+
+msgid "Olivia Brooks"
+msgstr "Olivia Brooks"
+
+msgid "On Google Maps: open your place → Share → Embed a map → Copy HTML, then paste it here. The exact pin, name and reviews are shown. Leave empty to use the address below."
+msgstr "Googleマップで：場所を開く → 共有 → 地図を埋め込む → HTMLをコピーして、ここに貼り付けます。正確なピン、名前、レビューが表示されます。空欄なら下の住所を使用します。"
+
+msgid "On every treatment this month"
+msgstr "今月のすべてのトリートメントが対象"
+
+msgid "On hover"
+msgstr "ホバー時"
+
+msgid "On phones"
+msgstr "スマートフォン"
+
+msgid "On phones & tablets"
+msgstr "スマートフォンとタブレット"
+
+msgid "On sale"
+msgstr "セール中"
+
+msgid "On time"
+msgstr "時間厳守"
+
+msgid "On-site viewings"
+msgstr "現地内覧"
+
+msgid "On: pick a ready-made palette. Off: set every color by hand below."
+msgstr "オン：既製のパレットを選択。オフ：下で各色を手動で設定。"
+
+msgid "One click sets the brand colors, links, top bar and footer together. Fine-tune any color below, then Publish."
+msgstr "ワンクリックでブランドカラー、リンク、トップバー、フッターをまとめて設定します。下で色を微調整してから公開してください。"
+
+msgid "One consultant for the whole journey."
+msgstr "最初から最後まで同じ担当者。"
+
+msgid "One custom author for all posts (below)"
+msgstr "すべての投稿に共通のカスタム著者（下記）"
+
+msgid "One free massage"
+msgstr "マッサージ1回無料"
+
+msgid "One line"
+msgstr "1行"
+
+msgid "One row"
+msgstr "1列"
+
+msgid "One row per line. Separate cells with |. Paste from a spreadsheet and replace tabs with |."
+msgstr "1行につき表の1行。セルは | で区切ります。スプレッドシートから貼り付けてタブを | に置き換えてください。"
+
+msgid "One therapist with you for the whole treatment."
+msgstr "施術中は同じセラピストが担当。"
+
+msgid "One-to-one advice"
+msgstr "マンツーマン相談"
+
+msgid "One-to-one writing feedback"
+msgstr "マンツーマンの作文添削"
+
+msgid "Online learning app"
+msgstr "オンライン学習アプリ"
+
+msgid "Online learning app included"
+msgstr "オンライン学習アプリ付き"
+
+msgid "Online shop"
+msgstr "オンラインショップ"
+
+msgid "Online shop homepage"
+msgstr "オンラインショップのトップページ"
+
+msgid "Online store"
+msgstr "オンラインストア"
+
+msgid "Only children of"
+msgstr "次の子のみ"
+
+msgid "Only one item open at a time"
+msgstr "同時に開くのは1項目のみ"
+
+msgid "Only public, published pages without a password are shown. The response remains 404. Select no page to use the default design."
+msgstr "パスワードなしで公開されている固定ページのみ表示されます。レスポンスは404のままです。既定のデザインを使う場合はページを選択しないでください。"
+
+msgid "Oops! That page can not be found."
+msgstr "お探しのページが見つかりません。"
+
+msgid "Open Form entries"
+msgstr "フォームの送信内容を開く"
+
+msgid "Open a tab on"
+msgstr "タブを開く操作"
+
+msgid "Open by default"
+msgstr "最初から開く"
+
+msgid "Open every day"
+msgstr "年中無休"
+
+msgid "Open full image in lightbox on click"
+msgstr "クリックでフル画像をライトボックスで開く"
+
+msgid "Open images in a lightbox"
+msgstr "画像をライトボックスで開く"
+
+msgid "Open in a new tab"
+msgstr "新しいタブで開く"
+
+msgid "Open in a new tab?"
+msgstr "新しいタブで開きますか？"
+
+msgid "Open in lightbox"
+msgstr "ライトボックスで開く"
+
+msgid "Open in new tab"
+msgstr "新しいタブで開く"
+
+msgid "Open item – background"
+msgstr "開いた項目 – 背景"
+
+msgid "Open item – title"
+msgstr "開いた項目 – タイトル"
+
+msgid "Open link"
+msgstr "リンクを開く"
+
+msgid "Open menu"
+msgstr "メニューを開く"
+
+msgid "Open the popup"
+msgstr "ポップアップを開く"
+
+msgid "Open the quick start guide"
+msgstr "クイックスタートガイドを開く"
+
+msgid "Open tooltip on"
+msgstr "ツールチップを開く操作"
+
+msgid "Opening hours"
+msgstr "営業時間"
+
+msgid "Optional short label shown on the button."
+msgstr "ボタンに表示する短いラベル（任意）。"
+
+msgid "Optional short label shown on the button. Leave empty to use the term name."
+msgstr "ボタンに表示する短いラベル（任意）。空欄ならタームの名前を使用します。"
+
+msgid "Options (one per line)"
+msgstr "選択肢（1行に1つ）"
+
+msgid "Or audio URL"
+msgstr "または音声URL"
+
+msgid "Orange & charcoal"
+msgstr "オレンジ＆チャコール"
+
+msgid "Orchid"
+msgstr "オーキッド"
+
+msgid "Orchid deep"
+msgstr "濃いオーキッド"
+
+msgid "Orchid pastel"
+msgstr "パステルオーキッド"
+
+msgid "Order ahead so nothing keeps you waiting when you arrive."
+msgstr "事前に注文すれば到着後に待つ必要はありません。"
+
+msgid "Order by"
+msgstr "並び順"
+
+msgid "Order →"
+msgstr "注文する →"
+
+msgid "Organic oils and herbs"
+msgstr "オーガニックオイルとハーブ"
+
+msgid "Organic shops, farms, health"
+msgstr "オーガニックショップ、農園、健康"
+
+msgid "Original"
+msgstr "オリジナル"
+
+msgid "Original size"
+msgstr "元のサイズ"
+
+msgid "Our method"
+msgstr "私たちのメソッド"
+
+msgid "Our most-loved treatments"
+msgstr "人気のトリートメント"
+
+msgid "Our most-ordered dishes"
+msgstr "よく注文される料理"
+
+msgid "Our new autumn menu"
+msgstr "秋の新メニュー"
+
+msgid "Our own recipes"
+msgstr "オリジナルレシピ"
+
+msgid "Our promise"
+msgstr "私たちの約束"
+
+msgid "Our spa"
+msgstr "私たちのスパ"
+
+msgid "Our space"
+msgstr "店内のご紹介"
+
+msgid "Our story"
+msgstr "私たちのストーリー"
+
+msgid "Our team"
+msgstr "私たちのチーム"
+
+msgid "Our website is being updated. Please check back soon."
+msgstr "ただいまサイトを更新中です。しばらくしてから再度お越しください。"
+
+msgid "Our year-end party for 80 people was perfectly organised and every dish was finished."
+msgstr "80名の忘年会を完璧に準備していただき、料理はすべて完食でした。"
+
+msgid "Out of 5,000+ graduates"
+msgstr "5,000名以上の修了生のうち"
+
+msgid "Outline"
+msgstr "枠線"
+
+msgid "Outline circle"
+msgstr "枠線の円"
+
+msgid "Outline square"
+msgstr "枠線の四角"
+
+msgid "Outlined pill"
+msgstr "枠線のピル"
+
+msgid "Outlined text"
+msgstr "枠線文字"
+
+msgid "Outside"
+msgstr "外側"
+
+msgid "Outside background (boxed layout)"
+msgstr "外側の背景（ボックスレイアウト）"
+
+msgid "Overlay"
+msgstr "オーバーレイ"
+
+msgid "Overlay & link"
+msgstr "オーバーレイとリンク"
+
+msgid "Overlay color"
+msgstr "オーバーレイの色"
+
+msgid "Overlay darkness (%)"
+msgstr "オーバーレイの暗さ（%）"
+
+msgid "Overlay opacity (%)"
+msgstr "オーバーレイの不透明度（%）"
+
+msgid "Overlay options"
+msgstr "オーバーレイのオプション"
+
+msgid "Overline"
+msgstr "上線"
+
+msgid "PHP mail (default, may land in spam)"
+msgstr "PHP mail（既定、迷惑メールになる場合あり）"
+
+msgid "Packages are valid for 6 months and can be shared with family."
+msgstr "パッケージは6か月間有効で、ご家族と共有できます。"
+
+msgid "Padding"
+msgstr "内側余白"
+
+msgid "Padding top/bottom – desktop"
+msgstr "上下の内側余白 – デスクトップ"
+
+msgid "Padding top/bottom – mobile"
+msgstr "上下の内側余白 – モバイル"
+
+msgid "Padding top/bottom – tablet"
+msgstr "上下の内側余白 – タブレット"
+
+msgid "Page background"
+msgstr "ページの背景"
+
+msgid "Page design for 404 errors"
+msgstr "404エラー用のページデザイン"
+
+msgid "Page design for maintenance"
+msgstr "メンテナンス用のページデザイン"
+
+msgid "Page layout"
+msgstr "ページレイアウト"
+
+msgid "Page name"
+msgstr "ページ名"
+
+msgid "Page not found"
+msgstr "ページが見つかりません"
+
+msgid "Page numbers"
+msgstr "ページ番号"
+
+msgid "Page sidebar"
+msgstr "固定ページのサイドバー"
+
+msgid "Page title & breadcrumbs"
+msgstr "ページタイトルとパンくずリスト"
+
+msgid "Page title style"
+msgstr "ページタイトルのスタイル"
+
+msgid "Page username or m.me link"
+msgstr "ページのユーザー名またはm.meリンク"
+
+msgid "Pages and posts only"
+msgstr "固定ページと投稿のみ"
+
+msgid "Pages open almost instantly. Skipped on data-saver connections, admin, cart and file links."
+msgstr "ページがほぼ瞬時に開きます。データセーバー接続、管理画面、カート、ファイルリンクでは無効です。"
+
+msgid "Pagination"
+msgstr "ページ送り"
+
+msgid "Paragraph"
+msgstr "段落"
+
+msgid "Paragraph (p)"
+msgstr "段落（p）"
+
+msgid "Paragraph format"
+msgstr "段落の書式"
+
+msgid "Paragraph style"
+msgstr "段落のスタイル"
+
+msgid "Parent"
+msgstr "親"
+
+msgid "Parties of 10–120"
+msgstr "10〜120名のグループ"
+
+msgid "Partner banks"
+msgstr "提携銀行"
+
+msgid "Party set"
+msgstr "パーティーセット"
+
+msgid "Pass the fields as URL query parameters"
+msgstr "入力欄をURLパラメーターとして渡す"
+
+msgid "Paste HTML in the sidebar (Code / HTML panel)."
+msgstr "サイドバー（コード／HTMLパネル）にHTMLを貼り付けてください。"
+
+msgid "Paste a .json link (e.g. from LottieFiles). Upload JSON files to Media first if your site allows it."
+msgstr ".jsonのリンクを貼り付けます（例: LottieFiles）。サイトが許可していれば、先にJSONファイルをメディアにアップロードしてください。"
+
+msgid "Paste a Lottie JSON URL in the block settings."
+msgstr "ブロック設定にLottie JSONのURLを貼り付けてください。"
+
+msgid "Paste a YouTube, Vimeo or .mp4 URL in the block settings."
+msgstr "ブロック設定にYouTube、Vimeo、.mp4のURLを貼り付けてください。"
+
+msgid "Paste appearance"
+msgstr "スタイルを貼り付け"
+
+msgid "Paste as plain text"
+msgstr "プレーンテキストとして貼り付け"
+
+msgid "Paste as plain text (removes Word/web formatting)"
+msgstr "プレーンテキストとして貼り付け（Word／Webの書式を削除）"
+
+msgid "Paste design"
+msgstr "デザインを貼り付け"
+
+msgid "Pastel · Bakery, honey, tours"
+msgstr "パステル · ベーカリー、はちみつ、ツアー"
+
+msgid "Pastel · Banking, insurance"
+msgstr "パステル · 銀行、保険"
+
+msgid "Pastel · Beauty, cafés, kids"
+msgstr "パステル · 美容、カフェ、キッズ"
+
+msgid "Pastel · Clinics, cleaning, water"
+msgstr "パステル · クリニック、清掃、水"
+
+msgid "Pastel · Coffee, furniture"
+msgstr "パステル · コーヒー、家具"
+
+msgid "Pastel · Construction, logistics"
+msgstr "パステル · 建設、物流"
+
+msgid "Pastel · Eco, juice, sport"
+msgstr "パステル · エコ、ジュース、スポーツ"
+
+msgid "Pastel · Education, agencies"
+msgstr "パステル · 教育、代理店"
+
+msgid "Pastel · Events, cosmetics"
+msgstr "パステル · イベント、化粧品"
+
+msgid "Pastel · Fashion, wine, gifts"
+msgstr "パステル · ファッション、ワイン、ギフト"
+
+msgid "Pastel · Finance, law, B2B"
+msgstr "パステル · 金融、法律、B2B"
+
+msgid "Pastel · Food delivery, fitness"
+msgstr "パステル · フードデリバリー、フィットネス"
+
+msgid "Pastel · Garden, farm, organic"
+msgstr "パステル · ガーデン、農園、オーガニック"
+
+msgid "Pastel · Handmade, interior"
+msgstr "パステル · ハンドメイド、インテリア"
+
+msgid "Pastel · Jewelry, bridal"
+msgstr "パステル · ジュエリー、ブライダル"
+
+msgid "Pastel · Pool, laundry, spa"
+msgstr "パステル · プール、ランドリー、スパ"
+
+msgid "Pastel · SaaS, startups"
+msgstr "パステル · SaaS、スタートアップ"
+
+msgid "Pastel · Sales, food, sport"
+msgstr "パステル · 営業、食品、スポーツ"
+
+msgid "Pastel · Spa, florist, wedding"
+msgstr "パステル · スパ、花屋、ウェディング"
+
+msgid "Pastel · Tech, minimal"
+msgstr "パステル · テック、ミニマル"
+
+msgid "Pastel · Travel, IT, airlines"
+msgstr "パステル · 旅行、IT、航空会社"
+
+msgid "Pastel · Wellness, tea, pharmacy"
+msgstr "パステル · ウェルネス、お茶、薬局"
+
+msgid "Pastry chef"
+msgstr "パティシエ"
+
+msgid "Pattern created. Find it under Patterns → My patterns."
+msgstr "パターンを作成しました。パターン → マイパターン にあります。"
+
+msgid "Pattern name:"
+msgstr "パターン名:"
+
+msgid "Patterns: “BIGSPY – Shop” sections and the full “Homepage – online shop”."
+msgstr "パターン：「BIGSPY – Shop」セクションと完全な「Homepage – online shop」。"
+
+msgid "Pause on hover"
+msgstr "ホバーで一時停止"
+
+msgid "Pause when the mouse is over the slider"
+msgstr "マウスがスライダー上にあるときは一時停止"
+
+msgid "Payment methods"
+msgstr "支払い方法"
+
+msgid "Peace of mind from choosing to moving in"
+msgstr "物件選びから入居まで安心"
+
+msgid "Peach"
+msgstr "ピーチ"
+
+msgid "Peach lemongrass and lychee rose teas, served iced on sunny days."
+msgstr "ピーチレモングラスティーとライチローズティー、晴れた日はアイスで。"
+
+msgid "Peek next card (%)"
+msgstr "次のカードを少し見せる（%）"
+
+msgid "Peek next slide (%)"
+msgstr "次のスライドを少し見せる（%）"
+
+msgid "Perfect for a first visit"
+msgstr "初めての方にぴったり"
+
+msgid "Performance"
+msgstr "パフォーマンス"
+
+msgid "Performance & effects"
+msgstr "パフォーマンスとエフェクト"
+
+msgid "Period text – first"
+msgstr "期間テキスト – 1つ目"
+
+msgid "Period text – second"
+msgstr "期間テキスト – 2つ目"
+
+msgid "Permits, zoning and progress verified."
+msgstr "許認可、用途地域、進捗を確認済み。"
+
+msgid "Personal learning paths, experienced teachers and small classes help every student make clear progress after each course – with a written results guarantee."
+msgstr "個別の学習プラン、経験豊富な講師、少人数クラスで、どの受講生もコースごとに確かな成長を実感 – 書面による成果保証付き。"
+
+msgid "Pharmacy, dental, wellness"
+msgstr "薬局、歯科、ウェルネス"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Phone + address"
+msgstr "電話＋住所"
+
+msgid "Phone + email"
+msgstr "電話＋メール"
+
+msgid "Phone / hotline"
+msgstr "電話／ホットライン"
+
+msgid "Phone number"
+msgstr "電話番号"
+
+msgid "Phone only"
+msgstr "電話のみ"
+
+msgid "Phone, email, address and hours are entered in Contact info & social."
+msgstr "電話、メール、住所、営業時間は「連絡先情報とSNS」で入力します。"
+
+msgid "Photo"
+msgstr "写真"
+
+msgid "Photo ratio"
+msgstr "写真の比率"
+
+msgid "Photos and video"
+msgstr "写真と動画"
+
+msgid "Phù hợp ảnh bao bì, thiết bị; có thể có khoảng trống quanh ảnh."
+msgstr "パッケージや機器の写真に最適。画像の周りに余白が出ることがあります。"
+
+msgid "Phù hợp ảnh lifestyle; có thể cắt mép ảnh."
+msgstr "ライフスタイル写真に最適。画像の端が切れることがあります。"
+
+msgid "Pick a time"
+msgstr "時間を選ぶ"
+
+msgid "Pick an image in the sidebar, then click on it to add points."
+msgstr "サイドバーで画像を選び、画像をクリックしてポイントを追加します。"
+
+msgid "Pick related posts by"
+msgstr "関連投稿の選び方"
+
+msgid "Pill"
+msgstr "ピル"
+
+msgid "Pill background"
+msgstr "ピルの背景"
+
+msgid "Pill buttons"
+msgstr "ピル型ボタン"
+
+msgid "Pill chip"
+msgstr "ピル型チップ"
+
+msgid "Pill on hover"
+msgstr "ホバー時のピル"
+
+msgid "Pills"
+msgstr "ピル"
+
+msgid "Placeholder"
+msgstr "プレースホルダー"
+
+msgid "Placeholder text"
+msgstr "プレースホルダーのテキスト"
+
+msgid "Placement test"
+msgstr "レベルチェックテスト"
+
+msgid "Plain"
+msgstr "プレーン"
+
+msgid "Plain icon"
+msgstr "シンプルなアイコン"
+
+msgid "Plain link"
+msgstr "シンプルなリンク"
+
+msgid "Plan name"
+msgstr "プラン名"
+
+msgid "Plans"
+msgstr "プラン"
+
+msgid "Play automatically"
+msgstr "自動再生"
+
+msgid "Play button"
+msgstr "再生ボタン"
+
+msgid "Play only on hover"
+msgstr "ホバー時のみ再生"
+
+msgid "Play video"
+msgstr "動画を再生"
+
+msgid "Play: %s"
+msgstr "再生: %s"
+
+msgid "Playback"
+msgstr "再生"
+
+msgid "Plays muted and looped behind the content. Set a background image too as the poster/fallback."
+msgstr "コンテンツの背後でミュート・ループ再生されます。ポスター／代替として背景画像も設定してください。"
+
+msgid "Plus"
+msgstr "プラス"
+
+msgid "Plus 3 private rooms"
+msgstr "個室3室あり"
+
+msgid "Points"
+msgstr "ポイント"
+
+msgid "Policy link text"
+msgstr "ポリシーリンクのテキスト"
+
+msgid "Policy page URL (optional)"
+msgstr "ポリシーページのURL（任意）"
+
+msgid "Popup"
+msgstr "ポップアップ"
+
+msgid "Popup ID"
+msgstr "ポップアップID"
+
+msgid "Popup background"
+msgstr "ポップアップの背景"
+
+msgid "Portrait 3:4 (fashion)"
+msgstr "縦長 3:4（ファッション）"
+
+msgid "Position"
+msgstr "位置"
+
+msgid "Position, company"
+msgstr "役職、会社"
+
+msgid "Post / page IDs to exclude"
+msgstr "除外する投稿／ページID"
+
+msgid "Post cards"
+msgstr "投稿カード"
+
+msgid "Post header"
+msgstr "投稿ヘッダー"
+
+msgid "Poster image (loads the player only on click – faster pages)"
+msgstr "ポスター画像（クリック時のみプレーヤーを読み込み、ページが速くなります）"
+
+msgid "Posts in these categories (and their archives)"
+msgstr "これらのカテゴリーの投稿（およびそのアーカイブ）"
+
+msgid "Pre-order dishes"
+msgstr "料理の事前注文"
+
+msgid "Preferential rates"
+msgstr "優遇金利"
+
+msgid "Prefix"
+msgstr "接頭辞"
+
+msgid "Preformatted"
+msgstr "整形済み"
+
+msgid "Prepares loan files with 12 banks."
+msgstr "12行とのローン書類を準備。"
+
+msgid "Presentation skills"
+msgstr "プレゼンテーションスキル"
+
+msgid "Preview animation"
+msgstr "アニメーションをプレビュー"
+
+msgid "Preview unavailable"
+msgstr "プレビューを表示できません"
+
+msgid "Preview with sample fields — choose your form in the toolbar or sidebar."
+msgstr "サンプル項目でプレビュー中 — ツールバーかサイドバーでフォームを選んでください。"
+
+msgid "Preview with sample fields. Install Contact Form 7 to collect real messages."
+msgstr "サンプル項目でプレビュー中。実際のメッセージを受け取るにはContact Form 7をインストールしてください。"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Previous / next post links"
+msgstr "前後の投稿リンク"
+
+msgid "Previous / next product links"
+msgstr "前後の商品リンク"
+
+msgid "Price"
+msgstr "価格"
+
+msgid "Price and growth reports for every area."
+msgstr "エリアごとの価格・成長レポート。"
+
+msgid "Price color"
+msgstr "価格の色"
+
+msgid "Price table"
+msgstr "料金表"
+
+msgid "Price – first option"
+msgstr "価格 – 1つ目のオプション"
+
+msgid "Price – second option"
+msgstr "価格 – 2つ目のオプション"
+
+msgid "Price: high to low"
+msgstr "価格の高い順"
+
+msgid "Price: low to high"
+msgstr "価格の安い順"
+
+msgid "Prices"
+msgstr "料金"
+
+msgid "Prices are stable, with new supply mainly in the east and south."
+msgstr "価格は安定しており、新規供給は主に東部と南部です。"
+
+msgid "Prices include tax and service. Dishes can be swapped to suit your taste."
+msgstr "価格は税・サービス料込みです。料理はお好みで変更できます。"
+
+msgid "Primary"
+msgstr "プライマリ"
+
+msgid "Primary (light text)"
+msgstr "プライマリ（明るい文字）"
+
+msgid "Primary color"
+msgstr "メインカラー"
+
+msgid "Prime locations"
+msgstr "好立地"
+
+msgid "Priority"
+msgstr "優先度"
+
+msgid "Private room with karaoke"
+msgstr "カラオケ付き個室"
+
+msgid "Private rooms for parties"
+msgstr "パーティー用個室"
+
+msgid "Private treatment rooms"
+msgstr "プライベート施術室"
+
+msgid "Product card"
+msgstr "商品カード"
+
+msgid "Product card style"
+msgstr "商品カードのスタイル"
+
+msgid "Product cards"
+msgstr "商品カード"
+
+msgid "Product cards (shop & categories)"
+msgstr "商品カード（ショップとカテゴリー）"
+
+msgid "Product categories (WooCommerce)"
+msgstr "商品カテゴリー（WooCommerce）"
+
+msgid "Product filters and shop widgets"
+msgstr "商品フィルターとショップのウィジェット"
+
+msgid "Product gallery layout"
+msgstr "商品ギャラリーのレイアウト"
+
+msgid "Product grid"
+msgstr "商品グリッド"
+
+msgid "Product image ratio"
+msgstr "商品画像の比率"
+
+msgid "Product name size (px, 0 = default)"
+msgstr "商品名のサイズ（px、0 = 既定）"
+
+msgid "Product page layout"
+msgstr "商品ページのレイアウト"
+
+msgid "Product page sidebar"
+msgstr "商品ページのサイドバー"
+
+msgid "Product tab appearance"
+msgstr "商品タブの見た目"
+
+msgid "Product title max lines"
+msgstr "商品タイトルの最大行数"
+
+msgid "Products"
+msgstr "商品"
+
+msgid "Products only"
+msgstr "商品のみ"
+
+msgid "Products per page"
+msgstr "1ページあたりの商品数"
+
+msgid "Products per row – desktop"
+msgstr "1行あたりの商品数 – デスクトップ"
+
+msgid "Products per row – mobile"
+msgstr "1行あたりの商品数 – モバイル"
+
+msgid "Products per row – tablet"
+msgstr "1行あたりの商品数 – タブレット"
+
+msgid "Products, pages and posts"
+msgstr "商品、固定ページ、投稿"
+
+msgid "Profile links are entered in Contact info & social."
+msgstr "プロフィールのリンクは「連絡先情報とSNS」で入力します。"
+
+msgid "Profiles"
+msgstr "プロフィール"
+
+msgid "Progress bar – bottom"
+msgstr "プログレスバー – 下"
+
+msgid "Progress bar – top"
+msgstr "プログレスバー – 上"
+
+msgid "Progress tracking"
+msgstr "進捗管理"
+
+msgid "Project advice"
+msgstr "プロジェクト相談"
+
+msgid "Project gallery"
+msgstr "プロジェクトギャラリー"
+
+msgid "Project-based"
+msgstr "プロジェクト型"
+
+msgid "Projector and sound"
+msgstr "プロジェクターと音響"
+
+msgid "Projects"
+msgstr "プロジェクト"
+
+msgid "Projects with clear legal status, well-connected locations and consultants who stay with you from choosing a home and negotiating to the mortgage and handover."
+msgstr "権利関係が明確で交通の便が良い物件。物件選び・交渉から住宅ローン・引き渡しまで担当者が寄り添います。"
+
+msgid "Pulse"
+msgstr "パルス"
+
+msgid "Pulse (attention)"
+msgstr "パルス（注目）"
+
+msgid "Pulse animation"
+msgstr "パルスアニメーション"
+
+msgid "Pulse animation (draws attention)"
+msgstr "パルスアニメーション（注目を集める）"
+
+msgid "Pulse waves"
+msgstr "パルスウェーブ"
+
+msgid "Pulsing dot"
+msgstr "点滅するドット"
+
+msgid "Pyramids"
+msgstr "ピラミッド"
+
+msgid "Python and computational thinking for students."
+msgstr "学生向けPythonとコンピューテーショナル・シンキング。"
+
+msgid "Qualified buyers"
+msgstr "審査済みの購入者"
+
+msgid "Qualified, with many years of teaching experience."
+msgstr "有資格者で、長年の指導経験があります。"
+
+msgid "Query"
+msgstr "クエリ"
+
+msgid "Question / title"
+msgstr "質問／タイトル"
+
+msgid "Question 1?"
+msgstr "質問1？"
+
+msgid "Question 2?"
+msgstr "質問2？"
+
+msgid "Question 3?"
+msgstr "質問3？"
+
+msgid "Question tag"
+msgstr "質問のタグ"
+
+msgid "Question tag (SEO)"
+msgstr "質問のタグ（SEO）"
+
+msgid "Question tag for all items (SEO)"
+msgstr "全項目の質問タグ（SEO）"
+
+msgid "Quick contact"
+msgstr "クイック連絡"
+
+msgid "Quick start"
+msgstr "クイックスタート"
+
+msgid "Quick to the table"
+msgstr "すばやく提供"
+
+msgid "Quick view"
+msgstr "クイックビュー"
+
+msgid "Quote"
+msgstr "引用"
+
+msgid "Rachel"
+msgstr "Rachel"
+
+msgid "Random"
+msgstr "ランダム"
+
+msgid "Rated %1$s out of %2$s"
+msgstr "%2$s点中%1$s点の評価"
+
+msgid "Rated %d out of 5"
+msgstr "5点中%d点の評価"
+
+msgid "Rating"
+msgstr "評価"
+
+msgid "Rating stars"
+msgstr "評価の星"
+
+msgid "Ratio"
+msgstr "比率"
+
+msgid "Re-select the image once so its proportions are known."
+msgstr "比率を取得するため、画像をもう一度選び直してください。"
+
+msgid "Reach their goal"
+msgstr "目標達成"
+
+msgid "Read more"
+msgstr "続きを読む"
+
+msgid "Read more →"
+msgstr "続きを読む →"
+
+msgid "Reading progress bar on blog posts"
+msgstr "ブログ投稿の読了プログレスバー"
+
+msgid "Reading time"
+msgstr "読了時間"
+
+msgid "Ready to start your project?"
+msgstr "プロジェクトを始めませんか？"
+
+msgid "Ready to start? Get 20% off today"
+msgstr "始めませんか？今日なら20%オフ"
+
+msgid "Ready-made looks"
+msgstr "既製のスタイル"
+
+msgid "Real estate homepage with 15 sections: hero, highlights, about, listings, buying process, numbers, advantages, packages, gallery, consultants, reviews, FAQ, market news, consultation and contact."
+msgstr "15セクションの不動産トップページ：ヒーロー、特長、会社概要、物件一覧、購入の流れ、数字、メリット、パッケージ、ギャラリー、担当者、レビュー、FAQ、市場ニュース、相談、お問い合わせ。"
+
+msgid "Real estate · Apartments · Townhouses"
+msgstr "不動産 · マンション · タウンハウス"
+
+msgid "Real photos and areas, 100%."
+msgstr "写真も面積も100%実物どおり。"
+
+msgid "Recently updated"
+msgstr "最近更新"
+
+msgid "Redirect to (URL or /page/)"
+msgstr "リダイレクト先（URLまたは /page/）"
+
+msgid "Redirect to (URL, optional)"
+msgstr "リダイレクト先（URL、任意）"
+
+msgid "Redo"
+msgstr "やり直す"
+
+msgid "Refreshed every season"
+msgstr "季節ごとに更新"
+
+msgid "Refund if details are wrong"
+msgstr "情報に誤りがあれば返金"
+
+msgid "Regular"
+msgstr "レギュラー"
+
+msgid "Regular 400"
+msgstr "レギュラー 400"
+
+msgid "Regular for 3 years"
+msgstr "3年来の常連"
+
+msgid "Regular tests and a completion certificate."
+msgstr "定期テストと修了証。"
+
+msgid "Related & upsell products"
+msgstr "関連商品・アップセル商品"
+
+msgid "Related posts"
+msgstr "関連投稿"
+
+msgid "Related products"
+msgstr "関連商品"
+
+msgid "Related products heading (empty = default)"
+msgstr "関連商品の見出し（空欄 = 既定）"
+
+msgid "Related products per row"
+msgstr "1行あたりの関連商品数"
+
+msgid "Relative (nudge with offsets)"
+msgstr "相対（オフセットで微調整）"
+
+msgid "Relax completely, glow from within"
+msgstr "心からくつろぎ、内側から輝く"
+
+msgid "Relax package"
+msgstr "リラックスパッケージ"
+
+msgid "Relaxed (400 ms)"
+msgstr "ゆったり（400 ms）"
+
+msgid "Remember vocabulary for longer"
+msgstr "単語をより長く覚えられる"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Remove field"
+msgstr "入力欄を削除"
+
+msgid "Remove image"
+msgstr "画像を削除"
+
+msgid "Remove item"
+msgstr "項目を削除"
+
+msgid "Remove link"
+msgstr "リンクを削除"
+
+msgid "Remove this button"
+msgstr "このボタンを削除"
+
+msgid "Removes wp-embed. Pasted YouTube links still work through blocks."
+msgstr "wp-embedを削除します。貼り付けたYouTubeリンクはブロック経由で引き続き動作します。"
+
+msgid "Rename"
+msgstr "名前を変更"
+
+msgid "Render HTML on the page"
+msgstr "ページ上でHTMLを表示"
+
+msgid "Replace"
+msgstr "置き換え"
+
+msgid "Replace image"
+msgstr "画像を置き換え"
+
+msgid "Replace photo"
+msgstr "写真を置き換え"
+
+msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
+msgstr "サンプルのテキストと画像を差し替え、レイアウトを調整し、プレビューしてから準備ができたら公開しましょう。"
+
+msgid "Replay every time it scrolls into view"
+msgstr "表示されるたびに再生"
+
+msgid "Reply within 5 minutes in office hours"
+msgstr "営業時間内は5分以内に返信"
+
+msgid "Reports for parents"
+msgstr "保護者向けレポート"
+
+msgid "Required"
+msgstr "必須"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Reset all theme options?"
+msgstr "すべてのテーマオプションをリセットしますか？"
+
+msgid "Reset design"
+msgstr "デザインをリセット"
+
+msgid "Reset the header layout for this device?"
+msgstr "この端末のヘッダーレイアウトをリセットしますか？"
+
+msgid "Reset theme options"
+msgstr "テーマオプションをリセット"
+
+msgid "Reset to default layout"
+msgstr "既定のレイアウトに戻す"
+
+msgid "Reset typography"
+msgstr "タイポグラフィをリセット"
+
+msgid "Residential plots"
+msgstr "住宅用地"
+
+msgid "Resolution"
+msgstr "解像度"
+
+msgid "Restaurant / café homepage with 15 sections: hero, highlights, story, menu, process, numbers, signature dishes, set menus, gallery, chefs, reviews, FAQ, news, booking and contact."
+msgstr "15セクションのレストラン／カフェ用トップページ：ヒーロー、特長、ストーリー、メニュー、流れ、数字、看板料理、コース、ギャラリー、シェフ、レビュー、FAQ、ニュース、予約、お問い合わせ。"
+
+msgid "Restaurant · Café · Events"
+msgstr "レストラン · カフェ · イベント"
+
+msgid "Restaurants, ceramics, decor"
+msgstr "レストラン、陶器、インテリア"
+
+msgid "Restore every theme option to its default value. Menus, widgets, logo and content are not affected."
+msgstr "すべてのテーマオプションを既定値に戻します。メニュー、ウィジェット、ロゴ、コンテンツには影響しません。"
+
+msgid "Restores your skin’s natural barrier."
+msgstr "肌本来のバリア機能を回復。"
+
+msgid "Results guarantee"
+msgstr "成果保証"
+
+msgid "Reveal icon on hover"
+msgstr "ホバーでアイコンを表示"
+
+msgid "Reverse column order on mobile"
+msgstr "モバイルで列の順序を逆にする"
+
+msgid "Review & certificate"
+msgstr "復習と修了証"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Right side HTML (payment icons, badges…)"
+msgstr "右側のHTML（支払いアイコン、バッジなど）"
+
+msgid "Right sidebar"
+msgstr "右サイドバー"
+
+msgid "Right to left"
+msgstr "右から左"
+
+msgid "Ringing + ripple waves"
+msgstr "着信＋波紋"
+
+msgid "Ringing + waves"
+msgstr "着信＋ウェーブ"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Rose"
+msgstr "ローズ"
+
+msgid "Rose deep"
+msgstr "濃いローズ"
+
+msgid "Rose gold"
+msgstr "ローズゴールド"
+
+msgid "Rose pastel"
+msgstr "パステルローズ"
+
+msgid "Round icon on the image"
+msgstr "画像上の丸いアイコン"
+
+msgid "Round icons, stacked"
+msgstr "丸いアイコン（縦並び）"
+
+msgid "Round photo"
+msgstr "丸い写真"
+
+msgid "Round the two bottom corners of the header"
+msgstr "ヘッダー下部の2つの角を丸くする"
+
+msgid "Rounded"
+msgstr "角丸"
+
+msgid "Rounded + shadow"
+msgstr "角丸＋影"
+
+msgid "Rounded – filled"
+msgstr "角丸 – 塗りつぶし"
+
+msgid "Rounded – frosted glass"
+msgstr "角丸 – すりガラス"
+
+msgid "Rounded – gradient"
+msgstr "角丸 – グラデーション"
+
+msgid "Rounded – soft tint"
+msgstr "角丸 – 淡い色"
+
+msgid "Rounded – thin outline"
+msgstr "角丸 – 細い枠線"
+
+msgid "Rounded – tint + outline"
+msgstr "角丸 – 淡色＋枠線"
+
+msgid "Rounded – white card with shadow"
+msgstr "角丸 – 影付きの白いカード"
+
+msgid "Row settings"
+msgstr "行の設定"
+
+msgid "Rows"
+msgstr "行"
+
+msgid "Rows: height & colors"
+msgstr "行：高さと色"
+
+msgid "Royal purple"
+msgstr "ロイヤルパープル"
+
+msgid "Ruby deep"
+msgstr "濃いルビー"
+
+msgid "Ruby pastel"
+msgstr "パステルルビー"
+
+msgid "Ruby wine"
+msgstr "ルビーワイン"
+
+msgid "Ryan Cooper"
+msgstr "Ryan Cooper"
+
+msgid "SMTP settings"
+msgstr "SMTP設定"
+
+msgid "SaaS, apps, startups"
+msgstr "SaaS、アプリ、スタートアップ"
+
+msgid "Safe organic products"
+msgstr "安心のオーガニック製品"
+
+msgid "Safe – Effective – Private"
+msgstr "安全・効果的・プライベート"
+
+msgid "Sage"
+msgstr "セージ"
+
+msgid "Sale"
+msgstr "セール"
+
+msgid "Sale & new badges"
+msgstr "セールとNEWのバッジ"
+
+msgid "Sale / new badges"
+msgstr "セール／NEWバッジ"
+
+msgid "Sale badge"
+msgstr "セールバッジ"
+
+msgid "Sale badge (use {percent} for the discount)"
+msgstr "セールバッジ（割引率は {percent} を使用）"
+
+msgid "Sales director"
+msgstr "営業部長"
+
+msgid "Sales, electronics, marts"
+msgstr "販売、家電、スーパー"
+
+msgid "Same as WordPress"
+msgstr "WordPressと同じ"
+
+msgid "Same as accordion"
+msgstr "アコーディオンと同じ"
+
+msgid "Same as accordion = the tag set on the Accordion block."
+msgstr "アコーディオンと同じ = アコーディオンブロックで設定したタグ。"
+
+msgid "Same as the general setting"
+msgstr "全体設定と同じ"
+
+msgid "Same category"
+msgstr "同じカテゴリー"
+
+msgid "Same height for all slides – desktop (px, 0 = each slide its own)"
+msgstr "全スライド同じ高さ – デスクトップ（px、0 = スライドごと）"
+
+msgid "Same height – mobile (px, 0 = as tablet)"
+msgstr "同じ高さ – モバイル（px、0 = タブレットと同じ）"
+
+msgid "Same height – tablet (px, 0 = as desktop)"
+msgstr "同じ高さ – タブレット（px、0 = デスクトップと同じ）"
+
+msgid "Same tags"
+msgstr "同じタグ"
+
+msgid "Same-day delivery in the city."
+msgstr "市内は当日配送。"
+
+msgid "Sao đánh giá theo màu thương hiệu"
+msgstr "ブランドカラーの評価の星"
+
+msgid "Sapphire"
+msgstr "サファイア"
+
+msgid "Sapphire deep"
+msgstr "濃いサファイア"
+
+msgid "Sapphire pastel"
+msgstr "パステルサファイア"
+
+msgid "Satisfied"
+msgstr "満足"
+
+msgid "Sauces and spice blends made by the head chef."
+msgstr "料理長が手作りするソースとスパイス。"
+
+msgid "Save changes"
+msgstr "変更を保存"
+
+msgid "Save every entry in Form entries"
+msgstr "すべての送信内容を「フォームの送信内容」に保存"
+
+msgid "Save to form"
+msgstr "フォームに保存"
+
+msgid "Saved designs"
+msgstr "保存したデザイン"
+
+msgid "Saved to the form."
+msgstr "フォームに保存しました。"
+
+msgid "Scale on hover (%)"
+msgstr "ホバー時の拡大率（%）"
+
+msgid "Scores and feedback after every lesson."
+msgstr "毎回の授業後にスコアとフィードバック。"
+
+msgid "Scripts & code"
+msgstr "スクリプトとコード"
+
+msgid "Scripts after <body>"
+msgstr "<body> の後のスクリプト"
+
+msgid "Scripts before </body>"
+msgstr "</body> の前のスクリプト"
+
+msgid "Scripts in <head>"
+msgstr "<head> 内のスクリプト"
+
+msgid "Scripts, speed & maintenance"
+msgstr "スクリプト・速度・メンテナンス"
+
+msgid "Scroll duration (seconds, lower = faster)"
+msgstr "スクロールの時間（秒、小さいほど速い）"
+
+msgid "Scroll motion"
+msgstr "スクロールの動き"
+
+msgid "Scroll sideways"
+msgstr "横スクロール"
+
+msgid "Scrolled down (%)"
+msgstr "下にスクロール済み（%）"
+
+msgid "Seafood hot pot"
+msgstr "海鮮鍋"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Search button"
+msgstr "検索ボタン"
+
+msgid "Search designs"
+msgstr "デザインを検索"
+
+msgid "Search field placeholder (empty = default)"
+msgstr "検索欄のプレースホルダー（空欄 = 既定）"
+
+msgid "Search for:"
+msgstr "検索:"
+
+msgid "Search form"
+msgstr "検索フォーム"
+
+msgid "Search icon"
+msgstr "検索アイコン"
+
+msgid "Search icon opens"
+msgstr "検索アイコンで開くもの"
+
+msgid "Search in"
+msgstr "検索対象"
+
+msgid "Search products…"
+msgstr "商品を検索…"
+
+msgid "Search results"
+msgstr "検索結果"
+
+msgid "Search results for “%s”"
+msgstr "「%s」の検索結果"
+
+msgid "Search sources, live suggestions and SKU search: Header → Search."
+msgstr "検索対象、ライブ候補、SKU検索：ヘッダー → 検索。"
+
+msgid "Search…"
+msgstr "検索…"
+
+msgid "Seasonal dessert"
+msgstr "季節のデザート"
+
+msgid "Seats"
+msgstr "席数"
+
+msgid "Second accent (gradients)"
+msgstr "2つ目のアクセント（グラデーション）"
+
+msgid "Second button link"
+msgstr "2つ目のボタンのリンク"
+
+msgid "Second button text (optional)"
+msgstr "2つ目のボタンのテキスト（任意）"
+
+msgid "Second line (e.g. phone number, “Free consultation”)"
+msgstr "2行目（例: 電話番号、「無料相談」）"
+
+msgid "Second option"
+msgstr "2つ目のオプション"
+
+msgid "Second phone number"
+msgstr "2つ目の電話番号"
+
+msgid "Secondary"
+msgstr "セカンダリ"
+
+msgid "Secondary color"
+msgstr "サブカラー"
+
+msgid "Seconds per loop (lower = faster)"
+msgstr "1周の秒数（小さいほど速い）"
+
+msgid "Section"
+msgstr "セクション"
+
+msgid "Section title"
+msgstr "セクションのタイトル"
+
+msgid "Sections"
+msgstr "セクション"
+
+msgid "See courses"
+msgstr "コースを見る"
+
+msgid "See desserts →"
+msgstr "デザートを見る →"
+
+msgid "See drinks →"
+msgstr "ドリンクを見る →"
+
+msgid "See projects"
+msgstr "プロジェクトを見る"
+
+msgid "See the full menu"
+msgstr "メニューをすべて見る"
+
+msgid "See the menu"
+msgstr "メニューを見る"
+
+msgid "See the path →"
+msgstr "学習プランを見る →"
+
+msgid "See treatments"
+msgstr "トリートメントを見る"
+
+msgid "Select a block in the page to edit its layout."
+msgstr "ページ内のブロックを選択してレイアウトを編集します。"
+
+msgid "Select a tab inside to rename it or give it an icon."
+msgstr "中のタブを選ぶと名前の変更やアイコンの設定ができます。"
+
+msgid "Select file"
+msgstr "ファイルを選択"
+
+msgid "Select image"
+msgstr "画像を選択"
+
+msgid "Select logos"
+msgstr "ロゴを選択"
+
+msgid "Select logos in the sidebar."
+msgstr "サイドバーでロゴを選択してください。"
+
+msgid "Selected categories"
+msgstr "選択したカテゴリー"
+
+msgid "Self-study plan for IELTS 6.5"
+msgstr "IELTS 6.5 の自習プラン"
+
+msgid "Sell with us"
+msgstr "売却のご相談"
+
+msgid "Semi bold"
+msgstr "やや太字"
+
+msgid "Semi bold 600"
+msgstr "やや太字 600"
+
+msgid "Semi-bold 600"
+msgstr "やや太字 600"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Send a test email"
+msgstr "テストメールを送信"
+
+msgid "Send button text"
+msgstr "送信ボタンのテキスト"
+
+msgid "Send to (comma for several)"
+msgstr "送信先（複数はカンマ区切り）"
+
+msgid "Sender’s message failed to send"
+msgstr "送信者のメッセージを送信できませんでした"
+
+msgid "Sender’s message was sent successfully"
+msgstr "送信者のメッセージを送信しました"
+
+msgid "Sending & after submit"
+msgstr "送信と送信後"
+
+msgid "Sending through WP Mail SMTP"
+msgstr "WP Mail SMTPで送信中"
+
+msgid "Separated boxes"
+msgstr "分かれたボックス"
+
+msgid "Separator"
+msgstr "区切り"
+
+msgid "Serif"
+msgstr "セリフ"
+
+msgid "Service website or online shop"
+msgstr "サービスサイトまたはオンラインショップ"
+
+msgid "Services"
+msgstr "サービス"
+
+msgid "Serving since 2012"
+msgstr "2012年創業"
+
+msgid "Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll."
+msgstr "ブロックにHTMLアンカーを設定し、メニューで #アンカー にリンクします。スクロール中は表示中のセクションが強調されます。"
+
+msgid "Set logo and site title"
+msgstr "ロゴとサイトタイトルを設定"
+
+msgid "Set menus"
+msgstr "コース料理"
+
+msgid "Set menus for every occasion"
+msgstr "あらゆるシーンのコース料理"
+
+msgid "Set your budget, area and type of home."
+msgstr "予算、エリア、住まいのタイプを設定。"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+msgid "Shadow"
+msgstr "影"
+
+msgid "Shadow on hover"
+msgstr "ホバー時の影"
+
+msgid "Shadow under header"
+msgstr "ヘッダー下の影"
+
+msgid "Shake"
+msgstr "シェイク"
+
+msgid "Shape"
+msgstr "形状"
+
+msgid "Shape color"
+msgstr "形状の色"
+
+msgid "Shape divider – bottom"
+msgstr "シェイプ区切り – 下"
+
+msgid "Shape divider – top"
+msgstr "シェイプ区切り – 上"
+
+msgid "Share buttons"
+msgstr "シェアボタン"
+
+msgid "Share:"
+msgstr "シェア:"
+
+msgid "Shine"
+msgstr "輝き"
+
+msgid "Shine sweep"
+msgstr "光のスイープ"
+
+msgid "Shop"
+msgstr "ショップ"
+
+msgid "Shop & product categories"
+msgstr "ショップと商品カテゴリー"
+
+msgid "Shop layout"
+msgstr "ショップのレイアウト"
+
+msgid "Shop now"
+msgstr "今すぐ買う"
+
+msgid "Shop sidebar"
+msgstr "ショップのサイドバー"
+
+msgid "Shop – benefits bar"
+msgstr "ショップ – 特典バー"
+
+msgid "Shop – featured products"
+msgstr "ショップ – おすすめ商品"
+
+msgid "Shop – hero slider"
+msgstr "ショップ – ヒーロースライダー"
+
+msgid "Shop – on sale slider"
+msgstr "ショップ – セール商品スライダー"
+
+msgid "Shop – product categories"
+msgstr "ショップ – 商品カテゴリー"
+
+msgid "Shop – product tabs (new / best selling / sale)"
+msgstr "ショップ – 商品タブ（新着／人気／セール）"
+
+msgid "Short bio (optional)"
+msgstr "短いプロフィール（任意）"
+
+msgid "Short brand underline"
+msgstr "短いブランド下線"
+
+msgid "Short description"
+msgstr "短い説明"
+
+msgid "Short description (optional)"
+msgstr "短い説明（任意）"
+
+msgid "Short description length (words)"
+msgstr "短い説明の長さ（単語数）"
+
+msgid "Short description…"
+msgstr "短い説明…"
+
+msgid "Short line below"
+msgstr "下に短い線"
+
+msgid "Shortcode"
+msgstr "ショートコード"
+
+msgid "Show"
+msgstr "表示"
+
+msgid "Show %s"
+msgstr "%s を表示"
+
+msgid "Show SKU, categories and tags"
+msgstr "SKU、カテゴリー、タグを表示"
+
+msgid "Show a cookie notice until the visitor accepts"
+msgstr "訪問者が同意するまでCookieのお知らせを表示"
+
+msgid "Show a loading screen until the page is ready"
+msgstr "ページの準備ができるまでローディング画面を表示"
+
+msgid "Show a quick purchase bar on mobile"
+msgstr "モバイルでクイック購入バーを表示"
+
+msgid "Show above the content"
+msgstr "コンテンツの上に表示"
+
+msgid "Show again after (days, 0 = every visit)"
+msgstr "再表示までの日数（0 = 毎回）"
+
+msgid "Show all slides"
+msgstr "すべてのスライドを表示"
+
+msgid "Show and edit this slide"
+msgstr "このスライドを表示して編集"
+
+msgid "Show arrows"
+msgstr "矢印を表示"
+
+msgid "Show as code snippet"
+msgstr "コードスニペットとして表示"
+
+msgid "Show author information"
+msgstr "著者情報を表示"
+
+msgid "Show below the content"
+msgstr "コンテンツの下に表示"
+
+msgid "Show breadcrumbs"
+msgstr "パンくずリストを表示"
+
+msgid "Show call-to-action band"
+msgstr "CTAバンドを表示"
+
+msgid "Show captions"
+msgstr "キャプションを表示"
+
+msgid "Show category above the title"
+msgstr "タイトルの上にカテゴリーを表示"
+
+msgid "Show comments"
+msgstr "コメントを表示"
+
+msgid "Show controls"
+msgstr "コントロールを表示"
+
+msgid "Show discount percentage on sale badge"
+msgstr "セールバッジに割引率を表示"
+
+msgid "Show dots"
+msgstr "ドットを表示"
+
+msgid "Show empty stars when there are no reviews"
+msgstr "レビューがない場合は空の星を表示"
+
+msgid "Show excerpt"
+msgstr "抜粋を表示"
+
+msgid "Show featured image"
+msgstr "アイキャッチ画像を表示"
+
+msgid "Show first"
+msgstr "最初に表示"
+
+msgid "Show footer bottom bar"
+msgstr "フッター下部バーを表示"
+
+msgid "Show icon"
+msgstr "アイコンを表示"
+
+msgid "Show it from this many headings"
+msgstr "見出しがこの数以上あれば表示"
+
+msgid "Show maintenance screen to visitors"
+msgstr "訪問者にメンテナンス画面を表示"
+
+msgid "Show meta (choose items below)"
+msgstr "メタ情報を表示（下で選択）"
+
+msgid "Show meta line"
+msgstr "メタ情報の行を表示"
+
+msgid "Show on"
+msgstr "表示場所"
+
+msgid "Show on hover"
+msgstr "ホバーで表示"
+
+msgid "Show on hover (desktop)"
+msgstr "ホバーで表示（デスクトップ）"
+
+msgid "Show on mobile"
+msgstr "モバイルで表示"
+
+msgid "Show one slide"
+msgstr "1枚表示"
+
+msgid "Show overlay only on hover"
+msgstr "ホバー時のみオーバーレイを表示"
+
+msgid "Show percentage"
+msgstr "パーセントを表示"
+
+msgid "Show product count"
+msgstr "商品数を表示"
+
+msgid "Show product count on category boxes"
+msgstr "カテゴリーボックスに商品数を表示"
+
+msgid "Show related products"
+msgstr "関連商品を表示"
+
+msgid "Show result count"
+msgstr "結果件数を表示"
+
+msgid "Show second gallery image"
+msgstr "ギャラリーの2枚目の画像を表示"
+
+msgid "Show share buttons"
+msgstr "シェアボタンを表示"
+
+msgid "Show short description"
+msgstr "短い説明を表示"
+
+msgid "Show social icons"
+msgstr "SNSアイコンを表示"
+
+msgid "Show sorting dropdown"
+msgstr "並べ替えドロップダウンを表示"
+
+msgid "Show star rating"
+msgstr "星評価を表示"
+
+msgid "Show tags"
+msgstr "タグを表示"
+
+msgid "Show text under icons"
+msgstr "アイコンの下にテキストを表示"
+
+msgid "Show the announcement bar"
+msgstr "お知らせバーを表示"
+
+msgid "Show the banner on"
+msgstr "バナーの表示場所"
+
+msgid "Show the cart total next to the icon"
+msgstr "アイコンの横にカート合計を表示"
+
+msgid "Show the number"
+msgstr "番号を表示"
+
+msgid "Show the other side"
+msgstr "裏面を表示"
+
+msgid "Show the page name as H1 on pages"
+msgstr "固定ページでページ名をH1として表示"
+
+msgid "Show the phone number next to the call button (desktop)"
+msgstr "通話ボタンの横に電話番号を表示（デスクトップ）"
+
+msgid "Show the site tagline next to the logo"
+msgstr "ロゴの横にキャッチフレーズを表示"
+
+msgid "Show upsell products"
+msgstr "アップセル商品を表示"
+
+msgid "Shown above the top bar, always full width. HTML, CSS, JavaScript, animations: anything works. Leave empty to hide."
+msgstr "トップバーの上に常に全幅で表示されます。HTML、CSS、JavaScript、アニメーションなど何でも使えます。空欄にすると非表示になります。"
+
+msgid "Shown as absolute inside the editor so it stays editable."
+msgstr "編集できるよう、エディターでは絶対配置で表示されます。"
+
+msgid "Shown beside single blog posts. Leave empty to use the Blog sidebar."
+msgstr "個別のブログ投稿の横に表示されます。空欄ならブログのサイドバーを使用します。"
+
+msgid "Shown beside single products. Leave empty to use the Shop sidebar."
+msgstr "個別の商品の横に表示されます。空欄ならショップのサイドバーを使用します。"
+
+msgid "Shown on all products. Leave empty to hide."
+msgstr "すべての商品に表示されます。空欄にすると非表示になります。"
+
+msgid "Shown on categories, tags and search. Leave empty to use the Blog sidebar."
+msgstr "カテゴリー、タグ、検索で表示されます。空欄ならブログのサイドバーを使用します。"
+
+msgid "Shows exactly these products, in this order."
+msgstr "指定した商品をこの順番どおりに表示します。"
+
+msgid "Shows part of the next slide so visitors know they can swipe."
+msgstr "次のスライドを少し見せて、スワイプできることを伝えます。"
+
+msgid "Shuttle to project viewings"
+msgstr "物件見学の送迎"
+
+msgid "Side"
+msgstr "横"
+
+msgid "Side padding (px, -1 = size default)"
+msgstr "左右の内側余白（px、-1 = サイズ既定）"
+
+msgid "Side panel right"
+msgstr "右のサイドパネル"
+
+msgid "Side spacing for full-width header & blocks (px, 0 = auto)"
+msgstr "全幅ヘッダーとブロックの左右余白（px、0 = 自動）"
+
+msgid "Sidebar"
+msgstr "サイドバー"
+
+msgid "Sidebar & widgets"
+msgstr "サイドバーとウィジェット"
+
+msgid "Sidebar style"
+msgstr "サイドバーのスタイル"
+
+msgid "Sidebar width (px)"
+msgstr "サイドバーの幅（px）"
+
+msgid "Sidebars & extras"
+msgstr "サイドバーとその他"
+
+msgid "Sign up this week for a free consultation."
+msgstr "今週お申し込みで無料相談。"
+
+msgid "Signing"
+msgstr "契約"
+
+msgid "Simple"
+msgstr "シンプル"
+
+msgid "Simple (inside content)"
+msgstr "シンプル（コンテンツ内）"
+
+msgid "Simple dot"
+msgstr "シンプルなドット"
+
+msgid "Simple habits that help your skin recover and glow every morning."
+msgstr "毎朝、肌の回復と輝きを助けるシンプルな習慣。"
+
+msgid "Since 2014"
+msgstr "2014年から"
+
+msgid "Since 2015"
+msgstr "2015年から"
+
+msgid "Single post"
+msgstr "個別投稿"
+
+msgid "Single post sidebar"
+msgstr "個別投稿のサイドバー"
+
+msgid "Single post template"
+msgstr "個別投稿テンプレート"
+
+msgid "Single product page"
+msgstr "個別商品ページ"
+
+msgid "Single product sidebar"
+msgstr "個別商品のサイドバー"
+
+msgid "Site language"
+msgstr "サイトの言語"
+
+msgid "Site layout"
+msgstr "サイトのレイアウト"
+
+msgid "Site loader"
+msgstr "サイトローダー"
+
+msgid "Site tools: 404 & maintenance"
+msgstr "サイトツール：404とメンテナンス"
+
+msgid "Site-wide settings that do not need a live preview. They are the same settings as in Appearance → Customize → Advanced."
+msgstr "ライブプレビューが不要なサイト全体の設定です。外観 → カスタマイズ → 詳細設定 と同じ設定です。"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Size & shape"
+msgstr "サイズと形状"
+
+msgid "Size & spacing"
+msgstr "サイズと間隔"
+
+msgid "Size (px)"
+msgstr "サイズ（px）"
+
+msgid "Skin analysis"
+msgstr "肌診断"
+
+msgid "Skin analysis & advice"
+msgstr "肌診断とアドバイス"
+
+msgid "Skin is usually smoother and brighter after 3–5 sessions, depending on its condition."
+msgstr "肌の状態にもよりますが、通常3〜5回でなめらかで明るくなります。"
+
+msgid "Skin protection"
+msgstr "肌の保護"
+
+msgid "Skin specialist"
+msgstr "肌のスペシャリスト"
+
+msgid "Skip first N posts"
+msgstr "最初のN件の投稿をスキップ"
+
+msgid "Skip the first N products"
+msgstr "最初のN件の商品をスキップ"
+
+msgid "Skip to content"
+msgstr "コンテンツへスキップ"
+
+msgid "Sky & lemon"
+msgstr "スカイ＆レモン"
+
+msgid "Slate"
+msgstr "スレート"
+
+msgid "Slate deep"
+msgstr "濃いスレート"
+
+msgid "Slate pastel"
+msgstr "パステルスレート"
+
+msgid "Slide"
+msgstr "スライド"
+
+msgid "Slide corner radius (px)"
+msgstr "スライドの角丸（px）"
+
+msgid "Slide number 01 / 05 with line"
+msgstr "ライン付きスライド番号 01 / 05"
+
+msgid "Slider"
+msgstr "スライダー"
+
+msgid "Slides"
+msgstr "スライド"
+
+msgid "Slides per view – desktop"
+msgstr "表示枚数 – デスクトップ"
+
+msgid "Slides per view – mobile"
+msgstr "表示枚数 – モバイル"
+
+msgid "Slides per view – tablet"
+msgstr "表示枚数 – タブレット"
+
+msgid "Slow (700 ms)"
+msgstr "遅い（700 ms）"
+
+msgid "Small"
+msgstr "小"
+
+msgid "Small (420px)"
+msgstr "小（420px）"
+
+msgid "Small caps"
+msgstr "スモールキャップス"
+
+msgid "Small classes"
+msgstr "少人数クラス"
+
+msgid "Small classes mean I speak a lot – now I present with much more confidence."
+msgstr "少人数なのでたくさん話せます – 今ではずっと自信を持ってプレゼンできます。"
+
+msgid "Small classes with practice in every lesson."
+msgstr "毎回練習がある少人数クラス。"
+
+msgid "Small label above the title"
+msgstr "タイトル上の小さなラベル"
+
+msgid "Small second line (optional, e.g. phone number)"
+msgstr "小さな2行目（任意、例: 電話番号）"
+
+msgid "Small text above"
+msgstr "上の小さなテキスト"
+
+msgid "Small uppercase"
+msgstr "小さな大文字"
+
+msgid "Smaller menu text and spacing between the desktop breakpoint and this width, e.g. 1100."
+msgstr "デスクトップのブレークポイントからこの幅までメニューの文字と間隔を小さくします（例: 1100）。"
+
+msgid "Smooth open / close animation"
+msgstr "なめらかな開閉アニメーション"
+
+msgid "Smooth parallax strength (%, 0 = off)"
+msgstr "なめらかなパララックスの強さ（%、0 = オフ）"
+
+msgid "Social icons"
+msgstr "SNSアイコン"
+
+msgid "Social links"
+msgstr "SNSリンク"
+
+msgid "Social profiles (full URLs)"
+msgstr "SNSプロフィール（完全なURL）"
+
+msgid "Soft"
+msgstr "ソフト"
+
+msgid "Soft background"
+msgstr "淡い背景"
+
+msgid "Soft bounce"
+msgstr "ソフトバウンス"
+
+msgid "Soft color"
+msgstr "淡い色"
+
+msgid "Soft focus"
+msgstr "ソフトフォーカス"
+
+msgid "Soft glow"
+msgstr "やわらかいグロー"
+
+msgid "Soft gradient"
+msgstr "やわらかいグラデーション"
+
+msgid "Soft pastel"
+msgstr "やさしいパステル"
+
+msgid "Soft peach"
+msgstr "ソフトピーチ"
+
+msgid "Soft primary"
+msgstr "淡いプライマリ"
+
+msgid "Soft secondary"
+msgstr "淡いセカンダリ"
+
+msgid "Soft shadow"
+msgstr "やわらかい影"
+
+msgid "Soft tinted circle"
+msgstr "淡色の円"
+
+msgid "Soft tinted pill"
+msgstr "淡色のピル"
+
+msgid "Soft tinted square"
+msgstr "淡色の四角"
+
+msgid "Soft zoom"
+msgstr "ソフトズーム"
+
+msgid "Software engineer with 6 years of teaching."
+msgstr "指導歴6年のソフトウェアエンジニア。"
+
+msgid "Sold out"
+msgstr "売り切れ"
+
+msgid "Sold-out badge"
+msgstr "売り切れバッジ"
+
+msgid "Sold-out products"
+msgstr "売り切れ商品"
+
+msgid "Solid"
+msgstr "実線"
+
+msgid "Sophie Bennett"
+msgstr "Sophie Bennett"
+
+msgid "Sorry, you are not allowed to change theme options."
+msgstr "テーマオプションを変更する権限がありません。"
+
+msgid "Sorry, you are not allowed to create pages."
+msgstr "固定ページを作成する権限がありません。"
+
+msgid "Sorry, you are not allowed to do that."
+msgstr "その操作を行う権限がありません。"
+
+msgid "Spa / beauty homepage with 15 sections: hero, highlights, story, treatments, process, numbers, benefits, packages, gallery, therapists, reviews, FAQ, tips, booking and contact."
+msgstr "15セクションのスパ／ビューティー用トップページ：ヒーロー、特長、ストーリー、トリートメント、流れ、数字、効果、パッケージ、ギャラリー、セラピスト、レビュー、FAQ、ヒント、予約、お問い合わせ。"
+
+msgid "Spa · Skin care · Massage"
+msgstr "スパ · スキンケア · マッサージ"
+
+msgid "Spa, yoga, flowers"
+msgstr "スパ、ヨガ、花"
+
+msgid "Space above & below (px)"
+msgstr "上下の間隔（px）"
+
+msgid "Space between buttons (px)"
+msgstr "ボタンの間隔（px）"
+
+msgid "Space between content and sidebar (px)"
+msgstr "コンテンツとサイドバーの間隔（px）"
+
+msgid "Space between fields (px, -1 = default)"
+msgstr "入力欄の間隔（px、-1 = 既定）"
+
+msgid "Space between icon and frame (px, empty = default)"
+msgstr "アイコンと枠の間隔（px、空欄 = 既定）"
+
+msgid "Space between icons (px)"
+msgstr "アイコンの間隔（px）"
+
+msgid "Space between items (px)"
+msgstr "項目の間隔（px）"
+
+msgid "Space between items (px, -1 = default)"
+msgstr "項目の間隔（px、-1 = 既定）"
+
+msgid "Space between items (px, 0 = default)"
+msgstr "項目の間隔（px、0 = 既定）"
+
+msgid "Space between posts (px, 0 = default)"
+msgstr "投稿間の間隔（px、0 = 既定）"
+
+msgid "Space between widgets (px)"
+msgstr "ウィジェットの間隔（px）"
+
+msgid "Space on the left (px)"
+msgstr "左の余白（px）"
+
+msgid "Space on the right (px)"
+msgstr "右の余白（px）"
+
+msgid "Spaced repetition to memorise words effectively."
+msgstr "間隔反復で単語を効率よく暗記。"
+
+msgid "Spacing"
+msgstr "間隔"
+
+msgid "Sparkle"
+msgstr "きらめき"
+
+msgid "Speak confidently in public after 12 practical sessions."
+msgstr "12回の実践で人前でも自信を持って話せる。"
+
+msgid "Speaking practice"
+msgstr "スピーキング練習"
+
+msgid "Special characters"
+msgstr "特殊文字"
+
+msgid "Special offers for loyal customers."
+msgstr "常連のお客様への特別オファー。"
+
+msgid "Specific post IDs (comma separated)"
+msgstr "特定の投稿ID（カンマ区切り）"
+
+msgid "Specific product IDs (comma separated)"
+msgstr "特定の商品ID（カンマ区切り）"
+
+msgid "Speech bubble"
+msgstr "吹き出し"
+
+msgid "Speed"
+msgstr "速度"
+
+msgid "Speed & reading"
+msgstr "速度と読みやすさ"
+
+msgid "Split"
+msgstr "分割"
+
+msgid "Square"
+msgstr "正方形"
+
+msgid "Square 1:1"
+msgstr "正方形 1:1"
+
+msgid "Square block"
+msgstr "正方形ブロック"
+
+msgid "Stack items"
+msgstr "項目を縦に並べる"
+
+msgid "Stack on mobile"
+msgstr "モバイルで縦に並べる"
+
+msgid "Stacked"
+msgstr "縦並び"
+
+msgid "Stacked images"
+msgstr "重ねた画像"
+
+msgid "Star"
+msgstr "星"
+
+msgid "Star rating (0 = hide)"
+msgstr "星評価（0 = 非表示）"
+
+msgid "Stars"
+msgstr "星"
+
+msgid "Start with a header layout"
+msgstr "ヘッダーレイアウトから始める"
+
+msgid "Start with a page. Make it yours."
+msgstr "ページから始めて、自分らしく。"
+
+msgid "Start with a ready-made layout or drag elements between rows. Click the gear on an element to edit it. Preview desktop and mobile separately, then press Publish to save."
+msgstr "既製のレイアウトから始めるか、行の間で要素をドラッグします。要素の歯車をクリックすると編集できます。デスクトップとモバイルを別々にプレビューし、「公開」で保存してください。"
+
+msgid "Start your learning journey today"
+msgstr "今日から学びを始めましょう"
+
+msgid "Static (reset)"
+msgstr "静的（リセット）"
+
+msgid "Steel blue"
+msgstr "スチールブルー"
+
+msgid "Sterile extraction and soothing nutrient infusion."
+msgstr "無菌の抽出と鎮静の栄養導入。"
+
+msgid "Sticky header"
+msgstr "固定ヘッダー"
+
+msgid "Sticky main row height (px)"
+msgstr "固定時のメイン行の高さ（px）"
+
+msgid "Sticky sidebar (follows while scrolling)"
+msgstr "固定サイドバー（スクロールに追従）"
+
+msgid "Still have questions? Call us for a free learning-path consultation."
+msgstr "まだご質問がありますか？無料の学習プラン相談はお電話で。"
+
+msgid "Still visible in the editor. Hidden on the live site for: "
+msgstr "エディターでは表示されたままです。公開サイトで非表示にする対象:"
+
+msgid "Stop self-pingbacks (links to your own posts)"
+msgstr "セルフピンバックを停止（自分の投稿へのリンク）"
+
+msgid "Store"
+msgstr "ストア"
+
+msgid "Stories from the kitchen"
+msgstr "キッチンからのストーリー"
+
+msgid "Strength"
+msgstr "強さ"
+
+msgid "Stretch (equal width)"
+msgstr "引き伸ばす（均等幅）"
+
+msgid "Stretch tabs to full width"
+msgstr "タブを全幅に引き伸ばす"
+
+msgid "Strike"
+msgstr "取り消し線"
+
+msgid "Strikethrough"
+msgstr "取り消し線"
+
+msgid "Striped"
+msgstr "ストライプ"
+
+msgid "Striped rows"
+msgstr "ストライプの行"
+
+msgid "Strong (on photos)"
+msgstr "強め（写真の上）"
+
+msgid "Students"
+msgstr "受講生"
+
+msgid "Studio"
+msgstr "Studio"
+
+msgid "Studio apartment"
+msgstr "ワンルーム"
+
+msgid "Study corner"
+msgstr "学習コーナー"
+
+msgid "Style"
+msgstr "スタイル"
+
+msgid "Style & visibility"
+msgstr "スタイルと表示"
+
+msgid "Style default"
+msgstr "スタイル既定"
+
+msgid "Style on desktop & tablet"
+msgstr "デスクトップとタブレットのスタイル"
+
+msgid "Style on mobile"
+msgstr "モバイルのスタイル"
+
+msgid "Style presets"
+msgstr "スタイルプリセット"
+
+msgid "Style: colors & typography"
+msgstr "スタイル：色とタイポグラフィ"
+
+msgid "Subject"
+msgstr "件名"
+
+msgid "Submission was referred to as spam"
+msgstr "送信内容がスパムと判定されました"
+
+msgid "Submit button"
+msgstr "送信ボタン"
+
+msgid "Submit search"
+msgstr "検索を送信"
+
+msgid "Submitted values"
+msgstr "送信された値"
+
+msgid "Subscribe"
+msgstr "登録"
+
+msgid "Subscript"
+msgstr "下付き"
+
+msgid "Subtitle (optional)"
+msgstr "サブタイトル（任意）"
+
+msgid "Subtle"
+msgstr "控えめ"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Success (green)"
+msgstr "成功（緑）"
+
+msgid "Successful deals"
+msgstr "成約件数"
+
+msgid "Suffix"
+msgstr "接尾辞"
+
+msgid "Suggestion delay"
+msgstr "候補表示の遅延"
+
+msgid "Sum up what makes you stand out in one or two sentences."
+msgstr "あなたの強みを1〜2文でまとめましょう。"
+
+msgid "Summary text alignment"
+msgstr "要約テキストの配置"
+
+msgid "Sunflower"
+msgstr "ひまわり"
+
+msgid "Sunrise (light text)"
+msgstr "日の出（明るい文字）"
+
+msgid "Sunset"
+msgstr "夕焼け"
+
+msgid "Superscript"
+msgstr "上付き"
+
+msgid "Sweets, toys, party"
+msgstr "お菓子、おもちゃ、パーティー"
+
+msgid "Switch"
+msgstr "スイッチ"
+
+msgid "Switch buttons on/off, click a button to edit it, drag ☰ to change the order."
+msgstr "ボタンのオン／オフを切り替え、ボタンをクリックして編集し、☰ をドラッグして順序を変えます。"
+
+msgid "System (fastest)"
+msgstr "システム（最速）"
+
+msgid "System UI"
+msgstr "System UI"
+
+msgid "System serif"
+msgstr "システムのセリフ"
+
+msgid "System status"
+msgstr "システムステータス"
+
+msgid "TESOL certified, 8 years of teaching."
+msgstr "TESOL認定、指導歴8年。"
+
+msgid "Tab 1"
+msgstr "タブ1"
+
+msgid "Tab 2"
+msgstr "タブ2"
+
+msgid "Tab content…"
+msgstr "タブの内容…"
+
+msgid "Tab icon (optional)"
+msgstr "タブのアイコン（任意）"
+
+msgid "Tab text size (px, 0 = default)"
+msgstr "タブの文字サイズ（px、0 = 既定）"
+
+msgid "Tab title"
+msgstr "タブのタイトル"
+
+msgid "Table of contents (from H2 / H3)"
+msgstr "目次（H2 / H3 から）"
+
+msgid "Table size: columns x rows"
+msgstr "表のサイズ: 列 x 行"
+
+msgid "Tablet"
+msgstr "タブレット"
+
+msgid "Tablet (0 = same as desktop)"
+msgstr "タブレット（0 = デスクトップと同じ）"
+
+msgid "Tablet (px)"
+msgstr "タブレット（px）"
+
+msgid "Tablet font size (px, 0 = inherit)"
+msgstr "タブレットの文字サイズ（px、0 = 継承）"
+
+msgid "Tabs"
+msgstr "タブ"
+
+msgid "Tabs alignment"
+msgstr "タブの配置"
+
+msgid "Tabs, swatches & page design"
+msgstr "タブ、スウォッチ、ページデザイン"
+
+msgid "Take an afternoon for yourself"
+msgstr "自分のための午後を"
+
+msgid "Take home tips to keep your results."
+msgstr "効果を保つためのホームケアのヒント。"
+
+msgid "Tangerine"
+msgstr "タンジェリン"
+
+msgid "Tangerine deep"
+msgstr "濃いタンジェリン"
+
+msgid "Tangerine pastel"
+msgstr "パステルタンジェリン"
+
+msgid "Teacher"
+msgstr "講師"
+
+msgid "Teachers"
+msgstr "講師陣"
+
+msgid "Teachers design a path for your goal."
+msgstr "講師が目標に合わせたプランを作成。"
+
+msgid "Teachers follow each student closely, send regular progress reports to parents and adjust the path when needed to reach the target."
+msgstr "講師が一人ひとりを丁寧にフォローし、保護者に定期的に進捗を報告し、目標達成のために必要に応じてプランを調整します。"
+
+msgid "Teal & coral"
+msgstr "ティール＆コーラル"
+
+msgid "Teal deep"
+msgstr "濃いティール"
+
+msgid "Teal pastel"
+msgstr "パステルティール"
+
+msgid "Team member"
+msgstr "チームメンバー"
+
+msgid "Tech shops, phones, IT"
+msgstr "テックショップ、スマホ、IT"
+
+msgid "Tech, education, agencies"
+msgstr "テック、教育、代理店"
+
+msgid "Telephone number that the sender entered is invalid"
+msgstr "送信者が入力した電話番号が無効です"
+
+msgid "Tell us the date, time and number of guests by phone or chat."
+msgstr "日付、時間、人数をお電話またはチャットでお知らせください。"
+
+msgid "Tender Australian tenderloin, rich black pepper sauce and garlic butter potatoes."
+msgstr "やわらかいオーストラリア産テンダーロイン、濃厚な黒胡椒ソース、ガーリックバターポテト。"
+
+msgid "Terraced townhouse"
+msgstr "テラスハウス"
+
+msgid "Terracotta"
+msgstr "テラコッタ"
+
+msgid "Testimonial"
+msgstr "お客様の声"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Text & links"
+msgstr "テキストとリンク"
+
+msgid "Text (address, hours, phone)"
+msgstr "テキスト（住所、営業時間、電話）"
+
+msgid "Text / icon color"
+msgstr "文字／アイコンの色"
+
+msgid "Text align"
+msgstr "テキストの配置"
+
+msgid "Text alignment"
+msgstr "テキストの配置"
+
+msgid "Text case"
+msgstr "大文字・小文字"
+
+msgid "Text color"
+msgstr "文字色"
+
+msgid "Text color on hover"
+msgstr "ホバー時の文字色"
+
+msgid "Text color on transparent header"
+msgstr "透明ヘッダー時の文字色"
+
+msgid "Text color scheme"
+msgstr "文字の配色"
+
+msgid "Text columns"
+msgstr "テキストの列"
+
+msgid "Text content"
+msgstr "テキストの内容"
+
+msgid "Text effects"
+msgstr "テキスト効果"
+
+msgid "Text formatting"
+msgstr "テキストの書式"
+
+msgid "Text in full-width banners, sliders and sections lines up with"
+msgstr "全幅のバナー、スライダー、セクションのテキストをそろえる基準"
+
+msgid "Text in the middle (optional)"
+msgstr "中央のテキスト（任意）"
+
+msgid "Text link"
+msgstr "テキストリンク"
+
+msgid "Text logo size (px, when no image)"
+msgstr "テキストロゴのサイズ（px、画像がない場合）"
+
+msgid "Text next to round icons"
+msgstr "丸いアイコンの横のテキスト"
+
+msgid "Text next to the button (optional)"
+msgstr "ボタン横のテキスト（任意）"
+
+msgid "Text next to the icon"
+msgstr "アイコン横のテキスト"
+
+msgid "Text next to the icon (e.g. Giỏ hàng)"
+msgstr "アイコン横のテキスト（例: カート）"
+
+msgid "Text next to the icon (e.g. Menu)"
+msgstr "アイコン横のテキスト（例: メニュー）"
+
+msgid "Text on hover"
+msgstr "ホバー時のテキスト"
+
+msgid "Text on image"
+msgstr "画像上のテキスト"
+
+msgid "Text over image"
+msgstr "画像の上にテキスト"
+
+msgid "Text shadow"
+msgstr "文字の影"
+
+msgid "Text size (px, 0 = default)"
+msgstr "文字サイズ（px、0 = 既定）"
+
+msgid "Text under the price (e.g. Free shipping over $50)"
+msgstr "価格の下のテキスト（例：50ドル以上で送料無料）"
+
+msgid "Text when logged in"
+msgstr "ログイン時のテキスト"
+
+msgid "Text when logged out"
+msgstr "ログアウト時のテキスト"
+
+msgid "Text, HTML or shortcodes."
+msgstr "テキスト、HTML、ショートコード。"
+
+msgid "Thank-you message (optional)"
+msgstr "お礼メッセージ（任意）"
+
+msgid "Thank-you message under the form (optional)"
+msgstr "フォーム下のお礼メッセージ（任意）"
+
+msgid "Thanks! We will call you back shortly."
+msgstr "ありがとうございます！まもなくお電話いたします。"
+
+msgid "Thay thế các kiểu bo góc của nút."
+msgstr "ボタンの角丸スタイルを置き換えます。"
+
+msgid "Thay thế lựa chọn nút vuông hoặc bo góc mềm."
+msgstr "角ばったボタン／やわらかい角丸ボタンの選択を置き換えます。"
+
+msgid "Thay thế lựa chọn nút vuông hoặc nút viên thuốc."
+msgstr "角ばったボタン／ピル型ボタンの選択を置き換えます。"
+
+msgid "The animation plays on the published page."
+msgstr "アニメーションは公開ページで再生されます。"
+
+msgid "The apartment market this quarter"
+msgstr "今四半期のマンション市場"
+
+msgid "The background moves slower than the page while scrolling. Works on phones too."
+msgstr "スクロール時、背景がページよりゆっくり動きます。スマートフォンでも動作します。"
+
+msgid "The banner follows the image proportions, so the whole image shows. Inside a slider with a common height, that height wins."
+msgstr "バナーは画像の比率に合わせるため、画像全体が表示されます。共通の高さを持つスライダー内では、その高さが優先されます。"
+
+msgid "The best places to live"
+msgstr "住みやすいエリアベスト"
+
+msgid "The container width (page content)"
+msgstr "コンテナ幅（ページコンテンツ）"
+
+msgid "The file is not a valid BIGSPY AI Theme WP export."
+msgstr "このファイルはBIGSPY AI Theme WPの有効なエクスポートではありません。"
+
+msgid "The hands that care for you"
+msgstr "あなたをケアする手"
+
+msgid "The header (logo) edge"
+msgstr "ヘッダー（ロゴ）の端"
+
+msgid "The highlight draws itself when the heading scrolls into view."
+msgstr "見出しが表示されるとハイライトが描かれます。"
+
+msgid "The hot stone massage is amazing, like recharging my energy after a long week."
+msgstr "ホットストーンマッサージは最高。長い一週間の後のエネルギー充電のようです。"
+
+msgid "The main and bottom rows stay on screen while scrolling."
+msgstr "スクロール中もメイン行と下部行が画面に残ります。"
+
+msgid "The menu changes with the seasons to keep every flavour fresh. Here are the dishes our guests love most."
+msgstr "メニューは季節ごとに変わり、いつも新鮮な味わいをお届けします。お客様に特に人気の料理はこちら。"
+
+msgid "The numbers say it all"
+msgstr "数字が物語る実績"
+
+msgid "The original navy & orange"
+msgstr "オリジナルのネイビー＆オレンジ"
+
+msgid "The page you are looking for may have been moved or deleted. Try searching instead."
+msgstr "お探しのページは移動または削除された可能性があります。検索をお試しください。"
+
+msgid "The people behind the food"
+msgstr "料理を支える人たち"
+
+msgid "The preview could not be loaded. Save the page and reload the editor."
+msgstr "プレビューを読み込めませんでした。ページを保存してエディターを再読み込みしてください。"
+
+msgid "The selected BIGSPY starter pattern could not be found."
+msgstr "選択したBIGSPYスターターパターンが見つかりません。"
+
+msgid "The shop sidebar keeps its \"Filter\" off-canvas button on phones."
+msgstr "ショップのサイドバーは、スマホでは「フィルター」のオフキャンバスボタンのままです。"
+
+msgid "The theme works as a service / business website without any plugin."
+msgstr "このテーマはプラグインなしでサービス／企業サイトとして使えます。"
+
+msgid "The “Search products only” override also forces products only. Product choices require WooCommerce."
+msgstr "「商品のみ検索」も商品のみに限定します。商品の選択肢にはWooCommerceが必要です。"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Theme Builder"
+msgstr "Theme Builder"
+
+msgid "Theme Options"
+msgstr "テーマオプション"
+
+msgid "Theme default"
+msgstr "テーマ既定"
+
+msgid "Theme language"
+msgstr "テーマの言語"
+
+msgid "Theme options imported."
+msgstr "テーマオプションをインポートしました。"
+
+msgid "Theme options reset to defaults."
+msgstr "テーマオプションを既定値にリセットしました。"
+
+msgid "Themed decoration"
+msgstr "テーマ装飾"
+
+msgid "Therapists"
+msgstr "セラピスト"
+
+msgid "There is a field the sender must fill in"
+msgstr "送信者が入力する必要のある項目があります"
+
+msgid "There is nothing here yet."
+msgstr "まだ何もありません。"
+
+msgid "These colors also appear in the block editor color palette."
+msgstr "これらの色はブロックエディターのカラーパレットにも表示されます。"
+
+msgid "They are completely free, with a shuttle for projects outside the city."
+msgstr "すべて無料で、市外の物件には送迎もあります。"
+
+msgid "They know the market, they are honest and they put your interests first."
+msgstr "市場を熟知し、誠実で、お客様の利益を第一に考えます。"
+
+msgid "Thick bar under active"
+msgstr "アクティブ項目の下に太いバー"
+
+msgid "Thick progress bar – bottom"
+msgstr "太いプログレスバー – 下"
+
+msgid "Thickness (px)"
+msgstr "太さ（px）"
+
+msgid "Thin lines"
+msgstr "細い線"
+
+msgid "Third-year student"
+msgstr "大学3年生"
+
+msgid "This design could not be added. Please try another one."
+msgstr "このデザインを追加できませんでした。別のデザインをお試しください。"
+
+msgid "This is not a Google Maps embed code. Copy it from Share → Embed a map."
+msgstr "これはGoogleマップの埋め込みコードではありません。共有 → 地図を埋め込む からコピーしてください。"
+
+msgid "This picker cannot be set from here."
+msgstr "この項目はここでは設定できません。"
+
+msgid "This starter page is not available."
+msgstr "このスターターページは利用できません。"
+
+msgid "This widget area is empty. Add widgets in Appearance → Widgets."
+msgstr "このウィジェットエリアは空です。外観 → ウィジェット でウィジェットを追加してください。"
+
+msgid "Thousands separator"
+msgstr "桁区切り記号"
+
+msgid "Three content columns; keeps your current contact-band setting."
+msgstr "3列のコンテンツ。現在の連絡先バンドの設定は維持されます。"
+
+msgid "Three lines"
+msgstr "3本線"
+
+msgid "Thu gọn chiều rộng bài viết"
+msgstr "投稿の幅を狭くする"
+
+msgid "Thu gọn khoảng cách menu desktop"
+msgstr "デスクトップメニューの間隔を詰める"
+
+msgid "Thumbnail"
+msgstr "サムネイル"
+
+msgid "Thumbnails on the left"
+msgstr "左にサムネイル"
+
+msgid "Thêm bóng cho thẻ mà không đổi bố cục lưới."
+msgstr "グリッドを変えずにカードに影を付けます。"
+
+msgid "Thêm viền rõ khi dùng bàn phím hoặc nhập biểu mẫu."
+msgstr "キーボード操作やフォーム入力時にはっきりした枠線を付けます。"
+
+msgid "Thêm viền theo màu đường kẻ của theme."
+msgstr "テーマの線の色で枠線を付けます。"
+
+msgid "Thư viện CSS · bật/tắt"
+msgstr "CSSライブラリ · オン／オフ"
+
+msgid "Thư viện ảnh sản phẩm chuẩn WooCommerce."
+msgstr "WooCommerce標準の商品ギャラリー。"
+
+msgid "Thẻ dịch vụ BIGSPY có nền hoặc viền."
+msgstr "背景または枠線のあるBIGSPYサービスカード。"
+
+msgid "Thẻ dịch vụ nhấc nhẹ khi rê chuột"
+msgstr "ホバーで少し浮くサービスカード"
+
+msgid "Thẻ sản phẩm BIGSPY trong danh sách WooCommerce."
+msgstr "WooCommerce一覧内のBIGSPY商品カード。"
+
+msgid "Tick a block to hide it from the block inserter so the list stays short. Pages that already use it keep working."
+msgstr "チェックしたブロックはブロック挿入ツールから隠れ、一覧が短くなります。すでに使っているページは引き続き動作します。"
+
+msgid "TikTok link"
+msgstr "TikTokのURL"
+
+msgid "Tilt"
+msgstr "傾き"
+
+msgid "Timer (time until next slide)"
+msgstr "タイマー（次のスライドまでの時間）"
+
+msgid "Timezone"
+msgstr "タイムゾーン"
+
+msgid "Tip: click the stars on the canvas to set the rating (half stars supported)."
+msgstr "ヒント：キャンバス上の星をクリックして評価を設定します（半分の星も可）。"
+
+msgid "Tip: drag the right edge of the column on the canvas. Switch the preview to Tablet/Mobile to set those widths."
+msgstr "ヒント：キャンバス上で列の右端をドラッグします。プレビューをタブレット／モバイルに切り替えると、その幅を設定できます。"
+
+msgid "Tip: for landing pages choose the “Full width” or “Blank canvas” template and build with Section blocks."
+msgstr "ヒント：ランディングページには「全幅」または「空白キャンバス」テンプレートを選び、セクションブロックで作りましょう。"
+
+msgid "Tip: give the parent Column/Section \"Position: Relative\"."
+msgstr "ヒント：親のカラム／セクションに「位置: 相対」を設定してください。"
+
+msgid "Tiramisu, passion fruit cheesecake and mousse, made fresh every morning."
+msgstr "ティラミス、パッションフルーツのチーズケーキ、ムースを毎朝手作り。"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Title (accessibility)"
+msgstr "タイトル（アクセシビリティ）"
+
+msgid "Title (e.g. shop name)"
+msgstr "タイトル（例: ショップ名）"
+
+msgid "Title (optional)"
+msgstr "タイトル（任意）"
+
+msgid "Title A–Z"
+msgstr "タイトル A–Z"
+
+msgid "Title background"
+msgstr "タイトルの背景"
+
+msgid "Title bar"
+msgstr "タイトルバー"
+
+msgid "Title bar background"
+msgstr "タイトルバーの背景"
+
+msgid "Title bar background image"
+msgstr "タイトルバーの背景画像"
+
+msgid "Title bar text color"
+msgstr "タイトルバーの文字色"
+
+msgid "Title lines"
+msgstr "タイトルライン"
+
+msgid "Title lines (0 = no limit)"
+msgstr "タイトルの行数（0 = 制限なし）"
+
+msgid "Title link (URL)"
+msgstr "タイトルのリンク（URL）"
+
+msgid "Title over the image"
+msgstr "画像の上にタイトル"
+
+msgid "Title size (px, 0 = default)"
+msgstr "タイトルのサイズ（px、0 = 既定）"
+
+msgid "Title tag"
+msgstr "タイトルのタグ"
+
+msgid "Title, then image"
+msgstr "タイトル、その後に画像"
+
+msgid "Tiêu đề sản phẩm tối đa 3 dòng"
+msgstr "商品タイトルは最大3行"
+
+msgid "To build an online shop, install WooCommerce. The “Products” and “Product Categories” blocks, the shop patterns, the header cart and all shop options then appear automatically – nothing else to set up."
+msgstr "オンラインショップを作るにはWooCommerceをインストールしてください。「商品」「商品カテゴリー」ブロック、ショップのパターン、ヘッダーのカート、すべてのショップ設定が自動的に表示されます。ほかに設定は不要です。"
+
+msgid "Today the restaurant seats over 120 guests, has 3 private rooms and a team of 40 – but the spirit is the same as on day one: we serve every guest like family."
+msgstr "現在、店は120名以上を収容し、個室3室とスタッフ40名を擁しますが、精神は初日と同じです。すべてのお客様を家族のようにおもてなしします。"
+
+msgid "Tokens: [year], [site_title]"
+msgstr "トークン: [year]、[site_title]"
+
+msgid "Toolbar above products"
+msgstr "商品の上のツールバー"
+
+msgid "Tools sterilised after every guest"
+msgstr "お客様ごとに器具を消毒"
+
+msgid "Tools, auto, hardware"
+msgstr "工具、自動車、金物"
+
+msgid "Tooltip width (px)"
+msgstr "ツールチップの幅（px）"
+
+msgid "Top (%)"
+msgstr "上（%）"
+
+msgid "Top / bottom content spacing"
+msgstr "コンテンツの上下の間隔"
+
+msgid "Top / bottom padding (px)"
+msgstr "上下の内側余白（px）"
+
+msgid "Top 10 restaurants"
+msgstr "トップ10レストラン"
+
+msgid "Top bar"
+msgstr "トップバー"
+
+msgid "Top bar menu"
+msgstr "トップバーのメニュー"
+
+msgid "Top rated"
+msgstr "評価の高い順"
+
+msgid "Top-level categories only"
+msgstr "最上位カテゴリーのみ"
+
+msgid "Townhouse buyer"
+msgstr "テラスハウス購入者"
+
+msgid "Townhouse specialist"
+msgstr "テラスハウスの専門家"
+
+msgid "Track"
+msgstr "トラック"
+
+msgid "Trained and certified"
+msgstr "研修済み・資格保持"
+
+msgid "Trained in pastry in France."
+msgstr "フランスで製菓を学ぶ。"
+
+msgid "Training centre · Languages · Skills"
+msgstr "研修センター · 語学 · スキル"
+
+msgid "Trang chi tiết sản phẩm WooCommerce dạng chuẩn."
+msgstr "WooCommerce標準の商品詳細ページ。"
+
+msgid "Transform"
+msgstr "変形"
+
+msgid "Transition"
+msgstr "トランジション"
+
+msgid "Transparent (overlaps first section)"
+msgstr "透明（最初のセクションに重なる）"
+
+msgid "Transparent header"
+msgstr "透明ヘッダー"
+
+msgid "Transparent header on the homepage"
+msgstr "トップページで透明ヘッダー"
+
+msgid "Travel distance (px, 0 = default)"
+msgstr "移動距離（px、0 = 既定）"
+
+msgid "Travel, beach, tours"
+msgstr "旅行、ビーチ、ツアー"
+
+msgid "Treatment"
+msgstr "トリートメント"
+
+msgid "Treatments"
+msgstr "トリートメント"
+
+msgid "Triangle"
+msgstr "三角形"
+
+msgid "Trigger"
+msgstr "トリガー"
+
+msgid "Trust, services, laundry, clinics"
+msgstr "信頼、サービス、ランドリー、クリニック"
+
+msgid "Try “hero”, “services” or “products”…"
+msgstr "「hero」「services」「products」などで検索…"
+
+msgid "Tránh từ hoặc đường dẫn dài tràn khỏi thẻ."
+msgstr "長い単語やリンクがカードからはみ出すのを防ぎます。"
+
+msgid "Trình duyệt hỗ trợ sẽ cân độ dài các dòng tiêu đề."
+msgstr "対応ブラウザでは見出しの行の長さがそろいます。"
+
+msgid "Trích dẫn trong nội dung, không đổi block cảm nhận."
+msgstr "本文中の引用。お客様の声ブロックは変えません。"
+
+msgid "Tuition"
+msgstr "受講料"
+
+msgid "Turmeric, colostrum and rice bran for naturally bright skin."
+msgstr "ターメリック、初乳、米ぬかで自然に明るい肌へ。"
+
+msgid "Turn off if an SEO plugin already outputs FAQ schema for this page."
+msgstr "SEOプラグインがこのページのFAQスキーマを出力している場合はオフにしてください。"
+
+msgid "Turn on dots to see this timer."
+msgstr "このタイマーを表示するにはドットをオンにしてください。"
+
+msgid "Turn the sidebar on/off and pick left or right per view: <b>Blog &amp; archives</b>, <b>Single posts</b>, <b>Shop</b>, <b>Single product</b> (each in its own section of the Customizer), or per post in the editor. Add, remove and reorder widgets in <b>Widgets</b> (in this Customizer, or <a href=\"%s\" target=\"_blank\">Appearance → Widgets</a>). Each view has its own widget area: Blog, Category &amp; archive, Single post, Shop, Single product."
+msgstr "表示ごとにサイドバーのオン／オフと左右を選べます：<b>ブログとアーカイブ</b>、<b>個別投稿</b>、<b>ショップ</b>、<b>個別商品</b>（それぞれカスタマイザーの専用セクション）、または投稿ごとにエディターで設定します。ウィジェットの追加・削除・並べ替えは <b>ウィジェット</b>（このカスタマイザー内、または <a href=\"%s\" target=\"_blank\">外観 → ウィジェット</a>）で行います。各表示には専用のウィジェットエリアがあります：ブログ、カテゴリーとアーカイブ、個別投稿、ショップ、個別商品。"
+
+msgid "Two columns and a simple copyright bar."
+msgstr "2列とシンプルな著作権バー。"
+
+msgid "Two lines"
+msgstr "2本線"
+
+msgid "Two tea breaks"
+msgstr "ティーブレイク2回"
+
+msgid "Type"
+msgstr "種類"
+
+msgid "Typography"
+msgstr "タイポグラフィ"
+
+msgid "Typography & alignment"
+msgstr "タイポグラフィと配置"
+
+msgid "Tìm tác vụ CSS"
+msgstr "CSSタスクを検索"
+
+msgid "Tìm tác vụ CSS…"
+msgstr "CSSタスクを検索…"
+
+msgid "Tôn trọng tùy chọn giảm chuyển động của thiết bị."
+msgstr "端末の「視差効果を減らす」設定を尊重します。"
+
+msgid "Tăng khoảng cách liên kết chân trang"
+msgstr "フッターリンクの間隔を広げる"
+
+msgid "Tăng khoảng cách thư viện ảnh"
+msgstr "ギャラリーの間隔を広げる"
+
+msgid "Tăng vùng chạm của liên kết menu offcanvas BIGSPY."
+msgstr "BIGSPYオフキャンバスメニューのリンクのタップ領域を広げます。"
+
+msgid "Tạo nền phía sau vùng chữ của banner BIGSPY."
+msgstr "BIGSPYバナーの文字領域の後ろに背景を付けます。"
+
+msgid "Tết, gifts, traditional"
+msgstr "旧正月、ギフト、伝統"
+
+msgid "URL, tel:+15551234567 or mailto:…"
+msgstr "URL、tel:+15551234567 または mailto:…"
+
+msgid "UX Block"
+msgstr "UXブロック"
+
+msgid "UX Blocks"
+msgstr "UX Blocks"
+
+msgid "Under our guarantee"
+msgstr "当社の保証付き"
+
+msgid "Underline"
+msgstr "下線"
+
+msgid "Underline (grows from center)"
+msgstr "下線（中央から伸びる）"
+
+msgid "Underline (grows from left)"
+msgstr "下線（左から伸びる）"
+
+msgid "Underline / pill color"
+msgstr "下線／ピルの色"
+
+msgid "Underline on hover"
+msgstr "ホバー時に下線"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Unknown options tab."
+msgstr "不明なオプションタブです。"
+
+msgid "Unlimited"
+msgstr "無制限"
+
+msgid "Unlimited make-up lessons"
+msgstr "振替授業は無制限"
+
+msgid "Unlock"
+msgstr "ロック解除"
+
+msgid "Untitled design"
+msgstr "無題のデザイン"
+
+msgid "Up / down"
+msgstr "上／下"
+
+msgid "Update classic cart after quantity changes"
+msgstr "数量変更後にクラシックカートを更新"
+
+msgid "Updated every week with the latest prices and offers from developers."
+msgstr "デベロッパーの最新価格とキャンペーンを毎週更新。"
+
+msgid "Upload a file exported from BIGSPY AI Theme WP. Current settings will be overwritten."
+msgstr "BIGSPY AI Theme WPからエクスポートしたファイルをアップロードしてください。現在の設定は上書きされます。"
+
+msgid "Upload the logo in Site Identity."
+msgstr "サイト基本情報でロゴをアップロードしてください。"
+
+msgid "Upload the logo in Site identity. Sizes below override the general logo width."
+msgstr "サイト基本情報でロゴをアップロードしてください。下のサイズは全体のロゴ幅より優先されます。"
+
+msgid "Upload your logo and choose colors & fonts in the Customizer."
+msgstr "ロゴをアップロードし、カスタマイザーで色とフォントを選んでください。"
+
+msgid "Use HTML content type"
+msgstr "HTMLコンテンツタイプを使用"
+
+msgid "Use Mail (2)"
+msgstr "メール (2) を使用"
+
+msgid "Use a CSS color value, for example #e83e56."
+msgstr "CSSのカラー値を使います（例: #e83e56）。"
+
+msgid "Use a CSS color value, for example #e83e56. Used when this attribute is set to Color swatches."
+msgstr "CSSのカラー値を使います（例: #e83e56）。この属性がカラースウォッチに設定されているときに使用されます。"
+
+msgid "Use an address on your own domain so SMTP accepts it."
+msgstr "SMTPが受け付けるよう、自分のドメインのアドレスを使ってください。"
+
+msgid "Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs."
+msgstr "ブロックメニューから再利用できるパターンを作成します。保存したパターンは「保存したデザイン」に表示されます。"
+
+msgid "Use two images with the same size and framing."
+msgstr "同じサイズと構図の画像を2枚使ってください。"
+
+msgid "Use “selector” to target this block only."
+msgstr "「selector」と書くとこのブロックだけを対象にできます。"
+
+msgid "Used by the header, the mobile menu and the footer."
+msgstr "ヘッダー、モバイルメニュー、フッターで使用されます。"
+
+msgid "Used on the default maintenance screen."
+msgstr "既定のメンテナンス画面で使用されます。"
+
+msgid "Used when this attribute is set to Image swatches."
+msgstr "この属性が画像スウォッチに設定されているときに使用されます。"
+
+msgid "Username or t.me link"
+msgstr "ユーザー名またはt.meリンク"
+
+msgid "Uses Rank Math / Yoast breadcrumbs when those plugins are active."
+msgstr "Rank Math／Yoastが有効な場合はそのパンくずリストを使用します。"
+
+msgid "Uses the native Update cart button. WooCommerce Cart blocks already update quantities automatically."
+msgstr "標準の「カートを更新」ボタンを使います。WooCommerceのカートブロックは数量を自動で更新します。"
+
+msgid "Validation errors occurred"
+msgstr "入力内容にエラーがあります"
+
+msgid "Vegetables from our own farm"
+msgstr "自家農園の野菜"
+
+msgid "Vertical"
+msgstr "縦"
+
+msgid "Vertical (sidebar)"
+msgstr "縦（サイドバー）"
+
+msgid "Vertical align"
+msgstr "縦方向の配置"
+
+msgid "Vertical categories menu"
+msgstr "縦型カテゴリーメニュー"
+
+msgid "Vertical line – left edge"
+msgstr "縦線 – 左端"
+
+msgid "Vertical menu (categories)"
+msgstr "縦メニュー（カテゴリー）"
+
+msgid "Video"
+msgstr "動画"
+
+msgid "Video popup"
+msgstr "動画ポップアップ"
+
+msgid "View"
+msgstr "表示"
+
+msgid "View all"
+msgstr "すべて見る"
+
+msgid "View all results"
+msgstr "すべての結果を見る"
+
+msgid "Viewings"
+msgstr "内覧"
+
+msgid "Violet"
+msgstr "バイオレット"
+
+msgid "Violet deep"
+msgstr "濃いバイオレット"
+
+msgid "Violet pastel"
+msgstr "パステルバイオレット"
+
+msgid "Visibility & motion effects"
+msgstr "表示と動きの効果"
+
+msgid "Visible results"
+msgstr "目に見える効果"
+
+msgid "Visit projects and compare several options."
+msgstr "物件を見学して複数の選択肢を比較。"
+
+msgid "Visitors"
+msgstr "訪問者"
+
+msgid "Visitors can close it"
+msgstr "訪問者が閉じられる"
+
+msgid "Visitors can close it (remembered for 7 days)"
+msgstr "訪問者が閉じられる（7日間記憶）"
+
+msgid "Vivid · Bakery, honey, tours"
+msgstr "鮮やか · ベーカリー、はちみつ、ツアー"
+
+msgid "Vivid · Banking, insurance"
+msgstr "鮮やか · 銀行、保険"
+
+msgid "Vivid · Beauty, cafés, kids"
+msgstr "鮮やか · 美容、カフェ、キッズ"
+
+msgid "Vivid · Coffee, furniture"
+msgstr "鮮やか · コーヒー、家具"
+
+msgid "Vivid · Construction, logistics"
+msgstr "鮮やか · 建設、物流"
+
+msgid "Vivid · Eco, juice, sport"
+msgstr "鮮やか · エコ、ジュース、スポーツ"
+
+msgid "Vivid · Education, agencies"
+msgstr "鮮やか · 教育、代理店"
+
+msgid "Vivid · Events, cosmetics"
+msgstr "鮮やか · イベント、化粧品"
+
+msgid "Vivid · Finance, law, B2B"
+msgstr "鮮やか · 金融、法律、B2B"
+
+msgid "Vivid · Food delivery, fitness"
+msgstr "鮮やか · フードデリバリー、フィットネス"
+
+msgid "Vivid · Garden, farm, organic"
+msgstr "鮮やか · ガーデン、農園、オーガニック"
+
+msgid "Vivid · Jewelry, bridal"
+msgstr "鮮やか · ジュエリー、ブライダル"
+
+msgid "Vivid · Pool, laundry, spa"
+msgstr "鮮やか · プール、ランドリー、スパ"
+
+msgid "Vivid · Sales, food, sport"
+msgstr "鮮やか · 営業、食品、スポーツ"
+
+msgid "Vivid · Spa, florist, wedding"
+msgstr "鮮やか · スパ、花屋、ウェディング"
+
+msgid "Vivid · Tech, minimal"
+msgstr "鮮やか · テック、ミニマル"
+
+msgid "Vivid · Travel, IT, airlines"
+msgstr "鮮やか · 旅行、IT、航空会社"
+
+msgid "Vivid · Wellness, tea, pharmacy"
+msgstr "鮮やか · ウェルネス、お茶、薬局"
+
+msgid "Viền nhẹ ảnh đại diện đánh giá"
+msgstr "レビューのアバターに細い枠線"
+
+msgid "Viền nổi gói dịch vụ được chọn"
+msgstr "選択中のプランに目立つ枠線"
+
+msgid "Viền rõ cho điều hướng bàn phím"
+msgstr "キーボード操作用のはっきりした枠線"
+
+msgid "Voted by the local food community"
+msgstr "地元のグルメコミュニティが選出"
+
+msgid "WHY US"
+msgstr "選ばれる理由"
+
+msgid "WP Mail SMTP is active but not set up"
+msgstr "WP Mail SMTPは有効ですが未設定です"
+
+msgid "Wait before redirect (seconds)"
+msgstr "リダイレクトまでの待ち時間（秒）"
+
+msgid "Warm basalt stones and essential oils to release tension and help you sleep."
+msgstr "温かい玄武岩とエッセンシャルオイルで緊張をほぐし、眠りをサポート。"
+
+msgid "Warm, elegant and welcoming"
+msgstr "温かく、上品で、居心地のよい空間"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Warning (orange)"
+msgstr "警告（オレンジ）"
+
+msgid "Watch lessons again in the online app."
+msgstr "オンラインアプリで授業を見直せます。"
+
+msgid "Wave"
+msgstr "ウェーブ"
+
+msgid "Wave pattern"
+msgstr "波柄"
+
+msgid "We are open from 7:00 am to 10:00 pm every day, including holidays."
+msgstr "祝日も含め、毎日7:00〜22:00まで営業しています。"
+
+msgid "We are the official agent for many reputable developers. Every project is checked for legal status, zoning and construction progress before we offer it."
+msgstr "当社は多くの信頼あるデベロッパーの正規代理店です。すべての物件は、ご紹介前に権利関係、用途地域、工事の進捗を確認しています。"
+
+msgid "We believe beauty starts with feeling relaxed. Every treatment room is quiet and warm, with soft light and a gentle scent of essential oils."
+msgstr "美しさはリラックスから始まると考えています。どの施術室も静かで温かく、やわらかな光とほのかなアロマに包まれています。"
+
+msgid "We found a great location within budget, and a year later the price has risen nicely."
+msgstr "予算内で素晴らしい立地が見つかり、1年後には価格もしっかり上がりました。"
+
+msgid "We guarantee free re-study until you reach the agreed goal."
+msgstr "合意した目標に達するまで無料で再受講できることを保証します。"
+
+msgid "We have a vegetarian menu of more than 15 dishes – let us know in advance."
+msgstr "15品以上のベジタリアンメニューがあります – 事前にお知らせください。"
+
+msgid "We will be back soon"
+msgstr "まもなく再開します"
+
+msgid "Website (what visitors see)"
+msgstr "ウェブサイト（訪問者に表示）"
+
+msgid "Wedding, jewelry, beauty"
+msgstr "ウェディング、ジュエリー、美容"
+
+msgid "Weight"
+msgstr "太さ"
+
+msgid "What are your opening hours?"
+msgstr "営業時間は？"
+
+msgid "What did the customer say?"
+msgstr "お客様は何と言いましたか？"
+
+msgid "What documents do I need to buy?"
+msgstr "購入に必要な書類は？"
+
+msgid "What if I don’t reach my goal?"
+msgstr "目標に届かなかったら？"
+
+msgid "What is the timetable?"
+msgstr "時間割は？"
+
+msgid "What our clients say"
+msgstr "お客様の声"
+
+msgid "What our guests say"
+msgstr "お客様の声"
+
+msgid "What our students say"
+msgstr "受講生の声"
+
+msgid "What parents should consider when picking an English class."
+msgstr "英語クラスを選ぶときに保護者が考えるべきこと。"
+
+msgid "When leaving the page (desktop)"
+msgstr "ページを離れるとき（デスクトップ）"
+
+msgid "When will I see results?"
+msgstr "いつ効果が出ますか？"
+
+msgid "Where every student is treated as an individual"
+msgstr "一人ひとりに向き合う教室"
+
+msgid "Where sidebars show"
+msgstr "サイドバーを表示する場所"
+
+msgid "Where this layout shows"
+msgstr "このレイアウトを表示する場所"
+
+msgid "Where to find each part of the theme."
+msgstr "テーマの各部分の場所。"
+
+msgid "While scrolling"
+msgstr "スクロール中"
+
+msgid "White"
+msgstr "白"
+
+msgid "White bar, colored icons"
+msgstr "白いバー、カラーアイコン"
+
+msgid "Who keep coming back"
+msgstr "何度も来てくださる"
+
+msgid "Who know the market"
+msgstr "市場を知り尽くした"
+
+msgid "Why choose us"
+msgstr "選ばれる理由"
+
+msgid "Why customers choose us"
+msgstr "お客様に選ばれる理由"
+
+msgid "Why guests come back"
+msgstr "お客様が再訪する理由"
+
+msgid "Wide (wider than container)"
+msgstr "ワイド（コンテナより広い）"
+
+msgid "Widget area"
+msgstr "ウィジェットエリア"
+
+msgid "Widget background"
+msgstr "ウィジェットの背景"
+
+msgid "Widget corner radius (px, -1 = style default)"
+msgstr "ウィジェットの角丸（px、-1 = スタイル既定）"
+
+msgid "Widget inner space (px, -1 = style default)"
+msgstr "ウィジェットの内側余白（px、-1 = スタイル既定）"
+
+msgid "Widget link color"
+msgstr "ウィジェットのリンク色"
+
+msgid "Widget text size (px, 0 = theme)"
+msgstr "ウィジェットの文字サイズ（px、0 = テーマ）"
+
+msgid "Widget title color"
+msgstr "ウィジェットのタイトル色"
+
+msgid "Widget title size (px, 0 = default)"
+msgstr "ウィジェットのタイトルサイズ（px、0 = 既定）"
+
+msgid "Widget title style"
+msgstr "ウィジェットタイトルのスタイル"
+
+msgid "Widgets (sidebar & footer)"
+msgstr "ウィジェット（サイドバーとフッター）"
+
+msgid "Width"
+msgstr "幅"
+
+msgid "Width (%)"
+msgstr "幅（%）"
+
+msgid "Width (px, 0 = auto)"
+msgstr "幅（px、0 = 自動）"
+
+msgid "Width when sticky (px, 0 = same)"
+msgstr "固定時の幅（px、0 = 同じ）"
+
+msgid "Wine, restaurants, premium"
+msgstr "ワイン、レストラン、プレミアム"
+
+msgid "With you on the road to your new home"
+msgstr "新しい住まいへの道のりに寄り添います"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "WooCommerce is active – shop mode is on."
+msgstr "WooCommerceが有効です – ショップモードがオンです。"
+
+msgid "WooCommerce required"
+msgstr "WooCommerceが必要です"
+
+msgid "Word, Excel and PowerPoint you can use at work right away."
+msgstr "すぐに仕事で使えるWord、Excel、PowerPoint。"
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "WordPress memory limit"
+msgstr "WordPressのメモリ上限"
+
+msgid "WordPress tweaks & site loader"
+msgstr "WordPressの調整とサイトローダー"
+
+msgid "Works for blocks placed directly on the page. Inside a Section, use the Section “Content width” instead."
+msgstr "ページに直接置いたブロックに有効です。セクション内ではセクションの「コンテンツ幅」を使ってください。"
+
+msgid "Wrap long lines"
+msgstr "長い行を折り返す"
+
+msgid "Write a heading…"
+msgstr "見出しを入力…"
+
+msgid "Writing settings"
+msgstr "投稿設定"
+
+msgid "Written by"
+msgstr "執筆者"
+
+msgid "Years of experience"
+msgstr "経験年数"
+
+msgid "Years open"
+msgstr "営業年数"
+
+msgid "Years teaching"
+msgstr "指導年数"
+
+msgid "Yes, 0% instalments by credit card or two payments."
+msgstr "はい、クレジットカードの金利0%分割、または2回払いが可能です。"
+
+msgid "Yes, free motorbike and car parking right next to the spa."
+msgstr "はい、スパのすぐ隣にバイク・車の無料駐車場があります。"
+
+msgid "Yes, unlimited make-up lessons in classes at the same level."
+msgstr "はい、同じレベルのクラスで振替授業を無制限に受けられます。"
+
+msgid "Yes, we issue electronic invoices for individuals and companies."
+msgstr "はい、個人・法人どちらにも電子請求書を発行します。"
+
+msgid "Yes, we value it for free and only charge a fee when the sale is done."
+msgstr "はい、査定は無料で、手数料は売却成立時のみいただきます。"
+
+msgid "Yes, we work with 12 banks offering preferential rates, simple paperwork and fast disbursement."
+msgstr "はい、優遇金利・簡単な手続き・迅速な融資の12行と提携しています。"
+
+msgid "Yes, within 5 km, free for orders over $30."
+msgstr "はい、5km以内で、30ドル以上のご注文は無料です。"
+
+msgid "Yes, you get 2 free trial lessons before you decide to enrol."
+msgstr "はい、入会前に無料体験レッスンを2回受けられます。"
+
+msgid "Yes. Your therapist analyses your skin and chooses gentle, non-irritating products."
+msgstr "はい。セラピストが肌を分析し、刺激の少ないやさしい製品を選びます。"
+
+msgid "YouTube URL or .mp4/.webm file URL"
+msgstr "YouTubeのURLまたは.mp4/.webmファイルのURL"
+
+msgid "YouTube link"
+msgstr "YouTubeのURL"
+
+msgid "YouTube, Vimeo or .mp4 URL"
+msgstr "YouTube、Vimeo、.mp4のURL"
+
+msgid "Your design stays in draft until you publish it."
+msgstr "デザインは公開するまで下書きのままです。"
+
+msgid "Your learning path"
+msgstr "あなたの学習プラン"
+
+msgid "Your name"
+msgstr "お名前"
+
+msgid "Your needs"
+msgstr "ご要望"
+
+msgid "Your own therapist"
+msgstr "専属セラピスト"
+
+msgid "Your relaxation journey"
+msgstr "リラックスの旅"
+
+msgid "Your therapist analyses your skin and suggests a plan."
+msgstr "セラピストが肌を分析し、プランを提案します。"
+
+msgid "Zalo phone number or zalo.me link"
+msgstr "Zaloの電話番号またはzalo.meリンク"
+
+msgid "Zigzag"
+msgstr "ジグザグ"
+
+msgid "Zigzag list (image left / right)"
+msgstr "ジグザグリスト（画像左／右）"
+
+msgid "Zoom"
+msgstr "ズーム"
+
+msgid "Zoom & fade"
+msgstr "ズーム＆フェード"
+
+msgid "Zoom image"
+msgstr "画像を拡大"
+
+msgid "Zoom image on hover"
+msgstr "ホバー時に画像を拡大"
+
+msgid "[_site_admin_email] = the site admin email."
+msgstr "[_site_admin_email] = サイト管理者のメールアドレス。"
+
+msgid "[your-email] = the visitor’s email field."
+msgstr "[your-email] = 訪問者のメール欄。"
+
+msgid "admissions@academy.edu"
+msgstr "admissions@academy.edu"
+
+msgid "booking@restaurant.com"
+msgstr "booking@restaurant.com"
+
+msgid "booking@spa.com"
+msgstr "booking@spa.com"
+
+msgid "combine"
+msgstr "combine"
+
+msgid "desktop"
+msgstr "デスクトップ"
+
+msgid "e.g. a thank-you page, useful for Google Ads / Analytics conversions."
+msgstr "例: サンクスページ。Google Ads／Analyticsのコンバージョンに便利です。"
+
+msgid "hello@realestate.com"
+msgstr "hello@realestate.com"
+
+msgid "inherit"
+msgstr "inherit"
+
+msgid "lowercase"
+msgstr "lowercase"
+
+msgid "mobile"
+msgstr "モバイル"
+
+msgid "no – check the SMTP settings"
+msgstr "いいえ – SMTP設定を確認してください"
+
+msgid "not set"
+msgstr "未設定"
+
+msgid "opens after "
+msgstr "開くまで"
+
+msgid "opens at "
+msgstr "開く位置"
+
+msgid "opens from #links"
+msgstr "#リンクから開く"
+
+msgid "opens from its button"
+msgstr "専用ボタンから開く"
+
+msgid "opens on exit intent"
+msgstr "離脱しようとしたときに開く"
+
+msgid "required"
+msgstr "必須"
+
+msgid "tablet"
+msgstr "タブレット"
+
+msgid "yes"
+msgstr "はい"
+
+msgid "Áp dụng thư viện ảnh dạng block lồng nhau."
+msgstr "入れ子のブロック形式ギャラリーに適用します。"
+
+msgid "Ô nhập chuẩn và WooCommerce; plugin tự dựng giao diện có thể khác."
+msgstr "標準とWooCommerceの入力欄。独自UIのプラグインでは見た目が異なる場合があります。"
+
+msgid "Ô nhập mobile tối thiểu 16px"
+msgstr "モバイルの入力欄を16px以上に"
+
+msgid "Đang bật:"
+msgstr "有効:"
+
+msgid "Đoạn văn và danh sách trong vùng nội dung."
+msgstr "本文エリアの段落とリスト。"
+
+msgid "Đánh giá và form xếp một cột"
+msgstr "レビューとフォームを1列に"
+
+msgid "Đường phân cách dưới đầu trang"
+msgstr "ヘッダー下の区切り線"
+
+msgid "Đầu trang & chân trang"
+msgstr "ヘッダーとフッター"
+
+msgid "Đầu trang BIGSPY, kể cả khi đã bật sticky trong Header."
+msgstr "BIGSPYヘッダー（ヘッダーで固定表示をオンにした場合も含む）。"
+
+msgid "Để lại số điện thoại, tiệm gọi lại tư vấn trong giờ làm việc."
+msgstr "電話番号を残していただければ、営業時間内に折り返しご相談のお電話をします。"
+
+msgid "Đổ bóng nhẹ cho nút chính"
+msgstr "メインボタンに薄い影"
+
+msgid "Đổ bóng nhẹ cho ảnh nội dung"
+msgstr "本文画像に薄い影"
+
+msgid "Đổ bóng nhẹ dưới đầu trang"
+msgstr "ヘッダー下に薄い影"
+
+msgid "Đổ bóng nhẹ thẻ sản phẩm"
+msgstr "商品カードに薄い影"
+
+msgid "Đổ bóng thẻ bài viết"
+msgstr "投稿カードの影"
+
+msgid "Đổ bóng thẻ dịch vụ"
+msgstr "サービスカードの影"
+
+msgid "Ảnh blog phủ đầy khung"
+msgstr "ブログ画像で枠を埋める"
+
+msgid "Ảnh sản phẩm phủ đầy khung"
+msgstr "商品画像で枠を埋める"
+
+msgid "Ảnh đại diện ở trang bài viết đơn."
+msgstr "個別投稿ページのアイキャッチ画像。"
+
+msgid "Ẩn đồng hồ Countix trong giỏ hàng và thanh toán"
+msgstr "カートと決済でCountixタイマーを非表示"
+
+msgid "– Author"
+msgstr "– 著者"
+
+msgid "– Category"
+msgstr "– カテゴリー"
+
+msgid "– Date"
+msgstr "– 日付"
+
+msgid "– Reading time"
+msgstr "– 読了時間"
+
+msgid "— Choose a form —"
+msgstr "— フォームを選択 —"
+
+msgid "— None —"
+msgstr "— なし —"
+
+msgid "“Get directions” button"
+msgstr "「道順」ボタン"
+
+msgid "“Hot” badge on featured products"
+msgstr "おすすめ商品に「Hot」バッジ"
+
+msgid "“Load more” button"
+msgstr "「もっと見る」ボタン"
+
+msgid "“New” badge for products added in the last N days (0 = off)"
+msgstr "過去N日以内に追加した商品に「NEW」バッジ（0 = オフ）"
+
+msgid "“Read more” style"
+msgstr "「続きを読む」のスタイル"
+
+msgid "“Read more” text"
+msgstr "「続きを読む」のテキスト"
+
+msgid "“Read more” text (empty to hide)"
+msgstr "「続きを読む」のテキスト（空欄で非表示）"
+
+msgid "“Same as WordPress” follows each user’s profile language."
+msgstr "「WordPressと同じ」は各ユーザーのプロフィール言語に従います。"
+
+msgid "“View all” link"
+msgstr "「すべて見る」リンク"
+
+msgid "“View all” text"
+msgstr "「すべて見る」のテキスト"
+
+msgid "…or an address"
+msgstr "…または住所"
+
+msgid "…or use an image instead"
+msgstr "…または代わりに画像を使う"
+
+msgid "← Older posts"
+msgstr "← 古い投稿"
+
+msgid "★ Built-in form (no plugin needed)"
+msgstr "★ 内蔵フォーム（プラグイン不要）"

@@ -9,11 +9,32 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: bigspy-ai-theme-wp\n"
 
+msgid " to open this popup."
+msgstr "即可打开此弹窗。"
+
+msgid "\"Read more\" text (optional)"
+msgstr "\"阅读更多\"文字（可选）"
+
+msgid "% of screen"
+msgstr "% 屏幕"
+
+msgid "% of screen (vh)"
+msgstr "% 屏幕（vh）"
+
 msgid "%s comment"
 msgstr "%s 条评论"
 
+msgid "%s min read"
+msgstr "阅读约 %s 分钟"
+
 msgid "%s product"
 msgstr "%s 件商品"
+
+msgid "(empty)"
+msgstr "（空）"
+
+msgid "+ Add a custom link button"
+msgstr "+ 添加自定义链接按钮"
 
 msgid "-Deep skin analysis"
 msgstr "-深层皮肤分析"
@@ -57,6 +78,12 @@ msgstr "/ 套餐"
 msgid "/ session"
 msgstr "/ 次"
 
+msgid "1 large + 2 small (right)"
+msgstr "1 大 + 2 小（右）"
+
+msgid "1 large + 3 small"
+msgstr "1 大 + 3 小"
+
 msgid "1,200+ deals"
 msgstr "成交 1,200+ 笔"
 
@@ -90,8 +117,14 @@ msgstr "15 年房地产从业经验。"
 msgid "15% off your first visit"
 msgstr "首次到店享 85 折"
 
+msgid "2 columns"
+msgstr "2 栏"
+
 msgid "2 free trial lessons"
 msgstr "2 节免费试听课"
+
+msgid "2 small + 1 large (right)"
+msgstr "2 小 + 1 大（右）"
 
 msgid "2-bedroom apartment"
 msgstr "两居室公寓"
@@ -125,6 +158,9 @@ msgstr "35 m²，适合年轻人及出租。"
 
 msgid "35+ projects on offer"
 msgstr "35+ 个在售项目"
+
+msgid "3D shade"
+msgstr "3D 阴影"
 
 msgid "4 steps to your goal"
 msgstr "实现目标的 4 个步骤"
@@ -225,6 +261,9 @@ msgstr "签约前检查水电、墙面和门窗的清单。"
 msgid "A clear path and very detailed feedback. I went up 1.5 bands in just 4 months."
 msgstr "路径清晰，反馈非常详细。仅 4 个月我就提高了 1.5 分。"
 
+msgid "A colored band shown above the footer on every page, e.g. “Ready to start? → Contact us”."
+msgstr "每个页面页脚上方显示的彩色横条，例如“准备好开始了吗？→ 联系我们”。"
+
 msgid "A complete dining experience"
 msgstr "完整的用餐体验"
 
@@ -251,6 +290,9 @@ msgstr "让你真正放松的绿色空间"
 
 msgid "A kitchen certified for hygiene and food safety."
 msgstr "厨房通过卫生与食品安全认证。"
+
+msgid "A preset changes column counts and display toggles only. It does not delete or rewrite your widgets, text, links or colors."
+msgstr "预设只更改栏数和显示开关，不会删除或改写您的小工具、文字、链接或颜色。"
 
 msgid "A quick health check of the server and WordPress setup. Items marked with ! are below the recommended value."
 msgstr "快速检查服务器和 WordPress 设置。带 ! 的项目低于推荐值。"
@@ -279,8 +321,50 @@ msgstr "关于中心"
 msgid "About us"
 msgstr "关于我们"
 
+msgid "Above"
+msgstr "上方"
+
+msgid "Absolute (free placement inside parent)"
+msgstr "绝对定位（在父元素内自由放置）"
+
+msgid "Accent"
+msgstr "强调色"
+
+msgid "Accent (badges, links, buttons)"
+msgstr "强调色（标签、链接、按钮）"
+
+msgid "Accent (button, focus)"
+msgstr "强调色（按钮、焦点）"
+
+msgid "Accent (icon, border)"
+msgstr "强调色（图标、边框）"
+
+msgid "Accent (tiles, rings, pills)"
+msgstr "强调色（方块、圆环、胶囊）"
+
+msgid "Accent / focus"
+msgstr "强调色 / 焦点"
+
+msgid "Accent color"
+msgstr "强调色"
+
+msgid "Accepted payment methods"
+msgstr "支持的付款方式"
+
+msgid "Accessible label (aria-label)"
+msgstr "无障碍标签（aria-label）"
+
+msgid "Accordion"
+msgstr "手风琴"
+
+msgid "Account"
+msgstr "账户"
+
 msgid "Accountant"
 msgstr "会计"
+
+msgid "Actions"
+msgstr "操作"
 
 msgid "Active dot fills up"
 msgstr "当前圆点逐渐填满"
@@ -288,20 +372,98 @@ msgstr "当前圆点逐渐填满"
 msgid "Active plugins"
 msgstr "已启用的插件"
 
+msgid "Active tab"
+msgstr "当前标签页"
+
+msgid "Active tab colors"
+msgstr "当前标签页颜色"
+
+msgid "Active tab text"
+msgstr "当前标签页文字"
+
 msgid "Activities"
 msgstr "活动"
+
+msgid "Add FAQ schema (Google rich results)"
+msgstr "添加 FAQ 结构化数据（Google 富媒体搜索结果）"
+
+msgid "Add a block above"
+msgstr "在上方添加区块"
 
 msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
 msgstr "添加页面并插入 BIGSPY 区块或起始页面模板。"
 
+msgid "Add after"
+msgstr "在后面添加"
+
+msgid "Add banner"
+msgstr "添加横幅"
+
+msgid "Add bar"
+msgstr "添加横条"
+
+msgid "Add before"
+msgstr "在前面添加"
+
+msgid "Add content, Rows, Banners…"
+msgstr "添加内容、行、横幅…"
+
+msgid "Add field"
+msgstr "添加字段"
+
+msgid "Add image"
+msgstr "添加图片"
+
+msgid "Add image into the text (drag its corner to resize)"
+msgstr "在文字中插入图片（拖动角落调整大小）"
+
+msgid "Add item"
+msgstr "添加项目"
+
 msgid "Add layout"
 msgstr "添加布局"
+
+msgid "Add milestone"
+msgstr "添加里程碑"
+
+msgid "Add new block"
+msgstr "添加新区块"
 
 msgid "Add new layout"
 msgstr "添加新布局"
 
+msgid "Add or edit footer content in Widgets"
+msgstr "在小工具中添加或编辑页脚内容"
+
+msgid "Add or reorder widgets in Appearance → Widgets."
+msgstr "在“外观 → 小工具”中添加或排序小工具。"
+
+msgid "Add photo"
+msgstr "添加照片"
+
+msgid "Add plan"
+msgstr "添加方案"
+
+msgid "Add profile links in the block settings."
+msgstr "在区块设置中添加个人资料链接。"
+
+msgid "Add slide"
+msgstr "添加幻灯片"
+
+msgid "Add the “Categories menu” element in the header builder."
+msgstr "在页头构建器中添加“分类菜单”元素。"
+
+msgid "Add to cart"
+msgstr "加入购物车"
+
+msgid "Add to cart button"
+msgstr "加入购物车按钮"
+
 msgid "Add to page"
 msgstr "添加到页面"
+
+msgid "Add widgets to this sidebar"
+msgstr "向此侧边栏添加小工具"
 
 msgid "Added as a synced design. Changes to its source update every copy."
 msgstr "已作为同步设计添加。修改原设计会更新所有副本。"
@@ -315,8 +477,26 @@ msgstr "添加设计不会发布页面。请先预览，准备好后保存草稿
 msgid "Additional CSS"
 msgstr "额外 CSS"
 
+msgid "Additional headers"
+msgstr "附加页头"
+
+msgid "Additional product tab content"
+msgstr "附加商品标签页内容"
+
+msgid "Additional product tab title"
+msgstr "附加商品标签页标题"
+
 msgid "Address"
 msgstr "地址"
+
+msgid "Adds a frosted blur layer over the photo (the photo itself is not zoomed) so text stays easy to read."
+msgstr "在照片上添加磨砂模糊层（照片本身不放大），让文字保持易读。"
+
+msgid "Adds published products whose SKU contains the search text."
+msgstr "添加 SKU 包含搜索文字的已发布商品。"
+
+msgid "Adds published products with a matching product tag."
+msgstr "添加带有匹配商品标签的已发布商品。"
 
 msgid "Admin & Customizer"
 msgstr "后台与自定义"
@@ -324,11 +504,32 @@ msgstr "后台与自定义"
 msgid "Administrators can still view the site. Visitors receive HTTP 503. Login, admin and API endpoints remain available. Purge your page/CDN cache when switching this option."
 msgstr "管理员仍可查看网站。访客将收到 HTTP 503。登录、后台和 API 仍可使用。切换此选项时请清除页面/CDN 缓存。"
 
+msgid "Advanced"
+msgstr "高级"
+
 msgid "Advice and viewings"
 msgstr "咨询与看房"
 
 msgid "Advice by chat and hotline 24/7."
 msgstr "通过聊天和热线 24 小时咨询。"
+
+msgid "After a delay"
+msgstr "延迟后"
+
+msgid "After a successful send"
+msgstr "发送成功后"
+
+msgid "After image"
+msgstr "之后的图片"
+
+msgid "After label"
+msgstr "之后的标签"
+
+msgid "After scrolling"
+msgstr "滚动后"
+
+msgid "After text"
+msgstr "之后的文字"
 
 msgid "After the header"
 msgstr "页眉之后"
@@ -348,11 +549,53 @@ msgstr "配有投影仪的空调教室"
 msgid "Airy garden seating"
 msgstr "通风的花园座位"
 
+msgid "Alert (red)"
+msgstr "警示（红色）"
+
+msgid "Alert / sale"
+msgstr "警示 / 促销"
+
+msgid "Align"
+msgstr "对齐"
+
+msgid "Align center"
+msgstr "居中对齐"
+
+msgid "Align left"
+msgstr "左对齐"
+
+msgid "Align right"
+msgstr "右对齐"
+
+msgid "Alignment"
+msgstr "对齐方式"
+
+msgid "All Google fonts in this list support Vietnamese."
+msgstr "此列表中的所有 Google 字体均支持越南语。"
+
 msgid "All archives (category, tag, author, date)"
 msgstr "所有归档（分类、标签、作者、日期）"
 
+msgid "All buttons"
+msgstr "所有按钮"
+
 msgid "All designs"
 msgstr "所有设计"
+
+msgid "All devices"
+msgstr "所有设备"
+
+msgid "All form & mail settings"
+msgstr "所有表单与邮件设置"
+
+msgid "All in one (one button opens the list)"
+msgstr "合而为一（一个按钮打开列表）"
+
+msgid "All in one button"
+msgstr "合一按钮"
+
+msgid "All on one side"
+msgstr "全部在同一侧"
 
 msgid "All pages"
 msgstr "所有页面"
@@ -366,6 +609,21 @@ msgstr "所有商品"
 msgid "Also on these post / page IDs (comma separated)"
 msgstr "同时显示在这些文章 / 页面 ID 上（用逗号分隔）"
 
+msgid "Also play on mobile"
+msgstr "在移动端也播放"
+
+msgid "Alt text"
+msgstr "替代文本"
+
+msgid "Alt text (describes the image)"
+msgstr "替代文本（描述图片）"
+
+msgid "Alternating left / right"
+msgstr "左右交替"
+
+msgid "Always"
+msgstr "始终"
+
 msgid "Always full width; its height is whatever your code or image makes it. Example: <a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
 msgstr "始终全宽显示；高度取决于你的代码或图片。示例：<a href=\"/sale\"><img src=\"...\" style=\"width:100%;display:block\"></a>"
 
@@ -374,6 +632,24 @@ msgstr "始终倾听，让每一餐更美味。"
 
 msgid "Always listens to find the right treatment."
 msgstr "始终倾听，找到合适的护理方案。"
+
+msgid "Always show"
+msgstr "始终显示"
+
+msgid "Always visible"
+msgstr "始终可见"
+
+msgid "Always visible (not only on hover)"
+msgstr "始终可见（不仅在悬停时）"
+
+msgid "Amber"
+msgstr "琥珀色"
+
+msgid "Amber deep"
+msgstr "深琥珀色"
+
+msgid "Amber pastel"
+msgstr "浅琥珀色"
 
 msgid "An about-the-author page or a public profile (LinkedIn, Facebook…)."
 msgstr "作者介绍页或公开个人资料（LinkedIn、Facebook…）。"
@@ -384,8 +660,44 @@ msgstr "统计与像素代码、性能优化、404 和维护页面。"
 msgid "And still growing"
 msgstr "并且仍在成长"
 
+msgid "Animate inner items one by one (ms between, 0 = off)"
+msgstr "逐个为内部元素添加动画（间隔毫秒，0 = 关闭）"
+
+msgid "Animate when scrolled into view"
+msgstr "滚动进入视野时播放动画"
+
+msgid "Animated highlight"
+msgstr "动态高亮"
+
+msgid "Animation"
+msgstr "动画"
+
+msgid "Animation duration (ms)"
+msgstr "动画时长（毫秒）"
+
 msgid "Anna"
 msgstr "安娜"
+
+msgid "Announcement"
+msgstr "公告"
+
+msgid "Announcement bar"
+msgstr "公告栏"
+
+msgid "Answer background"
+msgstr "答案背景"
+
+msgid "Answer…"
+msgstr "答案…"
+
+msgid "Any block…"
+msgstr "任意区块…"
+
+msgid "Any link (contact page, form, booking…)"
+msgstr "任意链接（联系页面、表单、预约…）"
+
+msgid "Any link to #popup-id"
+msgstr "任意指向 #popup-id 的链接"
 
 msgid "Any other questions? Send us a message for a free consultation."
 msgstr "还有其他问题？给我们留言，免费咨询。"
@@ -393,8 +705,29 @@ msgstr "还有其他问题？给我们留言，免费咨询。"
 msgid "Apartment specialist"
 msgstr "公寓专家"
 
+msgid "Appear after scrolling (px, 0 = always)"
+msgstr "滚动后出现（px，0 = 始终）"
+
+msgid "Applies when BIGSPY variation buttons are enabled. Set each color or image in Configure terms."
+msgstr "启用 BIGSPY 变体按钮时生效。请在“配置项目”中设置每个颜色或图片。"
+
+msgid "Apply"
+msgstr "应用"
+
+msgid "Apply effect to"
+msgstr "效果应用于"
+
 msgid "Apply what you learn to real situations."
 msgstr "将所学应用于真实场景。"
+
+msgid "Aqua"
+msgstr "水绿色"
+
+msgid "Aqua deep"
+msgstr "深水绿色"
+
+msgid "Aqua pastel"
+msgstr "浅水绿色"
 
 msgid "Arabica beans roasted every week, brewed as filter or espresso."
 msgstr "每周烘焙的阿拉比卡咖啡豆，可选手冲或意式浓缩。"
@@ -402,11 +735,50 @@ msgstr "每周烘焙的阿拉比卡咖啡豆，可选手冲或意式浓缩。"
 msgid "Archive layouts, cards, table of contents, author box, related posts."
 msgstr "归档布局、卡片、目录、作者框、相关文章。"
 
+msgid "Arrange the header with the drag & drop Header builder."
+msgstr "使用拖放式页头构建器排列页头。"
+
 msgid "Arrive on time – your table and dishes are ready."
 msgstr "准时到店——您的座位和菜品已准备就绪。"
 
+msgid "Arrow"
+msgstr "箭头"
+
+msgid "Arrow on the button"
+msgstr "按钮上的箭头"
+
+msgid "Arrows"
+msgstr "箭头"
+
+msgid "Arrows on mobile"
+msgstr "移动端箭头"
+
+msgid "Artist / show"
+msgstr "艺人 / 演出"
+
 msgid "As peaceful as a resort"
 msgstr "宁静如度假村"
+
+msgid "As typed"
+msgstr "按输入原样"
+
+msgid "Assign a menu to “Main menu”"
+msgstr "为“主菜单”分配菜单"
+
+msgid "Assign a menu to “Top bar menu” in Menus."
+msgstr "在“菜单”中为“顶部栏菜单”分配菜单。"
+
+msgid "Assign a menu to “Vertical menu”"
+msgstr "为“垂直菜单”分配菜单"
+
+msgid "Attention effect"
+msgstr "吸引注意效果"
+
+msgid "Audio"
+msgstr "音频"
+
+msgid "Audio file"
+msgstr "音频文件"
 
 msgid "Author"
 msgstr "作者"
@@ -416,6 +788,9 @@ msgstr "作者头像"
 
 msgid "Author bio"
 msgstr "作者简介"
+
+msgid "Author box (when the author has a bio)"
+msgstr "作者框（作者有简介时）"
 
 msgid "Author box heading (empty = “Written by”)"
 msgstr "作者框标题（留空 =“作者”）"
@@ -435,11 +810,50 @@ msgstr "作者名称"
 msgid "Author profile URL"
 msgstr "作者主页网址"
 
+msgid "Automatic (menu if assigned, else product categories)"
+msgstr "自动（已分配则用菜单，否则用商品分类）"
+
+msgid "Autoplay (muted)"
+msgstr "自动播放（静音）"
+
+msgid "Autoplay (seconds, 0 = off)"
+msgstr "自动播放（秒，0 = 关闭）"
+
+msgid "Autoplay every (seconds, 0 = off)"
+msgstr "每隔（秒）自动播放，0 = 关闭"
+
+msgid "Available elements (drag into a row)"
+msgstr "可用元素（拖入一行）"
+
 msgid "Award-winning national coffee champion."
 msgstr "屡获殊荣的全国咖啡冠军。"
 
+msgid "Azure"
+msgstr "天蓝色"
+
+msgid "Azure deep"
+msgstr "深天蓝色"
+
+msgid "Azure pastel"
+msgstr "浅天蓝色"
+
+msgid "BIGSPY AI Builder"
+msgstr "BIGSPY AI Builder"
+
+msgid "BIGSPY AI Theme WP is active."
+msgstr "BIGSPY AI Theme WP 已启用。"
+
 msgid "BIGSPY Studio"
 msgstr "BIGSPY Studio"
+
+msgid "BIGSPY blocks (show / hide)"
+msgstr "BIGSPY 区块（显示 / 隐藏）"
+
+msgid "BIGSPY classic"
+msgstr "BIGSPY 经典"
+
+msgid "BIGSPY elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually."
+msgstr "BIGSPY 元素使用 WordPress 区块编辑器。当前默认是经典编辑器；请在“撰写设置”中选择区块编辑器以可视化编辑布局。"
 
 msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
 msgstr "BIGSPY 维护模式已开启。访客无法浏览商店。"
@@ -447,11 +861,101 @@ msgstr "BIGSPY 维护模式已开启。访客无法浏览商店。"
 msgid "BIGSPY settings"
 msgstr "BIGSPY 设置"
 
+msgid "BIGSPY swatch color"
+msgstr "BIGSPY 色板颜色"
+
+msgid "BIGSPY swatch image"
+msgstr "BIGSPY 色板图片"
+
+msgid "BIGSPY swatch label"
+msgstr "BIGSPY 色板标签"
+
+msgid "BIGSPY swatch type"
+msgstr "BIGSPY 色板类型"
+
+msgid "BIGSPY · Kiểu toàn trang"
+msgstr "BIGSPY · 整页样式"
+
+msgid "BIGSPY – Full pages"
+msgstr "BIGSPY – 整页"
+
+msgid "BIGSPY – Page layout"
+msgstr "BIGSPY – 页面布局"
+
+msgid "BIGSPY – Sections"
+msgstr "BIGSPY – 版块"
+
+msgid "BIGSPY – Shop"
+msgstr "BIGSPY – 商店"
+
+msgid "BIGSPY: cart & checkout"
+msgstr "BIGSPY：购物车与结账"
+
+msgid "BIGSPY: catalog mode"
+msgstr "BIGSPY：目录模式"
+
+msgid "BIGSPY: product cards & page"
+msgstr "BIGSPY：商品卡片与页面"
+
+msgid "BIGSPY: shop layout"
+msgstr "BIGSPY：商店布局"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Back background"
+msgstr "背面背景"
+
+msgid "Back text"
+msgstr "背面文字"
+
+msgid "Back to Header builder"
+msgstr "返回页头构建器"
+
 msgid "Back to home"
 msgstr "返回首页"
 
 msgid "Back to top"
 msgstr "返回顶部"
+
+msgid "Back to top button"
+msgstr "返回顶部按钮"
+
+msgid "Back-to-top button"
+msgstr "返回顶部按钮"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Background blur (px)"
+msgstr "背景模糊（px）"
+
+msgid "Background brightness (%)"
+msgstr "背景亮度（%）"
+
+msgid "Background color"
+msgstr "背景颜色"
+
+msgid "Background color style"
+msgstr "背景颜色样式"
+
+msgid "Background image"
+msgstr "背景图片"
+
+msgid "Background image & overlay"
+msgstr "背景图片与遮罩"
+
+msgid "Background image (optional)"
+msgstr "背景图片（可选）"
+
+msgid "Background on hover"
+msgstr "悬停时背景"
+
+msgid "Background video"
+msgstr "背景视频"
+
+msgid "Backgrounds & borders"
+msgstr "背景与边框"
 
 msgid "Badge and faded card"
 msgstr "徽标和淡化卡片"
@@ -459,11 +963,29 @@ msgstr "徽标和淡化卡片"
 msgid "Badge and grayscale image"
 msgstr "徽标和灰度图片"
 
+msgid "Badge on the second option"
+msgstr "第二个选项上的标签"
+
 msgid "Badge only"
 msgstr "仅徽标"
 
+msgid "Badge shape"
+msgstr "标签形状"
+
+msgid "Badge text"
+msgstr "标签文字"
+
 msgid "Badge texts (empty = default)"
 msgstr "徽标文字（留空 = 默认）"
+
+msgid "Bakery, kids, gifts"
+msgstr "烘焙、儿童、礼品"
+
+msgid "Balance heading lines"
+msgstr "平衡标题行"
+
+msgid "Balanced (250 ms)"
+msgstr "均衡（250 毫秒）"
 
 msgid "Band score guarantee"
 msgstr "分数保障"
@@ -471,11 +993,44 @@ msgstr "分数保障"
 msgid "Bank loan file"
 msgstr "银行贷款材料"
 
+msgid "Bank transfer"
+msgstr "银行转账"
+
+msgid "Banner"
+msgstr "横幅"
+
 msgid "Banner code (HTML, inline CSS)"
 msgstr "横幅代码（HTML、内联 CSS）"
 
+msgid "Banner image"
+msgstr "横幅图片"
+
+msgid "Banner title"
+msgstr "横幅标题"
+
+msgid "Banners"
+msgstr "横幅"
+
+msgid "Bar height (px)"
+msgstr "横条高度（px）"
+
+msgid "Bar look"
+msgstr "横条外观"
+
+msgid "Bar on the left"
+msgstr "横条在左"
+
+msgid "Bar on top"
+msgstr "横条在顶部"
+
 msgid "Barista"
 msgstr "咖啡师"
+
+msgid "Bars"
+msgstr "条形"
+
+msgid "Basic HTML like <strong> works."
+msgstr "支持 <strong> 等基础 HTML。"
 
 msgid "Basic conversation"
 msgstr "基础会话"
@@ -486,11 +1041,23 @@ msgstr "能带来销量的精美网站"
 msgid "Beauty tips"
 msgstr "美容小贴士"
 
+msgid "Beauty, spa, fashion"
+msgstr "美容、水疗、时尚"
+
 msgid "Beer or soft drinks"
 msgstr "啤酒或软饮"
 
 msgid "Before each treatment our therapist analyses your skin and recommends the products that suit your skin and body best."
 msgstr "每次护理前，理疗师都会分析您的肌肤，推荐最适合您肌肤和身体的产品。"
+
+msgid "Before image"
+msgstr "之前的图片"
+
+msgid "Before label"
+msgstr "之前的标签"
+
+msgid "Before text"
+msgstr "之前的文字"
 
 msgid "Before the footer"
 msgstr "页脚之前"
@@ -501,38 +1068,161 @@ msgstr "页眉之前"
 msgid "Before the page content"
 msgstr "页面内容之前"
 
+msgid "Behaviour"
+msgstr "行为"
+
+msgid "Below"
+msgstr "下方"
+
+msgid "Below 100 darkens the photo, above 100 lightens it."
+msgstr "低于 100 会让照片变暗，高于 100 会让照片变亮。"
+
+msgid "Below the post"
+msgstr "文章下方"
+
 msgid "Benefits of regular massage"
 msgstr "定期按摩的好处"
+
+msgid "Berry pink"
+msgstr "莓果粉"
 
 msgid "Best sellers"
 msgstr "热销商品"
 
+msgid "Best selling"
+msgstr "畅销"
+
 msgid "Better skin after 3–5 sessions"
 msgstr "3–5 次后肌肤明显改善"
+
+msgid "Bevel"
+msgstr "斜面"
+
+msgid "Billing period"
+msgstr "计费周期"
 
 msgid "Birthdays, team dinners, events"
 msgstr "生日、团队聚餐、活动"
 
+msgid "Black & gold"
+msgstr "黑金"
+
+msgid "Black & white map"
+msgstr "黑白地图"
+
+msgid "Black 900"
+msgstr "黑色 900"
+
 msgid "Black pepper beef"
 msgstr "黑椒牛肉"
+
+msgid "Block Accordion của BIGSPY, không thay đổi cơ chế mở/đóng."
+msgstr "BIGSPY 手风琴区块，不改变展开/收起机制。"
+
+msgid "Block Icon Box ở chế độ card hoặc bordered."
+msgstr "卡片或描边模式的 Icon Box 区块。"
+
+msgid "Block hidden on all devices (still editable here)."
+msgstr "区块已在所有设备上隐藏（仍可在此编辑）。"
+
+msgid "Block name (shown in List View):"
+msgstr "区块名称（显示在列表视图中）："
+
+msgid "Block shown again."
+msgstr "区块已重新显示。"
+
+msgid "Block width"
+msgstr "区块宽度"
+
+msgid "Block ảnh WordPress và BIGSPY trong nội dung; logo giữ nguyên."
+msgstr "内容中的 WordPress 和 BIGSPY 图片区块；Logo 保持不变。"
 
 msgid "Blocks a common brute-force target. Leave off if you use the WordPress mobile app or Jetpack."
 msgstr "屏蔽暴力破解攻击的常见目标。如使用 WordPress 移动应用或 Jetpack，请保持关闭。"
 
+msgid "Blocks: “Products” (latest, featured, sale, best selling, top rated – grid or slider) and “Product Categories”."
+msgstr "区块：“商品”（最新、精选、促销、畅销、高评分——网格或轮播）和“商品分类”。"
+
 msgid "Blog"
 msgstr "博客"
+
+msgid "Blog & bài viết"
+msgstr "博客与文章"
 
 msgid "Blog & single post"
 msgstr "博客与单篇文章"
 
+msgid "Blog archive"
+msgstr "博客归档"
+
 msgid "Blog posts page"
 msgstr "文章列表页"
+
+msgid "Blog sidebar"
+msgstr "博客侧边栏"
+
+msgid "Blur to sharp"
+msgstr "由模糊到清晰"
+
+msgid "Bo góc banner BIGSPY"
+msgstr "BIGSPY 横幅圆角"
+
+msgid "Bo góc menu thả xuống"
+msgstr "下拉菜单圆角"
+
+msgid "Bo góc tab thông tin sản phẩm"
+msgstr "商品信息标签页圆角"
+
+msgid "Bo góc thẻ bài viết"
+msgstr "文章卡片圆角"
+
+msgid "Bo góc thẻ dịch vụ"
+msgstr "服务卡片圆角"
+
+msgid "Bo góc thẻ sản phẩm"
+msgstr "商品卡片圆角"
+
+msgid "Bo góc ô nhập biểu mẫu"
+msgstr "表单输入框圆角"
+
+msgid "Bo góc ảnh chi tiết sản phẩm"
+msgstr "商品详情图片圆角"
+
+msgid "Bo góc ảnh nội dung"
+msgstr "内容图片圆角"
+
+msgid "Bo góc ảnh đầu bài viết"
+msgstr "文章顶部图片圆角"
 
 msgid "Body care"
 msgstr "身体护理"
 
+msgid "Body font"
+msgstr "正文字体"
+
+msgid "Body font size – desktop (px)"
+msgstr "正文字号 – 桌面端（px）"
+
+msgid "Body font size – mobile (px)"
+msgstr "正文字号 – 移动端（px）"
+
+msgid "Body font weight"
+msgstr "正文字重"
+
+msgid "Body text"
+msgstr "正文"
+
+msgid "Bold"
+msgstr "粗体"
+
+msgid "Bold 700"
+msgstr "粗体 700"
+
 msgid "Bold lines"
 msgstr "粗线"
+
+msgid "Bold red"
+msgstr "醒目红"
 
 msgid "Book"
 msgstr "预约"
@@ -567,20 +1257,119 @@ msgstr "今日预约，首次到店享 85 折。"
 msgid "Booking is recommended from Friday to Sunday evening. On weekdays you can just walk in."
 msgstr "周五至周日晚上建议提前订座，工作日可直接到店。"
 
+msgid "Border"
+msgstr "边框"
+
+msgid "Border color"
+msgstr "边框颜色"
+
+msgid "Border color on hover"
+msgstr "悬停时边框颜色"
+
+msgid "Border style"
+msgstr "边框样式"
+
+msgid "Border width"
+msgstr "边框宽度"
+
+msgid "Border width (px, -1 = default)"
+msgstr "边框宽度（px，-1 = 默认）"
+
+msgid "Border width (px, -1 = style default)"
+msgstr "边框宽度（px，-1 = 样式默认）"
+
 msgid "Bordered"
 msgstr "带边框"
+
+msgid "Borders"
+msgstr "边框"
+
+msgid "Bottom"
+msgstr "底部"
+
+msgid "Bottom bar (full width)"
+msgstr "底部栏（全宽）"
 
 msgid "Bottom corner radius (px)"
 msgstr "底部圆角（px）"
 
+msgid "Bottom header"
+msgstr "底部页头"
+
+msgid "Bottom left (slide-in)"
+msgstr "左下（滑入）"
+
+msgid "Bottom left box"
+msgstr "左下方框"
+
+msgid "Bottom right (slide-in)"
+msgstr "右下（滑入）"
+
+msgid "Bottom, centered"
+msgstr "底部居中"
+
+msgid "Bounce"
+msgstr "弹跳"
+
+msgid "Box & image"
+msgstr "方框与图片"
+
+msgid "Box background"
+msgstr "方框背景"
+
+msgid "Box border"
+msgstr "方框边框"
+
+msgid "Box border width (px, -1 = style default)"
+msgstr "方框边框宽度（px，-1 = 样式默认）"
+
+msgid "Box padding (px, -1 = auto)"
+msgstr "方框内边距（px，-1 = 自动）"
+
+msgid "Box shadow (-1 = style default, 0 = none)"
+msgstr "方框阴影（-1 = 样式默认，0 = 无）"
+
+msgid "Box style"
+msgstr "方框样式"
+
+msgid "Boxed"
+msgstr "盒装"
+
+msgid "Boxed card"
+msgstr "盒装卡片"
+
+msgid "Boxed items"
+msgstr "盒装项目"
+
+msgid "Brackets [ ]"
+msgstr "方括号 [ ]"
+
+msgid "Brand"
+msgstr "品牌"
+
+msgid "Brand bar on the left"
+msgstr "左侧品牌条"
+
+msgid "Brand colors"
+msgstr "品牌色"
+
 msgid "Brand colors, palettes, typography and button styles."
 msgstr "品牌色、配色方案、字体和按钮样式。"
+
+msgid "Brand gradient"
+msgstr "品牌渐变"
+
+msgid "Brand gradient (light text)"
+msgstr "品牌渐变（浅色文字）"
 
 msgid "Brand line on the left"
 msgstr "左侧品牌线"
 
 msgid "Breadcrumb"
 msgstr "面包屑导航"
+
+msgid "Breadcrumbs"
+msgstr "面包屑"
 
 msgid "Brewing the perfect filter coffee"
 msgstr "冲出完美手冲咖啡"
@@ -591,6 +1380,15 @@ msgstr "新娘护理套餐"
 msgid "Bridal package"
 msgstr "新娘套餐"
 
+msgid "Brighten"
+msgstr "提亮"
+
+msgid "Bring to front (over content)"
+msgstr "置于顶层（覆盖内容）"
+
+msgid "Brush"
+msgstr "笔刷"
+
 msgid "Build a published page with blocks. Its content is shown without the site header/footer. Select no page to use the default screen."
 msgstr "用区块制作一个已发布页面。其内容将不带网站页眉/页脚显示。不选择页面则使用默认界面。"
 
@@ -599,6 +1397,15 @@ msgstr "从零开始创建"
 
 msgid "Build pages with blocks"
 msgstr "用区块搭建页面"
+
+msgid "Built-in BIGSPY form"
+msgstr "内置 BIGSPY 表单"
+
+msgid "Built-in form settings"
+msgstr "内置表单设置"
+
+msgid "Bulleted list"
+msgstr "项目符号列表"
 
 msgid "Business homepage"
 msgstr "企业首页"
@@ -609,8 +1416,56 @@ msgstr "企业或服务网站"
 msgid "Button"
 msgstr "按钮"
 
+msgid "Button %s"
+msgstr "按钮 %s"
+
+msgid "Button 1"
+msgstr "按钮 1"
+
+msgid "Button 2"
+msgstr "按钮 2"
+
+msgid "Button color"
+msgstr "按钮颜色"
+
+msgid "Button colors"
+msgstr "按钮配色"
+
+msgid "Button here"
+msgstr "按钮放这里"
+
+msgid "Button hover effect"
+msgstr "按钮悬停效果"
+
+msgid "Button label"
+msgstr "按钮标签"
+
+msgid "Button link"
+msgstr "按钮链接"
+
+msgid "Button link (empty = phone number from Contact info)"
+msgstr "按钮链接（留空 = 联系信息中的电话）"
+
+msgid "Button on hover"
+msgstr "悬停时按钮"
+
+msgid "Button size (px)"
+msgstr "按钮大小（px）"
+
+msgid "Button text"
+msgstr "按钮文字"
+
+msgid "Button text on hover"
+msgstr "悬停时按钮文字"
+
+msgid "Buttons"
+msgstr "按钮"
+
 msgid "Buttons and labels printed by the theme, e.g. “Read more”, “Share:”, “Related posts”."
 msgstr "主题显示的按钮和标签，例如“阅读更多”“分享：”“相关文章”。"
+
+msgid "Buttons with text"
+msgstr "带文字的按钮"
 
 msgid "Buy a package to save up to 30% and share it with family."
 msgstr "购买套餐最多可省 30%，还可与家人共享。"
@@ -630,6 +1485,30 @@ msgstr "买家免费咨询。委托我们出售的业主仅在成交时付费。
 msgid "Buying process"
 msgstr "购买流程"
 
+msgid "Bảng block WordPress; không áp dụng bảng thanh toán."
+msgstr "WordPress 表格区块；不作用于结账表格。"
+
+msgid "Bảng có hàng xen kẽ"
+msgstr "隔行变色表格"
+
+msgid "Bảng lịch sử đơn hàng trong tài khoản."
+msgstr "账户中的订单历史表格。"
+
+msgid "Bảng nội dung WordPress; không đổi giỏ hàng."
+msgstr "WordPress 内容表格；不改变购物车。"
+
+msgid "Bảng nội dung cuộn ngang trên mobile"
+msgstr "内容表格在移动端横向滚动"
+
+msgid "Bảng đơn hàng có hàng xen kẽ"
+msgstr "隔行变色订单表格"
+
+msgid "Bỏ nền thẻ mặc định cho đăng nhập, đăng ký và sửa tài khoản."
+msgstr "去掉登录、注册和编辑账户页面的默认卡片背景。"
+
+msgid "Bổ sung dấu hiệu focus, không tắt outline sẵn có."
+msgstr "补充焦点标识，不关闭原有轮廓。"
+
 msgid "Cakes baked today"
 msgstr "当天现烤蛋糕"
 
@@ -644,6 +1523,9 @@ msgstr "行动号召"
 
 msgid "Call us"
 msgstr "致电我们"
+
+msgid "Call-to-action band"
+msgstr "行动号召横条"
 
 msgid "Can I get an invoice?"
 msgstr "可以开发票吗？"
@@ -660,11 +1542,38 @@ msgstr "可以分期付款吗？"
 msgid "Can I try a lesson first?"
 msgstr "可以先试听一节课吗？"
 
+msgid "Can also be enabled per page in the “BIGSPY – Page layout” box."
+msgstr "也可在“BIGSPY – 页面布局”框中按页面启用。"
+
+msgid "Candy"
+msgstr "糖果"
+
 msgid "Can’t find your answer? Call or message us – we are always happy to help."
 msgstr "没找到答案？欢迎来电或留言，我们随时乐意帮忙。"
 
+msgid "Capitalize"
+msgstr "首字母大写"
+
+msgid "Caption"
+msgstr "图片说明"
+
+msgid "Caption (optional)"
+msgstr "图片说明（可选）"
+
 msgid "Caramelised fish, sour soup and crispy clay pot rice."
 msgstr "焦糖鱼、酸汤和砂锅锅巴饭。"
+
+msgid "Carbon red"
+msgstr "碳红"
+
+msgid "Card"
+msgstr "卡片"
+
+msgid "Card background"
+msgstr "卡片背景"
+
+msgid "Card colors"
+msgstr "卡片配色"
 
 msgid "Card corner radius (px, -1 = default)"
 msgstr "卡片圆角（px，-1 = 默认）"
@@ -674,6 +1583,15 @@ msgstr "卡片细节"
 
 msgid "Card inner space (px, -1 = default)"
 msgstr "卡片内边距（px，-1 = 默认）"
+
+msgid "Card style"
+msgstr "卡片样式"
+
+msgid "Card style (background + shadow)"
+msgstr "卡片样式（背景 + 阴影）"
+
+msgid "Card with shadow"
+msgstr "带阴影的卡片"
 
 msgid "Caring service"
 msgstr "贴心服务"
@@ -687,13 +1605,40 @@ msgstr "贴心的理疗师"
 msgid "Cart"
 msgstr "购物车"
 
+msgid "Cart & checkout layout"
+msgstr "购物车与结账布局"
+
+msgid "Cart (WooCommerce)"
+msgstr "购物车（WooCommerce）"
+
+msgid "Cart icon"
+msgstr "购物车图标"
+
+msgid "Cart layout"
+msgstr "购物车布局"
+
+msgid "Categories"
+msgstr "分类"
+
+msgid "Categories menu (vertical)"
+msgstr "分类菜单（垂直）"
+
 msgid "Category"
 msgstr "分类"
+
+msgid "Category & archive sidebar"
+msgstr "分类与归档侧边栏"
 
 msgid "Category badge on the image"
 msgstr "图片上的分类徽标"
 
 msgid "Center"
+msgstr "居中"
+
+msgid "Center when narrower"
+msgstr "较窄时居中"
+
+msgid "Centered"
 msgstr "居中"
 
 msgid "Centered title, then image"
@@ -705,8 +1650,29 @@ msgstr "证书"
 msgid "Certified in Thai therapeutic massage."
 msgstr "持有泰式理疗按摩证书。"
 
+msgid "Change icon"
+msgstr "更换图标"
+
+msgid "Change logos"
+msgstr "更换 Logo"
+
 msgid "Chat / Messenger"
 msgstr "聊天 / Messenger"
+
+msgid "Check"
+msgstr "勾选"
+
+msgid "Check marks"
+msgstr "勾选标记"
+
+msgid "Checkout layout"
+msgstr "结账布局"
+
+msgid "Chevron"
+msgstr "V 形箭头"
+
+msgid "Chi tiết & đánh giá · WooCommerce"
+msgstr "详情与评价 · WooCommerce"
 
 msgid "Child theme"
 msgstr "子主题"
@@ -714,14 +1680,56 @@ msgstr "子主题"
 msgid "Chloe"
 msgstr "克洛伊"
 
+msgid "Choose"
+msgstr "选择"
+
+msgid "Choose a before and an after image in the block settings."
+msgstr "请在区块设置中选择前后对比图片。"
+
+msgid "Choose a column layout here, then add content to each column in Widgets. Your existing widget content is kept when changing a layout."
+msgstr "在此选择栏目布局，然后在“小工具”中为每栏添加内容。更换布局时会保留现有小工具内容。"
+
+msgid "Choose a footer layout"
+msgstr "选择页脚布局"
+
+msgid "Choose a form first."
+msgstr "请先选择表单。"
+
+msgid "Choose a form in the block settings (Contact Form 7 or WPForms must be active)."
+msgstr "请在区块设置中选择表单（需启用 Contact Form 7 或 WPForms）。"
+
 msgid "Choose a ready-made design, then change its text, images and colors on the page."
 msgstr "选择现成的设计，然后在页面上修改文字、图片和颜色。"
+
+msgid "Choose a starting layout. It changes only the arrangement of header items; logo, menus, colors and button text stay yours. You can still drag every item below."
+msgstr "选择一个起始布局。它只改变页头元素的排列；Logo、菜单、颜色和按钮文字保持不变。您仍可拖动下方的每个元素。"
 
 msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
 msgstr "选择一个起点。BIGSPY 会创建未发布的草稿并打开编辑器，设计期间线上网站保持不变。"
 
 msgid "Choose a treatment and time by phone or chat."
 msgstr "通过电话或聊天选择护理项目和时间。"
+
+msgid "Choose an audio file in the block settings."
+msgstr "请在区块设置中选择音频文件。"
+
+msgid "Choose form"
+msgstr "选择表单"
+
+msgid "Choose from the color palette library"
+msgstr "从配色库中选择"
+
+msgid "Choose image"
+msgstr "选择图片"
+
+msgid "Choose images"
+msgstr "选择图片"
+
+msgid "Choose images from the media library."
+msgstr "从媒体库中选择图片。"
+
+msgid "Choose options"
+msgstr "选择选项"
 
 msgid "Choose the course for your goal, with evening and weekend classes for working adults."
 msgstr "按目标选择课程，为上班族提供晚间和周末班。"
@@ -738,6 +1746,54 @@ msgstr "如何为孩子选课程"
 msgid "Choosing the right sunscreen"
 msgstr "如何选对防晒霜"
 
+msgid "Chú thích ảnh BIGSPY, ảnh và thư viện ảnh WordPress."
+msgstr "BIGSPY 图片、WordPress 图片和图库的说明文字。"
+
+msgid "Chỉ block Banner của BIGSPY."
+msgstr "仅 BIGSPY 横幅区块。"
+
+msgid "Chỉ còn các kiểu áp dụng cho toàn trang (đầu trang, chân trang, trang WooCommerce, mobile). Kiểu cho ảnh, banner, nút, biểu mẫu, thẻ dịch vụ, FAQ, bài viết… nay nằm ngay trong từng khối: chọn khối → panel \"Style presets\". CSS tự nhập bên dưới vẫn ghi đè được."
+msgstr "这里只保留作用于全站的样式（页头、页脚、WooCommerce 页面、移动端）。图片、横幅、按钮、表单、服务卡片、FAQ、文章等样式现已放在各区块内：选择区块 →“Style presets”面板。下方自定义 CSS 仍可覆盖它们。"
+
+msgid "Chỉ có tác dụng khi plugin Countix tạo đồng hồ layout 1; không thay đổi giá hoặc thời hạn ưu đãi."
+msgstr "仅在 Countix 插件生成布局 1 计时器时生效；不改变价格或优惠期限。"
+
+msgid "Chỉ cắt hiển thị danh sách; tiêu đề đầy đủ vẫn trong trang bài."
+msgstr "仅截断列表中的显示；完整标题仍在文章页面中。"
+
+msgid "Chỉ giá trong danh sách; giữ giá cũ/gạch ngang."
+msgstr "仅列表中的价格；保留划线原价。"
+
+msgid "Chỉ khi hệ điều hành bật giảm chuyển động; giữ nguyên slider và menu."
+msgstr "仅在系统开启减少动态效果时生效；保留轮播和菜单。"
+
+msgid "Chỉ nút thêm vào giỏ ở trang chi tiết."
+msgstr "仅商品详情页的加入购物车按钮。"
+
+msgid "Chỉ nội dung bài blog; không thu hẹp trang bán hàng."
+msgstr "仅博客文章内容；不收窄销售页面。"
+
+msgid "Chỉ thiết bị có chuột và không yêu cầu giảm chuyển động."
+msgstr "仅限有鼠标且未要求减少动态效果的设备。"
+
+msgid "Chỉ đang bật"
+msgstr "仅已启用"
+
+msgid "Chỉ định dạng nội dung cảm nhận đã có; không tạo đánh giá."
+msgstr "仅格式化已有的客户感言；不生成评价。"
+
+msgid "Chỉ đổi màu; không thay đổi điểm đánh giá."
+msgstr "仅改变颜色；不改变评分。"
+
+msgid "Chữ & nội dung"
+msgstr "文字与内容"
+
+msgid "Circle"
+msgstr "圆形"
+
+msgid "Circle + ring"
+msgstr "圆形 + 圆环"
+
 msgid "Classic (one large post per row)"
 msgstr "经典（每行一篇大文章）"
 
@@ -753,8 +1809,17 @@ msgstr "清理 WordPress"
 msgid "Clean, fragrant and quiet. Booking by chat is very quick."
 msgstr "干净、芳香又安静。通过聊天预约非常快。"
 
+msgid "Cleaning, water, pools"
+msgstr "清洁、水务、泳池"
+
 msgid "Clear advice with no pressure. The bank loan was handled from start to finish."
 msgstr "建议清晰，毫无压力。银行贷款从头到尾都有人办理。"
+
+msgid "Clear all presets"
+msgstr "清除所有预设"
+
+msgid "Clear formatting"
+msgstr "清除格式"
 
 msgid "Clear legal status"
 msgstr "产权清晰"
@@ -762,11 +1827,29 @@ msgstr "产权清晰"
 msgid "Clear tuition, plenty of offers"
 msgstr "学费透明，优惠多多"
 
+msgid "Click"
+msgstr "点击"
+
+msgid "Click a look to apply it, then fine-tune below."
+msgstr "点击一种外观即可应用，然后在下方微调。"
+
+msgid "Click on the image to add a point. Drag sliders to move it."
+msgstr "点击图片添加标记点，拖动滑块移动位置。"
+
+msgid "Click to apply, click again to remove. Colors follow your theme. Settings above still work."
+msgstr "点击应用，再次点击移除。颜色跟随主题。上方设置仍然有效。"
+
 msgid "Clients"
 msgstr "客户"
 
 msgid "Clinical acne care"
 msgstr "临床祛痘护理"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Close filters"
+msgstr "关闭筛选"
 
 msgid "Close menu"
 msgstr "关闭菜单"
@@ -774,8 +1857,32 @@ msgstr "关闭菜单"
 msgid "Close search"
 msgstr "关闭搜索"
 
+msgid "Close when clicking outside"
+msgstr "点击外部时关闭"
+
 msgid "Closed in 15 years"
 msgstr "15 年累计成交"
+
+msgid "Clouds"
+msgstr "云朵"
+
+msgid "Cobalt"
+msgstr "钴蓝"
+
+msgid "Cobalt deep"
+msgstr "深钴蓝"
+
+msgid "Cobalt pastel"
+msgstr "浅钴蓝"
+
+msgid "Code"
+msgstr "代码"
+
+msgid "Code / HTML"
+msgstr "代码 / HTML"
+
+msgid "Code to display"
+msgstr "要显示的代码"
 
 msgid "Coding basics"
 msgstr "编程基础"
@@ -783,8 +1890,7445 @@ msgstr "编程基础"
 msgid "Coffee ratio, water temperature and brewing time for a rich cup."
 msgstr "咖啡粉量、水温和萃取时间，冲出浓郁的一杯。"
 
+msgid "Coffee, tea, handmade"
+msgstr "咖啡、茶、手工"
+
+msgid "Collapse behind a Menu button"
+msgstr "收进菜单按钮"
+
 msgid "Collect points and enjoy 10% off as a regular."
 msgstr "积分累计，老顾客享 9 折。"
 
+msgid "Color"
+msgstr "颜色"
+
+msgid "Color (usually the next/previous section background)"
+msgstr "颜色（通常为下一个/上一个版块的背景）"
+
+msgid "Color code"
+msgstr "颜色代码"
+
+msgid "Color gradient"
+msgstr "颜色渐变"
+
+msgid "Color mesh"
+msgstr "网格渐变"
+
+msgid "Color on hover"
+msgstr "悬停颜色"
+
+msgid "Color palettes"
+msgstr "配色方案"
+
+msgid "Color swatches"
+msgstr "色板"
+
+msgid "Color theme"
+msgstr "颜色主题"
+
+msgid "Colored glow"
+msgstr "彩色光晕"
+
+msgid "Colored tile"
+msgstr "彩色方块"
+
+msgid "Colorful"
+msgstr "多彩"
+
+msgid "Colorful (tinted, gradient button)"
+msgstr "多彩（浅色调、渐变按钮）"
+
+msgid "Colors"
+msgstr "颜色"
+
 msgid "Colors & fonts"
 msgstr "颜色与字体"
+
+msgid "Colors & spacing"
+msgstr "颜色与间距"
+
+msgid "Colors follow your site palette (Customizer → Colors). Dark styles switch the text to white automatically."
+msgstr "颜色跟随网站配色（自定义 → 颜色）。深色样式会自动将文字改为白色。"
+
+msgid "Colour + bold only"
+msgstr "仅颜色 + 粗体"
+
+msgid "Column layout"
+msgstr "栏目布局"
+
+msgid "Column width (out of 12)"
+msgstr "栏宽（共 12 份）"
+
+msgid "Columns"
+msgstr "列"
+
+msgid "Columns on phones"
+msgstr "手机上的栏数"
+
+msgid "Columns – desktop"
+msgstr "栏数 – 桌面端"
+
+msgid "Columns – mobile"
+msgstr "栏数 – 移动端"
+
+msgid "Columns – tablet"
+msgstr "栏数 – 平板"
+
+msgid "Comma for several addresses."
+msgstr "多个地址用逗号分隔。"
+
+msgid "Comments"
+msgstr "评论"
+
+msgid "Comments are closed."
+msgstr "评论已关闭。"
+
+msgid "Commercial shophouse"
+msgstr "商用店铺"
+
+msgid "Compact menu below this screen width (px, 0 = off)"
+msgstr "屏幕宽度低于此值时使用紧凑菜单（px，0 = 关闭）"
+
+msgid "Company director"
+msgstr "公司董事"
+
+msgid "Conference set"
+msgstr "会议套餐"
+
+msgid "Consent text"
+msgstr "同意文字"
+
+msgid "Construction, delivery, energy"
+msgstr "建筑、配送、能源"
+
+msgid "Consultant"
+msgstr "顾问"
+
+msgid "Consultants"
+msgstr "顾问"
+
+msgid "Contact"
+msgstr "联系"
+
+msgid "Contact details, social links and clear navigation."
+msgstr "联系方式、社交链接和清晰的导航。"
+
+msgid "Contact for price"
+msgstr "价格请咨询"
+
+msgid "Contact info"
+msgstr "联系信息"
+
+msgid "Contact info & social"
+msgstr "联系信息与社交"
+
+msgid "Contact us"
+msgstr "联系我们"
+
+msgid "Contain"
+msgstr "完整显示"
+
+msgid "Container"
+msgstr "容器"
+
+msgid "Container width"
+msgstr "容器宽度"
+
+msgid "Container width (px)"
+msgstr "容器宽度（px）"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Content after purchase form"
+msgstr "购买表单后的内容"
+
+msgid "Content before purchase form"
+msgstr "购买表单前的内容"
+
+msgid "Content position"
+msgstr "内容位置"
+
+msgid "Content width"
+msgstr "内容宽度"
+
+msgid "Content width (%)"
+msgstr "内容宽度（%）"
+
+msgid "Content width (px, 0 = full)"
+msgstr "内容宽度（px，0 = 全宽）"
+
+msgid "Contents"
+msgstr "目录"
+
+msgid "Continuous"
+msgstr "连续"
+
+msgid "Cookie notice"
+msgstr "Cookie 提示"
+
+msgid "Cookie notice & reading"
+msgstr "Cookie 提示与阅读"
+
+msgid "Cookie notice, speed & reading"
+msgstr "Cookie 提示、速度与阅读"
+
+msgid "Copied block to clipboard."
+msgstr "已将区块复制到剪贴板。"
+
+msgid "Copied!"
+msgstr "已复制！"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Copy appearance"
+msgstr "复制外观"
+
+msgid "Copy button"
+msgstr "复制按钮"
+
+msgid "Copy design"
+msgstr "复制设计"
+
+msgid "Copy link"
+msgstr "复制链接"
+
+msgid "Copy this block:"
+msgstr "复制此区块："
+
+msgid "Copyright text"
+msgstr "版权文字"
+
+msgid "Copyright © [year] [site_title]. All rights reserved."
+msgstr "Copyright © [year] [site_title]。保留所有权利。"
+
+msgid "Coral"
+msgstr "珊瑚色"
+
+msgid "Coral deep"
+msgstr "深珊瑚色"
+
+msgid "Coral pastel"
+msgstr "浅珊瑚色"
+
+msgid "Corner radius"
+msgstr "圆角"
+
+msgid "Corner radius (px)"
+msgstr "圆角（px）"
+
+msgid "Corner radius (px, -1 = default)"
+msgstr "圆角（px，-1 = 默认）"
+
+msgid "Corner radius (px, -1 = style default)"
+msgstr "圆角（px，-1 = 样式默认）"
+
+msgid "Corner radius (px, -1 = theme default, 99 = pill)"
+msgstr "圆角（px，-1 = 主题默认，99 = 胶囊）"
+
+msgid "Corner radius (px, -1 = theme)"
+msgstr "圆角（px，-1 = 主题）"
+
+msgid "Corner radius on hover"
+msgstr "悬停时圆角"
+
+msgid "Could not read the form. Open it in Contact Form 7 to edit the mail settings."
+msgstr "无法读取表单。请在 Contact Form 7 中打开以编辑邮件设置。"
+
+msgid "Could not save. Edit it in Contact Form 7."
+msgstr "无法保存。请在 Contact Form 7 中编辑。"
+
+msgid "Count badge background"
+msgstr "计数标签背景"
+
+msgid "Count badge text"
+msgstr "计数标签文字"
+
+msgid "Countdown ring – top right"
+msgstr "倒计时圆环 – 右上角"
+
+msgid "Counter"
+msgstr "计数器"
+
+msgid "Couple rooms available"
+msgstr "提供双人房"
+
+msgid "Courses"
+msgstr "课程"
+
+msgid "Cover"
+msgstr "铺满"
+
+msgid "Cover image"
+msgstr "封面图片"
+
+msgid "Cover image (optional — YouTube thumbnail is used otherwise)"
+msgstr "封面图片（可选——否则使用 YouTube 缩略图）"
+
+msgid "Create a new form"
+msgstr "新建表单"
+
+msgid "Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY – Sections” (or the full “Homepage – business” pattern)."
+msgstr "创建页面，选择“全宽”模板，然后从“样板 →‘BIGSPY – Sections’”（或完整的“Homepage – business”样板）插入现成版块。"
+
+msgid "Create and assign menus"
+msgstr "创建并分配菜单"
+
+msgid "Create draft and open editor"
+msgstr "创建草稿并打开编辑器"
+
+msgid "Create pattern"
+msgstr "创建样板"
+
+msgid "Crimson"
+msgstr "绯红"
+
+msgid "Crimson deep"
+msgstr "深绯红"
+
+msgid "Crimson pastel"
+msgstr "浅绯红"
+
+msgid "Crop focus horizontal (%)"
+msgstr "裁剪焦点水平（%）"
+
+msgid "Crop focus vertical (%)"
+msgstr "裁剪焦点垂直（%）"
+
+msgid "Crop ratio"
+msgstr "裁剪比例"
+
+msgid "Current page / active color"
+msgstr "当前页 / 激活颜色"
+
+msgid "Curve"
+msgstr "曲线"
+
+msgid "Curve (inverse)"
+msgstr "曲线（反向）"
+
+msgid "Custom"
+msgstr "自定义"
+
+msgid "Custom CSS"
+msgstr "自定义 CSS"
+
+msgid "Custom background"
+msgstr "自定义背景"
+
+msgid "Custom color (below)"
+msgstr "自定义颜色（下方）"
+
+msgid "Custom colors"
+msgstr "自定义颜色"
+
+msgid "Custom fields left empty fall back to the writer’s profile."
+msgstr "留空的自定义字段将使用作者个人资料。"
+
+msgid "Custom link (replaces lightbox)"
+msgstr "自定义链接（替代灯箱）"
+
+msgid "Custom order (drag & drop in WooCommerce)"
+msgstr "自定义排序（在 WooCommerce 中拖放）"
+
+msgid "Custom party menus"
+msgstr "定制宴会菜单"
+
+msgid "Custom scripts"
+msgstr "自定义脚本"
+
+msgid "Custom width"
+msgstr "自定义宽度"
+
+msgid "Customer reviews"
+msgstr "客户评价"
+
+msgid "Customers"
+msgstr "客户"
+
+msgid "Customize"
+msgstr "自定义"
+
+msgid "Các tab mô tả, thông tin và đánh giá chuẩn."
+msgstr "标准的描述、信息和评价标签页。"
+
+msgid "Cân dòng tiêu đề"
+msgstr "平衡标题行"
+
+msgid "Có thể cắt mép ảnh để phủ đầy khung."
+msgstr "可能裁掉图片边缘以填满框。"
+
+msgid "Có thể để khoảng trống quanh ảnh; không cắt nội dung ảnh."
+msgstr "图片周围可能留白；不裁剪图片内容。"
+
+msgid "Căn giữa chú thích ảnh"
+msgstr "图片说明居中"
+
+msgid "Căn đều tiêu đề thẻ BIGSPY; tên đầy đủ vẫn hiển thị trong trang sản phẩm."
+msgstr "统一 BIGSPY 卡片标题高度；完整名称仍显示在商品页面。"
+
+msgid "Căn đều vùng tiêu đề sản phẩm"
+msgstr "统一商品标题区域"
+
+msgid "DESIGN YOUR WEBSITE"
+msgstr "设计你的网站"
+
+msgid "Danh sách bài viết do theme hoặc block Posts xuất ra."
+msgstr "由主题或 Posts 区块输出的文章列表。"
+
+msgid "Danh sách sản phẩm · WooCommerce"
+msgstr "商品列表 · WooCommerce"
+
+msgid "Danh sách trong các widget chân trang."
+msgstr "页脚小工具中的列表。"
+
+msgid "Daniel Carter"
+msgstr "Daniel Carter"
+
+msgid "Dark"
+msgstr "深色"
+
+msgid "Dark (light text)"
+msgstr "深色（浅色文字）"
+
+msgid "Dark bar, colored icons"
+msgstr "深色栏、彩色图标"
+
+msgid "Dark glow"
+msgstr "深色光晕"
+
+msgid "Dark overlay (%)"
+msgstr "深色遮罩（%）"
+
+msgid "Dark text"
+msgstr "深色文字"
+
+msgid "Dark · Auto, sport, tools"
+msgstr "深色 · 汽车、运动、工具"
+
+msgid "Dark · Gaming, tech, nightlife"
+msgstr "深色 · 游戏、科技、夜生活"
+
+msgid "Dark · Luxury, hotels"
+msgstr "深色 · 奢华、酒店"
+
+msgid "Dark · Outdoor, camping"
+msgstr "深色 · 户外、露营"
+
+msgid "Darken"
+msgstr "压暗"
+
+msgid "Dash"
+msgstr "短横"
+
+msgid "Dashed"
+msgstr "虚线"
+
+msgid "Data"
+msgstr "数据"
+
+msgid "Database"
+msgstr "数据库"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Date / label"
+msgstr "日期 / 标签"
+
+msgid "Date badge on the image"
+msgstr "图片上的日期徽标"
+
+msgid "Debug mode"
+msgstr "调试模式"
+
+msgid "Decoration"
+msgstr "装饰"
+
+msgid "Decrease indent"
+msgstr "减少缩进"
+
+msgid "Dedicated teachers"
+msgstr "敬业的教师"
+
+msgid "Deep cleansing, exfoliation, a hydrating mask and recovery."
+msgstr "深层清洁、去角质、补水面膜和修护。"
+
+msgid "Deep facial care"
+msgstr "深层面部护理"
+
+msgid "Deep hydration"
+msgstr "深层补水"
+
+msgid "Deep · Bakery, honey, tours"
+msgstr "浓郁 · 烘焙、蜂蜜、旅游"
+
+msgid "Deep · Banking, insurance"
+msgstr "浓郁 · 银行、保险"
+
+msgid "Deep · Beauty, cafés, kids"
+msgstr "浓郁 · 美容、咖啡馆、儿童"
+
+msgid "Deep · Clinics, cleaning, water"
+msgstr "浓郁 · 诊所、清洁、水务"
+
+msgid "Deep · Coffee, furniture"
+msgstr "浓郁 · 咖啡、家具"
+
+msgid "Deep · Construction, logistics"
+msgstr "浓郁 · 建筑、物流"
+
+msgid "Deep · Eco, juice, sport"
+msgstr "浓郁 · 环保、果汁、运动"
+
+msgid "Deep · Education, agencies"
+msgstr "浓郁 · 教育、代理机构"
+
+msgid "Deep · Events, cosmetics"
+msgstr "浓郁 · 活动、化妆品"
+
+msgid "Deep · Fashion, wine, gifts"
+msgstr "浓郁 · 时尚、葡萄酒、礼品"
+
+msgid "Deep · Finance, law, B2B"
+msgstr "浓郁 · 金融、法律、B2B"
+
+msgid "Deep · Food delivery, fitness"
+msgstr "浓郁 · 外卖、健身"
+
+msgid "Deep · Garden, farm, organic"
+msgstr "浓郁 · 园艺、农场、有机"
+
+msgid "Deep · Handmade, interior"
+msgstr "浓郁 · 手工、室内设计"
+
+msgid "Deep · Jewelry, bridal"
+msgstr "浓郁 · 珠宝、婚纱"
+
+msgid "Deep · Pool, laundry, spa"
+msgstr "浓郁 · 泳池、洗衣、水疗"
+
+msgid "Deep · SaaS, startups"
+msgstr "浓郁 · SaaS、创业公司"
+
+msgid "Deep · Sales, food, sport"
+msgstr "浓郁 · 销售、食品、运动"
+
+msgid "Deep · Spa, florist, wedding"
+msgstr "浓郁 · 水疗、花店、婚礼"
+
+msgid "Deep · Tech, minimal"
+msgstr "浓郁 · 科技、极简"
+
+msgid "Deep · Travel, IT, airlines"
+msgstr "浓郁 · 旅游、IT、航空"
+
+msgid "Deep · Wellness, tea, pharmacy"
+msgstr "浓郁 · 健康、茶、药店"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Default (follows “Show”)"
+msgstr "默认（跟随“显示”）"
+
+msgid "Default sidebar on pages"
+msgstr "页面默认侧边栏"
+
+msgid "Delay (ms)"
+msgstr "延迟（毫秒）"
+
+msgid "Delay (seconds)"
+msgstr "延迟（秒）"
+
+msgid "Delay before redirect (seconds)"
+msgstr "跳转前延迟（秒）"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Delete slide"
+msgstr "删除幻灯片"
+
+msgid "Delete this point"
+msgstr "删除此标记点"
+
+msgid "Delicious food, beautiful plating and a really friendly team. Our family comes every weekend."
+msgstr "菜品美味，摆盘漂亮，团队非常友好。我们全家每个周末都来。"
+
+msgid "Delivery within 30 minutes"
+msgstr "30 分钟内送达"
+
+msgid "Depth (shadow)"
+msgstr "层次（阴影）"
+
+msgid "Depth on hover"
+msgstr "悬停时层次"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Description for screen readers (optional)"
+msgstr "屏幕阅读器描述（可选）"
+
+msgid "Description…"
+msgstr "描述…"
+
+msgid "Design (spacing, background, border)"
+msgstr "设计（间距、背景、边框）"
+
+msgid "Design categories"
+msgstr "设计分类"
+
+msgid "Design copied. Select another block and click \"Paste design\"."
+msgstr "已复制设计。选择另一个区块并点击“粘贴设计”。"
+
+msgid "Desktop"
+msgstr "桌面端"
+
+msgid "Desktop & tablet only"
+msgstr "仅桌面端和平板"
+
+msgid "Desktop (px)"
+msgstr "桌面端（px）"
+
+msgid "Desktop and mobile"
+msgstr "电脑和手机"
+
+msgid "Desktop and tablet. With a boxed header both are the same."
+msgstr "电脑和平板。使用盒式页眉时两者相同。"
+
+msgid "Desktop only"
+msgstr "仅电脑"
+
+msgid "Detailed project analysis and transparent legal status. Very trustworthy."
+msgstr "项目分析详细，产权透明。非常值得信赖。"
+
+msgid "Details →"
+msgstr "详情 →"
+
+msgid "Devices"
+msgstr "设备"
+
+msgid "Direction"
+msgstr "方向"
+
+msgid "Directions"
+msgstr "路线"
+
+msgid "Disable WordPress emoji script"
+msgstr "禁用 WordPress 表情脚本"
+
+msgid "Disable XML-RPC"
+msgstr "禁用 XML-RPC"
+
+msgid "Disable oEmbed scripts"
+msgstr "禁用 oEmbed 脚本"
+
+msgid "Disabled"
+msgstr "已禁用"
+
+msgid "Dishes on the menu"
+msgstr "菜单菜品"
+
+msgid "Dishes served within 15 minutes at peak hours."
+msgstr "高峰时段 15 分钟内上菜。"
+
+msgid "Display"
+msgstr "显示"
+
+msgid "Displayed as text with a copy button – nothing is executed."
+msgstr "以带复制按钮的文本显示——不会执行任何代码。"
+
+msgid "Distance from the bottom – desktop (px)"
+msgstr "距底部距离 – 桌面端（px）"
+
+msgid "Distance from the bottom – mobile (px)"
+msgstr "距底部距离 – 移动端（px）"
+
+msgid "Distance from the side (px)"
+msgstr "距侧边距离（px）"
+
+msgid "Divided by dots"
+msgstr "用圆点分隔"
+
+msgid "Divided by lines"
+msgstr "用线条分隔"
+
+msgid "Divider"
+msgstr "分隔线"
+
+msgid "Divider between items"
+msgstr "项目之间的分隔线"
+
+msgid "Divider line next to content"
+msgstr "内容旁的分隔线"
+
+msgid "Divider start position (%)"
+msgstr "分隔线起始位置（%）"
+
+msgid "Do I need to book a table?"
+msgstr "需要订座吗？"
+
+msgid "Do not load Dashicons for visitors who are not logged in"
+msgstr "不为未登录访客加载 Dashicons"
+
+msgid "Do not show on"
+msgstr "不显示于"
+
+msgid "Do packages expire?"
+msgstr "套餐有有效期吗？"
+
+msgid "Do viewings cost anything?"
+msgstr "看房收费吗？"
+
+msgid "Do you deliver?"
+msgstr "提供外送吗？"
+
+msgid "Do you have vegetarian dishes?"
+msgstr "有素食吗？"
+
+msgid "Do you help with bank loans?"
+msgstr "你们能协助办理银行贷款吗？"
+
+msgid "Dot below"
+msgstr "下方圆点"
+
+msgid "Dots"
+msgstr "圆点"
+
+msgid "Dots (vertical)"
+msgstr "圆点（竖排）"
+
+msgid "Dots over the slides"
+msgstr "幻灯片上的圆点"
+
+msgid "Dotted"
+msgstr "点线"
+
+msgid "Dotted pattern"
+msgstr "圆点图案"
+
+msgid "Double"
+msgstr "双线"
+
+msgid "Download all Customizer settings (colors, fonts, header layout, footer, blog, shop, Additional CSS) as a JSON file. Import it on another website to start from the same design."
+msgstr "将所有自定义设置（颜色、字体、页头布局、页脚、博客、商店、额外 CSS）下载为 JSON 文件。在其他网站导入即可从相同设计开始。"
+
+msgid "Download export file"
+msgstr "下载导出文件"
+
+msgid "Drag elements in the header builder, set the logo, menus and buttons."
+msgstr "在页眉构建器中拖动元素，设置标志、菜单和按钮。"
+
+msgid "Drag to compare the images"
+msgstr "拖动以比较图片"
+
+msgid "Drag to resize"
+msgstr "拖动调整大小"
+
+msgid "Drag to resize (width %)"
+msgstr "拖动调整大小（宽度 %）"
+
+msgid "Drag to resize. The next column adjusts too; hold Alt to resize only this one. Double-click to reset."
+msgstr "拖动调整大小。下一栏也会随之调整；按住 Alt 只调整此栏。双击重置。"
+
+msgid "Dropdown"
+msgstr "下拉菜单"
+
+msgid "Dropdown background"
+msgstr "下拉菜单背景"
+
+msgid "Dropdown corner radius (px)"
+msgstr "下拉菜单圆角（px）"
+
+msgid "Dropdown text"
+msgstr "下拉菜单文字"
+
+msgid "Dropdown under header"
+msgstr "页头下方的下拉菜单"
+
+msgid "Drops"
+msgstr "水滴"
+
+msgid "Duplicate"
+msgstr "复制一份"
+
+msgid "Duplicate slide"
+msgstr "复制幻灯片"
+
+msgid "Duration (ms)"
+msgstr "时长（ms）"
+
+msgid "Dành chỗ cho hai dòng tiêu đề giúp hàng sản phẩm đều hơn."
+msgstr "预留两行标题空间，让商品行更整齐。"
+
+msgid "Dùng cho ảnh trong nội dung."
+msgstr "用于内容中的图片。"
+
+msgid "Dịch vụ, FAQ & cảm nhận"
+msgstr "服务、FAQ 与评价"
+
+msgid "Each button in its own color"
+msgstr "每个按钮使用各自的颜色"
+
+msgid "Each item can override it in its own settings."
+msgstr "每个项目都可在自身设置中覆盖。"
+
+msgid "Each logo in a box"
+msgstr "每个 Logo 放在方框中"
+
+msgid "Each post writer’s profile (Users → Profile)"
+msgstr "每篇文章作者的个人资料（用户 → 个人资料）"
+
+msgid "Each widget in a box"
+msgstr "每个小工具放在方框中"
+
+msgid "Each widget in a shadow card"
+msgstr "每个小工具放在带阴影的卡片中"
+
+msgid "Earth brown"
+msgstr "大地棕"
+
+msgid "Easing"
+msgstr "缓动"
+
+msgid "Easy booking"
+msgstr "轻松预约"
+
+msgid "Edit / add images"
+msgstr "编辑 / 添加图片"
+
+msgid "Edit block"
+msgstr "编辑区块"
+
+msgid "Edit layout"
+msgstr "编辑布局"
+
+msgid "Edit menu items in Menus. Style everything else here."
+msgstr "在“菜单”中编辑菜单项，其余样式在此设置。"
+
+msgid "Edit menus"
+msgstr "编辑菜单"
+
+msgid "Edit the HTML of this text"
+msgstr "编辑此文字的 HTML"
+
+msgid "Edit this form in WPForms"
+msgstr "在 WPForms 中编辑此表单"
+
+msgid "Editable HTML preview"
+msgstr "可编辑的 HTML 预览"
+
+msgid "Education centre homepage with 15 sections: hero, highlights, about, courses, learning path, numbers, method, tuition, gallery, teachers, student reviews, FAQ, news, enrolment and contact."
+msgstr "教育机构首页，含 15 个版块：主视觉、亮点、简介、课程、学习路径、数据、教学方法、学费、相册、教师、学员评价、常见问题、新闻、报名和联系方式。"
+
+msgid "Effect"
+msgstr "效果"
+
+msgid "Effect & motion"
+msgstr "效果与动态"
+
+msgid "Effect colors"
+msgstr "效果颜色"
+
+msgid "Effect for this button"
+msgstr "此按钮的效果"
+
+msgid "Effect on hover"
+msgstr "悬停效果"
+
+msgid "Eight new dishes inspired by autumn produce."
+msgstr "八道以秋季食材为灵感的新菜。"
+
+msgid "Electric blue & lime"
+msgstr "电光蓝与青柠"
+
+msgid "Elevated (soft shadow, lifts on hover)"
+msgstr "浮起（柔和阴影，悬停时上浮）"
+
+msgid "Email"
+msgstr "邮箱"
+
+msgid "Email address"
+msgstr "电子邮箱"
+
+msgid "Email address that the sender entered is invalid"
+msgstr "发件人填写的邮箱地址无效"
+
+msgid "Email delivery (SMTP)"
+msgstr "邮件发送（SMTP）"
+
+msgid "Email notification"
+msgstr "邮件通知"
+
+msgid "Email sent"
+msgstr "邮件已发送"
+
+msgid "Email sent:"
+msgstr "已发送邮件："
+
+msgid "Email subject"
+msgstr "邮件主题"
+
+msgid "Emails go through WP Mail SMTP"
+msgstr "邮件通过 WP Mail SMTP 发送"
+
+msgid "Emerald luxury"
+msgstr "祖母绿奢华"
+
+msgid "Emma Walsh"
+msgstr "Emma Walsh"
+
+msgid "Empty = address from Customizer → Header → Contact info."
+msgstr "留空 = 使用“自定义 → 页头 → 联系信息”中的地址。"
+
+msgid "Empty stars"
+msgstr "空星"
+
+msgid "Enable catalog mode"
+msgstr "启用目录模式"
+
+msgid "Enable floating contact buttons"
+msgstr "启用浮动联系按钮"
+
+msgid "Enable scroll animations on blocks"
+msgstr "为区块启用滚动动画"
+
+msgid "Endless scrolling strip"
+msgstr "无限滚动条带"
+
+msgid "English conversation"
+msgstr "英语会话"
+
+msgid "English for kids"
+msgstr "少儿英语"
+
+msgid "Enjoy"
+msgstr "尽情享受"
+
+msgid "Enjoy your treatment in a quiet private room."
+msgstr "在安静的私人房间享受护理。"
+
+msgid "Enter a CSS gradient or at least two colors."
+msgstr "请输入 CSS 渐变或至少两种颜色。"
+
+msgid "Enter an address in the block settings (or leave empty to use the site address)."
+msgstr "请在区块设置中输入地址（留空则使用网站地址）。"
+
+msgid "Entire site"
+msgstr "整个网站"
+
+msgid "Entrance (when scrolled into view)"
+msgstr "进场（滚动进入视野时）"
+
+msgid "Entrance animation"
+msgstr "进场动画"
+
+msgid "Entry"
+msgstr "条目"
+
+msgid "Equal height"
+msgstr "等高"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Events, music, nightlife"
+msgstr "活动、音乐、夜生活"
+
+msgid "Every block has “Visibility & animation” settings to hide it per device or animate it on scroll."
+msgstr "每个区块都有“可见性与动画”设置，可按设备隐藏或在滚动时添加动画。"
+
+msgid "Every block inside the slider is one slide. Banners work great."
+msgstr "轮播中的每个区块就是一张幻灯片。横幅效果很好。"
+
+msgid "Every project is checked for building permits, detailed zoning and real progress."
+msgstr "每个项目都会核查施工许可、详细规划和实际进度。"
+
+msgid "Every slide gets this height and its image stretches and crops to fill it, so the slider never jumps between tall and short slides."
+msgstr "每张幻灯片使用此高度，图片会拉伸并裁剪以填满，因此轮播不会在高低不同的幻灯片间跳动。"
+
+msgid "Every student gets a personal path based on a placement test."
+msgstr "每位学员根据分级测试获得个人学习路径。"
+
+msgid "Every treatment is tailored to your skin and what you want to achieve."
+msgstr "每项护理都根据您的肌肤和目标量身定制。"
+
+msgid "Everyone"
+msgstr "所有人"
+
+msgid "Everything filled in"
+msgstr "全部已填写"
+
+msgid "Everything for buyers"
+msgstr "为买家准备的一切"
+
+msgid "Example: contact, 42"
+msgstr "示例：contact, 42"
+
+msgid "Excerpt length (words)"
+msgstr "摘要长度（词）"
+
+msgid "Excerpt length (words, 0 = default)"
+msgstr "摘要长度（词，0 = 默认）"
+
+msgid "Exclude lines with blank mail tags"
+msgstr "排除邮件标签为空的行"
+
+msgid "Exclusive materials"
+msgstr "独家资料"
+
+msgid "Experience, skills and what the author writes about – this helps readers and Google trust the content."
+msgstr "作者的经验、技能和写作领域——帮助读者和 Google 信任内容。"
+
+msgid "Experienced chefs and managers who care about every plate."
+msgstr "经验丰富的厨师和管理者，用心对待每一道菜。"
+
+msgid "Expert in herbal head spa rituals."
+msgstr "草本头皮护理专家。"
+
+msgid "Export theme options"
+msgstr "导出主题选项"
+
+msgid "Extra bold"
+msgstr "特粗"
+
+msgid "Extra bold 800"
+msgstr "特粗 800"
+
+msgid "Extra large"
+msgstr "特大"
+
+msgid "Extra small"
+msgstr "特小"
+
+msgid "Extra-bold 800"
+msgstr "特粗 800"
+
+msgid "FAQ thành từng thẻ riêng"
+msgstr "FAQ 分成独立卡片"
+
+msgid "Facebook page link"
+msgstr "Facebook 主页链接"
+
+msgid "Facial treatments, therapeutic massage and herbal hair care with natural products, caring therapists and a calm space in the heart of the city."
+msgstr "面部护理、理疗按摩和草本护发，使用天然产品，贴心的理疗师，位于市中心的宁静空间。"
+
+msgid "Fade"
+msgstr "淡入淡出"
+
+msgid "Fade between tabs"
+msgstr "标签页之间淡入淡出"
+
+msgid "Families who found their home"
+msgstr "找到家的家庭"
+
+msgid "Family set"
+msgstr "家庭套餐"
+
+msgid "Farm vegetables, meat and fish with clear origins."
+msgstr "农场蔬菜、肉类和鱼类，来源清晰。"
+
+msgid "Fast (150 ms)"
+msgstr "快（150 毫秒）"
+
+msgid "Fast delivery"
+msgstr "快速配送"
+
+msgid "Featured"
+msgstr "推荐"
+
+msgid "Featured badge"
+msgstr "推荐徽标"
+
+msgid "Featured categories"
+msgstr "精选分类"
+
+msgid "Featured courses"
+msgstr "精选课程"
+
+msgid "Featured image shape"
+msgstr "特色图片形状"
+
+msgid "Featured projects"
+msgstr "精选项目"
+
+msgid "Features (one per line)"
+msgstr "功能（每行一项）"
+
+msgid "Features – one per line. Start a line with “-” for a feature NOT included."
+msgstr "功能——每行一项。以“-”开头表示不包含的功能。"
+
+msgid "Field background"
+msgstr "输入框背景"
+
+msgid "Field border"
+msgstr "输入框边框"
+
+msgid "Field focus ring"
+msgstr "输入框焦点环"
+
+msgid "Field name (mail tag)"
+msgstr "字段名称（邮件标签）"
+
+msgid "Field size"
+msgstr "输入框大小"
+
+msgid "Field style"
+msgstr "输入框样式"
+
+msgid "Fields"
+msgstr "字段"
+
+msgid "Fill"
+msgstr "填充"
+
+msgid "Fill from left"
+msgstr "从左侧填充"
+
+msgid "Filled"
+msgstr "填充"
+
+msgid "Filled brand background"
+msgstr "品牌色填充背景"
+
+msgid "Filled circle"
+msgstr "实心圆"
+
+msgid "Filled square"
+msgstr "实心方形"
+
+msgid "Filter"
+msgstr "筛选"
+
+msgid "Filters"
+msgstr "筛选"
+
+msgid "Finance advisor"
+msgstr "财务顾问"
+
+msgid "Finance support"
+msgstr "资金支持"
+
+msgid "Find the home that fits your life"
+msgstr "找到适合你生活的家"
+
+msgid "Fine-tune each column width (per device) by selecting the column."
+msgstr "选中栏目即可按设备微调每栏宽度。"
+
+msgid "First button only"
+msgstr "仅第一个按钮"
+
+msgid "First column is a header"
+msgstr "第一列为表头"
+
+msgid "First menu"
+msgstr "第一个菜单"
+
+msgid "First option"
+msgstr "第一个选项"
+
+msgid "First post large, then grid"
+msgstr "首篇大图，其余网格"
+
+msgid "First row is a header"
+msgstr "第一行为表头"
+
+msgid "First-time mortgage tips"
+msgstr "首次房贷小贴士"
+
+msgid "Fit content (inline)"
+msgstr "适应内容（行内）"
+
+msgid "Fit image"
+msgstr "适应图片"
+
+msgid "Fixed (px)"
+msgstr "固定（px）"
+
+msgid "Fixed (stays on screen)"
+msgstr "固定（停留在屏幕上）"
+
+msgid "Fixed background"
+msgstr "固定背景"
+
+msgid "Fixed height (e.g. 300px, 60vh) – crops to fill"
+msgstr "固定高度（如 300px、60vh）——裁剪以填满"
+
+msgid "Flexible payment"
+msgstr "灵活付款"
+
+msgid "Flexible schedule"
+msgstr "时间灵活"
+
+msgid "Flip direction"
+msgstr "翻转方向"
+
+msgid "Flip horizontally"
+msgstr "水平翻转"
+
+msgid "Float left"
+msgstr "左浮动"
+
+msgid "Float right"
+msgstr "右浮动"
+
+msgid "Floating contact buttons"
+msgstr "悬浮联系按钮"
+
+msgid "Floating pill with shadow"
+msgstr "带阴影的浮动胶囊"
+
+msgid "Floor 12, 68 Park Avenue, City Centre"
+msgstr "公园大道 68 号 12 楼，市中心"
+
+msgid "Focal point"
+msgstr "焦点"
+
+msgid "Focused"
+msgstr "聚焦时"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "Font family"
+msgstr "字体系列"
+
+msgid "Font size"
+msgstr "字号"
+
+msgid "Font size (px)"
+msgstr "字号（px）"
+
+msgid "Font size (px, 0 = default)"
+msgstr "字号（px，0 = 默认）"
+
+msgid "Font size (px, 0 = size default)"
+msgstr "字号（px，0 = 尺寸默认）"
+
+msgid "Font size on mobile (px, 0 = same)"
+msgstr "移动端字号（px，0 = 相同）"
+
+msgid "Font size – desktop (px, 0 = default)"
+msgstr "字号 – 桌面端（px，0 = 默认）"
+
+msgid "Font size – mobile (px, 0 = same)"
+msgstr "字号 – 移动端（px，0 = 相同）"
+
+msgid "Font size – tablet (px, 0 = same)"
+msgstr "字号 – 平板（px，0 = 相同）"
+
+msgid "Font weight"
+msgstr "字重"
+
+msgid "Font, weight and style are set on Desktop and apply everywhere."
+msgstr "字体、字重和样式在桌面端设置，适用于所有设备。"
+
+msgid "Food safety"
+msgstr "食品安全"
+
+msgid "Food, cafés, travel"
+msgstr "餐饮、咖啡馆、旅游"
+
+msgid "Footer"
+msgstr "页脚"
+
+msgid "Footer (replaces the theme footer)"
+msgstr "页脚（替换主题页脚）"
+
+msgid "Footer 1 background"
+msgstr "页脚 1 背景"
+
+msgid "Footer 1 columns"
+msgstr "页脚 1 栏数"
+
+msgid "Footer 1 text"
+msgstr "页脚 1 文字"
+
+msgid "Footer 1 widget titles"
+msgstr "页脚 1 小工具标题"
+
+msgid "Footer 1 – Column %d"
+msgstr "页脚 1 – 第 %d 栏"
+
+msgid "Footer 2 background"
+msgstr "页脚 2 背景"
+
+msgid "Footer 2 columns"
+msgstr "页脚 2 栏数"
+
+msgid "Footer 2 text"
+msgstr "页脚 2 文字"
+
+msgid "Footer 2 – Column %d"
+msgstr "页脚 2 – 第 %d 栏"
+
+msgid "Footer bottom (copyright)"
+msgstr "页脚底部（版权）"
+
+msgid "Footer bottom menu"
+msgstr "页脚底部菜单"
+
+msgid "Footer columns, a footer built with blocks, copyright and floating contact buttons."
+msgstr "页脚列、用区块搭建的页脚、版权信息和悬浮联系按钮。"
+
+msgid "Footer designed with blocks"
+msgstr "用区块设计的页脚"
+
+msgid "Footer row 1"
+msgstr "页脚第 1 行"
+
+msgid "Footer row 2"
+msgstr "页脚第 2 行"
+
+msgid "Footer widgets"
+msgstr "页脚小工具"
+
+msgid "For Zalo you can enter just the phone number."
+msgstr "Zalo 可以只填写电话号码。"
+
+msgid "For ages 5–11"
+msgstr "适合 5–11 岁"
+
+msgid "For classic WooCommerce cart/checkout. Block checkout keeps its native layout."
+msgstr "用于经典的 WooCommerce 购物车/结账。区块结账保持原生布局。"
+
+msgid "For older settings and sites that always want product results."
+msgstr "适用于旧设置及始终需要商品结果的网站。"
+
+msgid "For owners"
+msgstr "面向业主"
+
+msgid "For skin, body and hair"
+msgstr "呵护肌肤、身体和秀发"
+
+msgid "For the single post template, add a Shortcode block with [bst_post_title], [bst_featured_image], [bst_post_meta], [bst_post_content], [bst_author_box], [bst_related_posts] or [bst_post_comments]."
+msgstr "对于单篇文章模板，请添加包含 [bst_post_title]、[bst_featured_image]、[bst_post_meta]、[bst_post_content]、[bst_author_box]、[bst_related_posts] 或 [bst_post_comments] 的简码区块。"
+
+msgid "Force products-only search (overrides scope)"
+msgstr "强制仅搜索商品（覆盖搜索范围）"
+
+msgid "Forest night"
+msgstr "森林之夜"
+
+msgid "Form"
+msgstr "表单"
+
+msgid "Form colors"
+msgstr "表单配色"
+
+msgid "Form entries"
+msgstr "表单提交记录"
+
+msgid "Form entry"
+msgstr "表单提交"
+
+msgid "Form look"
+msgstr "表单外观"
+
+msgid "Form name (shown in Form entries)"
+msgstr "表单名称（显示在表单提交记录中）"
+
+msgid "Form not found."
+msgstr "未找到表单。"
+
+msgid "Form on:"
+msgstr "表单来源："
+
+msgid "Form title"
+msgstr "表单标题"
+
+msgid "Form tài khoản nền phẳng"
+msgstr "扁平背景的账户表单"
+
+msgid "Founded in 2014, the centre has helped more than 5,000 students – from school pupils to working adults – master languages and skills."
+msgstr "中心成立于 2014 年，已帮助 5,000 多名学员——从中小学生到职场人士——掌握语言和技能。"
+
+msgid "Four columns for help, policies, contact and payments."
+msgstr "四栏：帮助、政策、联系和付款方式。"
+
+msgid "Four steps to a perfect meal"
+msgstr "完美用餐的四个步骤"
+
+msgid "Fragrant coffee and a quiet space. I often bring my laptop and work here in the afternoon."
+msgstr "咖啡香浓，环境安静。我经常下午带着笔记本来这里工作。"
+
+msgid "Frame border color"
+msgstr "边框颜色"
+
+msgid "Frame border width (px, outline styles)"
+msgstr "边框宽度（px，描边样式）"
+
+msgid "Frame corner radius (px, empty = default)"
+msgstr "边框圆角（px，留空 = 默认）"
+
+msgid "Free"
+msgstr "免费"
+
+msgid "Free consultation"
+msgstr "免费咨询"
+
+msgid "Free delivery for orders over 300.000đ"
+msgstr "订单满 300.000đ 免运费"
+
+msgid "Free learning kit"
+msgstr "免费学习套装"
+
+msgid "Free library"
+msgstr "免费图书馆"
+
+msgid "Free on orders over $30"
+msgstr "订单满 30 美元免费"
+
+msgid "Free paperwork support"
+msgstr "免费协助办理手续"
+
+msgid "Free parking"
+msgstr "免费停车"
+
+msgid "Free re-study"
+msgstr "免费重修"
+
+msgid "Free re-study until you pass"
+msgstr "免费重修直到通过"
+
+msgid "Free skin analysis"
+msgstr "免费肌肤分析"
+
+msgid "Free soft drinks"
+msgstr "免费软饮"
+
+msgid "Free valuation"
+msgstr "免费估价"
+
+msgid "Free viewings"
+msgstr "免费看房"
+
+msgid "Frequently asked questions"
+msgstr "常见问题"
+
+msgid "Fresh cyan"
+msgstr "清新青色"
+
+msgid "Fresh flavours, served with heart"
+msgstr "新鲜风味，用心呈现"
+
+msgid "Fresh green"
+msgstr "清新绿色"
+
+msgid "Fresh ingredients every day"
+msgstr "每日新鲜食材"
+
+msgid "From"
+msgstr "起"
+
+msgid "From 30 guests"
+msgstr "30 人起"
+
+msgid "From 4.5 to 7.0+, with detailed writing feedback every week."
+msgstr "从 4.5 到 7.0+，每周提供详细的写作批改。"
+
+msgid "From a family kitchen to a much-loved restaurant"
+msgstr "从家庭厨房到备受喜爱的餐厅"
+
+msgid "From booking to leaving, every detail is taken care of."
+msgstr "从预约到离开，每个细节都照顾周到。"
+
+msgid "From trusted developers"
+msgstr "来自可信赖的开发商"
+
+msgid "From:"
+msgstr "发件人："
+
+msgid "Front"
+msgstr "正面"
+
+msgid "Front background"
+msgstr "正面背景"
+
+msgid "Front page"
+msgstr "首页"
+
+msgid "Front text"
+msgstr "正面文字"
+
+msgid "Fruit teas"
+msgstr "水果茶"
+
+msgid "Fuchsia"
+msgstr "紫红色"
+
+msgid "Fuchsia deep"
+msgstr "深紫红色"
+
+msgid "Fuchsia pastel"
+msgstr "浅紫红色"
+
+msgid "Full"
+msgstr "完整"
+
+msgid "Full line below"
+msgstr "下方整条线"
+
+msgid "Full pages"
+msgstr "整页"
+
+msgid "Full screen"
+msgstr "全屏"
+
+msgid "Full screen width"
+msgstr "屏幕全宽"
+
+msgid "Full service"
+msgstr "全程服务"
+
+msgid "Full service: choosing a home, viewings, price negotiation, mortgage support and completing the notary and transfer paperwork."
+msgstr "全程服务：选房、看房、议价、房贷协助以及公证和过户手续。"
+
+msgid "Full size"
+msgstr "原始尺寸"
+
+msgid "Full width"
+msgstr "全宽"
+
+msgid "Full-body scrub and a nourishing moisture wrap."
+msgstr "全身磨砂和滋养保湿裹敷。"
+
+msgid "Full-screen lightbox"
+msgstr "全屏灯箱"
+
+msgid "Full-width banner (any code)"
+msgstr "全宽横幅（任意代码）"
+
+msgid "Full-width banner above the top bar (your code)"
+msgstr "顶栏上方的全宽横幅（你的代码）"
+
+msgid "Full-width header"
+msgstr "全宽页头"
+
+msgid "Full-width title bar"
+msgstr "全宽标题栏"
+
+msgid "Full-width underline"
+msgstr "全宽下划线"
+
+msgid "Fully sterilised"
+msgstr "全面消毒"
+
+msgid "Furniture, wood, bakery"
+msgstr "家具、木工、烘焙"
+
+msgid "Gallery"
+msgstr "图库"
+
+msgid "Gaming, sports, energy"
+msgstr "游戏、运动、能源"
+
+msgid "Gap (px)"
+msgstr "间距（px）"
+
+msgid "Gap between cards (px, -1 = default)"
+msgstr "卡片间距（px，-1 = 默认）"
+
+msgid "Gap between cards (px, -1 = theme)"
+msgstr "卡片间距（px，-1 = 主题）"
+
+msgid "Gap between columns"
+msgstr "栏间距"
+
+msgid "Gentle ingredients"
+msgstr "温和成分"
+
+msgid "Gentle rotate"
+msgstr "轻微旋转"
+
+msgid "Genuine imported products"
+msgstr "正品进口产品"
+
+msgid "Get a free consultation"
+msgstr "获取免费咨询"
+
+msgid "Get a free consultation and a quote within 24 hours."
+msgstr "免费咨询，24 小时内报价。"
+
+msgid "Get advice"
+msgstr "获取建议"
+
+msgid "Get directions"
+msgstr "获取路线"
+
+msgid "Get started"
+msgstr "开始使用"
+
+msgid "Ghi đè bố cục hai cột của theme trên desktop."
+msgstr "在桌面端覆盖主题的两栏布局。"
+
+msgid "Gifts"
+msgstr "礼品"
+
+msgid "Giãn dòng nội dung dễ đọc"
+msgstr "易读的内容行距"
+
+msgid "Giảm hiện tượng tự zoom ô nhập trên trình duyệt mobile."
+msgstr "减少移动浏览器中输入框的自动缩放。"
+
+msgid "Giảm hiệu ứng khi thiết bị yêu cầu"
+msgstr "设备要求时减少动态效果"
+
+msgid "Giỏ hàng & tài khoản · WooCommerce"
+msgstr "购物车与账户 · WooCommerce"
+
+msgid "Giỏ hàng chuẩn và block Cart; không thay đổi số tiền."
+msgstr "标准购物车和 Cart 区块；不改变金额。"
+
+msgid "Giới hạn tiêu đề thẻ blog 3 dòng"
+msgstr "博客卡片标题最多 3 行"
+
+msgid "Giữ khả năng xuống dòng nếu menu vẫn quá dài."
+msgstr "若菜单仍过长则允许换行。"
+
+msgid "Glass"
+msgstr "玻璃"
+
+msgid "Glass on image"
+msgstr "图片上的玻璃"
+
+msgid "Gloss"
+msgstr "光泽"
+
+msgid "Glow"
+msgstr "发光"
+
+msgid "Glow on your big day"
+msgstr "在重要的日子焕发光彩"
+
+msgid "Google Analytics, Facebook Pixel, chat widgets… Custom CSS goes in “Additional CSS”."
+msgstr "Google Analytics、Facebook Pixel、聊天小工具等。自定义 CSS 请放在“额外 CSS”中。"
+
+msgid "Google Map"
+msgstr "Google 地图"
+
+msgid "Google Maps embed code (recommended)"
+msgstr "Google 地图嵌入代码（推荐）"
+
+msgid "Google Maps link or address"
+msgstr "Google 地图链接或地址"
+
+msgid "Grace Miller"
+msgstr "Grace Miller"
+
+msgid "Gradient"
+msgstr "渐变"
+
+msgid "Gradient angle (°)"
+msgstr "渐变角度（°）"
+
+msgid "Gradient border"
+msgstr "渐变边框"
+
+msgid "Gradient code"
+msgstr "渐变代码"
+
+msgid "Gradient end"
+msgstr "渐变终点"
+
+msgid "Gradient end (gradient style)"
+msgstr "渐变终点（渐变样式）"
+
+msgid "Gradient line (brand colors)"
+msgstr "渐变线（品牌色）"
+
+msgid "Gradient pill"
+msgstr "渐变胶囊"
+
+msgid "Gradient start"
+msgstr "渐变起点"
+
+msgid "Gradient text"
+msgstr "渐变文字"
+
+msgid "Graduated"
+msgstr "已结业"
+
+msgid "Graphite & cyan"
+msgstr "石墨与青色"
+
+msgid "Gray"
+msgstr "灰色"
+
+msgid "Gray → color"
+msgstr "灰色 → 彩色"
+
+msgid "Gray, color on hover"
+msgstr "灰色，悬停时彩色"
+
+msgid "Grayscale to color"
+msgstr "灰度转彩色"
+
+msgid "Great for rows of columns, cards, icons and lists."
+msgstr "非常适合多栏、卡片、图标和列表的排列。"
+
+msgid "Great gifts"
+msgstr "超值礼品"
+
+msgid "Grid"
+msgstr "网格"
+
+msgid "Grid (row)"
+msgstr "网格（行）"
+
+msgid "Grid columns"
+msgstr "网格栏数"
+
+msgid "Grid of dots"
+msgstr "圆点网格"
+
+msgid "Grid pattern"
+msgstr "网格图案"
+
+msgid "Group"
+msgstr "分组"
+
+msgid "Group work, debates and role-play."
+msgstr "小组合作、辩论和角色扮演。"
+
+msgid "Grow"
+msgstr "放大"
+
+msgid "Growth potential"
+msgstr "增值潜力"
+
+msgid "Guests a year"
+msgstr "每年接待客人"
+
+msgid "Gói featured trong mẫu bảng giá BIGSPY."
+msgstr "BIGSPY 价格表模板中的推荐方案。"
+
+msgid "Gạch chân liên kết khi rê chân trang"
+msgstr "悬停时为页脚链接加下划线"
+
+msgid "Gạch chân liên kết trong văn bản"
+msgstr "为正文链接加下划线"
+
+msgid "H1 size (px)"
+msgstr "H1 大小（px）"
+
+msgid "H2 size (px)"
+msgstr "H2 大小（px）"
+
+msgid "H3 size (px)"
+msgstr "H3 大小（px）"
+
+msgid "H4 size (px)"
+msgstr "H4 大小（px）"
+
+msgid "HTML (advanced)"
+msgstr "HTML（高级）"
+
+msgid "HTML 1"
+msgstr "HTML 1"
+
+msgid "HTML 2"
+msgstr "HTML 2"
+
+msgid "HTML 3"
+msgstr "HTML 3"
+
+msgid "HTML and shortcodes are allowed. Tokens: [year], [site_title], [phone], [email]."
+msgstr "支持 HTML 和简码。占位符：[year]、[site_title]、[phone]、[email]。"
+
+msgid "HTML blocks"
+msgstr "HTML 区块"
+
+msgid "HTML tag"
+msgstr "HTML 标签"
+
+msgid "HTML, inline CSS and shortcodes. Scripts only work for administrators / editors. You can also type directly on the page."
+msgstr "HTML、内联 CSS 和简码。脚本仅对管理员 / 编辑生效。您也可以直接在页面上输入。"
+
+msgid "Hair care"
+msgstr "头发护理"
+
+msgid "Hair specialist"
+msgstr "护发专家"
+
+msgid "Half width"
+msgstr "半宽"
+
+msgid "Handover inspection"
+msgstr "交房验收"
+
+msgid "Hannah"
+msgstr "Hannah"
+
+msgid "Head chef"
+msgstr "主厨"
+
+msgid "Head chef with 12 years of experience"
+msgstr "拥有 12 年经验的主厨"
+
+msgid "Head of IELTS"
+msgstr "雅思负责人"
+
+msgid "Header"
+msgstr "页头"
+
+msgid "Header & menu"
+msgstr "页眉与菜单"
+
+msgid "Header (replaces the theme header)"
+msgstr "页眉（替换主题页眉）"
+
+msgid "Header builder"
+msgstr "页眉构建器"
+
+msgid "Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY."
+msgstr "页头构建器：添加“购物车”和“账户”元素。商店选项：自定义 → WooCommerce → BIGSPY。"
+
+msgid "Header cart icon"
+msgstr "页头购物车图标"
+
+msgid "Header color"
+msgstr "页头颜色"
+
+msgid "Header element: %s"
+msgstr "页头元素：%s"
+
+msgid "Header layout"
+msgstr "页头布局"
+
+msgid "Header layout & sticky"
+msgstr "页头布局与固定"
+
+msgid "Header style"
+msgstr "页眉样式"
+
+msgid "Heading"
+msgstr "标题"
+
+msgid "Heading & text"
+msgstr "标题与文字"
+
+msgid "Heading (empty = “Related posts”)"
+msgstr "标题（留空 =“相关文章”）"
+
+msgid "Heading align"
+msgstr "标题对齐"
+
+msgid "Heading font"
+msgstr "标题字体"
+
+msgid "Heading font weight"
+msgstr "标题字重"
+
+msgid "Heading max width (px, 0 = full)"
+msgstr "标题最大宽度（px，0 = 全宽）"
+
+msgid "Heading sizes (H1–H4)"
+msgstr "标题大小（H1–H4）"
+
+msgid "Heading text case"
+msgstr "标题大小写"
+
+msgid "Headings"
+msgstr "标题"
+
+msgid "Height"
+msgstr "高度"
+
+msgid "Height (px)"
+msgstr "高度（px）"
+
+msgid "Height (px, 0 = auto)"
+msgstr "高度（px，0 = 自动）"
+
+msgid "Height (px, 0 = default)"
+msgstr "高度（px，0 = 默认）"
+
+msgid "Height on mobile (px, 0 = same)"
+msgstr "移动端高度（px，0 = 相同）"
+
+msgid "Height unit"
+msgstr "高度单位"
+
+msgid "Height – desktop (% of screen)"
+msgstr "高度 – 桌面端（屏幕 %）"
+
+msgid "Height – desktop (px)"
+msgstr "高度 – 桌面端（px）"
+
+msgid "Height – mobile (% of screen)"
+msgstr "高度 – 移动端（屏幕 %）"
+
+msgid "Height – mobile (px)"
+msgstr "高度 – 移动端（px）"
+
+msgid "Height – tablet (% of screen)"
+msgstr "高度 – 平板（屏幕 %）"
+
+msgid "Height – tablet (px)"
+msgstr "高度 – 平板（px）"
+
+msgid "Helen"
+msgstr "Helen"
+
+msgid "Help & guides"
+msgstr "帮助与指南"
+
+msgid "Help renting out or reselling later."
+msgstr "协助日后出租或转售。"
+
+msgid "Herbal brightening bath"
+msgstr "草本亮肤浴"
+
+msgid "Herbal head spa"
+msgstr "草本头皮护理"
+
+msgid "Herbal tea"
+msgstr "花草茶"
+
+msgid "Herbal tea after treatment"
+msgstr "护理后的花草茶"
+
+msgid "Hidden"
+msgstr "隐藏"
+
+msgid "Hidden automatically after at most 3 seconds."
+msgstr "最多 3 秒后自动隐藏。"
+
+msgid "Hide"
+msgstr "隐藏"
+
+msgid "Hide \"%s\""
+msgstr "隐藏“%s”"
+
+msgid "Hide empty categories"
+msgstr "隐藏空分类"
+
+msgid "Hide footer"
+msgstr "隐藏页脚"
+
+msgid "Hide on desktop"
+msgstr "在桌面端隐藏"
+
+msgid "Hide on mobile"
+msgstr "在移动端隐藏"
+
+msgid "Hide on pages (IDs or slugs, comma separated)"
+msgstr "在这些页面隐藏（ID 或别名，用逗号分隔）"
+
+msgid "Hide on tablet"
+msgstr "在平板上隐藏"
+
+msgid "Hide page title"
+msgstr "隐藏页面标题"
+
+msgid "Hide prices and add-to-cart buttons, show a contact button instead. Useful for showroom / quotation websites."
+msgstr "隐藏价格和加入购物车按钮，改为显示联系按钮。适合展厅 / 报价型网站。"
+
+msgid "Hide the WordPress version from the page source"
+msgstr "在页面源代码中隐藏 WordPress 版本"
+
+msgid "Hide the form after sending"
+msgstr "发送后隐藏表单"
+
+msgid "Hide the post being viewed"
+msgstr "隐藏正在查看的文章"
+
+msgid "Hide the search field when the screen is narrower than (px, 0 = never)"
+msgstr "屏幕窄于此宽度时隐藏搜索框（px，0 = 从不）"
+
+msgid "Hide when the header is sticky (scrolled)"
+msgstr "页头固定时（滚动后）隐藏"
+
+msgid "Highlight"
+msgstr "高亮"
+
+msgid "Highlight color"
+msgstr "高亮颜色"
+
+msgid "Highlight menu links to page sections"
+msgstr "高亮指向页面版块的菜单链接"
+
+msgid "Highlight this plan"
+msgstr "突出此方案"
+
+msgid "Highlight this plan (popular)"
+msgstr "突出此方案（热门）"
+
+msgid "Highlighter marker"
+msgstr "荧光笔"
+
+msgid "Hiện toàn bộ ảnh thẻ blog"
+msgstr "完整显示博客卡片图片"
+
+msgid "Hiện trọn ảnh sản phẩm"
+msgstr "完整显示商品图片"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "Home care"
+msgstr "居家护理"
+
+msgid "Homepage – Education centre"
+msgstr "首页 – 教育机构"
+
+msgid "Homepage – Real estate"
+msgstr "首页 – 房地产"
+
+msgid "Homepage – Restaurant & café"
+msgstr "首页 – 餐厅与咖啡馆"
+
+msgid "Homepage – Spa & beauty"
+msgstr "首页 – 水疗与美容"
+
+msgid "Homepage – online shop"
+msgstr "首页 – 网上商店"
+
+msgid "Homes as described"
+msgstr "房源与描述一致"
+
+msgid "Horizontal"
+msgstr "水平"
+
+msgid "Horizontal align (when columns do not fill 12)"
+msgstr "水平对齐（栏数不满 12 时）"
+
+msgid "Horizontal line"
+msgstr "水平线"
+
+msgid "Hospitals, labs, care"
+msgstr "医院、实验室、护理"
+
+msgid "Hot stone massage"
+msgstr "热石按摩"
+
+msgid "Hotels, resorts, real estate"
+msgstr "酒店、度假村、房地产"
+
+msgid "Hotline"
+msgstr "热线"
+
+msgid "Hotline 2"
+msgstr "热线 2"
+
+msgid "House-roasted coffee"
+msgstr "自家烘焙咖啡"
+
+msgid "Hover"
+msgstr "悬停"
+
+msgid "Hover (click on phones)"
+msgstr "悬停（手机上为点击）"
+
+msgid "Hover background"
+msgstr "悬停背景"
+
+msgid "Hover effect"
+msgstr "悬停效果"
+
+msgid "Hover text"
+msgstr "悬停文字"
+
+msgid "How are projects checked?"
+msgstr "如何核查项目？"
+
+msgid "How far ahead should I book?"
+msgstr "需要提前多久预约？"
+
+msgid "How it works"
+msgstr "服务流程"
+
+msgid "How to choose great beef"
+msgstr "如何挑选好牛肉"
+
+msgid "How to read SPF and PA and pick one for oily or dry skin."
+msgstr "如何看懂 SPF 和 PA，并为油性或干性肌肤选择防晒。"
+
+msgid "How to read the grain, colour and freshness so beef stays tender and sweet."
+msgstr "通过纹理、颜色和新鲜度挑选，让牛肉鲜嫩多汁。"
+
+msgid "How to use sunscreen properly after treatment."
+msgstr "护理后如何正确使用防晒霜。"
+
+msgid "How to work out what you can repay and choose the right rate."
+msgstr "如何计算还款能力并选择合适的利率。"
+
+msgid "Hoàn tác"
+msgstr "撤销"
+
+msgid "Hình ảnh & banner"
+msgstr "图片与横幅"
+
+msgid "ID, marital status certificate, household registration and proof of income if you take a loan."
+msgstr "如贷款需提供身份证、婚姻状况证明、户口簿和收入证明。"
+
+msgid "IELTS 7.0 student"
+msgstr "雅思 7.0 学员"
+
+msgid "IELTS 8.5, 10 years of exam coaching."
+msgstr "雅思 8.5，10 年备考辅导经验。"
+
+msgid "IELTS guarantee"
+msgstr "雅思分数保障"
+
+msgid "IELTS preparation"
+msgstr "雅思备考"
+
+msgid "IT lecturer"
+msgstr "IT 讲师"
+
+msgid "Icon"
+msgstr "图标"
+
+msgid "Icon background"
+msgstr "图标背景"
+
+msgid "Icon background (filled styles)"
+msgstr "图标背景（填充样式）"
+
+msgid "Icon color"
+msgstr "图标颜色"
+
+msgid "Icon colors"
+msgstr "图标配色"
+
+msgid "Icon in a soft circle"
+msgstr "浅色圆形中的图标"
+
+msgid "Icon in the middle (optional)"
+msgstr "中间图标（可选）"
+
+msgid "Icon name (when marker = icon)"
+msgstr "图标名称（标记 = 图标时）"
+
+msgid "Icon only"
+msgstr "仅图标"
+
+msgid "Icon position"
+msgstr "图标位置"
+
+msgid "Icon size (px)"
+msgstr "图标大小（px）"
+
+msgid "Icon size (px, 0 = auto)"
+msgstr "图标大小（px，0 = 自动）"
+
+msgid "Icon size (px, 0 = default)"
+msgstr "图标大小（px，0 = 默认）"
+
+msgid "Icon style"
+msgstr "图标样式"
+
+msgid "Image"
+msgstr "图片"
+
+msgid "Image (side or background)"
+msgstr "图片（侧边或背景）"
+
+msgid "Image + form"
+msgstr "图片 + 表单"
+
+msgid "Image + text row"
+msgstr "图片 + 文字行"
+
+msgid "Image box"
+msgstr "图片框"
+
+msgid "Image column width"
+msgstr "图片列宽度"
+
+msgid "Image hotspots"
+msgstr "图片热点"
+
+msgid "Image hover"
+msgstr "图片悬停"
+
+msgid "Image hover effect"
+msgstr "图片悬停效果"
+
+msgid "Image left"
+msgstr "图片在左"
+
+msgid "Image on top"
+msgstr "图片在上"
+
+msgid "Image position"
+msgstr "图片位置"
+
+msgid "Image ratio"
+msgstr "图片比例"
+
+msgid "Image right"
+msgstr "图片在右"
+
+msgid "Image swatches"
+msgstr "图片色板"
+
+msgid "Image width (%)"
+msgstr "图片宽度（%）"
+
+msgid "Image, then title"
+msgstr "图片在前，标题在后"
+
+msgid "Images"
+msgstr "图片"
+
+msgid "Import"
+msgstr "导入"
+
+msgid "Import theme options"
+msgstr "导入主题选项"
+
+msgid "Important theme-wide settings."
+msgstr "重要的全局主题设置。"
+
+msgid "In 15 years"
+msgstr "15 年来"
+
+msgid "In 2012 we started in a small kitchen with six tables. What kept guests coming back was not fancy food but familiar flavours, cooked with the best ingredients and care in every detail."
+msgstr "2012 年，我们从只有六张桌子的小厨房起步。让客人一再光顾的不是花哨的菜式，而是熟悉的味道——用最好的食材精心烹制，注重每个细节。"
+
+msgid "In our after-visit survey"
+msgstr "在我们的到店后调查中"
+
+msgid "Include product SKU matches"
+msgstr "包含匹配的商品 SKU"
+
+msgid "Include product tag matches"
+msgstr "包含匹配的商品标签"
+
+msgid "Increase indent"
+msgstr "增加缩进"
+
+msgid "Indigo"
+msgstr "靛蓝"
+
+msgid "Indigo deep"
+msgstr "深靛蓝"
+
+msgid "Indigo pastel"
+msgstr "浅靛蓝"
+
+msgid "Individual title for every unit"
+msgstr "每套房独立产权证"
+
+msgid "Individual titles, finished infrastructure."
+msgstr "独立产权证，基础设施完善。"
+
+msgid "Industry, logistics, B2B"
+msgstr "工业、物流、B2B"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Info box on the map"
+msgstr "地图上的信息框"
+
+msgid "Ingredients chosen every morning, chefs with over 12 years of experience and a warm space – the perfect place for a date, a business lunch or a family weekend."
+msgstr "每天早上挑选食材，主厨拥有 12 年以上经验，环境温馨——约会、商务午餐或家庭周末的理想去处。"
+
+msgid "Inherit"
+msgstr "继承"
+
+msgid "Inline (no alignment)"
+msgstr "行内（无对齐）"
+
+msgid "Inline (one line)"
+msgstr "行内（单行）"
+
+msgid "Inline newsletter"
+msgstr "行内订阅表单"
+
+msgid "Insert image (click it, then drag its corner to resize)"
+msgstr "插入图片（点击图片后拖动角落调整大小）"
+
+msgid "Insert link"
+msgstr "插入链接"
+
+msgid "Insert table"
+msgstr "插入表格"
+
+msgid "Inside"
+msgstr "内部"
+
+msgid "Instagram link"
+msgstr "Instagram 链接"
+
+msgid "Install / set up WP Mail SMTP so emails are delivered"
+msgstr "安装 / 设置 WP Mail SMTP 以确保邮件送达"
+
+msgid "Install Contact Form 7"
+msgstr "安装 Contact Form 7"
+
+msgid "Install WP Mail SMTP"
+msgstr "安装 WP Mail SMTP"
+
+msgid "Install WP Mail SMTP (recommended)"
+msgstr "安装 WP Mail SMTP（推荐）"
+
+msgid "Install WooCommerce"
+msgstr "安装 WooCommerce"
+
+msgid "Install and activate Contact Form 7 (or WPForms) to use this block."
+msgstr "请安装并启用 Contact Form 7（或 WPForms）以使用此区块。"
+
+msgid "Install and activate WooCommerce to display products here. This block shows nothing on the site until then."
+msgstr "请安装并启用 WooCommerce 以在此显示商品。在此之前，此区块在网站上不显示任何内容。"
+
+msgid "Instalments up to 30 years"
+msgstr "最长 30 年分期付款"
+
+msgid "Instant"
+msgstr "即时"
+
+msgid "Instant page: preload a page when the visitor hovers or touches its link"
+msgstr "即时页面：访客悬停或触碰链接时预加载页面"
+
+msgid "Interactive classes"
+msgstr "互动课堂"
+
+msgid "Interior, eco, skincare"
+msgstr "室内、环保、护肤"
+
+msgid "Investor"
+msgstr "投资者"
+
+msgid "Is it suitable for sensitive skin?"
+msgstr "适合敏感肌吗？"
+
+msgid "Is there parking?"
+msgstr "有停车位吗？"
+
+msgid "Italic"
+msgstr "斜体"
+
+msgid "Item"
+msgstr "项目"
+
+msgid "Items (one per line)"
+msgstr "项目（每行一项）"
+
+msgid "Jade"
+msgstr "翡翠绿"
+
+msgid "Jade deep"
+msgstr "深翡翠绿"
+
+msgid "Jade pastel"
+msgstr "浅翡翠绿"
+
+msgid "James Walker"
+msgstr "James Walker"
+
+msgid "Jessica"
+msgstr "Jessica"
+
+msgid "Justify"
+msgstr "两端对齐"
+
+msgid "Kate Morgan"
+msgstr "Kate Morgan"
+
+msgid "Keep columns on mobile"
+msgstr "移动端保持多栏"
+
+msgid "Keep order totals visible on desktop"
+msgstr "桌面端保持订单总额可见"
+
+msgid "Keep purchase details visible while scrolling (desktop)"
+msgstr "滚动时保持购买信息可见（桌面端）"
+
+msgid "Keep the menu and header buttons on one line"
+msgstr "让菜单和页头按钮保持在一行"
+
+msgid "Keep the menu open on the homepage (desktop)"
+msgstr "首页保持菜单展开（桌面端）"
+
+msgid "Keeps menu and buttons on one line on small laptops, e.g. 1150."
+msgstr "在小尺寸笔记本上让菜单和按钮保持一行，例如 1150。"
+
+msgid "Keeps page URLs and browser history. Filters and sorting keep their native navigation."
+msgstr "保留页面网址和浏览器历史。筛选和排序保持原生导航。"
+
+msgid "Kevin"
+msgstr "Kevin"
+
+msgid "Khung cảm nhận khách hàng"
+msgstr "客户评价框"
+
+msgid "Khung trích dẫn nổi bật"
+msgstr "重点引言框"
+
+msgid "Khung tổng tiền giỏ hàng"
+msgstr "购物车总额框"
+
+msgid "Không có tác vụ phù hợp."
+msgstr "没有匹配的任务。"
+
+msgid "Không tác động đến nút, menu hay thẻ sản phẩm."
+msgstr "不影响按钮、菜单或商品卡片。"
+
+msgid "Không đổi kiểu thẻ bài viết có chữ phủ trên ảnh."
+msgstr "不改变文字叠加在图片上的文章卡片样式。"
+
+msgid "Không đổi nút dạng liên kết hoặc viền."
+msgstr "不改变链接式或描边按钮。"
+
+msgid "Không đổi tên, sao hay nội dung của khách hàng."
+msgstr "不改变客户的姓名、星级或内容。"
+
+msgid "Kids"
+msgstr "少儿"
+
+msgid "Kids teacher"
+msgstr "少儿教师"
+
+msgid "Kids, toys, playful shops"
+msgstr "儿童、玩具、趣味商店"
+
+msgid "Knows city-centre zoning inside out."
+msgstr "对市中心规划了如指掌。"
+
+msgid "Label"
+msgstr "标签"
+
+msgid "Label (e.g. 4.9/5 from 320 reviews)"
+msgstr "标签（如 320 条评价 4.9/5）"
+
+msgid "Label (e.g. Happy customers)"
+msgstr "标签（如 满意客户）"
+
+msgid "Label (optional)"
+msgstr "标签（可选）"
+
+msgid "Label before icons (optional)"
+msgstr "图标前的标签（可选）"
+
+msgid "Label buttons"
+msgstr "标签按钮"
+
+msgid "Label inside the bar"
+msgstr "横条内标签"
+
+msgid "Labels"
+msgstr "标签"
+
+msgid "Labels & layout"
+msgstr "标签与布局"
+
+msgid "Lakeside villa"
+msgstr "湖畔别墅"
+
+msgid "Landscape 4:3"
+msgstr "横向 4:3"
+
+msgid "Language label"
+msgstr "语言标签"
+
+msgid "Language of the theme’s own texts. WordPress and plugins keep their own language (Settings → General and Users → Profile)."
+msgstr "主题自身文字的语言。WordPress 和插件保持各自的语言（设置 → 常规 和 用户 → 个人资料）。"
+
+msgid "Large"
+msgstr "大"
+
+msgid "Large (960px)"
+msgstr "大（960px）"
+
+msgid "Large first letter (drop cap)"
+msgstr "首字母放大（首字下沉）"
+
+msgid "Latest"
+msgstr "最新"
+
+msgid "Latest posts"
+msgstr "最新文章"
+
+msgid "Latest skin analysis device"
+msgstr "最新肌肤分析仪"
+
+msgid "Latitude (optional)"
+msgstr "纬度（可选）"
+
+msgid "Laura Hughes"
+msgstr "Laura Hughes"
+
+msgid "Lavender"
+msgstr "薰衣草紫"
+
+msgid "Law, finance, consulting"
+msgstr "法律、金融、咨询"
+
+msgid "Layer order (z-index)"
+msgstr "图层顺序（z-index）"
+
+msgid "Layered waves"
+msgstr "层叠波浪"
+
+msgid "Layout"
+msgstr "布局"
+
+msgid "Layout & fields"
+msgstr "布局与字段"
+
+msgid "Layout & style"
+msgstr "布局与样式"
+
+msgid "Layout applied. Preview it, then Publish to save."
+msgstr "已应用布局。预览后点击“发布”保存。"
+
+msgid "Leaf"
+msgstr "叶绿"
+
+msgid "Leaf deep"
+msgstr "深叶绿"
+
+msgid "Leaf pastel"
+msgstr "浅叶绿"
+
+msgid "Learn & practise"
+msgstr "学习与练习"
+
+msgid "Learn anywhere"
+msgstr "随时随地学习"
+
+msgid "Learn better every day"
+msgstr "每天进步一点"
+
+msgid "Learn for real, get really good, move on with confidence"
+msgstr "真学习、真进步、自信前行"
+
+msgid "Learn more"
+msgstr "了解更多"
+
+msgid "Learning path"
+msgstr "学习路径"
+
+msgid "Learning through games"
+msgstr "寓教于乐"
+
+msgid "Learning through games and songs so children love English."
+msgstr "通过游戏和歌曲学习，让孩子爱上英语。"
+
+msgid "Learning through real projects"
+msgstr "通过真实项目学习"
+
+msgid "Leave your number and we will send options that fit your budget within 30 minutes."
+msgstr "留下电话，我们将在 30 分钟内发送符合您预算的选项。"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Left (%)"
+msgstr "左（%）"
+
+msgid "Left / right"
+msgstr "左 / 右"
+
+msgid "Left bar"
+msgstr "左侧条"
+
+msgid "Left sidebar"
+msgstr "左侧边栏"
+
+msgid "Left to right"
+msgstr "从左到右"
+
+msgid "Legal checks"
+msgstr "法律核查"
+
+msgid "Legal checks on every project"
+msgstr "每个项目都经过法律核查"
+
+msgid "Less stress, better sleep and healthier circulation."
+msgstr "减轻压力，改善睡眠，促进血液循环。"
+
+msgid "Letter case"
+msgstr "大小写"
+
+msgid "Letter spacing"
+msgstr "字间距"
+
+msgid "Letter spacing (px)"
+msgstr "字间距（px）"
+
+msgid "Lift"
+msgstr "上浮"
+
+msgid "Lift card"
+msgstr "卡片上浮"
+
+msgid "Lift gently"
+msgstr "轻微上浮"
+
+msgid "Lift on hover"
+msgstr "悬停时上浮"
+
+msgid "Light"
+msgstr "浅色"
+
+msgid "Light 300"
+msgstr "细体 300"
+
+msgid "Light background (cards, boxes)"
+msgstr "浅色背景（卡片、方框）"
+
+msgid "Light card"
+msgstr "浅色卡片"
+
+msgid "Light panel"
+msgstr "浅色面板"
+
+msgid "Light text (for dark backgrounds)"
+msgstr "浅色文字（用于深色背景）"
+
+msgid "Lighten overlay"
+msgstr "提亮遮罩"
+
+msgid "Lily Chen"
+msgstr "Lily Chen"
+
+msgid "Lime"
+msgstr "青柠"
+
+msgid "Lime deep"
+msgstr "深青柠"
+
+msgid "Lime pastel"
+msgstr "浅青柠"
+
+msgid "Linda"
+msgstr "Linda"
+
+msgid "Line"
+msgstr "线条"
+
+msgid "Line color"
+msgstr "线条颜色"
+
+msgid "Line height"
+msgstr "行高"
+
+msgid "Line height (0 = default)"
+msgstr "行高（0 = 默认）"
+
+msgid "Line height (0 = theme default)"
+msgstr "行高（0 = 主题默认）"
+
+msgid "Line style"
+msgstr "线条样式"
+
+msgid "Lines (short last)"
+msgstr "线条（最后一条短）"
+
+msgid "Lines (short middle)"
+msgstr "线条（中间一条短）"
+
+msgid "Lines (short right)"
+msgstr "线条（右侧短）"
+
+msgid "Lines (stepped)"
+msgstr "线条（阶梯式）"
+
+msgid "Lines on both sides"
+msgstr "两侧线条"
+
+msgid "Link"
+msgstr "链接"
+
+msgid "Link & accessibility"
+msgstr "链接与无障碍"
+
+msgid "Link (URL)"
+msgstr "链接（URL）"
+
+msgid "Link (URL, tel:, mailto:)"
+msgstr "链接（URL、tel:、mailto:）"
+
+msgid "Link (optional)"
+msgstr "链接（可选）"
+
+msgid "Link / number"
+msgstr "链接 / 号码"
+
+msgid "Link URL (https://, tel:, mailto:)"
+msgstr "链接 URL（https://、tel:、mailto:）"
+
+msgid "Link any button or menu item to #"
+msgstr "将任意按钮或菜单项链接到 #"
+
+msgid "Link for logo"
+msgstr "Logo 链接"
+
+msgid "Link rel"
+msgstr "链接 rel 属性"
+
+msgid "Link text"
+msgstr "链接文字"
+
+msgid "Link the whole banner (URL)"
+msgstr "整个横幅链接（URL）"
+
+msgid "Link with arrow"
+msgstr "带箭头的链接"
+
+msgid "Links"
+msgstr "链接"
+
+msgid "Links on hover"
+msgstr "悬停时链接"
+
+msgid "List"
+msgstr "列表"
+
+msgid "List (image left)"
+msgstr "列表（图片在左）"
+
+msgid "List item…"
+msgstr "列表项…"
+
+msgid "Listed prices guaranteed"
+msgstr "保证标价"
+
+msgid "Live search suggestions while typing"
+msgstr "输入时实时搜索建议"
+
+msgid "Live shrimp, squid and clams in our special sweet-and-sour broth."
+msgstr "鲜活虾、鱿鱼和蛤蜊，配我们的特制酸甜汤底。"
+
+msgid "Liên kết chân trang khi rê chuột hoặc dùng bàn phím."
+msgstr "悬停或使用键盘时的页脚链接。"
+
+msgid "Load classic shop pagination without a full page reload"
+msgstr "加载经典商店分页时不刷新整页"
+
+msgid "Load more"
+msgstr "加载更多"
+
+msgid "Load more button"
+msgstr "“加载更多”按钮"
+
+msgid "Load more posts"
+msgstr "加载更多文章"
+
+msgid "Load while scrolling"
+msgstr "滚动时加载"
+
+msgid "Loader color (empty = primary color)"
+msgstr "加载器颜色（留空 = 主色）"
+
+msgid "Loading & filters"
+msgstr "加载与筛选"
+
+msgid "Loading preview…"
+msgstr "正在加载预览…"
+
+msgid "Loading…"
+msgstr "加载中…"
+
+msgid "Loads the next products without reloading the page."
+msgstr "无需刷新页面即可加载更多商品。"
+
+msgid "Loan packages that fit your income."
+msgstr "适合您收入的贷款方案。"
+
+msgid "Local and international"
+msgstr "国内与国际"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Locations"
+msgstr "地点"
+
+msgid "Lock"
+msgstr "锁"
+
+msgid "Logged-in users only"
+msgstr "仅限已登录用户"
+
+msgid "Logged-out visitors only"
+msgstr "仅限未登录访客"
+
+msgid "Login"
+msgstr "登录"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Logo & site identity"
+msgstr "Logo 与网站标识"
+
+msgid "Logo height (px)"
+msgstr "Logo 高度（px）"
+
+msgid "Logo max width – desktop (px)"
+msgstr "Logo 最大宽度 – 桌面端（px）"
+
+msgid "Logo max width – mobile (px)"
+msgstr "Logo 最大宽度 – 移动端（px）"
+
+msgid "Logo showcase"
+msgstr "Logo 展示"
+
+msgid "Logo width in compact mode (px, 0 = unchanged)"
+msgstr "紧凑模式下 Logo 宽度（px，0 = 不变）"
+
+msgid "Logo, menu and search with fewer rows."
+msgstr "Logo、菜单和搜索占用更少行。"
+
+msgid "Logo, menu and the text of full-width banners / sections line up on the same side spacing."
+msgstr "Logo、菜单以及全宽横幅 / 版块中的文字使用相同的左右边距对齐。"
+
+msgid "Logo, search, account, cart and navigation."
+msgstr "Logo、搜索、账户、购物车和导航。"
+
+msgid "Logos"
+msgstr "Logo"
+
+msgid "Longitude"
+msgstr "经度"
+
+msgid "Look"
+msgstr "外观"
+
+msgid "Looking for a home?"
+msgstr "正在找房？"
+
+msgid "Loop"
+msgstr "循环"
+
+msgid "Looping effect (draws attention)"
+msgstr "循环效果（吸引注意）"
+
+msgid "Lottie JSON URL"
+msgstr "Lottie JSON 网址"
+
+msgid "Lottie animation"
+msgstr "Lottie 动画"
+
+msgid "Loves children and makes every lesson creative."
+msgstr "热爱孩子，让每堂课都充满创意。"
+
+msgid "Lower numbers run first. When two layouts replace the same part, the lowest number wins."
+msgstr "数字越小越先执行。当两个布局替换同一部分时，数字最小的生效。"
+
+msgid "Loyal client"
+msgstr "老顾客"
+
+msgid "Lucas Moreno"
+msgstr "Lucas Moreno"
+
+msgid "Lucky red & gold"
+msgstr "吉祥红金"
+
+msgid "Luxury, jewelry, real estate"
+msgstr "奢华、珠宝、房地产"
+
+msgid "Làm nổi câu hỏi đang mở"
+msgstr "突出展开的问题"
+
+msgid "Làm nổi giá sản phẩm"
+msgstr "突出商品价格"
+
+msgid "Làm rõ ô đang nhập"
+msgstr "突出正在输入的字段"
+
+msgid "MC and reception help"
+msgstr "主持与接待协助"
+
+msgid "Magazine"
+msgstr "杂志"
+
+msgid "Magenta pop"
+msgstr "亮洋红"
+
+msgid "Mail"
+msgstr "邮件"
+
+msgid "Mail (2)"
+msgstr "邮件 (2)"
+
+msgid "Mail (2) is an extra email, e.g. an auto-reply to the visitor."
+msgstr "邮件 (2) 是额外的邮件，例如给访客的自动回复。"
+
+msgid "Mail tags you can use:"
+msgstr "可用的邮件标签："
+
+msgid "Mailer:"
+msgstr "发送方式："
+
+msgid "Main hall, garden or a private room – whatever suits the occasion."
+msgstr "主厅、花园或包间——视场合而定。"
+
+msgid "Main header"
+msgstr "主页头"
+
+msgid "Main menu"
+msgstr "主菜单"
+
+msgid "Main menu style"
+msgstr "主菜单样式"
+
+msgid "Main-road frontage, ready for business."
+msgstr "临街主干道，可直接经营。"
+
+msgid "Maintenance message"
+msgstr "维护信息"
+
+msgid "Make-up trial"
+msgstr "试妆"
+
+msgid "Manage maintenance mode"
+msgstr "管理维护模式"
+
+msgid "Manager"
+msgstr "经理"
+
+msgid "Margin"
+msgstr "外边距"
+
+msgid "Mark"
+msgstr "Mark"
+
+msgid "Marker"
+msgstr "标记"
+
+msgid "Marker color"
+msgstr "标记颜色"
+
+msgid "Market analysis"
+msgstr "市场分析"
+
+msgid "Market news"
+msgstr "市场资讯"
+
+msgid "Masonry"
+msgstr "瀑布流"
+
+msgid "Massage therapist"
+msgstr "按摩师"
+
+msgid "Max 10 children per class"
+msgstr "每班最多 10 名儿童"
+
+msgid "Max 12 students"
+msgstr "最多 12 名学员"
+
+msgid "Max 12 students per class"
+msgstr "每班最多 12 名学员"
+
+msgid "Max execution time"
+msgstr "最大执行时间"
+
+msgid "Max height (px, 0 = auto)"
+msgstr "最大高度（px，0 = 自动）"
+
+msgid "Max product categories"
+msgstr "最多商品分类数"
+
+msgid "Max upload size"
+msgstr "最大上传大小"
+
+msgid "Max width"
+msgstr "最大宽度"
+
+msgid "Max width (px)"
+msgstr "最大宽度（px）"
+
+msgid "Max width (px, 0 = full)"
+msgstr "最大宽度（px，0 = 全宽）"
+
+msgid "Max width – desktop (px)"
+msgstr "最大宽度 – 桌面端（px）"
+
+msgid "Max width – mobile (px)"
+msgstr "最大宽度 – 移动端（px）"
+
+msgid "Medical blue"
+msgstr "医疗蓝"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Medium (640px)"
+msgstr "中（640px）"
+
+msgid "Medium 500"
+msgstr "中等 500"
+
+msgid "Medium large"
+msgstr "中大"
+
+msgid "Member card with 20% off"
+msgstr "八折会员卡"
+
+msgid "Member rewards"
+msgstr "会员福利"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "Menu assigned to “Vertical menu”"
+msgstr "分配给“垂直菜单”的菜单"
+
+msgid "Menu con desktop của BIGSPY."
+msgstr "BIGSPY 桌面端子菜单。"
+
+msgid "Menu content"
+msgstr "菜单内容"
+
+msgid "Menu font"
+msgstr "菜单字体"
+
+msgid "Menu font size (px)"
+msgstr "菜单字号（px）"
+
+msgid "Menu font weight"
+msgstr "菜单字重"
+
+msgid "Menu highlights"
+msgstr "招牌菜单"
+
+msgid "Menu icon (off-canvas)"
+msgstr "菜单图标（侧滑）"
+
+msgid "Menu mobile dễ chạm hơn"
+msgstr "更易点按的移动端菜单"
+
+msgid "Menu opens from"
+msgstr "菜单打开方向"
+
+msgid "Menu style"
+msgstr "菜单样式"
+
+msgid "Menu text case"
+msgstr "菜单大小写"
+
+msgid "Menu tài khoản WooCommerce sau khi đăng nhập."
+msgstr "登录后的 WooCommerce 账户菜单。"
+
+msgid "Menu tài khoản bo góc"
+msgstr "圆角账户菜单"
+
+msgid "Menus"
+msgstr "菜单"
+
+msgid "Message"
+msgstr "留言"
+
+msgid "Message body"
+msgstr "邮件正文"
+
+msgid "Message box"
+msgstr "留言框"
+
+msgid "Message us"
+msgstr "给我们留言"
+
+msgid "Messages"
+msgstr "消息"
+
+msgid "Message…"
+msgstr "留言…"
+
+msgid "Meta shown on cards"
+msgstr "卡片显示的元信息"
+
+msgid "Mia Turner"
+msgstr "Mia Turner"
+
+msgid "Michael"
+msgstr "Michael"
+
+msgid "Middle"
+msgstr "中间"
+
+msgid "Midnight gold"
+msgstr "午夜金"
+
+msgid "Milestones"
+msgstr "里程碑"
+
+msgid "Mini cart dropdown on hover (desktop)"
+msgstr "悬停时显示迷你购物车下拉（桌面端）"
+
+msgid "Minimal"
+msgstr "极简"
+
+msgid "Minimal (image + name + price)"
+msgstr "极简（图片 + 名称 + 价格）"
+
+msgid "Minimal (titles only)"
+msgstr "极简（仅标题）"
+
+msgid "Minimal lines"
+msgstr "极简线条"
+
+msgid "Minimal, studios, portfolios"
+msgstr "极简、工作室、作品集"
+
+msgid "Minimum height"
+msgstr "最小高度"
+
+msgid "Minimum height (px, 0 = auto)"
+msgstr "最小高度（px，0 = 自动）"
+
+msgid "Minimum width (px, 0 = auto)"
+msgstr "最小宽度（px，0 = 自动）"
+
+msgid "Mint"
+msgstr "薄荷绿"
+
+msgid "Mobile"
+msgstr "移动端"
+
+msgid "Mobile & khả năng truy cập"
+msgstr "移动端与无障碍"
+
+msgid "Mobile (px)"
+msgstr "移动端（px）"
+
+msgid "Mobile bottom bar"
+msgstr "移动端底部栏"
+
+msgid "Mobile font size (px, 0 = inherit)"
+msgstr "移动端字号（px，0 = 继承）"
+
+msgid "Mobile image (optional)"
+msgstr "移动端图片（可选）"
+
+msgid "Mobile main row height (px)"
+msgstr "移动端主行高度（px）"
+
+msgid "Mobile menu"
+msgstr "移动端菜单"
+
+msgid "Mobile menu (falls back to Main menu)"
+msgstr "移动端菜单（未设置则使用主菜单）"
+
+msgid "Mobile only"
+msgstr "仅移动端"
+
+msgid "Mocha"
+msgstr "摩卡"
+
+msgid "Mocha deep"
+msgstr "深摩卡"
+
+msgid "Mocha pastel"
+msgstr "浅摩卡"
+
+msgid "Mode"
+msgstr "模式"
+
+msgid "Modern card"
+msgstr "现代卡片"
+
+msgid "Modern living spaces"
+msgstr "现代居住空间"
+
+msgid "Modern, friendly brands"
+msgstr "现代、亲和的品牌"
+
+msgid "Money back if not as described."
+msgstr "与描述不符即退款。"
+
+msgid "Money-saving packages"
+msgstr "超值套餐"
+
+msgid "Monochrome"
+msgstr "单色"
+
+msgid "Monospace"
+msgstr "等宽"
+
+msgid "Monthly mock tests"
+msgstr "每月模拟测试"
+
+msgid "Monthly progress reports"
+msgstr "每月进度报告"
+
+msgid "More block actions"
+msgstr "更多区块操作"
+
+msgid "More posts"
+msgstr "更多文章"
+
+msgid "More products"
+msgstr "更多商品"
+
+msgid "More than 2,300 guest reviews"
+msgstr "超过 2,300 条顾客评价"
+
+msgid "More than 300 apartment deals closed."
+msgstr "已成交 300 多套公寓。"
+
+msgid "Morning and evening classes on weekdays plus weekend classes – choose what fits you."
+msgstr "工作日早班和晚班，另有周末班——按您的时间选择。"
+
+msgid "Mornings, evenings and weekends"
+msgstr "早上、晚上和周末"
+
+msgid "Mortgage support up to 70%"
+msgstr "房贷支持最高 70%"
+
+msgid "Mosaic (5)"
+msgstr "马赛克（5）"
+
+msgid "Most chosen"
+msgstr "最多人选择"
+
+msgid "Most commented"
+msgstr "评论最多"
+
+msgid "Most popular"
+msgstr "最受欢迎"
+
+msgid "Most popular choice"
+msgstr "最受欢迎的选择"
+
+msgid "Most products"
+msgstr "商品最多"
+
+msgid "Motion & size"
+msgstr "动态与尺寸"
+
+msgid "Mountains"
+msgstr "山峦"
+
+msgid "Move down"
+msgstr "下移"
+
+msgid "Move icon"
+msgstr "移动图标"
+
+msgid "Move slide left"
+msgstr "幻灯片左移"
+
+msgid "Move slide right"
+msgstr "幻灯片右移"
+
+msgid "Move up"
+msgstr "上移"
+
+msgid "Move up on hover (px)"
+msgstr "悬停时上移（px）"
+
+msgid "Mr. Peter Hall"
+msgstr "Peter Hall 先生"
+
+msgid "Ms. Amy Clarke"
+msgstr "Amy Clarke 女士"
+
+msgid "Ms. Sarah Lewis"
+msgstr "Sarah Lewis 女士"
+
+msgid "Mua ngay"
+msgstr "立即购买"
+
+msgid "Multi-channel ads"
+msgstr "多渠道广告"
+
+msgid "Mustard"
+msgstr "芥末黄"
+
+msgid "Mustard deep"
+msgstr "深芥末黄"
+
+msgid "Mustard pastel"
+msgstr "浅芥末黄"
+
+msgid "Muted"
+msgstr "柔和"
+
+msgid "My account"
+msgstr "我的账户"
+
+msgid "My child loves going to class, and I get a detailed progress report every week."
+msgstr "孩子很喜欢上课，我每周都会收到详细的进度报告。"
+
+msgid "My pattern"
+msgstr "我的样板"
+
+msgid "My skin improved clearly after a month – the therapist is very gentle and gives great advice."
+msgstr "一个月后皮肤明显改善——理疗师非常温柔，建议也很专业。"
+
+msgid "Mục WooCommerce cần plugin WooCommerce. Mục dịch vụ cần block BIGSPY tương ứng. Nếu chưa có thành phần trên trang, tác vụ chưa tạo thay đổi."
+msgstr "WooCommerce 项目需要 WooCommerce 插件。服务项目需要对应的 BIGSPY 区块。若页面上还没有该组件，任务不会产生更改。"
+
+msgid "NEW · THIS MONTH’S OFFER"
+msgstr "新品 · 本月优惠"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Name A–Z"
+msgstr "名称 A–Z"
+
+msgid "Name on image"
+msgstr "名称叠加在图片上"
+
+msgid "Name size (px, 0 = default)"
+msgstr "名称大小（px，0 = 默认）"
+
+msgid "Narrow (800px)"
+msgstr "窄（800px）"
+
+msgid "Natalie"
+msgstr "Natalie"
+
+msgid "Native teacher"
+msgstr "外籍教师"
+
+msgid "Native teachers"
+msgstr "外籍教师团队"
+
+msgid "Native-speaker teachers"
+msgstr "母语教师"
+
+msgid "Natural herbs and acupressure for the neck and shoulders."
+msgstr "天然草本与穴位按压，舒缓颈肩。"
+
+msgid "Natural listening and speaking in 3 months with native teachers."
+msgstr "跟随母语教师，3 个月自然听说。"
+
+msgid "Navigation"
+msgstr "导航"
+
+msgid "Navy & gold"
+msgstr "藏青与金色"
+
+msgid "Need more information? Leave your number and a consultant will call back within 30 minutes."
+msgstr "需要更多信息？留下您的电话，顾问将在 30 分钟内回电。"
+
+msgid "Negotiation & loan"
+msgstr "议价与贷款"
+
+msgid "Negotiation help"
+msgstr "协助议价"
+
+msgid "Never"
+msgstr "从不"
+
+msgid "Never (icon only)"
+msgstr "从不（仅图标）"
+
+msgid "Never more than 5 minutes’ wait."
+msgstr "等待从不超过 5 分钟。"
+
+msgid "New badge"
+msgstr "新品标签"
+
+msgid "New banner"
+msgstr "新横幅"
+
+msgid "New bar"
+msgstr "新横条"
+
+msgid "New field"
+msgstr "新字段"
+
+msgid "New methods"
+msgstr "新方法"
+
+msgid "New milestone"
+msgstr "新里程碑"
+
+msgid "New plan"
+msgstr "新方案"
+
+msgid "New point"
+msgstr "新标记点"
+
+msgid "Newer posts →"
+msgstr "较新的文章 →"
+
+msgid "Newest"
+msgstr "最新"
+
+msgid "News & tips"
+msgstr "资讯与技巧"
+
+msgid "Next"
+msgstr "下一页"
+
+msgid "Ngắt tiêu đề quá dài"
+msgstr "截断过长的标题"
+
+msgid "Nhóm nút WordPress và BIGSPY trong nội dung; không đổi nút header."
+msgstr "内容中的 WordPress 和 BIGSPY 按钮组；不改变页头按钮。"
+
+msgid "Nhận ưu đãi 10%"
+msgstr "领取 9 折优惠"
+
+msgid "Night neon"
+msgstr "夜色霓虹"
+
+msgid "No SMTP plugin"
+msgstr "未安装 SMTP 插件"
+
+msgid "No corticoids, no harsh chemicals."
+msgstr "不含激素，不含刺激性化学成分。"
+
+msgid "No designs found. Try another search."
+msgstr "未找到设计。请换个关键词搜索。"
+
+msgid "No industrial MSG"
+msgstr "不添加工业味精"
+
+msgid "No posts found."
+msgstr "未找到文章。"
+
+msgid "No product categories found."
+msgstr "未找到商品分类。"
+
+msgid "No products found."
+msgstr "未找到商品。"
+
+msgid "No results found."
+msgstr "未找到结果。"
+
+msgid "No reviews yet"
+msgstr "暂无评价"
+
+msgid "No saved designs yet. In the editor, open a block’s options and choose Create pattern to save a design here."
+msgstr "暂无已保存的设计。在编辑器中打开区块选项并选择“创建样板”，即可将设计保存到这里。"
+
+msgid "No sidebar"
+msgstr "无侧边栏"
+
+msgid "None"
+msgstr "无"
+
+msgid "None (content touches header / footer)"
+msgstr "无（内容紧贴页头 / 页脚）"
+
+msgid "Normal"
+msgstr "常规"
+
+msgid "Normal 400"
+msgstr "常规 400"
+
+msgid "Normal text (div)"
+msgstr "普通文字（div）"
+
+msgid "Not a valid color code."
+msgstr "不是有效的颜色代码。"
+
+msgid "Not active"
+msgstr "未启用"
+
+msgid "Not used"
+msgstr "未使用"
+
+msgid "Not used by the bottom bar."
+msgstr "底部栏不使用。"
+
+msgid "Notary and transfer"
+msgstr "公证与过户"
+
+msgid "Notary, transfer and handover."
+msgstr "公证、过户与交房。"
+
+msgid "Note under the form (e.g. \"We never share your phone number\")"
+msgstr "表单下方说明（如“我们绝不会泄露您的电话号码”）"
+
+msgid "Nothing copied yet."
+msgstr "尚未复制任何内容。"
+
+msgid "Nothing matched your search. Please try different keywords."
+msgstr "没有找到与搜索匹配的内容。请尝试其他关键词。"
+
+msgid "Number"
+msgstr "数字"
+
+msgid "Number color"
+msgstr "数字颜色"
+
+msgid "Number of categories"
+msgstr "分类数量"
+
+msgid "Number of posts"
+msgstr "文章数量"
+
+msgid "Number of products"
+msgstr "商品数量"
+
+msgid "Number of related products (0 = one row)"
+msgstr "相关商品数量（0 = 一行）"
+
+msgid "Number of stars"
+msgstr "星星数量"
+
+msgid "Number of suggestions"
+msgstr "建议数量"
+
+msgid "Number size (px)"
+msgstr "数字大小（px）"
+
+msgid "Number the items (01, 02…)"
+msgstr "为项目编号（01、02…）"
+
+msgid "Number with country code"
+msgstr "带国家区号的号码"
+
+msgid "Numbered list"
+msgstr "编号列表"
+
+msgid "Numbers"
+msgstr "数据"
+
+msgid "Numbers are pixels; also accepts em, rem, %, vh, auto. Negative margins allowed. Tablet/mobile values override desktop."
+msgstr "数字单位为像素；也支持 em、rem、%、vh、auto。允许负边距。平板/移动端的值会覆盖桌面端。"
+
+msgid "Nút & biểu mẫu"
+msgstr "按钮与表单"
+
+msgid "Nút bo góc mềm"
+msgstr "柔和圆角按钮"
+
+msgid "Nút coupon WooCommerce classic; giữ nguyên ô nhập và chức năng mã giảm giá."
+msgstr "经典 WooCommerce 优惠券按钮；保留输入框和优惠码功能。"
+
+msgid "Nút góc vuông"
+msgstr "直角按钮"
+
+msgid "Nút hình viên thuốc"
+msgstr "胶囊形按钮"
+
+msgid "Nút mua bên dưới nội dung thẻ BIGSPY."
+msgstr "BIGSPY 卡片内容下方的购买按钮。"
+
+msgid "Nút mua lớn trong chi tiết"
+msgstr "商品详情页大号购买按钮"
+
+msgid "Nút mua nền màu thương hiệu"
+msgstr "品牌色购买按钮"
+
+msgid "Nút nhấc nhẹ khi rê chuột"
+msgstr "悬停时按钮轻微上浮"
+
+msgid "Nút nội dung rộng toàn hàng trên mobile"
+msgstr "移动端内容按钮占满整行"
+
+msgid "Nút thanh toán rộng toàn khung"
+msgstr "结账按钮占满整框"
+
+msgid "Nút áp dụng mã giảm giá theo màu thương hiệu"
+msgstr "品牌色的应用优惠券按钮"
+
+msgid "Nút đi đến thanh toán của giỏ hàng dạng shortcode."
+msgstr "简码购物车的去结账按钮。"
+
+msgid "Nền nhẹ phần thông tin sản phẩm"
+msgstr "商品信息区域浅色背景"
+
+msgid "Nền sáng theo màu theme cho câu hỏi đang mở."
+msgstr "展开的问题使用主题色浅色背景。"
+
+msgid "Nền tối giúp chữ banner dễ đọc"
+msgstr "深色背景让横幅文字更易读"
+
+msgid "Ocean & coral"
+msgstr "海洋与珊瑚"
+
+msgid "Ocean (light text)"
+msgstr "海洋（浅色文字）"
+
+msgid "Ocean blue"
+msgstr "海洋蓝"
+
+msgid "Off-canvas (mobile) menu opens from"
+msgstr "侧滑（移动端）菜单打开方向"
+
+msgid "Off-canvas menu (below menu)"
+msgstr "侧滑菜单（菜单下方）"
+
+msgid "Off: pages print no automatic title, so you set the H1 yourself with a Heading block. Posts, archives and shop still show their title."
+msgstr "关闭：页面不自动输出标题，您需用标题区块自行设置 H1。文章、归档和商店仍显示标题。"
+
+msgid "Office skills"
+msgstr "办公技能"
+
+msgid "Office worker"
+msgstr "上班族"
+
+msgid "Offsets (top / right / bottom / left)"
+msgstr "偏移（上 / 右 / 下 / 左）"
+
+msgid "Old price (crossed out, optional)"
+msgstr "原价（划线，可选）"
+
+msgid "Older / newer links"
+msgstr "上一篇 / 下一篇链接"
+
+msgid "Olive & sand"
+msgstr "橄榄与沙色"
+
+msgid "Olive deep"
+msgstr "深橄榄绿"
+
+msgid "Olive pastel"
+msgstr "浅橄榄绿"
+
+msgid "Olivia Brooks"
+msgstr "Olivia Brooks"
+
+msgid "On Google Maps: open your place → Share → Embed a map → Copy HTML, then paste it here. The exact pin, name and reviews are shown. Leave empty to use the address below."
+msgstr "在 Google 地图中：打开您的地点 → 分享 → 嵌入地图 → 复制 HTML，然后粘贴到这里。会显示准确的标记、名称和评价。留空则使用下方地址。"
+
+msgid "On every treatment this month"
+msgstr "本月所有护理项目"
+
+msgid "On hover"
+msgstr "悬停时"
+
+msgid "On phones"
+msgstr "手机上"
+
+msgid "On phones & tablets"
+msgstr "手机和平板上"
+
+msgid "On sale"
+msgstr "促销中"
+
+msgid "On time"
+msgstr "准时"
+
+msgid "On-site viewings"
+msgstr "实地看房"
+
+msgid "On: pick a ready-made palette. Off: set every color by hand below."
+msgstr "开启：选择现成配色。关闭：在下方手动设置每种颜色。"
+
+msgid "One click sets the brand colors, links, top bar and footer together. Fine-tune any color below, then Publish."
+msgstr "一键同时设置品牌色、链接、顶部栏和页脚。在下方微调任意颜色，然后发布。"
+
+msgid "One consultant for the whole journey."
+msgstr "全程由一位顾问负责。"
+
+msgid "One custom author for all posts (below)"
+msgstr "所有文章使用同一位自定义作者（见下方）"
+
+msgid "One free massage"
+msgstr "免费按摩一次"
+
+msgid "One line"
+msgstr "一行"
+
+msgid "One row"
+msgstr "一排"
+
+msgid "One row per line. Separate cells with |. Paste from a spreadsheet and replace tabs with |."
+msgstr "每行文字对应表格一行。用 | 分隔单元格。从电子表格粘贴后把制表符替换为 |。"
+
+msgid "One therapist with you for the whole treatment."
+msgstr "全程由同一位理疗师服务。"
+
+msgid "One-to-one advice"
+msgstr "一对一咨询"
+
+msgid "One-to-one writing feedback"
+msgstr "一对一写作批改"
+
+msgid "Online learning app"
+msgstr "在线学习 App"
+
+msgid "Online learning app included"
+msgstr "含在线学习 App"
+
+msgid "Online shop"
+msgstr "网上商店"
+
+msgid "Online shop homepage"
+msgstr "网上商店首页"
+
+msgid "Online store"
+msgstr "网上商店"
+
+msgid "Only children of"
+msgstr "仅限其子项："
+
+msgid "Only one item open at a time"
+msgstr "一次只展开一项"
+
+msgid "Only public, published pages without a password are shown. The response remains 404. Select no page to use the default design."
+msgstr "仅显示已发布、无密码的公开页面。响应仍为 404。不选择页面则使用默认设计。"
+
+msgid "Oops! That page can not be found."
+msgstr "哎呀！找不到该页面。"
+
+msgid "Open Form entries"
+msgstr "打开表单提交记录"
+
+msgid "Open a tab on"
+msgstr "打开标签页的方式"
+
+msgid "Open by default"
+msgstr "默认展开"
+
+msgid "Open every day"
+msgstr "每天营业"
+
+msgid "Open full image in lightbox on click"
+msgstr "点击时在灯箱中打开完整图片"
+
+msgid "Open images in a lightbox"
+msgstr "在灯箱中打开图片"
+
+msgid "Open in a new tab"
+msgstr "在新标签页中打开"
+
+msgid "Open in a new tab?"
+msgstr "在新标签页中打开？"
+
+msgid "Open in lightbox"
+msgstr "在灯箱中打开"
+
+msgid "Open in new tab"
+msgstr "在新标签页打开"
+
+msgid "Open item – background"
+msgstr "展开项 – 背景"
+
+msgid "Open item – title"
+msgstr "展开项 – 标题"
+
+msgid "Open link"
+msgstr "打开链接"
+
+msgid "Open menu"
+msgstr "打开菜单"
+
+msgid "Open the popup"
+msgstr "打开弹窗"
+
+msgid "Open the quick start guide"
+msgstr "打开快速入门指南"
+
+msgid "Open tooltip on"
+msgstr "打开提示框的方式"
+
+msgid "Opening hours"
+msgstr "营业时间"
+
+msgid "Optional short label shown on the button."
+msgstr "按钮上显示的可选短标签。"
+
+msgid "Optional short label shown on the button. Leave empty to use the term name."
+msgstr "按钮上显示的可选短标签。留空则使用分类项名称。"
+
+msgid "Options (one per line)"
+msgstr "选项（每行一个）"
+
+msgid "Or audio URL"
+msgstr "或音频网址"
+
+msgid "Orange & charcoal"
+msgstr "橙色与炭黑"
+
+msgid "Orchid"
+msgstr "兰花紫"
+
+msgid "Orchid deep"
+msgstr "深兰花紫"
+
+msgid "Orchid pastel"
+msgstr "浅兰花紫"
+
+msgid "Order ahead so nothing keeps you waiting when you arrive."
+msgstr "提前点餐，到店无需等待。"
+
+msgid "Order by"
+msgstr "排序方式"
+
+msgid "Order →"
+msgstr "点餐 →"
+
+msgid "Organic oils and herbs"
+msgstr "有机精油与草本"
+
+msgid "Organic shops, farms, health"
+msgstr "有机商店、农场、健康"
+
+msgid "Original"
+msgstr "原创"
+
+msgid "Original size"
+msgstr "原始尺寸"
+
+msgid "Our method"
+msgstr "我们的方法"
+
+msgid "Our most-loved treatments"
+msgstr "最受欢迎的护理项目"
+
+msgid "Our most-ordered dishes"
+msgstr "点单最多的菜品"
+
+msgid "Our new autumn menu"
+msgstr "秋季新菜单"
+
+msgid "Our own recipes"
+msgstr "独家配方"
+
+msgid "Our promise"
+msgstr "我们的承诺"
+
+msgid "Our spa"
+msgstr "我们的水疗馆"
+
+msgid "Our space"
+msgstr "我们的空间"
+
+msgid "Our story"
+msgstr "我们的故事"
+
+msgid "Our team"
+msgstr "我们的团队"
+
+msgid "Our website is being updated. Please check back soon."
+msgstr "网站正在更新，请稍后再来。"
+
+msgid "Our year-end party for 80 people was perfectly organised and every dish was finished."
+msgstr "我们 80 人的年终聚会安排得非常完美，每道菜都被吃光了。"
+
+msgid "Out of 5,000+ graduates"
+msgstr "在 5,000 多名毕业学员中"
+
+msgid "Outline"
+msgstr "描边"
+
+msgid "Outline circle"
+msgstr "描边圆形"
+
+msgid "Outline square"
+msgstr "描边方形"
+
+msgid "Outlined pill"
+msgstr "描边胶囊"
+
+msgid "Outlined text"
+msgstr "描边文字"
+
+msgid "Outside"
+msgstr "外部"
+
+msgid "Outside background (boxed layout)"
+msgstr "外部背景（盒装布局）"
+
+msgid "Overlay"
+msgstr "遮罩"
+
+msgid "Overlay & link"
+msgstr "遮罩与链接"
+
+msgid "Overlay color"
+msgstr "遮罩颜色"
+
+msgid "Overlay darkness (%)"
+msgstr "遮罩暗度（%）"
+
+msgid "Overlay opacity (%)"
+msgstr "遮罩不透明度（%）"
+
+msgid "Overlay options"
+msgstr "遮罩选项"
+
+msgid "Overline"
+msgstr "上划线"
+
+msgid "PHP mail (default, may land in spam)"
+msgstr "PHP mail（默认，可能进入垃圾邮件）"
+
+msgid "Packages are valid for 6 months and can be shared with family."
+msgstr "套餐有效期 6 个月，可与家人共享。"
+
+msgid "Padding"
+msgstr "内边距"
+
+msgid "Padding top/bottom – desktop"
+msgstr "上下内边距 – 桌面端"
+
+msgid "Padding top/bottom – mobile"
+msgstr "上下内边距 – 移动端"
+
+msgid "Padding top/bottom – tablet"
+msgstr "上下内边距 – 平板"
+
+msgid "Page background"
+msgstr "页面背景"
+
+msgid "Page design for 404 errors"
+msgstr "404 错误页面设计"
+
+msgid "Page design for maintenance"
+msgstr "维护页面设计"
+
+msgid "Page layout"
+msgstr "页面布局"
+
+msgid "Page name"
+msgstr "页面名称"
+
+msgid "Page not found"
+msgstr "页面未找到"
+
+msgid "Page numbers"
+msgstr "页码"
+
+msgid "Page sidebar"
+msgstr "页面侧边栏"
+
+msgid "Page title & breadcrumbs"
+msgstr "页面标题与面包屑"
+
+msgid "Page title style"
+msgstr "页面标题样式"
+
+msgid "Page username or m.me link"
+msgstr "主页用户名或 m.me 链接"
+
+msgid "Pages and posts only"
+msgstr "仅页面和文章"
+
+msgid "Pages open almost instantly. Skipped on data-saver connections, admin, cart and file links."
+msgstr "页面几乎瞬间打开。在省流量连接、后台、购物车和文件链接上会跳过。"
+
+msgid "Pagination"
+msgstr "分页"
+
+msgid "Paragraph"
+msgstr "段落"
+
+msgid "Paragraph (p)"
+msgstr "段落（p）"
+
+msgid "Paragraph format"
+msgstr "段落格式"
+
+msgid "Paragraph style"
+msgstr "段落样式"
+
+msgid "Parent"
+msgstr "父级"
+
+msgid "Parties of 10–120"
+msgstr "10–120 人团体"
+
+msgid "Partner banks"
+msgstr "合作银行"
+
+msgid "Party set"
+msgstr "聚会套餐"
+
+msgid "Pass the fields as URL query parameters"
+msgstr "将字段作为网址参数传递"
+
+msgid "Paste HTML in the sidebar (Code / HTML panel)."
+msgstr "在侧边栏粘贴 HTML（代码 / HTML 面板）。"
+
+msgid "Paste a .json link (e.g. from LottieFiles). Upload JSON files to Media first if your site allows it."
+msgstr "粘贴 .json 链接（例如来自 LottieFiles）。若网站允许，可先把 JSON 文件上传到媒体库。"
+
+msgid "Paste a Lottie JSON URL in the block settings."
+msgstr "请在区块设置中粘贴 Lottie JSON 网址。"
+
+msgid "Paste a YouTube, Vimeo or .mp4 URL in the block settings."
+msgstr "请在区块设置中粘贴 YouTube、Vimeo 或 .mp4 网址。"
+
+msgid "Paste appearance"
+msgstr "粘贴外观"
+
+msgid "Paste as plain text"
+msgstr "粘贴为纯文本"
+
+msgid "Paste as plain text (removes Word/web formatting)"
+msgstr "粘贴为纯文本（去除 Word/网页格式）"
+
+msgid "Paste design"
+msgstr "粘贴设计"
+
+msgid "Pastel · Bakery, honey, tours"
+msgstr "浅色 · 烘焙、蜂蜜、旅游"
+
+msgid "Pastel · Banking, insurance"
+msgstr "浅色 · 银行、保险"
+
+msgid "Pastel · Beauty, cafés, kids"
+msgstr "浅色 · 美容、咖啡馆、儿童"
+
+msgid "Pastel · Clinics, cleaning, water"
+msgstr "浅色 · 诊所、清洁、水务"
+
+msgid "Pastel · Coffee, furniture"
+msgstr "浅色 · 咖啡、家具"
+
+msgid "Pastel · Construction, logistics"
+msgstr "浅色 · 建筑、物流"
+
+msgid "Pastel · Eco, juice, sport"
+msgstr "浅色 · 环保、果汁、运动"
+
+msgid "Pastel · Education, agencies"
+msgstr "浅色 · 教育、代理机构"
+
+msgid "Pastel · Events, cosmetics"
+msgstr "浅色 · 活动、化妆品"
+
+msgid "Pastel · Fashion, wine, gifts"
+msgstr "浅色 · 时尚、葡萄酒、礼品"
+
+msgid "Pastel · Finance, law, B2B"
+msgstr "浅色 · 金融、法律、B2B"
+
+msgid "Pastel · Food delivery, fitness"
+msgstr "浅色 · 外卖、健身"
+
+msgid "Pastel · Garden, farm, organic"
+msgstr "浅色 · 园艺、农场、有机"
+
+msgid "Pastel · Handmade, interior"
+msgstr "浅色 · 手工、室内设计"
+
+msgid "Pastel · Jewelry, bridal"
+msgstr "浅色 · 珠宝、婚纱"
+
+msgid "Pastel · Pool, laundry, spa"
+msgstr "浅色 · 泳池、洗衣、水疗"
+
+msgid "Pastel · SaaS, startups"
+msgstr "浅色 · SaaS、创业公司"
+
+msgid "Pastel · Sales, food, sport"
+msgstr "浅色 · 销售、食品、运动"
+
+msgid "Pastel · Spa, florist, wedding"
+msgstr "浅色 · 水疗、花店、婚礼"
+
+msgid "Pastel · Tech, minimal"
+msgstr "浅色 · 科技、极简"
+
+msgid "Pastel · Travel, IT, airlines"
+msgstr "浅色 · 旅游、IT、航空"
+
+msgid "Pastel · Wellness, tea, pharmacy"
+msgstr "浅色 · 健康、茶、药店"
+
+msgid "Pastry chef"
+msgstr "甜点师"
+
+msgid "Pattern created. Find it under Patterns → My patterns."
+msgstr "样板已创建。可在“样板 → 我的样板”中找到。"
+
+msgid "Pattern name:"
+msgstr "样板名称："
+
+msgid "Patterns: “BIGSPY – Shop” sections and the full “Homepage – online shop”."
+msgstr "样板：“BIGSPY – Shop”版块和完整的“Homepage – online shop”。"
+
+msgid "Pause on hover"
+msgstr "悬停时暂停"
+
+msgid "Pause when the mouse is over the slider"
+msgstr "鼠标位于轮播上时暂停"
+
+msgid "Payment methods"
+msgstr "付款方式"
+
+msgid "Peace of mind from choosing to moving in"
+msgstr "从选房到入住，全程安心"
+
+msgid "Peach"
+msgstr "蜜桃色"
+
+msgid "Peach lemongrass and lychee rose teas, served iced on sunny days."
+msgstr "蜜桃香茅茶和荔枝玫瑰茶，晴天加冰饮用。"
+
+msgid "Peek next card (%)"
+msgstr "露出下一张卡片（%）"
+
+msgid "Peek next slide (%)"
+msgstr "露出下一张幻灯片（%）"
+
+msgid "Perfect for a first visit"
+msgstr "适合首次到访"
+
+msgid "Performance"
+msgstr "性能"
+
+msgid "Performance & effects"
+msgstr "性能与效果"
+
+msgid "Period text – first"
+msgstr "周期文字 – 第一个"
+
+msgid "Period text – second"
+msgstr "周期文字 – 第二个"
+
+msgid "Permits, zoning and progress verified."
+msgstr "许可证、规划与进度均已核实。"
+
+msgid "Personal learning paths, experienced teachers and small classes help every student make clear progress after each course – with a written results guarantee."
+msgstr "个性化学习路径、经验丰富的教师和小班教学，帮助每位学员在每期课程后取得明显进步——并提供书面效果保证。"
+
+msgid "Pharmacy, dental, wellness"
+msgstr "药店、牙科、健康"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Phone + address"
+msgstr "电话 + 地址"
+
+msgid "Phone + email"
+msgstr "电话 + 邮箱"
+
+msgid "Phone / hotline"
+msgstr "电话 / 热线"
+
+msgid "Phone number"
+msgstr "电话号码"
+
+msgid "Phone only"
+msgstr "仅电话"
+
+msgid "Phone, email, address and hours are entered in Contact info & social."
+msgstr "电话、邮箱、地址和营业时间在“联系信息与社交”中填写。"
+
+msgid "Photo"
+msgstr "照片"
+
+msgid "Photo ratio"
+msgstr "照片比例"
+
+msgid "Photos and video"
+msgstr "照片与视频"
+
+msgid "Phù hợp ảnh bao bì, thiết bị; có thể có khoảng trống quanh ảnh."
+msgstr "适合包装和设备图片；图片周围可能留白。"
+
+msgid "Phù hợp ảnh lifestyle; có thể cắt mép ảnh."
+msgstr "适合生活方式图片；可能裁掉图片边缘。"
+
+msgid "Pick a time"
+msgstr "选择时间"
+
+msgid "Pick an image in the sidebar, then click on it to add points."
+msgstr "在侧边栏选择图片，然后点击图片添加标记点。"
+
+msgid "Pick related posts by"
+msgstr "相关文章选取依据"
+
+msgid "Pill"
+msgstr "胶囊"
+
+msgid "Pill background"
+msgstr "胶囊背景"
+
+msgid "Pill buttons"
+msgstr "胶囊按钮"
+
+msgid "Pill chip"
+msgstr "胶囊标签"
+
+msgid "Pill on hover"
+msgstr "悬停时胶囊"
+
+msgid "Pills"
+msgstr "胶囊"
+
+msgid "Placeholder"
+msgstr "占位文字"
+
+msgid "Placeholder text"
+msgstr "占位文字"
+
+msgid "Placement test"
+msgstr "分级测试"
+
+msgid "Plain"
+msgstr "朴素"
+
+msgid "Plain icon"
+msgstr "简洁图标"
+
+msgid "Plain link"
+msgstr "普通链接"
+
+msgid "Plan name"
+msgstr "方案名称"
+
+msgid "Plans"
+msgstr "方案"
+
+msgid "Play automatically"
+msgstr "自动播放"
+
+msgid "Play button"
+msgstr "播放按钮"
+
+msgid "Play only on hover"
+msgstr "仅悬停时播放"
+
+msgid "Play video"
+msgstr "播放视频"
+
+msgid "Play: %s"
+msgstr "播放：%s"
+
+msgid "Playback"
+msgstr "播放"
+
+msgid "Plays muted and looped behind the content. Set a background image too as the poster/fallback."
+msgstr "在内容背后静音循环播放。请同时设置背景图片作为封面/备用。"
+
+msgid "Plus"
+msgstr "加号"
+
+msgid "Plus 3 private rooms"
+msgstr "另有 3 间包间"
+
+msgid "Points"
+msgstr "标记点"
+
+msgid "Policy link text"
+msgstr "政策链接文字"
+
+msgid "Policy page URL (optional)"
+msgstr "政策页面网址（可选）"
+
+msgid "Popup"
+msgstr "弹窗"
+
+msgid "Popup ID"
+msgstr "弹窗 ID"
+
+msgid "Popup background"
+msgstr "弹窗背景"
+
+msgid "Portrait 3:4 (fashion)"
+msgstr "竖向 3:4（时尚）"
+
+msgid "Position"
+msgstr "位置"
+
+msgid "Position, company"
+msgstr "职位、公司"
+
+msgid "Post / page IDs to exclude"
+msgstr "要排除的文章 / 页面 ID"
+
+msgid "Post cards"
+msgstr "文章卡片"
+
+msgid "Post header"
+msgstr "文章头部"
+
+msgid "Poster image (loads the player only on click – faster pages)"
+msgstr "封面图片（点击后才加载播放器——页面更快）"
+
+msgid "Posts in these categories (and their archives)"
+msgstr "这些分类中的文章（及其归档）"
+
+msgid "Pre-order dishes"
+msgstr "预订菜品"
+
+msgid "Preferential rates"
+msgstr "优惠利率"
+
+msgid "Prefix"
+msgstr "前缀"
+
+msgid "Preformatted"
+msgstr "预格式化"
+
+msgid "Prepares loan files with 12 banks."
+msgstr "与 12 家银行办理贷款资料。"
+
+msgid "Presentation skills"
+msgstr "演讲技巧"
+
+msgid "Preview animation"
+msgstr "预览动画"
+
+msgid "Preview unavailable"
+msgstr "无法预览"
+
+msgid "Preview with sample fields — choose your form in the toolbar or sidebar."
+msgstr "使用示例字段预览——请在工具栏或侧边栏中选择您的表单。"
+
+msgid "Preview with sample fields. Install Contact Form 7 to collect real messages."
+msgstr "使用示例字段预览。安装 Contact Form 7 才能收到真实留言。"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "Previous / next post links"
+msgstr "上一篇 / 下一篇文章链接"
+
+msgid "Previous / next product links"
+msgstr "上一个 / 下一个商品链接"
+
+msgid "Price"
+msgstr "价格"
+
+msgid "Price and growth reports for every area."
+msgstr "各区域的价格与增长报告。"
+
+msgid "Price color"
+msgstr "价格颜色"
+
+msgid "Price table"
+msgstr "价格表"
+
+msgid "Price – first option"
+msgstr "价格 – 第一个选项"
+
+msgid "Price – second option"
+msgstr "价格 – 第二个选项"
+
+msgid "Price: high to low"
+msgstr "价格：从高到低"
+
+msgid "Price: low to high"
+msgstr "价格：从低到高"
+
+msgid "Prices"
+msgstr "价格"
+
+msgid "Prices are stable, with new supply mainly in the east and south."
+msgstr "价格平稳，新增供应主要集中在东部和南部。"
+
+msgid "Prices include tax and service. Dishes can be swapped to suit your taste."
+msgstr "价格已含税费和服务费。菜品可按口味更换。"
+
+msgid "Primary"
+msgstr "主色"
+
+msgid "Primary (light text)"
+msgstr "主色（浅色文字）"
+
+msgid "Primary color"
+msgstr "主色"
+
+msgid "Prime locations"
+msgstr "黄金地段"
+
+msgid "Priority"
+msgstr "优先级"
+
+msgid "Private room with karaoke"
+msgstr "带卡拉 OK 的包间"
+
+msgid "Private rooms for parties"
+msgstr "聚会包间"
+
+msgid "Private treatment rooms"
+msgstr "私人护理室"
+
+msgid "Product card"
+msgstr "商品卡片"
+
+msgid "Product card style"
+msgstr "商品卡片样式"
+
+msgid "Product cards"
+msgstr "商品卡片"
+
+msgid "Product cards (shop & categories)"
+msgstr "商品卡片（商店与分类）"
+
+msgid "Product categories (WooCommerce)"
+msgstr "商品分类（WooCommerce）"
+
+msgid "Product filters and shop widgets"
+msgstr "商品筛选与商店小工具"
+
+msgid "Product gallery layout"
+msgstr "商品图库布局"
+
+msgid "Product grid"
+msgstr "商品网格"
+
+msgid "Product image ratio"
+msgstr "商品图片比例"
+
+msgid "Product name size (px, 0 = default)"
+msgstr "商品名称大小（px，0 = 默认）"
+
+msgid "Product page layout"
+msgstr "商品页面布局"
+
+msgid "Product page sidebar"
+msgstr "商品页面侧边栏"
+
+msgid "Product tab appearance"
+msgstr "商品标签页外观"
+
+msgid "Product title max lines"
+msgstr "商品标题最多行数"
+
+msgid "Products"
+msgstr "商品"
+
+msgid "Products only"
+msgstr "仅商品"
+
+msgid "Products per page"
+msgstr "每页商品数"
+
+msgid "Products per row – desktop"
+msgstr "每行商品数 – 桌面端"
+
+msgid "Products per row – mobile"
+msgstr "每行商品数 – 移动端"
+
+msgid "Products per row – tablet"
+msgstr "每行商品数 – 平板"
+
+msgid "Products, pages and posts"
+msgstr "商品、页面和文章"
+
+msgid "Profile links are entered in Contact info & social."
+msgstr "个人资料链接在“联系信息与社交”中填写。"
+
+msgid "Profiles"
+msgstr "个人资料"
+
+msgid "Progress bar – bottom"
+msgstr "进度条 – 底部"
+
+msgid "Progress bar – top"
+msgstr "进度条 – 顶部"
+
+msgid "Progress tracking"
+msgstr "进度跟踪"
+
+msgid "Project advice"
+msgstr "项目咨询"
+
+msgid "Project gallery"
+msgstr "项目图库"
+
+msgid "Project-based"
+msgstr "项目式"
+
+msgid "Projector and sound"
+msgstr "投影与音响"
+
+msgid "Projects"
+msgstr "项目"
+
+msgid "Projects with clear legal status, well-connected locations and consultants who stay with you from choosing a home and negotiating to the mortgage and handover."
+msgstr "法律手续清晰、交通便利的项目，顾问从选房、议价到贷款和交房全程陪伴。"
+
+msgid "Pulse"
+msgstr "脉动"
+
+msgid "Pulse (attention)"
+msgstr "脉动（吸引注意）"
+
+msgid "Pulse animation"
+msgstr "脉动动画"
+
+msgid "Pulse animation (draws attention)"
+msgstr "脉动动画（吸引注意）"
+
+msgid "Pulse waves"
+msgstr "脉冲波"
+
+msgid "Pulsing dot"
+msgstr "闪烁圆点"
+
+msgid "Pyramids"
+msgstr "金字塔"
+
+msgid "Python and computational thinking for students."
+msgstr "面向学生的 Python 与计算思维。"
+
+msgid "Qualified buyers"
+msgstr "已审核买家"
+
+msgid "Qualified, with many years of teaching experience."
+msgstr "资质齐全，拥有多年教学经验。"
+
+msgid "Query"
+msgstr "查询"
+
+msgid "Question / title"
+msgstr "问题 / 标题"
+
+msgid "Question 1?"
+msgstr "问题 1？"
+
+msgid "Question 2?"
+msgstr "问题 2？"
+
+msgid "Question 3?"
+msgstr "问题 3？"
+
+msgid "Question tag"
+msgstr "问题标签"
+
+msgid "Question tag (SEO)"
+msgstr "问题标签（SEO）"
+
+msgid "Question tag for all items (SEO)"
+msgstr "所有项目的问题标签（SEO）"
+
+msgid "Quick contact"
+msgstr "快速联系"
+
+msgid "Quick start"
+msgstr "快速入门"
+
+msgid "Quick to the table"
+msgstr "上菜迅速"
+
+msgid "Quick view"
+msgstr "快速查看"
+
+msgid "Quote"
+msgstr "引言"
+
+msgid "Rachel"
+msgstr "Rachel"
+
+msgid "Random"
+msgstr "随机"
+
+msgid "Rated %1$s out of %2$s"
+msgstr "评分 %1$s / %2$s"
+
+msgid "Rated %d out of 5"
+msgstr "评分 %d / 5"
+
+msgid "Rating"
+msgstr "评分"
+
+msgid "Rating stars"
+msgstr "评分星星"
+
+msgid "Ratio"
+msgstr "比例"
+
+msgid "Re-select the image once so its proportions are known."
+msgstr "请重新选择一次图片，以便获取其比例。"
+
+msgid "Reach their goal"
+msgstr "达成目标"
+
+msgid "Read more"
+msgstr "阅读更多"
+
+msgid "Read more →"
+msgstr "阅读更多 →"
+
+msgid "Reading progress bar on blog posts"
+msgstr "博客文章阅读进度条"
+
+msgid "Reading time"
+msgstr "阅读时长"
+
+msgid "Ready to start your project?"
+msgstr "准备好开始您的项目了吗？"
+
+msgid "Ready to start? Get 20% off today"
+msgstr "准备开始了吗？今天享八折"
+
+msgid "Ready-made looks"
+msgstr "现成外观"
+
+msgid "Real estate homepage with 15 sections: hero, highlights, about, listings, buying process, numbers, advantages, packages, gallery, consultants, reviews, FAQ, market news, consultation and contact."
+msgstr "房地产首页，包含 15 个版块：主视觉、亮点、关于、房源、购房流程、数据、优势、套餐、图库、顾问、评价、常见问题、市场资讯、咨询和联系。"
+
+msgid "Real estate · Apartments · Townhouses"
+msgstr "房地产 · 公寓 · 联排别墅"
+
+msgid "Real photos and areas, 100%."
+msgstr "照片与面积 100% 真实。"
+
+msgid "Recently updated"
+msgstr "最近更新"
+
+msgid "Redirect to (URL or /page/)"
+msgstr "跳转到（网址或 /page/）"
+
+msgid "Redirect to (URL, optional)"
+msgstr "跳转到（网址，可选）"
+
+msgid "Redo"
+msgstr "重做"
+
+msgid "Refreshed every season"
+msgstr "每季更新"
+
+msgid "Refund if details are wrong"
+msgstr "信息有误即退款"
+
+msgid "Regular"
+msgstr "常规"
+
+msgid "Regular 400"
+msgstr "常规 400"
+
+msgid "Regular for 3 years"
+msgstr "三年老顾客"
+
+msgid "Regular tests and a completion certificate."
+msgstr "定期测试并颁发结业证书。"
+
+msgid "Related & upsell products"
+msgstr "相关与追加销售商品"
+
+msgid "Related posts"
+msgstr "相关文章"
+
+msgid "Related products"
+msgstr "相关商品"
+
+msgid "Related products heading (empty = default)"
+msgstr "相关商品标题（留空 = 默认）"
+
+msgid "Related products per row"
+msgstr "每行相关商品数"
+
+msgid "Relative (nudge with offsets)"
+msgstr "相对定位（用偏移微调）"
+
+msgid "Relax completely, glow from within"
+msgstr "彻底放松，由内而外焕发光彩"
+
+msgid "Relax package"
+msgstr "放松套餐"
+
+msgid "Relaxed (400 ms)"
+msgstr "舒缓（400 毫秒）"
+
+msgid "Remember vocabulary for longer"
+msgstr "词汇记得更久"
+
+msgid "Remove"
+msgstr "移除"
+
+msgid "Remove field"
+msgstr "移除字段"
+
+msgid "Remove image"
+msgstr "移除图片"
+
+msgid "Remove item"
+msgstr "移除项目"
+
+msgid "Remove link"
+msgstr "移除链接"
+
+msgid "Remove this button"
+msgstr "移除此按钮"
+
+msgid "Removes wp-embed. Pasted YouTube links still work through blocks."
+msgstr "移除 wp-embed。粘贴的 YouTube 链接仍可通过区块正常使用。"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Render HTML on the page"
+msgstr "在页面上渲染 HTML"
+
+msgid "Replace"
+msgstr "替换"
+
+msgid "Replace image"
+msgstr "替换图片"
+
+msgid "Replace photo"
+msgstr "替换照片"
+
+msgid "Replace the example text and images, adjust the layout, preview the page, then publish when it is ready."
+msgstr "替换示例文字和图片，调整布局，预览页面，准备好后再发布。"
+
+msgid "Replay every time it scrolls into view"
+msgstr "每次滚动进入视野时重新播放"
+
+msgid "Reply within 5 minutes in office hours"
+msgstr "工作时间内 5 分钟回复"
+
+msgid "Reports for parents"
+msgstr "家长报告"
+
+msgid "Required"
+msgstr "必填"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Reset all theme options?"
+msgstr "重置所有主题选项？"
+
+msgid "Reset design"
+msgstr "重置设计"
+
+msgid "Reset the header layout for this device?"
+msgstr "重置此设备的页头布局？"
+
+msgid "Reset theme options"
+msgstr "重置主题选项"
+
+msgid "Reset to default layout"
+msgstr "恢复默认布局"
+
+msgid "Reset typography"
+msgstr "重置排版"
+
+msgid "Residential plots"
+msgstr "住宅用地"
+
+msgid "Resolution"
+msgstr "分辨率"
+
+msgid "Restaurant / café homepage with 15 sections: hero, highlights, story, menu, process, numbers, signature dishes, set menus, gallery, chefs, reviews, FAQ, news, booking and contact."
+msgstr "餐厅 / 咖啡馆首页，包含 15 个版块：主视觉、亮点、故事、菜单、流程、数据、招牌菜、套餐、图库、厨师、评价、常见问题、资讯、预订和联系。"
+
+msgid "Restaurant · Café · Events"
+msgstr "餐厅 · 咖啡馆 · 活动"
+
+msgid "Restaurants, ceramics, decor"
+msgstr "餐厅、陶瓷、家居装饰"
+
+msgid "Restore every theme option to its default value. Menus, widgets, logo and content are not affected."
+msgstr "将所有主题选项恢复为默认值。菜单、小工具、Logo 和内容不受影响。"
+
+msgid "Restores your skin’s natural barrier."
+msgstr "修复肌肤天然屏障。"
+
+msgid "Results guarantee"
+msgstr "效果保证"
+
+msgid "Reveal icon on hover"
+msgstr "悬停时显示图标"
+
+msgid "Reverse column order on mobile"
+msgstr "移动端反转栏目顺序"
+
+msgid "Review & certificate"
+msgstr "复习与证书"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Right side HTML (payment icons, badges…)"
+msgstr "右侧 HTML（付款图标、徽章…）"
+
+msgid "Right sidebar"
+msgstr "右侧边栏"
+
+msgid "Right to left"
+msgstr "从右到左"
+
+msgid "Ringing + ripple waves"
+msgstr "响铃 + 涟漪波"
+
+msgid "Ringing + waves"
+msgstr "响铃 + 波纹"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Rose"
+msgstr "玫瑰色"
+
+msgid "Rose deep"
+msgstr "深玫瑰色"
+
+msgid "Rose gold"
+msgstr "玫瑰金"
+
+msgid "Rose pastel"
+msgstr "浅玫瑰色"
+
+msgid "Round icon on the image"
+msgstr "图片上的圆形图标"
+
+msgid "Round icons, stacked"
+msgstr "圆形图标，堆叠"
+
+msgid "Round photo"
+msgstr "圆形照片"
+
+msgid "Round the two bottom corners of the header"
+msgstr "将页头底部两个角设为圆角"
+
+msgid "Rounded"
+msgstr "圆角"
+
+msgid "Rounded + shadow"
+msgstr "圆角 + 阴影"
+
+msgid "Rounded – filled"
+msgstr "圆角 – 填充"
+
+msgid "Rounded – frosted glass"
+msgstr "圆角 – 磨砂玻璃"
+
+msgid "Rounded – gradient"
+msgstr "圆角 – 渐变"
+
+msgid "Rounded – soft tint"
+msgstr "圆角 – 浅色"
+
+msgid "Rounded – thin outline"
+msgstr "圆角 – 细描边"
+
+msgid "Rounded – tint + outline"
+msgstr "圆角 – 浅色 + 描边"
+
+msgid "Rounded – white card with shadow"
+msgstr "圆角 – 带阴影的白色卡片"
+
+msgid "Row settings"
+msgstr "行设置"
+
+msgid "Rows"
+msgstr "行"
+
+msgid "Rows: height & colors"
+msgstr "行：高度与颜色"
+
+msgid "Royal purple"
+msgstr "皇家紫"
+
+msgid "Ruby deep"
+msgstr "深宝石红"
+
+msgid "Ruby pastel"
+msgstr "浅宝石红"
+
+msgid "Ruby wine"
+msgstr "宝石酒红"
+
+msgid "Ryan Cooper"
+msgstr "Ryan Cooper"
+
+msgid "SMTP settings"
+msgstr "SMTP 设置"
+
+msgid "SaaS, apps, startups"
+msgstr "SaaS、应用、创业公司"
+
+msgid "Safe organic products"
+msgstr "安全的有机产品"
+
+msgid "Safe – Effective – Private"
+msgstr "安全 – 有效 – 私密"
+
+msgid "Sage"
+msgstr "鼠尾草绿"
+
+msgid "Sale"
+msgstr "促销"
+
+msgid "Sale & new badges"
+msgstr "促销与新品标签"
+
+msgid "Sale / new badges"
+msgstr "促销 / 新品标签"
+
+msgid "Sale badge"
+msgstr "促销标签"
+
+msgid "Sale badge (use {percent} for the discount)"
+msgstr "促销标签（用 {percent} 表示折扣）"
+
+msgid "Sales director"
+msgstr "销售总监"
+
+msgid "Sales, electronics, marts"
+msgstr "销售、电子产品、超市"
+
+msgid "Same as WordPress"
+msgstr "与 WordPress 相同"
+
+msgid "Same as accordion"
+msgstr "与手风琴相同"
+
+msgid "Same as accordion = the tag set on the Accordion block."
+msgstr "与手风琴相同 = 手风琴区块上设置的标签。"
+
+msgid "Same as the general setting"
+msgstr "与常规设置相同"
+
+msgid "Same category"
+msgstr "相同分类"
+
+msgid "Same height for all slides – desktop (px, 0 = each slide its own)"
+msgstr "所有幻灯片相同高度 – 桌面端（px，0 = 各自高度）"
+
+msgid "Same height – mobile (px, 0 = as tablet)"
+msgstr "相同高度 – 移动端（px，0 = 同平板）"
+
+msgid "Same height – tablet (px, 0 = as desktop)"
+msgstr "相同高度 – 平板（px，0 = 同桌面端）"
+
+msgid "Same tags"
+msgstr "相同标签"
+
+msgid "Same-day delivery in the city."
+msgstr "市内当日送达。"
+
+msgid "Sao đánh giá theo màu thương hiệu"
+msgstr "品牌色评价星星"
+
+msgid "Sapphire"
+msgstr "蓝宝石"
+
+msgid "Sapphire deep"
+msgstr "深蓝宝石"
+
+msgid "Sapphire pastel"
+msgstr "浅蓝宝石"
+
+msgid "Satisfied"
+msgstr "满意"
+
+msgid "Sauces and spice blends made by the head chef."
+msgstr "主厨亲制的酱料和香料。"
+
+msgid "Save changes"
+msgstr "保存更改"
+
+msgid "Save every entry in Form entries"
+msgstr "将每次提交保存到表单提交记录"
+
+msgid "Save to form"
+msgstr "保存到表单"
+
+msgid "Saved designs"
+msgstr "已保存的设计"
+
+msgid "Saved to the form."
+msgstr "已保存到表单。"
+
+msgid "Scale on hover (%)"
+msgstr "悬停时缩放（%）"
+
+msgid "Scores and feedback after every lesson."
+msgstr "每节课后都有评分和反馈。"
+
+msgid "Scripts & code"
+msgstr "脚本与代码"
+
+msgid "Scripts after <body>"
+msgstr "<body> 之后的脚本"
+
+msgid "Scripts before </body>"
+msgstr "</body> 之前的脚本"
+
+msgid "Scripts in <head>"
+msgstr "<head> 中的脚本"
+
+msgid "Scripts, speed & maintenance"
+msgstr "脚本、速度与维护"
+
+msgid "Scroll duration (seconds, lower = faster)"
+msgstr "滚动时长（秒，越小越快）"
+
+msgid "Scroll motion"
+msgstr "滚动动效"
+
+msgid "Scroll sideways"
+msgstr "横向滚动"
+
+msgid "Scrolled down (%)"
+msgstr "已向下滚动（%）"
+
+msgid "Seafood hot pot"
+msgstr "海鲜火锅"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Search button"
+msgstr "搜索按钮"
+
+msgid "Search designs"
+msgstr "搜索设计"
+
+msgid "Search field placeholder (empty = default)"
+msgstr "搜索框占位文字（留空 = 默认）"
+
+msgid "Search for:"
+msgstr "搜索："
+
+msgid "Search form"
+msgstr "搜索表单"
+
+msgid "Search icon"
+msgstr "搜索图标"
+
+msgid "Search icon opens"
+msgstr "搜索图标打开"
+
+msgid "Search in"
+msgstr "搜索范围"
+
+msgid "Search products…"
+msgstr "搜索商品…"
+
+msgid "Search results"
+msgstr "搜索结果"
+
+msgid "Search results for “%s”"
+msgstr "“%s”的搜索结果"
+
+msgid "Search sources, live suggestions and SKU search: Header → Search."
+msgstr "搜索来源、实时建议和 SKU 搜索：页头 → 搜索。"
+
+msgid "Search…"
+msgstr "搜索…"
+
+msgid "Seasonal dessert"
+msgstr "时令甜品"
+
+msgid "Seats"
+msgstr "座位"
+
+msgid "Second accent (gradients)"
+msgstr "第二强调色（渐变）"
+
+msgid "Second button link"
+msgstr "第二个按钮链接"
+
+msgid "Second button text (optional)"
+msgstr "第二个按钮文字（可选）"
+
+msgid "Second line (e.g. phone number, “Free consultation”)"
+msgstr "第二行（如电话号码、“免费咨询”）"
+
+msgid "Second option"
+msgstr "第二个选项"
+
+msgid "Second phone number"
+msgstr "第二个电话号码"
+
+msgid "Secondary"
+msgstr "辅助色"
+
+msgid "Secondary color"
+msgstr "辅助色"
+
+msgid "Seconds per loop (lower = faster)"
+msgstr "每圈秒数（越小越快）"
+
+msgid "Section"
+msgstr "版块"
+
+msgid "Section title"
+msgstr "版块标题"
+
+msgid "Sections"
+msgstr "版块"
+
+msgid "See courses"
+msgstr "查看课程"
+
+msgid "See desserts →"
+msgstr "查看甜品 →"
+
+msgid "See drinks →"
+msgstr "查看饮品 →"
+
+msgid "See projects"
+msgstr "查看项目"
+
+msgid "See the full menu"
+msgstr "查看完整菜单"
+
+msgid "See the menu"
+msgstr "查看菜单"
+
+msgid "See the path →"
+msgstr "查看学习路径 →"
+
+msgid "See treatments"
+msgstr "查看护理项目"
+
+msgid "Select a block in the page to edit its layout."
+msgstr "在页面中选择一个区块来编辑其布局。"
+
+msgid "Select a tab inside to rename it or give it an icon."
+msgstr "选中内部的标签页即可重命名或设置图标。"
+
+msgid "Select file"
+msgstr "选择文件"
+
+msgid "Select image"
+msgstr "选择图片"
+
+msgid "Select logos"
+msgstr "选择 Logo"
+
+msgid "Select logos in the sidebar."
+msgstr "请在侧边栏中选择 Logo。"
+
+msgid "Selected categories"
+msgstr "已选分类"
+
+msgid "Self-study plan for IELTS 6.5"
+msgstr "雅思 6.5 自学计划"
+
+msgid "Sell with us"
+msgstr "委托我们出售"
+
+msgid "Semi bold"
+msgstr "半粗"
+
+msgid "Semi bold 600"
+msgstr "半粗 600"
+
+msgid "Semi-bold 600"
+msgstr "半粗 600"
+
+msgid "Send"
+msgstr "发送"
+
+msgid "Send a test email"
+msgstr "发送测试邮件"
+
+msgid "Send button text"
+msgstr "发送按钮文字"
+
+msgid "Send to (comma for several)"
+msgstr "发送至（多个用逗号分隔）"
+
+msgid "Sender’s message failed to send"
+msgstr "发件人的消息发送失败"
+
+msgid "Sender’s message was sent successfully"
+msgstr "发件人的消息已成功发送"
+
+msgid "Sending & after submit"
+msgstr "发送与提交后"
+
+msgid "Sending through WP Mail SMTP"
+msgstr "通过 WP Mail SMTP 发送"
+
+msgid "Separated boxes"
+msgstr "独立方框"
+
+msgid "Separator"
+msgstr "分隔符"
+
+msgid "Serif"
+msgstr "衬线"
+
+msgid "Service website or online shop"
+msgstr "服务网站或网上商店"
+
+msgid "Services"
+msgstr "服务"
+
+msgid "Serving since 2012"
+msgstr "始于 2012 年"
+
+msgid "Set an HTML anchor on a block, then link to #anchor in your menu. The active section is highlighted as you scroll."
+msgstr "为区块设置 HTML 锚点，然后在菜单中链接到 #锚点。滚动时会高亮当前版块。"
+
+msgid "Set logo and site title"
+msgstr "设置 Logo 和网站标题"
+
+msgid "Set menus"
+msgstr "套餐"
+
+msgid "Set menus for every occasion"
+msgstr "适合各种场合的套餐"
+
+msgid "Set your budget, area and type of home."
+msgstr "设定您的预算、区域和房屋类型。"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "Shadow"
+msgstr "阴影"
+
+msgid "Shadow on hover"
+msgstr "悬停时阴影"
+
+msgid "Shadow under header"
+msgstr "页头下方阴影"
+
+msgid "Shake"
+msgstr "抖动"
+
+msgid "Shape"
+msgstr "形状"
+
+msgid "Shape color"
+msgstr "形状颜色"
+
+msgid "Shape divider – bottom"
+msgstr "形状分隔 – 底部"
+
+msgid "Shape divider – top"
+msgstr "形状分隔 – 顶部"
+
+msgid "Share buttons"
+msgstr "分享按钮"
+
+msgid "Share:"
+msgstr "分享："
+
+msgid "Shine"
+msgstr "闪光"
+
+msgid "Shine sweep"
+msgstr "光泽扫过"
+
+msgid "Shop"
+msgstr "商店"
+
+msgid "Shop & product categories"
+msgstr "商店与商品分类"
+
+msgid "Shop layout"
+msgstr "商店布局"
+
+msgid "Shop now"
+msgstr "立即选购"
+
+msgid "Shop sidebar"
+msgstr "商店侧边栏"
+
+msgid "Shop – benefits bar"
+msgstr "商店 – 优势栏"
+
+msgid "Shop – featured products"
+msgstr "商店 – 精选商品"
+
+msgid "Shop – hero slider"
+msgstr "商店 – 主视觉轮播"
+
+msgid "Shop – on sale slider"
+msgstr "商店 – 促销商品轮播"
+
+msgid "Shop – product categories"
+msgstr "商店 – 商品分类"
+
+msgid "Shop – product tabs (new / best selling / sale)"
+msgstr "商店 – 商品标签页（新品 / 畅销 / 促销）"
+
+msgid "Short bio (optional)"
+msgstr "简短简介（可选）"
+
+msgid "Short brand underline"
+msgstr "品牌短下划线"
+
+msgid "Short description"
+msgstr "简短描述"
+
+msgid "Short description (optional)"
+msgstr "简短描述（可选）"
+
+msgid "Short description length (words)"
+msgstr "简短描述长度（词）"
+
+msgid "Short description…"
+msgstr "简短描述…"
+
+msgid "Short line below"
+msgstr "下方短线"
+
+msgid "Shortcode"
+msgstr "简码"
+
+msgid "Show"
+msgstr "显示"
+
+msgid "Show %s"
+msgstr "显示%s"
+
+msgid "Show SKU, categories and tags"
+msgstr "显示 SKU、分类和标签"
+
+msgid "Show a cookie notice until the visitor accepts"
+msgstr "显示 Cookie 提示，直到访客同意"
+
+msgid "Show a loading screen until the page is ready"
+msgstr "在页面就绪前显示加载画面"
+
+msgid "Show a quick purchase bar on mobile"
+msgstr "在移动端显示快速购买栏"
+
+msgid "Show above the content"
+msgstr "显示在内容上方"
+
+msgid "Show again after (days, 0 = every visit)"
+msgstr "再次显示间隔（天，0 = 每次访问）"
+
+msgid "Show all slides"
+msgstr "显示所有幻灯片"
+
+msgid "Show and edit this slide"
+msgstr "显示并编辑此幻灯片"
+
+msgid "Show arrows"
+msgstr "显示箭头"
+
+msgid "Show as code snippet"
+msgstr "以代码片段显示"
+
+msgid "Show author information"
+msgstr "显示作者信息"
+
+msgid "Show below the content"
+msgstr "显示在内容下方"
+
+msgid "Show breadcrumbs"
+msgstr "显示面包屑"
+
+msgid "Show call-to-action band"
+msgstr "显示行动号召横条"
+
+msgid "Show captions"
+msgstr "显示图片说明"
+
+msgid "Show category above the title"
+msgstr "在标题上方显示分类"
+
+msgid "Show comments"
+msgstr "显示评论"
+
+msgid "Show controls"
+msgstr "显示控件"
+
+msgid "Show discount percentage on sale badge"
+msgstr "在促销标签上显示折扣百分比"
+
+msgid "Show dots"
+msgstr "显示圆点"
+
+msgid "Show empty stars when there are no reviews"
+msgstr "无评价时显示空星"
+
+msgid "Show excerpt"
+msgstr "显示摘要"
+
+msgid "Show featured image"
+msgstr "显示特色图片"
+
+msgid "Show first"
+msgstr "优先显示"
+
+msgid "Show footer bottom bar"
+msgstr "显示页脚底部栏"
+
+msgid "Show icon"
+msgstr "显示图标"
+
+msgid "Show it from this many headings"
+msgstr "标题数量达到此值时显示"
+
+msgid "Show maintenance screen to visitors"
+msgstr "向访客显示维护画面"
+
+msgid "Show meta (choose items below)"
+msgstr "显示元信息（在下方选择）"
+
+msgid "Show meta line"
+msgstr "显示元信息行"
+
+msgid "Show on"
+msgstr "显示于"
+
+msgid "Show on hover"
+msgstr "悬停时显示"
+
+msgid "Show on hover (desktop)"
+msgstr "悬停时显示（桌面端）"
+
+msgid "Show on mobile"
+msgstr "在移动端显示"
+
+msgid "Show one slide"
+msgstr "显示一张幻灯片"
+
+msgid "Show overlay only on hover"
+msgstr "仅悬停时显示遮罩"
+
+msgid "Show percentage"
+msgstr "显示百分比"
+
+msgid "Show product count"
+msgstr "显示商品数量"
+
+msgid "Show product count on category boxes"
+msgstr "在分类框上显示商品数量"
+
+msgid "Show related products"
+msgstr "显示相关商品"
+
+msgid "Show result count"
+msgstr "显示结果数量"
+
+msgid "Show second gallery image"
+msgstr "显示图库第二张图片"
+
+msgid "Show share buttons"
+msgstr "显示分享按钮"
+
+msgid "Show short description"
+msgstr "显示简短描述"
+
+msgid "Show social icons"
+msgstr "显示社交图标"
+
+msgid "Show sorting dropdown"
+msgstr "显示排序下拉菜单"
+
+msgid "Show star rating"
+msgstr "显示星级评分"
+
+msgid "Show tags"
+msgstr "显示标签"
+
+msgid "Show text under icons"
+msgstr "在图标下方显示文字"
+
+msgid "Show the announcement bar"
+msgstr "显示公告栏"
+
+msgid "Show the banner on"
+msgstr "横幅显示于"
+
+msgid "Show the cart total next to the icon"
+msgstr "在图标旁显示购物车总额"
+
+msgid "Show the number"
+msgstr "显示号码"
+
+msgid "Show the other side"
+msgstr "显示另一面"
+
+msgid "Show the page name as H1 on pages"
+msgstr "在页面上将页面名称显示为 H1"
+
+msgid "Show the phone number next to the call button (desktop)"
+msgstr "在拨号按钮旁显示电话号码（桌面端）"
+
+msgid "Show the site tagline next to the logo"
+msgstr "在 Logo 旁显示网站副标题"
+
+msgid "Show upsell products"
+msgstr "显示追加销售商品"
+
+msgid "Shown above the top bar, always full width. HTML, CSS, JavaScript, animations: anything works. Leave empty to hide."
+msgstr "显示在顶部栏上方，始终全宽。HTML、CSS、JavaScript、动画均可使用。留空则隐藏。"
+
+msgid "Shown as absolute inside the editor so it stays editable."
+msgstr "在编辑器中以绝对定位显示，以便继续编辑。"
+
+msgid "Shown beside single blog posts. Leave empty to use the Blog sidebar."
+msgstr "显示在单篇博客文章旁。留空则使用博客侧边栏。"
+
+msgid "Shown beside single products. Leave empty to use the Shop sidebar."
+msgstr "显示在单个商品旁。留空则使用商店侧边栏。"
+
+msgid "Shown on all products. Leave empty to hide."
+msgstr "显示在所有商品上。留空则隐藏。"
+
+msgid "Shown on categories, tags and search. Leave empty to use the Blog sidebar."
+msgstr "显示在分类、标签和搜索页。留空则使用博客侧边栏。"
+
+msgid "Shows exactly these products, in this order."
+msgstr "按此顺序显示这些指定商品。"
+
+msgid "Shows part of the next slide so visitors know they can swipe."
+msgstr "露出下一张幻灯片的一部分，提示访客可以滑动。"
+
+msgid "Shuttle to project viewings"
+msgstr "看房专车接送"
+
+msgid "Side"
+msgstr "侧边"
+
+msgid "Side padding (px, -1 = size default)"
+msgstr "左右内边距（px，-1 = 尺寸默认）"
+
+msgid "Side panel right"
+msgstr "右侧面板"
+
+msgid "Side spacing for full-width header & blocks (px, 0 = auto)"
+msgstr "全宽页头和区块的左右边距（px，0 = 自动）"
+
+msgid "Sidebar"
+msgstr "侧边栏"
+
+msgid "Sidebar & widgets"
+msgstr "侧边栏与小工具"
+
+msgid "Sidebar style"
+msgstr "侧边栏样式"
+
+msgid "Sidebar width (px)"
+msgstr "侧边栏宽度（px）"
+
+msgid "Sidebars & extras"
+msgstr "侧边栏与其他"
+
+msgid "Sign up this week for a free consultation."
+msgstr "本周报名即享免费咨询。"
+
+msgid "Signing"
+msgstr "签约"
+
+msgid "Simple"
+msgstr "简单"
+
+msgid "Simple (inside content)"
+msgstr "简单（内容中）"
+
+msgid "Simple dot"
+msgstr "简单圆点"
+
+msgid "Simple habits that help your skin recover and glow every morning."
+msgstr "帮助肌肤每天早晨修复并焕发光彩的简单习惯。"
+
+msgid "Since 2014"
+msgstr "始于 2014 年"
+
+msgid "Since 2015"
+msgstr "始于 2015 年"
+
+msgid "Single post"
+msgstr "单篇文章"
+
+msgid "Single post sidebar"
+msgstr "单篇文章侧边栏"
+
+msgid "Single post template"
+msgstr "单篇文章模板"
+
+msgid "Single product page"
+msgstr "单个商品页面"
+
+msgid "Single product sidebar"
+msgstr "单个商品侧边栏"
+
+msgid "Site language"
+msgstr "网站语言"
+
+msgid "Site layout"
+msgstr "网站布局"
+
+msgid "Site loader"
+msgstr "网站加载器"
+
+msgid "Site tools: 404 & maintenance"
+msgstr "网站工具：404 与维护"
+
+msgid "Site-wide settings that do not need a live preview. They are the same settings as in Appearance → Customize → Advanced."
+msgstr "无需实时预览的全站设置，与“外观 → 自定义 → 高级”中的设置相同。"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Size & shape"
+msgstr "尺寸与形状"
+
+msgid "Size & spacing"
+msgstr "尺寸与间距"
+
+msgid "Size (px)"
+msgstr "尺寸（px）"
+
+msgid "Skin analysis"
+msgstr "皮肤检测"
+
+msgid "Skin analysis & advice"
+msgstr "皮肤检测与建议"
+
+msgid "Skin is usually smoother and brighter after 3–5 sessions, depending on its condition."
+msgstr "视肤况而定，通常 3–5 次后肌肤会更光滑、更透亮。"
+
+msgid "Skin protection"
+msgstr "肌肤防护"
+
+msgid "Skin specialist"
+msgstr "皮肤专家"
+
+msgid "Skip first N posts"
+msgstr "跳过前 N 篇文章"
+
+msgid "Skip the first N products"
+msgstr "跳过前 N 个商品"
+
+msgid "Skip to content"
+msgstr "跳至内容"
+
+msgid "Sky & lemon"
+msgstr "天空与柠檬"
+
+msgid "Slate"
+msgstr "岩灰"
+
+msgid "Slate deep"
+msgstr "深岩灰"
+
+msgid "Slate pastel"
+msgstr "浅岩灰"
+
+msgid "Slide"
+msgstr "滑动"
+
+msgid "Slide corner radius (px)"
+msgstr "幻灯片圆角（px）"
+
+msgid "Slide number 01 / 05 with line"
+msgstr "带线条的幻灯片编号 01 / 05"
+
+msgid "Slider"
+msgstr "轮播"
+
+msgid "Slides"
+msgstr "幻灯片"
+
+msgid "Slides per view – desktop"
+msgstr "每屏幻灯片数 – 桌面端"
+
+msgid "Slides per view – mobile"
+msgstr "每屏幻灯片数 – 移动端"
+
+msgid "Slides per view – tablet"
+msgstr "每屏幻灯片数 – 平板"
+
+msgid "Slow (700 ms)"
+msgstr "慢（700 毫秒）"
+
+msgid "Small"
+msgstr "小"
+
+msgid "Small (420px)"
+msgstr "小（420px）"
+
+msgid "Small caps"
+msgstr "小型大写"
+
+msgid "Small classes"
+msgstr "小班教学"
+
+msgid "Small classes mean I speak a lot – now I present with much more confidence."
+msgstr "小班让我有很多机会开口——现在我做演讲自信多了。"
+
+msgid "Small classes with practice in every lesson."
+msgstr "小班教学，每节课都有练习。"
+
+msgid "Small label above the title"
+msgstr "标题上方小标签"
+
+msgid "Small second line (optional, e.g. phone number)"
+msgstr "第二行小字（可选，如电话号码）"
+
+msgid "Small text above"
+msgstr "上方小字"
+
+msgid "Small uppercase"
+msgstr "小号大写"
+
+msgid "Smaller menu text and spacing between the desktop breakpoint and this width, e.g. 1100."
+msgstr "在桌面断点与此宽度之间缩小菜单文字和间距，例如 1100。"
+
+msgid "Smooth open / close animation"
+msgstr "平滑的展开 / 收起动画"
+
+msgid "Smooth parallax strength (%, 0 = off)"
+msgstr "平滑视差强度（%，0 = 关闭）"
+
+msgid "Social icons"
+msgstr "社交图标"
+
+msgid "Social links"
+msgstr "社交链接"
+
+msgid "Social profiles (full URLs)"
+msgstr "社交主页（完整网址）"
+
+msgid "Soft"
+msgstr "柔和"
+
+msgid "Soft background"
+msgstr "柔和背景"
+
+msgid "Soft bounce"
+msgstr "轻弹"
+
+msgid "Soft color"
+msgstr "柔和颜色"
+
+msgid "Soft focus"
+msgstr "柔焦"
+
+msgid "Soft glow"
+msgstr "柔和光晕"
+
+msgid "Soft gradient"
+msgstr "柔和渐变"
+
+msgid "Soft pastel"
+msgstr "柔和浅色"
+
+msgid "Soft peach"
+msgstr "柔和蜜桃"
+
+msgid "Soft primary"
+msgstr "柔和主色"
+
+msgid "Soft secondary"
+msgstr "柔和辅助色"
+
+msgid "Soft shadow"
+msgstr "柔和阴影"
+
+msgid "Soft tinted circle"
+msgstr "浅色圆形"
+
+msgid "Soft tinted pill"
+msgstr "浅色胶囊"
+
+msgid "Soft tinted square"
+msgstr "浅色方形"
+
+msgid "Soft zoom"
+msgstr "柔和缩放"
+
+msgid "Software engineer with 6 years of teaching."
+msgstr "软件工程师，6 年教学经验。"
+
+msgid "Sold out"
+msgstr "售罄"
+
+msgid "Sold-out badge"
+msgstr "售罄标签"
+
+msgid "Sold-out products"
+msgstr "售罄商品"
+
+msgid "Solid"
+msgstr "实线"
+
+msgid "Sophie Bennett"
+msgstr "Sophie Bennett"
+
+msgid "Sorry, you are not allowed to change theme options."
+msgstr "抱歉，您无权更改主题选项。"
+
+msgid "Sorry, you are not allowed to create pages."
+msgstr "抱歉，您无权创建页面。"
+
+msgid "Sorry, you are not allowed to do that."
+msgstr "抱歉，您无权执行此操作。"
+
+msgid "Spa / beauty homepage with 15 sections: hero, highlights, story, treatments, process, numbers, benefits, packages, gallery, therapists, reviews, FAQ, tips, booking and contact."
+msgstr "水疗 / 美容首页，包含 15 个版块：主视觉、亮点、故事、护理项目、流程、数据、功效、套餐、图库、理疗师、评价、常见问题、小贴士、预约和联系。"
+
+msgid "Spa · Skin care · Massage"
+msgstr "水疗 · 护肤 · 按摩"
+
+msgid "Spa, yoga, flowers"
+msgstr "水疗、瑜伽、鲜花"
+
+msgid "Space above & below (px)"
+msgstr "上下间距（px）"
+
+msgid "Space between buttons (px)"
+msgstr "按钮间距（px）"
+
+msgid "Space between content and sidebar (px)"
+msgstr "内容与侧边栏间距（px）"
+
+msgid "Space between fields (px, -1 = default)"
+msgstr "字段间距（px，-1 = 默认）"
+
+msgid "Space between icon and frame (px, empty = default)"
+msgstr "图标与边框的间距（px，留空 = 默认）"
+
+msgid "Space between icons (px)"
+msgstr "图标间距（px）"
+
+msgid "Space between items (px)"
+msgstr "项目间距（px）"
+
+msgid "Space between items (px, -1 = default)"
+msgstr "项目间距（px，-1 = 默认）"
+
+msgid "Space between items (px, 0 = default)"
+msgstr "项目间距（px，0 = 默认）"
+
+msgid "Space between posts (px, 0 = default)"
+msgstr "文章间距（px，0 = 默认）"
+
+msgid "Space between widgets (px)"
+msgstr "小工具间距（px）"
+
+msgid "Space on the left (px)"
+msgstr "左侧间距（px）"
+
+msgid "Space on the right (px)"
+msgstr "右侧间距（px）"
+
+msgid "Spaced repetition to memorise words effectively."
+msgstr "间隔重复法，高效记单词。"
+
+msgid "Spacing"
+msgstr "间距"
+
+msgid "Sparkle"
+msgstr "闪烁"
+
+msgid "Speak confidently in public after 12 practical sessions."
+msgstr "12 次实战练习后自信地当众讲话。"
+
+msgid "Speaking practice"
+msgstr "口语练习"
+
+msgid "Special characters"
+msgstr "特殊字符"
+
+msgid "Special offers for loyal customers."
+msgstr "老顾客专享优惠。"
+
+msgid "Specific post IDs (comma separated)"
+msgstr "指定文章 ID（用逗号分隔）"
+
+msgid "Specific product IDs (comma separated)"
+msgstr "指定商品 ID（用逗号分隔）"
+
+msgid "Speech bubble"
+msgstr "对话气泡"
+
+msgid "Speed"
+msgstr "速度"
+
+msgid "Speed & reading"
+msgstr "速度与阅读"
+
+msgid "Split"
+msgstr "分栏"
+
+msgid "Square"
+msgstr "方形"
+
+msgid "Square 1:1"
+msgstr "方形 1:1"
+
+msgid "Square block"
+msgstr "方形区块"
+
+msgid "Stack items"
+msgstr "堆叠项目"
+
+msgid "Stack on mobile"
+msgstr "移动端堆叠"
+
+msgid "Stacked"
+msgstr "堆叠"
+
+msgid "Stacked images"
+msgstr "层叠图片"
+
+msgid "Star"
+msgstr "星形"
+
+msgid "Star rating (0 = hide)"
+msgstr "星级评分（0 = 隐藏）"
+
+msgid "Stars"
+msgstr "星星"
+
+msgid "Start with a header layout"
+msgstr "从页头布局开始"
+
+msgid "Start with a page. Make it yours."
+msgstr "从一个页面开始，打造属于您的网站。"
+
+msgid "Start with a ready-made layout or drag elements between rows. Click the gear on an element to edit it. Preview desktop and mobile separately, then press Publish to save."
+msgstr "从现成布局开始，或在行之间拖动元素。点击元素上的齿轮进行编辑。分别预览桌面端和移动端，然后点击“发布”保存。"
+
+msgid "Start your learning journey today"
+msgstr "今天就开启您的学习之旅"
+
+msgid "Static (reset)"
+msgstr "静态（重置）"
+
+msgid "Steel blue"
+msgstr "钢蓝"
+
+msgid "Sterile extraction and soothing nutrient infusion."
+msgstr "无菌清理与舒缓营养导入。"
+
+msgid "Sticky header"
+msgstr "固定页头"
+
+msgid "Sticky main row height (px)"
+msgstr "固定时主行高度（px）"
+
+msgid "Sticky sidebar (follows while scrolling)"
+msgstr "固定侧边栏（随滚动跟随）"
+
+msgid "Still have questions? Call us for a free learning-path consultation."
+msgstr "还有疑问？致电我们，免费咨询学习路径。"
+
+msgid "Still visible in the editor. Hidden on the live site for: "
+msgstr "在编辑器中仍然可见。在网站上隐藏于："
+
+msgid "Stop self-pingbacks (links to your own posts)"
+msgstr "阻止自我引用通告（指向自己文章的链接）"
+
+msgid "Store"
+msgstr "商店"
+
+msgid "Stories from the kitchen"
+msgstr "厨房里的故事"
+
+msgid "Strength"
+msgstr "强度"
+
+msgid "Stretch (equal width)"
+msgstr "拉伸（等宽）"
+
+msgid "Stretch tabs to full width"
+msgstr "标签页拉伸至全宽"
+
+msgid "Strike"
+msgstr "删除线"
+
+msgid "Strikethrough"
+msgstr "删除线"
+
+msgid "Striped"
+msgstr "条纹"
+
+msgid "Striped rows"
+msgstr "条纹行"
+
+msgid "Strong (on photos)"
+msgstr "强（用于照片）"
+
+msgid "Students"
+msgstr "学员"
+
+msgid "Studio"
+msgstr "Studio"
+
+msgid "Studio apartment"
+msgstr "开间公寓"
+
+msgid "Study corner"
+msgstr "学习角"
+
+msgid "Style"
+msgstr "样式"
+
+msgid "Style & visibility"
+msgstr "样式与可见性"
+
+msgid "Style default"
+msgstr "样式默认"
+
+msgid "Style on desktop & tablet"
+msgstr "桌面端与平板样式"
+
+msgid "Style on mobile"
+msgstr "移动端样式"
+
+msgid "Style presets"
+msgstr "样式预设"
+
+msgid "Style: colors & typography"
+msgstr "样式：颜色与排版"
+
+msgid "Subject"
+msgstr "主题"
+
+msgid "Submission was referred to as spam"
+msgstr "提交内容被判定为垃圾信息"
+
+msgid "Submit button"
+msgstr "提交按钮"
+
+msgid "Submit search"
+msgstr "提交搜索"
+
+msgid "Submitted values"
+msgstr "提交的值"
+
+msgid "Subscribe"
+msgstr "订阅"
+
+msgid "Subscript"
+msgstr "下标"
+
+msgid "Subtitle (optional)"
+msgstr "副标题（可选）"
+
+msgid "Subtle"
+msgstr "低调"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Success (green)"
+msgstr "成功（绿色）"
+
+msgid "Successful deals"
+msgstr "成功交易"
+
+msgid "Suffix"
+msgstr "后缀"
+
+msgid "Suggestion delay"
+msgstr "建议延迟"
+
+msgid "Sum up what makes you stand out in one or two sentences."
+msgstr "用一两句话概括您的独特之处。"
+
+msgid "Summary text alignment"
+msgstr "摘要文字对齐"
+
+msgid "Sunflower"
+msgstr "向日葵"
+
+msgid "Sunrise (light text)"
+msgstr "日出（浅色文字）"
+
+msgid "Sunset"
+msgstr "日落"
+
+msgid "Superscript"
+msgstr "上标"
+
+msgid "Sweets, toys, party"
+msgstr "糖果、玩具、派对"
+
+msgid "Switch"
+msgstr "开关"
+
+msgid "Switch buttons on/off, click a button to edit it, drag ☰ to change the order."
+msgstr "开启/关闭按钮，点击按钮进行编辑，拖动 ☰ 调整顺序。"
+
+msgid "System (fastest)"
+msgstr "系统字体（最快）"
+
+msgid "System UI"
+msgstr "System UI"
+
+msgid "System serif"
+msgstr "系统衬线"
+
+msgid "System status"
+msgstr "系统状态"
+
+msgid "TESOL certified, 8 years of teaching."
+msgstr "TESOL 认证，8 年教学经验。"
+
+msgid "Tab 1"
+msgstr "标签页 1"
+
+msgid "Tab 2"
+msgstr "标签页 2"
+
+msgid "Tab content…"
+msgstr "标签页内容…"
+
+msgid "Tab icon (optional)"
+msgstr "标签页图标（可选）"
+
+msgid "Tab text size (px, 0 = default)"
+msgstr "标签页文字大小（px，0 = 默认）"
+
+msgid "Tab title"
+msgstr "标签页标题"
+
+msgid "Table of contents (from H2 / H3)"
+msgstr "目录（来自 H2 / H3）"
+
+msgid "Table size: columns x rows"
+msgstr "表格大小：列 x 行"
+
+msgid "Tablet"
+msgstr "平板"
+
+msgid "Tablet (0 = same as desktop)"
+msgstr "平板（0 = 同桌面端）"
+
+msgid "Tablet (px)"
+msgstr "平板（px）"
+
+msgid "Tablet font size (px, 0 = inherit)"
+msgstr "平板字号（px，0 = 继承）"
+
+msgid "Tabs"
+msgstr "标签页"
+
+msgid "Tabs alignment"
+msgstr "标签页对齐"
+
+msgid "Tabs, swatches & page design"
+msgstr "标签页、色板与页面设计"
+
+msgid "Take an afternoon for yourself"
+msgstr "给自己一个下午"
+
+msgid "Take home tips to keep your results."
+msgstr "带回家的护理建议，让效果更持久。"
+
+msgid "Tangerine"
+msgstr "橘色"
+
+msgid "Tangerine deep"
+msgstr "深橘色"
+
+msgid "Tangerine pastel"
+msgstr "浅橘色"
+
+msgid "Teacher"
+msgstr "教师"
+
+msgid "Teachers"
+msgstr "教师团队"
+
+msgid "Teachers design a path for your goal."
+msgstr "教师为您的目标设计学习路径。"
+
+msgid "Teachers follow each student closely, send regular progress reports to parents and adjust the path when needed to reach the target."
+msgstr "教师密切跟进每位学员，定期向家长发送进度报告，并在需要时调整路径以达成目标。"
+
+msgid "Teal & coral"
+msgstr "青绿与珊瑚"
+
+msgid "Teal deep"
+msgstr "深青绿"
+
+msgid "Teal pastel"
+msgstr "浅青绿"
+
+msgid "Team member"
+msgstr "团队成员"
+
+msgid "Tech shops, phones, IT"
+msgstr "科技商店、手机、IT"
+
+msgid "Tech, education, agencies"
+msgstr "科技、教育、代理机构"
+
+msgid "Telephone number that the sender entered is invalid"
+msgstr "发件人填写的电话号码无效"
+
+msgid "Tell us the date, time and number of guests by phone or chat."
+msgstr "请通过电话或在线聊天告知日期、时间和人数。"
+
+msgid "Tender Australian tenderloin, rich black pepper sauce and garlic butter potatoes."
+msgstr "鲜嫩澳洲牛里脊，浓郁黑椒汁配蒜香黄油土豆。"
+
+msgid "Terraced townhouse"
+msgstr "联排别墅"
+
+msgid "Terracotta"
+msgstr "陶土色"
+
+msgid "Testimonial"
+msgstr "客户评价"
+
+msgid "Text"
+msgstr "文字"
+
+msgid "Text & links"
+msgstr "文字与链接"
+
+msgid "Text (address, hours, phone)"
+msgstr "文字（地址、营业时间、电话）"
+
+msgid "Text / icon color"
+msgstr "文字 / 图标颜色"
+
+msgid "Text align"
+msgstr "文字对齐"
+
+msgid "Text alignment"
+msgstr "文字对齐"
+
+msgid "Text case"
+msgstr "大小写"
+
+msgid "Text color"
+msgstr "文字颜色"
+
+msgid "Text color on hover"
+msgstr "悬停时文字颜色"
+
+msgid "Text color on transparent header"
+msgstr "透明页头上的文字颜色"
+
+msgid "Text color scheme"
+msgstr "文字配色方案"
+
+msgid "Text columns"
+msgstr "文字分栏"
+
+msgid "Text content"
+msgstr "文字内容"
+
+msgid "Text effects"
+msgstr "文字效果"
+
+msgid "Text formatting"
+msgstr "文字格式"
+
+msgid "Text in full-width banners, sliders and sections lines up with"
+msgstr "全宽横幅、轮播和版块中的文字对齐到"
+
+msgid "Text in the middle (optional)"
+msgstr "中间文字（可选）"
+
+msgid "Text link"
+msgstr "文字链接"
+
+msgid "Text logo size (px, when no image)"
+msgstr "文字 Logo 大小（px，无图片时）"
+
+msgid "Text next to round icons"
+msgstr "圆形图标旁的文字"
+
+msgid "Text next to the button (optional)"
+msgstr "按钮旁的文字（可选）"
+
+msgid "Text next to the icon"
+msgstr "图标旁的文字"
+
+msgid "Text next to the icon (e.g. Giỏ hàng)"
+msgstr "图标旁的文字（如 购物车）"
+
+msgid "Text next to the icon (e.g. Menu)"
+msgstr "图标旁的文字（如 菜单）"
+
+msgid "Text on hover"
+msgstr "悬停时文字"
+
+msgid "Text on image"
+msgstr "图片上的文字"
+
+msgid "Text over image"
+msgstr "文字叠加在图片上"
+
+msgid "Text shadow"
+msgstr "文字阴影"
+
+msgid "Text size (px, 0 = default)"
+msgstr "文字大小（px，0 = 默认）"
+
+msgid "Text under the price (e.g. Free shipping over $50)"
+msgstr "价格下方文字（如：满 $50 包邮）"
+
+msgid "Text when logged in"
+msgstr "登录时显示的文字"
+
+msgid "Text when logged out"
+msgstr "未登录时显示的文字"
+
+msgid "Text, HTML or shortcodes."
+msgstr "文字、HTML 或简码。"
+
+msgid "Thank-you message (optional)"
+msgstr "感谢信息（可选）"
+
+msgid "Thank-you message under the form (optional)"
+msgstr "表单下方的感谢信息（可选）"
+
+msgid "Thanks! We will call you back shortly."
+msgstr "谢谢！我们会尽快给您回电。"
+
+msgid "Thay thế các kiểu bo góc của nút."
+msgstr "替代按钮的圆角样式。"
+
+msgid "Thay thế lựa chọn nút vuông hoặc bo góc mềm."
+msgstr "替代方形按钮或柔和圆角按钮选项。"
+
+msgid "Thay thế lựa chọn nút vuông hoặc nút viên thuốc."
+msgstr "替代方形按钮或胶囊按钮选项。"
+
+msgid "The animation plays on the published page."
+msgstr "动画会在发布后的页面上播放。"
+
+msgid "The apartment market this quarter"
+msgstr "本季度公寓市场"
+
+msgid "The background moves slower than the page while scrolling. Works on phones too."
+msgstr "滚动时背景移动得比页面慢。手机上同样有效。"
+
+msgid "The banner follows the image proportions, so the whole image shows. Inside a slider with a common height, that height wins."
+msgstr "横幅会按图片比例显示完整图片。在统一高度的轮播中，以该高度为准。"
+
+msgid "The best places to live"
+msgstr "最宜居的地方"
+
+msgid "The container width (page content)"
+msgstr "容器宽度（页面内容）"
+
+msgid "The file is not a valid BIGSPY AI Theme WP export."
+msgstr "该文件不是有效的 BIGSPY AI Theme WP 导出文件。"
+
+msgid "The hands that care for you"
+msgstr "呵护您的双手"
+
+msgid "The header (logo) edge"
+msgstr "页头（Logo）边缘"
+
+msgid "The highlight draws itself when the heading scrolls into view."
+msgstr "标题滚动进入视野时会绘制高亮。"
+
+msgid "The hot stone massage is amazing, like recharging my energy after a long week."
+msgstr "热石按摩太棒了，就像在漫长的一周后给自己充电。"
+
+msgid "The main and bottom rows stay on screen while scrolling."
+msgstr "滚动时主行和底部行保持在屏幕上。"
+
+msgid "The menu changes with the seasons to keep every flavour fresh. Here are the dishes our guests love most."
+msgstr "菜单随季节更换，让每种味道都保持新鲜。以下是顾客最爱的菜品。"
+
+msgid "The numbers say it all"
+msgstr "数据说明一切"
+
+msgid "The original navy & orange"
+msgstr "原版藏青与橙色"
+
+msgid "The page you are looking for may have been moved or deleted. Try searching instead."
+msgstr "您要找的页面可能已被移动或删除。请尝试搜索。"
+
+msgid "The people behind the food"
+msgstr "美食背后的人"
+
+msgid "The preview could not be loaded. Save the page and reload the editor."
+msgstr "无法加载预览。请保存页面并重新加载编辑器。"
+
+msgid "The selected BIGSPY starter pattern could not be found."
+msgstr "找不到所选的 BIGSPY 起始样板。"
+
+msgid "The shop sidebar keeps its \"Filter\" off-canvas button on phones."
+msgstr "商店侧边栏在手机上保留“筛选”侧滑按钮。"
+
+msgid "The theme works as a service / business website without any plugin."
+msgstr "无需任何插件，本主题即可作为服务 / 企业网站使用。"
+
+msgid "The “Search products only” override also forces products only. Product choices require WooCommerce."
+msgstr "“仅搜索商品”选项也会强制只显示商品。商品相关选项需要 WooCommerce。"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "Theme Builder"
+msgstr "Theme Builder"
+
+msgid "Theme Options"
+msgstr "主题选项"
+
+msgid "Theme default"
+msgstr "主题默认"
+
+msgid "Theme language"
+msgstr "主题语言"
+
+msgid "Theme options imported."
+msgstr "主题选项已导入。"
+
+msgid "Theme options reset to defaults."
+msgstr "主题选项已重置为默认值。"
+
+msgid "Themed decoration"
+msgstr "主题装饰"
+
+msgid "Therapists"
+msgstr "理疗师"
+
+msgid "There is a field the sender must fill in"
+msgstr "有发件人必须填写的字段"
+
+msgid "There is nothing here yet."
+msgstr "这里还没有内容。"
+
+msgid "These colors also appear in the block editor color palette."
+msgstr "这些颜色也会出现在区块编辑器的调色板中。"
+
+msgid "They are completely free, with a shuttle for projects outside the city."
+msgstr "完全免费，市外项目还提供专车接送。"
+
+msgid "They know the market, they are honest and they put your interests first."
+msgstr "他们了解市场、诚实可靠，并始终把您的利益放在首位。"
+
+msgid "Thick bar under active"
+msgstr "当前项下方粗条"
+
+msgid "Thick progress bar – bottom"
+msgstr "粗进度条 – 底部"
+
+msgid "Thickness (px)"
+msgstr "粗细（px）"
+
+msgid "Thin lines"
+msgstr "细线条"
+
+msgid "Third-year student"
+msgstr "大三学生"
+
+msgid "This design could not be added. Please try another one."
+msgstr "无法添加此设计，请尝试其他设计。"
+
+msgid "This is not a Google Maps embed code. Copy it from Share → Embed a map."
+msgstr "这不是 Google 地图嵌入代码。请从“分享 → 嵌入地图”中复制。"
+
+msgid "This picker cannot be set from here."
+msgstr "此选项无法在这里设置。"
+
+msgid "This starter page is not available."
+msgstr "此起始页面不可用。"
+
+msgid "This widget area is empty. Add widgets in Appearance → Widgets."
+msgstr "此小工具区域为空。请在“外观 → 小工具”中添加小工具。"
+
+msgid "Thousands separator"
+msgstr "千位分隔符"
+
+msgid "Three content columns; keeps your current contact-band setting."
+msgstr "三栏内容；保留您当前的联系横条设置。"
+
+msgid "Three lines"
+msgstr "三条线"
+
+msgid "Thu gọn chiều rộng bài viết"
+msgstr "收窄文章宽度"
+
+msgid "Thu gọn khoảng cách menu desktop"
+msgstr "缩小桌面端菜单间距"
+
+msgid "Thumbnail"
+msgstr "缩略图"
+
+msgid "Thumbnails on the left"
+msgstr "缩略图在左"
+
+msgid "Thêm bóng cho thẻ mà không đổi bố cục lưới."
+msgstr "为卡片添加阴影，不改变网格布局。"
+
+msgid "Thêm viền rõ khi dùng bàn phím hoặc nhập biểu mẫu."
+msgstr "使用键盘或填写表单时添加清晰边框。"
+
+msgid "Thêm viền theo màu đường kẻ của theme."
+msgstr "添加主题线条色的边框。"
+
+msgid "Thư viện CSS · bật/tắt"
+msgstr "CSS 库 · 开启/关闭"
+
+msgid "Thư viện ảnh sản phẩm chuẩn WooCommerce."
+msgstr "WooCommerce 标准商品图库。"
+
+msgid "Thẻ dịch vụ BIGSPY có nền hoặc viền."
+msgstr "带背景或边框的 BIGSPY 服务卡片。"
+
+msgid "Thẻ dịch vụ nhấc nhẹ khi rê chuột"
+msgstr "悬停时轻微上浮的服务卡片"
+
+msgid "Thẻ sản phẩm BIGSPY trong danh sách WooCommerce."
+msgstr "WooCommerce 列表中的 BIGSPY 商品卡片。"
+
+msgid "Tick a block to hide it from the block inserter so the list stays short. Pages that already use it keep working."
+msgstr "勾选区块即可在区块插入器中隐藏，使列表更简短。已使用它的页面仍可正常工作。"
+
+msgid "TikTok link"
+msgstr "TikTok 链接"
+
+msgid "Tilt"
+msgstr "倾斜"
+
+msgid "Timer (time until next slide)"
+msgstr "计时器（距下一张幻灯片的时间）"
+
+msgid "Timezone"
+msgstr "时区"
+
+msgid "Tip: click the stars on the canvas to set the rating (half stars supported)."
+msgstr "提示：点击画布上的星星设置评分（支持半星）。"
+
+msgid "Tip: drag the right edge of the column on the canvas. Switch the preview to Tablet/Mobile to set those widths."
+msgstr "提示：在画布上拖动栏的右边缘。将预览切换到平板/移动端可设置对应宽度。"
+
+msgid "Tip: for landing pages choose the “Full width” or “Blank canvas” template and build with Section blocks."
+msgstr "提示：落地页请选择“全宽”或“空白画布”模板，并使用 Section 区块搭建。"
+
+msgid "Tip: give the parent Column/Section \"Position: Relative\"."
+msgstr "提示：为父级 Column/Section 设置“Position: Relative”。"
+
+msgid "Tiramisu, passion fruit cheesecake and mousse, made fresh every morning."
+msgstr "提拉米苏、百香果芝士蛋糕和慕斯，每天早晨新鲜制作。"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Title (accessibility)"
+msgstr "标题（无障碍）"
+
+msgid "Title (e.g. shop name)"
+msgstr "标题（如店铺名称）"
+
+msgid "Title (optional)"
+msgstr "标题（可选）"
+
+msgid "Title A–Z"
+msgstr "标题 A–Z"
+
+msgid "Title background"
+msgstr "标题背景"
+
+msgid "Title bar"
+msgstr "标题栏"
+
+msgid "Title bar background"
+msgstr "标题栏背景"
+
+msgid "Title bar background image"
+msgstr "标题栏背景图片"
+
+msgid "Title bar text color"
+msgstr "标题栏文字颜色"
+
+msgid "Title lines"
+msgstr "标题线"
+
+msgid "Title lines (0 = no limit)"
+msgstr "标题行数（0 = 不限制）"
+
+msgid "Title link (URL)"
+msgstr "标题链接（URL）"
+
+msgid "Title over the image"
+msgstr "标题叠加在图片上"
+
+msgid "Title size (px, 0 = default)"
+msgstr "标题大小（px，0 = 默认）"
+
+msgid "Title tag"
+msgstr "标题标签"
+
+msgid "Title, then image"
+msgstr "先标题，后图片"
+
+msgid "Tiêu đề sản phẩm tối đa 3 dòng"
+msgstr "商品标题最多 3 行"
+
+msgid "To build an online shop, install WooCommerce. The “Products” and “Product Categories” blocks, the shop patterns, the header cart and all shop options then appear automatically – nothing else to set up."
+msgstr "如需搭建网上商店，请安装 WooCommerce。“商品”和“商品分类”区块、商店样板、页头购物车及所有商店选项都会自动出现——无需其他设置。"
+
+msgid "Today the restaurant seats over 120 guests, has 3 private rooms and a team of 40 – but the spirit is the same as on day one: we serve every guest like family."
+msgstr "如今餐厅可容纳 120 多位客人，拥有 3 间包间和 40 人的团队——但初心未变：像对待家人一样款待每位客人。"
+
+msgid "Tokens: [year], [site_title]"
+msgstr "占位符：[year]、[site_title]"
+
+msgid "Toolbar above products"
+msgstr "商品上方的工具栏"
+
+msgid "Tools sterilised after every guest"
+msgstr "每位客人后器具均消毒"
+
+msgid "Tools, auto, hardware"
+msgstr "工具、汽车、五金"
+
+msgid "Tooltip width (px)"
+msgstr "提示框宽度（px）"
+
+msgid "Top (%)"
+msgstr "顶部（%）"
+
+msgid "Top / bottom content spacing"
+msgstr "内容上下间距"
+
+msgid "Top / bottom padding (px)"
+msgstr "上下内边距（px）"
+
+msgid "Top 10 restaurants"
+msgstr "十佳餐厅"
+
+msgid "Top bar"
+msgstr "顶部栏"
+
+msgid "Top bar menu"
+msgstr "顶部栏菜单"
+
+msgid "Top rated"
+msgstr "评分最高"
+
+msgid "Top-level categories only"
+msgstr "仅顶级分类"
+
+msgid "Townhouse buyer"
+msgstr "联排别墅买家"
+
+msgid "Townhouse specialist"
+msgstr "联排别墅专家"
+
+msgid "Track"
+msgstr "轨道"
+
+msgid "Trained and certified"
+msgstr "经过培训并获得认证"
+
+msgid "Trained in pastry in France."
+msgstr "在法国学习甜点制作。"
+
+msgid "Training centre · Languages · Skills"
+msgstr "培训中心 · 语言 · 技能"
+
+msgid "Trang chi tiết sản phẩm WooCommerce dạng chuẩn."
+msgstr "WooCommerce 标准商品详情页。"
+
+msgid "Transform"
+msgstr "变换"
+
+msgid "Transition"
+msgstr "过渡"
+
+msgid "Transparent (overlaps first section)"
+msgstr "透明（覆盖第一个版块）"
+
+msgid "Transparent header"
+msgstr "透明页头"
+
+msgid "Transparent header on the homepage"
+msgstr "首页透明页头"
+
+msgid "Travel distance (px, 0 = default)"
+msgstr "移动距离（px，0 = 默认）"
+
+msgid "Travel, beach, tours"
+msgstr "旅游、海滩、跟团游"
+
+msgid "Treatment"
+msgstr "护理"
+
+msgid "Treatments"
+msgstr "护理项目"
+
+msgid "Triangle"
+msgstr "三角形"
+
+msgid "Trigger"
+msgstr "触发方式"
+
+msgid "Trust, services, laundry, clinics"
+msgstr "信赖、服务、洗衣、诊所"
+
+msgid "Try “hero”, “services” or “products”…"
+msgstr "试试“hero”“services”或“products”…"
+
+msgid "Tránh từ hoặc đường dẫn dài tràn khỏi thẻ."
+msgstr "防止长单词或链接溢出卡片。"
+
+msgid "Trình duyệt hỗ trợ sẽ cân độ dài các dòng tiêu đề."
+msgstr "支持的浏览器会平衡标题各行的长度。"
+
+msgid "Trích dẫn trong nội dung, không đổi block cảm nhận."
+msgstr "内容中的引言；不改变客户评价区块。"
+
+msgid "Tuition"
+msgstr "学费"
+
+msgid "Turmeric, colostrum and rice bran for naturally bright skin."
+msgstr "姜黄、初乳和米糠，让肌肤自然透亮。"
+
+msgid "Turn off if an SEO plugin already outputs FAQ schema for this page."
+msgstr "若 SEO 插件已为此页面输出 FAQ 结构化数据，请关闭。"
+
+msgid "Turn on dots to see this timer."
+msgstr "开启圆点即可看到此计时器。"
+
+msgid "Turn the sidebar on/off and pick left or right per view: <b>Blog &amp; archives</b>, <b>Single posts</b>, <b>Shop</b>, <b>Single product</b> (each in its own section of the Customizer), or per post in the editor. Add, remove and reorder widgets in <b>Widgets</b> (in this Customizer, or <a href=\"%s\" target=\"_blank\">Appearance → Widgets</a>). Each view has its own widget area: Blog, Category &amp; archive, Single post, Shop, Single product."
+msgstr "可按视图开启/关闭侧边栏并选择左侧或右侧：<b>博客与归档</b>、<b>单篇文章</b>、<b>商店</b>、<b>单个商品</b>（各自在自定义器中有独立版块），或在编辑器中按文章设置。在<b>小工具</b>中添加、移除和排序小工具（在此自定义器中，或 <a href=\"%s\" target=\"_blank\">外观 → 小工具</a>）。每个视图都有自己的小工具区域：博客、分类与归档、单篇文章、商店、单个商品。"
+
+msgid "Two columns and a simple copyright bar."
+msgstr "两栏和简洁的版权栏。"
+
+msgid "Two lines"
+msgstr "两条线"
+
+msgid "Two tea breaks"
+msgstr "两次茶歇"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Typography"
+msgstr "排版"
+
+msgid "Typography & alignment"
+msgstr "排版与对齐"
+
+msgid "Tìm tác vụ CSS"
+msgstr "搜索 CSS 任务"
+
+msgid "Tìm tác vụ CSS…"
+msgstr "搜索 CSS 任务…"
+
+msgid "Tôn trọng tùy chọn giảm chuyển động của thiết bị."
+msgstr "尊重设备的减少动态效果偏好。"
+
+msgid "Tăng khoảng cách liên kết chân trang"
+msgstr "增大页脚链接间距"
+
+msgid "Tăng khoảng cách thư viện ảnh"
+msgstr "增大图库间距"
+
+msgid "Tăng vùng chạm của liên kết menu offcanvas BIGSPY."
+msgstr "扩大 BIGSPY 侧滑菜单链接的点击区域。"
+
+msgid "Tạo nền phía sau vùng chữ của banner BIGSPY."
+msgstr "在 BIGSPY 横幅的文字区域后方添加背景。"
+
+msgid "Tết, gifts, traditional"
+msgstr "春节、礼品、传统"
+
+msgid "URL, tel:+15551234567 or mailto:…"
+msgstr "URL、tel:+15551234567 或 mailto:…"
+
+msgid "UX Block"
+msgstr "UX 区块"
+
+msgid "UX Blocks"
+msgstr "UX Blocks"
+
+msgid "Under our guarantee"
+msgstr "享受我们的保证"
+
+msgid "Underline"
+msgstr "下划线"
+
+msgid "Underline (grows from center)"
+msgstr "下划线（从中间展开）"
+
+msgid "Underline (grows from left)"
+msgstr "下划线（从左侧展开）"
+
+msgid "Underline / pill color"
+msgstr "下划线 / 胶囊颜色"
+
+msgid "Underline on hover"
+msgstr "悬停时下划线"
+
+msgid "Undo"
+msgstr "撤销"
+
+msgid "Unknown options tab."
+msgstr "未知的选项标签页。"
+
+msgid "Unlimited"
+msgstr "无限制"
+
+msgid "Unlimited make-up lessons"
+msgstr "无限次补课"
+
+msgid "Unlock"
+msgstr "解锁"
+
+msgid "Untitled design"
+msgstr "未命名设计"
+
+msgid "Up / down"
+msgstr "上 / 下"
+
+msgid "Update classic cart after quantity changes"
+msgstr "数量变化后更新经典购物车"
+
+msgid "Updated every week with the latest prices and offers from developers."
+msgstr "每周更新开发商的最新价格和优惠。"
+
+msgid "Upload a file exported from BIGSPY AI Theme WP. Current settings will be overwritten."
+msgstr "上传从 BIGSPY AI Theme WP 导出的文件。当前设置将被覆盖。"
+
+msgid "Upload the logo in Site Identity."
+msgstr "在“站点身份”中上传 Logo。"
+
+msgid "Upload the logo in Site identity. Sizes below override the general logo width."
+msgstr "在“站点身份”中上传 Logo。下方尺寸会覆盖通用 Logo 宽度。"
+
+msgid "Upload your logo and choose colors & fonts in the Customizer."
+msgstr "上传您的 Logo，并在自定义器中选择颜色和字体。"
+
+msgid "Use HTML content type"
+msgstr "使用 HTML 内容类型"
+
+msgid "Use Mail (2)"
+msgstr "使用邮件 (2)"
+
+msgid "Use a CSS color value, for example #e83e56."
+msgstr "请使用 CSS 颜色值，例如 #e83e56。"
+
+msgid "Use a CSS color value, for example #e83e56. Used when this attribute is set to Color swatches."
+msgstr "请使用 CSS 颜色值，例如 #e83e56。当此属性设为颜色色板时使用。"
+
+msgid "Use an address on your own domain so SMTP accepts it."
+msgstr "请使用您自己域名下的地址，以便 SMTP 接受。"
+
+msgid "Use the block menu to create a reusable pattern. Saved patterns appear under Saved designs."
+msgstr "使用区块菜单创建可复用的样板。已保存的样板会显示在“已保存的设计”中。"
+
+msgid "Use two images with the same size and framing."
+msgstr "请使用尺寸和取景相同的两张图片。"
+
+msgid "Use “selector” to target this block only."
+msgstr "使用“selector”可只作用于此区块。"
+
+msgid "Used by the header, the mobile menu and the footer."
+msgstr "用于页头、移动端菜单和页脚。"
+
+msgid "Used on the default maintenance screen."
+msgstr "用于默认维护画面。"
+
+msgid "Used when this attribute is set to Image swatches."
+msgstr "当此属性设为图片色板时使用。"
+
+msgid "Username or t.me link"
+msgstr "用户名或 t.me 链接"
+
+msgid "Uses Rank Math / Yoast breadcrumbs when those plugins are active."
+msgstr "启用 Rank Math / Yoast 时使用其面包屑。"
+
+msgid "Uses the native Update cart button. WooCommerce Cart blocks already update quantities automatically."
+msgstr "使用原生的“更新购物车”按钮。WooCommerce 购物车区块已会自动更新数量。"
+
+msgid "Validation errors occurred"
+msgstr "出现验证错误"
+
+msgid "Vegetables from our own farm"
+msgstr "自家农场的蔬菜"
+
+msgid "Vertical"
+msgstr "垂直"
+
+msgid "Vertical (sidebar)"
+msgstr "垂直（侧边栏）"
+
+msgid "Vertical align"
+msgstr "垂直对齐"
+
+msgid "Vertical categories menu"
+msgstr "垂直分类菜单"
+
+msgid "Vertical line – left edge"
+msgstr "竖线 – 左边缘"
+
+msgid "Vertical menu (categories)"
+msgstr "垂直菜单（分类）"
+
+msgid "Video"
+msgstr "视频"
+
+msgid "Video popup"
+msgstr "视频弹窗"
+
+msgid "View"
+msgstr "查看"
+
+msgid "View all"
+msgstr "查看全部"
+
+msgid "View all results"
+msgstr "查看所有结果"
+
+msgid "Viewings"
+msgstr "看房"
+
+msgid "Violet"
+msgstr "紫罗兰"
+
+msgid "Violet deep"
+msgstr "深紫罗兰"
+
+msgid "Violet pastel"
+msgstr "浅紫罗兰"
+
+msgid "Visibility & motion effects"
+msgstr "可见性与动态效果"
+
+msgid "Visible results"
+msgstr "看得见的效果"
+
+msgid "Visit projects and compare several options."
+msgstr "实地参观项目，比较多个选择。"
+
+msgid "Visitors"
+msgstr "访客"
+
+msgid "Visitors can close it"
+msgstr "访客可关闭"
+
+msgid "Visitors can close it (remembered for 7 days)"
+msgstr "访客可关闭（记住 7 天）"
+
+msgid "Vivid · Bakery, honey, tours"
+msgstr "鲜艳 · 烘焙、蜂蜜、旅游"
+
+msgid "Vivid · Banking, insurance"
+msgstr "鲜艳 · 银行、保险"
+
+msgid "Vivid · Beauty, cafés, kids"
+msgstr "鲜艳 · 美容、咖啡馆、儿童"
+
+msgid "Vivid · Coffee, furniture"
+msgstr "鲜艳 · 咖啡、家具"
+
+msgid "Vivid · Construction, logistics"
+msgstr "鲜艳 · 建筑、物流"
+
+msgid "Vivid · Eco, juice, sport"
+msgstr "鲜艳 · 环保、果汁、运动"
+
+msgid "Vivid · Education, agencies"
+msgstr "鲜艳 · 教育、代理机构"
+
+msgid "Vivid · Events, cosmetics"
+msgstr "鲜艳 · 活动、化妆品"
+
+msgid "Vivid · Finance, law, B2B"
+msgstr "鲜艳 · 金融、法律、B2B"
+
+msgid "Vivid · Food delivery, fitness"
+msgstr "鲜艳 · 外卖、健身"
+
+msgid "Vivid · Garden, farm, organic"
+msgstr "鲜艳 · 园艺、农场、有机"
+
+msgid "Vivid · Jewelry, bridal"
+msgstr "鲜艳 · 珠宝、婚纱"
+
+msgid "Vivid · Pool, laundry, spa"
+msgstr "鲜艳 · 泳池、洗衣、水疗"
+
+msgid "Vivid · Sales, food, sport"
+msgstr "鲜艳 · 销售、食品、运动"
+
+msgid "Vivid · Spa, florist, wedding"
+msgstr "鲜艳 · 水疗、花店、婚礼"
+
+msgid "Vivid · Tech, minimal"
+msgstr "鲜艳 · 科技、极简"
+
+msgid "Vivid · Travel, IT, airlines"
+msgstr "鲜艳 · 旅游、IT、航空"
+
+msgid "Vivid · Wellness, tea, pharmacy"
+msgstr "鲜艳 · 健康、茶、药店"
+
+msgid "Viền nhẹ ảnh đại diện đánh giá"
+msgstr "评价头像细边框"
+
+msgid "Viền nổi gói dịch vụ được chọn"
+msgstr "选中套餐的突出边框"
+
+msgid "Viền rõ cho điều hướng bàn phím"
+msgstr "键盘导航的清晰边框"
+
+msgid "Voted by the local food community"
+msgstr "本地美食社区票选"
+
+msgid "WHY US"
+msgstr "为什么选择我们"
+
+msgid "WP Mail SMTP is active but not set up"
+msgstr "WP Mail SMTP 已启用但未设置"
+
+msgid "Wait before redirect (seconds)"
+msgstr "跳转前等待（秒）"
+
+msgid "Warm basalt stones and essential oils to release tension and help you sleep."
+msgstr "温热玄武岩与精油，释放紧绷，助您安眠。"
+
+msgid "Warm, elegant and welcoming"
+msgstr "温馨、优雅、宾至如归"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Warning (orange)"
+msgstr "警告（橙色）"
+
+msgid "Watch lessons again in the online app."
+msgstr "在线 App 中可回看课程。"
+
+msgid "Wave"
+msgstr "波浪"
+
+msgid "Wave pattern"
+msgstr "波浪图案"
+
+msgid "We are open from 7:00 am to 10:00 pm every day, including holidays."
+msgstr "每天 7:00–22:00 营业，节假日照常。"
+
+msgid "We are the official agent for many reputable developers. Every project is checked for legal status, zoning and construction progress before we offer it."
+msgstr "我们是多家知名开发商的官方代理。每个项目在推荐前都会核查法律状况、规划和施工进度。"
+
+msgid "We believe beauty starts with feeling relaxed. Every treatment room is quiet and warm, with soft light and a gentle scent of essential oils."
+msgstr "我们相信美丽始于放松。每间护理室都安静温暖，灯光柔和，带有淡淡的精油香气。"
+
+msgid "We found a great location within budget, and a year later the price has risen nicely."
+msgstr "我们在预算内找到了很好的地段，一年后房价涨了不少。"
+
+msgid "We guarantee free re-study until you reach the agreed goal."
+msgstr "我们保证免费重修，直到您达到约定目标。"
+
+msgid "We have a vegetarian menu of more than 15 dishes – let us know in advance."
+msgstr "我们有 15 道以上的素食菜品——请提前告知。"
+
+msgid "We will be back soon"
+msgstr "我们很快回来"
+
+msgid "Website (what visitors see)"
+msgstr "网站（访客看到的内容）"
+
+msgid "Wedding, jewelry, beauty"
+msgstr "婚礼、珠宝、美容"
+
+msgid "Weight"
+msgstr "字重"
+
+msgid "What are your opening hours?"
+msgstr "营业时间是什么时候？"
+
+msgid "What did the customer say?"
+msgstr "客户说了什么？"
+
+msgid "What documents do I need to buy?"
+msgstr "购房需要哪些材料？"
+
+msgid "What if I don’t reach my goal?"
+msgstr "如果没有达到目标怎么办？"
+
+msgid "What is the timetable?"
+msgstr "课程时间表是怎样的？"
+
+msgid "What our clients say"
+msgstr "客户评价"
+
+msgid "What our guests say"
+msgstr "顾客评价"
+
+msgid "What our students say"
+msgstr "学员评价"
+
+msgid "What parents should consider when picking an English class."
+msgstr "家长选择英语班时应考虑的事项。"
+
+msgid "When leaving the page (desktop)"
+msgstr "离开页面时（桌面端）"
+
+msgid "When will I see results?"
+msgstr "多久能看到效果？"
+
+msgid "Where every student is treated as an individual"
+msgstr "在这里，每位学员都被个别关注"
+
+msgid "Where sidebars show"
+msgstr "侧边栏显示位置"
+
+msgid "Where this layout shows"
+msgstr "此布局的显示位置"
+
+msgid "Where to find each part of the theme."
+msgstr "主题各部分所在位置。"
+
+msgid "While scrolling"
+msgstr "滚动时"
+
+msgid "White"
+msgstr "白色"
+
+msgid "White bar, colored icons"
+msgstr "白色栏、彩色图标"
+
+msgid "Who keep coming back"
+msgstr "回头客"
+
+msgid "Who know the market"
+msgstr "懂市场的顾问"
+
+msgid "Why choose us"
+msgstr "为什么选择我们"
+
+msgid "Why customers choose us"
+msgstr "客户选择我们的理由"
+
+msgid "Why guests come back"
+msgstr "顾客再次光临的理由"
+
+msgid "Wide (wider than container)"
+msgstr "宽（超出容器）"
+
+msgid "Widget area"
+msgstr "小工具区域"
+
+msgid "Widget background"
+msgstr "小工具背景"
+
+msgid "Widget corner radius (px, -1 = style default)"
+msgstr "小工具圆角（px，-1 = 样式默认）"
+
+msgid "Widget inner space (px, -1 = style default)"
+msgstr "小工具内边距（px，-1 = 样式默认）"
+
+msgid "Widget link color"
+msgstr "小工具链接颜色"
+
+msgid "Widget text size (px, 0 = theme)"
+msgstr "小工具文字大小（px，0 = 主题）"
+
+msgid "Widget title color"
+msgstr "小工具标题颜色"
+
+msgid "Widget title size (px, 0 = default)"
+msgstr "小工具标题大小（px，0 = 默认）"
+
+msgid "Widget title style"
+msgstr "小工具标题样式"
+
+msgid "Widgets (sidebar & footer)"
+msgstr "小工具（侧边栏与页脚）"
+
+msgid "Width"
+msgstr "宽度"
+
+msgid "Width (%)"
+msgstr "宽度（%）"
+
+msgid "Width (px, 0 = auto)"
+msgstr "宽度（px，0 = 自动）"
+
+msgid "Width when sticky (px, 0 = same)"
+msgstr "固定时宽度（px，0 = 相同）"
+
+msgid "Wine, restaurants, premium"
+msgstr "葡萄酒、餐厅、高端"
+
+msgid "With you on the road to your new home"
+msgstr "陪伴您走向新家"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "WooCommerce is active – shop mode is on."
+msgstr "WooCommerce 已启用——商店模式已开启。"
+
+msgid "WooCommerce required"
+msgstr "需要 WooCommerce"
+
+msgid "Word, Excel and PowerPoint you can use at work right away."
+msgstr "马上就能在工作中使用的 Word、Excel 和 PowerPoint。"
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "WordPress memory limit"
+msgstr "WordPress 内存限制"
+
+msgid "WordPress tweaks & site loader"
+msgstr "WordPress 优化与网站加载器"
+
+msgid "Works for blocks placed directly on the page. Inside a Section, use the Section “Content width” instead."
+msgstr "适用于直接放在页面上的区块。在 Section 内请改用 Section 的“内容宽度”。"
+
+msgid "Wrap long lines"
+msgstr "长行自动换行"
+
+msgid "Write a heading…"
+msgstr "输入标题…"
+
+msgid "Writing settings"
+msgstr "撰写设置"
+
+msgid "Written by"
+msgstr "作者"
+
+msgid "Years of experience"
+msgstr "从业年限"
+
+msgid "Years open"
+msgstr "开业年数"
+
+msgid "Years teaching"
+msgstr "教学年限"
+
+msgid "Yes, 0% instalments by credit card or two payments."
+msgstr "可以，支持信用卡 0 利息分期或分两次付款。"
+
+msgid "Yes, free motorbike and car parking right next to the spa."
+msgstr "可以，水疗馆旁设有免费摩托车和汽车停车位。"
+
+msgid "Yes, unlimited make-up lessons in classes at the same level."
+msgstr "可以，同级别班级无限次补课。"
+
+msgid "Yes, we issue electronic invoices for individuals and companies."
+msgstr "可以，我们为个人和企业开具电子发票。"
+
+msgid "Yes, we value it for free and only charge a fee when the sale is done."
+msgstr "可以，我们免费估价，成交后才收取佣金。"
+
+msgid "Yes, we work with 12 banks offering preferential rates, simple paperwork and fast disbursement."
+msgstr "可以，我们与 12 家银行合作，利率优惠、手续简单、放款快速。"
+
+msgid "Yes, within 5 km, free for orders over $30."
+msgstr "可以，5 公里内，订单满 $30 免运费。"
+
+msgid "Yes, you get 2 free trial lessons before you decide to enrol."
+msgstr "可以，报名前可免费试听 2 节课。"
+
+msgid "Yes. Your therapist analyses your skin and chooses gentle, non-irritating products."
+msgstr "可以。理疗师会分析您的肌肤，选用温和无刺激的产品。"
+
+msgid "YouTube URL or .mp4/.webm file URL"
+msgstr "YouTube 网址或 .mp4/.webm 文件网址"
+
+msgid "YouTube link"
+msgstr "YouTube 链接"
+
+msgid "YouTube, Vimeo or .mp4 URL"
+msgstr "YouTube、Vimeo 或 .mp4 网址"
+
+msgid "Your design stays in draft until you publish it."
+msgstr "您的设计在发布前一直保存为草稿。"
+
+msgid "Your learning path"
+msgstr "您的学习路径"
+
+msgid "Your name"
+msgstr "您的姓名"
+
+msgid "Your needs"
+msgstr "您的需求"
+
+msgid "Your own therapist"
+msgstr "专属理疗师"
+
+msgid "Your relaxation journey"
+msgstr "您的放松之旅"
+
+msgid "Your therapist analyses your skin and suggests a plan."
+msgstr "理疗师分析您的肌肤并建议护理方案。"
+
+msgid "Zalo phone number or zalo.me link"
+msgstr "Zalo 电话号码或 zalo.me 链接"
+
+msgid "Zigzag"
+msgstr "之字形"
+
+msgid "Zigzag list (image left / right)"
+msgstr "Z 字形列表（图片左 / 右）"
+
+msgid "Zoom"
+msgstr "缩放"
+
+msgid "Zoom & fade"
+msgstr "缩放与淡入"
+
+msgid "Zoom image"
+msgstr "放大图片"
+
+msgid "Zoom image on hover"
+msgstr "悬停时放大图片"
+
+msgid "[_site_admin_email] = the site admin email."
+msgstr "[_site_admin_email] = 网站管理员邮箱。"
+
+msgid "[your-email] = the visitor’s email field."
+msgstr "[your-email] = 访客的邮箱字段。"
+
+msgid "admissions@academy.edu"
+msgstr "admissions@academy.edu"
+
+msgid "booking@restaurant.com"
+msgstr "booking@restaurant.com"
+
+msgid "booking@spa.com"
+msgstr "booking@spa.com"
+
+msgid "combine"
+msgstr "combine"
+
+msgid "desktop"
+msgstr "桌面端"
+
+msgid "e.g. a thank-you page, useful for Google Ads / Analytics conversions."
+msgstr "例如感谢页面，便于统计 Google Ads / Analytics 转化。"
+
+msgid "hello@realestate.com"
+msgstr "hello@realestate.com"
+
+msgid "inherit"
+msgstr "inherit"
+
+msgid "lowercase"
+msgstr "lowercase"
+
+msgid "mobile"
+msgstr "移动端"
+
+msgid "no – check the SMTP settings"
+msgstr "否——请检查 SMTP 设置"
+
+msgid "not set"
+msgstr "未设置"
+
+msgid "opens after "
+msgstr "打开于"
+
+msgid "opens at "
+msgstr "打开于"
+
+msgid "opens from #links"
+msgstr "通过 # 链接打开"
+
+msgid "opens from its button"
+msgstr "通过其按钮打开"
+
+msgid "opens on exit intent"
+msgstr "在退出意图时打开"
+
+msgid "required"
+msgstr "必填"
+
+msgid "tablet"
+msgstr "平板"
+
+msgid "yes"
+msgstr "是"
+
+msgid "Áp dụng thư viện ảnh dạng block lồng nhau."
+msgstr "适用于嵌套区块式图库。"
+
+msgid "Ô nhập chuẩn và WooCommerce; plugin tự dựng giao diện có thể khác."
+msgstr "标准和 WooCommerce 输入框；自建界面的插件外观可能不同。"
+
+msgid "Ô nhập mobile tối thiểu 16px"
+msgstr "移动端输入框至少 16px"
+
+msgid "Đang bật:"
+msgstr "已启用："
+
+msgid "Đoạn văn và danh sách trong vùng nội dung."
+msgstr "内容区域中的段落和列表。"
+
+msgid "Đánh giá và form xếp một cột"
+msgstr "评价与表单单栏排列"
+
+msgid "Đường phân cách dưới đầu trang"
+msgstr "页头下方分隔线"
+
+msgid "Đầu trang & chân trang"
+msgstr "页头与页脚"
+
+msgid "Đầu trang BIGSPY, kể cả khi đã bật sticky trong Header."
+msgstr "BIGSPY 页头，包括在页头中开启固定时。"
+
+msgid "Để lại số điện thoại, tiệm gọi lại tư vấn trong giờ làm việc."
+msgstr "留下电话号码，我们会在营业时间内回电咨询。"
+
+msgid "Đổ bóng nhẹ cho nút chính"
+msgstr "主按钮轻微阴影"
+
+msgid "Đổ bóng nhẹ cho ảnh nội dung"
+msgstr "内容图片轻微阴影"
+
+msgid "Đổ bóng nhẹ dưới đầu trang"
+msgstr "页头下方轻微阴影"
+
+msgid "Đổ bóng nhẹ thẻ sản phẩm"
+msgstr "商品卡片轻微阴影"
+
+msgid "Đổ bóng thẻ bài viết"
+msgstr "文章卡片阴影"
+
+msgid "Đổ bóng thẻ dịch vụ"
+msgstr "服务卡片阴影"
+
+msgid "Ảnh blog phủ đầy khung"
+msgstr "博客图片铺满框"
+
+msgid "Ảnh sản phẩm phủ đầy khung"
+msgstr "商品图片铺满框"
+
+msgid "Ảnh đại diện ở trang bài viết đơn."
+msgstr "单篇文章页面的特色图片。"
+
+msgid "Ẩn đồng hồ Countix trong giỏ hàng và thanh toán"
+msgstr "在购物车和结账中隐藏 Countix 计时器"
+
+msgid "– Author"
+msgstr "– 作者"
+
+msgid "– Category"
+msgstr "– 分类"
+
+msgid "– Date"
+msgstr "– 日期"
+
+msgid "– Reading time"
+msgstr "– 阅读时长"
+
+msgid "— Choose a form —"
+msgstr "— 选择表单 —"
+
+msgid "— None —"
+msgstr "— 无 —"
+
+msgid "“Get directions” button"
+msgstr "“获取路线”按钮"
+
+msgid "“Hot” badge on featured products"
+msgstr "精选商品“Hot”标签"
+
+msgid "“Load more” button"
+msgstr "“加载更多”按钮"
+
+msgid "“New” badge for products added in the last N days (0 = off)"
+msgstr "最近 N 天内添加的商品显示“新品”标签（0 = 关闭）"
+
+msgid "“Read more” style"
+msgstr "“阅读更多”样式"
+
+msgid "“Read more” text"
+msgstr "“阅读更多”文字"
+
+msgid "“Read more” text (empty to hide)"
+msgstr "“阅读更多”文字（留空则隐藏）"
+
+msgid "“Same as WordPress” follows each user’s profile language."
+msgstr "“与 WordPress 相同”会跟随每位用户的个人资料语言。"
+
+msgid "“View all” link"
+msgstr "“查看全部”链接"
+
+msgid "“View all” text"
+msgstr "“查看全部”文字"
+
+msgid "…or an address"
+msgstr "…或填写地址"
+
+msgid "…or use an image instead"
+msgstr "…或改用图片"
+
+msgid "← Older posts"
+msgstr "← 较早的文章"
+
+msgid "★ Built-in form (no plugin needed)"
+msgstr "★ 内置表单（无需插件）"
