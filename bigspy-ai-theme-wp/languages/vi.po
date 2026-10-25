@@ -920,6 +920,9 @@ msgstr "Khách hàng"
 msgid "Customize"
 msgstr "Tùy biến"
 
+msgid "Customizer colors, fonts and layout CSS go into a file the browser caches, instead of being repeated in every page."
+msgstr "CSS màu, font và bố cục từ Customizer được ghi vào file để trình duyệt lưu cache, thay vì lặp lại trong mọi trang."
+
 msgid "DESIGN YOUR WEBSITE"
 msgstr "THIẾT KẾ WEBSITE CỦA BẠN"
 
@@ -1027,6 +1030,9 @@ msgstr "Nhân bản"
 
 msgid "Duration (ms)"
 msgstr "Thời lượng (ms)"
+
+msgid "Each page gets the shared styles plus the styles of the blocks it contains. The editor always loads everything."
+msgstr "Mỗi trang chỉ tải CSS dùng chung và CSS của các block có trên trang. Trình soạn thảo vẫn tải đầy đủ."
 
 msgid "Each post writer’s profile (Users → Profile)"
 msgstr "Hồ sơ của người viết từng bài (Thành viên → Hồ sơ)"
@@ -1165,6 +1171,9 @@ msgstr "Nút liên hệ nổi"
 
 msgid "Floor 12, 68 Park Avenue, City Centre"
 msgstr "Tầng 12, 68 Lê Duẩn, Quận 1, TP.HCM"
+
+msgid "Fonts are downloaded once to the uploads folder, so visitors never connect to Google. Until the download finishes, fonts load from Google as before."
+msgstr "Font được tải một lần về thư mục uploads, khách không cần kết nối tới Google. Trong lúc chưa tải xong, font vẫn lấy từ Google như cũ."
 
 msgid "Food safety"
 msgstr "An toàn thực phẩm"
@@ -1445,6 +1454,9 @@ msgstr "Trang chủ – Spa & làm đẹp"
 msgid "Homes as described"
 msgstr "Nhà đúng mô tả"
 
+msgid "Host Google Fonts on this site"
+msgstr "Lưu Google Fonts trên host của website"
+
 msgid "Hot"
 msgstr "Hot"
 
@@ -1571,6 +1583,12 @@ msgstr "Am hiểu quy hoạch các quận trung tâm."
 msgid "Lakeside villa"
 msgstr "Biệt thự ven hồ"
 
+msgid "Landscape 3:2"
+msgstr "Phong cảnh 3:2"
+
+msgid "Landscape 4:3"
+msgstr "Phong cảnh 4:3"
+
 msgid "Language of the theme’s own texts. WordPress and plugins keep their own language (Settings → General and Users → Profile)."
 msgstr "Ngôn ngữ của các chữ do theme hiển thị. WordPress và plugin vẫn dùng ngôn ngữ riêng (Cài đặt → Tổng quan và Thành viên → Hồ sơ)."
 
@@ -1669,6 +1687,9 @@ msgstr "Cam kết đúng giá niêm yết"
 
 msgid "Live shrimp, squid and clams in our special sweet-and-sour broth."
 msgstr "Tôm, mực, nghêu tươi sống cùng nước dùng chua cay đặc biệt."
+
+msgid "Load block styles only on pages that use them"
+msgstr "Chỉ tải CSS của block trên trang có dùng block đó"
 
 msgid "Load more"
 msgstr "Xem thêm"
@@ -2204,6 +2225,12 @@ msgstr "Icon trơn"
 msgid "Plus 3 private rooms"
 msgstr "Kèm 3 phòng riêng"
 
+msgid "Portrait 2:3 (books, posters)"
+msgstr "Chân dung 2:3 (sách, poster)"
+
+msgid "Portrait 3:4 (fashion)"
+msgstr "Chân dung 3:4 (thời trang)"
+
 msgid "Post / page IDs to exclude"
 msgstr "ID bài / trang cần loại trừ"
 
@@ -2555,6 +2582,9 @@ msgstr "Lộ trình tự học IELTS 6.5"
 msgid "Sell with us"
 msgstr "Ký gửi bán"
 
+msgid "Serve generated CSS as a cached file"
+msgstr "Gom CSS tạo tự động thành file có cache"
+
 msgid "Services"
 msgstr "Dịch vụ"
 
@@ -2791,6 +2821,9 @@ msgstr "Thực hành giao tiếp"
 
 msgid "Special offers for loyal customers."
 msgstr "Ưu đãi riêng cho khách thân thiết."
+
+msgid "Square 1:1"
+msgstr "Hình vuông 1:1"
 
 msgid "Start with a page. Make it yours."
 msgstr "Bắt đầu từ một trang mẫu, rồi biến nó thành website của bạn."
@@ -3095,6 +3128,9 @@ msgstr "Dẫn xem dự án, so sánh nhiều lựa chọn."
 msgid "Visitors"
 msgstr "Người xem"
 
+msgid "Visitors only see it after you add widgets to the \"Shop sidebar\" area in Appearance → Widgets."
+msgstr "Khách chỉ thấy sidebar sau khi bạn thêm widget vào vùng \"Shop sidebar\" ở Giao diện → Widget."
+
 msgid "Voted by the local food community"
 msgstr "Do cộng đồng ẩm thực bình chọn"
 
@@ -3184,6 +3220,9 @@ msgstr "Vì sao khách hàng chọn chúng tôi"
 
 msgid "Why guests come back"
 msgstr "Vì sao thực khách quay lại"
+
+msgid "Widescreen 16:9 (banners)"
+msgstr "Màn ảnh rộng 16:9 (banner)"
 
 msgid "Widget background"
 msgstr "Nền widget"
@@ -3313,39 +3352,3 @@ msgstr "“Theo WordPress” sẽ dùng ngôn ngữ trong hồ sơ của từng 
 
 msgid "← Older posts"
 msgstr "← Bài cũ hơn"
-
-msgid "Load block styles only on pages that use them"
-msgstr "Chỉ tải CSS của block trên trang có dùng block đó"
-
-msgid "Each page gets the shared styles plus the styles of the blocks it contains. The editor always loads everything."
-msgstr "Mỗi trang chỉ tải CSS dùng chung và CSS của các block có trên trang. Trình soạn thảo vẫn tải đầy đủ."
-
-msgid "Host Google Fonts on this site"
-msgstr "Lưu Google Fonts trên host của website"
-
-msgid "Fonts are downloaded once to the uploads folder, so visitors never connect to Google. Until the download finishes, fonts load from Google as before."
-msgstr "Font được tải một lần về thư mục uploads, khách không cần kết nối tới Google. Trong lúc chưa tải xong, font vẫn lấy từ Google như cũ."
-
-msgid "Serve generated CSS as a cached file"
-msgstr "Gom CSS tạo tự động thành file có cache"
-
-msgid "Customizer colors, fonts and layout CSS go into a file the browser caches, instead of being repeated in every page."
-msgstr "CSS màu, font và bố cục từ Customizer được ghi vào file để trình duyệt lưu cache, thay vì lặp lại trong mọi trang."
-
-msgid "Square 1:1"
-msgstr "Hình vuông 1:1"
-
-msgid "Portrait 3:4 (fashion)"
-msgstr "Chân dung 3:4 (thời trang)"
-
-msgid "Landscape 4:3"
-msgstr "Phong cảnh 4:3"
-
-msgid "Widescreen 16:9 (banners)"
-msgstr "Màn ảnh rộng 16:9 (banner)"
-
-msgid "Landscape 3:2"
-msgstr "Phong cảnh 3:2"
-
-msgid "Portrait 2:3 (books, posters)"
-msgstr "Chân dung 2:3 (sách, poster)"

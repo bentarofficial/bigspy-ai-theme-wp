@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.70.1' );
+define( 'BST_VERSION', '1.70.2' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 

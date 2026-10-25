@@ -469,7 +469,8 @@ function bst_sidebar_position() {
 	$position = in_array( $position, array( 'none', 'left', 'right' ), true ) ? $position : 'none';
 
 	// A sidebar without widgets must not reserve an empty column.
-	if ( 'none' !== $position && ! is_active_sidebar( bst_sidebar_id() ) ) {
+	// Admins still see the column with an "Add widgets" link so the setting does not look broken.
+	if ( 'none' !== $position && ! is_active_sidebar( bst_sidebar_id() ) && ! current_user_can( 'edit_theme_options' ) ) {
 		$position = 'none';
 	}
 	return apply_filters( 'bst_sidebar_position', $position );

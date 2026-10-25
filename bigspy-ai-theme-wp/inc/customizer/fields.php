@@ -298,7 +298,7 @@ function bst_customizer_fields() {
 				array( 'id' => 'shop_columns_tablet', 'section' => 'bst_shop', 'type' => 'select', 'label' => __( 'Products per row – tablet', 'bigspy-ai-theme-wp' ), 'choices' => array_slice( $cols, 0, 4, true ) ),
 				array( 'id' => 'shop_columns_mobile', 'section' => 'bst_shop', 'type' => 'select', 'label' => __( 'Products per row – mobile', 'bigspy-ai-theme-wp' ), 'choices' => array_slice( $cols, 0, 2, true ) ),
 				array( 'id' => 'shop_per_page', 'section' => 'bst_shop', 'type' => 'number', 'label' => __( 'Products per page', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 1, 100 ) ),
-				array( 'id' => 'shop_sidebar', 'section' => 'bst_shop', 'type' => 'select', 'label' => __( 'Shop sidebar', 'bigspy-ai-theme-wp' ), 'choices' => $sidebar ),
+				array( 'id' => 'shop_sidebar', 'section' => 'bst_shop', 'type' => 'select', 'label' => __( 'Shop sidebar', 'bigspy-ai-theme-wp' ), 'description' => __( 'Visitors only see it after you add widgets to the "Shop sidebar" area in Appearance → Widgets.', 'bigspy-ai-theme-wp' ), 'choices' => $sidebar ),
 				array( 'id' => 'cart_icon', 'section' => 'bst_shop', 'type' => 'radio', 'label' => __( 'Header cart icon', 'bigspy-ai-theme-wp' ), 'choices' => array( 'bag' => __( 'Bag', 'bigspy-ai-theme-wp' ), 'cart' => __( 'Cart', 'bigspy-ai-theme-wp' ) ) ),
 				array( 'id' => 'mini_cart', 'section' => 'bst_shop', 'type' => 'checkbox', 'label' => __( 'Mini cart dropdown on hover (desktop)', 'bigspy-ai-theme-wp' ) ),
 
