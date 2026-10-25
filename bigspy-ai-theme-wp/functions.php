@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.69.2' );
+define( 'BST_VERSION', '1.70.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -18,6 +18,7 @@ $bst_includes = array(
 	'inc/fonts.php',
 	'inc/dynamic-css.php',
 	'inc/assets.php',
+	'inc/performance.php',
 	'inc/template-tags.php',
 	'inc/header-builder.php',
 	'inc/header-design.php',

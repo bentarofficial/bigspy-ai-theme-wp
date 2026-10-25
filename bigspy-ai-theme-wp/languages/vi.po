@@ -3313,3 +3313,21 @@ msgstr "“Theo WordPress” sẽ dùng ngôn ngữ trong hồ sơ của từng 
 
 msgid "← Older posts"
 msgstr "← Bài cũ hơn"
+
+msgid "Load block styles only on pages that use them"
+msgstr "Chỉ tải CSS của block trên trang có dùng block đó"
+
+msgid "Each page gets the shared styles plus the styles of the blocks it contains. The editor always loads everything."
+msgstr "Mỗi trang chỉ tải CSS dùng chung và CSS của các block có trên trang. Trình soạn thảo vẫn tải đầy đủ."
+
+msgid "Host Google Fonts on this site"
+msgstr "Lưu Google Fonts trên host của website"
+
+msgid "Fonts are downloaded once to the uploads folder, so visitors never connect to Google. Until the download finishes, fonts load from Google as before."
+msgstr "Font được tải một lần về thư mục uploads, khách không cần kết nối tới Google. Trong lúc chưa tải xong, font vẫn lấy từ Google như cũ."
+
+msgid "Serve generated CSS as a cached file"
+msgstr "Gom CSS tạo tự động thành file có cache"
+
+msgid "Customizer colors, fonts and layout CSS go into a file the browser caches, instead of being repeated in every page."
+msgstr "CSS màu, font và bố cục từ Customizer được ghi vào file để trình duyệt lưu cache, thay vì lặp lại trong mọi trang."

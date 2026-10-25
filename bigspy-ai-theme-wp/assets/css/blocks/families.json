@@ -1,0 +1,119 @@
+{
+	"accordion": [
+		"bs-accordion"
+	],
+	"alert": [
+		"bs-alert"
+	],
+	"animate": [
+		"bs-animate",
+		"bs-ease"
+	],
+	"audio": [
+		"bs-audio"
+	],
+	"banner": [
+		"bs-banner"
+	],
+	"banner-grid": [
+		"bs-bgrid"
+	],
+	"before-after": [
+		"bs-ba"
+	],
+	"categories": [
+		"bs-cats",
+		"bs-cat"
+	],
+	"code": [
+		"bs-code",
+		"bs-html"
+	],
+	"cookie": [
+		"bs-cookie"
+	],
+	"counter": [
+		"bs-counter"
+	],
+	"divider": [
+		"bs-divider"
+	],
+	"flip-box": [
+		"bs-flip"
+	],
+	"form": [
+		"bs-form"
+	],
+	"gallery": [
+		"bs-gallery"
+	],
+	"hotspot": [
+		"bs-hotspot"
+	],
+	"logos": [
+		"bs-logos"
+	],
+	"lottie": [
+		"bs-lottie"
+	],
+	"map": [
+		"bs-map"
+	],
+	"marquee": [
+		"bs-marquee"
+	],
+	"nav-menu": [
+		"bs-navmenu"
+	],
+	"native-form": [
+		"bs-native"
+	],
+	"payment-icons": [
+		"bs-pay"
+	],
+	"popup": [
+		"bs-popup"
+	],
+	"price-table": [
+		"bs-price"
+	],
+	"pricing-toggle": [
+		"bs-ptg",
+		"bs-pt"
+	],
+	"progress": [
+		"bs-progress"
+	],
+	"slider": [
+		"bs-slider"
+	],
+	"social": [
+		"bs-follow"
+	],
+	"stars": [
+		"bs-stars"
+	],
+	"table": [
+		"bs-table"
+	],
+	"tabs": [
+		"bs-tabs",
+		"bs-tab"
+	],
+	"team": [
+		"bs-team"
+	],
+	"testimonial": [
+		"bs-testimonial"
+	],
+	"timeline": [
+		"bs-timeline"
+	],
+	"toc": [
+		"bs-toc"
+	],
+	"video": [
+		"bs-video",
+		"bs-vbtn"
+	]
+}
