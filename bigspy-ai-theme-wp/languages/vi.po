@@ -3832,3 +3832,9 @@ msgstr "Ảnh thử BIGSPY AI Designer"
 
 msgid "Test image created by ImageGen"
 msgstr "Ảnh thử do ImageGen tạo"
+
+msgid "Updated page sections"
+msgstr "Đã cập nhật các section của trang"
+
+msgid "The previous step is still locked. Wait a few minutes, then send \"continue\"."
+msgstr "Bước trước vẫn đang bị khoá. Hãy đợi vài phút rồi gửi \"tiếp tục\"."

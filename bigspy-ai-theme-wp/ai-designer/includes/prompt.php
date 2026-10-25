@@ -45,6 +45,7 @@ function bst_aid_system_prompt() {
 		'- Exactly one H1 per page (bst/heading tag h1), then H2/H3 in order. Real, specific copy from the guidelines and the chat, never lorem ipsum.',
 		'- Apply agreed colors and fonts with update_settings, the logo with set_logo. Use custom_css only for what blocks and settings cannot do. bst/code is for custom HTML/CSS/JS pieces (illustrations, mockups, embeds).',
 		'- Build one page at a time, report it with its link, and ask for feedback before the next big step.',
+		'- Long pages: create_page with the first one or two sections, then add the others with page_sections (append) one or two at a time. Edit a single section with page_sections (replace) instead of resending the page.',
 		'',
 		'IMAGES (ImageGen):',
 		'- Only ImageGen creates images; never use image URLs from the internet. Write the prompt in English, detailed; write alt, title and caption in the site language.',

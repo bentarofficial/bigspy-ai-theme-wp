@@ -229,7 +229,7 @@
 				create_post: __('Created a post', T), update_post: __('Updated a post', T), create_product: __('Created a product', T),
 				update_product: __('Updated a product', T), save_guidelines: __('Saved the guidelines', T),
 				list_blocks: __('Reading the blocks', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
-				get_pattern: __('Reading a pattern', T), create_page: __('Created a page', T), get_page: __('Reading a page', T), update_page: __('Updated a page', T),
+				get_pattern: __('Reading a pattern', T), create_page: __('Created a page', T), page_sections: __('Updated page sections', T), get_page: __('Reading a page', T), update_page: __('Updated a page', T),
 				get_settings: __('Reading theme settings', T), update_settings: __('Changed theme settings', T), set_logo: __('Set the logo', T),
 				custom_css: __('Additional CSS', T), get_menus: __('Reading menus', T), set_menu: __('Saved a menu', T), header_layout: __('Header layout', T),
 				show_palette: __('Color options', T), ImageGen: __('ImageGen created an image', T), image_status: __('ImageGen', T),
@@ -367,12 +367,18 @@
 		};
 		var loop = function () {
 			running = true; stopFlag = false; syncComposer();
+			var busy = 0;
 			var step = function () {
 				if (stopFlag || !current) { running = false; syncComposer(); return; }
 				var id = current.id;
 				api('/tasks/' + id + '/step', 'POST').then(function (r) {
 					if (!current || current.id !== id) { return; }
 					addEvents(r.events); updateTask(r.task);
+					busy = r.state === 'busy' ? busy + 1 : 0;
+					if (busy > 80) { // About two minutes: the previous step probably failed on the server.
+						addEvents([{ kind: 'error', text: __('The previous step is still locked. Wait a few minutes, then send "continue".', T) }]);
+						running = false; syncComposer(); return;
+					}
 					if (r.state === 'running' || r.state === 'busy') { setTimeout(step, r.state === 'busy' ? 1500 : 150); }
 					else { running = false; syncComposer(); }
 				}).catch(function (e) {

@@ -479,6 +479,22 @@ add_filter(
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_update_page',
 		);
+		$tools['page_sections'] = array(
+			'description' => 'Edit a page section by section (top-level blocks) without resending the whole page: append, insert at index, replace the block at index, or remove it. Use get_page to see the indexes. Best way to build long pages: create_page with the first sections, then append the rest one or two at a time.',
+			'parameters'  => array(
+				'type'       => 'object',
+				'properties' => array(
+					'id'        => array( 'type' => 'integer' ),
+					'mode'      => array( 'type' => 'string', 'enum' => array( 'append', 'insert', 'replace', 'remove' ) ),
+					'index'     => array( 'type' => 'integer', 'minimum' => 0, 'description' => 'Top-level block index (0 = first) for insert, replace, remove.' ),
+					'blocks'    => $tree,
+					'confirmed' => array( 'type' => 'boolean' ),
+				),
+				'required'   => array( 'id', 'mode' ),
+			),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_page_sections',
+		);
 		$tools['get_settings']  = array(
 			'description' => 'Theme design settings. Without section: the list of sections and the main colors / fonts. With section: every field (id, label, type, choices, min/max, current value).',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'section' => array( 'type' => 'string' ) ) ),
@@ -726,6 +742,52 @@ function bst_aid_tool_update_page( $a ) {
 		}
 	}
 	return array( 'id' => $p->ID, 'status' => get_post_status( $p->ID ), 'warnings' => $warnings, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) );
+}
+
+function bst_aid_tool_page_sections( $a ) {
+	$p = get_post( (int) ( $a['id'] ?? 0 ) );
+	if ( ! $p || 'page' !== $p->post_type || ! current_user_can( 'edit_post', $p->ID ) ) {
+		return array( 'error' => 'Page not found or not editable.' );
+	}
+	if ( 'publish' === $p->post_status && empty( $a['confirmed'] ) ) {
+		return array( 'error' => 'needs_confirmation', 'message' => 'This page is published. Ask the user to confirm, then call again with confirmed: true.' );
+	}
+	// Top-level blocks only; whitespace between blocks is dropped.
+	$top  = array_values( array_filter( parse_blocks( $p->post_content ), function ( $b ) { return ! empty( $b['blockName'] ) || '' !== trim( (string) $b['innerHTML'] ); } ) );
+	$mode = (string) ( $a['mode'] ?? 'append' );
+	$idx  = isset( $a['index'] ) ? (int) $a['index'] : count( $top );
+	$new  = array();
+	$warn = array();
+	if ( 'remove' !== $mode ) {
+		$issues = array( 'errors' => array(), 'warnings' => array() );
+		$new    = bst_aid_build_blocks( $a['blocks'] ?? array(), '', $issues );
+		if ( $issues['errors'] || ! $new ) {
+			return array( 'error' => 'Fix these block errors and call again', 'details' => $issues );
+		}
+		$warn = array_slice( $issues['warnings'], 0, 30 );
+	}
+	if ( in_array( $mode, array( 'replace', 'remove' ), true ) && ! isset( $top[ $idx ] ) ) {
+		return array( 'error' => 'No block at index ' . $idx . '. The page has ' . count( $top ) . ' top-level blocks.' );
+	}
+	switch ( $mode ) {
+		case 'insert':
+			array_splice( $top, max( 0, min( $idx, count( $top ) ) ), 0, $new );
+			break;
+		case 'replace':
+			array_splice( $top, $idx, 1, $new );
+			break;
+		case 'remove':
+			array_splice( $top, $idx, 1 );
+			break;
+		default:
+			$top = array_merge( $top, $new );
+	}
+	bst_aid_snapshot_post( $p->ID );
+	$r = wp_update_post( array( 'ID' => $p->ID, 'post_content' => wp_slash( serialize_blocks( $top ) ) ), true );
+	if ( is_wp_error( $r ) ) {
+		return array( 'error' => $r->get_error_message() );
+	}
+	return array( 'id' => $p->ID, 'sections' => count( $top ), 'warnings' => $warn, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) );
 }
 
 function bst_aid_tool_get_settings( $a ) {

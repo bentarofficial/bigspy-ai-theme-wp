@@ -93,7 +93,7 @@ function bst_aid_chat( $messages, $tools, $opts ) {
 		'tools'               => $tools,
 		'tool_choice'         => 'auto',
 		'parallel_tool_calls' => false,
-		'max_tokens'          => 8000,
+		'max_tokens'          => 16000, // Room for a full page section tree; Kyma lowers it when the balance is low.
 	);
 	$meta = bst_aid_text_model_meta( $model );
 	if ( $meta && $meta['reasoning'] ) {

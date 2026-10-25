@@ -207,14 +207,30 @@ function bst_aid_finish( $id, $state, $events, $event = null ) {
 
 /** History sent to the model: the latest messages, starting at a user message. */
 function bst_aid_history( $msgs ) {
-	$max = 60;
+	$max = 80;
 	if ( count( $msgs ) > $max ) {
 		$msgs = array_slice( $msgs, -$max );
 		while ( $msgs && 'user' !== ( $msgs[0]['role'] ?? '' ) ) {
 			array_shift( $msgs );
 		}
 	}
+	// Old tool results (long block trees, schemas) are shortened; the latest 10 stay whole.
+	$tools = array_keys( array_filter( $msgs, function ( $m ) { return 'tool' === ( $m['role'] ?? '' ); } ) );
+	foreach ( array_slice( $tools, 0, max( 0, count( $tools ) - 10 ) ) as $i ) {
+		if ( strlen( (string) $msgs[ $i ]['content'] ) > 600 ) {
+			$msgs[ $i ]['content'] = mb_substr( (string) $msgs[ $i ]['content'], 0, 500 ) . ' …[older result shortened; call the tool again if you need it]';
+		}
+	}
 	return $msgs;
+}
+
+/** Tool result as text for the model; very long results are cut with a clear note. */
+function bst_aid_tool_content( $result ) {
+	$json = wp_json_encode( $result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
+	if ( strlen( $json ) <= 60000 ) {
+		return $json;
+	}
+	return mb_substr( $json, 0, 58000 ) . ' …[result cut: too long. Ask for less, e.g. fewer block schemas at a time.]';
 }
 
 function bst_aid_rest_task_step( WP_REST_Request $r ) {
@@ -293,8 +309,11 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	$GLOBALS['bst_aid_task_id'] = $id; // Tools record snapshots and spending on this task.
 	foreach ( $calls as $call ) {
 		$name   = (string) $call['function']['name'];
-		$args   = json_decode( (string) ( $call['function']['arguments'] ?? '{}' ), true );
-		$result = bst_aid_run_tool( $name, is_array( $args ) ? $args : array() );
+		$raw    = trim( (string) ( $call['function']['arguments'] ?? '' ) );
+		$args   = '' === $raw ? array() : json_decode( $raw, true );
+		$result = is_array( $args )
+			? bst_aid_run_tool( $name, $args )
+			: array( 'error' => 'The tool arguments were not valid JSON or were cut off (too long). Send smaller pieces: for pages, create the page with the first sections, then add the rest with page_sections.' );
 		$links  = $result['links'] ?? array();
 		unset( $result['links'] );
 		$event = array(
@@ -310,11 +329,12 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 			$event['preview'] = $result['preview'];
 		}
 		$events[] = bst_aid_task_log( $id, $event );
-		$msgs[] = array( 'role' => 'tool', 'tool_call_id' => (string) ( $call['id'] ?? '' ), 'content' => mb_substr( wp_json_encode( $result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ), 0, 12000 ) );
+		$msgs[] = array( 'role' => 'tool', 'tool_call_id' => (string) ( $call['id'] ?? '' ), 'content' => bst_aid_tool_content( $result ) );
 	}
 	bst_aid_task_set( $id, '_bst_aid_messages', $msgs );
-	$run['steps_left'] = (int) $run['steps_left'] - 1;
-	bst_aid_task_set( $id, '_bst_aid_run', $run );
+	$now = bst_aid_task_get( $id, '_bst_aid_run' ); // Stop may have been pressed while this step ran.
+	$now['steps_left'] = (int) ( $now['steps_left'] ?? $run['steps_left'] ) - 1;
+	bst_aid_task_set( $id, '_bst_aid_run', $now );
 	delete_transient( 'bst_aid_lock_' . $id );
-	return rest_ensure_response( array( 'state' => 'running', 'events' => $events, 'task' => bst_aid_task_summary( get_post( $id ) ) ) );
+	return rest_ensure_response( array( 'state' => empty( $now['active'] ) ? 'stopped' : 'running', 'events' => $events, 'task' => bst_aid_task_summary( get_post( $id ) ) ) );
 }
