@@ -187,6 +187,8 @@ function bst_customize_controls_assets() {
 				'reset'     => __( 'Reset to default layout', 'bigspy-ai-theme-wp' ),
 				'confirm'   => __( 'Reset the header layout for this device?', 'bigspy-ai-theme-wp' ),
 				'presetApplied' => __( 'Layout applied. Preview it, then Publish to save.', 'bigspy-ai-theme-wp' ),
+				'notPlaced' => __( 'This element is not in your header yet, so the settings below have no effect.', 'bigspy-ai-theme-wp' ),
+				'openBuilder' => __( 'Add it in the Header builder', 'bigspy-ai-theme-wp' ),
 			),
 		)
 	);

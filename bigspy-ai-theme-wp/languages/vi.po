@@ -3352,3 +3352,18 @@ msgstr "“Theo WordPress” sẽ dùng ngôn ngữ trong hồ sơ của từng 
 
 msgid "← Older posts"
 msgstr "← Bài cũ hơn"
+
+msgid "Apply"
+msgstr "Áp dụng"
+
+msgid "Color code"
+msgstr "Mã màu"
+
+msgid "color code"
+msgstr "mã màu"
+
+msgid "This element is not in your header yet, so the settings below have no effect."
+msgstr "Phần tử này chưa được đặt vào header nên các cài đặt bên dưới chưa có tác dụng."
+
+msgid "Add it in the Header builder"
+msgstr "Thêm vào Header builder"

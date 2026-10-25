@@ -618,3 +618,10 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-repeater__head > .components-button:first-child { flex: 1; justify-content: flex-start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bst-repeater__body { display: grid; gap: 10px; padding: 10px; border-top: 1px solid #f0f0f1; }
 .bst-media-picker__file { display: block; margin-bottom: 6px; word-break: break-all; }
+
+/* Color code box next to the text / highlight color swatches. */
+.bst-format-bar__colorwrap { position: relative; display: inline-flex; align-items: center; }
+.bst-format-bar__codebtn { min-width: 22px !important; padding: 0 4px !important; font: 600 13px/1 ui-monospace, Menlo, Consolas, monospace !important; }
+.bst-format-bar__code { position: absolute; top: calc(100% + 4px); left: 0; z-index: 40; display: flex; gap: 6px; padding: 8px; background: #fff; border: 1px solid #dcdcde; border-radius: 6px; box-shadow: 0 8px 24px rgba(0, 0, 0, .15); }
+.bst-format-bar__code input { width: 150px; height: 30px; padding: 0 8px; font: 13px ui-monospace, Menlo, Consolas, monospace; border: 1px solid #8c8f94; border-radius: 4px; }
+.bst-format-bar__code input.is-invalid { border-color: #d63638; box-shadow: 0 0 0 1px #d63638; }

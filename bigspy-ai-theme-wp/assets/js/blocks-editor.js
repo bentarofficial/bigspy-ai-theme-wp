@@ -307,6 +307,9 @@
 	 */
 	function FormatBar(props) {
 		var charsOpen = wp.element.useState(false);
+		var codeOpen = wp.element.useState('');
+		var codeValue = wp.element.useState('');
+		var codeError = wp.element.useState(false);
 		var getEditor = function () {
 			return props.editorRef && props.editorRef.current;
 		};
@@ -378,10 +381,45 @@
 				onChange: function (e) { var v = e.target.value; e.target.value = ''; onPick(v); }
 			}, options.map(function (o) { return el('option', { key: o[0] + o[1], value: o[0] }, o[1]); }));
 		};
+		var saveRange = function () {
+			var n = getEditor();
+			if (n && n.ownerDocument.getSelection().rangeCount) {
+				var s = n.ownerDocument.getSelection();
+				if (n.contains(s.anchorNode)) {
+					n._bstRange = s.getRangeAt(0).cloneRange();
+				}
+			}
+		};
+		/* Color swatch plus a "#" box to paste a color code (HEX, rgb(), hsl() or a name) and apply it. */
 		var color = function (key, title, label, command) {
-			return el('label', { key: key, className: 'bst-format-bar__color', title: title },
-				el('span', { 'aria-hidden': true }, label),
-				el('input', { type: 'color', 'aria-label': title, defaultValue: command === 'foreColor' ? '#e53935' : '#fff59d', onChange: function (e) { exec(command, e.target.value, true); } })
+			var apply = function () {
+				var v = String(codeValue[0] || '').trim();
+				if (/^[0-9a-f]{3,8}$/i.test(v)) {
+					v = '#' + v;
+				}
+				if (!v || !(window.CSS && CSS.supports('color', v))) {
+					codeError[1](true);
+					return;
+				}
+				codeError[1](false);
+				codeOpen[1]('');
+				exec(command, v, true);
+			};
+			return el('span', { key: key, className: 'bst-format-bar__colorwrap' },
+				el('label', { className: 'bst-format-bar__color', title: title, onMouseDown: saveRange },
+					el('span', { 'aria-hidden': true }, label),
+					el('input', { type: 'color', 'aria-label': title, defaultValue: command === 'foreColor' ? '#e53935' : '#fff59d', onChange: function (e) { exec(command, e.target.value, true); } })
+				),
+				btn('#', title + ' – ' + __('color code', 'bigspy-ai-theme-wp'), function () { saveRange(); codeError[1](false); codeOpen[1](codeOpen[0] === key ? '' : key); }, { className: 'bst-format-bar__btn bst-format-bar__codebtn' + (codeOpen[0] === key ? ' is-active' : '') }),
+				codeOpen[0] === key && el('span', { className: 'bst-format-bar__code' },
+					el('input', {
+						type: 'text', autoFocus: true, placeholder: '#e53935', 'aria-label': __('Color code', 'bigspy-ai-theme-wp'), value: codeValue[0],
+						className: codeError[0] ? 'is-invalid' : '',
+						onChange: function (e) { codeValue[1](e.target.value); },
+						onKeyDown: function (e) { if ('Enter' === e.key) { e.preventDefault(); apply(); } else if ('Escape' === e.key) { codeOpen[1](''); } }
+					}),
+					el('button', { type: 'button', className: 'button button-primary button-small', onMouseDown: function (e) { e.preventDefault(); apply(); } }, __('Apply', 'bigspy-ai-theme-wp'))
+				)
 			);
 		};
 		var link = function () {

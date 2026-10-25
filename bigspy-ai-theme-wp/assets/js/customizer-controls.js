@@ -486,6 +486,53 @@
 		});
 	});
 
+	/* Header element sections: say so when the element is not placed in the header builder. */
+	api.bind('ready', function () {
+		var i18n = data.i18n || {};
+		var placed = function () {
+			var layout = api('header_layout') ? api('header_layout').get() : {};
+			var keys = {};
+			if ('string' === typeof layout) {
+				try { layout = JSON.parse(layout); } catch (e) { layout = {}; }
+			}
+			['desktop', 'mobile'].forEach(function (device) {
+				ROWS.forEach(function (row) {
+					ZONES.forEach(function (zone) {
+						(((layout || {})[device] || {})[row] || {})[zone] && layout[device][row][zone].forEach(function (k) { keys[k] = true; });
+					});
+				});
+			});
+			return keys;
+		};
+		var update = function () {
+			var keys = placed();
+			api.section.each(function (section) {
+				var m = /^bst_he_(.+)$/.exec(section.id);
+				if (!m || !section.notifications || 'logo' === m[1]) {
+					return;
+				}
+				if (keys[m[1]]) {
+					section.notifications.remove('bst-not-placed');
+				} else if (!section.notifications.has('bst-not-placed')) {
+					section.notifications.add(new api.Notification('bst-not-placed', {
+						type: 'warning',
+						message: $('<div />').text(i18n.notPlaced || '').html() + ' <a href="#" data-bst-open-hb>' + $('<div />').text(i18n.openBuilder || '').html() + '</a>'
+					}));
+				}
+			});
+		};
+		update();
+		if (api('header_layout')) {
+			api('header_layout').bind(update);
+		}
+		$(document).on('click', '[data-bst-open-hb]', function (e) {
+			e.preventDefault();
+			if (api.section('bst_header_builder')) {
+				api.section('bst_header_builder').focus();
+			}
+		});
+	});
+
 	/* Colors: the palette library and the manual color pickers take turns. */
 	api.bind('ready', function () {
 		api('color_use_palette', function (setting) {
