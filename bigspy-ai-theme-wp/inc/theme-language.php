@@ -30,13 +30,6 @@ function bst_theme_language_name( $code ) {
 function bst_theme_languages( $with_names = true ) {
 	$names = array(
 		'vi'    => 'Tiếng Việt',
-		'fr_FR' => 'Français',
-		'de_DE' => 'Deutsch',
-		'es_ES' => 'Español',
-		'ja'    => '日本語',
-		'zh_CN' => '简体中文',
-		'th'    => 'ไทย',
-		'id_ID' => 'Bahasa Indonesia',
 	);
 	$langs = array( 'en_US' => 'English' );
 	// Bundled translations, plus ones added later by WordPress.org language packs or Loco Translate.
