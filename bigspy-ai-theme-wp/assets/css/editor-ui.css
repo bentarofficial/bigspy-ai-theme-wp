@@ -625,3 +625,9 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-format-bar__code { position: absolute; top: calc(100% + 4px); left: 0; z-index: 40; display: flex; gap: 6px; padding: 8px; background: #fff; border: 1px solid #dcdcde; border-radius: 6px; box-shadow: 0 8px 24px rgba(0, 0, 0, .15); }
 .bst-format-bar__code input { width: 150px; height: 30px; padding: 0 8px; font: 13px ui-monospace, Menlo, Consolas, monospace; border: 1px solid #8c8f94; border-radius: 4px; }
 .bst-format-bar__code input.is-invalid { border-color: #d63638; box-shadow: 0 0 0 1px #d63638; }
+
+/* Text / highlight color popover for selected words (Heading…). */
+.bst-tc-pop { display: grid; gap: 10px; width: 240px; padding: 12px; }
+.bst-tc-pop__code { display: flex; gap: 6px; }
+.bst-tc-pop__code input { flex: 1; min-width: 0; height: 30px; padding: 0 8px; font: 13px ui-monospace, Menlo, Consolas, monospace; border: 1px solid #8c8f94; border-radius: 4px; }
+.bst-tc-pop__code input.is-invalid { border-color: #d63638; box-shadow: 0 0 0 1px #d63638; }

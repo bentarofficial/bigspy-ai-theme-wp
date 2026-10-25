@@ -3367,3 +3367,12 @@ msgstr "Phần tử này chưa được đặt vào header nên các cài đặt
 
 msgid "Add it in the Header builder"
 msgstr "Thêm vào Header builder"
+
+msgid "Text color"
+msgstr "Màu chữ"
+
+msgid "Highlight color"
+msgstr "Màu nền chữ"
+
+msgid "Remove color"
+msgstr "Bỏ màu"
