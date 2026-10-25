@@ -1,4 +1,5 @@
-/* BIGSPY AI Theme WP – text and highlight color for selected words in BIGSPY rich text (Heading…). */
+/* BIGSPY AI Theme WP – text and highlight color for selected words in BIGSPY rich text (Heading…).
+ * The box shows the color already used on the selection and stays open after Apply, so the code can be copied. */
 (function (wp) {
 	'use strict';
 	if (!wp || !wp.richText || !wp.blockEditor) {
@@ -11,6 +12,8 @@
 	var be = wp.blockEditor;
 	var c = wp.components;
 	var NAME = 'bst/text-color';
+	// Applying a color hands focus back to the text, which would close the box: ignore that one.
+	var appliedAt = 0;
 
 	var parse = function (style) {
 		var out = {};
@@ -46,8 +49,10 @@
 			}
 			props.onPick(v);
 		};
+		// Follow the selection while the box is open.
+		wp.element.useEffect(function () { if (props.current) { code[1](props.current); } }, [props.current]);
 		return el('div', { className: 'bst-tc-pop' },
-			colors.length ? el(c.ColorPalette, { colors: colors, value: props.current, disableCustomColors: true, clearable: false, onChange: function (v) { if (v) { props.onPick(v); } } }) : null,
+			colors.length ? el(c.ColorPalette, { colors: colors, value: props.current, disableCustomColors: true, clearable: false, onChange: function (v) { if (v) { code[1](v); bad[1](false); props.onPick(v); } } }) : null,
 			el('div', { className: 'bst-tc-pop__code' },
 				el('input', {
 					type: 'text', value: code[0], placeholder: '#e53935', 'aria-label': __('Color code', T), className: bad[0] ? 'is-invalid' : '',
@@ -56,7 +61,7 @@
 				}),
 				el(c.Button, { variant: 'primary', size: 'small', onClick: apply }, __('Apply', T))
 			),
-			props.current ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { props.onPick(''); } }, __('Remove color', T)) : null
+			props.current ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { code[1](''); props.onPick(''); } }, __('Remove color', T)) : null
 		);
 	}
 
@@ -70,23 +75,27 @@
 			if (!block || 0 !== block.name.indexOf('bst/')) {
 				return null;
 			}
-			var active = rt.getActiveFormat(props.value, NAME);
+			// The color of the selected words, also when the selection covers the colored text exactly.
+			var active = rt.getActiveFormat(props.value, NAME) || (props.value.activeFormats || []).filter(function (f) { return NAME === f.type; })[0];
 			var cur = parse(active && active.attributes && active.attributes.style);
 			var set = function (prop, v) {
 				var o = Object.assign({}, cur);
 				o[prop] = v;
 				var style = build(o);
+				appliedAt = Date.now();
 				props.onChange(style ? rt.applyFormat(props.value, { type: NAME, attributes: { style: style } }) : rt.removeFormat(props.value, NAME));
 			};
 			var tool = function (prop, icon, label) {
+				var close = null;
 				return el(c.Dropdown, {
 					key: prop,
-					popoverProps: { placement: 'bottom-start' },
+					popoverProps: { placement: 'bottom-start', onFocusOutside: function () { if (Date.now() - appliedAt > 600 && close) { close(); } } },
 					renderToggle: function (t) {
 						return el(c.ToolbarButton, { icon: icon, label: label, isPressed: !!cur[prop], onClick: t.onToggle, 'aria-expanded': t.isOpen });
 					},
 					renderContent: function (r) {
-						return el(Picker, { current: cur[prop] || '', onPick: function (v) { set(prop, v); r.onClose(); } });
+						close = r.onClose;
+						return el(Picker, { current: cur[prop] || '', onPick: function (v) { set(prop, v); } });
 					}
 				});
 			};

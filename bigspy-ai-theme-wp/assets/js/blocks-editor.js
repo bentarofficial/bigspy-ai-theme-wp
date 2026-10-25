@@ -390,7 +390,41 @@
 				}
 			}
 		};
-		/* Color swatch plus a "#" box to paste a color code (HEX, rgb(), hsl() or a name) and apply it. */
+		/* Color already used on the selected words (inline style or <font color>), as HEX; '' when none. */
+		var toHex = function (v) {
+			var m = /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)$/.exec(String(v || '').trim());
+			if (!m) {
+				return String(v || '').trim();
+			}
+			if (m[4] !== undefined && 0 === parseFloat(m[4])) {
+				return '';
+			}
+			return '#' + [m[1], m[2], m[3]].map(function (n) { return ('0' + parseInt(n, 10).toString(16)).slice(-2); }).join('');
+		};
+		var usedColor = function (command) {
+			var root = getEditor();
+			var range = root && root._bstRange;
+			var node = range && range.startContainer;
+			if (node && 3 === node.nodeType && range.startOffset === node.length && node.nextSibling) {
+				node = node.nextSibling;
+			}
+			node = node && (1 === node.nodeType ? node : node.parentElement);
+			for (; node && node !== root && root.contains(node); node = node.parentElement) {
+				if ('foreColor' === command) {
+					if (node.style && node.style.color) {
+						return toHex(node.style.color);
+					}
+					if ('FONT' === node.tagName && node.getAttribute('color')) {
+						return toHex(node.getAttribute('color'));
+					}
+				} else if (node.style && node.style.backgroundColor) {
+					return toHex(node.style.backgroundColor);
+				}
+			}
+			return '';
+		};
+		/* Color swatch plus a "#" box to paste a color code (HEX, rgb(), hsl() or a name) and apply it.
+		 * The box opens with the color of the selected words, and keeps the code after Apply. */
 		var color = function (key, title, label, command) {
 			var apply = function () {
 				var v = String(codeValue[0] || '').trim();
@@ -402,15 +436,14 @@
 					return;
 				}
 				codeError[1](false);
-				codeOpen[1]('');
 				exec(command, v, true);
 			};
 			return el('span', { key: key, className: 'bst-format-bar__colorwrap' },
 				el('label', { className: 'bst-format-bar__color', title: title, onMouseDown: saveRange },
 					el('span', { 'aria-hidden': true }, label),
-					el('input', { type: 'color', 'aria-label': title, defaultValue: command === 'foreColor' ? '#e53935' : '#fff59d', onChange: function (e) { exec(command, e.target.value, true); } })
+					el('input', { type: 'color', 'aria-label': title, defaultValue: command === 'foreColor' ? '#e53935' : '#fff59d', onChange: function (e) { codeValue[1](e.target.value); exec(command, e.target.value, true); } })
 				),
-				btn('#', title + ' – ' + __('color code', 'bigspy-ai-theme-wp'), function () { saveRange(); codeError[1](false); codeOpen[1](codeOpen[0] === key ? '' : key); }, { className: 'bst-format-bar__btn bst-format-bar__codebtn' + (codeOpen[0] === key ? ' is-active' : '') }),
+				btn('#', title + ' – ' + __('color code', 'bigspy-ai-theme-wp'), function () { saveRange(); codeError[1](false); if (codeOpen[0] !== key) { codeValue[1](usedColor(command) || codeValue[0]); } codeOpen[1](codeOpen[0] === key ? '' : key); }, { className: 'bst-format-bar__btn bst-format-bar__codebtn' + (codeOpen[0] === key ? ' is-active' : '') }),
 				codeOpen[0] === key && el('span', { className: 'bst-format-bar__code' },
 					el('input', {
 						type: 'text', autoFocus: true, placeholder: '#e53935', 'aria-label': __('Color code', 'bigspy-ai-theme-wp'), value: codeValue[0],
