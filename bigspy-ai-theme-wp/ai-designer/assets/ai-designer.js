@@ -44,7 +44,7 @@
 	 * bold / italics / code / links become HTML; leftover markers (**, __, ##) never show. */
 	var inline = function (t) {
 		return t.replace(/`([^`\n]+)`/g, '<code>$1</code>')
-			.replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+			.replace(/\[([^\]\n]+)\]\(((?:https?:\/\/|tel:|mailto:)[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
 			.replace(/(\*\*\*|___)(?=\S)(.+?)(?<=\S)\1/g, '<strong><em>$2</em></strong>')
 			.replace(/(\*\*|__)(?=\S)(.+?)(?<=\S)\1/g, '<strong>$2</strong>')
 			.replace(/(^|[\s(])\*(?=[^\s*])([^*\n]+?)(?<=\S)\*(?![\w*])/g, '$1<em>$2</em>')

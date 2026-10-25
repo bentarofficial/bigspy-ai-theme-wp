@@ -27,7 +27,7 @@ function bst_aid_strip_quotes( $text ) {
 /** Inline Markdown to HTML: links, bold, italics, code. Leftover markers are removed. */
 function bst_aid_md_inline( $text ) {
 	$text = (string) $text;
-	$text = preg_replace( '/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*|#[^\s)]*)\)/u', '<a href="$2">$1</a>', $text );
+	$text = preg_replace( '/\[([^\]\n]+)\]\(((?:https?:\/\/|tel:|mailto:|\/|#)[^\s)]*)\)/u', '<a href="$2">$1</a>', $text );
 	$text = preg_replace( '/(\*\*\*|___)(?=\S)(.+?)(?<=\S)\1/us', '<strong><em>$2</em></strong>', $text );
 	$text = preg_replace( '/(\*\*|__)(?=\S)(.+?)(?<=\S)\1/us', '<strong>$2</strong>', $text );
 	$text = preg_replace( '/(?<![\w*])\*(?=[^\s*])([^*\n]+?)(?<=\S)\*(?![\w*])/u', '<em>$1</em>', $text );
