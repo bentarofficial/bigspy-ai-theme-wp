@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bigspy/ticker",
+  "title": "Continuous ticker",
+  "description": "A seamless moving strip of slides containing any blocks.",
+  "category": "bigspy",
+  "icon": "slides",
+  "textdomain": "bigspy-ai-theme-wp",
+  "attributes": {
+    "direction": {
+      "type": "string",
+      "default": "left"
+    },
+    "mode": {
+      "type": "string",
+      "default": "loop"
+    },
+    "speed": {
+      "type": "number",
+      "default": 50
+    },
+    "widthDesktop": {
+      "type": "string",
+      "default": "auto"
+    },
+    "widthTablet": {
+      "type": "string",
+      "default": "auto"
+    },
+    "widthMobile": {
+      "type": "string",
+      "default": "85%"
+    },
+    "gap": {
+      "type": "number",
+      "default": 24
+    },
+    "verticalAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "pauseHover": {
+      "type": "boolean",
+      "default": true
+    },
+    "fadeEdges": {
+      "type": "boolean",
+      "default": false
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "bst-motion-editor",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

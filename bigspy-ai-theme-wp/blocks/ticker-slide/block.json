@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bigspy/ticker-slide",
+  "title": "Ticker slide",
+  "description": "A ticker slide containing any blocks.",
+  "category": "bigspy",
+  "icon": "slides",
+  "textdomain": "bigspy-ai-theme-wp",
+  "attributes": {},
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "bst-motion-editor",
+  "render": "file:./render.php",
+  "parent": [
+    "bigspy/ticker"
+  ]
+}

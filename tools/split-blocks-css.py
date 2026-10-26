@@ -21,6 +21,8 @@ OUT = os.path.join(THEME, 'assets', 'css', 'blocks')
 # family -> class prefixes. A class belongs to a prefix when it equals it or continues
 # with "-" or "_" (bs-tab matches bs-tab--active, not bs-tabs).
 FAMILIES = {
+	'ticker': ['bs-ticker'],
+	'expand-gallery': ['bs-expand'],
 	'accordion': ['bs-accordion'],
 	'alert': ['bs-alert'],
 	'animate': ['bs-animate', 'bs-ease'],

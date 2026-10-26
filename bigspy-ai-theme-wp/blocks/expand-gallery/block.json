@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bigspy/expand-gallery",
+  "title": "Expanding gallery",
+  "description": "Two to six panels that expand on hover, touch or keyboard focus.",
+  "category": "bigspy",
+  "icon": "slides",
+  "textdomain": "bigspy-ai-theme-wp",
+  "attributes": {
+    "factor": {
+      "type": "number",
+      "default": 2
+    },
+    "openPanel": {
+      "type": "number",
+      "default": 0
+    },
+    "keepOpen": {
+      "type": "boolean",
+      "default": false
+    },
+    "duration": {
+      "type": "number",
+      "default": 0.5
+    },
+    "heightDesktop": {
+      "type": "number",
+      "default": 480
+    },
+    "heightTablet": {
+      "type": "number",
+      "default": 420
+    },
+    "heightMobile": {
+      "type": "number",
+      "default": 400
+    },
+    "gap": {
+      "type": "number",
+      "default": 12
+    },
+    "radius": {
+      "type": "number",
+      "default": 16
+    },
+    "verticalTitle": {
+      "type": "boolean",
+      "default": false
+    },
+    "mobileLayout": {
+      "type": "string",
+      "default": "swipe"
+    },
+    "peekRatio": {
+      "type": "number",
+      "default": 75
+    },
+    "dots": {
+      "type": "boolean",
+      "default": true
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "bst-motion-editor",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

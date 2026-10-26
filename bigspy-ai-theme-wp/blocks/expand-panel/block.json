@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bigspy/expand-panel",
+  "title": "Gallery panel",
+  "description": "An expanding panel containing any blocks, with an optional background.",
+  "category": "bigspy",
+  "icon": "slides",
+  "textdomain": "bigspy-ai-theme-wp",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Panel"
+    },
+    "backgroundUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundId": {
+      "type": "number",
+      "default": 0
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "overlay": {
+      "type": "string",
+      "default": "#00000066"
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "bst-motion-editor",
+  "render": "file:./render.php",
+  "parent": [
+    "bigspy/expand-gallery"
+  ]
+}

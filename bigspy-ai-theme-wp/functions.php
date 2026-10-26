@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.72.13' );
+define( 'BST_VERSION', '1.73.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -15,6 +15,7 @@ $bst_includes = array(
 	'inc/helpers.php',
 	'inc/css-presets.php',
 	'inc/setup.php',
+	'inc/updater.php',
 	'inc/fonts.php',
 	'inc/dynamic-css.php',
 	'inc/assets.php',
@@ -34,6 +35,7 @@ $bst_includes = array(
 	'inc/customizer/customizer.php',
 	'inc/customizer/groups.php',
 	'inc/blocks.php',
+	'inc/motion-blocks.php',
 	'inc/block-design.php',
 	'inc/block-presets.php',
 	'inc/sidebar-options.php',

@@ -50,7 +50,7 @@ add_filter(
 	function ( $fields ) {
 		$i = 1;
 		foreach ( bst_block_titles() as $name => $title ) {
-			if ( in_array( $name, array( 'column', 'tab', 'accordion-item', 'button' ), true ) ) {
+			if ( in_array( $name, array( 'column', 'tab', 'accordion-item', 'button', 'ticker-slide', 'expand-panel' ), true ) ) {
 				continue; // Children are managed with their parent block.
 			}
 			$fields[] = array(
@@ -71,7 +71,7 @@ function bst_disabled_blocks() {
 	$off = array();
 	foreach ( bst_block_names() as $name ) {
 		if ( bst_mod( 'block_off_' . str_replace( '-', '_', $name ) ) ) {
-			$off[] = 'bst/' . $name;
+			$off[] = ( in_array( $name, array( 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel' ), true ) ? 'bigspy/' : 'bst/' ) . $name;
 		}
 	}
 	return $off;

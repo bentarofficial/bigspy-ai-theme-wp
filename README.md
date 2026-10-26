@@ -58,10 +58,21 @@ It can:
 - Design and edit pages with BIGSPY blocks and patterns: banners, sections, columns, buttons, pricing tables, FAQs, contact sections.
 - Write and edit posts and WooCommerce products, with real H2/H3 headings and clean text.
 - Create and edit menus, set the logo, change theme colors, fonts, header layout and additional CSS.
+- Build reusable UX Blocks and Theme Builder layouts, assign published footer sources, configure whitelisted reading settings and request SEO/plugin approvals.
 - Generate images with **ImageGen**, optimize them and fill in title, alt text, caption and description for SEO.
 - Undo everything a task changed with **Undo task**.
 
-It never installs, updates or deletes plugins or themes, never changes users, and never changes WordPress core settings. It discusses and proposes before it builds.
+AI Designer uses three server-enforced permission levels:
+
+- **Level 1:** discovery, draft content, image work and checks; draft writes remain undoable. Advice-only tasks block every AI write.
+- **Level 2:** live content, publishing, global design/header/footer/menu changes, whitelisted WordPress reading/title/media settings, SEO metadata, WordPress.org plugin installation, four or more images per run and extra budget require a human approval card. Chat consent and model-supplied `confirmed: true` cannot bypass it. Settings can strengthen permissions per group.
+- **Level 3:** guidance only for users, passwords, admin email, site URLs, permalinks, security, plugin/theme/core updates or removals, external ZIPs/themes, payments, service keys, DNS/hosting and permanent data deletion. AI-authored Code blocks allow safe HTML/CSS, never scripts.
+
+Cards show scope, cost information, before/after values and undo limits. Choose **Agree**, **I will do it myself**, or **Skip**. Approvals expire after 15 minutes, bind to the task/tool/arguments/user and are consumed once. After reviewing the pending cards, send **continue** for remaining work. Budget extensions are exact additional USD for that task; global budget settings stay unchanged.
+
+Select **Advice only** before creating a task for analysis without AI writes. Tasks also retain a manual checklist and approval/change history. Discovery reads the live block/pattern and Customizer registries and loads concise theme/WordPress guides on demand. UX Blocks and Theme Builder layouts start as drafts and are published separately.
+
+Undo restores saved content, metadata, terms, settings, menus and header/footer state, trashes task-created content and deactivates plugins the task activated. Installed plugin files/data, generated media and API charges remain. Image file optimization cannot restore original image bytes; retain source uploads. Markup checks identify common H1/SEO/alt/local-link/mobile-width issues; browser review is still needed.
 
 ### Step 1: Connect the API
 
@@ -146,7 +157,15 @@ Example first prompt:
 
 ## Updates
 
-Only the latest release is kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not.
+The latest three releases are kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not.
+
+### 1.73: Informed AI Designer and motion blocks
+
+- On-demand theme/WordPress guides and discovery of live blocks, patterns, design fields, menus, layouts and plugins.
+- Three permission levels with server-bound approval cards, advice-only tasks, manual checklists, approval logs and expanded undo.
+- **Continuous ticker** (`bigspy/ticker` + `bigspy/ticker-slide`): any blocks per slide, seamless or once-only motion, px/second speed, responsive widths, accessible inert clones and reduced-motion scrolling.
+- **Expanding gallery** (`bigspy/expand-gallery` + `bigspy/expand-panel`): 2–6 panels, adjustable flex expansion, background/focal point/overlay, keyboard support and mobile swipe with peek, accordion or horizontal layout.
+- Six starter patterns; motion styles use the existing CSS split and scripts load on pages that render the blocks.
 
 ### 1.72: BIGSPY AI Designer
 

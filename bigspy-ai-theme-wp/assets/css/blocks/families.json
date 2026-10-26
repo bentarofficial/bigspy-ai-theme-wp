@@ -1,4 +1,10 @@
 {
+	"ticker": [
+		"bs-ticker"
+	],
+	"expand-gallery": [
+		"bs-expand"
+	],
 	"accordion": [
 		"bs-accordion"
 	],

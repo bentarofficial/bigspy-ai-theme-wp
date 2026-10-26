@@ -3850,3 +3850,240 @@ msgstr "Mạnh nhất – chi phí cao"
 
 msgid "Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough."
 msgstr "Chỉ liệt kê model gọi được công cụ. Giá tính theo một triệu token vào / ra. Hãy bắt đầu với model khuyên dùng; nếu kết quả chưa đủ tốt thì chuyển sang model mạnh nhất."
+
+msgid "Continuous ticker"
+msgstr "Dải chạy liên tục"
+
+msgid "Ticker slide"
+msgstr "Slide dải chạy"
+
+msgid "Expanding gallery"
+msgstr "Gallery mở rộng"
+
+msgid "Gallery panel"
+msgstr "Ô gallery"
+
+msgid "A seamless moving strip of slides containing any blocks."
+msgstr "Dải slide chạy liền mạch, mỗi slide chứa mọi loại khối."
+
+msgid "A ticker slide containing any blocks."
+msgstr "Slide trong dải chạy, chứa mọi loại khối."
+
+msgid "Two to six panels that expand on hover, touch or keyboard focus."
+msgstr "Từ hai đến sáu ô mở rộng khi rê chuột, chạm hoặc chọn bằng bàn phím."
+
+msgid "An expanding panel containing any blocks, with an optional background."
+msgstr "Ô mở rộng chứa mọi loại khối, có ảnh nền tùy chọn."
+
+msgid "Approval required"
+msgstr "Cần bạn duyệt"
+
+msgid "Before / after"
+msgstr "Trước / sau"
+
+msgid "Agree"
+msgstr "Đồng ý"
+
+msgid "I will do it myself"
+msgstr "Tôi tự làm"
+
+msgid "Skip"
+msgstr "Bỏ qua"
+
+msgid "Task mode"
+msgstr "Chế độ tác vụ"
+
+msgid "Design"
+msgstr "Thiết kế"
+
+msgid "Advice only"
+msgstr "Chỉ tư vấn"
+
+msgid "Automatic (mandatory approvals still apply)"
+msgstr "Tự động (vẫn duyệt việc bắt buộc)"
+
+msgid "Always ask"
+msgstr "Luôn yêu cầu duyệt"
+
+msgid "Guidance only"
+msgstr "Chỉ hướng dẫn"
+
+msgid "Tool permissions"
+msgstr "Quyền công cụ"
+
+msgid "Accessible label"
+msgstr "Nhãn hỗ trợ truy cập"
+
+msgid "Direction"
+msgstr "Hướng chạy"
+
+msgid "Mode"
+msgstr "Chế độ"
+
+msgid "Seamless loop"
+msgstr "Quay vòng liền mạch"
+
+msgid "Run once"
+msgstr "Chạy một lần"
+
+msgid "Speed (px/second)"
+msgstr "Tốc độ (px/giây)"
+
+msgid "Desktop slide width (auto, px or %)"
+msgstr "Độ rộng slide máy tính (auto, px hoặc %)"
+
+msgid "Tablet slide width (auto, px or %)"
+msgstr "Độ rộng slide máy tính bảng (auto, px hoặc %)"
+
+msgid "Mobile slide width (auto, px or %)"
+msgstr "Độ rộng slide điện thoại (auto, px hoặc %)"
+
+msgid "Pause on hover / touch"
+msgstr "Dừng khi rê chuột / chạm"
+
+msgid "Fade edges"
+msgstr "Mờ dần hai mép"
+
+msgid "Expansion factor"
+msgstr "Hệ số mở rộng"
+
+msgid "Initially open panel (0 = none)"
+msgstr "Ô mở sẵn (0 = không có)"
+
+msgid "Keep the last panel open"
+msgstr "Giữ ô vừa mở"
+
+msgid "Animation duration (seconds)"
+msgstr "Thời lượng hiệu ứng (giây)"
+
+msgid "Desktop height"
+msgstr "Chiều cao máy tính"
+
+msgid "Tablet height"
+msgstr "Chiều cao máy tính bảng"
+
+msgid "Mobile height"
+msgstr "Chiều cao điện thoại"
+
+msgid "Corner radius"
+msgstr "Bo góc"
+
+msgid "Vertical titles in collapsed panels"
+msgstr "Tiêu đề xoay dọc trong ô hẹp"
+
+msgid "Mobile layout"
+msgstr "Bố cục điện thoại"
+
+msgid "Swipe with peek"
+msgstr "Vuốt có ô lấp ló"
+
+msgid "Vertical accordion"
+msgstr "Xếp dọc dạng accordion"
+
+msgid "Keep horizontal"
+msgstr "Giữ hàng ngang"
+
+msgid "Main mobile panel (%)"
+msgstr "Ô chính trên điện thoại (%)"
+
+msgid "Position dots"
+msgstr "Chấm chỉ vị trí"
+
+msgid "Gap"
+msgstr "Khoảng cách"
+
+msgid "Use clear backgrounds and short titles for easier reading on phones."
+msgstr "Nên dùng ảnh nền rõ ràng và tiêu đề ngắn để dễ nhìn trên điện thoại."
+
+msgid "+ Add slide"
+msgstr "+ Thêm slide"
+
+msgid "+ Add panel"
+msgstr "+ Thêm ô"
+
+msgid "Preview motion"
+msgstr "Xem trước chuyển động"
+
+msgid "Panel title"
+msgstr "Tiêu đề ô"
+
+msgid "Choose background image"
+msgstr "Chọn ảnh nền"
+
+msgid "Overlay color or CSS gradient"
+msgstr "Màu hoặc gradient lớp phủ"
+
+msgid "Remove background"
+msgstr "Xóa ảnh nền"
+
+msgid "Guidance only: this action cannot be executed by AI Designer."
+msgstr "Chỉ hướng dẫn: AI Designer không được thực hiện việc này."
+
+msgid "Advice only: write tools are disabled for this task."
+msgstr "Chỉ tư vấn: tác vụ này không cho phép công cụ ghi."
+
+msgid "This action can affect the public site or incur service costs."
+msgstr "Thao tác này có thể ảnh hưởng website công khai hoặc phát sinh phí dịch vụ."
+
+msgid "Provider-dependent; billed to your API account. Review the selected image model price in Settings."
+msgstr "Tùy nhà cung cấp; tính vào tài khoản API. Xem giá model ảnh đã chọn trong Cài đặt."
+
+msgid "No additional AI call for applying this approval; hosting or plugin charges may apply separately."
+msgstr "Thực hiện thao tác đã duyệt không gọi thêm model văn bản; phí hosting hoặc plugin có thể tính riêng."
+
+msgid "Task undo restores saved content/settings and deactivates a newly activated plugin. API charges and generated media are retained."
+msgstr "Hoàn tác khôi phục nội dung/cài đặt đã lưu và tắt plugin vừa kích hoạt. Phí API và ảnh đã tạo được giữ lại."
+
+msgid "Open Plugins → Add New. Search the exact WordPress.org slug, select Install Now, then Activate."
+msgstr "Vào Plugin → Cài mới. Tìm đúng slug WordPress.org, bấm Cài đặt ngay rồi Kích hoạt."
+
+msgid "Open Settings → Reading for the front page and posts page, Settings → General for title/tagline, or Settings → Media for image sizes. Save Changes."
+msgstr "Vào Cài đặt → Đọc để chọn trang chủ/trang bài viết; Tổng quan để đổi tên/khẩu hiệu; Thư viện để đổi kích thước ảnh. Bấm Lưu thay đổi."
+
+msgid "Publish the chosen UX Block or page. Open Appearance → Customize → Footer, choose the source, then Publish."
+msgstr "Xuất bản UX Block hoặc trang đã chọn. Vào Giao diện → Tùy biến → Footer, chọn nguồn rồi bấm Đăng."
+
+msgid "Open Appearance → Menus, edit the menu and assign its display location. In Customize → Header builder, add the matching menu element."
+msgstr "Vào Giao diện → Menu, sửa menu và gán vị trí hiển thị. Trong Tùy biến → Header builder, thêm phần tử menu tương ứng."
+
+msgid "Edit the page or post. Open the Rank Math or Yoast panel, edit the SEO title and description, then save."
+msgstr "Sửa trang hoặc bài viết. Mở bảng Rank Math hoặc Yoast, sửa tiêu đề và mô tả SEO rồi lưu."
+
+msgid "Open the content editor, review the preview, then click Publish."
+msgstr "Mở trình sửa nội dung, kiểm tra bản xem trước rồi bấm Đăng."
+
+msgid "Open the linked content editor or Appearance → Customize, review the proposed values below, apply them and save."
+msgstr "Mở liên kết chỉnh sửa hoặc Giao diện → Tùy biến, xem các giá trị đề xuất bên dưới, áp dụng rồi lưu."
+
+msgid "Global design"
+msgstr "Thiết kế toàn website"
+
+msgid "WordPress settings"
+msgstr "Cài đặt WordPress"
+
+msgid "Publishing"
+msgstr "Xuất bản"
+
+msgid "SEO metadata"
+msgstr "Metadata SEO"
+
+msgid "Budget extensions"
+msgstr "Duyệt ngân sách bổ sung"
+
+msgid "Partners with names"
+msgstr "Đối tác có tên"
+
+msgid "Customer reviews ticker"
+msgstr "Dải đánh giá khách hàng"
+
+msgid "Fleet ticker"
+msgstr "Dải đội xe"
+
+msgid "Shops and categories"
+msgstr "Gian hàng và danh mục"
+
+msgid "Services expanding gallery"
+msgstr "Gallery dịch vụ mở rộng"
+
+msgid "Projects expanding gallery"
+msgstr "Gallery dự án mở rộng"
