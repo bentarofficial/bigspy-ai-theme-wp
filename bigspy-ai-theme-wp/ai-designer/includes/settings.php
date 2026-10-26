@@ -107,7 +107,7 @@ function bst_aid_models( $refresh = false ) {
 	foreach ( $out['text'] as $i => $m ) {
 		$good = in_array( $m['quality'], array( 'frontier-open', 'strong' ), true );
 		// Low-cost picks only from OpenAI and Anthropic: their models are trained for agentic tool use.
-		$agentic = (bool) preg_match( '/^(gpt-|claude-)/i', $m['id'] );
+		$agentic = (bool) preg_match( '/^(gpt-|claude-)/i', $m['id'] ) && false === stripos( $m['id'], 'gpt-oss' ); // Open-weight gpt-oss runs on third-party hosts: not a recommended pick.
 		$out['text'][ $i ]['tier'] = ( $good && $agentic && $m['input'] > 0 && $m['input'] <= 0.6 ) ? 'value' : ( ( 'frontier-open' === $m['quality'] && $m['input'] >= 2 && ( $agentic || preg_match( '/^gemini-([4-9]|\d{2,})/i', $m['id'] ) ) ) ? 'premium' : 'all' ); // Gemini only from generation 4 (Argon) up.
 	}
 	usort( $out['text'], function ( $a, $b ) {
