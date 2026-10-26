@@ -30,7 +30,7 @@ A multipurpose WordPress theme for building client websites fast: service and bu
 
 1. Download the zip from [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). Do not use GitHub's "Download ZIP" source button; that archive has the wrong folder structure.
 2. In WordPress go to **Appearance → Themes → Add New → Upload Theme**, choose the zip and click **Install Now**, then **Activate**.
-3. To update, upload the new zip the same way and choose **Replace current with uploaded**. Your settings and content are kept.
+3. From 1.73.0 onward, WordPress checks GitHub Releases for updates. Update from **Appearance → Themes** or **Dashboard → Updates**; you can also enable automatic updates. If you use 1.72.13 or older, upload the 1.73.0 zip once and choose **Replace current with uploaded**. Your settings and content are kept.
 
 If you plan to edit theme files, use a child theme so updates do not overwrite your changes.
 
@@ -161,6 +161,7 @@ The latest three releases are kept on the [Releases](https://github.com/bentarof
 
 ### 1.73: Informed AI Designer and motion blocks
 
+- Automatic theme updates from GitHub Releases, with WordPress update notices and optional auto-updates.
 - On-demand theme/WordPress guides and discovery of live blocks, patterns, design fields, menus, layouts and plugins.
 - Three permission levels with server-bound approval cards, advice-only tasks, manual checklists, approval logs and expanded undo.
 - **Continuous ticker** (`bigspy/ticker` + `bigspy/ticker-slide`): any blocks per slide, seamless or once-only motion, px/second speed, responsive widths, accessible inert clones and reduced-motion scrolling.
