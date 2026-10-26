@@ -1,5 +1,7 @@
 # BIGSPY AI Theme WP
 
+![BIGSPY AI Theme WP: build websites your way, with the built-in AI Designer](docs/images/bigspy-ai-theme-wp-cover.jpg)
+
 A multipurpose WordPress theme for building client websites fast: service and business sites as well as WooCommerce shops. It ships with a block library for the native WordPress editor, header and footer builders, global styles, and **BIGSPY AI Designer**, an AI assistant that designs pages, writes content and creates images inside your site.
 
 > **Live demo:** the website you see at [phonglammedia.com](https://phonglammedia.com/) is built entirely with BIGSPY AI Theme WP, and its pages were designed with the theme's built-in BIGSPY AI Designer. Browse it on desktop and mobile to see what the theme can do. Product page: [BIGSPY AI Theme WP at Phong Lâm Media](https://phonglammedia.com/giao-dien-wordpress-bigspy-ai-theme-wp/).
