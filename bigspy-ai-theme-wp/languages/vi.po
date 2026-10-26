@@ -3838,3 +3838,6 @@ msgstr "Đã cập nhật các section của trang"
 
 msgid "The previous step is still locked. Wait a few minutes, then send \"continue\"."
 msgstr "Bước trước vẫn đang bị khoá. Hãy đợi vài phút rồi gửi \"tiếp tục\"."
+
+msgid "The model rejected the full request once; it worked again with a shorter history."
+msgstr "Model từ chối yêu cầu đầy đủ một lần; đã chạy lại được với lịch sử rút gọn."

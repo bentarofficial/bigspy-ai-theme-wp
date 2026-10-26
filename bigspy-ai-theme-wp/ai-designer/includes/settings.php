@@ -118,7 +118,7 @@ function bst_aid_models( $refresh = false ) {
 			'id'          => (string) $m['id'],
 			'name'        => (string) ( $m['name'] ?? $m['id'] ),
 			'free'        => ! empty( $m['free_tier'] ),
-			'price'       => (float) ( $m['pricing']['per_image'] ?? $m['pricing']['image'] ?? $m['list_price'] ?? 0 ),
+			'price'       => (float) ( $m['pricing']['per_image_usd'] ?? $m['pricing']['per_image'] ?? 0 ),
 			'recommended' => in_array( (string) $m['id'], array( 'gpt-image-2', 'gpt-image-2.5-flare' ), true ),
 		);
 	}

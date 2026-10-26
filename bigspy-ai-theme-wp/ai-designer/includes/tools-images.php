@@ -38,7 +38,7 @@ add_filter(
 				'properties' => array(
 					'prompt'      => array( 'type' => 'string', 'description' => 'Detailed visual description in English: subject, setting, composition, light, mood, colors. No text in the image unless the user asked.' ),
 					'purpose'     => array( 'type' => 'string', 'enum' => array_keys( bst_aid_image_sizes() ) ),
-					'size'        => array( 'type' => 'string', 'description' => 'WIDTHxHEIGHT, e.g. 1920x1080. Defaults by purpose.' ),
+					'size'        => array( 'type' => 'string', 'description' => 'WIDTHxHEIGHT. Usually leave it out: the size follows the purpose and is fitted to what the image model accepts.' ),
 					'quality'     => array( 'type' => 'string', 'enum' => array( 'low', 'medium', 'high' ) ),
 					'transparent' => array( 'type' => 'boolean', 'description' => 'Transparent background (logos, icons) when the model supports it.' ),
 					'reference_image_ids' => array( 'type' => 'array', 'items' => array( 'type' => 'integer' ), 'description' => 'Media Library images to edit or use as reference (models that support it).' ),
@@ -87,6 +87,41 @@ add_filter(
 		return $tools;
 	}
 );
+
+/**
+ * A size the model accepts. The gpt-image models only take 1024x1024, 1536x1024 and
+ * 1024x1536 (checked against the live API), so a wanted size maps to the closest shape.
+ */
+function bst_aid_model_size( $model, $size ) {
+	if ( 0 !== strpos( (string) $model, 'gpt-image' ) ) {
+		return $size;
+	}
+	list( $w, $h ) = array_map( 'intval', explode( 'x', $size ) + array( 1, 1 ) );
+	$ratio = $h > 0 ? $w / $h : 1;
+	return $ratio > 1.2 ? '1536x1024' : ( $ratio < 0.83 ? '1024x1536' : '1024x1024' );
+}
+
+/** From an API error like "use 1024x1024, 1536x1024 or auto", the listed size closest to $size. */
+function bst_aid_size_from_error( $error, $size ) {
+	if ( ! preg_match_all( '/\b(\d{3,4})x(\d{3,4})\b/', (string) $error, $m, PREG_SET_ORDER ) ) {
+		return '';
+	}
+	list( $w, $h ) = array_map( 'intval', explode( 'x', $size ) + array( 1, 1 ) );
+	$want = $h > 0 ? $w / $h : 1;
+	$best = '';
+	$diff = PHP_FLOAT_MAX;
+	foreach ( $m as $x ) {
+		if ( $x[0] === $size ) {
+			continue;
+		}
+		$d = abs( (int) $x[1] / max( 1, (int) $x[2] ) - $want );
+		if ( $d < $diff ) {
+			$diff = $d;
+			$best = $x[0];
+		}
+	}
+	return $best;
+}
 
 /** Prompt sent to the image model: guidelines, site colors, purpose, safety. */
 function bst_aid_image_prompt( $prompt, $purpose ) {
@@ -137,7 +172,7 @@ function bst_aid_tool_imagegen( $a ) {
 	$body    = array(
 		'model'           => $model,
 		'prompt'          => bst_aid_image_prompt( $a['prompt'] ?? '', $purpose ),
-		'size'            => $size,
+		'size'            => bst_aid_model_size( $model, $size ),
 		'n'               => 1,
 		'idempotency_key' => substr( md5( wp_json_encode( $a ) . ( $GLOBALS['bst_aid_task_id'] ?? 0 ) . microtime() ), 0, 40 ),
 	);
@@ -158,6 +193,15 @@ function bst_aid_tool_imagegen( $a ) {
 		$body['image_urls'] = $refs;
 	}
 	$res = bst_aid_http( 'POST', '/images/generations', $body, true, null, 60 );
+	// A size the model does not take: retry once with the closest size the API lists.
+	if ( empty( $res['ok'] ) && false !== stripos( (string) $res['error'], 'size' ) ) {
+		$retry = bst_aid_size_from_error( $res['error'], $body['size'] );
+		if ( '' !== $retry ) {
+			$body['size']            = $retry;
+			$body['idempotency_key'] = substr( md5( $body['idempotency_key'] . $retry ), 0, 40 );
+			$res                     = bst_aid_http( 'POST', '/images/generations', $body, true, null, 60 );
+		}
+	}
 	if ( empty( $res['ok'] ) ) {
 		return array( 'error' => $res['error'] );
 	}

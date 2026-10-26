@@ -31,7 +31,7 @@ add_action(
 
 /** Steps (model calls) allowed per user message, by effort. */
 function bst_aid_effort_steps( $effort ) {
-	$map = array( 'low' => 6, 'medium' => 12, 'high' => 20, 'max' => 30 );
+	$map = array( 'low' => 8, 'medium' => 20, 'high' => 32, 'max' => 48 ); // A designed page with images needs about 20 steps.
 	return $map[ $effort ] ?? 12;
 }
 
@@ -268,8 +268,21 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	$msgs     = bst_aid_task_get( $id, '_bst_aid_messages' );
 	$messages = array_merge( array( array( 'role' => 'system', 'content' => bst_aid_system_prompt() ) ), bst_aid_history( $msgs ) );
 	$res      = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $s['text_model'], 'effort' => $run['effort'] ?? 'medium' ) );
+	if ( empty( $res['ok'] ) && 400 === (int) $res['status'] ) {
+		// Still rejected: send a compact history (every older tool result shortened) once more.
+		foreach ( $messages as $i => $m ) {
+			if ( 'tool' === ( $m['role'] ?? '' ) && strlen( (string) $m['content'] ) > 400 ) {
+				$messages[ $i ]['content'] = mb_substr( (string) $m['content'], 0, 400 ) . ' …[shortened]';
+			}
+		}
+		$second = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $s['text_model'], 'effort' => 'low' ) );
+		if ( ! empty( $second['ok'] ) ) {
+			$events[] = bst_aid_task_log( $id, array( 'kind' => 'info', 'text' => __( 'The model rejected the full request once; it worked again with a shorter history.', 'bigspy-ai-theme-wp' ) ) );
+			$res      = $second;
+		}
+	}
 	if ( empty( $res['ok'] ) ) {
-		return bst_aid_finish( $id, 'error', $events, array( 'kind' => 'error', 'text' => $res['error'] ) );
+		return bst_aid_finish( $id, 'error', $events, array( 'kind' => 'error', 'text' => $res['error'], 'detail' => (string) ( $res['first_raw'] ?? '' ) . ' | ' . (string) ( $res['raw'] ?? '' ) ) );
 	}
 
 	// Cost: Kyma reports it in usage; otherwise estimate from the model price (per million tokens).

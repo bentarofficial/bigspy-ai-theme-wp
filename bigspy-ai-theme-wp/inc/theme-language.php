@@ -140,20 +140,33 @@ function bst_theme_lang_is_admin_request() {
  * loaded in PHP, so they follow the chosen admin language without separate JSON files.
  */
 function bst_theme_lang_script_data() {
-	$translations = get_translations_for_domain( 'bigspy-ai-theme-wp' );
-	if ( ! $translations || empty( $translations->entries ) ) {
-		return;
-	}
 	$data = array( '' => array( 'domain' => 'bigspy-ai-theme-wp' ) );
-	if ( ! empty( $translations->headers['Plural-Forms'] ) ) {
-		$data['']['plural_forms'] = $translations->headers['Plural-Forms'];
-	}
-	foreach ( $translations->entries as $entry ) {
-		if ( empty( $entry->translations ) || '' === (string) $entry->translations[0] ) {
+	// Since WordPress 6.5 translations loaded from .l10n.php expose no entries, so read the
+	// file of the language the theme uses (bundled, language pack or Loco) directly.
+	$locale = (string) apply_filters( 'theme_locale', determine_locale(), 'bigspy-ai-theme-wp' );
+	foreach ( array( WP_LANG_DIR . '/loco/themes/bigspy-ai-theme-wp-' . $locale, WP_LANG_DIR . '/themes/bigspy-ai-theme-wp-' . $locale, BST_DIR . '/languages/' . $locale ) as $base ) {
+		if ( ! is_readable( $base . '.l10n.php' ) ) {
 			continue;
 		}
-		$key          = ( $entry->context ? $entry->context . "\4" : '' ) . $entry->singular;
-		$data[ $key ] = array_values( $entry->translations );
+		$file = include $base . '.l10n.php';
+		if ( ! empty( $file['plural-forms'] ) ) {
+			$data['']['plural_forms'] = $file['plural-forms'];
+		}
+		foreach ( (array) ( $file['messages'] ?? array() ) as $key => $value ) {
+			if ( '' !== (string) $key && '' !== (string) $value ) {
+				$data[ (string) $key ] = explode( "\0", (string) $value ); // Plural forms are joined with NUL.
+			}
+		}
+		break;
+	}
+	// Older WordPress: entries from the loaded MO file.
+	if ( count( $data ) < 2 ) {
+		$translations = get_translations_for_domain( 'bigspy-ai-theme-wp' );
+		foreach ( (array) ( $translations->entries ?? array() ) as $entry ) {
+			if ( ! empty( $entry->translations ) && '' !== (string) $entry->translations[0] ) {
+				$data[ ( $entry->context ? $entry->context . "\4" : '' ) . $entry->singular ] = array_values( $entry->translations );
+			}
+		}
 	}
 	if ( count( $data ) < 2 ) {
 		return;

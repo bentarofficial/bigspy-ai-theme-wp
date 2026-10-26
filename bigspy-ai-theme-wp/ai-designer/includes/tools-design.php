@@ -886,8 +886,26 @@ function bst_aid_tool_get_settings( $a ) {
 		foreach ( array( 'color_primary', 'color_secondary', 'color_text', 'color_heading', 'color_link', 'color_light', 'color_body_bg', 'font_body', 'font_heading', 'font_size_base' ) as $k ) {
 			$main[ $k ] = bst_mod( $k );
 		}
-		$fonts = function_exists( 'bst_font_choices' ) ? array_keys( (array) bst_font_choices() ) : array();
-		return array( 'sections' => $list, 'main' => $main, 'google_fonts' => $fonts );
+		// The fields a redesign needs, ready to use with update_settings (no extra calls).
+		$design = array();
+		foreach ( $fields as $fid => $f ) {
+			if ( preg_match( '/^(color_|font_|button_radius|radius|container_width|heading_)/', $fid ) ) {
+				$row = array( 'type' => $f['type'], 'value' => bst_mod( $fid ) );
+				if ( ! empty( $f['choices'] ) && 'font_' === substr( $fid, 0, 5 ) && count( $f['choices'] ) > 12 ) {
+					$row['choices'] = 'see fonts';
+				} elseif ( ! empty( $f['choices'] ) ) {
+					$row['choices'] = array_keys( $f['choices'] );
+				}
+				foreach ( array( 'min', 'max' ) as $k ) {
+					if ( isset( $f[ $k ] ) ) {
+						$row[ $k ] = $f[ $k ];
+					}
+				}
+				$design[ $fid ] = $row;
+			}
+		}
+		$fonts = function_exists( 'bst_font_choices' ) ? (array) bst_font_choices() : array();
+		return array( 'design_fields' => $design, 'fonts' => $fonts, 'sections' => $list, 'note' => 'Font fields take a key from "fonts" (e.g. the key, not the label). Use update_settings directly with these ids.' );
 	}
 	$out = array();
 	foreach ( $fields as $id => $f ) {

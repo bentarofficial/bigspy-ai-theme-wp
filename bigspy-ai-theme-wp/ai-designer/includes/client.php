@@ -43,9 +43,11 @@ function bst_aid_http( $method, $path, $body = null, $auth = true, $key = null, 
 	$ok     = $status >= 200 && $status < 300;
 	$error  = '';
 	$code   = '';
+	$raw    = '';
 	if ( ! $ok ) {
 		$code  = (string) ( $data['error']['code'] ?? '' );
 		$error = bst_aid_error_message( $status, $code, (string) ( $data['error']['message'] ?? '' ), $data );
+		$raw   = bst_aid_redact( mb_substr( (string) wp_remote_retrieve_body( $res ), 0, 1500 ) );
 	}
 	$headers = array();
 	foreach ( array( 'x-kyma-served-model', 'x-kyma-max-tokens-clamped', 'retry-after' ) as $h ) {
@@ -54,7 +56,7 @@ function bst_aid_http( $method, $path, $body = null, $auth = true, $key = null, 
 			$headers[ $h ] = (string) $v;
 		}
 	}
-	return compact( 'ok', 'status', 'data', 'error', 'code', 'headers' );
+	return compact( 'ok', 'status', 'data', 'error', 'code', 'headers', 'raw' );
 }
 
 /** A clear message for the user from an API error. */
@@ -100,7 +102,16 @@ function bst_aid_chat( $messages, $tools, $opts ) {
 		$map                     = array( 'low' => 'low', 'medium' => 'medium', 'high' => 'high', 'max' => 'high' );
 		$body['reasoning_effort'] = $map[ $opts['effort'] ] ?? 'medium';
 	}
-	return bst_aid_http( 'POST', '/chat/completions', $body, true, null, 120 );
+	$res = bst_aid_http( 'POST', '/chat/completions', $body, true, null, 150 );
+	if ( empty( $res['ok'] ) && 400 === (int) $res['status'] && ! in_array( $res['code'], array( 'insufficient_credits', 'invalid_api_key', 'model_requires_paid', 'model_not_found' ), true ) ) {
+		unset( $body['reasoning_effort'], $body['tool_choice'], $body['parallel_tool_calls'] );
+		$body['max_tokens'] = 8192;
+		$retry              = bst_aid_http( 'POST', '/chat/completions', $body, true, null, 150 );
+		$retry['retried']   = 'plain';
+		$retry['first_raw'] = $res['raw'] ?? '';
+		return $retry;
+	}
+	return $res;
 }
 
 /** Hide strings that look like secrets before text leaves the site. */

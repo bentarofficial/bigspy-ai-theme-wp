@@ -1143,6 +1143,7 @@ Tránh: người nổi tiếng có thật, logo thương hiệu khác, watermark
 		'The header (logo) edge' => 'Mép header (logo)',
 		'The hot stone massage is amazing, like recharging my energy after a long week.' => 'Massage đá nóng tuyệt vời, cảm giác như được nạp lại năng lượng sau tuần làm việc.',
 		'The menu changes with the seasons to keep every flavour fresh. Here are the dishes our guests love most.' => 'Thực đơn thay đổi theo mùa để luôn giữ trọn vị tươi ngon. Dưới đây là những món thực khách yêu thích nhất.',
+		'The model rejected the full request once; it worked again with a shorter history.' => 'Model từ chối yêu cầu đầy đủ một lần; đã chạy lại được với lịch sử rút gọn.',
 		'The model service is temporarily unavailable. Try again in a moment.' => 'Dịch vụ model tạm thời gián đoạn. Hãy thử lại sau ít phút.',
 		'The numbers say it all' => 'Con số nói lên tất cả',
 		'The page you are looking for may have been moved or deleted. Try searching instead.' => 'Trang bạn tìm có thể đã được chuyển hoặc xóa. Hãy thử tìm kiếm.',
