@@ -63,5 +63,6 @@
   },
   "editorScript": "bst-motion-editor",
   "render": "file:./render.php",
-  "viewScript": "file:./view.js"
+  "viewScript": "file:./view.js",
+  "editorStyle": "bst-motion-editor"
 }

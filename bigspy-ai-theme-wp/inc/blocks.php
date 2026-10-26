@@ -45,6 +45,7 @@ function bst_register_blocks() {
 		bst_asset_version( 'assets/js/blocks-more.js' ),
 		true
 	);
+	wp_register_style( 'bst-motion-editor', BST_URI . '/assets/css/blocks-motion-editor.css', array(), bst_asset_version( 'assets/css/blocks-motion-editor.css' ) );
 	wp_register_script( 'bst-motion-editor', BST_URI . '/assets/js/blocks-motion.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-api-fetch' ), bst_asset_version( 'assets/js/blocks-motion.js' ), true );
 	$areas = array();
 	foreach ( (array) ( $GLOBALS['wp_registered_sidebars'] ?? array() ) as $sidebar ) {

@@ -44,5 +44,6 @@
   "render": "file:./render.php",
   "parent": [
     "bigspy/expand-gallery"
-  ]
+  ],
+  "editorStyle": "bst-motion-editor"
 }

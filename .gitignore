@@ -6,3 +6,6 @@ node_modules/
 # Release zips go to GitHub Releases, not git
 releases/
 *.zip
+
+# Local verification artifacts
+output/
