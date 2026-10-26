@@ -4087,3 +4087,9 @@ msgstr "Gallery dịch vụ mở rộng"
 
 msgid "Projects expanding gallery"
 msgstr "Gallery dự án mở rộng"
+
+msgid "Invalid BIGSPY update package."
+msgstr "Gói cập nhật BIGSPY không hợp lệ."
+
+msgid "Could not prepare BIGSPY update package."
+msgstr "Không thể chuẩn bị gói cập nhật BIGSPY."
