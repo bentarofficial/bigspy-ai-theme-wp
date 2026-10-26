@@ -180,6 +180,7 @@ function bst_aid_rest_settings( $request = null ) {
 		'budgetTask'    => (float) $s['budget_task'],
 		'budgetDay'     => (float) $s['budget_day'],
 		'allowFallback' => (bool) $s['allow_fallback'],
+		'permissions' => (array) ( $s['permissions'] ?? array() ),
 		'spentToday'    => bst_aid_spent_today(),
 	);
 	// The workspace asks with lite=1: no calls to the API (models, balance) on every page load.
@@ -262,6 +263,12 @@ function bst_aid_rest_settings_save( WP_REST_Request $request ) {
 	}
 	if ( null !== $request->get_param( 'allowFallback' ) ) {
 		$changes['allow_fallback'] = (bool) $request->get_param( 'allowFallback' );
+	}
+	if ( is_array( $request->get_param( 'permissions' ) ) ) {
+		$changes['permissions'] = array();
+		foreach ( array( 'content', 'images', 'design', 'site', 'publish', 'seo', 'plugins', 'budget' ) as $group ) {
+			$changes['permissions'][ $group ] = max( 1, min( 3, (int) ( $request->get_param( 'permissions' )[ $group ] ?? 1 ) ) );
+		}
 	}
 	bst_aid_save_settings( $changes );
 	return bst_aid_rest_settings();

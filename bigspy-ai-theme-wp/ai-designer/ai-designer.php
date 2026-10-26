@@ -8,7 +8,7 @@
  * bst_aid_ prefix and can be removed from Settings.
  *
  * Hard limits: the model can only call the tools registered in includes/tools.php. No tool
- * updates or installs themes / plugins, edits files, manages users, changes system settings,
+ * updates themes/plugins or installs themes, edits files, manages users, changes protected settings,
  * deletes permanently or touches orders, customers and payments.
  *
  * @package BigspyTheme
@@ -26,6 +26,8 @@ require_once BST_AID_DIR . '/includes/guidelines.php';
 require_once BST_AID_DIR . '/includes/tools.php';
 require_once BST_AID_DIR . '/includes/tools-design.php';
 require_once BST_AID_DIR . '/includes/tools-images.php';
+require_once BST_AID_DIR . '/includes/permissions.php';
+require_once BST_AID_DIR . '/includes/tools-site.php';
 require_once BST_AID_DIR . '/includes/prompt.php';
 require_once BST_AID_DIR . '/includes/tasks.php';
 require_once BST_AID_DIR . '/includes/workspace.php';

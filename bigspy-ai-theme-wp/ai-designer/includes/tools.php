@@ -1,7 +1,7 @@
 <?php
 /**
  * Tools the text model may call. This list is the hard limit: there is no tool to update,
- * install or remove themes / plugins, edit files, manage users, change system settings,
+ * remove themes / plugins, install themes, edit files, manage users, change protected system settings,
  * delete permanently, or read orders, customers and payments.
  *
  * Each tool: description, JSON schema, capability, callback( $args ) returning an array.
@@ -159,6 +159,14 @@ function bst_aid_run_tool( $name, $args ) {
 	if ( ! current_user_can( $tools[ $name ]['cap'] ) ) {
 		return array( 'error' => 'The current user is not allowed to do this.' );
 	}
+	$gate = bst_aid_permission_gate( $name, is_array( $args ) ? $args : array() );
+	if ( null !== $gate ) { return $gate; }
+	// Legacy callbacks accept confirmed only after the server gate has authorized the exact call.
+	$args['confirmed'] = true;
+	if ( 'ImageGen' === $name ) {
+		$task = (int) $GLOBALS['bst_aid_task_id'];
+		bst_aid_task_set( $task, '_bst_aid_image_count', (int) bst_aid_task_get( $task, '_bst_aid_image_count', 0 ) + 1 );
+	}
 	try {
 		$result = call_user_func( $tools[ $name ]['callback'], is_array( $args ) ? $args : array() );
 	} catch ( Throwable $e ) {
@@ -294,6 +302,7 @@ function bst_aid_tool_site_info() {
 		'post_categories' => wp_list_pluck( get_terms( array( 'taxonomy' => 'category', 'hide_empty' => false, 'number' => 50 ) ), 'name' ),
 		'woocommerce'     => class_exists( 'WooCommerce' ),
 		'guidelines'      => bst_aid_guidelines(),
+		'discovery'       => 'Call overview for live theme/WordPress capabilities; get_knowledge(theme|wordpress) for action guides.',
 	);
 	if ( class_exists( 'WooCommerce' ) ) {
 		$info['product_categories'] = wp_list_pluck( get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'number' => 50 ) ), 'name' );
@@ -432,6 +441,7 @@ function bst_aid_tool_save_guidelines( $a ) {
 	if ( ! $changes ) {
 		return array( 'error' => 'Nothing to save.' );
 	}
+	bst_aid_snapshot( 'option', 'bst_aid_guidelines', get_option( 'bst_aid_guidelines', array() ) );
 	bst_aid_save_guidelines( $changes );
 	return array( 'saved' => array_keys( $changes ), 'links' => array( array( 'label' => __( 'Guidelines', 'bigspy-ai-theme-wp' ), 'edit' => admin_url( 'admin.php?page=bst-ai-guidelines' ), 'view' => '' ) ) );
 }

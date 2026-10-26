@@ -173,6 +173,13 @@
 						testBox.appendChild(h('p', { class: 'bst-aid-working' }, [h('span', { class: 'spinner is-active' }), __('Creating a test image… this takes about 10–40 seconds.', T)]));
 						api('/images/test', 'POST').then(function (r) { testBtn.disabled = false; showTest(r); }).catch(function (e) { testBtn.disabled = false; showTest({ error: e.message }); });
 					}, text: __('Test ImageGen', T) });
+					var permissionInputs = {};
+					var groupLabels = { content: __('Content', T), images: __('Images', T), design: __('Global design', T), site: __('WordPress settings', T), publish: __('Publishing', T), seo: __('SEO metadata', T), plugins: __('Plugins', T), budget: __('Budget extensions', T) };
+					var permissionRows = Object.keys(groupLabels).map(function (group) {
+						var select = h('select', null, [1, 2, 3].map(function (level) { return h('option', { value: level, selected: level === Number((state.permissions || {})[group] || 1), text: [__('Automatic (mandatory approvals still apply)', T), __('Always ask', T), __('Guidance only', T)][level - 1] }); }));
+						permissionInputs[group] = select; return h('p', null, [h('label', { text: groupLabels[group] + ': ' }), select]);
+					});
+					kids.push(h('div', { class: 'bst-aid-card' }, [h('h2', { text: __('Tool permissions', T) })].concat(permissionRows)));
 					kids.push(h('div', { class: 'bst-aid-card' }, [
 						h('h2', { text: __('2. Models and budget', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Text model (writes, designs and calls the tools)', T) }), text]),
@@ -181,7 +188,7 @@
 						h('p', { class: 'bst-aid-row' }, [h('label', null, [__('Budget per task (USD, 0 = no limit) ', T), bTask]), h('label', null, [__('Budget per day (USD, 0 = no limit) ', T), bDay])]),
 						h('p', { class: 'description', text: sprintf(__('Spent today: %s', T), money(state.spentToday)) }),
 						h('p', null, [
-							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value }); }, text: __('Save', T) }),
+							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
 							' ',
 							h('button', { class: 'button', disabled: busy, onclick: function () { load(true); }, text: __('Refresh model list', T) }),
 							' ',
@@ -242,6 +249,22 @@
 			return map[name] || name;
 		};
 		var eventNode = function (ev) {
+            if (ev.kind === 'approval') {
+                var a = ev.approval, taskId = current.id;
+                var resolved = log.some(function (event) { return event.approval_id === a.id; });
+                var box = h('div', { class: 'bst-aid-card bst-aid-approval' }, [h('h3', { text: __('Approval required', T) + ': ' + a.tool }), h('p', { text: a.scope }), h('p', { text: a.cost }), h('p', { text: a.undo }), h('details', null, [h('summary', { text: __('Before / after', T) }), h('pre', { text: JSON.stringify({ before: a.before, after: a.after }, null, 2) })])]);
+                if (a.preview) { box.appendChild(h('a', { href: a.preview, target: '_blank', rel: 'noopener', text: __('Preview', T) })); }
+                ['approve', 'manual', 'skip'].forEach(function (decision, index) {
+                    box.appendChild(h('button', { class: 'button', disabled: resolved || a.expires * 1000 <= Date.now(), text: [__('Agree', T), __('I will do it myself', T), __('Skip', T)][index], onclick: function () {
+                        box.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+                        api('/tasks/' + taskId + '/approval', 'POST', { approval_id: a.id, decision: decision }).then(function (r) {
+                            box.appendChild(h('p', { text: r.result.instructions || r.result.error || [__('Agree', T), __('I will do it myself', T), __('Skip', T)][index] }));
+                            if (current && current.id === taskId) { addEvents(r.events); updateTask(r.task); }
+                        }).catch(function (e) { box.appendChild(h('p', { text: e.message })); box.querySelectorAll('button').forEach(function (b) { b.disabled = false; }); });
+                    } }));
+                });
+                return box;
+            }
 			if (ev.kind === 'user') { return h('div', { class: 'bst-aid-msg is-user' }, h('div', { class: 'bst-aid-bubble', text: ev.text })); }
 			if (ev.kind === 'assistant') {
 				var b = h('div', { class: 'bst-aid-bubble' }); b.innerHTML = md(ev.text);
@@ -271,7 +294,7 @@
 					]);
 				}))]);
 			}
-			return h('div', { class: 'bst-aid-note' + (ev.kind === 'error' ? ' is-error' : ''), text: ev.text });
+			return h('div', { class: 'bst-aid-note' + (ev.kind === 'error' ? ' is-error' : ''), text: ev.text + (ev.approved_by ? ' · #' + ev.approved_by + ' · ' + new Date(ev.t * 1000).toLocaleString() : '') });
 		};
 		var scroll = function () { if (els.chat) { els.chat.scrollTop = els.chat.scrollHeight; } };
 		var addEvents = function (evs) {
@@ -325,6 +348,10 @@
 			if (els.previewWrap && !els.previewWrap.hidden) {
 				els.head.appendChild(h('button', { type: 'button', class: 'button button-small', onclick: function () { showPreview(''); }, text: __('Close preview', T) }));
 			}
+			if (current && current.mode === 'advice') { els.head.appendChild(h('span', { text: __('Advice only', T) })); }
+			((current && current.checklist) || []).forEach(function (item, index) {
+				els.head.appendChild(h('label', null, [h('input', { type: 'checkbox', checked: item.done, onchange: function (e) { api('/tasks/' + current.id + '/checklist', 'POST', { index: index, done: e.target.checked }).catch(function (er) { addEvents([{ kind: 'error', text: er.message }]); }); } }), item.text]));
+			});
 			if (settings) { els.head.appendChild(h('span', { class: 'bst-aid-model', text: settings.textModel || '' })); }
 		};
 		var renderChat = function () {
@@ -354,6 +381,8 @@
 			running = false; stopFlag = true;
 			api('/tasks/' + id).then(function (d) {
 				current = d.task; log = d.log || []; stopFlag = false;
+				effort = d.effort || effort;
+				if (els.effort) { els.effort.value = effort; }
 				renderTasks(); renderHead(); renderChat();
 				if (d.task.running) { loop(); }
 				els.input.focus();
@@ -367,7 +396,7 @@
 			renderHead();
 		};
 		var newTask = function () {
-			return api('/tasks', 'POST', {}).then(function (t) { tasks.unshift(t); open(t.id); return t; });
+			return api('/tasks', 'POST', { mode: els.mode ? els.mode.value : 'design' }).then(function (t) { tasks.unshift(t); open(t.id); return t; });
 		};
 		var loop = function () {
 			running = true; stopFlag = false; syncComposer();
@@ -413,13 +442,14 @@
 			els.list = h('ul', { class: 'bst-aid-tasks' });
 			els.head = h('div', { class: 'bst-aid-head' });
 			els.chat = h('div', { class: 'bst-aid-chat', 'aria-live': 'polite' });
+			els.mode = h('select', { 'aria-label': __('Task mode', T) }, [h('option', { value: 'design', text: __('Design', T) }), h('option', { value: 'advice', text: __('Advice only', T) })]);
 			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } } });
 			els.send = h('button', { class: 'button button-primary', onclick: send, text: __('Send', T) });
 			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
-			var effortSel = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
+			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
 				[['low', __('Low – quick answers', T)], ['medium', __('Medium – balanced', T)], ['high', __('High – more careful', T)], ['max', __('Max – deepest work', T)]].map(function (o) { return h('option', { value: o[0], selected: o[0] === effort, text: o[1] }); }));
 			root.appendChild(h('aside', { class: 'bst-aid-side' }, [
-				h('button', { class: 'button button-primary bst-aid-new', onclick: function () { newTask(); }, text: '+ ' + __('New task', T) }),
+				els.mode, h('button', { class: 'button button-primary bst-aid-new', onclick: function () { newTask(); }, text: '+ ' + __('New task', T) }),
 				els.list,
 				h('p', { class: 'bst-aid-side-links' }, [h('a', { href: cfg.guidesUrl, text: __('Guidelines', T) }), cfg.canManage ? ' · ' : '', cfg.canManage ? h('a', { href: cfg.settingsUrl, text: __('Settings', T) }) : null])
 			]));

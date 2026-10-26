@@ -379,6 +379,7 @@ function bst_aid_tool_optimize_image( $a ) {
 	if ( ! wp_attachment_is_image( $id ) || ! current_user_can( 'edit_post', $id ) ) {
 		return array( 'error' => 'Not an editable image.' );
 	}
+	bst_aid_snapshot_post( $id );
 	$notes = array();
 	$data  = array( 'ID' => $id );
 	foreach ( array( 'title' => 'post_title', 'caption' => 'post_excerpt', 'description' => 'post_content' ) as $k => $col ) {

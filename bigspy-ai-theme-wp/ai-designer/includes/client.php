@@ -98,7 +98,7 @@ function bst_aid_chat( $messages, $tools, $opts ) {
 		'max_tokens'          => 16000, // Room for a full page section tree; Kyma lowers it when the balance is low.
 	);
 	$meta = bst_aid_text_model_meta( $model );
-	if ( $meta && $meta['reasoning'] ) {
+	if ( ! empty( $meta['reasoning'] ) ) {
 		$map                     = array( 'low' => 'low', 'medium' => 'medium', 'high' => 'high', 'max' => 'high' );
 		$body['reasoning_effort'] = $map[ $opts['effort'] ] ?? 'medium';
 	}

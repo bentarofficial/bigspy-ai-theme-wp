@@ -68,6 +68,8 @@ function bst_aid_task( $id ) {
 function bst_aid_task_summary( $p ) {
 	return array(
 		'id'       => $p->ID,
+		'mode'     => bst_aid_task_get( $p->ID, '_bst_aid_mode', 'design' ),
+		'checklist' => bst_aid_task_get( $p->ID, '_bst_aid_checklist' ),
 		'title'    => $p->post_title,
 		'modified' => mysql_to_rfc3339( $p->post_modified_gmt ),
 		'cost'     => round( (float) bst_aid_task_get( $p->ID, '_bst_aid_cost', 0 ), 4 ),
@@ -113,6 +115,7 @@ function bst_aid_rest_task_create( WP_REST_Request $r ) {
 	if ( is_wp_error( $id ) ) {
 		return $id;
 	}
+	bst_aid_task_set( $id, '_bst_aid_mode', 'advice' === $r->get_param( 'mode' ) ? 'advice' : 'design' );
 	return rest_ensure_response( bst_aid_task_summary( get_post( $id ) ) );
 }
 
@@ -133,7 +136,11 @@ function bst_aid_rest_task_undo( WP_REST_Request $r ) {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
 		return new WP_Error( 'bst_aid_cap', __( 'You are not allowed to do this.', 'bigspy-ai-theme-wp' ), array( 'status' => 403 ) );
 	}
-	$done  = function_exists( 'bst_aid_undo_task' ) ? bst_aid_undo_task( $p->ID ) : array();
+	$run = bst_aid_task_get( $p->ID, '_bst_aid_run' );
+	if ( ! empty( $run['active'] ) || get_transient( 'bst_aid_lock_' . $p->ID ) ) { return new WP_Error( 'busy', 'Stop the task and wait for its current step before undoing.', array( 'status' => 409 ) ); }
+	bst_aid_task_set( $p->ID, '_bst_aid_approvals', array() );
+	if ( ! bst_aid_execution_lock( $p->ID ) ) { return new WP_Error( 'busy', 'Another task operation is running.', array( 'status' => 409 ) ); }
+	try { $done = bst_aid_undo_task( $p->ID ); } finally { bst_aid_execution_unlock( $p->ID ); }
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'info', 'text' => $done ? sprintf( /* translators: %d: number of changes */ __( 'Undone: %d changes restored. Created pages, posts and products were moved to the trash; generated images stay in the Media Library.', 'bigspy-ai-theme-wp' ), count( $done ) ) : __( 'Nothing to undo in this task.', 'bigspy-ai-theme-wp' ) ) );
 	return rest_ensure_response( array( 'events' => array( $event ), 'task' => bst_aid_task_summary( get_post( $p->ID ) ) ) );
 }
@@ -164,6 +171,7 @@ function bst_aid_rest_task_send( WP_REST_Request $r ) {
 	if ( ! bst_aid_ready() ) {
 		return new WP_Error( 'bst_aid_ready', __( 'The API is not connected. Connect it in AI Designer settings.', 'bigspy-ai-theme-wp' ), array( 'status' => 400 ) );
 	}
+	if ( get_transient( 'bst_aid_lock_' . $p->ID ) || bst_aid_execution_busy( $p->ID ) ) { return new WP_Error( 'busy', 'Wait for the current step to finish.', array( 'status' => 409 ) ); }
 	$text = trim( (string) $r->get_param( 'text' ) );
 	if ( '' === $text ) {
 		return new WP_Error( 'bst_aid_text', __( 'Write a message first.', 'bigspy-ai-theme-wp' ), array( 'status' => 400 ) );
@@ -173,6 +181,7 @@ function bst_aid_rest_task_send( WP_REST_Request $r ) {
 	$msgs   = bst_aid_task_get( $p->ID, '_bst_aid_messages' );
 	$msgs[] = array( 'role' => 'user', 'content' => bst_aid_redact( $text ) );
 	bst_aid_task_set( $p->ID, '_bst_aid_messages', $msgs );
+	bst_aid_task_set( $p->ID, '_bst_aid_image_count', 0 );
 	bst_aid_task_set( $p->ID, '_bst_aid_run', array( 'active' => true, 'effort' => $effort, 'steps_left' => bst_aid_effort_steps( $effort ) ) );
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'user', 'text' => $text ) );
 	if ( 1 === count( $msgs ) ) {
@@ -189,6 +198,7 @@ function bst_aid_rest_task_stop( WP_REST_Request $r ) {
 	$run           = bst_aid_task_get( $p->ID, '_bst_aid_run' );
 	$run['active'] = false;
 	bst_aid_task_set( $p->ID, '_bst_aid_run', $run );
+	bst_aid_task_set( $p->ID, '_bst_aid_approvals', array() );
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'info', 'text' => __( 'Stopped.', 'bigspy-ai-theme-wp' ) ) );
 	return rest_ensure_response( array( 'state' => 'stopped', 'events' => array( $event ) ) );
 }
@@ -202,6 +212,7 @@ function bst_aid_finish( $id, $state, $events, $event = null ) {
 		$events[] = bst_aid_task_log( $id, $event );
 	}
 	delete_transient( 'bst_aid_lock_' . $id );
+	bst_aid_execution_unlock( $id );
 	return rest_ensure_response( array( 'state' => $state, 'events' => $events, 'task' => bst_aid_task_summary( get_post( $id ) ) ) );
 }
 
@@ -246,19 +257,26 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	if ( get_transient( 'bst_aid_lock_' . $id ) ) {
 		return rest_ensure_response( array( 'state' => 'busy', 'events' => array() ) );
 	}
+	if ( ! bst_aid_execution_lock( $id ) ) { return rest_ensure_response( array( 'state' => 'busy', 'events' => array() ) ); }
 	set_transient( 'bst_aid_lock_' . $id, 1, 180 );
 	@set_time_limit( 170 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 
-	$s      = bst_aid_settings();
+	$s      = bst_aid_effective_budgets( $id );
 	$events = array();
 	if ( ! bst_aid_ready() ) {
 		return bst_aid_finish( $id, 'error', $events, array( 'kind' => 'error', 'text' => __( 'The API is not connected. Connect it in AI Designer settings.', 'bigspy-ai-theme-wp' ) ) );
 	}
 	$cost = (float) bst_aid_task_get( $id, '_bst_aid_cost', 0 );
 	if ( $s['budget_task'] > 0 && $cost >= $s['budget_task'] ) {
+		$GLOBALS['bst_aid_task_id'] = $id;
+		$proposal = bst_aid_permission_gate( 'budget_extension', array( 'task_usd' => 1.0 ) );
+		if ( isset( $proposal['approval'] ) ) { $events[] = bst_aid_task_log( $id, array( 'kind' => 'approval', 'tool' => 'budget_extension', 'approval' => $proposal['approval'] ) ); }
 		return bst_aid_finish( $id, 'error', $events, array( 'kind' => 'error', 'text' => sprintf( /* translators: %s: USD */ __( 'This task reached its budget of $%s. Raise the limit in Settings to continue.', 'bigspy-ai-theme-wp' ), number_format_i18n( $s['budget_task'], 2 ) ) ) );
 	}
 	if ( $s['budget_day'] > 0 && bst_aid_spent_today() >= $s['budget_day'] ) {
+		$GLOBALS['bst_aid_task_id'] = $id;
+		$proposal = bst_aid_permission_gate( 'budget_extension', array( 'day_usd' => 1.0 ) );
+		if ( isset( $proposal['approval'] ) ) { $events[] = bst_aid_task_log( $id, array( 'kind' => 'approval', 'tool' => 'budget_extension', 'approval' => $proposal['approval'] ) ); }
 		return bst_aid_finish( $id, 'error', $events, array( 'kind' => 'error', 'text' => sprintf( /* translators: %s: USD */ __( 'Today\'s budget of $%s is used up. Raise the limit in Settings or continue tomorrow.', 'bigspy-ai-theme-wp' ), number_format_i18n( $s['budget_day'], 2 ) ) ) );
 	}
 	if ( (int) ( $run['steps_left'] ?? 0 ) <= 0 ) {
@@ -320,6 +338,7 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	}
 
 	$GLOBALS['bst_aid_task_id'] = $id; // Tools record snapshots and spending on this task.
+	$awaiting = false;
 	foreach ( $calls as $call ) {
 		$name   = (string) $call['function']['name'];
 		$raw    = trim( (string) ( $call['function']['arguments'] ?? '' ) );
@@ -327,14 +346,18 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		$result = is_array( $args )
 			? bst_aid_run_tool( $name, $args )
 			: array( 'error' => 'The tool arguments were not valid JSON or were cut off (too long). Send smaller pieces: for pages, create the page with the first sections, then add the rest with page_sections.' );
+		if ( isset( $result['approval'] ) ) { $awaiting = true; }
 		$links  = $result['links'] ?? array();
 		unset( $result['links'] );
 		$event = array(
-			'kind'  => isset( $result['error'] ) && 'needs_confirmation' !== $result['error'] ? 'tool-error' : 'tool',
+			'kind'  => isset( $result['approval'] ) ? 'approval' : ( isset( $result['error'] ) ? 'tool-error' : 'tool' ),
 			'tool'  => $name,
 			'text'  => isset( $result['error'] ) ? (string) ( $result['message'] ?? $result['error'] ) : ( 'pending' === ( $result['status'] ?? '' ) ? (string) $result['message'] : '' ),
 			'links' => $links,
 		);
+		if ( isset( $result['approval'] ) ) { $event['approval'] = $result['approval']; }
+		$event['arguments_hash'] = bst_aid_args_hash( $args );
+		$event['actor'] = get_current_user_id();
 		if ( 'show_palette' === $name && ! empty( $result['palettes'] ) ) {
 			$event['palettes'] = $result['palettes'];
 		}
@@ -346,8 +369,10 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	}
 	bst_aid_task_set( $id, '_bst_aid_messages', $msgs );
 	$now = bst_aid_task_get( $id, '_bst_aid_run' ); // Stop may have been pressed while this step ran.
+	if ( $awaiting ) { $now['active'] = false; }
 	$now['steps_left'] = (int) ( $now['steps_left'] ?? $run['steps_left'] ) - 1;
 	bst_aid_task_set( $id, '_bst_aid_run', $now );
 	delete_transient( 'bst_aid_lock_' . $id );
+	bst_aid_execution_unlock( $id );
 	return rest_ensure_response( array( 'state' => empty( $now['active'] ) ? 'stopped' : 'running', 'events' => $events, 'task' => bst_aid_task_summary( get_post( $id ) ) ) );
 }

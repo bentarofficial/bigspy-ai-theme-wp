@@ -14,6 +14,10 @@ defined( 'ABSPATH' ) || exit;
 /** Blocks that hold child blocks, and the only children some of them accept. */
 function bst_aid_block_containers() {
 	return array(
+		'bigspy/ticker' => array( 'bigspy/ticker-slide' ),
+		'bigspy/ticker-slide' => array(),
+		'bigspy/expand-gallery' => array( 'bigspy/expand-panel' ),
+		'bigspy/expand-panel' => array(),
 		'bst/section'        => array(),
 		'bst/row'            => array( 'bst/column' ),
 		'bst/column'         => array(),
@@ -32,6 +36,8 @@ function bst_aid_block_containers() {
 /** Blocks that must sit inside a given parent. */
 function bst_aid_block_parents() {
 	return array(
+		'bigspy/ticker-slide' => 'bigspy/ticker',
+		'bigspy/expand-panel' => 'bigspy/expand-gallery',
 		'bst/column'         => 'bst/row',
 		'bst/tab'            => 'bst/tabs',
 		'bst/accordion-item' => 'bst/accordion',
@@ -49,7 +55,7 @@ function bst_aid_block_types() {
 	$off = function_exists( 'bst_disabled_blocks' ) ? (array) bst_disabled_blocks() : array();
 	$out = array();
 	foreach ( WP_Block_Type_Registry::get_instance()->get_all_registered() as $name => $type ) {
-		if ( 0 === strpos( $name, 'bst/' ) && ! in_array( substr( $name, 4 ), $off, true ) && ! in_array( $name, $off, true ) ) {
+		if ( ( 0 === strpos( $name, 'bst/' ) || 0 === strpos( $name, 'bigspy/' ) ) && ! in_array( substr( $name, 4 ), $off, true ) && ! in_array( $name, $off, true ) ) {
 			$out[ $name ] = $type;
 		}
 	}
@@ -95,9 +101,8 @@ function bst_aid_coerce_attr( $value, $schema ) {
 
 /** Strip scripts and event handlers from code when the user may not post unfiltered HTML. */
 function bst_aid_clean_code( $code ) {
-	if ( current_user_can( 'unfiltered_html' ) ) {
-		return (string) $code;
-	}
+	// AI-authored code never runs scripts or event handlers, even for administrators.
+	// Otherwise it could bypass the level-3 policy through same-origin REST calls.
 	$allowed = wp_kses_allowed_html( 'post' );
 	$allowed['style'] = array();
 	$allowed['svg']   = array( 'xmlns' => true, 'viewbox' => true, 'width' => true, 'height' => true, 'fill' => true, 'class' => true, 'style' => true, 'aria-hidden' => true, 'role' => true );
@@ -128,6 +133,10 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 			$name = 'bst/' . $name;
 		}
 		if ( 0 === strpos( $name, 'core/' ) ) {
+			if ( $parent && ! empty( $containers[ $parent ] ) ) {
+				$issues['errors'][] = "$where: $parent requires its own child block type.";
+				continue;
+			}
 			$core = bst_aid_build_core_block( $name, $node, $where, $issues );
 			if ( $core ) {
 				$out[] = $core;
@@ -163,7 +172,7 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 			}
 			$attrs[ $key ] = $value;
 		}
-		$attrs = bst_aid_clean_block_attrs( $name, $attrs );
+		$attrs = bst_aid_clean_block_attrs( $name, bst_aid_normalize_colors( $attrs ) );
 		if ( 'bst/code' === $name && isset( $attrs['code'] ) ) {
 			$attrs['code'] = bst_aid_clean_code( $attrs['code'] );
 		}
@@ -174,6 +183,9 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 			} else {
 				$inner = bst_aid_build_blocks( $node['inner'], $name, $issues, $where );
 			}
+		}
+		if ( 'bigspy/expand-gallery' === $name && ( count( $inner ) < 2 || count( $inner ) > 6 ) ) {
+			$issues['errors'][] = "$where: expanding galleries need 2 to 6 panels.";
 		}
 		$out[] = array(
 			'blockName'    => $name,
@@ -200,6 +212,7 @@ function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 		$parsed = parse_blocks( (string) $node['raw'] );
 		foreach ( $parsed as $b ) {
 			if ( ( $b['blockName'] ?? '' ) === $name ) {
+				$b = bst_aid_sanitize_raw_block( $b );
 				return $b;
 			}
 		}
@@ -318,6 +331,21 @@ function bst_aid_undo_task( $task ) {
 	$snaps = array_reverse( bst_aid_task_get( $task, '_bst_aid_snapshots' ) );
 	foreach ( $snaps as $s ) {
 		switch ( $s['kind'] ) {
+            case 'post_state':
+                if ( ! current_user_can( 'edit_post', (int) $s['key'] ) ) { continue 2; }
+                wp_update_post( wp_slash( $s['old']['post'] ) );
+                foreach ( array_keys( get_post_meta( (int) $s['key'] ) ) as $key ) { delete_post_meta( (int) $s['key'], $key ); }
+                foreach ( $s['old']['meta'] as $key => $values ) {
+                    foreach ( $values as $value ) { add_post_meta( (int) $s['key'], $key, wp_slash( maybe_unserialize( $value ) ) ); }
+                }
+                foreach ( $s['old']['terms'] as $tax => $ids ) { wp_set_object_terms( (int) $s['key'], array_map( 'intval', $ids ), $tax ); }
+                delete_transient( 'bst_tb_layouts' );
+                break;
+            case 'plugin':
+                if ( ! current_user_can( 'activate_plugins' ) ) { continue 2; }
+                require_once ABSPATH . 'wp-admin/includes/plugin.php';
+                if ( ! $s['old'] && is_plugin_active( $s['key'] ) ) { deactivate_plugins( $s['key'] ); }
+                break;
 			case 'mod':
 				null === $s['old'] ? remove_theme_mod( $s['key'] ) : set_theme_mod( $s['key'], $s['old'] );
 				break;
@@ -358,14 +386,14 @@ function bst_aid_undo_task( $task ) {
 
 /** Before editing a post, keep a revision id so undo can restore it. */
 function bst_aid_snapshot_post( $post_id ) {
-	$rev = wp_save_post_revision( $post_id );
-	if ( ! $rev ) {
-		$revs = wp_get_post_revisions( $post_id, array( 'numberposts' => 1 ) );
-		$rev  = $revs ? (int) key( $revs ) : 0;
-	}
-	if ( $rev ) {
-		bst_aid_snapshot( 'post', (string) $post_id, (int) $rev );
-	}
+    $p = get_post( $post_id, ARRAY_A );
+    if ( ! $p ) { return; }
+    $terms = array();
+    foreach ( get_object_taxonomies( $p['post_type'] ) as $tax ) {
+        $ids = wp_get_object_terms( $post_id, $tax, array( 'fields' => 'ids' ) );
+        if ( ! is_wp_error( $ids ) ) { $terms[ $tax ] = $ids; }
+    }
+    bst_aid_snapshot( 'post_state', (string) $post_id, array( 'post' => $p, 'meta' => get_post_meta( $post_id ), 'terms' => $terms ) );
 }
 
 /* ------------------------------------------------------------------ Settings */
@@ -677,7 +705,7 @@ function bst_aid_tool_list_blocks() {
 			'A page is a list of bst/section blocks. Inside a section use bst/row > bst/column for columns (column width via its attributes), or put blocks directly.',
 			'Use bst/heading for headings (attribute tag h1–h6; one h1 per page) and bst/text for paragraphs (html attribute).',
 			'Images: set the image id and URL attributes (from ImageGen or the Media Library). Never invent image URLs.',
-			'bst/code holds custom HTML / CSS / JS for things blocks cannot do (illustrations, mockups, embeds).',
+			'bst/code holds safe custom HTML / CSS for things blocks cannot do (illustrations, mockups, embeds).',
 			'Start from get_pattern when a pattern fits, then change texts, colors and images.',
 		),
 	);
@@ -1083,4 +1111,26 @@ function bst_aid_tool_show_palette( $a ) {
 		$out[] = array( 'name' => sanitize_text_field( (string) ( $p['name'] ?? '' ) ), 'colors' => $colors, 'fonts' => array_map( 'sanitize_text_field', (array) ( $p['fonts'] ?? array() ) ), 'note' => sanitize_text_field( (string) ( $p['note'] ?? '' ) ) );
 	}
 	return array( 'shown' => count( $out ), 'palettes' => $out, 'note' => 'The user sees these swatches. Wait for their choice before changing settings.' );
+}
+
+/** Sanitize raw core markup recursively, including nested block attributes. */
+function bst_aid_sanitize_raw_block( $b ) {
+	$b['attrs'] = bst_aid_normalize_colors( $b['attrs'] );
+    $b['innerHTML'] = bst_aid_clean_code( $b['innerHTML'] );
+    $b['innerContent'] = array_map( function ( $s ) { return null === $s ? null : bst_aid_clean_code( $s ); }, $b['innerContent'] );
+    $b['innerBlocks'] = array_map( 'bst_aid_sanitize_raw_block', $b['innerBlocks'] );
+    return $b;
+}
+
+/** WordPress color attributes are preset slugs; literal colors belong in style.color. */
+function bst_aid_normalize_colors( $attrs ) {
+	foreach ( array( 'backgroundColor' => 'background', 'textColor' => 'text' ) as $key => $target ) {
+		if ( isset( $attrs[ $key ] ) && is_string( $attrs[ $key ] ) && sanitize_hex_color( $attrs[ $key ] ) ) {
+			if ( ! isset( $attrs['style'] ) || ! is_array( $attrs['style'] ) ) { $attrs['style'] = array(); }
+			if ( ! isset( $attrs['style']['color'] ) || ! is_array( $attrs['style']['color'] ) ) { $attrs['style']['color'] = array(); }
+			$attrs['style']['color'][ $target ] = $attrs[ $key ];
+			unset( $attrs[ $key ] );
+		}
+	}
+	return $attrs;
 }

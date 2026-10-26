@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 add_filter( 'bst_defaults', function ( $d ) { return $d + array( 'footer_block' => '0', 'footer_design_page' => 0 ); } );
 add_filter( 'bst_customizer_fields', function ( $fields ) {
 	$choices = array( '0' => '— Không dùng —' );
-	if ( ( is_admin() || is_customize_preview() ) && post_type_exists( 'blocks' ) ) {
+	if ( post_type_exists( 'blocks' ) ) {
 		foreach ( get_posts( array( 'post_type' => 'blocks', 'post_status' => 'publish', 'numberposts' => 200, 'orderby' => 'title', 'order' => 'ASC' ) ) as $block ) {
 			$choices[ (string) $block->ID ] = $block->post_title ? $block->post_title : '#' . $block->ID;
 		}

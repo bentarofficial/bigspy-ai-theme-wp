@@ -39,7 +39,8 @@ function bst_theme_languages( $with_names = true ) {
 		WP_LANG_DIR . '/loco/themes/'                            => 'bigspy-ai-theme-wp-',
 	);
 	foreach ( $dirs as $dir => $prefix ) {
-		foreach ( (array) glob( $dir . $prefix . '*.{mo,l10n.php}', GLOB_BRACE ) as $file ) {
+		$files = array_merge( (array) glob( $dir . $prefix . '*.mo' ), (array) glob( $dir . $prefix . '*.l10n.php' ) );
+		foreach ( $files as $file ) {
 			$code = preg_replace( '/\.(mo|l10n\.php)$/', '', substr( basename( (string) $file ), strlen( $prefix ) ) );
 			if ( $code && 'index' !== $code && preg_match( '/^[a-z]{2,3}(_[A-Z]{2})?(_[a-z]+)?$/', $code ) ) {
 				$langs[ $code ] = $with_names ? ( $names[ $code ] ?? bst_theme_language_name( $code ) ) : $code;

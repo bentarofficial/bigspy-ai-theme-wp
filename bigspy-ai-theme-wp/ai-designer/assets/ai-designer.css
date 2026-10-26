@@ -155,3 +155,5 @@
 
 /* Leave room at the bottom for floating chat buttons of other plugins (e.g. a host's AI helper). */
 .bst-aid-ws { height: calc(100vh - 32px - 36px - 64px); }
+
+.bst-aid-approval pre{max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}.bst-aid-approval button{margin:4px}
