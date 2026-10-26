@@ -101,9 +101,17 @@ function bst_aid_models( $refresh = false ) {
 			'output'      => (float) ( $m['pricing']['output'] ?? 0 ),
 			'quality'     => (string) ( $m['quality_tier'] ?? '' ),
 			'free'        => ! empty( $m['free_tier'] ),
-			'recommended' => in_array( (string) $m['id'], bst_aid_recommended_text(), true ),
 		);
 	}
+	// Tiers from the live data, not a fixed list: strong + cheap first, then the top models.
+	foreach ( $out['text'] as $i => $m ) {
+		$good = in_array( $m['quality'], array( 'frontier-open', 'strong' ), true );
+		$out['text'][ $i ]['tier'] = ( $good && $m['input'] > 0 && $m['input'] <= 0.6 ) ? 'value' : ( ( 'frontier-open' === $m['quality'] && $m['input'] >= 2 ) ? 'premium' : 'all' );
+	}
+	usort( $out['text'], function ( $a, $b ) {
+		$rank = array( 'frontier-open' => 0, 'strong' => 1 );
+		return array( $rank[ $a['quality'] ] ?? 2, $a['input'] ) <=> array( $rank[ $b['quality'] ] ?? 2, $b['input'] );
+	} );
 	$image   = bst_aid_http( 'GET', '/models?type=image', null, false );
 	$svg_ok  = in_array( 'image/svg+xml', get_allowed_mime_types(), true );
 	foreach ( (array) ( $image['data']['data'] ?? array() ) as $m ) {
@@ -126,10 +134,6 @@ function bst_aid_models( $refresh = false ) {
 		set_transient( 'bst_aid_models', $out, 6 * HOUR_IN_SECONDS );
 	}
 	return $out;
-}
-
-function bst_aid_recommended_text() {
-	return array( 'claude-sonnet-5', 'claude-opus-5', 'gpt-5.6-sol', 'gpt-5.6-sol-pro', 'gemini-3.1-pro' );
 }
 
 /** Meta of one text model (reasoning support…), or null. */

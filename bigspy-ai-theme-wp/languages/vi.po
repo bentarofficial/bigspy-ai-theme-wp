@@ -3841,3 +3841,12 @@ msgstr "Bước trước vẫn đang bị khoá. Hãy đợi vài phút rồi g�
 
 msgid "The model rejected the full request once; it worked again with a shorter history."
 msgstr "Model từ chối yêu cầu đầy đủ một lần; đã chạy lại được với lịch sử rút gọn."
+
+msgid "Recommended – strong and low cost"
+msgstr "Khuyên dùng – mạnh mà rẻ"
+
+msgid "Most capable – higher cost"
+msgstr "Mạnh nhất – chi phí cao"
+
+msgid "Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough."
+msgstr "Chỉ liệt kê model gọi được công cụ. Giá tính theo một triệu token vào / ra. Hãy bắt đầu với model khuyên dùng; nếu kết quả chưa đủ tốt thì chuyển sang model mạnh nhất."

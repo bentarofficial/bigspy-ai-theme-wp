@@ -98,8 +98,11 @@
 		};
 		var modelOptions = function (list, value, showPrice) {
 			var opts = [h('option', { value: '', text: __('— Choose a model —', T) })];
-			var rec = list.filter(function (m) { return m.recommended; });
-			var rest = list.filter(function (m) { return !m.recommended; });
+			// Text models come in tiers (value / premium); image models keep a recommended flag.
+			var tier = function (m) { return m.tier || (m.recommended ? 'value' : 'all'); };
+			var rec = list.filter(function (m) { return 'value' === tier(m); });
+			var premium = list.filter(function (m) { return 'premium' === tier(m); });
+			var rest = list.filter(function (m) { return 'all' === tier(m); });
 			var opt = function (m) {
 				var label = m.name + (m.id !== m.name ? ' (' + m.id + ')' : '');
 				if (showPrice && (m.input || m.output)) { label += ' – $' + m.input + ' / $' + m.output; }
@@ -107,7 +110,8 @@
 				if (m.free) { label += ' – ' + __('free tier', T); }
 				return h('option', { value: m.id, selected: m.id === value, text: label });
 			};
-			if (rec.length) { opts.push(h('optgroup', { label: __('Recommended', T) }, rec.map(opt))); }
+			if (rec.length) { opts.push(h('optgroup', { label: showPrice ? __('Recommended – strong and low cost', T) : __('Recommended', T) }, rec.map(opt))); }
+			if (premium.length) { opts.push(h('optgroup', { label: __('Most capable – higher cost', T) }, premium.map(opt))); }
 			opts.push(h('optgroup', { label: __('All models', T) }, rest.map(opt)));
 			return opts;
 		};
@@ -172,7 +176,7 @@
 					kids.push(h('div', { class: 'bst-aid-card' }, [
 						h('h2', { text: __('2. Models and budget', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Text model (writes, designs and calls the tools)', T) }), text]),
-						h('p', { class: 'description', text: __('Only models that can call tools are listed. Prices are per million input / output tokens. Strong models such as Claude Sonnet 5 or GPT-5.6 Sol follow instructions best.', T) }),
+						h('p', { class: 'description', text: __('Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough.', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Image model (used by ImageGen)', T) }), image]),
 						h('p', { class: 'bst-aid-row' }, [h('label', null, [__('Budget per task (USD, 0 = no limit) ', T), bTask]), h('label', null, [__('Budget per day (USD, 0 = no limit) ', T), bDay])]),
 						h('p', { class: 'description', text: sprintf(__('Spent today: %s', T), money(state.spentToday)) }),
