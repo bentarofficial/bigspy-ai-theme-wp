@@ -2,3 +2,7 @@
 Thumbs.db
 node_modules/
 *.log
+
+# Release zips go to GitHub Releases, not git
+releases/
+*.zip
