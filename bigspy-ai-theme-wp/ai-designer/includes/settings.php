@@ -106,7 +106,9 @@ function bst_aid_models( $refresh = false ) {
 	// Tiers from the live data, not a fixed list: strong + cheap first, then the top models.
 	foreach ( $out['text'] as $i => $m ) {
 		$good = in_array( $m['quality'], array( 'frontier-open', 'strong' ), true );
-		$out['text'][ $i ]['tier'] = ( $good && $m['input'] > 0 && $m['input'] <= 0.6 ) ? 'value' : ( ( 'frontier-open' === $m['quality'] && $m['input'] >= 2 ) ? 'premium' : 'all' );
+		// Low-cost picks only from OpenAI and Anthropic: their models are trained for agentic tool use.
+		$agentic = (bool) preg_match( '/^(gpt-|claude-)/i', $m['id'] );
+		$out['text'][ $i ]['tier'] = ( $good && $agentic && $m['input'] > 0 && $m['input'] <= 0.6 ) ? 'value' : ( ( 'frontier-open' === $m['quality'] && $m['input'] >= 2 ) ? 'premium' : 'all' );
 	}
 	usort( $out['text'], function ( $a, $b ) {
 		$rank = array( 'frontier-open' => 0, 'strong' => 1 );
