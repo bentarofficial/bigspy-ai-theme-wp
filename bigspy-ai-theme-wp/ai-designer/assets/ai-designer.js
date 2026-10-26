@@ -126,7 +126,7 @@
 					h('h2', { text: __('1. Connect the API', T) }),
 					h('p', { class: 'description', text: __('Paste your Kyma API key, then press Connect. The key is checked, encrypted and kept on the server only; it is never shown again in full.', T) }),
 					h('p', { class: 'bst-aid-row' }, [input, h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/connect', { key: input.value }); } , text: busy ? __('Connecting…', T) : __('Connect', T) })]),
-					h('p', { class: 'description' }, [__('No key yet? Create one at ', T), h('a', { href: 'https://kymaapi.com', target: '_blank', rel: 'noopener', text: 'kymaapi.com' }), '.'])
+					h('p', { class: 'description' }, [__('No key yet? Create one at ', T), h('a', { href: 'https://kymaapi.com/?aff=BIGSPY-AI-Connect', target: '_blank', rel: 'noopener sponsored', text: 'kymaapi.com' }), '.'])
 				]));
 			} else {
 				var status = state.connected
