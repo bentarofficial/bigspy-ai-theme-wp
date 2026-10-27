@@ -4093,3 +4093,51 @@ msgstr "Gói cập nhật BIGSPY không hợp lệ."
 
 msgid "Could not prepare BIGSPY update package."
 msgstr "Không thể chuẩn bị gói cập nhật BIGSPY."
+
+msgid "About"
+msgstr "Giới thiệu"
+
+msgid "About BIGSPY AI Designer"
+msgstr "Giới thiệu BIGSPY AI Designer"
+
+msgid "About BIGSPY AI Theme"
+msgstr "Giới thiệu BIGSPY AI Theme"
+
+msgid "A website design assistant built into BIGSPY AI Theme WP."
+msgstr "Trợ lý thiết kế website tích hợp trong BIGSPY AI Theme WP."
+
+msgid "What can it do?"
+msgstr "Có thể làm gì?"
+
+msgid "Plan content, design pages with BIGSPY blocks, create images, and assist with SEO inside WordPress."
+msgstr "Lên kế hoạch nội dung, thiết kế trang bằng các block BIGSPY, tạo hình ảnh và hỗ trợ SEO ngay trong WordPress."
+
+msgid "Changes to published content or site settings require your approval in the Workspace before they are applied."
+msgstr "Các thay đổi lên nội dung đang xuất bản hoặc cài đặt website cần bạn duyệt trong Không gian làm việc trước khi thực hiện."
+
+msgid "Open Workspace"
+msgstr "Mở Không gian làm việc"
+
+msgid "View Guidelines"
+msgstr "Xem Tiêu chuẩn"
+
+msgid "A WordPress theme for building and customizing block-based websites."
+msgstr "Giao diện WordPress để xây dựng và tùy biến website bằng block."
+
+msgid "Current version: %s"
+msgstr "Phiên bản đang dùng: %s"
+
+msgid "Build layouts with BIGSPY blocks and page patterns; customize colors, typography, header, and footer in the Customizer."
+msgstr "Tạo bố cục với các block và mẫu trang BIGSPY; điều chỉnh màu sắc, chữ, header và footer trong phần Tùy biến."
+
+msgid "Theme updates come from GitHub Releases and appear in the WordPress Updates screen."
+msgstr "Bản cập nhật giao diện được cung cấp qua các bản phát hành trên GitHub và hiển thị trong mục Cập nhật của WordPress."
+
+msgid "Open Studio"
+msgstr "Mở Studio"
+
+msgid "Check for updates"
+msgstr "Kiểm tra cập nhật"
+
+msgid "View releases"
+msgstr "Xem bản phát hành"

@@ -149,7 +149,7 @@ add_action(
 		add_submenu_page( $main, __( 'Settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-settings', 'bst_panel_settings_page' );
 		add_submenu_page( $main, __( 'System status', 'bigspy-ai-theme-wp' ), __( 'System status', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-status', 'bst_panel_status_page' );
 		add_submenu_page( $main, __( 'Help & guides', 'bigspy-ai-theme-wp' ), __( 'Help & guides', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-help', 'bst_panel_help_page' );
-		add_submenu_page( $main, __( 'Giới thiệu BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), __( 'Giới thiệu', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-about', 'bst_panel_about_page' );
+		add_submenu_page( $main, __( 'About BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), __( 'About', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-about', 'bst_panel_about_page' );
 		if ( ! post_type_exists( 'blocks' ) ) {
 			remove_submenu_page( $main, 'edit.php?post_type=blocks' );
 		}
@@ -286,14 +286,14 @@ function bst_panel_header( $title, $lead ) {
 
 /** Read-only overview of the theme and its update source. */
 function bst_panel_about_page() {
-	bst_panel_header( __( 'BIGSPY AI Theme WP', 'bigspy-ai-theme-wp' ), __( 'Giao diện WordPress để xây dựng và tùy biến website bằng block.', 'bigspy-ai-theme-wp' ) );
-	echo '<div class="card" style="max-width:760px"><h2>' . esc_html__( 'Giới thiệu', 'bigspy-ai-theme-wp' ) . '</h2>';
-	echo '<p>' . esc_html( sprintf( __( 'Phiên bản đang dùng: %s', 'bigspy-ai-theme-wp' ), wp_get_theme( get_template() )->get( 'Version' ) ) ) . '</p>';
-	echo '<p>' . esc_html__( 'Tạo bố cục với các block và mẫu trang BIGSPY; điều chỉnh màu sắc, chữ, header và footer trong phần Tùy biến.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<p>' . esc_html__( 'Bản cập nhật giao diện được cung cấp qua các bản phát hành trên GitHub và hiển thị trong mục Cập nhật của WordPress.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) . '">' . esc_html__( 'Mở Studio', 'bigspy-ai-theme-wp' ) . '</a> ';
-	echo '<a class="button" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">' . esc_html__( 'Kiểm tra cập nhật', 'bigspy-ai-theme-wp' ) . '</a> ';
-	echo '<a class="button" href="' . esc_url( 'https://github.com/bentarofficial/bigspy-ai-theme-wp/releases' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Xem bản phát hành', 'bigspy-ai-theme-wp' ) . '</a></p></div></div>';
+	bst_panel_header( __( 'BIGSPY AI Theme WP', 'bigspy-ai-theme-wp' ), __( 'A WordPress theme for building and customizing block-based websites.', 'bigspy-ai-theme-wp' ) );
+	echo '<div class="card" style="max-width:760px"><h2>' . esc_html__( 'About', 'bigspy-ai-theme-wp' ) . '</h2>';
+	echo '<p>' . esc_html( sprintf( __( 'Current version: %s', 'bigspy-ai-theme-wp' ), wp_get_theme( get_template() )->get( 'Version' ) ) ) . '</p>';
+	echo '<p>' . esc_html__( 'Build layouts with BIGSPY blocks and page patterns; customize colors, typography, header, and footer in the Customizer.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<p>' . esc_html__( 'Theme updates come from GitHub Releases and appear in the WordPress Updates screen.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) . '">' . esc_html__( 'Open Studio', 'bigspy-ai-theme-wp' ) . '</a> ';
+	echo '<a class="button" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">' . esc_html__( 'Check for updates', 'bigspy-ai-theme-wp' ) . '</a> ';
+	echo '<a class="button" href="' . esc_url( 'https://github.com/bentarofficial/bigspy-ai-theme-wp/releases' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'View releases', 'bigspy-ai-theme-wp' ) . '</a></p></div></div>';
 }
 
 function bst_panel_options_page() {

@@ -9440,3 +9440,51 @@ msgstr ""
 
 msgid "★ Built-in form (no plugin needed)"
 msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "About BIGSPY AI Designer"
+msgstr ""
+
+msgid "About BIGSPY AI Theme"
+msgstr ""
+
+msgid "A website design assistant built into BIGSPY AI Theme WP."
+msgstr ""
+
+msgid "What can it do?"
+msgstr ""
+
+msgid "Plan content, design pages with BIGSPY blocks, create images, and assist with SEO inside WordPress."
+msgstr ""
+
+msgid "Changes to published content or site settings require your approval in the Workspace before they are applied."
+msgstr ""
+
+msgid "Open Workspace"
+msgstr ""
+
+msgid "View Guidelines"
+msgstr ""
+
+msgid "A WordPress theme for building and customizing block-based websites."
+msgstr ""
+
+msgid "Current version: %s"
+msgstr ""
+
+msgid "Build layouts with BIGSPY blocks and page patterns; customize colors, typography, header, and footer in the Customizer."
+msgstr ""
+
+msgid "Theme updates come from GitHub Releases and appear in the WordPress Updates screen."
+msgstr ""
+
+msgid "Open Studio"
+msgstr ""
+
+msgid "Check for updates"
+msgstr ""
+
+msgid "View releases"
+msgstr ""
