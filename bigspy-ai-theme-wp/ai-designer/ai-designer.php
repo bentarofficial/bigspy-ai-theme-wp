@@ -46,9 +46,21 @@ add_action(
 		add_submenu_page( 'bst-ai-designer', __( 'Workspace', 'bigspy-ai-theme-wp' ), __( 'Workspace', 'bigspy-ai-theme-wp' ), $cap, 'bst-ai-designer', 'bst_aid_workspace_page' );
 		add_submenu_page( 'bst-ai-designer', __( 'Guidelines', 'bigspy-ai-theme-wp' ), __( 'Guidelines', 'bigspy-ai-theme-wp' ), $cap, 'bst-ai-guidelines', 'bst_aid_guidelines_page' );
 		add_submenu_page( 'bst-ai-designer', __( 'AI Designer settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), 'manage_options', 'bst-ai-settings', 'bst_aid_settings_page' );
+		add_submenu_page( 'bst-ai-designer', __( 'Giới thiệu BIGSPY AI Designer', 'bigspy-ai-theme-wp' ), __( 'Giới thiệu', 'bigspy-ai-theme-wp' ), $cap, 'bst-ai-about', 'bst_aid_about_page' );
 	},
 	9
 );
+
+/** Read-only introduction to the AI workspace and its approval flow. */
+function bst_aid_about_page() {
+	echo '<div class="wrap"><h1>' . esc_html__( 'BIGSPY AI Designer', 'bigspy-ai-theme-wp' ) . '</h1>';
+	echo '<p class="description">' . esc_html__( 'Trợ lý thiết kế website tích hợp trong BIGSPY AI Theme WP.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<div class="card" style="max-width:760px"><h2>' . esc_html__( 'Có thể làm gì?', 'bigspy-ai-theme-wp' ) . '</h2>';
+	echo '<p>' . esc_html__( 'Lên kế hoạch nội dung, thiết kế trang bằng các block BIGSPY, tạo hình ảnh và hỗ trợ SEO ngay trong WordPress.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<p>' . esc_html__( 'Các thay đổi lên nội dung đang xuất bản hoặc cài đặt website cần bạn duyệt trong Không gian làm việc trước khi thực hiện.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=bst-ai-designer' ) ) . '">' . esc_html__( 'Mở Không gian làm việc', 'bigspy-ai-theme-wp' ) . '</a> ';
+	echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=bst-ai-guidelines' ) ) . '">' . esc_html__( 'Xem Tiêu chuẩn', 'bigspy-ai-theme-wp' ) . '</a></p></div></div>';
+}
 
 /** REST namespace shared by settings, guidelines and tasks. */
 function bst_aid_rest_ns() {

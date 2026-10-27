@@ -1,6 +1,6 @@
 <?php
 /**
- * Top-level "BIGSPY" admin menu (like Flatsome / Elementor): Studio, Theme Options, quick links,
+ * Top-level "BIGSPY AI Theme" admin menu: Studio, Theme Options, quick links,
  * System status and Help. Theme Options edit the same theme mods as the Customizer, so a value
  * changed in one place shows up in the other.
  *
@@ -138,7 +138,7 @@ add_action(
 	function () {
 		$cap  = 'edit_theme_options';
 		$main = 'bigspy-ai-theme-wp';
-		add_menu_page( __( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ), 'BIGSPY', $cap, $main, 'bst_dashboard_page', bst_panel_icon(), 1 );
+		add_menu_page( __( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ), __( 'BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), $cap, $main, 'bst_dashboard_page', bst_panel_icon(), 1 );
 		add_submenu_page( $main, __( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ), __( 'Studio', 'bigspy-ai-theme-wp' ), $cap, $main, 'bst_dashboard_page' );
 		add_submenu_page( $main, __( 'Theme Options', 'bigspy-ai-theme-wp' ), __( 'Theme Options', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-options', 'bst_panel_options_page' );
 		add_submenu_page( $main, __( 'Customize', 'bigspy-ai-theme-wp' ), __( 'Customize', 'bigspy-ai-theme-wp' ), $cap, 'customize.php' );
@@ -149,6 +149,7 @@ add_action(
 		add_submenu_page( $main, __( 'Settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-settings', 'bst_panel_settings_page' );
 		add_submenu_page( $main, __( 'System status', 'bigspy-ai-theme-wp' ), __( 'System status', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-status', 'bst_panel_status_page' );
 		add_submenu_page( $main, __( 'Help & guides', 'bigspy-ai-theme-wp' ), __( 'Help & guides', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-help', 'bst_panel_help_page' );
+		add_submenu_page( $main, __( 'Giới thiệu BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), __( 'Giới thiệu', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-about', 'bst_panel_about_page' );
 		if ( ! post_type_exists( 'blocks' ) ) {
 			remove_submenu_page( $main, 'edit.php?post_type=blocks' );
 		}
@@ -281,6 +282,18 @@ function bst_panel_field_html( $field ) {
 
 function bst_panel_header( $title, $lead ) {
 	echo '<div class="wrap bst-panel"><h1>' . esc_html( $title ) . '</h1><p class="bst-panel__lead">' . esc_html( $lead ) . '</p>';
+}
+
+/** Read-only overview of the theme and its update source. */
+function bst_panel_about_page() {
+	bst_panel_header( __( 'BIGSPY AI Theme WP', 'bigspy-ai-theme-wp' ), __( 'Giao diện WordPress để xây dựng và tùy biến website bằng block.', 'bigspy-ai-theme-wp' ) );
+	echo '<div class="card" style="max-width:760px"><h2>' . esc_html__( 'Giới thiệu', 'bigspy-ai-theme-wp' ) . '</h2>';
+	echo '<p>' . esc_html( sprintf( __( 'Phiên bản đang dùng: %s', 'bigspy-ai-theme-wp' ), wp_get_theme( get_template() )->get( 'Version' ) ) ) . '</p>';
+	echo '<p>' . esc_html__( 'Tạo bố cục với các block và mẫu trang BIGSPY; điều chỉnh màu sắc, chữ, header và footer trong phần Tùy biến.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<p>' . esc_html__( 'Bản cập nhật giao diện được cung cấp qua các bản phát hành trên GitHub và hiển thị trong mục Cập nhật của WordPress.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) . '">' . esc_html__( 'Mở Studio', 'bigspy-ai-theme-wp' ) . '</a> ';
+	echo '<a class="button" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">' . esc_html__( 'Kiểm tra cập nhật', 'bigspy-ai-theme-wp' ) . '</a> ';
+	echo '<a class="button" href="' . esc_url( 'https://github.com/bentarofficial/bigspy-ai-theme-wp/releases' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Xem bản phát hành', 'bigspy-ai-theme-wp' ) . '</a></p></div></div>';
 }
 
 function bst_panel_options_page() {
