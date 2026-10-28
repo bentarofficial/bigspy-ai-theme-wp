@@ -29,6 +29,49 @@ Quy tắc này ưu tiên hơn các hướng dẫn cũ yêu cầu cập nhật th
 
 Các quy tắc tiết kiệm không cho phép bỏ yêu cầu của owner, kiểm tra cần thiết hoặc để công việc hoàn tất chỉ ở local. Khi đủ thay đổi và được duyệt phát hành, mới chạy các bước chuẩn bị phát hành đã hoãn.
 
+### Hướng dẫn thực hiện bắt buộc cho mọi agent
+
+#### Quy trình một đợt cập nhật
+
+1. Đọc `AGENTS.md` và chính sách hiện hành ở đầu roadmap; kiểm tra nhánh và trạng thái Git để tránh ghi đè công việc khác. `CLAUDE.md`/`GEMINI.md` chỉ là điểm vào, không phải chính sách riêng. Báo cáo phiên trước không thay thế việc xác minh trạng thái hiện tại.
+2. Xác định kết quả owner muốn, phần mã chịu ảnh hưởng và cách chứng minh kết quả. Với sửa nhỏ, mô tả ngắn là đủ, không tạo thêm tệp kế hoạch/audit toàn dự án. Chỉ hỏi khi thiếu thông tin thực sự chặn công việc; không hỏi lại quyền đã cấp.
+3. Gom các chỉnh sửa liên quan trong yêu cầu thành một đợt; kiểm tra nhỏ khi cần, rồi kiểm tra tổng hợp phù hợp lúc mã ổn định. Không tự gom tính năng ngoài yêu cầu. Sau khi sửa lỗi test, chạy lại phần lỗi và phần có thể bị tác động.
+4. Xem diff cuối và chạy `git diff --check` trước commit. Nếu mã liên quan thay đổi sau test, chạy lại kiểm tra tương ứng; không chạy lại toàn bộ chỉ vì vừa commit hoặc sửa câu chữ trong ghi chú.
+5. Ghi một mục ngắn cho thay đổi sản phẩm trong `docs/PENDING-RELEASE.md`; tài liệu quy trình đơn thuần không cần mục sản phẩm giả. Commit đúng phạm vi, push nhánh được chỉ định, xác minh commit trên remote và bàn giao ngắn. Không báo kiểm tra chưa chạy là đã đạt.
+
+#### Ma trận chọn kiểm tra
+
+| Loại thay đổi | Kiểm tra mặc định | Khi cần mở rộng |
+| --- | --- | --- |
+| Tài liệu nội bộ/roadmap | Diff, định dạng, đích liên kết/tệp tham chiếu mới hoặc sửa; không dựng WordPress chỉ để kiểm tra văn bản | Có thay đổi lệnh, cấu hình hoặc mã thực thi |
+| Nhãn/menu/giao diện một màn hình | Cú pháp tệp thực thi đã sửa; màn hình, hành vi và bản dịch liên quan | CSS dùng chung, responsive, quyền truy cập hoặc điều hướng khác có thể bị ảnh hưởng |
+| Logic một tính năng | Hành vi chính, trường hợp lỗi và tích hợp phụ thuộc trực tiếp | Thay đổi hợp đồng dùng chung, dữ liệu, quyền hoặc có kết quả bất thường |
+| Ngôn ngữ | Chuỗi/catalog liên quan, mặc định và lựa chọn đã lưu ở ngữ cảnh chịu ảnh hưởng | Sửa bộ nạp locale/domain/fallback: kiểm tra thêm admin/front và việc không đổi locale WordPress/plugin |
+| Updater/cấu trúc gói | Phiên bản, cache, nguồn tải, nâng cấp và cấu trúc gói trong môi trường cô lập | Owner yêu cầu luồng GitHub thật hoặc lỗi chỉ xuất hiện trên hosting; không thay bằng cài ZIP thủ công rồi tuyên bố luồng GitHub đã đạt |
+| Bảo mật/bootstrap/dữ liệu/nền tảng dùng chung | Kiểm tra rộng các luồng chịu tác động, gồm quyền, trường hợp lỗi và hồi quy cần thiết | Rủi ro hoặc lỗi tái hiện yêu cầu thêm phạm vi |
+| Phát hành đã duyệt | Phần tích lũy chưa có bằng chứng hợp lệ, metadata/phiên bản, gói cài và kết quả công bố | Mã/môi trường liên quan đổi khiến kết quả cũ không còn áp dụng |
+
+Ma trận là hướng dẫn theo tác động, không phải giới hạn cứng. Giải thích ngắn khi cần mở rộng; không bỏ CI bắt buộc hoặc kiểm tra quan trọng vì tiết kiệm. Không bắt buộc viết test tự động mới cho sửa văn bản đơn giản; test mới phải kiểm tra hành vi/lỗi có ý nghĩa, không chỉ so khớp lại mã vừa viết.
+
+#### Dùng đúng các script hiện có
+
+- `tools/playground-check.cjs` hiện luôn chạy `tools/tests/designer-integration.php`. `--welcome` **thêm** `welcome-integration.php`, không chạy riêng Giới thiệu. Khi cần fixture này, chạy gộp một lần và ghi đúng phạm vi; không chạy hai lần do tưởng các nhóm độc lập.
+- `--serve` giữ máy chủ Playground cho kiểm tra trình duyệt. Tái sử dụng máy chủ còn hợp lệ trong cùng đợt; kết thúc tiến trình mình tạo khi xong, không đóng tiến trình người khác hoặc giữ nhiều máy chủ dư thừa.
+- `tools/updater-playground-check.cjs` sao chép theme và tạo ZIP fixture cục bộ. Chỉ chạy khi liên quan updater/gói hoặc cần kiểm tra phát hành. Fixture không phải ZIP phân phối, không được upload hay làm tăng phiên bản sản phẩm. Kiểm tra cô lập không chứng minh site thật đã cập nhật.
+- `tools/build-theme.py` và `build.ps1` tạo gói phân phối, không phải lệnh lint/test mặc định: chỉ chạy khi đóng gói đã được duyệt. `build.ps1` còn dọn ZIP phiên bản khác trong `releases`; phải hiểu tác động trước khi chạy.
+- Runner có đường dẫn runtime mặc định phụ thuộc máy/thư mục tạm. Kiểm tra cấu hình hiện có và dùng `BST_PLAYGROUND_MODULES`, `BST_PLAYWRIGHT`, `BST_CHROME` khi script hỗ trợ. Không mặc định đường dẫn cũ còn tồn tại; kiểm tra khả năng tái sử dụng trước khi tải/cài lại môi trường. Không ghi đường dẫn cá nhân mới thành yêu cầu chung cho mọi agent.
+- Các runner WordPress hiện dùng 6 và 4 workers. Trên máy đã gặp thiếu bộ nhớ, mặc định chạy tuần tự; không mở đồng thời nhiều bộ WordPress. Lỗi bộ nhớ/dung lượng/port cần chẩn đoán và thay đổi điều kiện trước khi chạy lại.
+- **Đề xuất chưa triển khai:** tách runner theo nhóm và chuẩn hóa cấu hình môi trường. Việc ghi quy tắc không tạo ra các tính năng này. Không tự nhận script có chế độ chạy riêng/tùy chọn workers nếu chưa có. Chỉ cải tiến công cụ khi được yêu cầu hoặc cần để hoàn thành phạm vi hiện tại.
+
+#### Ngữ cảnh, công cụ và bằng chứng
+
+- Tìm theo tệp/hàm rồi đọc đoạn cần thiết, tránh đổ toàn bộ nguồn/log vào chat. Gom các lần đọc độc lập khi thuận tiện; giữ thay đổi mã, kiểm tra, commit và push theo thứ tự phụ thuộc. Không che lỗi để giảm đầu ra.
+- Không tự truy cập web/trình duyệt/site production khi bằng chứng local đã đủ. Vẫn tra nguồn chính thức khi cần xác nhận API hoặc thông tin có thể đổi. Không dùng site thật làm môi trường test mặc định; tuân thủ quyền thay đổi dữ liệu/deploy.
+- Không nhờ nhiều agent cùng rà/sửa một phạm vi theo thói quen. Nếu được phép phân công, chia phạm vi rõ và kiểm tra tích hợp một lượt, tránh mọi agent chạy lại cùng bộ nặng.
+- Không lặp nguyên lệnh lỗi với cùng điều kiện. Trước lần thử tiếp theo cần chẩn đoán hoặc thay đổi có lý do. Nếu thiếu đầu vào/quyền, báo điểm chặn và làm tiếp phần độc lập; không thử vô hạn hoặc bịa kết quả.
+- Khi đổi agent/chat, bàn giao ngắn gồm nhánh/commit, phần xong, kiểm tra đã chạy, việc còn lại và môi trường cần dùng. Không tạo hệ thống báo cáo mới hoặc bắt đọc toàn bộ lịch sử nếu đã đủ thông tin. Không coi chuyển chat là cách đặt lại hạn mức.
+- Phân biệt kiểm tra cú pháp, kiểm tra cô lập, kiểm tra trình duyệt và luồng site thật. Bằng chứng chỉ áp dụng cho mã/môi trường đã kiểm tra; giả thuyết cache/hosting chưa quan sát không phải nguyên nhân đã xác nhận.
+
 ### Chỉ khi owner đồng ý đóng gói và phát hành
 
 1. Gom toàn bộ thay đổi đã chốt trong `docs/PENDING-RELEASE.md` thành **một đợt phát hành**; xác nhận phạm vi và chọn phiên bản phù hợp.
@@ -45,7 +88,7 @@ Roadmap này sắp xếp các khoảng trống đã ghi nhận theo tác động
 
 **Hướng dựng trang:** lấy màn hình **Sửa trang** của WordPress và các khối BIGSPY làm luồng chính. Workspace BIGSPY AI Builder riêng đã được gỡ ở 1.18.0; UX Builder/shortcode Flatsome chỉ cần được giữ để hiển thị nội dung cũ và hỗ trợ chuyển đổi có xem trước. Không cần tái tạo UX Builder thành một editor song song.
 
-## Đã có đến 1.18.1
+## Đã có đến 1.18.1 (ghi nhận lịch sử)
 
 - Sửa lỗi lựa chọn trang thiết kế trống khiến nội dung trang chủ lặp lại trong footer; khôi phục footer widget mặc định và chặn trang tự làm footer của chính nó.
 
