@@ -24,7 +24,7 @@ A multipurpose WordPress theme for building client websites fast: service and bu
 - **Speed:** CSS is loaded only for the blocks used on a page, generated CSS is cached, fonts are local.
 - **Floating contact buttons** (phone, Zalo, Messenger and others).
 - **BIGSPY AI Designer** (see below).
-- Interface in English and Vietnamese.
+- Theme text defaults to English. In **BIGSPY AI Theme → Settings → Theme language**, users can independently choose English, Vietnamese, or **Same as WordPress** for the admin/Customizer and visitor-facing website.
 
 ## Installation
 

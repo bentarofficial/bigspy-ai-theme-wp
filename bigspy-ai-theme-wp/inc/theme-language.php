@@ -55,7 +55,7 @@ add_filter(
 	function ( $d ) {
 		return $d + array(
 			'theme_lang_admin' => 'en_US',
-			'theme_lang_front' => 'auto',
+			'theme_lang_front' => 'en_US',
 		);
 	}
 );
@@ -83,7 +83,7 @@ add_filter(
 			return $locale;
 		}
 		$admin  = bst_theme_lang_is_admin_request();
-		$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', $admin ? 'en_US' : 'auto' );
+		$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'en_US' );
 		return ( 'auto' !== $choice && array_key_exists( $choice, bst_theme_languages( false ) ) ) ? $choice : $locale;
 	},
 	10,
@@ -98,7 +98,7 @@ add_action(
 	'after_setup_theme',
 	function () {
 		$admin  = bst_theme_lang_is_admin_request();
-		$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', $admin ? 'en_US' : 'auto' );
+		$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'en_US' );
 		if ( 'auto' !== $choice && is_textdomain_loaded( 'bigspy-ai-theme-wp' ) ) {
 			unload_textdomain( 'bigspy-ai-theme-wp', true );
 		}
@@ -117,7 +117,7 @@ add_filter(
 			return $override;
 		}
 		$admin = bst_theme_lang_is_admin_request();
-		return 'en_US' === (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', $admin ? 'en_US' : 'auto' ) ? true : $override;
+		return 'en_US' === (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'en_US' ) ? true : $override;
 	},
 	10,
 	2
