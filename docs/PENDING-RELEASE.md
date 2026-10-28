@@ -14,4 +14,5 @@ Chưa ghi nhận thay đổi sản phẩm mới sau bản 1.74.0. Việc bổ su
 - **Đã thay đổi:** các phần chức năng liên quan.
 - **Kiểm thử:** kết quả và giới hạn cần biết.
 - **Khi phát hành cần bổ sung:** mục Giới thiệu/Có gì mới/tài liệu/kiến thức AI liên quan, hoặc “không cần”.
-- **Trạng thái:** đã triển khai và kiểm thử; chờ owner yêu cầu phát hành.
+- **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
