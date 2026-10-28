@@ -117,8 +117,10 @@ for `tools/tests/browser-check.cjs`. Module/runtime paths can be supplied throug
 BST_PLAYGROUND_MODULES / BST_PLAYWRIGHT / BST_CHROME. Local verification never uses
 a real Kyma key or incurs provider charges. PHP lint uses php-parser when PHP CLI
 is unavailable. See `docs/VERIFICATION-1.73.md` for the measured results and limits.
-# Product documentation release rule
+## Product documentation and release gate
 
-For every major feature release, update `inc/welcome/data.php`, `ai-designer/welcome/data.php`, their What is new entries, README Updates, and AI knowledge together. The `get_knowledge(theme)` tool includes the same catalogs rendered by About. Keep English source strings, update `languages/vi.po`, then compile with `python tools/compile-po.py vi`. Only released capabilities may be described as available; agreed future features belong in Coming soon.
+Follow the owner-approved development/release policy in `docs/roadmap-vi.md`. A request to update code is not a request to release it. Implement and verify the agreed changes, save/commit them, and record a short entry in `docs/PENDING-RELEASE.md`. Defer About catalogs, What is new, README Updates, changelog and release-note maintenance until the owner approves packaging and release, unless that content is itself the requested change or is required for correct runtime behavior. Ask once at the release boundary if permission has not already been given; no answer means no release. Do not repeat the question after the owner chooses to accumulate more changes.
+
+Only during an approved release, update `inc/welcome/data.php`, `ai-designer/welcome/data.php`, their What is new entries, README Updates, and relevant AI knowledge together. Then update the version, package, tag and publish the consolidated release. Deleting old releases/tags and deploying to a website need the owner's applicable authorization. The `get_knowledge(theme)` tool includes the same catalogs rendered by About. Keep English source strings, update `languages/vi.po`, then compile with `python tools/compile-po.py vi` when the release content requires it. Only shipped capabilities may be described as available; agreed future features belong in Coming soon.
 
 About sample prompts prefill a new Workspace task without sending it. About pages require `edit_theme_options`, use local assets, and display only cached AI balance information; opening them does not make paid provider calls. Users with `edit_pages` can continue using Workspace without receiving access to the About/settings pages.

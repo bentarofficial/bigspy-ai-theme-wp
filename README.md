@@ -1,5 +1,7 @@
 # BIGSPY AI Theme WP
 
+> **Coding agents — read first:** [Shared agent instructions](AGENTS.md) and the [owner-approved development/release policy](docs/roadmap-vi.md#quy-tắc-cập-nhật-và-phát-hành--owner-chốt-ngày-28-10-2026). Develop continuously and record pending changes; package/publish only after owner approval. Claude Code and Gemini entry points are [CLAUDE.md](CLAUDE.md) and [GEMINI.md](GEMINI.md).
+
 ![BIGSPY AI Theme WP: build websites your way, with the built-in AI Designer](docs/images/bigspy-ai-theme-wp-cover.jpg)
 
 A multipurpose WordPress theme for building client websites fast: service and business sites as well as WooCommerce shops. It ships with a block library for the native WordPress editor, header and footer builders, global styles, and **BIGSPY AI Designer**, an AI assistant that designs pages, writes content and creates images inside your site.
