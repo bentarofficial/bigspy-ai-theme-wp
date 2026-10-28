@@ -34,7 +34,14 @@ function bst_aid_tool_get_knowledge( $a ) {
 	if ( ! in_array( $topic, array( 'theme', 'wordpress' ), true ) ) {
 		return array( 'error' => 'Unknown topic.' );
 	}
-	return array( 'topic' => $topic, 'guide' => (string) file_get_contents( BST_AID_DIR . '/knowledge/' . $topic . '.md' ) );
+	$result = array( 'topic' => $topic, 'guide' => (string) file_get_contents( BST_AID_DIR . '/knowledge/' . $topic . '.md' ) );
+	if ( 'theme' === $topic && function_exists( 'bst_welcome_data' ) ) {
+		$result['product_guides'] = array(
+			'theme' => bst_welcome_data( 'theme' ),
+			'designer' => bst_welcome_data( 'designer' ),
+		);
+	}
+	return $result;
 }
 
 function bst_aid_effective_budgets( $task ) {

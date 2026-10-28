@@ -46,20 +46,14 @@ add_action(
 		add_submenu_page( 'bst-ai-designer', __( 'Workspace', 'bigspy-ai-theme-wp' ), __( 'Workspace', 'bigspy-ai-theme-wp' ), $cap, 'bst-ai-designer', 'bst_aid_workspace_page' );
 		add_submenu_page( 'bst-ai-designer', __( 'Guidelines', 'bigspy-ai-theme-wp' ), __( 'Guidelines', 'bigspy-ai-theme-wp' ), $cap, 'bst-ai-guidelines', 'bst_aid_guidelines_page' );
 		add_submenu_page( 'bst-ai-designer', __( 'AI Designer settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), 'manage_options', 'bst-ai-settings', 'bst_aid_settings_page' );
-		add_submenu_page( 'bst-ai-designer', __( 'About BIGSPY AI Designer', 'bigspy-ai-theme-wp' ), __( 'About', 'bigspy-ai-theme-wp' ), $cap, 'bst-ai-about', 'bst_aid_about_page' );
+		add_submenu_page( 'bst-ai-designer', __( 'About BIGSPY AI Designer', 'bigspy-ai-theme-wp' ), bst_welcome_label( 'designer' ), 'edit_theme_options', 'bst-ai-about', 'bst_aid_about_page' );
 	},
 	9
 );
 
 /** Read-only introduction to the AI workspace and its approval flow. */
 function bst_aid_about_page() {
-	echo '<div class="wrap"><h1>' . esc_html__( 'BIGSPY AI Designer', 'bigspy-ai-theme-wp' ) . '</h1>';
-	echo '<p class="description">' . esc_html__( 'A website design assistant built into BIGSPY AI Theme WP.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<div class="card" style="max-width:760px"><h2>' . esc_html__( 'What can it do?', 'bigspy-ai-theme-wp' ) . '</h2>';
-	echo '<p>' . esc_html__( 'Plan content, design pages with BIGSPY blocks, create images, and assist with SEO inside WordPress.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<p>' . esc_html__( 'Changes to published content or site settings require your approval in the Workspace before they are applied.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=bst-ai-designer' ) ) . '">' . esc_html__( 'Open Workspace', 'bigspy-ai-theme-wp' ) . '</a> ';
-	echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=bst-ai-guidelines' ) ) . '">' . esc_html__( 'View Guidelines', 'bigspy-ai-theme-wp' ) . '</a></p></div></div>';
+	bst_welcome_screen( 'designer' );
 }
 
 /** REST namespace shared by settings, guidelines and tasks. */

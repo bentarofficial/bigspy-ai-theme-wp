@@ -230,6 +230,13 @@
 	/* ------------------------------------------------------------ Workspace */
 	function Workspace(root) {
 		var settings = null, tasks = [], current = null, log = [], running = false, stopFlag = false, error = '';
+		var welcomePrompt = new URLSearchParams(window.location.search).get('bst_prompt') || '';
+		var welcomeMode = new URLSearchParams(window.location.search).get('bst_mode') === 'advice' ? 'advice' : 'design';
+		try {
+			if (welcomePrompt) { window.sessionStorage.setItem('bstAidWelcomePrompt', welcomePrompt.slice(0, 12000)); window.sessionStorage.setItem('bstAidWelcomeMode', welcomeMode); }
+			welcomePrompt = window.sessionStorage.getItem('bstAidWelcomePrompt') || '';
+			welcomeMode = window.sessionStorage.getItem('bstAidWelcomeMode') === 'advice' ? 'advice' : 'design';
+		} catch (e) { /* The URL still provides the prompt when session storage is unavailable. */ }
 		var effort = 'medium';
 		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; } catch (e) { /* storage blocked */ }
 		var els = {};
@@ -384,6 +391,11 @@
 				effort = d.effort || effort;
 				if (els.effort) { els.effort.value = effort; }
 				renderTasks(); renderHead(); renderChat();
+				if (welcomePrompt) {
+					els.input.value = welcomePrompt; welcomePrompt = '';
+					try { window.sessionStorage.removeItem('bstAidWelcomePrompt'); window.sessionStorage.removeItem('bstAidWelcomeMode'); } catch (e) { /* ignore */ }
+					var cleanUrl = new URL(window.location.href); cleanUrl.searchParams.delete('bst_prompt'); cleanUrl.searchParams.delete('bst_mode'); window.history.replaceState(null, '', cleanUrl);
+				}
 				if (d.task.running) { loop(); }
 				els.input.focus();
 			});
@@ -443,6 +455,7 @@
 			els.head = h('div', { class: 'bst-aid-head' });
 			els.chat = h('div', { class: 'bst-aid-chat', 'aria-live': 'polite' });
 			els.mode = h('select', { 'aria-label': __('Task mode', T) }, [h('option', { value: 'design', text: __('Design', T) }), h('option', { value: 'advice', text: __('Advice only', T) })]);
+			if (welcomePrompt) { els.mode.value = welcomeMode; }
 			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } } });
 			els.send = h('button', { class: 'button button-primary', onclick: send, text: __('Send', T) });
 			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
@@ -466,7 +479,8 @@
 		Promise.all([api('/settings?lite=1'), api('/tasks')]).then(function (r) {
 			settings = r[0]; tasks = r[1] || [];
 			build();
-			if (settings.ready && tasks.length) { open(tasks[0].id); }
+			if (settings.ready && welcomePrompt) { newTask(); }
+			else if (settings.ready && tasks.length) { open(tasks[0].id); }
 		}).catch(function (e) { root.innerHTML = ''; root.appendChild(h('div', { class: 'notice notice-error' }, h('p', { text: e.message }))); });
 	}
 

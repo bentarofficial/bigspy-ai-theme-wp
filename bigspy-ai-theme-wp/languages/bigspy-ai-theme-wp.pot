@@ -9500,3 +9500,855 @@ msgstr ""
 
 msgid "Update now"
 msgstr ""
+
+msgid "Layout blocks"
+msgstr ""
+
+msgid "Sections, rows and columns form your page structure."
+msgstr ""
+
+msgid "Build reusable sections with backgrounds, spacing and responsive column widths. Content remains editable in the native WordPress editor."
+msgstr ""
+
+msgid "Use this for homepages, service pages and landing pages."
+msgstr ""
+
+msgid "Create a page and choose a full-width layout."
+msgstr ""
+
+msgid "Insert Section, then Row and Column blocks; add your content inside."
+msgstr ""
+
+msgid "Check desktop, tablet and mobile spacing before publishing."
+msgstr ""
+
+msgid "Avoid fixed widths wider than the phone viewport. Duplicate a finished section to keep spacing consistent."
+msgstr ""
+
+msgid "Content blocks"
+msgstr ""
+
+msgid "Headings, text, buttons, icons, tabs and accordions."
+msgstr ""
+
+msgid "Use native editable text with BIGSPY styling controls. Tabs and accordions organize related information into compact groups."
+msgstr ""
+
+msgid "Use this for service descriptions, benefits, FAQs and calls to action."
+msgstr ""
+
+msgid "Insert the content block into a column."
+msgstr ""
+
+msgid "Set heading level, text, button destination and icon in the sidebar."
+msgstr ""
+
+msgid "Preview links and keyboard navigation."
+msgstr ""
+
+msgid "Use one primary H1 per page and a logical H2/H3 structure. Button labels should describe the destination."
+msgstr ""
+
+msgid "Media and banners"
+msgstr ""
+
+msgid "Images, backgrounds, focal points and visual banners."
+msgstr ""
+
+msgid "Select Media Library images, set alt text and use focal points to keep the subject visible when the image is cropped."
+msgstr ""
+
+msgid "Use this for hero sections, portfolios and service illustrations."
+msgstr ""
+
+msgid "Upload or select a correctly sized image."
+msgstr ""
+
+msgid "Set alt text, overlay and focal point."
+msgstr ""
+
+msgid "Check text contrast and the mobile crop."
+msgstr ""
+
+msgid "Avoid large original photos for small cards. Background images are decorative; meaningful images need an accessible text alternative."
+msgstr ""
+
+msgid "Motion: ticker and expanding gallery"
+msgstr ""
+
+msgid "Continuous ticker and interactive image panels."
+msgstr ""
+
+msgid "Ticker accepts editable blocks inside slides and uses a constant pixels-per-second speed. Expanding gallery supports 2–6 panels, keyboard focus and mobile layouts."
+msgstr ""
+
+msgid "Use ticker for partners, reviews or fleets; use gallery for services, projects and categories."
+msgstr ""
+
+msgid "Insert Continuous ticker or Expanding gallery."
+msgstr ""
+
+msgid "Edit each slide/panel; set direction, speed or expansion and mobile behavior."
+msgstr ""
+
+msgid "Preview with a keyboard, touch device and reduced-motion setting."
+msgstr ""
+
+msgid "The editor keeps ticker content stationary. Use preview for motion. Avoid hiding essential content behind hover-only interaction."
+msgstr ""
+
+msgid "Product blocks and WooCommerce"
+msgstr ""
+
+msgid "Product grids, cards, swatches and shop layouts."
+msgstr ""
+
+msgid "WooCommerce supplies products and checkout. BIGSPY controls product presentation, card styles, filters and supported product-page layouts."
+msgstr ""
+
+msgid "Use this when displaying products or building a shop."
+msgstr ""
+
+msgid "Install WooCommerce manually and create products."
+msgstr ""
+
+msgid "Insert Products blocks or adjust WooCommerce options in the Customizer."
+msgstr ""
+
+msgid "Test product links, variations, cart and checkout yourself."
+msgstr ""
+
+msgid "Empty grids usually mean no matching published products. AI Designer does not manage customer orders or payments."
+msgstr ""
+
+msgid "Arrange the logo, navigation, search and action buttons."
+msgstr ""
+
+msgid "Build header rows visually and tune sticky, transparent and mobile behavior. A published custom header page can replace the normal header."
+msgstr ""
+
+msgid "Use this for site-wide navigation and branding."
+msgstr ""
+
+msgid "Open Header builder in the Customizer."
+msgstr ""
+
+msgid "Place Logo and Menu elements in the appropriate rows."
+msgstr ""
+
+msgid "Assign a menu and test desktop/mobile before publishing."
+msgstr ""
+
+msgid "A custom header page replaces the regular builder output. Review the selected header source if changes seem to have no effect."
+msgstr ""
+
+msgid "Reusable layouts with display conditions and priorities."
+msgstr ""
+
+msgid "Create layout templates for supported theme locations, set inclusion/exclusion rules and publish the layout only after previewing it."
+msgstr ""
+
+msgid "Use this when several pages need the same conditional layout."
+msgstr ""
+
+msgid "Create a Theme Builder layout as a draft."
+msgstr ""
+
+msgid "Choose its location, display conditions, exclusions and priority."
+msgstr ""
+
+msgid "Preview representative matching and excluded pages, then publish."
+msgstr ""
+
+msgid "Conflicting templates may be resolved by priority. Check conditions first if a layout appears on the wrong page."
+msgstr ""
+
+msgid "UX Blocks and footer"
+msgstr ""
+
+msgid "Design once and reuse editable sections."
+msgstr ""
+
+msgid "UX Blocks store reusable block content. Publish a footer UX Block, then assign it in the footer options; the theme can also use a public page as the footer source."
+msgstr ""
+
+msgid "Use this for consistent footers, banners and recurring sections."
+msgstr ""
+
+msgid "Create and preview a UX Block."
+msgstr ""
+
+msgid "Publish it before selecting it as a footer source."
+msgstr ""
+
+msgid "Open footer options in the Customizer and assign the block."
+msgstr ""
+
+msgid "Draft or private content cannot be assigned as a public footer. Check the selected source if widget changes are not visible."
+msgstr ""
+
+msgid "Menus: two requirements"
+msgstr ""
+
+msgid "Assign a menu and include a Menu element in the header."
+msgstr ""
+
+msgid "A menu needs both a WordPress menu-location assignment and a visible Menu element in the active header. Creating menu items alone does not display navigation."
+msgstr ""
+
+msgid "Use this when navigation is empty or missing on one device."
+msgstr ""
+
+msgid "Create a menu with published page links."
+msgstr ""
+
+msgid "Assign it to the Main/primary location."
+msgstr ""
+
+msgid "Place the Menu element in desktop and mobile header layouts."
+msgstr ""
+
+msgid "Check responsive visibility and custom header templates. Test parent links and submenus by keyboard."
+msgstr ""
+
+msgid "Customizer and global styles"
+msgstr ""
+
+msgid "Brand, layout, header, footer, blog, shop and advanced options."
+msgstr ""
+
+msgid "The Customizer groups site-wide colors and typography, layout, header/footer, blog, WooCommerce and advanced settings. Theme Options exposes selected settings without live preview."
+msgstr ""
+
+msgid "Use this for a consistent brand across all pages."
+msgstr ""
+
+msgid "Choose the relevant Customizer group."
+msgstr ""
+
+msgid "Set global values before adding per-block overrides."
+msgstr ""
+
+msgid "Preview several page types and publish the settings."
+msgstr ""
+
+msgid "Per-page layouts and block-level styles can override globals. Admin and website languages can be selected independently in Theme Settings."
+msgstr ""
+
+msgid "Built-in forms and contact buttons"
+msgstr ""
+
+msgid "Contact forms, stored entries and floating contact actions."
+msgstr ""
+
+msgid "The theme includes a Form block and floating contact buttons. A separate visual form builder is planned; the existing Form block remains available."
+msgstr ""
+
+msgid "Use this for enquiries and quick phone or messaging actions."
+msgstr ""
+
+msgid "Insert a Form block and configure fields and destinations."
+msgstr ""
+
+msgid "Configure floating contact channels in the Customizer."
+msgstr ""
+
+msgid "Submit a test entry and verify delivery and stored entries."
+msgstr ""
+
+msgid "Email delivery also depends on hosting and mail configuration. Do not assume a visible success message proves delivery to the inbox."
+msgstr ""
+
+msgid "SEO and reading tools"
+msgstr ""
+
+msgid "Headings, contents, sharing and SEO plugin compatibility."
+msgstr ""
+
+msgid "Theme presentation supports readable content and integrates with Rank Math or Yoast metadata through AI Designer. A dedicated SEO plugin is still recommended for broader SEO management."
+msgstr ""
+
+msgid "Use this when preparing pages for visitors and search engines."
+msgstr ""
+
+msgid "Write a logical heading structure and descriptive image alt text."
+msgstr ""
+
+msgid "Configure blog reading tools and sharing where relevant."
+msgstr ""
+
+msgid "Review SEO metadata, indexing and sitemap in your SEO plugin."
+msgstr ""
+
+msgid "Markup checks do not replace a visual or search-console audit. Avoid duplicate SEO plugins."
+msgstr ""
+
+msgid "Per-block CSS, local fonts and performance options."
+msgstr ""
+
+msgid "Only the required block CSS is loaded and generated styles are cached. Local font delivery avoids a separate font request to an external service."
+msgstr ""
+
+msgid "Use this before and after adding large media or third-party plugins."
+msgstr ""
+
+msgid "Resize images to their displayed purpose."
+msgstr ""
+
+msgid "Review performance settings and use one appropriate caching plugin."
+msgstr ""
+
+msgid "Measure representative pages on mobile after clearing relevant caches."
+msgstr ""
+
+msgid "Large videos, excessive plugins and third-party scripts still affect speed. Clear caches after a visible style change before diagnosing it."
+msgstr ""
+
+msgid "Import, export and backups"
+msgstr ""
+
+msgid "Transfer theme configuration between sites."
+msgstr ""
+
+msgid "Studio can export and import theme settings. This configuration file is not a backup of posts, media, products or the database."
+msgstr ""
+
+msgid "Use this for repeatable client setups or before major configuration changes."
+msgstr ""
+
+msgid "Export the current settings and keep a separate full-site backup."
+msgstr ""
+
+msgid "Import only a trusted theme configuration file."
+msgstr ""
+
+msgid "Review menus, media IDs and page references on the destination site."
+msgstr ""
+
+msgid "Imports can replace current settings. Site-specific image and page IDs may need reassignment."
+msgstr ""
+
+msgid "What is built in?"
+msgstr ""
+
+msgid "Reduce overlapping plugins and keep the stack focused."
+msgstr ""
+
+msgid "Header/footer layouts, blocks, forms, floating contact buttons, sharing and reading tools are included. WooCommerce supplies commerce; SEO and caching plugins can complement the theme."
+msgstr ""
+
+msgid "Use this when choosing which plugins a new site really needs."
+msgstr ""
+
+msgid "List the functions your site needs."
+msgstr ""
+
+msgid "Check the built-in guides before installing another plugin."
+msgstr ""
+
+msgid "Test any plugin removal on a draft site and keep backups."
+msgstr ""
+
+msgid "Do not disable a plugin merely because its name resembles a built-in feature. Existing content may still depend on it."
+msgstr ""
+
+msgid "Theme FAQ and updates"
+msgstr ""
+
+msgid "Resolve missing menus, stale styles and update notices."
+msgstr ""
+
+msgid "Use a child theme for file changes. GitHub Releases supply update ZIPs; saved settings and content remain when WordPress replaces theme files."
+msgstr ""
+
+msgid "Use this when an update or a recent design change does not appear."
+msgstr ""
+
+msgid "Confirm the installed version in Appearance → Themes."
+msgstr ""
+
+msgid "Use Check for updates above to refresh the GitHub cache."
+msgstr ""
+
+msgid "If the check fails, verify hosting access to GitHub and try again later."
+msgstr ""
+
+msgid "Versions before 1.73.3 keep their own cache even when WordPress Check again is used. This cannot be repaired remotely by publishing a new ZIP alone."
+msgstr ""
+
+msgid "Connect, choose a model and set budgets"
+msgstr ""
+
+msgid "Connect the API before starting paid work."
+msgstr ""
+
+msgid "Store your API key in Settings, verify the connection and choose a text model and optional image model. The key stays on the server."
+msgstr ""
+
+msgid "Use this on first setup or when a provider/model is unavailable."
+msgstr ""
+
+msgid "Open Settings and connect your API key yourself."
+msgstr ""
+
+msgid "Choose a model, then set task and daily budgets."
+msgstr ""
+
+msgid "Check the reported balance before requesting images or long tasks."
+msgstr ""
+
+msgid "Costs vary by model, number of steps and image size. A short text task usually needs fewer calls than a full page with images; no fixed price is guaranteed. A zero budget disables that limit."
+msgstr ""
+
+msgid "Explain which model and budget suit one draft service page before starting."
+msgstr ""
+
+msgid "Estimate the steps for a homepage with three images and wait for my approval."
+msgstr ""
+
+msgid "Guidelines and a clear brief"
+msgstr ""
+
+msgid "Give the agent facts, brand rules and content constraints."
+msgstr ""
+
+msgid "Guidelines supply reusable brand context. Include audience, real services, tone, contact details, colors, prohibited claims and image preferences; distinguish facts from ideas."
+msgstr ""
+
+msgid "Use this before several tasks for the same business."
+msgstr ""
+
+msgid "Write concise factual Guidelines."
+msgstr ""
+
+msgid "Give a page goal, audience and measurable outcome in each task."
+msgstr ""
+
+msgid "Ask the agent to identify missing facts before writing."
+msgstr ""
+
+msgid "Weak: “Make it beautiful.” Better: specify the business, visitor, page, desired action, style and constraints. Never invent testimonials, prices or certifications."
+msgstr ""
+
+msgid "For our laundry service in Bac Ninh, propose a homepage for local households. Ask about missing facts before drafting."
+msgstr ""
+
+msgid "Read our Guidelines and flag any facts you need before writing a landing page."
+msgstr ""
+
+msgid "Discuss first, build second"
+msgstr ""
+
+msgid "Use one task per clear goal."
+msgstr ""
+
+msgid "Agree on page structure, palette, typography and image direction before building drafts. BIGSPY blocks remain editable by hand after AI work."
+msgstr ""
+
+msgid "Use this for a new site or a redesign with several decisions."
+msgstr ""
+
+msgid "Connect the API and choose a model/budget."
+msgstr ""
+
+msgid "Fill Guidelines and describe one concrete goal."
+msgstr ""
+
+msgid "Approve a plan, let the agent draft, then review desktop and mobile."
+msgstr ""
+
+msgid "High effort allows more steps; it does not guarantee a particular design. Keep Workspace open while a task runs and review actual results."
+msgstr ""
+
+msgid "Discuss a five-section service page with me. Show the outline and palette, then wait before building."
+msgstr ""
+
+msgid "Compare two visual directions for this page; do not change the site yet."
+msgstr ""
+
+msgid "Design pages with editable blocks"
+msgstr ""
+
+msgid "Homepages, landing pages and service pages."
+msgstr ""
+
+msgid "The agent creates layouts with the theme’s registered blocks and patterns rather than an unstructured code dump. You can continue editing in the WordPress block editor."
+msgstr ""
+
+msgid "Use this when creating a draft page from an agreed brief."
+msgstr ""
+
+msgid "Define the audience, goal, sections and real business facts."
+msgstr ""
+
+msgid "Ask for a draft and preview it."
+msgstr ""
+
+msgid "Check mobile width, H1, links, images and copy before publishing approval."
+msgstr ""
+
+msgid "AI markup checks are useful hints, not a full browser audit. Use theme controls to refine spacing and responsive behavior manually."
+msgstr ""
+
+msgid "Build an unpublished service page from the outline we agreed. Use editable BIGSPY blocks and check its heading structure."
+msgstr ""
+
+msgid "Create a draft landing page focused on requesting a quote, with a clear mobile call to action."
+msgstr ""
+
+msgid "Images and image SEO"
+msgstr ""
+
+msgid "ImageGen, optimization and image metadata."
+msgstr ""
+
+msgid "Generate images for a defined purpose, optimize supported media and fill descriptive alt text. Image generation can charge the API even when later task changes are undone."
+msgstr ""
+
+msgid "Use this for authentic-looking illustrations when suitable owned images are unavailable."
+msgstr ""
+
+msgid "Specify subject, style, aspect ratio and placement."
+msgstr ""
+
+msgid "Review the estimated scope and approve any required image request."
+msgstr ""
+
+msgid "Review the generated image, file size and alt text before using it."
+msgstr ""
+
+msgid "Generated media remains in Media Library after undo. Image optimization may change bytes that snapshots cannot restore. Never claim a generated person is a real customer."
+msgstr ""
+
+msgid "Propose one hero image for this service page, including aspect ratio and prompt. Wait before generating."
+msgstr ""
+
+msgid "Review this page’s image sizes and suggest descriptive alt text without changing the originals yet."
+msgstr ""
+
+msgid "Write new articles"
+msgstr ""
+
+msgid "Create drafts from topics, keywords and verified facts."
+msgstr ""
+
+msgid "Ask for an outline first, then a readable draft for a specific audience. Supply references and distinguish editorial ideas from claims needing verification."
+msgstr ""
+
+msgid "Use this for a new educational or business blog post."
+msgstr ""
+
+msgid "Provide a topic, search intent and factual sources."
+msgstr ""
+
+msgid "Review the outline before requesting the full draft."
+msgstr ""
+
+msgid "Edit facts, links and metadata before publishing."
+msgstr ""
+
+msgid "Avoid keyword stuffing and invented statistics. The agent does not replace an expert review for high-stakes subjects."
+msgstr ""
+
+msgid "Propose an outline for a post explaining how to prepare clothes for a laundry pickup service."
+msgstr ""
+
+msgid "Write an unpublished article from this approved outline using only the facts in our Guidelines."
+msgstr ""
+
+msgid "Improve existing articles and SEO"
+msgstr ""
+
+msgid "Review headings, intent, copy and supported SEO metadata."
+msgstr ""
+
+msgid "The agent can inspect existing content and propose improvements, including Rank Math or Yoast metadata. Changes to published content require approval."
+msgstr ""
+
+msgid "Use this for an existing page with unclear structure or outdated copy."
+msgstr ""
+
+msgid "Identify the exact post/page and target audience."
+msgstr ""
+
+msgid "Request an audit and a proposed edit list."
+msgstr ""
+
+msgid "Review the approval card and verify the final content."
+msgstr ""
+
+msgid "Search ranking is not guaranteed. A correct heading hierarchy and metadata are only part of SEO."
+msgstr ""
+
+msgid "Audit this published article’s headings and search intent. List changes before editing."
+msgstr ""
+
+msgid "Suggest an SEO title and description for this page; keep the current page body unchanged."
+msgstr ""
+
+msgid "Product descriptions"
+msgstr ""
+
+msgid "Draft and refine WooCommerce product copy."
+msgstr ""
+
+msgid "Use verified product specifications, benefits and usage details to improve descriptions. The agent does not process orders, customer data or payments."
+msgstr ""
+
+msgid "Use this when adding products or improving an existing catalog."
+msgstr ""
+
+msgid "Provide accurate specifications and the product ID."
+msgstr ""
+
+msgid "Review draft copy and unsupported claims."
+msgstr ""
+
+msgid "Approve updates and test the product page."
+msgstr ""
+
+msgid "Do not invent availability, discounts, warranties or certifications. Validate variations and prices manually."
+msgstr ""
+
+msgid "Draft a product description using these specifications; mark missing details as questions."
+msgstr ""
+
+msgid "Improve this product’s benefits and readability without changing its price or variations."
+msgstr ""
+
+msgid "Menus, footer and brand settings"
+msgstr ""
+
+msgid "Coordinate reusable layout and site-wide design changes."
+msgstr ""
+
+msgid "The agent can work with menus, reusable UX Blocks, supported header/footer options, logo, colors and typography. Live and global changes use approval cards."
+msgstr ""
+
+msgid "Use this when applying an agreed brand consistently across the site."
+msgstr ""
+
+msgid "Ask the agent to inspect current menus and design options first."
+msgstr ""
+
+msgid "Create reusable content as drafts and preview it."
+msgstr ""
+
+msgid "Approve publishing and assignment separately where required."
+msgstr ""
+
+msgid "A menu must be assigned to a location and its Menu element must exist in the active header. A footer source must be published and public."
+msgstr ""
+
+msgid "Inspect our header and menu assignments, then explain why navigation is missing on mobile."
+msgstr ""
+
+msgid "Create a draft reusable footer from our verified contact details. Wait before publishing or assigning it."
+msgstr ""
+
+msgid "Advice-only tasks"
+msgstr ""
+
+msgid "Analyze and plan without AI writes to the site."
+msgstr ""
+
+msgid "Choose Advice only before creating a task. The server blocks AI write tools in this mode, while the agent can inspect allowed site information and produce a manual checklist."
+msgstr ""
+
+msgid "Use this for audits, comparisons and planning."
+msgstr ""
+
+msgid "Select Advice only in Workspace."
+msgstr ""
+
+msgid "Create a new task and define what to inspect."
+msgstr ""
+
+msgid "Review the findings and complete the manual checklist yourself."
+msgstr ""
+
+msgid "The task mode is server-enforced. Start a separate Design task if you later want implementation."
+msgstr ""
+
+msgid "In advice-only mode, audit our homepage and return a prioritized manual checklist."
+msgstr ""
+
+msgid "Compare our current footer with our Guidelines and list improvements without changing anything."
+msgstr ""
+
+msgid "Permissions and approval cards"
+msgstr ""
+
+msgid "Three permission levels enforced on the server."
+msgstr ""
+
+msgid "Level 1 covers permitted reads and drafts. Level 2 requires a human approval for live/global changes and other sensitive tools. Level 3 is guidance only for prohibited actions such as accounts, security, updates, plugin deletion and payments."
+msgstr ""
+
+msgid "Use this whenever an approval card appears or a task proposes global changes."
+msgstr ""
+
+msgid "Review the exact scope, before/after values, cost and undo limits."
+msgstr ""
+
+msgid "Choose Agree, do it yourself, or Skip."
+msgstr ""
+
+msgid "Verify the result before approving another change."
+msgstr ""
+
+msgid "Model text cannot approve itself. Plugin installation, where supported, requires explicit approval; plugin updates and deletion remain outside the agent’s tools."
+msgstr ""
+
+msgid "Explain the exact changes and undo limits before requesting any live-site approval."
+msgstr ""
+
+msgid "Prepare a manual checklist for actions your tools are not allowed to perform."
+msgstr ""
+
+msgid "Undo, costs and troubleshooting"
+msgstr ""
+
+msgid "Understand what a task snapshot can restore."
+msgstr ""
+
+msgid "Task undo restores supported content and configuration snapshots. API charges and generated media remain; plugin files/data remain after deactivation; optimized image bytes may not be restorable."
+msgstr ""
+
+msgid "Use this before a large task, after a failure or when reviewing costs."
+msgstr ""
+
+msgid "Keep a full-site backup and use one clear task per goal."
+msgstr ""
+
+msgid "Stop a running task before undoing it."
+msgstr ""
+
+msgid "Read the log, check restored content and review provider charges separately."
+msgstr ""
+
+msgid "A disconnected API, exhausted budget or unavailable model can pause work. Reconnect, review the budget or choose an available model; never increase the budget without understanding the cost."
+msgstr ""
+
+msgid "Summarize this task’s changes, API cost and what undo would leave behind."
+msgstr ""
+
+msgid "Read the latest task error and suggest the smallest safe next step without increasing the budget."
+msgstr ""
+
+msgid "1.74.0: Searchable product guides, setup checklist, sample prompts and shared AI knowledge."
+msgstr ""
+
+msgid "1.73.3: Manual GitHub checks refresh the provider cache immediately."
+msgstr ""
+
+msgid "1.73.0: Approval cards, theme knowledge, continuous ticker and expanding gallery."
+msgstr ""
+
+msgid "Planned: turning a design image into a page, a dedicated visual form builder, and deeper article writing and optimization. These are not released features."
+msgstr ""
+
+msgid "BIGSPY AI Theme WP"
+msgstr ""
+
+msgid "Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace."
+msgstr ""
+
+msgid "BIGSPY AI Designer"
+msgstr ""
+
+msgid "An AI agent for designing and maintaining your website inside the theme. Its BIGSPY blocks stay editable by hand."
+msgstr ""
+
+msgid "You are not allowed to access this page."
+msgstr ""
+
+msgid "BIGSPY theme preview"
+msgstr ""
+
+msgid "Your AI workspace"
+msgstr ""
+
+msgid "Connected"
+msgstr ""
+
+msgid "Not connected"
+msgstr ""
+
+msgid "No model selected"
+msgstr ""
+
+msgid "Last known balance: $%s. Refresh it in Settings."
+msgstr ""
+
+msgid "Balance has not been checked. Open Settings to refresh it."
+msgstr ""
+
+msgid "What is new"
+msgstr ""
+
+msgid "Search guides"
+msgstr ""
+
+msgid "Try footer, menu, images, or budget…"
+msgstr ""
+
+msgid "Guides found: "
+msgstr ""
+
+msgid "Available since %s"
+msgstr ""
+
+msgid "When to use it"
+msgstr ""
+
+msgid "Steps"
+msgstr ""
+
+msgid "Tips and troubleshooting"
+msgstr ""
+
+msgid "Use this prompt"
+msgstr ""
+
+msgid "Coming soon"
+msgstr ""
+
+msgid "Support and documentation"
+msgstr ""
+
+msgid "Product page and Zalo contact"
+msgstr ""
+
+msgid "Explore BIGSPY AI Designer"
+msgstr ""
+
+msgid "Set your logo, colors and fonts"
+msgstr ""
+
+msgid "Build your header"
+msgstr ""
+
+msgid "Create and assign a static homepage"
+msgstr ""
+
+msgid "Create and assign a reusable footer"
+msgstr ""
+
+msgid "Assign your Main menu"
+msgstr ""
+
+msgid "Checkmarks reflect saved configuration, not a visual design review."
+msgstr ""
+
+msgid "Configured"
+msgstr ""
+
+msgid "Not configured"
+msgstr ""
+
+msgid "Theme updates"
+msgstr ""
+
+msgid "Open WordPress updates"
+msgstr ""

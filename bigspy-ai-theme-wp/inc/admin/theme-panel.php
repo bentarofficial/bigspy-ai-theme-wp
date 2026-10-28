@@ -149,7 +149,7 @@ add_action(
 		add_submenu_page( $main, __( 'Settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-settings', 'bst_panel_settings_page' );
 		add_submenu_page( $main, __( 'System status', 'bigspy-ai-theme-wp' ), __( 'System status', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-status', 'bst_panel_status_page' );
 		add_submenu_page( $main, __( 'Help & guides', 'bigspy-ai-theme-wp' ), __( 'Help & guides', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-help', 'bst_panel_help_page' );
-		add_submenu_page( $main, __( 'About BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), __( 'About', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-about', 'bst_panel_about_page' );
+		add_submenu_page( $main, __( 'About BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), bst_welcome_label( 'theme' ), $cap, 'bigspy-about', 'bst_panel_about_page' );
 		if ( ! post_type_exists( 'blocks' ) ) {
 			remove_submenu_page( $main, 'edit.php?post_type=blocks' );
 		}
@@ -286,22 +286,7 @@ function bst_panel_header( $title, $lead ) {
 
 /** Read-only overview of the theme and its update source. */
 function bst_panel_about_page() {
-	$release = bst_update_release();
-	$current = wp_get_theme( get_template() )->get( 'Version' );
-	bst_panel_header( __( 'BIGSPY AI Theme WP', 'bigspy-ai-theme-wp' ), __( 'A WordPress theme for building and customizing block-based websites.', 'bigspy-ai-theme-wp' ) );
-	echo '<div class="card" style="max-width:760px"><h2>' . esc_html__( 'About', 'bigspy-ai-theme-wp' ) . '</h2>';
-	echo '<p>' . esc_html( sprintf( __( 'Current version: %s', 'bigspy-ai-theme-wp' ), $current ) ) . '</p>';
-	echo '<p>' . esc_html( $release ? sprintf( __( 'Latest version: %s', 'bigspy-ai-theme-wp' ), $release['version'] ) : __( 'Could not check GitHub for a valid release. Try checking again.', 'bigspy-ai-theme-wp' ) ) . '</p>';
-	echo '<p>' . esc_html__( 'Build layouts with BIGSPY blocks and page patterns; customize colors, typography, header, and footer in the Customizer.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<p>' . esc_html__( 'Theme updates come from GitHub Releases and appear in the WordPress Updates screen.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) . '">' . esc_html__( 'Open Studio', 'bigspy-ai-theme-wp' ) . '</a> ';
-	if ( current_user_can( 'update_themes' ) ) {
-		echo '<a class="button" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=bst_check_theme_updates' ), 'bst_check_theme_updates' ) ) . '">' . esc_html__( 'Check for updates', 'bigspy-ai-theme-wp' ) . '</a> ';
-		if ( $release && version_compare( $release['version'], $current, '>' ) ) {
-			echo '<a class="button button-primary" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">' . esc_html__( 'Update now', 'bigspy-ai-theme-wp' ) . '</a> ';
-		}
-	}
-	echo '<a class="button" href="' . esc_url( 'https://github.com/bentarofficial/bigspy-ai-theme-wp/releases' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'View releases', 'bigspy-ai-theme-wp' ) . '</a></p></div></div>';
+	bst_welcome_screen( 'theme' );
 }
 
 function bst_panel_options_page() {

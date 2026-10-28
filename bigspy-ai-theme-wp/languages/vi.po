@@ -4153,3 +4153,852 @@ msgstr "Bạn không có quyền cập nhật giao diện."
 
 msgid "Update now"
 msgstr "Cập nhật ngay"
+
+msgid "Layout blocks"
+msgstr "Khối bố cục"
+
+msgid "Sections, rows and columns form your page structure."
+msgstr "Section, Row và Column tạo cấu trúc trang."
+
+msgid "Build reusable sections with backgrounds, spacing and responsive column widths. Content remains editable in the native WordPress editor."
+msgstr "Dựng section với nền, khoảng cách và độ rộng cột theo thiết bị. Nội dung vẫn sửa được trong trình soạn thảo WordPress."
+
+msgid "Use this for homepages, service pages and landing pages."
+msgstr "Dùng cho trang chủ, dịch vụ và landing page."
+
+msgid "Create a page and choose a full-width layout."
+msgstr "Tạo trang và chọn bố cục toàn chiều rộng."
+
+msgid "Insert Section, then Row and Column blocks; add your content inside."
+msgstr "Chèn Section, sau đó Row và Column; thêm nội dung bên trong."
+
+msgid "Check desktop, tablet and mobile spacing before publishing."
+msgstr "Kiểm tra khoảng cách desktop, tablet và mobile trước khi xuất bản."
+
+msgid "Avoid fixed widths wider than the phone viewport. Duplicate a finished section to keep spacing consistent."
+msgstr "Tránh độ rộng cố định lớn hơn màn hình điện thoại. Nhân bản section hoàn chỉnh để giữ khoảng cách nhất quán."
+
+msgid "Content blocks"
+msgstr "Khối nội dung"
+
+msgid "Headings, text, buttons, icons, tabs and accordions."
+msgstr "Tiêu đề, văn bản, nút, icon, tab và accordion."
+
+msgid "Use native editable text with BIGSPY styling controls. Tabs and accordions organize related information into compact groups."
+msgstr "Dùng nội dung sửa trực tiếp cùng tùy chọn trình bày BIGSPY. Tab và accordion gom thông tin liên quan thành nhóm gọn."
+
+msgid "Use this for service descriptions, benefits, FAQs and calls to action."
+msgstr "Dùng cho mô tả dịch vụ, lợi ích, câu hỏi và lời kêu gọi hành động."
+
+msgid "Insert the content block into a column."
+msgstr "Chèn khối nội dung vào cột."
+
+msgid "Set heading level, text, button destination and icon in the sidebar."
+msgstr "Đặt cấp tiêu đề, nội dung, liên kết nút và icon trong thanh bên."
+
+msgid "Preview links and keyboard navigation."
+msgstr "Xem trước liên kết và điều hướng bàn phím."
+
+msgid "Use one primary H1 per page and a logical H2/H3 structure. Button labels should describe the destination."
+msgstr "Dùng một H1 chính cho trang và cấu trúc H2/H3 hợp lý. Nhãn nút cần mô tả nơi đến."
+
+msgid "Media and banners"
+msgstr "Ảnh và banner"
+
+msgid "Images, backgrounds, focal points and visual banners."
+msgstr "Ảnh, nền, điểm lấy nét và banner."
+
+msgid "Select Media Library images, set alt text and use focal points to keep the subject visible when the image is cropped."
+msgstr "Chọn ảnh Thư viện, điền alt và đặt điểm lấy nét để chủ thể vẫn hiển thị khi cắt ảnh."
+
+msgid "Use this for hero sections, portfolios and service illustrations."
+msgstr "Dùng cho hero, hồ sơ dự án và minh họa dịch vụ."
+
+msgid "Upload or select a correctly sized image."
+msgstr "Tải lên hoặc chọn ảnh có kích thước phù hợp."
+
+msgid "Set alt text, overlay and focal point."
+msgstr "Đặt alt, lớp phủ và điểm lấy nét."
+
+msgid "Check text contrast and the mobile crop."
+msgstr "Kiểm tra tương phản chữ và vùng cắt trên mobile."
+
+msgid "Avoid large original photos for small cards. Background images are decorative; meaningful images need an accessible text alternative."
+msgstr "Tránh ảnh gốc quá lớn cho thẻ nhỏ. Ảnh nền mang tính trang trí; ảnh có ý nghĩa cần văn bản thay thế."
+
+msgid "Motion: ticker and expanding gallery"
+msgstr "Chuyển động: ticker và gallery mở rộng"
+
+msgid "Continuous ticker and interactive image panels."
+msgstr "Dải chạy liên tục và các panel ảnh tương tác."
+
+msgid "Ticker accepts editable blocks inside slides and uses a constant pixels-per-second speed. Expanding gallery supports 2–6 panels, keyboard focus and mobile layouts."
+msgstr "Ticker nhận các block sửa được trong slide và chạy với tốc độ pixel/giây ổn định. Gallery mở rộng hỗ trợ 2–6 panel, bàn phím và bố cục mobile."
+
+msgid "Use ticker for partners, reviews or fleets; use gallery for services, projects and categories."
+msgstr "Dùng ticker cho đối tác, đánh giá hoặc đội xe; dùng gallery cho dịch vụ, dự án và danh mục."
+
+msgid "Insert Continuous ticker or Expanding gallery."
+msgstr "Chèn Continuous ticker hoặc Expanding gallery."
+
+msgid "Edit each slide/panel; set direction, speed or expansion and mobile behavior."
+msgstr "Sửa từng slide/panel; đặt hướng, tốc độ hoặc độ mở và kiểu mobile."
+
+msgid "Preview with a keyboard, touch device and reduced-motion setting."
+msgstr "Xem trước bằng bàn phím, cảm ứng và chế độ giảm chuyển động."
+
+msgid "The editor keeps ticker content stationary. Use preview for motion. Avoid hiding essential content behind hover-only interaction."
+msgstr "Ticker giữ nội dung đứng yên trong trình soạn thảo. Dùng xem trước để kiểm tra chuyển động. Tránh giấu nội dung thiết yếu sau thao tác chỉ dùng hover."
+
+msgid "Product blocks and WooCommerce"
+msgstr "Khối sản phẩm và WooCommerce"
+
+msgid "Product grids, cards, swatches and shop layouts."
+msgstr "Lưới sản phẩm, thẻ, swatch và bố cục cửa hàng."
+
+msgid "WooCommerce supplies products and checkout. BIGSPY controls product presentation, card styles, filters and supported product-page layouts."
+msgstr "WooCommerce cung cấp sản phẩm và thanh toán. BIGSPY điều khiển trình bày, kiểu thẻ, bộ lọc và bố cục trang sản phẩm được hỗ trợ."
+
+msgid "Use this when displaying products or building a shop."
+msgstr "Dùng khi trưng bày sản phẩm hoặc xây dựng cửa hàng."
+
+msgid "Install WooCommerce manually and create products."
+msgstr "Cài WooCommerce thủ công và tạo sản phẩm."
+
+msgid "Insert Products blocks or adjust WooCommerce options in the Customizer."
+msgstr "Chèn khối Products hoặc chỉnh WooCommerce trong Tùy biến."
+
+msgid "Test product links, variations, cart and checkout yourself."
+msgstr "Tự kiểm tra liên kết, biến thể, giỏ hàng và thanh toán."
+
+msgid "Empty grids usually mean no matching published products. AI Designer does not manage customer orders or payments."
+msgstr "Lưới trống thường do không có sản phẩm đã xuất bản phù hợp. AI Designer không quản lý đơn hàng hoặc thanh toán khách hàng."
+
+msgid "Arrange the logo, navigation, search and action buttons."
+msgstr "Sắp xếp logo, điều hướng, tìm kiếm và nút hành động."
+
+msgid "Build header rows visually and tune sticky, transparent and mobile behavior. A published custom header page can replace the normal header."
+msgstr "Dựng các hàng header trực quan và chỉnh sticky, trong suốt và mobile. Trang header tùy chỉnh đã xuất bản có thể thay header thường."
+
+msgid "Use this for site-wide navigation and branding."
+msgstr "Dùng cho điều hướng và thương hiệu toàn website."
+
+msgid "Open Header builder in the Customizer."
+msgstr "Mở Header builder trong Tùy biến."
+
+msgid "Place Logo and Menu elements in the appropriate rows."
+msgstr "Đặt Logo và Menu vào các hàng phù hợp."
+
+msgid "Assign a menu and test desktop/mobile before publishing."
+msgstr "Gán menu và thử desktop/mobile trước khi xuất bản."
+
+msgid "A custom header page replaces the regular builder output. Review the selected header source if changes seem to have no effect."
+msgstr "Trang header tùy chỉnh thay đầu ra builder thường. Kiểm tra nguồn header đang chọn nếu thay đổi không có tác dụng."
+
+msgid "Reusable layouts with display conditions and priorities."
+msgstr "Bố cục dùng lại với điều kiện hiển thị và ưu tiên."
+
+msgid "Create layout templates for supported theme locations, set inclusion/exclusion rules and publish the layout only after previewing it."
+msgstr "Tạo template cho vị trí được theme hỗ trợ, đặt quy tắc bao gồm/loại trừ và chỉ xuất bản sau khi xem trước."
+
+msgid "Use this when several pages need the same conditional layout."
+msgstr "Dùng khi nhiều trang cần chung một bố cục có điều kiện."
+
+msgid "Create a Theme Builder layout as a draft."
+msgstr "Tạo bố cục Theme Builder dạng nháp."
+
+msgid "Choose its location, display conditions, exclusions and priority."
+msgstr "Chọn vị trí, điều kiện, loại trừ và ưu tiên."
+
+msgid "Preview representative matching and excluded pages, then publish."
+msgstr "Xem trước các trang phù hợp và bị loại trừ rồi xuất bản."
+
+msgid "Conflicting templates may be resolved by priority. Check conditions first if a layout appears on the wrong page."
+msgstr "Template xung đột có thể được giải quyết bằng ưu tiên. Kiểm tra điều kiện nếu bố cục xuất hiện sai trang."
+
+msgid "UX Blocks and footer"
+msgstr "UX Blocks và footer"
+
+msgid "Design once and reuse editable sections."
+msgstr "Thiết kế một lần và dùng lại các section sửa được."
+
+msgid "UX Blocks store reusable block content. Publish a footer UX Block, then assign it in the footer options; the theme can also use a public page as the footer source."
+msgstr "UX Blocks lưu nội dung block dùng lại. Xuất bản UX Block footer rồi gán trong tùy chọn footer; theme cũng dùng được trang công khai làm nguồn footer."
+
+msgid "Use this for consistent footers, banners and recurring sections."
+msgstr "Dùng cho footer, banner và section lặp lại nhất quán."
+
+msgid "Create and preview a UX Block."
+msgstr "Tạo và xem trước UX Block."
+
+msgid "Publish it before selecting it as a footer source."
+msgstr "Xuất bản trước khi chọn làm nguồn footer."
+
+msgid "Open footer options in the Customizer and assign the block."
+msgstr "Mở tùy chọn footer trong Tùy biến và gán block."
+
+msgid "Draft or private content cannot be assigned as a public footer. Check the selected source if widget changes are not visible."
+msgstr "Nội dung nháp hoặc riêng tư không dùng làm footer công khai. Kiểm tra nguồn đã chọn nếu sửa widget không hiển thị."
+
+msgid "Menus: two requirements"
+msgstr "Menu: hai điều kiện hiển thị"
+
+msgid "Assign a menu and include a Menu element in the header."
+msgstr "Gán menu và đặt phần tử Menu trong header."
+
+msgid "A menu needs both a WordPress menu-location assignment and a visible Menu element in the active header. Creating menu items alone does not display navigation."
+msgstr "Menu cần cả vị trí menu WordPress đã gán và phần tử Menu hiển thị trong header đang dùng. Chỉ tạo mục menu chưa đủ để hiện điều hướng."
+
+msgid "Use this when navigation is empty or missing on one device."
+msgstr "Dùng khi điều hướng trống hoặc thiếu trên một thiết bị."
+
+msgid "Create a menu with published page links."
+msgstr "Tạo menu với liên kết trang đã xuất bản."
+
+msgid "Assign it to the Main/primary location."
+msgstr "Gán vào vị trí Main/primary."
+
+msgid "Place the Menu element in desktop and mobile header layouts."
+msgstr "Đặt phần tử Menu trong bố cục header desktop và mobile."
+
+msgid "Check responsive visibility and custom header templates. Test parent links and submenus by keyboard."
+msgstr "Kiểm tra hiển thị responsive và template header tùy chỉnh. Thử liên kết cha và menu con bằng bàn phím."
+
+msgid "Customizer and global styles"
+msgstr "Tùy biến và kiểu toàn cục"
+
+msgid "Brand, layout, header, footer, blog, shop and advanced options."
+msgstr "Thương hiệu, bố cục, header, footer, blog, shop và tùy chọn nâng cao."
+
+msgid "The Customizer groups site-wide colors and typography, layout, header/footer, blog, WooCommerce and advanced settings. Theme Options exposes selected settings without live preview."
+msgstr "Tùy biến gom màu và chữ toàn site, bố cục, header/footer, blog, WooCommerce và nâng cao. Theme Options hiển thị một số cài đặt không cần xem trước trực tiếp."
+
+msgid "Use this for a consistent brand across all pages."
+msgstr "Dùng để giữ thương hiệu nhất quán trên mọi trang."
+
+msgid "Choose the relevant Customizer group."
+msgstr "Chọn nhóm Tùy biến phù hợp."
+
+msgid "Set global values before adding per-block overrides."
+msgstr "Đặt giá trị toàn cục trước khi ghi đè từng block."
+
+msgid "Preview several page types and publish the settings."
+msgstr "Xem trước nhiều loại trang và xuất bản cài đặt."
+
+msgid "Per-page layouts and block-level styles can override globals. Admin and website languages can be selected independently in Theme Settings."
+msgstr "Bố cục từng trang và kiểu từng block có thể ghi đè toàn cục. Chọn ngôn ngữ quản trị và website độc lập trong Theme Settings."
+
+msgid "Built-in forms and contact buttons"
+msgstr "Form tích hợp và nút liên hệ"
+
+msgid "Contact forms, stored entries and floating contact actions."
+msgstr "Form liên hệ, dữ liệu gửi và nút liên hệ nổi."
+
+msgid "The theme includes a Form block and floating contact buttons. A separate visual form builder is planned; the existing Form block remains available."
+msgstr "Theme có khối Form và nút liên hệ nổi. Trình tạo form trực quan riêng đang được lên kế hoạch; khối Form hiện tại đã có sẵn."
+
+msgid "Use this for enquiries and quick phone or messaging actions."
+msgstr "Dùng cho yêu cầu tư vấn và gọi điện hoặc nhắn tin nhanh."
+
+msgid "Insert a Form block and configure fields and destinations."
+msgstr "Chèn khối Form và đặt trường cùng nơi nhận."
+
+msgid "Configure floating contact channels in the Customizer."
+msgstr "Cấu hình kênh liên hệ nổi trong Tùy biến."
+
+msgid "Submit a test entry and verify delivery and stored entries."
+msgstr "Gửi thử và kiểm tra thư nhận cùng dữ liệu lưu."
+
+msgid "Email delivery also depends on hosting and mail configuration. Do not assume a visible success message proves delivery to the inbox."
+msgstr "Việc gửi email phụ thuộc hosting và cấu hình thư. Thông báo thành công không chứng minh thư đã đến hộp thư."
+
+msgid "SEO and reading tools"
+msgstr "SEO và công cụ đọc"
+
+msgid "Headings, contents, sharing and SEO plugin compatibility."
+msgstr "Tiêu đề, mục lục, chia sẻ và tương thích plugin SEO."
+
+msgid "Theme presentation supports readable content and integrates with Rank Math or Yoast metadata through AI Designer. A dedicated SEO plugin is still recommended for broader SEO management."
+msgstr "Theme hỗ trợ nội dung dễ đọc và AI Designer tích hợp metadata Rank Math hoặc Yoast. Vẫn nên dùng plugin SEO riêng để quản lý SEO rộng hơn."
+
+msgid "Use this when preparing pages for visitors and search engines."
+msgstr "Dùng khi chuẩn bị trang cho người đọc và công cụ tìm kiếm."
+
+msgid "Write a logical heading structure and descriptive image alt text."
+msgstr "Viết cấu trúc tiêu đề hợp lý và alt ảnh rõ ràng."
+
+msgid "Configure blog reading tools and sharing where relevant."
+msgstr "Cấu hình công cụ đọc blog và chia sẻ khi cần."
+
+msgid "Review SEO metadata, indexing and sitemap in your SEO plugin."
+msgstr "Kiểm tra metadata, lập chỉ mục và sitemap trong plugin SEO."
+
+msgid "Markup checks do not replace a visual or search-console audit. Avoid duplicate SEO plugins."
+msgstr "Kiểm tra markup không thay thế đánh giá trực quan hoặc Search Console. Tránh dùng nhiều plugin SEO trùng chức năng."
+
+msgid "Per-block CSS, local fonts and performance options."
+msgstr "CSS theo block, font local và tùy chọn hiệu năng."
+
+msgid "Only the required block CSS is loaded and generated styles are cached. Local font delivery avoids a separate font request to an external service."
+msgstr "Chỉ CSS block cần thiết được tải và kiểu sinh tự động được lưu cache. Font local tránh yêu cầu font tới dịch vụ ngoài."
+
+msgid "Use this before and after adding large media or third-party plugins."
+msgstr "Dùng trước và sau khi thêm media lớn hoặc plugin bên ngoài."
+
+msgid "Resize images to their displayed purpose."
+msgstr "Chỉnh kích thước ảnh theo mục đích hiển thị."
+
+msgid "Review performance settings and use one appropriate caching plugin."
+msgstr "Kiểm tra cài đặt hiệu năng và dùng một plugin cache phù hợp."
+
+msgid "Measure representative pages on mobile after clearing relevant caches."
+msgstr "Đo các trang tiêu biểu trên mobile sau khi xóa cache liên quan."
+
+msgid "Large videos, excessive plugins and third-party scripts still affect speed. Clear caches after a visible style change before diagnosing it."
+msgstr "Video lớn, quá nhiều plugin và script bên thứ ba vẫn ảnh hưởng tốc độ. Xóa cache sau khi sửa kiểu trước khi chẩn đoán lỗi."
+
+msgid "Import, export and backups"
+msgstr "Nhập, xuất và sao lưu"
+
+msgid "Transfer theme configuration between sites."
+msgstr "Chuyển cấu hình theme giữa các website."
+
+msgid "Studio can export and import theme settings. This configuration file is not a backup of posts, media, products or the database."
+msgstr "Studio xuất và nhập cài đặt theme. Tệp cấu hình không phải bản sao lưu bài viết, media, sản phẩm hoặc cơ sở dữ liệu."
+
+msgid "Use this for repeatable client setups or before major configuration changes."
+msgstr "Dùng cho cấu hình khách hàng lặp lại hoặc trước thay đổi lớn."
+
+msgid "Export the current settings and keep a separate full-site backup."
+msgstr "Xuất cài đặt và giữ bản sao lưu toàn site riêng."
+
+msgid "Import only a trusted theme configuration file."
+msgstr "Chỉ nhập tệp cấu hình theme đáng tin cậy."
+
+msgid "Review menus, media IDs and page references on the destination site."
+msgstr "Kiểm tra menu, ID media và tham chiếu trang trên site đích."
+
+msgid "Imports can replace current settings. Site-specific image and page IDs may need reassignment."
+msgstr "Nhập có thể thay thế cài đặt hiện tại. ID ảnh và trang riêng từng site có thể cần gán lại."
+
+msgid "What is built in?"
+msgstr "Những gì đã tích hợp?"
+
+msgid "Reduce overlapping plugins and keep the stack focused."
+msgstr "Giảm plugin trùng chức năng và giữ hệ thống gọn."
+
+msgid "Header/footer layouts, blocks, forms, floating contact buttons, sharing and reading tools are included. WooCommerce supplies commerce; SEO and caching plugins can complement the theme."
+msgstr "Bố cục header/footer, block, form, liên hệ nổi, chia sẻ và công cụ đọc đã có sẵn. WooCommerce cung cấp thương mại; plugin SEO và cache có thể bổ sung cho theme."
+
+msgid "Use this when choosing which plugins a new site really needs."
+msgstr "Dùng khi chọn plugin thực sự cần cho site mới."
+
+msgid "List the functions your site needs."
+msgstr "Liệt kê chức năng website cần."
+
+msgid "Check the built-in guides before installing another plugin."
+msgstr "Đọc hướng dẫn tích hợp trước khi cài plugin khác."
+
+msgid "Test any plugin removal on a draft site and keep backups."
+msgstr "Thử gỡ plugin trên site nháp và giữ bản sao lưu."
+
+msgid "Do not disable a plugin merely because its name resembles a built-in feature. Existing content may still depend on it."
+msgstr "Không tắt plugin chỉ vì tên giống tính năng tích hợp. Nội dung hiện có vẫn có thể phụ thuộc plugin đó."
+
+msgid "Theme FAQ and updates"
+msgstr "Câu hỏi thường gặp và cập nhật"
+
+msgid "Resolve missing menus, stale styles and update notices."
+msgstr "Giải quyết menu thiếu, kiểu cũ và thông báo cập nhật."
+
+msgid "Use a child theme for file changes. GitHub Releases supply update ZIPs; saved settings and content remain when WordPress replaces theme files."
+msgstr "Dùng child theme khi sửa tệp. GitHub Releases cung cấp ZIP cập nhật; cài đặt và nội dung đã lưu được giữ khi WordPress thay tệp theme."
+
+msgid "Use this when an update or a recent design change does not appear."
+msgstr "Dùng khi bản cập nhật hoặc thiết kế mới chưa xuất hiện."
+
+msgid "Confirm the installed version in Appearance → Themes."
+msgstr "Xác nhận phiên bản đã cài trong Appearance → Themes."
+
+msgid "Use Check for updates above to refresh the GitHub cache."
+msgstr "Dùng Check for updates ở trên để làm mới cache GitHub."
+
+msgid "If the check fails, verify hosting access to GitHub and try again later."
+msgstr "Nếu kiểm tra lỗi, xác minh hosting truy cập được GitHub và thử lại sau."
+
+msgid "Versions before 1.73.3 keep their own cache even when WordPress Check again is used. This cannot be repaired remotely by publishing a new ZIP alone."
+msgstr "Bản trước 1.73.3 giữ cache riêng ngay cả khi dùng Check again của WordPress. Chỉ phát hành ZIP mới không thể sửa từ xa mã cũ đang chạy."
+
+msgid "Connect, choose a model and set budgets"
+msgstr "Kết nối, chọn model và ngân sách"
+
+msgid "Connect the API before starting paid work."
+msgstr "Kết nối API trước khi bắt đầu tác vụ tính phí."
+
+msgid "Store your API key in Settings, verify the connection and choose a text model and optional image model. The key stays on the server."
+msgstr "Lưu API key trong Settings, kiểm tra kết nối và chọn model chữ cùng model ảnh tùy chọn. Khóa ở phía máy chủ."
+
+msgid "Use this on first setup or when a provider/model is unavailable."
+msgstr "Dùng khi thiết lập lần đầu hoặc nhà cung cấp/model không khả dụng."
+
+msgid "Open Settings and connect your API key yourself."
+msgstr "Mở Settings và tự kết nối API key."
+
+msgid "Choose a model, then set task and daily budgets."
+msgstr "Chọn model rồi đặt ngân sách từng task và mỗi ngày."
+
+msgid "Check the reported balance before requesting images or long tasks."
+msgstr "Kiểm tra số dư trước khi yêu cầu ảnh hoặc task dài."
+
+msgid "Costs vary by model, number of steps and image size. A short text task usually needs fewer calls than a full page with images; no fixed price is guaranteed. A zero budget disables that limit."
+msgstr "Chi phí thay đổi theo model, số bước và kích thước ảnh. Task chữ ngắn thường ít lượt gọi hơn trang đầy đủ có ảnh; không bảo đảm giá cố định. Ngân sách bằng 0 sẽ tắt giới hạn đó."
+
+msgid "Explain which model and budget suit one draft service page before starting."
+msgstr "Giải thích model và ngân sách phù hợp cho một trang dịch vụ nháp trước khi bắt đầu."
+
+msgid "Estimate the steps for a homepage with three images and wait for my approval."
+msgstr "Ước tính các bước cho trang chủ có ba ảnh và chờ tôi đồng ý."
+
+msgid "Guidelines and a clear brief"
+msgstr "Tiêu chuẩn và yêu cầu rõ ràng"
+
+msgid "Give the agent facts, brand rules and content constraints."
+msgstr "Cung cấp dữ kiện, quy tắc thương hiệu và ràng buộc nội dung."
+
+msgid "Guidelines supply reusable brand context. Include audience, real services, tone, contact details, colors, prohibited claims and image preferences; distinguish facts from ideas."
+msgstr "Tiêu chuẩn cung cấp bối cảnh thương hiệu dùng lại. Ghi đối tượng, dịch vụ thật, giọng văn, liên hệ, màu, điều cấm và yêu cầu ảnh; phân biệt dữ kiện với ý tưởng."
+
+msgid "Use this before several tasks for the same business."
+msgstr "Dùng trước nhiều task cho cùng doanh nghiệp."
+
+msgid "Write concise factual Guidelines."
+msgstr "Viết Tiêu chuẩn ngắn gọn và đúng dữ kiện."
+
+msgid "Give a page goal, audience and measurable outcome in each task."
+msgstr "Nêu mục tiêu trang, đối tượng và kết quả cần đạt trong mỗi task."
+
+msgid "Ask the agent to identify missing facts before writing."
+msgstr "Yêu cầu AI xác định dữ kiện còn thiếu trước khi viết."
+
+msgid "Weak: “Make it beautiful.” Better: specify the business, visitor, page, desired action, style and constraints. Never invent testimonials, prices or certifications."
+msgstr "Yếu: “Làm cho đẹp.” Tốt hơn: nêu doanh nghiệp, người xem, trang, hành động mong muốn, phong cách và ràng buộc. Không bịa đánh giá, giá hoặc chứng nhận."
+
+msgid "For our laundry service in Bac Ninh, propose a homepage for local households. Ask about missing facts before drafting."
+msgstr "Với dịch vụ giặt là tại Bắc Ninh, đề xuất trang chủ cho hộ gia đình địa phương. Hỏi dữ kiện còn thiếu trước khi viết nháp."
+
+msgid "Read our Guidelines and flag any facts you need before writing a landing page."
+msgstr "Đọc Tiêu chuẩn và chỉ ra dữ kiện cần có trước khi viết landing page."
+
+msgid "Discuss first, build second"
+msgstr "Trao đổi trước, thực hiện sau"
+
+msgid "Use one task per clear goal."
+msgstr "Dùng một task cho một mục tiêu rõ ràng."
+
+msgid "Agree on page structure, palette, typography and image direction before building drafts. BIGSPY blocks remain editable by hand after AI work."
+msgstr "Thống nhất cấu trúc, bảng màu, chữ và hướng ảnh trước khi dựng nháp. Block BIGSPY vẫn sửa tay được sau khi AI hoàn tất."
+
+msgid "Use this for a new site or a redesign with several decisions."
+msgstr "Dùng cho site mới hoặc thiết kế lại cần nhiều quyết định."
+
+msgid "Connect the API and choose a model/budget."
+msgstr "Kết nối API và chọn model/ngân sách."
+
+msgid "Fill Guidelines and describe one concrete goal."
+msgstr "Điền Tiêu chuẩn và mô tả một mục tiêu cụ thể."
+
+msgid "Approve a plan, let the agent draft, then review desktop and mobile."
+msgstr "Duyệt kế hoạch, để AI dựng nháp rồi kiểm tra desktop và mobile."
+
+msgid "High effort allows more steps; it does not guarantee a particular design. Keep Workspace open while a task runs and review actual results."
+msgstr "High effort cho nhiều bước hơn; không bảo đảm một thiết kế cụ thể. Giữ Workspace mở khi chạy và kiểm tra kết quả thật."
+
+msgid "Discuss a five-section service page with me. Show the outline and palette, then wait before building."
+msgstr "Trao đổi với tôi về trang dịch vụ năm section. Đưa dàn ý và bảng màu rồi chờ trước khi dựng."
+
+msgid "Compare two visual directions for this page; do not change the site yet."
+msgstr "So sánh hai hướng hình ảnh cho trang này; chưa thay đổi website."
+
+msgid "Design pages with editable blocks"
+msgstr "Thiết kế trang bằng block sửa được"
+
+msgid "Homepages, landing pages and service pages."
+msgstr "Trang chủ, landing page và trang dịch vụ."
+
+msgid "The agent creates layouts with the theme’s registered blocks and patterns rather than an unstructured code dump. You can continue editing in the WordPress block editor."
+msgstr "AI tạo bố cục bằng block và pattern đã đăng ký của theme thay vì một khối mã khó sửa. Bạn tiếp tục chỉnh trong trình soạn thảo block WordPress."
+
+msgid "Use this when creating a draft page from an agreed brief."
+msgstr "Dùng khi tạo trang nháp từ yêu cầu đã thống nhất."
+
+msgid "Define the audience, goal, sections and real business facts."
+msgstr "Xác định đối tượng, mục tiêu, section và dữ kiện thật."
+
+msgid "Ask for a draft and preview it."
+msgstr "Yêu cầu bản nháp và xem trước."
+
+msgid "Check mobile width, H1, links, images and copy before publishing approval."
+msgstr "Kiểm tra độ rộng mobile, H1, liên kết, ảnh và nội dung trước khi duyệt xuất bản."
+
+msgid "AI markup checks are useful hints, not a full browser audit. Use theme controls to refine spacing and responsive behavior manually."
+msgstr "Kiểm tra markup của AI là gợi ý, không phải đánh giá trình duyệt đầy đủ. Dùng điều khiển theme để tinh chỉnh khoảng cách và responsive."
+
+msgid "Build an unpublished service page from the outline we agreed. Use editable BIGSPY blocks and check its heading structure."
+msgstr "Dựng trang dịch vụ chưa xuất bản theo dàn ý đã thống nhất. Dùng block BIGSPY sửa được và kiểm tra cấu trúc tiêu đề."
+
+msgid "Create a draft landing page focused on requesting a quote, with a clear mobile call to action."
+msgstr "Tạo landing page nháp tập trung yêu cầu báo giá, có nút hành động mobile rõ ràng."
+
+msgid "Images and image SEO"
+msgstr "Ảnh và SEO ảnh"
+
+msgid "ImageGen, optimization and image metadata."
+msgstr "ImageGen, tối ưu và metadata ảnh."
+
+msgid "Generate images for a defined purpose, optimize supported media and fill descriptive alt text. Image generation can charge the API even when later task changes are undone."
+msgstr "Tạo ảnh đúng mục đích, tối ưu media được hỗ trợ và điền alt mô tả. Tạo ảnh có thể tính phí API dù thay đổi của task được hoàn tác sau đó."
+
+msgid "Use this for authentic-looking illustrations when suitable owned images are unavailable."
+msgstr "Dùng cho ảnh minh họa phù hợp khi chưa có ảnh sở hữu thích hợp."
+
+msgid "Specify subject, style, aspect ratio and placement."
+msgstr "Nêu chủ thể, phong cách, tỷ lệ và vị trí dùng."
+
+msgid "Review the estimated scope and approve any required image request."
+msgstr "Xem phạm vi dự kiến và duyệt yêu cầu ảnh khi cần."
+
+msgid "Review the generated image, file size and alt text before using it."
+msgstr "Kiểm tra ảnh tạo ra, dung lượng và alt trước khi dùng."
+
+msgid "Generated media remains in Media Library after undo. Image optimization may change bytes that snapshots cannot restore. Never claim a generated person is a real customer."
+msgstr "Media tạo ra vẫn trong Thư viện sau hoàn tác. Tối ưu ảnh có thể thay byte mà snapshot không khôi phục được. Không nhận người tạo bằng AI là khách hàng thật."
+
+msgid "Propose one hero image for this service page, including aspect ratio and prompt. Wait before generating."
+msgstr "Đề xuất một ảnh hero cho trang dịch vụ, gồm tỷ lệ và prompt. Chờ trước khi tạo."
+
+msgid "Review this page’s image sizes and suggest descriptive alt text without changing the originals yet."
+msgstr "Kiểm tra kích thước ảnh trên trang và đề xuất alt mô tả, chưa sửa ảnh gốc."
+
+msgid "Write new articles"
+msgstr "Viết bài mới"
+
+msgid "Create drafts from topics, keywords and verified facts."
+msgstr "Tạo bản nháp từ chủ đề, từ khóa và dữ kiện đã xác minh."
+
+msgid "Ask for an outline first, then a readable draft for a specific audience. Supply references and distinguish editorial ideas from claims needing verification."
+msgstr "Yêu cầu dàn ý trước, sau đó bản nháp dễ đọc cho đối tượng cụ thể. Cung cấp tài liệu và phân biệt ý tưởng biên tập với khẳng định cần xác minh."
+
+msgid "Use this for a new educational or business blog post."
+msgstr "Dùng cho bài blog kiến thức hoặc kinh doanh mới."
+
+msgid "Provide a topic, search intent and factual sources."
+msgstr "Cung cấp chủ đề, ý định tìm kiếm và nguồn dữ kiện."
+
+msgid "Review the outline before requesting the full draft."
+msgstr "Duyệt dàn ý trước khi yêu cầu toàn bài."
+
+msgid "Edit facts, links and metadata before publishing."
+msgstr "Chỉnh dữ kiện, liên kết và metadata trước khi xuất bản."
+
+msgid "Avoid keyword stuffing and invented statistics. The agent does not replace an expert review for high-stakes subjects."
+msgstr "Tránh nhồi từ khóa và số liệu bịa. AI không thay đánh giá chuyên gia cho chủ đề hệ trọng."
+
+msgid "Propose an outline for a post explaining how to prepare clothes for a laundry pickup service."
+msgstr "Đề xuất dàn ý bài giải thích cách chuẩn bị quần áo trước dịch vụ lấy đồ giặt."
+
+msgid "Write an unpublished article from this approved outline using only the facts in our Guidelines."
+msgstr "Viết bài chưa xuất bản từ dàn ý đã duyệt, chỉ dùng dữ kiện trong Tiêu chuẩn."
+
+msgid "Improve existing articles and SEO"
+msgstr "Cải thiện bài viết và SEO"
+
+msgid "Review headings, intent, copy and supported SEO metadata."
+msgstr "Kiểm tra tiêu đề, ý định, nội dung và metadata SEO được hỗ trợ."
+
+msgid "The agent can inspect existing content and propose improvements, including Rank Math or Yoast metadata. Changes to published content require approval."
+msgstr "AI đọc nội dung hiện có và đề xuất cải thiện, gồm metadata Rank Math hoặc Yoast. Sửa nội dung đã xuất bản cần duyệt."
+
+msgid "Use this for an existing page with unclear structure or outdated copy."
+msgstr "Dùng cho trang hiện có cấu trúc chưa rõ hoặc nội dung cũ."
+
+msgid "Identify the exact post/page and target audience."
+msgstr "Chỉ rõ bài/trang và đối tượng."
+
+msgid "Request an audit and a proposed edit list."
+msgstr "Yêu cầu đánh giá và danh sách sửa đề xuất."
+
+msgid "Review the approval card and verify the final content."
+msgstr "Kiểm tra thẻ duyệt và xác minh nội dung cuối."
+
+msgid "Search ranking is not guaranteed. A correct heading hierarchy and metadata are only part of SEO."
+msgstr "Không bảo đảm thứ hạng tìm kiếm. Cấu trúc tiêu đề và metadata đúng chỉ là một phần SEO."
+
+msgid "Audit this published article’s headings and search intent. List changes before editing."
+msgstr "Đánh giá tiêu đề và ý định tìm kiếm của bài đã xuất bản này. Liệt kê thay đổi trước khi sửa."
+
+msgid "Suggest an SEO title and description for this page; keep the current page body unchanged."
+msgstr "Đề xuất tiêu đề và mô tả SEO cho trang; giữ nội dung thân trang hiện tại."
+
+msgid "Product descriptions"
+msgstr "Mô tả sản phẩm"
+
+msgid "Draft and refine WooCommerce product copy."
+msgstr "Viết nháp và cải thiện nội dung sản phẩm WooCommerce."
+
+msgid "Use verified product specifications, benefits and usage details to improve descriptions. The agent does not process orders, customer data or payments."
+msgstr "Dùng thông số, lợi ích và cách dùng đã xác minh để cải thiện mô tả. AI không xử lý đơn hàng, dữ liệu khách hoặc thanh toán."
+
+msgid "Use this when adding products or improving an existing catalog."
+msgstr "Dùng khi thêm sản phẩm hoặc cải thiện catalog."
+
+msgid "Provide accurate specifications and the product ID."
+msgstr "Cung cấp thông số đúng và ID sản phẩm."
+
+msgid "Review draft copy and unsupported claims."
+msgstr "Kiểm tra nội dung nháp và khẳng định thiếu căn cứ."
+
+msgid "Approve updates and test the product page."
+msgstr "Duyệt cập nhật và kiểm tra trang sản phẩm."
+
+msgid "Do not invent availability, discounts, warranties or certifications. Validate variations and prices manually."
+msgstr "Không bịa tồn kho, giảm giá, bảo hành hoặc chứng nhận. Kiểm tra biến thể và giá thủ công."
+
+msgid "Draft a product description using these specifications; mark missing details as questions."
+msgstr "Viết nháp mô tả sản phẩm theo thông số này; ghi chi tiết còn thiếu thành câu hỏi."
+
+msgid "Improve this product’s benefits and readability without changing its price or variations."
+msgstr "Cải thiện lợi ích và độ dễ đọc của sản phẩm, giữ giá và biến thể."
+
+msgid "Menus, footer and brand settings"
+msgstr "Menu, footer và cài đặt thương hiệu"
+
+msgid "Coordinate reusable layout and site-wide design changes."
+msgstr "Phối hợp bố cục dùng lại và thay đổi thiết kế toàn site."
+
+msgid "The agent can work with menus, reusable UX Blocks, supported header/footer options, logo, colors and typography. Live and global changes use approval cards."
+msgstr "AI làm việc với menu, UX Blocks, tùy chọn header/footer được hỗ trợ, logo, màu và chữ. Thay đổi trực tiếp và toàn cục dùng thẻ duyệt."
+
+msgid "Use this when applying an agreed brand consistently across the site."
+msgstr "Dùng khi áp dụng thương hiệu đã thống nhất trên toàn site."
+
+msgid "Ask the agent to inspect current menus and design options first."
+msgstr "Yêu cầu AI kiểm tra menu và tùy chọn thiết kế hiện tại trước."
+
+msgid "Create reusable content as drafts and preview it."
+msgstr "Tạo nội dung dùng lại dạng nháp và xem trước."
+
+msgid "Approve publishing and assignment separately where required."
+msgstr "Duyệt xuất bản và gán riêng khi được yêu cầu."
+
+msgid "A menu must be assigned to a location and its Menu element must exist in the active header. A footer source must be published and public."
+msgstr "Menu phải được gán vị trí và có phần tử Menu trong header đang dùng. Nguồn footer phải được xuất bản công khai."
+
+msgid "Inspect our header and menu assignments, then explain why navigation is missing on mobile."
+msgstr "Kiểm tra header và vị trí menu rồi giải thích vì sao thiếu điều hướng mobile."
+
+msgid "Create a draft reusable footer from our verified contact details. Wait before publishing or assigning it."
+msgstr "Tạo footer dùng lại dạng nháp từ liên hệ đã xác minh. Chờ trước khi xuất bản hoặc gán."
+
+msgid "Advice-only tasks"
+msgstr "Task chỉ tư vấn"
+
+msgid "Analyze and plan without AI writes to the site."
+msgstr "Phân tích và lên kế hoạch không ghi thay đổi bằng AI."
+
+msgid "Choose Advice only before creating a task. The server blocks AI write tools in this mode, while the agent can inspect allowed site information and produce a manual checklist."
+msgstr "Chọn Advice only trước khi tạo task. Máy chủ chặn công cụ ghi của AI trong chế độ này; AI vẫn đọc thông tin được phép và tạo checklist thủ công."
+
+msgid "Use this for audits, comparisons and planning."
+msgstr "Dùng cho đánh giá, so sánh và lên kế hoạch."
+
+msgid "Select Advice only in Workspace."
+msgstr "Chọn Advice only trong Workspace."
+
+msgid "Create a new task and define what to inspect."
+msgstr "Tạo task mới và nêu điều cần kiểm tra."
+
+msgid "Review the findings and complete the manual checklist yourself."
+msgstr "Xem kết quả và tự thực hiện checklist."
+
+msgid "The task mode is server-enforced. Start a separate Design task if you later want implementation."
+msgstr "Chế độ task được máy chủ thực thi. Tạo task Design riêng nếu sau đó muốn triển khai."
+
+msgid "In advice-only mode, audit our homepage and return a prioritized manual checklist."
+msgstr "Ở chế độ chỉ tư vấn, đánh giá trang chủ và trả checklist thủ công theo ưu tiên."
+
+msgid "Compare our current footer with our Guidelines and list improvements without changing anything."
+msgstr "So sánh footer hiện tại với Tiêu chuẩn và liệt kê cải thiện, chưa thay đổi gì."
+
+msgid "Permissions and approval cards"
+msgstr "Quyền và thẻ duyệt"
+
+msgid "Three permission levels enforced on the server."
+msgstr "Ba mức quyền được thực thi ở máy chủ."
+
+msgid "Level 1 covers permitted reads and drafts. Level 2 requires a human approval for live/global changes and other sensitive tools. Level 3 is guidance only for prohibited actions such as accounts, security, updates, plugin deletion and payments."
+msgstr "Mức 1 gồm đọc và nháp được phép. Mức 2 cần người duyệt cho thay đổi trực tiếp/toàn cục và công cụ nhạy cảm khác. Mức 3 chỉ hướng dẫn với thao tác cấm như tài khoản, bảo mật, cập nhật, xóa plugin và thanh toán."
+
+msgid "Use this whenever an approval card appears or a task proposes global changes."
+msgstr "Dùng khi xuất hiện thẻ duyệt hoặc task đề xuất thay đổi toàn cục."
+
+msgid "Review the exact scope, before/after values, cost and undo limits."
+msgstr "Kiểm tra phạm vi, trước/sau, chi phí và giới hạn hoàn tác."
+
+msgid "Choose Agree, do it yourself, or Skip."
+msgstr "Chọn Đồng ý, tự làm hoặc Bỏ qua."
+
+msgid "Verify the result before approving another change."
+msgstr "Xác minh kết quả trước khi duyệt thay đổi tiếp."
+
+msgid "Model text cannot approve itself. Plugin installation, where supported, requires explicit approval; plugin updates and deletion remain outside the agent’s tools."
+msgstr "Lời AI không tự duyệt được. Cài plugin được hỗ trợ cần duyệt rõ ràng; cập nhật và xóa plugin vẫn ngoài công cụ AI."
+
+msgid "Explain the exact changes and undo limits before requesting any live-site approval."
+msgstr "Giải thích thay đổi và giới hạn hoàn tác trước khi yêu cầu duyệt trên site."
+
+msgid "Prepare a manual checklist for actions your tools are not allowed to perform."
+msgstr "Chuẩn bị checklist thủ công cho thao tác công cụ của bạn không được phép thực hiện."
+
+msgid "Undo, costs and troubleshooting"
+msgstr "Hoàn tác, chi phí và xử lý lỗi"
+
+msgid "Understand what a task snapshot can restore."
+msgstr "Hiểu snapshot task khôi phục được những gì."
+
+msgid "Task undo restores supported content and configuration snapshots. API charges and generated media remain; plugin files/data remain after deactivation; optimized image bytes may not be restorable."
+msgstr "Hoàn tác task khôi phục snapshot nội dung và cấu hình được hỗ trợ. Phí API và media đã tạo vẫn còn; tệp/dữ liệu plugin còn sau khi tắt; byte ảnh đã tối ưu có thể không khôi phục được."
+
+msgid "Use this before a large task, after a failure or when reviewing costs."
+msgstr "Dùng trước task lớn, sau lỗi hoặc khi xem chi phí."
+
+msgid "Keep a full-site backup and use one clear task per goal."
+msgstr "Giữ sao lưu toàn site và dùng một task cho một mục tiêu."
+
+msgid "Stop a running task before undoing it."
+msgstr "Dừng task đang chạy trước khi hoàn tác."
+
+msgid "Read the log, check restored content and review provider charges separately."
+msgstr "Đọc log, kiểm tra nội dung khôi phục và xem phí nhà cung cấp riêng."
+
+msgid "A disconnected API, exhausted budget or unavailable model can pause work. Reconnect, review the budget or choose an available model; never increase the budget without understanding the cost."
+msgstr "API mất kết nối, hết ngân sách hoặc model không khả dụng có thể dừng công việc. Kết nối lại, xem ngân sách hoặc chọn model có sẵn; chỉ tăng ngân sách khi hiểu chi phí."
+
+msgid "Summarize this task’s changes, API cost and what undo would leave behind."
+msgstr "Tóm tắt thay đổi, phí API và những gì vẫn còn sau hoàn tác task này."
+
+msgid "Read the latest task error and suggest the smallest safe next step without increasing the budget."
+msgstr "Đọc lỗi task mới nhất và đề xuất bước an toàn nhỏ nhất, chưa tăng ngân sách."
+
+msgid "1.74.0: Searchable product guides, setup checklist, sample prompts and shared AI knowledge."
+msgstr "1.74.0: Hướng dẫn tìm kiếm được, checklist thiết lập, prompt mẫu và kiến thức AI dùng chung."
+
+msgid "1.73.3: Manual GitHub checks refresh the provider cache immediately."
+msgstr "1.73.3: Kiểm tra GitHub thủ công làm mới cache nhà cung cấp ngay."
+
+msgid "1.73.0: Approval cards, theme knowledge, continuous ticker and expanding gallery."
+msgstr "1.73.0: Thẻ duyệt, kiến thức theme, ticker liên tục và gallery mở rộng."
+
+msgid "Planned: turning a design image into a page, a dedicated visual form builder, and deeper article writing and optimization. These are not released features."
+msgstr "Dự kiến: chuyển ảnh thiết kế thành trang, trình tạo form trực quan riêng và viết/tối ưu bài chuyên sâu hơn. Đây chưa phải tính năng đã phát hành."
+
+msgid "BIGSPY AI Theme WP"
+msgstr "BIGSPY AI Theme WP"
+
+msgid "Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace."
+msgstr "Dựng website bằng một theme tích hợp: block sửa được, bố cục dùng lại và không gian AI có sẵn."
+
+msgid "An AI agent for designing and maintaining your website inside the theme. Its BIGSPY blocks stay editable by hand."
+msgstr "AI agent thiết kế và vận hành website ngay trong theme. Block BIGSPY do AI dựng vẫn sửa tay được."
+
+msgid "You are not allowed to access this page."
+msgstr "Bạn không có quyền truy cập trang này."
+
+msgid "BIGSPY theme preview"
+msgstr "Xem trước theme BIGSPY"
+
+msgid "Your AI workspace"
+msgstr "Không gian AI của bạn"
+
+msgid "Not connected"
+msgstr "Chưa kết nối"
+
+msgid "No model selected"
+msgstr "Chưa chọn model"
+
+msgid "Last known balance: $%s. Refresh it in Settings."
+msgstr "Số dư được biết gần nhất: $%s. Làm mới trong Cài đặt."
+
+msgid "Balance has not been checked. Open Settings to refresh it."
+msgstr "Chưa kiểm tra số dư. Mở Cài đặt để làm mới."
+
+msgid "What is new"
+msgstr "Có gì mới"
+
+msgid "Search guides"
+msgstr "Tìm hướng dẫn"
+
+msgid "Try footer, menu, images, or budget…"
+msgstr "Thử footer, menu, ảnh hoặc ngân sách…"
+
+msgid "Guides found: "
+msgstr "Số hướng dẫn tìm thấy: "
+
+msgid "Available since %s"
+msgstr "Có sẵn từ %s"
+
+msgid "When to use it"
+msgstr "Dùng khi nào"
+
+msgid "Steps"
+msgstr "Các bước"
+
+msgid "Tips and troubleshooting"
+msgstr "Mẹo và xử lý lỗi"
+
+msgid "Use this prompt"
+msgstr "Dùng prompt này"
+
+msgid "Coming soon"
+msgstr "Sắp có"
+
+msgid "Support and documentation"
+msgstr "Hỗ trợ và tài liệu"
+
+msgid "Product page and Zalo contact"
+msgstr "Trang sản phẩm và liên hệ Zalo"
+
+msgid "Explore BIGSPY AI Designer"
+msgstr "Khám phá BIGSPY AI Designer"
+
+msgid "Set your logo, colors and fonts"
+msgstr "Đặt logo, màu và font"
+
+msgid "Build your header"
+msgstr "Dựng header"
+
+msgid "Create and assign a static homepage"
+msgstr "Tạo và gán trang chủ tĩnh"
+
+msgid "Create and assign a reusable footer"
+msgstr "Tạo và gán footer dùng lại"
+
+msgid "Assign your Main menu"
+msgstr "Gán Main menu"
+
+msgid "Quick start"
+msgstr "Bắt đầu nhanh"
+
+msgid "Checkmarks reflect saved configuration, not a visual design review."
+msgstr "Dấu tích phản ánh cấu hình đã lưu, không phải đánh giá thiết kế trực quan."
+
+msgid "Configured"
+msgstr "Đã cấu hình"
+
+msgid "Not configured"
+msgstr "Chưa cấu hình"
+
+msgid "Theme updates"
+msgstr "Cập nhật theme"
+
+msgid "Open WordPress updates"
+msgstr "Mở cập nhật WordPress"

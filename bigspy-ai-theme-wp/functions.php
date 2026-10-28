@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.73.3' );
+define( 'BST_VERSION', '1.74.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -16,6 +16,7 @@ $bst_includes = array(
 	'inc/css-presets.php',
 	'inc/setup.php',
 	'inc/updater.php',
+	'inc/welcome/welcome.php',
 	'inc/fonts.php',
 	'inc/dynamic-css.php',
 	'inc/assets.php',

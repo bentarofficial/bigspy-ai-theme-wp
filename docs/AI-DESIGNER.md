@@ -117,3 +117,8 @@ for `tools/tests/browser-check.cjs`. Module/runtime paths can be supplied throug
 BST_PLAYGROUND_MODULES / BST_PLAYWRIGHT / BST_CHROME. Local verification never uses
 a real Kyma key or incurs provider charges. PHP lint uses php-parser when PHP CLI
 is unavailable. See `docs/VERIFICATION-1.73.md` for the measured results and limits.
+# Product documentation release rule
+
+For every major feature release, update `inc/welcome/data.php`, `ai-designer/welcome/data.php`, their What is new entries, README Updates, and AI knowledge together. The `get_knowledge(theme)` tool includes the same catalogs rendered by About. Keep English source strings, update `languages/vi.po`, then compile with `python tools/compile-po.py vi`. Only released capabilities may be described as available; agreed future features belong in Coming soon.
+
+About sample prompts prefill a new Workspace task without sending it. About pages require `edit_theme_options`, use local assets, and display only cached AI balance information; opening them does not make paid provider calls. Users with `edit_pages` can continue using Workspace without receiving access to the About/settings pages.

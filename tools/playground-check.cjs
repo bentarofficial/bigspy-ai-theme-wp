@@ -17,7 +17,7 @@ const { runCLI } = require(path.join(base, '@wp-playground/cli'));
   const code = fs.readFileSync(path.join(__dirname, 'tests/designer-integration.php'), 'utf8');
   const server = await runCLI({ command: 'server', port: 9417, php: '8.3', wp: process.env.BST_TEST_WP || '7.1.3', workers: 6,
     mount: [{ hostPath: path.join(repo, 'bigspy-ai-theme-wp'), vfsPath: '/wordpress/wp-content/themes/bigspy-ai-theme-wp' }],
-    blueprint: { steps: [ { step: 'activateTheme', themeFolderName: 'bigspy-ai-theme-wp' }, { step: 'runPHP', code } ] },
+    blueprint: { steps: [ { step: 'activateTheme', themeFolderName: 'bigspy-ai-theme-wp' }, { step: 'runPHP', code }, ...(process.argv.includes('--welcome') ? [{ step: 'runPHP', code: fs.readFileSync(path.join(__dirname, 'tests/welcome-integration.php'), 'utf8') }] : []) ] },
     login: true, skipBrowser: true, verbosity: 'normal' });
   console.log('PLAYGROUND_READY', server.serverUrl);
   if (!process.argv.includes('--serve')) { await server[Symbol.asyncDispose](); }

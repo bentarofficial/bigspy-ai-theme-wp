@@ -38,6 +38,8 @@ From 1.73.3, **Dashboard → Updates → Check again** and **BIGSPY AI Theme →
 
 ## Using the theme
 
+Start at **BIGSPY AI Theme → About** for the setup checklist, searchable feature guides, current/latest version and update check. **BIGSPY AI Designer → About** explains the workflow, permissions, costs and undo limits. Sample prompts open a new Workspace task with text filled in; they are never sent automatically. Both About pages appear first in their menus and mark unseen major updates.
+
 1. **Set up the brand:** **Appearance → Customize** to set the logo, colors, fonts, buttons and layout.
 2. **Build the header and footer:** in the Customizer, drag elements (logo, menu, search, cart, buttons) into header rows. For a custom footer, design it as a page with blocks and select it as the footer.
 3. **Build pages:** **Pages → Add New**, open the block inserter (+) and use the **BIGSPY AI Builder** category, or insert a pattern for a complete section. Use Section → Row → Column to lay out content.
@@ -49,7 +51,7 @@ If the block editor does not open, the Classic Editor plugin is probably active.
 
 ## BIGSPY AI Designer
 
-AI Designer is an AI agent built into the theme. You work with it the way you work with coding agents such as Codex or Claude Code: you describe the job in a natural-language prompt, discuss it, and the agent does the work with the theme's own blocks, then reports back. It appears as **BIGSPY AI Designer** at the top of the admin menu, with three screens: **Workspace**, **Guidelines** and **Settings**.
+AI Designer is an AI agent built into the theme. You work with it the way you work with coding agents such as Codex or Claude Code: you describe the job in a natural-language prompt, discuss it, and the agent does the work with the theme's own blocks, then reports back. It appears as **BIGSPY AI Designer** at the top of the admin menu, with **About**, **Workspace**, **Guidelines** and **Settings**.
 
 AI Designer is optional. The theme works fully without it.
 
@@ -159,7 +161,15 @@ Example first prompt:
 
 ## Updates
 
-The latest three releases are kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not.
+Only the latest release is kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not. Every release includes one installable ZIP named `bigspy-ai-theme-wp-X.Y.Z.zip`, matching tag `vX.Y.Z` and the theme version.
+
+### 1.74: Product guides and onboarding
+
+- Detailed, searchable About screens for the theme and AI Designer, using English source text and bundled Vietnamese translations.
+- Five-step setup checklist, local screenshot, current/latest versions and manual update refresh.
+- Editable feature catalogs shared with AI Designer knowledge, including when to use each feature, steps, troubleshooting and sample prompts.
+- New-task prompt prefill without automatic sending, cached connection/model/balance status, one-time activation welcome and unseen-major-update badges.
+- Planned features remain explicitly labeled Coming soon. Saved language choices remain independent of WordPress.
 
 ### 1.73: Informed AI Designer and motion blocks
 

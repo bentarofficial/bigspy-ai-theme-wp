@@ -136,6 +136,46 @@ function bst_theme_lang_is_admin_request() {
 	return $is_rest && isset( $_GET['context'] ) && 'edit' === $_GET['context']; // phpcs:ignore WordPress.Security.NonceVerification
 }
 
+/**
+ * Modern WordPress JIT loading no longer consults theme_locale. Load a domain-local
+ * catalog so forcing Vietnamese never changes the shared WordPress/plugin locale.
+ */
+function bst_theme_load_selected_language() {
+	global $l10n;
+	$admin = bst_theme_lang_is_admin_request();
+	$choice = (string) get_theme_mod( $admin ? 'theme_lang_admin' : 'theme_lang_front', 'en_US' );
+	$locale = 'auto' === $choice ? determine_locale() : $choice;
+	if ( ! array_key_exists( $locale, bst_theme_languages( false ) ) ) { return; }
+	$domain = 'bigspy-ai-theme-wp';
+	if ( 'en_US' === $locale ) {
+		$l10n[ $domain ] = new NOOP_Translations();
+		return;
+	}
+	require_once ABSPATH . WPINC . '/pomo/mo.php';
+	foreach ( array( WP_LANG_DIR . '/loco/themes/bigspy-ai-theme-wp-' . $locale, WP_LANG_DIR . '/themes/bigspy-ai-theme-wp-' . $locale, BST_DIR . '/languages/' . $locale ) as $base ) {
+		$catalog = new MO();
+		if ( is_readable( $base . '.mo' ) && $catalog->import_from_file( $base . '.mo' ) ) {
+			$l10n[ $domain ] = $catalog;
+			return;
+		}
+		if ( is_readable( $base . '.l10n.php' ) ) {
+			$data = include $base . '.l10n.php';
+			if ( ! is_array( $data ) || ! isset( $data['messages'] ) ) { continue; }
+			$catalog->set_header( 'Plural-Forms', $data['plural-forms'] ?? 'nplurals=2; plural=(n != 1);' );
+			foreach ( (array) $data['messages'] as $key => $value ) {
+				$context = null;
+				if ( false !== strpos( $key, "\4" ) ) { list( $context, $key ) = explode( "\4", $key, 2 ); }
+				$ids = explode( "\0", $key, 2 );
+				$catalog->add_entry( new Translation_Entry( array( 'singular' => $ids[0], 'plural' => $ids[1] ?? null, 'context' => $context, 'translations' => explode( "\0", $value ) ) ) );
+			}
+			$l10n[ $domain ] = $catalog;
+			return;
+		}
+	}
+}
+add_action( 'after_setup_theme', 'bst_theme_load_selected_language', 20 );
+add_action( 'change_locale', 'bst_theme_load_selected_language', 20 );
+
 /*
  * Editor and Customizer scripts translate with wp.i18n. Hand them the theme strings already
  * loaded in PHP, so they follow the chosen admin language without separate JSON files.

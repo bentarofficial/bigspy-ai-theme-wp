@@ -1,0 +1,72 @@
+/* Disposable localhost Playground only. No real provider requests or credentials. */
+const {chromium}=require('C:/Users/DELL/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+(async()=>{
+ const base='http://127.0.0.1:9417';
+ const results=await (await fetch(base+'/wp-content/uploads/bst-welcome-results.json')).json();
+ console.log('WordPress welcome checks:',results.passed);
+ const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+ try {
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}), errors=[];
+ let sends=0;
+ page.on('pageerror',e=>errors.push(e.message));
+ page.on('request',r=>{if(/\/tasks\/\d+\/(send|step)/.test(decodeURIComponent(r.url())))sends++;});
+ await page.goto(base+'/wp-admin/index.php');
+ if(await page.locator('#user_login').count()){
+  await page.locator('#user_login').fill('admin');await page.locator('#user_pass').fill('password');await page.locator('#wp-submit').click();
+ }
+ if(process.env.BST_EXPECT_WELCOME_REDIRECT==='1') assert(page.url().includes('page=bigspy-about'),'First activation redirects to About');
+ await page.goto(base+'/wp-admin/index.php');
+ assert(page.url().endsWith('/wp-admin/index.php'),'Welcome redirect happens only once');
+ await page.goto(base+'/wp-admin/admin.php?page=bigspy-settings');
+ await page.locator('select[name="bst[theme_lang_admin]"]').selectOption('en_US');
+ await page.getByRole('button',{name:/^(Save changes|Lưu thay đổi)$/}).click();
+ await page.goto(base+'/wp-admin/admin.php?page=bigspy-about');
+ await page.locator('[data-bst-welcome-card]').first().waitFor();
+ assert.equal(await page.locator('[data-bst-welcome-card]').count(),16);
+ assert.equal(await page.locator('#toplevel_page_bigspy-ai-theme-wp .wp-submenu li a').first().getAttribute('href'),'admin.php?page=bigspy-about');
+ await page.locator('[data-bst-welcome-search]').fill('footer');
+ assert((await page.locator('[data-bst-welcome-card]:visible').count())<16);
+ await page.locator('[data-bst-welcome-search]').fill('unlikely-not-a-guide');
+ assert.equal(await page.locator('[data-bst-welcome-card]:visible').count(),0);
+ await page.locator('[data-bst-welcome-search]').fill('');
+ await page.setViewportSize({width:375,height:812});
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No mobile page overflow');
+ const out=path.resolve(__dirname,'../../output/verification-1.74');fs.mkdirSync(out,{recursive:true});
+ await page.screenshot({path:path.join(out,'theme-mobile.png'),fullPage:true});
+ await page.setViewportSize({width:1440,height:1000});
+ await page.goto(base+'/wp-admin/admin.php?page=bst-ai-about');
+ assert.equal(await page.locator('[data-bst-welcome-card]').count(),12);
+ assert.equal(await page.locator('#toplevel_page_bst-ai-designer .wp-submenu li a').first().getAttribute('href'),'admin.php?page=bst-ai-about');
+ await page.locator('[data-bst-welcome-card]').first().locator('summary').click();
+ await page.getByRole('link',{name:'Use this prompt',exact:true}).first().click();
+ await page.locator('.bst-aid-input:not([disabled])').waitFor();
+ assert((await page.locator('.bst-aid-input').inputValue()).includes('Explain which model'));
+ assert.equal(sends,0,'Sample prompt never auto-sends or calls the model');
+ await page.goto(base+'/wp-admin/admin.php?page=bst-ai-about');
+ const advice=page.locator('[data-bst-welcome-card]').filter({hasText:'Advice-only tasks'});
+ await advice.locator('summary').click();
+ await advice.getByRole('link',{name:'Use this prompt',exact:true}).first().click();
+ await page.locator('.bst-aid-input:not([disabled])').waitFor();
+ await page.locator('.bst-aid-head').getByText('Advice only',{exact:true}).waitFor();
+ assert.equal(sends,0,'Advice example also does not auto-send');
+ await page.goto(base+'/wp-admin/admin.php?page=bigspy-settings');
+ await page.getByRole('combobox',{name:'Admin & Customizer',exact:true}).selectOption('vi');
+ await page.getByRole('button',{name:'Save changes',exact:true}).click();
+ await page.goto(base+'/wp-admin/admin.php?page=bigspy-about');
+ await page.getByRole('heading',{name:'Bắt đầu nhanh',exact:true}).waitFor();
+ assert.equal(await page.getByRole('heading',{name:'Sắp có',exact:true}).count(),1);
+ await page.screenshot({path:path.join(out,'theme-vietnamese.png'),fullPage:true});
+ await page.goto(base+'/wp-admin/admin.php?page=bigspy-settings');
+ await page.getByRole('combobox',{name:'Trang quản trị & Tùy biến',exact:true}).selectOption('en_US');
+ await page.getByRole('button',{name:'Lưu thay đổi',exact:true}).click();
+ await page.goto(base+'/wp-admin/admin.php?page=bst-ai-about');
+ await page.getByRole('heading',{name:'Your AI workspace',exact:true}).waitFor();
+ await page.screenshot({path:path.join(out,'designer-desktop.png'),fullPage:true});
+ assert.deepEqual(errors,[]);
+ fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({wordpress:results,browser:'passed',modelRequests:sends},null,2));
+ console.log('Welcome browser checks passed: menu order, search, mobile, prompts without sending, English/Vietnamese.');
+ } finally {await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});
