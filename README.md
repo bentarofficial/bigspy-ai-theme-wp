@@ -34,6 +34,8 @@ A multipurpose WordPress theme for building client websites fast: service and bu
 
 If you plan to edit theme files, use a child theme so updates do not overwrite your changes.
 
+From 1.73.3, **Dashboard → Updates → Check again** and **BIGSPY AI Theme → About → Check for updates** refresh the GitHub cache immediately. Automatic background checks retain a 12-hour cache. About shows the installed and latest versions and links to the standard WordPress update screen when a new version is available.
+
 ## Using the theme
 
 1. **Set up the brand:** **Appearance → Customize** to set the logo, colors, fonts, buttons and layout.

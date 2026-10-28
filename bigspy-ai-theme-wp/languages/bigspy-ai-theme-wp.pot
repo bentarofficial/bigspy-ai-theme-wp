@@ -9488,3 +9488,15 @@ msgstr ""
 
 msgid "View releases"
 msgstr ""
+
+msgid "Latest version: %s"
+msgstr ""
+
+msgid "Could not check GitHub for a valid release. Try checking again."
+msgstr ""
+
+msgid "You are not allowed to update themes."
+msgstr ""
+
+msgid "Update now"
+msgstr ""

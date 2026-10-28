@@ -5,6 +5,28 @@ defined( 'ABSPATH' ) || exit;
 const BST_UPDATE_SLUG = 'bigspy-ai-theme-wp';
 const BST_UPDATE_CACHE = 'bst_github_release';
 
+/** The standard WordPress manual check must also bypass our provider cache. */
+function bst_update_manual_check() {
+	global $pagenow;
+	if ( 'update-core.php' === $pagenow && ! empty( $_GET['force-check'] ) && current_user_can( 'update_themes' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress core's read-only Check again link.
+		delete_transient( BST_UPDATE_CACHE );
+	}
+}
+add_action( 'admin_init', 'bst_update_manual_check' );
+
+/** Explicit refresh from About uses a nonce and the WordPress update capability. */
+add_action( 'admin_post_bst_check_theme_updates', function () {
+	if ( ! current_user_can( 'update_themes' ) ) {
+		wp_die( esc_html__( 'You are not allowed to update themes.', 'bigspy-ai-theme-wp' ), '', array( 'response' => 403 ) );
+	}
+	check_admin_referer( 'bst_check_theme_updates' );
+	delete_transient( BST_UPDATE_CACHE );
+	wp_clean_themes_cache( true );
+	wp_update_themes();
+	wp_safe_redirect( admin_url( 'admin.php?page=bigspy-about' ) );
+	exit;
+} );
+
 function bst_update_release() {
 	$cached = get_transient( BST_UPDATE_CACHE );
 	if ( false !== $cached ) {

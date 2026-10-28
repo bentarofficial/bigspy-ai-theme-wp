@@ -4141,3 +4141,15 @@ msgstr "Kiểm tra cập nhật"
 
 msgid "View releases"
 msgstr "Xem bản phát hành"
+
+msgid "Latest version: %s"
+msgstr "Phiên bản mới nhất: %s"
+
+msgid "Could not check GitHub for a valid release. Try checking again."
+msgstr "Không thể kiểm tra bản phát hành hợp lệ trên GitHub. Hãy thử kiểm tra lại."
+
+msgid "You are not allowed to update themes."
+msgstr "Bạn không có quyền cập nhật giao diện."
+
+msgid "Update now"
+msgstr "Cập nhật ngay"
