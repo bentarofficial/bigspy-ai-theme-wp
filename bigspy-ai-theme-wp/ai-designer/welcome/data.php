@@ -3,8 +3,9 @@
 defined( 'ABSPATH' ) || exit;
 return array('title' => __('BIGSPY AI Designer', 'bigspy-ai-theme-wp'),
 'lead' => __('An AI agent for designing and maintaining your website inside the theme. Its BIGSPY blocks stay editable by hand.', 'bigspy-ai-theme-wp'),
-'news_version' => '1.74.0',
-'news' => array(__('1.74.0: Searchable product guides, setup checklist, sample prompts and shared AI knowledge.', 'bigspy-ai-theme-wp'),
+'news_version' => '1.75.0',
+'news' => array(__('1.75.0: Products block upgrade and Products list, free-shipping bar and checkout options, block previews, Infinity Flow and Spotlight Panels names, AI Designer fixes.', 'bigspy-ai-theme-wp'),
+__('1.74.0: Searchable product guides, setup checklist, sample prompts and shared AI knowledge.', 'bigspy-ai-theme-wp'),
 __('1.73.3: Manual GitHub checks refresh the provider cache immediately.', 'bigspy-ai-theme-wp'),
 __('1.73.0: Approval cards, theme knowledge, continuous ticker and expanding gallery.', 'bigspy-ai-theme-wp')),
 'features' => array(array('title' => __('Connect, choose a model and set budgets', 'bigspy-ai-theme-wp'),

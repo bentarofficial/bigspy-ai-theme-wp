@@ -47,7 +47,12 @@ get_settings lists permitted Customizer sections/fields: colors, typography,
 layout, blog, header, footer, floating contact buttons and WooCommerce presentation.
 update_settings and custom_css affect global design and require approval. Never
 write security, scripts, performance or maintenance fields through generic settings.
-WooCommerce must be active for products/shop blocks. Create product drafts from
+WooCommerce must be active for products/shop blocks. Products block (bst/products): layout grid,
+slider or list; imageRatio, imageRadius, imageHover (zoom, swap, fade, gray, lift), depth and
+depthHover 0–5, textSize xs–xl, equalize, pagination "infinite", stock include/last/exclude.
+Products list (bst/products-list) is a compact list with a heading for sidebars and footers.
+Classic cart/checkout options live in Customizer > WooCommerce > BIGSPY: cart & checkout
+(free-shipping bar, coupon position, note before payment); they do not apply to Cart/Checkout blocks. Create product drafts from
 verified prices. Publishing or editing live products needs approval. Payment gateways,
 keys, orders and customers are outside AI tools. Explain manual configuration.
 Theme options export/import is a manual admin operation; inspect the theme's menu

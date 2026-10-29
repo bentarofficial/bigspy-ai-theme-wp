@@ -22,7 +22,7 @@ A multipurpose WordPress theme for building client websites fast: service and bu
 - **Per-device control:** sizes for desktop, tablet and mobile, responsive visibility and scroll animations on every block.
 - **Header and footer builders** with drag and drop, sticky header, and page-based header, footer and product templates.
 - **Global styles** in the Customizer: colors, fonts (served locally), buttons, layout; settings import and export.
-- **WooCommerce:** product cards with swatches, AJAX shop filters, product page layouts.
+- **WooCommerce:** product cards with swatches, AJAX shop filters, product page layouts; a Products block with grid, slider or compact list, image ratio and hover effects, shadow depth, infinite scroll and out-of-stock placement; a Products list block; a free-shipping progress bar and checkout coupon/note options for classic cart and checkout pages.
 - **Speed:** CSS is loaded only for the blocks used on a page, generated CSS is cached, fonts are local.
 - **Floating contact buttons** (phone, Zalo, Messenger and others).
 - **BIGSPY AI Designer** (see below).
@@ -165,6 +165,15 @@ Example first prompt:
 
 Only the latest release is kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not. Every release includes one installable ZIP named `bigspy-ai-theme-wp-X.Y.Z.zip`, matching tag `vX.Y.Z` and the theme version.
 
+### 1.75: Shop blocks, checkout options and block previews
+
+- **Products block:** compact list layout, per-block image ratio, corner radius and hover effect (zoom, second image, fade, grayscale, lift), shadow depth and hover depth, text size, equal card heights, infinite scroll, and out-of-stock products shown normally, last or hidden.
+- **Products list** block: small image, name, rating and price for sidebars and footers.
+- **Classic cart and checkout:** free-shipping progress bar (threshold read from WooCommerce shipping zones or set manually), coupon field at the top, below the form or hidden, and a note before the payment methods.
+- Every block has a drawn preview in the block inserter and a detailed description; block names and descriptions are translated into Vietnamese.
+- Motion blocks renamed: **Infinity Flow** (was Continuous ticker) and **Spotlight Panels** (was Expanding gallery). Existing content keeps working.
+- AI Designer: keeps the chosen effort, Stop takes effect at once, failed or blocked tools show as warnings, failed images are reported plainly with one automatic retry, replies stay in the user's language.
+
 ### 1.74: Product guides and onboarding
 
 - Detailed, searchable About screens for the theme and AI Designer, using English source text and bundled Vietnamese translations.
@@ -178,8 +187,8 @@ Only the latest release is kept on the [Releases](https://github.com/bentaroffic
 - Automatic theme updates from GitHub Releases, with WordPress update notices and optional auto-updates.
 - On-demand theme/WordPress guides and discovery of live blocks, patterns, design fields, menus, layouts and plugins.
 - Three permission levels with server-bound approval cards, advice-only tasks, manual checklists, approval logs and expanded undo.
-- **Continuous ticker** (`bigspy/ticker` + `bigspy/ticker-slide`): any blocks per slide, seamless or once-only motion, px/second speed, responsive widths, accessible inert clones and reduced-motion scrolling.
-- **Expanding gallery** (`bigspy/expand-gallery` + `bigspy/expand-panel`): 2–6 panels, adjustable flex expansion, background/focal point/overlay, keyboard support and mobile swipe with peek, accordion or horizontal layout.
+- **Infinity Flow**, formerly Continuous ticker (`bigspy/ticker` + `bigspy/ticker-slide`): any blocks per slide, seamless or once-only motion, px/second speed, responsive widths, accessible inert clones and reduced-motion scrolling.
+- **Spotlight Panels**, formerly Expanding gallery (`bigspy/expand-gallery` + `bigspy/expand-panel`): 2–6 panels, adjustable flex expansion, background/focal point/overlay, keyboard support and mobile swipe with peek, accordion or horizontal layout.
 - Six starter patterns; motion styles use the existing CSS split and scripts load on pages that render the blocks.
 
 ### 1.72: BIGSPY AI Designer

@@ -15,6 +15,13 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.75.0 =
+* Products block: compact list, image ratio, radius and hover effect, shadow depth, text size, equal heights, infinite scroll, out-of-stock placement. New Products list block.
+* Classic cart and checkout: free-shipping progress bar, coupon field position, note before payment.
+* Drawn inserter previews and detailed descriptions for every block; Vietnamese block names and descriptions.
+* Renamed Continuous ticker to Infinity Flow and Expanding gallery to Spotlight Panels (block slugs unchanged).
+* AI Designer fixes: effort kept, immediate Stop, warnings for blocked tools, clear image failures with retry, user-language replies. Fixed a pattern preview error in the editor.
+
 = 1.19.1 =
 * Renamed the native block inserter category to BIGSPY AI Builder; all existing blocks and the native editing workflow are preserved.
 * Synchronized the runtime version with the theme release version.

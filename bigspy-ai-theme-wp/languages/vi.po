@@ -4256,8 +4256,8 @@ msgstr "Khối sản phẩm và WooCommerce"
 msgid "Product grids, cards, swatches and shop layouts."
 msgstr "Lưới sản phẩm, thẻ, swatch và bố cục cửa hàng."
 
-msgid "WooCommerce supplies products and checkout. BIGSPY controls product presentation, card styles, filters and supported product-page layouts."
-msgstr "WooCommerce cung cấp sản phẩm và thanh toán. BIGSPY điều khiển trình bày, kiểu thẻ, bộ lọc và bố cục trang sản phẩm được hỗ trợ."
+msgid "WooCommerce supplies products and checkout. BIGSPY controls product presentation: the Products block (grid, slider or compact list; image ratio and hover effect, shadow depth, text size, equal heights, load more or infinite scroll, out-of-stock placement), the Products list block for sidebars, filters, product-page layouts, and on classic cart/checkout pages a free-shipping progress bar, coupon position and a note before payment."
+msgstr "WooCommerce cung cấp sản phẩm và thanh toán. BIGSPY lo phần hiển thị: khối Sản phẩm (lưới, slider hoặc danh sách gọn; tỉ lệ và hiệu ứng ảnh, đổ bóng, cỡ chữ, thẻ cao bằng nhau, tải thêm hoặc cuộn vô hạn, vị trí hàng hết), khối Danh sách sản phẩm cho sidebar, bộ lọc, bố cục trang sản phẩm, và ở trang giỏ hàng/thanh toán cổ điển: thanh miễn phí vận chuyển, vị trí ô mã giảm giá và ghi chú trước phần thanh toán."
 
 msgid "Use this when displaying products or building a shop."
 msgstr "Dùng khi trưng bày sản phẩm hoặc xây dựng cửa hàng."
@@ -5806,3 +5806,6 @@ msgstr "Đơn hàng của bạn được miễn phí vận chuyển."
 
 msgid "For the classic checkout page ([woocommerce_checkout])."
 msgstr "Áp dụng cho trang thanh toán dạng cổ điển ([woocommerce_checkout])."
+
+msgid "1.75.0: Products block upgrade and Products list, free-shipping bar and checkout options, block previews, Infinity Flow and Spotlight Panels names, AI Designer fixes."
+msgstr "1.75.0: Nâng cấp khối Sản phẩm và khối Danh sách sản phẩm, thanh miễn phí vận chuyển và tùy chọn thanh toán, bản xem trước khối, tên mới Infinity Flow và Spotlight Panels, sửa lỗi AI Designer."
