@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once BST_DIR . '/inc/woocommerce-elements.php';
 require_once BST_DIR . '/inc/commerce-customization.php';
+require_once BST_DIR . '/inc/checkout-extras.php';
 require_once BST_DIR . '/inc/product-options.php';
 require_once BST_DIR . '/inc/variation-swatches.php';
 require_once BST_DIR . '/inc/product-design.php';

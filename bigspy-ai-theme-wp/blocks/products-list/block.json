@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/products-list",
+	"title": "Products list",
+	"category": "bigspy",
+	"icon": "list-view",
+	"description": "A compact list of WooCommerce products with a small image, name, rating and price, for sidebars, footers and narrow columns. Show latest, best selling, on sale, featured or top rated products, optionally from one category, with a heading above.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"count": {
+			"type": "number",
+			"default": 4
+		},
+		"type": {
+			"type": "string",
+			"default": "best_selling"
+		},
+		"category": {
+			"type": "number",
+			"default": 0
+		},
+		"stock": {
+			"type": "string",
+			"default": "include"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-editor",
+	"render": "file:./render.php"
+}

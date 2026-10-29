@@ -5,7 +5,7 @@
 	"title": "Products",
 	"category": "bigspy",
 	"icon": "products",
-	"description": "WooCommerce products as a grid or slider: latest, best selling, on sale, featured or chosen by category, tag or ID. Set columns per device, card style, colors and which details to show.",
+	"description": "WooCommerce products as a grid, slider or compact list: latest, best selling, on sale, featured or chosen by category, tag or ID. Set columns per device, card style, image ratio and hover effect, shadow depth, text size, load more or infinite scroll, and where out-of-stock items go.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"count": {
@@ -115,6 +115,42 @@
 		"cardBg": {
 			"type": "string",
 			"default": ""
+		},
+		"imageRatio": {
+			"type": "string",
+			"default": ""
+		},
+		"imageHover": {
+			"type": "string",
+			"default": ""
+		},
+		"imageRadius": {
+			"type": "number",
+			"default": -1
+		},
+		"stock": {
+			"type": "string",
+			"default": "include"
+		},
+		"pagination": {
+			"type": "string",
+			"default": ""
+		},
+		"depth": {
+			"type": "number",
+			"default": 0
+		},
+		"depthHover": {
+			"type": "number",
+			"default": 0
+		},
+		"textSize": {
+			"type": "string",
+			"default": ""
+		},
+		"equalize": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

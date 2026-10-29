@@ -14,6 +14,18 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Lỗi ngoài phạm vi phát hiện khi test:** `assets/js/editor-helpers.js` dòng ~486 (cuộn xem trước pattern) dùng biến `inner` chưa khai báo, gây `ReferenceError` khi rê chuột qua pattern; chưa sửa.
 - **Khi phát hành cần bổ sung:** Có gì mới (bản xem trước khối, mô tả chi tiết); ghi chú quy tắc "khối mới phải có preview" cho agent. Tiêu đề khối (block title) vẫn chưa có bản dịch tiếng Việt, nằm ngoài phạm vi đợt này.
 
+### Sửa lỗi AI Designer, tên khối tiếng Việt, nâng cấp khối Sản phẩm, tùy chọn giỏ hàng/thanh toán (Claude, 29-10-2026)
+
+- **Yêu cầu/tính năng:** owner yêu cầu làm 4 nhóm việc: lỗi AI Designer trong `docs/AI-DESIGNER-DRAFT-SITE-AUDIT-2026-10-26.md`, lỗi rê chuột qua pattern, nâng cấp khối Sản phẩm (Prompt 5), mục P0 roadmap về ngưỡng miễn phí vận chuyển/vị trí coupon.
+- **Đã thay đổi:**
+  - AI Designer: Effort không còn bị đưa về "medium" khi mở lại task chưa chạy (`/tasks/{id}` trả effort rỗng); nút Dừng tắt trạng thái "đang làm" ngay; kết quả tool có `status` blocked/failed/error/rejected hiện là cảnh báo; ImageGen thử lại 1 lần sau 5 giây khi dịch vụ tạm lỗi (429/5xx/"tạm thời gián đoạn") và báo rõ "Image NOT created" để model không coi ảnh lỗi là đã tạo; prompt bắt buộc mọi chữ người dùng đọc theo ngôn ngữ của họ và chỉ báo kết quả tool đã xác nhận. Hai mục audit đã được 1.73 xử lý từ trước (chặn ghi muộn sau Dừng ở tầng quyền, chuẩn hóa mã màu hex sang style.color) nên giữ nguyên.
+  - `editor-helpers.js`: khai báo biến `inner` cho hiệu ứng cuộn xem trước pattern (hết `ReferenceError`).
+  - Tên khối (block title) có bản dịch vi theo ngữ cảnh `block title`; Countdown, Product Part dùng `__()`.
+  - Khối Sản phẩm: bố cục danh sách gọn; tỉ lệ ảnh, bo góc ảnh, hiệu ứng rê chuột (zoom, ảnh thứ hai, mờ, đen trắng sang màu, nâng thẻ) theo từng khối; độ đổ bóng thường/khi rê (class, vì style attribute bỏ giá trị có ngoặc); cỡ chữ XS–XL; thẻ cao bằng nhau; cuộn vô hạn; sản phẩm hết hàng: giữ thứ tự / đưa xuống cuối / ẩn (áp cả cho nút tải thêm). Khối mới **Danh sách sản phẩm** (`bst/products-list`) cho sidebar/footer.
+  - `inc/checkout-extras.php`: thanh tiến độ miễn phí vận chuyển (giỏ hàng, thanh toán, giỏ mini; ngưỡng tự đọc từ phương thức Free shipping của vùng giao hàng hoặc nhập tay), vị trí ô coupon ở trang thanh toán (mặc định/dưới form/ẩn, không lồng form), ghi chú trước phần thanh toán. Chỉ áp dụng trang giỏ hàng/thanh toán cổ điển (shortcode), không áp dụng khối Cart/Checkout.
+- **Kiểm thử:** lint php-parser các tệp PHP sửa; `node --check` các JS sửa; `node tools/check-block-previews.js` OK (61 khối); `node tools/playground-check.cjs` (designer-integration) đạt toàn bộ sau khi bỏ một nhánh Dừng trùng với tầng quyền; Playground riêng có WooCommerce 10.x + dữ liệu mẫu: trang có khối Sản phẩm (hết hàng xuống cuối, tỉ lệ 3:4, đổ bóng, cỡ chữ L), dạng danh sách ẩn hàng hết, khối Danh sách sản phẩm; giỏ hàng cổ điển hiện "Mua thêm 50.000đ…", trang thanh toán hiện thanh tiến độ + ghi chú, form coupon nằm sau form thanh toán, không lồng; 4 trang không có Warning/Notice/Fatal. Chưa mở bảng tùy chọn mới của khối Sản phẩm trong editor bằng mắt (Playground WooCommerce không đăng nhập được do cookie dùng chung với instance khác); cuộn vô hạn chưa thử với đủ sản phẩm để có trang 2.
+- **Khi phát hành cần bổ sung:** Có gì mới (khối Danh sách sản phẩm, tùy chọn mới khối Sản phẩm, thanh miễn phí vận chuyển, vị trí coupon, ghi chú thanh toán, sửa lỗi AI Designer); kiến thức AI (`knowledge/theme.md`) về các tùy chọn và khối mới; README Features.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

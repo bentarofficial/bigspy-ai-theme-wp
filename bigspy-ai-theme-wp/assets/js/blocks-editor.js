@@ -1955,9 +1955,9 @@
 		});
 	}
 
-	function columnsPanel(bind, a, max) {
+	function columnsPanel(bind, a, max, extra) {
 		return el(Panel, { title: __('Layout', 'bigspy-ai-theme-wp') },
-			el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: { grid: __('Grid', 'bigspy-ai-theme-wp'), slider: __('Slider', 'bigspy-ai-theme-wp') } }, bind('layout'))),
+			el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: Object.assign({ grid: __('Grid', 'bigspy-ai-theme-wp'), slider: __('Slider', 'bigspy-ai-theme-wp') }, extra || {}) }, bind('layout'))),
 			el(Range, Object.assign({ label: __('Columns – desktop', 'bigspy-ai-theme-wp'), min: 1, max: max[0] }, bind('columns'))),
 			el(Range, Object.assign({ label: __('Columns – tablet', 'bigspy-ai-theme-wp'), min: 1, max: max[1] }, bind('columnsTablet'))),
 			el(Range, Object.assign({ label: __('Columns – mobile', 'bigspy-ai-theme-wp'), min: 1, max: max[2] }, bind('columnsMobile'))),
@@ -1977,14 +1977,16 @@
 					el(c.SelectControl, { label: __('Category', 'bigspy-ai-theme-wp'), value: a.category, options: termOptions(cats), onChange: function (v) { props.setAttributes({ category: parseInt(v, 10) || 0 }); }, __nextHasNoMarginBottom: true }),
 					el(Select, Object.assign({ label: __('Order by', 'bigspy-ai-theme-wp'), options: { '': __('Default (follows “Show”)', 'bigspy-ai-theme-wp'), menu_order: __('Custom order (drag & drop in WooCommerce)', 'bigspy-ai-theme-wp'), date: __('Newest', 'bigspy-ai-theme-wp'), title: __('Name A–Z', 'bigspy-ai-theme-wp'), price: __('Price: low to high', 'bigspy-ai-theme-wp'), 'price-desc': __('Price: high to low', 'bigspy-ai-theme-wp'), popularity: __('Best selling', 'bigspy-ai-theme-wp'), rating: __('Top rated', 'bigspy-ai-theme-wp'), rand: __('Random', 'bigspy-ai-theme-wp') } }, bind('orderBy'))),
 					el(Range, Object.assign({ label: __('Number of products', 'bigspy-ai-theme-wp'), min: 1, max: 48 }, bind('count'))),
-					a.layout === 'grid' ? el(Toggle, Object.assign({ label: __('“Load more” button', 'bigspy-ai-theme-wp'), help: __('Loads the next products without reloading the page.', 'bigspy-ai-theme-wp') }, bind('loadMore', true))) : null
+					a.layout === 'grid' ? el(Toggle, Object.assign({ label: __('“Load more” button', 'bigspy-ai-theme-wp'), help: __('Loads the next products without reloading the page.', 'bigspy-ai-theme-wp') }, bind('loadMore', true))) : null,
+					a.layout === 'grid' ? el(Select, Object.assign({ label: __('Pagination', 'bigspy-ai-theme-wp'), options: { '': __('As above (button or none)', 'bigspy-ai-theme-wp'), infinite: __('Infinite scroll', 'bigspy-ai-theme-wp') }, help: __('Infinite scroll loads more products automatically when the visitor reaches the end of the list.', 'bigspy-ai-theme-wp') }, bind('pagination'))) : null,
+					el(Select, Object.assign({ label: __('Out-of-stock products', 'bigspy-ai-theme-wp'), options: { include: __('Show in normal order', 'bigspy-ai-theme-wp'), last: __('Show at the end', 'bigspy-ai-theme-wp'), exclude: __('Hide', 'bigspy-ai-theme-wp') } }, bind('stock')))
 				),
 				el(Panel, { title: __('Filter', 'bigspy-ai-theme-wp'), initialOpen: false },
 					el(c.SelectControl, { label: __('Tag', 'bigspy-ai-theme-wp'), value: a.tag, options: termOptions(tags), onChange: function (v) { props.setAttributes({ tag: parseInt(v, 10) || 0 }); }, __nextHasNoMarginBottom: true }),
 					el(Text, Object.assign({ label: __('Specific product IDs (comma separated)', 'bigspy-ai-theme-wp'), help: __('Shows exactly these products, in this order.', 'bigspy-ai-theme-wp') }, bind('ids'))),
 					el(Range, Object.assign({ label: __('Skip the first N products', 'bigspy-ai-theme-wp'), max: 50 }, bind('offset')))
 				),
-				columnsPanel(bind, a, [6, 4, 2]),
+				columnsPanel(bind, a, [6, 4, 2], { list: __('Compact list (small image)', 'bigspy-ai-theme-wp') }),
 				el(Panel, { title: __('Product card', 'bigspy-ai-theme-wp') },
 					el('div', { className: 'bst-card-styles' },
 						[['', __('Theme', 'bigspy-ai-theme-wp')], ['bordered', __('Bordered', 'bigspy-ai-theme-wp')], ['shadow', __('Shadow', 'bigspy-ai-theme-wp')], ['boxed', __('Boxed', 'bigspy-ai-theme-wp')], ['minimal', __('Minimal', 'bigspy-ai-theme-wp')], ['colorful', __('Colorful', 'bigspy-ai-theme-wp')]].map(function (s) {
@@ -1994,12 +1996,21 @@
 					el(Select, Object.assign({ label: __('Text align', 'bigspy-ai-theme-wp'), options: { '': __('Left', 'bigspy-ai-theme-wp'), center: __('Center', 'bigspy-ai-theme-wp') } }, bind('align'))),
 					el(Range, Object.assign({ label: __('Gap between cards (px, -1 = theme)', 'bigspy-ai-theme-wp'), min: -1, max: 60 }, bind('gap'))),
 					el(Range, Object.assign({ label: __('Title lines (0 = no limit)', 'bigspy-ai-theme-wp'), max: 4 }, bind('titleLines'))),
+					el(Select, Object.assign({ label: __('Text size', 'bigspy-ai-theme-wp'), options: { xs: 'XS', s: 'S', '': 'M', l: 'L', xl: 'XL' } }, bind('textSize'))),
+					el(Range, Object.assign({ label: __('Shadow depth', 'bigspy-ai-theme-wp'), max: 5 }, bind('depth'))),
+					el(Range, Object.assign({ label: __('Shadow depth on hover', 'bigspy-ai-theme-wp'), max: 5 }, bind('depthHover'))),
+					el(Toggle, Object.assign({ label: __('Equal card heights', 'bigspy-ai-theme-wp'), help: __('Buttons line up even when titles have different lengths.', 'bigspy-ai-theme-wp') }, bind('equalize', true))),
 					el(Toggle, Object.assign({ label: __('Category', 'bigspy-ai-theme-wp') }, bind('showCat', true))),
 					el(Toggle, Object.assign({ label: __('Title', 'bigspy-ai-theme-wp') }, bind('showTitle', true))),
 					el(Toggle, Object.assign({ label: __('Rating stars', 'bigspy-ai-theme-wp') }, bind('showRating', true))),
 					el(Toggle, Object.assign({ label: __('Price', 'bigspy-ai-theme-wp') }, bind('showPrice', true))),
 					el(Toggle, Object.assign({ label: __('Add to cart button', 'bigspy-ai-theme-wp') }, bind('showButton', true))),
 					el(Toggle, Object.assign({ label: __('Sale / new badges', 'bigspy-ai-theme-wp') }, bind('showBadge', true)))
+				),
+				el(Panel, { title: __('Product image', 'bigspy-ai-theme-wp'), initialOpen: false },
+					el(Select, Object.assign({ label: __('Image ratio', 'bigspy-ai-theme-wp'), options: { '': __('Theme setting', 'bigspy-ai-theme-wp'), '1-1': '1:1', '3-4': '3:4', '4-3': '4:3', '3-2': '3:2', '16-9': '16:9', '2-3': '2:3', auto: __('Original', 'bigspy-ai-theme-wp') } }, bind('imageRatio'))),
+					el(Range, Object.assign({ label: __('Image corner radius (px, -1 = theme)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('imageRadius'))),
+					el(Select, Object.assign({ label: __('Hover effect', 'bigspy-ai-theme-wp'), options: { '': __('Theme setting', 'bigspy-ai-theme-wp'), none: __('None', 'bigspy-ai-theme-wp'), zoom: __('Zoom', 'bigspy-ai-theme-wp'), swap: __('Show second image', 'bigspy-ai-theme-wp'), fade: __('Fade', 'bigspy-ai-theme-wp'), gray: __('Grayscale to color', 'bigspy-ai-theme-wp'), lift: __('Lift card', 'bigspy-ai-theme-wp') } }, bind('imageHover')))
 				),
 				el(B.ColorPanel, { title: __('Card colors', 'bigspy-ai-theme-wp'), settings: [
 					{ label: __('Card background', 'bigspy-ai-theme-wp'), value: a.cardBg, onChange: function (v) { props.setAttributes({ cardBg: v || '' }); } },
@@ -2009,6 +2020,24 @@
 				] })
 			),
 			dynamicPreview('products', props)
+		);
+	});
+
+	registerShop('products-list', function (props) {
+		var a = props.attributes;
+		var bind = B.binder(props);
+		var cats = useTerms('product_cat');
+		return el(Fragment, null,
+			el(Inspector, null,
+				el(Panel, { title: __('Products list', 'bigspy-ai-theme-wp') },
+					el(Text, Object.assign({ label: __('Heading above the list', 'bigspy-ai-theme-wp') }, bind('heading'))),
+					el(Select, Object.assign({ label: __('Show', 'bigspy-ai-theme-wp'), options: { latest: __('Latest', 'bigspy-ai-theme-wp'), featured: __('Featured', 'bigspy-ai-theme-wp'), sale: __('On sale', 'bigspy-ai-theme-wp'), best_selling: __('Best selling', 'bigspy-ai-theme-wp'), top_rated: __('Top rated', 'bigspy-ai-theme-wp'), random: __('Random', 'bigspy-ai-theme-wp') } }, bind('type'))),
+					el(c.SelectControl, { label: __('Category', 'bigspy-ai-theme-wp'), value: a.category, options: termOptions(cats), onChange: function (v) { props.setAttributes({ category: parseInt(v, 10) || 0 }); }, __nextHasNoMarginBottom: true }),
+					el(Range, Object.assign({ label: __('Number of products', 'bigspy-ai-theme-wp'), min: 1, max: 12 }, bind('count'))),
+					el(Select, Object.assign({ label: __('Out-of-stock products', 'bigspy-ai-theme-wp'), options: { include: __('Show in normal order', 'bigspy-ai-theme-wp'), last: __('Show at the end', 'bigspy-ai-theme-wp'), exclude: __('Hide', 'bigspy-ai-theme-wp') } }, bind('stock')))
+				)
+			),
+			dynamicPreview('products-list', props)
 		);
 	});
 

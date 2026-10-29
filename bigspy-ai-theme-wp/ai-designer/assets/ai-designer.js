@@ -458,7 +458,7 @@
 			if (welcomePrompt) { els.mode.value = welcomeMode; }
 			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } } });
 			els.send = h('button', { class: 'button button-primary', onclick: send, text: __('Send', T) });
-			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
+			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
 			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
 				[['low', __('Low – quick answers', T)], ['medium', __('Medium – balanced', T)], ['high', __('High – more careful', T)], ['max', __('Max – deepest work', T)]].map(function (o) { return h('option', { value: o[0], selected: o[0] === effort, text: o[1] }); }));
 			root.appendChild(h('aside', { class: 'bst-aid-side' }, [

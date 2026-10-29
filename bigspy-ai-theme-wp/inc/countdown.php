@@ -2,7 +2,7 @@
 /** Fixed-date countdown: no visitor-specific resetting or artificial urgency. */
 defined( 'ABSPATH' ) || exit;
 add_action( 'init', function () {
-	register_block_type( 'bst/countdown', array( 'api_version' => 3, 'title' => 'Countdown', 'description' => __( 'Countdown timer to a deadline for sales, events and launches. Shows days, hours, minutes and seconds, then a custom message when time is up.', 'bigspy-ai-theme-wp' ), 'category' => 'bigspy', 'icon' => 'clock', 'attributes' => array( 'deadline' => array( 'type' => 'string', 'default' => '' ), 'label' => array( 'type' => 'string', 'default' => 'Thời gian còn lại' ), 'ended' => array( 'type' => 'string', 'default' => 'Đã kết thúc' ) ), 'editor_script' => 'bst-countdown-editor', 'render_callback' => 'bst_countdown_render' ) );
+	register_block_type( 'bst/countdown', array( 'api_version' => 3, 'title' => __( 'Countdown', 'bigspy-ai-theme-wp' ), 'description' => __( 'Countdown timer to a deadline for sales, events and launches. Shows days, hours, minutes and seconds, then a custom message when time is up.', 'bigspy-ai-theme-wp' ), 'category' => 'bigspy', 'icon' => 'clock', 'attributes' => array( 'deadline' => array( 'type' => 'string', 'default' => '' ), 'label' => array( 'type' => 'string', 'default' => 'Thời gian còn lại' ), 'ended' => array( 'type' => 'string', 'default' => 'Đã kết thúc' ) ), 'editor_script' => 'bst-countdown-editor', 'render_callback' => 'bst_countdown_render' ) );
 	wp_register_script( 'bst-countdown-editor', BST_URI . '/assets/js/countdown-editor.js', array( 'bst-block-previews', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components' ), bst_asset_version( 'assets/js/countdown-editor.js' ), true );
 }, 21 );
 function bst_countdown_render( $a ) {

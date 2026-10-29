@@ -391,6 +391,19 @@
 		window.requestAnimationFrame(tick);
 	}
 
+	/* Products: infinite scroll clicks "Load more" when it comes into view. */
+	if ('IntersectionObserver' in window) {
+		var infinite = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				var btn = entry.isIntersecting && entry.target.querySelector('[data-bs-load-more]');
+				if (btn && !btn.disabled) {
+					btn.click();
+				}
+			});
+		}, { rootMargin: '300px 0px' });
+		doc.querySelectorAll('[data-bs-infinite]').forEach(function (el) { infinite.observe(el); });
+	}
+
 	/* ------------------------------------------------------------ Products: load more */
 	doc.addEventListener('click', function (event) {
 		var btn = event.target.closest('[data-bs-load-more]');

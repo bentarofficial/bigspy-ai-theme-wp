@@ -50,7 +50,20 @@ function bst_products_options( $raw ) {
 		'm'         => (int) bst_clamp( $raw['m'] ?? 2, 1, 3, 2 ),
 		'autoplay'  => (int) bst_clamp( $raw['autoplay'] ?? 0, 0, 30000, 0 ),
 		'load_more' => ! empty( $raw['load_more'] ),
+		// Per-block card overrides; empty keeps the Customizer choice.
+		'ratio'     => bst_choice( $raw['ratio'] ?? '', array( '', '1-1', '3-4', '4-3', '3-2', '16-9', '2-3', 'auto' ), '' ),
+		'hover'     => bst_choice( $raw['hover'] ?? '', array( '', 'none', 'zoom', 'swap', 'fade', 'gray', 'lift' ), '' ),
+		'stock'     => bst_choice( $raw['stock'] ?? 'include', array( 'include', 'exclude', 'last' ), 'include' ),
 	);
+}
+
+/**
+ * A card option for the product list being rendered, falling back to the Customizer value.
+ * content-product.php reads it, so blocks can change ratio and hover per list.
+ */
+function bst_card_option( $key, $default ) {
+	$v = $GLOBALS['bst_card_overrides'][ $key ] ?? '';
+	return '' === $v ? $default : $v;
 }
 
 /**
@@ -156,6 +169,24 @@ function bst_products_query_args( $o, $page = 1 ) {
 		}
 	}
 
+	if ( 'exclude' === $o['stock'] ) {
+		$tax_query[] = array( 'taxonomy' => 'product_visibility', 'field' => 'name', 'terms' => array( 'outofstock' ), 'operator' => 'NOT IN' );
+	} elseif ( 'last' === $o['stock'] ) {
+		// In-stock products first ("instock" sorts before "outofstock"), then the chosen order.
+		$then = array();
+		if ( isset( $args['meta_key'] ) ) {
+			$args['meta_query'] = array( 'bst_sort' => array( 'key' => $args['meta_key'], 'type' => 'NUMERIC' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$then['bst_sort'] = $args['order'];
+			unset( $args['meta_key'] );
+		} elseif ( is_string( $args['orderby'] ) ) {
+			foreach ( explode( ' ', $args['orderby'] ) as $field ) {
+				$then[ $field ] = $args['order'];
+			}
+		}
+		$args['meta_query'] = ( $args['meta_query'] ?? array() ) + array( 'bst_stock' => array( 'key' => '_stock_status', 'compare' => 'EXISTS' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+		$args['orderby']    = array( 'bst_stock' => 'ASC' ) + $then;
+	}
+
 	$args['tax_query'] = $tax_query; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 	return apply_filters( 'bst_products_query_args', $args, $o );
 }
@@ -170,12 +201,14 @@ function bst_products_items( $o, $page = 1 ) {
 	$items = '';
 	if ( $query->have_posts() ) {
 		wc_setup_loop( array( 'columns' => $o['d'], 'name' => 'bst-products' ) );
+		$GLOBALS['bst_card_overrides'] = array( 'ratio' => $o['ratio'], 'hover' => $o['hover'] );
 		ob_start();
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			wc_get_template_part( 'content', 'product' );
 		}
 		$items = ob_get_clean();
+		unset( $GLOBALS['bst_card_overrides'] );
 		wp_reset_postdata();
 		wc_reset_loop();
 	}
@@ -229,7 +262,7 @@ function bst_products_html( $raw, $class = '' ) {
 	$out   = '<div class="bs-products-block woocommerce ' . esc_attr( $class ) . '">';
 	$out  .= '<ul class="products bs-products-grid" style="' . esc_attr( $style ) . '">' . $result['items'] . '</ul>';
 	if ( $result['more'] ) {
-		$out .= '<div class="bs-load-more"><button type="button" class="bs-btn bs-btn--outline" data-bs-load-more data-url="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" data-page="1" data-options="' . esc_attr( wp_json_encode( $o ) ) . '" data-label-loading="' . esc_attr__( 'Loading…', 'bigspy-ai-theme-wp' ) . '">' . esc_html__( 'Load more', 'bigspy-ai-theme-wp' ) . '</button></div>';
+		$out .= '<div class="bs-load-more"' . ( ! empty( $raw['infinite'] ) ? ' data-bs-infinite' : '' ) . '><button type="button" class="bs-btn bs-btn--outline" data-bs-load-more data-url="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" data-page="1" data-options="' . esc_attr( wp_json_encode( $o ) ) . '" data-label-loading="' . esc_attr__( 'Loading…', 'bigspy-ai-theme-wp' ) . '">' . esc_html__( 'Load more', 'bigspy-ai-theme-wp' ) . '</button></div>';
 	}
 	return $out . '</div>';
 }

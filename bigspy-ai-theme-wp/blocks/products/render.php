@@ -26,7 +26,11 @@ $html = bst_products_html(
 		't'         => $a['columnsTablet'] ?? 3,
 		'm'         => $a['columnsMobile'] ?? 2,
 		'autoplay'  => (int) ( $a['autoplay'] ?? 0 ) * 1000,
-		'load_more' => ! empty( $a['loadMore'] ),
+		'load_more' => ! empty( $a['loadMore'] ) || 'infinite' === ( $a['pagination'] ?? '' ),
+		'infinite'  => 'infinite' === ( $a['pagination'] ?? '' ),
+		'ratio'     => $a['imageRatio'] ?? '',
+		'hover'     => $a['imageHover'] ?? '',
+		'stock'     => $a['stock'] ?? 'include',
 	)
 );
 
@@ -64,5 +68,24 @@ $vars = bst_style_vars(
 if ( ! empty( $a['titleLines'] ) ) {
 	$classes[] = 'bs-pcard--clamp';
 }
+$hover = bst_choice( $a['imageHover'] ?? '', array( '', 'none', 'zoom', 'swap', 'fade', 'gray', 'lift' ), '' );
+if ( $hover ) {
+	$classes[] = 'bs-pcard-hover--' . $hover;
+}
+if ( ! empty( $a['equalize'] ) ) {
+	$classes[] = 'bs-pcard--equal';
+}
+$size = bst_choice( $a['textSize'] ?? '', array( '', 'xs', 's', 'm', 'l', 'xl' ), '' );
+if ( $size ) {
+	$classes[] = 'bs-pcard--text-' . $size;
+}
+// Shadow levels are classes: style attributes lose values with parentheses such as rgba().
+$depth = isset( $a['depth'] ) ? (int) bst_block_num( $a, 'depth', 0, 0, 5 ) : 0;
+$lift  = isset( $a['depthHover'] ) ? (int) bst_block_num( $a, 'depthHover', 0, 0, 5 ) : 0;
+if ( $depth || $lift ) {
+	$classes[] = 'bs-pcard--depth bs-pcard--d' . $depth . ' bs-pcard--dh' . ( $lift ? $lift : $depth );
+}
+$radius = isset( $a['imageRadius'] ) && $a['imageRadius'] >= 0 ? bst_block_num( $a, 'imageRadius', 0, 0, 40 ) . 'px' : '';
+$vars   = trim( $vars . ( '' !== $vars && '' !== $radius ? ';' : '' ) . ( '' !== $radius ? '--bs-pc-radius:' . $radius : '' ), ';' );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ), 'style' => $vars ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

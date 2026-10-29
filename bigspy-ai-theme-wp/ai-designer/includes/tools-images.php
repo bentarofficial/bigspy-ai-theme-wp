@@ -202,8 +202,14 @@ function bst_aid_tool_imagegen( $a ) {
 			$res                     = bst_aid_http( 'POST', '/images/generations', $body, true, null, 60 );
 		}
 	}
+	// Busy or briefly unavailable service: wait a moment and try once more.
+	if ( empty( $res['ok'] ) && bst_aid_image_error_is_temporary( $res ) ) {
+		sleep( 5 );
+		$body['idempotency_key'] = substr( md5( $body['idempotency_key'] . 'retry' ), 0, 40 );
+		$res                     = bst_aid_http( 'POST', '/images/generations', $body, true, null, 60 );
+	}
 	if ( empty( $res['ok'] ) ) {
-		return array( 'error' => $res['error'] );
+		return bst_aid_image_failure( $res['error'], bst_aid_image_error_is_temporary( $res ) );
 	}
 	$job = (string) ( $res['data']['id'] ?? '' );
 	if ( '' === $job ) {
@@ -212,6 +218,23 @@ function bst_aid_tool_imagegen( $a ) {
 	// Keep the media details with the job, so image_status can finish it later.
 	set_transient( 'bst_aid_job_' . md5( $job ), array( 'args' => $a, 'model' => $model, 'purpose' => $purpose, 'estimate' => (float) ( $res['data']['estimated_cost'] ?? 0 ) ), DAY_IN_SECONDS );
 	return bst_aid_wait_image( $job, 35 );
+}
+
+/** Temporary provider trouble (rate limit, overload, 5xx, "temporarily unavailable"). */
+function bst_aid_image_error_is_temporary( $res ) {
+	$status = (int) ( $res['status'] ?? 0 );
+	return 429 === $status || $status >= 500 || 0 === $status || (bool) preg_match( '/temporar|unavailable|overload|timeout|tạm thời|gián đoạn/iu', (string) ( $res['error'] ?? '' ) );
+}
+
+/** A failed image is reported as failed, never as done; temporary failures can be retried. */
+function bst_aid_image_failure( $error, $temporary ) {
+	return array(
+		'error'     => $error,
+		'retryable' => (bool) $temporary,
+		'message'   => $temporary
+			? 'Image NOT created: the image service is temporarily unavailable. ' . $error . ' Tell the user plainly, do not count this image as made, and offer to try again in a few minutes.'
+			: 'Image NOT created. ' . $error . ' Tell the user plainly and do not count this image as made.',
+	);
 }
 
 function bst_aid_tool_image_status( $a ) {
@@ -236,7 +259,7 @@ function bst_aid_wait_image( $job, $seconds ) {
 				delete_transient( 'bst_aid_job_' . md5( $job ) );
 				$err = $r['data']['error'] ?? '';
 				$err = is_array( $err ) ? (string) ( $err['message'] ?? $err['code'] ?? '' ) : (string) $err;
-				return array( 'error' => 'The image could not be created (' . $status . '). ' . ( '' !== $err ? $err : 'Try a different description.' ) );
+				return bst_aid_image_failure( 'The image could not be created (' . $status . '). ' . ( '' !== $err ? $err : 'Try a different description.' ), 'expired' === $status );
 			}
 		}
 		sleep( 2 );

@@ -482,7 +482,8 @@
 			// WordPress renders at most 2000px of a pattern in its preview iframe; lift that cap
 			// and slide the iframe so the whole page scrolls by inside the fixed-height card.
 			var frame = function () {
-					var ifr = box.querySelector('iframe');
+				var ifr = box.querySelector('iframe');
+				var inner = box.querySelector('.block-editor-block-preview__content');
 				var m = inner && (inner.style.transform || '').match(/scale\(([\d.]+)\)/);
 				return ifr && inner ? { inner: inner, ifr: ifr, scale: m ? parseFloat(m[1]) : 1 } : null;
 			};

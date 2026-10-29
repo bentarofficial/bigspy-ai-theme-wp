@@ -124,7 +124,7 @@ function bst_aid_rest_task_read( WP_REST_Request $r ) {
 	if ( ! $p ) {
 		return new WP_Error( 'bst_aid_task', __( 'Task not found.', 'bigspy-ai-theme-wp' ), array( 'status' => 404 ) );
 	}
-	return rest_ensure_response( array( 'task' => bst_aid_task_summary( $p ), 'log' => bst_aid_task_get( $p->ID, '_bst_aid_log' ), 'effort' => (string) ( bst_aid_task_get( $p->ID, '_bst_aid_run' )['effort'] ?? 'medium' ) ) );
+	return rest_ensure_response( array( 'task' => bst_aid_task_summary( $p ), 'log' => bst_aid_task_get( $p->ID, '_bst_aid_log' ), 'effort' => (string) ( bst_aid_task_get( $p->ID, '_bst_aid_run' )['effort'] ?? '' ) ) );
 }
 
 /** Undo everything the task changed: settings, CSS, logo, menus, header, edited pages; trash what it created. */
@@ -349,10 +349,11 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		if ( isset( $result['approval'] ) ) { $awaiting = true; }
 		$links  = $result['links'] ?? array();
 		unset( $result['links'] );
+		$failed = isset( $result['error'] ) || in_array( (string) ( $result['status'] ?? '' ), array( 'blocked', 'failed', 'error', 'rejected' ), true );
 		$event = array(
-			'kind'  => isset( $result['approval'] ) ? 'approval' : ( isset( $result['error'] ) ? 'tool-error' : 'tool' ),
+			'kind'  => isset( $result['approval'] ) ? 'approval' : ( $failed ? 'tool-error' : 'tool' ),
 			'tool'  => $name,
-			'text'  => isset( $result['error'] ) ? (string) ( $result['message'] ?? $result['error'] ) : ( 'pending' === ( $result['status'] ?? '' ) ? (string) $result['message'] : '' ),
+			'text'  => $failed ? (string) ( $result['message'] ?? $result['error'] ?? $result['status'] ) : ( 'pending' === ( $result['status'] ?? '' ) ? (string) $result['message'] : '' ),
 			'links' => $links,
 		);
 		if ( isset( $result['approval'] ) ) { $event['approval'] = $result['approval']; }
@@ -368,6 +369,7 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		$msgs[] = array( 'role' => 'tool', 'tool_call_id' => (string) ( $call['id'] ?? '' ), 'content' => bst_aid_tool_content( $result ) );
 	}
 	bst_aid_task_set( $id, '_bst_aid_messages', $msgs );
+	wp_cache_delete( $id, 'post_meta' );
 	$now = bst_aid_task_get( $id, '_bst_aid_run' ); // Stop may have been pressed while this step ran.
 	if ( $awaiting ) { $now['active'] = false; }
 	$now['steps_left'] = (int) ( $now['steps_left'] ?? $run['steps_left'] ) - 1;

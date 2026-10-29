@@ -20,7 +20,7 @@ add_filter( 'wc_get_template_part', function ( $template, $slug, $name ) {
 }, 20, 3 );
 add_action( 'init', function () {
 	wp_register_script( 'bst-product-part-editor', BST_URI . '/assets/js/product-part-editor.js', array( 'bst-block-previews', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render' ), bst_asset_version( 'assets/js/product-part-editor.js' ), true );
-	register_block_type( 'bst/product-part', array( 'api_version' => 3, 'title' => 'Product Part', 'description' => __( 'One part of the single product page, such as the title, gallery, price, add to cart or tabs. Use it in the product layout page to design your own product page.', 'bigspy-ai-theme-wp' ), 'category' => 'bigspy', 'icon' => 'products', 'attributes' => array( 'part' => array( 'type' => 'string', 'default' => 'title' ), 'previewId' => array( 'type' => 'number', 'default' => 0 ) ), 'editor_script' => 'bst-product-part-editor', 'render_callback' => 'bst_product_part_render' ) );
+	register_block_type( 'bst/product-part', array( 'api_version' => 3, 'title' => __( 'Product Part', 'bigspy-ai-theme-wp' ), 'description' => __( 'One part of the single product page, such as the title, gallery, price, add to cart or tabs. Use it in the product layout page to design your own product page.', 'bigspy-ai-theme-wp' ), 'category' => 'bigspy', 'icon' => 'products', 'attributes' => array( 'part' => array( 'type' => 'string', 'default' => 'title' ), 'previewId' => array( 'type' => 'number', 'default' => 0 ) ), 'editor_script' => 'bst-product-part-editor', 'render_callback' => 'bst_product_part_render' ) );
 }, 21 );
 function bst_product_part_render( $a ) {
 	global $product, $post;

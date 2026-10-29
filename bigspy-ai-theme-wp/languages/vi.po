@@ -5145,8 +5145,8 @@ msgid "WooCommerce product categories with images, as a grid or slider. Choose w
 msgstr "Danh mục sản phẩm WooCommerce có ảnh, dạng lưới hoặc slider. Chọn danh mục, thứ tự, tỉ lệ ảnh, số sản phẩm và số cột theo thiết bị."
 
 msgctxt "block description"
-msgid "WooCommerce products as a grid or slider: latest, best selling, on sale, featured or chosen by category, tag or ID. Set columns per device, card style, colors and which details to show."
-msgstr "Sản phẩm WooCommerce dạng lưới hoặc slider: mới nhất, bán chạy, giảm giá, nổi bật hoặc chọn theo danh mục, thẻ, ID. Chỉnh số cột theo thiết bị, kiểu thẻ, màu và thông tin hiển thị."
+msgid "WooCommerce products as a grid, slider or compact list: latest, best selling, on sale, featured or chosen by category, tag or ID. Set columns per device, card style, image ratio and hover effect, shadow depth, text size, load more or infinite scroll, and where out-of-stock items go."
+msgstr "Sản phẩm WooCommerce dạng lưới, slider hoặc danh sách gọn: mới nhất, bán chạy, giảm giá, nổi bật hoặc chọn theo danh mục, thẻ, ID. Chỉnh số cột theo thiết bị, kiểu thẻ, tỉ lệ ảnh và hiệu ứng rê chuột, độ đổ bóng, cỡ chữ, nút tải thêm hoặc cuộn vô hạn, và vị trí sản phẩm hết hàng."
 
 msgctxt "block description"
 msgid "Skill or progress bars with label, percentage, color, height and stripes. Bars fill with an animation when scrolled into view."
@@ -5452,3 +5452,357 @@ msgstr "quay vòng liền mạch"
 
 msgid "sec"
 msgstr "giây"
+
+# Block titles (block.json uses the "block title" context).
+msgctxt "block title"
+msgid "Accordion Item"
+msgstr "Mục Accordion"
+
+msgctxt "block title"
+msgid "Accordion / FAQ"
+msgstr "Accordion / Câu hỏi thường gặp"
+
+msgctxt "block title"
+msgid "Message box"
+msgstr "Hộp thông báo"
+
+msgctxt "block title"
+msgid "Audio player"
+msgstr "Trình phát âm thanh"
+
+msgctxt "block title"
+msgid "Banner grid"
+msgstr "Lưới banner"
+
+msgctxt "block title"
+msgid "Banner"
+msgstr "Banner"
+
+msgctxt "block title"
+msgid "Before / after image"
+msgstr "Ảnh trước / sau"
+
+msgctxt "block title"
+msgid "Button"
+msgstr "Nút bấm"
+
+msgctxt "block title"
+msgid "Buttons"
+msgstr "Nhóm nút"
+
+msgctxt "block title"
+msgid "Code / HTML"
+msgstr "Code / HTML"
+
+msgctxt "block title"
+msgid "Column"
+msgstr "Cột"
+
+msgctxt "block title"
+msgid "Counter"
+msgstr "Bộ đếm số"
+
+msgctxt "block title"
+msgid "Divider"
+msgstr "Đường kẻ"
+
+msgctxt "block title"
+msgid "Expanding gallery"
+msgstr "Gallery mở rộng"
+
+msgctxt "block title"
+msgid "Gallery panel"
+msgstr "Ô gallery"
+
+msgctxt "block title"
+msgid "Flip box"
+msgstr "Thẻ lật"
+
+msgctxt "block title"
+msgid "Form"
+msgstr "Biểu mẫu"
+
+msgctxt "block title"
+msgid "Gallery"
+msgstr "Thư viện ảnh"
+
+msgctxt "block title"
+msgid "Heading"
+msgstr "Tiêu đề"
+
+msgctxt "block title"
+msgid "Image hotspots"
+msgstr "Ảnh có điểm chú thích"
+
+msgctxt "block title"
+msgid "Icon Box"
+msgstr "Hộp icon"
+
+msgctxt "block title"
+msgid "Icon list"
+msgstr "Danh sách icon"
+
+msgctxt "block title"
+msgid "Image box"
+msgstr "Hộp ảnh"
+
+msgctxt "block title"
+msgid "Image"
+msgstr "Ảnh"
+
+msgctxt "block title"
+msgid "Logo showcase"
+msgstr "Trưng bày logo"
+
+msgctxt "block title"
+msgid "Lottie animation"
+msgstr "Hoạt ảnh Lottie"
+
+msgctxt "block title"
+msgid "Google Map"
+msgstr "Bản đồ Google"
+
+msgctxt "block title"
+msgid "Scrolling text (marquee)"
+msgstr "Chữ chạy (marquee)"
+
+msgctxt "block title"
+msgid "Navigation menu"
+msgstr "Menu điều hướng"
+
+msgctxt "block title"
+msgid "Payment icons"
+msgstr "Biểu tượng thanh toán"
+
+msgctxt "block title"
+msgid "Popup"
+msgstr "Popup"
+
+msgctxt "block title"
+msgid "Blog Posts"
+msgstr "Bài viết blog"
+
+msgctxt "block title"
+msgid "Price table"
+msgstr "Bảng giá"
+
+msgctxt "block title"
+msgid "Pricing with monthly / yearly switch"
+msgstr "Bảng giá theo tháng / năm"
+
+msgctxt "block title"
+msgid "Product Categories"
+msgstr "Danh mục sản phẩm"
+
+msgctxt "block title"
+msgid "Products"
+msgstr "Sản phẩm"
+
+msgctxt "block title"
+msgid "Progress bars"
+msgstr "Thanh tiến độ"
+
+msgctxt "block title"
+msgid "Row"
+msgstr "Hàng (Row)"
+
+msgctxt "block title"
+msgid "Section"
+msgstr "Section"
+
+msgctxt "block title"
+msgid "Share buttons"
+msgstr "Nút chia sẻ"
+
+msgctxt "block title"
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgctxt "block title"
+msgid "Slider"
+msgstr "Slider"
+
+msgctxt "block title"
+msgid "Social follow"
+msgstr "Theo dõi mạng xã hội"
+
+msgctxt "block title"
+msgid "Spacer"
+msgstr "Khoảng trống"
+
+msgctxt "block title"
+msgid "Star rating"
+msgstr "Đánh giá sao"
+
+msgctxt "block title"
+msgid "Tab"
+msgstr "Tab"
+
+msgctxt "block title"
+msgid "Table"
+msgstr "Bảng dữ liệu"
+
+msgctxt "block title"
+msgid "Tabs"
+msgstr "Tabs"
+
+msgctxt "block title"
+msgid "Team member"
+msgstr "Thành viên"
+
+msgctxt "block title"
+msgid "Testimonial"
+msgstr "Lời chứng thực"
+
+msgctxt "block title"
+msgid "Text"
+msgstr "Văn bản"
+
+msgctxt "block title"
+msgid "Ticker slide"
+msgstr "Slide dải chạy"
+
+msgctxt "block title"
+msgid "Continuous ticker"
+msgstr "Dải chạy liên tục"
+
+msgctxt "block title"
+msgid "Timeline"
+msgstr "Dòng thời gian"
+
+msgctxt "block title"
+msgid "Section Title"
+msgstr "Tiêu đề phần"
+
+msgctxt "block title"
+msgid "Video popup"
+msgstr "Nút mở video"
+
+msgctxt "block title"
+msgid "Video"
+msgstr "Video"
+
+msgctxt "block title"
+msgid "Widget area (sidebar)"
+msgstr "Vùng widget (sidebar)"
+
+msgid "Countdown"
+msgstr "Đồng hồ đếm ngược"
+
+msgid "Product Part"
+msgstr "Phần trang sản phẩm"
+
+# Products blocks (1.75).
+msgid "Compact list (small image)"
+msgstr "Danh sách gọn (ảnh nhỏ)"
+
+msgid "As above (button or none)"
+msgstr "Như trên (nút hoặc không)"
+
+msgid "Infinite scroll"
+msgstr "Cuộn vô hạn"
+
+msgid "Infinite scroll loads more products automatically when the visitor reaches the end of the list."
+msgstr "Cuộn vô hạn tự tải thêm sản phẩm khi khách cuộn tới cuối danh sách."
+
+msgid "Out-of-stock products"
+msgstr "Sản phẩm hết hàng"
+
+msgid "Show in normal order"
+msgstr "Hiện theo thứ tự thường"
+
+msgid "Show at the end"
+msgstr "Đưa xuống cuối"
+
+msgid "Hide"
+msgstr "Ẩn"
+
+msgid "Text size"
+msgstr "Cỡ chữ"
+
+msgid "Shadow depth"
+msgstr "Độ đổ bóng"
+
+msgid "Shadow depth on hover"
+msgstr "Độ đổ bóng khi rê chuột"
+
+msgid "Equal card heights"
+msgstr "Thẻ cao bằng nhau"
+
+msgid "Buttons line up even when titles have different lengths."
+msgstr "Các nút thẳng hàng dù tên sản phẩm dài ngắn khác nhau."
+
+msgid "Product image"
+msgstr "Ảnh sản phẩm"
+
+msgid "Image ratio"
+msgstr "Tỉ lệ ảnh"
+
+msgid "Theme setting"
+msgstr "Theo cài đặt theme"
+
+msgid "Image corner radius (px, -1 = theme)"
+msgstr "Bo góc ảnh (px, -1 = theo theme)"
+
+msgid "Zoom"
+msgstr "Phóng to"
+
+msgid "Show second image"
+msgstr "Hiện ảnh thứ hai"
+
+msgid "Fade"
+msgstr "Mờ nhẹ"
+
+msgid "Products list"
+msgstr "Danh sách sản phẩm"
+
+msgid "Heading above the list"
+msgstr "Tiêu đề phía trên danh sách"
+
+msgctxt "block title"
+msgid "Products list"
+msgstr "Danh sách sản phẩm"
+
+msgctxt "block description"
+msgid "A compact list of WooCommerce products with a small image, name, rating and price, for sidebars, footers and narrow columns. Show latest, best selling, on sale, featured or top rated products, optionally from one category, with a heading above."
+msgstr "Danh sách sản phẩm WooCommerce dạng gọn có ảnh nhỏ, tên, đánh giá và giá, dùng cho sidebar, footer và cột hẹp. Hiện sản phẩm mới nhất, bán chạy, giảm giá, nổi bật hoặc đánh giá cao, có thể lọc theo một danh mục, kèm tiêu đề phía trên."
+
+# Cart & checkout extras (1.75).
+msgid "Free-shipping progress bar"
+msgstr "Thanh tiến độ miễn phí vận chuyển"
+
+msgid "Shows how much more the customer needs to spend for free shipping, on the cart, checkout and mini cart. Only a message: shipping costs still come from your WooCommerce shipping zones. Works on the classic cart and checkout pages ([woocommerce_cart], [woocommerce_checkout]) and the mini cart, not inside the Cart and Checkout blocks."
+msgstr "Hiện số tiền khách cần mua thêm để được miễn phí vận chuyển, ở giỏ hàng, trang thanh toán và giỏ hàng mini. Chỉ là thông báo: phí vận chuyển vẫn tính theo vùng giao hàng của WooCommerce. Áp dụng cho trang giỏ hàng và thanh toán dạng cổ điển ([woocommerce_cart], [woocommerce_checkout]) và giỏ hàng mini, không áp dụng bên trong khối Cart và Checkout."
+
+msgid "Free-shipping amount (0 = read from WooCommerce)"
+msgstr "Mức miễn phí vận chuyển (0 = lấy từ WooCommerce)"
+
+msgid "Leave 0 to use the minimum amount of the \"Free shipping\" method in the customer's shipping zone."
+msgstr "Để 0 để dùng số tiền tối thiểu của phương thức \"Miễn phí vận chuyển\" trong vùng giao hàng của khách."
+
+msgid "Coupon field on checkout"
+msgstr "Ô mã giảm giá ở trang thanh toán"
+
+msgid "Top of the page (WooCommerce default)"
+msgstr "Đầu trang (mặc định của WooCommerce)"
+
+msgid "Below the checkout form"
+msgstr "Bên dưới form thanh toán"
+
+msgid "Hide on checkout (coupons stay on the cart page)"
+msgstr "Ẩn ở trang thanh toán (mã giảm giá vẫn nhập ở giỏ hàng)"
+
+msgid "Note before the payment methods"
+msgstr "Ghi chú trước phần phương thức thanh toán"
+
+msgid "For example delivery times, return policy or a support phone number. Leave empty to show nothing."
+msgstr "Ví dụ thời gian giao hàng, chính sách đổi trả hoặc số điện thoại hỗ trợ. Để trống thì không hiện gì."
+
+msgid "Add %s more to get free shipping."
+msgstr "Mua thêm %s để được miễn phí vận chuyển."
+
+msgid "Your order qualifies for free shipping."
+msgstr "Đơn hàng của bạn được miễn phí vận chuyển."
+
+msgid "For the classic checkout page ([woocommerce_checkout])."
+msgstr "Áp dụng cho trang thanh toán dạng cổ điển ([woocommerce_checkout])."
