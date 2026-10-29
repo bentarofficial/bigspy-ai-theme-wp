@@ -3,7 +3,7 @@
  * Title: Partners with names
  * Slug: bigspy-ai-theme-wp/ticker-partners
  * Categories: bigspy-sections
- * Description: Continuous ticker with editable cards.
+ * Description: Infinity Flow strip with editable cards.
  */
 defined( 'ABSPATH' ) || exit;
 ?>

@@ -10,9 +10,9 @@ Build pages with Section > Row > Column. Sections handle background, padding,
 width and responsive spacing; columns contain any content blocks. Use Heading for
 real H1–H6, Text for copy, Buttons > Button for actions and Image for media.
 Banner combines background imagery and overlaid content; Slider advances between
-slides. Logo showcase supports a continuously scrolling strip of logos; use Ticker
-for richer moving cards containing any blocks (reviews, fleet, team, partners with
-names). Marquee is for running text. Expanding gallery presents 2–6 services,
+slides. Logo showcase supports a continuously scrolling strip of logos; use Infinity Flow
+(bigspy/ticker) for richer moving cards containing any blocks (reviews, fleet, team, partners with
+names). Marquee is for running text. Spotlight Panels (bigspy/expand-gallery) presents 2–6 services,
 categories or projects; active panels expand and mobile defaults to swipe with peek.
 Tabs > Tab groups related content; Accordion > Accordion item suits questions/FAQ.
 Price table and Pricing toggle show supplied prices. Never invent reviews or fares.

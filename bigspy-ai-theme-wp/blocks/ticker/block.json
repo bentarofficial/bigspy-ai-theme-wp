@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "bigspy/ticker",
-  "title": "Continuous ticker",
+  "title": "Infinity Flow",
   "description": "A seamless moving strip of slides that can hold any blocks: partners, reviews, products or a fleet. Runs left or right, once or in an endless loop with no visible jump, at a set speed.",
   "category": "bigspy",
   "icon": "slides",
@@ -64,5 +64,17 @@
   "editorScript": "bst-motion-editor",
   "render": "file:./render.php",
   "viewScript": "file:./view.js",
-  "editorStyle": "bst-motion-editor"
+  "editorStyle": "bst-motion-editor",
+  "keywords": [
+    "ticker",
+    "marquee",
+    "carousel",
+    "slider",
+    "loop",
+    "partners",
+    "logo",
+    "dải chạy",
+    "chạy liên tục",
+    "đối tác"
+  ]
 }

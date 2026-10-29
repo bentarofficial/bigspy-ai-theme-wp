@@ -26,6 +26,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Kiểm thử:** lint php-parser các tệp PHP sửa; `node --check` các JS sửa; `node tools/check-block-previews.js` OK (61 khối); `node tools/playground-check.cjs` (designer-integration) đạt toàn bộ sau khi bỏ một nhánh Dừng trùng với tầng quyền; Playground riêng có WooCommerce 10.x + dữ liệu mẫu: trang có khối Sản phẩm (hết hàng xuống cuối, tỉ lệ 3:4, đổ bóng, cỡ chữ L), dạng danh sách ẩn hàng hết, khối Danh sách sản phẩm; giỏ hàng cổ điển hiện "Mua thêm 50.000đ…", trang thanh toán hiện thanh tiến độ + ghi chú, form coupon nằm sau form thanh toán, không lồng; 4 trang không có Warning/Notice/Fatal. Chưa mở bảng tùy chọn mới của khối Sản phẩm trong editor bằng mắt (Playground WooCommerce không đăng nhập được do cookie dùng chung với instance khác); cuộn vô hạn chưa thử với đủ sản phẩm để có trang 2.
 - **Khi phát hành cần bổ sung:** Có gì mới (khối Danh sách sản phẩm, tùy chọn mới khối Sản phẩm, thanh miễn phí vận chuyển, vị trí coupon, ghi chú thanh toán, sửa lỗi AI Designer); kiến thức AI (`knowledge/theme.md`) về các tùy chọn và khối mới; README Features.
 
+### Đổi tên khối: Infinity Flow và Spotlight Panels (Claude, 29-10-2026)
+
+- **Yêu cầu:** owner chốt tên riêng, không trùng khối khác: Continuous ticker → **Infinity Flow**, Expanding gallery → **Spotlight Panels** (khối con: Infinity Flow slide, Spotlight panel). Chỉ đổi tên hiển thị; mã khối `bigspy/ticker`, `bigspy/expand-gallery` giữ nguyên nên nội dung cũ không ảnh hưởng.
+- **Đã thay đổi:** title + keywords tìm kiếm (Anh/Việt) trong block.json, mô tả khối con và Testimonial, bảng tùy chọn editor, aria-label mặc định, trang Giới thiệu (mục Chuyển động), kiến thức AI `knowledge/theme.md`, tiêu đề/mô tả pattern, bản dịch vi.
+- **Kiểm thử:** `check-block-previews` OK; lint PHP; `vi.mo` trả đúng tên mới; `playground-check.cjs --welcome` (designer + welcome) đạt.
+- **Khi phát hành cần bổ sung:** README dòng mô tả 2 khối (mục 1.73) đổi sang tên mới; Có gì mới nhắc tên mới. Mục lịch sử "1.73.0: …continuous ticker and expanding gallery" trong Có gì mới giữ nguyên vì là ghi chép lịch sử.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

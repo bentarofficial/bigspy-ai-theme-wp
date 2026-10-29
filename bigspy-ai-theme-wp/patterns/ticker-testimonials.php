@@ -3,7 +3,7 @@
  * Title: Customer reviews ticker
  * Slug: bigspy-ai-theme-wp/ticker-testimonials
  * Categories: bigspy-sections
- * Description: Continuous ticker with editable cards.
+ * Description: Infinity Flow strip with editable cards.
  */
 defined( 'ABSPATH' ) || exit;
 ?>

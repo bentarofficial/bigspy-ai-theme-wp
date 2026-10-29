@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Projects expanding gallery
+ * Title: Projects – Spotlight Panels
  * Slug: bigspy-ai-theme-wp/expand-projects
  * Categories: bigspy-sections
  * Description: Editable expanding panels with mobile swipe.

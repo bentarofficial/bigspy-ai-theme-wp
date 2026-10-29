@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "bigspy/expand-gallery",
-  "title": "Expanding gallery",
+  "title": "Spotlight Panels",
   "description": "Two to six panels side by side. The panel under the mouse, finger or keyboard focus expands while the others shrink. On phones the panels become a swipeable strip. Great for shop areas, services and projects.",
   "category": "bigspy",
   "icon": "slides",
@@ -76,5 +76,16 @@
   "editorScript": "bst-motion-editor",
   "render": "file:./render.php",
   "viewScript": "file:./view.js",
-  "editorStyle": "bst-motion-editor"
+  "editorStyle": "bst-motion-editor",
+  "keywords": [
+    "gallery",
+    "expand",
+    "accordion",
+    "panels",
+    "hover",
+    "showcase",
+    "mở rộng",
+    "gian hàng",
+    "thư viện ảnh"
+  ]
 }

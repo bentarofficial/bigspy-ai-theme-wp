@@ -1,4 +1,4 @@
-/* Native InnerBlocks editors for continuous ticker and expanding gallery. */
+/* Native InnerBlocks editors for Infinity Flow (ticker) and Spotlight Panels (expanding gallery). */
 (function (wp) {
 	'use strict';
 	var el = wp.element.createElement, Fragment = wp.element.Fragment, be = wp.blockEditor, c = wp.components, __ = wp.i18n.__, T = 'bigspy-ai-theme-wp';
@@ -50,7 +50,7 @@
 			inspector.push(control(props, 'gap', __('Gap', T), 'range', [0, ticker ? 160 : 80]));
 			var wrapper = be.useBlockProps({ className: 'bst-motion-editor bst-motion-editor--' + kind, style: { '--bst-motion-gap': a.gap + 'px' } });
 			return el(Fragment, null,
-				el(be.InspectorControls, null, el(c.PanelBody, { title: ticker ? __('Continuous ticker', T) : __('Expanding gallery', T) }, inspector)),
+				el(be.InspectorControls, null, el(c.PanelBody, { title: ticker ? __('Infinity Flow', T) : __('Spotlight Panels', T) }, inspector)),
 				el('div', wrapper,
 					!ticker && blocks.length >= 5 ? el(c.Notice, { status: 'info', isDismissible: false }, __('Use clear backgrounds and short titles for easier reading on phones.', T)) : null,
 					el(be.InnerBlocks, { allowedBlocks: [child], template: Array.from({ length: 3 }, function () { return [child]; }), orientation: 'horizontal', renderAppender: ticker || blocks.length < 6 ? be.InnerBlocks.ButtonBlockAppender : false }),
@@ -78,7 +78,7 @@
 	wp.blocks.registerBlockType('bigspy/ticker-slide', { edit: function () { return el('div', be.useBlockProps({ className: 'bst-motion-slide' }), el(be.InnerBlocks)); }, save: save });
 	wp.blocks.registerBlockType('bigspy/expand-panel', { edit: function (props) {
 		var a = props.attributes;
-		return el(Fragment, null, el(be.InspectorControls, null, el(c.PanelBody, { title: __('Gallery panel', T) },
+		return el(Fragment, null, el(be.InspectorControls, null, el(c.PanelBody, { title: __('Spotlight panel', T) },
 			control(props, 'title', __('Panel title', T)),
 			el(be.MediaUploadCheck, null, el(be.MediaUpload, { allowedTypes: ['image'], value: a.backgroundId, onSelect: function (image) { props.setAttributes({ backgroundId: image.id, backgroundUrl: image.url }); }, render: function (p) { return el(c.Button, { variant: 'secondary', onClick: p.open }, __('Choose background image', T)); } })),
 			a.backgroundUrl ? el(c.FocalPointPicker, { url: a.backgroundUrl, value: a.focalPoint, onChange: function (v) { props.setAttributes({ focalPoint: v }); } }) : null,

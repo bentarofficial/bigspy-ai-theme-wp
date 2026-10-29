@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Services expanding gallery
+ * Title: Services – Spotlight Panels
  * Slug: bigspy-ai-theme-wp/expand-services
  * Categories: bigspy-sections
  * Description: Editable expanding panels with mobile swipe.

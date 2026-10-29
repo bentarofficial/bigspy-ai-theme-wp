@@ -5,7 +5,7 @@
 	"title": "Testimonial",
 	"category": "bigspy",
 	"icon": "format-quote",
-	"description": "Customer review with photo, name, role or company, star rating and quote. Put several in a Slider or Continuous ticker to show more reviews.",
+	"description": "Customer review with photo, name, role or company, star rating and quote. Put several in a Slider or Infinity Flow to show more reviews.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"imageUrl": {

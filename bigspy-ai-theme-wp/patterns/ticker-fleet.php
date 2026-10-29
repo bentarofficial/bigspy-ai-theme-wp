@@ -3,7 +3,7 @@
  * Title: Fleet ticker
  * Slug: bigspy-ai-theme-wp/ticker-fleet
  * Categories: bigspy-sections
- * Description: Continuous ticker with editable cards.
+ * Description: Infinity Flow strip with editable cards.
  */
 defined( 'ABSPATH' ) || exit;
 ?>

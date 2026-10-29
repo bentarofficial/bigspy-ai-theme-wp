@@ -1,5 +1,5 @@
 <?php
-/** Continuous ticker wrapper; motion and clones are progressive enhancements. */
+/** Infinity Flow (ticker) wrapper; motion and clones are progressive enhancements. */
 defined( 'ABSPATH' ) || exit;
 $a = $attributes;
 $width = function ( $key, $default ) use ( $a ) {
@@ -10,7 +10,7 @@ $config = array( 'direction' => bst_choice( $a['direction'] ?? 'left', array( 'l
 $style = '--bs-ticker-gap:' . bst_block_num( $a, 'gap', 24, 0, 160 ) . 'px;--bs-ticker-align:' . bst_choice( $a['verticalAlign'] ?? 'center', array( 'start', 'center', 'end' ), 'center' );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-ticker-block', 'style' => $style ) ); ?>>
-<div class="bs-ticker<?php echo ! empty( $a['fadeEdges'] ) ? ' bs-ticker--fade' : ''; ?>" data-bs-ticker="<?php echo esc_attr( wp_json_encode( $config ) ); ?>" role="region" aria-label="<?php echo esc_attr( $a['label'] ?: __( 'Continuous ticker', 'bigspy-ai-theme-wp' ) ); ?>" tabindex="0">
+<div class="bs-ticker<?php echo ! empty( $a['fadeEdges'] ) ? ' bs-ticker--fade' : ''; ?>" data-bs-ticker="<?php echo esc_attr( wp_json_encode( $config ) ); ?>" role="region" aria-label="<?php echo esc_attr( $a['label'] ?: __( 'Infinity Flow', 'bigspy-ai-theme-wp' ) ); ?>" tabindex="0">
 <div class="bs-ticker__track"><div class="bs-ticker__sequence"><?php echo $content; // Rendered child blocks. ?></div></div>
 </div>
 </div>

@@ -3851,17 +3851,17 @@ msgstr "Mạnh nhất – chi phí cao"
 msgid "Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough."
 msgstr "Chỉ liệt kê model gọi được công cụ. Giá tính theo một triệu token vào / ra. Hãy bắt đầu với model khuyên dùng; nếu kết quả chưa đủ tốt thì chuyển sang model mạnh nhất."
 
-msgid "Continuous ticker"
-msgstr "Dải chạy liên tục"
+msgid "Infinity Flow"
+msgstr "Infinity Flow"
 
 msgid "Ticker slide"
 msgstr "Slide dải chạy"
 
-msgid "Expanding gallery"
-msgstr "Gallery mở rộng"
+msgid "Spotlight Panels"
+msgstr "Spotlight Panels"
 
-msgid "Gallery panel"
-msgstr "Ô gallery"
+msgid "Spotlight panel"
+msgstr "Ô Spotlight"
 
 msgid "A seamless moving strip of slides containing any blocks."
 msgstr "Dải slide chạy liền mạch, mỗi slide chứa mọi loại khối."
@@ -4082,11 +4082,11 @@ msgstr "Dải đội xe"
 msgid "Shops and categories"
 msgstr "Gian hàng và danh mục"
 
-msgid "Services expanding gallery"
-msgstr "Gallery dịch vụ mở rộng"
+msgid "Services – Spotlight Panels"
+msgstr "Dịch vụ – Spotlight Panels"
 
-msgid "Projects expanding gallery"
-msgstr "Gallery dự án mở rộng"
+msgid "Projects – Spotlight Panels"
+msgstr "Dự án – Spotlight Panels"
 
 msgid "Invalid BIGSPY update package."
 msgstr "Gói cập nhật BIGSPY không hợp lệ."
@@ -4226,20 +4226,20 @@ msgstr "Kiểm tra tương phản chữ và vùng cắt trên mobile."
 msgid "Avoid large original photos for small cards. Background images are decorative; meaningful images need an accessible text alternative."
 msgstr "Tránh ảnh gốc quá lớn cho thẻ nhỏ. Ảnh nền mang tính trang trí; ảnh có ý nghĩa cần văn bản thay thế."
 
-msgid "Motion: ticker and expanding gallery"
-msgstr "Chuyển động: ticker và gallery mở rộng"
+msgid "Motion: Infinity Flow and Spotlight Panels"
+msgstr "Chuyển động: Infinity Flow và Spotlight Panels"
 
-msgid "Continuous ticker and interactive image panels."
-msgstr "Dải chạy liên tục và các panel ảnh tương tác."
+msgid "A seamless moving strip of any blocks, and image panels that expand on hover or touch."
+msgstr "Dải chạy liền mạch chứa mọi khối, và các ô ảnh nở rộng khi rê chuột hoặc chạm."
 
-msgid "Ticker accepts editable blocks inside slides and uses a constant pixels-per-second speed. Expanding gallery supports 2–6 panels, keyboard focus and mobile layouts."
-msgstr "Ticker nhận các block sửa được trong slide và chạy với tốc độ pixel/giây ổn định. Gallery mở rộng hỗ trợ 2–6 panel, bàn phím và bố cục mobile."
+msgid "Infinity Flow accepts editable blocks inside slides and uses a constant pixels-per-second speed. Spotlight Panels supports 2–6 panels, keyboard focus and mobile layouts."
+msgstr "Infinity Flow nhận các khối sửa được trong slide và chạy với tốc độ pixel/giây ổn định. Spotlight Panels hỗ trợ 2–6 ô, bàn phím và bố cục điện thoại."
 
-msgid "Use ticker for partners, reviews or fleets; use gallery for services, projects and categories."
-msgstr "Dùng ticker cho đối tác, đánh giá hoặc đội xe; dùng gallery cho dịch vụ, dự án và danh mục."
+msgid "Use Infinity Flow for partners, reviews or fleets; use Spotlight Panels for services, projects and categories."
+msgstr "Dùng Infinity Flow cho đối tác, đánh giá, đội xe; dùng Spotlight Panels cho dịch vụ, dự án, danh mục."
 
-msgid "Insert Continuous ticker or Expanding gallery."
-msgstr "Chèn Continuous ticker hoặc Expanding gallery."
+msgid "Insert Infinity Flow or Spotlight Panels."
+msgstr "Chèn khối Infinity Flow hoặc Spotlight Panels."
 
 msgid "Edit each slide/panel; set direction, speed or expansion and mobile behavior."
 msgstr "Sửa từng slide/panel; đặt hướng, tốc độ hoặc độ mở và kiểu mobile."
@@ -4247,8 +4247,8 @@ msgstr "Sửa từng slide/panel; đặt hướng, tốc độ hoặc độ mở
 msgid "Preview with a keyboard, touch device and reduced-motion setting."
 msgstr "Xem trước bằng bàn phím, cảm ứng và chế độ giảm chuyển động."
 
-msgid "The editor keeps ticker content stationary. Use preview for motion. Avoid hiding essential content behind hover-only interaction."
-msgstr "Ticker giữ nội dung đứng yên trong trình soạn thảo. Dùng xem trước để kiểm tra chuyển động. Tránh giấu nội dung thiết yếu sau thao tác chỉ dùng hover."
+msgid "The editor keeps Infinity Flow content stationary. Use preview for motion. Avoid hiding essential content behind hover-only interaction."
+msgstr "Infinity Flow giữ nội dung đứng yên trong trình soạn thảo. Dùng xem trước để kiểm tra chuyển động. Tránh giấu nội dung thiết yếu sau thao tác chỉ dùng hover."
 
 msgid "Product blocks and WooCommerce"
 msgstr "Khối sản phẩm và WooCommerce"
@@ -5061,8 +5061,8 @@ msgid "Two to six panels side by side. The panel under the mouse, finger or keyb
 msgstr "Từ 2 đến 6 ô xếp ngang. Ô được rê chuột, chạm hoặc chọn bằng bàn phím sẽ nở rộng, các ô còn lại thu nhỏ. Trên điện thoại các ô thành dải vuốt ngang. Hợp cho gian hàng, dịch vụ, dự án."
 
 msgctxt "block description"
-msgid "One panel of an Expanding gallery: a title, background image with focal point, overlay color and any blocks inside. Extra content appears when the panel expands."
-msgstr "Một ô của Gallery mở rộng: tiêu đề, ảnh nền có điểm lấy nét, lớp phủ màu và mọi khối bên trong. Nội dung phụ hiện ra khi ô nở rộng."
+msgid "One panel of Spotlight Panels: a title, background image with focal point, overlay color and any blocks inside. Extra content appears when the panel expands."
+msgstr "Một ô của Spotlight Panels: tiêu đề, ảnh nền có điểm lấy nét, lớp phủ màu và mọi khối bên trong. Nội dung phụ hiện ra khi ô nở rộng."
 
 msgctxt "block description"
 msgid "A card that flips on hover or tap: the front shows an icon or image and title, the back shows more text and a button. Good for services and features."
@@ -5201,16 +5201,16 @@ msgid "Team member card with photo, name, role, short bio and social links. Card
 msgstr "Thẻ thành viên có ảnh, tên, chức vụ, giới thiệu ngắn và liên kết mạng xã hội. Kiểu thẻ, chữ đè ảnh hoặc ảnh tròn."
 
 msgctxt "block description"
-msgid "Customer review with photo, name, role or company, star rating and quote. Put several in a Slider or Continuous ticker to show more reviews."
-msgstr "Lời đánh giá của khách hàng có ảnh, tên, chức vụ hoặc công ty, số sao và trích dẫn. Đặt nhiều đánh giá trong Slider hoặc Dải chạy liên tục để hiện thêm."
+msgid "Customer review with photo, name, role or company, star rating and quote. Put several in a Slider or Infinity Flow to show more reviews."
+msgstr "Lời đánh giá của khách hàng có ảnh, tên, chức vụ hoặc công ty, số sao và trích dẫn. Đặt nhiều đánh giá trong Slider hoặc Infinity Flow để hiện thêm."
 
 msgctxt "block description"
 msgid "Rich text: paragraphs, H1–H6, lists, quotes and links, with Visual and Code editing. Use it for body content; set size, color and line height per device."
 msgstr "Văn bản định dạng: đoạn văn, H1–H6, danh sách, trích dẫn và liên kết, sửa được ở chế độ Trực quan và Code. Dùng cho nội dung chính; chỉnh cỡ chữ, màu, giãn dòng theo thiết bị."
 
 msgctxt "block description"
-msgid "One slide of a Continuous ticker. Holds any blocks, such as an image, heading, text or button. Width can follow the content or be fixed per device."
-msgstr "Một slide của Dải chạy liên tục. Chứa được mọi khối như ảnh, tiêu đề, đoạn văn, nút. Độ rộng theo nội dung hoặc cố định theo thiết bị."
+msgid "One slide of an Infinity Flow strip. Holds any blocks, such as an image, heading, text or button. Width can follow the content or be fixed per device."
+msgstr "Một slide của dải Infinity Flow. Chứa được mọi khối như ảnh, tiêu đề, đoạn văn, nút. Độ rộng theo nội dung hoặc cố định theo thiết bị."
 
 msgctxt "block description"
 msgid "A seamless moving strip of slides that can hold any blocks: partners, reviews, products or a fleet. Runs left or right, once or in an endless loop with no visible jump, at a set speed."
@@ -5507,12 +5507,12 @@ msgid "Divider"
 msgstr "Đường kẻ"
 
 msgctxt "block title"
-msgid "Expanding gallery"
-msgstr "Gallery mở rộng"
+msgid "Spotlight Panels"
+msgstr "Spotlight Panels"
 
 msgctxt "block title"
-msgid "Gallery panel"
-msgstr "Ô gallery"
+msgid "Spotlight panel"
+msgstr "Ô Spotlight"
 
 msgctxt "block title"
 msgid "Flip box"
@@ -5659,12 +5659,12 @@ msgid "Text"
 msgstr "Văn bản"
 
 msgctxt "block title"
-msgid "Ticker slide"
-msgstr "Slide dải chạy"
+msgid "Infinity Flow slide"
+msgstr "Slide Infinity Flow"
 
 msgctxt "block title"
-msgid "Continuous ticker"
-msgstr "Dải chạy liên tục"
+msgid "Infinity Flow"
+msgstr "Infinity Flow"
 
 msgctxt "block title"
 msgid "Timeline"
