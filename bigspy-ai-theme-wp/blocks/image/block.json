@@ -5,7 +5,7 @@
 	"title": "Image",
 	"category": "bigspy",
 	"icon": "format-image",
-	"description": "Image with width, ratio, corner radius, shadow, hover effect, caption and link.",
+	"description": "Image with width, aspect ratio, corner radius, shadow, hover effect, caption, lightbox and link. Alt text comes from the Media Library when left empty.",
 	"keywords": [
 		"photo",
 		"picture",

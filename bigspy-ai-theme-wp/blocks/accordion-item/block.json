@@ -5,7 +5,7 @@
 	"title": "Accordion Item",
 	"category": "bigspy",
 	"icon": "arrow-down-alt2",
-	"description": "One collapsible item.",
+	"description": "One collapsible item of an Accordion / FAQ: a clickable question or title and an answer area that holds any blocks. Set whether it starts open.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"parent": [
 		"bst/accordion"

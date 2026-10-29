@@ -5,7 +5,7 @@
 	"title": "Before / after image",
 	"category": "bigspy",
 	"icon": "image-flip-horizontal",
-	"description": "Compare two images with a draggable divider.",
+	"description": "Compare two images with a draggable divider: before and after renovation, retouching, cleaning or treatment results. Set the starting position, labels and direction.",
 	"keywords": [
 		"before",
 		"after",

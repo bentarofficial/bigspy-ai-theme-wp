@@ -1,4 +1,4 @@
-"""Compile languages/<locale>.po into .mo and .l10n.php (simple PO: no context, no plurals).
+"""Compile languages/<locale>.po into .mo and .l10n.php (simple PO: msgctxt supported, no plurals).
 
 vi.po is the source of the Vietnamese translation; edit it, then run:
     python tools/compile-po.py vi
@@ -22,10 +22,16 @@ def parse(path):
 		line = raw.strip()
 		if not line or line.startswith('#'):
 			continue
-		if line.startswith('msgid '):
+		if line.startswith('msgctxt '):
 			if 'msgstr' in cur:
 				entries.append((cur['msgid'], cur['msgstr']))
-			cur, key = {'msgid': unq(line[6:])}, 'msgid'
+			cur, key = {'ctx': unq(line[8:])}, 'ctx'
+		elif line.startswith('msgid '):
+			if 'msgstr' in cur:
+				entries.append((cur['msgid'], cur['msgstr']))
+				cur = {}
+			# A context is stored the gettext way: context, EOT, msgid.
+			cur, key = {'msgid': (cur['ctx'] + '\x04' if 'ctx' in cur else '') + unq(line[6:])}, 'msgid'
 		elif line.startswith('msgstr '):
 			cur['msgstr'], key = unq(line[7:]), 'msgstr'
 		elif line.startswith('"') and key:
@@ -65,7 +71,8 @@ def main(loc):
 	open(os.path.join(LANG, loc + '.mo'), 'wb').write(mo)
 	lines = ['<?php', 'return array(', "\t'domain' => 'bigspy-ai-theme-wp',", "\t'plural-forms' => %s," % phpq(plural), "\t'language' => %s," % phpq(loc), "\t'messages' => array("]
 	for k in sorted(tr):
-		lines.append('\t\t%s => %s,' % (phpq(k), phpq(tr[k])))
+		key = ' . "\\4" . '.join(phpq(part) for part in k.split('\x04'))
+		lines.append('\t\t%s => %s,' % (key, phpq(tr[k])))
 	lines += ['\t),', ');', '']
 	open(os.path.join(LANG, loc + '.l10n.php'), 'w', encoding='utf-8', newline='\n').write('\n'.join(lines))
 	print('%s: %d strings' % (loc, len(tr)))

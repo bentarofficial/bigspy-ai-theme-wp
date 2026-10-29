@@ -5,7 +5,7 @@
 	"title": "Lottie animation",
 	"category": "bigspy",
 	"icon": "controls-play",
-	"description": "A lightweight vector animation from a Lottie JSON file.",
+	"description": "A lightweight vector animation from a Lottie JSON file. Choose loop, autoplay or play on hover or scroll, size and speed.",
 	"keywords": [
 		"lottie",
 		"animation",

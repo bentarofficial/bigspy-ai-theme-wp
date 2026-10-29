@@ -5,7 +5,7 @@
 	"title": "Heading",
 	"category": "bigspy",
 	"icon": "heading",
-	"description": "H1–H6 heading with size, weight, color, alignment and optional link.",
+	"description": "Heading from H1 to H6 with size per device, weight, color, line height, maximum width, alignment and optional link. Use one H1 per page for SEO.",
 	"keywords": [
 		"title",
 		"h1",

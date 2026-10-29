@@ -5,7 +5,7 @@
 	"title": "Pricing with monthly / yearly switch",
 	"category": "bigspy",
 	"icon": "money-alt",
-	"description": "Price cards with a switch between two billing periods.",
+	"description": "Price cards with a switch between two billing periods, such as monthly and yearly, with an optional saving label. Prices change instantly without reloading.",
 	"keywords": [
 		"pricing",
 		"toggle",

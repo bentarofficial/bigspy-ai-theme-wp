@@ -5,7 +5,7 @@
 	"title": "Products",
 	"category": "bigspy",
 	"icon": "products",
-	"description": "WooCommerce products as grid or slider.",
+	"description": "WooCommerce products as a grid or slider: latest, best selling, on sale, featured or chosen by category, tag or ID. Set columns per device, card style, colors and which details to show.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"count": {

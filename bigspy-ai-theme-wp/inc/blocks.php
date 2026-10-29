@@ -46,7 +46,7 @@ function bst_register_blocks() {
 		true
 	);
 	wp_register_style( 'bst-motion-editor', BST_URI . '/assets/css/blocks-motion-editor.css', array(), bst_asset_version( 'assets/css/blocks-motion-editor.css' ) );
-	wp_register_script( 'bst-motion-editor', BST_URI . '/assets/js/blocks-motion.js', array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-api-fetch' ), bst_asset_version( 'assets/js/blocks-motion.js' ), true );
+	wp_register_script( 'bst-motion-editor', BST_URI . '/assets/js/blocks-motion.js', array( 'bst-block-previews', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-api-fetch' ), bst_asset_version( 'assets/js/blocks-motion.js' ), true );
 	$areas = array();
 	foreach ( (array) ( $GLOBALS['wp_registered_sidebars'] ?? array() ) as $sidebar ) {
 		$areas[] = array( 'id' => $sidebar['id'], 'name' => $sidebar['name'] );
@@ -104,6 +104,20 @@ function bst_global_block_attributes( $args ) {
 	return $args;
 }
 add_filter( 'register_block_type_args', 'bst_global_block_attributes' );
+
+/** Inserter-only flag (see block-previews.js), declared so server-side renders accept it. */
+add_filter(
+	'register_block_type_args',
+	function ( $args, $name ) {
+		if ( preg_match( '#^(bst|bigspy)/#', (string) $name ) ) {
+			$args['attributes'] = isset( $args['attributes'] ) && is_array( $args['attributes'] ) ? $args['attributes'] : array();
+			$args['attributes'] += array( 'bstPreview' => array( 'type' => 'boolean', 'default' => false ) );
+		}
+		return $args;
+	},
+	10,
+	2
+);
 
 function bst_block_animations() {
 	return array( 'fade-in', 'fade-up', 'fade-down', 'fade-left', 'fade-right', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'zoom-in', 'zoom-out', 'zoom-in-up', 'zoom-in-down', 'bounce-in', 'bounce-up', 'bounce-down', 'bounce-left', 'bounce-right', 'flip-up', 'flip-x', 'flip-y', 'rotate-in', 'roll-in', 'swing-in', 'reveal-up', 'reveal-left', 'reveal-right', 'reveal-center', 'blur-in', 'skew-in', 'light-speed', 'pop' );

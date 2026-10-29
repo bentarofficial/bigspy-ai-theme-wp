@@ -5,7 +5,7 @@
 	"title": "Banner",
 	"category": "bigspy",
 	"icon": "cover-image",
-	"description": "Image banner with overlay, positioned content and optional link.",
+	"description": "Image banner with overlay color or gradient, text placed anywhere (nine positions), height per device and an optional link on the whole banner. Add headings, text and buttons inside. Use it for hero sections and promotions.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"imageUrl": {

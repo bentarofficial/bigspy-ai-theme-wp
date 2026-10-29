@@ -5,7 +5,7 @@
 	"title": "Form",
 	"category": "bigspy",
 	"icon": "feedback",
-	"description": "Show a Contact Form 7 or WPForms form with a title, styled fields, colored button and card layout.",
+	"description": "Show a built-in, Contact Form 7 or WPForms form with a title, styled fields, colored button and card layout. Use it for contact, quote and booking requests.",
 	"keywords": [
 		"contact form 7",
 		"cf7",

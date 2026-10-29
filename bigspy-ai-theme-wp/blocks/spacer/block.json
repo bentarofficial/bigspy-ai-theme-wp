@@ -5,7 +5,7 @@
 	"title": "Spacer",
 	"category": "bigspy",
 	"icon": "image-flip-vertical",
-	"description": "Empty vertical space with a height per device.",
+	"description": "Empty vertical space with a height per device. Use it to fine-tune the distance between blocks.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"heightDesktop": {

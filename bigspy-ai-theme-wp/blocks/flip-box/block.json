@@ -5,7 +5,7 @@
 	"title": "Flip box",
 	"category": "bigspy",
 	"icon": "image-rotate",
-	"description": "A card that flips on hover to show more text and a button on the back.",
+	"description": "A card that flips on hover or tap: the front shows an icon or image and title, the back shows more text and a button. Good for services and features.",
 	"keywords": [
 		"flip",
 		"card",

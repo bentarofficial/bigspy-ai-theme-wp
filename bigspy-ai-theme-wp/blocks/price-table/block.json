@@ -5,7 +5,7 @@
 	"title": "Price table",
 	"category": "bigspy",
 	"icon": "money-alt",
-	"description": "Pricing plan: title, price, period, feature list with check / cross, button and a highlighted \"popular\" badge.",
+	"description": "Pricing plan with title, price, period, a feature list with checks and crosses, a button and a highlighted \"popular\" badge. Place several in a Row to compare plans.",
 	"keywords": [
 		"pricing",
 		"plan",

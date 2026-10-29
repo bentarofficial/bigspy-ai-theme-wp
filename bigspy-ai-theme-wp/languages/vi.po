@@ -5002,3 +5002,453 @@ msgstr "Cập nhật theme"
 
 msgid "Open WordPress updates"
 msgstr "Mở cập nhật WordPress"
+
+# Block descriptions (block.json uses the "block description" context).
+msgctxt "block description"
+msgid "One collapsible item of an Accordion / FAQ: a clickable question or title and an answer area that holds any blocks. Set whether it starts open."
+msgstr "Một mục thu gọn của khối Accordion / FAQ: câu hỏi hoặc tiêu đề bấm được và phần trả lời chứa được mọi khối. Chọn được mục mở sẵn."
+
+msgctxt "block description"
+msgid "Collapsible questions and answers for FAQs, policies and specifications. Open one or several items at a time, choose the icon and style, and optionally add FAQPage schema for Google."
+msgstr "Câu hỏi và câu trả lời thu gọn cho FAQ, chính sách, thông số. Cho mở một hoặc nhiều mục cùng lúc, chọn icon và kiểu hiển thị, có thể thêm schema FAQPage cho Google."
+
+msgctxt "block description"
+msgid "Highlighted notice for info, success, warning or error messages, or your own colors. Add an icon, title and text, and an optional close button. Good for promotions, shipping notes and important reminders."
+msgstr "Hộp thông báo nổi bật cho thông tin, thành công, cảnh báo, lỗi hoặc màu tự chọn. Có icon, tiêu đề, nội dung và nút đóng tùy chọn. Hợp cho khuyến mãi, ghi chú giao hàng, lời nhắc quan trọng."
+
+msgctxt "block description"
+msgid "Audio player for a song, podcast episode or voice message, with cover image, title and artist. Uses the browser player, so it stays light and works on phones."
+msgstr "Trình phát âm thanh cho bài hát, podcast hoặc lời nhắn, có ảnh bìa, tiêu đề và nghệ sĩ. Dùng trình phát của trình duyệt nên nhẹ và chạy tốt trên điện thoại."
+
+msgctxt "block description"
+msgid "Several image banners in a magazine-style grid, such as one large and several small tiles. Each tile has its own image, text, overlay and link. Great for categories, collections and promotions."
+msgstr "Nhiều banner ảnh xếp dạng lưới kiểu tạp chí, ví dụ một ô lớn và vài ô nhỏ. Mỗi ô có ảnh, chữ, lớp phủ và liên kết riêng. Hợp cho danh mục, bộ sưu tập, khuyến mãi."
+
+msgctxt "block description"
+msgid "Image banner with overlay color or gradient, text placed anywhere (nine positions), height per device and an optional link on the whole banner. Add headings, text and buttons inside. Use it for hero sections and promotions."
+msgstr "Banner ảnh có lớp phủ màu hoặc gradient, đặt chữ ở 9 vị trí, chiều cao riêng theo thiết bị và liên kết cho cả banner. Chèn tiêu đề, đoạn văn, nút bên trong. Dùng cho phần đầu trang và khuyến mãi."
+
+msgctxt "block description"
+msgid "Compare two images with a draggable divider: before and after renovation, retouching, cleaning or treatment results. Set the starting position, labels and direction."
+msgstr "So sánh hai ảnh bằng thanh kéo: trước và sau khi sửa chữa, chỉnh ảnh, vệ sinh, điều trị. Chọn vị trí bắt đầu, nhãn và hướng kéo."
+
+msgctxt "block description"
+msgid "A single button with style (filled, outline, soft, link), size, icon, colors, corner radius and link. Can open in a new tab, call a phone number or open a popup."
+msgstr "Một nút bấm có kiểu (đặc, viền, nhạt, dạng link), cỡ, icon, màu, bo góc và liên kết. Có thể mở tab mới, gọi điện hoặc mở popup."
+
+msgctxt "block description"
+msgid "A row of buttons with alignment, spacing and wrapping. Add a Button block for each call to action, such as \"Call now\" and \"Get a quote\" side by side."
+msgstr "Một hàng nhiều nút với căn lề, khoảng cách và tự xuống dòng. Mỗi lời kêu gọi là một khối Button, ví dụ \"Gọi ngay\" và \"Nhận báo giá\" đặt cạnh nhau."
+
+msgctxt "block description"
+msgid "Custom HTML and CSS rendered on the page, or a code snippet with a copy button. Switch between Visual and Code while editing. Use it for embeds, small widgets and special layouts."
+msgstr "HTML và CSS tùy chỉnh hiển thị trên trang, hoặc đoạn code có nút sao chép. Chuyển qua lại giữa Trực quan và Code khi soạn. Dùng cho mã nhúng, widget nhỏ, bố cục đặc biệt."
+
+msgctxt "block description"
+msgid "A column inside a Row. Set its width out of 12 separately for desktop, tablet and mobile, plus vertical alignment, padding and background. Holds any blocks."
+msgstr "Một cột nằm trong Row. Đặt độ rộng trên 12 phần riêng cho máy tính, máy tính bảng, điện thoại, cùng căn dọc, khoảng đệm và nền. Chứa được mọi khối."
+
+msgctxt "block description"
+msgid "Animated number that counts up when scrolled into view: years of experience, customers, projects, rating. Add a prefix or suffix, label and icon."
+msgstr "Con số chạy tăng dần khi cuộn tới: số năm kinh nghiệm, khách hàng, dự án, điểm đánh giá. Thêm tiền tố, hậu tố, nhãn và icon."
+
+msgctxt "block description"
+msgid "Horizontal line with style (solid, dashed, dotted, double), width, thickness, color and alignment. Separates content or decorates under a heading."
+msgstr "Đường kẻ ngang có kiểu (liền, gạch, chấm, đôi), độ rộng, độ dày, màu và căn lề. Dùng để ngăn nội dung hoặc trang trí dưới tiêu đề."
+
+msgctxt "block description"
+msgid "Two to six panels side by side. The panel under the mouse, finger or keyboard focus expands while the others shrink. On phones the panels become a swipeable strip. Great for shop areas, services and projects."
+msgstr "Từ 2 đến 6 ô xếp ngang. Ô được rê chuột, chạm hoặc chọn bằng bàn phím sẽ nở rộng, các ô còn lại thu nhỏ. Trên điện thoại các ô thành dải vuốt ngang. Hợp cho gian hàng, dịch vụ, dự án."
+
+msgctxt "block description"
+msgid "One panel of an Expanding gallery: a title, background image with focal point, overlay color and any blocks inside. Extra content appears when the panel expands."
+msgstr "Một ô của Gallery mở rộng: tiêu đề, ảnh nền có điểm lấy nét, lớp phủ màu và mọi khối bên trong. Nội dung phụ hiện ra khi ô nở rộng."
+
+msgctxt "block description"
+msgid "A card that flips on hover or tap: the front shows an icon or image and title, the back shows more text and a button. Good for services and features."
+msgstr "Thẻ lật khi rê chuột hoặc chạm: mặt trước có icon hoặc ảnh và tiêu đề, mặt sau có thêm nội dung và nút. Hợp cho dịch vụ và tính năng."
+
+msgctxt "block description"
+msgid "Show a built-in, Contact Form 7 or WPForms form with a title, styled fields, colored button and card layout. Use it for contact, quote and booking requests."
+msgstr "Hiển thị form có sẵn của theme, Contact Form 7 hoặc WPForms, kèm tiêu đề, ô nhập đã định dạng, nút màu và khung thẻ. Dùng cho liên hệ, báo giá, đặt lịch."
+
+msgctxt "block description"
+msgid "Image gallery as grid, masonry or slider, with lightbox, image ratio, gap, captions and hover effects. Columns are set per device."
+msgstr "Thư viện ảnh dạng lưới, masonry hoặc slider, có phóng to ảnh, tỉ lệ ảnh, khoảng cách, chú thích và hiệu ứng rê chuột. Số cột chỉnh riêng theo thiết bị."
+
+msgctxt "block description"
+msgid "Heading from H1 to H6 with size per device, weight, color, line height, maximum width, alignment and optional link. Use one H1 per page for SEO."
+msgstr "Tiêu đề từ H1 đến H6 với cỡ chữ theo thiết bị, độ đậm, màu, giãn dòng, độ rộng tối đa, căn lề và liên kết. Mỗi trang chỉ nên có một H1 để chuẩn SEO."
+
+msgctxt "block description"
+msgid "Image with clickable points that open tooltips with text, a price or a link: products in a room, parts of a machine, places on a map."
+msgstr "Ảnh có các điểm bấm mở chú thích chứa chữ, giá hoặc liên kết: sản phẩm trong căn phòng, bộ phận máy móc, địa điểm trên bản đồ."
+
+msgctxt "block description"
+msgid "Icon or image with a title and text, for features, services and benefits. Place the icon on top or at the side, choose its shape and colors, and link the whole box."
+msgstr "Icon hoặc ảnh kèm tiêu đề và nội dung, dùng cho tính năng, dịch vụ, lợi ích. Đặt icon ở trên hoặc bên cạnh, chọn hình dạng, màu và gắn liên kết cho cả hộp."
+
+msgctxt "block description"
+msgid "List with an icon on each line, such as check marks, phone or location pins. Show it vertically, inline or in columns, with optional links and dividers."
+msgstr "Danh sách có icon ở mỗi dòng như dấu tích, điện thoại, vị trí. Hiển thị dọc, nằm ngang hoặc chia cột, có thể thêm liên kết và đường kẻ."
+
+msgctxt "block description"
+msgid "Image with a title, text and link: image on top, at the side, or text over the image. Great for service, product category and article cards."
+msgstr "Ảnh kèm tiêu đề, nội dung và liên kết: ảnh ở trên, bên cạnh hoặc chữ đè lên ảnh. Hợp cho thẻ dịch vụ, danh mục sản phẩm, bài viết."
+
+msgctxt "block description"
+msgid "Image with width, aspect ratio, corner radius, shadow, hover effect, caption, lightbox and link. Alt text comes from the Media Library when left empty."
+msgstr "Ảnh có độ rộng, tỉ lệ, bo góc, đổ bóng, hiệu ứng rê chuột, chú thích, phóng to và liên kết. Nếu để trống, alt lấy từ Thư viện Media."
+
+msgctxt "block description"
+msgid "Partner, client or brand logos as a grid or an endless scrolling strip. Set columns per device, gap, speed and grayscale until hover."
+msgstr "Logo đối tác, khách hàng, thương hiệu dạng lưới hoặc dải chạy liên tục. Chỉnh số cột theo thiết bị, khoảng cách, tốc độ và chế độ đen trắng cho tới khi rê chuột."
+
+msgctxt "block description"
+msgid "A lightweight vector animation from a Lottie JSON file. Choose loop, autoplay or play on hover or scroll, size and speed."
+msgstr "Hoạt ảnh vector nhẹ từ file Lottie JSON. Chọn lặp lại, tự chạy hoặc chạy khi rê chuột hay cuộn tới, cùng kích thước và tốc độ."
+
+msgctxt "block description"
+msgid "Embed a Google Map from an address, with no API key needed. Set the zoom level, height and corner radius. Good for contact pages and store locations."
+msgstr "Nhúng bản đồ Google từ địa chỉ, không cần API key. Chỉnh mức thu phóng, chiều cao và bo góc. Hợp cho trang liên hệ và địa chỉ cửa hàng."
+
+msgctxt "block description"
+msgid "Text or keywords that scroll continuously across the screen, like a news ticker. Set the speed, direction, separator, size, colors and pause on hover."
+msgstr "Chữ hoặc từ khóa chạy liên tục ngang màn hình như bản tin. Chỉnh tốc độ, hướng chạy, dấu phân cách, cỡ chữ, màu và dừng khi rê chuột."
+
+msgctxt "block description"
+msgid "Show any WordPress menu anywhere on a page: horizontal, vertical or with a mobile toggle. Useful for footers, sidebars and landing pages."
+msgstr "Hiển thị bất kỳ menu WordPress nào ở mọi vị trí trên trang: ngang, dọc hoặc có nút mở trên điện thoại. Hữu ích cho footer, sidebar và landing page."
+
+msgctxt "block description"
+msgid "Icons of accepted payment methods: cards, e-wallets, bank transfer and cash on delivery. Choose the icons, size and colors. Builds trust near checkout and in the footer."
+msgstr "Biểu tượng các phương thức thanh toán: thẻ, ví điện tử, chuyển khoản, thanh toán khi nhận hàng. Chọn biểu tượng, cỡ và màu. Tạo niềm tin ở gần nút thanh toán và footer."
+
+msgctxt "block description"
+msgid "Popup or lightbox with any blocks inside. Opens from a button, a #link, after a delay, on scroll or when the visitor is about to leave. Set size, position and how often it shows."
+msgstr "Popup hoặc lightbox chứa được mọi khối. Mở bằng nút, liên kết #, sau một khoảng thời gian, khi cuộn hoặc khi khách sắp rời trang. Chỉnh kích thước, vị trí và tần suất hiển thị."
+
+msgctxt "block description"
+msgid "Latest or selected blog posts as a grid, list or slider. Filter by category or tag, choose columns per device, and show or hide image, date, excerpt and read-more link."
+msgstr "Bài viết mới nhất hoặc bài chọn sẵn dạng lưới, danh sách hoặc slider. Lọc theo danh mục, thẻ; chọn số cột theo thiết bị; bật tắt ảnh, ngày, trích dẫn và nút đọc thêm."
+
+msgctxt "block description"
+msgid "Pricing plan with title, price, period, a feature list with checks and crosses, a button and a highlighted \"popular\" badge. Place several in a Row to compare plans."
+msgstr "Bảng giá một gói: tên gói, giá, chu kỳ, danh sách tính năng có dấu tích và dấu gạch, nút bấm và nhãn \"phổ biến\". Đặt nhiều bảng trong Row để so sánh các gói."
+
+msgctxt "block description"
+msgid "Price cards with a switch between two billing periods, such as monthly and yearly, with an optional saving label. Prices change instantly without reloading."
+msgstr "Các thẻ giá có công tắc chuyển giữa hai chu kỳ thanh toán như theo tháng và theo năm, kèm nhãn tiết kiệm tùy chọn. Giá đổi ngay không cần tải lại trang."
+
+msgctxt "block description"
+msgid "WooCommerce product categories with images, as a grid or slider. Choose which categories, order, image ratio, product count and columns per device."
+msgstr "Danh mục sản phẩm WooCommerce có ảnh, dạng lưới hoặc slider. Chọn danh mục, thứ tự, tỉ lệ ảnh, số sản phẩm và số cột theo thiết bị."
+
+msgctxt "block description"
+msgid "WooCommerce products as a grid or slider: latest, best selling, on sale, featured or chosen by category, tag or ID. Set columns per device, card style, colors and which details to show."
+msgstr "Sản phẩm WooCommerce dạng lưới hoặc slider: mới nhất, bán chạy, giảm giá, nổi bật hoặc chọn theo danh mục, thẻ, ID. Chỉnh số cột theo thiết bị, kiểu thẻ, màu và thông tin hiển thị."
+
+msgctxt "block description"
+msgid "Skill or progress bars with label, percentage, color, height and stripes. Bars fill with an animation when scrolled into view."
+msgstr "Thanh tiến độ hoặc kỹ năng có nhãn, phần trăm, màu, chiều cao và vạch sọc. Thanh chạy đầy với hiệu ứng khi cuộn tới."
+
+msgctxt "block description"
+msgid "A 12-column responsive grid. Add Column blocks and set their widths per device, with gap, vertical alignment and reverse order on mobile. The base of every layout."
+msgstr "Lưới 12 cột tự co giãn. Thêm các khối Column và đặt độ rộng theo từng thiết bị, kèm khoảng cách, căn dọc và đảo thứ tự trên điện thoại. Nền tảng của mọi bố cục."
+
+msgctxt "block description"
+msgid "Full-width section with background color, gradient, image or video, overlay, padding per device and an inner container. Wrap each part of a page in a Section."
+msgstr "Phần trang toàn chiều rộng có nền màu, gradient, ảnh hoặc video, lớp phủ, khoảng đệm theo thiết bị và khung nội dung bên trong. Mỗi phần của trang nên đặt trong một Section."
+
+msgctxt "block description"
+msgid "Buttons to share the current page on Facebook, Zalo, X, LinkedIn, Pinterest or email, or copy the link. Choose the networks, shape, size and colors."
+msgstr "Nút chia sẻ trang hiện tại lên Facebook, Zalo, X, LinkedIn, Pinterest, email hoặc sao chép liên kết. Chọn mạng xã hội, hình dạng, cỡ và màu."
+
+msgctxt "block description"
+msgid "Run a plugin shortcode, for example [contact-form-7 id=\"…\"], and see a live preview in the editor. Use it for plugins that have no block of their own."
+msgstr "Chạy shortcode của plugin, ví dụ [contact-form-7 id=\"…\"], và xem trước ngay trong trình soạn thảo. Dùng cho plugin chưa có khối riêng."
+
+msgctxt "block description"
+msgid "Every block inside becomes a slide, such as Banners, images or groups. Show one or several slides per device, with autoplay, arrows, dots, timer bar and fade or slide effect."
+msgstr "Mỗi khối bên trong trở thành một slide như Banner, ảnh hoặc nhóm. Hiện một hoặc nhiều slide theo thiết bị, có tự chạy, mũi tên, chấm, thanh hẹn giờ và hiệu ứng mờ hoặc trượt."
+
+msgctxt "block description"
+msgid "Social profile icons such as Facebook, Zalo, TikTok and YouTube, linking to your pages. Choose shape, size, brand or custom colors and alignment."
+msgstr "Biểu tượng mạng xã hội như Facebook, Zalo, TikTok, YouTube dẫn tới trang của bạn. Chọn hình dạng, cỡ, màu thương hiệu hoặc màu tự chọn và căn lề."
+
+msgctxt "block description"
+msgid "Empty vertical space with a height per device. Use it to fine-tune the distance between blocks."
+msgstr "Khoảng trống theo chiều dọc với chiều cao riêng cho từng thiết bị. Dùng để tinh chỉnh khoảng cách giữa các khối."
+
+msgctxt "block description"
+msgid "Star rating with half stars, size, color, alignment and an optional label such as \"4.9/5 from 320 reviews\". Good next to testimonials and products."
+msgstr "Đánh giá bằng sao, hỗ trợ nửa sao, chỉnh cỡ, màu, căn lề và nhãn tùy chọn như \"4.9/5 từ 320 đánh giá\". Hợp đặt cạnh lời chứng thực và sản phẩm."
+
+msgctxt "block description"
+msgid "One panel of a Tabs block, with its own title and any blocks inside."
+msgstr "Một bảng nội dung của khối Tabs, có tiêu đề riêng và chứa được mọi khối."
+
+msgctxt "block description"
+msgid "A responsive data table: one row per line with cells separated by |. Add a header row, stripes and borders. Scrolls sideways on small screens."
+msgstr "Bảng dữ liệu tự co giãn: mỗi dòng một hàng, các ô ngăn bằng dấu |. Thêm hàng tiêu đề, sọc màu và viền. Cuộn ngang được trên màn hình nhỏ."
+
+msgctxt "block description"
+msgid "Tabbed content: each tab title switches the panel below. Choose horizontal or vertical tabs and the style. Saves space for specifications, services and pricing."
+msgstr "Nội dung dạng tab: bấm tên tab để đổi phần nội dung bên dưới. Chọn tab ngang hoặc dọc và kiểu hiển thị. Tiết kiệm chỗ cho thông số, dịch vụ, bảng giá."
+
+msgctxt "block description"
+msgid "Team member card with photo, name, role, short bio and social links. Card, overlay or round photo styles."
+msgstr "Thẻ thành viên có ảnh, tên, chức vụ, giới thiệu ngắn và liên kết mạng xã hội. Kiểu thẻ, chữ đè ảnh hoặc ảnh tròn."
+
+msgctxt "block description"
+msgid "Customer review with photo, name, role or company, star rating and quote. Put several in a Slider or Continuous ticker to show more reviews."
+msgstr "Lời đánh giá của khách hàng có ảnh, tên, chức vụ hoặc công ty, số sao và trích dẫn. Đặt nhiều đánh giá trong Slider hoặc Dải chạy liên tục để hiện thêm."
+
+msgctxt "block description"
+msgid "Rich text: paragraphs, H1–H6, lists, quotes and links, with Visual and Code editing. Use it for body content; set size, color and line height per device."
+msgstr "Văn bản định dạng: đoạn văn, H1–H6, danh sách, trích dẫn và liên kết, sửa được ở chế độ Trực quan và Code. Dùng cho nội dung chính; chỉnh cỡ chữ, màu, giãn dòng theo thiết bị."
+
+msgctxt "block description"
+msgid "One slide of a Continuous ticker. Holds any blocks, such as an image, heading, text or button. Width can follow the content or be fixed per device."
+msgstr "Một slide của Dải chạy liên tục. Chứa được mọi khối như ảnh, tiêu đề, đoạn văn, nút. Độ rộng theo nội dung hoặc cố định theo thiết bị."
+
+msgctxt "block description"
+msgid "A seamless moving strip of slides that can hold any blocks: partners, reviews, products or a fleet. Runs left or right, once or in an endless loop with no visible jump, at a set speed."
+msgstr "Dải slide chạy liên tục, mỗi slide chứa được mọi khối: đối tác, đánh giá, sản phẩm, đội xe. Chạy sang trái hoặc phải, một lần hoặc quay vòng liền mạch không thấy chỗ nối, với tốc độ tùy chỉnh."
+
+msgctxt "block description"
+msgid "Steps, milestones or company history as a vertical timeline, with dates, titles, text and icons. Good for processes and \"our story\" sections."
+msgstr "Các bước, cột mốc hoặc lịch sử công ty dạng dòng thời gian dọc, có ngày, tiêu đề, nội dung và icon. Hợp cho quy trình và phần \"câu chuyện của chúng tôi\"."
+
+msgctxt "block description"
+msgid "Section heading with a decorative line, small subtitle above and an optional \"view all\" link on the right. Keeps section titles consistent across the site."
+msgstr "Tiêu đề cho từng phần với đường trang trí, dòng phụ nhỏ phía trên và liên kết \"xem tất cả\" bên phải. Giúp tiêu đề các phần đồng nhất trên toàn website."
+
+msgctxt "block description"
+msgid "Play button, optionally over an image, that opens a YouTube, Vimeo or MP4 video in a lightbox. The video only loads after a click, so the page stays fast."
+msgstr "Nút phát, có thể đặt trên ảnh, mở video YouTube, Vimeo hoặc MP4 trong lightbox. Video chỉ tải khi bấm nên trang vẫn nhanh."
+
+msgctxt "block description"
+msgid "Responsive YouTube, Vimeo or self-hosted video with aspect ratio, poster image (loads on click) and playback options such as autoplay, mute and loop."
+msgstr "Video YouTube, Vimeo hoặc tải lên hosting, tự co giãn, có tỉ lệ khung, ảnh bìa (chỉ tải khi bấm) và tùy chọn phát như tự chạy, tắt tiếng, lặp lại."
+
+msgctxt "block description"
+msgid "Show any sidebar or widget area inside a page, such as the shop filters or the blog sidebar, so you can place widgets anywhere in a layout."
+msgstr "Hiển thị một sidebar hoặc vùng widget bên trong trang, ví dụ bộ lọc cửa hàng hay sidebar blog, để đặt widget ở bất kỳ vị trí nào của bố cục."
+
+msgid "Countdown timer to a deadline for sales, events and launches. Shows days, hours, minutes and seconds, then a custom message when time is up."
+msgstr "Đồng hồ đếm ngược tới một thời điểm cho khuyến mãi, sự kiện, ra mắt. Hiện ngày, giờ, phút, giây và thông báo tùy chỉnh khi hết giờ."
+
+msgid "One part of the single product page, such as the title, gallery, price, add to cart or tabs. Use it in the product layout page to design your own product page."
+msgstr "Một phần của trang chi tiết sản phẩm như tiêu đề, ảnh, giá, nút thêm vào giỏ hoặc tab. Dùng trong trang mẫu bố cục sản phẩm để tự thiết kế trang sản phẩm."
+
+# Inserter block previews (assets/js/block-previews.js).
+msgid "%1$s/5 from %2$s reviews"
+msgstr "%1$s/5 từ %2$s đánh giá"
+
+msgid "12-month warranty"
+msgstr "Bảo hành 12 tháng"
+
+msgid "After"
+msgstr "Sau"
+
+msgid "Article title"
+msgstr "Tiêu đề bài viết"
+
+msgid "Artist"
+msgstr "Nghệ sĩ"
+
+msgid "Back"
+msgstr "Mặt sau"
+
+msgid "Basic"
+msgstr "Cơ bản"
+
+msgid "Before"
+msgstr "Trước"
+
+msgid "Big promotion this week"
+msgstr "Khuyến mãi lớn tuần này"
+
+msgid "Business"
+msgstr "Doanh nghiệp"
+
+msgid "Chilled"
+msgstr "Hàng mát"
+
+msgid "Choose"
+msgstr "Chọn gói"
+
+msgid "Claim offer"
+msgstr "Nhận ưu đãi"
+
+msgid "Coffee"
+msgstr "Cà phê"
+
+msgid "Complete solutions for your business"
+msgstr "Giải pháp trọn gói cho doanh nghiệp"
+
+msgid "Consulting"
+msgstr "Tư vấn"
+
+msgid "Custom HTML"
+msgstr "HTML tùy chỉnh"
+
+msgid "Customer name"
+msgstr "Tên khách hàng"
+
+msgid "Delivery"
+msgstr "Triển khai"
+
+msgid "Do you offer a warranty?"
+msgstr "Có bảo hành không?"
+
+msgid "Episode title"
+msgstr "Tên tập"
+
+msgid "Explore"
+msgstr "Khám phá"
+
+msgid "Featured collection"
+msgstr "Bộ sưu tập nổi bật"
+
+msgid "Filled"
+msgstr "Nền đặc"
+
+msgid "Free delivery"
+msgstr "Giao hàng miễn phí"
+
+msgid "Free shipping on orders over 500k."
+msgstr "Miễn phí vận chuyển cho đơn từ 500k."
+
+msgid "Fresh fruit"
+msgstr "Trái cây tươi"
+
+msgid "Front"
+msgstr "Mặt trước"
+
+msgid "Full name"
+msgstr "Họ và tên"
+
+msgid "Full-width section"
+msgstr "Section toàn chiều rộng"
+
+msgid "Get 10% off"
+msgstr "Giảm ngay 10%"
+
+msgid "Get a quote"
+msgstr "Nhận báo giá"
+
+msgid "How can I pay?"
+msgstr "Thanh toán thế nào?"
+
+msgid "How long does delivery take?"
+msgstr "Bao lâu thì giao hàng?"
+
+msgid "Image caption"
+msgstr "Chú thích ảnh"
+
+msgid "Item"
+msgstr "Hạng mục"
+
+msgid "Learn more"
+msgstr "Xem thêm"
+
+msgid "Limited stock this week."
+msgstr "Số lượng có hạn trong tuần này."
+
+msgid "Monthly"
+msgstr "Theo tháng"
+
+msgid "OUR PRODUCTS"
+msgstr "SẢN PHẨM"
+
+msgid "Offer ends in"
+msgstr "Ưu đãi kết thúc sau"
+
+msgid "Offers"
+msgstr "Ưu đãi"
+
+msgid "Outline"
+msgstr "Viền"
+
+msgid "POPULAR"
+msgstr "PHỔ BIẾN"
+
+msgid "Paragraph title"
+msgstr "Tiêu đề đoạn văn"
+
+msgid "Pay on delivery"
+msgstr "Thanh toán khi nhận hàng"
+
+msgid "Preview of the %s block"
+msgstr "Xem trước khối %s"
+
+msgid "Price"
+msgstr "Giá"
+
+msgid "Pricing"
+msgstr "Bảng giá"
+
+msgid "Pro"
+msgstr "Chuyên nghiệp"
+
+msgid "Product name"
+msgstr "Tên sản phẩm"
+
+msgid "Request a quote"
+msgstr "Yêu cầu báo giá"
+
+msgid "Role"
+msgstr "Chức vụ"
+
+msgid "SERVICES"
+msgstr "DỊCH VỤ"
+
+msgid "Service"
+msgstr "Dịch vụ"
+
+msgid "Share"
+msgstr "Chia sẻ"
+
+msgid "Size"
+msgstr "Kích thước"
+
+msgid "Soft"
+msgstr "Nền nhạt"
+
+msgid "Support"
+msgstr "Hỗ trợ"
+
+msgid "Support 8:00–21:00"
+msgstr "Hỗ trợ 8:00–21:00"
+
+msgid "Yearly"
+msgstr "Theo năm"
+
+msgid "Years"
+msgstr "Năm"
+
+msgid "Your page heading"
+msgstr "Tiêu đề trang của bạn"
+
+msgid "Your request has been sent."
+msgstr "Yêu cầu của bạn đã được gửi."
+
+msgid "days"
+msgstr "ngày"
+
+msgid "hrs"
+msgstr "giờ"
+
+msgid "min"
+msgstr "phút"
+
+msgid "products"
+msgstr "sản phẩm"
+
+msgid "seamless loop"
+msgstr "quay vòng liền mạch"
+
+msgid "sec"
+msgstr "giây"

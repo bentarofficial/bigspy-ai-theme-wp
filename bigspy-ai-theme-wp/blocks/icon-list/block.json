@@ -5,7 +5,7 @@
 	"title": "Icon list",
 	"category": "bigspy",
 	"icon": "editor-ul",
-	"description": "List with an icon per line (check marks, phone, pin…), vertical, inline or in columns, with optional links and dividers.",
+	"description": "List with an icon on each line, such as check marks, phone or location pins. Show it vertically, inline or in columns, with optional links and dividers.",
 	"keywords": [
 		"list",
 		"features",

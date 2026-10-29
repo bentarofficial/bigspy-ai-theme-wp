@@ -5,7 +5,7 @@
 	"title": "Counter",
 	"category": "bigspy",
 	"icon": "performance",
-	"description": "Animated number (years, customers, projects…).",
+	"description": "Animated number that counts up when scrolled into view: years of experience, customers, projects, rating. Add a prefix or suffix, label and icon.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"number": {

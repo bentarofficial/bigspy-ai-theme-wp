@@ -5,7 +5,7 @@
 	"title": "Navigation menu",
 	"category": "bigspy",
 	"icon": "menu",
-	"description": "Show a WordPress menu anywhere: horizontal, vertical, with a mobile toggle.",
+	"description": "Show any WordPress menu anywhere on a page: horizontal, vertical or with a mobile toggle. Useful for footers, sidebars and landing pages.",
 	"keywords": [
 		"menu",
 		"navigation",

@@ -5,7 +5,7 @@
 	"title": "Share buttons",
 	"category": "bigspy",
 	"icon": "share-alt2",
-	"description": "Share the current page on Facebook, Zalo, X, LinkedIn, Pinterest, email or copy the link.",
+	"description": "Buttons to share the current page on Facebook, Zalo, X, LinkedIn, Pinterest or email, or copy the link. Choose the networks, shape, size and colors.",
 	"keywords": [
 		"share",
 		"social",

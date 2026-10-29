@@ -5,7 +5,7 @@
 	"title": "Message box",
 	"category": "bigspy",
 	"icon": "warning",
-	"description": "Highlighted notice: info, success, warning, error or custom colors, with icon, title and optional close button.",
+	"description": "Highlighted notice for info, success, warning or error messages, or your own colors. Add an icon, title and text, and an optional close button. Good for promotions, shipping notes and important reminders.",
 	"keywords": [
 		"alert",
 		"notice",

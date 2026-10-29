@@ -5,7 +5,7 @@
 	"title": "Google Map",
 	"category": "bigspy",
 	"icon": "location-alt",
-	"description": "Embed a Google Map from an address – no API key needed.",
+	"description": "Embed a Google Map from an address, with no API key needed. Set the zoom level, height and corner radius. Good for contact pages and store locations.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"address": {

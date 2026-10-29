@@ -5,7 +5,7 @@
 	"title": "Tabs",
 	"category": "bigspy",
 	"icon": "index-card",
-	"description": "Tabbed content.",
+	"description": "Tabbed content: each tab title switches the panel below. Choose horizontal or vertical tabs and the style. Saves space for specifications, services and pricing.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"style": {

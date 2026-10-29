@@ -5,7 +5,7 @@
 	"title": "Star rating",
 	"category": "bigspy",
 	"icon": "star-filled",
-	"description": "Star rating (supports halves) with size, color, alignment and an optional label like \"4.9/5 từ 320 đánh giá\".",
+	"description": "Star rating with half stars, size, color, alignment and an optional label such as \"4.9/5 from 320 reviews\". Good next to testimonials and products.",
 	"keywords": [
 		"stars",
 		"review",

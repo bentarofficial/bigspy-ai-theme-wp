@@ -5,7 +5,7 @@
 	"title": "Code / HTML",
 	"category": "bigspy",
 	"icon": "editor-code",
-	"description": "Custom HTML and CSS rendered on the page, or a code snippet with a copy button. Switch between Visual and Code while editing.",
+	"description": "Custom HTML and CSS rendered on the page, or a code snippet with a copy button. Switch between Visual and Code while editing. Use it for embeds, small widgets and special layouts.",
 	"keywords": [ "html", "css", "custom", "embed", "snippet" ],
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {

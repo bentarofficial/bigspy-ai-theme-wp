@@ -5,7 +5,7 @@
 	"title": "Buttons",
 	"category": "bigspy",
 	"icon": "button",
-	"description": "A row of buttons with alignment and spacing.",
+	"description": "A row of buttons with alignment, spacing and wrapping. Add a Button block for each call to action, such as \"Call now\" and \"Get a quote\" side by side.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"align": {

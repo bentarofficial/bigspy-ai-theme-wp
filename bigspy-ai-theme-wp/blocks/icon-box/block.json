@@ -5,7 +5,7 @@
 	"title": "Icon Box",
 	"category": "bigspy",
 	"icon": "star-filled",
-	"description": "Icon or image with title and text (features, services, benefits).",
+	"description": "Icon or image with a title and text, for features, services and benefits. Place the icon on top or at the side, choose its shape and colors, and link the whole box.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"icon": {

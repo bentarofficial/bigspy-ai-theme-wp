@@ -5,7 +5,7 @@
 	"title": "Accordion / FAQ",
 	"category": "bigspy",
 	"icon": "list-view",
-	"description": "Collapsible items, great for FAQs.",
+	"description": "Collapsible questions and answers for FAQs, policies and specifications. Open one or several items at a time, choose the icon and style, and optionally add FAQPage schema for Google.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"style": {

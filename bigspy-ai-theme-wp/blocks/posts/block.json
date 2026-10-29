@@ -5,7 +5,7 @@
 	"title": "Blog Posts",
 	"category": "bigspy",
 	"icon": "grid-view",
-	"description": "Latest posts as grid, list or slider.",
+	"description": "Latest or selected blog posts as a grid, list or slider. Filter by category or tag, choose columns per device, and show or hide image, date, excerpt and read-more link.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"count": {

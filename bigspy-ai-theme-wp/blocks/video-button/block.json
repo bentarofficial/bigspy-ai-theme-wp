@@ -5,7 +5,7 @@
 	"title": "Video popup",
 	"category": "bigspy",
 	"icon": "controls-play",
-	"description": "Play button (optionally over an image) that opens a YouTube / Vimeo / mp4 video in a lightbox.",
+	"description": "Play button, optionally over an image, that opens a YouTube, Vimeo or MP4 video in a lightbox. The video only loads after a click, so the page stays fast.",
 	"keywords": [
 		"video",
 		"popup",

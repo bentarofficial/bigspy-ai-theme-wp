@@ -5,7 +5,7 @@
 	"title": "Popup",
 	"category": "bigspy",
 	"icon": "admin-comments",
-	"description": "Popup / lightbox with any blocks inside. Opens from a button, a #link, after a delay, on scroll or when leaving the page.",
+	"description": "Popup or lightbox with any blocks inside. Opens from a button, a #link, after a delay, on scroll or when the visitor is about to leave. Set size, position and how often it shows.",
 	"keywords": [
 		"popup",
 		"modal",

@@ -5,7 +5,7 @@
 	"title": "Scrolling text (marquee)",
 	"category": "bigspy",
 	"icon": "leftright",
-	"description": "Text or keywords that scroll continuously across the screen.",
+	"description": "Text or keywords that scroll continuously across the screen, like a news ticker. Set the speed, direction, separator, size, colors and pause on hover.",
 	"keywords": [
 		"marquee",
 		"ticker",

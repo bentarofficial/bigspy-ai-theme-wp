@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "bigspy/ticker",
   "title": "Continuous ticker",
-  "description": "A seamless moving strip of slides containing any blocks.",
+  "description": "A seamless moving strip of slides that can hold any blocks: partners, reviews, products or a fleet. Runs left or right, once or in an endless loop with no visible jump, at a set speed.",
   "category": "bigspy",
   "icon": "slides",
   "textdomain": "bigspy-ai-theme-wp",

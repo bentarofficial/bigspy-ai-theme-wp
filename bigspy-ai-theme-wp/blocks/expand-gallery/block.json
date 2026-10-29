@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "bigspy/expand-gallery",
   "title": "Expanding gallery",
-  "description": "Two to six panels that expand on hover, touch or keyboard focus.",
+  "description": "Two to six panels side by side. The panel under the mouse, finger or keyboard focus expands while the others shrink. On phones the panels become a swipeable strip. Great for shop areas, services and projects.",
   "category": "bigspy",
   "icon": "slides",
   "textdomain": "bigspy-ai-theme-wp",

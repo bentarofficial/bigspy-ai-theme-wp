@@ -5,7 +5,7 @@
 	"title": "Section",
 	"category": "bigspy",
 	"icon": "align-full-width",
-	"description": "Full-width section with background image, overlay, responsive padding and inner container.",
+	"description": "Full-width section with background color, gradient, image or video, overlay, padding per device and an inner container. Wrap each part of a page in a Section.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"align": {

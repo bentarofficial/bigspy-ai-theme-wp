@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "bigspy/expand-panel",
   "title": "Gallery panel",
-  "description": "An expanding panel containing any blocks, with an optional background.",
+  "description": "One panel of an Expanding gallery: a title, background image with focal point, overlay color and any blocks inside. Extra content appears when the panel expands.",
   "category": "bigspy",
   "icon": "slides",
   "textdomain": "bigspy-ai-theme-wp",

@@ -5,7 +5,7 @@
 	"title": "Widget area (sidebar)",
 	"category": "bigspy",
 	"icon": "welcome-widgets-menus",
-	"description": "Show any sidebar / widget area inside a page, e.g. the Shop filters or the Blog sidebar.",
+	"description": "Show any sidebar or widget area inside a page, such as the shop filters or the blog sidebar, so you can place widgets anywhere in a layout.",
 	"keywords": [
 		"sidebar",
 		"widget",

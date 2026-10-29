@@ -5,7 +5,7 @@
 	"title": "Logo showcase",
 	"category": "bigspy",
 	"icon": "images-alt2",
-	"description": "Partner / client / brand logos as a grid or an endless scrolling strip.",
+	"description": "Partner, client or brand logos as a grid or an endless scrolling strip. Set columns per device, gap, speed and grayscale until hover.",
 	"keywords": [
 		"logo",
 		"partners",

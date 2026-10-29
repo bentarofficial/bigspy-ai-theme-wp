@@ -5,7 +5,7 @@
 	"title": "Slider",
 	"category": "bigspy",
 	"icon": "slides",
-	"description": "Every block inside becomes a slide (Banners, images, groups…).",
+	"description": "Every block inside becomes a slide, such as Banners, images or groups. Show one or several slides per device, with autoplay, arrows, dots, timer bar and fade or slide effect.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"slidesDesktop": {

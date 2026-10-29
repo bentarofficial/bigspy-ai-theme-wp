@@ -5,7 +5,7 @@
 	"title": "Image hotspots",
 	"category": "bigspy",
 	"icon": "location",
-	"description": "Image with clickable points that open tooltips: products, rooms, features, maps.",
+	"description": "Image with clickable points that open tooltips with text, a price or a link: products in a room, parts of a machine, places on a map.",
 	"keywords": [
 		"hotspot",
 		"pin",

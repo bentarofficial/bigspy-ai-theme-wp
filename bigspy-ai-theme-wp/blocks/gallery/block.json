@@ -5,7 +5,7 @@
 	"title": "Gallery",
 	"category": "bigspy",
 	"icon": "format-gallery",
-	"description": "Image gallery: grid, masonry or slider, with lightbox, ratio, gap, captions and hover effects.",
+	"description": "Image gallery as grid, masonry or slider, with lightbox, image ratio, gap, captions and hover effects. Columns are set per device.",
 	"keywords": [
 		"images",
 		"photos",

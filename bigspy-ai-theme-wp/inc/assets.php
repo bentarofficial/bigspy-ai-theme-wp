@@ -41,10 +41,13 @@ add_action( 'wp_enqueue_scripts', 'bst_front_assets' );
  * Editor-only UI helpers shared by every theme block.
  */
 function bst_register_editor_helpers() {
+	// Loads before every block script: it adds inserter previews while blocks register.
+	wp_register_script( 'bst-block-previews', BST_URI . '/assets/js/block-previews.js', array( 'wp-hooks', 'wp-element', 'wp-block-editor', 'wp-i18n' ), bst_asset_version( 'assets/js/block-previews.js' ), true );
+	wp_localize_script( 'bst-block-previews', 'bstPreview', array( 'accent' => sanitize_hex_color( (string) bst_mod( 'color_primary' ) ) ) );
 	wp_register_script(
 		'bst-editor-helpers',
 		BST_URI . '/assets/js/editor-helpers.js',
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-hooks', 'wp-compose', 'wp-data' ),
+		array( 'bst-block-previews', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-hooks', 'wp-compose', 'wp-data' ),
 		bst_asset_version( 'assets/js/editor-helpers.js' ),
 		true
 	);

@@ -5,7 +5,7 @@
 	"title": "Video",
 	"category": "bigspy",
 	"icon": "video-alt3",
-	"description": "Responsive YouTube, Vimeo or self-hosted video with ratio, poster (click to play) and playback options.",
+	"description": "Responsive YouTube, Vimeo or self-hosted video with aspect ratio, poster image (loads on click) and playback options such as autoplay, mute and loop.",
 	"keywords": [
 		"youtube",
 		"vimeo",

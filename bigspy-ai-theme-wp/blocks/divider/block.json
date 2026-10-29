@@ -5,7 +5,7 @@
 	"title": "Divider",
 	"category": "bigspy",
 	"icon": "minus",
-	"description": "Horizontal line with style, width, thickness and color.",
+	"description": "Horizontal line with style (solid, dashed, dotted, double), width, thickness, color and alignment. Separates content or decorates under a heading.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"style": {

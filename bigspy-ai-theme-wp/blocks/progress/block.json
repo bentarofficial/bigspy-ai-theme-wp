@@ -5,7 +5,7 @@
 	"title": "Progress bars",
 	"category": "bigspy",
 	"icon": "chart-bar",
-	"description": "Skill / progress bars with label, percentage, color, height, stripes and fill animation when scrolled into view.",
+	"description": "Skill or progress bars with label, percentage, color, height and stripes. Bars fill with an animation when scrolled into view.",
 	"keywords": [
 		"skills",
 		"percent",

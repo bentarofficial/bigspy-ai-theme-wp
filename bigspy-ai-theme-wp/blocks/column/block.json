@@ -5,7 +5,7 @@
 	"title": "Column",
 	"category": "bigspy",
 	"icon": "align-center",
-	"description": "Column inside a Row.",
+	"description": "A column inside a Row. Set its width out of 12 separately for desktop, tablet and mobile, plus vertical alignment, padding and background. Holds any blocks.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"parent": [
 		"bst/row"

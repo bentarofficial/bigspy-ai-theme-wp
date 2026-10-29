@@ -5,7 +5,7 @@
 	"title": "Product Categories",
 	"category": "bigspy",
 	"icon": "category",
-	"description": "WooCommerce product categories with image, as grid or slider.",
+	"description": "WooCommerce product categories with images, as a grid or slider. Choose which categories, order, image ratio, product count and columns per device.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"count": {

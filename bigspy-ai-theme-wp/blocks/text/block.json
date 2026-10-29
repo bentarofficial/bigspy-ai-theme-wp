@@ -5,7 +5,7 @@
 	"title": "Text",
 	"category": "bigspy",
 	"icon": "editor-paragraph",
-	"description": "Rich text: paragraphs, H1–H6, lists, quotes, links – with Visual and Code editing.",
+	"description": "Rich text: paragraphs, H1–H6, lists, quotes and links, with Visual and Code editing. Use it for body content; set size, color and line height per device.",
 	"keywords": [
 		"paragraph",
 		"content",

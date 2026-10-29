@@ -5,7 +5,7 @@
 	"title": "Row",
 	"category": "bigspy",
 	"icon": "columns",
-	"description": "12-column responsive grid. Add Column blocks and set their width per device.",
+	"description": "A 12-column responsive grid. Add Column blocks and set their widths per device, with gap, vertical alignment and reverse order on mobile. The base of every layout.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"gap": {

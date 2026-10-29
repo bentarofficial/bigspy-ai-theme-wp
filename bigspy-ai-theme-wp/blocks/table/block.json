@@ -5,7 +5,7 @@
 	"title": "Table",
 	"category": "bigspy",
 	"icon": "editor-table",
-	"description": "A responsive data table. One row per line, cells separated by |.",
+	"description": "A responsive data table: one row per line with cells separated by |. Add a header row, stripes and borders. Scrolls sideways on small screens.",
 	"keywords": [
 		"table",
 		"bảng",

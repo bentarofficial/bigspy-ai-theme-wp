@@ -5,7 +5,7 @@
 	"title": "Shortcode",
 	"category": "bigspy",
 	"icon": "shortcode",
-	"description": "Run a plugin shortcode, e.g. [contact-form-7 id=\"…\"], with a live preview.",
+	"description": "Run a plugin shortcode, for example [contact-form-7 id=\"…\"], and see a live preview in the editor. Use it for plugins that have no block of their own.",
 	"keywords": [
 		"shortcode",
 		"plugin",

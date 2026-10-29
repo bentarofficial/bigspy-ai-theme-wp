@@ -5,7 +5,7 @@
 	"title": "Section Title",
 	"category": "bigspy",
 	"icon": "heading",
-	"description": "Heading with decorative line, subtitle and optional “view all” link.",
+	"description": "Section heading with a decorative line, small subtitle above and an optional \"view all\" link on the right. Keeps section titles consistent across the site.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"text": {

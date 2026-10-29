@@ -5,7 +5,7 @@
 	"title": "Audio player",
 	"category": "bigspy",
 	"icon": "format-audio",
-	"description": "Play an audio file or podcast episode with cover, title and artist.",
+	"description": "Audio player for a song, podcast episode or voice message, with cover image, title and artist. Uses the browser player, so it stays light and works on phones.",
 	"keywords": [
 		"audio",
 		"podcast",

@@ -5,7 +5,7 @@
 	"title": "Tab",
 	"category": "bigspy",
 	"icon": "excerpt-view",
-	"description": "A tab panel.",
+	"description": "One panel of a Tabs block, with its own title and any blocks inside.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"parent": [
 		"bst/tabs"

@@ -5,7 +5,7 @@
 	"title": "Banner grid",
 	"category": "bigspy",
 	"icon": "grid-view",
-	"description": "Several image banners in a magazine-style grid.",
+	"description": "Several image banners in a magazine-style grid, such as one large and several small tiles. Each tile has its own image, text, overlay and link. Great for categories, collections and promotions.",
 	"keywords": [
 		"banner",
 		"grid",

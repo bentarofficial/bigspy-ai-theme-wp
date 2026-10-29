@@ -5,7 +5,7 @@
 	"title": "Button",
 	"category": "bigspy",
 	"icon": "admin-links",
-	"description": "Button with style, size, icon and link.",
+	"description": "A single button with style (filled, outline, soft, link), size, icon, colors, corner radius and link. Can open in a new tab, call a phone number or open a popup.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"text": {
