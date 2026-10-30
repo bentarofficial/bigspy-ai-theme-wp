@@ -28,6 +28,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 
 ## Other
 - Version: `style.css` and `BST_VERSION` in `functions.php`. Readiness: `python tools/release.py`.
+- Optional features: `inc/features.php` (page, toggles, field types), one file per feature in `inc/features/`. Test: `node tools/features-check.cjs`.
 - Theme panel: `inc/admin/`. Updater: `inc/updater.php`. Patterns: `patterns/`.
 
 ## Testing

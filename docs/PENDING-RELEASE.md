@@ -14,6 +14,12 @@ Chưa có thay đổi sản phẩm mới sau bản 1.76.0. Bản 1.76.0 (30-10-2
 - **Khi phát hành cần bổ sung:** Giới thiệu, Có gì mới, kiến thức AI.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** đợt B: trang Tính năng bật/tắt riêng từng mục, mặc định tắt, chỉ nạp khi bật; WebP khi tải ảnh lên; SMTP; liên kết liên quan giữa bài; mã đầu/cuối trang.
+- **Đã thay đổi:** `inc/features.php`, `inc/features/`, submenu Tính năng, bản dịch vi. Mật khẩu SMTP mã hóa, có thể đặt `BST_SMTP_PASS`. Lưu ô mã cần quyền `unfiltered_html`.
+- **Kiểm thử:** `node tools/features-check.cjs` trên Playground; lưu qua form thật và tải JPEG qua REST bằng trình duyệt. Chỉ thử với GD. Chưa gửi qua máy chủ SMTP thật, chưa chạy trên site thật. Ảnh chuyển WebP mất EXIF/IPTC sau khi đã xoay đúng chiều.
+- **Khi phát hành cần bổ sung:** Giới thiệu, Có gì mới, kiến thức AI.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

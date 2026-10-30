@@ -10470,3 +10470,120 @@ msgstr ""
 msgid "New administrator"
 msgstr ""
 
+msgid "Features"
+msgstr ""
+
+msgid "WebP on upload"
+msgstr ""
+
+msgid "Convert new JPEG and PNG uploads to WebP. Existing images are not changed."
+msgstr ""
+
+msgid "SMTP email"
+msgstr ""
+
+msgid "Send WordPress email through your mail server."
+msgstr ""
+
+msgid "Related links in posts"
+msgstr ""
+
+msgid "Add a short list of related posts in the middle of each post."
+msgstr ""
+
+msgid "Header and footer code"
+msgstr ""
+
+msgid "Add tracking or verification code to every front page."
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
+
+msgid "Saved. Leave empty to keep it."
+msgstr ""
+
+msgid "Each feature is off by default and loads no code until you turn it on. Turn one on and save to see its settings."
+msgstr ""
+
+msgid "WebP quality"
+msgstr ""
+
+msgid "Files are kept as they are if WebP would not be smaller."
+msgstr ""
+
+msgid "This server cannot create WebP images, so uploads stay unchanged."
+msgstr ""
+
+msgid "SMTP host"
+msgstr ""
+
+msgid "Port"
+msgstr ""
+
+msgid "Encryption"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Stored encrypted. You can define BST_SMTP_PASS in wp-config.php instead."
+msgstr ""
+
+msgid "From email"
+msgstr ""
+
+msgid "From name"
+msgstr ""
+
+msgid "SMTP test email"
+msgstr ""
+
+msgid "Your SMTP settings work."
+msgstr ""
+
+msgid "Test email sent. Check your inbox."
+msgstr ""
+
+msgid "Test email failed:"
+msgstr ""
+
+msgid "Send a test email to me"
+msgstr ""
+
+msgid "Read also"
+msgstr ""
+
+msgid "Title (empty = “Read also”)"
+msgstr ""
+
+msgid "Number of links"
+msgstr ""
+
+msgid "Middle of the post"
+msgstr ""
+
+msgid "After a paragraph"
+msgstr ""
+
+msgid "Paragraph number"
+msgstr ""
+
+msgid "Skip posts with fewer paragraphs than"
+msgstr ""
+
+msgid "Before </head>"
+msgstr ""
+
+msgid "After <body>"
+msgstr ""
+
+msgid "Before </body>"
+msgstr ""
+
+msgid "Only add code from a source you trust; it runs on every page."
+msgstr ""
+

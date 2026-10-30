@@ -6634,3 +6634,120 @@ msgstr "Mã đáng ngờ"
 msgid "New administrator"
 msgstr "Quản trị viên mới"
 
+msgid "Features"
+msgstr "Tính năng"
+
+msgid "WebP on upload"
+msgstr "WebP khi tải ảnh lên"
+
+msgid "Convert new JPEG and PNG uploads to WebP. Existing images are not changed."
+msgstr "Chuyển ảnh JPEG và PNG mới tải lên sang WebP. Ảnh đã có không thay đổi."
+
+msgid "SMTP email"
+msgstr "Gửi email qua SMTP"
+
+msgid "Send WordPress email through your mail server."
+msgstr "Gửi email của WordPress qua máy chủ mail của bạn."
+
+msgid "Related links in posts"
+msgstr "Liên kết liên quan trong bài"
+
+msgid "Add a short list of related posts in the middle of each post."
+msgstr "Chèn danh sách ngắn các bài liên quan vào giữa mỗi bài viết."
+
+msgid "Header and footer code"
+msgstr "Mã đầu và cuối trang"
+
+msgid "Add tracking or verification code to every front page."
+msgstr "Thêm mã theo dõi hoặc mã xác minh vào mọi trang."
+
+msgid "Saved. Leave empty to keep it."
+msgstr "Đã lưu. Để trống nếu muốn giữ nguyên."
+
+msgid "Each feature is off by default and loads no code until you turn it on. Turn one on and save to see its settings."
+msgstr "Mỗi tính năng mặc định tắt và không nạp mã cho đến khi bạn bật. Bật rồi lưu để xem phần cài đặt."
+
+msgid "WebP quality"
+msgstr "Chất lượng WebP"
+
+msgid "Files are kept as they are if WebP would not be smaller."
+msgstr "Giữ nguyên tệp nếu bản WebP không nhỏ hơn."
+
+msgid "This server cannot create WebP images, so uploads stay unchanged."
+msgstr "Máy chủ này không tạo được ảnh WebP nên ảnh tải lên được giữ nguyên."
+
+msgid "SMTP host"
+msgstr "Máy chủ SMTP"
+
+msgid "Port"
+msgstr "Cổng"
+
+msgid "Encryption"
+msgstr "Mã hóa"
+
+msgid "Username"
+msgstr "Tên đăng nhập"
+
+msgid "Password"
+msgstr "Mật khẩu"
+
+msgid "Stored encrypted. You can define BST_SMTP_PASS in wp-config.php instead."
+msgstr "Được lưu ở dạng mã hóa. Bạn cũng có thể khai báo BST_SMTP_PASS trong wp-config.php."
+
+msgid "From email"
+msgstr "Email gửi đi"
+
+msgid "From name"
+msgstr "Tên người gửi"
+
+msgid "SMTP test email"
+msgstr "Email thử SMTP"
+
+msgid "Your SMTP settings work."
+msgstr "Cài đặt SMTP của bạn hoạt động tốt."
+
+msgid "Test email sent. Check your inbox."
+msgstr "Đã gửi email thử. Hãy kiểm tra hộp thư."
+
+msgid "Test email failed:"
+msgstr "Gửi email thử thất bại:"
+
+msgid "Send a test email to me"
+msgstr "Gửi email thử cho tôi"
+
+msgid "Read also"
+msgstr "Xem thêm"
+
+msgid "Title (empty = “Read also”)"
+msgstr "Tiêu đề (để trống = “Xem thêm”)"
+
+msgid "Number of links"
+msgstr "Số liên kết"
+
+msgid "Position"
+msgstr "Vị trí"
+
+msgid "Middle of the post"
+msgstr "Giữa bài"
+
+msgid "After a paragraph"
+msgstr "Sau một đoạn văn"
+
+msgid "Paragraph number"
+msgstr "Số thứ tự đoạn văn"
+
+msgid "Skip posts with fewer paragraphs than"
+msgstr "Bỏ qua bài có ít đoạn văn hơn"
+
+msgid "Before </head>"
+msgstr "Trước </head>"
+
+msgid "After <body>"
+msgstr "Sau <body>"
+
+msgid "Before </body>"
+msgstr "Trước </body>"
+
+msgid "Only add code from a source you trust; it runs on every page."
+msgstr "Chỉ thêm mã từ nguồn bạn tin cậy; mã sẽ chạy trên mọi trang."
+
