@@ -1,0 +1,71 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/scroll-story",
+	"title": "Scroll Story",
+	"category": "bigspy",
+	"icon": "excerpt-view",
+	"description": "Scrollytelling section: text steps scroll by on one side while a sticky image on the other side changes with each step. Great for a process, services or product features. On phones each step shows its own image. Normal page scrolling is never blocked.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"scrollytelling",
+		"sticky",
+		"story",
+		"steps",
+		"process",
+		"features",
+		"kể chuyện",
+		"quy trình",
+		"cuộn"
+	],
+	"attributes": {
+		"mediaSide": {
+			"type": "string",
+			"default": "right"
+		},
+		"transition": {
+			"type": "string",
+			"default": "fade"
+		},
+		"ratio": {
+			"type": "string",
+			"default": "4-5"
+		},
+		"stickyTop": {
+			"type": "number",
+			"default": 100
+		},
+		"radius": {
+			"type": "number",
+			"default": 16
+		},
+		"gap": {
+			"type": "number",
+			"default": 48
+		},
+		"progress": {
+			"type": "boolean",
+			"default": true
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-scroll"
+}

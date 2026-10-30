@@ -1582,6 +1582,7 @@
 				el(Toggle, Object.assign({ label: __('Gradient text', 'bigspy-ai-theme-wp') }, bind('gradient', true))),
 				a.gradient ? el(Range, Object.assign({ label: __('Gradient angle (°)', 'bigspy-ai-theme-wp'), min: 0, max: 360 }, bind('gradientAngle'))) : null,
 				sliderChoice(props, __('Animated highlight', 'bigspy-ai-theme-wp'), 'highlight', [['', __('None', 'bigspy-ai-theme-wp')], ['underline', __('Underline', 'bigspy-ai-theme-wp')], ['marker', __('Marker', 'bigspy-ai-theme-wp')], ['brush', __('Brush', 'bigspy-ai-theme-wp')], ['strike', __('Strike', 'bigspy-ai-theme-wp')]]),
+				sliderChoice(props, __('Text motion', 'bigspy-ai-theme-wp'), 'textMotion', [['', __('None', 'bigspy-ai-theme-wp')], ['reveal', __('Light up word by word while scrolling', 'bigspy-ai-theme-wp')], ['words', __('Words appear one by one', 'bigspy-ai-theme-wp')], ['scramble', __('Scramble then reveal', 'bigspy-ai-theme-wp')]]),
 				el('p', { className: 'description' }, __('The highlight draws itself when the heading scrolls into view.', 'bigspy-ai-theme-wp'))
 			),
 			(a.gradient || a.highlight) ? el(B.ColorPanel, { title: __('Effect colors', 'bigspy-ai-theme-wp'), settings: [

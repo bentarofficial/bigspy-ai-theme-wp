@@ -5,3 +5,10 @@
 .bst-motion-slide,.bst-motion-panel{border:1px dashed #778899;padding:16px;min-height:160px}
 .bst-motion-panel{background-size:cover;border-radius:12px}
 .bst-aid-approval pre{max-height:320px;max-width:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+
+.bst-story-editor .block-editor-block-list__layout, .bst-stack-editor .block-editor-block-list__layout { display: flex; flex-direction: column; gap: 14px; }
+.bst-story-step { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px; border: 1px dashed rgba(124, 58, 237, .45); border-radius: 12px; }
+.bst-story-step__thumb { display: grid; place-items: center; min-height: 120px; border-radius: 10px; background: #f1f5f9 center / cover no-repeat; color: #94a3b8; font-size: 12px; }
+.bst-stack-card { padding: 24px; border-radius: 18px; box-shadow: 0 6px 20px rgba(15, 23, 42, .10); }
+.bst-motion-color > p { margin: 8px 0 4px; font-weight: 600; }
+.bst-motion-empty { color: #94a3b8; font-size: 15px; font-weight: 400; }

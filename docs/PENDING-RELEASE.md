@@ -6,6 +6,19 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
+### Chuyển động đợt 1: cường độ + phong cách, Animated Text, Scroll Story, Stacking Cards (Claude, 30-10-2026)
+
+- **Yêu cầu:** đợt 1 roadmap "P1 — Chuyển động" do owner chốt.
+- **Đã thay đổi:**
+  - `inc/motion-wave.php`: Customizer > Performance thêm **Cường độ chuyển động** (Nhẹ/Vừa/Mạnh) và **Phong cách chuyển động** (Mặc định/Sang trọng/Năng động/Tối giản), xuất class `bs-motion--*`, `bs-motion-style--*` trên body; CSS hiệu ứng xuất hiện nhân theo `--bs-motion-scale`, `--bs-motion-speed`, `--bs-motion-ease`; Tối giản chỉ mờ dần. Đăng ký script `bst-motion-text`, `bst-motion-scroll` (chỉ nạp khi trang có khối).
+  - Khối mới `bigspy/animated-text` (reveal theo cuộn, hiện từng từ, gõ chữ, thay phiên từ, xáo ký tự, gradient chạy, chữ lớn trượt theo cuộn; chữ đầy đủ có sẵn trong HTML + aria-label).
+  - Khối mới `bigspy/scroll-story` + `bigspy/story-step` (ảnh sticky đổi theo bước bằng IntersectionObserver, chấm tiến độ, điện thoại hiện ảnh trong từng bước; không chặn cuộn).
+  - Khối mới `bigspy/stack-cards` + `bigspy/stack-card` (sticky xếp chồng bằng CSS, JS thêm thu nhỏ/tối thẻ dưới).
+  - Heading thêm thuộc tính `textMotion` (reveal/words/scramble), dùng chung runtime.
+  - Bản xem trước, mô tả, màu icon (nhóm chuyển động), bản dịch vi, kiến thức AI; FAMILIES CSS mới `animated-text`, `scroll-story`, `stack-cards` và đã chạy lại `split-blocks-css.py`.
+- **Kiểm thử:** lint PHP; `node --check`; `check-block-previews` (66 khối); render 66 hình xem trước bằng Node; `playground-check.cjs --welcome` đạt. Playground riêng có trang thử: chế độ giảm chuyển động (môi trường thử bật sẵn) hiện chữ tĩnh đầy đủ; giả lập tắt giảm chuyển động: reveal sáng 14/14 từ khi cuộn, hiện từng từ, gõ chữ, chữ lớn trượt theo cuộn; Scroll Story đổi bước/ảnh/chấm đúng, ảnh sticky; Stacking Cards top 90/114/138px, thẻ trên bị phủ có `--p` 0,925; editor chèn được 5 khối, không lỗi console, Customizer có 2 tùy chọn mới. Chưa xem bằng mắt hiệu ứng gradient chạy (môi trường thử luôn giảm chuyển động) và chưa thử trên điện thoại thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, README (Features + Updates), trang Giới thiệu (mục chuyển động: thêm 3 khối và 2 tùy chọn Customizer).
+
 ### Icon khối có màu theo nhóm (Claude, 30-10-2026)
 
 - **Yêu cầu:** icon các khối BIGSPY trong bảng chèn khối có màu, khác nhau để dễ nhận diện.

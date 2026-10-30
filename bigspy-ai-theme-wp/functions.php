@@ -37,6 +37,7 @@ $bst_includes = array(
 	'inc/customizer/groups.php',
 	'inc/blocks.php',
 	'inc/motion-blocks.php',
+	'inc/motion-wave.php',
 	'inc/block-design.php',
 	'inc/block-presets.php',
 	'inc/sidebar-options.php',

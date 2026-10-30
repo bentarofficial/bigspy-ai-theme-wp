@@ -22,6 +22,9 @@ OUT = os.path.join(THEME, 'assets', 'css', 'blocks')
 # with "-" or "_" (bs-tab matches bs-tab--active, not bs-tabs).
 FAMILIES = {
 	'ticker': ['bs-ticker'],
+	'animated-text': ['bs-atext'],
+	'scroll-story': ['bs-story'],
+	'stack-cards': ['bs-stack'],
 	'expand-gallery': ['bs-expand'],
 	'accordion': ['bs-accordion'],
 	'alert': ['bs-alert'],

@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/story-step",
+	"title": "Story step",
+	"category": "bigspy",
+	"icon": "excerpt-view",
+	"description": "One step of a Scroll Story: any blocks (number, heading, text, button) plus the image shown in the sticky media area while this step is in view.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"parent": [
+		"bigspy/scroll-story"
+	],
+	"attributes": {
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php"
+}

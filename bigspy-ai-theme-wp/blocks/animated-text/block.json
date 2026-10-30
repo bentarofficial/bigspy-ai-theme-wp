@@ -1,0 +1,104 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/animated-text",
+	"title": "Animated Text",
+	"category": "bigspy",
+	"icon": "editor-textcolor",
+	"description": "Headline or text that moves: words light up as you scroll, appear word by word, type themselves, rotate through a list (\"We build [websites | shops | brands]\"), unscramble, flow in an animated gradient or slide across the screen as big type. The full text stays in the page for SEO.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"text",
+		"headline",
+		"typewriter",
+		"typing",
+		"rotate",
+		"kinetic",
+		"scramble",
+		"chữ chạy",
+		"chữ động",
+		"tiêu đề"
+	],
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"words": {
+			"type": "string",
+			"default": ""
+		},
+		"after": {
+			"type": "string",
+			"default": ""
+		},
+		"effect": {
+			"type": "string",
+			"default": "reveal"
+		},
+		"tag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"size": {
+			"type": "number",
+			"default": 0
+		},
+		"sizeTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"sizeMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"weight": {
+			"type": "string",
+			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"accent": {
+			"type": "string",
+			"default": ""
+		},
+		"accent2": {
+			"type": "string",
+			"default": ""
+		},
+		"speed": {
+			"type": "number",
+			"default": 1
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-text"
+}

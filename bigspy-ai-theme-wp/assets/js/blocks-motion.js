@@ -86,4 +86,97 @@
 			el(c.Button, { onClick: function () { props.setAttributes({ backgroundId: 0, backgroundUrl: '' }); } }, __('Remove background', T))
 		)), el('div', be.useBlockProps({ className: 'bst-motion-panel', style: { backgroundImage: a.backgroundUrl ? (/gradient\(/.test(a.overlay) ? a.overlay : 'linear-gradient(' + (a.overlay || '#0006') + ',' + (a.overlay || '#0006') + ')') + ',url("' + a.backgroundUrl + '")' : '', backgroundPosition: (a.focalPoint.x * 100) + '% ' + (a.focalPoint.y * 100) + '%' } }), el('strong', null, a.title), el(be.InnerBlocks)));
 	}, save: save });
+	/* ------------------------------------------------ Motion wave 1: Animated Text, Scroll Story, Stacking Cards */
+	var EFFECTS = [['reveal', __('Light up word by word while scrolling', T)], ['words', __('Words appear one by one', T)], ['typewriter', __('Typewriter', T)], ['rotate', __('Rotating words', T)], ['scramble', __('Scramble then reveal', T)], ['gradient', __('Flowing gradient', T)], ['marquee', __('Big text sliding with scroll', T)]];
+	function colorRow(props, key, label) {
+		return el('div', { className: 'bst-motion-color' }, el('p', null, label), el(c.ColorPalette, { value: props.attributes[key], onChange: function (v) { var o = {}; o[key] = v || ''; props.setAttributes(o); } }));
+	}
+	wp.blocks.registerBlockType('bigspy/animated-text', { edit: function (props) {
+		var a = props.attributes, fx = a.effect, words = (a.words || '').split(/[\n|]+/).map(function (w) { return w.trim(); }).filter(Boolean);
+		var usesWords = fx === 'rotate' || fx === 'typewriter';
+		var shown = (a.text || '') + (words.length ? ' ' : '') + (words.length ? (usesWords ? words[0] : words[0]) : '') + (a.after ? ' ' + a.after : '');
+		var style = { '--bs-atext-size': a.size ? a.size + 'px' : undefined, '--bs-atext-color': a.color || undefined, '--bs-atext-accent': a.accent || undefined, '--bs-atext-accent2': a.accent2 || undefined, '--bs-atext-weight': a.weight || undefined };
+		return el(Fragment, null,
+			el(be.InspectorControls, null,
+				el(c.PanelBody, { title: __('Animated Text', T) },
+					control(props, 'effect', __('Effect', T), 'select', EFFECTS),
+					el(c.TextareaControl, { label: __('Text', T), value: a.text, onChange: function (v) { props.setAttributes({ text: v }); } }),
+					el(c.TextareaControl, { label: usesWords ? __('Rotating words (one per line)', T) : __('Highlighted word (optional)', T), help: usesWords ? __('Shown one after another after the text, e.g. websites / online shops / brands.', T) : __('Added after the text.', T), value: a.words, onChange: function (v) { props.setAttributes({ words: v }); } }),
+					control(props, 'after', __('Text after (optional)', T)),
+					control(props, 'tag', __('HTML tag', T), 'select', [['h1', 'H1'], ['h2', 'H2'], ['h3', 'H3'], ['h4', 'H4'], ['p', __('Paragraph', T)], ['div', 'div']]),
+					control(props, 'speed', __('Speed', T), 'range', [0.25, 4, 0.25]),
+					usesWords || fx === 'typewriter' ? control(props, 'loop', __('Repeat', T), 'toggle') : null,
+					control(props, 'label', __('Accessible label (optional)', T))
+				),
+				el(c.PanelBody, { title: __('Typography', T), initialOpen: false },
+					control(props, 'size', __('Font size – desktop (px, 0 = theme)', T), 'range', [0, 240]),
+					control(props, 'sizeTablet', __('Font size – tablet', T), 'range', [0, 240]),
+					control(props, 'sizeMobile', __('Font size – mobile', T), 'range', [0, 240]),
+					control(props, 'weight', __('Weight', T), 'select', [['', __('Theme', T)], ['400', '400'], ['500', '500'], ['600', '600'], ['700', '700'], ['800', '800'], ['900', '900']]),
+					control(props, 'align', __('Alignment', T), 'select', [['', __('Default', T)], ['left', __('Left', T)], ['center', __('Center', T)], ['right', __('Right', T)]]),
+					colorRow(props, 'color', __('Text color', T)), colorRow(props, 'accent', __('Accent color', T)), colorRow(props, 'accent2', __('Second gradient color', T))
+				)
+			),
+			el(a.tag === 'p' || a.tag === 'div' ? a.tag : a.tag, be.useBlockProps({ className: 'bs-atext bs-atext--' + fx + ' is-static' + (a.align ? ' has-text-align-' + a.align : ''), style: style }),
+				shown.trim() ? el('span', { className: 'bs-atext__text' }, shown) : el('span', { className: 'bst-motion-empty' }, __('Write your text in the block settings →', T)))
+		);
+	}, save: function () { return null; } });
+
+	wp.blocks.registerBlockType('bigspy/scroll-story', { edit: function (props) {
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Scroll Story', T) },
+				control(props, 'mediaSide', __('Image side', T), 'select', [['right', __('Right', T)], ['left', __('Left', T)]]),
+				control(props, 'transition', __('Image change', T), 'select', [['fade', __('Fade', T)], ['slide', __('Slide up', T)], ['zoom', __('Zoom', T)]]),
+				control(props, 'ratio', __('Image ratio', T), 'select', [['4-5', '4:5'], ['1-1', '1:1'], ['3-4', '3:4'], ['4-3', '4:3'], ['16-9', '16:9']]),
+				control(props, 'stickyTop', __('Distance from the top while sticky (px)', T), 'range', [0, 400]),
+				control(props, 'radius', __('Image corner radius', T), 'range', [0, 80]),
+				control(props, 'gap', __('Gap', T), 'range', [0, 160]),
+				control(props, 'progress', __('Progress dots', T), 'toggle'),
+				control(props, 'label', __('Accessible label', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-story-editor' }),
+				el(c.Notice, { status: 'info', isDismissible: false }, __('Each step has its own image (step settings). On the site, the image stays in view and changes as each step scrolls past.', T)),
+				el(be.InnerBlocks, { allowedBlocks: ['bigspy/story-step'], template: [['bigspy/story-step'], ['bigspy/story-step'], ['bigspy/story-step']] }))
+		);
+	}, save: save });
+
+	wp.blocks.registerBlockType('bigspy/story-step', { edit: function (props) {
+		var a = props.attributes;
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Story step', T) },
+				el(be.MediaUploadCheck, null, el(be.MediaUpload, { allowedTypes: ['image'], value: a.mediaId, onSelect: function (m) { props.setAttributes({ mediaId: m.id, mediaUrl: m.url, mediaAlt: m.alt || '' }); }, render: function (p) { return el(c.Button, { variant: 'secondary', onClick: p.open }, a.mediaUrl ? __('Replace image', T) : __('Choose image', T)); } })),
+				a.mediaUrl ? el(c.Button, { isDestructive: true, variant: 'link', onClick: function () { props.setAttributes({ mediaId: 0, mediaUrl: '', mediaAlt: '' }); } }, __('Remove image', T)) : null
+			)),
+			el('div', be.useBlockProps({ className: 'bst-story-step' }),
+				el('div', { className: 'bst-story-step__thumb', style: a.mediaUrl ? { backgroundImage: 'url("' + a.mediaUrl + '")' } : {} }, a.mediaUrl ? null : __('No image', T)),
+				el('div', { className: 'bst-story-step__body' }, el(be.InnerBlocks, { template: [['bst/heading', { tag: 'h3', text: __('Step title', T) }], ['bst/text', { html: '<p>' + __('Describe this step.', T) + '</p>' }]] })))
+		);
+	}, save: save });
+
+	wp.blocks.registerBlockType('bigspy/stack-cards', { edit: function (props) {
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Stacking Cards', T) },
+				control(props, 'top', __('Distance from the top (px)', T), 'range', [0, 400]),
+				control(props, 'step', __('Offset between stacked cards (px)', T), 'range', [0, 80]),
+				control(props, 'minHeight', __('Card minimum height (px)', T), 'range', [120, 1200]),
+				control(props, 'radius', __('Corner radius', T), 'range', [0, 80]),
+				control(props, 'gap', __('Space between cards', T), 'range', [0, 200]),
+				control(props, 'shadow', __('Shadow', T), 'toggle'),
+				control(props, 'scaleEffect', __('Shrink and dim cards underneath', T), 'toggle'),
+				control(props, 'label', __('Accessible label', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-stack-editor' }),
+				el(c.Notice, { status: 'info', isDismissible: false }, __('Cards are listed here one under another. On the site they stack as visitors scroll.', T)),
+				el(be.InnerBlocks, { allowedBlocks: ['bigspy/stack-card'], template: [['bigspy/stack-card'], ['bigspy/stack-card'], ['bigspy/stack-card']] }))
+		);
+	}, save: save });
+
+	wp.blocks.registerBlockType('bigspy/stack-card', { edit: function (props) {
+		var a = props.attributes;
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Stack card', T) }, colorRow(props, 'background', __('Card background', T)), colorRow(props, 'textColor', __('Text color', T)))),
+			el('div', be.useBlockProps({ className: 'bst-stack-card', style: { background: a.background || '#fff', color: a.textColor || undefined } }),
+				el(be.InnerBlocks, { template: [['bst/heading', { tag: 'h3', text: __('Card title', T) }], ['bst/text', { html: '<p>' + __('Card content.', T) + '</p>' }]] }))
+		);
+	}, save: save });
 }(window.wp));

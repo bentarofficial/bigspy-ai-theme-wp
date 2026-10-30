@@ -5809,3 +5809,266 @@ msgstr "Áp dụng cho trang thanh toán dạng cổ điển ([woocommerce_check
 
 msgid "1.75.0: Products block upgrade and Products list, free-shipping bar and checkout options, block previews, Infinity Flow and Spotlight Panels names, AI Designer fixes."
 msgstr "1.75.0: Nâng cấp khối Sản phẩm và khối Danh sách sản phẩm, thanh miễn phí vận chuyển và tùy chọn thanh toán, bản xem trước khối, tên mới Infinity Flow và Spotlight Panels, sửa lỗi AI Designer."
+
+# Motion wave 1 (1.76).
+msgctxt "block title"
+msgid "Animated Text"
+msgstr "Animated Text"
+
+msgctxt "block title"
+msgid "Scroll Story"
+msgstr "Scroll Story"
+
+msgctxt "block title"
+msgid "Story step"
+msgstr "Bước Scroll Story"
+
+msgctxt "block title"
+msgid "Stacking Cards"
+msgstr "Stacking Cards"
+
+msgctxt "block title"
+msgid "Stack card"
+msgstr "Thẻ Stacking Cards"
+
+msgctxt "block description"
+msgid "Headline or text that moves: words light up as you scroll, appear word by word, type themselves, rotate through a list (\"We build [websites | shops | brands]\"), unscramble, flow in an animated gradient or slide across the screen as big type. The full text stays in the page for SEO."
+msgstr "Tiêu đề hoặc đoạn chữ chuyển động: từng từ sáng dần khi cuộn, hiện lần lượt từng từ, tự gõ chữ, thay phiên từ trong danh sách (\"Chúng tôi làm [website | cửa hàng | thương hiệu]\"), xáo ký tự rồi hiện ra, chạy màu gradient hoặc chữ lớn trượt ngang theo cuộn. Toàn bộ chữ vẫn có trong trang để chuẩn SEO."
+
+msgctxt "block description"
+msgid "Scrollytelling section: text steps scroll by on one side while a sticky image on the other side changes with each step. Great for a process, services or product features. On phones each step shows its own image. Normal page scrolling is never blocked."
+msgstr "Phần kể chuyện theo cuộn: các bước nội dung cuộn qua ở một bên, ảnh ở bên kia đứng yên và đổi theo từng bước. Hợp để giới thiệu quy trình, dịch vụ, tính năng sản phẩm. Trên điện thoại mỗi bước hiện ảnh riêng. Không chặn thanh cuộn của trang."
+
+msgctxt "block description"
+msgid "One step of a Scroll Story: any blocks (number, heading, text, button) plus the image shown in the sticky media area while this step is in view."
+msgstr "Một bước của Scroll Story: chứa mọi khối (số thứ tự, tiêu đề, đoạn văn, nút) và ảnh hiện ở vùng ảnh cố định khi bước này đang trong tầm nhìn."
+
+msgctxt "block description"
+msgid "Cards that stack on top of each other as visitors scroll, like a deck: each card sticks near the top and the next one slides over it, while earlier cards shrink and dim slightly. Good for services, pricing plans or reasons to choose you. Works on phones too."
+msgstr "Các thẻ xếp chồng lên nhau khi khách cuộn, như xấp bài: mỗi thẻ dính gần đầu màn hình và thẻ sau trượt lên đè, các thẻ bên dưới thu nhỏ và tối nhẹ. Hợp cho dịch vụ, gói giá, lý do chọn chúng tôi. Chạy tốt cả trên điện thoại."
+
+msgctxt "block description"
+msgid "One card of Stacking Cards: any blocks inside, with its own background and text color."
+msgstr "Một thẻ của Stacking Cards: chứa mọi khối, có màu nền và màu chữ riêng."
+
+msgid "Motion intensity"
+msgstr "Cường độ chuyển động"
+
+msgid "Scales every block entrance animation at once: distance and duration. Blocks with their own distance keep it. Visitors who ask their device for less motion always get none."
+msgstr "Điều chỉnh đồng loạt mọi hiệu ứng xuất hiện của các khối: khoảng cách và thời lượng. Khối đã đặt khoảng cách riêng thì giữ nguyên. Khách bật chế độ giảm chuyển động trên thiết bị sẽ không thấy hiệu ứng."
+
+msgid "Subtle"
+msgstr "Nhẹ"
+
+msgid "Normal"
+msgstr "Vừa"
+
+msgid "Strong"
+msgstr "Mạnh"
+
+msgid "Motion style"
+msgstr "Phong cách chuyển động"
+
+msgid "One-click character for all animations. Elegant: slow and smooth. Dynamic: quick with a little bounce. Minimal: fades only, no movement."
+msgstr "Đổi chất chuyển động cho mọi hiệu ứng bằng một lựa chọn. Sang trọng: chậm và mượt. Năng động: nhanh, hơi nảy. Tối giản: chỉ mờ dần, không dịch chuyển."
+
+msgid "Theme default"
+msgstr "Mặc định của theme"
+
+msgid "Elegant"
+msgstr "Sang trọng"
+
+msgid "Dynamic"
+msgstr "Năng động"
+
+msgid "Minimal"
+msgstr "Tối giản"
+
+msgid "Light up word by word while scrolling"
+msgstr "Từng từ sáng dần khi cuộn"
+
+msgid "Words appear one by one"
+msgstr "Hiện lần lượt từng từ"
+
+msgid "Typewriter"
+msgstr "Gõ chữ"
+
+msgid "Rotating words"
+msgstr "Thay phiên từ"
+
+msgid "Scramble then reveal"
+msgstr "Xáo ký tự rồi hiện"
+
+msgid "Flowing gradient"
+msgstr "Gradient chạy màu"
+
+msgid "Big text sliding with scroll"
+msgstr "Chữ lớn trượt theo cuộn"
+
+msgid "Effect"
+msgstr "Hiệu ứng"
+
+msgid "Rotating words (one per line)"
+msgstr "Các từ thay phiên (mỗi dòng một từ)"
+
+msgid "Highlighted word (optional)"
+msgstr "Từ nhấn mạnh (không bắt buộc)"
+
+msgid "Shown one after another after the text, e.g. websites / online shops / brands."
+msgstr "Hiện lần lượt sau phần chữ, ví dụ website / cửa hàng online / thương hiệu."
+
+msgid "Added after the text."
+msgstr "Thêm vào sau phần chữ."
+
+msgid "Text after (optional)"
+msgstr "Chữ phía sau (không bắt buộc)"
+
+msgid "HTML tag"
+msgstr "Thẻ HTML"
+
+msgid "Paragraph"
+msgstr "Đoạn văn"
+
+msgid "Speed"
+msgstr "Tốc độ"
+
+msgid "Repeat"
+msgstr "Lặp lại"
+
+msgid "Accessible label (optional)"
+msgstr "Nhãn hỗ trợ trình đọc màn hình (không bắt buộc)"
+
+msgid "Typography"
+msgstr "Kiểu chữ"
+
+msgid "Font size – desktop (px, 0 = theme)"
+msgstr "Cỡ chữ – máy tính (px, 0 = theo theme)"
+
+msgid "Font size – tablet"
+msgstr "Cỡ chữ – máy tính bảng"
+
+msgid "Font size – mobile"
+msgstr "Cỡ chữ – điện thoại"
+
+msgid "Weight"
+msgstr "Độ đậm"
+
+msgid "Alignment"
+msgstr "Căn lề"
+
+msgid "Default"
+msgstr "Mặc định"
+
+msgid "Accent color"
+msgstr "Màu nhấn"
+
+msgid "Second gradient color"
+msgstr "Màu gradient thứ hai"
+
+msgid "Write your text in the block settings →"
+msgstr "Nhập chữ trong phần cài đặt khối →"
+
+msgid "Image side"
+msgstr "Vị trí ảnh"
+
+msgid "Image change"
+msgstr "Cách đổi ảnh"
+
+msgid "Slide up"
+msgstr "Trượt lên"
+
+msgid "Distance from the top while sticky (px)"
+msgstr "Khoảng cách tới đầu màn hình khi dính (px)"
+
+msgid "Image corner radius"
+msgstr "Bo góc ảnh"
+
+msgid "Progress dots"
+msgstr "Chấm tiến độ"
+
+msgid "Each step has its own image (step settings). On the site, the image stays in view and changes as each step scrolls past."
+msgstr "Mỗi bước có ảnh riêng (trong cài đặt bước). Trên website, ảnh đứng yên và đổi theo từng bước khi cuộn qua."
+
+msgid "Story step"
+msgstr "Bước Scroll Story"
+
+msgid "Replace image"
+msgstr "Thay ảnh"
+
+msgid "Choose image"
+msgstr "Chọn ảnh"
+
+msgid "Remove image"
+msgstr "Xoá ảnh"
+
+msgid "No image"
+msgstr "Chưa có ảnh"
+
+msgid "Step title"
+msgstr "Tiêu đề bước"
+
+msgid "Describe this step."
+msgstr "Mô tả bước này."
+
+msgid "Distance from the top (px)"
+msgstr "Khoảng cách tới đầu màn hình (px)"
+
+msgid "Offset between stacked cards (px)"
+msgstr "Độ lệch giữa các thẻ xếp chồng (px)"
+
+msgid "Card minimum height (px)"
+msgstr "Chiều cao tối thiểu của thẻ (px)"
+
+msgid "Space between cards"
+msgstr "Khoảng cách giữa các thẻ"
+
+msgid "Shadow"
+msgstr "Đổ bóng"
+
+msgid "Shrink and dim cards underneath"
+msgstr "Thu nhỏ và làm tối thẻ bên dưới"
+
+msgid "Cards are listed here one under another. On the site they stack as visitors scroll."
+msgstr "Trong trình soạn thảo, các thẻ xếp dọc lần lượt. Trên website, thẻ sẽ xếp chồng khi khách cuộn."
+
+msgid "Stack card"
+msgstr "Thẻ Stacking Cards"
+
+msgid "Card background"
+msgstr "Nền thẻ"
+
+msgid "Card title"
+msgstr "Tiêu đề thẻ"
+
+msgid "Card content."
+msgstr "Nội dung thẻ."
+
+msgid "Text motion"
+msgstr "Hiệu ứng chữ"
+
+msgid "We build"
+msgstr "Chúng tôi làm"
+
+msgid "websites"
+msgstr "website"
+
+msgid "Words light up"
+msgstr "Từng từ sáng dần"
+
+msgid "as you scroll"
+msgstr "khi bạn cuộn"
+
+msgid "Typewriter · rotate · scramble · gradient"
+msgstr "Gõ chữ · thay phiên · xáo chữ · gradient"
+
+msgid "Card"
+msgstr "Thẻ"
+
+msgid "Scroll Story"
+msgstr "Scroll Story"
+
+msgid "Stacking Cards"
+msgstr "Stacking Cards"
+
+msgid "Animated Text"
+msgstr "Animated Text"

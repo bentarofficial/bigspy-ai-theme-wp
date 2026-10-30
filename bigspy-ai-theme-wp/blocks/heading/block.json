@@ -85,6 +85,10 @@
 		"highlightColor": {
 			"type": "string",
 			"default": ""
+		},
+		"textMotion": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

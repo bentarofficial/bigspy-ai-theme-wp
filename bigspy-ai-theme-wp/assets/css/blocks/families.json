@@ -2,6 +2,15 @@
 	"ticker": [
 		"bs-ticker"
 	],
+	"animated-text": [
+		"bs-atext"
+	],
+	"scroll-story": [
+		"bs-story"
+	],
+	"stack-cards": [
+		"bs-stack"
+	],
 	"expand-gallery": [
 		"bs-expand"
 	],

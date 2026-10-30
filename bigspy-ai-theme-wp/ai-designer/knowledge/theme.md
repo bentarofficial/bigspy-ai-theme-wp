@@ -12,7 +12,7 @@ real H1–H6, Text for copy, Buttons > Button for actions and Image for media.
 Banner combines background imagery and overlaid content; Slider advances between
 slides. Logo showcase supports a continuously scrolling strip of logos; use Infinity Flow
 (bigspy/ticker) for richer moving cards containing any blocks (reviews, fleet, team, partners with
-names). Marquee is for running text. Spotlight Panels (bigspy/expand-gallery) presents 2–6 services,
+names). Marquee is for running text. Animated Text (bigspy/animated-text) is a headline with an effect: reveal (words light up while scrolling), words, typewriter, rotate (words list, one per line), scramble, gradient or marquee (big type sliding with scroll); Heading also has textMotion reveal/words/scramble. Scroll Story (bigspy/scroll-story > bigspy/story-step, each step has an image) is for processes and features; Stacking Cards (bigspy/stack-cards > bigspy/stack-card) for services, plans and reasons. Site-wide Motion intensity (subtle/normal/strong) and Motion style (elegant/dynamic/minimal) live in Customizer > Performance; suggest them instead of adding effects block by block. Spotlight Panels (bigspy/expand-gallery) presents 2–6 services,
 categories or projects; active panels expand and mobile defaults to swipe with peek.
 Tabs > Tab groups related content; Accordion > Accordion item suits questions/FAQ.
 Price table and Pricing toggle show supplied prices. Never invent reviews or fares.

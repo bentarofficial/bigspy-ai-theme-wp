@@ -1,0 +1,70 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/stack-cards",
+	"title": "Stacking Cards",
+	"category": "bigspy",
+	"icon": "images-alt",
+	"description": "Cards that stack on top of each other as visitors scroll, like a deck: each card sticks near the top and the next one slides over it, while earlier cards shrink and dim slightly. Good for services, pricing plans or reasons to choose you. Works on phones too.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"stack",
+		"cards",
+		"sticky",
+		"deck",
+		"services",
+		"thẻ xếp chồng",
+		"dịch vụ",
+		"cuộn"
+	],
+	"attributes": {
+		"top": {
+			"type": "number",
+			"default": 90
+		},
+		"step": {
+			"type": "number",
+			"default": 24
+		},
+		"minHeight": {
+			"type": "number",
+			"default": 320
+		},
+		"radius": {
+			"type": "number",
+			"default": 24
+		},
+		"shadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"scaleEffect": {
+			"type": "boolean",
+			"default": true
+		},
+		"gap": {
+			"type": "number",
+			"default": 40
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-scroll"
+}
