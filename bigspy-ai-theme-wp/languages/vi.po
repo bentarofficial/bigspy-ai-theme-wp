@@ -5048,9 +5048,6 @@ msgctxt "block description"
 msgid "A column inside a Row. Set its width out of 12 separately for desktop, tablet and mobile, plus vertical alignment, padding and background. Holds any blocks."
 msgstr "Một cột nằm trong Row. Đặt độ rộng trên 12 phần riêng cho máy tính, máy tính bảng, điện thoại, cùng căn dọc, khoảng đệm và nền. Chứa được mọi khối."
 
-msgctxt "block description"
-msgid "Animated number that counts up when scrolled into view: years of experience, customers, projects, rating. Add a prefix or suffix, label and icon."
-msgstr "Con số chạy tăng dần khi cuộn tới: số năm kinh nghiệm, khách hàng, dự án, điểm đánh giá. Thêm tiền tố, hậu tố, nhãn và icon."
 
 msgctxt "block description"
 msgid "Horizontal line with style (solid, dashed, dotted, double), width, thickness, color and alignment. Separates content or decorates under a heading."
@@ -6472,3 +6469,44 @@ msgstr "Cực quang (aurora)"
 
 msgid "Frosted glass cards (columns)"
 msgstr "Thẻ kính mờ (các cột)"
+
+# Count-up numbers (1.76).
+msgctxt "block description"
+msgid "Animated number that counts up when scrolled into view: years of experience, customers, projects, rating. Enter only the final number; choose the start value and counting style. Show the label under the number or inside one sentence, e.g. \"Over 3,000 happy customers\", with separate sizes and colors."
+msgstr "Con số chạy tăng dần khi cuộn tới: số năm kinh nghiệm, khách hàng, dự án, điểm đánh giá. Chỉ cần nhập số cuối; chọn số bắt đầu và kiểu chạy. Nhãn đặt dưới con số hoặc nằm trong cùng một câu, ví dụ \"Hơn 3.000 khách hàng hài lòng\", với cỡ chữ và màu riêng."
+
+msgid "Count-up number (select a number; it counts up from 0 on the site)"
+msgstr "Số nhảy (bôi đen một con số; trên website số sẽ chạy từ 0 lên)"
+
+msgid "Select a number first, e.g. 11.256"
+msgstr "Hãy bôi đen một con số trước, ví dụ 11.256"
+
+msgid "Count-up number"
+msgstr "Số nhảy"
+
+msgid "Label under the number"
+msgstr "Nhãn dưới con số"
+
+msgid "Inside one sentence"
+msgstr "Nằm trong một câu"
+
+msgid "Inside one sentence: prefix, number, suffix and label read as one line, e.g. \"Over 3,000 happy customers\"."
+msgstr "Nằm trong một câu: phần trước số, con số, phần sau số và nhãn đọc liền một dòng, ví dụ \"Hơn 3.000 khách hàng hài lòng\"."
+
+msgid "Start counting from"
+msgstr "Bắt đầu chạy từ"
+
+msgid "Counting style"
+msgstr "Kiểu chạy số"
+
+msgid "Fast, then slows down"
+msgstr "Nhanh rồi chậm dần"
+
+msgid "Steady"
+msgstr "Đều"
+
+msgid "Overshoot and settle"
+msgstr "Vượt nhẹ rồi dừng"
+
+msgid "Text size for prefix, suffix and label (px, 0 = automatic)"
+msgstr "Cỡ chữ phần trước, phần sau và nhãn (px, 0 = tự động)"

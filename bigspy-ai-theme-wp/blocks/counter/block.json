@@ -5,7 +5,7 @@
 	"title": "Counter",
 	"category": "bigspy",
 	"icon": "performance",
-	"description": "Animated number that counts up when scrolled into view: years of experience, customers, projects, rating. Add a prefix or suffix, label and icon.",
+	"description": "Animated number that counts up when scrolled into view: years of experience, customers, projects, rating. Enter only the final number; choose the start value and counting style. Show the label under the number or inside one sentence, e.g. \"Over 3,000 happy customers\", with separate sizes and colors.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"number": {
@@ -43,6 +43,26 @@
 		"align": {
 			"type": "string",
 			"default": "center"
+		},
+		"layout": {
+			"type": "string",
+			"default": "stack"
+		},
+		"from": {
+			"type": "number",
+			"default": 0
+		},
+		"ease": {
+			"type": "string",
+			"default": "out"
+		},
+		"textSize": {
+			"type": "number",
+			"default": 0
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

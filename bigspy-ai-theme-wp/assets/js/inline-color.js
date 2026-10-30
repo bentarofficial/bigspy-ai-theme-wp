@@ -115,4 +115,29 @@
 			);
 		}
 	});
+
+	/* Count-up number: select a number in a heading and it counts up from 0 on the site. */
+	rt.registerFormatType('bst/count-up', {
+		title: __('Count-up number', T),
+		tagName: 'span',
+		className: 'bs-countup',
+		edit: function (props) {
+			var block = wp.data.select('core/block-editor').getSelectedBlock();
+			if (!block || 0 !== block.name.indexOf('bst/')) {
+				return null;
+			}
+			return el(be.RichTextToolbarButton, {
+				icon: 'chart-line',
+				title: __('Count-up number', T),
+				isActive: props.isActive,
+				onClick: function () {
+					if (!props.isActive && !/\d/.test(rt.getTextContent(rt.slice(props.value)))) {
+						window.alert(__('Select a number first, e.g. 11.256', T));
+						return;
+					}
+					props.onChange(rt.toggleFormat(props.value, { type: 'bst/count-up' }));
+				}
+			});
+		}
+	});
 })(window.wp);

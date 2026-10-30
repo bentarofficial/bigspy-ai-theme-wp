@@ -455,6 +455,30 @@
 				)
 			);
 		};
+		/* "Count-up number": the selected number counts up from 0 on the site (class bs-countup). */
+		var countUp = function () {
+			var doc = restore();
+			if (!doc) {
+				return;
+			}
+			var sel = doc.getSelection();
+			var node = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement);
+			var current = node && node.closest('.bs-countup');
+			if (current) {
+				current.replaceWith(doc.createTextNode(current.textContent));
+			} else {
+				var text = sel.toString();
+				if (!/\d/.test(text)) {
+					doc.defaultView.alert(__('Select a number first, e.g. 11.256', 'bigspy-ai-theme-wp'));
+					return;
+				}
+				doc.execCommand('insertHTML', false, '<span class="bs-countup">' + text.replace(/[<>&]/g, '') + '</span>');
+			}
+			var editor = getEditor();
+			if (editor) {
+				editor.dispatchEvent(new (doc.defaultView.Event)('input', { bubbles: true }));
+			}
+		};
 		var link = function () {
 			var doc = restore();
 			if (!doc) {
@@ -535,6 +559,7 @@
 					cmd(ic('editor-justify'), __('Justify', 'bigspy-ai-theme-wp'), 'justifyFull')
 				]),
 				group(7, [
+					btn(ic('chart-line'), __('Count-up number (select a number; it counts up from 0 on the site)', 'bigspy-ai-theme-wp'), countUp),
 					btn(ic('admin-links'), __('Insert link', 'bigspy-ai-theme-wp'), link),
 					cmd(ic('editor-unlink'), __('Remove link', 'bigspy-ai-theme-wp'), 'unlink'),
 					el(be.MediaUploadCheck, { key: 'img' }, el(be.MediaUpload, {
@@ -2111,7 +2136,7 @@
 	register('counter', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({ className: 'bs-counter has-text-align-' + a.align, style: styleVars({ '--bs-counter-size': a.size + 'px', '--bs-counter-color': a.color }) });
+		var blockProps = useBlockProps({ className: 'bs-counter has-text-align-' + a.align + (a.layout === 'inline' ? ' bs-counter--inline' : ''), style: styleVars({ '--bs-counter-size': a.size + 'px', '--bs-counter-color': a.color, '--bs-counter-text-size': a.textSize ? a.textSize + 'px' : '', '--bs-counter-text-color': a.textColor }) });
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Counter', 'bigspy-ai-theme-wp') },
@@ -2121,9 +2146,13 @@
 					el(Select, Object.assign({ label: __('Thousands separator', 'bigspy-ai-theme-wp'), options: { '.': '1.000', ',': '1,000', ' ': '1 000', '': '1000' } }, bind('separator'))),
 					el(Range, Object.assign({ label: __('Animation duration (ms)', 'bigspy-ai-theme-wp'), min: 200, max: 6000, step: 100 }, bind('duration'))),
 					el(Range, Object.assign({ label: __('Number size (px)', 'bigspy-ai-theme-wp'), min: 16, max: 140 }, bind('size'))),
-					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align')))
+					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
+					el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: { stack: __('Label under the number', 'bigspy-ai-theme-wp'), inline: __('Inside one sentence', 'bigspy-ai-theme-wp') }, help: __('Inside one sentence: prefix, number, suffix and label read as one line, e.g. "Over 3,000 happy customers".', 'bigspy-ai-theme-wp') }, bind('layout'))),
+					el(Range, Object.assign({ label: __('Start counting from', 'bigspy-ai-theme-wp'), min: 0, max: Math.max(100, parseFloat(a.number) || 0) }, bind('from'))),
+					el(Select, Object.assign({ label: __('Counting style', 'bigspy-ai-theme-wp'), options: { out: __('Fast, then slows down', 'bigspy-ai-theme-wp'), linear: __('Steady', 'bigspy-ai-theme-wp'), bounce: __('Overshoot and settle', 'bigspy-ai-theme-wp') } }, bind('ease'))),
+					el(Range, Object.assign({ label: __('Text size for prefix, suffix and label (px, 0 = automatic)', 'bigspy-ai-theme-wp'), min: 0, max: 80 }, bind('textSize')))
 				),
-				el(B.ColorPanel, { settings: [{ label: __('Number color', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } }] })
+				el(B.ColorPanel, { settings: [{ label: __('Number color', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } }, { label: __('Text color', 'bigspy-ai-theme-wp'), value: a.textColor, onChange: function (v) { props.setAttributes({ textColor: v || '' }); } }] })
 			),
 			el('div', blockProps,
 				el('div', { className: 'bs-counter__value' },

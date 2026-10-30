@@ -362,15 +362,70 @@
 	}
 
 	/* ------------------------------------------------------------ Counter */
+	/* Count-up numbers inside text (Heading / Text "Count-up number"): read the number from the
+	   text itself, keep its separators, count from 0 when it scrolls into view. */
+	function prepareCountUp(el) {
+		var text = el.textContent.trim();
+		var m = text.match(/^([^\d]*)([\d.,\s]*\d)(.*)$/);
+		if (!m) {
+			return false;
+		}
+		var digits = m[2].replace(/\s/g, ' ');
+		// "11.256" / "11,256" / "1 050" are thousands; "4.9" / "4,9" is a decimal.
+		var sep = '', dec = '.', decimals = 0;
+		var groups = digits.match(/^\d{1,3}(?:([.,\s])\d{3})+$/);
+		if (groups) {
+			sep = groups[1];
+		} else {
+			var d = digits.match(/^\d+([.,])(\d+)$/);
+			if (d) {
+				dec = d[1];
+				decimals = d[2].length;
+			}
+		}
+		el.dataset.bsCountup = '1';
+		el.dataset.to = digits.replace(/[^\d.,]/g, '').split(sep || '\u0000').join('').replace(',', '.');
+		el.dataset.sep = sep;
+		el.dataset.dec = dec;
+		el.dataset.decimals = String(decimals);
+		el.dataset.prefix = m[1];
+		el.dataset.suffix = m[3];
+		return true;
+	}
+
+	/* Put a counter at its starting value without animating. */
+	function runCounterStart(el) {
+		var sep = el.dataset.sep || '', dec = el.dataset.dec || (sep === '.' ? ',' : '.');
+		var decimals = el.dataset.decimals !== undefined ? parseInt(el.dataset.decimals, 10) || 0 : (String(el.dataset.to).split('.')[1] || '').length;
+		var parts = (parseFloat(el.dataset.from || '0') || 0).toFixed(decimals).split('.');
+		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+		el.textContent = (el.dataset.prefix || '') + parts.join(dec) + (el.dataset.suffix || '');
+	}
+
 	function runCounter(el) {
 		var to = parseFloat(el.dataset.to || '0');
-		var decimals = (String(el.dataset.to).split('.')[1] || '').length;
+		var from = parseFloat(el.dataset.from || '0') || 0;
+		var decimals = el.dataset.decimals !== undefined ? parseInt(el.dataset.decimals, 10) || 0 : (String(el.dataset.to).split('.')[1] || '').length;
 		var duration = parseInt(el.dataset.duration || '1600', 10);
 		var sep = el.dataset.sep || '';
+		// Decimal mark: the Counter block uses the opposite of its thousands separator.
+		var dec = el.dataset.dec || (sep === '.' ? ',' : '.');
+		var prefix = el.dataset.prefix || '', suffix = el.dataset.suffix || '';
+		var ease = el.dataset.ease || 'out';
 		var format = function (value) {
 			var parts = value.toFixed(decimals).split('.');
 			parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, sep);
-			return parts.join(sep === '.' ? ',' : '.');
+			return prefix + parts.join(dec) + suffix;
+		};
+		var curve = function (p) {
+			if (ease === 'linear') {
+				return p;
+			}
+			if (ease === 'bounce') {
+				var c1 = 1.70158, c3 = c1 + 1;
+				return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2);
+			}
+			return 1 - Math.pow(1 - p, 3);
 		};
 		if (reduceMotion) {
 			el.textContent = format(to);
@@ -384,14 +439,14 @@
 				start = ts;
 			}
 			var progress = Math.min(1, (ts - start) / duration);
-			var eased = 1 - Math.pow(1 - progress, 3);
+			var eased = curve(progress);
 			if (scramble && progress < 1) {
 				var final = format(to), keep = Math.floor(final.length * eased);
 				el.textContent = final.slice(0, keep) + final.slice(keep).replace(/\d/g, function () { return Math.floor(Math.random() * 10); });
 				window.requestAnimationFrame(tick);
 				return;
 			}
-			el.textContent = format(to * eased);
+			el.textContent = progress < 1 ? format(from + (to - from) * eased) : format(to);
 			if (progress < 1) {
 				window.requestAnimationFrame(tick);
 			}
@@ -487,11 +542,23 @@
 			}
 		}
 
-		var counters = root.querySelectorAll('[data-bs-counter]');
+		var counters = Array.prototype.filter.call(root.querySelectorAll('[data-bs-counter], .bs-countup'), function (el) {
+			return el.hasAttribute('data-bs-counter') || prepareCountUp(el);
+		});
 		if (counters.length) {
 			if (!('IntersectionObserver' in window)) {
 				counters.forEach(runCounter);
 			} else {
+				// Show the starting value right away (the final number stays in the HTML for SEO),
+				// so the number never flashes its end value before counting.
+				if (!reduceMotion) {
+					counters.forEach(function (el) {
+						var r = el.getBoundingClientRect();
+						if (r.top > window.innerHeight || r.bottom < 0) {
+							runCounterStart(el);
+						}
+					});
+				}
 				var io = new IntersectionObserver(function (entries) {
 					entries.forEach(function (entry) {
 						if (entry.isIntersecting) {

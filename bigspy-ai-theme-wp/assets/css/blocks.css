@@ -3548,3 +3548,11 @@ body.bs-has-scroll-bg .bs-section[data-bs-scroll-bg] { background-color: transpa
 	.bs-vcard__video { display: none; }
 	.bs-bento.is-stagger-ready .bs-bento__cell { opacity: 1; transform: none; }
 }
+
+/* Counter 1.76: label inside the sentence, separate text size and color */
+.bs-counter__affix, .bs-counter__label { font-size: var(--bs-counter-text-size, inherit); color: var(--bs-counter-text-color, inherit); }
+.bs-counter--inline .bs-counter__value { display: inline; line-height: 1.3; }
+.bs-counter--inline .bs-counter__affix, .bs-counter--inline .bs-counter__label { font-family: var(--bs-font-body); font-weight: 500; font-size: var(--bs-counter-text-size, .45em); color: var(--bs-counter-text-color, var(--bs-text, inherit)); }
+.bs-counter--inline .bs-counter__label { margin: 0 0 0 .3em; opacity: 1; }
+.bs-counter--inline .bs-counter__affix:first-child { margin-right: .3em; }
+.bs-countup { font-variant-numeric: tabular-nums; }

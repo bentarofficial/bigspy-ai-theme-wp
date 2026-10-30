@@ -6,6 +6,16 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
+### Số nhảy đếm: nút "Số nhảy" trong Heading/Text và nâng cấp Counter (Claude, 30-10-2026)
+
+- **Yêu cầu:** con số trong câu (ví dụ "Đã có 11.256 người…") chạy từ 0 lên khi cuộn tới; người dùng chỉ nhập số cuối.
+- **Đã thay đổi:**
+  - Nút **Số nhảy** trên thanh công cụ khối Text và định dạng rich text `bst/count-up` cho Heading (và mọi RichText của khối BIGSPY AI): bọc số bằng `<span class="bs-countup">`.
+  - `blocks.js`: `prepareCountUp` đọc số từ chính chữ (nhận dạng 11.256 / 11,256 / 1 050 là hàng nghìn, 4,9 / 4.9 là thập phân, giữ nguyên dấu), dùng chung `runCounter`; runtime counter hỗ trợ số bắt đầu (`data-from`), kiểu chạy (nhanh rồi chậm dần / đều / vượt nhẹ rồi dừng) và đặt sẵn giá trị bắt đầu cho số chưa vào màn hình (hết nhấp nháy số cuối). Số cuối vẫn có trong HTML cho SEO.
+  - Counter: bố cục **Nằm trong một câu** (phần trước, số, phần sau, nhãn trên một dòng), số bắt đầu, kiểu chạy, cỡ chữ và màu riêng cho phần chữ. Nội dung cũ giữ nguyên (mặc định stack, từ 0, kiểu cũ).
+- **Kiểm thử:** `node --check`, lint, `check-block-previews`, `playground-check.cjs --welcome` đạt. Playground (giả lập tắt giảm chuyển động): giữa chừng 6.505 → dừng 11.256; 1734 → 3000; 2,8 → 4,9; Counter trong câu chạy 100 → 1.050 kiểu vượt nhẹ; editor có nút Số nhảy, định dạng lưu `bs-countup`, Counter inline hiển thị. Chưa xem bằng mắt trên điện thoại thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, trang Giới thiệu (cách bôi số rồi bấm Số nhảy).
+
 ### Đổi tên thương hiệu BIGSPY → BIGSPY AI và chuyển động đợt 3 (Claude, 30-10-2026)
 
 - **Yêu cầu:** mọi tên hiển thị có chữ BIGSPY phải là "BIGSPY AI + hậu tố" (ví dụ BIGSPY AI Studio); đợt 3 roadmap chuyển động.
