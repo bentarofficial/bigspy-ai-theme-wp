@@ -57,6 +57,7 @@ $bst_includes = array(
 	'inc/countdown.php',
 	'inc/patterns.php',
 	'inc/pattern-studio.php',
+	'inc/auto-detect.php',
 
 	'inc/compat-flatsome.php',
 	'inc/compat-flatsome-elements.php',

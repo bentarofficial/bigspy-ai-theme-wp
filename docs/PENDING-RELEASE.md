@@ -8,6 +8,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 Chưa có thay đổi sản phẩm mới sau bản 1.76.0. Bản 1.76.0 (30-10-2026) đã gom: icon khối có màu, chuyển động đợt 1–3, đổi tên BIGSPY AI, sửa CSS ghép theo khối, số nhảy đếm. Kiểm thử phát hành: check-block-previews (76 khối), playground-check --welcome, updater-playground-check, build-theme.py (367 tệp, sha256 3834243a…).
 
+- **Yêu cầu/tính năng:** menu Tự động phát hiện (đợt A): từ khóa chính trùng, thẻ H1, media chưa dùng, link hỏng, quét bảo mật; AI Designer đọc được báo cáo.
+- **Đã thay đổi:** `inc/auto-detect.php`, `inc/auto-detect/`, `assets/js/auto-detect.js`, công cụ đọc `auto_detect_results`. Chạy tay theo đợt hoặc nền hằng tuần, tắt được. Chỉ báo cáo; xoá media và sửa/gỡ link chỉ khi admin bấm và xác nhận.
+- **Kiểm thử:** `node tools/auto-detect-check.cjs` trên Playground (mạng ngoài được giả lập). Chưa chạy trên site thật.
+- **Khi phát hành cần bổ sung:** Giới thiệu, Có gì mới, kiến thức AI.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

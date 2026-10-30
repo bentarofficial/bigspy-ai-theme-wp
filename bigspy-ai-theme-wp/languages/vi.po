@@ -6513,3 +6513,124 @@ msgstr "Cỡ chữ phần trước, phần sau và nhãn (px, 0 = tự động)"
 
 msgid "1.76.0: Motion update: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid, count-up numbers, motion intensity and style, block previews and colored icons."
 msgstr "1.76.0: Bản cập nhật chuyển động: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid, số nhảy đếm, cường độ và phong cách chuyển động, bản xem trước và icon màu cho khối."
+
+msgid "Auto detect"
+msgstr "Tự động phát hiện"
+
+msgid "These checks only report. Nothing is changed or deleted unless you press an action and confirm it."
+msgstr "Các mục này chỉ báo cáo. Không có gì bị sửa hoặc xoá trừ khi bạn bấm thao tác và xác nhận."
+
+msgid "Scan now"
+msgstr "Quét ngay"
+
+msgid "Scanning…"
+msgstr "Đang quét…"
+
+msgid "Not scanned yet."
+msgstr "Chưa quét lần nào."
+
+msgid "Last scan:"
+msgstr "Lần quét gần nhất:"
+
+msgid "No problems found."
+msgstr "Không phát hiện vấn đề."
+
+msgid "Ignore this pair"
+msgstr "Bỏ qua mục này"
+
+msgid "Run automatically every week, in small background batches"
+msgstr "Tự chạy mỗi tuần, chạy nền theo từng đợt nhỏ"
+
+msgid "Needs fixing"
+msgstr "Cần xử lý"
+
+msgid "Needs review"
+msgstr "Cần xem"
+
+msgid "Delete selected"
+msgstr "Xoá mục đã chọn"
+
+msgid "Permanently delete the selected files? This cannot be undone."
+msgstr "Xoá vĩnh viễn các tệp đã chọn? Không thể hoàn tác."
+
+msgid "Replace link"
+msgstr "Thay link"
+
+msgid "New URL:"
+msgstr "URL mới:"
+
+msgid "Remove link"
+msgstr "Gỡ link"
+
+msgid "Remove this link and keep its text in every listed post?"
+msgstr "Gỡ link này và giữ lại chữ trong mọi bài đã liệt kê?"
+
+msgid "Request failed."
+msgstr "Yêu cầu thất bại."
+
+msgid "Duplicate focus keywords"
+msgstr "Từ khóa chính trùng"
+
+msgid "Compares the focus keyword of published content. Secondary keywords are not compared."
+msgstr "So sánh từ khóa chính của nội dung đã xuất bản. Không so sánh từ khóa phụ."
+
+msgid "H1 tags"
+msgstr "Thẻ H1"
+
+msgid "Opens each published page, post and product as a visitor and counts its H1 tags."
+msgstr "Mở từng trang, bài viết và sản phẩm đã xuất bản như khách truy cập rồi đếm thẻ H1."
+
+msgid "Page could not be opened"
+msgstr "Không mở được trang"
+
+msgid "No H1 tag"
+msgstr "Không có thẻ H1"
+
+msgid "%d H1 tags"
+msgstr "%d thẻ H1"
+
+msgid "Same H1 on several pages"
+msgstr "H1 trùng giữa nhiều trang"
+
+msgid "Unused media"
+msgstr "Media chưa dùng"
+
+msgid "Searches content, blocks, featured images, galleries, widgets and theme settings. Files used only by plugins or hard-coded in templates may still be listed, so check before deleting."
+msgstr "Tìm trong nội dung, khối, ảnh đại diện, thư viện ảnh, widget và cài đặt theme. Tệp chỉ do plugin dùng hoặc viết cứng trong mẫu vẫn có thể bị liệt kê, nên hãy kiểm tra trước khi xoá."
+
+msgid "%1$d files, %2$s in total."
+msgstr "%1$d tệp, tổng %2$s."
+
+msgid "Broken links"
+msgstr "Link hỏng"
+
+msgid "Checks links in published content a few at a time. Sites that block automatic checks are listed for review."
+msgstr "Kiểm tra dần các link trong nội dung đã xuất bản. Trang chặn kiểm tra tự động được liệt kê để bạn xem lại."
+
+msgid "Security scan"
+msgstr "Quét bảo mật"
+
+msgid "Compares WordPress and plugin files with official checksums and looks for PHP in uploads, suspicious code and new administrators. It only reports and does not replace a firewall."
+msgstr "So tệp WordPress và plugin với checksum chính thức, tìm PHP trong uploads, mã đáng ngờ và quản trị viên mới. Chỉ báo cáo, không thay thế tường lửa."
+
+msgid "WordPress checksums unavailable"
+msgstr "Không lấy được checksum WordPress"
+
+msgid "WordPress file missing"
+msgstr "Thiếu tệp WordPress"
+
+msgid "WordPress file changed"
+msgstr "Tệp WordPress bị thay đổi"
+
+msgid "Plugin file changed"
+msgstr "Tệp plugin bị thay đổi"
+
+msgid "PHP file in uploads"
+msgstr "Tệp PHP trong uploads"
+
+msgid "Suspicious code"
+msgstr "Mã đáng ngờ"
+
+msgid "New administrator"
+msgstr "Quản trị viên mới"
+

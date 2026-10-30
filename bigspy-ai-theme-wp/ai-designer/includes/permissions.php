@@ -35,7 +35,7 @@ function bst_aid_execution_busy( $task ) {
 
 function bst_aid_tool_policy( $name, $a ) {
 	if ( 'site_settings' === $name && empty( $a['values'] ) ) { return array( 'level' => 1, 'group' => 'read', 'write' => false ); }
-	$read = array( 'site_info', 'overview', 'get_knowledge', 'list_content', 'get_post', 'list_blocks', 'block_schema', 'list_patterns', 'get_pattern', 'get_page', 'get_settings', 'get_menus', 'show_palette', 'list_media', 'check_page' );
+	$read = array( 'auto_detect_results', 'site_info', 'overview', 'get_knowledge', 'list_content', 'get_post', 'list_blocks', 'block_schema', 'list_patterns', 'get_pattern', 'get_page', 'get_settings', 'get_menus', 'show_palette', 'list_media', 'check_page' );
 	if ( in_array( $name, $read, true ) || ( 'header_layout' === $name && 'set' !== ( $a['mode'] ?? 'read' ) ) || ( in_array( $name, array( 'ux_block', 'theme_layout' ), true ) && in_array( $a['mode'] ?? '', array( 'list', 'get' ), true ) ) ) {
 		return array( 'level' => 1, 'group' => 'read', 'write' => false );
 	}

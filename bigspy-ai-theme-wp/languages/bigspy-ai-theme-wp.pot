@@ -10352,3 +10352,121 @@ msgstr ""
 
 msgid "Open WordPress updates"
 msgstr ""
+
+msgid "Auto detect"
+msgstr ""
+
+msgid "These checks only report. Nothing is changed or deleted unless you press an action and confirm it."
+msgstr ""
+
+msgid "Scan now"
+msgstr ""
+
+msgid "Scanning…"
+msgstr ""
+
+msgid "Not scanned yet."
+msgstr ""
+
+msgid "Last scan:"
+msgstr ""
+
+msgid "No problems found."
+msgstr ""
+
+msgid "Ignore this pair"
+msgstr ""
+
+msgid "Run automatically every week, in small background batches"
+msgstr ""
+
+msgid "Needs fixing"
+msgstr ""
+
+msgid "Needs review"
+msgstr ""
+
+msgid "Delete selected"
+msgstr ""
+
+msgid "Permanently delete the selected files? This cannot be undone."
+msgstr ""
+
+msgid "Replace link"
+msgstr ""
+
+msgid "New URL:"
+msgstr ""
+
+msgid "Remove this link and keep its text in every listed post?"
+msgstr ""
+
+msgid "Request failed."
+msgstr ""
+
+msgid "Duplicate focus keywords"
+msgstr ""
+
+msgid "Compares the focus keyword of published content. Secondary keywords are not compared."
+msgstr ""
+
+msgid "H1 tags"
+msgstr ""
+
+msgid "Opens each published page, post and product as a visitor and counts its H1 tags."
+msgstr ""
+
+msgid "Page could not be opened"
+msgstr ""
+
+msgid "No H1 tag"
+msgstr ""
+
+msgid "%d H1 tags"
+msgstr ""
+
+msgid "Same H1 on several pages"
+msgstr ""
+
+msgid "Unused media"
+msgstr ""
+
+msgid "Searches content, blocks, featured images, galleries, widgets and theme settings. Files used only by plugins or hard-coded in templates may still be listed, so check before deleting."
+msgstr ""
+
+msgid "%1$d files, %2$s in total."
+msgstr ""
+
+msgid "Broken links"
+msgstr ""
+
+msgid "Checks links in published content a few at a time. Sites that block automatic checks are listed for review."
+msgstr ""
+
+msgid "Security scan"
+msgstr ""
+
+msgid "Compares WordPress and plugin files with official checksums and looks for PHP in uploads, suspicious code and new administrators. It only reports and does not replace a firewall."
+msgstr ""
+
+msgid "WordPress checksums unavailable"
+msgstr ""
+
+msgid "WordPress file missing"
+msgstr ""
+
+msgid "WordPress file changed"
+msgstr ""
+
+msgid "Plugin file changed"
+msgstr ""
+
+msgid "PHP file in uploads"
+msgstr ""
+
+msgid "Suspicious code"
+msgstr ""
+
+msgid "New administrator"
+msgstr ""
+
