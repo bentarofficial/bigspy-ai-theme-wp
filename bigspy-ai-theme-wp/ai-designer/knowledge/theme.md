@@ -1,4 +1,4 @@
-# BIGSPY theme action guide
+# BIGSPY AI theme action guide
 
 Call overview for current registered blocks/patterns, Customizer field IDs, menus,
 UX Blocks, layouts, header/footer sources and active plugin names. Call block_schema
@@ -31,7 +31,7 @@ set_menu with the correct location and header_layout to verify desktop AND mobil
 ## Footer and Theme Builder
 Footer priority: matching published Theme Builder override, then selected published
 UX Block, then selected published public page, then widget rows. Copyright bar is
-separate. To build: ux_block(create) draft with BIGSPY blocks, preview it, request
+separate. To build: ux_block(create) draft with BIGSPY AI blocks, preview it, request
 publish approval, then set_footer(source=blocks,id) approval. A page source uses
 set_footer(source=page); source=default returns widget footer. A draft never renders
 as a live footer. Widget-area blocks reference existing registered widget areas.
@@ -51,7 +51,7 @@ WooCommerce must be active for products/shop blocks. Products block (bst/product
 slider or list; imageRatio, imageRadius, imageHover (zoom, swap, fade, gray, lift), depth and
 depthHover 0–5, textSize xs–xl, equalize, pagination "infinite", stock include/last/exclude.
 Products list (bst/products-list) is a compact list with a heading for sidebars and footers.
-Classic cart/checkout options live in Customizer > WooCommerce > BIGSPY: cart & checkout
+Classic cart/checkout options live in Customizer > WooCommerce > BIGSPY AI: cart & checkout
 (free-shipping bar, coupon position, note before payment); they do not apply to Cart/Checkout blocks. Create product drafts from
 verified prices. Publishing or editing live products needs approval. Payment gateways,
 keys, orders and customers are outside AI tools. Explain manual configuration.

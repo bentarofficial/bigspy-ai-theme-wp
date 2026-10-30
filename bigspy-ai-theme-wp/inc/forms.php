@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Active form plugins: key => label. */
 function bst_form_providers() {
-	$out = array( 'bigspy' => __( 'Built-in BIGSPY form', 'bigspy-ai-theme-wp' ) );
+	$out = array( 'bigspy' => __( 'Built-in BIGSPY AI form', 'bigspy-ai-theme-wp' ) );
 	if ( defined( 'WPCF7_VERSION' ) || post_type_exists( 'wpcf7_contact_form' ) ) {
 		$out['cf7'] = 'Contact Form 7';
 	}

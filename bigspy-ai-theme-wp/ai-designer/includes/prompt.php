@@ -45,7 +45,7 @@ function bst_aid_system_prompt() {
 		'',
 		'DESIGNING A WEBSITE:',
 		'- Before building, agree on the identity with the user: show 1–3 palettes with show_palette (and fonts), ask about the logo (they upload it, or you create options with ImageGen purpose "logo"), then list the pages and the sections of each page and wait for "OK".',
-		'- Build with BIGSPY blocks only: call list_blocks once, block_schema for the blocks you use, and get_pattern to start from a ready section when one fits. Pages use template "full-width" and are made of bst/section blocks.',
+		'- Build with BIGSPY AI blocks only: call list_blocks once, block_schema for the blocks you use, and get_pattern to start from a ready section when one fits. Pages use template "full-width" and are made of bst/section blocks.',
 		'- Exactly one H1 per page (bst/heading tag h1), then H2/H3 in order. Real, specific copy from the guidelines and the chat, never lorem ipsum.',
 		'- Apply agreed colors and fonts with update_settings, the logo with set_logo. Use custom_css only for what blocks and settings cannot do. bst/code is for safe custom HTML/CSS pieces (illustrations, mockups, embeds).',
 		'- Build one page at a time, report it with its link, and ask for feedback before the next big step.',

@@ -138,8 +138,8 @@ add_action(
 	function () {
 		$cap  = 'edit_theme_options';
 		$main = 'bigspy-ai-theme-wp';
-		add_menu_page( __( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ), __( 'BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), $cap, $main, 'bst_dashboard_page', bst_panel_icon(), 1 );
-		add_submenu_page( $main, __( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ), __( 'Studio', 'bigspy-ai-theme-wp' ), $cap, $main, 'bst_dashboard_page' );
+		add_menu_page( __( 'BIGSPY AI Studio', 'bigspy-ai-theme-wp' ), __( 'BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), $cap, $main, 'bst_dashboard_page', bst_panel_icon(), 1 );
+		add_submenu_page( $main, __( 'BIGSPY AI Studio', 'bigspy-ai-theme-wp' ), __( 'Studio', 'bigspy-ai-theme-wp' ), $cap, $main, 'bst_dashboard_page' );
 		add_submenu_page( $main, __( 'Theme Options', 'bigspy-ai-theme-wp' ), __( 'Theme Options', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-options', 'bst_panel_options_page' );
 		add_submenu_page( $main, __( 'Customize', 'bigspy-ai-theme-wp' ), __( 'Customize', 'bigspy-ai-theme-wp' ), $cap, 'customize.php' );
 		add_submenu_page( $main, __( 'Header builder', 'bigspy-ai-theme-wp' ), __( 'Header builder', 'bigspy-ai-theme-wp' ), $cap, 'customize.php?autofocus[section]=bst_header_builder' );
@@ -315,7 +315,7 @@ function bst_panel_options_page() {
 
 /* ---------------------------------------------------------------- Settings */
 function bst_panel_settings_page() {
-	bst_panel_header( __( 'BIGSPY settings', 'bigspy-ai-theme-wp' ), __( 'Important theme-wide settings.', 'bigspy-ai-theme-wp' ) );
+	bst_panel_header( __( 'BIGSPY AI settings', 'bigspy-ai-theme-wp' ), __( 'Important theme-wide settings.', 'bigspy-ai-theme-wp' ) );
 	if ( ! empty( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
 	}
@@ -380,7 +380,7 @@ function bst_panel_help_page() {
 		array( __( 'Colors & fonts', 'bigspy-ai-theme-wp' ), __( 'Brand colors, palettes, typography and button styles.', 'bigspy-ai-theme-wp' ), add_query_arg( 'autofocus[panel]', 'bst_style', $c ) ),
 		array( __( 'Blog & single post', 'bigspy-ai-theme-wp' ), __( 'Archive layouts, cards, table of contents, author box, related posts.', 'bigspy-ai-theme-wp' ), add_query_arg( 'autofocus[panel]', 'bst_blog', $c ) ),
 		array( __( 'Footer', 'bigspy-ai-theme-wp' ), __( 'Footer columns, a footer built with blocks, copyright and floating contact buttons.', 'bigspy-ai-theme-wp' ), add_query_arg( 'autofocus[panel]', 'bst_footer', $c ) ),
-		array( __( 'Build pages with blocks', 'bigspy-ai-theme-wp' ), __( 'Add a page and insert BIGSPY blocks or a starter page pattern.', 'bigspy-ai-theme-wp' ), admin_url( 'post-new.php?post_type=page' ) ),
+		array( __( 'Build pages with blocks', 'bigspy-ai-theme-wp' ), __( 'Add a page and insert BIGSPY AI blocks or a starter page pattern.', 'bigspy-ai-theme-wp' ), admin_url( 'post-new.php?post_type=page' ) ),
 		array( __( 'Scripts, speed & maintenance', 'bigspy-ai-theme-wp' ), __( 'Analytics and pixel code, performance tweaks, 404 and maintenance pages.', 'bigspy-ai-theme-wp' ), admin_url( 'admin.php?page=bigspy-options' ) ),
 	);
 	bst_panel_header( __( 'Help & guides', 'bigspy-ai-theme-wp' ), __( 'Where to find each part of the theme.', 'bigspy-ai-theme-wp' ) );

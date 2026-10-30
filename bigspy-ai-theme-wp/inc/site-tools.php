@@ -88,7 +88,7 @@ function bst_maintenance_robots( $robots ) {
 function bst_maintenance_notice() {
 	if ( current_user_can( 'edit_theme_options' ) && bst_mod( 'maintenance_enabled' ) ) {
 		$url = add_query_arg( 'autofocus[section]', 'bst_site_tools', admin_url( 'customize.php' ) );
-		echo '<div class="notice notice-warning"><p>' . esc_html__( 'BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront.', 'bigspy-ai-theme-wp' ) . ' <a href="' . esc_url( $url ) . '">' . esc_html__( 'Manage maintenance mode', 'bigspy-ai-theme-wp' ) . '</a></p></div>';
+		echo '<div class="notice notice-warning"><p>' . esc_html__( 'BIGSPY AI maintenance mode is enabled. Visitors cannot browse the storefront.', 'bigspy-ai-theme-wp' ) . ' <a href="' . esc_url( $url ) . '">' . esc_html__( 'Manage maintenance mode', 'bigspy-ai-theme-wp' ) . '</a></p></div>';
 	}
 }
 add_action( 'admin_notices', 'bst_maintenance_notice' );

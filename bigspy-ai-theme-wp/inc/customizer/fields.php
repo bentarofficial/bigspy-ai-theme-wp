@@ -45,9 +45,9 @@ function bst_customizer_sections() {
 	);
 
 	if ( class_exists( 'WooCommerce' ) ) {
-		$sections['bst_shop']    = array( 'title' => __( 'BIGSPY: shop layout', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 1 );
-		$sections['bst_product'] = array( 'title' => __( 'BIGSPY: product cards & page', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 2 );
-		$sections['bst_catalog'] = array( 'title' => __( 'BIGSPY: catalog mode', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 3, 'description' => __( 'Hide prices and add-to-cart buttons, show a contact button instead. Useful for showroom / quotation websites.', 'bigspy-ai-theme-wp' ) );
+		$sections['bst_shop']    = array( 'title' => __( 'BIGSPY AI: shop layout', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 1 );
+		$sections['bst_product'] = array( 'title' => __( 'BIGSPY AI: product cards & page', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 2 );
+		$sections['bst_catalog'] = array( 'title' => __( 'BIGSPY AI: catalog mode', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 3, 'description' => __( 'Hide prices and add-to-cart buttons, show a contact button instead. Useful for showroom / quotation websites.', 'bigspy-ai-theme-wp' ) );
 	}
 
 	return apply_filters( 'bst_customizer_sections', $sections );
@@ -108,7 +108,7 @@ function bst_customizer_fields() {
 		array( 'id' => 'header_shadow', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Shadow under header', 'bigspy-ai-theme-wp' ) ),
 		array( 'id' => 'header_sticky', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Sticky header', 'bigspy-ai-theme-wp' ), 'description' => __( 'The main and bottom rows stay on screen while scrolling.', 'bigspy-ai-theme-wp' ) ),
 		array( 'id' => 'header_sticky_height', 'section' => 'bst_header_general', 'type' => 'number', 'label' => __( 'Sticky main row height (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 140 ) ),
-		array( 'id' => 'bst_h_transparent', 'section' => 'bst_header_general', 'type' => 'heading', 'label' => __( 'Transparent header', 'bigspy-ai-theme-wp' ), 'description' => __( 'Can also be enabled per page in the “BIGSPY – Page layout” box.', 'bigspy-ai-theme-wp' ) ),
+		array( 'id' => 'bst_h_transparent', 'section' => 'bst_header_general', 'type' => 'heading', 'label' => __( 'Transparent header', 'bigspy-ai-theme-wp' ), 'description' => __( 'Can also be enabled per page in the “BIGSPY AI – Page layout” box.', 'bigspy-ai-theme-wp' ) ),
 		array( 'id' => 'header_transparent_home', 'section' => 'bst_header_general', 'type' => 'checkbox', 'label' => __( 'Transparent header on the homepage', 'bigspy-ai-theme-wp' ) ),
 		array( 'id' => 'header_transparent_color', 'section' => 'bst_header_general', 'type' => 'color', 'label' => __( 'Text color on transparent header', 'bigspy-ai-theme-wp' ) ),
 

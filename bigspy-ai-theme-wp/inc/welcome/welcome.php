@@ -58,9 +58,9 @@ function bst_welcome_screen( $kind = 'theme' ) {
 	}
 	$data = bst_welcome_data( $kind );
 	update_user_meta( get_current_user_id(), 'bst_welcome_seen_' . $kind, $data['news_version'] );
-	echo '<div class="wrap bst-welcome"><header class="bst-welcome__hero"><div><p class="bst-welcome__eyebrow">' . esc_html( 'BIGSPY · ' . BST_VERSION ) . '</p><h1>' . esc_html( $data['title'] ) . '</h1><p>' . esc_html( $data['lead'] ) . '</p></div>';
+	echo '<div class="wrap bst-welcome"><header class="bst-welcome__hero"><div><p class="bst-welcome__eyebrow">' . esc_html( 'BIGSPY AI · ' . BST_VERSION ) . '</p><h1>' . esc_html( $data['title'] ) . '</h1><p>' . esc_html( $data['lead'] ) . '</p></div>';
 	if ( 'theme' === $kind ) {
-		echo '<img src="' . esc_url( BST_URI . '/screenshot.webp' ) . '" alt="' . esc_attr__( 'BIGSPY theme preview', 'bigspy-ai-theme-wp' ) . '" width="600" height="450">';
+		echo '<img src="' . esc_url( BST_URI . '/screenshot.webp' ) . '" alt="' . esc_attr__( 'BIGSPY AI theme preview', 'bigspy-ai-theme-wp' ) . '" width="600" height="450">';
 	}
 	echo '</header>';
 	if ( 'theme' === $kind ) {

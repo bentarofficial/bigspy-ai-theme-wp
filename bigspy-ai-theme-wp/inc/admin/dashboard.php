@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function bst_admin_menu() {
-	$page = add_theme_page( __( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ), __( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ), 'edit_theme_options', 'bigspy-ai-theme-wp', 'bst_dashboard_page' );
+	$page = add_theme_page( __( 'BIGSPY AI Studio', 'bigspy-ai-theme-wp' ), __( 'BIGSPY AI Studio', 'bigspy-ai-theme-wp' ), 'edit_theme_options', 'bigspy-ai-theme-wp', 'bst_dashboard_page' );
 	add_action(
 		'admin_enqueue_scripts',
 		static function ( $hook ) use ( $page ) {
@@ -72,7 +72,7 @@ function bst_create_starter_page() {
 
 	$pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( $starters[ $choice ]['pattern'] );
 	if ( ! $pattern || empty( $pattern['content'] ) ) {
-		wp_die( esc_html__( 'The selected BIGSPY starter pattern could not be found.', 'bigspy-ai-theme-wp' ) );
+		wp_die( esc_html__( 'The selected BIGSPY AI starter pattern could not be found.', 'bigspy-ai-theme-wp' ) );
 	}
 
 	$title = isset( $_POST['bst_title'] ) ? sanitize_text_field( wp_unslash( $_POST['bst_title'] ) ) : '';
@@ -131,7 +131,7 @@ function bst_dashboard_page() {
 	);
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'BIGSPY Studio', 'bigspy-ai-theme-wp' ); ?> <small style="font-size:13px;color:#646970">v<?php echo esc_html( BST_VERSION ); ?></small></h1>
+		<h1><?php esc_html_e( 'BIGSPY AI Studio', 'bigspy-ai-theme-wp' ); ?> <small style="font-size:13px;color:#646970">v<?php echo esc_html( BST_VERSION ); ?></small></h1>
 
 		<?php if ( isset( $notices[ $notice ] ) ) : ?>
 			<div class="notice notice-<?php echo esc_attr( $notices[ $notice ][0] ); ?> is-dismissible"><p><?php echo esc_html( $notices[ $notice ][1] ); ?></p></div>
@@ -141,7 +141,7 @@ function bst_dashboard_page() {
 			<div>
 				<p class="bst-studio-kicker"><?php esc_html_e( 'DESIGN YOUR WEBSITE', 'bigspy-ai-theme-wp' ); ?></p>
 				<h2><?php esc_html_e( 'Start with a page. Make it yours.', 'bigspy-ai-theme-wp' ); ?></h2>
-				<p><?php esc_html_e( 'Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design.', 'bigspy-ai-theme-wp' ); ?></p>
+				<p><?php esc_html_e( 'Choose a starting point. BIGSPY AI creates an unpublished draft and opens the editor, so your live website stays as it is while you design.', 'bigspy-ai-theme-wp' ); ?></p>
 			</div>
 			<a class="button button-secondary" href="<?php echo esc_url( admin_url( 'post-new.php?post_type=page' ) ); ?>"><?php esc_html_e( 'Build from scratch', 'bigspy-ai-theme-wp' ); ?></a>
 		</section>
@@ -194,7 +194,7 @@ function bst_dashboard_page() {
 			<ol>
 				<li><?php esc_html_e( 'Upload your logo and choose colors & fonts in the Customizer.', 'bigspy-ai-theme-wp' ); ?></li>
 				<li><?php esc_html_e( 'Arrange the header with the drag & drop Header builder.', 'bigspy-ai-theme-wp' ); ?></li>
-				<li><?php esc_html_e( 'Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY – Sections” (or the full “Homepage – business” pattern).', 'bigspy-ai-theme-wp' ); ?></li>
+				<li><?php esc_html_e( 'Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY AI – Sections” (or the full “Homepage – business” pattern).', 'bigspy-ai-theme-wp' ); ?></li>
 				<li><?php esc_html_e( 'Every block has “Visibility & animation” settings to hide it per device or animate it on scroll.', 'bigspy-ai-theme-wp' ); ?></li>
 			</ol>
 			<p>
@@ -210,8 +210,8 @@ function bst_dashboard_page() {
 				<p><strong style="color:#008a20"><?php esc_html_e( 'WooCommerce is active – shop mode is on.', 'bigspy-ai-theme-wp' ); ?></strong></p>
 				<ul style="list-style:disc;padding-left:20px">
 					<li><?php esc_html_e( 'Blocks: “Products” (latest, featured, sale, best selling, top rated – grid or slider) and “Product Categories”.', 'bigspy-ai-theme-wp' ); ?></li>
-					<li><?php esc_html_e( 'Patterns: “BIGSPY – Shop” sections and the full “Homepage – online shop”.', 'bigspy-ai-theme-wp' ); ?></li>
-					<li><?php esc_html_e( 'Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY.', 'bigspy-ai-theme-wp' ); ?></li>
+					<li><?php esc_html_e( 'Patterns: “BIGSPY AI – Shop” sections and the full “Homepage – online shop”.', 'bigspy-ai-theme-wp' ); ?></li>
+					<li><?php esc_html_e( 'Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY AI.', 'bigspy-ai-theme-wp' ); ?></li>
 				</ul>
 			<?php else : ?>
 				<p><?php esc_html_e( 'The theme works as a service / business website without any plugin.', 'bigspy-ai-theme-wp' ); ?></p>
@@ -409,7 +409,7 @@ function bst_classic_editor_notice() {
 		return;
 	}
 	echo '<div class="notice notice-info"><p>';
-	echo esc_html__( 'BIGSPY elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually.', 'bigspy-ai-theme-wp' );
+	echo esc_html__( 'BIGSPY AI elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually.', 'bigspy-ai-theme-wp' );
 	echo ' <a href="' . esc_url( admin_url( 'options-writing.php#classic-editor-options' ) ) . '">' . esc_html__( 'Writing settings', 'bigspy-ai-theme-wp' ) . '</a>';
 	echo '</p></div>';
 }

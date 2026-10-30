@@ -99,11 +99,11 @@ add_filter( 'upgrader_source_selection', function ( $source, $remote_source, $up
 		return $source;
 	}
 	if ( ! file_exists( trailingslashit( $source ) . 'style.css' ) || file_exists( $target ) ) {
-		return new WP_Error( 'bst_update_package', __( 'Invalid BIGSPY update package.', 'bigspy-ai-theme-wp' ) );
+		return new WP_Error( 'bst_update_package', __( 'Invalid BIGSPY AI update package.', 'bigspy-ai-theme-wp' ) );
 	}
 	global $wp_filesystem;
 	if ( ! $wp_filesystem || ! $wp_filesystem->move( untrailingslashit( $source ), $target ) ) {
-		return new WP_Error( 'bst_update_move', __( 'Could not prepare BIGSPY update package.', 'bigspy-ai-theme-wp' ) );
+		return new WP_Error( 'bst_update_move', __( 'Could not prepare BIGSPY AI update package.', 'bigspy-ai-theme-wp' ) );
 	}
 	return trailingslashit( $target );
 }, 10, 4 );

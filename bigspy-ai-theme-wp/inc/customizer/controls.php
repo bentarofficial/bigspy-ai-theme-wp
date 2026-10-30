@@ -110,7 +110,7 @@ class BST_CSS_Presets_Control extends WP_Customize_Control {
 				</details>
 			<?php endforeach; ?>
 			<p class="bst-css-presets__empty" hidden><?php esc_html_e( 'Không có tác vụ phù hợp.', 'bigspy-ai-theme-wp' ); ?></p>
-			<p class="description"><?php esc_html_e( 'Mục WooCommerce cần plugin WooCommerce. Mục dịch vụ cần block BIGSPY tương ứng. Nếu chưa có thành phần trên trang, tác vụ chưa tạo thay đổi.', 'bigspy-ai-theme-wp' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Mục WooCommerce cần plugin WooCommerce. Mục dịch vụ cần block BIGSPY AI tương ứng. Nếu chưa có thành phần trên trang, tác vụ chưa tạo thay đổi.', 'bigspy-ai-theme-wp' ); ?></p>
 		</div>
 		<?php
 	}

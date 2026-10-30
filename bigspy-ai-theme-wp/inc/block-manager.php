@@ -12,7 +12,7 @@ add_filter(
 	'bst_customizer_sections',
 	function ( $sections ) {
 		$sections['bst_block_manager'] = array(
-			'title'       => __( 'BIGSPY blocks (show / hide)', 'bigspy-ai-theme-wp' ),
+			'title'       => __( 'BIGSPY AI blocks (show / hide)', 'bigspy-ai-theme-wp' ),
 			'panel'       => 'bst_advanced',
 			'priority'    => 4,
 			'description' => __( 'Tick a block to hide it from the block inserter so the list stays short. Pages that already use it keep working.', 'bigspy-ai-theme-wp' ),

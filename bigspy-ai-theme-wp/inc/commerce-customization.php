@@ -15,7 +15,7 @@ function bst_commerce_defaults( $defaults ) {
 add_filter( 'bst_defaults', 'bst_commerce_defaults' );
 
 function bst_commerce_sections( $sections ) {
-	$sections['bst_checkout'] = array( 'title' => __( 'BIGSPY: cart & checkout', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 4 );
+	$sections['bst_checkout'] = array( 'title' => __( 'BIGSPY AI: cart & checkout', 'bigspy-ai-theme-wp' ), 'panel' => 'woocommerce', 'priority' => 4 );
 	return $sections;
 }
 add_filter( 'bst_customizer_sections', 'bst_commerce_sections' );

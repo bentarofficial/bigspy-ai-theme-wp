@@ -205,7 +205,7 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
  */
 function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 	if ( ! in_array( $name, bst_aid_core_blocks(), true ) ) {
-		$issues['errors'][] = "$where: core block \"$name\" is not allowed. Use a BIGSPY block.";
+		$issues['errors'][] = "$where: core block \"$name\" is not allowed. Use a BIGSPY AI block.";
 		return null;
 	}
 	if ( ! empty( $node['raw'] ) ) {
@@ -247,7 +247,7 @@ function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 			return $parsed[0] ?? null;
 		default:
 			// Lists, quotes, tables, groups…: easiest as clean HTML in a Custom HTML block.
-			$issues['warnings'][] = "$where: $name was saved as a Custom HTML block; prefer BIGSPY blocks (bst/text, bst/buttons…).";
+			$issues['warnings'][] = "$where: $name was saved as a Custom HTML block; prefer BIGSPY AI blocks (bst/text, bst/buttons…).";
 			$name  = 'core/html';
 			$html  = wp_kses_post( bst_aid_clean_html( $html ) );
 			$attrs = array();
@@ -523,7 +523,7 @@ add_filter(
 			'items'       => array( 'type' => 'object' ),
 		);
 		$tools['list_blocks']   = array(
-			'description' => 'List the BIGSPY blocks (name, title, description, container or not) and the structure rules. Call before designing.',
+			'description' => 'List the BIGSPY AI blocks (name, title, description, container or not) and the structure rules. Call before designing.',
 			'parameters'  => array( 'type' => 'object', 'properties' => new stdClass() ),
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_list_blocks',
@@ -535,7 +535,7 @@ add_filter(
 			'callback'    => 'bst_aid_tool_block_schema',
 		);
 		$tools['list_patterns'] = array(
-			'description' => 'List the ready-made BIGSPY section and page patterns (slug, title, description).',
+			'description' => 'List the ready-made BIGSPY AI section and page patterns (slug, title, description).',
 			'parameters'  => array( 'type' => 'object', 'properties' => new stdClass() ),
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_list_patterns',

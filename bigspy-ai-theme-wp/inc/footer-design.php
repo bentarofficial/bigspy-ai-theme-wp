@@ -9,8 +9,8 @@ add_filter( 'bst_customizer_fields', function ( $fields ) {
 			$choices[ (string) $block->ID ] = $block->post_title ? $block->post_title : '#' . $block->ID;
 		}
 	}
-	$fields[] = array( 'id' => 'footer_block', 'section' => 'bst_footer_widgets', 'type' => 'select', 'label' => 'Footer từ UX Block', 'description' => 'Thiết kế footer bằng khối BIGSPY trong UX Blocks rồi chọn ở đây. Thay hai hàng widget; thanh bản quyền vẫn giữ.', 'choices' => $choices );
-	$fields[] = array( 'id' => 'footer_design_page', 'section' => 'bst_footer_widgets', 'type' => 'dropdown-pages', 'label' => 'Footer thiết kế bằng khối BIGSPY', 'description' => 'Chọn trang đã xuất bản công khai để thay hai hàng widget. Thanh bản quyền vẫn giữ. Chọn Không để dùng footer mặc định.' );
+	$fields[] = array( 'id' => 'footer_block', 'section' => 'bst_footer_widgets', 'type' => 'select', 'label' => 'Footer từ UX Block', 'description' => 'Thiết kế footer bằng khối BIGSPY AI trong UX Blocks rồi chọn ở đây. Thay hai hàng widget; thanh bản quyền vẫn giữ.', 'choices' => $choices );
+	$fields[] = array( 'id' => 'footer_design_page', 'section' => 'bst_footer_widgets', 'type' => 'dropdown-pages', 'label' => 'Footer thiết kế bằng khối BIGSPY AI', 'description' => 'Chọn trang đã xuất bản công khai để thay hai hàng widget. Thanh bản quyền vẫn giữ. Chọn Không để dùng footer mặc định.' );
 	return $fields;
 } );
 

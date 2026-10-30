@@ -94,7 +94,7 @@
 
 		return el(PluginSidebar, {
 			name: 'bst-pattern-studio',
-			title: __('BIGSPY Studio', 'bigspy-ai-theme-wp'),
+			title: __('BIGSPY AI Studio', 'bigspy-ai-theme-wp'),
 			icon: 'layout'
 		},
 		el('div', { className: 'bst-pattern-studio' },

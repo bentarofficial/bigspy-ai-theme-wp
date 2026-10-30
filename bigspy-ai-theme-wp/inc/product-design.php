@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 add_filter( 'bst_defaults', function ( $d ) { return $d + array( 'product_design_page' => 0 ); } );
 add_filter( 'bst_customizer_fields', function ( $fields ) {
-	$fields[] = array( 'id' => 'product_design_page', 'section' => 'bst_product', 'type' => 'dropdown-pages', 'label' => 'Trang mẫu bố cục sản phẩm', 'description' => 'Trong Sửa trang, dùng các khối BIGSPY và Product Part để thiết kế trang mẫu. Chỉ dùng trang công khai đã xuất bản; Không để giữ bố cục mặc định.' );
+	$fields[] = array( 'id' => 'product_design_page', 'section' => 'bst_product', 'type' => 'dropdown-pages', 'label' => 'Trang mẫu bố cục sản phẩm', 'description' => 'Trong Sửa trang, dùng các khối BIGSPY AI và Product Part để thiết kế trang mẫu. Chỉ dùng trang công khai đã xuất bản; Không để giữ bố cục mặc định.' );
 	return $fields;
 } );
 function bst_product_design_page() {

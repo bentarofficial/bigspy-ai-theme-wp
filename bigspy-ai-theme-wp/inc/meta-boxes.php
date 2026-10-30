@@ -65,7 +65,7 @@ function bst_register_layout_meta() {
 add_action( 'init', 'bst_register_layout_meta' );
 
 function bst_add_layout_meta_box() {
-	add_meta_box( 'bst-layout', __( 'BIGSPY – Page layout', 'bigspy-ai-theme-wp' ), 'bst_layout_meta_box', bst_layout_post_types(), 'side', 'default' );
+	add_meta_box( 'bst-layout', __( 'BIGSPY AI – Page layout', 'bigspy-ai-theme-wp' ), 'bst_layout_meta_box', bst_layout_post_types(), 'side', 'default' );
 }
 add_action( 'add_meta_boxes', 'bst_add_layout_meta_box' );
 

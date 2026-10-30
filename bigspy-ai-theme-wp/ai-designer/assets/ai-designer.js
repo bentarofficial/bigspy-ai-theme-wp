@@ -366,7 +366,7 @@
 			if (!current) {
 				els.chat.appendChild(h('div', { class: 'bst-aid-welcome' }, [
 					h('h2', { text: __('Hello! I am your website designer.', T) }),
-					h('p', { text: __('Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY blocks.', T) }),
+					h('p', { text: __('Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY AI blocks.', T) }),
 					h('button', { class: 'button button-primary', onclick: function () { newTask(); }, text: __('Start a new task', T) })
 				]));
 			} else {

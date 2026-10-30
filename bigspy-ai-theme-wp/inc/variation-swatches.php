@@ -62,13 +62,13 @@ function bst_swatch_attribute_fields() {
 	$type = $attribute_id ? get_option( 'bst_swatch_attribute_' . $attribute_id, 'label' ) : 'label';
 	?>
 	<div class="form-field">
-		<label for="bst-swatch-attribute-type"><?php esc_html_e( 'BIGSPY swatch type', 'bigspy-ai-theme-wp' ); ?></label>
+		<label for="bst-swatch-attribute-type"><?php esc_html_e( 'BIGSPY AI swatch type', 'bigspy-ai-theme-wp' ); ?></label>
 		<select name="bst_swatch_attribute_type" id="bst-swatch-attribute-type">
 			<option value="label" <?php selected( $type, 'label' ); ?>><?php esc_html_e( 'Label buttons', 'bigspy-ai-theme-wp' ); ?></option>
 			<option value="color" <?php selected( $type, 'color' ); ?>><?php esc_html_e( 'Color swatches', 'bigspy-ai-theme-wp' ); ?></option>
 			<option value="image" <?php selected( $type, 'image' ); ?>><?php esc_html_e( 'Image swatches', 'bigspy-ai-theme-wp' ); ?></option>
 		</select>
-		<p class="description"><?php esc_html_e( 'Applies when BIGSPY variation buttons are enabled. Set each color or image in Configure terms.', 'bigspy-ai-theme-wp' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Applies when BIGSPY AI variation buttons are enabled. Set each color or image in Configure terms.', 'bigspy-ai-theme-wp' ); ?></p>
 	</div>
 	<?php
 }
@@ -89,12 +89,12 @@ function bst_swatch_term_add_fields( $taxonomy ) {
 	if ( ! current_user_can( 'manage_product_terms' ) ) { return; }
 	?>
 	<div class="form-field bst-swatch-term-field">
-		<label for="bst-swatch-color"><?php esc_html_e( 'BIGSPY swatch color', 'bigspy-ai-theme-wp' ); ?></label>
+		<label for="bst-swatch-color"><?php esc_html_e( 'BIGSPY AI swatch color', 'bigspy-ai-theme-wp' ); ?></label>
 		<input type="text" id="bst-swatch-color" name="bst_swatch_color" value="" class="bst-swatch-color-field" />
 		<p class="description"><?php esc_html_e( 'Use a CSS color value, for example #e83e56. Used when this attribute is set to Color swatches.', 'bigspy-ai-theme-wp' ); ?></p>
 	</div>
 	<div class="form-field bst-swatch-term-field">
-		<label><?php esc_html_e( 'BIGSPY swatch image', 'bigspy-ai-theme-wp' ); ?></label>
+		<label><?php esc_html_e( 'BIGSPY AI swatch image', 'bigspy-ai-theme-wp' ); ?></label>
 		<input type="hidden" name="bst_swatch_image" value="" class="bst-swatch-image-id" />
 		<button type="button" class="button bst-swatch-image-pick"><?php esc_html_e( 'Choose image', 'bigspy-ai-theme-wp' ); ?></button>
 		<button type="button" class="button-link-delete bst-swatch-image-remove" hidden><?php esc_html_e( 'Remove image', 'bigspy-ai-theme-wp' ); ?></button>
@@ -102,7 +102,7 @@ function bst_swatch_term_add_fields( $taxonomy ) {
 		<p class="description"><?php esc_html_e( 'Used when this attribute is set to Image swatches.', 'bigspy-ai-theme-wp' ); ?></p>
 	</div>
 	<div class="form-field bst-swatch-term-field">
-		<label for="bst-swatch-label"><?php esc_html_e( 'BIGSPY swatch label', 'bigspy-ai-theme-wp' ); ?></label>
+		<label for="bst-swatch-label"><?php esc_html_e( 'BIGSPY AI swatch label', 'bigspy-ai-theme-wp' ); ?></label>
 		<input type="text" id="bst-swatch-label" name="bst_swatch_label" value="" />
 		<p class="description"><?php esc_html_e( 'Optional short label shown on the button. Leave empty to use the term name.', 'bigspy-ai-theme-wp' ); ?></p>
 	</div>
@@ -116,15 +116,15 @@ function bst_swatch_term_edit_fields( $term, $taxonomy ) {
 	$label = get_term_meta( $term->term_id, 'bst_swatch_label', true );
 	?>
 	<tr class="form-field bst-swatch-term-field">
-		<th scope="row"><label for="bst-swatch-color"><?php esc_html_e( 'BIGSPY swatch color', 'bigspy-ai-theme-wp' ); ?></label></th>
+		<th scope="row"><label for="bst-swatch-color"><?php esc_html_e( 'BIGSPY AI swatch color', 'bigspy-ai-theme-wp' ); ?></label></th>
 		<td><input type="text" id="bst-swatch-color" name="bst_swatch_color" value="<?php echo esc_attr( $color ); ?>" class="bst-swatch-color-field" /><p class="description"><?php esc_html_e( 'Use a CSS color value, for example #e83e56.', 'bigspy-ai-theme-wp' ); ?></p></td>
 	</tr>
 	<tr class="form-field bst-swatch-term-field">
-		<th scope="row"><label><?php esc_html_e( 'BIGSPY swatch image', 'bigspy-ai-theme-wp' ); ?></label></th>
+		<th scope="row"><label><?php esc_html_e( 'BIGSPY AI swatch image', 'bigspy-ai-theme-wp' ); ?></label></th>
 		<td><input type="hidden" name="bst_swatch_image" value="<?php echo esc_attr( $image ); ?>" class="bst-swatch-image-id" /><button type="button" class="button bst-swatch-image-pick"><?php esc_html_e( 'Choose image', 'bigspy-ai-theme-wp' ); ?></button> <button type="button" class="button-link-delete bst-swatch-image-remove" <?php echo $image ? '' : 'hidden'; ?>><?php esc_html_e( 'Remove image', 'bigspy-ai-theme-wp' ); ?></button><span class="bst-swatch-image-preview"><?php echo $image ? wp_get_attachment_image( $image, array( 48, 48 ) ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span></td>
 	</tr>
 	<tr class="form-field bst-swatch-term-field">
-		<th scope="row"><label for="bst-swatch-label"><?php esc_html_e( 'BIGSPY swatch label', 'bigspy-ai-theme-wp' ); ?></label></th>
+		<th scope="row"><label for="bst-swatch-label"><?php esc_html_e( 'BIGSPY AI swatch label', 'bigspy-ai-theme-wp' ); ?></label></th>
 		<td><input type="text" id="bst-swatch-label" name="bst_swatch_label" value="<?php echo esc_attr( $label ); ?>" /><p class="description"><?php esc_html_e( 'Optional short label shown on the button.', 'bigspy-ai-theme-wp' ); ?></p></td>
 	</tr>
 	<?php

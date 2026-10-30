@@ -320,8 +320,8 @@ msgstr "Plugin đang bật"
 msgid "Activities"
 msgstr "Hoạt động"
 
-msgid "Add a page and insert BIGSPY blocks or a starter page pattern."
-msgstr "Thêm trang và chèn khối BIGSPY hoặc mẫu trang có sẵn."
+msgid "Add a page and insert BIGSPY AI blocks or a starter page pattern."
+msgstr "Thêm trang và chèn khối BIGSPY AI hoặc mẫu trang có sẵn."
 
 msgid "Add layout"
 msgstr "Thêm layout"
@@ -473,14 +473,14 @@ msgstr "URL hồ sơ tác giả"
 msgid "Award-winning national coffee champion."
 msgstr "Barista đạt giải cuộc thi cà phê toàn quốc."
 
-msgid "BIGSPY Studio"
-msgstr "BIGSPY Studio"
+msgid "BIGSPY AI Studio"
+msgstr "BIGSPY AI Studio"
 
-msgid "BIGSPY maintenance mode is enabled. Visitors cannot browse the storefront."
-msgstr "BIGSPY đang bật chế độ bảo trì. Khách chưa thể xem cửa hàng."
+msgid "BIGSPY AI maintenance mode is enabled. Visitors cannot browse the storefront."
+msgstr "BIGSPY AI đang bật chế độ bảo trì. Khách chưa thể xem cửa hàng."
 
-msgid "BIGSPY settings"
-msgstr "Cài đặt BIGSPY"
+msgid "BIGSPY AI settings"
+msgstr "Cài đặt BIGSPY AI"
 
 msgid "Back to home"
 msgstr "Về trang chủ"
@@ -755,8 +755,8 @@ msgstr "Hoài Thương"
 msgid "Choose a ready-made design, then change its text, images and colors on the page."
 msgstr "Chọn mẫu có sẵn rồi thay nội dung, hình ảnh và màu sắc ngay trên trang."
 
-msgid "Choose a starting point. BIGSPY creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
-msgstr "Chọn điểm bắt đầu. BIGSPY tạo bản nháp chưa xuất bản và mở trình soạn thảo để bạn thiết kế mà không ảnh hưởng website đang hoạt động."
+msgid "Choose a starting point. BIGSPY AI creates an unpublished draft and opens the editor, so your live website stays as it is while you design."
+msgstr "Chọn điểm bắt đầu. BIGSPY AI tạo bản nháp chưa xuất bản và mở trình soạn thảo để bạn thiết kế mà không ảnh hưởng website đang hoạt động."
 
 msgid "Choose a treatment and time by phone or chat."
 msgstr "Chọn liệu trình và giờ phù hợp qua hotline hoặc Zalo."
@@ -2951,8 +2951,8 @@ msgstr "Trang bạn tìm có thể đã được chuyển hoặc xóa. Hãy th�
 msgid "The people behind the food"
 msgstr "Những người đứng sau món ngon"
 
-msgid "The selected BIGSPY starter pattern could not be found."
-msgstr "Không tìm thấy mẫu trang BIGSPY đã chọn."
+msgid "The selected BIGSPY AI starter pattern could not be found."
+msgstr "Không tìm thấy mẫu trang BIGSPY AI đã chọn."
 
 msgid "Theme"
 msgstr "Theme"
@@ -3776,8 +3776,8 @@ msgstr "Hoàn tác task"
 msgid "Close preview"
 msgstr "Đóng xem trước"
 
-msgid "Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY blocks."
-msgstr "Hãy cho tôi biết bạn cần gì: website hay trang mới, màu sắc và logo, bài viết, sản phẩm, hình ảnh… Tôi sẽ hỏi vài câu, trình bày kế hoạch, rồi dựng bản nháp bằng các block BIGSPY."
+msgid "Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY AI blocks."
+msgstr "Hãy cho tôi biết bạn cần gì: website hay trang mới, màu sắc và logo, bài viết, sản phẩm, hình ảnh… Tôi sẽ hỏi vài câu, trình bày kế hoạch, rồi dựng bản nháp bằng các block BIGSPY AI."
 
 msgid "Preview"
 msgstr "Xem trước"
@@ -4088,11 +4088,11 @@ msgstr "Dịch vụ – Spotlight Panels"
 msgid "Projects – Spotlight Panels"
 msgstr "Dự án – Spotlight Panels"
 
-msgid "Invalid BIGSPY update package."
-msgstr "Gói cập nhật BIGSPY không hợp lệ."
+msgid "Invalid BIGSPY AI update package."
+msgstr "Gói cập nhật BIGSPY AI không hợp lệ."
 
-msgid "Could not prepare BIGSPY update package."
-msgstr "Không thể chuẩn bị gói cập nhật BIGSPY."
+msgid "Could not prepare BIGSPY AI update package."
+msgstr "Không thể chuẩn bị gói cập nhật BIGSPY AI."
 
 msgid "About"
 msgstr "Giới thiệu"
@@ -4109,8 +4109,8 @@ msgstr "Trợ lý thiết kế website tích hợp trong BIGSPY AI Theme WP."
 msgid "What can it do?"
 msgstr "Có thể làm gì?"
 
-msgid "Plan content, design pages with BIGSPY blocks, create images, and assist with SEO inside WordPress."
-msgstr "Lên kế hoạch nội dung, thiết kế trang bằng các block BIGSPY, tạo hình ảnh và hỗ trợ SEO ngay trong WordPress."
+msgid "Plan content, design pages with BIGSPY AI blocks, create images, and assist with SEO inside WordPress."
+msgstr "Lên kế hoạch nội dung, thiết kế trang bằng các block BIGSPY AI, tạo hình ảnh và hỗ trợ SEO ngay trong WordPress."
 
 msgid "Changes to published content or site settings require your approval in the Workspace before they are applied."
 msgstr "Các thay đổi lên nội dung đang xuất bản hoặc cài đặt website cần bạn duyệt trong Không gian làm việc trước khi thực hiện."
@@ -4127,7 +4127,7 @@ msgstr "Giao diện WordPress để xây dựng và tùy biến website bằng b
 msgid "Current version: %s"
 msgstr "Phiên bản đang dùng: %s"
 
-msgid "Build layouts with BIGSPY blocks and page patterns; customize colors, typography, header, and footer in the Customizer."
+msgid "Build layouts with BIGSPY AI blocks and page patterns; customize colors, typography, header, and footer in the Customizer."
 msgstr "Tạo bố cục với các block và mẫu trang BIGSPY; điều chỉnh màu sắc, chữ, header và footer trong phần Tùy biến."
 
 msgid "Theme updates come from GitHub Releases and appear in the WordPress Updates screen."
@@ -4184,8 +4184,8 @@ msgstr "Khối nội dung"
 msgid "Headings, text, buttons, icons, tabs and accordions."
 msgstr "Tiêu đề, văn bản, nút, icon, tab và accordion."
 
-msgid "Use native editable text with BIGSPY styling controls. Tabs and accordions organize related information into compact groups."
-msgstr "Dùng nội dung sửa trực tiếp cùng tùy chọn trình bày BIGSPY. Tab và accordion gom thông tin liên quan thành nhóm gọn."
+msgid "Use native editable text with BIGSPY AI styling controls. Tabs and accordions organize related information into compact groups."
+msgstr "Dùng nội dung sửa trực tiếp cùng tùy chọn trình bày BIGSPY AI. Tab và accordion gom thông tin liên quan thành nhóm gọn."
 
 msgid "Use this for service descriptions, benefits, FAQs and calls to action."
 msgstr "Dùng cho mô tả dịch vụ, lợi ích, câu hỏi và lời kêu gọi hành động."
@@ -4256,8 +4256,8 @@ msgstr "Khối sản phẩm và WooCommerce"
 msgid "Product grids, cards, swatches and shop layouts."
 msgstr "Lưới sản phẩm, thẻ, swatch và bố cục cửa hàng."
 
-msgid "WooCommerce supplies products and checkout. BIGSPY controls product presentation: the Products block (grid, slider or compact list; image ratio and hover effect, shadow depth, text size, equal heights, load more or infinite scroll, out-of-stock placement), the Products list block for sidebars, filters, product-page layouts, and on classic cart/checkout pages a free-shipping progress bar, coupon position and a note before payment."
-msgstr "WooCommerce cung cấp sản phẩm và thanh toán. BIGSPY lo phần hiển thị: khối Sản phẩm (lưới, slider hoặc danh sách gọn; tỉ lệ và hiệu ứng ảnh, đổ bóng, cỡ chữ, thẻ cao bằng nhau, tải thêm hoặc cuộn vô hạn, vị trí hàng hết), khối Danh sách sản phẩm cho sidebar, bộ lọc, bố cục trang sản phẩm, và ở trang giỏ hàng/thanh toán cổ điển: thanh miễn phí vận chuyển, vị trí ô mã giảm giá và ghi chú trước phần thanh toán."
+msgid "WooCommerce supplies products and checkout. BIGSPY AI controls product presentation: the Products block (grid, slider or compact list; image ratio and hover effect, shadow depth, text size, equal heights, load more or infinite scroll, out-of-stock placement), the Products list block for sidebars, filters, product-page layouts, and on classic cart/checkout pages a free-shipping progress bar, coupon position and a note before payment."
+msgstr "WooCommerce cung cấp sản phẩm và thanh toán. BIGSPY AI lo phần hiển thị: khối Sản phẩm (lưới, slider hoặc danh sách gọn; tỉ lệ và hiệu ứng ảnh, đổ bóng, cỡ chữ, thẻ cao bằng nhau, tải thêm hoặc cuộn vô hạn, vị trí hàng hết), khối Danh sách sản phẩm cho sidebar, bộ lọc, bố cục trang sản phẩm, và ở trang giỏ hàng/thanh toán cổ điển: thanh miễn phí vận chuyển, vị trí ô mã giảm giá và ghi chú trước phần thanh toán."
 
 msgid "Use this when displaying products or building a shop."
 msgstr "Dùng khi trưng bày sản phẩm hoặc xây dựng cửa hàng."
@@ -4595,8 +4595,8 @@ msgstr "Trao đổi trước, thực hiện sau"
 msgid "Use one task per clear goal."
 msgstr "Dùng một task cho một mục tiêu rõ ràng."
 
-msgid "Agree on page structure, palette, typography and image direction before building drafts. BIGSPY blocks remain editable by hand after AI work."
-msgstr "Thống nhất cấu trúc, bảng màu, chữ và hướng ảnh trước khi dựng nháp. Block BIGSPY vẫn sửa tay được sau khi AI hoàn tất."
+msgid "Agree on page structure, palette, typography and image direction before building drafts. BIGSPY AI blocks remain editable by hand after AI work."
+msgstr "Thống nhất cấu trúc, bảng màu, chữ và hướng ảnh trước khi dựng nháp. Block BIGSPY AI vẫn sửa tay được sau khi AI hoàn tất."
 
 msgid "Use this for a new site or a redesign with several decisions."
 msgstr "Dùng cho site mới hoặc thiết kế lại cần nhiều quyết định."
@@ -4643,8 +4643,8 @@ msgstr "Kiểm tra độ rộng mobile, H1, liên kết, ảnh và nội dung tr
 msgid "AI markup checks are useful hints, not a full browser audit. Use theme controls to refine spacing and responsive behavior manually."
 msgstr "Kiểm tra markup của AI là gợi ý, không phải đánh giá trình duyệt đầy đủ. Dùng điều khiển theme để tinh chỉnh khoảng cách và responsive."
 
-msgid "Build an unpublished service page from the outline we agreed. Use editable BIGSPY blocks and check its heading structure."
-msgstr "Dựng trang dịch vụ chưa xuất bản theo dàn ý đã thống nhất. Dùng block BIGSPY sửa được và kiểm tra cấu trúc tiêu đề."
+msgid "Build an unpublished service page from the outline we agreed. Use editable BIGSPY AI blocks and check its heading structure."
+msgstr "Dựng trang dịch vụ chưa xuất bản theo dàn ý đã thống nhất. Dùng block BIGSPY AI sửa được và kiểm tra cấu trúc tiêu đề."
 
 msgid "Create a draft landing page focused on requesting a quote, with a clear mobile call to action."
 msgstr "Tạo landing page nháp tập trung yêu cầu báo giá, có nút hành động mobile rõ ràng."
@@ -4907,14 +4907,14 @@ msgstr "BIGSPY AI Theme WP"
 msgid "Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace."
 msgstr "Dựng website bằng một theme tích hợp: block sửa được, bố cục dùng lại và không gian AI có sẵn."
 
-msgid "An AI agent for designing and maintaining your website inside the theme. Its BIGSPY blocks stay editable by hand."
-msgstr "AI agent thiết kế và vận hành website ngay trong theme. Block BIGSPY do AI dựng vẫn sửa tay được."
+msgid "An AI agent for designing and maintaining your website inside the theme. Its BIGSPY AI blocks stay editable by hand."
+msgstr "AI agent thiết kế và vận hành website ngay trong theme. Block BIGSPY AI do AI dựng vẫn sửa tay được."
 
 msgid "You are not allowed to access this page."
 msgstr "Bạn không có quyền truy cập trang này."
 
-msgid "BIGSPY theme preview"
-msgstr "Xem trước theme BIGSPY"
+msgid "BIGSPY AI theme preview"
+msgstr "Xem trước theme BIGSPY AI"
 
 msgid "Your AI workspace"
 msgstr "Không gian AI của bạn"

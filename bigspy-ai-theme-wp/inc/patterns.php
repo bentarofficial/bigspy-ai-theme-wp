@@ -12,11 +12,11 @@
 defined( 'ABSPATH' ) || exit;
 
 function bst_register_pattern_categories() {
-	register_block_pattern_category( 'bigspy-sections', array( 'label' => __( 'BIGSPY – Sections', 'bigspy-ai-theme-wp' ) ) );
-	register_block_pattern_category( 'bigspy-pages', array( 'label' => __( 'BIGSPY – Full pages', 'bigspy-ai-theme-wp' ) ) );
+	register_block_pattern_category( 'bigspy-sections', array( 'label' => __( 'BIGSPY AI – Sections', 'bigspy-ai-theme-wp' ) ) );
+	register_block_pattern_category( 'bigspy-pages', array( 'label' => __( 'BIGSPY AI – Full pages', 'bigspy-ai-theme-wp' ) ) );
 
 	if ( class_exists( 'WooCommerce' ) ) {
-		register_block_pattern_category( 'bigspy-shop', array( 'label' => __( 'BIGSPY – Shop', 'bigspy-ai-theme-wp' ) ) );
+		register_block_pattern_category( 'bigspy-shop', array( 'label' => __( 'BIGSPY AI – Shop', 'bigspy-ai-theme-wp' ) ) );
 		bst_register_shop_patterns();
 	}
 }
