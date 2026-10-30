@@ -26,6 +26,12 @@ Chưa có thay đổi sản phẩm mới sau bản 1.76.0. Bản 1.76.0 (30-10-2
 - **Khi phát hành cần bổ sung:** Giới thiệu, Có gì mới, kiến thức AI.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** siết AI Designer: không tạo `core/html` mới, khối lõi tự thành khối BIGSPY AI; `bst/code` quá 2 khối hoặc 3 KB mỗi trang cần thẻ duyệt; báo tỉ lệ khối sửa được (mốc 90%, chỉ báo); CSS AI tự thêm tối đa 2 KB; công cụ `style_options` và thứ tự ưu tiên trong prompt.
+- **Đã thay đổi:** `ai-designer/includes/tools-design.php`, `permissions.php`, `prompt.php`.
+- **Kiểm thử:** `node tools/features-check.cjs`, `node tools/playground-check.cjs`. Chưa chạy với AI thật. Giới hạn: AI gửi `raw` core/html vẫn được giữ để không vỡ trang cũ; `user_requested` do AI tự khai, nhưng custom_css vẫn qua thẻ duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới, kiến thức AI.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

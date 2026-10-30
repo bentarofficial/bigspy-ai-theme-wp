@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -237,6 +237,43 @@ function bst_t_cf7() {
 	bst_test( false !== strpos( get_post_field( 'post_content', $ot ), '999999' ), 'other form untouched' );
 	bst_test( false !== strpos( render_block( parse_blocks( get_post_field( 'post_content', $cl ) )[0] ), 'type="file"' ), 'moved form renders' );
 	bst_test( 0 === bst_cf7_migrate( get_post( $id ) ), 'second run changes nothing' );
+}
+
+function bst_t_aid() {
+	$m = bst_aid_tree_to_markup( array( array( 'name' => 'core/html', 'html' => '<div>x</div>' ) ) );
+	bst_test( is_wp_error( $m ), 'new core/html refused' );
+	$m = bst_aid_tree_to_markup(
+		array(
+			array( 'name' => 'core/heading', 'html' => 'Tiêu đề', 'attrs' => array( 'level' => 3 ) ),
+			array( 'name' => 'core/paragraph', 'html' => 'Đoạn' ),
+			array( 'name' => 'core/list', 'html' => '<ul><li>a</li></ul>' ),
+		)
+	);
+	bst_test( ! is_wp_error( $m ) && 3 === substr_count( $m['markup'], 'wp:bst/' ) && false === strpos( $m['markup'], 'wp:html' ) && false !== strpos( $m['markup'], '"tag":"h3"' ), 'core blocks become BIGSPY AI blocks' );
+	$raw = bst_aid_tree_to_markup( array( array( 'name' => 'core/html', 'raw' => '<!-- wp:html --><b>cũ</b><!-- /wp:html -->' ) ) );
+	bst_test( ! is_wp_error( $raw ) && false !== strpos( $raw['markup'], '<b>cũ</b>' ), 'old core/html kept' );
+	$rule = array_keys( bst_block_preset_rules() )[0];
+	$p    = bst_aid_tree_to_markup( array( array( 'name' => 'bst/text', 'attrs' => array( 'html' => '<p>a</p>', 'bsPresets' => "$rule fake-id" ) ) ) );
+	bst_test( false !== strpos( $p['markup'], $rule ) && false === strpos( $p['markup'], 'fake-id' ), 'presets kept, unknown ids dropped' );
+	$code = function ( $n, $size = 10 ) {
+		return array_fill( 0, $n, array( 'name' => 'bst/code', 'attrs' => array( 'code' => str_repeat( 'x', $size ) ) ) );
+	};
+	bst_test( 1 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 2 ) ) )['level'], 'two code blocks need no card' );
+	bst_test( 2 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 3 ) ) )['level'], 'third code block needs a card' );
+	bst_test( 2 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 1, 4000 ) ) )['level'], 'over 3 KB needs a card' );
+	$nest = array( array( 'name' => 'bst/section', 'inner' => $code( 3 ) ) );
+	bst_test( 2 === bst_aid_tool_policy( 'update_page', array( 'blocks' => $nest ) )['level'], 'nested code counted' );
+	$id = wp_insert_post( array( 'post_title' => 'C', 'post_type' => 'page', 'post_status' => 'draft', 'post_content' => serialize_blocks( bst_aid_build_blocks( $code( 2 ), '', $i ) ) ) );
+	bst_test( 2 === bst_aid_tool_policy( 'page_sections', array( 'id' => $id, 'mode' => 'append', 'blocks' => $code( 1 ) ) )['level'], 'existing page code counted' );
+	bst_test( 0 === bst_aid_editable_percent( get_post_field( 'post_content', $id ) ), 'code only page scores 0' );
+	bst_test( 90 === bst_aid_editable_percent( str_repeat( '<!-- wp:bst/text /-->', 9 ) . '<!-- wp:bst/code /-->' ), 'score counts blocks' );
+	$big = bst_aid_tool_custom_css( array( 'mode' => 'replace', 'css' => 'a{}' . str_repeat( ' ', 1 ) . str_repeat( 'b{color:red}', 300 ) ) );
+	bst_test( ! empty( $big['error'] ), 'large AI CSS refused' );
+	$ok = bst_aid_tool_custom_css( array( 'mode' => 'replace', 'user_requested' => true, 'css' => str_repeat( 'b{color:red}', 300 ) ) );
+	bst_test( ! empty( $ok['saved'] ), 'large CSS allowed when user asked' );
+	$opt = bst_aid_tool_style_options( array( 'names' => array_slice( array_keys( bst_block_presets() ), 0, 1 ) ) );
+	bst_test( ! empty( $opt['css_library'] ) && ! empty( $opt['blocks'] ), 'style options listed' );
+	bst_test( 1 === bst_aid_tool_policy( 'style_options', array() )['level'], 'style options is read only' );
 }
 
 /** A JPEG with an EXIF block saying "rotate 90 degrees". */

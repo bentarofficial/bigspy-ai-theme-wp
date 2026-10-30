@@ -158,6 +158,13 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 		$schema = (array) $types[ $name ]->attributes;
 		$attrs  = array();
 		foreach ( (array) ( $node['attrs'] ?? array() ) as $key => $value ) {
+			if ( 'bsPresets' === $key && is_string( $value ) ) {
+				$known = array_intersect( preg_split( '/\s+/', trim( $value ), -1, PREG_SPLIT_NO_EMPTY ), array_keys( bst_block_preset_rules() ) );
+				if ( $known ) {
+					$attrs[ $key ] = implode( ' ', $known );
+				}
+				continue;
+			}
 			if ( ! isset( $schema[ $key ] ) ) {
 				$issues['warnings'][] = "$where ($name): dropped unknown attribute \"$key\".";
 				continue;
@@ -225,18 +232,13 @@ function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 		case 'core/heading':
 			$level = max( 1, min( 6, (int) ( $attrs['level'] ?? 2 ) ) );
 			$text  = bst_aid_clean_heading( wp_strip_all_tags( $html, false ) === $html ? $html : preg_replace( '#^<h[1-6][^>]*>(.*)</h[1-6]>$#is', '$1', trim( $html ) ) );
-			$html  = '<h' . $level . ' class="wp-block-heading">' . wp_kses_post( $text ) . '</h' . $level . '>';
-			$attrs = 2 === $level ? array() : array( 'level' => $level );
-			break;
+			return bst_aid_theme_block( 'bst/heading', array( 'text' => wp_kses_post( $text ), 'tag' => 'h' . $level ), $where, $issues );
 		case 'core/paragraph':
 			$text = preg_replace( '#^<p[^>]*>(.*)</p>$#is', '$1', trim( $html ) );
-			$html = '<p>' . wp_kses_post( bst_aid_md_inline( $text ) ) . '</p>';
-			$attrs = array();
-			break;
+			return bst_aid_theme_block( 'bst/text', array( 'html' => '<p>' . wp_kses_post( bst_aid_md_inline( $text ) ) . '</p>' ), $where, $issues );
 		case 'core/html':
-			$html  = bst_aid_clean_code( $html );
-			$attrs = array();
-			break;
+			$issues['errors'][] = "$where: new core/html blocks are not allowed. Use BIGSPY AI blocks, or bst/code for a small custom piece.";
+			return null;
 		case 'core/shortcode':
 			$html  = sanitize_text_field( $html );
 			$attrs = array();
@@ -246,13 +248,92 @@ function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 			$parsed = parse_blocks( 'core/spacer' === $name ? '<!-- wp:spacer --><div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div><!-- /wp:spacer -->' : '<!-- wp:separator --><hr class="wp-block-separator has-alpha-channel-opacity"/><!-- /wp:separator -->' );
 			return $parsed[0] ?? null;
 		default:
-			// Lists, quotes, tables, groups…: easiest as clean HTML in a Custom HTML block.
-			$issues['warnings'][] = "$where: $name was saved as a Custom HTML block; prefer BIGSPY AI blocks (bst/text, bst/buttons…).";
-			$name  = 'core/html';
-			$html  = wp_kses_post( bst_aid_clean_html( $html ) );
-			$attrs = array();
+			// Lists, quotes, tables, groups…: rich text the user can still edit.
+			$issues['warnings'][] = "$where: $name was saved as bst/text; prefer BIGSPY AI blocks.";
+			return bst_aid_theme_block( 'bst/text', array( 'html' => wp_kses_post( bst_aid_clean_html( $html ) ) ), $where, $issues );
 	}
 	return array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => $html, 'innerContent' => array( $html ) );
+}
+
+/** A BIGSPY AI block in place of a core block; an error if the user switched that block off. */
+function bst_aid_theme_block( $name, $attrs, $where, &$issues ) {
+	if ( ! isset( bst_aid_block_types()[ $name ] ) ) {
+		$issues['errors'][] = "$where: $name is disabled, so this core block cannot be converted.";
+		return null;
+	}
+	return array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() );
+}
+
+/** Count and size of bst/code blocks in a model tree. */
+function bst_aid_code_usage( $nodes ) {
+	$use = array( 'count' => 0, 'bytes' => 0 );
+	foreach ( (array) $nodes as $node ) {
+		$name = (string) ( $node['name'] ?? $node['blockName'] ?? '' );
+		if ( 'bst/code' === $name || 'code' === $name ) {
+			$use['count']++;
+			$use['bytes'] += strlen( (string) ( $node['attrs']['code'] ?? '' ) );
+		}
+		$sub           = bst_aid_code_usage( $node['inner'] ?? $node['innerBlocks'] ?? array() );
+		$use['count'] += $sub['count'];
+		$use['bytes'] += $sub['bytes'];
+	}
+	return $use;
+}
+
+/** True when a page write would leave more than 2 code blocks or 3 KB of code on the page. */
+function bst_aid_code_over_limit( $name, $a ) {
+	$use = bst_aid_code_usage( $a['blocks'] ?? array() );
+	if ( 'page_sections' === $name && ! empty( $a['id'] ) ) {
+		$old           = bst_aid_code_usage( parse_blocks( (string) get_post_field( 'post_content', (int) $a['id'] ) ) );
+		$use['count'] += $old['count'];
+		$use['bytes'] += $old['bytes'];
+	}
+	return $use['count'] > 2 || $use['bytes'] > 3 * KB_IN_BYTES;
+}
+
+/** Share of blocks the user can edit with block options, in percent. */
+function bst_aid_editable_percent( $content ) {
+	$count = function ( $blocks ) use ( &$count ) {
+		$all  = 0;
+		$hard = 0;
+		foreach ( $blocks as $b ) {
+			$name = $b['blockName'] ?? '';
+			if ( ! $name && '' === trim( (string) ( $b['innerHTML'] ?? '' ) ) ) {
+				continue;
+			}
+			$all++;
+			$hard += in_array( $name, array( '', 'core/html', 'bst/code' ), true ) ? 1 : 0;
+			list( $a, $h ) = $count( $b['innerBlocks'] ?? array() );
+			$all  += $a;
+			$hard += $h;
+		}
+		return array( $all, $hard );
+	};
+	list( $all, $hard ) = $count( parse_blocks( $content ) );
+	return $all ? (int) floor( ( $all - $hard ) * 100 / $all ) : 100;
+}
+
+/** Report added to a page tool result; the model passes a low score on to the user. */
+function bst_aid_editable_report( $id ) {
+	$pct = bst_aid_editable_percent( (string) get_post_field( 'post_content', $id ) );
+	return array( 'editable_percent' => $pct, 'editable_ok' => $pct >= 90 );
+}
+
+function bst_aid_tool_style_options( $a ) {
+	$out = array( 'css_library' => array() );
+	foreach ( bst_css_presets() as $id => $p ) {
+		$out['css_library'][ $id ] = $p[1];
+	}
+	$all = bst_block_presets();
+	foreach ( (array) ( $a['names'] ?? array() ) as $name ) {
+		$short = preg_replace( '#^bst/#', '', (string) $name );
+		foreach ( (array) ( $all[ $short ] ?? $all[ 'bst/' . $short ] ?? array() ) as $group ) {
+			foreach ( (array) ( $group[2] ?? array() ) as $id => $option ) {
+				$out['blocks'][ $short ][ $group[0] ][ $id ] = $option[0];
+			}
+		}
+	}
+	return $out;
 }
 
 /** Block markup from a model tree, or WP_Error with the problems. */
@@ -528,6 +609,12 @@ add_filter(
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_list_blocks',
 		);
+		$tools['style_options'] = array(
+			'description' => 'Style presets of the given blocks and the site-wide CSS library. Presets go in a block as attrs.bsPresets, ids separated by spaces. CSS library items are switched on by the user in Customize; suggest them, do not copy their CSS.',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'names' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ) ), 'required' => array( 'names' ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_style_options',
+		);
 		$tools['block_schema']  = array(
 			'description' => 'Attributes of the given blocks: type, default, allowed values. Ask only for the blocks you will use.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'names' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ) ), 'required' => array( 'names' ) ),
@@ -622,7 +709,7 @@ add_filter(
 		);
 		$tools['custom_css']    = array(
 			'description' => 'Read or write the AI Designer part of Additional CSS. mode "read" returns it; "replace" sets the AI part to css. CSS the user wrote outside that part is never changed. Prefer block and theme settings; use CSS only for what they cannot do.',
-			'parameters'  => array( 'type' => 'object', 'properties' => array( 'mode' => array( 'type' => 'string', 'enum' => array( 'read', 'replace' ) ), 'css' => array( 'type' => 'string' ) ), 'required' => array( 'mode' ) ),
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'mode' => array( 'type' => 'string', 'enum' => array( 'read', 'replace' ) ), 'css' => array( 'type' => 'string' ), 'user_requested' => array( 'type' => 'boolean', 'description' => 'True only when the user explicitly asked for this CSS. Without it the AI part is limited to 2 KB.' ) ), 'required' => array( 'mode' ) ),
 			'cap'         => 'edit_css',
 			'callback'    => 'bst_aid_tool_custom_css',
 		);
@@ -788,7 +875,7 @@ function bst_aid_tool_create_page( $a ) {
 	bst_aid_set_seo( $id, $a['seo'] ?? null );
 	update_post_meta( $id, '_bst_aid_created', 1 );
 	bst_aid_track_created( $id );
-	return array( 'id' => $id, 'status' => get_post_status( $id ), 'warnings' => $markup['warnings'], 'links' => bst_aid_links( $id, get_the_title( $id ) ), 'preview' => get_preview_post_link( $id ) );
+	return array( 'id' => $id, 'status' => get_post_status( $id ), 'warnings' => $markup['warnings'], 'links' => bst_aid_links( $id, get_the_title( $id ) ), 'preview' => get_preview_post_link( $id ) ) + bst_aid_editable_report( $id );
 }
 
 function bst_aid_tool_get_page( $a ) {
@@ -848,7 +935,7 @@ function bst_aid_tool_update_page( $a ) {
 			update_post_meta( $p->ID, '_wp_page_template', $tpl );
 		}
 	}
-	return array( 'id' => $p->ID, 'status' => get_post_status( $p->ID ), 'warnings' => $warnings, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) );
+	return array( 'id' => $p->ID, 'status' => get_post_status( $p->ID ), 'warnings' => $warnings, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) ) + bst_aid_editable_report( $p->ID );
 }
 
 function bst_aid_tool_page_sections( $a ) {
@@ -894,7 +981,7 @@ function bst_aid_tool_page_sections( $a ) {
 	if ( is_wp_error( $r ) ) {
 		return array( 'error' => $r->get_error_message() );
 	}
-	return array( 'id' => $p->ID, 'sections' => count( $top ), 'warnings' => $warn, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) );
+	return array( 'id' => $p->ID, 'sections' => count( $top ), 'warnings' => $warn, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) ) + bst_aid_editable_report( $p->ID );
 }
 
 function bst_aid_tool_get_settings( $a ) {
@@ -1014,6 +1101,9 @@ function bst_aid_tool_custom_css( $a ) {
 	$css = trim( wp_strip_all_tags( (string) ( $a['css'] ?? '' ) ) );
 	if ( preg_match( '#</?style|@import#i', $css ) ) {
 		return array( 'error' => 'Plain CSS only (no <style> tags or @import).' );
+	}
+	if ( strlen( $css ) > 2 * KB_IN_BYTES && empty( $a['user_requested'] ) ) {
+		return array( 'error' => 'AI CSS is limited to 2 KB unless the user asked for it. Use block options, style_options or the CSS library first, or ask the user.' );
 	}
 	bst_aid_snapshot( 'css', 'custom_css', $all );
 	$block = '' === $css ? '' : $start . "\n" . $css . "\n" . $end;
