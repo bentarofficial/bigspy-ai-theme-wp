@@ -148,11 +148,29 @@
 
 	window.bstBlockPreviewNames = Object.keys(P);
 
+	/* Icon color per block family, so blocks are easy to tell apart in the inserter. */
+	var FAMILY = {
+		'#4f46e5': ['section', 'row', 'column', 'spacer', 'divider', 'widget-area'], // layout
+		'#2563eb': ['heading', 'title', 'text', 'icon-list', 'table', 'alert', 'code', 'shortcode'], // text
+		'#db2777': ['image', 'gallery', 'banner', 'banner-grid', 'video', 'video-button', 'audio', 'lottie', 'before-after', 'hotspot', 'map'], // media
+		'#7c3aed': ['slider', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'marquee', 'logos', 'flip-box'], // motion
+		'#ea580c': ['tabs', 'tab', 'accordion', 'accordion-item', 'popup', 'button', 'buttons', 'form', 'nav-menu'], // interactive
+		'#16a34a': ['products', 'products-list', 'product-categories', 'product-part', 'payment-icons', 'price-table', 'pricing-toggle', 'countdown'], // shop and pricing
+		'#0891b2': ['icon-box', 'image-box', 'counter', 'progress', 'star-rating', 'timeline', 'team-member', 'testimonial', 'posts', 'social', 'share'] // trust and content cards
+	};
+	var ICON_COLORS = {};
+	Object.keys(FAMILY).forEach(function (c) { FAMILY[c].forEach(function (b) { ICON_COLORS[b] = c; }); });
+
 	wp.hooks.addFilter('blocks.registerBlockType', 'bst/block-previews', function (settings, name) {
 		if (!/^(bst|bigspy)\//.test(name) || typeof settings.edit !== 'function') {
 			return settings;
 		}
 		var edit = settings.edit;
+		var color = ICON_COLORS[name.replace(/^(bst|bigspy)\//, '')];
+		if (color && settings.icon) {
+			// Colored inserter icons, one color per block family.
+			settings.icon = settings.icon.src ? Object.assign({}, settings.icon, { foreground: color }) : { src: settings.icon, foreground: color };
+		}
 		settings.attributes = Object.assign({}, settings.attributes, { bstPreview: { type: 'boolean', default: false } });
 		settings.example = { attributes: { bstPreview: true }, viewportWidth: 560 };
 		settings.edit = function (props) {
