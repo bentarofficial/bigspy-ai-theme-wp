@@ -179,4 +179,101 @@
 				el(be.InnerBlocks, { template: [['bst/heading', { tag: 'h3', text: __('Card title', T) }], ['bst/text', { html: '<p>' + __('Card content.', T) + '</p>' }]] }))
 		);
 	}, save: save });
+	/* ------------------------------------------------ Motion wave 2 */
+	wp.blocks.registerBlockType('bigspy/hover-reveal', { edit: function (props) {
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Hover Reveal List', T) },
+				control(props, 'size', __('Text size (px, 0 = automatic)', T), 'range', [0, 160]),
+				control(props, 'imageWidth', __('Hover image width (px)', T), 'range', [120, 600]),
+				control(props, 'divider', __('Lines between rows', T), 'toggle'),
+				control(props, 'label', __('Accessible label', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-hreveal-editor' }),
+				el(be.InnerBlocks, { allowedBlocks: ['bigspy/hover-reveal-item'], template: [['bigspy/hover-reveal-item', { title: __('Web design', T), meta: '2026' }], ['bigspy/hover-reveal-item', { title: __('SEO', T), meta: '2026' }], ['bigspy/hover-reveal-item', { title: __('Branding', T), meta: '2026' }]] }))
+		);
+	}, save: save });
+	wp.blocks.registerBlockType('bigspy/hover-reveal-item', { edit: function (props) {
+		var a = props.attributes;
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Hover Reveal row', T) },
+				control(props, 'title', __('Title', T)), control(props, 'meta', __('Small text on the right', T)), control(props, 'link', __('Link (URL)', T)),
+				el(be.MediaUploadCheck, null, el(be.MediaUpload, { allowedTypes: ['image'], value: a.imageId, onSelect: function (m) { props.setAttributes({ imageId: m.id, imageUrl: m.url }); }, render: function (p) { return el(c.Button, { variant: 'secondary', onClick: p.open }, a.imageUrl ? __('Replace image', T) : __('Choose image', T)); } }))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-hreveal-row' }),
+				a.imageUrl ? el('img', { src: a.imageUrl, alt: '' }) : el('span', { className: 'bst-hreveal-row__noimg' }),
+				el(be.RichText, { tagName: 'strong', value: a.title, placeholder: __('Row title…', T), allowedFormats: [], onChange: function (v) { props.setAttributes({ title: v.replace(/<[^>]+>/g, '') }); } }),
+				el('em', null, a.meta))
+		);
+	}, save: function () { return null; } });
+
+	var SHAPES = [['wave', __('Wave', T)], ['curve', __('Curve', T)], ['arrow', __('Arrow', T)], ['loop', __('Loop', T)], ['zigzag', __('Zigzag', T)], ['underline', __('Underline', T)], ['custom', __('Custom SVG path', T)]];
+	wp.blocks.registerBlockType('bigspy/line-draw', { edit: function (props) {
+		var a = props.attributes;
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Line Draw', T) },
+				control(props, 'shape', __('Shape', T), 'select', SHAPES),
+				a.shape === 'custom' ? el(c.TextareaControl, { label: __('SVG path (d attribute, 400 × 100 box)', T), value: a.path, onChange: function (v) { props.setAttributes({ path: v }); } }) : null,
+				control(props, 'mode', __('Drawing', T), 'select', [['view', __('Once, when it comes into view', T)], ['scroll', __('Follows the scroll', T)]]),
+				control(props, 'duration', __('Drawing time (seconds)', T), 'range', [0.3, 6, 0.1]),
+				control(props, 'width', __('Line width', T), 'range', [1, 20]),
+				control(props, 'height', __('Height (px)', T), 'range', [20, 600]),
+				control(props, 'flip', __('Mirror horizontally', T), 'toggle'),
+				colorRow(props, 'color', __('Line color', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-line-editor' }), el(wp.serverSideRender, { block: 'bigspy/line-draw', attributes: a }))
+		);
+	}, save: function () { return null; } });
+
+	wp.blocks.registerBlockType('bigspy/horizontal-scroll', { edit: function (props) {
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Horizontal Scroll', T) },
+				control(props, 'panelWidth', __('Panel width – desktop (% of screen)', T), 'range', [30, 100]),
+				control(props, 'panelWidthMobile', __('Panel width – mobile (% of screen)', T), 'range', [50, 100]),
+				control(props, 'gap', __('Gap', T), 'range', [0, 120]),
+				control(props, 'label', __('Accessible label', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-motion-editor--ticker' }),
+				el(c.Notice, { status: 'info', isDismissible: false }, __('On the site, visitors scroll down and these panels slide sideways. On phones they become a swipeable row.', T)),
+				el(be.InnerBlocks, { allowedBlocks: ['bigspy/hscroll-panel'], orientation: 'horizontal', template: [['bigspy/hscroll-panel'], ['bigspy/hscroll-panel'], ['bigspy/hscroll-panel']] }))
+		);
+	}, save: save });
+	wp.blocks.registerBlockType('bigspy/hscroll-panel', { edit: function (props) {
+		var a = props.attributes;
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Horizontal panel', T) }, colorRow(props, 'background', __('Background', T)), colorRow(props, 'textColor', __('Text color', T)))),
+			el('div', be.useBlockProps({ className: 'bst-motion-slide', style: { background: a.background || undefined, color: a.textColor || undefined, minWidth: '260px', padding: '18px', borderRadius: '14px' } }),
+				el(be.InnerBlocks, { template: [['bst/heading', { tag: 'h3', text: __('Panel title', T) }], ['bst/text', { html: '<p>' + __('Panel content.', T) + '</p>' }]] }))
+		);
+	}, save: save });
+
+	wp.blocks.registerBlockType('bigspy/zoom-hero', { edit: function (props) {
+		var a = props.attributes;
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Zoom Hero', T) },
+				el(be.MediaUploadCheck, null, el(be.MediaUpload, { allowedTypes: ['image'], value: a.imageId, onSelect: function (m) { props.setAttributes({ imageId: m.id, imageUrl: m.url, imageAlt: m.alt || '' }); }, render: function (p) { return el(c.Button, { variant: 'secondary', onClick: p.open }, a.imageUrl ? __('Replace image', T) : __('Choose image', T)); } })),
+				control(props, 'startInset', __('Starting frame margin (%)', T), 'range', [0, 40]),
+				control(props, 'radius', __('Starting corner radius', T), 'range', [0, 80]),
+				control(props, 'overlay', __('Dark overlay at the end (%)', T), 'range', [0, 90]),
+				control(props, 'length', __('Scroll length (% of screen height)', T), 'range', [100, 400])
+			)),
+			el('div', be.useBlockProps({ className: 'bst-zhero-editor', style: { backgroundImage: a.imageUrl ? 'linear-gradient(rgba(0,0,0,' + (a.overlay / 100) + '),rgba(0,0,0,' + (a.overlay / 100) + ')),url("' + a.imageUrl + '")' : undefined } }),
+				el(be.InnerBlocks, { template: [['bst/heading', { tag: 'h1', text: __('A bold opening headline', T), align: 'center', color: '#ffffff' }], ['bst/button', { text: __('Get started', T) }]] }))
+		);
+	}, save: save });
+
+	/* "Advanced motion" panel for Section, Button, Image, Icon Box, Counter and Gallery. */
+	var MX = {
+		'bst/section': function (p) { return [control(p, 'mxSticky', __('Stick to the top while scrolling', T), 'toggle'), colorRow(p, 'mxScrollBg', __('Page background while this section is in view', T))]; },
+		'bst/button': function (p) { return [control(p, 'mxButton', __('Button motion', T), 'select', [['', __('None', T)], ['magnetic', __('Magnetic (follows the mouse)', T)], ['arrow', __('Sliding arrow', T)], ['shine', __('Shine every few seconds', T)]])]; },
+		'bst/image': function (p) { return [control(p, 'mxReveal', __('Image reveal', T), 'select', [['', __('None', T)], ['left', __('Curtain from the left', T)], ['right', __('Curtain from the right', T)], ['up', __('Curtain from the bottom', T)], ['circle', __('Circle opening', T)], ['kenburns', __('Slow zoom (Ken Burns)', T)]])]; },
+		'bst/icon-box': function (p) { return [control(p, 'mxDraw', __('Icon draws itself', T), 'toggle')]; },
+		'bst/counter': function (p) { return [control(p, 'mxScramble', __('Scramble digits like a flip board', T), 'toggle')]; },
+		'bst/gallery': function (p) { return [control(p, 'mxStagger', __('Images appear one after another', T), 'toggle')]; }
+	};
+	wp.hooks.addFilter('editor.BlockEdit', 'bst/advanced-motion', wp.compose.createHigherOrderComponent(function (BlockEdit) {
+		return function (props) {
+			if (!MX[props.name] || props.attributes.bstPreview) { return el(BlockEdit, props); }
+			return el(Fragment, null, el(BlockEdit, props), el(be.InspectorControls, null, el(c.PanelBody, { title: __('Advanced motion', T), initialOpen: false }, MX[props.name](props), el('p', { className: 'description' }, __('Plays on the site, not in the editor. Visitors who ask for less motion see the static version.', T)))));
+		};
+	}, 'withAdvancedMotion'));
 }(window.wp));

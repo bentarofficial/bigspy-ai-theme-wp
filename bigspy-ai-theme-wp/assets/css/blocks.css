@@ -3407,3 +3407,84 @@ input[type="submit"]:hover,
 .bs-stack--scale .bs-stack__card { transform: scale(calc(1 - var(--p, 0) * .06)); filter: brightness(calc(1 - var(--p, 0) * .18)); transition: transform .1s linear, filter .1s linear; }
 .bs-stack__inner > :last-child { margin-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { .bs-stack--scale .bs-stack__card { transform: none; filter: none; } }
+
+/* ================================================================ 1.76 – Motion wave 2 */
+.bs-hreveal { position: relative; margin: 0; padding: 0; list-style: none; }
+.bs-hreveal__item { margin: 0; }
+.bs-hreveal--lines .bs-hreveal__item { border-bottom: 1px solid rgba(148, 163, 184, .35); }
+.bs-hreveal--lines .bs-hreveal__item:first-child { border-top: 1px solid rgba(148, 163, 184, .35); }
+.bs-hreveal__link { display: flex; align-items: center; gap: 16px; padding: .55em 0; color: inherit; text-decoration: none; font-size: var(--bs-hr-size, clamp(24px, 4vw, 56px)); font-weight: 700; line-height: 1.1; transition: color .3s ease, padding .4s cubic-bezier(.2, .7, .2, 1); }
+.bs-hreveal__title { flex: 1; }
+.bs-hreveal__meta { font-size: .32em; font-weight: 500; opacity: .65; }
+.bs-hreveal__img { flex: 0 0 auto; width: 64px; height: 48px; border-radius: 8px; object-fit: cover; }
+.bs-hreveal.is-enhanced .bs-hreveal__img { display: none; }
+.bs-hreveal.is-enhanced .bs-hreveal__link:hover { color: var(--bs-primary); padding-left: .4em; }
+.bs-hreveal__float { position: absolute; top: 0; left: 0; z-index: 5; width: var(--bs-hr-img, 280px); aspect-ratio: 4 / 3; border-radius: 14px; background: center / cover no-repeat; box-shadow: 0 24px 50px rgba(15, 23, 42, .25); opacity: 0; scale: .85; pointer-events: none; transition: opacity .3s ease, scale .35s ease; }
+.bs-hreveal__float.is-on { opacity: 1; scale: 1; }
+
+.bs-line { height: var(--bs-line-h, 120px); color: var(--bs-line-color, var(--bs-primary)); }
+.bs-line svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.bs-line--flip svg { transform: scaleX(-1); }
+.bs-line.is-ready path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.bs-line.is-ready:not(.is-scroll) path { transition: stroke-dashoffset var(--bs-line-dur, 1.6s) cubic-bezier(.6, 0, .2, 1); }
+.bs-line.is-ready.is-drawn path { stroke-dashoffset: 0; }
+
+.bs-hscroll__track { display: flex; gap: var(--bs-hs-gap, 32px); }
+.bs-hscroll__panel { flex: 0 0 var(--bs-hs-w, 70vw); min-width: 0; padding: clamp(24px, 4vw, 56px); border-radius: 24px; background: var(--bs-hs-bg, rgba(148, 163, 184, .12)); color: var(--bs-hs-fg, inherit); }
+.bs-hscroll__panel > :last-child { margin-bottom: 0; }
+.bs-hscroll:not(.is-pinned) .bs-hscroll__track { overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; padding-bottom: 4px; }
+.bs-hscroll:not(.is-pinned) .bs-hscroll__track::-webkit-scrollbar { display: none; }
+.bs-hscroll:not(.is-pinned) .bs-hscroll__panel { scroll-snap-align: start; }
+.bs-hscroll.is-pinned .bs-hscroll__sticky { position: sticky; top: 0; display: flex; align-items: center; height: 100vh; overflow: hidden; }
+.bs-hscroll.is-pinned .bs-hscroll__track { will-change: transform; padding: 0 max(16px, 4vw); }
+.bs-hscroll.is-pinned .bs-hscroll__panel { max-height: 80vh; }
+@media (max-width: 767px) { .bs-hscroll__panel { flex-basis: var(--bs-hs-w-m, 85vw); } }
+
+.bs-zhero { position: relative; height: var(--bs-zh-length, 160vh); }
+.bs-zhero__sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center; }
+.bs-zhero__media { position: absolute; inset: 0; clip-path: inset(calc((1 - var(--p, 1)) * var(--bs-zh-inset, 18%)) round calc((1 - var(--p, 1)) * var(--bs-zh-radius, 28px))); }
+.bs-zhero__media img { width: 100%; height: 100%; object-fit: cover; transform: scale(calc(1.12 - var(--p, 1) * .12)); }
+.bs-zhero__media::after { content: ""; position: absolute; inset: 0; background: #000; opacity: calc(var(--p, 1) * var(--bs-zh-overlay, .35)); }
+.bs-zhero__content { position: relative; z-index: 1; width: min(100% - 32px, 960px); color: #fff; text-align: center; opacity: var(--p, 1); transform: translateY(calc((1 - var(--p, 1)) * 30px)); }
+.bs-zhero:not(.is-enhanced) { height: auto; }
+.bs-zhero:not(.is-enhanced) .bs-zhero__sticky { position: relative; min-height: 80vh; height: auto; }
+@media (max-width: 767px) { .bs-zhero { height: calc(var(--bs-zh-length, 160vh) * .8); } }
+
+/* Advanced motion on existing blocks */
+.bs-mx-sticky { position: sticky; top: 0; z-index: 1; }
+body.bs-has-scroll-bg { background-color: var(--bs-page-bg, #fff); transition: background-color .7s ease; }
+body.bs-has-scroll-bg .bs-section[data-bs-scroll-bg] { background-color: transparent; }
+.bs-mx-magnetic, .bs-mx-magnetic a, .bs-mx-magnetic button { transition: translate .25s cubic-bezier(.2, .7, .2, 1); }
+.bs-mx-arrow::after { content: "→"; display: inline-block; margin-left: .45em; transition: transform .3s cubic-bezier(.2, .7, .2, 1); }
+.bs-mx-arrow:hover::after, .bs-mx-arrow:focus-visible::after { transform: translateX(5px); }
+.bs-mx-shine { position: relative; overflow: hidden; isolation: isolate; }
+.bs-mx-shine::before { content: ""; position: absolute; inset: 0 auto 0 -60%; z-index: 1; width: 40%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .5), transparent); transform: skewX(-20deg); pointer-events: none; animation: bs-mx-shine 3.5s ease-in-out infinite; }
+@keyframes bs-mx-shine { 0%, 60% { left: -60%; } 100% { left: 130%; } }
+[class*="bs-mx-reveal-"].is-reveal-ready { transition: clip-path 1.1s cubic-bezier(.65, 0, .25, 1); }
+.bs-mx-reveal-left.is-reveal-ready:not(.is-revealed) { clip-path: inset(0 100% 0 0); }
+.bs-mx-reveal-right.is-reveal-ready:not(.is-revealed) { clip-path: inset(0 0 0 100%); }
+.bs-mx-reveal-up.is-reveal-ready:not(.is-revealed) { clip-path: inset(100% 0 0 0); }
+.bs-mx-reveal-circle.is-reveal-ready:not(.is-revealed) { clip-path: circle(0% at 50% 50%); }
+.bs-mx-reveal-circle.is-revealed { clip-path: circle(75% at 50% 50%); }
+.bs-mx-reveal-kenburns { overflow: hidden; }
+.bs-mx-reveal-kenburns.is-revealed img { animation: bs-mx-kenburns 14s ease-out forwards; }
+@keyframes bs-mx-kenburns { from { transform: scale(1.12) translate(2%, 2%); } to { transform: none; } }
+.bs-mx-draw.is-draw-ready .bs-icon-box__icon svg :is(path, circle, rect, line, polyline) { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s cubic-bezier(.6, 0, .2, 1); }
+.bs-mx-draw.is-drawn .bs-icon-box__icon svg :is(path, circle, rect, line, polyline) { stroke-dashoffset: 0; }
+.bs-mx-stagger.is-stagger-ready .bs-gallery__item { opacity: 0; transform: translateY(24px) scale(.97); transition: opacity .6s ease, transform .7s var(--bs-motion-ease, cubic-bezier(.2, .7, .2, 1)); }
+.bs-mx-stagger.is-staggered .bs-gallery__item { opacity: 1; transform: none; }
+
+/* Slider transitions */
+.bs-slider--fx-zoom .bs-slider__track > * { transform: scale(1.08); transition: opacity .8s ease, visibility .8s, transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.bs-slider--fx-zoom .bs-slider__track > .is-active { transform: none; }
+.bs-slider--fx-flip .bs-slider__track { perspective: 1400px; }
+.bs-slider--fx-flip .bs-slider__track > * { transform: rotateY(-35deg) scale(.92); transform-origin: left center; transition: opacity .7s ease, visibility .7s, transform .9s cubic-bezier(.2, .7, .2, 1); }
+.bs-slider--fx-flip .bs-slider__track > .is-active { transform: none; }
+@supports (animation-timeline: view()) {
+	.bs-slider--fx-coverflow .bs-slider__track > * { animation: bs-coverflow linear both; animation-timeline: view(inline); }
+	@keyframes bs-coverflow { 0% { transform: scale(.82) rotateY(18deg); opacity: .55; } 50% { transform: none; opacity: 1; } 100% { transform: scale(.82) rotateY(-18deg); opacity: .55; } }
+}
+@media (prefers-reduced-motion: reduce) {
+	.bs-hreveal__float, .bs-line path, [class*="bs-mx-reveal-"], .bs-mx-reveal-kenburns img, .bs-mx-draw svg *, .bs-mx-stagger .bs-gallery__item, .bs-slider--fx-zoom .bs-slider__track > *, .bs-slider--fx-flip .bs-slider__track > *, .bs-slider--fx-coverflow .bs-slider__track > * { animation: none !important; transition: none !important; }
+	.bs-mx-shine::before { display: none; }
+}

@@ -12,7 +12,7 @@ function bst_block_names() {
 	// Shop blocks are always registered so pages keep working if WooCommerce is
 	// deactivated later; they only appear in the inserter while WooCommerce is active
 	// (see blocks-editor.js) and render nothing without it.
-	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card' );
+	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero' );
 }
 
 function bst_register_blocks() {
@@ -46,7 +46,7 @@ function bst_register_blocks() {
 		true
 	);
 	wp_register_style( 'bst-motion-editor', BST_URI . '/assets/css/blocks-motion-editor.css', array(), bst_asset_version( 'assets/css/blocks-motion-editor.css' ) );
-	wp_register_script( 'bst-motion-editor', BST_URI . '/assets/js/blocks-motion.js', array( 'bst-block-previews', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-api-fetch' ), bst_asset_version( 'assets/js/blocks-motion.js' ), true );
+	wp_register_script( 'bst-motion-editor', BST_URI . '/assets/js/blocks-motion.js', array( 'bst-block-previews', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-api-fetch', 'wp-hooks', 'wp-compose', 'wp-server-side-render' ), bst_asset_version( 'assets/js/blocks-motion.js' ), true );
 	$areas = array();
 	foreach ( (array) ( $GLOBALS['wp_registered_sidebars'] ?? array() ) as $sidebar ) {
 		$areas[] = array( 'id' => $sidebar['id'], 'name' => $sidebar['name'] );

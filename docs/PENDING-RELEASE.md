@@ -6,6 +6,16 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
+### Chuyển động đợt 2: Hover Reveal, Line Draw, Horizontal Scroll, Zoom Hero, chuyển động nâng cao (Claude, 30-10-2026)
+
+- **Yêu cầu:** đợt 2 roadmap "P1 — Chuyển động".
+- **Đã thay đổi:**
+  - Khối mới `bigspy/hover-reveal` + `-item` (ảnh bay theo con trỏ, điện thoại hiện ảnh nhỏ), `bigspy/line-draw` (6 hình + đường SVG tự nhập, vẽ khi cuộn tới hoặc theo cuộn), `bigspy/horizontal-scroll` + `bigspy/hscroll-panel` (cuộn dọc → trượt ngang bằng wrapper cao + sticky, điện thoại thành hàng vuốt), `bigspy/zoom-hero` (khung ảnh phóng ra toàn màn hình theo cuộn, nội dung hiện dần).
+  - "Chuyển động nâng cao" (panel editor + attribute server qua `register_block_type_args`, class qua `render_block`): Section dính khi cuộn, màu nền trang theo section; Button magnetic / mũi tên trượt / vệt sáng định kỳ; Image kéo rèm trái/phải/dưới, mở tròn, Ken Burns; Icon Box icon tự vẽ nét; Counter xáo chữ số (trong `blocks.js`); Gallery ảnh hiện lần lượt. Slider thêm hiệu ứng Mờ + phóng, Lật, Coverflow (CSS `animation-timeline: view()`, có fallback).
+  - Runtime mới `assets/js/motion-fx.js` (handle `bst-motion-fx`, chỉ nạp khi dùng); `motion-scroll.js` thêm hscroll, zoom hero. FAMILIES CSS `hover-reveal`, `line-draw`, `horizontal-scroll`, `zoom-hero`; đã chạy lại split. Bản xem trước, mô tả, màu icon, bản dịch vi (80 chuỗi), kiến thức AI.
+- **Kiểm thử:** lint PHP; `node --check`; `check-block-previews` (72 khối); render 72 hình xem trước; `playground-check.cjs --welcome` đạt. Playground trang thử (giả lập tắt giảm chuyển động): Hover Reveal bật ảnh nổi khi rê; Line Draw vẽ xong khi cuộn tới, bản theo cuộn đạt offset 0,43 giữa chừng; Horizontal Scroll ở 1280px: wrapper 2454px, track dịch đúng 1:1 (0 → -500 → -1200 → -1654px) rồi nhả; Zoom Hero `--p` 0,77 khi cuộn; nền trang đổi sang màu section (#fde68a); nút magnetic dịch theo chuột; editor chèn 4 khối mới + Slider zoom, panel "Chuyển động nâng cao" hiện, Line Draw xem trước qua server, không lỗi. Chưa xem bằng mắt Coverflow/Lật/Ken Burns/vệt sáng (máy thử luôn bật giảm chuyển động) và chưa thử điện thoại thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Features/Updates, trang Giới thiệu mục chuyển động.
+
 ### Chuyển động đợt 1: cường độ + phong cách, Animated Text, Scroll Story, Stacking Cards (Claude, 30-10-2026)
 
 - **Yêu cầu:** đợt 1 roadmap "P1 — Chuyển động" do owner chốt.

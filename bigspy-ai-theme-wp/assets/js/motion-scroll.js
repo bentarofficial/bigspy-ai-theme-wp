@@ -48,7 +48,60 @@
 		}).observe(root);
 	}
 
+	/* Horizontal Scroll: the wrapper is as tall as the sideways distance; the track follows vertical progress. */
+	function hscroll(root) {
+		var sticky = root.firstElementChild, track = sticky && sticky.firstElementChild;
+		if (!track) { return; }
+		var desktop = window.matchMedia('(min-width: 768px)');
+		var distance = 0, ticking = false;
+		function measure() {
+			var on = desktop.matches && !reduced;
+			root.classList.toggle('is-pinned', on);
+			if (!on) { root.style.height = ''; track.style.transform = ''; return; }
+			distance = Math.max(0, track.scrollWidth - sticky.clientWidth);
+			root.style.height = (window.innerHeight + distance) + 'px';
+			update();
+		}
+		function update() {
+			ticking = false;
+			if (!root.classList.contains('is-pinned')) { return; }
+			var p = Math.min(1, Math.max(0, -root.getBoundingClientRect().top / Math.max(1, root.offsetHeight - window.innerHeight)));
+			track.style.transform = 'translate3d(' + (-p * distance).toFixed(1) + 'px,0,0)';
+		}
+		function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+		new IntersectionObserver(function (entries) {
+			var inView = entries[0].isIntersecting;
+			window[inView ? 'addEventListener' : 'removeEventListener']('scroll', onScroll, { passive: true });
+			if (inView) { update(); }
+		}).observe(root);
+		new ResizeObserver(measure).observe(track);
+		window.addEventListener('resize', measure);
+		root.querySelectorAll('img').forEach(function (img) { if (!img.complete) { img.addEventListener('load', measure, { once: true }); } });
+		measure();
+	}
+
+	/* Zoom Hero: --p goes 0 → 1 while the hero is scrolled through. */
+	function zoomHero(root) {
+		if (reduced) { root.style.setProperty('--p', 1); return; }
+		root.classList.add('is-enhanced');
+		var ticking = false;
+		function update() {
+			ticking = false;
+			var p = Math.min(1, Math.max(0, -root.getBoundingClientRect().top / Math.max(1, root.offsetHeight - window.innerHeight)));
+			root.style.setProperty('--p', p.toFixed(3));
+		}
+		function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+		new IntersectionObserver(function (entries) {
+			var inView = entries[0].isIntersecting;
+			window[inView ? 'addEventListener' : 'removeEventListener']('scroll', onScroll, { passive: true });
+			if (inView) { update(); }
+		}).observe(root);
+		update();
+	}
+
 	function boot() {
+		document.querySelectorAll('[data-bs-hscroll]').forEach(function (el) { if (!el.dataset.bsReady) { el.dataset.bsReady = '1'; hscroll(el); } });
+		document.querySelectorAll('[data-bs-zhero]').forEach(function (el) { if (!el.dataset.bsReady) { el.dataset.bsReady = '1'; zoomHero(el); } });
 		document.querySelectorAll('[data-bs-story]').forEach(function (el) { if (!el.dataset.bsReady) { el.dataset.bsReady = '1'; story(el); } });
 		document.querySelectorAll('[data-bs-stack]').forEach(function (el) { if (!el.dataset.bsReady) { el.dataset.bsReady = '1'; stack(el); } });
 	}

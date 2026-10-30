@@ -21,8 +21,8 @@ $slider = bst_slider_markup(
 		'arrows'   => ! empty( $a['arrows'] ),
 		'dots'     => ! empty( $a['dots'] ),
 		'loop'     => ! empty( $a['loop'] ),
-		'fade'     => 'fade' === ( $a['effect'] ?? 'slide' ),
-		'peek'     => 'fade' === ( $a['effect'] ?? 'slide' ) ? 0 : bst_block_num( $a, 'peek', 0, 0, 40 ),
+		'fade'     => in_array( $a['effect'] ?? 'slide', array( 'fade', 'zoom', 'flip' ), true ),
+		'peek'     => in_array( $a['effect'] ?? 'slide', array( 'fade', 'zoom', 'flip' ), true ) ? 0 : bst_block_num( $a, 'peek', 0, 0, 40 ),
 		// Old sliders only had the on/off progress bar.
 		'progress' => '' !== (string) ( $a['timer'] ?? '' ) ? (string) $a['timer'] : ( ! empty( $a['progress'] ) ? 'bar' : 'off' ),
 		'pause'    => ! isset( $a['pauseHover'] ) || ! empty( $a['pauseHover'] ),
@@ -39,6 +39,7 @@ $slider = bst_slider_markup(
 				! empty( $a['arrowsAlways'] ) ? 'bs-slider--arrows-always' : '',
 				'bs-slider--dots-' . bst_choice( $a['dotStyle'] ?? 'pill', array( 'pill', 'dot', 'dash', 'square' ), 'pill' ),
 				! empty( $a['dotsInside'] ) ? 'bs-slider--dots-inside' : '',
+				in_array( $a['effect'] ?? '', array( 'zoom', 'flip', 'coverflow' ), true ) ? 'bs-slider--fx-' . $a['effect'] : '',
 			)
 		)
 	)

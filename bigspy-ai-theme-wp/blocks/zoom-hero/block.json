@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/zoom-hero",
+	"title": "Zoom Hero",
+	"category": "bigspy",
+	"icon": "fullscreen-alt",
+	"description": "A hero image that starts as a framed picture and grows to fill the whole screen as visitors scroll, then reveals your heading and buttons on top. A striking opening for landing pages. Scrolling stays normal; phones get a lighter version.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"hero",
+		"zoom",
+		"scroll",
+		"fullscreen",
+		"banner",
+		"landing",
+		"phóng to",
+		"ảnh đầu trang"
+	],
+	"attributes": {
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"imageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"startInset": {
+			"type": "number",
+			"default": 18
+		},
+		"radius": {
+			"type": "number",
+			"default": 28
+		},
+		"overlay": {
+			"type": "number",
+			"default": 35
+		},
+		"length": {
+			"type": "number",
+			"default": 160
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-scroll"
+}

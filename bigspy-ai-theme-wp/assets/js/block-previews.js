@@ -119,6 +119,12 @@
 		'story-step': function () { return P['scroll-story'](); },
 		'stack-cards': function () { return frame(box('position:relative;height:150px', [0, 1, 2].map(function (i) { return box('position:absolute;left:' + (8 + i * 4) + '%;right:' + (8 + i * 4) + '%;top:' + (i * 22) + 'px;height:96px;border-radius:14px;padding:12px;background:' + ['#eef2ff', '#fff', A][i] + ';box-shadow:0 8px 22px rgba(15,23,42,.14);transform:scale(' + (0.92 + i * 0.04) + ')', box('font-size:10px;font-weight:800;color:' + (i === 2 ? '#fff' : INK), __('Card', T) + ' ' + (i + 1)) + bar('60%', 4, i === 2 ? '#ffffff77' : LINE)); }).join(''))); },
 		'stack-card': function () { return P['stack-cards'](); },
+		'hover-reveal': function () { return frame(box('position:relative', [__('Web design', T), __('SEO', T), __('Branding', T)].map(function (t, i) { return box('display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-top:1px solid ' + LINE + ';font-size:18px;font-weight:800;color:' + (i === 1 ? A : INK), t + span('font-size:8px;font-weight:500;color:' + MUTED, '2026')); }).join('') + box('position:absolute;right:30px;top:24px;width:110px;height:76px;border-radius:10px;box-shadow:0 14px 30px rgba(15,23,42,.25);background:linear-gradient(145deg,' + A + '66,#eef3f7)'))); },
+		'hover-reveal-item': function () { return P['hover-reveal'](); },
+		'line-draw': function () { return frame(box('height:120px;display:grid;place-items:center', '<svg width="100%" height="100" viewBox="0 0 400 100" preserveAspectRatio="none" aria-hidden="true"><path d="M5 60 C 55 10, 105 10, 155 60 S 255 110, 305 60" fill="none" stroke="' + A + '" stroke-width="4" stroke-linecap="round"/><path d="M305 60 S 380 10, 395 40" fill="none" stroke="' + A + '" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 8" opacity=".4"/><circle cx="305" cy="60" r="7" fill="' + A + '"/></svg>')); },
+		'horizontal-scroll': function () { return frame(box('position:relative;overflow:hidden', box('display:flex;gap:10px;margin-left:-20px', rep(3, function (i) { return box('flex:0 0 46%;height:110px;border-radius:12px;padding:10px;background:' + ['#eef2ff', A + '22', '#fff7e6'][i], box('font-size:10px;font-weight:800;color:' + INK, __('Panel', T) + ' ' + (i + 1)) + lines(2)); }).join('')) + box('text-align:center;font-size:9px;font-weight:700;color:' + A + ';margin-top:8px', '↓ ' + __('scroll down', T) + ' → ' + __('slides sideways', T)))); },
+		'hscroll-panel': function () { return P['horizontal-scroll'](); },
+		'zoom-hero': function () { return frame(box('position:relative;height:150px;border-radius:12px;background:#0f172a;display:grid;place-items:center;overflow:hidden', box('position:absolute;inset:14% 18%;border-radius:14px;background:linear-gradient(135deg,' + A + ',#38bdf8)') + box('position:absolute;inset:0;border:2px dashed #ffffff55;border-radius:12px') + box('position:relative;color:#fff;font-size:14px;font-weight:800;text-align:center', __('Grows to full screen', T) + '<br><span style="font-size:9px;font-weight:500;opacity:.8">' + __('as you scroll', T) + '</span>'))); },
 		'product-categories': function () { return frame(row(rep(4, function (i) { return card(box('width:42px;height:42px;border-radius:50%;margin:0 auto 5px;background:linear-gradient(145deg,' + A + '44,#eef3f7)') + box('text-align:center;font-size:8px;font-weight:700;color:' + INK, __('Category', T)) + box('text-align:center;font-size:7px;color:' + MUTED, (12 + i * 3) + ' ' + __('products', T)), 'text-align:center;padding:7px'); }))); },
 		'product-part': function () { return frame(row([box('flex:1', img(120, 10, 'cart')), box('flex:1', title(__('Product name', T), 13) + box('font-size:13px;font-weight:800;color:' + A, '299.000đ') + box('color:#f5a623;font-size:9px', '★★★★★') + lines(2) + box('margin-top:6px', btn(__('Add to cart', T))))], 12)); },
 		hotspot: function () { return frame(box('position:relative', img(150, 12) + [[22, 40], [60, 30], [74, 68]].map(function (p) { return span('position:absolute;left:' + p[0] + '%;top:' + p[1] + '%;width:16px;height:16px;border-radius:50%;background:' + A + ';box-shadow:0 0 0 5px ' + A + '44;color:#fff;font-size:10px;text-align:center;line-height:16px', '+'); }).join('') + box('position:absolute;left:30%;top:16%;padding:5px 8px;border-radius:6px;background:#fff;box-shadow:0 6px 16px #0002;font-size:8px;color:' + INK, __('Product name', T) + ' · 199k'))); },
@@ -158,10 +164,19 @@
 		'#4f46e5': ['section', 'row', 'column', 'spacer', 'divider', 'widget-area'], // layout
 		'#2563eb': ['heading', 'title', 'text', 'icon-list', 'table', 'alert', 'code', 'shortcode'], // text
 		'#db2777': ['image', 'gallery', 'banner', 'banner-grid', 'video', 'video-button', 'audio', 'lottie', 'before-after', 'hotspot', 'map'], // media
-		'#7c3aed': ['slider', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'marquee', 'logos', 'flip-box', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card'], // motion
+		'#7c3aed': ['slider', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'marquee', 'logos', 'flip-box', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero'], // motion
 		'#ea580c': ['tabs', 'tab', 'accordion', 'accordion-item', 'popup', 'button', 'buttons', 'form', 'nav-menu'], // interactive
 		'#16a34a': ['products', 'products-list', 'product-categories', 'product-part', 'payment-icons', 'price-table', 'pricing-toggle', 'countdown'], // shop and pricing
 		'#0891b2': ['icon-box', 'image-box', 'counter', 'progress', 'star-rating', 'timeline', 'team-member', 'testimonial', 'posts', 'social', 'share'] // trust and content cards
+	};
+	/* "Advanced motion" attributes (motion wave 2); the panel lives in blocks-motion.js. */
+	var MX_ATTRS = {
+		'bst/section': { mxSticky: { type: 'boolean', default: false }, mxScrollBg: { type: 'string', default: '' } },
+		'bst/button': { mxButton: { type: 'string', default: '' } },
+		'bst/image': { mxReveal: { type: 'string', default: '' } },
+		'bst/icon-box': { mxDraw: { type: 'boolean', default: false } },
+		'bst/counter': { mxScramble: { type: 'boolean', default: false } },
+		'bst/gallery': { mxStagger: { type: 'boolean', default: false } }
 	};
 	var ICON_COLORS = {};
 	Object.keys(FAMILY).forEach(function (c) { FAMILY[c].forEach(function (b) { ICON_COLORS[b] = c; }); });
@@ -171,6 +186,9 @@
 			return settings;
 		}
 		var edit = settings.edit;
+		if (MX_ATTRS[name]) {
+			settings.attributes = Object.assign({}, settings.attributes, MX_ATTRS[name]);
+		}
 		var color = ICON_COLORS[name.replace(/^(bst|bigspy)\//, '')];
 		if (color && settings.icon) {
 			// Colored inserter icons, one color per block family.

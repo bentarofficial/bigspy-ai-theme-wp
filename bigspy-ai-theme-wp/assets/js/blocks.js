@@ -377,12 +377,20 @@
 			return;
 		}
 		var start = null;
+		// "Scramble digits" (Advanced motion): random digits that settle left to right.
+		var scramble = !!el.closest('.bs-mx-scramble');
 		var tick = function (ts) {
 			if (!start) {
 				start = ts;
 			}
 			var progress = Math.min(1, (ts - start) / duration);
 			var eased = 1 - Math.pow(1 - progress, 3);
+			if (scramble && progress < 1) {
+				var final = format(to), keep = Math.floor(final.length * eased);
+				el.textContent = final.slice(0, keep) + final.slice(keep).replace(/\d/g, function () { return Math.floor(Math.random() * 10); });
+				window.requestAnimationFrame(tick);
+				return;
+			}
 			el.textContent = format(to * eased);
 			if (progress < 1) {
 				window.requestAnimationFrame(tick);

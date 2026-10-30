@@ -63,3 +63,110 @@ add_filter(
 	10,
 	2
 );
+
+/* ---------------------------------------------------------------- Motion wave 2: advanced motion on existing blocks */
+
+/** Advanced motion attributes per block (registered server-side so previews and REST accept them). */
+function bst_mx_attributes() {
+	return array(
+		'bst/section'  => array( 'mxSticky' => array( 'type' => 'boolean', 'default' => false ), 'mxScrollBg' => array( 'type' => 'string', 'default' => '' ) ),
+		'bst/button'   => array( 'mxButton' => array( 'type' => 'string', 'default' => '' ) ),
+		'bst/image'    => array( 'mxReveal' => array( 'type' => 'string', 'default' => '' ) ),
+		'bst/icon-box' => array( 'mxDraw' => array( 'type' => 'boolean', 'default' => false ) ),
+		'bst/counter'  => array( 'mxScramble' => array( 'type' => 'boolean', 'default' => false ) ),
+		'bst/gallery'  => array( 'mxStagger' => array( 'type' => 'boolean', 'default' => false ) ),
+	);
+}
+
+add_filter(
+	'register_block_type_args',
+	function ( $args, $name ) {
+		$extra = bst_mx_attributes();
+		if ( isset( $extra[ $name ] ) ) {
+			$args['attributes'] = ( isset( $args['attributes'] ) && is_array( $args['attributes'] ) ? $args['attributes'] : array() ) + $extra[ $name ];
+		}
+		return $args;
+	},
+	10,
+	2
+);
+
+add_action(
+	'init',
+	function () {
+		wp_register_script( 'bst-motion-fx', BST_URI . '/assets/js/motion-fx.js', array(), bst_asset_version( 'assets/js/motion-fx.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+	},
+	5
+);
+
+/** Adds the advanced motion classes to the block's outer tag and loads the small runtime. */
+add_filter(
+	'render_block',
+	function ( $html, $block ) {
+		$a    = isset( $block['attrs'] ) && is_array( $block['attrs'] ) ? $block['attrs'] : array();
+		$name = (string) ( $block['blockName'] ?? '' );
+		if ( '' === trim( $html ) || ! isset( bst_mx_attributes()[ $name ] ) ) {
+			return $html;
+		}
+		$class = array();
+		$data  = array();
+		switch ( $name ) {
+			case 'bst/section':
+				if ( ! empty( $a['mxSticky'] ) ) {
+					$class[] = 'bs-mx-sticky';
+				}
+				$bg = isset( $a['mxScrollBg'] ) ? sanitize_hex_color( (string) $a['mxScrollBg'] ) : '';
+				if ( $bg ) {
+					$data['data-bs-scroll-bg'] = $bg;
+				}
+				break;
+			case 'bst/button':
+				$fx = bst_choice( (string) ( $a['mxButton'] ?? '' ), array( '', 'magnetic', 'arrow', 'shine' ), '' );
+				if ( $fx ) {
+					$class[] = 'bs-mx-' . $fx;
+				}
+				break;
+			case 'bst/image':
+				$fx = bst_choice( (string) ( $a['mxReveal'] ?? '' ), array( '', 'left', 'right', 'up', 'circle', 'kenburns' ), '' );
+				if ( $fx ) {
+					$class[] = 'bs-mx-reveal-' . $fx;
+				}
+				break;
+			case 'bst/icon-box':
+				if ( ! empty( $a['mxDraw'] ) ) {
+					$class[] = 'bs-mx-draw';
+				}
+				break;
+			case 'bst/counter':
+				if ( ! empty( $a['mxScramble'] ) ) {
+					$class[] = 'bs-mx-scramble';
+				}
+				break;
+			case 'bst/gallery':
+				if ( ! empty( $a['mxStagger'] ) ) {
+					$class[] = 'bs-mx-stagger';
+				}
+				break;
+		}
+		if ( ! $class && ! $data ) {
+			return $html;
+		}
+		$tags = new WP_HTML_Tag_Processor( $html );
+		if ( ! $tags->next_tag() ) {
+			return $html;
+		}
+		foreach ( $class as $c ) {
+			$tags->add_class( $c );
+		}
+		foreach ( $data as $k => $v ) {
+			$tags->set_attribute( $k, $v );
+		}
+		// Arrow and sticky are CSS only; everything else needs the runtime (counter scramble runs in blocks.js).
+		if ( array_diff( $class, array( 'bs-mx-arrow', 'bs-mx-sticky', 'bs-mx-scramble', 'bs-mx-shine' ) ) || $data ) {
+			wp_enqueue_script( 'bst-motion-fx' );
+		}
+		return $tags->get_updated_html();
+	},
+	10,
+	2
+);

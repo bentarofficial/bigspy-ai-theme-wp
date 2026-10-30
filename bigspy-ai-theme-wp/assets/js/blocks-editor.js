@@ -1164,7 +1164,7 @@
 					el(Range, Object.assign({ label: __('Gap (px)', 'bigspy-ai-theme-wp'), max: 80 }, bind('gap')))
 				),
 				el(Panel, { title: __('Effect & motion', 'bigspy-ai-theme-wp') },
-					sliderChoice(props, __('Transition', 'bigspy-ai-theme-wp'), 'effect', [['slide', __('Slide', 'bigspy-ai-theme-wp')], ['fade', __('Fade', 'bigspy-ai-theme-wp')]]),
+					sliderChoice(props, __('Transition', 'bigspy-ai-theme-wp'), 'effect', [['slide', __('Slide', 'bigspy-ai-theme-wp')], ['fade', __('Fade', 'bigspy-ai-theme-wp')], ['zoom', __('Fade and zoom', 'bigspy-ai-theme-wp')], ['flip', __('Flip', 'bigspy-ai-theme-wp')], ['coverflow', __('Coverflow (slide)', 'bigspy-ai-theme-wp')]]),
 					a.effect !== 'fade' ? el(Range, Object.assign({ label: __('Peek next slide (%)', 'bigspy-ai-theme-wp'), help: __('Shows part of the next slide so visitors know they can swipe.', 'bigspy-ai-theme-wp'), max: 40 }, bind('peek'))) : null,
 					el(Range, Object.assign({ label: __('Autoplay every (seconds, 0 = off)', 'bigspy-ai-theme-wp'), max: 30 }, bind('autoplay'))),
 					a.autoplay ? el(Toggle, Object.assign({ label: __('Pause when the mouse is over the slider', 'bigspy-ai-theme-wp') }, bind('pauseHover', true))) : null,

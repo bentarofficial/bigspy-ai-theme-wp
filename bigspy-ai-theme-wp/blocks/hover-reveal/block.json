@@ -1,0 +1,55 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/hover-reveal",
+	"title": "Hover Reveal List",
+	"category": "bigspy",
+	"icon": "list-view",
+	"description": "A list of services, projects or products in large type. Hovering a row shows its image floating next to the cursor; on phones each row shows a small thumbnail. Each row can link to its page. Popular on agency and portfolio sites.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"hover",
+		"list",
+		"portfolio",
+		"projects",
+		"services",
+		"image",
+		"danh sách",
+		"dự án",
+		"dịch vụ"
+	],
+	"attributes": {
+		"size": {
+			"type": "number",
+			"default": 0
+		},
+		"divider": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageWidth": {
+			"type": "number",
+			"default": 280
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-fx"
+}

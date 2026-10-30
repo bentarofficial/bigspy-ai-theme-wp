@@ -6072,3 +6072,256 @@ msgstr "Stacking Cards"
 
 msgid "Animated Text"
 msgstr "Animated Text"
+
+# Motion wave 2 (1.76).
+msgctxt "block title"
+msgid "Hover Reveal List"
+msgstr "Hover Reveal List"
+
+msgctxt "block title"
+msgid "Hover Reveal row"
+msgstr "Dòng Hover Reveal"
+
+msgctxt "block title"
+msgid "Line Draw"
+msgstr "Line Draw"
+
+msgctxt "block title"
+msgid "Horizontal Scroll"
+msgstr "Horizontal Scroll"
+
+msgctxt "block title"
+msgid "Horizontal panel"
+msgstr "Ô cuộn ngang"
+
+msgctxt "block title"
+msgid "Zoom Hero"
+msgstr "Zoom Hero"
+
+msgctxt "block description"
+msgid "A list of services, projects or products in large type. Hovering a row shows its image floating next to the cursor; on phones each row shows a small thumbnail. Each row can link to its page. Popular on agency and portfolio sites."
+msgstr "Danh sách dịch vụ, dự án hoặc sản phẩm chữ lớn. Rê chuột vào dòng nào thì ảnh của dòng đó hiện ra và bay theo con trỏ; trên điện thoại mỗi dòng hiện ảnh nhỏ. Mỗi dòng có thể gắn liên kết. Phổ biến trên web agency và portfolio."
+
+msgctxt "block description"
+msgid "One row of a Hover Reveal List: title, small text on the right, link and the image that appears on hover."
+msgstr "Một dòng của Hover Reveal List: tiêu đề, chữ nhỏ bên phải, liên kết và ảnh hiện khi rê chuột."
+
+msgctxt "block description"
+msgid "A line, curve, arrow or loop that draws itself when it scrolls into view, or follows the scroll. Use it to connect process steps, underline a heading or decorate a section. Choose the shape or paste your own SVG path."
+msgstr "Đường kẻ, đường cong, mũi tên hoặc vòng xoắn tự vẽ khi cuộn tới, hoặc vẽ theo thanh cuộn. Dùng để nối các bước quy trình, gạch dưới tiêu đề hoặc trang trí. Chọn hình có sẵn hoặc dán đường SVG riêng."
+
+msgctxt "block description"
+msgid "A section that moves sideways while visitors scroll down normally: panels of projects, a timeline or a collection slide across, then the page continues. Nothing blocks scrolling. On phones the panels become a swipeable row."
+msgstr "Phần trang trượt ngang trong khi khách vẫn cuộn xuống bình thường: các ô dự án, dòng thời gian hay bộ sưu tập trượt qua rồi trang mới cuộn tiếp. Không chặn thanh cuộn. Trên điện thoại thành hàng vuốt ngang."
+
+msgctxt "block description"
+msgid "One panel of a Horizontal Scroll section. Holds any blocks, with its own background color."
+msgstr "Một ô của Horizontal Scroll. Chứa được mọi khối, có màu nền riêng."
+
+msgctxt "block description"
+msgid "A hero image that starts as a framed picture and grows to fill the whole screen as visitors scroll, then reveals your heading and buttons on top. A striking opening for landing pages. Scrolling stays normal; phones get a lighter version."
+msgstr "Ảnh đầu trang bắt đầu như một khung ảnh rồi phóng to ra toàn màn hình khi khách cuộn, sau đó hiện tiêu đề và nút ở trên. Mở đầu ấn tượng cho landing page. Thanh cuộn vẫn bình thường; điện thoại dùng bản nhẹ hơn."
+
+msgid "Hover Reveal List"
+msgstr "Hover Reveal List"
+
+msgid "Text size (px, 0 = automatic)"
+msgstr "Cỡ chữ (px, 0 = tự động)"
+
+msgid "Hover image width (px)"
+msgstr "Chiều rộng ảnh khi rê chuột (px)"
+
+msgid "Lines between rows"
+msgstr "Đường kẻ giữa các dòng"
+
+msgid "Web design"
+msgstr "Thiết kế web"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Branding"
+msgstr "Thương hiệu"
+
+msgid "Hover Reveal row"
+msgstr "Dòng Hover Reveal"
+
+msgid "Title"
+msgstr "Tiêu đề"
+
+msgid "Small text on the right"
+msgstr "Chữ nhỏ bên phải"
+
+msgid "Link (URL)"
+msgstr "Liên kết (URL)"
+
+msgid "Row title…"
+msgstr "Tiêu đề dòng…"
+
+msgid "Wave"
+msgstr "Lượn sóng"
+
+msgid "Curve"
+msgstr "Đường cong"
+
+msgid "Arrow"
+msgstr "Mũi tên"
+
+msgid "Loop"
+msgstr "Vòng xoắn"
+
+msgid "Zigzag"
+msgstr "Zíc zắc"
+
+msgid "Underline"
+msgstr "Gạch chân"
+
+msgid "Custom SVG path"
+msgstr "Đường SVG tự nhập"
+
+msgid "Line Draw"
+msgstr "Line Draw"
+
+msgid "Shape"
+msgstr "Hình dạng"
+
+msgid "SVG path (d attribute, 400 × 100 box)"
+msgstr "Đường SVG (thuộc tính d, khung 400 × 100)"
+
+msgid "Drawing"
+msgstr "Cách vẽ"
+
+msgid "Once, when it comes into view"
+msgstr "Một lần, khi cuộn tới"
+
+msgid "Follows the scroll"
+msgstr "Vẽ theo thanh cuộn"
+
+msgid "Drawing time (seconds)"
+msgstr "Thời gian vẽ (giây)"
+
+msgid "Line width"
+msgstr "Độ dày nét"
+
+msgid "Height (px)"
+msgstr "Chiều cao (px)"
+
+msgid "Mirror horizontally"
+msgstr "Lật ngang"
+
+msgid "Line color"
+msgstr "Màu nét"
+
+msgid "Horizontal Scroll"
+msgstr "Horizontal Scroll"
+
+msgid "Panel width – desktop (% of screen)"
+msgstr "Chiều rộng ô – máy tính (% màn hình)"
+
+msgid "Panel width – mobile (% of screen)"
+msgstr "Chiều rộng ô – điện thoại (% màn hình)"
+
+msgid "On the site, visitors scroll down and these panels slide sideways. On phones they become a swipeable row."
+msgstr "Trên website, khách cuộn xuống thì các ô này trượt ngang. Trên điện thoại chúng thành hàng vuốt ngang."
+
+msgid "Horizontal panel"
+msgstr "Ô cuộn ngang"
+
+msgid "Background"
+msgstr "Nền"
+
+msgid "Panel content."
+msgstr "Nội dung ô."
+
+msgid "Zoom Hero"
+msgstr "Zoom Hero"
+
+msgid "Starting frame margin (%)"
+msgstr "Lề khung ban đầu (%)"
+
+msgid "Starting corner radius"
+msgstr "Bo góc ban đầu"
+
+msgid "Dark overlay at the end (%)"
+msgstr "Lớp phủ tối lúc cuối (%)"
+
+msgid "Scroll length (% of screen height)"
+msgstr "Độ dài cuộn (% chiều cao màn hình)"
+
+msgid "A bold opening headline"
+msgstr "Một tiêu đề mở đầu thật ấn tượng"
+
+msgid "Get started"
+msgstr "Bắt đầu ngay"
+
+msgid "Stick to the top while scrolling"
+msgstr "Dính lên đầu màn hình khi cuộn"
+
+msgid "Page background while this section is in view"
+msgstr "Màu nền trang khi section này đang hiển thị"
+
+msgid "Button motion"
+msgstr "Chuyển động của nút"
+
+msgid "Magnetic (follows the mouse)"
+msgstr "Hút theo chuột (magnetic)"
+
+msgid "Sliding arrow"
+msgstr "Mũi tên trượt"
+
+msgid "Shine every few seconds"
+msgstr "Vệt sáng chạy định kỳ"
+
+msgid "Image reveal"
+msgstr "Hiệu ứng hiện ảnh"
+
+msgid "Curtain from the left"
+msgstr "Kéo rèm từ trái"
+
+msgid "Curtain from the right"
+msgstr "Kéo rèm từ phải"
+
+msgid "Curtain from the bottom"
+msgstr "Kéo rèm từ dưới lên"
+
+msgid "Circle opening"
+msgstr "Mở hình tròn"
+
+msgid "Slow zoom (Ken Burns)"
+msgstr "Phóng chậm (Ken Burns)"
+
+msgid "Icon draws itself"
+msgstr "Icon tự vẽ nét"
+
+msgid "Scramble digits like a flip board"
+msgstr "Xáo chữ số như bảng điện tử"
+
+msgid "Images appear one after another"
+msgstr "Ảnh hiện lần lượt"
+
+msgid "Advanced motion"
+msgstr "Chuyển động nâng cao"
+
+msgid "Plays on the site, not in the editor. Visitors who ask for less motion see the static version."
+msgstr "Chạy trên website, không chạy trong trình soạn thảo. Khách bật giảm chuyển động sẽ thấy bản tĩnh."
+
+msgid "Fade and zoom"
+msgstr "Mờ dần và phóng"
+
+msgid "Flip"
+msgstr "Lật"
+
+msgid "Coverflow (slide)"
+msgstr "Coverflow (trượt)"
+
+msgid "Panel"
+msgstr "Ô"
+
+msgid "scroll down"
+msgstr "cuộn xuống"
+
+msgid "slides sideways"
+msgstr "trượt ngang"
+
+msgid "Grows to full screen"
+msgstr "Phóng to toàn màn hình"

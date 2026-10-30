@@ -1,0 +1,71 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/line-draw",
+	"title": "Line Draw",
+	"category": "bigspy",
+	"icon": "edit",
+	"description": "A line, curve, arrow or loop that draws itself when it scrolls into view, or follows the scroll. Use it to connect process steps, underline a heading or decorate a section. Choose the shape or paste your own SVG path.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"svg",
+		"line",
+		"draw",
+		"arrow",
+		"curve",
+		"divider",
+		"đường kẻ",
+		"mũi tên",
+		"vẽ"
+	],
+	"attributes": {
+		"shape": {
+			"type": "string",
+			"default": "wave"
+		},
+		"path": {
+			"type": "string",
+			"default": ""
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"width": {
+			"type": "number",
+			"default": 3
+		},
+		"height": {
+			"type": "number",
+			"default": 120
+		},
+		"mode": {
+			"type": "string",
+			"default": "view"
+		},
+		"duration": {
+			"type": "number",
+			"default": 1.6
+		},
+		"flip": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-fx"
+}

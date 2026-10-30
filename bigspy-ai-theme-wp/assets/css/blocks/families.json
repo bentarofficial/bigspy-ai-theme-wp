@@ -11,6 +11,18 @@
 	"stack-cards": [
 		"bs-stack"
 	],
+	"hover-reveal": [
+		"bs-hreveal"
+	],
+	"line-draw": [
+		"bs-line"
+	],
+	"horizontal-scroll": [
+		"bs-hscroll"
+	],
+	"zoom-hero": [
+		"bs-zhero"
+	],
 	"expand-gallery": [
 		"bs-expand"
 	],

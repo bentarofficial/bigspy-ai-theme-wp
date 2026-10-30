@@ -1,0 +1,53 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/horizontal-scroll",
+	"title": "Horizontal Scroll",
+	"category": "bigspy",
+	"icon": "arrow-right-alt",
+	"description": "A section that moves sideways while visitors scroll down normally: panels of projects, a timeline or a collection slide across, then the page continues. Nothing blocks scrolling. On phones the panels become a swipeable row.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"horizontal",
+		"scroll",
+		"sideways",
+		"timeline",
+		"projects",
+		"cuộn ngang",
+		"trượt ngang"
+	],
+	"attributes": {
+		"panelWidth": {
+			"type": "number",
+			"default": 70
+		},
+		"panelWidthMobile": {
+			"type": "number",
+			"default": 85
+		},
+		"gap": {
+			"type": "number",
+			"default": 32
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-scroll"
+}
