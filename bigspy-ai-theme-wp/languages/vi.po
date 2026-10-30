@@ -4226,14 +4226,14 @@ msgstr "Kiểm tra tương phản chữ và vùng cắt trên mobile."
 msgid "Avoid large original photos for small cards. Background images are decorative; meaningful images need an accessible text alternative."
 msgstr "Tránh ảnh gốc quá lớn cho thẻ nhỏ. Ảnh nền mang tính trang trí; ảnh có ý nghĩa cần văn bản thay thế."
 
-msgid "Motion: Infinity Flow and Spotlight Panels"
-msgstr "Chuyển động: Infinity Flow và Spotlight Panels"
+msgid "Motion blocks and effects"
+msgstr "Khối và hiệu ứng chuyển động"
 
-msgid "A seamless moving strip of any blocks, and image panels that expand on hover or touch."
-msgstr "Dải chạy liền mạch chứa mọi khối, và các ô ảnh nở rộng khi rê chuột hoặc chạm."
+msgid "Animated text, scroll stories, stacking cards, moving strips, expanding panels and more, with one site-wide motion setting."
+msgstr "Chữ chuyển động, kể chuyện theo cuộn, thẻ xếp chồng, dải chạy, ô mở rộng và nhiều hơn nữa, kèm một cài đặt chuyển động cho cả website."
 
-msgid "Infinity Flow accepts editable blocks inside slides and uses a constant pixels-per-second speed. Spotlight Panels supports 2–6 panels, keyboard focus and mobile layouts."
-msgstr "Infinity Flow nhận các khối sửa được trong slide và chạy với tốc độ pixel/giây ổn định. Spotlight Panels hỗ trợ 2–6 ô, bàn phím và bố cục điện thoại."
+msgid "Blocks: Animated Text, Scroll Story, Stacking Cards, Infinity Flow, Spotlight Panels, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards and Bento Grid. Existing blocks get Advanced motion (sticky and color-changing sections, moving backgrounds, magnetic buttons, image reveals, self-drawing icons, count-up numbers). Customizer > Performance sets motion intensity and style for the whole site, plus optional page transitions and a custom cursor. Everything respects the visitor's reduced-motion setting."
+msgstr "Các khối: Animated Text, Scroll Story, Stacking Cards, Infinity Flow, Spotlight Panels, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards và Bento Grid. Khối có sẵn được thêm Chuyển động nâng cao (section dính và đổi màu, nền chuyển động, nút hút theo chuột, ảnh hiện dần, icon tự vẽ, số nhảy đếm). Customizer > Hiệu năng đặt cường độ và phong cách chuyển động cho cả website, cùng chuyển trang mượt và con trỏ tùy biến (tùy chọn). Mọi hiệu ứng tôn trọng chế độ giảm chuyển động của khách."
 
 msgid "Use Infinity Flow for partners, reviews or fleets; use Spotlight Panels for services, projects and categories."
 msgstr "Dùng Infinity Flow cho đối tác, đánh giá, đội xe; dùng Spotlight Panels cho dịch vụ, dự án, danh mục."
@@ -6510,3 +6510,6 @@ msgstr "Vượt nhẹ rồi dừng"
 
 msgid "Text size for prefix, suffix and label (px, 0 = automatic)"
 msgstr "Cỡ chữ phần trước, phần sau và nhãn (px, 0 = tự động)"
+
+msgid "1.76.0: Motion update: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid, count-up numbers, motion intensity and style, block previews and colored icons."
+msgstr "1.76.0: Bản cập nhật chuyển động: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid, số nhảy đếm, cường độ và phong cách chuyển động, bản xem trước và icon màu cho khối."

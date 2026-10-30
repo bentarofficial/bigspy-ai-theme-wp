@@ -15,6 +15,13 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.76.0 =
+* Motion update: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards and Bento Grid blocks.
+* Advanced motion options on Section, Button, Image, Icon Box, Counter, Gallery and Slider; count-up numbers in Heading/Text; Counter inside a sentence with start value and counting style.
+* Customizer: motion intensity and style, page transitions, magnetic buttons, custom cursor (off by default).
+* Colored block icons; brand names read BIGSPY AI.
+* Fixed per-page block CSS rewriting embedded data: images.
+
 = 1.75.0 =
 * Products block: compact list, image ratio, radius and hover effect, shadow depth, text size, equal heights, infinite scroll, out-of-stock placement. New Products list block.
 * Classic cart and checkout: free-shipping progress bar, coupon field position, note before payment.

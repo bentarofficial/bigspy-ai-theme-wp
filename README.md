@@ -24,6 +24,7 @@ A multipurpose WordPress theme for building client websites fast: service and bu
 - **Global styles** in the Customizer: colors, fonts (served locally), buttons, layout; settings import and export.
 - **WooCommerce:** product cards with swatches, AJAX shop filters, product page layouts; a Products block with grid, slider or compact list, image ratio and hover effects, shadow depth, infinite scroll and out-of-stock placement; a Products list block; a free-shipping progress bar and checkout coupon/note options for classic cart and checkout pages.
 - **Speed:** CSS is loaded only for the blocks used on a page, generated CSS is cached, fonts are local.
+- **Motion:** Animated Text, Scroll Story, Stacking Cards, Infinity Flow, Spotlight Panels, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards and Bento Grid blocks; advanced motion on existing blocks; count-up numbers inside any heading or text; site-wide motion intensity and style, optional page transitions and custom cursor. Reduced-motion settings are always respected.
 - **Floating contact buttons** (phone, Zalo, Messenger and others).
 - **BIGSPY AI Designer** (see below).
 - Theme text defaults to English. In **BIGSPY AI Theme → Settings → Theme language**, users can independently choose English, Vietnamese, or **Same as WordPress** for the admin/Customizer and visitor-facing website.
@@ -61,7 +62,7 @@ AI Designer is optional. The theme works fully without it.
 
 It can:
 
-- Design and edit pages with BIGSPY blocks and patterns: banners, sections, columns, buttons, pricing tables, FAQs, contact sections.
+- Design and edit pages with BIGSPY AI blocks and patterns: banners, sections, columns, buttons, pricing tables, FAQs, contact sections.
 - Write and edit posts and WooCommerce products, with real H2/H3 headings and clean text.
 - Create and edit menus, set the logo, change theme colors, fonts, header layout and additional CSS.
 - Build reusable UX Blocks and Theme Builder layouts, assign published footer sources, configure whitelisted reading settings and request SEO/plugin approvals.
@@ -123,7 +124,7 @@ This is the biggest single quality improvement: a few minutes here saves many ro
 
 #### Discuss first, then build
 
-AI Designer works on a **discuss first, build after** principle. Before it builds anything with BIGSPY blocks, it works out the plan with you, and it starts only after you confirm. The more detailed this discussion, the better the page.
+AI Designer works on a **discuss first, build after** principle. Before it builds anything with BIGSPY AI blocks, it works out the plan with you, and it starts only after you confirm. The more detailed this discussion, the better the page.
 
 1. **Brief:** state the page goal, the target customers, the main services or products, and the action you want visitors to take (call, book, buy).
 2. **Structure:** the designer proposes the sections (banner, benefits, services, pricing, testimonials, FAQ, contact). Add, remove or reorder them, or ask why a section is there.
@@ -165,6 +166,15 @@ Example first prompt:
 
 Only the latest release is kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not. Every release includes one installable ZIP named `bigspy-ai-theme-wp-X.Y.Z.zip`, matching tag `vX.Y.Z` and the theme version.
 
+### 1.76: Motion update
+
+- **New blocks:** Animated Text (scroll reveal, word by word, typewriter, rotating words, scramble, flowing gradient, big sliding type), Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid.
+- **Advanced motion on existing blocks:** sticky sections and page background per section, grain/mesh/aurora backgrounds, frosted glass columns, magnetic/arrow/shine buttons, image curtain and Ken Burns reveals, self-drawing icons, scrambling counters, staggered galleries, slider zoom/flip/coverflow.
+- **Count-up numbers:** select a number in a Heading or Text block and press "Count-up number"; the Counter block can sit inside a sentence, start from any value and choose its counting style.
+- **Customizer > Performance:** motion intensity (subtle/normal/strong), motion style (elegant/dynamic/minimal), page transitions, magnetic buttons and custom cursor.
+- Colored block icons by family; every block has a drawn inserter preview. Brand names now read BIGSPY AI (for example BIGSPY AI Studio).
+- Fix: per-page block CSS no longer breaks embedded data: images.
+
 ### 1.75: Shop blocks, checkout options and block previews
 
 - **Products block:** compact list layout, per-block image ratio, corner radius and hover effect (zoom, second image, fade, grayscale, lift), shadow depth and hover depth, text size, equal card heights, infinite scroll, and out-of-stock products shown normally, last or hidden.
@@ -205,6 +215,6 @@ Only the latest release is kept on the [Releases](https://github.com/bentaroffic
 
 The theme code is licensed under the [GNU General Public License v2 or later](LICENSE), as required for WordPress themes.
 
-The **BIGSPY** name, logos and branding are not covered by the GPL. See [TRADEMARKS.md](TRADEMARKS.md) for what is and is not allowed.
+The **BIGSPY AI** name, logos and branding are not covered by the GPL. See [TRADEMARKS.md](TRADEMARKS.md) for what is and is not allowed.
 
 © Bentar. Support and issues: [GitHub Issues](https://github.com/bentarofficial/bigspy-ai-theme-wp/issues).
