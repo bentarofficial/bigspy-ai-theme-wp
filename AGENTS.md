@@ -1,20 +1,48 @@
 # Shared coding-agent instructions
 
-Applies to Codex, Claude Code, Gemini, and any other coding agent working in this repository.
+Applies to Codex, Claude Code, Gemini, and any other coding agent in this repository. `CLAUDE.md` and `GEMINI.md` only point here.
 
-Read the development/release policy at the top of [docs/roadmap-vi.md](docs/roadmap-vi.md) before changing the project. It is the canonical owner-approved policy and supersedes older repository instructions that imply releasing after every change.
+## Read order
 
-- **Develop continuously; release in batches.** An owner request to “update”, “fix”, “add”, or “continue” authorizes the requested development and appropriate verification, not a product release.
-- Complete the agreed scope, run focused checks and one appropriate regression pass, then **commit and push the work and pending notes to the designated working branch**. Verify the commit exists on the remote before reporting completion; include the branch and commit/link in the handoff. Do not leave finished work only locally or wait for the owner to remind you. Reuse valid results; do not rebuild environments or run the whole product after each small edit without a concrete reason.
-- Commit only your scoped changes. Respect repository branch/PR protection; do not force-push, overwrite others' work, or merge a protected branch without authorization. If authentication, network, conflicts or branch protection blocks the push, preserve the local commit and explicitly report the branch, commit, blocker and remaining step. Never claim the work is on GitHub without verification.
-- Add a short internal note to [docs/PENDING-RELEASE.md](docs/PENDING-RELEASE.md): change, verification, and what release-facing documentation will need updating later.
-- Defer About/product-guide maintenance, What is new, README Updates, changelog and release notes until an approved release. Exceptions: the owner specifically requested that content, or it is necessary for correct runtime behavior.
-- At the release boundary, if no explicit authorization exists, ask once whether the owner wants the pending changes packaged and released now. Do not bump the release version, build a distribution ZIP, tag, publish/upload, deploy, or delete old releases before the applicable approval.
-- If the owner declines or has not answered, retain the changes and keep accumulating work. Do not keep asking or publish small patches automatically. Internal workflow/documentation-only changes do not need a product-release proposal.
-- When release is explicitly approved, consolidate the pending changes, update release-facing documentation together, run remaining necessary gates, and package/publish one new release. Old release/tag deletion and website deployment require the owner's applicable explicit authorization. A Git push is not release/deployment authorization.
+1. This file.
+2. [docs/CODEMAP.md](docs/CODEMAP.md) to find the files for the task.
+3. [docs/DEV-RULES.md](docs/DEV-RULES.md) only for the section you need: release steps, test matrix, or script notes.
 
-For small changes, follow the roadmap's efficiency rules: read only relevant context after the initial instructions; scale checks to the affected behavior; reuse suitable environments and valid results. Do not add unrelated refactors, dependency upgrades, bulk translation/asset regeneration, full-site audits, screenshots or long reports without a concrete need. Do not create extra agents, chats, worktrees or PRs unless required by the task or repository workflow. Diagnose failures before retrying; keep tool output and handoffs concise. Preserve necessary runtime translations/assets, required CI and meaningful risk-based verification. Efficiency never excuses skipping the requested work or leaving completed work only locally.
+## Always
 
-Before choosing commands, read the roadmap's mandatory execution guide and test-selection matrix. It documents actual runner coupling (`--welcome` also runs Designer tests), fixture ZIPs versus distribution builds, machine-specific runtime configuration, sequential WordPress checks on memory-constrained machines, and evidence/handoff requirements. Proposed runner improvements are not implemented features. Historical roadmap milestones are not the installed/latest version; verify versions from the relevant source or environment when needed.
+- **Develop continuously; release in batches.** "Update", "fix", "add" or "continue" authorizes development and checks, not a release.
+- Finish the agreed scope, run focused checks and one regression pass scaled to the impact.
+- Commit only your scoped changes, push to the designated working branch, and verify the commit on the remote. Report branch and hash.
+- If the push is blocked, keep the local commit and report branch, commit, blocker and next step. Never claim it is on GitHub without verifying.
+- No force-push, no overwriting others' work, no merging a protected branch without authorization.
+- Product changes get one short note in [docs/PENDING-RELEASE.md](docs/PENDING-RELEASE.md). Internal docs and tooling do not.
 
-Keep the canonical policy in the roadmap; `CLAUDE.md` and `GEMINI.md` are pointers to these shared instructions. Do not maintain conflicting release rules per agent.
+## Never without owner approval
+
+Bump the version, build a distribution ZIP, tag, create or upload a Release, deploy, or delete old releases. A Git push is not release authorization. Defer About, What is new, README Updates, changelog and release notes until an approved release, unless the owner asked for that content or runtime depends on it.
+
+At the release boundary, ask once whether to package the pending changes. If the answer is no or missing, keep accumulating and do not ask again.
+
+## Context limits
+
+- One task per session. Past 50% of context, hand off and open a new session.
+- Search by file or function, then read only that range.
+- **Never read these whole; use grep or a line range:** `languages/vi.po`, `languages/*.pot`, `languages/*.l10n.php`, `languages/*.mo`, `assets/css/blocks/segments.json`, `assets/css/blocks.css`, `assets/js/blocks-editor.js`.
+- Do not split `blocks-editor.js` in one pass; extract only the part being edited.
+- No unrelated refactors, dependency upgrades, bulk translation or asset regeneration, full audits, or long reports without a concrete need.
+- No extra agents, worktrees or PRs unless the task requires them.
+- Diagnose failures before retrying. Keep tool output and handoffs short.
+- Efficiency never excuses skipping requested work, required CI or meaningful checks.
+
+## Reusable tools
+
+| Task | Command |
+| --- | --- |
+| Scaffold a block | `python tools/add-block.py <slug> "<Title>" --prefix bs-x` |
+| Add translations | `python tools/add-strings.py strings.json` |
+| Check release readiness | `python tools/release.py` |
+| Test page in Playground | `node tools/playground-page.cjs` |
+
+Use the scripts instead of rebuilding them in a scratchpad. See [docs/CODEMAP.md](docs/CODEMAP.md) for details.
+
+Historical roadmap milestones are not the installed version; verify versions from source. Keep policy in `docs/DEV-RULES.md` and do not maintain conflicting rules per agent.
