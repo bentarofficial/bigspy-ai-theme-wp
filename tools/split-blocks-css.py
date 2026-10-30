@@ -29,6 +29,8 @@ FAMILIES = {
 	'line-draw': ['bs-line'],
 	'horizontal-scroll': ['bs-hscroll'],
 	'zoom-hero': ['bs-zhero'],
+	'video-cards': ['bs-vcards', 'bs-vcard'],
+	'bento': ['bs-bento'],
 	'expand-gallery': ['bs-expand'],
 	'accordion': ['bs-accordion'],
 	'alert': ['bs-alert'],

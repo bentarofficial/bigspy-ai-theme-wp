@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/video-cards",
+	"title": "Video Hover Cards",
+	"category": "bigspy",
+	"icon": "video-alt3",
+	"description": "Cards that show a still image and play a short muted video when hovered (or tapped on phones). Videos load only when needed, so the page stays fast. Great for a fleet, projects, courses or products in action.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"keywords": [
+		"video",
+		"hover",
+		"cards",
+		"preview",
+		"fleet",
+		"projects",
+		"thẻ video",
+		"đội xe",
+		"dự án"
+	],
+	"attributes": {
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"gap": {
+			"type": "number",
+			"default": 24
+		},
+		"ratio": {
+			"type": "string",
+			"default": "4-5"
+		},
+		"radius": {
+			"type": "number",
+			"default": 18
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php",
+	"viewScript": "bst-motion-fx"
+}

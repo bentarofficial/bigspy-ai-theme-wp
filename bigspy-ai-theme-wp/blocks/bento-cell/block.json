@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/bento-cell",
+	"title": "Bento tile",
+	"category": "bigspy",
+	"icon": "grid-view",
+	"description": "One Bento Grid tile: choose its size, background color or image, and put any blocks inside.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"parent": [
+		"bigspy/bento"
+	],
+	"attributes": {
+		"size": {
+			"type": "string",
+			"default": "small"
+		},
+		"background": {
+			"type": "string",
+			"default": ""
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php"
+}

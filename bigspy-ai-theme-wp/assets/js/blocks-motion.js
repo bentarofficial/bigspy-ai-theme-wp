@@ -261,9 +261,63 @@
 		);
 	}, save: save });
 
+
+	/* ------------------------------------------------ Motion wave 3 */
+	wp.blocks.registerBlockType('bigspy/video-cards', { edit: function (props) {
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Video Hover Cards', T) },
+				control(props, 'columns', __('Columns – desktop', T), 'range', [1, 6]), control(props, 'columnsTablet', __('Columns – tablet', T), 'range', [1, 4]), control(props, 'columnsMobile', __('Columns – mobile', T), 'range', [1, 2]),
+				control(props, 'ratio', __('Card ratio', T), 'select', [['4-5', '4:5'], ['1-1', '1:1'], ['3-4', '3:4'], ['16-9', '16:9'], ['9-16', '9:16']]),
+				control(props, 'gap', __('Gap', T), 'range', [0, 80]), control(props, 'radius', __('Corner radius', T), 'range', [0, 60]), control(props, 'label', __('Accessible label', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-vcards-editor', style: { '--bst-cols': props.attributes.columns } }),
+				el(c.Notice, { status: 'info', isDismissible: false }, __('Use short, light MP4 clips (a few seconds, under about 3 MB). They load only when a visitor hovers or taps.', T)),
+				el(be.InnerBlocks, { allowedBlocks: ['bigspy/video-card'], orientation: 'horizontal', template: [['bigspy/video-card'], ['bigspy/video-card'], ['bigspy/video-card']] }))
+		);
+	}, save: save });
+	wp.blocks.registerBlockType('bigspy/video-card', { edit: function (props) {
+		var a = props.attributes;
+		var pick = function (type, idKey, urlKey, label) { return el(be.MediaUploadCheck, null, el(be.MediaUpload, { allowedTypes: [type], value: a[idKey], onSelect: function (m) { var o = {}; o[idKey] = m.id; o[urlKey] = m.url; props.setAttributes(o); }, render: function (p) { return el(c.Button, { variant: 'secondary', onClick: p.open, style: { marginBottom: '8px' } }, label); } })); };
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Video card', T) },
+				pick('image', 'posterId', 'posterUrl', a.posterUrl ? __('Replace still image', T) : __('Choose still image', T)),
+				pick('video', 'videoId', 'videoUrl', a.videoUrl ? __('Replace video', T) : __('Choose video (MP4)', T)),
+				control(props, 'videoUrl', __('…or video link (MP4 URL)', T)),
+				control(props, 'title', __('Title', T)), control(props, 'text', __('Short text', T)), control(props, 'link', __('Link (URL)', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-vcard' }),
+				el('div', { className: 'bst-vcard__media', style: a.posterUrl ? { backgroundImage: 'url("' + a.posterUrl + '")' } : {} }, a.videoUrl ? el('span', { className: 'bst-vcard__badge' }, '▶ ' + __('Video', T)) : el('span', { className: 'bst-vcard__badge' }, __('No video yet', T))),
+				el('strong', null, a.title || __('Card title', T)), a.text ? el('p', null, a.text) : null)
+		);
+	}, save: function () { return null; } });
+
+	wp.blocks.registerBlockType('bigspy/bento', { edit: function (props) {
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Bento Grid', T) },
+				control(props, 'rowHeight', __('Row height (px)', T), 'range', [80, 600]), control(props, 'gap', __('Gap', T), 'range', [0, 60]), control(props, 'radius', __('Corner radius', T), 'range', [0, 60]),
+				control(props, 'glow', __('Light follows the mouse', T), 'toggle'), control(props, 'label', __('Accessible label', T))
+			)),
+			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-bento-editor' }),
+				el(be.InnerBlocks, { allowedBlocks: ['bigspy/bento-cell'], template: [['bigspy/bento-cell', { size: 'large' }], ['bigspy/bento-cell'], ['bigspy/bento-cell', { size: 'tall' }], ['bigspy/bento-cell'], ['bigspy/bento-cell', { size: 'wide' }]] }))
+		);
+	}, save: save });
+	wp.blocks.registerBlockType('bigspy/bento-cell', { edit: function (props) {
+		var a = props.attributes;
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Bento tile', T) },
+				control(props, 'size', __('Tile size', T), 'select', [['small', __('Small (1 × 1)', T)], ['wide', __('Wide (2 × 1)', T)], ['tall', __('Tall (1 × 2)', T)], ['large', __('Large (2 × 2)', T)]]),
+				colorRow(props, 'background', __('Background', T)), colorRow(props, 'textColor', __('Text color', T)),
+				el(be.MediaUploadCheck, null, el(be.MediaUpload, { allowedTypes: ['image'], value: a.imageId, onSelect: function (m) { props.setAttributes({ imageId: m.id, imageUrl: m.url }); }, render: function (p) { return el(c.Button, { variant: 'secondary', onClick: p.open }, a.imageUrl ? __('Replace background image', T) : __('Choose background image', T)); } })),
+				a.imageUrl ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { props.setAttributes({ imageId: 0, imageUrl: '' }); } }, __('Remove image', T)) : null
+			)),
+			el('div', be.useBlockProps({ className: 'bst-bento-cell bst-bento-cell--' + a.size, style: { background: a.imageUrl ? 'linear-gradient(transparent 35%,rgba(0,0,0,.55)),url("' + a.imageUrl + '") center/cover' : (a.background || undefined), color: a.textColor || (a.imageUrl ? '#fff' : undefined) } }),
+				el(be.InnerBlocks, { template: [['bst/heading', { tag: 'h3', text: __('Tile title', T) }], ['bst/text', { html: '<p>' + __('A short highlight.', T) + '</p>' }]] }))
+		);
+	}, save: save });
+
 	/* "Advanced motion" panel for Section, Button, Image, Icon Box, Counter and Gallery. */
 	var MX = {
-		'bst/section': function (p) { return [control(p, 'mxSticky', __('Stick to the top while scrolling', T), 'toggle'), colorRow(p, 'mxScrollBg', __('Page background while this section is in view', T))]; },
+		'bst/section': function (p) { return [control(p, 'mxBg', __('Moving background effect', T), 'select', [['', __('None', T)], ['grain', __('Film grain', T)], ['mesh', __('Gradient mesh', T)], ['aurora', __('Aurora', T)]]), control(p, 'mxGlass', __('Frosted glass cards (columns)', T), 'toggle'), control(p, 'mxSticky', __('Stick to the top while scrolling', T), 'toggle'), colorRow(p, 'mxScrollBg', __('Page background while this section is in view', T))]; },
 		'bst/button': function (p) { return [control(p, 'mxButton', __('Button motion', T), 'select', [['', __('None', T)], ['magnetic', __('Magnetic (follows the mouse)', T)], ['arrow', __('Sliding arrow', T)], ['shine', __('Shine every few seconds', T)]])]; },
 		'bst/image': function (p) { return [control(p, 'mxReveal', __('Image reveal', T), 'select', [['', __('None', T)], ['left', __('Curtain from the left', T)], ['right', __('Curtain from the right', T)], ['up', __('Curtain from the bottom', T)], ['circle', __('Circle opening', T)], ['kenburns', __('Slow zoom (Ken Burns)', T)]])]; },
 		'bst/icon-box': function (p) { return [control(p, 'mxDraw', __('Icon draws itself', T), 'toggle')]; },

@@ -6325,3 +6325,150 @@ msgstr "trượt ngang"
 
 msgid "Grows to full screen"
 msgstr "Phóng to toàn màn hình"
+
+# Motion wave 3 (1.76).
+msgctxt "block title"
+msgid "Video Hover Cards"
+msgstr "Video Hover Cards"
+
+msgctxt "block title"
+msgid "Video card"
+msgstr "Thẻ video"
+
+msgctxt "block title"
+msgid "Bento Grid"
+msgstr "Bento Grid"
+
+msgctxt "block title"
+msgid "Bento tile"
+msgstr "Ô Bento"
+
+msgctxt "block description"
+msgid "Cards that show a still image and play a short muted video when hovered (or tapped on phones). Videos load only when needed, so the page stays fast. Great for a fleet, projects, courses or products in action."
+msgstr "Các thẻ hiện ảnh tĩnh và phát video ngắn không tiếng khi rê chuột (hoặc chạm trên điện thoại). Video chỉ tải khi cần nên trang vẫn nhanh. Hợp cho đội xe, dự án, khóa học, sản phẩm đang hoạt động."
+
+msgctxt "block description"
+msgid "One Video Hover Card: still image, short video (MP4 from the Media Library or a link), title, short text and link."
+msgstr "Một thẻ của Video Hover Cards: ảnh tĩnh, video ngắn (MP4 từ Thư viện Media hoặc link), tiêu đề, đoạn chữ ngắn và liên kết."
+
+msgctxt "block description"
+msgid "A modern grid of tiles in different sizes (small, wide, tall, large) holding any blocks. Tiles appear one after another and a soft light follows the mouse. Great for features, services or highlights. Becomes one or two columns on phones."
+msgstr "Lưới ô hiện đại với nhiều kích thước (nhỏ, rộng, cao, lớn), mỗi ô chứa được mọi khối. Các ô hiện lần lượt và có vệt sáng nhẹ theo chuột. Hợp cho tính năng, dịch vụ, điểm nổi bật. Trên điện thoại thành 1 hoặc 2 cột."
+
+msgctxt "block description"
+msgid "One Bento Grid tile: choose its size, background color or image, and put any blocks inside."
+msgstr "Một ô của Bento Grid: chọn kích thước, màu nền hoặc ảnh nền, và chèn mọi khối vào trong."
+
+msgid "Page transitions"
+msgstr "Chuyển trang mượt"
+
+msgid "Smooth change between pages of your site, done by the browser (no script). Browsers without support simply load the next page as usual."
+msgstr "Chuyển giữa các trang của website một cách mượt mà, do trình duyệt thực hiện (không cần script). Trình duyệt chưa hỗ trợ thì vẫn mở trang như bình thường."
+
+msgid "Magnetic buttons everywhere"
+msgstr "Nút hút theo chuột trên toàn site"
+
+msgid "All buttons lean towards the mouse. Computers only."
+msgstr "Mọi nút nghiêng nhẹ theo chuột. Chỉ trên máy tính."
+
+msgid "Custom cursor"
+msgstr "Con trỏ tùy biến"
+
+msgid "A dot with a following ring that grows over links. Computers only; the normal cursor stays usable."
+msgstr "Chấm nhỏ kèm vòng tròn đi theo, phóng to khi rê qua liên kết. Chỉ trên máy tính; con trỏ thường vẫn dùng được."
+
+msgid "Video Hover Cards"
+msgstr "Video Hover Cards"
+
+msgid "Columns – desktop"
+msgstr "Số cột – máy tính"
+
+msgid "Columns – tablet"
+msgstr "Số cột – máy tính bảng"
+
+msgid "Columns – mobile"
+msgstr "Số cột – điện thoại"
+
+msgid "Card ratio"
+msgstr "Tỉ lệ thẻ"
+
+msgid "Use short, light MP4 clips (a few seconds, under about 3 MB). They load only when a visitor hovers or taps."
+msgstr "Dùng clip MP4 ngắn, nhẹ (vài giây, dưới khoảng 3 MB). Video chỉ tải khi khách rê chuột hoặc chạm."
+
+msgid "Video card"
+msgstr "Thẻ video"
+
+msgid "Replace still image"
+msgstr "Thay ảnh tĩnh"
+
+msgid "Choose still image"
+msgstr "Chọn ảnh tĩnh"
+
+msgid "Replace video"
+msgstr "Thay video"
+
+msgid "Choose video (MP4)"
+msgstr "Chọn video (MP4)"
+
+msgid "…or video link (MP4 URL)"
+msgstr "…hoặc link video (URL MP4)"
+
+msgid "Short text"
+msgstr "Đoạn chữ ngắn"
+
+msgid "No video yet"
+msgstr "Chưa có video"
+
+msgid "Bento Grid"
+msgstr "Bento Grid"
+
+msgid "Row height (px)"
+msgstr "Chiều cao hàng (px)"
+
+msgid "Light follows the mouse"
+msgstr "Vệt sáng theo chuột"
+
+msgid "Bento tile"
+msgstr "Ô Bento"
+
+msgid "Tile size"
+msgstr "Kích thước ô"
+
+msgid "Small (1 × 1)"
+msgstr "Nhỏ (1 × 1)"
+
+msgid "Wide (2 × 1)"
+msgstr "Rộng (2 × 1)"
+
+msgid "Tall (1 × 2)"
+msgstr "Cao (1 × 2)"
+
+msgid "Large (2 × 2)"
+msgstr "Lớn (2 × 2)"
+
+msgid "Replace background image"
+msgstr "Thay ảnh nền"
+
+msgid "Tile title"
+msgstr "Tiêu đề ô"
+
+msgid "A short highlight."
+msgstr "Một điểm nổi bật ngắn."
+
+msgid "Tile"
+msgstr "Ô"
+
+msgid "Moving background effect"
+msgstr "Hiệu ứng nền chuyển động"
+
+msgid "Film grain"
+msgstr "Hạt nhiễu (film grain)"
+
+msgid "Gradient mesh"
+msgstr "Gradient mesh"
+
+msgid "Aurora"
+msgstr "Cực quang (aurora)"
+
+msgid "Frosted glass cards (columns)"
+msgstr "Thẻ kính mờ (các cột)"

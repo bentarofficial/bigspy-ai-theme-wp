@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/video-card",
+	"title": "Video card",
+	"category": "bigspy",
+	"icon": "video-alt3",
+	"description": "One Video Hover Card: still image, short video (MP4 from the Media Library or a link), title, short text and link.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"parent": [
+		"bigspy/video-cards"
+	],
+	"attributes": {
+		"posterId": {
+			"type": "number",
+			"default": 0
+		},
+		"posterUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"videoId": {
+			"type": "number",
+			"default": 0
+		},
+		"videoUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"link": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "bst-motion-editor",
+	"editorStyle": "bst-motion-editor",
+	"render": "file:./render.php"
+}

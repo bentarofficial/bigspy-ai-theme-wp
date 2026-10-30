@@ -120,7 +120,51 @@
 		sections.forEach(function (s) { io.observe(s); });
 	}
 
+	/* Video Hover Cards: load the video on first hover/tap, play while hovered or in view after a tap. */
+	function videoCards(grid) {
+		grid.querySelectorAll('.bs-vcard').forEach(function (card) {
+			var video = card.querySelector('.bs-vcard__video');
+			if (!video) { return; }
+			function load() { if (!video.src && video.dataset.src) { video.src = video.dataset.src; } }
+			function play() { load(); card.classList.add('is-playing'); var p = video.play(); if (p && p.catch) { p.catch(function () { card.classList.remove('is-playing'); }); } }
+			function stop() { video.pause(); card.classList.remove('is-playing'); }
+			if (finePointer) {
+				card.addEventListener('pointerenter', function () { if (!reduced) { play(); } });
+				card.addEventListener('pointerleave', stop);
+				card.addEventListener('focusin', function () { if (!reduced) { play(); } });
+				card.addEventListener('focusout', stop);
+			} else {
+				// Touch: the first tap on the media plays the preview, a second tap follows the link.
+				card.querySelector('.bs-vcard__media').addEventListener('click', function (e) {
+					if (!card.classList.contains('is-playing')) { e.preventDefault(); play(); }
+				});
+				new IntersectionObserver(function (entries) { if (!entries[0].isIntersecting) { stop(); } }).observe(card);
+			}
+		});
+	}
+
+	/* Bento Grid: tiles appear one after another; a soft light follows the mouse. */
+	function bento(grid) {
+		var cells = grid.querySelectorAll('.bs-bento__cell');
+		if (!reduced) {
+			cells.forEach(function (c, i) { c.style.transitionDelay = (Math.min(i, 10) * 80) + 'ms'; });
+			grid.classList.add('is-stagger-ready');
+			onView(grid, function () { grid.classList.add('is-in'); setTimeout(function () { cells.forEach(function (c) { c.style.transitionDelay = ''; }); }, 1400); });
+		}
+		if (finePointer && grid.classList.contains('bs-bento--glow')) {
+			grid.addEventListener('pointermove', function (e) {
+				cells.forEach(function (c) {
+					var r = c.getBoundingClientRect();
+					c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+					c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+				});
+			});
+		}
+	}
+
 	function boot() {
+		document.querySelectorAll('[data-bs-vcards]:not([data-bs-ready])').forEach(function (el) { el.setAttribute('data-bs-ready', '1'); videoCards(el); });
+		document.querySelectorAll('[data-bs-bento]:not([data-bs-ready])').forEach(function (el) { el.setAttribute('data-bs-ready', '1'); bento(el); });
 		document.querySelectorAll('[data-bs-hreveal]:not([data-bs-ready])').forEach(function (el) { el.setAttribute('data-bs-ready', '1'); hoverReveal(el); });
 		document.querySelectorAll('[data-bs-line]:not([data-bs-ready])').forEach(function (el) { el.setAttribute('data-bs-ready', '1'); lineDraw(el); });
 		document.querySelectorAll('.bs-mx-magnetic:not([data-bs-ready])').forEach(function (el) { el.setAttribute('data-bs-ready', '1'); magnetic(el.matches('a,button') ? el : (el.querySelector('a,button') || el)); });

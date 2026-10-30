@@ -6,6 +6,18 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
+### Đổi tên thương hiệu BIGSPY → BIGSPY AI và chuyển động đợt 3 (Claude, 30-10-2026)
+
+- **Yêu cầu:** mọi tên hiển thị có chữ BIGSPY phải là "BIGSPY AI + hậu tố" (ví dụ BIGSPY AI Studio); đợt 3 roadmap chuyển động.
+- **Đã thay đổi:**
+  - Đổi chuỗi người dùng thấy trong 25 tệp PHP/JS, kiến thức AI và 33 mục vi.po (Studio, settings, các mục Customizer "BIGSPY AI: …", nhóm pattern "BIGSPY AI – …", hộp "BIGSPY AI – Page layout", bảng màu, thông báo bảo trì/cập nhật, lời AI Designer về khối). Giữ nguyên slug, class, text domain, mã giới thiệu Kyma `BIGSPY-AI-Connect`, User-Agent updater. Commit riêng a3c8772.
+  - Khối mới `bigspy/video-cards` + `video-card` (video MP4 chỉ tải khi rê/chạm, điện thoại chạm lần 1 để xem), `bigspy/bento` + `bento-cell` (ô nhỏ/rộng/cao/lớn, hiện lần lượt, vệt sáng theo chuột, 1–2 cột trên điện thoại).
+  - Section thêm nền chuyển động (hạt nhiễu, gradient mesh, cực quang) và thẻ kính mờ cho các cột.
+  - Customizer > Performance: Chuyển trang mượt (View Transitions CSS, mờ/trượt, tắt khi giảm chuyển động), Nút hút theo chuột toàn site, Con trỏ tùy biến (mặc định tắt, chỉ máy có chuột) — script `bst-motion-site` chỉ nạp khi bật.
+  - **Sửa lỗi có sẵn:** `inc/performance.php` (CSS ghép theo block) viết lại `url("data:…")` thành đường dẫn theme, làm hỏng các luật CSS phía sau; regex dùng nhóm possessive và bỏ qua `%23`, đổi khóa cache file CSS.
+- **Kiểm thử:** lint; `node --check`; `check-block-previews` (76 khối); render 76 hình; `playground-check.cjs --welcome` đạt. Playground trang thử 1280px: body có `bs-site-magnetic`, `bs-site-cursor`, CSS `@view-transition` có trong trang, nạp `motion-site.js`; Bento ô lớn cao 416px (2 hàng); sau sửa performance: luật mesh/kính mờ/con trỏ có trong CSSOM, kính mờ `blur(14px) saturate(1.3)`, data URI hạt nhiễu còn nguyên; Video card nạp `src` khi rê; editor chèn được 2 khối mới + Section mxBg/mxGlass, panel Chuyển động nâng cao hiện. Chưa xem bằng mắt con trỏ, magnetic, chuyển trang (máy thử luôn bật giảm chuyển động) và chưa thử điện thoại thật. README/Releases trên GitHub vẫn ghi tên cũ ở vài chỗ — cập nhật khi phát hành.
+- **Khi phát hành cần bổ sung:** Có gì mới, README (tên BIGSPY AI Studio…, Features), trang Giới thiệu.
+
 ### Chuyển động đợt 2: Hover Reveal, Line Draw, Horizontal Scroll, Zoom Hero, chuyển động nâng cao (Claude, 30-10-2026)
 
 - **Yêu cầu:** đợt 2 roadmap "P1 — Chuyển động".

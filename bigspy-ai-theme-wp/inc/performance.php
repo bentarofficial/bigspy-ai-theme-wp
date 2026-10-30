@@ -127,7 +127,7 @@ function bst_perf_block_css_file( $families ) {
 		return '';
 	}
 	sort( $families );
-	$name = 'blocks-' . substr( md5( BST_VERSION . filemtime( $source ) . implode( ',', $families ) ), 0, 12 ) . '.css';
+	$name = 'blocks-' . substr( md5( BST_VERSION . '|url2|' . filemtime( $source ) . implode( ',', $families ) ), 0, 12 ) . '.css';
 	if ( ! file_exists( $dir[0] . '/' . $name ) ) {
 		$segments = json_decode( (string) file_get_contents( $source ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		if ( ! is_array( $segments ) ) {
@@ -141,7 +141,8 @@ function bst_perf_block_css_file( $families ) {
 			}
 		}
 		// Relative url() values in blocks.css point into the theme; keep them working from uploads.
-		$css = preg_replace( '#url\((["\']?)(?![a-z]+:|/|data:|\#)#i', 'url($1' . BST_URI . '/assets/css/', $css );
+		// Possessive quote: a quoted data: URI must not be re-read as unquoted (inner url(%23id) stays too).
+		$css = preg_replace( '#url\((["\']?+)(?![a-z]+:|/|\#|%23)#i', 'url($1' . BST_URI . '/assets/css/', $css );
 		if ( false === file_put_contents( $dir[0] . '/' . $name, $css ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
 			return '';
 		}
