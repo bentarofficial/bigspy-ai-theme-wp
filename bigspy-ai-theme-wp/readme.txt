@@ -15,6 +15,12 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.77.0 =
+* Auto detect menu: duplicate focus keywords, H1 tags, unused media, broken links and a security scan. Reports only.
+* Features page: WebP on upload, SMTP email, related links in posts, header and footer code. Each is off by default.
+* Built-in form: file upload field and server checks for URL, number, date and choices. Move CF7 forms page.
+* AI Designer: no new core HTML blocks, limits on code and CSS, editable share report, style_options tool.
+
 = 1.76.0 =
 * Motion update: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards and Bento Grid blocks.
 * Advanced motion options on Section, Button, Image, Icon Box, Counter, Gallery and Slider; count-up numbers in Heading/Text; Counter inside a sentence with start value and counting style.

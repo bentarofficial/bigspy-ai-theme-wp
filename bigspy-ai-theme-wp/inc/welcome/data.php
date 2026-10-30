@@ -3,8 +3,9 @@
 defined( 'ABSPATH' ) || exit;
 return array('title' => __('BIGSPY AI Theme WP', 'bigspy-ai-theme-wp'),
 'lead' => __('Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace.', 'bigspy-ai-theme-wp'),
-'news_version' => '1.76.0',
-'news' => array(__('1.76.0: Motion update: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid, count-up numbers, motion intensity and style, block previews and colored icons.', 'bigspy-ai-theme-wp'),
+'news_version' => '1.77.0',
+'news' => array(__('1.77.0: Auto detect menu, optional Features page (WebP, SMTP, related links in posts, header and footer code), file uploads and server checks in the built-in form, Contact Form 7 migration, tighter AI Designer output.', 'bigspy-ai-theme-wp'),
+__('1.76.0: Motion update: Animated Text, Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid, count-up numbers, motion intensity and style, block previews and colored icons.', 'bigspy-ai-theme-wp'),
 __('1.75.0: Products block upgrade and Products list, free-shipping bar and checkout options, block previews, Infinity Flow and Spotlight Panels names, AI Designer fixes.', 'bigspy-ai-theme-wp'),
 __('1.74.0: Searchable product guides, setup checklist, sample prompts and shared AI knowledge.', 'bigspy-ai-theme-wp'),
 __('1.73.3: Manual GitHub checks refresh the provider cache immediately.', 'bigspy-ai-theme-wp'),

@@ -6781,3 +6781,6 @@ msgstr "Thay form này trong các bài đã liệt kê? WordPress giữ một b�
 msgid "Move"
 msgstr "Chuyển"
 
+msgid "1.77.0: Auto detect menu, optional Features page (WebP, SMTP, related links in posts, header and footer code), file uploads and server checks in the built-in form, Contact Form 7 migration, tighter AI Designer output."
+msgstr "1.77.0: Menu Tự động phát hiện, trang Tính năng tùy chọn (WebP, SMTP, liên kết liên quan trong bài, mã đầu và cuối trang), tải tệp và kiểm tra phía máy chủ trong form có sẵn, chuyển form Contact Form 7, AI Designer tạo nội dung chặt chẽ hơn."
+

@@ -166,6 +166,13 @@ Example first prompt:
 
 Only the latest release is kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not. Every release includes one installable ZIP named `bigspy-ai-theme-wp-X.Y.Z.zip`, matching tag `vX.Y.Z` and the theme version.
 
+### 1.77: Site tools
+
+- **Auto detect:** report-only checks for duplicate focus keywords, H1 tags, unused media, broken links and security.
+- **Features page:** WebP on upload, SMTP email, related links in posts, header and footer code. Each one is off by default and loads only when on.
+- **Built-in form:** file upload field, server checks, and a Move CF7 forms page. Quiz, captcha and hidden fields are not carried over.
+- **AI Designer:** builds with editable blocks instead of new Custom HTML, keeps code and CSS small, and reports the editable share of each page.
+
 ### 1.76: Motion update
 
 - **New blocks:** Animated Text (scroll reveal, word by word, typewriter, rotating words, scramble, flowing gradient, big sliding type), Scroll Story, Stacking Cards, Hover Reveal List, Line Draw, Horizontal Scroll, Zoom Hero, Video Hover Cards, Bento Grid.

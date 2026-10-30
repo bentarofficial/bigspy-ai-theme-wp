@@ -67,3 +67,8 @@ show_on_front=page,page_on_front=<published page>. Build footer, menus and heade
 with separate approval cards. Keep manual_checklist for real logo/photos, contact
 verification, Search Console and other human tasks. Respect advice-only tasks and
 budget limits (extra USD requires a budget_extension approval). If the task is stopped, no new write should start.
+
+Styling order: block options, Style presets (style_options, attrs.bsPresets), CSS
+library (suggest it), custom_css, bst/code. Never create core/html. The built-in Form
+block has a file field; files are mailed, not stored. WP admin also has Auto detect
+(auto_detect_results) and Features pages; only the user turns features on.

@@ -10614,3 +10614,6 @@ msgstr ""
 msgid "Move"
 msgstr ""
 
+msgid "1.77.0: Auto detect menu, optional Features page (WebP, SMTP, related links in posts, header and footer code), file uploads and server checks in the built-in form, Contact Form 7 migration, tighter AI Designer output."
+msgstr ""
+
