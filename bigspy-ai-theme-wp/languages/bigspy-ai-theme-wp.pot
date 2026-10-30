@@ -10587,3 +10587,30 @@ msgstr ""
 msgid "Only add code from a source you trust; it runs on every page."
 msgstr ""
 
+msgid "File upload"
+msgstr ""
+
+msgid "Move CF7 forms"
+msgstr ""
+
+msgid "Replaces a Contact Form 7 form with the built-in Form block in posts and pages. Forms in widgets or theme options are not changed. Check each form after moving it, then turn the plugin off yourself."
+msgstr ""
+
+msgid "Posts updated: %d"
+msgstr ""
+
+msgid "No Contact Form 7 forms found."
+msgstr ""
+
+msgid "Not carried over"
+msgstr ""
+
+msgid "Posts to update"
+msgstr ""
+
+msgid "Replace this form in the listed posts? WordPress keeps a revision of each post."
+msgstr ""
+
+msgid "Move"
+msgstr ""
+

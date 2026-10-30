@@ -6751,3 +6751,33 @@ msgstr "Trước </body>"
 msgid "Only add code from a source you trust; it runs on every page."
 msgstr "Chỉ thêm mã từ nguồn bạn tin cậy; mã sẽ chạy trên mọi trang."
 
+msgid "File upload"
+msgstr "Tải tệp lên"
+
+msgid "Move CF7 forms"
+msgstr "Chuyển form CF7"
+
+msgid "Replaces a Contact Form 7 form with the built-in Form block in posts and pages. Forms in widgets or theme options are not changed. Check each form after moving it, then turn the plugin off yourself."
+msgstr "Thay form Contact Form 7 bằng khối Form có sẵn trong bài viết và trang. Form trong widget hoặc tùy chọn theme không thay đổi. Hãy kiểm tra từng form sau khi chuyển, rồi tự tắt plugin."
+
+msgid "Posts updated: %d"
+msgstr "Số bài đã cập nhật: %d"
+
+msgid "No Contact Form 7 forms found."
+msgstr "Không tìm thấy form Contact Form 7 nào."
+
+msgid "Fields"
+msgstr "Trường"
+
+msgid "Not carried over"
+msgstr "Không chuyển được"
+
+msgid "Posts to update"
+msgstr "Số bài sẽ cập nhật"
+
+msgid "Replace this form in the listed posts? WordPress keeps a revision of each post."
+msgstr "Thay form này trong các bài đã liệt kê? WordPress giữ một bản lưu của mỗi bài."
+
+msgid "Move"
+msgstr "Chuyển"
+

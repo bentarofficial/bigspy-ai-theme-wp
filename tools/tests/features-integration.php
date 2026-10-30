@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -189,6 +189,54 @@ function bst_t_code() {
 	bst_features_save( $post );
 	bst_test( $head === bst_feature_get( 'code-inject', 'head' ), 'admin without unfiltered_html cannot change code' );
 	wp_set_current_user( 1 );
+}
+
+function bst_t_forms() {
+	$s = bst_native_form_settings( array() );
+	$e = function ( $f, $v ) use ( $s ) {
+		return bst_native_field_error( $f, $v, $s );
+	};
+	bst_test( '' !== $e( array( 'type' => 'url' ), 'javascript:x' ) && '' === $e( array( 'type' => 'url' ), 'https://a.vn' ), 'url checked' );
+	bst_test( '' !== $e( array( 'type' => 'number' ), 'abc' ) && '' !== $e( array( 'type' => 'date' ), '1/2' ) && '' === $e( array( 'type' => 'date' ), '2026-10-30' ), 'number and date checked' );
+	$sel = array( 'type' => 'checkbox', 'options' => "A\nB" );
+	bst_test( '' === $e( $sel, 'A, B' ) && '' !== $e( $sel, 'A, Z' ), 'choices must be listed' );
+	bst_test( '' !== $e( array( 'type' => 'text', 'required' => true ), '' ), 'required still checked' );
+	$dir = get_temp_dir();
+	file_put_contents( "{$dir}up.tmp", '%PDF-1.4 test' );
+	$pdf = array( 'type' => 'file', 'options' => 'pdf' );
+	bst_test( 'a.pdf' === bst_native_file_check( $pdf, "{$dir}up.tmp", 'a.pdf', 13 ), 'pdf accepted' );
+	bst_test( '' === bst_native_file_check( $pdf, "{$dir}up.tmp", 'a.pdf', 6 * MB_IN_BYTES ), 'over 5 MB refused' );
+	file_put_contents( "{$dir}sh.tmp", '<?php echo 1;' );
+	bst_test( '' === bst_native_file_check( array( 'type' => 'file' ), "{$dir}sh.tmp", 'a.php', 13 ), 'php refused' );
+	bst_test( '' === bst_native_file_check( array( 'type' => 'file' ), "{$dir}sh.tmp", 'a.php.jpg', 13 ), 'php named as jpg refused' );
+	bst_test( ! in_array( 'svg', bst_native_file_types( array( 'options' => 'svg,pdf' ) ), true ), 'svg cannot be allowed' );
+	$html = bst_native_form_markup( array( 'formKey' => 'k', 'fields' => array( array( 'type' => 'file', 'name' => 'cv', 'options' => 'pdf' ) ) ) );
+	bst_test( false !== strpos( $html, 'type="file"' ) && false !== strpos( $html, 'accept=".pdf"' ), 'file input rendered' );
+}
+
+function bst_t_cf7() {
+	$tpl = "<label> Họ tên\n [text* your-name placeholder \"Tên\"] </label>\n<label> Dịch vụ\n [select svc first_as_label \"Chọn\" \"Giặt\" \"Là\"] </label>\n[file cv filetypes:pdf|doc]\n[acceptance ok] Đồng ý [/acceptance]\n[quiz q \"1+1?|2\"]\n[submit \"Gửi đi\"]";
+	$p   = bst_cf7_parse( $tpl );
+	$f   = $p['fields'];
+	bst_test( 4 === count( $f ) && 'your-name' === $f[0]['name'] && $f[0]['required'] && 'Tên' === $f[0]['placeholder'] && 'Họ tên' === $f[0]['label'], 'text tag parsed' );
+	bst_test( 'Chọn' === $f[1]['placeholder'] && "Giặt\nLà" === $f[1]['options'], 'select parsed' );
+	bst_test( 'pdf,doc' === $f[2]['options'] && 'Đồng ý' === $f[3]['placeholder'], 'file and acceptance parsed' );
+	bst_test( 'Gửi đi' === $p['submit'] && array( 'quiz' ) === $p['skipped'], 'submit read, quiz reported' );
+	$id = wp_insert_post( array( 'post_type' => 'wpcf7_contact_form', 'post_title' => 'Liên hệ', 'post_status' => 'publish' ) );
+	update_post_meta( $id, '_form', $tpl );
+	update_post_meta( $id, '_hash', 'abc1234def' );
+	update_post_meta( $id, '_mail', array( 'recipient' => 'a@x.test', 'subject' => 'S "q" <b>', 'body' => "[your-name]\n--", 'sender' => 'x', 'additional_headers' => '' ) );
+	$by = wp_insert_post( array( 'post_title' => 'P1', 'post_status' => 'publish', 'post_content' => "<!-- wp:paragraph --><p>Trên</p><!-- /wp:paragraph -->\n<!-- wp:shortcode -->[contact-form-7 id=\"abc1234\" title=\"x\"]<!-- /wp:shortcode -->" ) );
+	$cl = wp_insert_post( array( 'post_title' => 'P2', 'post_status' => 'publish', 'post_content' => "<p>[contact-form-7 id=\"$id\"]</p>" ) );
+	$ot = wp_insert_post( array( 'post_title' => 'P3', 'post_status' => 'publish', 'post_content' => '[contact-form-7 id="999999"]' ) );
+	bst_test( 2 === bst_cf7_migrate( get_post( $id ) ), 'two posts updated' );
+	$a = bst_native_form_find( 'cf7' . $id );
+	bst_test( $a && 'a@x.test' === $a['mailTo'] && 'S "q" <b>' === $a['mailSubject'] && "[your-name]\n--" === $a['mailBody'] && 4 === count( $a['fields'] ), 'block found with mail intact' );
+	bst_test( false !== strpos( get_post_field( 'post_content', $by ), '<p>Trên</p>' ) && false === strpos( get_post_field( 'post_content', $by ), 'contact-form-7' ), 'other content kept' );
+	bst_test( 0 === strpos( get_post_field( 'post_content', $cl ), '<!-- wp:bst/form' ), 'paragraph wrapper removed' );
+	bst_test( false !== strpos( get_post_field( 'post_content', $ot ), '999999' ), 'other form untouched' );
+	bst_test( false !== strpos( render_block( parse_blocks( get_post_field( 'post_content', $cl ) )[0] ), 'type="file"' ), 'moved form renders' );
+	bst_test( 0 === bst_cf7_migrate( get_post( $id ) ), 'second run changes nothing' );
 }
 
 /** A JPEG with an EXIF block saying "rotate 90 degrees". */

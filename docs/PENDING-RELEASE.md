@@ -20,6 +20,12 @@ Chưa có thay đổi sản phẩm mới sau bản 1.76.0. Bản 1.76.0 (30-10-2
 - **Khi phát hành cần bổ sung:** Giới thiệu, Có gì mới, kiến thức AI.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** đợt C: form có sẵn thay Contact Form 7; trường tải tệp; kiểm tra url/số/ngày/lựa chọn phía máy chủ; trang Chuyển form CF7.
+- **Đã thay đổi:** `inc/form-native.php`, `inc/form-migrate.php`, loại trường trong trình sửa khối, bản dịch vi. Tệp tối đa 5 MB, chỉ đính kèm mail cho admin, không lưu trên site. Chuyển form không tự tắt CF7. Không chuyển được: quiz, captcha, trường ẩn (trang hiện rõ).
+- **Kiểm thử:** `node tools/features-check.cjs` trên Playground, dữ liệu CF7 giả lập. Chưa thử với plugin CF7 thật, chưa gửi tệp qua HTTP thật, chưa bấm nút Chuyển trên trình duyệt.
+- **Khi phát hành cần bổ sung:** Giới thiệu, Có gì mới, kiến thức AI.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

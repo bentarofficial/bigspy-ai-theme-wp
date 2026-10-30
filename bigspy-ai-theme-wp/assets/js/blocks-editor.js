@@ -2718,7 +2718,7 @@
 	 * Built-in form (provider "bigspy"): Contact Form 7 style tabs inside the block –
 	 * Fields, Mail, Mail (2), Messages, Actions. Empty texts fall back to the defaults.
 	 */
-	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL']];
+	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL'], ['file', 'File upload']];
 	function nfSlug(label, taken) {
 		var base = String(label || 'field').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'field';
 		var n = base, i = 2;
@@ -2756,7 +2756,7 @@
 			body = el(Fragment, null,
 				fields.map(function (f, i) {
 					var open = openField[0] === i;
-					var needsOpts = ['select', 'radio', 'checkbox'].indexOf(f.type) !== -1;
+					var needsOpts = ['select', 'radio', 'checkbox', 'file'].indexOf(f.type) !== -1;
 					return el('div', { key: i, className: 'bst-nf-item' + (open ? ' is-open' : '') },
 						el('div', { className: 'bst-nf-item__head' },
 							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : ''))),

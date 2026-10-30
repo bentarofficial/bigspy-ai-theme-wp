@@ -68,7 +68,58 @@ function bst_native_form_settings( $a ) {
 
 /** Field types the engine renders. */
 function bst_native_field_types() {
-	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'textarea', 'select', 'radio', 'checkbox', 'acceptance' );
+	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file' );
+}
+
+/** Choices of a select, radio or checkbox field. */
+function bst_native_field_options( $f ) {
+	return array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n|,/', (string) ( $f['options'] ?? '' ) ) ) ) );
+}
+
+/** File extensions a file field accepts: its own list, limited to safe types. */
+function bst_native_file_types( $f ) {
+	$safe = array( 'jpg', 'jpeg', 'png', 'webp', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt' );
+	$own  = array_map( 'strtolower', preg_split( '/[\s,|]+/', (string) ( $f['options'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ) );
+	return $own ? array_values( array_intersect( $own, $safe ) ) : $safe;
+}
+
+/** Check a file by size, extension and real content. Returns a safe name, or '' when refused. */
+function bst_native_file_check( $f, $path, $name, $size ) {
+	if ( $size <= 0 || $size > 5 * MB_IN_BYTES ) {
+		return '';
+	}
+	$name  = sanitize_file_name( $name );
+	$check = wp_check_filetype_and_ext( $path, $name );
+	$ext   = strtolower( (string) ( $check['ext'] ?: pathinfo( $name, PATHINFO_EXTENSION ) ) );
+	return $check['ext'] && $check['type'] && in_array( $ext, bst_native_file_types( $f ), true ) ? $name : '';
+}
+
+/** Server check of one value by field type. Returns the message, or '' when it is valid. */
+function bst_native_field_error( $f, $v, $s ) {
+	$type = $f['type'] ?? 'text';
+	if ( ! empty( $f['required'] ) && '' === $v ) {
+		return $s['msgRequired'];
+	}
+	if ( '' === $v ) {
+		return '';
+	}
+	if ( 'email' === $type && ! is_email( $v ) ) {
+		return $s['msgEmail'];
+	}
+	if ( 'tel' === $type && ! preg_match( '/^[+0-9 ().-]{8,20}$/', $v ) ) {
+		return $s['msgTel'];
+	}
+	$ok = true;
+	if ( 'url' === $type ) {
+		$ok = (bool) wp_http_validate_url( $v );
+	} elseif ( 'number' === $type ) {
+		$ok = is_numeric( $v );
+	} elseif ( 'date' === $type ) {
+		$ok = (bool) preg_match( '/^\d{4}-\d{2}-\d{2}$/', $v );
+	} elseif ( in_array( $type, array( 'select', 'radio', 'checkbox' ), true ) && bst_native_field_options( $f ) ) {
+		$ok = ! array_diff( explode( ', ', $v ), bst_native_field_options( $f ) );
+	}
+	return $ok ? '' : $s['msgInvalid'];
 }
 
 /** Front-end markup (same classes as Contact Form 7, so every Form block look applies). */
@@ -87,8 +138,14 @@ function bst_native_form_markup( $a ) {
 		$req   = ! empty( $f['required'] );
 		$attr  = ' name="' . esc_attr( $name ) . '"' . ( $req ? ' required aria-required="true"' : '' );
 		$width = 'half' === ( $f['width'] ?? 'full' ) ? ' bs-nf-half' : '';
-		$opts  = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n|,/', (string) ( $f['options'] ?? '' ) ) ) ) );
+		$opts  = bst_native_field_options( $f );
 		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req ? ' <span class="bs-nf-req">*</span>' : '' ) . '</span>' : '';
+		if ( 'file' === $type ) {
+			$accept  = '.' . implode( ',.', bst_native_file_types( $f ) );
+			$control = '<input type="file" class="wpcf7-form-control wpcf7-file"' . $attr . ' accept="' . esc_attr( $accept ) . '">';
+			$out    .= '<p class="bs-nf-field bs-nf-file' . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+			continue;
+		}
 		switch ( $type ) {
 			case 'textarea':
 				$control = '<textarea class="wpcf7-form-control wpcf7-textarea"' . $attr . ' rows="5" maxlength="5000" placeholder="' . esc_attr( $ph ) . '"></textarea>';
@@ -196,7 +253,7 @@ function bst_native_form_tags( $text, $values, $fields, $exclude_blank, $html = 
 }
 
 /** One email (Mail or Mail 2). Returns true when wp_mail() accepted it. */
-function bst_native_form_send( $prefix, $s, $values ) {
+function bst_native_form_send( $prefix, $s, $values, $files = array() ) {
 	$fields  = $s['fields'];
 	$exclude = ! empty( $s['mailExcludeBlank'] );
 	$html    = ! empty( $s['mailHtml'] );
@@ -223,7 +280,7 @@ function bst_native_form_send( $prefix, $s, $values ) {
 		$headers[] = 'Content-Type: text/html; charset=UTF-8';
 		$body      = wpautop( $body );
 	}
-	return wp_mail( $to, $subject, $body, $headers );
+	return wp_mail( $to, $subject, $body, $headers, $files );
 }
 
 /** AJAX submit handler (logged in and visitors). */
@@ -249,9 +306,27 @@ function bst_native_form_submit() {
 
 	$values = array();
 	$errors = array();
+	$files  = array(); // Name => PHP temp path: mailed as attachments, never stored on the site.
 	foreach ( $s['fields'] as $f ) {
 		$n    = sanitize_key( $f['name'] );
 		$type = $f['type'] ?? 'text';
+		if ( 'file' === $type ) {
+			$up = $_FILES[ $n ] ?? null; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput
+			$v  = '';
+			if ( $up && UPLOAD_ERR_NO_FILE !== (int) $up['error'] ) {
+				$v = UPLOAD_ERR_OK === (int) $up['error'] && is_uploaded_file( $up['tmp_name'] ) ? bst_native_file_check( $f, $up['tmp_name'], $up['name'], (int) $up['size'] ) : '';
+				if ( '' === $v ) {
+					$errors[ $n ] = $s['msgInvalid'];
+					continue;
+				}
+				$files[ $v ] = $up['tmp_name'];
+			}
+			$values[ $n ] = $v;
+			if ( ! empty( $f['required'] ) && '' === $v ) {
+				$errors[ $n ] = $s['msgRequired'];
+			}
+			continue;
+		}
 		$raw  = $_POST[ $n ] ?? ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( is_array( $raw ) ) {
 			$v = implode( ', ', array_map( 'sanitize_text_field', wp_unslash( $raw ) ) );
@@ -262,12 +337,9 @@ function bst_native_form_submit() {
 		if ( 'acceptance' === $type ) {
 			$v = '' !== $v ? __( 'Yes', 'bigspy-ai-theme-wp' ) : '';
 		}
-		if ( ! empty( $f['required'] ) && '' === $v ) {
-			$errors[ $n ] = $s['msgRequired'];
-		} elseif ( '' !== $v && 'email' === $type && ! is_email( $v ) ) {
-			$errors[ $n ] = $s['msgEmail'];
-		} elseif ( '' !== $v && 'tel' === $type && ! preg_match( '/^[+0-9 ().-]{8,20}$/', $v ) ) {
-			$errors[ $n ] = $s['msgTel'];
+		$error = bst_native_field_error( $f, $v, $s );
+		if ( '' !== $error ) {
+			$errors[ $n ] = $error;
 		}
 		$values[ $n ] = $v;
 	}
@@ -275,7 +347,7 @@ function bst_native_form_submit() {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgInvalid'], 'errors' => $errors ) );
 	}
 
-	$sent = bst_native_form_send( 'mail', $s, $values );
+	$sent = bst_native_form_send( 'mail', $s, $values, $files );
 	if ( $sent && ! empty( $s['mail2Active'] ) ) {
 		bst_native_form_send( 'mail2', $s, $values );
 	}
