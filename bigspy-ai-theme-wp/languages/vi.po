@@ -6805,3 +6805,12 @@ msgstr "Group Facebook Global"
 msgid "Give a star on GitHub"
 msgstr "Tặng sao trên GitHub"
 
+msgid "Resize preview"
+msgstr "Đổi chiều rộng xem trước"
+
+msgid "Drag to change the preview width. Double-click to reset."
+msgstr "Kéo để đổi chiều rộng xem trước. Bấm đúp để đặt lại."
+
+msgid "No page to preview yet"
+msgstr "Chưa có trang để xem"
+

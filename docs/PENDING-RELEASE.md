@@ -7,6 +7,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 ## Các thay đổi sản phẩm đang chờ
 
 - **Trang giới thiệu theme và AI Designer:** mục hỗ trợ đổi sang fanpage, 2 nhóm Telegram, 2 group Facebook; thêm nút tặng sao GitHub.
+- **AI Designer, xem trước:** công tắc Xem trước luôn hiện ở header, nhớ lựa chọn trên trình duyệt, tắt thì AI vẫn làm nhưng không tự mở khung; kéo lề phân cách để đổi chiều rộng (hiện số px, bấm đúp để đặt lại, dùng được phím mũi tên). Kéo rộng quá chỗ thì danh sách task tạm ẩn.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

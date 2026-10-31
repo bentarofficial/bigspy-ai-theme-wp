@@ -10638,3 +10638,12 @@ msgstr ""
 msgid "Give a star on GitHub"
 msgstr ""
 
+msgid "Resize preview"
+msgstr ""
+
+msgid "Drag to change the preview width. Double-click to reset."
+msgstr ""
+
+msgid "No page to preview yet"
+msgstr ""
+
