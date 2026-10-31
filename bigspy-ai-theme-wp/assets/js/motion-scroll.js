@@ -99,6 +99,30 @@
 			sticky.appendChild(nav);
 			track.addEventListener('scroll', function () { activate(current()); }, { passive: true });
 			activate(0);
+			root.classList.add('is-draggable');
+			var startX = 0, startLeft = 0, moved = false, dragging = false;
+			track.addEventListener('pointerdown', function (e) {
+				if ('mouse' !== e.pointerType || 0 !== e.button || root.classList.contains('is-pinned')) { return; }
+				dragging = true;
+				moved = false;
+				startX = e.clientX;
+				startLeft = track.scrollLeft;
+			});
+			window.addEventListener('pointermove', function (e) {
+				if (!dragging) { return; }
+				if (!moved && Math.abs(e.clientX - startX) > 5) { moved = true; root.classList.add('is-dragging'); }
+				if (moved) { track.scrollLeft = startLeft - (e.clientX - startX); }
+			});
+			function endDrag() {
+				if (!dragging) { return; }
+				dragging = false;
+				root.classList.remove('is-dragging');
+				if (moved) { go(current()); }
+			}
+			window.addEventListener('pointerup', endDrag);
+			window.addEventListener('pointercancel', endDrag);
+			track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+			track.addEventListener('dragstart', function (e) { e.preventDefault(); });
 		}
 		function measure() {
 			var on = desktop.matches && !reduced;

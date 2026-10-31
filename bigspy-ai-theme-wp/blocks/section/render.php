@@ -40,6 +40,8 @@ $style = bst_style_vars(
 		'--bs-sec-pt' => bst_block_num( $a, 'paddingTablet', 60, 0, 400 ) . 'px',
 		'--bs-sec-pm' => bst_block_num( $a, 'paddingMobile', 40, 0, 400 ) . 'px',
 		'--bs-sec-min' => $min ? $min . $unit : '',
+		'--bs-shape-top' => ! empty( $a['dividerTop'] ) ? bst_block_num( $a, 'dividerTopHeight', 80, 10, 400 ) . 'px' : '',
+		'--bs-shape-bottom' => ! empty( $a['dividerBottom'] ) ? bst_block_num( $a, 'dividerBottomHeight', 80, 10, 400 ) . 'px' : '',
 	)
 );
 

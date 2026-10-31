@@ -2064,6 +2064,10 @@ input[type="submit"]:hover,
 .bs-shape--top { top: -1px; transform: rotate(180deg); }
 .bs-shape--bottom.is-flipped { transform: scaleX(-1); }
 .bs-shape--top.is-flipped { transform: rotate(180deg) scaleX(-1); }
+@media (max-width: 767px) {
+	.bs-section[style*="--bs-shape-top"] { padding-top: max(var(--bs-sec-pm), calc(var(--bs-shape-top) + 24px)); }
+	.bs-section[style*="--bs-shape-bottom"] { padding-bottom: max(var(--bs-sec-pm), calc(var(--bs-shape-bottom) + 24px)); }
+}
 .bs-section__inner { z-index: 1; }
 .bs-section__video { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 .bs-section__video video { width: 100%; height: 100%; object-fit: cover; }
@@ -3447,7 +3451,10 @@ input[type="submit"]:hover,
 .bs-hscroll__dots { display: flex; gap: 6px; }
 .bs-hscroll__dot { width: 8px; height: 8px; border-radius: 99px; background: rgba(148, 163, 184, .5); transition: width .3s ease, background .3s ease; }
 .bs-hscroll__dot.is-active { width: 22px; background: var(--bs-primary); }
-@media (max-width: 767px) { .bs-hscroll__panel { flex-basis: var(--bs-hs-w-m, 85vw); } }
+.bs-hscroll:not(.is-pinned).is-draggable .bs-hscroll__track { cursor: grab; }
+.bs-hscroll.is-dragging .bs-hscroll__track { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+/* Show panels 3:1 so the next one always peeks and the row reads as swipeable. */
+@media (max-width: 767px) { .bs-hscroll__panel { flex-basis: min(var(--bs-hs-w-m, 85vw), calc((100% - var(--bs-hs-gap, 32px)) * .75)); } }
 
 .bs-zhero { position: relative; height: var(--bs-zh-length, 160vh); }
 .bs-zhero__sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center; }
