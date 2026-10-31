@@ -146,6 +146,46 @@ bst_test( false === strpos( bst_aid_clean_code( '<script>alert(1)</script><p onc
 $normalized = bst_aid_normalize_colors( array( 'backgroundColor' => '#0b192c', 'textColor' => '#ffffff' ) );
 bst_test( ! isset( $normalized['backgroundColor'] ) && '#0b192c' === $normalized['style']['color']['background'], 'Raw hex colors become inline styles rather than invalid preset classes' );
 
+// Fixed block rule: raw, editable share, layout HTML in text, bst/code ceiling.
+$text_nodes = function ( $n ) { return array_fill( 0, $n, array( 'name' => 'bst/text', 'attrs' => array( 'html' => '<p>Editable text.</p>' ) ) ); };
+$code_node  = function ( $size = 40 ) { return array( 'name' => 'bst/code', 'attrs' => array( 'code' => '<p>' . str_repeat( 'x', $size ) . '</p>' ) ); };
+$prompt     = bst_aid_system_prompt();
+bst_test( strrpos( $prompt, 'FIXED RULE' ) > strrpos( $prompt, 'IMAGE STANDARD' ), 'Block rule comes after the user guidelines in the prompt' );
+$forged = '<!-- wp:html --><div>Forged</div><!-- /wp:html -->';
+$r = bst_test_run( 'create_page', array( 'title' => 'Raw forged', 'blocks' => array( array( 'name' => 'core/html', 'raw' => $forged ) ) ) );
+bst_test( ! empty( $r['error'] ) && false !== strpos( wp_json_encode( $r ), 'unchanged' ), 'New page refuses forged core/html raw' );
+$forged_group = '<!-- wp:group --><div class="wp-block-group">' . $forged . '</div><!-- /wp:group -->';
+bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'core/group', 'raw' => $forged_group ) ) ) ), 'Forged core/html nested in raw group refused' );
+$old_html = '<!-- wp:html --><div>Old code</div><!-- /wp:html -->';
+$legacy   = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Legacy page', 'post_content' => wp_slash( $old_html . '<!-- wp:bst/text {"html":"<div>Old text</div>"} /-->' ) ) );
+$got      = bst_aid_tool_get_page( array( 'id' => $legacy ) )['blocks'];
+$r        = bst_test_run( 'update_page', array( 'id' => $legacy, 'blocks' => $got ) );
+bst_test( empty( $r['error'] ) && false !== strpos( get_post_field( 'post_content', $legacy ), 'Old code' ), 'Old page round trip keeps core/html and old text' );
+$got[0]['raw'] = str_replace( 'Old code', 'Changed code', $got[0]['raw'] );
+bst_test( ! empty( bst_test_run( 'update_page', array( 'id' => $legacy, 'blocks' => $got ) )['error'] ), 'Changed raw refused on an old page' );
+$r = bst_test_run( 'page_sections', array( 'id' => $legacy, 'mode' => 'append', 'blocks' => $text_nodes( 1 ) ) );
+bst_test( empty( $r['error'] ) && $r['editable_percent'] < 90, 'Old low-score page still accepts editable sections' );
+bst_test( empty( bst_test_run( 'page_sections', array( 'id' => $legacy, 'mode' => 'remove', 'index' => 2 ) )['error'] ), 'Removing a section stays possible on an old page' );
+bst_test( ! empty( bst_test_run( 'create_page', array( 'title' => 'Low score', 'blocks' => array_merge( $text_nodes( 2 ), array( $code_node() ) ) ) )['error'] ), 'Page under 90 percent editable refused' );
+$r = bst_test_run( 'create_page', array( 'title' => 'Good score', 'blocks' => array_merge( $text_nodes( 12 ), array( $code_node() ) ) ) );
+bst_test( empty( $r['error'] ) && $r['editable_ok'], 'Page at 90 percent or more accepted' );
+bst_test( ! empty( bst_test_run( 'ux_block', array( 'mode' => 'create', 'title' => 'Code only', 'blocks' => array( $code_node() ) ) )['error'] ), 'UX block cannot bypass the editable rule' );
+foreach ( array( '<div class="grid"><p>A</p></div>', '<p style="display:flex">A</p>', '<section>A</section>' ) as $layout ) {
+	bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'bst/text', 'attrs' => array( 'html' => $layout ) ) ) ) ), 'Layout HTML in bst/text refused: ' . $layout );
+}
+bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'core/group', 'html' => '<div><p>A</p></div>' ) ) ) ), 'Layout HTML cannot enter through a converted core block' );
+bst_test( ! is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'bst/text', 'attrs' => array( 'html' => '<h2>A</h2><p><strong>B</strong></p><ul><li>C</li></ul><table><tr><td>D</td></tr></table>' ) ) ) ) ), 'Rich text with lists and tables stays allowed' );
+$five = array_merge( $text_nodes( 45 ), array_fill( 0, 5, $code_node() ) );
+$args = array( 'title' => 'Over cap', 'blocks' => $five );
+bst_test( 2 === bst_aid_tool_policy( 'create_page', $args )['level'], 'Over the soft limit still asks for approval' );
+$GLOBALS['bst_aid_approval'] = array( 'task' => $task, 'tool' => 'create_page', 'hash' => bst_aid_args_hash( $args ), 'expires' => time() + 60 );
+$r = bst_test_run( 'create_page', $args );
+unset( $GLOBALS['bst_aid_approval'] );
+bst_test( ! empty( $r['error'] ) && false !== strpos( $r['error'], 'capped' ), 'bst/code count ceiling holds after approval' );
+bst_test( is_wp_error( bst_aid_tree_to_markup( array_merge( $text_nodes( 20 ), array( $code_node( 11000 ) ) ) ) ), 'bst/code size ceiling enforced' );
+$legacy_code = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Legacy code', 'post_content' => wp_slash( serialize_blocks( bst_aid_build_blocks( array_merge( $text_nodes( 45 ), array_fill( 0, 5, $code_node() ) ), '', $unused ) ) ) ) );
+bst_test( empty( bst_test_run( 'update_page', array( 'id' => $legacy_code, 'blocks' => bst_aid_tool_get_page( array( 'id' => $legacy_code ) )['blocks'] ) )['error'] ), 'Old page already over the ceiling can be saved unchanged' );
+
 // Render a page for browser checks, including counts, width variants and both directions/modes.
 $html = '';
 foreach ( array( 1, 3, 20 ) as $count ) {

@@ -139,7 +139,7 @@ function bst_aid_reusable( $a, $type ) {
 	}
 	if ( isset( $a['title'] ) ) { $data['post_title'] = sanitize_text_field( $a['title'] ); }
 	if ( isset( $a['blocks'] ) ) {
-		$markup = bst_aid_tree_to_markup( $a['blocks'] );
+		$markup = bst_aid_tree_to_markup( $a['blocks'], 'create' === $mode ? 0 : $p->ID );
 		if ( is_wp_error( $markup ) ) { return array( 'error' => $markup->get_error_message() ); }
 		$data['post_content'] = wp_slash( $markup['markup'] );
 	}

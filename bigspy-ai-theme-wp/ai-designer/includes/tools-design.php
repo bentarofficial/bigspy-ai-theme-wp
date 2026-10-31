@@ -183,6 +183,9 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 		if ( 'bst/code' === $name && isset( $attrs['code'] ) ) {
 			$attrs['code'] = bst_aid_clean_code( $attrs['code'] );
 		}
+		if ( 'bst/text' === $name && ! bst_aid_text_allowed( (string) ( $attrs['html'] ?? '' ), $where, $issues ) ) {
+			continue;
+		}
 		$inner = array();
 		if ( ! empty( $node['inner'] ) ) {
 			if ( ! isset( $containers[ $name ] ) ) {
@@ -207,8 +210,8 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 
 /**
  * A core block from the model tree. Blocks read with get_page / get_pattern carry their
- * exact markup in "raw" and are kept as they are; new ones are made from "html" (paragraph,
- * heading with attrs.level, list, html, shortcode).
+ * exact markup in "raw" and are kept only while it matches that source; new ones are made
+ * from "html" (paragraph, heading with attrs.level, list, html, shortcode).
  */
 function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 	if ( ! in_array( $name, bst_aid_core_blocks(), true ) ) {
@@ -219,6 +222,10 @@ function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 		$parsed = parse_blocks( (string) $node['raw'] );
 		foreach ( $parsed as $b ) {
 			if ( ( $b['blockName'] ?? '' ) === $name ) {
+				if ( ! bst_aid_known_core_block( $b, (int) ( $issues['source'] ?? 0 ) ) ) {
+					$issues['errors'][] = "$where: raw is only for sending $name back unchanged from this page or a theme pattern. To change it, send BIGSPY AI blocks instead.";
+					return null;
+				}
 				$b = bst_aid_sanitize_raw_block( $b );
 				return $b;
 			}
@@ -261,7 +268,79 @@ function bst_aid_theme_block( $name, $attrs, $where, &$issues ) {
 		$issues['errors'][] = "$where: $name is disabled, so this core block cannot be converted.";
 		return null;
 	}
+	if ( 'bst/text' === $name && ! bst_aid_text_allowed( (string) ( $attrs['html'] ?? '' ), $where, $issues ) ) {
+		return null;
+	}
 	return array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() );
+}
+
+/** Whitespace-insensitive fingerprint of a parsed block, including its inner blocks. */
+function bst_aid_block_key( $b ) {
+	return md5( preg_replace( '/\s+/', ' ', trim( serialize_block( $b ) ) ) );
+}
+
+/** Fingerprints of named blocks at every depth, as array( key => true ). */
+function bst_aid_block_keys( $blocks ) {
+	$keys = array();
+	foreach ( (array) $blocks as $b ) {
+		if ( ! empty( $b['blockName'] ) ) {
+			$keys[ bst_aid_block_key( $b ) ] = true;
+		}
+		$keys += bst_aid_block_keys( $b['innerBlocks'] ?? array() );
+	}
+	return $keys;
+}
+
+/** True when a raw core block is unchanged from the source post or a theme pattern. */
+function bst_aid_known_core_block( $b, $source ) {
+	static $patterns = null;
+	if ( null === $patterns ) {
+		$patterns = array();
+		foreach ( WP_Block_Patterns_Registry::get_instance()->get_all_registered() as $p ) {
+			if ( 0 === strpos( (string) $p['name'], 'bigspy-ai-theme-wp/' ) ) {
+				$patterns += bst_aid_block_keys( parse_blocks( $p['content'] ) );
+			}
+		}
+	}
+	$key = bst_aid_block_key( $b );
+	return isset( $patterns[ $key ] ) || ( $source && isset( bst_aid_block_keys( parse_blocks( (string) get_post_field( 'post_content', $source ) ) )[ $key ] ) );
+}
+
+/** True when text HTML carries page layout rather than rich text. */
+function bst_aid_text_has_layout( $html ) {
+	return (bool) preg_match( '/<(?:div|section|article|aside|header|footer|nav|main|form|iframe|style|script|svg|canvas|video|object|embed)\b/i', $html )
+		|| (bool) preg_match( '/\sstyle\s*=\s*["\'][^"\']*(?:display\s*:\s*(?:inline-)?(?:flex|grid)|position\s*:\s*(?:absolute|fixed)|float\s*:)/i', $html );
+}
+
+/** Layout HTML in bst/text is refused, unless it is old text sent back unchanged. */
+function bst_aid_text_allowed( $html, $where, &$issues ) {
+	if ( ! bst_aid_text_has_layout( $html ) || in_array( bst_aid_text_key( $html ), bst_aid_text_keys( (int) ( $issues['source'] ?? 0 ) ), true ) ) {
+		return true;
+	}
+	$issues['errors'][] = "$where: bst/text holds rich text only, not layout HTML. Rebuild this with bst/section, bst/row, bst/column and other BIGSPY AI blocks.";
+	return false;
+}
+
+function bst_aid_text_key( $html ) {
+	return preg_replace( '/\s+/', ' ', trim( $html ) );
+}
+
+/** Stored bst/text values of a post, as they would look after the model sends them back. */
+function bst_aid_text_keys( $source ) {
+	$keys = array();
+	$walk = function ( $blocks ) use ( &$walk, &$keys ) {
+		foreach ( $blocks as $b ) {
+			if ( 'bst/text' === ( $b['blockName'] ?? '' ) && isset( $b['attrs']['html'] ) ) {
+				$keys[] = bst_aid_text_key( (string) $b['attrs']['html'] );
+				$keys[] = bst_aid_text_key( bst_aid_clean_html( (string) $b['attrs']['html'] ) );
+			}
+			$walk( $b['innerBlocks'] ?? array() );
+		}
+	};
+	if ( $source ) {
+		$walk( parse_blocks( (string) get_post_field( 'post_content', $source ) ) );
+	}
+	return $keys;
 }
 
 /** Count and size of bst/code blocks in a model tree. */
@@ -289,6 +368,25 @@ function bst_aid_code_over_limit( $name, $a ) {
 		$use['bytes'] += $old['bytes'];
 	}
 	return $use['count'] > 2 || $use['bytes'] > 3 * KB_IN_BYTES;
+}
+
+/**
+ * The block rule on the content about to be saved; an approval never lifts it. Old content
+ * that already breaks a limit may stay, as long as this write does not make it worse.
+ *
+ * @return string Error for the model, or '' when the write is allowed.
+ */
+function bst_aid_block_rule_error( $content, $before ) {
+	$use = bst_aid_code_usage( parse_blocks( $content ) );
+	$old = bst_aid_code_usage( parse_blocks( $before ) );
+	if ( ( $use['count'] > 4 && $use['count'] > $old['count'] ) || ( $use['bytes'] > 10 * KB_IN_BYTES && $use['bytes'] > $old['bytes'] ) ) {
+		return 'Not saved: bst/code is capped at 4 blocks and 10 KB per page, even with approval. Rebuild the extra parts with BIGSPY AI blocks.';
+	}
+	$pct = bst_aid_editable_percent( $content );
+	if ( $pct < 90 && $pct < bst_aid_editable_percent( $before ) ) {
+		return "Not saved: only $pct% of this content could be edited with blocks; at least 90% is required. Replace code with BIGSPY AI blocks, or add the code after the page has more blocks.";
+	}
+	return '';
 }
 
 /** Share of blocks the user can edit with block options, in percent. */
@@ -336,9 +434,14 @@ function bst_aid_tool_style_options( $a ) {
 	return $out;
 }
 
-/** Block markup from a model tree, or WP_Error with the problems. */
-function bst_aid_tree_to_markup( $tree ) {
-	$issues = array( 'errors' => array(), 'warnings' => array() );
+/**
+ * Block markup from a model tree, or WP_Error with the problems.
+ *
+ * @param array $tree   Model tree.
+ * @param int   $source Post being rewritten, 0 for new content.
+ */
+function bst_aid_tree_to_markup( $tree, $source = 0 ) {
+	$issues = array( 'errors' => array(), 'warnings' => array(), 'source' => (int) $source );
 	$blocks = bst_aid_build_blocks( $tree, '', $issues );
 	if ( $issues['errors'] ) {
 		return new WP_Error( 'bst_aid_blocks', 'Fix these block errors and call again', $issues );
@@ -346,7 +449,12 @@ function bst_aid_tree_to_markup( $tree ) {
 	if ( ! $blocks ) {
 		return new WP_Error( 'bst_aid_blocks', 'No blocks given.', $issues );
 	}
-	return array( 'markup' => serialize_blocks( $blocks ), 'warnings' => array_slice( $issues['warnings'], 0, 30 ) );
+	$markup = serialize_blocks( $blocks );
+	$error  = bst_aid_block_rule_error( $markup, $source ? (string) get_post_field( 'post_content', $source ) : '' );
+	if ( $error ) {
+		return new WP_Error( 'bst_aid_block_rule', $error, $issues );
+	}
+	return array( 'markup' => $markup, 'warnings' => array_slice( $issues['warnings'], 0, 30 ) );
 }
 
 /** Compact tree of parsed blocks for the model: only non-default attributes. */
@@ -911,7 +1019,7 @@ function bst_aid_tool_update_page( $a ) {
 	$data     = array( 'ID' => $p->ID );
 	$warnings = array();
 	if ( isset( $a['blocks'] ) ) {
-		$markup = bst_aid_tree_to_markup( $a['blocks'] );
+		$markup = bst_aid_tree_to_markup( $a['blocks'], $p->ID );
 		if ( is_wp_error( $markup ) ) {
 			return array( 'error' => $markup->get_error_message(), 'details' => $markup->get_error_data() );
 		}
@@ -953,7 +1061,7 @@ function bst_aid_tool_page_sections( $a ) {
 	$new  = array();
 	$warn = array();
 	if ( 'remove' !== $mode ) {
-		$issues = array( 'errors' => array(), 'warnings' => array() );
+		$issues = array( 'errors' => array(), 'warnings' => array(), 'source' => $p->ID );
 		$new    = bst_aid_build_blocks( $a['blocks'] ?? array(), '', $issues );
 		if ( $issues['errors'] || ! $new ) {
 			return array( 'error' => 'Fix these block errors and call again', 'details' => $issues );
@@ -975,6 +1083,11 @@ function bst_aid_tool_page_sections( $a ) {
 			break;
 		default:
 			$top = array_merge( $top, $new );
+	}
+	// Removing a section adds nothing, so it stays possible on old pages.
+	$error = 'remove' === $mode ? '' : bst_aid_block_rule_error( serialize_blocks( $top ), $p->post_content );
+	if ( $error ) {
+		return array( 'error' => $error );
 	}
 	bst_aid_snapshot_post( $p->ID );
 	$r = wp_update_post( array( 'ID' => $p->ID, 'post_content' => wp_slash( serialize_blocks( $top ) ) ), true );
