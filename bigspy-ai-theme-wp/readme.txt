@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.80.2 =
+* Horizontal Scroll: up to three panels on desktop; sliding starts at the fourth.
+* Horizontal Scroll: full-width sections keep their width while pinned.
+
 = 1.80.1 =
 * Horizontal Scroll: panel width follows the block width and matches the editor.
 * Horizontal Scroll: the whole section stays on screen while pinned, removing blank space above and below.
