@@ -10746,6 +10746,9 @@ msgstr ""
 msgid "Connect the API to use this tool"
 msgstr ""
 
+msgid "1.80.2: Horizontal Scroll shows up to three panels on desktop and slides from the fourth, and full-width sections keep their width while pinned."
+msgstr ""
+
 msgid "1.80.1: Horizontal Scroll fix: panel width now follows the block width and matches the editor, and the whole section stays on screen while pinned, removing the blank space above and below."
 msgstr ""
 

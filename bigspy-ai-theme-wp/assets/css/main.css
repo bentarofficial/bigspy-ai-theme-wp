@@ -1154,13 +1154,15 @@ li.is-open > .bs-submenu-toggle svg {
 }
 
 /* Full & wide alignment inside the boxed content area (no sidebar). */
-.bs-layout--none .bs-content > .alignfull {
+.bs-layout--none .bs-content > .alignfull,
+.bs-layout--none .bs-content > .bs-hscroll-holder > .alignfull {
 	width: 100vw;
 	max-width: 100vw;
 	margin-left: calc(50% - 50vw);
 }
 
-.bs-layout-boxed .bs-layout--none .bs-content > .alignfull {
+.bs-layout-boxed .bs-layout--none .bs-content > .alignfull,
+.bs-layout-boxed .bs-layout--none .bs-content > .bs-hscroll-holder > .alignfull {
 	width: calc(100% + 30px);
 	margin-left: -15px;
 }
