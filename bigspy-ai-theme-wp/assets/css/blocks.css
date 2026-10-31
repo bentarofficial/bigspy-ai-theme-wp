@@ -3406,6 +3406,8 @@ input[type="submit"]:hover,
 .bs-stack--shadow .bs-stack__card { box-shadow: 0 -6px 30px rgba(15, 23, 42, .10), 0 18px 40px rgba(15, 23, 42, .10); }
 .bs-stack--scale .bs-stack__card { transform: scale(calc(1 - var(--p, 0) * .06)); filter: brightness(calc(1 - var(--p, 0) * .18)); transition: transform .1s linear, filter .1s linear; }
 .bs-stack__inner > :last-child { margin-bottom: 0; }
+/* overflow:hidden on Section would stop sticky children from sticking. */
+.bs-section:has(.bs-stack, .bs-story, .bs-hscroll, .bs-zhero) { overflow: clip; }
 @media (prefers-reduced-motion: reduce) { .bs-stack--scale .bs-stack__card { transform: none; filter: none; } }
 
 /* ================================================================ 1.76 – Motion wave 2 */

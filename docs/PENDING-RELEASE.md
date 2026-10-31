@@ -17,3 +17,4 @@ Chưa có thay đổi sản phẩm mới.
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 - Infinity Flow: hide the scrollbar when reduced motion is on; swiping still works.
+- Stacking Cards, Scroll Story, Horizontal Scroll and Zoom Hero now stick correctly inside a Section.
