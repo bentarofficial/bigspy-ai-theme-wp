@@ -10746,6 +10746,9 @@ msgstr ""
 msgid "Connect the API to use this tool"
 msgstr ""
 
+msgid "1.80.1: Horizontal Scroll fix: panel width now follows the block width and matches the editor, and the whole section stays on screen while pinned, removing the blank space above and below."
+msgstr ""
+
 msgid "1.80.0: Media Library marks used and unused files, and unused files go to a restorable trash after a fresh check. Media ATND writes image alt text, title, caption and description with AI. Horizontal Scroll pins on all screens. AI Designer keeps motion blocks intact when editing."
 msgstr ""
 
