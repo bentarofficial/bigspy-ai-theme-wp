@@ -6,12 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-- **Yêu cầu/tính năng:** sửa Horizontal Scroll và Section có đường sóng trên điện thoại.
-- **Đã thay đổi:** thẻ kế tiếp luôn ló ra trên mobile; kéo được bằng chuột khi không ghim; Section tự thêm đệm dưới shape divider trên mobile.
-- **Kiểm thử:** xem G-32 trong sổ task.
-- **Khi phát hành cần bổ sung:** Có gì mới, changelog.
-- **Git:** `feature/ai-designer`.
-- **Trạng thái:** đã triển khai; chờ owner yêu cầu phát hành.
+Chưa có thay đổi sản phẩm mới.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

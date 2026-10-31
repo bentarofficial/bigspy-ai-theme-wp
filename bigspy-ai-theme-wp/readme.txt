@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.79.1 =
+* Horizontal Scroll: panels show 3:1 on phones so the next one always peeks; drag with a mouse when not pinned.
+* Section: keeps content clear of shape dividers on phones.
+
 = 1.79.0 =
 * Horizontal Scroll: previous and next buttons with position dots, on phones and desktop.
 * Infinity Flow: new option to keep moving under reduced motion, on by default; pauses only on hover, press and hold, or keyboard focus.
