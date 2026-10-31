@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.77.1 =
+* Move CF7 forms: default options of select, radio and checkbox fields are kept, and [wpcf7.*] mail tags are filled in.
+* About page: new support links and a GitHub star button.
+
 = 1.77.0 =
 * Auto detect menu: duplicate focus keywords, H1 tags, unused media, broken links and a security scan. Reports only.
 * Features page: WebP on upload, SMTP email, related links in posts, header and footer code. Each is off by default.

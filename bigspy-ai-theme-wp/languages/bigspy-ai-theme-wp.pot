@@ -10647,3 +10647,6 @@ msgstr ""
 msgid "No page to preview yet"
 msgstr ""
 
+msgid "1.77.1: Contact Form 7 migration keeps default options and [wpcf7.*] mail tags. New support links on the About page."
+msgstr ""
+

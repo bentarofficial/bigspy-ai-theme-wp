@@ -6814,3 +6814,6 @@ msgstr "Kéo để đổi chiều rộng xem trước. Bấm đúp để đặt 
 msgid "No page to preview yet"
 msgstr "Chưa có trang để xem"
 
+msgid "1.77.1: Contact Form 7 migration keeps default options and [wpcf7.*] mail tags. New support links on the About page."
+msgstr "1.77.1: Chuyển Contact Form 7 giữ lựa chọn mặc định và thẻ mail [wpcf7.*]. Đổi liên kết hỗ trợ ở trang Giới thiệu."
+
