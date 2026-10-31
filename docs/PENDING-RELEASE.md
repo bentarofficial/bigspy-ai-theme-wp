@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới sau bản 1.77.0 (30-10-2026), bản này gom: Tự động phát hiện, trang Tính năng, nâng form và chuyển CF7, siết AI Designer.
+- **Trang giới thiệu theme và AI Designer:** mục hỗ trợ đổi sang fanpage, 2 nhóm Telegram, 2 group Facebook; thêm nút tặng sao GitHub.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

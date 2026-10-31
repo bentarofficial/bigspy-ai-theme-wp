@@ -84,7 +84,19 @@ function bst_welcome_screen( $kind = 'theme' ) {
 		}
 		echo '</div></details>';
 	}
-	echo '</div><section class="bst-welcome__roadmap"><h2>' . esc_html__( 'Coming soon', 'bigspy-ai-theme-wp' ) . '</h2><p>' . esc_html( $data['roadmap'] ) . '</p></section><section class="bst-welcome__support"><h2>' . esc_html__( 'Support and documentation', 'bigspy-ai-theme-wp' ) . '</h2><a href="https://phonglammedia.com/giao-dien-wordpress-bigspy-ai-theme-wp/" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Product page and Zalo contact', 'bigspy-ai-theme-wp' ) . '</a> · <a href="https://t.me/Phonglamofficial" target="_blank" rel="noopener noreferrer">Telegram @Phonglamofficial</a>';
+	echo '</div><section class="bst-welcome__roadmap"><h2>' . esc_html__( 'Coming soon', 'bigspy-ai-theme-wp' ) . '</h2><p>' . esc_html( $data['roadmap'] ) . '</p></section><section class="bst-welcome__support"><h2>' . esc_html__( 'Support and community', 'bigspy-ai-theme-wp' ) . '</h2>';
+	$channels = array(
+		'https://www.facebook.com/bigspyaithemewp/'           => __( 'Facebook fanpage', 'bigspy-ai-theme-wp' ),
+		'https://t.me/bigspyaithemewp'                        => __( 'Vietnam Telegram group', 'bigspy-ai-theme-wp' ),
+		'https://t.me/bigspyaithemewp_globalupdates'          => __( 'Global Telegram group', 'bigspy-ai-theme-wp' ),
+		'https://www.facebook.com/share/g/1JGTPWMUqv/'        => __( 'Vietnam Facebook group', 'bigspy-ai-theme-wp' ),
+		'https://www.facebook.com/share/g/18bX4DsdTN/'        => __( 'Global Facebook group', 'bigspy-ai-theme-wp' ),
+	);
+	$links = array();
+	foreach ( $channels as $url => $label ) {
+		$links[] = '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( $label ) . '</a>';
+	}
+	echo '<p>' . implode( ' · ', $links ) . '</p><p><a class="button" href="https://github.com/bentarofficial/bigspy-ai-theme-wp" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Give a star on GitHub', 'bigspy-ai-theme-wp' ) . '</a></p>';
 	if ( 'theme' === $kind && function_exists( 'bst_aid_about_page' ) ) { echo '<p><a class="button" href="' . esc_url( admin_url( 'admin.php?page=bst-ai-about' ) ) . '">' . esc_html__( 'Explore BIGSPY AI Designer', 'bigspy-ai-theme-wp' ) . '</a></p>'; }
 	echo '</section></div>';
 }
