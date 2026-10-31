@@ -166,6 +166,10 @@ Example first prompt:
 
 Only the latest release is kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not. Every release includes one installable ZIP named `bigspy-ai-theme-wp-X.Y.Z.zip`, matching tag `vX.Y.Z` and the theme version.
 
+### 1.77.2: SMTP password box
+
+- **Features page:** a saved SMTP password shows as `********` instead of an empty box.
+
 ### 1.77.1: Form migration fixes
 
 - **Move CF7 forms:** keeps default options and fills in `[wpcf7.*]` mail tags.

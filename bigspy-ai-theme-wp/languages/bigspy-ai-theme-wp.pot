@@ -10650,3 +10650,9 @@ msgstr ""
 msgid "1.77.1: Contact Form 7 migration keeps default options and [wpcf7.*] mail tags. New support links on the About page."
 msgstr ""
 
+msgid "Password saved. Type a new one to change it."
+msgstr ""
+
+msgid "1.77.2: Saved SMTP passwords now show as ******** in the Features page."
+msgstr ""
+

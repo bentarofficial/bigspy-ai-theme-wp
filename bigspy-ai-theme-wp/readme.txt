@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.77.2 =
+* Features page: a saved SMTP password shows as ******** instead of an empty box.
+
 = 1.77.1 =
 * Move CF7 forms: default options of select, radio and checkbox fields are kept, and [wpcf7.*] mail tags are filled in.
 * About page: new support links and a GitHub star button.

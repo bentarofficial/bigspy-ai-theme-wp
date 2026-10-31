@@ -6817,3 +6817,9 @@ msgstr "Chưa có trang để xem"
 msgid "1.77.1: Contact Form 7 migration keeps default options and [wpcf7.*] mail tags. New support links on the About page."
 msgstr "1.77.1: Chuyển Contact Form 7 giữ lựa chọn mặc định và thẻ mail [wpcf7.*]. Đổi liên kết hỗ trợ ở trang Giới thiệu."
 
+msgid "Password saved. Type a new one to change it."
+msgstr "Đã lưu mật khẩu. Nhập mật khẩu mới nếu muốn đổi."
+
+msgid "1.77.2: Saved SMTP passwords now show as ******** in the Features page."
+msgstr "1.77.2: Mật khẩu SMTP đã lưu hiện dạng ******** ở trang Tính năng."
+
