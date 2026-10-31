@@ -287,8 +287,11 @@ function bst_t_aid() {
 		)
 	);
 	bst_test( ! is_wp_error( $m ) && 3 === substr_count( $m['markup'], 'wp:bst/' ) && false === strpos( $m['markup'], 'wp:html' ) && false !== strpos( $m['markup'], '"tag":"h3"' ), 'core blocks become BIGSPY AI blocks' );
-	$raw = bst_aid_tree_to_markup( array( array( 'name' => 'core/html', 'raw' => '<!-- wp:html --><b>cũ</b><!-- /wp:html -->' ) ) );
+	$old  = '<!-- wp:html --><b>cũ</b><!-- /wp:html -->';
+	$page = wp_insert_post( wp_slash( array( 'post_title' => 'Cũ', 'post_type' => 'page', 'post_status' => 'draft', 'post_content' => $old ) ) );
+	$raw  = bst_aid_tree_to_markup( array( array( 'name' => 'core/html', 'raw' => $old ) ), $page );
 	bst_test( ! is_wp_error( $raw ) && false !== strpos( $raw['markup'], '<b>cũ</b>' ), 'old core/html kept' );
+	bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'core/html', 'raw' => $old ) ) ) ), 'core/html raw without a source refused' );
 	$rule = array_keys( bst_block_preset_rules() )[0];
 	$p    = bst_aid_tree_to_markup( array( array( 'name' => 'bst/text', 'attrs' => array( 'html' => '<p>a</p>', 'bsPresets' => "$rule fake-id" ) ) ) );
 	bst_test( false !== strpos( $p['markup'], $rule ) && false === strpos( $p['markup'], 'fake-id' ), 'presets kept, unknown ids dropped' );

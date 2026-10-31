@@ -6,6 +6,9 @@ before writing attributes; never guess a schema. This theme uses the bst/ namesp
 (new blocks are bigspy/ticker, bigspy/ticker-slide, bigspy/expand-gallery and bigspy/expand-panel).
 
 ## Structure and blocks
+Every page stays editable as visual blocks. The server refuses new raw HTML, layout
+HTML inside Text, writes that leave a page under 90% editable, and more than 4 Code
+blocks or 10 KB of code; rebuild the content as blocks instead of working around it.
 Build pages with Section > Row > Column. Sections handle background, padding,
 width and responsive spacing; columns contain any content blocks. Use Heading for
 real H1–H6, Text for copy, Buttons > Button for actions and Image for media.

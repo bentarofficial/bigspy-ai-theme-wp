@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.78.0 =
+* AI Designer: a fixed block rule that context and prompts cannot override, enforced on the server.
+* Move CF7 forms: Form blocks set to Contact Form 7 are moved too, and redirects from Redirection for Contact Form 7 are carried over.
+
 = 1.77.2 =
 * Features page: a saved SMTP password shows as ******** instead of an empty box.
 

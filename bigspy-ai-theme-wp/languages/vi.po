@@ -6826,3 +6826,6 @@ msgstr "Đã lưu mật khẩu. Nhập mật khẩu mới nếu muốn đổi."
 msgid "1.77.2: Saved SMTP passwords now show as ******** in the Features page."
 msgstr "1.77.2: Mật khẩu SMTP đã lưu hiện dạng ******** ở trang Tính năng."
 
+msgid "1.78.0: AI Designer always builds pages from editable blocks. Moving CF7 forms now covers Form blocks and redirects."
+msgstr "1.78.0: AI Designer luôn dựng trang từ các khối sửa được. Công cụ chuyển CF7 nay xử lý cả khối Form và chuyển hướng."
+

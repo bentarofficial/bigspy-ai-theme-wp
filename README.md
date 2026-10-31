@@ -166,6 +166,11 @@ Example first prompt:
 
 Only the latest release is kept on the [Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases) page. Major changes are listed below; small fixes are not. Every release includes one installable ZIP named `bigspy-ai-theme-wp-X.Y.Z.zip`, matching tag `vX.Y.Z` and the theme version.
 
+### 1.78.0: Fixed block rule, fuller CF7 move
+
+- **AI Designer:** pages are always built from blocks you can edit visually, and context or prompts cannot change that. The server refuses new raw HTML, layout HTML in text blocks, and writes that leave a page under 90% editable; Code blocks are capped at 4 blocks and 10 KB. Existing content stays editable as long as a change does not make it worse.
+- **Move CF7 forms:** Form blocks set to Contact Form 7 are now moved too, and redirects from Redirection for Contact Form 7 are carried over. Conditions, selected-field passing and mail tags in a redirect URL are listed under Not carried over.
+
 ### 1.77.2: SMTP password box
 
 - **Features page:** a saved SMTP password shows as `********` instead of an empty box.
