@@ -42,7 +42,7 @@
     },
     "alwaysMove": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "pauseHover": {
       "type": "boolean",

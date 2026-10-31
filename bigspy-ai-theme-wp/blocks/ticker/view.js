@@ -51,7 +51,7 @@
 		root.addEventListener('pointerleave', function () { hovered = false; pause(); });
 		root.addEventListener('pointerdown', function () { touched = true; pause(); });
 		['pointerup', 'pointercancel'].forEach(function (event) { window.addEventListener(event, function () { touched = false; pause(); }); });
-		root.addEventListener('focusin', function () { focused = true; pause(); });
+		root.addEventListener('focusin', function (e) { focused = e.target.matches(':focus-visible'); pause(); });
 		root.addEventListener('focusout', function (e) { focused = root.contains(e.relatedTarget); pause(); });
 		var resize = new ResizeObserver(schedule); resize.observe(root); resize.observe(sequence);
 		new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; pause(); }).observe(root);
