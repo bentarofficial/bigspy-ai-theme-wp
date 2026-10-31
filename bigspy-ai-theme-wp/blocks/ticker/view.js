@@ -22,7 +22,7 @@
 			var slideWidth = /%$/.test(width) ? (parseFloat(width) * vw / 100) + 'px' : width;
 			root.style.setProperty('--bs-ticker-width', slideWidth);
 			var length = sequence.getBoundingClientRect().width;
-			if (!length || reduced.matches) { return; }
+			if (!length || (reduced.matches && !config.always)) { return; }
 			var loop = config.mode === 'loop';
 			if (loop) {
 				// Coverage must include a viewport at BOTH ends of the entire translation.

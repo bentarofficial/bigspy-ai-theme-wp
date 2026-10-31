@@ -6832,3 +6832,6 @@ msgstr "1.78.0: AI Designer luôn dựng trang từ các khối sửa được. 
 msgid "1.78.1: Stacking Cards and other sticky motion blocks now work inside a Section. Infinity Flow no longer shows a scrollbar when reduced motion is on."
 msgstr "1.78.1: Stacking Cards và các khối động dính khi cuộn đã hoạt động đúng trong Section. Infinity Flow không còn hiện thanh cuộn khi bật giảm chuyển động."
 
+msgid "Keep moving when the device asks for reduced motion"
+msgstr "Vẫn chạy khi thiết bị bật giảm chuyển động"
+

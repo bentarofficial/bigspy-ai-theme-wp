@@ -40,6 +40,10 @@
       "type": "string",
       "default": "center"
     },
+    "alwaysMove": {
+      "type": "boolean",
+      "default": false
+    },
     "pauseHover": {
       "type": "boolean",
       "default": true

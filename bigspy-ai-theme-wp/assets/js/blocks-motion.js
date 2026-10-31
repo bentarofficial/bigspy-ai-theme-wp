@@ -33,7 +33,7 @@
 					control(props, 'widthTablet', __('Tablet slide width (auto, px or %)', T)),
 					control(props, 'widthMobile', __('Mobile slide width (auto, px or %)', T)),
 					control(props, 'verticalAlign', __('Vertical alignment', T), 'select', [['start', __('Top', T)], ['center', __('Center', T)], ['end', __('Bottom', T)]]),
-					control(props, 'pauseHover', __('Pause on hover / touch', T), 'toggle'), control(props, 'fadeEdges', __('Fade edges', T), 'toggle')
+					control(props, 'alwaysMove', __('Keep moving when the device asks for reduced motion', T), 'toggle'), control(props, 'pauseHover', __('Pause on hover / touch', T), 'toggle'), control(props, 'fadeEdges', __('Fade edges', T), 'toggle')
 				]);
 			} else {
 				inspector = inspector.concat([
