@@ -17,3 +17,4 @@ Chưa có thay đổi sản phẩm mới.
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 - Infinity Flow: new option to keep moving when the device asks for reduced motion (on by default). It pauses only on hover, press and hold, or keyboard focus; a click no longer leaves it paused.
+- Flip Box: full width inside flex columns; it used to collapse to zero width with center alignment.
