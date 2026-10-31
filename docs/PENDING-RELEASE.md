@@ -6,7 +6,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới.
+- **Yêu cầu/tính năng:** Horizontal Scroll trượt theo cuộn dọc trên mọi màn hình.
+- **Đã thay đổi:** ghim khi panel tràn ngang và vừa chiều cao màn hình, cuộn ngược thì panel trượt ngược; panel vừa đủ thì hiện thẳng hàng; panel quá cao thì giữ hàng vuốt ngang; bỏ nút lật và chấm chỉ số; bù segments.json mà 1.79.1 thiếu CSS mobile.
+- **Kiểm thử:** trang thử cục bộ 1159px và 375px; lint, features-check, block previews. Chưa thử cảm ứng thật, chưa thử trên site.
+- **Khi phát hành cần bổ sung:** Có gì mới, changelog; dùng tools/release.py.
+- **Git:** `feature/ai-designer`.
+- **Trạng thái:** đã triển khai; chờ owner yêu cầu phát hành.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
