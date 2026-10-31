@@ -265,7 +265,8 @@ input[type="submit"]:hover,
 
 /* Remove the gap between consecutive full sections in full-width pages. */
 .bs-full-width > .bs-section,
-.bs-content > .bs-section.alignfull {
+.bs-content > .bs-section.alignfull,
+.bs-content > .bs-hscroll-holder > .bs-section.alignfull {
 	margin-top: 0;
 	margin-bottom: 0;
 }
@@ -3445,6 +3446,8 @@ input[type="submit"]:hover,
 .bs-hscroll.is-pinned .bs-hscroll__sticky { position: sticky; top: var(--bs-hs-top, 0px); padding-block: 16px; overflow: hidden; }
 .bs-hscroll.is-pinned .bs-hscroll__track { width: 100%; will-change: transform; }
 .bs-hscroll.is-section-pin .bs-hscroll__sticky { position: static; }
+/* Desktop: at most three panels share the row, so sliding only starts at four. */
+@media (min-width: 1024px) { .bs-hscroll__panel { flex-basis: min(var(--bs-hs-w, 70cqw), calc((100cqw - 2 * var(--bs-hs-gap, 32px)) / 3)); } }
 .bs-hscroll.is-dragging .bs-hscroll__track { cursor: grabbing; scroll-snap-type: none; user-select: none; }
 /* Show panels 3:1 so the next one always peeks and the row reads as swipeable. */
 @media (max-width: 767px) { .bs-hscroll__panel { flex-basis: min(var(--bs-hs-w-m, 85cqw), calc((100% - var(--bs-hs-gap, 32px)) * .75)); } }

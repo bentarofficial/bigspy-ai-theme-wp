@@ -6,7 +6,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới.
+- **Yêu cầu/tính năng:** Horizontal Scroll trên máy tính hiện đủ 3 thẻ, từ 4 thẻ mới trượt; section không bị co thành khung trắng khi ghim.
+- **Đã thay đổi:** từ 1024px, thẻ rộng tối đa 1/3 khối; section full width giữ nguyên chiều rộng khi ghim.
+- **Kiểm thử:** đo trên trang chủ thật 1920px bằng CSS chèn: thẻ 435px, không tràn, không ghim. Chưa thử khối 4 thẻ.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
+- **Git:** `feature/ai-designer`.
+- **Trạng thái:** đã commit và push; chờ owner yêu cầu phát hành.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
