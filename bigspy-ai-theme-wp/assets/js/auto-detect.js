@@ -12,7 +12,7 @@
 		return n;
 	}
 	function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : '#'; }
-	function fail() { window.alert(t.failed); }
+	function fail(e) { window.alert((e && e.message) || t.failed); }
 	function action(id, data) { return api(id + '/action', data).then(function (s) { render(id, s); }).catch(fail); }
 
 	function itemRow(id, item) {
@@ -45,6 +45,43 @@
 		return row;
 	}
 
+	/* Thumbnail card: what the user looks at before deciding to keep or remove a file. */
+	function card(id, item, boxClass) {
+		var pick = node('input', { type: 'checkbox', className: boxClass, value: item.select || item.id });
+		var kids = [node('label', { style: 'display:block;cursor:pointer' }, [
+			node('img', { src: safeUrl(item.thumb), alt: '', loading: 'lazy', style: 'display:block;width:100%;height:130px;object-fit:contain;background:#f0f0f1' }),
+			pick,
+			' ' + item.title
+		])];
+		if (item.detail) { kids.push(node('div', { className: 'description', style: 'word-break:break-all', textContent: item.detail })); }
+		if (item.edit) { kids.push(node('a', { href: safeUrl(item.edit), target: '_blank', textContent: '#' + item.select })); }
+		if (item.ignore) {
+			kids.push(node('button', { type: 'button', className: 'button-link', style: 'margin-left:8px', textContent: t.keep, onclick: function () {
+				api(id + '/ignore', { key: item.key }).then(function (s) { render(id, s); }).catch(fail);
+			} }));
+		}
+		return node('li', { style: 'border:1px solid #dcdcde;padding:8px;margin:0;font-size:12px;overflow:hidden' }, kids);
+	}
+	function picked(list, cls) {
+		return Array.prototype.map.call(list.querySelectorAll('.' + cls + ':checked'), function (c) { return Number(c.value); });
+	}
+	function selectAll(list) {
+		return node('button', { type: 'button', className: 'button', textContent: t.selectAll, onclick: function () {
+			var boxes = list.querySelectorAll('input[type=checkbox]');
+			var on = Array.prototype.some.call(boxes, function (c) { return !c.checked; });
+			boxes.forEach(function (c) { c.checked = on; });
+		} });
+	}
+	/* Generate a few at a time so a long run never hits a server time limit. */
+	function generate(id, ids, batch) {
+		if (!ids.length) { return; }
+		api(id + '/action', { op: 'generate', ids: ids.slice(0, batch) }).then(function (s) {
+			render(id, s);
+			generate(id, ids.slice(batch), batch);
+		}).catch(function (e) { api('state').then(function (all) { render(id, all.modules[id]); }); fail(e); });
+	}
+	var grid = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;list-style:none;padding:0';
+
 	var panels = {};
 	function render(id, s) {
 		var box = panels[id], running = s.status === 'running';
@@ -52,13 +89,41 @@
 		box.button.disabled = running;
 		box.note.textContent = s.note || '';
 		box.list.textContent = '';
-		s.items.forEach(function (item) { box.list.appendChild(itemRow(id, item)); });
+		var cards = s.items.some(function (i) { return i.thumb; });
+		box.list.style.cssText = cards ? grid : '';
+		s.items.forEach(function (item) { box.list.appendChild(cards ? card(id, item, 'bst-ad-pick') : itemRow(id, item)); });
 		if (!running && s.finished && !s.items.length) { box.list.appendChild(node('li', { textContent: t.clean })); }
 		box.bulk.textContent = '';
-		if (s.items.some(function (i) { return i.select; })) {
+		var extra = s.extra || {};
+		if (id === 'atnd') {
+			if (!extra.ready) {
+				box.bulk.appendChild(node('a', { className: 'button button-primary', href: safeUrl(extra.connect), textContent: t.connect }));
+			} else if (s.items.length) {
+				box.bulk.appendChild(selectAll(box.list));
+				box.bulk.appendChild(node('button', { type: 'button', className: 'button button-primary', style: 'margin-left:6px', textContent: t.generate, onclick: function () {
+					generate(id, picked(box.list, 'bst-ad-pick'), extra.batch);
+				} }));
+			}
+		} else if (s.items.some(function (i) { return i.select; })) {
+			if (cards) { box.bulk.appendChild(selectAll(box.list)); }
 			box.bulk.appendChild(node('button', { type: 'button', className: 'button', textContent: t.deleteBtn, onclick: function () {
-				var ids = Array.prototype.map.call(box.list.querySelectorAll('.bst-ad-pick:checked'), function (c) { return Number(c.value); });
+				var ids = picked(box.list, 'bst-ad-pick');
 				if (ids.length && window.confirm(t.deleteAsk)) { action(id, { op: 'delete', ids: ids }); }
+			} }));
+		}
+		box.trash.textContent = '';
+		if ((extra.trashed || []).length) {
+			var bin = node('ul', { style: grid });
+			extra.trashed.forEach(function (item) { bin.appendChild(card(id, item, 'bst-ad-bin')); });
+			box.trash.appendChild(node('h3', { textContent: t.trash + ' (' + extra.trashed.length + ')' }));
+			box.trash.appendChild(bin);
+			box.trash.appendChild(selectAll(bin));
+			box.trash.appendChild(node('button', { type: 'button', className: 'button', style: 'margin:0 6px', textContent: t.restoreBtn, onclick: function () {
+				action(id, { op: 'restore', ids: picked(bin, 'bst-ad-bin') });
+			} }));
+			box.trash.appendChild(node('button', { type: 'button', className: 'button-link button-link-delete', textContent: t.purgeBtn, onclick: function () {
+				var ids = picked(bin, 'bst-ad-bin');
+				if (ids.length && window.confirm(t.purgeAsk)) { action(id, { op: 'purge', ids: ids }); }
 			} }));
 		}
 		if (running && !box.busy) { advance(id); }
@@ -81,13 +146,14 @@
 				status: node('span', { style: 'margin-left:10px' }),
 				note: node('p', { className: 'description' }),
 				list: node('ul', {}),
-				bulk: node('p', {})
+				bulk: node('p', {}),
+				trash: node('div', {})
 			};
 			box.button = node('button', { type: 'button', className: 'button button-primary', textContent: t.scan, onclick: function () {
 				api(id + '/start', {}).then(function (s) { render(id, s); }).catch(fail);
 			} });
 			panels[id] = box;
-			root.appendChild(node('div', { className: 'card', style: 'max-width:none' }, [node('h2', { textContent: m.label }), node('p', { textContent: m.intro }), box.button, box.status, box.note, box.list, box.bulk]));
+			root.appendChild(node('div', { className: 'card', style: 'max-width:none' }, [node('h2', { textContent: m.label }), node('p', { textContent: m.intro }), box.button, box.status, box.note, box.list, box.bulk, box.trash]));
 			render(id, state.modules[id]);
 		});
 	}).catch(fail);

@@ -6,6 +6,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
+- **Auto Detect, quét media và Media ATND (G-34):** quét media sâu như plugin Media Cleaner (shortcode Flatsome, WebP, mọi option, postmeta, termmeta); Media Library có tích xanh/X đỏ, cột, bộ lọc, link "Chưa dùng", bulk action; trang Auto detect có ảnh thu nhỏ, chọn tất cả, "Giữ tệp này"; xoá vào thùng rác của theme, kiểm tra lại ngay trước khi xoá, khôi phục được. Thêm module Media ATND dùng kết nối API theme. Test: 67 mục auto-detect đạt trên Playground (AI giả lập), features-check đạt. Chưa thử giao diện trong trình duyệt, chưa thử AI thật. Khi phát hành: bổ sung Có gì mới, README.
+
 - **Yêu cầu/tính năng:** Horizontal Scroll trượt theo cuộn dọc trên mọi màn hình.
 - **Đã thay đổi:** ghim khi panel tràn ngang và vừa chiều cao màn hình, cuộn ngược thì panel trượt ngược; panel vừa đủ thì hiện thẳng hàng; panel quá cao thì giữ hàng vuốt ngang; bỏ nút lật và chấm chỉ số; bù segments.json mà 1.79.1 thiếu CSS mobile.
 - **Kiểm thử:** trang thử cục bộ 1159px và 375px; lint, features-check, block previews. Chưa thử cảm ứng thật, chưa thử trên site.

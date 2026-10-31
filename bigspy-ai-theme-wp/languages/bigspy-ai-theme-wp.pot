@@ -10680,3 +10680,69 @@ msgstr ""
 msgid "1.79.1: Horizontal Scroll shows the next panel on phones and can be dragged with a mouse. Sections keep text clear of shape dividers on phones."
 msgstr ""
 
+msgid "Searches content, blocks, shortcodes, featured images, galleries, widgets, theme settings, plugin settings and all metadata, in every image size and WebP copy. Files hard-coded in templates may still be listed, so check the thumbnails before deleting."
+msgstr ""
+
+msgid "The WordPress trash is turned off (EMPTY_TRASH_DAYS), so nothing was deleted."
+msgstr ""
+
+msgid "Usage"
+msgstr ""
+
+msgid "In use"
+msgstr ""
+
+msgid "Unused"
+msgstr ""
+
+msgid "All usage"
+msgstr ""
+
+msgid "Move unused to trash"
+msgstr ""
+
+msgid "%1$d files moved to trash, %2$d kept because they are in use or not scanned yet. Restore them on the Auto detect page."
+msgstr ""
+
+msgid "Media ATND"
+msgstr ""
+
+msgid "Finds images missing Alt text, Title, Caption or Description, and writes them with AI after you select the images. Text already there is kept. Uses the API connection in AI Designer settings; the model must support images."
+msgstr ""
+
+msgid "%d images need text."
+msgstr ""
+
+msgid "The model did not return usable text. Choose a model that supports images."
+msgstr ""
+
+msgid "Connect the API in AI Designer settings first."
+msgstr ""
+
+msgid "Move selected to trash"
+msgstr ""
+
+msgid "Move the selected files to the trash? Files still in use are skipped, and you can restore the rest here."
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+msgid "Keep this file"
+msgstr ""
+
+msgid "Trash"
+msgstr ""
+
+msgid "Restore selected"
+msgstr ""
+
+msgid "Delete selected permanently"
+msgstr ""
+
+msgid "Generate for selected"
+msgstr ""
+
+msgid "Connect the API to use this tool"
+msgstr ""
+

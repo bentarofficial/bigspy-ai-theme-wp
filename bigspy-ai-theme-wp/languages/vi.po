@@ -6847,3 +6847,69 @@ msgstr "1.79.0: Horizontal Scroll có nút trước, sau và chấm chỉ số. 
 msgid "1.79.1: Horizontal Scroll shows the next panel on phones and can be dragged with a mouse. Sections keep text clear of shape dividers on phones."
 msgstr "1.79.1: Horizontal Scroll hiện một phần thẻ kế tiếp trên điện thoại và kéo được bằng chuột. Section giữ chữ cách xa đường sóng trên điện thoại."
 
+msgid "Searches content, blocks, shortcodes, featured images, galleries, widgets, theme settings, plugin settings and all metadata, in every image size and WebP copy. Files hard-coded in templates may still be listed, so check the thumbnails before deleting."
+msgstr "Tìm trong nội dung, khối, shortcode, ảnh đại diện, thư viện ảnh, widget, cài đặt theme, cài đặt plugin và toàn bộ metadata, ở mọi kích thước ảnh và bản WebP. Tệp viết cứng trong template vẫn có thể bị liệt kê, nên hãy xem ảnh thu nhỏ trước khi xoá."
+
+msgid "The WordPress trash is turned off (EMPTY_TRASH_DAYS), so nothing was deleted."
+msgstr "Thùng rác WordPress đang tắt (EMPTY_TRASH_DAYS) nên chưa xoá gì."
+
+msgid "Usage"
+msgstr "Sử dụng"
+
+msgid "In use"
+msgstr "Đang dùng"
+
+msgid "Unused"
+msgstr "Chưa dùng"
+
+msgid "All usage"
+msgstr "Mọi trạng thái sử dụng"
+
+msgid "Move unused to trash"
+msgstr "Chuyển tệp chưa dùng vào thùng rác"
+
+msgid "%1$d files moved to trash, %2$d kept because they are in use or not scanned yet. Restore them on the Auto detect page."
+msgstr "Đã chuyển %1$d tệp vào thùng rác, giữ lại %2$d tệp đang dùng hoặc chưa quét. Khôi phục ở trang Tự động phát hiện."
+
+msgid "Media ATND"
+msgstr "Media ATND"
+
+msgid "Finds images missing Alt text, Title, Caption or Description, and writes them with AI after you select the images. Text already there is kept. Uses the API connection in AI Designer settings; the model must support images."
+msgstr "Tìm ảnh thiếu Alt, Tiêu đề, Chú thích hoặc Mô tả, rồi dùng AI viết sau khi bạn chọn ảnh. Nội dung đã có được giữ nguyên. Dùng kết nối API trong cài đặt AI Designer; model phải đọc được ảnh."
+
+msgid "%d images need text."
+msgstr "%d ảnh cần bổ sung nội dung."
+
+msgid "The model did not return usable text. Choose a model that supports images."
+msgstr "Model không trả về nội dung dùng được. Hãy chọn model đọc được ảnh."
+
+msgid "Connect the API in AI Designer settings first."
+msgstr "Hãy kết nối API trong cài đặt AI Designer trước."
+
+msgid "Move selected to trash"
+msgstr "Chuyển mục đã chọn vào thùng rác"
+
+msgid "Move the selected files to the trash? Files still in use are skipped, and you can restore the rest here."
+msgstr "Chuyển các tệp đã chọn vào thùng rác? Tệp đang dùng sẽ được bỏ qua, các tệp còn lại có thể khôi phục tại đây."
+
+msgid "Select all"
+msgstr "Chọn tất cả"
+
+msgid "Keep this file"
+msgstr "Giữ tệp này"
+
+msgid "Trash"
+msgstr "Thùng rác"
+
+msgid "Restore selected"
+msgstr "Khôi phục mục đã chọn"
+
+msgid "Delete selected permanently"
+msgstr "Xoá vĩnh viễn mục đã chọn"
+
+msgid "Generate for selected"
+msgstr "Tạo cho ảnh đã chọn"
+
+msgid "Connect the API to use this tool"
+msgstr "Kết nối API để dùng công cụ này"
+
