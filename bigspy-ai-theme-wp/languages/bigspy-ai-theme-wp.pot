@@ -10662,3 +10662,6 @@ msgstr ""
 msgid "1.78.0: AI Designer always builds pages from editable blocks. Moving CF7 forms now covers Form blocks and redirects."
 msgstr ""
 
+msgid "1.78.1: Stacking Cards and other sticky motion blocks now work inside a Section. Infinity Flow no longer shows a scrollbar when reduced motion is on."
+msgstr ""
+
