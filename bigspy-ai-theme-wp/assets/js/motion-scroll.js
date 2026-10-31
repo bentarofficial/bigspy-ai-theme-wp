@@ -53,7 +53,33 @@
 	function hscroll(root) {
 		var sticky = root.firstElementChild, track = sticky && sticky.firstElementChild;
 		if (!track) { return; }
-		var distance = 0, ticking = false;
+		var distance = 0, pinTop = 0, ticking = false, section = root.closest('.bs-section'), holder = null;
+		function headerBottom() {
+			var head = document.querySelector('.bs-header');
+			return head && /sticky|fixed/.test(getComputedStyle(head).position) ? Math.max(0, head.getBoundingClientRect().bottom) : 0;
+		}
+		/* Pin the whole section when it is short enough, so its heading and buttons stay beside the panels instead of blank space. */
+		function pinSection(gap) {
+			if (!section || section.offsetHeight > window.innerHeight * 1.5 || !section.parentNode) { return false; }
+			if (!holder) {
+				holder = document.createElement('div');
+				holder.className = 'bs-hscroll-holder';
+				section.parentNode.insertBefore(holder, section);
+				holder.appendChild(section);
+			}
+			var h = section.offsetHeight, top = root.getBoundingClientRect().top - section.getBoundingClientRect().top;
+			pinTop = h <= window.innerHeight - gap ? gap + (window.innerHeight - gap - h) / 2 : Math.min(gap, Math.max(window.innerHeight - h, (window.innerHeight + gap - sticky.offsetHeight) / 2 - top));
+			section.style.position = 'sticky';
+			section.style.top = pinTop.toFixed(1) + 'px';
+			holder.style.height = h + distance + 'px';
+			root.classList.add('is-section-pin');
+			root.style.height = '';
+			return true;
+		}
+		function unpinSection() {
+			root.classList.remove('is-section-pin');
+			if (holder) { holder.style.height = ''; section.style.position = ''; section.style.top = ''; }
+		}
 		function pinnable() {
 			var was = root.classList.contains('is-pinned'), fits;
 			root.classList.remove('is-pinned');
@@ -64,15 +90,22 @@
 		function measure() {
 			var on = pinnable();
 			root.classList.toggle('is-pinned', on);
-			if (!on) { root.style.height = ''; track.style.transform = ''; distance = 0; return; }
-			distance = Math.max(0, track.scrollWidth + parseFloat(getComputedStyle(track).paddingRight) - sticky.clientWidth);
-			root.style.height = 'calc(100svh + ' + distance + 'px)';
+			if (!on) { unpinSection(); root.style.height = ''; root.style.removeProperty('--bs-hs-top'); track.style.transform = ''; distance = 0; return; }
+			distance = Math.max(0, track.scrollWidth - sticky.clientWidth);
+			var gap = headerBottom();
+			root.style.height = '';
+			if (!pinSection(gap)) {
+				unpinSection();
+				pinTop = gap + Math.max(0, (window.innerHeight - gap - sticky.offsetHeight) / 2);
+				root.style.setProperty('--bs-hs-top', pinTop.toFixed(1) + 'px');
+				root.style.height = sticky.offsetHeight + distance + 'px';
+			}
 			update();
 		}
 		function update() {
 			ticking = false;
 			if (!root.classList.contains('is-pinned')) { return; }
-			var p = Math.min(1, Math.max(0, -root.getBoundingClientRect().top / Math.max(1, root.offsetHeight - sticky.offsetHeight)));
+			var p = Math.min(1, Math.max(0, (pinTop - (root.classList.contains('is-section-pin') ? holder : root).getBoundingClientRect().top) / Math.max(1, distance)));
 			track.style.transform = 'translate3d(' + (-p * distance).toFixed(1) + 'px,0,0)';
 		}
 		function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }

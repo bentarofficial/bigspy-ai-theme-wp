@@ -6212,11 +6212,11 @@ msgstr "Màu nét"
 msgid "Horizontal Scroll"
 msgstr "Horizontal Scroll"
 
-msgid "Panel width – desktop (% of screen)"
-msgstr "Chiều rộng ô – máy tính (% màn hình)"
+msgid "Panel width – desktop (% of block)"
+msgstr "Chiều rộng ô – máy tính (% chiều rộng khối)"
 
-msgid "Panel width – mobile (% of screen)"
-msgstr "Chiều rộng ô – điện thoại (% màn hình)"
+msgid "Panel width – mobile (% of block)"
+msgstr "Chiều rộng ô – điện thoại (% chiều rộng khối)"
 
 msgid "On the site, visitors scroll down and these panels slide sideways. On phones they become a swipeable row."
 msgstr "Trên website, khách cuộn xuống thì các ô này trượt ngang. Trên điện thoại chúng thành hàng vuốt ngang."
@@ -6912,6 +6912,9 @@ msgstr "Tạo cho ảnh đã chọn"
 
 msgid "Connect the API to use this tool"
 msgstr "Kết nối API để dùng công cụ này"
+
+msgid "1.80.1: Horizontal Scroll fix: panel width now follows the block width and matches the editor, and the whole section stays on screen while pinned, removing the blank space above and below."
+msgstr "1.80.1: Sửa Horizontal Scroll: chiều rộng ô theo chiều rộng khối, khớp editor; cả section được giữ trên màn hình khi ghim nên hết khoảng trắng trên dưới."
 
 msgid "1.80.0: Media Library marks used and unused files, and unused files go to a restorable trash after a fresh check. Media ATND writes image alt text, title, caption and description with AI. Horizontal Scroll pins on all screens. AI Designer keeps motion blocks intact when editing."
 msgstr "1.80.0: Media Library đánh dấu tệp đã dùng và chưa dùng; tệp chưa dùng vào thùng rác khôi phục được sau khi kiểm tra lại. Media ATND dùng AI viết alt, tiêu đề, chú thích và mô tả ảnh. Horizontal Scroll ghim trên mọi màn hình. AI Designer giữ nguyên khối động khi sửa."

@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.80.1 =
+* Horizontal Scroll: panel width follows the block width and matches the editor.
+* Horizontal Scroll: the whole section stays on screen while pinned, removing blank space above and below.
+
 = 1.80.0 =
 * Auto detect: deeper unused media scan (shortcodes, WebP copies, all options and metadata); green tick and red X in the Media Library, usage filter, thumbnails, select all, keep a file.
 * Auto detect: unused files move to a restorable trash after a fresh check; files in use are refused.
