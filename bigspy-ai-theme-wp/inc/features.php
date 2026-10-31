@@ -54,6 +54,9 @@ foreach ( bst_feature_ids() as $bst_feature_id ) {
 	}
 }
 
+/** Shown in place of a saved password; the real value never reaches the page. */
+const BST_FEATURE_PASSWORD_MASK = '********';
+
 /** Clean one posted value by field type; null keeps what is stored. */
 function bst_feature_clean( $field, $raw ) {
 	$type = $field['type'];
@@ -68,7 +71,7 @@ function bst_feature_clean( $field, $raw ) {
 		return current_user_can( 'unfiltered_html' ) ? $raw : null;
 	}
 	if ( 'password' === $type ) {
-		return '' === $raw ? null : bst_feature_encrypt( $raw );
+		return '' === $raw || BST_FEATURE_PASSWORD_MASK === $raw ? null : bst_feature_encrypt( $raw );
 	}
 	if ( 'number' === $type ) {
 		return max( $field['min'], min( $field['max'], (int) $raw ) );
@@ -141,7 +144,10 @@ function bst_feature_field_html( $id, $key, $field ) {
 			$input .= '</select>';
 			break;
 		case 'password':
-			$input = '<input type="password" class="regular-text" autocomplete="new-password" ' . $attr . ' placeholder="' . esc_attr( $value ? __( 'Saved. Leave empty to keep it.', 'bigspy-ai-theme-wp' ) : '' ) . '">';
+			$input = '<input type="password" class="regular-text" autocomplete="new-password" onfocus="this.select()" ' . $attr . ' value="' . esc_attr( $value ? BST_FEATURE_PASSWORD_MASK : '' ) . '">';
+			if ( $value ) {
+				$input .= '<p class="description">' . esc_html__( 'Password saved. Type a new one to change it.', 'bigspy-ai-theme-wp' ) . '</p>';
+			}
 			break;
 		case 'code':
 			$locked = current_user_can( 'unfiltered_html' ) ? '' : ' readonly';

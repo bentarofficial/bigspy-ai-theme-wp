@@ -118,6 +118,9 @@ function bst_t_smtp() {
 	bst_features_page();
 	$html = ob_get_clean();
 	bst_test( false === strpos( $html, $stored['password'] ) && false === strpos( $html, "pa'ss" ), 'page never prints the password' );
+	bst_test( false !== strpos( $html, 'value="' . BST_FEATURE_PASSWORD_MASK . '"' ), 'saved password shows the mask' );
+	bst_features_save( array( 'bst_on' => bst_feature_ids(), 'bst_field' => array( 'smtp' => array( 'password' => BST_FEATURE_PASSWORD_MASK, 'host' => 'mail.test', 'secure' => 'ssl', 'user' => 'u@x.test', 'port' => 465 ) ) ) );
+	bst_test( $pass === bst_smtp_password(), 'saving the mask keeps the saved password' );
 	bst_test( false !== strpos( $html, 'bst_smtp_test' ), 'test email button shown' );
 	bst_test( ! bst_smtp_send_test() && '' !== get_transient( 'bst_smtp_error_1' ), 'failed test keeps the error: ' . get_transient( 'bst_smtp_error_1' ) );
 }
