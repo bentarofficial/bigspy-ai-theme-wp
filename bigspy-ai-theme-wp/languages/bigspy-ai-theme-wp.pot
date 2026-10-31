@@ -10674,3 +10674,6 @@ msgstr ""
 msgid "Next panel"
 msgstr ""
 
+msgid "1.79.0: Horizontal Scroll adds previous and next buttons with position dots. Infinity Flow keeps moving under reduced motion. Flip Box fills its column."
+msgstr ""
+

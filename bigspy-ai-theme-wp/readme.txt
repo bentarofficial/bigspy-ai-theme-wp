@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.79.0 =
+* Horizontal Scroll: previous and next buttons with position dots, on phones and desktop.
+* Infinity Flow: new option to keep moving under reduced motion, on by default; pauses only on hover, press and hold, or keyboard focus.
+* Flip Box: fills flex columns instead of collapsing.
+
 = 1.78.1 =
 * Stacking Cards, Scroll Story, Horizontal Scroll and Zoom Hero now stick correctly inside a Section.
 * Infinity Flow: no scrollbar when reduced motion is on; swiping still works.

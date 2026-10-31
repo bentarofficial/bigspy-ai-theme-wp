@@ -47,6 +47,7 @@ return array(
 		'1.77.2: Saved SMTP passwords now show as ******** in the Features page.' => '1.77.2: Mật khẩu SMTP đã lưu hiện dạng ******** ở trang Tính năng.',
 		'1.78.0: AI Designer always builds pages from editable blocks. Moving CF7 forms now covers Form blocks and redirects.' => '1.78.0: AI Designer luôn dựng trang từ các khối sửa được. Công cụ chuyển CF7 nay xử lý cả khối Form và chuyển hướng.',
 		'1.78.1: Stacking Cards and other sticky motion blocks now work inside a Section. Infinity Flow no longer shows a scrollbar when reduced motion is on.' => '1.78.1: Stacking Cards và các khối động dính khi cuộn đã hoạt động đúng trong Section. Infinity Flow không còn hiện thanh cuộn khi bật giảm chuyển động.',
+		'1.79.0: Horizontal Scroll adds previous and next buttons with position dots. Infinity Flow keeps moving under reduced motion. Flip Box fills its column.' => '1.79.0: Horizontal Scroll có nút trước, sau và chấm chỉ số. Infinity Flow vẫn chạy khi bật giảm chuyển động. Flip Box giãn đủ cột.',
 		'10 years of deep skin care experience.' => '10 năm kinh nghiệm chăm sóc da chuyên sâu.',
 		'10% off for groups of 3, and 0% instalments by credit card.' => 'Giảm 10% khi đăng ký theo nhóm 3 người, trả góp 0% qua thẻ tín dụng.',
 		'100% genuine' => 'Chính hãng 100%',

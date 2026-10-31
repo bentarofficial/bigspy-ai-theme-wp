@@ -6841,3 +6841,6 @@ msgstr "Thẻ trước"
 msgid "Next panel"
 msgstr "Thẻ sau"
 
+msgid "1.79.0: Horizontal Scroll adds previous and next buttons with position dots. Infinity Flow keeps moving under reduced motion. Flip Box fills its column."
+msgstr "1.79.0: Horizontal Scroll có nút trước, sau và chấm chỉ số. Infinity Flow vẫn chạy khi bật giảm chuyển động. Flip Box giãn đủ cột."
+
