@@ -10746,3 +10746,6 @@ msgstr ""
 msgid "Connect the API to use this tool"
 msgstr ""
 
+msgid "1.80.0: Media Library marks used and unused files, and unused files go to a restorable trash after a fresh check. Media ATND writes image alt text, title, caption and description with AI. Horizontal Scroll pins on all screens. AI Designer keeps motion blocks intact when editing."
+msgstr ""
+

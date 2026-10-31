@@ -6913,3 +6913,6 @@ msgstr "Tạo cho ảnh đã chọn"
 msgid "Connect the API to use this tool"
 msgstr "Kết nối API để dùng công cụ này"
 
+msgid "1.80.0: Media Library marks used and unused files, and unused files go to a restorable trash after a fresh check. Media ATND writes image alt text, title, caption and description with AI. Horizontal Scroll pins on all screens. AI Designer keeps motion blocks intact when editing."
+msgstr "1.80.0: Media Library đánh dấu tệp đã dùng và chưa dùng; tệp chưa dùng vào thùng rác khôi phục được sau khi kiểm tra lại. Media ATND dùng AI viết alt, tiêu đề, chú thích và mô tả ảnh. Horizontal Scroll ghim trên mọi màn hình. AI Designer giữ nguyên khối động khi sửa."
+
