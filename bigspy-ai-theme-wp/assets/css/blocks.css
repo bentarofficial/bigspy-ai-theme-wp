@@ -3441,17 +3441,8 @@ input[type="submit"]:hover,
 .bs-hscroll:not(.is-pinned) .bs-hscroll__track { overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; padding-bottom: 4px; }
 .bs-hscroll:not(.is-pinned) .bs-hscroll__track::-webkit-scrollbar { display: none; }
 .bs-hscroll:not(.is-pinned) .bs-hscroll__panel { scroll-snap-align: start; }
-.bs-hscroll.is-pinned .bs-hscroll__sticky { position: sticky; top: 0; display: flex; align-items: center; height: 100vh; overflow: hidden; }
-.bs-hscroll.is-pinned .bs-hscroll__track { will-change: transform; padding: 0 max(16px, 4vw); }
-.bs-hscroll.is-pinned .bs-hscroll__panel { max-height: 80vh; }
-.bs-hscroll__nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; }
-.bs-hscroll.is-pinned .bs-hscroll__nav { position: absolute; left: 0; right: 0; bottom: 2vh; margin: 0; }
-.bs-hscroll__arrow { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; color: var(--bs-primary); background: #fff; border: 1px solid rgba(148, 163, 184, .4); border-radius: 50%; box-shadow: 0 4px 14px rgba(15, 23, 42, .1); cursor: pointer; }
-.bs-hscroll__arrow:disabled { opacity: .35; cursor: default; box-shadow: none; }
-.bs-hscroll__dots { display: flex; gap: 6px; }
-.bs-hscroll__dot { width: 8px; height: 8px; border-radius: 99px; background: rgba(148, 163, 184, .5); transition: width .3s ease, background .3s ease; }
-.bs-hscroll__dot.is-active { width: 22px; background: var(--bs-primary); }
-.bs-hscroll:not(.is-pinned).is-draggable .bs-hscroll__track { cursor: grab; }
+.bs-hscroll.is-pinned .bs-hscroll__sticky { position: sticky; top: 0; display: flex; align-items: center; height: 100vh; height: 100svh; overflow: hidden; }
+.bs-hscroll.is-pinned .bs-hscroll__track { box-sizing: border-box; width: 100%; will-change: transform; padding: 0 max(16px, 4vw); }
 .bs-hscroll.is-dragging .bs-hscroll__track { cursor: grabbing; scroll-snap-type: none; user-select: none; }
 /* Show panels 3:1 so the next one always peeks and the row reads as swipeable. */
 @media (max-width: 767px) { .bs-hscroll__panel { flex-basis: min(var(--bs-hs-w-m, 85vw), calc((100% - var(--bs-hs-gap, 32px)) * .75)); } }

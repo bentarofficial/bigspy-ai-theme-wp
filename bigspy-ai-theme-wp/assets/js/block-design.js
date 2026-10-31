@@ -200,10 +200,10 @@
 	wp.hooks.addFilter('blocks.registerBlockType', 'bst/design-attribute', function (settings, name) {
 		if (isBst(name)) {
 			settings.attributes = Object.assign({}, settings.attributes, { bsDesign: { type: 'object', default: {} }, bsWidth: { type: 'string', default: '' } });
-			var off = (window.bstEditor && window.bstEditor.disabledBlocks) || [];
-			if (off.indexOf(name) !== -1) {
-				settings.supports = Object.assign({}, settings.supports, { inserter: false });
-			}
+		}
+		var off = (window.bstEditor && window.bstEditor.disabledBlocks) || [];
+		if (off.indexOf(name) !== -1) {
+			settings.supports = Object.assign({}, settings.supports, { inserter: false });
 		}
 		return settings;
 	});

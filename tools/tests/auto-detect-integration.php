@@ -107,7 +107,91 @@ function bst_t_media() {
 	$request->set_param( 'op', 'delete' );
 	$request->set_param( 'ids', array( $free, $tag ) );
 	bst_ad_media_action( $request );
-	bst_test( ! get_post( $free ) && get_post( $tag ), 'media: delete removes listed only, not a used file' );
+	bst_test( 'trash' === get_post_status( $free ) && 'inherit' === get_post_field( 'post_status', $tag ), 'media: delete trashes unused only, not a used file' );
+	$flat = bst_att( 'flatsome' );
+	$opt  = bst_att( 'inoption' );
+	$web  = bst_att( 'webpcopy' );
+	$term = bst_att( 'cat' );
+	$late = bst_att( 'late' );
+	$kept = bst_att( 'kept' );
+	$old  = bst_att( 'notscanned' );
+	bst_post( 'F', '[ux_banner bg="' . $flat . '"] <img src="/wp-content/webp-express/webp-images/uploads/2026/10/webpcopy.png.webp">' );
+	update_option( 'some_plugin_opts', array( 'hero' => array( 'image_id' => $opt ) ) );
+	$cat = wp_insert_term( 'C' . wp_rand(), 'category' );
+	update_term_meta( $cat['term_id'], 'thumbnail_id', $term );
+	$ids = wp_list_pluck( bst_scan( 'media' ), 'select' );
+	foreach ( array( 'shortcode' => $flat, 'option' => $opt, 'webp' => $web, 'term' => $term ) as $label => $id ) {
+		bst_test( ! in_array( $id, $ids ), 'media: used by ' . $label . ' kept' );
+		bst_test( 'used' === get_post_meta( $id, BST_AD_MEDIA_META, true ), 'media: ' . $label . ' marked used' );
+	}
+	bst_test( in_array( $late, $ids ) && 'unused' === get_post_meta( $late, BST_AD_MEDIA_META, true ), 'media: unused marked' );
+	$js = wp_prepare_attachment_for_js( $late );
+	bst_test( 'unused' === ( $js['bstUsage'] ?? '' ), 'media: library gets the mark' );
+	$_REQUEST['query'] = array( 'bst_usage' => 'unused' );
+	$args = apply_filters( 'ajax_query_attachments_args', array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'posts_per_page' => -1, 'fields' => 'ids' ) );
+	unset( $_REQUEST['query'] );
+	$list = get_posts( $args );
+	bst_test( in_array( $late, $list ) && ! in_array( $tag, $list ), 'media: filter shows unused only' );
+	bst_post( 'After scan', '<img src="/wp-content/uploads/2026/10/late-300x200.png">' );
+	$ignore = new WP_REST_Request( 'POST' );
+	$ignore['module'] = 'media';
+	$ignore->set_param( 'key', 'media-' . $kept );
+	bst_ad_rest_ignore( $ignore );
+	$new = bst_att( 'fresh' );
+	$request->set_param( 'ids', array( $late, $kept, $new, $old ) );
+	bst_ad_media_action( $request );
+	bst_test( 'inherit' === get_post_field( 'post_status', $late ) && 'used' === get_post_meta( $late, BST_AD_MEDIA_META, true ), 'media: file used after the scan is refused' );
+	bst_test( 'inherit' === get_post_field( 'post_status', $kept ), 'media: kept file is refused' );
+	bst_test( 'inherit' === get_post_field( 'post_status', $new ), 'media: file not scanned yet is refused' );
+	bst_test( 'trash' === get_post_status( $old ), 'media: unused file trashed' );
+	$extra = bst_ad_public_state( 'media' )['extra']['trashed'];
+	bst_test( in_array( $old, wp_list_pluck( $extra, 'id' ) ), 'media: trash is listed' );
+	$request->set_param( 'op', 'purge' );
+	$request->set_param( 'ids', array( $tag ) );
+	bst_ad_media_action( $request );
+	bst_test( (bool) get_post( $tag ), 'media: purge refuses files outside the trash' );
+	$request->set_param( 'op', 'restore' );
+	$request->set_param( 'ids', array( $old ) );
+	bst_ad_media_action( $request );
+	bst_test( 'inherit' === get_post_field( 'post_status', $old ), 'media: restore brings the file back' );
+	$request->set_param( 'op', 'purge' );
+	$request->set_param( 'ids', array( $free ) );
+	bst_ad_media_action( $request );
+	bst_test( ! get_post( $free ), 'media: purge deletes a trashed file' );
+	bst_t_atnd();
+}
+
+function bst_t_atnd() {
+	$bare = bst_att( 'bare' );
+	$full = bst_att( 'full' );
+	update_post_meta( $full, '_wp_attachment_image_alt', 'Alt' );
+	wp_update_post( array( 'ID' => $full, 'post_title' => 'A title', 'post_excerpt' => 'Cap', 'post_content' => 'Desc' ) );
+	$part = bst_att( 'part' );
+	update_post_meta( $part, '_wp_attachment_image_alt', 'Mine' );
+	$found = wp_list_pluck( bst_scan( 'atnd' ), 'select' );
+	bst_test( in_array( $bare, $found ) && ! in_array( $full, $found ), 'atnd: lists only images with gaps' );
+	$request = new WP_REST_Request( 'POST' );
+	$request->set_param( 'op', 'generate' );
+	$request->set_param( 'ids', array( $bare, $part ) );
+	bst_test( is_wp_error( bst_ad_atnd_action( $request ) ), 'atnd: refused without a connection' );
+	bst_test( false === bst_ad_public_state( 'atnd' )['extra']['ready'], 'atnd: page asks to connect' );
+	bst_test( in_array( 'title', bst_ad_atnd_missing( $bare ), true ), 'atnd: title equal to file name counts as missing' );
+	bst_ad_atnd_save( $part, array( 'alt' => 'AI', 'title' => 'AI title', 'caption' => 'AI cap', 'description' => 'AI desc' ) );
+	bst_test( 'Mine' === get_post_meta( $part, '_wp_attachment_image_alt', true ) && 'AI title' === get_the_title( $part ), 'atnd: fills gaps, keeps existing text' );
+	$atts = array();
+	update_option( 'bst_aid_settings', array_merge( bst_aid_settings(), array( 'connected' => true, 'text_model' => 'test-model' ) ), false );
+	update_option( 'bst_aid_key', bst_aid_encrypt( 'test-key-not-real' ), false );
+	bst_mock(
+		function ( $pre, $args, $url ) use ( &$atts ) {
+			$atts[] = $args['body'];
+			return bst_body( 200, wp_json_encode( array( 'choices' => array( array( 'message' => array( 'content' => '```json' . "\n" . '{"alt":"Sofa xanh","title":"Sofa","caption":"Cap","description":"Mo ta"}' . "\n```" ) ) ) ) ) );
+		}
+	);
+	$request->set_param( 'ids', array( $bare ) );
+	bst_test( true === bst_ad_atnd_action( $request ), 'atnd: generate runs when connected' );
+	bst_test( 'Sofa xanh' === get_post_meta( $bare, '_wp_attachment_image_alt', true ) && 'Mo ta' === get_post_field( 'post_content', $bare ), 'atnd: AI text saved' );
+	bst_test( false !== strpos( (string) ( $atts[0] ?? '' ), 'image_url' ), 'atnd: image sent to the model' );
+	bst_test( ! in_array( $bare, wp_list_pluck( bst_ad_visible_items( 'atnd' ), 'select' ) ), 'atnd: done image leaves the list' );
 }
 
 function bst_t_links() {

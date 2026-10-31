@@ -16,7 +16,7 @@ const { runCLI } = require(path.join(base, '@wp-playground/cli'));
   const repo = path.resolve(__dirname, '..');
   const out = fs.mkdtempSync(path.join(os.tmpdir(), 'bst-ad-'));
   const code = fs.readFileSync(path.join(__dirname, 'tests/auto-detect-integration.php'), 'utf8');
-  const server = await runCLI({ command: 'server', port: 9420, php: '8.3', wp: process.env.BST_TEST_WP || '7.1.3', workers: 2,
+  const server = await runCLI({ command: 'server', port: 9420, php: '8.3', wp: process.env.BST_TEST_WP || '7.1.3', workers: Number(process.env.BST_TEST_WORKERS || 2),
     mount: [{ hostPath: path.join(repo, 'bigspy-ai-theme-wp'), vfsPath: '/wordpress/wp-content/themes/bigspy-ai-theme-wp' }, { hostPath: out, vfsPath: '/adt' }],
     blueprint: { steps: [{ step: 'activateTheme', themeFolderName: 'bigspy-ai-theme-wp' }, { step: 'runPHP', code }] },
     skipBrowser: true, verbosity: 'quiet' });

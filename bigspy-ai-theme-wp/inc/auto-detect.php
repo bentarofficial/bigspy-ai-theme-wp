@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'BST_AD_NS', 'bst-detect/v1' );
 define( 'BST_AD_MAX_ITEMS', 1000 );
 
-foreach ( array( 'keywords', 'h1', 'media', 'links', 'security' ) as $bst_ad_file ) {
+foreach ( array( 'keywords', 'h1', 'media', 'atnd', 'links', 'security' ) as $bst_ad_file ) {
 	require_once __DIR__ . '/auto-detect/' . $bst_ad_file . '.php';
 }
 
@@ -161,7 +161,7 @@ add_action(
 
 function bst_ad_public_state( $id ) {
 	$state = bst_ad_state( $id );
-	return array( 'status' => $state['status'], 'finished' => (int) $state['finished'], 'done' => (int) ( $state['done'] ?? 0 ), 'total' => (int) ( $state['total'] ?? 0 ), 'items' => bst_ad_visible_items( $id ), 'note' => (string) ( $state['note'] ?? '' ) );
+	return array( 'status' => $state['status'], 'finished' => (int) $state['finished'], 'done' => (int) ( $state['done'] ?? 0 ), 'total' => (int) ( $state['total'] ?? 0 ), 'items' => bst_ad_visible_items( $id ), 'note' => (string) ( $state['note'] ?? '' ), 'extra' => apply_filters( 'bst_ad_public_extra', array(), $id ) );
 }
 
 function bst_ad_rest_state() {
@@ -227,7 +227,7 @@ add_filter(
 	'bst_aid_tools',
 	function ( $tools ) {
 		$tools['auto_detect_results'] = array(
-			'description' => 'Read the latest Auto detect reports: duplicate focus keywords, H1 tags, unused media, broken links, security. Read-only. Use it to propose fixes.',
+			'description' => 'Read the latest Auto detect reports: duplicate focus keywords, H1 tags, unused media, images missing alt text, broken links, security. Read-only. Use it to propose fixes.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'check' => array( 'type' => 'string', 'enum' => array_keys( bst_ad_modules() ) ) ), 'required' => array() ),
 			'cap'         => 'manage_options',
 			'callback'    => 'bst_aid_tool_auto_detect_results',
@@ -277,8 +277,16 @@ function bst_ad_page() {
 				'enable'     => __( 'Run automatically every week, in small background batches', 'bigspy-ai-theme-wp' ),
 				'error'      => __( 'Needs fixing', 'bigspy-ai-theme-wp' ),
 				'review'     => __( 'Needs review', 'bigspy-ai-theme-wp' ),
-				'deleteBtn'  => __( 'Delete selected', 'bigspy-ai-theme-wp' ),
-				'deleteAsk'  => __( 'Permanently delete the selected files? This cannot be undone.', 'bigspy-ai-theme-wp' ),
+				'deleteBtn'  => __( 'Move selected to trash', 'bigspy-ai-theme-wp' ),
+				'deleteAsk'  => __( 'Move the selected files to the trash? Files still in use are skipped, and you can restore the rest here.', 'bigspy-ai-theme-wp' ),
+				'selectAll'  => __( 'Select all', 'bigspy-ai-theme-wp' ),
+				'keep'       => __( 'Keep this file', 'bigspy-ai-theme-wp' ),
+				'trash'      => __( 'Trash', 'bigspy-ai-theme-wp' ),
+				'restoreBtn' => __( 'Restore selected', 'bigspy-ai-theme-wp' ),
+				'purgeBtn'   => __( 'Delete selected permanently', 'bigspy-ai-theme-wp' ),
+				'purgeAsk'   => __( 'Permanently delete the selected files? This cannot be undone.', 'bigspy-ai-theme-wp' ),
+				'generate'   => __( 'Generate for selected', 'bigspy-ai-theme-wp' ),
+				'connect'    => __( 'Connect the API to use this tool', 'bigspy-ai-theme-wp' ),
 				'replaceBtn' => __( 'Replace link', 'bigspy-ai-theme-wp' ),
 				'replaceAsk' => __( 'New URL:', 'bigspy-ai-theme-wp' ),
 				'removeBtn'  => __( 'Remove link', 'bigspy-ai-theme-wp' ),

@@ -18,6 +18,17 @@ function bst_aid_block_containers() {
 		'bigspy/ticker-slide' => array(),
 		'bigspy/expand-gallery' => array( 'bigspy/expand-panel' ),
 		'bigspy/expand-panel' => array(),
+		'bigspy/scroll-story' => array( 'bigspy/story-step' ),
+		'bigspy/story-step' => array(),
+		'bigspy/stack-cards' => array( 'bigspy/stack-card' ),
+		'bigspy/stack-card' => array(),
+		'bigspy/hover-reveal' => array( 'bigspy/hover-reveal-item' ),
+		'bigspy/horizontal-scroll' => array( 'bigspy/hscroll-panel' ),
+		'bigspy/hscroll-panel' => array(),
+		'bigspy/zoom-hero' => array(),
+		'bigspy/video-cards' => array( 'bigspy/video-card' ),
+		'bigspy/bento' => array( 'bigspy/bento-cell' ),
+		'bigspy/bento-cell' => array(),
 		'bst/section'        => array(),
 		'bst/row'            => array( 'bst/column' ),
 		'bst/column'         => array(),
@@ -38,6 +49,12 @@ function bst_aid_block_parents() {
 	return array(
 		'bigspy/ticker-slide' => 'bigspy/ticker',
 		'bigspy/expand-panel' => 'bigspy/expand-gallery',
+		'bigspy/story-step' => 'bigspy/scroll-story',
+		'bigspy/stack-card' => 'bigspy/stack-cards',
+		'bigspy/hover-reveal-item' => 'bigspy/hover-reveal',
+		'bigspy/hscroll-panel' => 'bigspy/horizontal-scroll',
+		'bigspy/video-card' => 'bigspy/video-cards',
+		'bigspy/bento-cell' => 'bigspy/bento',
 		'bst/column'         => 'bst/row',
 		'bst/tab'            => 'bst/tabs',
 		'bst/accordion-item' => 'bst/accordion',
@@ -55,7 +72,8 @@ function bst_aid_block_types() {
 	$off = function_exists( 'bst_disabled_blocks' ) ? (array) bst_disabled_blocks() : array();
 	$out = array();
 	foreach ( WP_Block_Type_Registry::get_instance()->get_all_registered() as $name => $type ) {
-		if ( ( 0 === strpos( $name, 'bst/' ) || 0 === strpos( $name, 'bigspy/' ) ) && ! in_array( substr( $name, 4 ), $off, true ) && ! in_array( $name, $off, true ) ) {
+		$slug = substr( $name, strpos( $name, '/' ) + 1 );
+		if ( ( 0 === strpos( $name, 'bst/' ) || 0 === strpos( $name, 'bigspy/' ) ) && ! in_array( $slug, $off, true ) && ! in_array( $name, $off, true ) ) {
 			$out[ $name ] = $type;
 		}
 	}
@@ -145,6 +163,10 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 		}
 		if ( ! isset( $types[ $name ] ) ) {
 			$issues['errors'][] = "$where: unknown or disabled block \"$name\". Use list_blocks.";
+			continue;
+		}
+		if ( ! empty( $node['raw'] ) ) {
+			$issues['errors'][] = "$where: $name is an editable BIGSPY AI block. Call get_page or get_pattern again and send attrs and inner, not raw.";
 			continue;
 		}
 		if ( isset( $parents[ $name ] ) && $parents[ $name ] !== $parent ) {
@@ -472,7 +494,7 @@ function bst_aid_compact_blocks( $blocks ) {
 		if ( ! empty( $b['attrs'] ) ) {
 			$node['attrs'] = $b['attrs'];
 		}
-		if ( 0 !== strpos( $b['blockName'], 'bst/' ) ) {
+		if ( 0 !== strpos( $b['blockName'], 'bst/' ) && 0 !== strpos( $b['blockName'], 'bigspy/' ) ) {
 			// Core blocks: keep the exact markup ("raw") so they can be sent back unchanged.
 			$node['raw']  = serialize_block( $b );
 			$node['text'] = mb_substr( trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( render_block( $b ) ) ) ), 0, 300 );

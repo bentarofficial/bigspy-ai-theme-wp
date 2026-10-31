@@ -15,6 +15,13 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.80.0 =
+* Auto detect: deeper unused media scan (shortcodes, WebP copies, all options and metadata); green tick and red X in the Media Library, usage filter, thumbnails, select all, keep a file.
+* Auto detect: unused files move to a restorable trash after a fresh check; files in use are refused.
+* Media ATND: AI writes missing alt text, title, caption and description through the theme's API connection.
+* Horizontal Scroll: pins on all screens; pager removed.
+* AI Designer: keeps attributes and nested content of bigspy blocks when editing; parent and child rules for motion blocks.
+
 = 1.79.1 =
 * Horizontal Scroll: panels show 3:1 on phones so the next one always peeks; drag with a mouse when not pinned.
 * Section: keeps content clear of shape dividers on phones.

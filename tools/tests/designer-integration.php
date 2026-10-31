@@ -186,6 +186,50 @@ bst_test( is_wp_error( bst_aid_tree_to_markup( array_merge( $text_nodes( 20 ), a
 $legacy_code = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Legacy code', 'post_content' => wp_slash( serialize_blocks( bst_aid_build_blocks( array_merge( $text_nodes( 45 ), array_fill( 0, 5, $code_node() ) ), '', $unused ) ) ) ) );
 bst_test( empty( bst_test_run( 'update_page', array( 'id' => $legacy_code, 'blocks' => bst_aid_tool_get_page( array( 'id' => $legacy_code ) )['blocks'] ) )['error'] ), 'Old page already over the ceiling can be saved unchanged' );
 
+// Every native motion family must survive get_page -> edit -> update_page.
+$motion_text = array( 'name' => 'bst/heading', 'attrs' => array( 'text' => 'Keep this editable heading', 'tag' => 'h3' ) );
+$motion_fixtures = array(
+    array( 'name' => 'bigspy/ticker', 'attrs' => array( 'speed' => 450 ), 'inner' => array( array( 'name' => 'bigspy/ticker-slide', 'inner' => array( $motion_text ) ) ) ),
+    array( 'name' => 'bigspy/expand-gallery', 'inner' => array( array( 'name' => 'bigspy/expand-panel', 'attrs' => array( 'title' => 'First panel' ), 'inner' => array( $motion_text ) ), array( 'name' => 'bigspy/expand-panel', 'attrs' => array( 'title' => 'Second panel' ), 'inner' => array( $motion_text ) ) ) ),
+    array( 'name' => 'bigspy/scroll-story', 'attrs' => array( 'mediaSide' => 'left' ), 'inner' => array( array( 'name' => 'bigspy/story-step', 'attrs' => array( 'mediaAlt' => 'Step illustration' ), 'inner' => array( $motion_text ) ) ) ),
+    array( 'name' => 'bigspy/stack-cards', 'attrs' => array( 'step' => 40 ), 'inner' => array( array( 'name' => 'bigspy/stack-card', 'attrs' => array( 'background' => '#123456' ), 'inner' => array( $motion_text ) ) ) ),
+    array( 'name' => 'bigspy/hover-reveal', 'inner' => array( array( 'name' => 'bigspy/hover-reveal-item', 'attrs' => array( 'title' => 'Project title', 'meta' => 'Project category' ) ) ) ),
+    array( 'name' => 'bigspy/horizontal-scroll', 'attrs' => array( 'label' => 'Horizontal projects' ), 'inner' => array( array( 'name' => 'bigspy/hscroll-panel', 'inner' => array( $motion_text ) ) ) ),
+    array( 'name' => 'bigspy/zoom-hero', 'attrs' => array( 'imageAlt' => 'Hero illustration' ), 'inner' => array( $motion_text ) ),
+    array( 'name' => 'bigspy/video-cards', 'inner' => array( array( 'name' => 'bigspy/video-card', 'attrs' => array( 'title' => 'Video title', 'text' => 'Video description' ) ) ) ),
+    array( 'name' => 'bigspy/bento', 'attrs' => array( 'label' => 'Feature tiles' ), 'inner' => array( array( 'name' => 'bigspy/bento-cell', 'attrs' => array( 'size' => 'wide' ), 'inner' => array( $motion_text ) ) ) ),
+    array( 'name' => 'bigspy/animated-text', 'attrs' => array( 'text' => 'Editable animated headline' ) ),
+    array( 'name' => 'bigspy/line-draw', 'attrs' => array( 'shape' => 'arrow', 'color' => '#123456' ) ),
+);
+foreach ( $motion_fixtures as $fixture ) {
+    $created = bst_test_run( 'create_page', array( 'title' => 'Motion round trip ' . $fixture['name'], 'blocks' => array( $fixture ) ) );
+    bst_test( empty( $created['error'] ) && ! empty( $created['id'] ), 'AI creates complete native family: ' . $fixture['name'] );
+    $id = $created['id'];
+    $before = (string) get_post_field( 'post_content', $id );
+    $tree = bst_aid_tool_get_page( array( 'id' => $id ) )['blocks'];
+    bst_test( ! isset( $tree[0]['raw'] ), 'Native block exposes editable attributes and children: ' . $fixture['name'] );
+    $updated = bst_test_run( 'update_page', array( 'id' => $id, 'blocks' => $tree ) );
+    bst_test( empty( $updated['error'] ) && $before === get_post_field( 'post_content', $id ), 'AI round trip preserves attributes and nested content: ' . $fixture['name'] );
+    if ( isset( $tree[0]['inner'][0]['inner'][0]['attrs']['text'] ) ) {
+        $tree[0]['inner'][0]['inner'][0]['attrs']['text'] = 'Changed nested heading';
+        $updated = bst_test_run( 'update_page', array( 'id' => $id, 'blocks' => $tree ) );
+        bst_test( empty( $updated['error'] ) && false !== strpos( get_post_field( 'post_content', $id ), 'Changed nested heading' ), 'AI can edit nested native content: ' . $fixture['name'] );
+    }
+}
+foreach ( array( 'bigspy/ticker', 'bigspy/animated-text', 'bst/heading' ) as $name ) {
+    $slug = explode( '/', $name )[1];
+    $mod = 'block_off_' . str_replace( '-', '_', $slug );
+    set_theme_mod( $mod, true );
+    bst_test( in_array( $name, bst_disabled_blocks(), true ) && ! isset( bst_aid_block_types()[ $name ] ), 'Hidden block is unavailable in editor and AI: ' . $name );
+    remove_theme_mod( $mod );
+}
+bst_test( in_array( 'bst-block-design', wp_scripts()->registered['bst-motion-editor']->deps, true ), 'Motion registration waits for the block visibility filter' );
+foreach ( array( 'story-step', 'stack-card', 'hover-reveal-item', 'hscroll-panel', 'video-card', 'bento-cell' ) as $child ) {
+    bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'bigspy/' . $child ) ) ) ), 'Orphan motion child refused: ' . $child );
+}
+bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'bigspy/stack-cards', 'inner' => array( $motion_text ) ) ) ) ), 'Motion container refuses the wrong child type' );
+bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'bigspy/ticker', 'raw' => '<!-- wp:bigspy/ticker {"speed":450} /-->' ) ) ) ), 'Stale raw native block is refused instead of silently losing data' );
+
 // Render a page for browser checks, including counts, width variants and both directions/modes.
 $html = '';
 foreach ( array( 1, 3, 20 ) as $count ) {
