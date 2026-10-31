@@ -93,6 +93,7 @@
 			if (!on) { unpinSection(); root.style.height = ''; root.style.removeProperty('--bs-hs-top'); track.style.transform = ''; distance = 0; return; }
 			distance = Math.max(0, track.scrollWidth - sticky.clientWidth);
 			var gap = headerBottom();
+			root.style.height = '';
 			if (!pinSection(gap)) {
 				unpinSection();
 				pinTop = gap + Math.max(0, (window.innerHeight - gap - sticky.offsetHeight) / 2);
