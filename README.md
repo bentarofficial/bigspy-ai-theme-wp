@@ -170,6 +170,7 @@ Only the latest release is kept on the [Releases](https://github.com/bentaroffic
 
 - **Move CF7 forms:** keeps default options and fills in `[wpcf7.*]` mail tags.
 - **About page:** new support links and a GitHub star button.
+- **AI Designer:** preview switch in the header and a draggable preview width.
 
 ### 1.77: Site tools
 
