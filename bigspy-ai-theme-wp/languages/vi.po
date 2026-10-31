@@ -6835,3 +6835,9 @@ msgstr "1.78.1: Stacking Cards và các khối động dính khi cuộn đã ho�
 msgid "Keep moving when the device asks for reduced motion"
 msgstr "Vẫn chạy khi thiết bị bật giảm chuyển động"
 
+msgid "Previous panel"
+msgstr "Thẻ trước"
+
+msgid "Next panel"
+msgstr "Thẻ sau"
+

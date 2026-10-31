@@ -54,6 +54,52 @@
 		if (!track) { return; }
 		var desktop = window.matchMedia('(min-width: 768px)');
 		var distance = 0, ticking = false;
+		var panels = Array.prototype.slice.call(track.children), dots = [], prev, next;
+		function activate(i) {
+			dots.forEach(function (d, n) { d.classList.toggle('is-active', n === i); });
+			if (prev) { prev.disabled = i === 0; next.disabled = i === panels.length - 1; }
+		}
+		function current() {
+			if (root.classList.contains('is-pinned')) {
+				var p = -root.getBoundingClientRect().top / Math.max(1, root.offsetHeight - window.innerHeight);
+				return Math.round(Math.min(1, Math.max(0, p)) * (panels.length - 1));
+			}
+			var max = track.scrollWidth - track.clientWidth, step = panels[1] ? panels[1].offsetLeft - panels[0].offsetLeft : 1;
+			return track.scrollLeft >= max - 2 ? panels.length - 1 : Math.round(track.scrollLeft / Math.max(1, step));
+		}
+		function go(i) {
+			var behavior = reduced ? 'auto' : 'smooth';
+			if (root.classList.contains('is-pinned')) {
+				var top = root.getBoundingClientRect().top + window.pageYOffset;
+				window.scrollTo({ top: top + (root.offsetHeight - window.innerHeight) * i / (panels.length - 1), behavior: behavior });
+			} else {
+				track.scrollTo({ left: panels[i].offsetLeft - panels[0].offsetLeft, behavior: behavior });
+			}
+		}
+		function arrow(cls, label, path, step) {
+			var b = document.createElement('button');
+			b.type = 'button';
+			b.className = 'bs-hscroll__arrow ' + cls;
+			b.setAttribute('aria-label', label);
+			b.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="' + path + '" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+			b.addEventListener('click', function () { go(Math.min(panels.length - 1, Math.max(0, current() + step))); });
+			return b;
+		}
+		if (panels.length > 1) {
+			var nav = document.createElement('div'), list = document.createElement('div');
+			nav.className = 'bs-hscroll__nav';
+			list.className = 'bs-hscroll__dots';
+			list.setAttribute('aria-hidden', 'true');
+			dots = panels.map(function () { var d = document.createElement('span'); d.className = 'bs-hscroll__dot'; list.appendChild(d); return d; });
+			prev = arrow('is-prev', root.dataset.prev || 'Previous', 'M15 5l-7 7 7 7', -1);
+			next = arrow('is-next', root.dataset.next || 'Next', 'M9 5l7 7-7 7', 1);
+			nav.appendChild(prev);
+			nav.appendChild(list);
+			nav.appendChild(next);
+			sticky.appendChild(nav);
+			track.addEventListener('scroll', function () { activate(current()); }, { passive: true });
+			activate(0);
+		}
 		function measure() {
 			var on = desktop.matches && !reduced;
 			root.classList.toggle('is-pinned', on);
@@ -67,6 +113,7 @@
 			if (!root.classList.contains('is-pinned')) { return; }
 			var p = Math.min(1, Math.max(0, -root.getBoundingClientRect().top / Math.max(1, root.offsetHeight - window.innerHeight)));
 			track.style.transform = 'translate3d(' + (-p * distance).toFixed(1) + 'px,0,0)';
+			activate(current());
 		}
 		function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
 		new IntersectionObserver(function (entries) {

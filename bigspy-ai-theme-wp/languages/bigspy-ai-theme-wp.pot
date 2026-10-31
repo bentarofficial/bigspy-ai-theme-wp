@@ -10668,3 +10668,9 @@ msgstr ""
 msgid "Keep moving when the device asks for reduced motion"
 msgstr ""
 
+msgid "Previous panel"
+msgstr ""
+
+msgid "Next panel"
+msgstr ""
+
