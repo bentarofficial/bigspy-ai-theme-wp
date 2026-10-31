@@ -85,6 +85,54 @@ function bst_cf7_parse( $text ) {
 	return $out;
 }
 
+/**
+ * Redirect set with Redirection for Contact Form 7, as block attributes. The plugin keeps each action
+ * in a private post; older versions keep the settings on the form. 'partial' marks what the block cannot repeat.
+ */
+function bst_cf7_redirect( $form_id ) {
+	$actions = get_posts(
+		array(
+			'post_type'        => 'wpcf7r_action',
+			'post_status'      => 'private',
+			'numberposts'      => 20,
+			'orderby'          => 'menu_order',
+			'order'            => 'ASC',
+			'suppress_filters' => true,
+			'meta_query'       => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+				array( 'key' => 'wpcf7_id', 'value' => $form_id ),
+				array( 'key' => 'action_type', 'value' => 'redirect' ),
+				array( 'key' => 'action_status', 'value' => 'on' ),
+			),
+		)
+	);
+	$sets    = array();
+	foreach ( $actions as $action ) {
+		$sets[] = array( $action->ID, '', 1 );
+	}
+	$sets[] = array( $form_id, '_wpcf7_redirect_', 1000 );
+	foreach ( $sets as list( $id, $prefix, $per_second ) ) {
+		$get = function ( $key ) use ( $id, $prefix ) {
+			return (string) get_post_meta( $id, $prefix . $key, true );
+		};
+		$url = 'on' === $get( 'use_external_url' ) ? $get( 'external_url' ) : '';
+		if ( '' === $url && (int) $get( 'page_id' ) ) {
+			$url = (string) get_permalink( (int) $get( 'page_id' ) );
+		}
+		if ( '' === $url ) {
+			continue;
+		}
+		$delay = '' === $prefix ? $get( 'delay_redirect_seconds' ) : $get( 'delay_redirect' );
+		return array(
+			'redirectUrl'    => $url,
+			'redirectDelay'  => min( 30, max( 0, (int) $delay / $per_second ) ),
+			'redirectPass'   => 'on' === $get( 'http_build_query' ),
+			'redirectNewTab' => 'on' === $get( 'open_in_new_tab' ),
+			'partial'        => false !== strpos( $url, '[' ) || 'on' === $get( 'http_build_query_selectively' ) || 'on' === $get( 'conditional_logic' ),
+		);
+	}
+	return array();
+}
+
 /** Block attributes of the built-in form that matches one CF7 form. */
 function bst_cf7_block_attrs( $form ) {
 	$parsed = bst_cf7_parse( get_post_meta( $form->ID, '_form', true ) );
@@ -111,7 +159,7 @@ function bst_cf7_block_attrs( $form ) {
 		'msgSpam'      => $msg['spam'] ?? '',
 		'submitText'   => $parsed['submit'],
 	);
-	return array_filter( $pairs, 'strlen' ) + array(
+	return array_filter( $pairs, 'strlen' ) + array_diff_key( bst_cf7_redirect( $form->ID ), array( 'partial' => 1 ) ) + array(
 		'provider'         => 'bigspy',
 		'formKey'          => 'cf7' . $form->ID,
 		'formName'         => $form->post_title,
@@ -120,6 +168,24 @@ function bst_cf7_block_attrs( $form ) {
 		'mailExcludeBlank' => ! empty( $mail['exclude_blank'] ),
 		'mail2Active'      => ! empty( $mail2['active'] ),
 	);
+}
+
+function bst_cf7_block( $attrs ) {
+	return serialize_block( array( 'blockName' => 'bst/form', 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+}
+
+/** A Form block set to this CF7 form keeps its own look and redirect, and gets the form's fields and mail. */
+function bst_cf7_upgrade_block( $found, $form ) {
+	$old = json_decode( $found[1], true );
+	if ( ! is_array( $old ) || 'cf7' !== ( $old['provider'] ?? 'cf7' ) || $form->ID !== (int) ( $old['formId'] ?? 0 ) ) {
+		return $found[0];
+	}
+	$new = bst_cf7_block_attrs( $form );
+	if ( ! empty( $old['redirectUrl'] ) ) {
+		$new = array_diff_key( $new, array_flip( array( 'redirectUrl', 'redirectDelay', 'redirectPass', 'redirectNewTab' ) ) );
+	}
+	unset( $old['formId'] );
+	return bst_cf7_block( $new + $old );
 }
 
 function bst_cf7_id_matches( $form, $id ) {
@@ -137,6 +203,13 @@ function bst_cf7_replace( $content, $form, $block ) {
 		return $hit ? $block : $found[0];
 	};
 	$short   = '\[contact-form-7\b[^\]]*\]';
+	$content = preg_replace_callback(
+		'#<!-- wp:bst/form (\{(?:(?!-->).)*?\}) (?:/-->|-->\s*<!-- /wp:bst/form -->)#s',
+		function ( $found ) use ( $form ) {
+			return bst_cf7_upgrade_block( $found, $form );
+		},
+		$content
+	);
 	$content = preg_replace_callback( '#<!-- wp:contact-form-7/contact-form-selector .*?(?:/-->|<!-- /wp:contact-form-7/contact-form-selector -->)#s', $swap, $content );
 	$content = preg_replace_callback( '#<!-- wp:shortcode -->\s*' . $short . '\s*<!-- /wp:shortcode -->#', $swap, $content );
 	$content = preg_replace_callback( '#<p>\s*' . $short . '\s*</p>#', $swap, $content );
@@ -146,7 +219,7 @@ function bst_cf7_replace( $content, $form, $block ) {
 /** Posts that show this form, paired with their new content. */
 function bst_cf7_targets( $form, $block ) {
 	global $wpdb;
-	$ids = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_status IN ('publish','draft','pending','future','private') AND post_type NOT IN ('revision','wpcf7_contact_form') AND post_content LIKE '%contact-form-7%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	$ids = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_status IN ('publish','draft','pending','future','private') AND post_type NOT IN ('revision','wpcf7_contact_form') AND (post_content LIKE '%contact-form-7%' OR post_content LIKE '%wp:bst/form %')" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 	$out = array();
 	foreach ( $ids as $id ) {
 		$old = get_post_field( 'post_content', $id );
@@ -159,8 +232,7 @@ function bst_cf7_targets( $form, $block ) {
 }
 
 function bst_cf7_migrate( $form ) {
-	$block   = serialize_block( array( 'blockName' => 'bst/form', 'attrs' => bst_cf7_block_attrs( $form ), 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
-	$targets = bst_cf7_targets( $form, $block );
+	$targets = bst_cf7_targets( $form, bst_cf7_block( bst_cf7_block_attrs( $form ) ) );
 	foreach ( $targets as $id => $content ) {
 		wp_update_post( wp_slash( array( 'ID' => $id, 'post_content' => $content ) ) );
 	}
@@ -205,6 +277,9 @@ function bst_cf7_page() {
 	foreach ( $forms as $form ) {
 		$parsed = bst_cf7_parse( get_post_meta( $form->ID, '_form', true ) );
 		$count  = count( bst_cf7_targets( $form, 'x' ) );
+		if ( ! empty( bst_cf7_redirect( $form->ID )['partial'] ) ) {
+			$parsed['skipped'][] = __( 'redirect conditions or mail tags', 'bigspy-ai-theme-wp' );
+		}
 		echo '<tr><td>' . esc_html( $form->post_title ) . '</td><td>' . count( $parsed['fields'] ) . '</td><td>' . esc_html( implode( ', ', array_unique( $parsed['skipped'] ) ) ) . '</td><td>' . (int) $count . '</td><td>';
 		if ( $count ) {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(this.dataset.ask)" data-ask="' . esc_attr__( 'Replace this form in the listed posts? WordPress keeps a revision of each post.', 'bigspy-ai-theme-wp' ) . '">';

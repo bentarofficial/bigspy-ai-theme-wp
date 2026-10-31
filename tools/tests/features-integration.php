@@ -246,6 +246,34 @@ function bst_t_cf7() {
 	bst_test( false !== strpos( get_post_field( 'post_content', $ot ), '999999' ), 'other form untouched' );
 	bst_test( false !== strpos( render_block( parse_blocks( get_post_field( 'post_content', $cl ) )[0] ), 'type="file"' ), 'moved form renders' );
 	bst_test( 0 === bst_cf7_migrate( get_post( $id ) ), 'second run changes nothing' );
+	$act = function ( $form, $meta ) {
+		return wp_insert_post( array( 'post_type' => 'wpcf7r_action', 'post_title' => 'R', 'post_status' => 'private', 'meta_input' => $meta + array( 'wpcf7_id' => $form, 'wpcf7_rule_id' => 'default', 'action_type' => 'redirect', 'action_status' => 'on' ) ) );
+	};
+	$f2 = wp_insert_post( array( 'post_type' => 'wpcf7_contact_form', 'post_title' => 'Khối', 'post_status' => 'publish' ) );
+	update_post_meta( $f2, '_form', $tpl );
+	$act( $f2, array( 'use_external_url' => 'on', 'external_url' => 'https://x.test/ok', 'open_in_new_tab' => 'on', 'http_build_query' => 'on', 'delay_redirect_seconds' => '3' ) );
+	$r = bst_cf7_redirect( $f2 );
+	bst_test( 'https://x.test/ok' === $r['redirectUrl'] && 3 === (int) $r['redirectDelay'] && $r['redirectPass'] && $r['redirectNewTab'] && ! $r['partial'], 'redirect action read' );
+	$nest = wp_insert_post( array( 'post_title' => 'P4', 'post_status' => 'publish', 'post_content' => "<!-- wp:group -->\n<div class=\"wp-block-group\"><!-- wp:bst/form {\"formId\":$f2,\"successText\":\"Cảm ơn\"} /--></div>\n<!-- /wp:group -->" ) );
+	$own  = wp_insert_post( array( 'post_title' => 'P5', 'post_status' => 'publish', 'post_content' => "<!-- wp:bst/form {\"provider\":\"cf7\",\"formId\":$f2,\"redirectUrl\":\"https://x.test/mine\"} /-->" ) );
+	$wpf  = wp_insert_post( array( 'post_title' => 'P6', 'post_status' => 'publish', 'post_content' => "<!-- wp:bst/form {\"provider\":\"wpforms\",\"formId\":$f2} /-->" ) );
+	bst_test( 2 === bst_cf7_migrate( get_post( $f2 ) ), 'form blocks set to CF7 updated' );
+	$b = parse_blocks( get_post_field( 'post_content', $nest ) )[0]['innerBlocks'][0]['attrs'];
+	bst_test( 'bigspy' === $b['provider'] && 'cf7' . $f2 === $b['formKey'] && ! isset( $b['formId'] ) && 'Cảm ơn' === $b['successText'] && 4 === count( $b['fields'] ), 'nested block moved, own settings kept' );
+	bst_test( 'https://x.test/ok' === $b['redirectUrl'] && $b['redirectNewTab'] && $b['redirectPass'] && 3 === (int) $b['redirectDelay'], 'redirect carried over' );
+	bst_test( 'https://x.test/mine' === parse_blocks( get_post_field( 'post_content', $own ) )[0]['attrs']['redirectUrl'], 'block redirect wins' );
+	bst_test( false !== strpos( get_post_field( 'post_content', $wpf ), '"wpforms"' ), 'other provider untouched' );
+	bst_test( 0 === bst_cf7_migrate( get_post( $f2 ) ), 'second run leaves blocks alone' );
+	$f3 = wp_insert_post( array( 'post_type' => 'wpcf7_contact_form', 'post_title' => 'Cũ', 'post_status' => 'publish' ) );
+	update_post_meta( $f3, '_wpcf7_redirect_use_external_url', 'on' );
+	update_post_meta( $f3, '_wpcf7_redirect_external_url', 'https://x.test/[your-name]' );
+	update_post_meta( $f3, '_wpcf7_redirect_delay_redirect', '2000' );
+	$r = bst_cf7_redirect( $f3 );
+	bst_test( 2 === (int) $r['redirectDelay'] && $r['partial'], 'old plugin settings read, mail tag flagged' );
+	$f4 = wp_insert_post( array( 'post_type' => 'wpcf7_contact_form', 'post_title' => 'Tắt', 'post_status' => 'publish' ) );
+	$off = $act( $f4, array( 'use_external_url' => 'on', 'external_url' => 'https://x.test/off' ) );
+	update_post_meta( $off, 'action_status', 'off' );
+	bst_test( array() === bst_cf7_redirect( $f4 ), 'disabled redirect ignored' );
 }
 
 function bst_t_aid() {

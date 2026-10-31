@@ -13,6 +13,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** `feature/ai-designer`, xem commit `G-20`.
 - **Trạng thái:** đã triển khai; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** `G-24`: công cụ chuyển CF7 còn sót 2 trường hợp.
+- **Đã thay đổi:** `inc/form-migrate.php` chuyển cả khối `bst/form` đang chọn CF7 (kể cả lồng trong khối khác), giữ thiết lập riêng của khối; mang chuyển hướng của Redirection for Contact Form 7 (dạng action và dạng cũ) sang khối. Chuyển hướng có điều kiện, chọn từng trường hoặc có thẻ mail trong URL được báo ở cột "Không chuyển được". Khối đã có `redirectUrl` riêng thì giữ nguyên.
+- **Kiểm thử:** nhóm `cf7` trong `tools/tests/features-integration.php` đạt (1 worker, vì máy thiếu RAM); chưa chạy đủ `features-check`, chưa thử với plugin thật trên site.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
+- **Git:** `feature/ai-designer`, xem commit `G-24`.
+- **Trạng thái:** đã triển khai; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

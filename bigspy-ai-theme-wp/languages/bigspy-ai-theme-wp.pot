@@ -10605,6 +10605,9 @@ msgstr ""
 msgid "Not carried over"
 msgstr ""
 
+msgid "redirect conditions or mail tags"
+msgstr ""
+
 msgid "Posts to update"
 msgstr ""
 

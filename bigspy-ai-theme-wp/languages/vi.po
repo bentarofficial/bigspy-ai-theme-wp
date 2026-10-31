@@ -6772,6 +6772,9 @@ msgstr "Trường"
 msgid "Not carried over"
 msgstr "Không chuyển được"
 
+msgid "redirect conditions or mail tags"
+msgstr "điều kiện chuyển hướng hoặc thẻ mail"
+
 msgid "Posts to update"
 msgstr "Số bài sẽ cập nhật"
 
