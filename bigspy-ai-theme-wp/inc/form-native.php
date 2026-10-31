@@ -139,6 +139,7 @@ function bst_native_form_markup( $a ) {
 		$attr  = ' name="' . esc_attr( $name ) . '"' . ( $req ? ' required aria-required="true"' : '' );
 		$width = 'half' === ( $f['width'] ?? 'full' ) ? ' bs-nf-half' : '';
 		$opts  = bst_native_field_options( $f );
+		$picks = array_intersect( $opts, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) );
 		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req ? ' <span class="bs-nf-req">*</span>' : '' ) . '</span>' : '';
 		if ( 'file' === $type ) {
 			$accept  = '.' . implode( ',.', bst_native_file_types( $f ) );
@@ -153,7 +154,7 @@ function bst_native_form_markup( $a ) {
 			case 'select':
 				$control = '<select class="wpcf7-form-control wpcf7-select"' . $attr . '>' . ( $ph ? '<option value="">' . esc_html( $ph ) . '</option>' : '' );
 				foreach ( $opts as $o ) {
-					$control .= '<option value="' . esc_attr( $o ) . '">' . esc_html( $o ) . '</option>';
+					$control .= '<option value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) ? ' selected' : '' ) . '>' . esc_html( $o ) . '</option>';
 				}
 				$control .= '</select>';
 				break;
@@ -161,7 +162,7 @@ function bst_native_form_markup( $a ) {
 			case 'checkbox':
 				$control = '<span class="wpcf7-form-control wpcf7-' . $type . '">';
 				foreach ( $opts as $i => $o ) {
-					$control .= '<span class="wpcf7-list-item"><label><input type="' . $type . '" name="' . esc_attr( $name ) . ( 'checkbox' === $type ? '[]' : '' ) . '" value="' . esc_attr( $o ) . '"' . ( 'radio' === $type && 0 === $i ? ' checked' : '' ) . '> <span class="wpcf7-list-item-label">' . esc_html( $o ) . '</span></label></span>';
+					$control .= '<span class="wpcf7-list-item"><label><input type="' . $type . '" name="' . esc_attr( $name ) . ( 'checkbox' === $type ? '[]' : '' ) . '" value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) || ( ! $picks && 'radio' === $type && 0 === $i ) ? ' checked' : '' ) . '> <span class="wpcf7-list-item-label">' . esc_html( $o ) . '</span></label></span>';
 				}
 				$control .= '</span>';
 				break;
@@ -248,8 +249,10 @@ function bst_native_form_tags( $text, $values, $fields, $exclude_blank, $html = 
 	foreach ( $values as $n => $v ) {
 		$map[ '[' . $n . ']' ] = $html ? esc_html( $v ) : $v;
 	}
-	$text = strtr( (string) $text, $map );
-	return preg_replace( '/\[[a-z0-9_-]+\]/i', '', $text );
+	// Forms moved from Contact Form 7 can still use [wpcf7.remote_ip] style tags.
+	$text = preg_replace( '/\[wpcf7\.([a-z_]+)\]/', '[_$1]', (string) $text );
+	$text = strtr( $text, $map );
+	return preg_replace( '/\[[a-z0-9_.-]+\]/i', '', $text );
 }
 
 /** One email (Mail or Mail 2). Returns true when wp_mail() accepted it. */

@@ -50,6 +50,21 @@ function bst_cf7_parse( $text ) {
 		} elseif ( in_array( $type, array( 'select', 'radio', 'checkbox' ), true ) ) {
 			$field['options'] = implode( "\n", $values );
 		}
+		if ( in_array( $type, array( 'select', 'radio', 'checkbox' ), true ) ) {
+			$picks = array();
+			foreach ( $words as $word ) {
+				if ( preg_match( '/^default:([\d_]+)$/', $word, $picked ) ) {
+					foreach ( explode( '_', $picked[1] ) as $n ) {
+						if ( isset( $values[ $n - 1 ] ) ) {
+							$picks[] = $values[ $n - 1 ];
+						}
+					}
+				}
+			}
+			if ( $picks ) {
+				$field['default'] = implode( "\n", $picks );
+			}
+		}
 		if ( 'select' === $type && in_array( 'first_as_label', $words, true ) ) {
 			$field['placeholder'] = array_shift( $values );
 			$field['options']     = implode( "\n", $values );

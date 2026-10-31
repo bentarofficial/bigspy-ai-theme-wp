@@ -222,6 +222,12 @@ function bst_t_cf7() {
 	bst_test( 'Chọn' === $f[1]['placeholder'] && "Giặt\nLà" === $f[1]['options'], 'select parsed' );
 	bst_test( 'pdf,doc' === $f[2]['options'] && 'Đồng ý' === $f[3]['placeholder'], 'file and acceptance parsed' );
 	bst_test( 'Gửi đi' === $p['submit'] && array( 'quiz' ) === $p['skipped'], 'submit read, quiz reported' );
+	$d = bst_cf7_parse( "[radio r default:2 \"A\" \"B\"]\n[select s first_as_label default:3 \"Chọn\" \"C\" \"D\"]\n[checkbox c default:1_3 \"E\" \"F\" \"G\"]" )['fields'];
+	bst_test( 'B' === $d[0]['default'] && 'D' === $d[1]['default'] && "E\nG" === $d[2]['default'], 'default:N parsed' );
+	$html = bst_native_form_markup( array( 'formKey' => 'k', 'fields' => $d ) );
+	bst_test( false !== strpos( $html, 'value="B" checked' ) && false === strpos( $html, 'value="A" checked' ) && false !== strpos( $html, 'value="D" selected' ) && false !== strpos( $html, 'value="G" checked' ) && false === strpos( $html, 'value="F" checked' ), 'default option rendered' );
+	$_SERVER['REMOTE_ADDR'] = '10.0.0.9';
+	bst_test( 'IP 10.0.0.9.' === bst_native_form_tags( 'IP [wpcf7.remote_ip][wpcf7.unknown].', array(), array(), false ), 'wpcf7 dotted tags replaced' );
 	$id = wp_insert_post( array( 'post_type' => 'wpcf7_contact_form', 'post_title' => 'Liên hệ', 'post_status' => 'publish' ) );
 	update_post_meta( $id, '_form', $tpl );
 	update_post_meta( $id, '_hash', 'abc1234def' );
