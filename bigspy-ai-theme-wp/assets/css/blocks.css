@@ -3435,17 +3435,18 @@ input[type="submit"]:hover,
 .bs-line.is-ready:not(.is-scroll) path { transition: stroke-dashoffset var(--bs-line-dur, 1.6s) cubic-bezier(.6, 0, .2, 1); }
 .bs-line.is-ready.is-drawn path { stroke-dashoffset: 0; }
 
+.bs-hscroll { container-type: inline-size; }
 .bs-hscroll__track { display: flex; gap: var(--bs-hs-gap, 32px); }
-.bs-hscroll__panel { flex: 0 0 var(--bs-hs-w, 70vw); min-width: 0; padding: clamp(24px, 4vw, 56px); border-radius: 24px; background: var(--bs-hs-bg, rgba(148, 163, 184, .12)); color: var(--bs-hs-fg, inherit); }
+.bs-hscroll__panel { flex: 0 0 var(--bs-hs-w, 70cqw); min-width: 0; padding: clamp(24px, 4vw, 56px); border-radius: 24px; background: var(--bs-hs-bg, rgba(148, 163, 184, .12)); color: var(--bs-hs-fg, inherit); }
 .bs-hscroll__panel > :last-child { margin-bottom: 0; }
 .bs-hscroll:not(.is-pinned) .bs-hscroll__track { overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; padding-bottom: 4px; }
 .bs-hscroll:not(.is-pinned) .bs-hscroll__track::-webkit-scrollbar { display: none; }
 .bs-hscroll:not(.is-pinned) .bs-hscroll__panel { scroll-snap-align: start; }
-.bs-hscroll.is-pinned .bs-hscroll__sticky { position: sticky; top: 0; display: flex; align-items: center; height: 100vh; height: 100svh; overflow: hidden; }
-.bs-hscroll.is-pinned .bs-hscroll__track { box-sizing: border-box; width: 100%; will-change: transform; padding: 0 max(16px, 4vw); }
+.bs-hscroll.is-pinned .bs-hscroll__sticky { position: sticky; top: var(--bs-hs-top, 0px); padding-block: 16px; overflow: hidden; }
+.bs-hscroll.is-pinned .bs-hscroll__track { width: 100%; will-change: transform; }
 .bs-hscroll.is-dragging .bs-hscroll__track { cursor: grabbing; scroll-snap-type: none; user-select: none; }
 /* Show panels 3:1 so the next one always peeks and the row reads as swipeable. */
-@media (max-width: 767px) { .bs-hscroll__panel { flex-basis: min(var(--bs-hs-w-m, 85vw), calc((100% - var(--bs-hs-gap, 32px)) * .75)); } }
+@media (max-width: 767px) { .bs-hscroll__panel { flex-basis: min(var(--bs-hs-w-m, 85cqw), calc((100% - var(--bs-hs-gap, 32px)) * .75)); } }
 
 .bs-zhero { position: relative; height: var(--bs-zh-length, 160vh); }
 .bs-zhero__sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center; }

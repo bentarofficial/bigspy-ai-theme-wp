@@ -6212,11 +6212,11 @@ msgstr "Màu nét"
 msgid "Horizontal Scroll"
 msgstr "Horizontal Scroll"
 
-msgid "Panel width – desktop (% of screen)"
-msgstr "Chiều rộng ô – máy tính (% màn hình)"
+msgid "Panel width – desktop (% of block)"
+msgstr "Chiều rộng ô – máy tính (% chiều rộng khối)"
 
-msgid "Panel width – mobile (% of screen)"
-msgstr "Chiều rộng ô – điện thoại (% màn hình)"
+msgid "Panel width – mobile (% of block)"
+msgstr "Chiều rộng ô – điện thoại (% chiều rộng khối)"
 
 msgid "On the site, visitors scroll down and these panels slide sideways. On phones they become a swipeable row."
 msgstr "Trên website, khách cuộn xuống thì các ô này trượt ngang. Trên điện thoại chúng thành hàng vuốt ngang."

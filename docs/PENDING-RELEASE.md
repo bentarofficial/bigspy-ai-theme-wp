@@ -6,7 +6,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới.
+- **Yêu cầu/tính năng:** Horizontal Scroll xuất bản chiếm quá nhiều diện tích, không khớp editor.
+- **Đã thay đổi:** Panel width tính theo % chiều rộng khối (cqw), không còn theo màn hình; editor áp dụng đúng Panel width và Gap; khi ghim, khối cao vừa nội dung và canh giữa màn hình thay vì chiếm 100svh; bỏ lề 4vw khi ghim. Trang có sẵn: thẻ hẹp hơn trên màn hình lớn.
+- **Kiểm thử:** mô phỏng CSS và phép đo mới trên trang chủ thật: 1400px và 1920px (46 → thẻ 630-639px, ghim, cao 473px; 31 → 3 thẻ một hàng, không ghim), 375px không tràn ngang; features-check, check-block-previews, phplint đạt. Chưa chạy Playground và chưa thử trong editor thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates; biên dịch lại `vi.mo` nếu cần.
+- **Git:** `feature/ai-designer`.
+- **Trạng thái:** đã triển khai, chờ owner yêu cầu phát hành.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

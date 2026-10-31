@@ -53,7 +53,7 @@
 	function hscroll(root) {
 		var sticky = root.firstElementChild, track = sticky && sticky.firstElementChild;
 		if (!track) { return; }
-		var distance = 0, ticking = false;
+		var distance = 0, pinTop = 0, ticking = false;
 		function pinnable() {
 			var was = root.classList.contains('is-pinned'), fits;
 			root.classList.remove('is-pinned');
@@ -64,15 +64,17 @@
 		function measure() {
 			var on = pinnable();
 			root.classList.toggle('is-pinned', on);
-			if (!on) { root.style.height = ''; track.style.transform = ''; distance = 0; return; }
-			distance = Math.max(0, track.scrollWidth + parseFloat(getComputedStyle(track).paddingRight) - sticky.clientWidth);
-			root.style.height = 'calc(100svh + ' + distance + 'px)';
+			if (!on) { root.style.height = ''; root.style.removeProperty('--bs-hs-top'); track.style.transform = ''; distance = 0; return; }
+			distance = Math.max(0, track.scrollWidth - sticky.clientWidth);
+			pinTop = Math.max(0, (window.innerHeight - sticky.offsetHeight) / 2);
+			root.style.setProperty('--bs-hs-top', pinTop.toFixed(1) + 'px');
+			root.style.height = sticky.offsetHeight + distance + 'px';
 			update();
 		}
 		function update() {
 			ticking = false;
 			if (!root.classList.contains('is-pinned')) { return; }
-			var p = Math.min(1, Math.max(0, -root.getBoundingClientRect().top / Math.max(1, root.offsetHeight - sticky.offsetHeight)));
+			var p = Math.min(1, Math.max(0, (pinTop - root.getBoundingClientRect().top) / Math.max(1, distance)));
 			track.style.transform = 'translate3d(' + (-p * distance).toFixed(1) + 'px,0,0)';
 		}
 		function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }

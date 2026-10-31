@@ -5718,19 +5718,19 @@ msgstr ""
 msgid "Height unit"
 msgstr ""
 
-msgid "Height – desktop (% of screen)"
+msgid "Height – desktop (% of block)"
 msgstr ""
 
 msgid "Height – desktop (px)"
 msgstr ""
 
-msgid "Height – mobile (% of screen)"
+msgid "Height – mobile (% of block)"
 msgstr ""
 
 msgid "Height – mobile (px)"
 msgstr ""
 
-msgid "Height – tablet (% of screen)"
+msgid "Height – tablet (% of block)"
 msgstr ""
 
 msgid "Height – tablet (px)"

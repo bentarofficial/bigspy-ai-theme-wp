@@ -227,12 +227,12 @@
 	wp.blocks.registerBlockType('bigspy/horizontal-scroll', { edit: function (props) {
 		return el(Fragment, null,
 			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Horizontal Scroll', T) },
-				control(props, 'panelWidth', __('Panel width – desktop (% of screen)', T), 'range', [30, 100]),
-				control(props, 'panelWidthMobile', __('Panel width – mobile (% of screen)', T), 'range', [50, 100]),
+				control(props, 'panelWidth', __('Panel width – desktop (% of block)', T), 'range', [30, 100]),
+				control(props, 'panelWidthMobile', __('Panel width – mobile (% of block)', T), 'range', [50, 100]),
 				control(props, 'gap', __('Gap', T), 'range', [0, 120]),
 				control(props, 'label', __('Accessible label', T))
 			)),
-			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-motion-editor--ticker' }),
+			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-motion-editor--hscroll', style: { '--bs-hs-w': (props.attributes.panelWidth || 70) + 'cqw', '--bs-hs-gap': (undefined === props.attributes.gap ? 32 : props.attributes.gap) + 'px' } }),
 				el(c.Notice, { status: 'info', isDismissible: false }, __('On the site, visitors scroll down and these panels slide sideways. On phones they become a swipeable row.', T)),
 				el(be.InnerBlocks, { allowedBlocks: ['bigspy/hscroll-panel'], orientation: 'horizontal', template: [['bigspy/hscroll-panel'], ['bigspy/hscroll-panel'], ['bigspy/hscroll-panel']] }))
 		);
