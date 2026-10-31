@@ -66,12 +66,14 @@ add_filter(
 	}
 );
 
-/** Block names (bst/…) hidden from the inserter. */
+/** Registered block names hidden from the inserter. */
 function bst_disabled_blocks() {
 	$off = array();
 	foreach ( bst_block_names() as $name ) {
 		if ( bst_mod( 'block_off_' . str_replace( '-', '_', $name ) ) ) {
-			$off[] = ( in_array( $name, array( 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel' ), true ) ? 'bigspy/' : 'bst/' ) . $name;
+			$file = BST_DIR . '/blocks/' . $name . '/block.json';
+			$json = is_readable( $file ) ? json_decode( (string) file_get_contents( $file ), true ) : null; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			$off[] = $json['name'] ?? 'bst/' . $name;
 		}
 	}
 	return $off;

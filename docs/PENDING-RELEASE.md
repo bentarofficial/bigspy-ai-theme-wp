@@ -6,6 +6,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
+- **AI Designer và block động (G-36):** sửa đọc–sửa–lưu 19 block `bigspy/*` để giữ thuộc tính và nội dung lồng nhau; bổ sung quan hệ cha/con cho Scroll Story, Stacking Cards, Hover Reveal, Horizontal Scroll, Zoom Hero, Video Cards, Bento. Payload native `raw` cũ được yêu cầu đọc lại thay vì âm thầm lưu rỗng. Block Manager dùng namespace trong metadata; filter editor cũng ẩn đúng motion block và luôn nạp trước khi đăng ký. Runner Designer báo từng test và hỗ trợ số worker. Ma trận đối chiếu và backlog ở [THEME-COMPARISON.md](THEME-COMPARISON.md). Kiểm thử: đã tái hiện lỗi trước sửa; Designer 151 mục đạt, filter editor đạt cả 74 block, features-check 82 mục, Auto Detect 67 mục và block previews đều đạt; lint PHP/JS và diff đạt. Chưa thử UI hosting, AI thật hoặc phát hành. Git: `feature/ai-designer`. Khi phát hành: bổ sung ghi chú sửa lỗi AI/block; không đổi số phiên bản trong đợt này.
+
 - **Auto Detect, quét media và Media ATND (G-34):** quét media sâu như plugin Media Cleaner (shortcode Flatsome, WebP, mọi option, postmeta, termmeta); Media Library có tích xanh/X đỏ, cột, bộ lọc, link "Chưa dùng", bulk action; trang Auto detect có ảnh thu nhỏ, chọn tất cả, "Giữ tệp này"; xoá vào thùng rác của theme, kiểm tra lại ngay trước khi xoá, khôi phục được. Thêm module Media ATND dùng kết nối API theme. Test: 67 mục auto-detect đạt trên Playground (AI giả lập), features-check đạt. Chưa thử giao diện trong trình duyệt, chưa thử AI thật. Khi phát hành: bổ sung Có gì mới, README.
 
 - **Yêu cầu/tính năng:** Horizontal Scroll trượt theo cuộn dọc trên mọi màn hình.
