@@ -3,8 +3,9 @@
 defined( 'ABSPATH' ) || exit;
 return array('title' => __('BIGSPY AI Theme WP', 'bigspy-ai-theme-wp'),
 'lead' => __('Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace.', 'bigspy-ai-theme-wp'),
-'news_version' => '1.80.2',
-'news' => array(__('1.80.2: Horizontal Scroll shows up to three panels on desktop and slides from the fourth, and full-width sections keep their width while pinned.', 'bigspy-ai-theme-wp'),
+'news_version' => '1.80.3',
+'news' => array(__('1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description.', 'bigspy-ai-theme-wp'),
+__('1.80.2: Horizontal Scroll shows up to three panels on desktop and slides from the fourth, and full-width sections keep their width while pinned.', 'bigspy-ai-theme-wp'),
 __('1.80.1: Horizontal Scroll fix: panel width now follows the block width and matches the editor, and the whole section stays on screen while pinned, removing the blank space above and below.', 'bigspy-ai-theme-wp'),
 __('1.80.0: Media Library marks used and unused files, and unused files go to a restorable trash after a fresh check. Media ATND writes image alt text, title, caption and description with AI. Horizontal Scroll pins on all screens. AI Designer keeps motion blocks intact when editing.', 'bigspy-ai-theme-wp'), __('1.79.0: Horizontal Scroll adds previous and next buttons with position dots. Infinity Flow keeps moving under reduced motion. Flip Box fills its column.', 'bigspy-ai-theme-wp'), __('1.78.1: Stacking Cards and other sticky motion blocks now work inside a Section. Infinity Flow no longer shows a scrollbar when reduced motion is on.', 'bigspy-ai-theme-wp'), __('1.78.0: AI Designer always builds pages from editable blocks. Moving CF7 forms now covers Form blocks and redirects.', 'bigspy-ai-theme-wp'),
 __('1.77.2: Saved SMTP passwords now show as ******** in the Features page.', 'bigspy-ai-theme-wp'),

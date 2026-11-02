@@ -6967,3 +6967,6 @@ msgstr "Model không trả về nội dung dùng được."
 msgid "You cannot edit this image."
 msgstr "Bạn không có quyền sửa ảnh này."
 
+msgid "1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description."
+msgstr "1.80.3: Media ATND chuyển vào trình chọn media: nhập từ khoá và mô tả ngắn, chọn ngôn ngữ và model, rồi bấm Tạo để viết alt, tiêu đề, chú thích và mô tả."
+

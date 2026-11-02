@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.80.3 =
+* Media ATND moved from Auto detect into the media picker, with keyword, short description, language and model.
+
 = 1.80.2 =
 * Horizontal Scroll: up to three panels on desktop; sliding starts at the fourth.
 * Horizontal Scroll: full-width sections keep their width while pinned.

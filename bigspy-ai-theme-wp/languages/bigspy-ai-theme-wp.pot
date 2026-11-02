@@ -10803,3 +10803,6 @@ msgstr ""
 msgid "You cannot edit this image."
 msgstr ""
 
+msgid "1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description."
+msgstr ""
+

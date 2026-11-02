@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-- **Media ATND (G-43):** bỏ khỏi Auto detect, làm lại thành khung trong chi tiết ảnh của trình chọn media theo plugin BIGSEO: từ khoá, mô tả ngắn, ngôn ngữ, model, nút Tạo; ghi cả bốn trường. Tự ẩn khi plugin BIGSEO đang bật. Khi phát hành cập nhật Giới thiệu/Có gì mới.
+Chưa có thay đổi sản phẩm mới.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
