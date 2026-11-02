@@ -163,35 +163,31 @@ function bst_t_media() {
 
 function bst_t_atnd() {
 	$bare = bst_att( 'bare' );
-	$full = bst_att( 'full' );
-	update_post_meta( $full, '_wp_attachment_image_alt', 'Alt' );
-	wp_update_post( array( 'ID' => $full, 'post_title' => 'A title', 'post_excerpt' => 'Cap', 'post_content' => 'Desc' ) );
-	$part = bst_att( 'part' );
-	update_post_meta( $part, '_wp_attachment_image_alt', 'Mine' );
-	$found = wp_list_pluck( bst_scan( 'atnd' ), 'select' );
-	bst_test( in_array( $bare, $found ) && ! in_array( $full, $found ), 'atnd: lists only images with gaps' );
-	$request = new WP_REST_Request( 'POST' );
-	$request->set_param( 'op', 'generate' );
-	$request->set_param( 'ids', array( $bare, $part ) );
-	bst_test( is_wp_error( bst_ad_atnd_action( $request ) ), 'atnd: refused without a connection' );
-	bst_test( false === bst_ad_public_state( 'atnd' )['extra']['ready'], 'atnd: page asks to connect' );
-	bst_test( in_array( 'title', bst_ad_atnd_missing( $bare ), true ), 'atnd: title equal to file name counts as missing' );
-	bst_ad_atnd_save( $part, array( 'alt' => 'AI', 'title' => 'AI title', 'caption' => 'AI cap', 'description' => 'AI desc' ) );
-	bst_test( 'Mine' === get_post_meta( $part, '_wp_attachment_image_alt', true ) && 'AI title' === get_the_title( $part ), 'atnd: fills gaps, keeps existing text' );
+	update_post_meta( $bare, '_wp_attachment_image_alt', 'Old' );
+	bst_test( ! isset( bst_ad_modules()['atnd'] ), 'atnd: not an auto detect module' );
+	bst_test( is_wp_error( bst_atnd_generate( $bare, 'sofa', '', 'English', '' ) ), 'atnd: refused without a connection' );
+	bst_test( false !== strpos( bst_atnd_panel( $bare ), 'page=bigspy-ai-designer' ), 'atnd: panel asks to connect' );
 	$atts = array();
 	update_option( 'bst_aid_settings', array_merge( bst_aid_settings(), array( 'connected' => true, 'text_model' => 'test-model' ) ), false );
 	update_option( 'bst_aid_key', bst_aid_encrypt( 'test-key-not-real' ), false );
 	bst_mock(
 		function ( $pre, $args, $url ) use ( &$atts ) {
-			$atts[] = $args['body'];
+			if ( ! empty( $args['body'] ) ) {
+				$atts[] = $args['body'];
+			}
 			return bst_body( 200, wp_json_encode( array( 'choices' => array( array( 'message' => array( 'content' => '```json' . "\n" . '{"alt":"Sofa xanh","title":"Sofa","caption":"Cap","description":"Mo ta"}' . "\n```" ) ) ) ) ) );
 		}
 	);
-	$request->set_param( 'ids', array( $bare ) );
-	bst_test( true === bst_ad_atnd_action( $request ), 'atnd: generate runs when connected' );
-	bst_test( 'Sofa xanh' === get_post_meta( $bare, '_wp_attachment_image_alt', true ) && 'Mo ta' === get_post_field( 'post_content', $bare ), 'atnd: AI text saved' );
-	bst_test( false !== strpos( (string) ( $atts[0] ?? '' ), 'image_url' ), 'atnd: image sent to the model' );
-	bst_test( ! in_array( $bare, wp_list_pluck( bst_ad_visible_items( 'atnd' ), 'select' ) ), 'atnd: done image leaves the list' );
+	bst_test( false !== strpos( bst_atnd_panel( $bare ), 'bst-atnd-go' ), 'atnd: panel shows Generate when connected' );
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	bst_test( isset( get_attachment_fields_to_edit( get_post( $bare ) )['bst_atnd'] ), 'atnd: panel is in the media details' );
+	bst_test( is_wp_error( bst_atnd_generate( $bare, '', 'desc', 'English', '' ) ) && ! $atts, 'atnd: keyword required, no API call' );
+	$saved = bst_atnd_generate( $bare, 'sofa', 'sofa xanh trong phong khach', 'Japanese', 'not-listed' );
+	bst_test( ! is_wp_error( $saved ) && 'Sofa xanh' === get_post_meta( $bare, '_wp_attachment_image_alt', true ) && 'Mo ta' === get_post_field( 'post_content', $bare ) && 'Cap' === get_post_field( 'post_excerpt', $bare ), 'atnd: all four fields written' );
+	$sent = json_decode( (string) ( $atts[0] ?? '' ), true );
+	bst_test( false !== strpos( (string) ( $atts[0] ?? '' ), 'image_url' ) && false !== strpos( (string) ( $atts[0] ?? '' ), 'Japanese' ) && false !== strpos( (string) ( $atts[0] ?? '' ), 'sofa xanh' ), 'atnd: image, language and description sent' );
+	bst_test( 'test-model' === ( $sent['model'] ?? '' ), 'atnd: unknown model falls back to the default' );
+	bst_test( 'sofa' === get_post_meta( $bare, '_bst_atnd_keyword', true ), 'atnd: keyword remembered' );
 }
 
 function bst_t_links() {

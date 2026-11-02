@@ -73,13 +73,6 @@
 		} });
 	}
 	/* Generate a few at a time so a long run never hits a server time limit. */
-	function generate(id, ids, batch) {
-		if (!ids.length) { return; }
-		api(id + '/action', { op: 'generate', ids: ids.slice(0, batch) }).then(function (s) {
-			render(id, s);
-			generate(id, ids.slice(batch), batch);
-		}).catch(function (e) { api('state').then(function (all) { render(id, all.modules[id]); }); fail(e); });
-	}
 	var grid = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;list-style:none;padding:0';
 
 	var panels = {};
@@ -95,16 +88,7 @@
 		if (!running && s.finished && !s.items.length) { box.list.appendChild(node('li', { textContent: t.clean })); }
 		box.bulk.textContent = '';
 		var extra = s.extra || {};
-		if (id === 'atnd') {
-			if (!extra.ready) {
-				box.bulk.appendChild(node('a', { className: 'button button-primary', href: safeUrl(extra.connect), textContent: t.connect }));
-			} else if (s.items.length) {
-				box.bulk.appendChild(selectAll(box.list));
-				box.bulk.appendChild(node('button', { type: 'button', className: 'button button-primary', style: 'margin-left:6px', textContent: t.generate, onclick: function () {
-					generate(id, picked(box.list, 'bst-ad-pick'), extra.batch);
-				} }));
-			}
-		} else if (s.items.some(function (i) { return i.select; })) {
+		if (s.items.some(function (i) { return i.select; })) {
 			if (cards) { box.bulk.appendChild(selectAll(box.list)); }
 			box.bulk.appendChild(node('button', { type: 'button', className: 'button', textContent: t.deleteBtn, onclick: function () {
 				var ids = picked(box.list, 'bst-ad-pick');

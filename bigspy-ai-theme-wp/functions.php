@@ -59,6 +59,7 @@ $bst_includes = array(
 	'inc/patterns.php',
 	'inc/pattern-studio.php',
 	'inc/auto-detect.php',
+	'inc/media-atnd.php',
 	'inc/features.php',
 
 	'inc/compat-flatsome.php',

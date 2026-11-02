@@ -26,7 +26,7 @@ See README.md in the source repository for the full feature list and the site-bu
 = 1.80.0 =
 * Auto detect: deeper unused media scan (shortcodes, WebP copies, all options and metadata); green tick and red X in the Media Library, usage filter, thumbnails, select all, keep a file.
 * Auto detect: unused files move to a restorable trash after a fresh check; files in use are refused.
-* Media ATND: AI writes missing alt text, title, caption and description through the theme's API connection.
+* Media ATND: in the media picker, enter a keyword and short description, choose language and model, and AI writes alt text, title, caption and description.
 * Horizontal Scroll: pins on all screens; pager removed.
 * AI Designer: keeps attributes and nested content of bigspy blocks when editing; parent and child rules for motion blocks.
 
