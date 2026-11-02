@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.80.2' );
+define( 'BST_VERSION', '1.80.3' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -59,6 +59,7 @@ $bst_includes = array(
 	'inc/patterns.php',
 	'inc/pattern-studio.php',
 	'inc/auto-detect.php',
+	'inc/media-atnd.php',
 	'inc/features.php',
 
 	'inc/compat-flatsome.php',

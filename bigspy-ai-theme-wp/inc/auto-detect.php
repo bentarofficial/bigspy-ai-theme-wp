@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'BST_AD_NS', 'bst-detect/v1' );
 define( 'BST_AD_MAX_ITEMS', 1000 );
 
-foreach ( array( 'keywords', 'h1', 'media', 'atnd', 'links', 'security' ) as $bst_ad_file ) {
+foreach ( array( 'keywords', 'h1', 'media', 'links', 'security' ) as $bst_ad_file ) {
 	require_once __DIR__ . '/auto-detect/' . $bst_ad_file . '.php';
 }
 
@@ -285,8 +285,6 @@ function bst_ad_page() {
 				'restoreBtn' => __( 'Restore selected', 'bigspy-ai-theme-wp' ),
 				'purgeBtn'   => __( 'Delete selected permanently', 'bigspy-ai-theme-wp' ),
 				'purgeAsk'   => __( 'Permanently delete the selected files? This cannot be undone.', 'bigspy-ai-theme-wp' ),
-				'generate'   => __( 'Generate for selected', 'bigspy-ai-theme-wp' ),
-				'connect'    => __( 'Connect the API to use this tool', 'bigspy-ai-theme-wp' ),
 				'replaceBtn' => __( 'Replace link', 'bigspy-ai-theme-wp' ),
 				'replaceAsk' => __( 'New URL:', 'bigspy-ai-theme-wp' ),
 				'removeBtn'  => __( 'Remove link', 'bigspy-ai-theme-wp' ),

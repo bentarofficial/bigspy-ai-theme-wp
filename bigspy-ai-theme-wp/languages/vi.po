@@ -6922,3 +6922,51 @@ msgstr "1.80.1: Sửa Horizontal Scroll: chiều rộng ô theo chiều rộng k
 msgid "1.80.0: Media Library marks used and unused files, and unused files go to a restorable trash after a fresh check. Media ATND writes image alt text, title, caption and description with AI. Horizontal Scroll pins on all screens. AI Designer keeps motion blocks intact when editing."
 msgstr "1.80.0: Media Library đánh dấu tệp đã dùng và chưa dùng; tệp chưa dùng vào thùng rác khôi phục được sau khi kiểm tra lại. Media ATND dùng AI viết alt, tiêu đề, chú thích và mô tả ảnh. Horizontal Scroll ghim trên mọi màn hình. AI Designer giữ nguyên khối động khi sửa."
 
+msgid "Vietnamese"
+msgstr "Tiếng Việt"
+
+msgid "English"
+msgstr "Tiếng Anh"
+
+msgid "Japanese"
+msgstr "Tiếng Nhật"
+
+msgid "Chinese"
+msgstr "Tiếng Trung"
+
+msgid "French"
+msgstr "Tiếng Pháp"
+
+msgid "SEO keyword"
+msgstr "Từ khoá SEO"
+
+msgid "Short image description"
+msgstr "Mô tả ngắn cho hình ảnh"
+
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Model"
+msgstr "Model"
+
+msgid "Generate"
+msgstr "Tạo"
+
+msgid "Writing..."
+msgstr "Đang viết..."
+
+msgid "Enter a keyword first."
+msgstr "Vui lòng nhập từ khoá trước."
+
+msgid "Could not generate the text."
+msgstr "Không tạo được nội dung."
+
+msgid "The model did not return usable text."
+msgstr "Model không trả về nội dung dùng được."
+
+msgid "You cannot edit this image."
+msgstr "Bạn không có quyền sửa ảnh này."
+
+msgid "1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description."
+msgstr "1.80.3: Media ATND chuyển vào trình chọn media: nhập từ khoá và mô tả ngắn, chọn ngôn ngữ và model, rồi bấm Tạo để viết alt, tiêu đề, chú thích và mô tả."
+

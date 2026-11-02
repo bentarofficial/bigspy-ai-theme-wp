@@ -10755,3 +10755,54 @@ msgstr ""
 msgid "1.80.0: Media Library marks used and unused files, and unused files go to a restorable trash after a fresh check. Media ATND writes image alt text, title, caption and description with AI. Horizontal Scroll pins on all screens. AI Designer keeps motion blocks intact when editing."
 msgstr ""
 
+msgid "Vietnamese"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Japanese"
+msgstr ""
+
+msgid "Chinese"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "SEO keyword"
+msgstr ""
+
+msgid "Short image description"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "Generate"
+msgstr ""
+
+msgid "Writing..."
+msgstr ""
+
+msgid "Done."
+msgstr ""
+
+msgid "Enter a keyword first."
+msgstr ""
+
+msgid "Could not generate the text."
+msgstr ""
+
+msgid "The model did not return usable text."
+msgstr ""
+
+msgid "You cannot edit this image."
+msgstr ""
+
+msgid "1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description."
+msgstr ""
+
