@@ -6988,3 +6988,15 @@ msgstr "Đang dựng các section"
 msgid "Reply OK to build every section of this page in one go, or tell the AI what to change."
 msgstr "Trả lời OK để dựng toàn bộ section của trang trong một lượt, hoặc nói AI cần đổi gì."
 
+msgid "— Same as the text model —"
+msgstr "— Giống model văn bản —"
+
+msgid "Fast model (Effort Low: lookups and small edits)"
+msgstr "Model nhanh (Effort Thấp: tra cứu và sửa nhỏ)"
+
+msgid "Optional. Runs sent with Effort Low use this cheaper, faster model; other efforts use the text model for writing and design. If the fast model fails, the run switches to the text model."
+msgstr "Không bắt buộc. Lượt gửi với Effort Thấp dùng model rẻ và nhanh này; các mức khác dùng model văn bản để viết và thiết kế. Nếu model nhanh lỗi, lượt chạy chuyển sang model văn bản."
+
+msgid "The fast model failed; switched to the main model."
+msgstr "Model nhanh bị lỗi; đã chuyển sang model chính."
+

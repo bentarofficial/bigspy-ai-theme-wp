@@ -42,6 +42,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-51, model theo việc.
+- **Đã thay đổi:** Cài đặt AI Designer thêm "Model nhanh" (không bắt buộc). Lượt gửi với Effort Thấp (tra cứu, sửa nhỏ) dùng model nhanh; mức khác dùng model văn bản để viết và thiết kế. Model nhanh lỗi thì lượt chuyển hẳn sang model chính và báo trong chat. Chi phí ước tính và số đo task ghi đúng model đã dùng. Chọn model ở thanh chat vẫn là G-21.
+- **Kiểm thử:** lint, Designer 177 đạt (Kyma giả lập); chưa thử AI thật và giao diện cài đặt.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn cài đặt AI Designer.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

@@ -15,6 +15,7 @@ function bst_aid_settings() {
 		array(
 			'connected'      => false,
 			'text_model'     => '',
+			'fast_model'     => '', // Optional cheaper model for low-effort runs (lookups, small edits).
 			'image_model'    => '',
 			'budget_task'    => 2.0,  // USD per task, 0 = no limit.
 			'budget_day'     => 10.0, // USD per day, 0 = no limit.
@@ -176,6 +177,7 @@ function bst_aid_rest_settings( $request = null ) {
 		'connected'     => $has_key && $s['connected'],
 		'ready'         => bst_aid_ready(),
 		'textModel'     => $s['text_model'],
+		'fastModel'     => $s['fast_model'],
 		'imageModel'    => $s['image_model'],
 		'budgetTask'    => (float) $s['budget_task'],
 		'budgetDay'     => (float) $s['budget_day'],
@@ -252,6 +254,10 @@ function bst_aid_rest_settings_save( WP_REST_Request $request ) {
 	$changes = array();
 	if ( '' === $text || in_array( $text, wp_list_pluck( $models['text'], 'id' ), true ) ) {
 		$changes['text_model'] = $text;
+	}
+	$fast = $request->get_param( 'fastModel' );
+	if ( null !== $fast && ( '' === (string) $fast || in_array( (string) $fast, wp_list_pluck( $models['text'], 'id' ), true ) ) ) {
+		$changes['fast_model'] = (string) $fast;
 	}
 	if ( '' === $image || in_array( $image, wp_list_pluck( $models['image'], 'id' ), true ) ) {
 		$changes['image_model'] = $image;

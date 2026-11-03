@@ -10824,3 +10824,15 @@ msgstr ""
 msgid "Reply OK to build every section of this page in one go, or tell the AI what to change."
 msgstr ""
 
+msgid "— Same as the text model —"
+msgstr ""
+
+msgid "Fast model (Effort Low: lookups and small edits)"
+msgstr ""
+
+msgid "Optional. Runs sent with Effort Low use this cheaper, faster model; other efforts use the text model for writing and design. If the fast model fails, the run switches to the text model."
+msgstr ""
+
+msgid "The fast model failed; switched to the main model."
+msgstr ""
+

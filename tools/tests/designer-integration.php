@@ -94,6 +94,9 @@ $GLOBALS['bst_test_kyma_mode'] = 'draft';
 add_filter( 'pre_http_request', function ( $result, $args, $url ) {
     if ( false === strpos( $url, 'kymaapi.com/' ) ) { return $result; }
     $GLOBALS['bst_test_kyma_calls'] = (int) ( $GLOBALS['bst_test_kyma_calls'] ?? 0 ) + 1;
+    $kyma_model = (string) ( json_decode( (string) ( $args['body'] ?? '' ), true )['model'] ?? '' );
+    $GLOBALS['bst_test_kyma_models'][] = $kyma_model;
+    if ( 'broken-fast' === $kyma_model ) { return array( 'headers' => array(), 'response' => array( 'code' => 500, 'message' => 'Error' ), 'body' => '{"error":{"message":"down"}}' ); }
     $fn = 'draft' === $GLOBALS['bst_test_kyma_mode'] ? 'create_page' : 'site_settings';
     $params = 'create_page' === $fn ? array( 'title' => 'Kyma fixture page', 'blocks' => array( array( 'name' => 'bst/heading', 'attrs' => array( 'text' => 'Mock page', 'tag' => 'h1' ) ) ) ) : array( 'values' => array( 'blogdescription' => 'This requires a real approval card.' ), 'confirmed' => true );
     if ( 'stop' === $GLOBALS['bst_test_kyma_mode'] ) {
@@ -124,6 +127,23 @@ $response = bst_aid_rest_task_step( $request )->get_data();
 bst_test( 'stopped' === $response['state'] && 'tool-error' === end( $response['events'] )['kind'], 'Stop during mock provider response blocks late tool write' );
 $metrics = bst_aid_metrics_summary( $run_task );
 bst_test( 2 === $metrics['total']['runs'] && 'replaced' === bst_aid_task_get( $run_task, '_bst_aid_metrics' )[0]['state'] && 3 === $metrics['total']['model_calls'] && isset( bst_aid_task_summary( get_post( $run_task ) )['metrics']['last'] ), 'Each message starts a new measured run and totals add up' );
+$GLOBALS['bst_test_kyma_mode'] = 'draft';
+bst_aid_save_settings( array( 'fast_model' => 'fast-model' ) );
+bst_test( 'fast-model' === bst_aid_run_model( 'low' ) && 'test-model' === bst_aid_run_model( 'high' ), 'Low effort routes to the fast model, other efforts to the main model' );
+$GLOBALS['bst_test_kyma_models'] = array();
+$request->set_param( 'effort', 'low' );
+bst_aid_rest_task_send( $request );
+bst_aid_rest_task_step( $request );
+bst_test( array( 'fast-model' ) === $GLOBALS['bst_test_kyma_models'] && 'fast-model' === bst_aid_metrics_summary( $run_task )['last']['model'], 'Low-effort run calls the fast model and records it' );
+bst_aid_save_settings( array( 'fast_model' => 'broken-fast' ) );
+$GLOBALS['bst_test_kyma_models'] = array();
+bst_aid_rest_task_send( $request );
+bst_aid_rest_task_step( $request );
+bst_aid_rest_task_step( $request );
+bst_test( array( 'broken-fast', 'test-model', 'test-model' ) === $GLOBALS['bst_test_kyma_models'] && 'test-model' === bst_aid_metrics_summary( $run_task )['last']['model'], 'Failed fast model falls back to the main model for the rest of the run: ' . implode( ',', $GLOBALS['bst_test_kyma_models'] ) );
+bst_aid_save_settings( array( 'fast_model' => '' ) );
+bst_aid_rest_task_stop( $request );
+$request->set_param( 'effort', 'high' );
 bst_aid_undo_task( $run_task );
 bst_test( get_option( 'blogdescription' ) === $old_tagline, 'Mock task undo restores original tagline' );
 

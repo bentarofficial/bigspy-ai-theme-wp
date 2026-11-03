@@ -147,6 +147,8 @@
 				if (state.connected && state.models) {
 					var text = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.text || [], state.textModel, true));
 					var image = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.image || [], state.imageModel, false));
+					var fast = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.text || [], state.fastModel, true));
+					fast.options[0].text = __('— Same as the text model —', T);
 					var bTask = h('input', { type: 'number', min: '0', step: '0.5', class: 'small-text', value: state.budgetTask });
 					var bDay = h('input', { type: 'number', min: '0', step: '1', class: 'small-text', value: state.budgetDay });
 					var testBox = h('div', { class: 'bst-aid-test' });
@@ -184,11 +186,13 @@
 						h('h2', { text: __('2. Models and budget', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Text model (writes, designs and calls the tools)', T) }), text]),
 						h('p', { class: 'description', text: __('Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough.', T) }),
+						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Fast model (Effort Low: lookups and small edits)', T) }), fast]),
+						h('p', { class: 'description', text: __('Optional. Runs sent with Effort Low use this cheaper, faster model; other efforts use the text model for writing and design. If the fast model fails, the run switches to the text model.', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Image model (used by ImageGen)', T) }), image]),
 						h('p', { class: 'bst-aid-row' }, [h('label', null, [__('Budget per task (USD, 0 = no limit) ', T), bTask]), h('label', null, [__('Budget per day (USD, 0 = no limit) ', T), bDay])]),
 						h('p', { class: 'description', text: sprintf(__('Spent today: %s', T), money(state.spentToday)) }),
 						h('p', null, [
-							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
+							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, fastModel: fast.value, imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
 							' ',
 							h('button', { class: 'button', disabled: busy, onclick: function () { load(true); }, text: __('Refresh model list', T) }),
 							' ',

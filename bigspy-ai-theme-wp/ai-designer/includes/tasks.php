@@ -112,6 +112,12 @@ function bst_aid_metrics_summary( $id ) {
 	return array( 'last' => array_merge( $row( $last ), array( 'state' => $last['state'], 'model' => $last['model'], 'effort' => $last['effort'], 'tools' => $last['tools'] ) ), 'total' => array_map( function ( $v ) { return is_float( $v ) ? round( $v, 4 ) : $v; }, $total ) );
 }
 
+/** Model for a run: the fast model for low effort (lookups, small edits) when one is set, else the main model. */
+function bst_aid_run_model( $effort, $s = null ) {
+	$s = $s ?? bst_aid_settings();
+	return ( 'low' === $effort && '' !== (string) $s['fast_model'] ) ? (string) $s['fast_model'] : (string) $s['text_model'];
+}
+
 function bst_aid_task_summary( $p ) {
 	return array(
 		'id'       => $p->ID,
@@ -232,7 +238,7 @@ function bst_aid_rest_task_send( WP_REST_Request $r ) {
 	bst_aid_task_set( $p->ID, '_bst_aid_image_count', 0 );
 	bst_aid_task_set( $p->ID, '_bst_aid_run', array( 'active' => true, 'effort' => $effort, 'steps_left' => bst_aid_effort_steps( $effort ) ) );
 	bst_aid_metrics_end( $p->ID, 'replaced' );
-	bst_aid_metrics_start( $p->ID, (string) bst_aid_settings()['text_model'], $effort );
+	bst_aid_metrics_start( $p->ID, bst_aid_run_model( $effort ), $effort );
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'user', 'text' => $text ) );
 	if ( 1 === count( $msgs ) ) {
 		wp_update_post( array( 'ID' => $p->ID, 'post_title' => wp_trim_words( wp_strip_all_tags( $text ), 9, '…' ) ) );
@@ -339,7 +345,19 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	$messages = array_merge( array( array( 'role' => 'system', 'content' => bst_aid_system_prompt() ) ), bst_aid_history( $msgs ) );
 	$t0       = microtime( true );
 	$calls_n  = 1;
-	$res      = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $s['text_model'], 'effort' => $run['effort'] ?? 'medium' ) );
+	$model    = empty( $run['main_only'] ) ? bst_aid_run_model( $run['effort'] ?? 'medium', $s ) : (string) $s['text_model'];
+	$res      = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $model, 'effort' => $run['effort'] ?? 'medium' ) );
+	if ( empty( $res['ok'] ) && $model !== $s['text_model'] ) {
+		// The fast model failed: this step and the rest of the run use the main model.
+		$calls_n++;
+		$model = $s['text_model'];
+		$res   = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $model, 'effort' => $run['effort'] ?? 'medium' ) );
+		$events[] = bst_aid_task_log( $id, array( 'kind' => 'info', 'text' => __( 'The fast model failed; switched to the main model.', 'bigspy-ai-theme-wp' ) ) );
+		bst_aid_metrics_update( $id, function ( $m ) use ( $model ) { $m['model'] = $model; return $m; } );
+		$flag              = bst_aid_task_get( $id, '_bst_aid_run' );
+		$flag['main_only'] = true;
+		bst_aid_task_set( $id, '_bst_aid_run', $flag );
+	}
 	if ( empty( $res['ok'] ) && 400 === (int) $res['status'] ) {
 		// Still rejected: send a compact history (every older tool result shortened) once more.
 		foreach ( $messages as $i => $m ) {
@@ -348,7 +366,7 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 			}
 		}
 		$calls_n++;
-		$second = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $s['text_model'], 'effort' => 'low' ) );
+		$second = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $model, 'effort' => 'low' ) );
 		if ( ! empty( $second['ok'] ) ) {
 			$events[] = bst_aid_task_log( $id, array( 'kind' => 'info', 'text' => __( 'The model rejected the full request once; it worked again with a shorter history.', 'bigspy-ai-theme-wp' ) ) );
 			$res      = $second;
@@ -368,7 +386,7 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	$usage = (array) ( $res['data']['usage'] ?? array() );
 	$step  = isset( $usage['cost'] ) ? (float) $usage['cost'] : 0.0;
 	if ( ! isset( $usage['cost'] ) ) {
-		$meta = bst_aid_text_model_meta( $s['text_model'] );
+		$meta = bst_aid_text_model_meta( $model );
 		if ( $meta ) {
 			$step = ( (int) ( $usage['prompt_tokens'] ?? 0 ) * $meta['input'] + (int) ( $usage['completion_tokens'] ?? 0 ) * $meta['output'] ) / 1000000;
 		}
@@ -383,7 +401,7 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	} );
 
 	$served = (string) ( $res['headers']['x-kyma-served-model'] ?? '' );
-	if ( '' !== $served && $served !== $s['text_model'] ) {
+	if ( '' !== $served && $served !== $model ) {
 		$events[] = bst_aid_task_log( $id, array( 'kind' => 'info', 'text' => sprintf( /* translators: %s: model id */ __( 'Answered by the fallback model %s.', 'bigspy-ai-theme-wp' ), $served ) ) );
 	}
 
