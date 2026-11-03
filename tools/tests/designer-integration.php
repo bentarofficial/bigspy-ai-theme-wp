@@ -189,6 +189,21 @@ bst_test( in_array( 'process-stack-cards', $recipe_ids, true ) && ! in_array( 'h
 $recipe_one = bst_test_run( 'section_recipes', array( 'id' => 'features-icon-3' ) );
 bst_test( in_array( 'section title', (array) ( $recipe_one['slots'] ?? array() ), true ) && 'bst/section' === ( $recipe_one['blocks'][0]['name'] ?? '' ), 'section_recipes returns the tree and its slots' );
 bst_test( ! empty( bst_test_run( 'section_recipes', array( 'id' => 'nope' ) )['error'] ) && 'read' === bst_aid_tool_policy( 'section_recipes', array() )['group'], 'Unknown recipe refused; section_recipes is a read tool' );
+$GLOBALS['bst_aid_task_id'] = $task;
+$plan = bst_test_run( 'page_plan', array( 'page' => 'Home', 'sections' => array( array( 'recipe' => 'hero-split', 'purpose' => 'Open the page' ), array( 'blocks' => 'bst/text', 'purpose' => 'Note' ) ) ) );
+bst_test( 'Split hero, text and image' === ( $plan['plan']['sections'][0]['title'] ?? '' ) && 2 === count( bst_aid_task_get( $task, '_bst_aid_plan' )['sections'] ?? array() ) && 'read' === bst_aid_tool_policy( 'page_plan', array() )['group'], 'page_plan shows and stores the outline without writing' );
+$plan_media = wp_insert_attachment( array( 'post_title' => 'Plan image', 'post_mime_type' => 'image/png', 'post_status' => 'inherit' ) );
+$built_page = bst_test_run( 'build_sections', array( 'title' => 'Built in one go', 'sections' => array(
+	array( 'recipe' => 'hero-split', 'slots' => array( 'eyebrow' => 'New', 'page H1' => 'Fast build H1', 'one clear message' => 'Message', 'primary action' => 'Call', 'secondary action' => 'Read', 'link' => array( '/contact', '/about' ), 'image description' => 'Team' ), 'media' => array( $plan_media ) ),
+	array( 'recipe' => 'features-icon-3', 'slots' => array( 'section title' => 'Why us', 'short subtitle' => 'Three reasons', 'icon' => 'check', 'feature' => array( 'Fast', 'Clear', 'Kind' ), 'one or two sentences' => 'Sentence.' ) ),
+	array( 'recipe' => 'features-split-checklist', 'slots' => array( 'section title' => 'No image here' ) ),
+) ) );
+$built_html = (string) get_post_field( 'post_content', (int) ( $built_page['id'] ?? 0 ) );
+bst_test( empty( $built_page['error'] ) && 3 === count( $built_page['built'] ?? array() ) && false !== strpos( $built_html, 'Fast build H1' ) && false !== strpos( $built_html, 'Kind' ) && false !== strpos( $built_html, '"imageId":' . $plan_media ) && false === strpos( $built_html, '{{' ), 'build_sections fills several recipes, repeated slots and media in one call' );
+bst_test( 1 === ( $built_page['built'][2]['images_removed'] ?? 0 ) && in_array( 'reason', $built_page['built'][2]['empty_slots'] ?? array(), true ), 'build_sections drops images without media and reports empty slots' );
+$appended = bst_test_run( 'build_sections', array( 'id' => (int) $built_page['id'], 'sections' => array( array( 'recipe' => 'proof-marquee', 'slots' => array( 'keyword 1' => 'Alpha' ) ) ) ) );
+bst_test( empty( $appended['error'] ) && 4 === $appended['sections'], 'build_sections appends to an existing page' );
+bst_test( ! empty( bst_test_run( 'build_sections', array( 'title' => 'X', 'sections' => array( array( 'recipe' => 'nope', 'slots' => array() ) ) ) )['error'] ) && 'content' === bst_aid_tool_policy( 'build_sections', array() )['group'], 'build_sections refuses unknown recipes and is a content write' );
 $forged = '<!-- wp:html --><div>Forged</div><!-- /wp:html -->';
 $r = bst_test_run( 'create_page', array( 'title' => 'Raw forged', 'blocks' => array( array( 'name' => 'core/html', 'raw' => $forged ) ) ) );
 bst_test( ! empty( $r['error'] ) && false !== strpos( wp_json_encode( $r ), 'unchanged' ), 'New page refuses forged core/html raw' );

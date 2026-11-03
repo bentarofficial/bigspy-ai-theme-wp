@@ -768,6 +768,18 @@ add_filter(
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_section_recipes',
 		);
+		$tools['page_plan'] = array(
+			'description' => 'Show the user the page outline as a card in the chat: each section with its recipe (or blocks) and purpose. Changes nothing on the site. After the user says OK, build all its sections with build_sections without asking again between sections.',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'page' => array( 'type' => 'string' ), 'sections' => array( 'type' => 'array', 'maxItems' => 20, 'items' => array( 'type' => 'object', 'properties' => array( 'recipe' => array( 'type' => 'string' ), 'blocks' => array( 'type' => 'string', 'description' => 'Blocks and motion, when no recipe fits.' ), 'purpose' => array( 'type' => 'string' ) ), 'required' => array( 'purpose' ) ) ) ), 'required' => array( 'page', 'sections' ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_page_plan',
+		);
+		$tools['build_sections'] = array(
+			'description' => 'Build up to 8 sections in one call from section_recipes: the server fills each recipe with your slot values and media. Without id it creates a draft page (title required); with id it appends to that page. slots: { "slot name": "text" } or an array used in order for repeated slots. media: attachment ids put in the recipe image places in order. attrs: overrides for the section (background, padding).',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'id' => array( 'type' => 'integer' ), 'title' => array( 'type' => 'string' ), 'confirmed' => array( 'type' => 'boolean' ), 'sections' => array( 'type' => 'array', 'minItems' => 1, 'maxItems' => 8, 'items' => array( 'type' => 'object', 'properties' => array( 'recipe' => array( 'type' => 'string' ), 'slots' => array( 'type' => 'object', 'additionalProperties' => true ), 'media' => array( 'type' => 'array', 'items' => array( 'type' => 'integer' ) ), 'attrs' => array( 'type' => 'object', 'additionalProperties' => true ) ), 'required' => array( 'recipe', 'slots' ) ) ) ), 'required' => array( 'sections' ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_build_sections',
+		);
 		$tools['style_options'] = array(
 			'description' => 'Style presets of the given blocks and the site-wide CSS library. Presets go in a block as attrs.bsPresets, ids separated by spaces. CSS library items are switched on by the user in Customize; suggest them, do not copy their CSS.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'names' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ) ), 'required' => array( 'names' ) ),
@@ -1052,6 +1064,161 @@ function bst_aid_tool_section_recipes( $a ) {
 		$out[] = $row;
 	}
 	return array( 'recipes' => $out, 'rules' => array( 'Pick one recipe per planned section; do not use the same recipe twice in a row. Recipes with media need real images or videos: get them first, or choose another recipe.', 'Change colors, background and layout attributes freely; keep the motion unless the user asks for a calmer page.' ) );
+}
+
+function bst_aid_tool_page_plan( $a ) {
+	$recipes  = bst_aid_section_recipes();
+	$sections = array();
+	foreach ( array_slice( (array) ( $a['sections'] ?? array() ), 0, 20 ) as $sec ) {
+		$recipe     = sanitize_key( (string) ( $sec['recipe'] ?? '' ) );
+		$sections[] = array(
+			'recipe'  => isset( $recipes[ $recipe ] ) ? $recipe : '',
+			'title'   => isset( $recipes[ $recipe ] ) ? $recipes[ $recipe ][0] : sanitize_text_field( (string) ( $sec['blocks'] ?? '' ) ),
+			'purpose' => sanitize_text_field( (string) ( $sec['purpose'] ?? '' ) ),
+		);
+	}
+	if ( ! $sections ) {
+		return array( 'error' => 'Give at least one section.' );
+	}
+	$plan = array( 'page' => sanitize_text_field( (string) ( $a['page'] ?? '' ) ), 'sections' => $sections );
+	$task = (int) ( $GLOBALS['bst_aid_task_id'] ?? 0 );
+	if ( $task ) {
+		bst_aid_task_set( $task, '_bst_aid_plan', $plan );
+	}
+	return array( 'plan' => $plan, 'next' => 'Ask the user to approve or change this outline. After OK, build it with build_sections (several sections per call).' );
+}
+
+/** Image attribute pairs (id, url) a recipe node takes, in order. */
+function bst_aid_media_slots( $name ) {
+	$one = array( array( 'imageId', 'imageUrl' ) );
+	$map = array(
+		'bst/image'                => $one,
+		'bst/banner'               => $one,
+		'bigspy/zoom-hero'         => $one,
+		'bst/image-box'            => $one,
+		'bst/team-member'          => $one,
+		'bst/testimonial'          => $one,
+		'bst/hotspot'              => $one,
+		'bigspy/hover-reveal-item' => $one,
+		'bigspy/expand-panel'      => array( array( 'backgroundId', 'backgroundUrl' ) ),
+		'bigspy/story-step'        => array( array( 'mediaId', 'mediaUrl' ) ),
+		'bigspy/video-card'        => array( array( 'posterId', 'posterUrl' ) ),
+		'bst/video'                => array( array( 'posterId', 'posterUrl' ) ),
+		'bst/before-after'         => array( array( 'beforeId', 'beforeUrl' ), array( 'afterId', 'afterUrl' ) ),
+	);
+	return $map[ $name ] ?? array();
+}
+
+/** Fill one recipe tree: slot values in order, media ids into image places; drops bst/image left without media. */
+function bst_aid_fill_recipe( $node, $slots, &$media, &$used, &$state ) {
+	$fill = function ( $value ) use ( $slots, &$used ) {
+		return preg_replace_callback(
+			'/\{\{([^}]+)\}\}/',
+			function ( $m ) use ( $slots, &$used ) {
+				$key          = $m[1];
+				$i            = $used[ $key ] ?? 0;
+				$used[ $key ] = $i + 1;
+				$val          = $slots[ $key ] ?? '';
+				if ( is_array( $val ) ) {
+					$val = $val[ $i ] ?? '';
+				}
+				return is_scalar( $val ) ? (string) $val : '';
+			},
+			$value
+		);
+	};
+	$walk = function ( $v ) use ( &$walk, $fill ) {
+		return is_array( $v ) ? array_map( $walk, $v ) : ( is_string( $v ) ? $fill( $v ) : $v );
+	};
+	$node['attrs'] = $walk( (array) ( $node['attrs'] ?? array() ) );
+	if ( 'bst/banner-grid' === $node['name'] ) {
+		foreach ( (array) ( $node['attrs']['items'] ?? array() ) as $i => $item ) {
+			if ( ! $media ) {
+				$state['missing'][] = 'bst/banner-grid tile';
+				continue;
+			}
+			$id                                       = array_shift( $media );
+			$node['attrs']['items'][ $i ]['imageId']  = $id;
+			$node['attrs']['items'][ $i ]['imageUrl'] = (string) wp_get_attachment_image_url( $id, 'large' );
+		}
+	}
+	foreach ( bst_aid_media_slots( $node['name'] ) as $pair ) {
+		if ( $media ) {
+			$id                        = array_shift( $media );
+			$node['attrs'][ $pair[0] ] = $id;
+			$node['attrs'][ $pair[1] ] = (string) wp_get_attachment_image_url( $id, 'large' );
+		} elseif ( 'bst/image' === $node['name'] ) {
+			$state['dropped']++;
+			return null;
+		} else {
+			$state['missing'][] = $node['name'];
+		}
+	}
+	if ( ! empty( $node['inner'] ) ) {
+		$inner = array();
+		foreach ( $node['inner'] as $child ) {
+			$child = bst_aid_fill_recipe( $child, $slots, $media, $used, $state );
+			if ( null !== $child ) {
+				$inner[] = $child;
+			}
+		}
+		$node['inner'] = $inner;
+	}
+	return $node;
+}
+
+function bst_aid_tool_build_sections( $a ) {
+	$recipes = bst_aid_section_recipes();
+	$blocks  = array();
+	$report  = array();
+	foreach ( array_slice( (array) ( $a['sections'] ?? array() ), 0, 8 ) as $i => $sec ) {
+		$rid = sanitize_key( (string) ( $sec['recipe'] ?? '' ) );
+		if ( ! isset( $recipes[ $rid ] ) ) {
+			return array( 'error' => "Section $i: unknown recipe '$rid'. Use section_recipes." );
+		}
+		$media = array_values(
+			array_filter(
+				array_map( 'intval', (array) ( $sec['media'] ?? array() ) ),
+				function ( $id ) {
+					return 'attachment' === get_post_type( $id ) && current_user_can( 'edit_post', $id );
+				}
+			)
+		);
+		$used          = array();
+		$state         = array( 'missing' => array(), 'dropped' => 0 );
+		$slots         = (array) ( $sec['slots'] ?? array() );
+		$node          = bst_aid_fill_recipe( $recipes[ $rid ][4], $slots, $media, $used, $state );
+		$node['attrs'] = array_merge( (array) $node['attrs'], (array) ( $sec['attrs'] ?? array() ) );
+		$blocks[]      = $node;
+		$row           = array( 'recipe' => $rid );
+		$filled        = array_keys( array_filter( $slots, function ( $v ) { return '' !== $v && array() !== $v; } ) );
+		$empty         = array_values( array_diff( array_keys( $used ), $filled ) );
+		if ( $empty ) {
+			$row['empty_slots'] = $empty;
+		}
+		if ( $state['missing'] ) {
+			$row['without_media'] = array_values( array_unique( $state['missing'] ) );
+		}
+		if ( $state['dropped'] ) {
+			$row['images_removed'] = $state['dropped'];
+		}
+		$report[] = $row;
+	}
+	if ( ! $blocks ) {
+		return array( 'error' => 'Give at least one section.' );
+	}
+	if ( empty( $a['id'] ) ) {
+		if ( '' === trim( (string) ( $a['title'] ?? '' ) ) ) {
+			return array( 'error' => 'Give a title to create a page, or the id of the page to add to.' );
+		}
+		$result = bst_aid_tool_create_page( array( 'title' => (string) $a['title'], 'blocks' => $blocks ) );
+	} else {
+		$result = bst_aid_tool_page_sections( array( 'id' => (int) $a['id'], 'mode' => 'append', 'blocks' => $blocks, 'confirmed' => ! empty( $a['confirmed'] ) ) );
+	}
+	if ( empty( $result['error'] ) ) {
+		$result['built'] = $report;
+	}
+	return $result;
 }
 
 function bst_aid_tool_block_schema( $a ) {

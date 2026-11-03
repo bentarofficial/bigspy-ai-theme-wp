@@ -251,7 +251,7 @@
 				site_info: __('Reading the site', T), list_content: __('Listing content', T), get_post: __('Reading content', T),
 				create_post: __('Created a post', T), update_post: __('Updated a post', T), create_product: __('Created a product', T),
 				update_product: __('Updated a product', T), save_guidelines: __('Saved the guidelines', T),
-				list_blocks: __('Reading the blocks', T), block_catalog: __('Choosing blocks', T), section_recipes: __('Choosing section recipes', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
+				list_blocks: __('Reading the blocks', T), block_catalog: __('Choosing blocks', T), section_recipes: __('Choosing section recipes', T), page_plan: __('Page outline', T), build_sections: __('Building sections', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
 				get_pattern: __('Reading a pattern', T), create_page: __('Created a page', T), page_sections: __('Updated page sections', T), get_page: __('Reading a page', T), update_page: __('Updated a page', T),
 				get_settings: __('Reading theme settings', T), update_settings: __('Changed theme settings', T), set_logo: __('Set the logo', T),
 				custom_css: __('Additional CSS', T), get_menus: __('Reading menus', T), set_menu: __('Saved a menu', T), header_layout: __('Header layout', T),
@@ -294,6 +294,15 @@
 					links.push(h('button', { type: 'button', class: 'button-link', onclick: function () { previewUrl = ev.preview; setPreviewOn(true); }, text: __('Preview here', T) }));
 				}
 				var row = h('div', { class: 'bst-aid-tool' + (ev.kind === 'tool-error' ? ' is-error' : '') }, [h('span', { class: 'dashicons ' + (ev.kind === 'tool-error' ? 'dashicons-warning' : 'dashicons-yes-alt') }), h('span', { text: toolLabel(ev.tool) + (ev.text ? ': ' + ev.text : '') })].concat(links));
+				if (ev.plan) {
+					return h('div', null, [row, h('div', { class: 'bst-aid-card bst-aid-plan' }, [
+						h('strong', { text: ev.plan.page || '' }),
+						h('ol', null, (ev.plan.sections || []).map(function (s) {
+							return h('li', null, [h('strong', { text: s.title || s.recipe || '' }), s.purpose ? h('span', { text: ' – ' + s.purpose }) : null]);
+						})),
+						h('p', { class: 'description', text: __('Reply OK to build every section of this page in one go, or tell the AI what to change.', T) })
+					])]);
+				}
 				if (!ev.palettes) { return row; }
 				return h('div', null, [row, h('div', { class: 'bst-aid-palettes' }, ev.palettes.map(function (p) {
 					return h('div', { class: 'bst-aid-palette' }, [

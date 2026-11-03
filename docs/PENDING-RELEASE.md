@@ -36,6 +36,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-50, dựng nhanh sau khi duyệt.
+- **Đã thay đổi:** công cụ `page_plan` hiện sơ đồ trang thành thẻ trong chat (lưu `_bst_aid_plan`), người dùng trả lời OK một lần. Công cụ `build_sections` dựng tới 8 section mỗi lần gọi từ công thức: máy chủ điền chỗ trống (giá trị lặp theo mảng), gắn ảnh theo ID, bỏ ảnh thiếu, báo chỗ trống chưa điền; không có id thì tạo trang nháp, có id thì nối thêm. Prompt: duyệt sơ đồ một lần rồi dựng cả trang không hỏi giữa chừng.
+- **Kiểm thử:** lint, Designer 174 đạt; chưa thử AI thật và thẻ sơ đồ trên trình duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

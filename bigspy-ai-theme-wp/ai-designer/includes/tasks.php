@@ -434,6 +434,9 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		if ( isset( $result['approval'] ) ) { $event['approval'] = $result['approval']; }
 		$event['arguments_hash'] = bst_aid_args_hash( $args );
 		$event['actor'] = get_current_user_id();
+		if ( 'page_plan' === $name && ! empty( $result['plan'] ) ) {
+			$event['plan'] = $result['plan'];
+		}
 		if ( 'show_palette' === $name && ! empty( $result['palettes'] ) ) {
 			$event['palettes'] = $result['palettes'];
 		}

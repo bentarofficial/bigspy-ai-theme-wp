@@ -6979,3 +6979,12 @@ msgstr "Lượt cuối: %1$s giây, %2$s lần gọi model, %3$s lần gọi cô
 msgid "Choosing section recipes"
 msgstr "Đang chọn công thức section"
 
+msgid "Page outline"
+msgstr "Sơ đồ trang"
+
+msgid "Building sections"
+msgstr "Đang dựng các section"
+
+msgid "Reply OK to build every section of this page in one go, or tell the AI what to change."
+msgstr "Trả lời OK để dựng toàn bộ section của trang trong một lượt, hoặc nói AI cần đổi gì."
+

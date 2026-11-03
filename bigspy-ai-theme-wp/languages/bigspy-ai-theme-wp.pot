@@ -10815,3 +10815,12 @@ msgstr ""
 msgid "Choosing section recipes"
 msgstr ""
 
+msgid "Page outline"
+msgstr ""
+
+msgid "Building sections"
+msgstr ""
+
+msgid "Reply OK to build every section of this page in one go, or tell the AI what to change."
+msgstr ""
+
