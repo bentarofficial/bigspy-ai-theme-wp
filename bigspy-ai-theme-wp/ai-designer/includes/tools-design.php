@@ -762,6 +762,12 @@ add_filter(
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_block_catalog',
 		);
+		$tools['section_recipes'] = array(
+			'description' => 'Ready section recipes with motion already set (block_catalog needs). Without id: list recipes, optionally filtered by needs. With id: the block tree to fill; replace every {{slot}} with real content, add real media ids or remove image blocks, then send it with create_page or page_sections.',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'needs' => array( 'type' => 'array', 'items' => array( 'type' => 'string', 'enum' => bst_aid_block_needs() ) ), 'id' => array( 'type' => 'string' ) ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_section_recipes',
+		);
 		$tools['style_options'] = array(
 			'description' => 'Style presets of the given blocks and the site-wide CSS library. Presets go in a block as attrs.bsPresets, ids separated by spaces. CSS library items are switched on by the user in Customize; suggest them, do not copy their CSS.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'names' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ) ), 'required' => array( 'names' ) ),
@@ -998,6 +1004,54 @@ function bst_aid_tool_block_catalog( $a ) {
 		$out[] = $row;
 	}
 	return array( 'blocks' => $out, 'rules' => $rules );
+}
+
+/** Section recipes from knowledge/sections.php whose blocks are all registered and enabled. */
+function bst_aid_section_recipes() {
+	static $all = null;
+	if ( null === $all ) {
+		$all = (array) include BST_AID_DIR . '/knowledge/sections.php';
+	}
+	$types = bst_aid_block_types();
+	return array_filter( $all, function ( $r ) use ( $types ) {
+		return ! array_diff( bst_aid_tree_names( array( $r[4] ) ), array_keys( $types ) );
+	} );
+}
+
+/** Block names used in a model tree. */
+function bst_aid_tree_names( $nodes ) {
+	$names = array();
+	foreach ( (array) $nodes as $n ) {
+		$names[] = (string) ( $n['name'] ?? '' );
+		$names   = array_merge( $names, bst_aid_tree_names( $n['inner'] ?? array() ) );
+	}
+	return array_values( array_unique( $names ) );
+}
+
+function bst_aid_tool_section_recipes( $a ) {
+	$recipes = bst_aid_section_recipes();
+	$id      = sanitize_key( (string) ( $a['id'] ?? '' ) );
+	if ( '' !== $id ) {
+		if ( ! isset( $recipes[ $id ] ) ) {
+			return array( 'error' => 'Unknown or unavailable recipe. Call section_recipes without id.' );
+		}
+		$r = $recipes[ $id ];
+		preg_match_all( '/\{\{([^}]+)\}\}/', wp_json_encode( $r[4], JSON_UNESCAPED_UNICODE ), $m );
+		return array( 'id' => $id, 'title' => $r[0], 'media' => $r[3], 'slots' => array_values( array_unique( $m[1] ) ), 'blocks' => array( $r[4] ) );
+	}
+	$needs = array_values( array_intersect( (array) ( $a['needs'] ?? array() ), bst_aid_block_needs() ) );
+	$out   = array();
+	foreach ( $recipes as $rid => $r ) {
+		if ( $needs && ! array_intersect( $r[1], $needs ) ) {
+			continue;
+		}
+		$row = array( 'id' => $rid, 'title' => $r[0], 'needs' => $r[1], 'use' => $r[2], 'blocks' => array_values( array_diff( bst_aid_tree_names( array( $r[4] ) ), array( 'bst/section', 'bst/row', 'bst/column', 'bst/heading', 'bst/text', 'bst/title', 'bst/buttons', 'bst/button' ) ) ) );
+		if ( '' !== $r[3] ) {
+			$row['media'] = $r[3];
+		}
+		$out[] = $row;
+	}
+	return array( 'recipes' => $out, 'rules' => array( 'Pick one recipe per planned section; do not use the same recipe twice in a row. Recipes with media need real images or videos: get them first, or choose another recipe.', 'Change colors, background and layout attributes freely; keep the motion unless the user asks for a calmer page.' ) );
 }
 
 function bst_aid_tool_block_schema( $a ) {

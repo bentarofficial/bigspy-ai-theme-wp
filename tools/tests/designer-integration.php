@@ -172,6 +172,23 @@ $catalog_names = wp_list_pluck( (array) ( $catalog_process['blocks'] ?? array() 
 $catalog_pins = array_filter( (array) ( $catalog_process['blocks'] ?? array() ), function ( $b ) { return ! empty( $b['pin'] ); } );
 bst_test( in_array( 'bigspy/stack-cards', $catalog_names, true ) && ! in_array( 'bst/banner', $catalog_names, true ) && count( $catalog_pins ) >= 2, 'block_catalog filters by need and marks pinned blocks' );
 bst_test( 'read' === bst_aid_tool_policy( 'block_catalog', array() )['group'], 'block_catalog is a read tool' );
+$recipe_all = (array) include BST_AID_DIR . '/knowledge/sections.php';
+bst_test( count( $recipe_all ) >= 30 && count( $recipe_all ) <= 50, 'Between 30 and 50 section recipes: ' . count( $recipe_all ) );
+$recipe_bad = array();
+foreach ( bst_aid_section_recipes() as $rid => $r ) {
+	$built = bst_aid_tree_to_markup( array( $r[4] ) );
+	$noise = is_wp_error( $built ) ? wp_json_encode( $built->get_error_data() ) : implode( ' | ', array_filter( $built['warnings'], function ( $w ) { return false === strpos( $w, 'url' ) && false === strpos( $w, 'link' ); } ) );
+	$json = wp_json_encode( $r[4], JSON_UNESCAPED_SLASHES );
+	$motion = false !== strpos( $json, 'bsAnimation' ) || false !== strpos( $json, 'bigspy/' ) || false !== strpos( $json, 'bst/marquee' ) || false !== strpos( $json, 'bst/slider' );
+	if ( '' !== $noise || 'bst/section' !== $r[4]['name'] || array_diff( $r[1], bst_aid_block_needs() ) || ! $motion ) { $recipe_bad[] = $rid . ': ' . substr( $noise, 0, 300 ); }
+}
+bst_test( ! $recipe_bad, 'Every section recipe builds without errors or attribute warnings and has motion: ' . preg_replace( '/[^a-zA-Z0-9 .,;:\/-]/', '_', implode( ' ; ', $recipe_bad ) ) );
+$recipe_list = bst_test_run( 'section_recipes', array( 'needs' => array( 'process' ) ) );
+$recipe_ids = wp_list_pluck( (array) ( $recipe_list['recipes'] ?? array() ), 'id' );
+bst_test( in_array( 'process-stack-cards', $recipe_ids, true ) && ! in_array( 'hero-slider', $recipe_ids, true ), 'section_recipes filters by need' );
+$recipe_one = bst_test_run( 'section_recipes', array( 'id' => 'features-icon-3' ) );
+bst_test( in_array( 'section title', (array) ( $recipe_one['slots'] ?? array() ), true ) && 'bst/section' === ( $recipe_one['blocks'][0]['name'] ?? '' ), 'section_recipes returns the tree and its slots' );
+bst_test( ! empty( bst_test_run( 'section_recipes', array( 'id' => 'nope' ) )['error'] ) && 'read' === bst_aid_tool_policy( 'section_recipes', array() )['group'], 'Unknown recipe refused; section_recipes is a read tool' );
 $forged = '<!-- wp:html --><div>Forged</div><!-- /wp:html -->';
 $r = bst_test_run( 'create_page', array( 'title' => 'Raw forged', 'blocks' => array( array( 'name' => 'core/html', 'raw' => $forged ) ) ) );
 bst_test( ! empty( $r['error'] ) && false !== strpos( wp_json_encode( $r ), 'unchanged' ), 'New page refuses forged core/html raw' );

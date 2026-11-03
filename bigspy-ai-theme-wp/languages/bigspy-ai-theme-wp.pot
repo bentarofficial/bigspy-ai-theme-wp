@@ -10812,3 +10812,6 @@ msgstr ""
 msgid "Last run: %1$s s, %2$s model calls, %3$s tool calls"
 msgstr ""
 
+msgid "Choosing section recipes"
+msgstr ""
+

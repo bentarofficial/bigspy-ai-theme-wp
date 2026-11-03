@@ -251,7 +251,7 @@
 				site_info: __('Reading the site', T), list_content: __('Listing content', T), get_post: __('Reading content', T),
 				create_post: __('Created a post', T), update_post: __('Updated a post', T), create_product: __('Created a product', T),
 				update_product: __('Updated a product', T), save_guidelines: __('Saved the guidelines', T),
-				list_blocks: __('Reading the blocks', T), block_catalog: __('Choosing blocks', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
+				list_blocks: __('Reading the blocks', T), block_catalog: __('Choosing blocks', T), section_recipes: __('Choosing section recipes', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
 				get_pattern: __('Reading a pattern', T), create_page: __('Created a page', T), page_sections: __('Updated page sections', T), get_page: __('Reading a page', T), update_page: __('Updated a page', T),
 				get_settings: __('Reading theme settings', T), update_settings: __('Changed theme settings', T), set_logo: __('Set the logo', T),
 				custom_css: __('Additional CSS', T), get_menus: __('Reading menus', T), set_menu: __('Saved a menu', T), header_layout: __('Header layout', T),

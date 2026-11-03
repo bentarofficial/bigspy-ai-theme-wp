@@ -30,6 +30,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates (giới hạn Code mới).
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-49, công thức section.
+- **Đã thay đổi:** `ai-designer/knowledge/sections.php` có 42 công thức section (hero, tính năng, quy trình, bằng chứng, giá, FAQ, CTA, liên hệ, media, blog, shop), mỗi công thức là cây block có sẵn hiệu ứng và chỗ trống `{{...}}`. Công cụ đọc `section_recipes`: liệt kê theo nhu cầu hoặc trả cây và danh sách chỗ trống; tự ẩn công thức cần block đang tắt (vd. Woo). Prompt cho AI bắt đầu mỗi section từ công thức khi phù hợp.
+- **Kiểm thử:** lint, Designer 169 đạt (mọi công thức dựng được, không cảnh báo thuộc tính); chưa thử AI thật và chưa xem hiển thị từng công thức.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
