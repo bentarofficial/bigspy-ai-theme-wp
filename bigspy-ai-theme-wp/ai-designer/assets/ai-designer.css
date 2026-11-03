@@ -185,3 +185,5 @@
 .bst-aid-file span:not(.dashicons){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bst-aid-file .button-link{font-size:16px;line-height:1;text-decoration:none}
 .bst-aid-attach .dashicons{margin-top:3px}
+.bst-aid-saved{margin-left:8px;color:#50575e}
+.bst-aid-saved.is-error{color:#b32d2e}

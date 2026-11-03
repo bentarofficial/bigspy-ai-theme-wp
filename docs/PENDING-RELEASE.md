@@ -66,6 +66,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn AI Designer.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-23, ngữ cảnh tự lưu, tự học.
+- **Đã thay đổi:** trang Hướng dẫn bỏ nút Lưu: các ô tiêu chuẩn và ngữ cảnh chuyên môn tự lưu khi gõ, hiện "Đã lưu"; mỗi ô có phiên bản nên không ghi đè khi AI vừa sửa (báo tải lại). AI tự lưu ngay khi người dùng nói rõ là áp dụng từ nay, không lưu yêu cầu một lần, chỉ học từ lời người dùng; gửi cả ô viết gọn, quá 6.000 ký tự thì bị từ chối để viết lại thay vì cắt. Chat báo đã lưu ô nào kèm nút "Hoàn tác lần lưu này" (không hoàn tác nếu người dùng đã sửa tiếp). `save_guidelines` lưu được cả ngữ cảnh chuyên môn.
+- **Kiểm thử:** lint, Designer 203 đạt; chưa thử tự lưu và nút hoàn tác trên trình duyệt, chưa thử AI thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn AI Designer.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

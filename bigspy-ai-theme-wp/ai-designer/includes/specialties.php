@@ -90,14 +90,11 @@ add_action(
 function bst_aid_specialties_form() {
 	echo '<h2 id="bst-aid-specialties">' . esc_html__( 'Specialties', 'bigspy-ai-theme-wp' ) . '</h2>';
 	echo '<p class="bst-aid-lead">' . esc_html__( 'Pick a specialty next to the model in the chat. Each one adds this context to the task; it works as is, edit it if you want. Auto adds nothing.', 'bigspy-ai-theme-wp' ) . '</p>';
-	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="bst-aid-guides">';
-	wp_nonce_field( 'bst_aid_specialties' );
-	echo '<input type="hidden" name="action" value="bst_aid_specialties">';
+	echo '<div class="bst-aid-guides">';
 	foreach ( bst_aid_specialty_defaults() as $key => $d ) {
 		echo '<div class="bst-aid-card"><h3>' . esc_html( $d[0] ) . '</h3>';
-		echo '<textarea name="bst_aid_sp_' . esc_attr( $key ) . '" rows="6" maxlength="6000" class="large-text">' . esc_textarea( bst_aid_specialty_context( $key ) ) . '</textarea>';
-		echo '<p><button type="submit" name="reset" value="' . esc_attr( $key ) . '" class="button">' . esc_html__( 'Restore default', 'bigspy-ai-theme-wp' ) . '</button></p></div>';
+		echo '<textarea id="bst-aid-sp-' . esc_attr( $key ) . '" rows="6" maxlength="6000" class="large-text" data-bst-aid-context="sp_' . esc_attr( $key ) . '" data-version="' . (int) bst_aid_context_version( 'sp_' . $key ) . '">' . esc_textarea( bst_aid_specialty_context( $key ) ) . '</textarea>';
+		echo '<p><button type="button" class="button" data-bst-aid-reset="bst-aid-sp-' . esc_attr( $key ) . '">' . esc_html__( 'Restore default', 'bigspy-ai-theme-wp' ) . '</button> <span class="bst-aid-saved" aria-live="polite"></span></p></div>';
 	}
-	submit_button( __( 'Save specialties', 'bigspy-ai-theme-wp' ) );
-	echo '</form>';
+	echo '</div>';
 }

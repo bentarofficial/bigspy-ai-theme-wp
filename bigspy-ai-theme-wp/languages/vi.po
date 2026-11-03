@@ -7084,3 +7084,30 @@ msgstr "Lưu chuyên môn"
 msgid "Adds a ready context for this kind of work. Edit it under Guidelines."
 msgstr "Thêm ngữ cảnh sẵn cho loại việc này. Sửa trong trang Hướng dẫn."
 
+msgid "The AI Designer changed this box meanwhile. Reload to see its version before editing."
+msgstr "AI Designer vừa sửa ô này. Hãy tải lại trang để xem bản mới trước khi sửa."
+
+msgid "This change was already undone."
+msgstr "Thay đổi này đã được hoàn tác."
+
+msgid "The box was edited again after this change, so it was not undone. Edit it under Guidelines."
+msgstr "Ô này đã được sửa tiếp sau thay đổi đó nên không hoàn tác. Hãy sửa trong trang Hướng dẫn."
+
+msgid "Saved context change undone."
+msgstr "Đã hoàn tác ngữ cảnh vừa lưu."
+
+msgid "The designer follows these standards in every task. Changes save as you type. When you tell the designer in chat that something applies from now on, it saves it here and you can undo that from the chat."
+msgstr "Designer làm theo các tiêu chuẩn này trong mọi task. Thay đổi tự lưu khi bạn gõ. Khi bạn nói trong chat rằng điều gì áp dụng từ nay về sau, designer lưu vào đây và bạn có thể hoàn tác ngay trong chat."
+
+msgid "Saving…"
+msgstr "Đang lưu…"
+
+msgid "Saved"
+msgstr "Đã lưu"
+
+msgid "Restore the default context for this specialty?"
+msgstr "Khôi phục ngữ cảnh mặc định cho chuyên môn này?"
+
+msgid "Undo this save"
+msgstr "Hoàn tác lần lưu này"
+

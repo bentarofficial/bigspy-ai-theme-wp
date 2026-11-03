@@ -24,6 +24,7 @@ require_once BST_AID_DIR . '/includes/client.php';
 require_once BST_AID_DIR . '/includes/clean.php';
 require_once BST_AID_DIR . '/includes/guidelines.php';
 require_once BST_AID_DIR . '/includes/specialties.php';
+require_once BST_AID_DIR . '/includes/context.php';
 require_once BST_AID_DIR . '/includes/tools.php';
 require_once BST_AID_DIR . '/includes/tools-design.php';
 require_once BST_AID_DIR . '/includes/tools-images.php';

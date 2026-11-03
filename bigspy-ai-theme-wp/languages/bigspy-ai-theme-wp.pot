@@ -10917,3 +10917,30 @@ msgstr ""
 msgid "Adds a ready context for this kind of work. Edit it under Guidelines."
 msgstr ""
 
+msgid "The AI Designer changed this box meanwhile. Reload to see its version before editing."
+msgstr ""
+
+msgid "This change was already undone."
+msgstr ""
+
+msgid "The box was edited again after this change, so it was not undone. Edit it under Guidelines."
+msgstr ""
+
+msgid "Saved context change undone."
+msgstr ""
+
+msgid "The designer follows these standards in every task. Changes save as you type. When you tell the designer in chat that something applies from now on, it saves it here and you can undo that from the chat."
+msgstr ""
+
+msgid "Saving…"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Restore the default context for this specialty?"
+msgstr ""
+
+msgid "Undo this save"
+msgstr ""
+

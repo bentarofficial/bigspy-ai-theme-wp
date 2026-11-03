@@ -81,7 +81,32 @@
 		if (area && (!area.value.trim() || window.confirm(__('Replace the current text with the template?', T)))) {
 			area.value = b.getAttribute('data-template');
 			area.focus();
+			saveContext(area, 0);
 		}
+	});
+
+	// Guidelines and specialty boxes save as you type; a version guards against overwriting an AI change.
+	var saveTimers = {};
+	var saveContext = function (area, wait) {
+		var key = area.getAttribute('data-bst-aid-context');
+		var status = area.parentNode.querySelector('.bst-aid-saved');
+		var show = function (text, bad) { if (status) { status.textContent = text; status.className = 'bst-aid-saved' + (bad ? ' is-error' : ''); } };
+		clearTimeout(saveTimers[key]);
+		show(__('Saving…', T));
+		saveTimers[key] = setTimeout(function () {
+			api('/context', 'POST', { key: key, text: area.value, version: Number(area.getAttribute('data-version')) || 0 })
+				.then(function (r) { area.setAttribute('data-version', r.version); if (r.text !== area.value && document.activeElement !== area) { area.value = r.text; } show(__('Saved', T)); })
+				.catch(function (e) { show(e.message, true); });
+		}, wait);
+	};
+	document.addEventListener('input', function (e) {
+		if (e.target.getAttribute && e.target.getAttribute('data-bst-aid-context')) { saveContext(e.target, 800); }
+	});
+	document.addEventListener('click', function (e) {
+		var b = e.target.closest && e.target.closest('[data-bst-aid-reset]');
+		if (!b) { return; }
+		var area = document.getElementById(b.getAttribute('data-bst-aid-reset'));
+		if (area && window.confirm(__('Restore the default context for this specialty?', T))) { area.value = ''; saveContext(area, 0); }
 	});
 
 	/* ------------------------------------------------------------ Settings */
@@ -301,6 +326,13 @@
 				});
 				if (ev.preview) {
 					links.push(h('button', { type: 'button', class: 'button-link', onclick: function () { previewUrl = ev.preview; setPreviewOn(true); }, text: __('Preview here', T) }));
+				}
+				if (ev.context_undo && current) {
+					var undoBtn = h('button', { type: 'button', class: 'button-link', text: __('Undo this save', T), onclick: function () {
+						undoBtn.disabled = true;
+						api('/tasks/' + current.id + '/context-undo', 'POST', { undo: ev.context_undo.id }).then(function (r) { addEvents(r.events); undoBtn.hidden = true; }).catch(function (e) { undoBtn.disabled = false; addEvents([{ kind: 'error', text: e.message }]); });
+					} });
+					links.push(h('span', { text: ' ' + (ev.context_undo.keys || []).join(', ') + ' ' }), undoBtn);
 				}
 				var row = h('div', { class: 'bst-aid-tool' + (ev.kind === 'tool-error' ? ' is-error' : '') }, [h('span', { class: 'dashicons ' + (ev.kind === 'tool-error' ? 'dashicons-warning' : 'dashicons-yes-alt') }), h('span', { text: toolLabel(ev.tool) + (ev.text ? ': ' + ev.text : '') })].concat(links));
 				if (ev.plan) {

@@ -76,7 +76,7 @@ add_action(
 function bst_aid_guidelines_page() {
 	$g = bst_aid_guidelines();
 	echo '<div class="wrap bst-aid"><h1>' . esc_html__( 'BIGSPY AI Designer – Guidelines', 'bigspy-ai-theme-wp' ) . '</h1>';
-	echo '<p class="bst-aid-lead">' . esc_html__( 'The designer follows these standards in every task. Leave a box empty and it will ask you in chat first, then offer to save your answers here.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<p class="bst-aid-lead">' . esc_html__( 'The designer follows these standards in every task. Changes save as you type. When you tell the designer in chat that something applies from now on, it saves it here and you can undo that from the chat.', 'bigspy-ai-theme-wp' ) . '</p>';
 	if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Guidelines saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
 	}
@@ -85,10 +85,9 @@ function bst_aid_guidelines_page() {
 	echo '<input type="hidden" name="action" value="bst_aid_guidelines">';
 	foreach ( bst_aid_guideline_fields() as $k => $f ) {
 		echo '<div class="bst-aid-card"><h2>' . esc_html( $f[0] ) . '</h2><p class="description">' . esc_html( $f[1] ) . '</p>';
-		echo '<textarea name="bst_aid_' . esc_attr( $k ) . '" id="bst-aid-' . esc_attr( $k ) . '" rows="9" maxlength="6000" class="large-text">' . esc_textarea( $g[ $k ] ) . '</textarea>';
-		echo '<p><button type="button" class="button" data-bst-aid-template="bst-aid-' . esc_attr( $k ) . '" data-template="' . esc_attr( $f[2] ) . '">' . esc_html__( 'Insert suggested template', 'bigspy-ai-theme-wp' ) . '</button></p></div>';
+		echo '<textarea name="bst_aid_' . esc_attr( $k ) . '" id="bst-aid-' . esc_attr( $k ) . '" rows="9" maxlength="6000" class="large-text" data-bst-aid-context="' . esc_attr( $k ) . '" data-version="' . (int) bst_aid_context_version( $k ) . '">' . esc_textarea( $g[ $k ] ) . '</textarea>';
+		echo '<p><button type="button" class="button" data-bst-aid-template="bst-aid-' . esc_attr( $k ) . '" data-template="' . esc_attr( $f[2] ) . '">' . esc_html__( 'Insert suggested template', 'bigspy-ai-theme-wp' ) . '</button> <span class="bst-aid-saved" aria-live="polite"></span></p></div>';
 	}
-	submit_button( __( 'Save guidelines', 'bigspy-ai-theme-wp' ) );
 	echo '</form>';
 	bst_aid_specialties_form();
 	echo '</div>';

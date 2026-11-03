@@ -462,6 +462,9 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		if ( isset( $result['approval'] ) ) { $event['approval'] = $result['approval']; }
 		$event['arguments_hash'] = bst_aid_args_hash( $args );
 		$event['actor'] = get_current_user_id();
+		if ( 'save_guidelines' === $name && ! empty( $result['context_undo']['id'] ) ) {
+			$event['context_undo'] = $result['context_undo'];
+		}
 		if ( 'page_plan' === $name && ! empty( $result['plan'] ) ) {
 			$event['plan'] = $result['plan'];
 		}
