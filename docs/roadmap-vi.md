@@ -4,6 +4,8 @@ Quy tắc phát triển, phát hành và ma trận kiểm tra: xem [DEV-RULES.md
 
 ## Phạm vi owner cập nhật 03-11-2026
 
+G-68: [nghiên cứu hành vi người dùng và UX AI](USER-BEHAVIOR-AI-RESEARCH.md), phân biệt khảo sát thị trường với giả thuyết cần kiểm chứng; đề xuất G-69 sau nghiên cứu, không thay thứ tự AI Designer đã chốt.
+
 G-66: nghiên cứu [responsive và khả năng truy cập cho block/AI](RESPONSIVE-AI-RESEARCH.md); đề xuất G-67 kiểm chứng và cải tiến theo fixture, tiếp tục G-41 riêng cho đo tài nguyên.
 
 Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Query Loop và component: [BLOCK-AI-RESEARCH.md](BLOCK-AI-RESEARCH.md). G-65 là đề xuất tương thích AI; G-37/G-38/G-39 tiếp tục theo backlog, không đổi thứ tự AI Designer đã chốt.
