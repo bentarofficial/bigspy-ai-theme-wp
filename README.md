@@ -28,6 +28,8 @@ BIGSPY AI Theme WP is a multipurpose WordPress theme for business, service and W
 2. In WordPress, open **Appearance → Themes → Add New → Upload Theme** and install the ZIP.
 3. Open **BIGSPY AI Theme → About** for the setup checklist. AI Designer can be connected later with a [Kyma API](https://kymaapi.com/?aff=BIGSPY-AI-Connect) key.
 
+> **Affiliate disclosure:** Kyma API links in this project are referral links. The theme author may earn a commission when you sign up or buy credit, at no extra cost to you.
+
 Requires WordPress 6.5+ and PHP 7.4+. The theme works without AI Designer or other required plugins.
 
 ## License and development
