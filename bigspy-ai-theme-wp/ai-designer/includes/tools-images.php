@@ -493,7 +493,7 @@ function bst_aid_rest_image_job( WP_REST_Request $request ) {
 }
 
 function bst_aid_rest_unused_images() {
-	$ids = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 200, 'fields' => 'ids', 'meta_key' => '_bst_aid_generated' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+	$ids = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 200, 'fields' => 'ids', 'meta_query' => array( 'relation' => 'OR', array( 'key' => '_bst_aid_generated', 'compare' => 'EXISTS' ), array( 'key' => '_bst_aid_upload', 'compare' => 'EXISTS' ) ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- AI images and chat uploads.
 	$out = array();
 	foreach ( $ids as $id ) {
 		if ( ! bst_aid_image_in_use( $id ) ) {

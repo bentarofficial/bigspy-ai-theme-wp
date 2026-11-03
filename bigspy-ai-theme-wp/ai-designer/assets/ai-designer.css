@@ -178,3 +178,10 @@
 .bst-aid-ws { height: calc(100vh - 32px - 36px - 64px); }
 
 .bst-aid-approval pre{max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}.bst-aid-approval button{margin:4px}
+.bst-aid-files{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.bst-aid-files[hidden]{display:none}
+.bst-aid-file{display:inline-flex;align-items:center;gap:6px;max-width:220px;padding:3px 8px 3px 3px;border:1px solid #dcdcde;border-radius:6px;background:#fff;font-size:12px}
+.bst-aid-file img{width:28px;height:28px;object-fit:cover;border-radius:4px}
+.bst-aid-file span:not(.dashicons){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bst-aid-file .button-link{font-size:16px;line-height:1;text-decoration:none}
+.bst-aid-attach .dashicons{margin-top:3px}

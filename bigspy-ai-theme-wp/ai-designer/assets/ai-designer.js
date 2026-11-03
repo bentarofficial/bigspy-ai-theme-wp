@@ -211,7 +211,7 @@
 					unusedBox.textContent = __('Checking…', T);
 					api('/images/unused').then(function (r) {
 						unusedBox.innerHTML = '';
-						unusedBox.appendChild(h('p', { text: sprintf(__('%1$d of %2$d AI images are not used anywhere.', T), r.unused.length, r.total) }));
+						unusedBox.appendChild(h('p', { text: sprintf(__('%1$d of %2$d AI images and chat uploads are not used anywhere.', T), r.unused.length, r.total) }));
 						unusedBox.appendChild(h('div', { class: 'bst-aid-unused-grid' }, r.unused.map(function (i) {
 							return h('a', { href: i.edit, target: '_blank', rel: 'noopener', title: i.title }, h('img', { src: i.thumb, alt: i.title }));
 						})));
@@ -284,7 +284,9 @@
                 });
                 return box;
             }
-			if (ev.kind === 'user') { return h('div', { class: 'bst-aid-msg is-user' }, h('div', { class: 'bst-aid-bubble', text: ev.text })); }
+			if (ev.kind === 'user') {
+				return h('div', { class: 'bst-aid-msg is-user' }, h('div', { class: 'bst-aid-bubble' }, [h('span', { text: ev.text }), (ev.files || []).length ? h('div', { class: 'bst-aid-files' }, ev.files.map(fileChip)) : null]));
+			}
 			if (ev.kind === 'assistant') {
 				var b = h('div', { class: 'bst-aid-bubble' }); b.innerHTML = md(ev.text);
 				return h('div', { class: 'bst-aid-msg is-ai' }, b);
@@ -514,13 +516,56 @@
 			};
 			step();
 		};
+		var attached = [];
+		var fileChip = function (f, remove) {
+			return h('span', { class: 'bst-aid-file', title: f.title || '' }, [
+				f.thumb ? h('img', { src: f.thumb, alt: '' }) : h('span', { class: 'dashicons ' + (f.type === 'doc' ? 'dashicons-media-text' : 'dashicons-media-default') }),
+				h('span', { text: f.title || ('#' + f.id) }),
+				remove ? h('button', { type: 'button', class: 'button-link', 'aria-label': __('Remove', T), onclick: remove, text: '×' }) : null]);
+		};
+		var renderAttached = function () {
+			if (!els.files) { return; }
+			els.files.innerHTML = '';
+			els.files.hidden = !attached.length;
+			attached.forEach(function (f, i) { els.files.appendChild(fileChip(f, function () { attached.splice(i, 1); renderAttached(); })); });
+		};
+		var uploadFiles = function (list) {
+			if (!current) { return; }
+			Array.prototype.forEach.call(list || [], function (file) {
+				var body = new FormData();
+				body.append('file', file);
+				var parts = ('/tasks/' + current.id + '/upload').split('?');
+				var chip = { id: 0, type: 'media', title: file.name + ' …' };
+				attached.push(chip); renderAttached();
+				fetch(cfg.rest + parts[0], { method: 'POST', headers: { 'X-WP-Nonce': cfg.nonce }, credentials: 'same-origin', body: body })
+					.then(function (res) { return res.json().then(function (d) { if (!res.ok) { throw new Error(d.message || res.statusText); } return d; }); })
+					.then(function (d) { Object.assign(chip, d); renderAttached(); })
+					.catch(function (e) { attached.splice(attached.indexOf(chip), 1); renderAttached(); addEvents([{ kind: 'error', text: file.name + ': ' + e.message }]); });
+			});
+		};
+		var pickMedia = function () {
+			if (!window.wp || !wp.media) { return; }
+			var frame = wp.media({ title: __('Attach files', T), multiple: true, button: { text: __('Attach', T) } });
+			frame.on('select', function () {
+				frame.state().get('selection').toJSON().forEach(function (m) {
+					if (!attached.some(function (f) { return f.type === 'media' && f.id === m.id; })) {
+						attached.push({ id: m.id, type: 'media', title: m.title || m.filename, thumb: (m.sizes && m.sizes.thumbnail && m.sizes.thumbnail.url) || (m.type === 'image' ? m.url : '') });
+					}
+				});
+				renderAttached();
+			});
+			frame.open();
+		};
 		var send = function () {
 			var text = els.input.value.trim();
 			if (!text || running || !current) { return; }
-			els.input.value = '';
-			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort, model: chatModel }).then(function (r) {
+			if (attached.some(function (f) { return !f.id; })) { addEvents([{ kind: 'error', text: __('Wait for the uploads to finish.', T) }]); return; }
+			var files = attached.map(function (f) { return { id: f.id, type: f.type }; });
+			var keep = attached;
+			els.input.value = ''; attached = []; renderAttached();
+			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort, model: chatModel, files: files }).then(function (r) {
 				addEvents(r.events); updateTask(r.task); loop();
-			}).catch(function (e) { els.input.value = text; addEvents([{ kind: 'error', text: e.message }]); });
+			}).catch(function (e) { els.input.value = text; attached = keep; renderAttached(); addEvents([{ kind: 'error', text: e.message }]); });
 		};
 
 		var build = function () {
@@ -538,7 +583,11 @@
 			els.chat = h('div', { class: 'bst-aid-chat', 'aria-live': 'polite' });
 			els.mode = h('select', { 'aria-label': __('Task mode', T) }, [h('option', { value: 'design', text: __('Design', T) }), h('option', { value: 'advice', text: __('Advice only', T) })]);
 			if (welcomePrompt) { els.mode.value = welcomeMode; }
-			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } } });
+			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } },
+				onpaste: function (e) { var f = e.clipboardData && e.clipboardData.files; if (f && f.length) { e.preventDefault(); uploadFiles(f); } },
+				ondragover: function (e) { e.preventDefault(); }, ondrop: function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { e.preventDefault(); uploadFiles(e.dataTransfer.files); } } });
+			els.files = h('div', { class: 'bst-aid-files', hidden: true });
+			els.attach = h('button', { type: 'button', class: 'button bst-aid-attach', title: __('Attach files from the Media Library, or drop or paste them into the message box', T), 'aria-label': __('Attach files', T), onclick: pickMedia }, h('span', { class: 'dashicons dashicons-paperclip' }));
 			els.send = h('button', { class: 'button button-primary', onclick: send, text: __('Send', T) });
 			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
 			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
@@ -554,7 +603,7 @@
 			]));
 			root.appendChild(h('section', { class: 'bst-aid-main' }, [
 				els.head, els.chat,
-				h('div', { class: 'bst-aid-composer' }, [els.input, h('div', { class: 'bst-aid-composer-bar' }, [models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
+				h('div', { class: 'bst-aid-composer' }, [els.files, els.input, h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
 			]));
 			els.previewCheck = h('input', { type: 'checkbox', role: 'switch', checked: previewOn, onchange: function (e) { setPreviewOn(e.target.checked); } });
 			els.previewSwitch = h('label', { class: 'bst-aid-switch' }, [els.previewCheck, h('span', { class: 'bst-aid-switch-track' }), __('Preview', T)]);

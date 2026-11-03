@@ -231,19 +231,23 @@ function bst_aid_rest_task_send( WP_REST_Request $r ) {
 		return new WP_Error( 'bst_aid_text', __( 'Write a message first.', 'bigspy-ai-theme-wp' ), array( 'status' => 400 ) );
 	}
 	$text   = mb_substr( $text, 0, 20000 );
+	$attach = bst_aid_message_files( $p->ID, (array) $r->get_param( 'files' ) );
+	if ( is_wp_error( $attach ) ) {
+		return $attach;
+	}
 	$effort = in_array( $r->get_param( 'effort' ), array( 'low', 'medium', 'high', 'max' ), true ) ? $r->get_param( 'effort' ) : 'medium';
 	$chosen = (string) $r->get_param( 'model' );
 	if ( '' !== $chosen && ! in_array( $chosen, wp_list_pluck( bst_aid_chat_models(), 'id' ), true ) ) {
 		return new WP_Error( 'bst_aid_model', __( 'This model is not available here. Choose another model or Auto.', 'bigspy-ai-theme-wp' ), array( 'status' => 400 ) );
 	}
 	$msgs   = bst_aid_task_get( $p->ID, '_bst_aid_messages' );
-	$msgs[] = array( 'role' => 'user', 'content' => bst_aid_redact( $text ) );
+	$msgs[] = array( 'role' => 'user', 'content' => bst_aid_redact( $text ) . $attach['text'] );
 	bst_aid_task_set( $p->ID, '_bst_aid_messages', $msgs );
 	bst_aid_task_set( $p->ID, '_bst_aid_image_count', 0 );
 	bst_aid_task_set( $p->ID, '_bst_aid_run', array( 'active' => true, 'effort' => $effort, 'model' => $chosen, 'steps_left' => bst_aid_effort_steps( $effort ) ) );
 	bst_aid_metrics_end( $p->ID, 'replaced' );
 	bst_aid_metrics_start( $p->ID, '' !== $chosen ? $chosen : bst_aid_run_model( $effort ), $effort );
-	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'user', 'text' => $text ) );
+	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'user', 'text' => $text, 'files' => $attach['files'] ) );
 	if ( 1 === count( $msgs ) ) {
 		wp_update_post( array( 'ID' => $p->ID, 'post_title' => wp_trim_words( wp_strip_all_tags( $text ), 9, '…' ) ) );
 	}

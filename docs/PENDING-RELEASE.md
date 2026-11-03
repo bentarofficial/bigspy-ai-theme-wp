@@ -54,6 +54,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn AI Designer.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-44, đính kèm file ở thanh chat AI Designer.
+- **Đã thay đổi:** nút ghim mở Thư viện Media (chọn nhiều), kéo thả hoặc dán tệp vào ô tin nhắn, thẻ xem trước gỡ được. Ảnh/video tải lên vào Media với dấu `_bst_aid_upload` + ID task; tài liệu .txt/.md/.csv (tối đa 1 MB) chỉ lưu trong dữ liệu task, không công khai, tự bỏ sau 7 ngày. Tin nhắn mang ID file, máy chủ kiểm tra quyền và loại; AI nhận ID, kích thước, alt, URL và văn bản tài liệu (tối đa 12.000 ký tự mỗi tài liệu) dưới dạng dữ liệu, không phải lệnh. Danh sách ảnh AI chưa dùng gồm cả tệp tải lên từ chat. Chưa gửi ảnh cho model (chưa xác minh Kyma hỗ trợ) và chưa đọc PDF/Word: xem G-53.
+- **Kiểm thử:** lint, Designer 187 đạt; chưa thử nút ghim, kéo thả, dán trên trình duyệt và AI thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn AI Designer.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

@@ -7018,3 +7018,39 @@ msgstr "Model người dùng được chọn trong chat"
 msgid "Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available."
 msgstr "Không chọn gì để cho dùng mọi model văn bản. Giữ Ctrl/Cmd để chọn nhiều. Luôn có lựa chọn Tự động."
 
+msgid "No file received."
+msgstr "Không nhận được tệp."
+
+msgid "Text documents can be up to 1 MB."
+msgstr "Tài liệu văn bản tối đa 1 MB."
+
+msgid "You cannot upload files."
+msgstr "Bạn không có quyền tải tệp lên."
+
+msgid "Attach images, videos or text documents (.txt, .md, .csv). For PDF or Word files, paste the text."
+msgstr "Hãy đính kèm ảnh, video hoặc tài liệu văn bản (.txt, .md, .csv). Với PDF hoặc Word, hãy dán nội dung văn bản."
+
+msgid "An attached document has expired. Attach it again."
+msgstr "Tài liệu đính kèm đã hết hạn. Hãy đính kèm lại."
+
+msgid "An attached file is missing or you cannot use it."
+msgstr "Tệp đính kèm không còn hoặc bạn không được dùng tệp này."
+
+msgid "%1$d of %2$d AI images and chat uploads are not used anywhere."
+msgstr "%1$d trong %2$d ảnh AI và tệp tải lên từ chat chưa được dùng ở đâu."
+
+msgid "Remove"
+msgstr "Gỡ"
+
+msgid "Attach files"
+msgstr "Đính kèm tệp"
+
+msgid "Attach"
+msgstr "Đính kèm"
+
+msgid "Wait for the uploads to finish."
+msgstr "Hãy chờ tải lên xong."
+
+msgid "Attach files from the Media Library, or drop or paste them into the message box"
+msgstr "Đính kèm tệp từ Thư viện Media, hoặc kéo thả hay dán vào ô tin nhắn"
+

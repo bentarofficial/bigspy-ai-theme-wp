@@ -10854,3 +10854,36 @@ msgstr ""
 msgid "Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available."
 msgstr ""
 
+msgid "No file received."
+msgstr ""
+
+msgid "Text documents can be up to 1 MB."
+msgstr ""
+
+msgid "You cannot upload files."
+msgstr ""
+
+msgid "Attach images, videos or text documents (.txt, .md, .csv). For PDF or Word files, paste the text."
+msgstr ""
+
+msgid "An attached document has expired. Attach it again."
+msgstr ""
+
+msgid "An attached file is missing or you cannot use it."
+msgstr ""
+
+msgid "%1$d of %2$d AI images and chat uploads are not used anywhere."
+msgstr ""
+
+msgid "Attach files"
+msgstr ""
+
+msgid "Attach"
+msgstr ""
+
+msgid "Wait for the uploads to finish."
+msgstr ""
+
+msgid "Attach files from the Media Library, or drop or paste them into the message box"
+msgstr ""
+
