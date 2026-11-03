@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới (1.81.0 đã gom G-21–G-23, G-44–G-51).
+- **G-54 Thông báo free shipping:** thanh tiến độ đọc đủ quy tắc của phương thức Free shipping trong WooCommerce: `requires` = min_amount/either/both, `ignore_discounts`, coupon miễn phí vận chuyển; không hiện khi `both` chưa có coupon hoặc phương thức chỉ cần coupon; nhiều package khác quy tắc thì không hiện. File `inc/checkout-extras.php`. **Kiểm thử:** lint đạt, đã đối chiếu dòng-với-dòng `WC_Shipping_Free_Shipping::is_available`; thêm `tools/woo-check.cjs` + `tools/tests/woo-integration.php` (11 case) nhưng chưa chạy được vì Playground hết bộ nhớ (ổ C ~100 MB, cả features-check cũng lỗi). **Khi phát hành:** Có gì mới một dòng.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
