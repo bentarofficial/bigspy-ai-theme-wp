@@ -1,7 +1,8 @@
 # BIGSPY AI theme action guide
 
 Call overview for current registered blocks/patterns, Customizer field IDs, menus,
-UX Blocks, layouts, header/footer sources and active plugin names. Call block_schema
+UX Blocks, layouts, header/footer sources and active plugin names. Call block_catalog
+to choose blocks by need (use, avoid, data needed, weight, pinning, mobile). Call block_schema
 before writing attributes; never guess a schema. This theme uses the bst/ namespace
 (new blocks are bigspy/ticker, bigspy/ticker-slide, bigspy/expand-gallery and bigspy/expand-panel).
 

@@ -151,6 +151,23 @@ $text_nodes = function ( $n ) { return array_fill( 0, $n, array( 'name' => 'bst/
 $code_node  = function ( $size = 40 ) { return array( 'name' => 'bst/code', 'attrs' => array( 'code' => '<p>' . str_repeat( 'x', $size ) . '</p>' ) ); };
 $prompt     = bst_aid_system_prompt();
 bst_test( strrpos( $prompt, 'FIXED RULE' ) > strrpos( $prompt, 'IMAGE STANDARD' ), 'Block rule comes after the user guidelines in the prompt' );
+bst_test( false !== strpos( $prompt, 'block_catalog' ), 'Prompt tells the AI to choose blocks with block_catalog' );
+$catalog_all = (array) include BST_AID_DIR . '/knowledge/blocks.php';
+$catalog_parents = bst_aid_block_parents();
+$catalog_missing = array_diff( array_keys( bst_aid_block_types() ), array_keys( $catalog_all ), array_keys( $catalog_parents ) );
+bst_test( ! $catalog_missing, 'Every top-level block has a catalog profile: ' . implode( ', ', $catalog_missing ) );
+$catalog_bad = array();
+foreach ( $catalog_all as $name => $p ) {
+	if ( 9 !== count( $p ) || array_diff( $p[0], bst_aid_block_needs() ) || ! in_array( $p[4], array( 'light', 'medium', 'heavy' ), true ) || '' === $p[1] || '' === $p[8] ) { $catalog_bad[] = $name; }
+}
+bst_test( ! $catalog_bad, 'Catalog profiles are complete: ' . implode( ', ', $catalog_bad ) );
+$catalog_groups = bst_test_run( 'block_catalog', array() );
+bst_test( isset( $catalog_groups['groups']['hero'] ) && in_array( 'bst/banner', $catalog_groups['groups']['hero'], true ), 'block_catalog without needs lists groups' );
+$catalog_process = bst_test_run( 'block_catalog', array( 'needs' => array( 'process' ) ) );
+$catalog_names = wp_list_pluck( (array) ( $catalog_process['blocks'] ?? array() ), 'name' );
+$catalog_pins = array_filter( (array) ( $catalog_process['blocks'] ?? array() ), function ( $b ) { return ! empty( $b['pin'] ); } );
+bst_test( in_array( 'bigspy/stack-cards', $catalog_names, true ) && ! in_array( 'bst/banner', $catalog_names, true ) && count( $catalog_pins ) >= 2, 'block_catalog filters by need and marks pinned blocks' );
+bst_test( 'read' === bst_aid_tool_policy( 'block_catalog', array() )['group'], 'block_catalog is a read tool' );
 $forged = '<!-- wp:html --><div>Forged</div><!-- /wp:html -->';
 $r = bst_test_run( 'create_page', array( 'title' => 'Raw forged', 'blocks' => array( array( 'name' => 'core/html', 'raw' => $forged ) ) ) );
 bst_test( ! empty( $r['error'] ) && false !== strpos( wp_json_encode( $r ), 'unchanged' ), 'New page refuses forged core/html raw' );

@@ -12,6 +12,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-46 (làm thay, G-46-T), hồ sơ block và công cụ `block_catalog`.
+- **Đã thay đổi:** `ai-designer/knowledge/blocks.php` có hồ sơ 62 block cấp trên (nhóm nhu cầu, dùng/tránh, dữ liệu cần, độ nặng, ghim cuộn, mobile, khối đi cùng, thuộc tính tối thiểu); công cụ đọc `block_catalog` trả nhóm hoặc hồ sơ theo nhu cầu; prompt và `knowledge/theme.md` chuyển sang dùng nó. `list_blocks` giữ nguyên.
+- **Kiểm thử:** lint, bộ Designer 157 đạt (6 test mới); chưa thử với AI thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

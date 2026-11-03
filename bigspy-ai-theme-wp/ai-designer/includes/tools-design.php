@@ -739,6 +739,12 @@ add_filter(
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_list_blocks',
 		);
+		$tools['block_catalog'] = array(
+			'description' => 'Block profiles by need: when to use or avoid each block, the facts or media it needs, weight, scroll pinning, mobile behaviour, good partners and the minimum attributes. Call with no needs for the group list, then with the needs of the page you plan.',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'needs' => array( 'type' => 'array', 'items' => array( 'type' => 'string', 'enum' => bst_aid_block_needs() ) ) ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_block_catalog',
+		);
 		$tools['style_options'] = array(
 			'description' => 'Style presets of the given blocks and the site-wide CSS library. Presets go in a block as attrs.bsPresets, ids separated by spaces. CSS library items are switched on by the user in Customize; suggest them, do not copy their CSS.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'names' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ) ), 'required' => array( 'names' ) ),
@@ -926,6 +932,55 @@ function bst_aid_tool_list_blocks() {
 			'Start from get_pattern when a pattern fits, then change texts, colors and images.',
 		),
 	);
+}
+
+/** Block profiles from knowledge/blocks.php, limited to registered and enabled blocks. */
+function bst_aid_block_profiles() {
+	static $all = null;
+	if ( null === $all ) {
+		$all = (array) include BST_AID_DIR . '/knowledge/blocks.php';
+	}
+	return array_intersect_key( $all, bst_aid_block_types() );
+}
+
+function bst_aid_block_needs() {
+	return array( 'hero', 'structure', 'text', 'features', 'process', 'proof', 'logos', 'media', 'pricing', 'faq', 'cta', 'contact', 'social', 'blog', 'commerce', 'navigation', 'utility' );
+}
+
+function bst_aid_tool_block_catalog( $a ) {
+	$profiles = bst_aid_block_profiles();
+	$needs    = array_values( array_intersect( (array) ( $a['needs'] ?? array() ), bst_aid_block_needs() ) );
+	$rules    = array(
+		'Choose by content: a block whose "data" you do not have (images, real figures, reviews, prices) is the wrong block.',
+		'At most 2 blocks with pin true per page, never in adjacent sections. Prefer light blocks; one or two heavy blocks per page.',
+		'Call block_schema for the blocks you pick before writing attributes.',
+	);
+	if ( ! $needs ) {
+		$groups = array();
+		foreach ( $profiles as $name => $p ) {
+			foreach ( $p[0] as $need ) {
+				$groups[ $need ][] = $name;
+			}
+		}
+		return array( 'groups' => $groups, 'rules' => $rules );
+	}
+	$out = array();
+	foreach ( $profiles as $name => $p ) {
+		if ( ! array_intersect( $p[0], $needs ) ) {
+			continue;
+		}
+		$row = array( 'name' => $name, 'needs' => $p[0], 'use' => $p[1], 'weight' => $p[4], 'min' => $p[8] );
+		foreach ( array( 'avoid' => 2, 'data' => 3, 'mobile' => 6, 'pairs' => 7 ) as $key => $i ) {
+			if ( '' !== $p[ $i ] ) {
+				$row[ $key ] = $p[ $i ];
+			}
+		}
+		if ( $p[5] ) {
+			$row['pin'] = true;
+		}
+		$out[] = $row;
+	}
+	return array( 'blocks' => $out, 'rules' => $rules );
 }
 
 function bst_aid_tool_block_schema( $a ) {
