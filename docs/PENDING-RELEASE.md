@@ -6,7 +6,11 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới.
+- **Yêu cầu/tính năng:** G-45, nguyên tắc thiết kế mặc định cho AI Designer.
+- **Đã thay đổi:** `prompt.php` thêm mục banner đầu trang, dùng đa dạng khối, khối động, `bst/code` chỉ để minh hoạ, hiệu ứng khối/chữ/hover/cuộn và chất lượng thiết kế.
+- **Kiểm thử:** lint và bộ Designer; chưa thử với AI thật.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
