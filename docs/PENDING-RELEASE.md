@@ -24,6 +24,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-48, minh hoạ bằng code.
+- **Đã thay đổi:** `bst/code` không duyệt tới 8 khối, 6 KB mỗi khối; trên mức đó cần thẻ duyệt; trần 12 khối, 40 KB mỗi trang kể cả khi duyệt (tính cả `css`). `bst/code` không tính vào `editable_percent`, nhưng số khối code không được vượt số khối khác. Bộ lọc SVG thêm text, ellipse, polyline, gradient và thuộc tính nét; vẫn bỏ script, on*, use, image, foreignObject. Prompt hướng dẫn minh hoạ SVG/HTML/CSS khi người dùng không yêu cầu ảnh, dùng biến màu theme, vừa 375px, không JS, không bịa số liệu. AGENTS.md cập nhật quy tắc block.
+- **Kiểm thử:** lint, Designer 164 đạt, features đạt; chưa thử AI thật và hiển thị trên trình duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates (giới hạn Code mới).
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

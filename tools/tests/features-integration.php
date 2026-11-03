@@ -298,15 +298,15 @@ function bst_t_aid() {
 	$code = function ( $n, $size = 10 ) {
 		return array_fill( 0, $n, array( 'name' => 'bst/code', 'attrs' => array( 'code' => str_repeat( 'x', $size ) ) ) );
 	};
-	bst_test( 1 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 2 ) ) )['level'], 'two code blocks need no card' );
-	bst_test( 2 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 3 ) ) )['level'], 'third code block needs a card' );
-	bst_test( 2 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 1, 4000 ) ) )['level'], 'over 3 KB needs a card' );
-	$nest = array( array( 'name' => 'bst/section', 'inner' => $code( 3 ) ) );
+	bst_test( 1 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 8 ) ) )['level'], 'eight code blocks need no card' );
+	bst_test( 2 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 9 ) ) )['level'], 'ninth code block needs a card' );
+	bst_test( 2 === bst_aid_tool_policy( 'create_page', array( 'blocks' => $code( 1, 7000 ) ) )['level'], 'a code block over 6 KB needs a card' );
+	$nest = array( array( 'name' => 'bst/section', 'inner' => $code( 9 ) ) );
 	bst_test( 2 === bst_aid_tool_policy( 'update_page', array( 'blocks' => $nest ) )['level'], 'nested code counted' );
-	$id = wp_insert_post( array( 'post_title' => 'C', 'post_type' => 'page', 'post_status' => 'draft', 'post_content' => serialize_blocks( bst_aid_build_blocks( $code( 2 ), '', $i ) ) ) );
+	$id = wp_insert_post( array( 'post_title' => 'C', 'post_type' => 'page', 'post_status' => 'draft', 'post_content' => serialize_blocks( bst_aid_build_blocks( $code( 8 ), '', $i ) ) ) );
 	bst_test( 2 === bst_aid_tool_policy( 'page_sections', array( 'id' => $id, 'mode' => 'append', 'blocks' => $code( 1 ) ) )['level'], 'existing page code counted' );
-	bst_test( 0 === bst_aid_editable_percent( get_post_field( 'post_content', $id ) ), 'code only page scores 0' );
-	bst_test( 90 === bst_aid_editable_percent( str_repeat( '<!-- wp:bst/text /-->', 9 ) . '<!-- wp:bst/code /-->' ), 'score counts blocks' );
+	bst_test( 100 === bst_aid_editable_percent( get_post_field( 'post_content', $id ) ), 'code illustrations not scored' );
+	bst_test( 90 === bst_aid_editable_percent( str_repeat( '<!-- wp:bst/text /-->', 9 ) . '<!-- wp:html --><b>x</b><!-- /wp:html -->' ), 'score counts blocks' );
 	$big = bst_aid_tool_custom_css( array( 'mode' => 'replace', 'css' => 'a{}' . str_repeat( ' ', 1 ) . str_repeat( 'b{color:red}', 300 ) ) );
 	bst_test( ! empty( $big['error'] ), 'large AI CSS refused' );
 	$ok = bst_aid_tool_custom_css( array( 'mode' => 'replace', 'user_requested' => true, 'css' => str_repeat( 'b{color:red}', 300 ) ) );

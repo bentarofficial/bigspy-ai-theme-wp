@@ -8,8 +8,10 @@ before writing attributes; never guess a schema. This theme uses the bst/ namesp
 
 ## Structure and blocks
 Every page stays editable as visual blocks. The server refuses new raw HTML, layout
-HTML inside Text, writes that leave a page under 90% editable, and more than 4 Code
-blocks or 10 KB of code; rebuild the content as blocks instead of working around it.
+HTML inside Text, writes that leave a page under 90% editable, more than 12 Code
+blocks or 40 KB of code (over 8 blocks or 6 KB in one block needs approval), and pages
+with more Code blocks than other blocks. Code is for SVG/HTML/CSS illustrations only and
+is not counted in the editable share; rebuild content as blocks instead of working around it.
 Build pages with Section > Row > Column. Sections handle background, padding,
 width and responsive spacing; columns contain any content blocks. Use Heading for
 real H1–H6, Text for copy, Buttons > Button for actions and Image for media.

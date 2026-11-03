@@ -187,24 +187,34 @@ bst_test( ! empty( bst_test_run( 'update_page', array( 'id' => $legacy, 'blocks'
 $r = bst_test_run( 'page_sections', array( 'id' => $legacy, 'mode' => 'append', 'blocks' => $text_nodes( 1 ) ) );
 bst_test( empty( $r['error'] ) && $r['editable_percent'] < 90, 'Old low-score page still accepts editable sections' );
 bst_test( empty( bst_test_run( 'page_sections', array( 'id' => $legacy, 'mode' => 'remove', 'index' => 2 ) )['error'] ), 'Removing a section stays possible on an old page' );
-bst_test( ! empty( bst_test_run( 'create_page', array( 'title' => 'Low score', 'blocks' => array_merge( $text_nodes( 2 ), array( $code_node() ) ) ) )['error'] ), 'Page under 90 percent editable refused' );
+$r = bst_test_run( 'create_page', array( 'title' => 'Code illustration', 'blocks' => array_merge( $text_nodes( 2 ), array( $code_node() ) ) ) );
+bst_test( empty( $r['error'] ) && 100 === $r['editable_percent'], 'bst/code illustrations are not counted in editable_percent' );
+bst_test( ! empty( bst_test_run( 'create_page', array( 'title' => 'Mostly code', 'blocks' => array_merge( $text_nodes( 1 ), array( $code_node(), $code_node() ) ) ) )['error'] ), 'A page needs at least as many other blocks as code blocks' );
+$svg = '<svg viewBox="0 0 120 60" role="img" aria-label="Chart"><defs><linearGradient id="g1"><stop offset="0" stop-color="var(--bs-primary)"/></linearGradient></defs><rect x="0" y="0" width="120" height="60" rx="8" fill="url(#g1)"/><text x="10" y="30" font-size="12" text-anchor="start">A</text><polyline points="0,0 10,10" stroke="currentColor" stroke-linecap="round" onclick="alert(1)"/><use href="https://evil.test/x.svg#a"/><foreignObject><div>x</div></foreignObject></svg><script>alert(1)</script><div onmouseover="x()">ok</div>';
+$built = bst_aid_tree_to_markup( array_merge( $text_nodes( 2 ), array( array( 'name' => 'bst/code', 'attrs' => array( 'code' => $svg, 'css' => 'selector svg > rect { opacity: .9 }' ) ) ) ) );
+$saved = is_wp_error( $built ) ? '' : $built['markup'];
+$svg_code = is_wp_error( $built ) ? '' : (string) ( end( parse_blocks( $saved ) )['attrs']['code'] ?? '' );
+bst_test( false !== stripos( $svg_code, 'viewBox' ) && false !== stripos( $svg_code, 'lineargradient' ) && false !== strpos( $svg_code, 'stop-color' ), 'SVG illustration keeps viewBox and gradients (HTML parsers restore SVG case)' );
+bst_test( false !== strpos( $saved, 'text-anchor' ) && false !== strpos( $saved, 'stroke-linecap' ) && ( false !== strpos( $saved, 'svg > rect' ) || false !== strpos( $saved, 'svg \u003e rect' ) ), 'SVG text, stroke attributes and scoped CSS survive the filter' );
+bst_test( '' !== $saved && false === stripos( $saved, 'onclick' ) && false === stripos( $saved, 'onmouseover' ) && false === stripos( $saved, 'script' ) && false === stripos( $saved, 'evil.test' ) && false === stripos( $saved, 'foreignObject' ), 'SVG filter drops scripts, handlers, use and foreignObject' );
 $r = bst_test_run( 'create_page', array( 'title' => 'Good score', 'blocks' => array_merge( $text_nodes( 12 ), array( $code_node() ) ) ) );
 bst_test( empty( $r['error'] ) && $r['editable_ok'], 'Page at 90 percent or more accepted' );
-bst_test( ! empty( bst_test_run( 'ux_block', array( 'mode' => 'create', 'title' => 'Code only', 'blocks' => array( $code_node() ) ) )['error'] ), 'UX block cannot bypass the editable rule' );
+bst_test( ! empty( bst_test_run( 'ux_block', array( 'mode' => 'create', 'title' => 'Code only', 'blocks' => array( $code_node() ) ) )['error'] ), 'UX block cannot be made of code only' );
 foreach ( array( '<div class="grid"><p>A</p></div>', '<p style="display:flex">A</p>', '<section>A</section>' ) as $layout ) {
 	bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'bst/text', 'attrs' => array( 'html' => $layout ) ) ) ) ), 'Layout HTML in bst/text refused: ' . $layout );
 }
 bst_test( is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'core/group', 'html' => '<div><p>A</p></div>' ) ) ) ), 'Layout HTML cannot enter through a converted core block' );
 bst_test( ! is_wp_error( bst_aid_tree_to_markup( array( array( 'name' => 'bst/text', 'attrs' => array( 'html' => '<h2>A</h2><p><strong>B</strong></p><ul><li>C</li></ul><table><tr><td>D</td></tr></table>' ) ) ) ) ), 'Rich text with lists and tables stays allowed' );
-$five = array_merge( $text_nodes( 45 ), array_fill( 0, 5, $code_node() ) );
+$five = array_merge( $text_nodes( 45 ), array_fill( 0, 13, $code_node() ) );
 $args = array( 'title' => 'Over cap', 'blocks' => $five );
 bst_test( 2 === bst_aid_tool_policy( 'create_page', $args )['level'], 'Over the soft limit still asks for approval' );
 $GLOBALS['bst_aid_approval'] = array( 'task' => $task, 'tool' => 'create_page', 'hash' => bst_aid_args_hash( $args ), 'expires' => time() + 60 );
 $r = bst_test_run( 'create_page', $args );
 unset( $GLOBALS['bst_aid_approval'] );
 bst_test( ! empty( $r['error'] ) && false !== strpos( $r['error'], 'capped' ), 'bst/code count ceiling holds after approval' );
-bst_test( is_wp_error( bst_aid_tree_to_markup( array_merge( $text_nodes( 20 ), array( $code_node( 11000 ) ) ) ) ), 'bst/code size ceiling enforced' );
-$legacy_code = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Legacy code', 'post_content' => wp_slash( serialize_blocks( bst_aid_build_blocks( array_merge( $text_nodes( 45 ), array_fill( 0, 5, $code_node() ) ), '', $unused ) ) ) ) );
+bst_test( is_wp_error( bst_aid_tree_to_markup( array_merge( $text_nodes( 20 ), array_fill( 0, 7, $code_node( 6000 ) ) ) ) ), 'bst/code 40 KB ceiling enforced' );
+bst_test( ! is_wp_error( bst_aid_tree_to_markup( array_merge( $text_nodes( 20 ), array_fill( 0, 12, $code_node( 3000 ) ) ) ) ), '12 code blocks within 40 KB allowed' );
+$legacy_code = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Legacy code', 'post_content' => wp_slash( serialize_blocks( bst_aid_build_blocks( array_merge( $text_nodes( 45 ), array_fill( 0, 13, $code_node() ) ), '', $unused ) ) ) ) );
 bst_test( empty( bst_test_run( 'update_page', array( 'id' => $legacy_code, 'blocks' => bst_aid_tool_get_page( array( 'id' => $legacy_code ) )['blocks'] ) )['error'] ), 'Old page already over the ceiling can be saved unchanged' );
 
 // Every native motion family must survive get_page -> edit -> update_page.

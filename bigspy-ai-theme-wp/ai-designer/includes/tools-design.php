@@ -123,9 +123,11 @@ function bst_aid_clean_code( $code ) {
 	// Otherwise it could bypass the level-3 policy through same-origin REST calls.
 	$allowed = wp_kses_allowed_html( 'post' );
 	$allowed['style'] = array();
-	$allowed['svg']   = array( 'xmlns' => true, 'viewbox' => true, 'width' => true, 'height' => true, 'fill' => true, 'class' => true, 'style' => true, 'aria-hidden' => true, 'role' => true );
-	foreach ( array( 'path' => array( 'd', 'fill', 'stroke', 'stroke-width' ), 'circle' => array( 'cx', 'cy', 'r', 'fill', 'stroke' ), 'rect' => array( 'x', 'y', 'width', 'height', 'rx', 'fill', 'stroke' ), 'g' => array( 'fill', 'transform' ), 'line' => array( 'x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width' ), 'polygon' => array( 'points', 'fill' ) ) as $tag => $attrs ) {
-		$allowed[ $tag ] = array_fill_keys( array_merge( $attrs, array( 'class', 'style' ) ), true );
+	$allowed['svg']   = array( 'xmlns' => true, 'viewbox' => true, 'width' => true, 'height' => true, 'fill' => true, 'class' => true, 'style' => true, 'aria-hidden' => true, 'aria-label' => true, 'role' => true, 'preserveaspectratio' => true, 'focusable' => true );
+	// Shapes, text and gradients for code illustrations; no use/image/foreignObject, so nothing loads from elsewhere.
+	$paint = array( 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'stroke-dasharray', 'opacity', 'fill-opacity', 'stroke-opacity', 'transform' );
+	foreach ( array( 'path' => array( 'd' ), 'circle' => array( 'cx', 'cy', 'r' ), 'ellipse' => array( 'cx', 'cy', 'rx', 'ry' ), 'rect' => array( 'x', 'y', 'width', 'height', 'rx', 'ry' ), 'g' => array(), 'line' => array( 'x1', 'y1', 'x2', 'y2' ), 'polygon' => array( 'points' ), 'polyline' => array( 'points' ), 'text' => array( 'x', 'y', 'dx', 'dy', 'font-size', 'font-weight', 'text-anchor', 'dominant-baseline' ), 'tspan' => array( 'x', 'y', 'dx', 'dy', 'font-weight' ), 'title' => array(), 'defs' => array(), 'lineargradient' => array( 'id', 'x1', 'y1', 'x2', 'y2', 'gradientunits' ), 'radialgradient' => array( 'id', 'cx', 'cy', 'r', 'gradientunits' ), 'stop' => array( 'offset', 'stop-color', 'stop-opacity' ) ) as $tag => $attrs ) {
+		$allowed[ $tag ] = array_fill_keys( array_merge( $attrs, $paint, array( 'class', 'style' ) ), true );
 	}
 	return wp_kses( (string) $code, $allowed );
 }
@@ -367,21 +369,24 @@ function bst_aid_text_keys( $source ) {
 
 /** Count and size of bst/code blocks in a model tree. */
 function bst_aid_code_usage( $nodes ) {
-	$use = array( 'count' => 0, 'bytes' => 0 );
+	$use = array( 'count' => 0, 'bytes' => 0, 'max' => 0 );
 	foreach ( (array) $nodes as $node ) {
 		$name = (string) ( $node['name'] ?? $node['blockName'] ?? '' );
 		if ( 'bst/code' === $name || 'code' === $name ) {
 			$use['count']++;
-			$use['bytes'] += strlen( (string) ( $node['attrs']['code'] ?? '' ) );
+			$bytes         = strlen( (string) ( $node['attrs']['code'] ?? '' ) ) + strlen( (string) ( $node['attrs']['css'] ?? '' ) );
+			$use['bytes'] += $bytes;
+			$use['max']    = max( $use['max'], $bytes );
 		}
 		$sub           = bst_aid_code_usage( $node['inner'] ?? $node['innerBlocks'] ?? array() );
 		$use['count'] += $sub['count'];
 		$use['bytes'] += $sub['bytes'];
+		$use['max']    = max( $use['max'], $sub['max'] );
 	}
 	return $use;
 }
 
-/** True when a page write would leave more than 2 code blocks or 3 KB of code on the page. */
+/** True when a page write would leave more than 8 code blocks on the page or a code block over 6 KB. */
 function bst_aid_code_over_limit( $name, $a ) {
 	$use = bst_aid_code_usage( $a['blocks'] ?? array() );
 	if ( 'page_sections' === $name && ! empty( $a['id'] ) ) {
@@ -389,7 +394,7 @@ function bst_aid_code_over_limit( $name, $a ) {
 		$use['count'] += $old['count'];
 		$use['bytes'] += $old['bytes'];
 	}
-	return $use['count'] > 2 || $use['bytes'] > 3 * KB_IN_BYTES;
+	return $use['count'] > 8 || $use['max'] > 6 * KB_IN_BYTES;
 }
 
 /**
@@ -401,8 +406,11 @@ function bst_aid_code_over_limit( $name, $a ) {
 function bst_aid_block_rule_error( $content, $before ) {
 	$use = bst_aid_code_usage( parse_blocks( $content ) );
 	$old = bst_aid_code_usage( parse_blocks( $before ) );
-	if ( ( $use['count'] > 4 && $use['count'] > $old['count'] ) || ( $use['bytes'] > 10 * KB_IN_BYTES && $use['bytes'] > $old['bytes'] ) ) {
-		return 'Not saved: bst/code is capped at 4 blocks and 10 KB per page, even with approval. Rebuild the extra parts with BIGSPY AI blocks.';
+	if ( ( $use['count'] > 12 && $use['count'] > $old['count'] ) || ( $use['bytes'] > 40 * KB_IN_BYTES && $use['bytes'] > $old['bytes'] ) ) {
+		return 'Not saved: bst/code is capped at 12 blocks and 40 KB per page, even with approval. Rebuild the extra parts with BIGSPY AI blocks.';
+	}
+	if ( $use['count'] > $old['count'] && $use['count'] > bst_aid_block_count( parse_blocks( $content ) ) - $use['count'] ) {
+		return 'Not saved: bst/code only illustrates content built with blocks. Add the blocks first; a page needs at least as many other blocks as code blocks.';
 	}
 	$pct = bst_aid_editable_percent( $content );
 	if ( $pct < 90 && $pct < bst_aid_editable_percent( $before ) ) {
@@ -411,18 +419,27 @@ function bst_aid_block_rule_error( $content, $before ) {
 	return '';
 }
 
-/** Share of blocks the user can edit with block options, in percent. */
+/** Number of named blocks in a parsed tree, nested ones included. */
+function bst_aid_block_count( $blocks ) {
+	$n = 0;
+	foreach ( $blocks as $b ) {
+		$n += ( empty( $b['blockName'] ) ? 0 : 1 ) + bst_aid_block_count( $b['innerBlocks'] ?? array() );
+	}
+	return $n;
+}
+
+/** Share of blocks the user can edit with block options, in percent. bst/code illustrations are not counted; their own caps apply. */
 function bst_aid_editable_percent( $content ) {
 	$count = function ( $blocks ) use ( &$count ) {
 		$all  = 0;
 		$hard = 0;
 		foreach ( $blocks as $b ) {
 			$name = $b['blockName'] ?? '';
-			if ( ! $name && '' === trim( (string) ( $b['innerHTML'] ?? '' ) ) ) {
+			if ( 'bst/code' === $name || ( ! $name && '' === trim( (string) ( $b['innerHTML'] ?? '' ) ) ) ) {
 				continue;
 			}
 			$all++;
-			$hard += in_array( $name, array( '', 'core/html', 'bst/code' ), true ) ? 1 : 0;
+			$hard += in_array( $name, array( '', 'core/html' ), true ) ? 1 : 0;
 			list( $a, $h ) = $count( $b['innerBlocks'] ?? array() );
 			$all  += $a;
 			$hard += $h;
@@ -928,7 +945,7 @@ function bst_aid_tool_list_blocks() {
 			'A page is a list of bst/section blocks. Inside a section use bst/row > bst/column for columns (column width via its attributes), or put blocks directly.',
 			'Use bst/heading for headings (attribute tag h1–h6; one h1 per page) and bst/text for paragraphs (html attribute).',
 			'Images: set the image id and URL attributes (from ImageGen or the Media Library). Never invent image URLs.',
-			'bst/code holds safe custom HTML / CSS for things blocks cannot do (illustrations, mockups, embeds).',
+			'bst/code holds safe SVG / HTML in "code" and scoped CSS in "css" (selector = this block) for illustrations blocks cannot do. No JavaScript.',
 			'Start from get_pattern when a pattern fits, then change texts, colors and images.',
 		),
 	);
