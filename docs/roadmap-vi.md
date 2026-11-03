@@ -4,6 +4,8 @@ Quy tắc phát triển, phát hành và ma trận kiểm tra: xem [DEV-RULES.md
 
 ## Phạm vi owner cập nhật 03-11-2026
 
+Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Query Loop và component: [BLOCK-AI-RESEARCH.md](BLOCK-AI-RESEARCH.md). G-65 là đề xuất tương thích AI; G-37/G-38/G-39 tiếp tục theo backlog, không đổi thứ tự AI Designer đã chốt.
+
 - Ưu tiên **block kéo thả và AI trong theme**. Theme giữ giao diện, thiết kế và hiển thị dữ liệu; Rank Math/SEO chuyên sâu, WooCommerce/đơn hàng/thanh toán, inventory/booking và nghiệp vụ lâu dài thuộc plugin/provider. Điểm hay ngoài phạm vi là đề xuất để owner cân nhắc, không tự gộp vào theme.
 - **Vai trò:** Codex nghiên cứu/đặc tả/roadmap; Claude Code lập trình và kiểm thử. Áp dụng từ yêu cầu owner ngày 03-11 cho đến khi owner đổi phân công.
 - **Form tính giá và booking:** yêu cầu mới đã được nghiên cứu ở [FORMS-BOOKING-ROADMAP.md](FORMS-BOOKING-ROADMAP.md): Form native báo giá trước khi gửi; block tìm tuyến/chuyến/xe, lọc kết quả và tóm tắt; adapter plugin/provider cho giá/tồn chỗ/đặt thật. Không coi gửi mail thành đặt thành công.
