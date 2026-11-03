@@ -23,6 +23,8 @@ require_once BST_AID_DIR . '/includes/settings.php';
 require_once BST_AID_DIR . '/includes/client.php';
 require_once BST_AID_DIR . '/includes/clean.php';
 require_once BST_AID_DIR . '/includes/guidelines.php';
+require_once BST_AID_DIR . '/includes/specialties.php';
+require_once BST_AID_DIR . '/includes/context.php';
 require_once BST_AID_DIR . '/includes/tools.php';
 require_once BST_AID_DIR . '/includes/tools-design.php';
 require_once BST_AID_DIR . '/includes/tools-images.php';
@@ -30,6 +32,7 @@ require_once BST_AID_DIR . '/includes/permissions.php';
 require_once BST_AID_DIR . '/includes/tools-site.php';
 require_once BST_AID_DIR . '/includes/prompt.php';
 require_once BST_AID_DIR . '/includes/tasks.php';
+require_once BST_AID_DIR . '/includes/attachments.php';
 require_once BST_AID_DIR . '/includes/workspace.php';
 
 /** Capability needed to use the AI Designer. */
@@ -78,6 +81,9 @@ add_action(
 		}
 		$ver = BST_VERSION . '.' . (int) @filemtime( BST_AID_DIR . '/assets/ai-designer.js' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 		wp_enqueue_style( 'bst-aid', BST_AID_URI . '/assets/ai-designer.css', array(), $ver );
+		if ( current_user_can( 'upload_files' ) ) {
+			wp_enqueue_media(); // Attach button in the chat opens the Media Library.
+		}
 		wp_enqueue_script( 'bst-aid', BST_AID_URI . '/assets/ai-designer.js', array( 'wp-i18n' ), $ver, true );
 		wp_localize_script(
 			'bst-aid',

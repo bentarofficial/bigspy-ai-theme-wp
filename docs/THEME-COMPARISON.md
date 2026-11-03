@@ -1,5 +1,7 @@
 # BIGSPY AI Theme WP — đối soát và hướng phát triển
 
+**Đính chính 03-11-2026 — G-53:** bản G-36 bên dưới ban đầu dựa vào tài liệu đối thủ, chưa đọc nguồn trên hosting nên chưa đủ để chốt mọi khoảng trống/thứ tự phát triển. Đã đọc các nhánh trong 34 file của sáu theme và Elementor; kết quả có bằng chứng, phiên bản thực cài, phần đã có và giới hạn ở [SOURCE-AUDIT.md](SOURCE-AUDIT.md). Khi có khác biệt, dùng kết quả G-53. Đây vẫn không phải kiểm toán mọi file hoặc benchmark.
+
 Ngày rà: 31-10-2026. Task G-36. Mã nền: `feature/ai-designer`, `b47a859`, phiên bản khai báo 1.79.1; có thay đổi chưa phát hành. Đây là đánh giá sản phẩm theme, không phải thiết kế website.
 
 ## Phạm vi và cách đọc
@@ -12,7 +14,7 @@ Ngày rà: 31-10-2026. Task G-36. Mã nền: `feature/ai-designer`, `b47a859`, p
 
 ## Những gì BIGSPY đã có
 
-Đếm trực tiếp từ `blocks/*/block.json`: **74 block**, gồm 55 `bst/*` và 19 `bigspy/*`; số 73 trong trao đổi trước là sai. Có 27 file pattern; màn hình tạo trang nhanh chỉ có hai lựa chọn business/shop, khác với số pattern.
+Đếm trực tiếp từ `blocks/*/block.json`: **74 bộ metadata**, gồm 55 `bst/*` và 19 `bigspy/*`. G-53 xác nhận thêm `bst/countdown` và `bst/product-part` đăng ký bằng PHP trong `inc/countdown.php` và `inc/product-design.php`: **76 loại block trong nguồn**. Số 73 và cách gọi 74 là tổng block trong trao đổi trước chưa đúng. Có 27 file pattern; màn hình tạo trang nhanh chỉ có hai lựa chọn business/shop, khác với số pattern.
 
 | Nhóm | Bằng chứng trong `bigspy-ai-theme-wp/` | Đánh giá và phần cần làm tốt hơn |
 | --- | --- | --- |
@@ -20,11 +22,11 @@ Ngày rà: 31-10-2026. Task G-36. Mã nền: `feature/ai-designer`, `b47a859`, p
 | Mega menu, menu dọc, tìm kiếm tức thời | `inc/mega-menu.php`, `header-extras.php` | Đã có; live search có cả nhánh tìm SKU. Cần đo và thử với catalogue lớn, sản phẩm ẩn/hết hàng, bàn phím và mobile. |
 | Màu, font và thiết kế chung | `inc/dynamic-css.php`, `block-design.php`, `block-presets.php`, `css-presets.php` | Đã có global settings và recipe. Chưa thấy hệ thống quản lý token spacing/type và component có thuộc tính ghi đè thống nhất như hướng Elementor hiện tại. |
 | Bố cục và chỉnh responsive | `blocks/section`, `row`, `column`; `inc/block-design.php` | Đã có điều khiển theo thiết bị. Cần chuẩn hoá giao diện, kế thừa giá trị và cách báo thuộc tính đang ghi đè. |
-| Theme Builder có điều kiện | `inc/theme-builder.php` | Có header/footer, trước/sau nội dung, single post, 404; include/exclude, IDs, category, đăng nhập và thiết bị. Chưa có vị trí thay archive/search/product/cart/checkout trong danh sách location. |
-| Bài viết và danh sách sản phẩm | `blocks/posts`, `products`, `products-list`; `inc/woocommerce-elements.php` | Có grid/list/slider và tuỳ chọn truy vấn. Chưa thấy loop item do người dùng tự thiết kế rồi gắn dữ liệu động như Elementor Loop Grid / GeneratePress Loop Template. |
+| Theme Builder có điều kiện | `inc/theme-builder.php`, `inc/product-design.php` | Có header/footer, trước/sau nội dung, single post, 404 và quy tắc. Chưa có location thay archive/search/cart/checkout trong danh sách Theme Builder; sản phẩm đã có cơ chế template riêng bằng Product Part, không coi là chưa có. |
+| Bài viết và danh sách sản phẩm | `blocks/posts`, `products`, `products-list`; `inc/woocommerce-elements.php`, `ai-designer/includes/tools-design.php` | Có grid/list/slider và truy vấn. Cần nghiên cứu loop item/context tích hợp với block BIGSPY. WordPress có Query Loop; điểm cụ thể là AI hiện chưa cho `core/query`, `core/post-template`, `core/block` trong allowlist. Không gán tính năng Elementor Pro/GP Premium cho bản đang cài. |
 | Motion và minh hoạ | `assets/js/blocks-motion.js`, `blocks/*/block.json` | Nhiều block có thể chỉnh trực quan. G-36 phát hiện AI chưa xử lý đúng namespace và quan hệ con của các block mới; đã bổ sung trong đợt này. |
 | Popup | `blocks/popup/block.json`, `render.php` | Có button/link/delay/scroll/exit và tần suất. Không được coi là còn thiếu popup; cần bổ sung quản lý chiến dịch và báo xung đột điều kiện nếu phát triển tiếp. |
-| WooCommerce | `inc/shop-options.php`, `product-options.php`, `quick-view.php`, `variation-swatches.php`, `commerce-customization.php`, `checkout-extras.php` | Có quick view, swatch, bố cục, AJAX shop và tiện ích giỏ hàng. Cần mở rộng thiết kế template và kiểm thử tương thích cả checkout cổ điển lẫn Woo blocks. |
+| WooCommerce | `inc/shop-options.php`, `product-options.php`, `quick-view.php`, `variation-swatches.php`, `commerce-customization.php`, `checkout-extras.php`, `product-design.php` | Có quick view, swatch, AJAX shop, template sản phẩm bằng Product Part, thanh mua mobile và sticky summary. Free shipping đã đọc zone; cần kiểm chứng thêm coupon/ignore_discounts. Mở rộng từ nền có sẵn và thử cả checkout cổ điển lẫn Woo blocks. |
 | Wishlist/so sánh sản phẩm | Chưa thấy module riêng trong nhóm `inc/` đã rà | Ứng viên bổ sung dạng module bật/tắt, có dữ liệu dùng lại được. Cần quy định hành vi khách chưa đăng nhập, lưu trữ và giới hạn trước khi triển khai. |
 | Form và gửi mail | `inc/form-native.php`, `form-migrate.php`, `features/smtp.php` | Có 12 loại trường, file, xác thực, chống spam, lưu submission và mail. Điều kiện trường, form nhiều bước và hành động tích hợp cần đặc tả riêng; dữ liệu tệp khi mail lỗi vẫn là việc cần xử lý. |
 | Hiệu năng | `inc/performance.php`, `assets.php` | Có CSS theo nhóm block, font local và CSS sinh ra có cache. `main.js` và `blocks.js` vẫn được enqueue chung; chưa có benchmark so với theme khác. |
@@ -37,10 +39,10 @@ Ngày rà: 31-10-2026. Task G-36. Mã nền: `feature/ai-designer`, `b47a859`, p
 - **Astra:** header/footer builder đã có trong theme; tuỳ chọn nâng cao thuộc Pro. Học cách nhóm và giải thích điều khiển, không chỉ đếm số tuỳ chọn. [Tài liệu](https://wpastra.com/docs/faqs-astra-header-footer-builder/).
 - **Neve:** tài liệu có header/footer, thiết lập theo mobile, global styles và nhiều module Pro. Học tính nhất quán khi chuyển giữa thiết bị. [Tài liệu](https://docs.themeisle.com/neve/neve-doc).
 - **GeneratePress:** Block Elements thuộc GP Premium, gồm template nội dung và loop/archive cùng display rules. BIGSPY cần mở rộng phạm vi template và cách chọn dữ liệu. [Tài liệu](https://learn.generatepress.com/classic-theme/block-elements/).
-- **Flatsome:** Classic dùng UX Builder/shortcode; tài liệu hiện tại còn giới thiệu Site Builder dùng WordPress blocks và MCP. Không thể coi “block native + AI” là lợi thế độc quyền của BIGSPY. Chưa xác nhận Site Builder mới có trên site đối chiếu. [So sánh chính thức](https://flatsome.com/classic-vs-site-builder), [Header Designer Classic](https://demos.flatsome.com/features/header-designer/).
+- **Flatsome:** G-53 đã xác nhận bản đang cài là **Classic 3.20.10**, loader dẫn vào UX Builder/shortcode. Tài liệu Site Builder/blocks/MCP đã viện dẫn trước là hướng tham khảo khác, không phải khả năng chứng minh từ bản này. Xem F01–F08 ở SOURCE-AUDIT.md. [So sánh sản phẩm chính thức](https://flatsome.com/classic-vs-site-builder), [Header Designer Classic](https://demos.flatsome.com/features/header-designer/).
 - **Hello Elementor:** nền tối giản cho Elementor, có hook kiểm soát các phần theme và style. Học cách giữ phần mặc định nhẹ và đo tài nguyên thực tải. [Tài liệu](https://developers.elementor.com/docs/hello-elementor-theme/).
 - **OceanWP:** nhiều tuỳ chỉnh cửa hàng và trang; một số cần Ocean Extra hoặc extension trả phí. BIGSPY đã có nhiều phần tương ứng, cần nghiệm thu độ sâu và tính đồng nhất. [Customizer](https://docs.oceanwp.org/article/895-oceanwp-customizer-introduction), [WooCommerce](https://docs.oceanwp.org/article/436-ecommerce-features-in-depth).
-- **Elementor:** Loop Grid cho phép thiết kế thẻ dữ liệu động; MCP hiện hỗ trợ global classes, variables và reusable components. BIGSPY cần đạt mức dữ liệu và hệ thống thiết kế tương tự bằng block trực quan của mình. [Loop Grid](https://elementor.com/help/how-do-i-build-a-loop-grid/), [MCP](https://elementor.com/help/how-to-build-and-edit-your-site-using-elementor-mcp/).
+- **Elementor:** tài liệu Loop Grid/MCP là tham khảo sản phẩm/gói. G-53 đã đọc module trong **4.3.5**: components/global classes có cổng Atomic experiment; components import/export có hằng tắt; dynamic-tags base trả danh sách provider rỗng. Chưa xác nhận mọi nhánh đó đang bật trên site; chưa đọc nguồn Pro. [Loop Grid](https://elementor.com/help/how-do-i-build-a-loop-grid/), [MCP](https://elementor.com/help/how-to-build-and-edit-your-site-using-elementor-mcp/).
 
 ## Những điểm BIGSPY có thể làm tốt hơn — mục tiêu cần chứng minh
 
@@ -57,11 +59,13 @@ Mục tiêu “số 1” phải được chứng minh qua các fixture và tác 
 
 ## Thứ tự phát triển
 
+Các mục G-37–G-42 là đề xuất ban đầu, cần đọc cùng ưu tiên đã điều chỉnh theo mã ở SOURCE-AUDIT.md: kiểm chứng shipping/ảnh hero, đo tài nguyên; binding mở rộng nền đã có; token có vòng đời. Không tự thay thứ tự công việc AI Designer owner đã chốt trong TASKS.md.
+
 1. **G-36 — tính toàn vẹn AI/block:** sửa xuất dữ liệu `bigspy/*`, quan hệ container/con, trạng thái block bị ẩn; test từng family và báo kết quả test thực tế.
 2. **G-37 — nền dữ liệu động:** binding cho title, ảnh, excerpt, meta được cho phép; UI chọn nguồn, preview và fallback; kiểm soát dữ liệu theo quyền.
 3. **G-38 — Loop Builder và archive/search:** thiết kế loop item bằng block, truy vấn và phân trang; reuse cùng binding của G-37.
 4. **G-39 — hệ thống token/component:** token màu/font/spacing, component đồng bộ, ghi đè và hoàn tác; AI dùng cùng schema với editor.
-5. **G-40 — WooCommerce Builder:** template product/shop dùng nền G-37/G-38; nghiệm thu với biến thể, giỏ hàng và hai kiểu checkout. Wishlist/compare cần module riêng sau đặc tả.
+5. **G-40 — mở rộng WooCommerce Builder:** dùng lại `product_design_page`, `bst/product-part` và template sản phẩm đã có; nghiên cứu template shop/context trên nền G-37/G-38, nghiệm thu biến thể, giỏ hàng và hai kiểu checkout. Wishlist/compare cần xác định tích hợp hay module riêng sau khi đọc thêm/đặc tả.
 6. **G-41 — tải tài nguyên theo module:** đo fixture trước/sau, giảm JS dùng chung theo chức năng, giữ frontend/editor hoạt động và không nhấp nháy layout.
 7. **G-42 — form bền vững và dễ truy cập:** lưu tệp có quyền truy cập phù hợp khi gửi mail lỗi; thử gửi lại; sau đó mới thêm điều kiện/nhiều bước.
 

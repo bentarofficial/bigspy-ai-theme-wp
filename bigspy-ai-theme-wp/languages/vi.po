@@ -6970,3 +6970,147 @@ msgstr "Bạn không có quyền sửa ảnh này."
 msgid "1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description."
 msgstr "1.80.3: Media ATND chuyển vào trình chọn media: nhập từ khoá và mô tả ngắn, chọn ngôn ngữ và model, rồi bấm Tạo để viết alt, tiêu đề, chú thích và mô tả."
 
+msgid "Choosing blocks"
+msgstr "Đang chọn khối"
+
+msgid "Last run: %1$s s, %2$s model calls, %3$s tool calls"
+msgstr "Lượt cuối: %1$s giây, %2$s lần gọi model, %3$s lần gọi công cụ"
+
+msgid "Choosing section recipes"
+msgstr "Đang chọn công thức section"
+
+msgid "Page outline"
+msgstr "Sơ đồ trang"
+
+msgid "Building sections"
+msgstr "Đang dựng các section"
+
+msgid "Reply OK to build every section of this page in one go, or tell the AI what to change."
+msgstr "Trả lời OK để dựng toàn bộ section của trang trong một lượt, hoặc nói AI cần đổi gì."
+
+msgid "— Same as the text model —"
+msgstr "— Giống model văn bản —"
+
+msgid "Fast model (Effort Low: lookups and small edits)"
+msgstr "Model nhanh (Effort Thấp: tra cứu và sửa nhỏ)"
+
+msgid "Optional. Runs sent with Effort Low use this cheaper, faster model; other efforts use the text model for writing and design. If the fast model fails, the run switches to the text model."
+msgstr "Không bắt buộc. Lượt gửi với Effort Thấp dùng model rẻ và nhanh này; các mức khác dùng model văn bản để viết và thiết kế. Nếu model nhanh lỗi, lượt chạy chuyển sang model văn bản."
+
+msgid "The fast model failed; switched to the main model."
+msgstr "Model nhanh bị lỗi; đã chuyển sang model chính."
+
+msgid "This model is not available here. Choose another model or Auto."
+msgstr "Model này không dùng được ở đây. Chọn model khác hoặc Tự động."
+
+msgid "The model %s failed; switched to the main model."
+msgstr "Model %s bị lỗi; đã chuyển sang model chính."
+
+msgid "Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise."
+msgstr "Tự động dùng model trong Cài đặt: model nhanh khi Effort Thấp, còn lại dùng model văn bản."
+
+msgid "Auto (Settings)"
+msgstr "Tự động (Cài đặt)"
+
+msgid "Models users may pick in the chat"
+msgstr "Model người dùng được chọn trong chat"
+
+msgid "Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available."
+msgstr "Không chọn gì để cho dùng mọi model văn bản. Giữ Ctrl/Cmd để chọn nhiều. Luôn có lựa chọn Tự động."
+
+msgid "No file received."
+msgstr "Không nhận được tệp."
+
+msgid "Text documents can be up to 1 MB."
+msgstr "Tài liệu văn bản tối đa 1 MB."
+
+msgid "You cannot upload files."
+msgstr "Bạn không có quyền tải tệp lên."
+
+msgid "Attach images, videos or text documents (.txt, .md, .csv). For PDF or Word files, paste the text."
+msgstr "Hãy đính kèm ảnh, video hoặc tài liệu văn bản (.txt, .md, .csv). Với PDF hoặc Word, hãy dán nội dung văn bản."
+
+msgid "An attached document has expired. Attach it again."
+msgstr "Tài liệu đính kèm đã hết hạn. Hãy đính kèm lại."
+
+msgid "An attached file is missing or you cannot use it."
+msgstr "Tệp đính kèm không còn hoặc bạn không được dùng tệp này."
+
+msgid "%1$d of %2$d AI images and chat uploads are not used anywhere."
+msgstr "%1$d trong %2$d ảnh AI và tệp tải lên từ chat chưa được dùng ở đâu."
+
+msgid "Remove"
+msgstr "Gỡ"
+
+msgid "Attach files"
+msgstr "Đính kèm tệp"
+
+msgid "Attach"
+msgstr "Đính kèm"
+
+msgid "Wait for the uploads to finish."
+msgstr "Hãy chờ tải lên xong."
+
+msgid "Attach files from the Media Library, or drop or paste them into the message box"
+msgstr "Đính kèm tệp từ Thư viện Media, hoặc kéo thả hay dán vào ô tin nhắn"
+
+msgid "Designer"
+msgstr "Designer"
+
+msgid "Images"
+msgstr "Hình ảnh"
+
+msgid "Writing"
+msgstr "Viết bài"
+
+msgid "Auto"
+msgstr "Tự động"
+
+msgid "Specialties"
+msgstr "Chuyên môn"
+
+msgid "Specialty"
+msgstr "Chuyên môn"
+
+msgid "Pick a specialty next to the model in the chat. Each one adds this context to the task; it works as is, edit it if you want. Auto adds nothing."
+msgstr "Chọn chuyên môn cạnh ô model trong chat. Mỗi chuyên môn thêm ngữ cảnh này vào task; dùng được ngay, muốn thì sửa. Tự động không thêm gì."
+
+msgid "Restore default"
+msgstr "Khôi phục mặc định"
+
+msgid "Save specialties"
+msgstr "Lưu chuyên môn"
+
+msgid "Adds a ready context for this kind of work. Edit it under Guidelines."
+msgstr "Thêm ngữ cảnh sẵn cho loại việc này. Sửa trong trang Hướng dẫn."
+
+msgid "The AI Designer changed this box meanwhile. Reload to see its version before editing."
+msgstr "AI Designer vừa sửa ô này. Hãy tải lại trang để xem bản mới trước khi sửa."
+
+msgid "This change was already undone."
+msgstr "Thay đổi này đã được hoàn tác."
+
+msgid "The box was edited again after this change, so it was not undone. Edit it under Guidelines."
+msgstr "Ô này đã được sửa tiếp sau thay đổi đó nên không hoàn tác. Hãy sửa trong trang Hướng dẫn."
+
+msgid "Saved context change undone."
+msgstr "Đã hoàn tác ngữ cảnh vừa lưu."
+
+msgid "The designer follows these standards in every task. Changes save as you type. When you tell the designer in chat that something applies from now on, it saves it here and you can undo that from the chat."
+msgstr "Designer làm theo các tiêu chuẩn này trong mọi task. Thay đổi tự lưu khi bạn gõ. Khi bạn nói trong chat rằng điều gì áp dụng từ nay về sau, designer lưu vào đây và bạn có thể hoàn tác ngay trong chat."
+
+msgid "Saving…"
+msgstr "Đang lưu…"
+
+msgid "Saved"
+msgstr "Đã lưu"
+
+msgid "Restore the default context for this specialty?"
+msgstr "Khôi phục ngữ cảnh mặc định cho chuyên môn này?"
+
+msgid "Undo this save"
+msgstr "Hoàn tác lần lưu này"
+
+msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
+msgstr "1.81.0: AI Designer nhanh và thông minh hơn: hồ sơ block và 42 công thức section có sẵn hiệu ứng, duyệt sơ đồ trang một lần rồi dựng nhiều section mỗi lượt, minh hoạ bằng SVG/HTML/CSS, chọn model và chuyên môn ngay trong chat, model nhanh cho Effort Thấp, đính kèm file, đo thời gian và chi phí từng lượt, ngữ cảnh tự lưu và tự học điều bạn nói áp dụng từ nay."
+

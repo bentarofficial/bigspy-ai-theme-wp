@@ -127,9 +127,7 @@ function bst_aid_size_from_error( $error, $size ) {
 function bst_aid_image_prompt( $prompt, $purpose ) {
 	$g     = bst_aid_guidelines();
 	$parts = array( trim( (string) $prompt ) );
-	if ( '' !== trim( $g['images'] ) ) {
-		$parts[] = 'Follow this image standard: ' . preg_replace( '/\s+/', ' ', $g['images'] );
-	}
+	$parts[] = 'Follow this image standard: ' . preg_replace( '/\s+/', ' ', bst_aid_image_standard() );
 	$parts[] = 'Website brand colors: primary ' . bst_mod( 'color_primary' ) . ', secondary ' . bst_mod( 'color_secondary' ) . '.';
 	$hints   = array(
 		'banner'     => 'Wide hero banner with calm space for a headline on one side.',
@@ -493,7 +491,7 @@ function bst_aid_rest_image_job( WP_REST_Request $request ) {
 }
 
 function bst_aid_rest_unused_images() {
-	$ids = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 200, 'fields' => 'ids', 'meta_key' => '_bst_aid_generated' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+	$ids = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 200, 'fields' => 'ids', 'meta_query' => array( 'relation' => 'OR', array( 'key' => '_bst_aid_generated', 'compare' => 'EXISTS' ), array( 'key' => '_bst_aid_upload', 'compare' => 'EXISTS' ) ) ) ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- AI images and chat uploads.
 	$out = array();
 	foreach ( $ids as $id ) {
 		if ( ! bst_aid_image_in_use( $id ) ) {

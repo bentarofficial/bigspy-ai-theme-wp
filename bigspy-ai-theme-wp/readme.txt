@@ -15,6 +15,16 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.81.0 =
+* AI Designer: block profiles (block_catalog) and 42 section recipes with motion (section_recipes).
+* AI Designer: page outline card (page_plan); build_sections builds up to 8 recipe sections per call.
+* AI Designer: SVG/HTML/CSS illustrations in Code blocks: 8 blocks and 6 KB each without approval, 12 blocks and 40 KB at most.
+* AI Designer: model and specialty pickers in the chat bar; optional fast model for Effort Low; admins can limit models.
+* AI Designer: attach Media files, drop or paste images, videos and text documents in the chat.
+* AI Designer: per-run time, model and tool calls, tokens and cost.
+* AI Designer: Guidelines and specialty contexts autosave; the AI saves what you say applies from now on, with undo in the chat.
+* AI Designer: default design rules for banners, block variety and motion.
+
 = 1.80.3 =
 * Media ATND moved from Auto detect into the media picker, with keyword, short description, language and model.
 

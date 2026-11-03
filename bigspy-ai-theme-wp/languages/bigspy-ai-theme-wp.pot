@@ -10806,3 +10806,144 @@ msgstr ""
 msgid "1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description."
 msgstr ""
 
+msgid "Choosing blocks"
+msgstr ""
+
+msgid "Last run: %1$s s, %2$s model calls, %3$s tool calls"
+msgstr ""
+
+msgid "Choosing section recipes"
+msgstr ""
+
+msgid "Page outline"
+msgstr ""
+
+msgid "Building sections"
+msgstr ""
+
+msgid "Reply OK to build every section of this page in one go, or tell the AI what to change."
+msgstr ""
+
+msgid "— Same as the text model —"
+msgstr ""
+
+msgid "Fast model (Effort Low: lookups and small edits)"
+msgstr ""
+
+msgid "Optional. Runs sent with Effort Low use this cheaper, faster model; other efforts use the text model for writing and design. If the fast model fails, the run switches to the text model."
+msgstr ""
+
+msgid "The fast model failed; switched to the main model."
+msgstr ""
+
+msgid "This model is not available here. Choose another model or Auto."
+msgstr ""
+
+msgid "The model %s failed; switched to the main model."
+msgstr ""
+
+msgid "Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise."
+msgstr ""
+
+msgid "Auto (Settings)"
+msgstr ""
+
+msgid "Models users may pick in the chat"
+msgstr ""
+
+msgid "Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available."
+msgstr ""
+
+msgid "No file received."
+msgstr ""
+
+msgid "Text documents can be up to 1 MB."
+msgstr ""
+
+msgid "You cannot upload files."
+msgstr ""
+
+msgid "Attach images, videos or text documents (.txt, .md, .csv). For PDF or Word files, paste the text."
+msgstr ""
+
+msgid "An attached document has expired. Attach it again."
+msgstr ""
+
+msgid "An attached file is missing or you cannot use it."
+msgstr ""
+
+msgid "%1$d of %2$d AI images and chat uploads are not used anywhere."
+msgstr ""
+
+msgid "Attach files"
+msgstr ""
+
+msgid "Attach"
+msgstr ""
+
+msgid "Wait for the uploads to finish."
+msgstr ""
+
+msgid "Attach files from the Media Library, or drop or paste them into the message box"
+msgstr ""
+
+msgid "Designer"
+msgstr ""
+
+msgid "Writing"
+msgstr ""
+
+msgid "SEO"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Specialties"
+msgstr ""
+
+msgid "Specialty"
+msgstr ""
+
+msgid "Pick a specialty next to the model in the chat. Each one adds this context to the task; it works as is, edit it if you want. Auto adds nothing."
+msgstr ""
+
+msgid "Restore default"
+msgstr ""
+
+msgid "Save specialties"
+msgstr ""
+
+msgid "Adds a ready context for this kind of work. Edit it under Guidelines."
+msgstr ""
+
+msgid "The AI Designer changed this box meanwhile. Reload to see its version before editing."
+msgstr ""
+
+msgid "This change was already undone."
+msgstr ""
+
+msgid "The box was edited again after this change, so it was not undone. Edit it under Guidelines."
+msgstr ""
+
+msgid "Saved context change undone."
+msgstr ""
+
+msgid "The designer follows these standards in every task. Changes save as you type. When you tell the designer in chat that something applies from now on, it saves it here and you can undo that from the chat."
+msgstr ""
+
+msgid "Saving…"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Restore the default context for this specialty?"
+msgstr ""
+
+msgid "Undo this save"
+msgstr ""
+
+msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
+msgstr ""
+

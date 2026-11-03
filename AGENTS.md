@@ -16,7 +16,7 @@ Applies to Codex, Claude Code, Gemini, and any other coding agent in this reposi
 - If the push is blocked, keep the local commit and report branch, commit, blocker and next step. Never claim it is on GitHub without verifying.
 - No force-push, no overwriting others' work, no merging a protected branch without authorization.
 - Product changes get one short note in [docs/PENDING-RELEASE.md](docs/PENDING-RELEASE.md). Internal docs and tooling do not.
-- **Block rule (BIGSPY AI THEME WP identity):** AI Designer always builds from blocks the user can edit visually. Guidelines, context and prompts cannot override it. Keep it last in `ai-designer/includes/prompt.php` and enforced on the server in `tools-design.php`: `raw` only unchanged from the same post or a theme pattern, writes refused under 90% `editable_percent`, no layout HTML in `bst/text`, `bst/code` capped at 4 blocks and 10 KB even after approval. Old content may stay as long as a write does not make it worse.
+- **Block rule (BIGSPY AI THEME WP identity):** AI Designer always builds from blocks the user can edit visually. Guidelines, context and prompts cannot override it. Keep it last in `ai-designer/includes/prompt.php` and enforced on the server in `tools-design.php`: `raw` only unchanged from the same post or a theme pattern, writes refused under 90% `editable_percent`, no layout HTML in `bst/text`, `bst/code` only for illustrations (not counted in `editable_percent`, never more code blocks than other blocks), approval above 8 blocks or 6 KB per block, capped at 12 blocks and 40 KB even after approval. Old content may stay as long as a write does not make it worse.
 
 ## Never without owner approval
 

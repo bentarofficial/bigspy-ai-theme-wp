@@ -123,9 +123,11 @@ function bst_aid_clean_code( $code ) {
 	// Otherwise it could bypass the level-3 policy through same-origin REST calls.
 	$allowed = wp_kses_allowed_html( 'post' );
 	$allowed['style'] = array();
-	$allowed['svg']   = array( 'xmlns' => true, 'viewbox' => true, 'width' => true, 'height' => true, 'fill' => true, 'class' => true, 'style' => true, 'aria-hidden' => true, 'role' => true );
-	foreach ( array( 'path' => array( 'd', 'fill', 'stroke', 'stroke-width' ), 'circle' => array( 'cx', 'cy', 'r', 'fill', 'stroke' ), 'rect' => array( 'x', 'y', 'width', 'height', 'rx', 'fill', 'stroke' ), 'g' => array( 'fill', 'transform' ), 'line' => array( 'x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width' ), 'polygon' => array( 'points', 'fill' ) ) as $tag => $attrs ) {
-		$allowed[ $tag ] = array_fill_keys( array_merge( $attrs, array( 'class', 'style' ) ), true );
+	$allowed['svg']   = array( 'xmlns' => true, 'viewbox' => true, 'width' => true, 'height' => true, 'fill' => true, 'class' => true, 'style' => true, 'aria-hidden' => true, 'aria-label' => true, 'role' => true, 'preserveaspectratio' => true, 'focusable' => true );
+	// Shapes, text and gradients for code illustrations; no use/image/foreignObject, so nothing loads from elsewhere.
+	$paint = array( 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'stroke-dasharray', 'opacity', 'fill-opacity', 'stroke-opacity', 'transform' );
+	foreach ( array( 'path' => array( 'd' ), 'circle' => array( 'cx', 'cy', 'r' ), 'ellipse' => array( 'cx', 'cy', 'rx', 'ry' ), 'rect' => array( 'x', 'y', 'width', 'height', 'rx', 'ry' ), 'g' => array(), 'line' => array( 'x1', 'y1', 'x2', 'y2' ), 'polygon' => array( 'points' ), 'polyline' => array( 'points' ), 'text' => array( 'x', 'y', 'dx', 'dy', 'font-size', 'font-weight', 'text-anchor', 'dominant-baseline' ), 'tspan' => array( 'x', 'y', 'dx', 'dy', 'font-weight' ), 'title' => array(), 'defs' => array(), 'lineargradient' => array( 'id', 'x1', 'y1', 'x2', 'y2', 'gradientunits' ), 'radialgradient' => array( 'id', 'cx', 'cy', 'r', 'gradientunits' ), 'stop' => array( 'offset', 'stop-color', 'stop-opacity' ) ) as $tag => $attrs ) {
+		$allowed[ $tag ] = array_fill_keys( array_merge( $attrs, $paint, array( 'class', 'style' ) ), true );
 	}
 	return wp_kses( (string) $code, $allowed );
 }
@@ -367,21 +369,24 @@ function bst_aid_text_keys( $source ) {
 
 /** Count and size of bst/code blocks in a model tree. */
 function bst_aid_code_usage( $nodes ) {
-	$use = array( 'count' => 0, 'bytes' => 0 );
+	$use = array( 'count' => 0, 'bytes' => 0, 'max' => 0 );
 	foreach ( (array) $nodes as $node ) {
 		$name = (string) ( $node['name'] ?? $node['blockName'] ?? '' );
 		if ( 'bst/code' === $name || 'code' === $name ) {
 			$use['count']++;
-			$use['bytes'] += strlen( (string) ( $node['attrs']['code'] ?? '' ) );
+			$bytes         = strlen( (string) ( $node['attrs']['code'] ?? '' ) ) + strlen( (string) ( $node['attrs']['css'] ?? '' ) );
+			$use['bytes'] += $bytes;
+			$use['max']    = max( $use['max'], $bytes );
 		}
 		$sub           = bst_aid_code_usage( $node['inner'] ?? $node['innerBlocks'] ?? array() );
 		$use['count'] += $sub['count'];
 		$use['bytes'] += $sub['bytes'];
+		$use['max']    = max( $use['max'], $sub['max'] );
 	}
 	return $use;
 }
 
-/** True when a page write would leave more than 2 code blocks or 3 KB of code on the page. */
+/** True when a page write would leave more than 8 code blocks on the page or a code block over 6 KB. */
 function bst_aid_code_over_limit( $name, $a ) {
 	$use = bst_aid_code_usage( $a['blocks'] ?? array() );
 	if ( 'page_sections' === $name && ! empty( $a['id'] ) ) {
@@ -389,7 +394,7 @@ function bst_aid_code_over_limit( $name, $a ) {
 		$use['count'] += $old['count'];
 		$use['bytes'] += $old['bytes'];
 	}
-	return $use['count'] > 2 || $use['bytes'] > 3 * KB_IN_BYTES;
+	return $use['count'] > 8 || $use['max'] > 6 * KB_IN_BYTES;
 }
 
 /**
@@ -401,8 +406,11 @@ function bst_aid_code_over_limit( $name, $a ) {
 function bst_aid_block_rule_error( $content, $before ) {
 	$use = bst_aid_code_usage( parse_blocks( $content ) );
 	$old = bst_aid_code_usage( parse_blocks( $before ) );
-	if ( ( $use['count'] > 4 && $use['count'] > $old['count'] ) || ( $use['bytes'] > 10 * KB_IN_BYTES && $use['bytes'] > $old['bytes'] ) ) {
-		return 'Not saved: bst/code is capped at 4 blocks and 10 KB per page, even with approval. Rebuild the extra parts with BIGSPY AI blocks.';
+	if ( ( $use['count'] > 12 && $use['count'] > $old['count'] ) || ( $use['bytes'] > 40 * KB_IN_BYTES && $use['bytes'] > $old['bytes'] ) ) {
+		return 'Not saved: bst/code is capped at 12 blocks and 40 KB per page, even with approval. Rebuild the extra parts with BIGSPY AI blocks.';
+	}
+	if ( $use['count'] > $old['count'] && $use['count'] > bst_aid_block_count( parse_blocks( $content ) ) - $use['count'] ) {
+		return 'Not saved: bst/code only illustrates content built with blocks. Add the blocks first; a page needs at least as many other blocks as code blocks.';
 	}
 	$pct = bst_aid_editable_percent( $content );
 	if ( $pct < 90 && $pct < bst_aid_editable_percent( $before ) ) {
@@ -411,18 +419,27 @@ function bst_aid_block_rule_error( $content, $before ) {
 	return '';
 }
 
-/** Share of blocks the user can edit with block options, in percent. */
+/** Number of named blocks in a parsed tree, nested ones included. */
+function bst_aid_block_count( $blocks ) {
+	$n = 0;
+	foreach ( $blocks as $b ) {
+		$n += ( empty( $b['blockName'] ) ? 0 : 1 ) + bst_aid_block_count( $b['innerBlocks'] ?? array() );
+	}
+	return $n;
+}
+
+/** Share of blocks the user can edit with block options, in percent. bst/code illustrations are not counted; their own caps apply. */
 function bst_aid_editable_percent( $content ) {
 	$count = function ( $blocks ) use ( &$count ) {
 		$all  = 0;
 		$hard = 0;
 		foreach ( $blocks as $b ) {
 			$name = $b['blockName'] ?? '';
-			if ( ! $name && '' === trim( (string) ( $b['innerHTML'] ?? '' ) ) ) {
+			if ( 'bst/code' === $name || ( ! $name && '' === trim( (string) ( $b['innerHTML'] ?? '' ) ) ) ) {
 				continue;
 			}
 			$all++;
-			$hard += in_array( $name, array( '', 'core/html', 'bst/code' ), true ) ? 1 : 0;
+			$hard += in_array( $name, array( '', 'core/html' ), true ) ? 1 : 0;
 			list( $a, $h ) = $count( $b['innerBlocks'] ?? array() );
 			$all  += $a;
 			$hard += $h;
@@ -739,6 +756,30 @@ add_filter(
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_list_blocks',
 		);
+		$tools['block_catalog'] = array(
+			'description' => 'Block profiles by need: when to use or avoid each block, the facts or media it needs, weight, scroll pinning, mobile behaviour, good partners and the minimum attributes. Call with no needs for the group list, then with the needs of the page you plan.',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'needs' => array( 'type' => 'array', 'items' => array( 'type' => 'string', 'enum' => bst_aid_block_needs() ) ) ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_block_catalog',
+		);
+		$tools['section_recipes'] = array(
+			'description' => 'Ready section recipes with motion already set (block_catalog needs). Without id: list recipes, optionally filtered by needs. With id: the block tree to fill; replace every {{slot}} with real content, add real media ids or remove image blocks, then send it with create_page or page_sections.',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'needs' => array( 'type' => 'array', 'items' => array( 'type' => 'string', 'enum' => bst_aid_block_needs() ) ), 'id' => array( 'type' => 'string' ) ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_section_recipes',
+		);
+		$tools['page_plan'] = array(
+			'description' => 'Show the user the page outline as a card in the chat: each section with its recipe (or blocks) and purpose. Changes nothing on the site. After the user says OK, build all its sections with build_sections without asking again between sections.',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'page' => array( 'type' => 'string' ), 'sections' => array( 'type' => 'array', 'maxItems' => 20, 'items' => array( 'type' => 'object', 'properties' => array( 'recipe' => array( 'type' => 'string' ), 'blocks' => array( 'type' => 'string', 'description' => 'Blocks and motion, when no recipe fits.' ), 'purpose' => array( 'type' => 'string' ) ), 'required' => array( 'purpose' ) ) ) ), 'required' => array( 'page', 'sections' ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_page_plan',
+		);
+		$tools['build_sections'] = array(
+			'description' => 'Build up to 8 sections in one call from section_recipes: the server fills each recipe with your slot values and media. Without id it creates a draft page (title required); with id it appends to that page. slots: { "slot name": "text" } or an array used in order for repeated slots. media: attachment ids put in the recipe image places in order. attrs: overrides for the section (background, padding).',
+			'parameters'  => array( 'type' => 'object', 'properties' => array( 'id' => array( 'type' => 'integer' ), 'title' => array( 'type' => 'string' ), 'confirmed' => array( 'type' => 'boolean' ), 'sections' => array( 'type' => 'array', 'minItems' => 1, 'maxItems' => 8, 'items' => array( 'type' => 'object', 'properties' => array( 'recipe' => array( 'type' => 'string' ), 'slots' => array( 'type' => 'object', 'additionalProperties' => true ), 'media' => array( 'type' => 'array', 'items' => array( 'type' => 'integer' ) ), 'attrs' => array( 'type' => 'object', 'additionalProperties' => true ) ), 'required' => array( 'recipe', 'slots' ) ) ) ), 'required' => array( 'sections' ) ),
+			'cap'         => 'edit_pages',
+			'callback'    => 'bst_aid_tool_build_sections',
+		);
 		$tools['style_options'] = array(
 			'description' => 'Style presets of the given blocks and the site-wide CSS library. Presets go in a block as attrs.bsPresets, ids separated by spaces. CSS library items are switched on by the user in Customize; suggest them, do not copy their CSS.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'names' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ) ), 'required' => array( 'names' ) ),
@@ -922,10 +963,262 @@ function bst_aid_tool_list_blocks() {
 			'A page is a list of bst/section blocks. Inside a section use bst/row > bst/column for columns (column width via its attributes), or put blocks directly.',
 			'Use bst/heading for headings (attribute tag h1–h6; one h1 per page) and bst/text for paragraphs (html attribute).',
 			'Images: set the image id and URL attributes (from ImageGen or the Media Library). Never invent image URLs.',
-			'bst/code holds safe custom HTML / CSS for things blocks cannot do (illustrations, mockups, embeds).',
+			'bst/code holds safe SVG / HTML in "code" and scoped CSS in "css" (selector = this block) for illustrations blocks cannot do. No JavaScript.',
 			'Start from get_pattern when a pattern fits, then change texts, colors and images.',
 		),
 	);
+}
+
+/** Block profiles from knowledge/blocks.php, limited to registered and enabled blocks. */
+function bst_aid_block_profiles() {
+	static $all = null;
+	if ( null === $all ) {
+		$all = (array) include BST_AID_DIR . '/knowledge/blocks.php';
+	}
+	return array_intersect_key( $all, bst_aid_block_types() );
+}
+
+function bst_aid_block_needs() {
+	return array( 'hero', 'structure', 'text', 'features', 'process', 'proof', 'logos', 'media', 'pricing', 'faq', 'cta', 'contact', 'social', 'blog', 'commerce', 'navigation', 'utility' );
+}
+
+function bst_aid_tool_block_catalog( $a ) {
+	$profiles = bst_aid_block_profiles();
+	$needs    = array_values( array_intersect( (array) ( $a['needs'] ?? array() ), bst_aid_block_needs() ) );
+	$rules    = array(
+		'Choose by content: a block whose "data" you do not have (images, real figures, reviews, prices) is the wrong block.',
+		'At most 2 blocks with pin true per page, never in adjacent sections. Prefer light blocks; one or two heavy blocks per page.',
+		'Call block_schema for the blocks you pick before writing attributes.',
+	);
+	if ( ! $needs ) {
+		$groups = array();
+		foreach ( $profiles as $name => $p ) {
+			foreach ( $p[0] as $need ) {
+				$groups[ $need ][] = $name;
+			}
+		}
+		return array( 'groups' => $groups, 'rules' => $rules );
+	}
+	$out = array();
+	foreach ( $profiles as $name => $p ) {
+		if ( ! array_intersect( $p[0], $needs ) ) {
+			continue;
+		}
+		$row = array( 'name' => $name, 'needs' => $p[0], 'use' => $p[1], 'weight' => $p[4], 'min' => $p[8] );
+		foreach ( array( 'avoid' => 2, 'data' => 3, 'mobile' => 6, 'pairs' => 7 ) as $key => $i ) {
+			if ( '' !== $p[ $i ] ) {
+				$row[ $key ] = $p[ $i ];
+			}
+		}
+		if ( $p[5] ) {
+			$row['pin'] = true;
+		}
+		$out[] = $row;
+	}
+	return array( 'blocks' => $out, 'rules' => $rules );
+}
+
+/** Section recipes from knowledge/sections.php whose blocks are all registered and enabled. */
+function bst_aid_section_recipes() {
+	static $all = null;
+	if ( null === $all ) {
+		$all = (array) include BST_AID_DIR . '/knowledge/sections.php';
+	}
+	$types = bst_aid_block_types();
+	return array_filter( $all, function ( $r ) use ( $types ) {
+		return ! array_diff( bst_aid_tree_names( array( $r[4] ) ), array_keys( $types ) );
+	} );
+}
+
+/** Block names used in a model tree. */
+function bst_aid_tree_names( $nodes ) {
+	$names = array();
+	foreach ( (array) $nodes as $n ) {
+		$names[] = (string) ( $n['name'] ?? '' );
+		$names   = array_merge( $names, bst_aid_tree_names( $n['inner'] ?? array() ) );
+	}
+	return array_values( array_unique( $names ) );
+}
+
+function bst_aid_tool_section_recipes( $a ) {
+	$recipes = bst_aid_section_recipes();
+	$id      = sanitize_key( (string) ( $a['id'] ?? '' ) );
+	if ( '' !== $id ) {
+		if ( ! isset( $recipes[ $id ] ) ) {
+			return array( 'error' => 'Unknown or unavailable recipe. Call section_recipes without id.' );
+		}
+		$r = $recipes[ $id ];
+		preg_match_all( '/\{\{([^}]+)\}\}/', wp_json_encode( $r[4], JSON_UNESCAPED_UNICODE ), $m );
+		return array( 'id' => $id, 'title' => $r[0], 'media' => $r[3], 'slots' => array_values( array_unique( $m[1] ) ), 'blocks' => array( $r[4] ) );
+	}
+	$needs = array_values( array_intersect( (array) ( $a['needs'] ?? array() ), bst_aid_block_needs() ) );
+	$out   = array();
+	foreach ( $recipes as $rid => $r ) {
+		if ( $needs && ! array_intersect( $r[1], $needs ) ) {
+			continue;
+		}
+		$row = array( 'id' => $rid, 'title' => $r[0], 'needs' => $r[1], 'use' => $r[2], 'blocks' => array_values( array_diff( bst_aid_tree_names( array( $r[4] ) ), array( 'bst/section', 'bst/row', 'bst/column', 'bst/heading', 'bst/text', 'bst/title', 'bst/buttons', 'bst/button' ) ) ) );
+		if ( '' !== $r[3] ) {
+			$row['media'] = $r[3];
+		}
+		$out[] = $row;
+	}
+	return array( 'recipes' => $out, 'rules' => array( 'Pick one recipe per planned section; do not use the same recipe twice in a row. Recipes with media need real images or videos: get them first, or choose another recipe.', 'Change colors, background and layout attributes freely; keep the motion unless the user asks for a calmer page.' ) );
+}
+
+function bst_aid_tool_page_plan( $a ) {
+	$recipes  = bst_aid_section_recipes();
+	$sections = array();
+	foreach ( array_slice( (array) ( $a['sections'] ?? array() ), 0, 20 ) as $sec ) {
+		$recipe     = sanitize_key( (string) ( $sec['recipe'] ?? '' ) );
+		$sections[] = array(
+			'recipe'  => isset( $recipes[ $recipe ] ) ? $recipe : '',
+			'title'   => isset( $recipes[ $recipe ] ) ? $recipes[ $recipe ][0] : sanitize_text_field( (string) ( $sec['blocks'] ?? '' ) ),
+			'purpose' => sanitize_text_field( (string) ( $sec['purpose'] ?? '' ) ),
+		);
+	}
+	if ( ! $sections ) {
+		return array( 'error' => 'Give at least one section.' );
+	}
+	$plan = array( 'page' => sanitize_text_field( (string) ( $a['page'] ?? '' ) ), 'sections' => $sections );
+	$task = (int) ( $GLOBALS['bst_aid_task_id'] ?? 0 );
+	if ( $task ) {
+		bst_aid_task_set( $task, '_bst_aid_plan', $plan );
+	}
+	return array( 'plan' => $plan, 'next' => 'Ask the user to approve or change this outline. After OK, build it with build_sections (several sections per call).' );
+}
+
+/** Image attribute pairs (id, url) a recipe node takes, in order. */
+function bst_aid_media_slots( $name ) {
+	$one = array( array( 'imageId', 'imageUrl' ) );
+	$map = array(
+		'bst/image'                => $one,
+		'bst/banner'               => $one,
+		'bigspy/zoom-hero'         => $one,
+		'bst/image-box'            => $one,
+		'bst/team-member'          => $one,
+		'bst/testimonial'          => $one,
+		'bst/hotspot'              => $one,
+		'bigspy/hover-reveal-item' => $one,
+		'bigspy/expand-panel'      => array( array( 'backgroundId', 'backgroundUrl' ) ),
+		'bigspy/story-step'        => array( array( 'mediaId', 'mediaUrl' ) ),
+		'bigspy/video-card'        => array( array( 'posterId', 'posterUrl' ) ),
+		'bst/video'                => array( array( 'posterId', 'posterUrl' ) ),
+		'bst/before-after'         => array( array( 'beforeId', 'beforeUrl' ), array( 'afterId', 'afterUrl' ) ),
+	);
+	return $map[ $name ] ?? array();
+}
+
+/** Fill one recipe tree: slot values in order, media ids into image places; drops bst/image left without media. */
+function bst_aid_fill_recipe( $node, $slots, &$media, &$used, &$state ) {
+	$fill = function ( $value ) use ( $slots, &$used ) {
+		return preg_replace_callback(
+			'/\{\{([^}]+)\}\}/',
+			function ( $m ) use ( $slots, &$used ) {
+				$key          = $m[1];
+				$i            = $used[ $key ] ?? 0;
+				$used[ $key ] = $i + 1;
+				$val          = $slots[ $key ] ?? '';
+				if ( is_array( $val ) ) {
+					$val = $val[ $i ] ?? '';
+				}
+				return is_scalar( $val ) ? (string) $val : '';
+			},
+			$value
+		);
+	};
+	$walk = function ( $v ) use ( &$walk, $fill ) {
+		return is_array( $v ) ? array_map( $walk, $v ) : ( is_string( $v ) ? $fill( $v ) : $v );
+	};
+	$node['attrs'] = $walk( (array) ( $node['attrs'] ?? array() ) );
+	if ( 'bst/banner-grid' === $node['name'] ) {
+		foreach ( (array) ( $node['attrs']['items'] ?? array() ) as $i => $item ) {
+			if ( ! $media ) {
+				$state['missing'][] = 'bst/banner-grid tile';
+				continue;
+			}
+			$id                                       = array_shift( $media );
+			$node['attrs']['items'][ $i ]['imageId']  = $id;
+			$node['attrs']['items'][ $i ]['imageUrl'] = (string) wp_get_attachment_image_url( $id, 'large' );
+		}
+	}
+	foreach ( bst_aid_media_slots( $node['name'] ) as $pair ) {
+		if ( $media ) {
+			$id                        = array_shift( $media );
+			$node['attrs'][ $pair[0] ] = $id;
+			$node['attrs'][ $pair[1] ] = (string) wp_get_attachment_image_url( $id, 'large' );
+		} elseif ( 'bst/image' === $node['name'] ) {
+			$state['dropped']++;
+			return null;
+		} else {
+			$state['missing'][] = $node['name'];
+		}
+	}
+	if ( ! empty( $node['inner'] ) ) {
+		$inner = array();
+		foreach ( $node['inner'] as $child ) {
+			$child = bst_aid_fill_recipe( $child, $slots, $media, $used, $state );
+			if ( null !== $child ) {
+				$inner[] = $child;
+			}
+		}
+		$node['inner'] = $inner;
+	}
+	return $node;
+}
+
+function bst_aid_tool_build_sections( $a ) {
+	$recipes = bst_aid_section_recipes();
+	$blocks  = array();
+	$report  = array();
+	foreach ( array_slice( (array) ( $a['sections'] ?? array() ), 0, 8 ) as $i => $sec ) {
+		$rid = sanitize_key( (string) ( $sec['recipe'] ?? '' ) );
+		if ( ! isset( $recipes[ $rid ] ) ) {
+			return array( 'error' => "Section $i: unknown recipe '$rid'. Use section_recipes." );
+		}
+		$media = array_values(
+			array_filter(
+				array_map( 'intval', (array) ( $sec['media'] ?? array() ) ),
+				function ( $id ) {
+					return 'attachment' === get_post_type( $id ) && current_user_can( 'edit_post', $id );
+				}
+			)
+		);
+		$used          = array();
+		$state         = array( 'missing' => array(), 'dropped' => 0 );
+		$slots         = (array) ( $sec['slots'] ?? array() );
+		$node          = bst_aid_fill_recipe( $recipes[ $rid ][4], $slots, $media, $used, $state );
+		$node['attrs'] = array_merge( (array) $node['attrs'], (array) ( $sec['attrs'] ?? array() ) );
+		$blocks[]      = $node;
+		$row           = array( 'recipe' => $rid );
+		$filled        = array_keys( array_filter( $slots, function ( $v ) { return '' !== $v && array() !== $v; } ) );
+		$empty         = array_values( array_diff( array_keys( $used ), $filled ) );
+		if ( $empty ) {
+			$row['empty_slots'] = $empty;
+		}
+		if ( $state['missing'] ) {
+			$row['without_media'] = array_values( array_unique( $state['missing'] ) );
+		}
+		if ( $state['dropped'] ) {
+			$row['images_removed'] = $state['dropped'];
+		}
+		$report[] = $row;
+	}
+	if ( ! $blocks ) {
+		return array( 'error' => 'Give at least one section.' );
+	}
+	if ( empty( $a['id'] ) ) {
+		if ( '' === trim( (string) ( $a['title'] ?? '' ) ) ) {
+			return array( 'error' => 'Give a title to create a page, or the id of the page to add to.' );
+		}
+		$result = bst_aid_tool_create_page( array( 'title' => (string) $a['title'], 'blocks' => $blocks ) );
+	} else {
+		$result = bst_aid_tool_page_sections( array( 'id' => (int) $a['id'], 'mode' => 'append', 'blocks' => $blocks, 'confirmed' => ! empty( $a['confirmed'] ) ) );
+	}
+	if ( empty( $result['error'] ) ) {
+		$result['built'] = $report;
+	}
+	return $result;
 }
 
 function bst_aid_tool_block_schema( $a ) {

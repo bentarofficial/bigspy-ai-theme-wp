@@ -6,6 +6,14 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.81.0: Faster, smarter AI Designer
+
+- **Building:** block profiles tell the AI when each block fits; 42 ready section recipes come with motion. You approve the page outline once, then the AI builds up to 8 sections per call.
+- **Illustrations:** SVG/HTML/CSS in Code blocks when you did not ask for images, using theme colors and no JavaScript. Code blocks: 8 per page and 6 KB each without approval, 12 blocks and 40 KB at most; they no longer lower the editable share, but a page never has more Code blocks than other blocks.
+- **Chat bar:** pick a specialty (Auto, Designer, Images, Writing, SEO) and a model per message; an optional fast model handles Effort Low. Attach Media files, or drop and paste images, videos and text documents.
+- **Context:** Guidelines and specialty contexts save as you type. Say something applies from now on and the AI saves it, with an undo button in the chat.
+- **Measurements:** each run records time, model and tool calls, tokens and cost.
+
 ### 1.79.1: Mobile layout fixes
 
 - Improved Horizontal Scroll card sizing and mouse drag on mobile.

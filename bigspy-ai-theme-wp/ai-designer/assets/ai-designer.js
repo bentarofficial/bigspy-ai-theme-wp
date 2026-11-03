@@ -81,7 +81,32 @@
 		if (area && (!area.value.trim() || window.confirm(__('Replace the current text with the template?', T)))) {
 			area.value = b.getAttribute('data-template');
 			area.focus();
+			saveContext(area, 0);
 		}
+	});
+
+	// Guidelines and specialty boxes save as you type; a version guards against overwriting an AI change.
+	var saveTimers = {};
+	var saveContext = function (area, wait) {
+		var key = area.getAttribute('data-bst-aid-context');
+		var status = area.parentNode.querySelector('.bst-aid-saved');
+		var show = function (text, bad) { if (status) { status.textContent = text; status.className = 'bst-aid-saved' + (bad ? ' is-error' : ''); } };
+		clearTimeout(saveTimers[key]);
+		show(__('Saving…', T));
+		saveTimers[key] = setTimeout(function () {
+			api('/context', 'POST', { key: key, text: area.value, version: Number(area.getAttribute('data-version')) || 0 })
+				.then(function (r) { area.setAttribute('data-version', r.version); if (r.text !== area.value && document.activeElement !== area) { area.value = r.text; } show(__('Saved', T)); })
+				.catch(function (e) { show(e.message, true); });
+		}, wait);
+	};
+	document.addEventListener('input', function (e) {
+		if (e.target.getAttribute && e.target.getAttribute('data-bst-aid-context')) { saveContext(e.target, 800); }
+	});
+	document.addEventListener('click', function (e) {
+		var b = e.target.closest && e.target.closest('[data-bst-aid-reset]');
+		if (!b) { return; }
+		var area = document.getElementById(b.getAttribute('data-bst-aid-reset'));
+		if (area && window.confirm(__('Restore the default context for this specialty?', T))) { area.value = ''; saveContext(area, 0); }
 	});
 
 	/* ------------------------------------------------------------ Settings */
@@ -147,6 +172,9 @@
 				if (state.connected && state.models) {
 					var text = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.text || [], state.textModel, true));
 					var image = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.image || [], state.imageModel, false));
+					var fast = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.text || [], state.fastModel, true));
+					fast.options[0].text = __('— Same as the text model —', T);
+					var allowed = h('select', { class: 'bst-aid-select', multiple: true, size: 6 }, (state.models.text || []).map(function (m) { return h('option', { value: m.id, selected: (state.allowedModels || []).indexOf(m.id) !== -1, text: m.name + ' (' + m.id + ')' }); }));
 					var bTask = h('input', { type: 'number', min: '0', step: '0.5', class: 'small-text', value: state.budgetTask });
 					var bDay = h('input', { type: 'number', min: '0', step: '1', class: 'small-text', value: state.budgetDay });
 					var testBox = h('div', { class: 'bst-aid-test' });
@@ -184,11 +212,15 @@
 						h('h2', { text: __('2. Models and budget', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Text model (writes, designs and calls the tools)', T) }), text]),
 						h('p', { class: 'description', text: __('Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough.', T) }),
+						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Fast model (Effort Low: lookups and small edits)', T) }), fast]),
+						h('p', { class: 'description', text: __('Optional. Runs sent with Effort Low use this cheaper, faster model; other efforts use the text model for writing and design. If the fast model fails, the run switches to the text model.', T) }),
+						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Models users may pick in the chat', T) }), allowed]),
+						h('p', { class: 'description', text: __('Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available.', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Image model (used by ImageGen)', T) }), image]),
 						h('p', { class: 'bst-aid-row' }, [h('label', null, [__('Budget per task (USD, 0 = no limit) ', T), bTask]), h('label', null, [__('Budget per day (USD, 0 = no limit) ', T), bDay])]),
 						h('p', { class: 'description', text: sprintf(__('Spent today: %s', T), money(state.spentToday)) }),
 						h('p', null, [
-							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
+							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, fastModel: fast.value, allowedModels: Array.prototype.filter.call(allowed.options, function (o) { return o.selected; }).map(function (o) { return o.value; }), imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
 							' ',
 							h('button', { class: 'button', disabled: busy, onclick: function () { load(true); }, text: __('Refresh model list', T) }),
 							' ',
@@ -204,7 +236,7 @@
 					unusedBox.textContent = __('Checking…', T);
 					api('/images/unused').then(function (r) {
 						unusedBox.innerHTML = '';
-						unusedBox.appendChild(h('p', { text: sprintf(__('%1$d of %2$d AI images are not used anywhere.', T), r.unused.length, r.total) }));
+						unusedBox.appendChild(h('p', { text: sprintf(__('%1$d of %2$d AI images and chat uploads are not used anywhere.', T), r.unused.length, r.total) }));
 						unusedBox.appendChild(h('div', { class: 'bst-aid-unused-grid' }, r.unused.map(function (i) {
 							return h('a', { href: i.edit, target: '_blank', rel: 'noopener', title: i.title }, h('img', { src: i.thumb, alt: i.title }));
 						})));
@@ -237,8 +269,8 @@
 			welcomePrompt = window.sessionStorage.getItem('bstAidWelcomePrompt') || '';
 			welcomeMode = window.sessionStorage.getItem('bstAidWelcomeMode') === 'advice' ? 'advice' : 'design';
 		} catch (e) { /* The URL still provides the prompt when session storage is unavailable. */ }
-		var effort = 'medium';
-		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; } catch (e) { /* storage blocked */ }
+		var effort = 'medium', chatModel = '', specialty = 'auto';
+		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; chatModel = window.localStorage.getItem('bstAidModel') || ''; specialty = window.localStorage.getItem('bstAidSpecialty') || 'auto'; } catch (e) { /* storage blocked */ }
 		var previewOn = true, previewUrl = '', previewWidth = 0, previewHint = false;
 		try {
 			previewOn = window.localStorage.getItem('bstAidPreview') !== '0';
@@ -251,7 +283,7 @@
 				site_info: __('Reading the site', T), list_content: __('Listing content', T), get_post: __('Reading content', T),
 				create_post: __('Created a post', T), update_post: __('Updated a post', T), create_product: __('Created a product', T),
 				update_product: __('Updated a product', T), save_guidelines: __('Saved the guidelines', T),
-				list_blocks: __('Reading the blocks', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
+				list_blocks: __('Reading the blocks', T), block_catalog: __('Choosing blocks', T), section_recipes: __('Choosing section recipes', T), page_plan: __('Page outline', T), build_sections: __('Building sections', T), block_schema: __('Reading block options', T), list_patterns: __('Looking at patterns', T),
 				get_pattern: __('Reading a pattern', T), create_page: __('Created a page', T), page_sections: __('Updated page sections', T), get_page: __('Reading a page', T), update_page: __('Updated a page', T),
 				get_settings: __('Reading theme settings', T), update_settings: __('Changed theme settings', T), set_logo: __('Set the logo', T),
 				custom_css: __('Additional CSS', T), get_menus: __('Reading menus', T), set_menu: __('Saved a menu', T), header_layout: __('Header layout', T),
@@ -277,7 +309,9 @@
                 });
                 return box;
             }
-			if (ev.kind === 'user') { return h('div', { class: 'bst-aid-msg is-user' }, h('div', { class: 'bst-aid-bubble', text: ev.text })); }
+			if (ev.kind === 'user') {
+				return h('div', { class: 'bst-aid-msg is-user' }, h('div', { class: 'bst-aid-bubble' }, [h('span', { text: ev.text }), (ev.files || []).length ? h('div', { class: 'bst-aid-files' }, ev.files.map(fileChip)) : null]));
+			}
 			if (ev.kind === 'assistant') {
 				var b = h('div', { class: 'bst-aid-bubble' }); b.innerHTML = md(ev.text);
 				return h('div', { class: 'bst-aid-msg is-ai' }, b);
@@ -293,7 +327,23 @@
 				if (ev.preview) {
 					links.push(h('button', { type: 'button', class: 'button-link', onclick: function () { previewUrl = ev.preview; setPreviewOn(true); }, text: __('Preview here', T) }));
 				}
+				if (ev.context_undo && current) {
+					var undoBtn = h('button', { type: 'button', class: 'button-link', text: __('Undo this save', T), onclick: function () {
+						undoBtn.disabled = true;
+						api('/tasks/' + current.id + '/context-undo', 'POST', { undo: ev.context_undo.id }).then(function (r) { addEvents(r.events); undoBtn.hidden = true; }).catch(function (e) { undoBtn.disabled = false; addEvents([{ kind: 'error', text: e.message }]); });
+					} });
+					links.push(h('span', { text: ' ' + (ev.context_undo.keys || []).join(', ') + ' ' }), undoBtn);
+				}
 				var row = h('div', { class: 'bst-aid-tool' + (ev.kind === 'tool-error' ? ' is-error' : '') }, [h('span', { class: 'dashicons ' + (ev.kind === 'tool-error' ? 'dashicons-warning' : 'dashicons-yes-alt') }), h('span', { text: toolLabel(ev.tool) + (ev.text ? ': ' + ev.text : '') })].concat(links));
+				if (ev.plan) {
+					return h('div', null, [row, h('div', { class: 'bst-aid-card bst-aid-plan' }, [
+						h('strong', { text: ev.plan.page || '' }),
+						h('ol', null, (ev.plan.sections || []).map(function (s) {
+							return h('li', null, [h('strong', { text: s.title || s.recipe || '' }), s.purpose ? h('span', { text: ' – ' + s.purpose }) : null]);
+						})),
+						h('p', { class: 'description', text: __('Reply OK to build every section of this page in one go, or tell the AI what to change.', T) })
+					])]);
+				}
 				if (!ev.palettes) { return row; }
 				return h('div', null, [row, h('div', { class: 'bst-aid-palettes' }, ev.palettes.map(function (p) {
 					return h('div', { class: 'bst-aid-palette' }, [
@@ -351,6 +401,10 @@
 			els.head.innerHTML = '';
 			els.head.appendChild(h('strong', { class: 'bst-aid-title', text: current ? current.title : __('BIGSPY AI Designer', T) }));
 			if (current) { els.head.appendChild(h('span', { class: 'bst-aid-cost', text: sprintf(__('Task cost: %s', T), money(current.cost)) })); }
+			if (current && current.metrics) {
+				var ml = current.metrics.last;
+				els.head.appendChild(h('span', { class: 'bst-aid-cost', title: JSON.stringify(current.metrics.total), text: sprintf(__('Last run: %1$s s, %2$s model calls, %3$s tool calls', T), ml.seconds, ml.model_calls, ml.tool_calls) }));
+			}
 			if (current && current.canUndo) {
 				els.head.appendChild(h('button', { type: 'button', class: 'button button-small', disabled: running, onclick: function () {
 					if (!window.confirm(__('Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash.', T))) { return; }
@@ -394,6 +448,8 @@
 				current = d.task; log = d.log || []; stopFlag = false;
 				effort = d.effort || effort;
 				if (els.effort) { els.effort.value = effort; }
+				if (d.specialty && els.specialty) { specialty = d.specialty; els.specialty.value = specialty; }
+				if (d.model && els.model && Array.prototype.some.call(els.model.options, function (o) { return o.value === d.model; })) { chatModel = d.model; els.model.value = chatModel; }
 				previewUrl = ''; previewHint = false;
 				log.forEach(function (ev) { if (ev.preview) { previewUrl = ev.preview; } });
 				renderTasks(); renderChat(); syncPreview();
@@ -493,13 +549,56 @@
 			};
 			step();
 		};
+		var attached = [];
+		var fileChip = function (f, remove) {
+			return h('span', { class: 'bst-aid-file', title: f.title || '' }, [
+				f.thumb ? h('img', { src: f.thumb, alt: '' }) : h('span', { class: 'dashicons ' + (f.type === 'doc' ? 'dashicons-media-text' : 'dashicons-media-default') }),
+				h('span', { text: f.title || ('#' + f.id) }),
+				remove ? h('button', { type: 'button', class: 'button-link', 'aria-label': __('Remove', T), onclick: remove, text: '×' }) : null]);
+		};
+		var renderAttached = function () {
+			if (!els.files) { return; }
+			els.files.innerHTML = '';
+			els.files.hidden = !attached.length;
+			attached.forEach(function (f, i) { els.files.appendChild(fileChip(f, function () { attached.splice(i, 1); renderAttached(); })); });
+		};
+		var uploadFiles = function (list) {
+			if (!current) { return; }
+			Array.prototype.forEach.call(list || [], function (file) {
+				var body = new FormData();
+				body.append('file', file);
+				var parts = ('/tasks/' + current.id + '/upload').split('?');
+				var chip = { id: 0, type: 'media', title: file.name + ' …' };
+				attached.push(chip); renderAttached();
+				fetch(cfg.rest + parts[0], { method: 'POST', headers: { 'X-WP-Nonce': cfg.nonce }, credentials: 'same-origin', body: body })
+					.then(function (res) { return res.json().then(function (d) { if (!res.ok) { throw new Error(d.message || res.statusText); } return d; }); })
+					.then(function (d) { Object.assign(chip, d); renderAttached(); })
+					.catch(function (e) { attached.splice(attached.indexOf(chip), 1); renderAttached(); addEvents([{ kind: 'error', text: file.name + ': ' + e.message }]); });
+			});
+		};
+		var pickMedia = function () {
+			if (!window.wp || !wp.media) { return; }
+			var frame = wp.media({ title: __('Attach files', T), multiple: true, button: { text: __('Attach', T) } });
+			frame.on('select', function () {
+				frame.state().get('selection').toJSON().forEach(function (m) {
+					if (!attached.some(function (f) { return f.type === 'media' && f.id === m.id; })) {
+						attached.push({ id: m.id, type: 'media', title: m.title || m.filename, thumb: (m.sizes && m.sizes.thumbnail && m.sizes.thumbnail.url) || (m.type === 'image' ? m.url : '') });
+					}
+				});
+				renderAttached();
+			});
+			frame.open();
+		};
 		var send = function () {
 			var text = els.input.value.trim();
 			if (!text || running || !current) { return; }
-			els.input.value = '';
-			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort }).then(function (r) {
+			if (attached.some(function (f) { return !f.id; })) { addEvents([{ kind: 'error', text: __('Wait for the uploads to finish.', T) }]); return; }
+			var files = attached.map(function (f) { return { id: f.id, type: f.type }; });
+			var keep = attached;
+			els.input.value = ''; attached = []; renderAttached();
+			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort, model: chatModel, specialty: specialty, files: files }).then(function (r) {
 				addEvents(r.events); updateTask(r.task); loop();
-			}).catch(function (e) { els.input.value = text; addEvents([{ kind: 'error', text: e.message }]); });
+			}).catch(function (e) { els.input.value = text; attached = keep; renderAttached(); addEvents([{ kind: 'error', text: e.message }]); });
 		};
 
 		var build = function () {
@@ -517,11 +616,23 @@
 			els.chat = h('div', { class: 'bst-aid-chat', 'aria-live': 'polite' });
 			els.mode = h('select', { 'aria-label': __('Task mode', T) }, [h('option', { value: 'design', text: __('Design', T) }), h('option', { value: 'advice', text: __('Advice only', T) })]);
 			if (welcomePrompt) { els.mode.value = welcomeMode; }
-			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } } });
+			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } },
+				onpaste: function (e) { var f = e.clipboardData && e.clipboardData.files; if (f && f.length) { e.preventDefault(); uploadFiles(f); } },
+				ondragover: function (e) { e.preventDefault(); }, ondrop: function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { e.preventDefault(); uploadFiles(e.dataTransfer.files); } } });
+			els.files = h('div', { class: 'bst-aid-files', hidden: true });
+			els.attach = h('button', { type: 'button', class: 'button bst-aid-attach', title: __('Attach files from the Media Library, or drop or paste them into the message box', T), 'aria-label': __('Attach files', T), onclick: pickMedia }, h('span', { class: 'dashicons dashicons-paperclip' }));
 			els.send = h('button', { class: 'button button-primary', onclick: send, text: __('Send', T) });
 			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
 			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
 				[['low', __('Low – quick answers', T)], ['medium', __('Medium – balanced', T)], ['high', __('High – more careful', T)], ['max', __('Max – deepest work', T)]].map(function (o) { return h('option', { value: o[0], selected: o[0] === effort, text: o[1] }); }));
+			var specialties = (settings && settings.specialties) || [];
+			if (!specialties.some(function (sp) { return sp.key === specialty; })) { specialty = 'auto'; }
+			var specialtySel = els.specialty = h('select', { class: 'bst-aid-effort', 'aria-label': __('Specialty', T), title: __('Adds a ready context for this kind of work. Edit it under Guidelines.', T), onchange: function (e) { specialty = e.target.value; try { window.localStorage.setItem('bstAidSpecialty', specialty); } catch (er) { /* ignore */ } } },
+				specialties.map(function (sp) { return h('option', { value: sp.key, selected: sp.key === specialty, text: sp.label }); }));
+			var models = (settings && settings.chatModels) || [];
+			if (chatModel && !models.some(function (m) { return m.id === chatModel; })) { chatModel = ''; }
+			var modelSel = els.model = h('select', { class: 'bst-aid-effort', 'aria-label': __('Model', T), title: __('Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise.', T), onchange: function (e) { chatModel = e.target.value; try { window.localStorage.setItem('bstAidModel', chatModel); } catch (er) { /* ignore */ } } },
+				[h('option', { value: '', text: __('Auto (Settings)', T) })].concat(models.map(function (m) { return h('option', { value: m.id, selected: m.id === chatModel, text: m.name + ((m.input || m.output) ? ' – $' + m.input + ' / $' + m.output : '') }); })));
 			root.appendChild(h('aside', { class: 'bst-aid-side' }, [
 				els.mode, h('button', { class: 'button button-primary bst-aid-new', onclick: function () { newTask(); }, text: '+ ' + __('New task', T) }),
 				els.list,
@@ -529,7 +640,7 @@
 			]));
 			root.appendChild(h('section', { class: 'bst-aid-main' }, [
 				els.head, els.chat,
-				h('div', { class: 'bst-aid-composer' }, [els.input, h('div', { class: 'bst-aid-composer-bar' }, [h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
+				h('div', { class: 'bst-aid-composer' }, [els.files, els.input, h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, specialties.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Specialty', T) + ' ', specialtySel]) : null, models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
 			]));
 			els.previewCheck = h('input', { type: 'checkbox', role: 'switch', checked: previewOn, onchange: function (e) { setPreviewOn(e.target.checked); } });
 			els.previewSwitch = h('label', { class: 'bst-aid-switch' }, [els.previewCheck, h('span', { class: 'bst-aid-switch-track' }), __('Preview', T)]);
