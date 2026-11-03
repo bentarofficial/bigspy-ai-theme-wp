@@ -28,6 +28,12 @@ function bst_aid_guideline_fields() {
 	);
 }
 
+/** Image standard in use: the saved one, or the suggested template when the box is empty. */
+function bst_aid_image_standard() {
+	$saved = trim( bst_aid_guidelines()['images'] );
+	return '' !== $saved ? $saved : (string) bst_aid_guideline_fields()['images'][2];
+}
+
 function bst_aid_guidelines() {
 	$g = get_option( 'bst_aid_guidelines', array() );
 	$g = is_array( $g ) ? $g : array();
@@ -83,5 +89,7 @@ function bst_aid_guidelines_page() {
 		echo '<p><button type="button" class="button" data-bst-aid-template="bst-aid-' . esc_attr( $k ) . '" data-template="' . esc_attr( $f[2] ) . '">' . esc_html__( 'Insert suggested template', 'bigspy-ai-theme-wp' ) . '</button></p></div>';
 	}
 	submit_button( __( 'Save guidelines', 'bigspy-ai-theme-wp' ) );
-	echo '</form></div>';
+	echo '</form>';
+	bst_aid_specialties_form();
+	echo '</div>';
 }

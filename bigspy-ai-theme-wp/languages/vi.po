@@ -7054,3 +7054,33 @@ msgstr "Hãy chờ tải lên xong."
 msgid "Attach files from the Media Library, or drop or paste them into the message box"
 msgstr "Đính kèm tệp từ Thư viện Media, hoặc kéo thả hay dán vào ô tin nhắn"
 
+msgid "Designer"
+msgstr "Designer"
+
+msgid "Images"
+msgstr "Hình ảnh"
+
+msgid "Writing"
+msgstr "Viết bài"
+
+msgid "Auto"
+msgstr "Tự động"
+
+msgid "Specialties"
+msgstr "Chuyên môn"
+
+msgid "Specialty"
+msgstr "Chuyên môn"
+
+msgid "Pick a specialty next to the model in the chat. Each one adds this context to the task; it works as is, edit it if you want. Auto adds nothing."
+msgstr "Chọn chuyên môn cạnh ô model trong chat. Mỗi chuyên môn thêm ngữ cảnh này vào task; dùng được ngay, muốn thì sửa. Tự động không thêm gì."
+
+msgid "Restore default"
+msgstr "Khôi phục mặc định"
+
+msgid "Save specialties"
+msgstr "Lưu chuyên môn"
+
+msgid "Adds a ready context for this kind of work. Edit it under Guidelines."
+msgstr "Thêm ngữ cảnh sẵn cho loại việc này. Sửa trong trang Hướng dẫn."
+

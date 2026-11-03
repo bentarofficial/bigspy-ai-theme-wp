@@ -60,6 +60,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn AI Designer.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-22, chọn chuyên môn ở thanh chat.
+- **Đã thay đổi:** ô "Chuyên môn" bên trái Model: Tự động (như cũ), Designer, Hình ảnh, Viết bài, SEO. Mỗi chuyên môn có ngữ cảnh mặc định chạy ngay, sửa được và khôi phục mặc định ở trang Hướng dẫn; gửi theo từng tin nhắn, lưu theo lượt, đặt trước quy tắc block cố định. Mọi công cụ vẫn dùng được ở mọi chuyên môn. Tiêu chuẩn ảnh mẫu (ảnh người thật, tự nhiên) nay áp dụng khi ô tiêu chuẩn ảnh để trống.
+- **Kiểm thử:** lint, Designer 194 đạt; chưa thử AI thật và chưa xem giao diện trên trình duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn AI Designer.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

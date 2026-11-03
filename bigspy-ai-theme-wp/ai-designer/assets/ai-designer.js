@@ -244,8 +244,8 @@
 			welcomePrompt = window.sessionStorage.getItem('bstAidWelcomePrompt') || '';
 			welcomeMode = window.sessionStorage.getItem('bstAidWelcomeMode') === 'advice' ? 'advice' : 'design';
 		} catch (e) { /* The URL still provides the prompt when session storage is unavailable. */ }
-		var effort = 'medium', chatModel = '';
-		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; chatModel = window.localStorage.getItem('bstAidModel') || ''; } catch (e) { /* storage blocked */ }
+		var effort = 'medium', chatModel = '', specialty = 'auto';
+		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; chatModel = window.localStorage.getItem('bstAidModel') || ''; specialty = window.localStorage.getItem('bstAidSpecialty') || 'auto'; } catch (e) { /* storage blocked */ }
 		var previewOn = true, previewUrl = '', previewWidth = 0, previewHint = false;
 		try {
 			previewOn = window.localStorage.getItem('bstAidPreview') !== '0';
@@ -416,6 +416,7 @@
 				current = d.task; log = d.log || []; stopFlag = false;
 				effort = d.effort || effort;
 				if (els.effort) { els.effort.value = effort; }
+				if (d.specialty && els.specialty) { specialty = d.specialty; els.specialty.value = specialty; }
 				if (d.model && els.model && Array.prototype.some.call(els.model.options, function (o) { return o.value === d.model; })) { chatModel = d.model; els.model.value = chatModel; }
 				previewUrl = ''; previewHint = false;
 				log.forEach(function (ev) { if (ev.preview) { previewUrl = ev.preview; } });
@@ -563,7 +564,7 @@
 			var files = attached.map(function (f) { return { id: f.id, type: f.type }; });
 			var keep = attached;
 			els.input.value = ''; attached = []; renderAttached();
-			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort, model: chatModel, files: files }).then(function (r) {
+			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort, model: chatModel, specialty: specialty, files: files }).then(function (r) {
 				addEvents(r.events); updateTask(r.task); loop();
 			}).catch(function (e) { els.input.value = text; attached = keep; renderAttached(); addEvents([{ kind: 'error', text: e.message }]); });
 		};
@@ -592,6 +593,10 @@
 			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
 			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
 				[['low', __('Low – quick answers', T)], ['medium', __('Medium – balanced', T)], ['high', __('High – more careful', T)], ['max', __('Max – deepest work', T)]].map(function (o) { return h('option', { value: o[0], selected: o[0] === effort, text: o[1] }); }));
+			var specialties = (settings && settings.specialties) || [];
+			if (!specialties.some(function (sp) { return sp.key === specialty; })) { specialty = 'auto'; }
+			var specialtySel = els.specialty = h('select', { class: 'bst-aid-effort', 'aria-label': __('Specialty', T), title: __('Adds a ready context for this kind of work. Edit it under Guidelines.', T), onchange: function (e) { specialty = e.target.value; try { window.localStorage.setItem('bstAidSpecialty', specialty); } catch (er) { /* ignore */ } } },
+				specialties.map(function (sp) { return h('option', { value: sp.key, selected: sp.key === specialty, text: sp.label }); }));
 			var models = (settings && settings.chatModels) || [];
 			if (chatModel && !models.some(function (m) { return m.id === chatModel; })) { chatModel = ''; }
 			var modelSel = els.model = h('select', { class: 'bst-aid-effort', 'aria-label': __('Model', T), title: __('Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise.', T), onchange: function (e) { chatModel = e.target.value; try { window.localStorage.setItem('bstAidModel', chatModel); } catch (er) { /* ignore */ } } },
@@ -603,7 +608,7 @@
 			]));
 			root.appendChild(h('section', { class: 'bst-aid-main' }, [
 				els.head, els.chat,
-				h('div', { class: 'bst-aid-composer' }, [els.files, els.input, h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
+				h('div', { class: 'bst-aid-composer' }, [els.files, els.input, h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, specialties.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Specialty', T) + ' ', specialtySel]) : null, models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
 			]));
 			els.previewCheck = h('input', { type: 'checkbox', role: 'switch', checked: previewOn, onchange: function (e) { setPreviewOn(e.target.checked); } });
 			els.previewSwitch = h('label', { class: 'bst-aid-switch' }, [els.previewCheck, h('span', { class: 'bst-aid-switch-track' }), __('Preview', T)]);

@@ -185,6 +185,24 @@ bst_test( is_wp_error( bst_aid_rest_task_send( $request ) ), 'Missing attachment
 $request->set_param( 'files', array( array( 'id' => 'dnope', 'type' => 'doc' ) ) );
 bst_test( is_wp_error( bst_aid_rest_task_send( $request ) ), 'Unknown or expired document refused' );
 $request->set_param( 'files', array() );
+// Specialties: default context applies as is, edits override it, restore brings the default back.
+bst_test( false === strpos( bst_aid_system_prompt( 'auto' ), 'SPECIALTY FOR THIS MESSAGE' ) && false !== strpos( bst_aid_system_prompt( 'seo' ), 'main keyword' ), 'Auto adds no context; SEO adds its default context' );
+bst_test( strrpos( bst_aid_system_prompt( 'writing' ), 'FIXED RULE' ) > strrpos( bst_aid_system_prompt( 'writing' ), 'SPECIALTY FOR THIS MESSAGE' ), 'Block rule stays after the specialty context' );
+bst_aid_save_specialty( 'writing', 'Custom writing context.' );
+bst_test( false !== strpos( bst_aid_system_prompt( 'writing' ), 'Custom writing context.' ), 'Edited specialty context is used' );
+bst_aid_save_specialty( 'writing', '' );
+bst_test( bst_aid_specialty_defaults()['writing'][1] === bst_aid_specialty_context( 'writing' ), 'Restore default brings the default context back' );
+bst_test( false !== strpos( bst_aid_image_prompt( 'A shop', 'banner' ), 'natural' ) || '' !== trim( bst_aid_guidelines()['images'] ), 'Image standard applies even when the guideline box is empty' );
+$GLOBALS['bst_test_kyma_mode'] = 'draft';
+$request->set_param( 'specialty', 'images' );
+bst_aid_rest_task_send( $request );
+bst_test( 'images' === bst_aid_task_get( $run_task, '_bst_aid_run' )['specialty'] && 'images' === bst_aid_rest_task_read( $request )->get_data()['specialty'], 'Specialty is sent per message and stored with the run' );
+bst_aid_rest_task_stop( $request );
+$request->set_param( 'specialty', 'hacker' );
+bst_aid_rest_task_send( $request );
+bst_test( 'auto' === bst_aid_task_get( $run_task, '_bst_aid_run' )['specialty'], 'Unknown specialty falls back to Auto' );
+bst_aid_rest_task_stop( $request );
+$request->set_param( 'specialty', 'auto' );
 $request->set_param( 'effort', 'high' );
 bst_aid_undo_task( $run_task );
 bst_test( get_option( 'blogdescription' ) === $old_tagline, 'Mock task undo restores original tagline' );

@@ -10887,3 +10887,33 @@ msgstr ""
 msgid "Attach files from the Media Library, or drop or paste them into the message box"
 msgstr ""
 
+msgid "Designer"
+msgstr ""
+
+msgid "Writing"
+msgstr ""
+
+msgid "SEO"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Specialties"
+msgstr ""
+
+msgid "Specialty"
+msgstr ""
+
+msgid "Pick a specialty next to the model in the chat. Each one adds this context to the task; it works as is, edit it if you want. Auto adds nothing."
+msgstr ""
+
+msgid "Restore default"
+msgstr ""
+
+msgid "Save specialties"
+msgstr ""
+
+msgid "Adds a ready context for this kind of work. Edit it under Guidelines."
+msgstr ""
+

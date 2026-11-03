@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-function bst_aid_system_prompt() {
+function bst_aid_system_prompt( $specialty = 'auto' ) {
 	$g     = bst_aid_guidelines();
 	$tools = wp_list_pluck( wp_list_pluck( bst_aid_tool_specs(), 'function' ), 'name' );
 	$lines = array(
@@ -95,6 +95,12 @@ function bst_aid_system_prompt() {
 	if ( $empty ) {
 		$lines[] = '';
 		$lines[] = 'Some guidelines are not set (' . implode( '; ', $empty ) . '). Before the first piece of work in this task, ask the user the key questions for them, briefly.';
+	}
+	$context = bst_aid_specialty_context( (string) $specialty );
+	if ( '' !== $context ) {
+		$lines[] = '';
+		$lines[] = 'SPECIALTY FOR THIS MESSAGE: ' . bst_aid_specialty_defaults()[ $specialty ][0] . ' (chosen by the user; all tools stay available):';
+		$lines[] = $context;
 	}
 	// Stays last so nothing the user saved above can override it.
 	$lines[] = '';

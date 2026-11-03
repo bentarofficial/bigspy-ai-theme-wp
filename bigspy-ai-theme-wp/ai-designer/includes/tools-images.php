@@ -127,9 +127,7 @@ function bst_aid_size_from_error( $error, $size ) {
 function bst_aid_image_prompt( $prompt, $purpose ) {
 	$g     = bst_aid_guidelines();
 	$parts = array( trim( (string) $prompt ) );
-	if ( '' !== trim( $g['images'] ) ) {
-		$parts[] = 'Follow this image standard: ' . preg_replace( '/\s+/', ' ', $g['images'] );
-	}
+	$parts[] = 'Follow this image standard: ' . preg_replace( '/\s+/', ' ', bst_aid_image_standard() );
 	$parts[] = 'Website brand colors: primary ' . bst_mod( 'color_primary' ) . ', secondary ' . bst_mod( 'color_secondary' ) . '.';
 	$hints   = array(
 		'banner'     => 'Wide hero banner with calm space for a headline on one side.',

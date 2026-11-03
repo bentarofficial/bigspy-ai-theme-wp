@@ -196,6 +196,7 @@ function bst_aid_rest_settings( $request = null ) {
 		'fastModel'     => $s['fast_model'],
 		'allowedModels' => array_values( (array) $s['allowed_models'] ),
 		'chatModels'    => bst_aid_chat_models(),
+		'specialties'   => bst_aid_specialty_list(),
 		'imageModel'    => $s['image_model'],
 		'budgetTask'    => (float) $s['budget_task'],
 		'budgetDay'     => (float) $s['budget_day'],
