@@ -10836,3 +10836,21 @@ msgstr ""
 msgid "The fast model failed; switched to the main model."
 msgstr ""
 
+msgid "This model is not available here. Choose another model or Auto."
+msgstr ""
+
+msgid "The model %s failed; switched to the main model."
+msgstr ""
+
+msgid "Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise."
+msgstr ""
+
+msgid "Auto (Settings)"
+msgstr ""
+
+msgid "Models users may pick in the chat"
+msgstr ""
+
+msgid "Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available."
+msgstr ""
+

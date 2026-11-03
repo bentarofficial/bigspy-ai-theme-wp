@@ -149,6 +149,7 @@
 					var image = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.image || [], state.imageModel, false));
 					var fast = h('select', { class: 'bst-aid-select' }, modelOptions(state.models.text || [], state.fastModel, true));
 					fast.options[0].text = __('— Same as the text model —', T);
+					var allowed = h('select', { class: 'bst-aid-select', multiple: true, size: 6 }, (state.models.text || []).map(function (m) { return h('option', { value: m.id, selected: (state.allowedModels || []).indexOf(m.id) !== -1, text: m.name + ' (' + m.id + ')' }); }));
 					var bTask = h('input', { type: 'number', min: '0', step: '0.5', class: 'small-text', value: state.budgetTask });
 					var bDay = h('input', { type: 'number', min: '0', step: '1', class: 'small-text', value: state.budgetDay });
 					var testBox = h('div', { class: 'bst-aid-test' });
@@ -188,11 +189,13 @@
 						h('p', { class: 'description', text: __('Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough.', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Fast model (Effort Low: lookups and small edits)', T) }), fast]),
 						h('p', { class: 'description', text: __('Optional. Runs sent with Effort Low use this cheaper, faster model; other efforts use the text model for writing and design. If the fast model fails, the run switches to the text model.', T) }),
+						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Models users may pick in the chat', T) }), allowed]),
+						h('p', { class: 'description', text: __('Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available.', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Image model (used by ImageGen)', T) }), image]),
 						h('p', { class: 'bst-aid-row' }, [h('label', null, [__('Budget per task (USD, 0 = no limit) ', T), bTask]), h('label', null, [__('Budget per day (USD, 0 = no limit) ', T), bDay])]),
 						h('p', { class: 'description', text: sprintf(__('Spent today: %s', T), money(state.spentToday)) }),
 						h('p', null, [
-							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, fastModel: fast.value, imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
+							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, fastModel: fast.value, allowedModels: Array.prototype.filter.call(allowed.options, function (o) { return o.selected; }).map(function (o) { return o.value; }), imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
 							' ',
 							h('button', { class: 'button', disabled: busy, onclick: function () { load(true); }, text: __('Refresh model list', T) }),
 							' ',
@@ -241,8 +244,8 @@
 			welcomePrompt = window.sessionStorage.getItem('bstAidWelcomePrompt') || '';
 			welcomeMode = window.sessionStorage.getItem('bstAidWelcomeMode') === 'advice' ? 'advice' : 'design';
 		} catch (e) { /* The URL still provides the prompt when session storage is unavailable. */ }
-		var effort = 'medium';
-		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; } catch (e) { /* storage blocked */ }
+		var effort = 'medium', chatModel = '';
+		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; chatModel = window.localStorage.getItem('bstAidModel') || ''; } catch (e) { /* storage blocked */ }
 		var previewOn = true, previewUrl = '', previewWidth = 0, previewHint = false;
 		try {
 			previewOn = window.localStorage.getItem('bstAidPreview') !== '0';
@@ -411,6 +414,7 @@
 				current = d.task; log = d.log || []; stopFlag = false;
 				effort = d.effort || effort;
 				if (els.effort) { els.effort.value = effort; }
+				if (d.model && els.model && Array.prototype.some.call(els.model.options, function (o) { return o.value === d.model; })) { chatModel = d.model; els.model.value = chatModel; }
 				previewUrl = ''; previewHint = false;
 				log.forEach(function (ev) { if (ev.preview) { previewUrl = ev.preview; } });
 				renderTasks(); renderChat(); syncPreview();
@@ -514,7 +518,7 @@
 			var text = els.input.value.trim();
 			if (!text || running || !current) { return; }
 			els.input.value = '';
-			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort }).then(function (r) {
+			api('/tasks/' + current.id + '/send', 'POST', { text: text, effort: effort, model: chatModel }).then(function (r) {
 				addEvents(r.events); updateTask(r.task); loop();
 			}).catch(function (e) { els.input.value = text; addEvents([{ kind: 'error', text: e.message }]); });
 		};
@@ -539,6 +543,10 @@
 			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
 			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
 				[['low', __('Low – quick answers', T)], ['medium', __('Medium – balanced', T)], ['high', __('High – more careful', T)], ['max', __('Max – deepest work', T)]].map(function (o) { return h('option', { value: o[0], selected: o[0] === effort, text: o[1] }); }));
+			var models = (settings && settings.chatModels) || [];
+			if (chatModel && !models.some(function (m) { return m.id === chatModel; })) { chatModel = ''; }
+			var modelSel = els.model = h('select', { class: 'bst-aid-effort', 'aria-label': __('Model', T), title: __('Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise.', T), onchange: function (e) { chatModel = e.target.value; try { window.localStorage.setItem('bstAidModel', chatModel); } catch (er) { /* ignore */ } } },
+				[h('option', { value: '', text: __('Auto (Settings)', T) })].concat(models.map(function (m) { return h('option', { value: m.id, selected: m.id === chatModel, text: m.name + ((m.input || m.output) ? ' – $' + m.input + ' / $' + m.output : '') }); })));
 			root.appendChild(h('aside', { class: 'bst-aid-side' }, [
 				els.mode, h('button', { class: 'button button-primary bst-aid-new', onclick: function () { newTask(); }, text: '+ ' + __('New task', T) }),
 				els.list,
@@ -546,7 +554,7 @@
 			]));
 			root.appendChild(h('section', { class: 'bst-aid-main' }, [
 				els.head, els.chat,
-				h('div', { class: 'bst-aid-composer' }, [els.input, h('div', { class: 'bst-aid-composer-bar' }, [h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
+				h('div', { class: 'bst-aid-composer' }, [els.input, h('div', { class: 'bst-aid-composer-bar' }, [models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
 			]));
 			els.previewCheck = h('input', { type: 'checkbox', role: 'switch', checked: previewOn, onchange: function (e) { setPreviewOn(e.target.checked); } });
 			els.previewSwitch = h('label', { class: 'bst-aid-switch' }, [els.previewCheck, h('span', { class: 'bst-aid-switch-track' }), __('Preview', T)]);

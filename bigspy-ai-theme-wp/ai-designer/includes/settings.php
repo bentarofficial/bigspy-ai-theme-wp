@@ -16,6 +16,7 @@ function bst_aid_settings() {
 			'connected'      => false,
 			'text_model'     => '',
 			'fast_model'     => '', // Optional cheaper model for low-effort runs (lookups, small edits).
+			'allowed_models' => array(), // Text models users may pick in the chat; empty = all.
 			'image_model'    => '',
 			'budget_task'    => 2.0,  // USD per task, 0 = no limit.
 			'budget_day'     => 10.0, // USD per day, 0 = no limit.
@@ -82,6 +83,21 @@ function bst_aid_ready() {
 /* ------------------------------------------------------------------ Models */
 
 /** Models from Kyma (public list), cached for 6 hours: array( 'text' => [...], 'image' => [...] ). */
+/** Text models offered in the chat bar, from the cached list only (no API call); limited by allowed_models. */
+function bst_aid_chat_models() {
+	$s       = bst_aid_settings();
+	$cached  = get_transient( 'bst_aid_models' );
+	$list    = is_array( $cached ) ? (array) ( $cached['text'] ?? array() ) : array();
+	$allowed = array_filter( (array) $s['allowed_models'] );
+	$out     = array();
+	foreach ( $list as $m ) {
+		if ( ! $allowed || in_array( $m['id'], $allowed, true ) ) {
+			$out[] = array( 'id' => $m['id'], 'name' => $m['name'] ?? $m['id'], 'input' => $m['input'] ?? 0, 'output' => $m['output'] ?? 0 );
+		}
+	}
+	return $out;
+}
+
 function bst_aid_models( $refresh = false ) {
 	$cached = get_transient( 'bst_aid_models' );
 	if ( ! $refresh && is_array( $cached ) ) {
@@ -178,6 +194,8 @@ function bst_aid_rest_settings( $request = null ) {
 		'ready'         => bst_aid_ready(),
 		'textModel'     => $s['text_model'],
 		'fastModel'     => $s['fast_model'],
+		'allowedModels' => array_values( (array) $s['allowed_models'] ),
+		'chatModels'    => bst_aid_chat_models(),
 		'imageModel'    => $s['image_model'],
 		'budgetTask'    => (float) $s['budget_task'],
 		'budgetDay'     => (float) $s['budget_day'],
@@ -254,6 +272,9 @@ function bst_aid_rest_settings_save( WP_REST_Request $request ) {
 	$changes = array();
 	if ( '' === $text || in_array( $text, wp_list_pluck( $models['text'], 'id' ), true ) ) {
 		$changes['text_model'] = $text;
+	}
+	if ( is_array( $request->get_param( 'allowedModels' ) ) ) {
+		$changes['allowed_models'] = array_values( array_intersect( array_map( 'strval', $request->get_param( 'allowedModels' ) ), wp_list_pluck( $models['text'], 'id' ) ) );
 	}
 	$fast = $request->get_param( 'fastModel' );
 	if ( null !== $fast && ( '' === (string) $fast || in_array( (string) $fast, wp_list_pluck( $models['text'], 'id' ), true ) ) ) {

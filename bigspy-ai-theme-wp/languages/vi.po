@@ -7000,3 +7000,21 @@ msgstr "Không bắt buộc. Lượt gửi với Effort Thấp dùng model rẻ 
 msgid "The fast model failed; switched to the main model."
 msgstr "Model nhanh bị lỗi; đã chuyển sang model chính."
 
+msgid "This model is not available here. Choose another model or Auto."
+msgstr "Model này không dùng được ở đây. Chọn model khác hoặc Tự động."
+
+msgid "The model %s failed; switched to the main model."
+msgstr "Model %s bị lỗi; đã chuyển sang model chính."
+
+msgid "Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise."
+msgstr "Tự động dùng model trong Cài đặt: model nhanh khi Effort Thấp, còn lại dùng model văn bản."
+
+msgid "Auto (Settings)"
+msgstr "Tự động (Cài đặt)"
+
+msgid "Models users may pick in the chat"
+msgstr "Model người dùng được chọn trong chat"
+
+msgid "Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available."
+msgstr "Không chọn gì để cho dùng mọi model văn bản. Giữ Ctrl/Cmd để chọn nhiều. Luôn có lựa chọn Tự động."
+

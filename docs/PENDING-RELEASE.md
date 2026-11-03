@@ -48,6 +48,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn cài đặt AI Designer.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-21, chọn model ở thanh chat.
+- **Đã thay đổi:** thanh chat có ô Model bên trái Effort: "Tự động (Cài đặt)" hoặc một model từ danh sách đã cache (không gọi API khi mở trang). Model gửi theo từng tin nhắn, máy chủ kiểm tra, lưu vào `_bst_aid_run`, chi phí và số đo theo model đã dùng; model chọn bị lỗi thì chuyển model chính. Cài đặt thêm danh sách model người dùng được chọn (để trống = tất cả).
+- **Kiểm thử:** lint, Designer 180 đạt (Kyma giả lập); chưa thử AI thật và chưa xem giao diện trên trình duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates, hướng dẫn AI Designer.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

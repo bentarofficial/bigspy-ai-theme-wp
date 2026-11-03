@@ -178,7 +178,7 @@ function bst_aid_rest_task_read( WP_REST_Request $r ) {
 	if ( ! $p ) {
 		return new WP_Error( 'bst_aid_task', __( 'Task not found.', 'bigspy-ai-theme-wp' ), array( 'status' => 404 ) );
 	}
-	return rest_ensure_response( array( 'task' => bst_aid_task_summary( $p ), 'log' => bst_aid_task_get( $p->ID, '_bst_aid_log' ), 'effort' => (string) ( bst_aid_task_get( $p->ID, '_bst_aid_run' )['effort'] ?? '' ) ) );
+	return rest_ensure_response( array( 'task' => bst_aid_task_summary( $p ), 'log' => bst_aid_task_get( $p->ID, '_bst_aid_log' ), 'effort' => (string) ( bst_aid_task_get( $p->ID, '_bst_aid_run' )['effort'] ?? '' ), 'model' => (string) ( bst_aid_task_get( $p->ID, '_bst_aid_run' )['model'] ?? '' ) ) );
 }
 
 /** Undo everything the task changed: settings, CSS, logo, menus, header, edited pages; trash what it created. */
@@ -232,13 +232,17 @@ function bst_aid_rest_task_send( WP_REST_Request $r ) {
 	}
 	$text   = mb_substr( $text, 0, 20000 );
 	$effort = in_array( $r->get_param( 'effort' ), array( 'low', 'medium', 'high', 'max' ), true ) ? $r->get_param( 'effort' ) : 'medium';
+	$chosen = (string) $r->get_param( 'model' );
+	if ( '' !== $chosen && ! in_array( $chosen, wp_list_pluck( bst_aid_chat_models(), 'id' ), true ) ) {
+		return new WP_Error( 'bst_aid_model', __( 'This model is not available here. Choose another model or Auto.', 'bigspy-ai-theme-wp' ), array( 'status' => 400 ) );
+	}
 	$msgs   = bst_aid_task_get( $p->ID, '_bst_aid_messages' );
 	$msgs[] = array( 'role' => 'user', 'content' => bst_aid_redact( $text ) );
 	bst_aid_task_set( $p->ID, '_bst_aid_messages', $msgs );
 	bst_aid_task_set( $p->ID, '_bst_aid_image_count', 0 );
-	bst_aid_task_set( $p->ID, '_bst_aid_run', array( 'active' => true, 'effort' => $effort, 'steps_left' => bst_aid_effort_steps( $effort ) ) );
+	bst_aid_task_set( $p->ID, '_bst_aid_run', array( 'active' => true, 'effort' => $effort, 'model' => $chosen, 'steps_left' => bst_aid_effort_steps( $effort ) ) );
 	bst_aid_metrics_end( $p->ID, 'replaced' );
-	bst_aid_metrics_start( $p->ID, bst_aid_run_model( $effort ), $effort );
+	bst_aid_metrics_start( $p->ID, '' !== $chosen ? $chosen : bst_aid_run_model( $effort ), $effort );
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'user', 'text' => $text ) );
 	if ( 1 === count( $msgs ) ) {
 		wp_update_post( array( 'ID' => $p->ID, 'post_title' => wp_trim_words( wp_strip_all_tags( $text ), 9, '…' ) ) );
@@ -345,14 +349,15 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	$messages = array_merge( array( array( 'role' => 'system', 'content' => bst_aid_system_prompt() ) ), bst_aid_history( $msgs ) );
 	$t0       = microtime( true );
 	$calls_n  = 1;
-	$model    = empty( $run['main_only'] ) ? bst_aid_run_model( $run['effort'] ?? 'medium', $s ) : (string) $s['text_model'];
+	$model    = ! empty( $run['main_only'] ) ? (string) $s['text_model'] : ( '' !== (string) ( $run['model'] ?? '' ) ? (string) $run['model'] : bst_aid_run_model( $run['effort'] ?? 'medium', $s ) );
 	$res      = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $model, 'effort' => $run['effort'] ?? 'medium' ) );
 	if ( empty( $res['ok'] ) && $model !== $s['text_model'] ) {
-		// The fast model failed: this step and the rest of the run use the main model.
+		// The fast or chosen model failed: this step and the rest of the run use the main model.
 		$calls_n++;
-		$model = $s['text_model'];
+		$res_model = $model;
+		$model     = $s['text_model'];
 		$res   = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $model, 'effort' => $run['effort'] ?? 'medium' ) );
-		$events[] = bst_aid_task_log( $id, array( 'kind' => 'info', 'text' => __( 'The fast model failed; switched to the main model.', 'bigspy-ai-theme-wp' ) ) );
+		$events[] = bst_aid_task_log( $id, array( 'kind' => 'info', 'text' => sprintf( /* translators: %s: model id */ __( 'The model %s failed; switched to the main model.', 'bigspy-ai-theme-wp' ), $res_model ) ) );
 		bst_aid_metrics_update( $id, function ( $m ) use ( $model ) { $m['model'] = $model; return $m; } );
 		$flag              = bst_aid_task_get( $id, '_bst_aid_run' );
 		$flag['main_only'] = true;
