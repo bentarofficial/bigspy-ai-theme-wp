@@ -116,10 +116,14 @@ $card = end( $response['events'] )['approval'];
 $approve = new WP_REST_Request( 'POST' ); $approve['id'] = $run_task; $approve->set_param( 'approval_id', $card['id'] ); $approve->set_param( 'decision', 'approve' );
 $approved = bst_aid_rest_approval( $approve );
 bst_test( ! is_wp_error( $approved ) && 'This requires a real approval card.' === get_option( 'blogdescription' ), 'Human endpoint approval applies exact pending arguments' );
+$metrics = bst_aid_metrics_summary( $run_task );
+bst_test( 2 === $metrics['last']['model_calls'] && 2 === $metrics['last']['tool_calls'] && 1 === ( $metrics['last']['tools']['create_page'] ?? 0 ) && 1 === ( $metrics['last']['tools']['site_settings'] ?? 0 ) && abs( $metrics['last']['cost'] - 0.002 ) < 1e-9 && 'test-model' === $metrics['last']['model'] && 'high' === $metrics['last']['effort'], 'Task metrics count model calls, tool calls and cost of the run' );
 $GLOBALS['bst_test_kyma_mode'] = 'stop';
 bst_aid_rest_task_send( $request );
 $response = bst_aid_rest_task_step( $request )->get_data();
 bst_test( 'stopped' === $response['state'] && 'tool-error' === end( $response['events'] )['kind'], 'Stop during mock provider response blocks late tool write' );
+$metrics = bst_aid_metrics_summary( $run_task );
+bst_test( 2 === $metrics['total']['runs'] && 'replaced' === bst_aid_task_get( $run_task, '_bst_aid_metrics' )[0]['state'] && 3 === $metrics['total']['model_calls'] && isset( bst_aid_task_summary( get_post( $run_task ) )['metrics']['last'] ), 'Each message starts a new measured run and totals add up' );
 bst_aid_undo_task( $run_task );
 bst_test( get_option( 'blogdescription' ) === $old_tagline, 'Mock task undo restores original tagline' );
 

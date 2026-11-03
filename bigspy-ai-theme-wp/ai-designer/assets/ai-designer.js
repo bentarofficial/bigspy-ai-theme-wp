@@ -351,6 +351,10 @@
 			els.head.innerHTML = '';
 			els.head.appendChild(h('strong', { class: 'bst-aid-title', text: current ? current.title : __('BIGSPY AI Designer', T) }));
 			if (current) { els.head.appendChild(h('span', { class: 'bst-aid-cost', text: sprintf(__('Task cost: %s', T), money(current.cost)) })); }
+			if (current && current.metrics) {
+				var ml = current.metrics.last;
+				els.head.appendChild(h('span', { class: 'bst-aid-cost', title: JSON.stringify(current.metrics.total), text: sprintf(__('Last run: %1$s s, %2$s model calls, %3$s tool calls', T), ml.seconds, ml.model_calls, ml.tool_calls) }));
+			}
 			if (current && current.canUndo) {
 				els.head.appendChild(h('button', { type: 'button', class: 'button button-small', disabled: running, onclick: function () {
 					if (!window.confirm(__('Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash.', T))) { return; }

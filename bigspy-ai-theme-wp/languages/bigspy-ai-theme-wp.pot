@@ -10809,3 +10809,6 @@ msgstr ""
 msgid "Choosing blocks"
 msgstr ""
 
+msgid "Last run: %1$s s, %2$s model calls, %3$s tool calls"
+msgstr ""
+

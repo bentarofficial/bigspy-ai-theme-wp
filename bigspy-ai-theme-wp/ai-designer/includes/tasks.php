@@ -65,6 +65,53 @@ function bst_aid_task( $id ) {
 	return $p;
 }
 
+/** Per-run measurements (one run per user message), the last 20 kept. */
+function bst_aid_metrics_update( $id, $fn ) {
+	$runs = (array) bst_aid_task_get( $id, '_bst_aid_metrics' );
+	if ( ! $runs ) {
+		return;
+	}
+	$i          = count( $runs ) - 1;
+	$runs[ $i ] = $fn( $runs[ $i ] );
+	bst_aid_task_set( $id, '_bst_aid_metrics', $runs );
+}
+
+function bst_aid_metrics_start( $id, $model, $effort ) {
+	$runs   = (array) bst_aid_task_get( $id, '_bst_aid_metrics' );
+	$runs[] = array( 'started' => microtime( true ), 'ended' => 0, 'state' => 'running', 'model' => $model, 'effort' => $effort, 'model_calls' => 0, 'model_ms' => 0, 'tool_calls' => 0, 'tool_ms' => 0, 'tools' => array(), 'tokens_in' => 0, 'tokens_out' => 0, 'cost' => 0.0 );
+	bst_aid_task_set( $id, '_bst_aid_metrics', array_slice( $runs, -20 ) );
+}
+
+function bst_aid_metrics_end( $id, $state ) {
+	bst_aid_metrics_update( $id, function ( $m ) use ( $state ) {
+		if ( empty( $m['ended'] ) ) {
+			$m['ended'] = microtime( true );
+			$m['state'] = $state;
+		}
+		return $m;
+	} );
+}
+
+/** Totals over the kept runs plus the last run, rounded for display and comparison. */
+function bst_aid_metrics_summary( $id ) {
+	$runs = (array) bst_aid_task_get( $id, '_bst_aid_metrics' );
+	if ( ! $runs ) {
+		return null;
+	}
+	$row = function ( $m ) {
+		$end = ! empty( $m['ended'] ) ? $m['ended'] : microtime( true );
+		return array( 'seconds' => round( max( 0, $end - $m['started'] ), 1 ), 'model_calls' => (int) $m['model_calls'], 'model_seconds' => round( $m['model_ms'] / 1000, 1 ), 'tool_calls' => (int) $m['tool_calls'], 'tool_seconds' => round( $m['tool_ms'] / 1000, 1 ), 'tokens_in' => (int) $m['tokens_in'], 'tokens_out' => (int) $m['tokens_out'], 'cost' => round( (float) $m['cost'], 4 ) );
+	};
+	$total = array( 'runs' => count( $runs ) );
+	foreach ( $runs as $m ) {
+		foreach ( $row( $m ) as $k => $v ) {
+			$total[ $k ] = ( $total[ $k ] ?? 0 ) + $v;
+		}
+	}
+	$last = end( $runs );
+	return array( 'last' => array_merge( $row( $last ), array( 'state' => $last['state'], 'model' => $last['model'], 'effort' => $last['effort'], 'tools' => $last['tools'] ) ), 'total' => array_map( function ( $v ) { return is_float( $v ) ? round( $v, 4 ) : $v; }, $total ) );
+}
+
 function bst_aid_task_summary( $p ) {
 	return array(
 		'id'       => $p->ID,
@@ -74,6 +121,7 @@ function bst_aid_task_summary( $p ) {
 		'modified' => mysql_to_rfc3339( $p->post_modified_gmt ),
 		'cost'     => round( (float) bst_aid_task_get( $p->ID, '_bst_aid_cost', 0 ), 4 ),
 		'running'  => ! empty( bst_aid_task_get( $p->ID, '_bst_aid_run' )['active'] ),
+		'metrics'  => bst_aid_metrics_summary( $p->ID ),
 		'canUndo'  => (bool) ( bst_aid_task_get( $p->ID, '_bst_aid_snapshots' ) || bst_aid_task_get( $p->ID, '_bst_aid_created' ) ),
 	);
 }
@@ -183,6 +231,8 @@ function bst_aid_rest_task_send( WP_REST_Request $r ) {
 	bst_aid_task_set( $p->ID, '_bst_aid_messages', $msgs );
 	bst_aid_task_set( $p->ID, '_bst_aid_image_count', 0 );
 	bst_aid_task_set( $p->ID, '_bst_aid_run', array( 'active' => true, 'effort' => $effort, 'steps_left' => bst_aid_effort_steps( $effort ) ) );
+	bst_aid_metrics_end( $p->ID, 'replaced' );
+	bst_aid_metrics_start( $p->ID, (string) bst_aid_settings()['text_model'], $effort );
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'user', 'text' => $text ) );
 	if ( 1 === count( $msgs ) ) {
 		wp_update_post( array( 'ID' => $p->ID, 'post_title' => wp_trim_words( wp_strip_all_tags( $text ), 9, '…' ) ) );
@@ -199,6 +249,7 @@ function bst_aid_rest_task_stop( WP_REST_Request $r ) {
 	$run['active'] = false;
 	bst_aid_task_set( $p->ID, '_bst_aid_run', $run );
 	bst_aid_task_set( $p->ID, '_bst_aid_approvals', array() );
+	bst_aid_metrics_end( $p->ID, 'stopped' );
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'info', 'text' => __( 'Stopped.', 'bigspy-ai-theme-wp' ) ) );
 	return rest_ensure_response( array( 'state' => 'stopped', 'events' => array( $event ) ) );
 }
@@ -208,6 +259,7 @@ function bst_aid_finish( $id, $state, $events, $event = null ) {
 	$run           = bst_aid_task_get( $id, '_bst_aid_run' );
 	$run['active'] = false;
 	bst_aid_task_set( $id, '_bst_aid_run', $run );
+	bst_aid_metrics_end( $id, $state );
 	if ( $event ) {
 		$events[] = bst_aid_task_log( $id, $event );
 	}
@@ -285,6 +337,8 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 
 	$msgs     = bst_aid_task_get( $id, '_bst_aid_messages' );
 	$messages = array_merge( array( array( 'role' => 'system', 'content' => bst_aid_system_prompt() ) ), bst_aid_history( $msgs ) );
+	$t0       = microtime( true );
+	$calls_n  = 1;
 	$res      = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $s['text_model'], 'effort' => $run['effort'] ?? 'medium' ) );
 	if ( empty( $res['ok'] ) && 400 === (int) $res['status'] ) {
 		// Still rejected: send a compact history (every older tool result shortened) once more.
@@ -293,12 +347,19 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 				$messages[ $i ]['content'] = mb_substr( (string) $m['content'], 0, 400 ) . ' …[shortened]';
 			}
 		}
+		$calls_n++;
 		$second = bst_aid_chat( $messages, bst_aid_tool_specs(), array( 'model' => $s['text_model'], 'effort' => 'low' ) );
 		if ( ! empty( $second['ok'] ) ) {
 			$events[] = bst_aid_task_log( $id, array( 'kind' => 'info', 'text' => __( 'The model rejected the full request once; it worked again with a shorter history.', 'bigspy-ai-theme-wp' ) ) );
 			$res      = $second;
 		}
 	}
+	$model_ms = (int) round( ( microtime( true ) - $t0 ) * 1000 );
+	bst_aid_metrics_update( $id, function ( $m ) use ( $calls_n, $model_ms ) {
+		$m['model_calls'] += $calls_n;
+		$m['model_ms']    += $model_ms;
+		return $m;
+	} );
 	if ( empty( $res['ok'] ) ) {
 		return bst_aid_finish( $id, 'error', $events, array( 'kind' => 'error', 'text' => $res['error'], 'detail' => (string) ( $res['first_raw'] ?? '' ) . ' | ' . (string) ( $res['raw'] ?? '' ) ) );
 	}
@@ -314,6 +375,12 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	}
 	bst_aid_task_set( $id, '_bst_aid_cost', $cost + $step );
 	bst_aid_add_spend( $step );
+	bst_aid_metrics_update( $id, function ( $m ) use ( $usage, $step ) {
+		$m['tokens_in']  += (int) ( $usage['prompt_tokens'] ?? 0 );
+		$m['tokens_out'] += (int) ( $usage['completion_tokens'] ?? 0 );
+		$m['cost']       += $step;
+		return $m;
+	} );
 
 	$served = (string) ( $res['headers']['x-kyma-served-model'] ?? '' );
 	if ( '' !== $served && $served !== $s['text_model'] ) {
@@ -343,10 +410,18 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		$name   = (string) $call['function']['name'];
 		$raw    = trim( (string) ( $call['function']['arguments'] ?? '' ) );
 		$args   = '' === $raw ? array() : json_decode( $raw, true );
+		$t0     = microtime( true );
 		$result = is_array( $args )
 			? bst_aid_run_tool( $name, $args )
 			: array( 'error' => 'The tool arguments were not valid JSON or were cut off (too long). Send smaller pieces: for pages, create the page with the first sections, then add the rest with page_sections.' );
 		if ( isset( $result['approval'] ) ) { $awaiting = true; }
+		$tool_ms = (int) round( ( microtime( true ) - $t0 ) * 1000 );
+		bst_aid_metrics_update( $id, function ( $m ) use ( $name, $tool_ms ) {
+			$m['tool_calls']++;
+			$m['tool_ms']        += $tool_ms;
+			$m['tools'][ $name ]  = ( $m['tools'][ $name ] ?? 0 ) + 1;
+			return $m;
+		} );
 		$links  = $result['links'] ?? array();
 		unset( $result['links'] );
 		$failed = isset( $result['error'] ) || in_array( (string) ( $result['status'] ?? '' ), array( 'blocked', 'failed', 'error', 'rejected' ), true );

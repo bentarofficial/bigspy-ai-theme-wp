@@ -6973,3 +6973,6 @@ msgstr "1.80.3: Media ATND chuyển vào trình chọn media: nhập từ khoá 
 msgid "Choosing blocks"
 msgstr "Đang chọn khối"
 
+msgid "Last run: %1$s s, %2$s model calls, %3$s tool calls"
+msgstr "Lượt cuối: %1$s giây, %2$s lần gọi model, %3$s lần gọi công cụ"
+

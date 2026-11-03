@@ -18,6 +18,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-47, đo task AI Designer.
+- **Đã thay đổi:** `tasks.php` ghi mỗi lượt chạy (mỗi tin nhắn) vào `_bst_aid_metrics`: thời gian, số lần gọi model và thời gian chờ model, số lần gọi công cụ theo tên và thời gian, token vào/ra, chi phí, model, effort, trạng thái kết thúc; giữ 20 lượt. Tóm tắt task trả `metrics` (lượt cuối + tổng); đầu khung chat hiện dòng "Lượt cuối", di chuột xem tổng.
+- **Kiểm thử:** lint, bộ Designer 159 đạt (2 test mới, Kyma giả lập); chưa thử AI thật và UI trình duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới, README Updates.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
