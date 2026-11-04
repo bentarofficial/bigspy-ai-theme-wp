@@ -11013,3 +11013,228 @@ msgstr ""
 msgid "This field’s mail tag is used in Mail or Mail (2). Remove it anyway? The tag will be empty."
 msgstr ""
 
+msgid "Pricing"
+msgstr ""
+
+msgid "Fixed amount"
+msgstr ""
+
+msgid "Quantity × unit price"
+msgstr ""
+
+msgid "Size: field × field × unit price"
+msgstr ""
+
+msgid "Price per choice"
+msgstr ""
+
+msgid "Quantity tiers"
+msgstr ""
+
+msgid "Surcharge / discount %"
+msgstr ""
+
+msgid "Formula"
+msgstr ""
+
+msgid "Enter a formula."
+msgstr ""
+
+msgid "The formula has a syntax error."
+msgstr ""
+
+msgid "Unknown names (fields, or lines above this one):"
+msgstr ""
+
+msgid "Weight (kg)"
+msgstr ""
+
+msgid "Pickup and delivery"
+msgstr ""
+
+msgid "Express"
+msgstr ""
+
+msgid "Demo prices: replace them before publishing."
+msgstr ""
+
+msgid "Washing"
+msgstr ""
+
+msgid "Package"
+msgstr ""
+
+msgid "Choose a package"
+msgstr ""
+
+msgid "Basic"
+msgstr ""
+
+msgid "Deep clean"
+msgstr ""
+
+msgid "Area (m²)"
+msgstr ""
+
+msgid "Preferred date"
+msgstr ""
+
+msgid "Package per m²"
+msgstr ""
+
+msgid "Replace the fields and price rules of this form with the demo template?"
+msgstr ""
+
+msgid "uses a removed field."
+msgstr ""
+
+msgid "applies to a line that is missing or below it."
+msgstr ""
+
+msgid "Show a price estimate"
+msgstr ""
+
+msgid "The visitor sees the price while filling in the form. The price is computed again on the server when it is sent."
+msgstr ""
+
+msgid "Template: laundry (demo)"
+msgstr ""
+
+msgid "Template: cleaning (demo)"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "Decimals"
+msgstr ""
+
+msgid "Minimum total"
+msgstr ""
+
+msgid "Round total to"
+msgstr ""
+
+msgid "e.g. 1000; 0 = no rounding"
+msgstr ""
+
+msgid "Note under the price (included / not included)"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "Quantity field"
+msgstr ""
+
+msgid "Unit price"
+msgstr ""
+
+msgid "First size field"
+msgstr ""
+
+msgid "Second size field"
+msgstr ""
+
+msgid "Minimum billed size"
+msgstr ""
+
+msgid "Choice field"
+msgstr ""
+
+msgid "Empty = price to be confirmed"
+msgstr ""
+
+msgid "Multiply by (optional)"
+msgstr ""
+
+msgid "Tier mode"
+msgstr ""
+
+msgid "Whole quantity at the reached tier price"
+msgstr ""
+
+msgid "Each part at its own tier price"
+msgstr ""
+
+msgid "From quantity"
+msgstr ""
+
+msgid "Remove tier"
+msgstr ""
+
+msgid "Add tier"
+msgstr ""
+
+msgid "Percent (negative = discount)"
+msgstr ""
+
+msgid "Apply to (none ticked = all lines above):"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Use + - * / ( ), > < >= <= == !=, min() max() round(x, step) ceil() floor() if(condition, a, b). Names:"
+msgstr ""
+
+msgid "Line label"
+msgstr ""
+
+msgid "How it is priced"
+msgstr ""
+
+msgid "Apply only when…"
+msgstr ""
+
+msgid "Apply this line when"
+msgstr ""
+
+msgid "Name in formulas:"
+msgstr ""
+
+msgid "Remove line"
+msgstr ""
+
+msgid "New price line"
+msgstr ""
+
+msgid "Add price line"
+msgstr ""
+
+msgid "Used in the conditions or price lines of:"
+msgstr ""
+
+msgid "Choose more details to see the price."
+msgstr ""
+
+msgid "Price to be confirmed"
+msgstr ""
+
+msgid "Estimated total"
+msgstr ""
+
+msgid "Not enough information to price"
+msgstr ""
+
+msgid "price to be confirmed"
+msgstr ""
+
+msgid "The price is now %s. Please check it and send again to accept it."
+msgstr ""
+
+msgid "Estimate"
+msgstr ""
+
+msgid "To be confirmed"
+msgstr ""
+
+msgid "Not priced"
+msgstr ""
+
+msgid "Price details"
+msgstr ""
+
+msgid "Price status"
+msgstr ""
+

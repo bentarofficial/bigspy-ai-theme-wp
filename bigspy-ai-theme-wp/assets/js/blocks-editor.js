@@ -2798,20 +2798,23 @@
 			return el(ctl, { label: label, help: help, rows: rows, value: a[key] || '', placeholder: D[key] || '', onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true });
 		};
 		var tog = function (key, label) { return el(c.ToggleControl, { label: label, checked: a[key] === undefined ? !!D[key] : !!a[key], onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true }); };
-		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]';
-		var TABS = [['fields', __('Fields', T)], ['mail', __('Mail', T)], ['mail2', __('Mail (2)', T)], ['messages', __('Messages', T)], ['actions', __('Actions', T)]];
+		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + (a.pricing && a.pricing.enabled ? ' [price-total] [price-lines] [price-status]' : '') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]';
+		var TABS = [['fields', __('Fields', T)], ['pricing', __('Pricing', T)], ['mail', __('Mail', T)], ['mail2', __('Mail (2)', T)], ['messages', __('Messages', T)], ['actions', __('Actions', T)]];
 		var body;
 		var NF_OPS = [['filled', __('is filled', T)], ['empty', __('is empty', T)], ['is', __('is', T)], ['not', __('is not', T)], ['gt', __('greater than', T)], ['lt', __('less than', T)]];
 		var nfWhen = function (f, i) {
-			var when = f.when && f.when.rules ? f.when : null;
-			var setWhen = function (w) { upd(i, 'when', w && w.rules.length ? w : undefined); };
-			var others = fields.filter(function (x) { return nfId(x) !== nfId(f) && x.type !== 'file'; });
+			return nfWhenUI(f.when, function (w) { upd(i, 'when', w); }, nfId(f), __('Show only when…', T), __('Show this field when', T));
+		};
+		var nfWhenUI = function (w0, setW, selfId, addLabel, groupLabel) {
+			var when = w0 && w0.rules ? w0 : null;
+			var setWhen = function (w) { setW(w && w.rules.length ? w : undefined); };
+			var others = fields.filter(function (x) { return nfId(x) !== selfId && x.type !== 'file'; });
 			if (!when) {
-				return others.length ? el(c.Button, { variant: 'secondary', size: 'small', icon: 'visibility', onClick: function () { setWhen({ logic: 'all', rules: [{ field: nfId(others[0]), op: 'filled', value: '' }] }); } }, __('Show only when…', T)) : null;
+				return others.length ? el(c.Button, { variant: 'secondary', size: 'small', icon: 'visibility', onClick: function () { setWhen({ logic: 'all', rules: [{ field: nfId(others[0]), op: 'filled', value: '' }] }); } }, addLabel) : null;
 			}
 			var setRule = function (k, key, v) { setWhen({ logic: when.logic, rules: when.rules.map(function (r, j) { if (j !== k) { return r; } var n = Object.assign({}, r); n[key] = v; return n; }) }); };
 			return el('div', { className: 'bst-nf-when' },
-				el(c.SelectControl, { label: __('Show this field when', T), value: when.logic, options: [{ value: 'all', label: __('all rules match', T) }, { value: 'any', label: __('any rule matches', T) }], onChange: function (v) { setWhen({ logic: v, rules: when.rules }); }, __nextHasNoMarginBottom: true }),
+				el(c.SelectControl, { label: groupLabel, value: when.logic, options: [{ value: 'all', label: __('all rules match', T) }, { value: 'any', label: __('any rule matches', T) }], onChange: function (v) { setWhen({ logic: v, rules: when.rules }); }, __nextHasNoMarginBottom: true }),
 				when.rules.map(function (r, k) {
 					var ref = fields.filter(function (x) { return nfId(x) === r.field; })[0];
 					var opts = ref && ['select', 'radio', 'checkbox'].indexOf(ref.type) !== -1 ? String(ref.options || '').split(/\r\n|\r|\n|,/).map(function (o) { return o.trim(); }).filter(Boolean) : [];
@@ -2828,6 +2831,148 @@
 				el(c.Button, { variant: 'link', onClick: function () { setWhen({ logic: when.logic, rules: when.rules.concat([{ field: others.length ? nfId(others[0]) : '', op: 'filled', value: '' }]) }); } }, __('Add rule', T))
 			);
 		};
+		/* G-58 pricing tab: lines priced from fields, checked again on the server (inc/form-pricing.php). */
+		var pr = a.pricing && typeof a.pricing === 'object' && !Array.isArray(a.pricing) ? a.pricing : {};
+		var setPr = function (patch) { props.setAttributes({ pricing: Object.assign({}, pr, patch) }); };
+		var lines = pr.lines || [];
+		var setLines = function (n) { setPr({ lines: n }); };
+		var updL = function (k, key, v) { setLines(lines.map(function (l, j) { if (j !== k) { return l; } var n = Object.assign({}, l); n[key] = v; return n; })); };
+		var openLine = useState(0);
+		var KINDS = [['fixed', __('Fixed amount', T)], ['qty', __('Quantity × unit price', T)], ['area', __('Size: field × field × unit price', T)], ['option', __('Price per choice', T)], ['tier', __('Quantity tiers', T)], ['percent', __('Surcharge / discount %', T)], ['formula', __('Formula', T)]];
+		var fieldOpts = function (types) {
+			return [{ value: '', label: '—' }].concat(fields.filter(function (f) { return !types || types.indexOf(f.type) !== -1; }).map(function (f) { return { value: nfId(f), label: f.label || f.name }; }));
+		};
+		var NUMERIC = ['number', 'text', 'select', 'radio'];
+		var CHOICE = ['select', 'radio', 'checkbox'];
+		var num = function (k, key, label, help) {
+			return el(c.TextControl, { label: label, help: help, type: 'number', value: lines[k][key] === undefined ? '' : lines[k][key], onChange: function (v) { updL(k, key, v === '' ? '' : parseFloat(v)); }, __nextHasNoMarginBottom: true });
+		};
+		var exprProblem = function (expr, k) {
+			var known = fields.map(nfId).concat(lines.slice(0, k).map(function (l) { return l.id; }));
+			var src = String(expr || '').trim();
+			if (!src) { return __('Enter a formula.', T); }
+			var rest = src.replace(/\s*(\d+(?:\.\d+)?|\{[a-z0-9_-]+\}|min|max|round|ceil|floor|if|>=|<=|==|!=|[-+*\/(),<>])/g, '');
+			var depth = 0, okParen = true;
+			src.split('').forEach(function (ch) { if (ch === '(') { depth++; } if (ch === ')') { depth--; if (depth < 0) { okParen = false; } } });
+			if (rest.trim() !== '' || depth !== 0 || !okParen) { return __('The formula has a syntax error.', T); }
+			var unknown = (src.match(/\{[a-z0-9_-]+\}/g) || []).map(function (x) { return x.slice(1, -1); }).filter(function (id) { return known.indexOf(id) === -1; });
+			return unknown.length ? __('Unknown names (fields, or lines above this one):', T) + ' ' + unknown.join(', ') : '';
+		};
+		var preset = function (kind) {
+			var demo = ' (demo)';
+			var P = {
+				laundry: {
+					fields: [
+						{ id: 'f_name', type: 'text', name: 'your-name', label: __('Name', T), required: true, width: 'half' },
+						{ id: 'f_phone', type: 'tel', name: 'your-phone', label: __('Phone', T), required: true, width: 'half' },
+						{ id: 'f_kg', type: 'number', name: 'kg', label: __('Weight (kg)', T), required: true, width: 'half' },
+						{ id: 'f_ship', type: 'checkbox', name: 'pickup', label: __('Pickup and delivery', T), options: __('Pickup and delivery', T), width: 'half' },
+						{ id: 'f_fast', type: 'checkbox', name: 'express', label: __('Express', T), options: __('Express', T), width: 'full' },
+						{ id: 'f_addr', type: 'text', name: 'address', label: __('Address', T), required: true, width: 'full', when: { logic: 'all', rules: [{ field: 'f_ship', op: 'filled', value: '' }] } }
+					],
+					pricing: { enabled: true, currency: 'VND', decimals: 0, note: __('Demo prices: replace them before publishing.', T), lines: [
+						{ id: 'l_wash', kind: 'qty', label: __('Washing', T) + demo, field: 'f_kg', unit: 18000 },
+						{ id: 'l_ship', kind: 'fixed', label: __('Pickup and delivery', T) + demo, amount: 25000, when: { logic: 'all', rules: [{ field: 'f_ship', op: 'filled', value: '' }] } },
+						{ id: 'l_fast', kind: 'percent', label: __('Express', T) + ' +20%' + demo, pct: 20, targets: ['l_wash'], when: { logic: 'all', rules: [{ field: 'f_fast', op: 'filled', value: '' }] } }
+					] }
+				},
+				cleaning: {
+					fields: [
+						{ id: 'f_name', type: 'text', name: 'your-name', label: __('Name', T), required: true, width: 'half' },
+						{ id: 'f_phone', type: 'tel', name: 'your-phone', label: __('Phone', T), required: true, width: 'half' },
+						{ id: 'f_pkg', type: 'select', name: 'package', label: __('Package', T), placeholder: __('Choose a package', T), options: __('Basic', T) + '\n' + __('Deep clean', T), required: true, width: 'half' },
+						{ id: 'f_m2', type: 'number', name: 'area', label: __('Area (m²)', T), required: true, width: 'half' },
+						{ id: 'f_date', type: 'date', name: 'date', label: __('Preferred date', T), width: 'full' }
+					],
+					pricing: { enabled: true, currency: 'VND', decimals: 0, minTotal: 300000, roundStep: 1000, note: __('Demo prices: replace them before publishing.', T), lines: [
+						{ id: 'l_pkg', kind: 'option', label: __('Package per m²', T) + demo, field: 'f_pkg', qtyField: 'f_m2', prices: (function () { var o = {}; o[__('Basic', T)] = 12000; o[__('Deep clean', T)] = 20000; return o; })() }
+					] }
+				}
+			}[kind];
+			if (window.confirm(__('Replace the fields and price rules of this form with the demo template?', T))) {
+				props.setAttributes({ fields: P.fields, pricing: P.pricing, schemaVersion: 1 });
+			}
+		};
+		var nfPricing = function () {
+			var on = !!pr.enabled;
+			var problems = [];
+			lines.forEach(function (l, k) {
+				if (l.kind === 'formula') { var e = exprProblem(l.expr, k); if (e) { problems.push((l.label || l.id) + ': ' + e); } }
+				['field', 'field2', 'qtyField'].forEach(function (key) { if (l[key] && !fields.some(function (f) { return nfId(f) === l[key]; })) { problems.push((l.label || l.id) + ': ' + __('uses a removed field.', T)); } });
+				(l.targets || []).forEach(function (t) { if (!lines.slice(0, k).some(function (x) { return x.id === t; })) { problems.push((l.label || l.id) + ': ' + __('applies to a line that is missing or below it.', T)); } });
+			});
+			return el(Fragment, null,
+				el(c.ToggleControl, { label: __('Show a price estimate', T), help: __('The visitor sees the price while filling in the form. The price is computed again on the server when it is sent.', T), checked: on, onChange: function (v) { setPr({ enabled: v, currency: pr.currency || 'VND', lines: lines }); }, __nextHasNoMarginBottom: true }),
+				el('div', { className: 'bst-nf-row' },
+					el(c.Button, { variant: 'secondary', size: 'small', onClick: function () { preset('laundry'); } }, __('Template: laundry (demo)', T)),
+					el(c.Button, { variant: 'secondary', size: 'small', onClick: function () { preset('cleaning'); } }, __('Template: cleaning (demo)', T))
+				),
+				!on ? null : el(Fragment, null,
+					problems.length ? el(c.Notice, { status: 'error', isDismissible: false }, problems.map(function (m, k) { return el('div', { key: k }, m); })) : null,
+					el('div', { className: 'bst-nf-row' },
+						el(c.TextControl, { label: __('Currency', T), value: pr.currency || 'VND', onChange: function (v) { setPr({ currency: v.toUpperCase().slice(0, 3) }); }, __nextHasNoMarginBottom: true }),
+						el(c.SelectControl, { label: __('Decimals', T), value: String(pr.decimals || 0), options: [{ value: '0', label: '0' }, { value: '2', label: '2' }], onChange: function (v) { setPr({ decimals: parseInt(v, 10) }); }, __nextHasNoMarginBottom: true })
+					),
+					el('div', { className: 'bst-nf-row' },
+						el(c.TextControl, { label: __('Minimum total', T), type: 'number', value: pr.minTotal || '', onChange: function (v) { setPr({ minTotal: parseFloat(v) || 0 }); }, __nextHasNoMarginBottom: true }),
+						el(c.TextControl, { label: __('Round total to', T), help: __('e.g. 1000; 0 = no rounding', T), type: 'number', value: pr.roundStep || '', onChange: function (v) { setPr({ roundStep: parseFloat(v) || 0 }); }, __nextHasNoMarginBottom: true })
+					),
+					el(c.TextControl, { label: __('Note under the price (included / not included)', T), value: pr.note || '', onChange: function (v) { setPr({ note: v }); }, __nextHasNoMarginBottom: true }),
+					lines.map(function (l, k) {
+						var open = openLine[0] === k;
+						var ref = fields.filter(function (f) { return nfId(f) === l.field; })[0];
+						var choices = ref ? String(ref.options || '').split(/\r\n|\r|\n|,/).map(function (o) { return o.trim(); }).filter(Boolean) : [];
+						var kindBody;
+						switch (l.kind) {
+							case 'fixed': kindBody = num(k, 'amount', __('Amount', T)); break;
+							case 'qty': kindBody = el(Fragment, null, el(c.SelectControl, { label: __('Quantity field', T), value: l.field || '', options: fieldOpts(NUMERIC), onChange: function (v) { updL(k, 'field', v); }, __nextHasNoMarginBottom: true }), num(k, 'unit', __('Unit price', T))); break;
+							case 'area': kindBody = el(Fragment, null,
+								el(c.SelectControl, { label: __('First size field', T), value: l.field || '', options: fieldOpts(NUMERIC), onChange: function (v) { updL(k, 'field', v); }, __nextHasNoMarginBottom: true }),
+								el(c.SelectControl, { label: __('Second size field', T), value: l.field2 || '', options: fieldOpts(NUMERIC), onChange: function (v) { updL(k, 'field2', v); }, __nextHasNoMarginBottom: true }),
+								num(k, 'unit', __('Unit price', T)), num(k, 'minQty', __('Minimum billed size', T))); break;
+							case 'option': kindBody = el(Fragment, null,
+								el(c.SelectControl, { label: __('Choice field', T), value: l.field || '', options: fieldOpts(CHOICE), onChange: function (v) { updL(k, 'field', v); }, __nextHasNoMarginBottom: true }),
+								choices.map(function (o) { return el(c.TextControl, { key: o, label: o, type: 'number', help: __('Empty = price to be confirmed', T), value: (l.prices || {})[o] === undefined ? '' : l.prices[o], onChange: function (v) { var n = Object.assign({}, l.prices || {}); if (v === '') { delete n[o]; } else { n[o] = parseFloat(v); } updL(k, 'prices', n); }, __nextHasNoMarginBottom: true }); }),
+								el(c.SelectControl, { label: __('Multiply by (optional)', T), value: l.qtyField || '', options: fieldOpts(NUMERIC), onChange: function (v) { updL(k, 'qtyField', v); }, __nextHasNoMarginBottom: true })); break;
+							case 'tier': kindBody = el(Fragment, null,
+								el(c.SelectControl, { label: __('Quantity field', T), value: l.field || '', options: fieldOpts(NUMERIC), onChange: function (v) { updL(k, 'field', v); }, __nextHasNoMarginBottom: true }),
+								el(c.SelectControl, { label: __('Tier mode', T), value: l.mode || 'all', options: [{ value: 'all', label: __('Whole quantity at the reached tier price', T) }, { value: 'step', label: __('Each part at its own tier price', T) }], onChange: function (v) { updL(k, 'mode', v); }, __nextHasNoMarginBottom: true }),
+								(l.tiers || []).map(function (tr, j) {
+									var setT = function (key, v) { updL(k, 'tiers', (l.tiers || []).map(function (x, q) { if (q !== j) { return x; } var n = Object.assign({}, x); n[key] = parseFloat(v) || 0; return n; })); };
+									return el('div', { key: j, className: 'bst-nf-rule' },
+										el(c.TextControl, { label: __('From quantity', T), type: 'number', value: tr.from, onChange: function (v) { setT('from', v); }, __nextHasNoMarginBottom: true }),
+										el(c.TextControl, { label: __('Unit price', T), type: 'number', value: tr.unit, onChange: function (v) { setT('unit', v); }, __nextHasNoMarginBottom: true }),
+										el(c.Button, { size: 'small', icon: 'no-alt', label: __('Remove tier', T), onClick: function () { updL(k, 'tiers', (l.tiers || []).filter(function (x, q) { return q !== j; })); } }));
+								}),
+								el(c.Button, { variant: 'link', onClick: function () { var t = l.tiers || []; updL(k, 'tiers', t.concat([{ from: t.length ? (t[t.length - 1].from || 0) + 1 : 1, unit: 0 }])); } }, __('Add tier', T))); break;
+							case 'percent': kindBody = el(Fragment, null,
+								num(k, 'pct', __('Percent (negative = discount)', T)),
+								el('p', { className: 'description' }, __('Apply to (none ticked = all lines above):', T)),
+								lines.slice(0, k).map(function (x) { return el(c.CheckboxControl, { key: x.id, label: x.label || x.id, checked: (l.targets || []).indexOf(x.id) !== -1, onChange: function (v) { var t = (l.targets || []).filter(function (y) { return y !== x.id; }); updL(k, 'targets', v ? t.concat([x.id]) : t); }, __nextHasNoMarginBottom: true }); })); break;
+							default: kindBody = el(Fragment, null,
+								el(c.TextControl, { label: __('Formula', T), value: l.expr || '', placeholder: '{f_kg} * 18000', onChange: function (v) { updL(k, 'expr', v); }, help: exprProblem(l.expr, k) || __('OK', T), __nextHasNoMarginBottom: true }),
+								el('p', { className: 'description' }, __('Use + - * / ( ), > < >= <= == !=, min() max() round(x, step) ceil() floor() if(condition, a, b). Names:', T), el('code', { className: 'bst-nf-tags' }, fields.map(function (f) { return '{' + nfId(f) + '} ' + (f.label || f.name); }).concat(lines.slice(0, k).map(function (x) { return '{' + x.id + '} ' + (x.label || ''); })).join(' · '))));
+						}
+						return el('div', { key: l.id || k, className: 'bst-nf-item' + (open ? ' is-open' : '') },
+							el('div', { className: 'bst-nf-item__head' },
+								el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openLine[1](open ? -1 : k); } }, el('strong', null, l.label || l.id), el('small', null, (KINDS.filter(function (x) { return x[0] === l.kind; })[0] || ['', l.kind])[1])),
+								el(c.Button, { size: 'small', icon: 'arrow-up-alt2', label: __('Move up', T), disabled: k === 0, onClick: function () { var n = lines.slice(); var t = n[k]; n[k] = n[k - 1]; n[k - 1] = t; setLines(n); openLine[1](k - 1); } }),
+								el(c.Button, { size: 'small', icon: 'arrow-down-alt2', label: __('Move down', T), disabled: k === lines.length - 1, onClick: function () { var n = lines.slice(); var t = n[k]; n[k] = n[k + 1]; n[k + 1] = t; setLines(n); openLine[1](k + 1); } })
+							),
+							open ? el('div', { className: 'bst-nf-item__body' },
+								el(c.TextControl, { label: __('Line label', T), value: l.label || '', onChange: function (v) { updL(k, 'label', v); }, __nextHasNoMarginBottom: true }),
+								el(c.SelectControl, { label: __('How it is priced', T), value: l.kind, options: KINDS.map(function (x) { return { value: x[0], label: x[1] }; }), onChange: function (v) { updL(k, 'kind', v); }, __nextHasNoMarginBottom: true }),
+								kindBody,
+								nfWhenUI(l.when, function (w) { updL(k, 'when', w); }, '', __('Apply only when…', T), __('Apply this line when', T)),
+								el('p', { className: 'description' }, __('Name in formulas:', T) + ' {' + l.id + '}'),
+								el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { setLines(lines.filter(function (x, j) { return j !== k; })); openLine[1](-1); } }, __('Remove line', T))
+							) : null
+						);
+					}),
+					el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var id, ids = lines.map(function (l) { return l.id; }); do { id = 'l_' + Math.random().toString(36).slice(2, 7); } while (ids.indexOf(id) !== -1); setLines(lines.concat([{ id: id, kind: 'fixed', label: __('New price line', T), amount: 0 }])); openLine[1](lines.length); } }, __('Add price line', T))
+				)
+			);
+		};
 		var schemaErrs = nfErrors(fields);
 		var nameOf = function (id) { var x = fields.filter(function (f) { return nfId(f) === id; })[0]; return x ? (x.label || x.name) : id; };
 		var ERR = { missing: __('%1$s: a condition uses a removed field.', T), self: __('%1$s: a condition uses the field itself.', T), cycle: __('%1$s and %2$s depend on each other; the condition is ignored.', T) };
@@ -2837,7 +2982,10 @@
 				fields.map(function (f, i) {
 					var open = openField[0] === i;
 					var needsOpts = ['select', 'radio', 'checkbox', 'file'].indexOf(f.type) !== -1;
-					var usedBy = nfUsedBy(fields, nfId(f));
+					var fid = nfId(f);
+					var usedBy = nfUsedBy(fields, fid).concat(((a.pricing && a.pricing.lines) || []).filter(function (l) {
+						return [l.field, l.field2, l.qtyField].indexOf(fid) !== -1 || String(l.expr || '').indexOf('{' + fid + '}') !== -1 || ((l.when && l.when.rules) || []).some(function (r) { return r.field === fid; });
+					}));
 					return el('div', { key: i, className: 'bst-nf-item' + (open ? ' is-open' : '') },
 						el('div', { className: 'bst-nf-item__head' },
 							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : ''))),
@@ -2855,7 +3003,7 @@
 								el(c.ToggleControl, { label: __('Half width', T), checked: f.width === 'half', onChange: function (v) { upd(i, 'width', v ? 'half' : 'full'); }, __nextHasNoMarginBottom: true })
 							),
 							nfWhen(f, i),
-							usedBy.length ? el(c.Notice, { status: 'warning', isDismissible: false }, __('Used in the conditions of:', T) + ' ' + usedBy.map(function (x) { return x.label || x.name; }).join(', ') + '. ' + __('Change those conditions before removing this field.', T)) : null,
+							usedBy.length ? el(c.Notice, { status: 'warning', isDismissible: false }, __('Used in the conditions or price lines of:', T) + ' ' + usedBy.map(function (x) { return x.label || x.name; }).join(', ') + '. ' + __('Change those conditions before removing this field.', T)) : null,
 							el(c.Button, { variant: 'link', isDestructive: true, disabled: !!usedBy.length, onClick: function () {
 								if (nfMailUses(a, D, f.name) && !window.confirm(__('This field’s mail tag is used in Mail or Mail (2). Remove it anyway? The tag will be empty.', T))) { return; }
 								setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1);
@@ -2867,6 +3015,8 @@
 				txt('submitText', __('Send button text', T)),
 				txt('formName', __('Form name (shown in Form entries)', T))
 			);
+		} else if (tab[0] === 'pricing') {
+			body = nfPricing();
 		} else if (tab[0] === 'mail') {
 			body = el(Fragment, null,
 				el('p', { className: 'description' }, __('Mail tags you can use:', T), el('code', { className: 'bst-nf-tags' }, tags)),

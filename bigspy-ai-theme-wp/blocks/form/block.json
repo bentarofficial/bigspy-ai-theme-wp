@@ -219,6 +219,10 @@
 			"type": "array",
 			"default": []
 		},
+		"pricing": {
+			"type": "object",
+			"default": {}
+		},
 		"schemaVersion": {
 			"type": "number",
 			"default": 0

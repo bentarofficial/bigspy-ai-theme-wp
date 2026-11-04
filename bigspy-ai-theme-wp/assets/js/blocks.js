@@ -1004,6 +1004,7 @@ document.addEventListener('wpcf7mailsent', function (e) {
 			wraps[id].querySelectorAll('input, select, textarea').forEach(function (c) { c.disabled = !on; });
 		});
 	};
+	window.bstNF = { value: value, match: match, apply: apply };
 	var init = function () {
 		document.querySelectorAll('[data-bs-native-form]').forEach(function (form) {
 			if (form.querySelector('[data-bs-when]')) {
@@ -1014,6 +1015,215 @@ document.addEventListener('wpcf7mailsent', function (e) {
 			}
 		});
 	};
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+})();
+
+/*
+ * Built-in form price preview (G-58): same rules as bst_pricing_quote() in
+ * inc/form-pricing.php. Only a preview: the server computes the price again and
+ * asks the visitor to accept it when it differs.
+ */
+(function () {
+	var num = function (v) {
+		v = String(v).replace(/[\s\u00a0]/g, '');
+		if (/^-?\d+,\d+$/.test(v)) { v = v.replace(',', '.'); }
+		return /^[-+]?(\d+\.?\d*|\.\d+)([eE][-+]?\d+)?$/.test(v) ? parseFloat(v) : null;
+	};
+	var minor = function (x, d) { x = x * Math.pow(10, d); return x < 0 ? -Math.floor(-x + 0.5 + 1e-9) : Math.floor(x + 0.5 + 1e-9); };
+	var pround = function (x) { return x < 0 ? -Math.round(-x) : Math.round(x); };
+	var evalExpr = function (src, vars) {
+		var re = /\s*(\d+(?:\.\d+)?|\{[a-z0-9_-]+\}|[a-z]+|>=|<=|==|!=|[-+*\/(),<>])/y, t = [], m, at = 0;
+		src = String(src);
+		while (at < src.length) {
+			re.lastIndex = at;
+			m = re.exec(src);
+			if (!m) { return null; }
+			t.push(m[1]);
+			at = re.lastIndex;
+		}
+		var pos = 0, fail = false;
+		var peek = function () { return t[pos]; };
+		var expr;
+		var atom = function () {
+			var tok = t[pos++];
+			if (tok === undefined) { fail = true; return 0; }
+			if (/^\d/.test(tok)) { return parseFloat(tok); }
+			if (tok[0] === '{') { var v = vars(tok.slice(1, -1)); if (v === null) { fail = true; return 0; } return v; }
+			if (tok === '(') { var x = expr(); if (t[pos++] !== ')') { fail = true; } return x; }
+			if (/^[a-z]+$/.test(tok) && peek() === '(') {
+				pos++;
+				var args = [];
+				if (peek() !== ')') { do { args.push(expr()); } while (peek() === ',' && ++pos); }
+				if (t[pos++] !== ')') { fail = true; return 0; }
+				var n = args.length;
+				var step = function (fn) { if (n === 1) { return fn(args[0]); } if (n === 2 && args[1] > 0) { return fn(args[0] / args[1]) * args[1]; } fail = true; return 0; };
+				switch (tok) {
+					case 'min': if (!n) { fail = true; return 0; } return Math.min.apply(null, args);
+					case 'max': if (!n) { fail = true; return 0; } return Math.max.apply(null, args);
+					case 'round': return step(pround);
+					case 'ceil': return step(Math.ceil);
+					case 'floor': return step(Math.floor);
+					case 'if': if (n !== 3) { fail = true; return 0; } return args[0] ? args[1] : args[2];
+				}
+			}
+			fail = true;
+			return 0;
+		};
+		var unary = function () { if (peek() === '-') { pos++; return -unary(); } return atom(); };
+		var term = function () {
+			var v = unary();
+			while (peek() === '*' || peek() === '/') {
+				var op = t[pos++], r = unary();
+				if (op === '/' && r === 0) { fail = true; return 0; }
+				v = op === '*' ? v * r : v / r;
+			}
+			return v;
+		};
+		var sum = function () {
+			var v = term();
+			while (peek() === '+' || peek() === '-') { var op = t[pos++]; v = op === '+' ? v + term() : v - term(); }
+			return v;
+		};
+		expr = function () {
+			var v = sum(), op = peek();
+			if (['>', '<', '>=', '<=', '==', '!='].indexOf(op) !== -1) {
+				pos++;
+				var r = sum();
+				return ({ '>': v > r, '<': v < r, '>=': v >= r, '<=': v <= r, '==': Math.abs(v - r) < 1e-9, '!=': Math.abs(v - r) >= 1e-9 })[op] ? 1 : 0;
+			}
+			return v;
+		};
+		var v = expr();
+		return fail || pos !== t.length || !isFinite(v) || Math.abs(v) > 1e12 ? null : v;
+	};
+	var fmt = function (m, cur, d) {
+		var v = (Math.abs(m) / Math.pow(10, d)).toFixed(d).split('.');
+		var sep = cur === 'VND' ? '.' : ',';
+		var s = (m < 0 ? '-' : '') + v[0].replace(/\B(?=(\d{3})+(?!\d))/g, sep) + (d ? (cur === 'VND' ? ',' : '.') + v[1] : '');
+		return cur === 'VND' ? s + ' ₫' : s + ' ' + cur;
+	};
+	var quote = function (form, cfg) {
+		var p = cfg.p, d = p.decimals, wraps = {}, status = 'ok', amounts = {}, order = [], out = [];
+		form.querySelectorAll('[data-bs-fid]').forEach(function (w) { wraps[w.getAttribute('data-bs-fid')] = w; });
+		var raw = function (fid) { var w = wraps[fid]; return w && !w.hidden ? window.bstNF.value(form, w) : ''; };
+		var soft = function () { if (status !== 'confirm') { status = 'incomplete'; } };
+		var need = function (fid) { var n = num(raw(fid)); if (n === null) { soft(); } return n; };
+		var lineOn = function (when) {
+			if (!when || !when.rules) { return true; }
+			var res = when.rules.filter(function (r) { return !!wraps[r.field]; }).map(function (r) { return window.bstNF.match(r, raw(r.field)); });
+			return !res.length || (when.logic === 'any' ? res.indexOf(true) !== -1 : res.indexOf(false) === -1);
+		};
+		p.lines.forEach(function (l) {
+			if (!lineOn(l.when)) { return; }
+			var amount = null, unit = parseFloat(l.unit || 0), q, a, b;
+			switch (l.kind) {
+				case 'fixed': amount = parseFloat(l.amount || 0); break;
+				case 'qty': q = need(l.field || ''); amount = q === null ? null : q * unit; break;
+				case 'area':
+					a = need(l.field || ''); b = need(l.field2 || '');
+					amount = a === null || b === null ? null : Math.max(a * b, parseFloat(l.minQty || 0)) * unit;
+					break;
+				case 'option':
+					var picked = raw(l.field || '');
+					if (picked === '') { soft(); break; }
+					var prices = l.prices || {};
+					amount = 0;
+					picked.split(', ').forEach(function (c) {
+						var pr = Object.prototype.hasOwnProperty.call(prices, c) ? num(prices[c]) : null;
+						if (pr === null) { status = 'confirm'; return; }
+						amount += pr;
+					});
+					if (l.qtyField) { q = need(l.qtyField); amount = q === null ? null : amount * q; }
+					break;
+				case 'tier':
+					q = need(l.field || '');
+					var tiers = (l.tiers || []).filter(function (x) { return x && typeof x === 'object'; }).slice().sort(function (x, y) { return parseFloat(x.from || 0) - parseFloat(y.from || 0); });
+					if (q === null) { break; }
+					if (!tiers.length || q < parseFloat(tiers[0].from || 0)) { status = 'confirm'; break; }
+					if ((l.mode || 'all') === 'step') {
+						amount = 0;
+						tiers.forEach(function (tr, i) {
+							var from = parseFloat(tr.from || 0), to = tiers[i + 1] ? parseFloat(tiers[i + 1].from) : Infinity;
+							if (q > from) { amount += (Math.min(q, to) - from) * parseFloat(tr.unit || 0); }
+						});
+					} else {
+						var u = 0;
+						tiers.forEach(function (tr) { if (q >= parseFloat(tr.from || 0)) { u = parseFloat(tr.unit || 0); } });
+						amount = q * u;
+					}
+					break;
+				case 'percent':
+					var targets = l.targets || [], base = 0;
+					order.forEach(function (id) { if (!targets.length || targets.indexOf(id) !== -1) { base += amounts[id]; } });
+					amount = base / Math.pow(10, d) * parseFloat(l.pct || 0) / 100;
+					break;
+				case 'formula':
+					var missing = false;
+					amount = evalExpr(String(l.expr || '').trim(), function (id) {
+						if (id in amounts) { return amounts[id] / Math.pow(10, d); }
+						if (wraps[id]) { var n = num(raw(id)); if (n === null) { missing = true; } return n; }
+						return 0;
+					});
+					if (amount === null) { if (missing) { soft(); } else { status = 'confirm'; } }
+					break;
+			}
+			if (amount === null) { return; }
+			var m = minor(amount, d);
+			if (!(l.id in amounts)) { order.push(l.id); }
+			amounts[l.id] = m;
+			out.push({ id: l.id, label: l.label, amount: m });
+		});
+		var total = order.reduce(function (s, id) { return s + amounts[id]; }, 0);
+		if (p.roundStep > 0) { var st = Math.max(1, minor(p.roundStep, d)); total = pround(total / st) * st; }
+		if (total < 0) { total = 0; status = 'confirm'; }
+		var mn = minor(p.minTotal || 0, d);
+		if (total < mn) { total = mn; }
+		return { status: status, lines: out, total: total };
+	};
+	var render = function (form, box, cfg, q) {
+		var p = cfg.p, i = cfg.i18n || {};
+		var ul = box.querySelector('.bs-nf-quote__lines');
+		ul.textContent = '';
+		if (q.status !== 'incomplete') {
+			q.lines.forEach(function (l) {
+				var li = document.createElement('li');
+				var a = document.createElement('span'); a.textContent = l.label || l.id;
+				var b = document.createElement('span'); b.textContent = fmt(l.amount, p.currency, p.decimals);
+				li.appendChild(a); li.appendChild(b); ul.appendChild(li);
+			});
+		}
+		var total = box.querySelector('.bs-nf-quote__total');
+		var text = q.status === 'incomplete' ? i.incomplete : (i.total + ': ' + fmt(q.total, p.currency, p.decimals) + (q.status === 'confirm' ? ' (' + i.confirm + ')' : ''));
+		if (total.textContent !== text) { total.textContent = text; }
+		box.classList.toggle('is-incomplete', q.status === 'incomplete');
+		box.classList.toggle('is-confirm', q.status === 'confirm');
+		box.querySelector('[name="bst_quote_seen"]').value = q.status + ':' + q.total;
+	};
+	var init = function () {
+		document.querySelectorAll('[data-bs-native-form] [data-bs-quote]').forEach(function (box) {
+			var form = box.closest('form'), cfg;
+			try { cfg = JSON.parse(box.getAttribute('data-bs-quote')); } catch (e) { return; }
+			var run = function () { if (window.bstNF) { window.bstNF.apply(form); } render(form, box, cfg, quote(form, cfg)); };
+			form.bstQuote = {
+				run: run,
+				// Server answer after a price change: take its rules (when they changed) and its total.
+				accept: function (res) {
+					if (res.config) { cfg.p = res.config.p; cfg.rev = res.config.rev; box.querySelector('[name="bst_quote_rev"]').value = res.rev; }
+					run();
+					box.querySelector('[name="bst_quote_seen"]').value = res.seen;
+				}
+			};
+			run();
+			form.addEventListener('input', run);
+			form.addEventListener('change', run);
+			form.addEventListener('reset', function () { setTimeout(run, 0); });
+		});
+	};
+	window.bstPricing = { quote: quote, evalExpr: evalExpr, fmt: fmt };
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', init);
 	} else {
@@ -1084,6 +1294,11 @@ document.addEventListener('submit', function (e) {
 	fetch(form.getAttribute('action'), { method: 'POST', body: data, credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (res) {
 		if (res.errors) {
 			Object.keys(res.errors).forEach(function (n) { tip(n, res.errors[n]); });
+			show(res.message, null);
+			return;
+		}
+		if (res.code === 'price_changed' && form.bstQuote) {
+			form.bstQuote.accept(res);
 			show(res.message, null);
 			return;
 		}

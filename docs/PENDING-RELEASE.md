@@ -15,7 +15,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 ### G-57 — Nền schema Form native
 
 - **Đã thay đổi:** `inc/form-schema.php` mới: mỗi trường có `id` cố định (form cũ nhận `n_<name>`, chuẩn hoá lặp không đổi dữ liệu), attr `schemaVersion`, điều kiện hiện/ẩn `when` (all/any; filled, empty, is, not, gt, lt), kiểm tra trường thiếu/tự tham chiếu/vòng lặp, danh sách nơi dùng. Server tính lại hiển thị khi gửi: trường ẩn không bắt buộc, giá trị/tệp bị bỏ, mail-tag trống; điều kiện lỗi bị bỏ qua (không ẩn trường). Front (`blocks.js`) ẩn/hiện trực tiếp và disable trường ẩn. Editor: tạo id, giao diện “Chỉ hiện khi…”, báo lỗi điều kiện, chặn xoá trường đang được điều kiện dùng, cảnh báo khi xoá trường có mail-tag đang dùng; đổi nhãn không tự đổi `name` nếu mail đang dùng tag đó. CF7/WPForms không đổi.
-- **Kiểm thử:** `php -l`, `node --check`; test PHP cô lập 18/18 (migration lặp, id trùng, rename/reorder, ẩn dây chuyền, gt, vòng lặp/thiếu/tự tham chiếu, submit trường ẩn/hiện, form cũ không id); Chromium 5/5 trên markup thật (ẩn/hiện, gửi không kèm trường ẩn, không lỗi JS); hàm editor 4/4 khớp PHP. Chưa chạy được Playground (cloud `fetch failed`), chưa thử giao diện editor trong WordPress thật.
+- **Kiểm thử:** `php -l`, `node --check`; test PHP cô lập 17/17 (migration lặp, id trùng, rename/reorder, ẩn dây chuyền, gt, vòng lặp/thiếu/tự tham chiếu, submit trường ẩn/hiện, form cũ không id); Chromium 5/5 trên markup thật (ẩn/hiện, gửi không kèm trường ẩn, không lỗi JS); hàm editor 4/4 khớp PHP. Chưa chạy được Playground (cloud `fetch failed`), chưa thử giao diện editor trong WordPress thật.
 - **Khi phát hành cần bổ sung:** Có gì mới (điều kiện trường Form); kiến thức AI Form ở G-59.
 
 

@@ -3021,6 +3021,13 @@ input[type="submit"]:hover,
 .bs-native-form .bs-nf-req { color: #dc2626; }
 .bs-native-form .bs-nf-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .bs-native-form > .bs-nf-field[hidden] { display: none !important; }
+.bs-native-form > .bs-nf-quote { flex: 1 1 100%; margin: 4px 0 0; padding: 12px 14px; border: 1px solid var(--bs-border, #e5e7eb); border-radius: 8px; background: color-mix(in srgb, var(--bs-primary) 4%, transparent); }
+.bs-nf-quote__lines { list-style: none; margin: 0 0 6px; padding: 0; font-size: .92em; }
+.bs-nf-quote__lines li { display: flex; justify-content: space-between; gap: 12px; padding: 2px 0; }
+.bs-nf-quote__lines li span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.bs-nf-quote__total { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.bs-nf-quote.is-incomplete .bs-nf-quote__total { font-weight: 400; opacity: .8; }
+.bs-nf-quote__note { margin: 6px 0 0; font-size: .85em; opacity: .8; }
 .bs-native-form .bs-nf-submit { display: flex; align-items: center; gap: 10px; }
 .bs-native-form.submitting .wpcf7-submit { opacity: .7; cursor: wait; }
 .bs-native-form .wpcf7-response-output { margin: 4px 0 0; padding: 12px 14px; border: 1px solid; border-radius: var(--bs-form-radius, 8px); font-size: .95em; }

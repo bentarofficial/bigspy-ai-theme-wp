@@ -185,6 +185,12 @@ function bst_native_form_markup( $a ) {
 		}
 		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $wrap . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}
+	$pricing = bst_pricing_settings( $a['pricing'] ?? null );
+	if ( $pricing ) {
+		// Prices are public anyway; the server computes again on submit and compares the revision.
+		$cfg  = array( 'p' => $pricing, 'rev' => bst_pricing_revision( $pricing ), 'fields' => $s['fields'], 'i18n' => array( 'incomplete' => __( 'Choose more details to see the price.', 'bigspy-ai-theme-wp' ), 'confirm' => __( 'Price to be confirmed', 'bigspy-ai-theme-wp' ), 'total' => __( 'Estimated total', 'bigspy-ai-theme-wp' ) ) );
+		$out .= '<div class="bs-nf-quote" data-bs-quote="' . esc_attr( wp_json_encode( $cfg ) ) . '"><ul class="bs-nf-quote__lines"></ul><p class="bs-nf-quote__total" aria-live="polite" aria-atomic="true">' . esc_html__( 'Choose more details to see the price.', 'bigspy-ai-theme-wp' ) . '</p>' . ( '' !== $pricing['note'] ? '<p class="bs-nf-quote__note">' . esc_html( $pricing['note'] ) . '</p>' : '' ) . '<input type="hidden" name="bst_quote_rev" value="' . esc_attr( $cfg['rev'] ) . '"><input type="hidden" name="bst_quote_seen" value=""></div>';
+	}
 	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
 	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
 	$out .= '<div class="wpcf7-response-output" aria-live="polite" hidden></div>';
@@ -243,6 +249,11 @@ function bst_native_form_tags( $text, $values, $fields, $exclude_blank, $html = 
 		}
 		$label = ! empty( $f['label'] ) ? $f['label'] : $n;
 		$all[] = $html ? '<p><strong>' . esc_html( $label ) . ':</strong><br>' . nl2br( esc_html( $v ) ) . '</p>' : $label . ': ' . $v;
+	}
+	if ( isset( $values['price-total'] ) ) {
+		$label = __( 'Price', 'bigspy-ai-theme-wp' );
+		$lines = (string) ( $values['price-lines'] ?? '' );
+		$all[] = $html ? '<p><strong>' . esc_html( $label ) . ':</strong><br>' . nl2br( esc_html( $lines ) ) . ( '' !== $lines ? '<br>' : '' ) . '<strong>' . esc_html( $values['price-total'] ) . '</strong></p>' : $label . ":\n" . ( '' !== $lines ? $lines . "\n" : '' ) . '= ' . $values['price-total'];
 	}
 	$map = array(
 		'[all-fields]'         => implode( $html ? '' : "\n", $all ),
@@ -376,12 +387,42 @@ function bst_native_form_submit() {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgInvalid'], 'errors' => $errors ) );
 	}
 
+	// Price: always computed here from the saved rules; the browser total is only compared.
+	$quote   = null;
+	$pricing = bst_pricing_settings( $a['pricing'] ?? null );
+	if ( $pricing ) {
+		$quote = bst_pricing_quote( $pricing, $s['fields'], $values );
+		$rev   = bst_pricing_revision( $pricing );
+		$seen  = isset( $_POST['bst_quote_seen'] ) ? sanitize_text_field( wp_unslash( $_POST['bst_quote_seen'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$prev  = isset( $_POST['bst_quote_rev'] ) ? sanitize_key( wp_unslash( $_POST['bst_quote_rev'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$now   = $quote['status'] . ':' . $quote['total'];
+		if ( $prev !== $rev || $seen !== $now ) {
+			wp_send_json(
+				array(
+					'ok'      => false,
+					'code'    => 'price_changed',
+					/* translators: %s: new total */
+					'message' => sprintf( __( 'The price is now %s. Please check it and send again to accept it.', 'bigspy-ai-theme-wp' ), bst_pricing_total_text( $quote ) ),
+					'quote'   => $quote,
+					'rev'     => $rev,
+					'seen'    => $now,
+					'config'  => $prev !== $rev ? array( 'p' => $pricing, 'rev' => $rev ) : null,
+				)
+			);
+		}
+		$quote['rev']  = $rev;
+		$quote['time'] = time();
+		$values['price-total']  = bst_pricing_total_text( $quote );
+		$values['price-lines']  = bst_pricing_text( $quote );
+		$values['price-status'] = 'ok' === $quote['status'] ? __( 'Estimate', 'bigspy-ai-theme-wp' ) : ( 'confirm' === $quote['status'] ? __( 'To be confirmed', 'bigspy-ai-theme-wp' ) : __( 'Not priced', 'bigspy-ai-theme-wp' ) );
+	}
+
 	$sent = bst_native_form_send( 'mail', $s, $values, $files );
 	if ( $sent && ! empty( $s['mail2Active'] ) ) {
 		bst_native_form_send( 'mail2', $s, $values );
 	}
 	if ( ! empty( $s['saveEntries'] ) ) {
-		bst_native_form_save_entry( $s, $values, (int) ( $a['__post'] ?? 0 ), $sent );
+		bst_native_form_save_entry( $s, $values, (int) ( $a['__post'] ?? 0 ), $sent, $quote );
 	}
 	if ( ! $sent ) {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgError'] ) );
@@ -422,7 +463,7 @@ add_action(
 	}
 );
 
-function bst_native_form_save_entry( $s, $values, $post_id, $sent ) {
+function bst_native_form_save_entry( $s, $values, $post_id, $sent, $quote = null ) {
 	$first = '';
 	foreach ( $values as $v ) {
 		if ( '' !== $v ) {
@@ -439,9 +480,12 @@ function bst_native_form_save_entry( $s, $values, $post_id, $sent ) {
 	);
 	if ( $id && ! is_wp_error( $id ) ) {
 		update_post_meta( $id, '_bst_values', $values );
-		update_post_meta( $id, '_bst_fields', wp_list_pluck( $s['fields'], 'label', 'name' ) );
+		update_post_meta( $id, '_bst_fields', wp_list_pluck( $s['fields'], 'label', 'name' ) + array( 'price-total' => __( 'Price', 'bigspy-ai-theme-wp' ), 'price-lines' => __( 'Price details', 'bigspy-ai-theme-wp' ), 'price-status' => __( 'Price status', 'bigspy-ai-theme-wp' ) ) );
 		update_post_meta( $id, '_bst_source', $post_id );
 		update_post_meta( $id, '_bst_sent', $sent ? 1 : 0 );
+		if ( $quote ) {
+			update_post_meta( $id, '_bst_quote', $quote ); // Snapshot: lines, total, currency, rule revision, time.
+		}
 	}
 }
 

@@ -7180,3 +7180,225 @@ msgstr "Hãy sửa các điều kiện đó trước khi xoá trường này."
 msgid "This field’s mail tag is used in Mail or Mail (2). Remove it anyway? The tag will be empty."
 msgstr "Mail-tag của trường này đang dùng trong Mail hoặc Mail (2). Vẫn xoá? Tag đó sẽ để trống."
 
+msgid "Fixed amount"
+msgstr "Số tiền cố định"
+
+msgid "Quantity × unit price"
+msgstr "Số lượng × đơn giá"
+
+msgid "Size: field × field × unit price"
+msgstr "Kích thước: trường × trường × đơn giá"
+
+msgid "Price per choice"
+msgstr "Giá theo lựa chọn"
+
+msgid "Quantity tiers"
+msgstr "Bậc số lượng"
+
+msgid "Surcharge / discount %"
+msgstr "Phụ phí / giảm giá %"
+
+msgid "Formula"
+msgstr "Công thức"
+
+msgid "Enter a formula."
+msgstr "Nhập công thức."
+
+msgid "The formula has a syntax error."
+msgstr "Công thức sai cú pháp."
+
+msgid "Unknown names (fields, or lines above this one):"
+msgstr "Tên không tồn tại (trường, hoặc dòng giá phía trên):"
+
+msgid "Name"
+msgstr "Họ tên"
+
+msgid "Weight (kg)"
+msgstr "Khối lượng (kg)"
+
+msgid "Pickup and delivery"
+msgstr "Giao nhận tận nơi"
+
+msgid "Express"
+msgstr "Làm nhanh"
+
+msgid "Demo prices: replace them before publishing."
+msgstr "Giá demo: hãy thay trước khi công khai."
+
+msgid "Washing"
+msgstr "Tiền giặt"
+
+msgid "Package"
+msgstr "Gói dịch vụ"
+
+msgid "Choose a package"
+msgstr "Chọn gói"
+
+msgid "Deep clean"
+msgstr "Tổng vệ sinh"
+
+msgid "Area (m²)"
+msgstr "Diện tích (m²)"
+
+msgid "Preferred date"
+msgstr "Ngày mong muốn"
+
+msgid "Package per m²"
+msgstr "Gói theo m²"
+
+msgid "Replace the fields and price rules of this form with the demo template?"
+msgstr "Thay các trường và quy tắc giá của form này bằng mẫu demo?"
+
+msgid "uses a removed field."
+msgstr "dùng trường đã bị xoá."
+
+msgid "applies to a line that is missing or below it."
+msgstr "áp lên dòng không tồn tại hoặc nằm bên dưới."
+
+msgid "Show a price estimate"
+msgstr "Hiện giá ước tính"
+
+msgid "The visitor sees the price while filling in the form. The price is computed again on the server when it is sent."
+msgstr "Khách thấy giá khi điền form. Khi gửi, máy chủ tính lại giá."
+
+msgid "Template: laundry (demo)"
+msgstr "Mẫu: giặt là (demo)"
+
+msgid "Template: cleaning (demo)"
+msgstr "Mẫu: vệ sinh (demo)"
+
+msgid "Currency"
+msgstr "Tiền tệ"
+
+msgid "Decimals"
+msgstr "Số lẻ"
+
+msgid "Minimum total"
+msgstr "Tổng tối thiểu"
+
+msgid "Round total to"
+msgstr "Làm tròn tổng tới"
+
+msgid "e.g. 1000; 0 = no rounding"
+msgstr "vd. 1000; 0 = không làm tròn"
+
+msgid "Note under the price (included / not included)"
+msgstr "Ghi chú dưới giá (đã gồm / chưa gồm)"
+
+msgid "Amount"
+msgstr "Số tiền"
+
+msgid "Quantity field"
+msgstr "Trường số lượng"
+
+msgid "Unit price"
+msgstr "Đơn giá"
+
+msgid "First size field"
+msgstr "Trường kích thước thứ nhất"
+
+msgid "Second size field"
+msgstr "Trường kích thước thứ hai"
+
+msgid "Minimum billed size"
+msgstr "Kích thước tính tiền tối thiểu"
+
+msgid "Choice field"
+msgstr "Trường lựa chọn"
+
+msgid "Empty = price to be confirmed"
+msgstr "Để trống = cần xác nhận giá"
+
+msgid "Multiply by (optional)"
+msgstr "Nhân với (tuỳ chọn)"
+
+msgid "Tier mode"
+msgstr "Cách tính bậc"
+
+msgid "Whole quantity at the reached tier price"
+msgstr "Toàn bộ số lượng theo giá bậc đạt được"
+
+msgid "Each part at its own tier price"
+msgstr "Mỗi phần theo giá bậc của nó"
+
+msgid "From quantity"
+msgstr "Từ số lượng"
+
+msgid "Remove tier"
+msgstr "Xoá bậc"
+
+msgid "Add tier"
+msgstr "Thêm bậc"
+
+msgid "Percent (negative = discount)"
+msgstr "Phần trăm (âm = giảm giá)"
+
+msgid "Apply to (none ticked = all lines above):"
+msgstr "Áp lên (không chọn = mọi dòng phía trên):"
+
+msgid "OK"
+msgstr "Hợp lệ"
+
+msgid "Use + - * / ( ), > < >= <= == !=, min() max() round(x, step) ceil() floor() if(condition, a, b). Names:"
+msgstr "Dùng + - * / ( ), > < >= <= == !=, min() max() round(x, bước) ceil() floor() if(điều kiện, a, b). Tên:"
+
+msgid "Line label"
+msgstr "Nhãn dòng"
+
+msgid "How it is priced"
+msgstr "Cách tính"
+
+msgid "Apply only when…"
+msgstr "Chỉ áp khi…"
+
+msgid "Apply this line when"
+msgstr "Áp dòng này khi"
+
+msgid "Name in formulas:"
+msgstr "Tên trong công thức:"
+
+msgid "Remove line"
+msgstr "Xoá dòng"
+
+msgid "New price line"
+msgstr "Dòng giá mới"
+
+msgid "Add price line"
+msgstr "Thêm dòng giá"
+
+msgid "Used in the conditions or price lines of:"
+msgstr "Đang được dùng trong điều kiện hoặc dòng giá của:"
+
+msgid "Choose more details to see the price."
+msgstr "Chọn thêm thông tin để tính giá."
+
+msgid "Price to be confirmed"
+msgstr "Cần xác nhận giá"
+
+msgid "Estimated total"
+msgstr "Tổng ước tính"
+
+msgid "Not enough information to price"
+msgstr "Chưa đủ thông tin để tính giá"
+
+msgid "price to be confirmed"
+msgstr "cần xác nhận giá"
+
+msgid "The price is now %s. Please check it and send again to accept it."
+msgstr "Giá hiện là %s. Vui lòng kiểm tra và gửi lại để đồng ý."
+
+msgid "Estimate"
+msgstr "Ước tính"
+
+msgid "To be confirmed"
+msgstr "Cần xác nhận"
+
+msgid "Not priced"
+msgstr "Chưa có giá"
+
+msgid "Price details"
+msgstr "Chi tiết giá"
+
+msgid "Price status"
+msgstr "Trạng thái giá"
+
