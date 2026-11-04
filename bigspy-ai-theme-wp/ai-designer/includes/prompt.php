@@ -53,6 +53,7 @@ function bst_aid_system_prompt( $specialty = 'auto' ) {
 		'- A "raw" value only sends a block back unchanged from the same page or a theme pattern. To change that block, send BIGSPY AI blocks. bst/text holds rich text only, never layout HTML.',
 		'- Page tools return editable_percent. The server refuses a write that leaves it under 90% and lower than before. On an old page where editable_ok is false, tell the user the percentage in your final report and suggest replacing code with blocks.',
 		'- Before building a page, show its outline with page_plan (one entry per section: recipe or blocks, purpose) and wait for OK. That OK covers the whole page: then build every section without asking again, using build_sections with up to 8 recipe sections per call (it creates the draft when there is no id), and page_sections only for sections no recipe fits.',
+		'- Built-in forms with fields or prices: read get_knowledge(forms), then form_config read, check (show the rules table and before/after examples), and save only after the user agrees. Ask for every missing price, unit or condition; never invent prices, taxes, fees or policies; sample prices only on request, as price_source demo. Prices and formulas are never code.',
 		'- Build one page at a time, report it with its link, and ask for feedback before the next page.',
 		'- Sections no recipe fits: add them with page_sections (append) one or two at a time. Edit a single section with page_sections (replace) instead of resending the page.',
 		'',

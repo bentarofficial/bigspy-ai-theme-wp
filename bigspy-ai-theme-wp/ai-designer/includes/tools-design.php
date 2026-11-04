@@ -204,6 +204,9 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 			$attrs[ $key ] = $value;
 		}
 		$attrs = bst_aid_clean_block_attrs( $name, bst_aid_normalize_colors( $attrs ) );
+		if ( 'bst/form' === $name ) {
+			$attrs = bst_aid_form_page_attrs( $attrs, (array) ( $node['attrs'] ?? array() ), $issues, $where );
+		}
 		if ( 'bst/code' === $name && isset( $attrs['code'] ) ) {
 			$attrs['code'] = bst_aid_clean_code( $attrs['code'] );
 		}

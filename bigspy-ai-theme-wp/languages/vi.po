@@ -7402,3 +7402,9 @@ msgstr "Chi tiết giá"
 msgid "Price status"
 msgstr "Trạng thái giá"
 
+msgid "Form and prices"
+msgstr "Form và bảng giá"
+
+msgid "Edit the page, select the Form block, then change the fields and price rules in its Fields and Pricing panels. Check the price preview, then save."
+msgstr "Sửa trang, chọn khối Form rồi đổi trường và quy tắc giá ở các bảng Trường và Bảng giá. Kiểm tra phần xem trước giá rồi lưu."
+

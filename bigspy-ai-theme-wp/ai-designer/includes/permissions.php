@@ -36,11 +36,11 @@ function bst_aid_execution_busy( $task ) {
 function bst_aid_tool_policy( $name, $a ) {
 	if ( 'site_settings' === $name && empty( $a['values'] ) ) { return array( 'level' => 1, 'group' => 'read', 'write' => false ); }
 	$read = array( 'auto_detect_results', 'site_info', 'overview', 'get_knowledge', 'list_content', 'get_post', 'list_blocks', 'block_catalog', 'section_recipes', 'page_plan', 'style_options', 'block_schema', 'list_patterns', 'get_pattern', 'get_page', 'get_settings', 'get_menus', 'show_palette', 'list_media', 'check_page' );
-	if ( in_array( $name, $read, true ) || ( 'header_layout' === $name && 'set' !== ( $a['mode'] ?? 'read' ) ) || ( in_array( $name, array( 'ux_block', 'theme_layout' ), true ) && in_array( $a['mode'] ?? '', array( 'list', 'get' ), true ) ) ) {
+	if ( in_array( $name, $read, true ) || ( 'form_config' === $name && 'save' !== ( $a['mode'] ?? '' ) ) || ( 'header_layout' === $name && 'set' !== ( $a['mode'] ?? 'read' ) ) || ( in_array( $name, array( 'ux_block', 'theme_layout' ), true ) && in_array( $a['mode'] ?? '', array( 'list', 'get' ), true ) ) ) {
 		return array( 'level' => 1, 'group' => 'read', 'write' => false );
 	}
 	$groups = array(
-		'create_page' => 'content', 'update_page' => 'content', 'page_sections' => 'content', 'build_sections' => 'content', 'create_post' => 'content', 'update_post' => 'content', 'create_product' => 'content', 'update_product' => 'content', 'ux_block' => 'content', 'theme_layout' => 'content',
+		'create_page' => 'content', 'update_page' => 'content', 'page_sections' => 'content', 'build_sections' => 'content', 'create_post' => 'content', 'update_post' => 'content', 'create_product' => 'content', 'update_product' => 'content', 'ux_block' => 'content', 'theme_layout' => 'content', 'form_config' => 'content',
 		'ImageGen' => 'images', 'image_status' => 'images', 'optimize_image' => 'images', 'save_guidelines' => 'content', 'manual_checklist' => 'content',
 		'update_settings' => 'design', 'set_logo' => 'design', 'custom_css' => 'design', 'set_menu' => 'design', 'header_layout' => 'design', 'set_footer' => 'design', 'site_settings' => 'site', 'publish' => 'publish', 'seo_meta' => 'seo', 'install_plugin' => 'plugins', 'budget_extension' => 'budget',
 	);
@@ -52,7 +52,7 @@ function bst_aid_tool_policy( $name, $a ) {
 	if ( 'publish' === ( $a['status'] ?? '' ) || ! empty( $a['seo'] ) ) {
 		$level = 2;
 	}
-	if ( in_array( $name, array( 'update_page', 'page_sections', 'update_post', 'update_product', 'ux_block', 'theme_layout', 'optimize_image' ), true ) && ! empty( $a['id'] ) ) {
+	if ( in_array( $name, array( 'update_page', 'page_sections', 'update_post', 'update_product', 'ux_block', 'theme_layout', 'optimize_image', 'form_config' ), true ) && ! empty( $a['id'] ) ) {
 		$p = get_post( (int) $a['id'] );
 		if ( $p && ! in_array( $p->post_status, array( 'draft', 'auto-draft' ), true ) ) {
 			$level = 2;
@@ -83,6 +83,7 @@ function bst_aid_manual_steps( $name ) {
 		'set_menu' => __( 'Open Appearance → Menus, edit the menu and assign its display location. In Customize → Header builder, add the matching menu element.', 'bigspy-ai-theme-wp' ),
 		'seo_meta' => __( 'Edit the page or post. Open the Rank Math or Yoast panel, edit the SEO title and description, then save.', 'bigspy-ai-theme-wp' ),
 		'publish' => __( 'Open the content editor, review the preview, then click Publish.', 'bigspy-ai-theme-wp' ),
+		'form_config' => __( 'Edit the page, select the Form block, then change the fields and price rules in its Fields and Pricing panels. Check the price preview, then save.', 'bigspy-ai-theme-wp' ),
 	);
 	return $steps[ $name ] ?? __( 'Open the linked content editor or Appearance → Customize, review the proposed values below, apply them and save.', 'bigspy-ai-theme-wp' );
 }
@@ -141,13 +142,16 @@ function bst_aid_permission_gate( $name, $args ) {
 
 function bst_aid_approval_card( $p ) {
 	$post = ! empty( $p['args']['id'] ) ? get_post( (int) $p['args']['id'] ) : null;
+	if ( 'form_config' === $p['tool'] ) {
+		$post = null; // The card compares the form config, not the whole page.
+	}
 	return array(
 		'id' => $p['id'], 'tool' => $p['tool'], 'expires' => $p['expires'],
 		'scope' => __( 'This action can affect the public site or incur service costs.', 'bigspy-ai-theme-wp' ),
 		'cost' => in_array( $p['tool'], array( 'ImageGen', 'image_status' ), true ) ? __( 'Provider-dependent; billed to your API account. Review the selected image model price in Settings.', 'bigspy-ai-theme-wp' ) : __( 'No additional AI call for applying this approval; hosting or plugin charges may apply separately.', 'bigspy-ai-theme-wp' ),
 		'undo' => __( 'Task undo restores saved content/settings and deactivates a newly activated plugin. API charges and generated media are retained.', 'bigspy-ai-theme-wp' ),
 		'before' => $post ? array( 'title' => $post->post_title, 'status' => $post->post_status, 'content' => $post->post_content ) : bst_aid_approval_before( $p ),
-		'after' => $p['args'], 'preview' => $post ? get_preview_post_link( $post->ID ) : '', 'steps' => bst_aid_manual_steps( $p['tool'] ),
+		'after' => $p['args'], 'preview' => $post ? get_preview_post_link( $post->ID ) : ( 'form_config' === $p['tool'] && ! empty( $p['args']['id'] ) ? get_preview_post_link( (int) $p['args']['id'] ) : '' ), 'steps' => bst_aid_manual_steps( $p['tool'] ),
 	);
 }
 
@@ -163,6 +167,9 @@ function bst_aid_approval_before( $p ) {
 		$out = bst_get_header_layout();
 	} elseif ( 'set_menu' === $p['tool'] ) {
 		$out = bst_aid_tool_get_menus();
+	} elseif ( 'form_config' === $p['tool'] ) {
+		$read = bst_aid_tool_form_config( array( 'mode' => 'read' ) + $p['args'] );
+		$out  = array( 'page_status' => $read['status'] ?? '', 'fields' => $read['fields'] ?? array(), 'pricing' => $read['pricing'] ?? array(), 'rules' => $read['rules'] ?? array() );
 	}
 	return $out;
 }

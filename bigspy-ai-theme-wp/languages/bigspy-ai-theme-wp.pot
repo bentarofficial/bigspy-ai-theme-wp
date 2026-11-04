@@ -11238,3 +11238,9 @@ msgstr ""
 msgid "Price status"
 msgstr ""
 
+msgid "Form and prices"
+msgstr ""
+
+msgid "Edit the page, select the Form block, then change the fields and price rules in its Fields and Pricing panels. Check the price preview, then save."
+msgstr ""
+

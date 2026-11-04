@@ -69,7 +69,7 @@ return array(
 
 	'bst/buttons'             => array( array( 'cta' ), 'One or more calls to action.', '', 'Real link targets.', 'light', false, 'stackMobile.', '', '> bst/button with text, url' ),
 	'bst/popup'               => array( array( 'cta', 'contact' ), 'Form or offer opened from a button or after a delay.', 'Opening automatically on every visit.', '', 'light', false, '', 'bst/form', 'trigger, buttonText; inner blocks' ),
-	'bst/form'                => array( array( 'contact', 'cta' ), 'Contact, quote or booking form.', '', '', 'light', false, '', 'bst/map, bst/icon-list', 'provider, title' ),
+	'bst/form'                => array( array( 'contact', 'cta' ), 'Contact, quote or booking form.', '', '', 'light', false, '', 'bst/map, bst/icon-list', 'provider "bigspy" (built-in, can show prices), title; fields and prices only with form_config' ),
 	'bst/map'                 => array( array( 'contact' ), 'The business location.', 'Without a real address.', 'A real address.', 'medium', false, '', 'bst/form', 'address, zoom' ),
 	'bst/social'              => array( array( 'contact', 'social' ), 'Links to social profiles.', 'Invented profiles.', 'Real profile links.', 'light', false, '', '', 'facebook, zalo, … links' ),
 	'bst/share'               => array( array( 'social', 'blog' ), 'Share buttons on posts and products.', '', '', 'light', false, '', '', 'networks' ),

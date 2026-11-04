@@ -7,7 +7,7 @@ add_filter( 'bst_aid_tools', function ( $tools ) {
 	$i = array( 'type' => 'integer' );
 	$object = array( 'type' => 'object', 'additionalProperties' => true );
 	$defs = array(
-		'get_knowledge' => array( 'Read concise action guides. Topics: theme, wordpress.', array( 'topic' => array( 'type' => 'string', 'enum' => array( 'theme', 'wordpress' ) ) ), array( 'topic' ), 'edit_pages' ),
+		'get_knowledge' => array( 'Read concise action guides. Topics: theme, wordpress, forms (built-in Form fields and price rules).', array( 'topic' => array( 'type' => 'string', 'enum' => array( 'theme', 'wordpress', 'forms' ) ) ), array( 'topic' ), 'edit_pages' ),
 		'overview' => array( 'Discover registered blocks, patterns, Customizer fields, menu locations, UX Blocks, layouts, current header/footer and active plugin names.', array(), array(), 'edit_pages' ),
 		'ux_block' => array( 'List/get/create/update reusable UX Blocks. Create drafts first; use publish separately before assigning a footer.', array( 'mode' => array( 'type' => 'string', 'enum' => array( 'list', 'get', 'create', 'update' ) ), 'id' => $i, 'title' => $s, 'blocks' => array( 'type' => 'array', 'items' => $object ) ), array( 'mode' ), 'edit_pages' ),
 		'theme_layout' => array( 'List/get/create/update Theme Builder layouts. location/rules must match overview. Creates drafts; use publish separately to activate.', array( 'mode' => array( 'type' => 'string', 'enum' => array( 'list', 'get', 'create', 'update' ) ), 'id' => $i, 'title' => $s, 'blocks' => array( 'type' => 'array', 'items' => $object ), 'location' => $s, 'rules' => array( 'type' => 'array', 'items' => $s ), 'exclude' => array( 'type' => 'array', 'items' => $s ), 'ids' => array( 'type' => 'array', 'items' => $i ), 'exclude_ids' => array( 'type' => 'array', 'items' => $i ), 'cats' => array( 'type' => 'array', 'items' => $i ), 'users' => array( 'type' => 'string', 'enum' => array( 'all', 'in', 'out' ) ), 'devices' => array( 'type' => 'string', 'enum' => array( 'all', 'desktop', 'mobile' ) ), 'priority' => $i ), array( 'mode' ), 'edit_theme_options' ),
@@ -31,7 +31,7 @@ add_filter( 'bst_aid_tools', function ( $tools ) {
 
 function bst_aid_tool_get_knowledge( $a ) {
 	$topic = $a['topic'] ?? '';
-	if ( ! in_array( $topic, array( 'theme', 'wordpress' ), true ) ) {
+	if ( ! in_array( $topic, array( 'theme', 'wordpress', 'forms' ), true ) ) {
 		return array( 'error' => 'Unknown topic.' );
 	}
 	$result = array( 'topic' => $topic, 'guide' => (string) file_get_contents( BST_AID_DIR . '/knowledge/' . $topic . '.md' ) );

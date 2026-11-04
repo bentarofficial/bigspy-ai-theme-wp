@@ -413,6 +413,21 @@ foreach ( array( 1, 3, 20 ) as $count ) {
         }
     }
 }
+// G-59: form fields and prices go through form_config (check, then save); live pages need approval.
+$fp = bst_test_run( 'create_page', array( 'title' => 'Form price test', 'blocks' => array( array( 'name' => 'bst/heading', 'attrs' => array( 'tag' => 'h1', 'text' => 'Quote' ) ), array( 'name' => 'bst/form', 'attrs' => array( 'provider' => 'bigspy', 'pricing' => array( 'enabled' => true ) ) ) ) ) );
+$fk = bst_test_run( 'form_config', array( 'mode' => 'read', 'id' => $fp['id'] ) );
+bst_test( '' !== $fk['form_key'] && empty( $fk['pricing']['lines'] ), 'Page tools give the form a key and drop new prices' );
+$fargs = array( 'mode' => 'check', 'id' => $fp['id'], 'price_source' => 'user', 'fields' => array( array( 'type' => 'tel', 'name' => 'your-phone', 'label' => 'Phone', 'required' => true ), array( 'type' => 'number', 'name' => 'kg', 'label' => 'Kg', 'required' => true ) ), 'pricing' => array( 'enabled' => true, 'currency' => 'VND', 'lines' => array( array( 'id' => 'l_wash', 'kind' => 'qty', 'label' => 'Wash', 'field' => 'kg', 'unit' => 18000 ) ) ), 'samples' => array( array( 'values' => array( 'kg' => 3 ) ) ) );
+$fc = bst_test_run( 'form_config', $fargs );
+bst_test( $fc['ok'] && '54.000 ₫' === $fc['examples'][0]['after']['total'], 'Form dry run computes the example' );
+bst_test( isset( bst_test_run( 'form_config', array( 'mode' => 'save' ) + $fargs )['error'] ), 'Form save needs the check token' );
+$fs = bst_test_run( 'form_config', array( 'mode' => 'save', 'check' => $fc['check'] ) + $fargs );
+bst_test( ! empty( $fs['saved'] ) && 'draft' === get_post_status( $fp['id'] ), 'Form config saved on the draft without publishing' );
+wp_update_post( array( 'ID' => $fp['id'], 'post_status' => 'publish' ) );
+$fargs['pricing']['lines'][0]['unit'] = 20000;
+$fc = bst_test_run( 'form_config', $fargs );
+bst_test_approve( 'form_config', array( 'mode' => 'save', 'check' => $fc['check'] ) + $fargs );
+bst_test( false !== strpos( get_post_field( 'post_content', $fp['id'] ), '"unit":20000' ), 'Approved price change is saved on the live page' );
 foreach ( array( 2, 3, 4, 6 ) as $count ) {
     $panels = array();
     for ( $i = 0; $i < $count; $i++ ) {

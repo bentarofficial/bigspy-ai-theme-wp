@@ -19,8 +19,8 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 
 ## AI Designer (`ai-designer/`)
 - Entry: `ai-designer.php`; loaded by one line in `functions.php`.
-- `includes/`: `client.php` Kyma API, `prompt.php` system prompt, `tasks.php` task loop and REST, `tools.php` tool registry, `tools-site.php`, `tools-design.php`, `tools-images.php`, `permissions.php` approval cards, `clean.php` output cleaning, `settings.php`, `guidelines.php`, `workspace.php`.
-- UI: `assets/`; knowledge: `knowledge/`; About page: `welcome/`.
+- `includes/`: `client.php` Kyma API, `prompt.php` system prompt, `tasks.php` task loop and REST, `tools.php` tool registry, `tools-site.php`, `tools-design.php`, `tools-form.php` (Form fields/prices: `form_config`), `tools-images.php`, `permissions.php` approval cards, `clean.php` output cleaning, `settings.php`, `guidelines.php`, `workspace.php`.
+- UI: `assets/`; knowledge: `knowledge/` (`forms.md` = Form/pricing guide); About page: `welcome/`.
 
 ## Translations
 - Source: `languages/vi.po` (never read whole). Add with `python tools/add-strings.py strings.json`, where the JSON maps English to Vietnamese. It skips existing strings and compiles.

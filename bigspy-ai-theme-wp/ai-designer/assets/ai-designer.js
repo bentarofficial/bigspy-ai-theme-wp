@@ -287,7 +287,7 @@
 				get_pattern: __('Reading a pattern', T), create_page: __('Created a page', T), page_sections: __('Updated page sections', T), get_page: __('Reading a page', T), update_page: __('Updated a page', T),
 				get_settings: __('Reading theme settings', T), update_settings: __('Changed theme settings', T), set_logo: __('Set the logo', T),
 				custom_css: __('Additional CSS', T), get_menus: __('Reading menus', T), set_menu: __('Saved a menu', T), header_layout: __('Header layout', T),
-				show_palette: __('Color options', T), ImageGen: __('ImageGen created an image', T), image_status: __('ImageGen', T),
+				show_palette: __('Color options', T), form_config: __('Form and prices', T), ImageGen: __('ImageGen created an image', T), image_status: __('ImageGen', T),
 				optimize_image: __('Optimized an image', T), list_media: __('Looking at the Media Library', T)
 			};
 			return map[name] || name;
