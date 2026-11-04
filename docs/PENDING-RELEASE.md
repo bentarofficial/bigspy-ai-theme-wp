@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới (1.81.0 đã gom G-21–G-23, G-44–G-51).
+- **G-67 (phần Tabs):** Tabs dọc khai báo `aria-orientation`; panel không có phần tử focus được có `tabindex=0`; hiệu ứng fade tắt khi `prefers-reduced-motion: reduce`; khởi tạo lại (`bstInitBlocks`) không gắn trùng sự kiện. Kiểm thử: Playwright (phím End/Home/mũi tên, reduced motion bật/tắt). Chưa thử screen reader/editor/Playground. Khi phát hành: ghi một dòng Có gì mới.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

@@ -250,8 +250,13 @@
 	function initTabs(root, uid) {
 		var buttons = root.querySelectorAll(':scope > .bs-tabs__nav [role="tab"]');
 		var panels = root.querySelectorAll(':scope > .bs-tabs__panels > .bs-tab');
-		if (!buttons.length) {
+		if (!buttons.length || root.dataset.bsTabsReady) {
 			return;
+		}
+		root.dataset.bsTabsReady = '1';
+		var nav = root.querySelector(':scope > .bs-tabs__nav');
+		if (nav && root.classList.contains('bs-tabs--vertical')) {
+			nav.setAttribute('aria-orientation', 'vertical');
 		}
 		var activate = function (index, focus) {
 			buttons.forEach(function (btn, i) {
@@ -275,6 +280,10 @@
 				panel.id = panel.id || 'bs-tabpanel-' + uid + '-' + i;
 				panel.setAttribute('role', 'tabpanel');
 				panel.setAttribute('aria-labelledby', btn.id);
+				/* Panels without focusable content stay reachable with Tab (WAI-ARIA tabs pattern). */
+				if (!panel.querySelector('a[href], button, input, select, textarea, [tabindex]')) {
+					panel.tabIndex = 0;
+				}
 				btn.setAttribute('aria-controls', panel.id);
 			}
 			btn.addEventListener('click', function () {

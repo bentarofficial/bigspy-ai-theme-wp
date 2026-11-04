@@ -2646,6 +2646,7 @@ input[type="submit"]:hover,
 .bs-tabs[style*="--bs-tabs-active"] .bs-tabs__tab.is-active { color: var(--bs-tabs-active); border-color: var(--bs-tabs-active); }
 .bs-tabs--pills[style*="--bs-tabs-active"] .bs-tabs__tab.is-active, .bs-tabs--boxed[style*="--bs-tabs-active"] .bs-tabs__tab.is-active { color: var(--bs-tabs-active-text, #fff); background: var(--bs-tabs-active); }
 .bs-tabs--fade .bs-tab.is-active { animation: bs-tab-in .35s ease; }
+@media (prefers-reduced-motion: reduce) { .bs-tabs--fade .bs-tab.is-active { animation: none; } }
 @keyframes bs-tab-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* ================================================================ 1.29 – Map extras */
