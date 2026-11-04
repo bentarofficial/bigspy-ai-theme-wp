@@ -12,20 +12,24 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - **Vai trò:** Codex nghiên cứu/đặc tả/roadmap; Claude Code lập trình và kiểm thử. Áp dụng từ yêu cầu owner ngày 03-11 cho đến khi owner đổi phân công.
 - **Form tính giá và booking:** yêu cầu mới đã được nghiên cứu ở [FORMS-BOOKING-ROADMAP.md](FORMS-BOOKING-ROADMAP.md): Form native báo giá trước khi gửi; block tìm tuyến/chuyến/xe, lọc kết quả và tóm tắt; adapter plugin/provider cho giá/tồn chỗ/đặt thật. Không coi gửi mail thành đặt thành công.
 - **Mô hình giá theo ngành (04-11):** [PRICING-MODELS-RESEARCH.md](PRICING-MODELS-RESEARCH.md) gom 16 khối quy tắc dùng chung cho G-58; đề xuất G-68 adapter địa chỉ/khoảng cách (sau G-58, owner chốt nhà cung cấp/chi phí) và G-69 preset theo ngành.
-- G-57 nền Form và G-58 tính giá đã triển khai, chờ phát hành (xem PENDING-RELEASE). Chưa triển khai: G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
+- G-57, G-58, G-59 đã triển khai, chờ phát hành (xem PENDING-RELEASE). Chưa triển khai: G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
 ## Thứ tự làm đề xuất (rà 04-11-2026)
 
-Đối chiếu mã hiện tại: hai lỗi P1 của SOURCE-AUDIT vẫn còn (`blocks/banner/render.php:50`, `blocks/image/render.php:28` ghi cứng `loading="lazy"`; `inc/checkout-extras.php` chưa xử lý `ignore_discounts`).
+**Đã triển khai, chờ phát hành** (xem [PENDING-RELEASE.md](PENDING-RELEASE.md)): sửa ảnh URL/hero và thanh free shipping, G-57, G-58, G-59, G-65, G-67 (mục 1–4, 6), hồ sơ khối Code cho AI.
 
-1. **Sửa nhanh có căn cứ:** ảnh hero/URL trực tiếp không lazy; thông báo free shipping đúng với `ignore_discounts`/coupon. Nhỏ, độc lập, ảnh hưởng mọi shop.
-2. **G-57 → G-58:** nền Form và pricing engine với schema đủ 16 khối; ưu tiên chính của owner.
-3. **G-65:** AI giữ nguyên block core/Query/synced khi sửa trang, tránh từ chối/mất nội dung.
-4. **G-59** (AI cấu hình form) và **G-69** (preset ngành) sau G-58; **G-68** khi owner chốt dịch vụ bản đồ.
-5. **G-67/G-41:** responsive/truy cập theo fixture và đo tài nguyên.
-6. **G-60 → G-63:** booking thật, sau khi Codex chốt backend.
-7. G-37/G-38/G-39/G-40 và backlog cũ theo thứ tự SOURCE-AUDIT.
+**Còn lại:**
+
+1. **G-70 — Bộ đánh giá AI Designer:** khoảng 20 yêu cầu mẫu theo ngành với tiêu chí đo được (bố cục đúng block, tỷ lệ sửa được, không bịa giá/số liệu, mobile 375px không tràn, số lần server từ chối); ghi thời gian, số lượt gọi tool, token và chi phí. Chạy lại khi đổi model/prompt/kiến thức. Là nền để chứng minh mọi cải tiến AI sau này; không cam kết mức cải thiện khi chưa đo. Chạy với model thật cần owner duyệt ngân sách.
+2. **G-69 — Preset theo ngành** (sau G-58/G-59) và **G-67 mục 5** (AI trả cảnh báo responsive có vị trí block). **G-68** khi owner chốt dịch vụ bản đồ/chi phí.
+3. **G-73 — Hồ sơ block v2** (sau G-70 để có số đo trước/sau): mỗi block có công dụng, ưu điểm, khi không dùng, block thay thế, ví dụ đúng và lỗi thường gặp, thuộc tính mặc định đã kiểm chứng; trả schema rút gọn ngay trong `block_catalog` để giảm lượt gọi `block_schema`; đi thẳng từ ngành → danh sách section (dùng chung với G-69); giữ hồ sơ ngắn và cố định đầu prompt để tận dụng prompt caching. Khối Code đã làm mẫu. Giữ nguyên Block rule trong AGENTS.md.
+4. **G-60 → G-63:** booking thật, sau khi Codex chốt backend.
+5. **G-71 — Dữ liệu có cấu trúc từ block:** sinh schema.org (dịch vụ, giá từ G-58, FAQ, đánh giá, giờ mở cửa, LocalBusiness) từ dữ liệu block để AI tìm kiếm đọc đúng; không trùng hoặc đè dữ liệu Rank Math/plugin SEO (phát hiện và nhường khi plugin đã xuất cùng loại). Cân nhắc tùy chọn `llms.txt` khi chuẩn ổn định.
+6. **G-72 — Công bố tool cho agent bên ngoài:** đưa các tool AI Designer (dựng section, sửa trang, `form_config`…) qua chuẩn chung của WordPress (Abilities API / MCP adapter) khi ổn định, giữ nguyên duyệt, snapshot/undo, phân quyền và log; không phụ thuộc một nhà cung cấp AI. Trước mắt thiết kế tool mới có schema đầu vào/ra rõ ràng để tương thích.
+7. **G-41:** đo tài nguyên theo fixture (cần Playground/site nháp). G-37/G-38/G-39/G-40 và backlog cũ theo thứ tự SOURCE-AUDIT.
+
+G-70–G-73 là đề xuất ngày 04-11 từ trao đổi với owner, chưa phải đặc tả chốt; Codex/owner duyệt phạm vi trước khi Claude Code triển khai.
 
 ## Bối cảnh roadmap cũ
 
