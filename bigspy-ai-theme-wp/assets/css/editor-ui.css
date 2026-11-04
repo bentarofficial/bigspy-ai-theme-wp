@@ -600,6 +600,9 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-nf-item__title small { color: #757575; }
 .bst-nf-item__body { display: grid; gap: 10px; padding: 10px; border-top: 1px solid #f0f0f1; }
 .bst-nf-row { display: flex; gap: 16px; }
+.bst-nf-when { display: grid; gap: 8px; padding: 10px; border: 1px dashed #c3c4c7; border-radius: 4px; }
+.bst-nf-rule { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; align-items: end; }
+.bst-nf-rule > :nth-child(3):not(button) { grid-column: 1 / 3; }
 .bst-nf-tags { display: block; margin-top: 4px; padding: 6px; font-size: 11px; line-height: 1.6; white-space: normal; word-break: break-word; }
 .bst-nf-panel .components-base-control { margin-bottom: 10px; }
 

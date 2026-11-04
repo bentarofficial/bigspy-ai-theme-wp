@@ -60,9 +60,7 @@ function bst_native_form_settings( $a ) {
 			$d[ $k ] = $a[ $k ];
 		}
 	}
-	$d['fields'] = array_values( array_filter( (array) $d['fields'], function ( $f ) {
-		return is_array( $f ) && ! empty( $f['name'] );
-	} ) );
+	$d['fields'] = bst_form_schema_normalize( $d['fields'] );
 	return $d;
 }
 
@@ -129,7 +127,17 @@ function bst_native_form_markup( $a ) {
 	if ( ! $key ) {
 		return '';
 	}
-	$out = '';
+	$out     = '';
+	$initial = array();
+	foreach ( $s['fields'] as $f ) {
+		$opts0 = bst_native_field_options( $f );
+		$pick0 = array_values( array_intersect( $opts0, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) ) );
+		if ( ! $pick0 && 'radio' === ( $f['type'] ?? '' ) && $opts0 ) {
+			$pick0 = array( $opts0[0] );
+		}
+		$initial[ sanitize_key( $f['name'] ) ] = implode( ', ', $pick0 );
+	}
+	$shown = bst_form_visibility( $s['fields'], $initial );
 	foreach ( $s['fields'] as $f ) {
 		$type  = in_array( $f['type'] ?? 'text', bst_native_field_types(), true ) ? $f['type'] : 'text';
 		$name  = sanitize_key( $f['name'] );
@@ -138,13 +146,15 @@ function bst_native_form_markup( $a ) {
 		$req   = ! empty( $f['required'] );
 		$attr  = ' name="' . esc_attr( $name ) . '"' . ( $req ? ' required aria-required="true"' : '' );
 		$width = 'half' === ( $f['width'] ?? 'full' ) ? ' bs-nf-half' : '';
+		// Stable id + condition for the live show/hide script; hidden fields start hidden.
+		$wrap  = ' data-bs-fid="' . esc_attr( $f['id'] ) . '"' . ( ! empty( $f['when'] ) ? ' data-bs-when="' . esc_attr( wp_json_encode( $f['when'] ) ) . '"' : '' ) . ( empty( $shown[ $f['id'] ] ) ? ' hidden' : '' );
 		$opts  = bst_native_field_options( $f );
 		$picks = array_intersect( $opts, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) );
 		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req ? ' <span class="bs-nf-req">*</span>' : '' ) . '</span>' : '';
 		if ( 'file' === $type ) {
 			$accept  = '.' . implode( ',.', bst_native_file_types( $f ) );
 			$control = '<input type="file" class="wpcf7-form-control wpcf7-file"' . $attr . ' accept="' . esc_attr( $accept ) . '">';
-			$out    .= '<p class="bs-nf-field bs-nf-file' . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+			$out    .= '<p class="bs-nf-field bs-nf-file' . $width . '"' . $wrap . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 			continue;
 		}
 		switch ( $type ) {
@@ -173,7 +183,7 @@ function bst_native_form_markup( $a ) {
 			default:
 				$control = '<input type="' . esc_attr( $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . '>';
 		}
-		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $wrap . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}
 	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
 	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
@@ -345,6 +355,22 @@ function bst_native_form_submit() {
 			$errors[ $n ] = $error;
 		}
 		$values[ $n ] = $v;
+	}
+	// Hidden fields (conditions not met) are not required and send nothing.
+	foreach ( bst_form_visibility( $s['fields'], $values ) as $fid => $visible ) {
+		if ( $visible ) {
+			continue;
+		}
+		foreach ( $s['fields'] as $f ) {
+			if ( $f['id'] === $fid ) {
+				$n = sanitize_key( $f['name'] );
+				if ( isset( $values[ $n ] ) && isset( $files[ $values[ $n ] ] ) ) {
+					unset( $files[ $values[ $n ] ] );
+				}
+				$values[ $n ] = '';
+				unset( $errors[ $n ] );
+			}
+		}
 	}
 	if ( $errors ) {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgInvalid'], 'errors' => $errors ) );

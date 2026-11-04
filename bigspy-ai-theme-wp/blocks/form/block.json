@@ -219,6 +219,10 @@
 			"type": "array",
 			"default": []
 		},
+		"schemaVersion": {
+			"type": "number",
+			"default": 0
+		},
 		"submitText": {
 			"type": "string",
 			"default": ""

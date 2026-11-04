@@ -2725,6 +2725,44 @@
 		while (taken.indexOf(n) !== -1) { n = base + '-' + i++; }
 		return n;
 	}
+	/* G-57 schema: stable ids, conditions and loop checks (mirrors inc/form-schema.php). */
+	function nfId(f) { return f.id || ('n_' + String(f.name || '').toLowerCase().replace(/[^a-z0-9_-]/g, '')); }
+	function nfNewId(fields) {
+		var ids = fields.map(nfId), id;
+		do { id = 'f_' + Math.random().toString(36).slice(2, 8); } while (ids.indexOf(id) !== -1);
+		return id;
+	}
+	function nfUsedBy(fields, id) {
+		return fields.filter(function (f) { return nfId(f) !== id && ((f.when && f.when.rules) || []).some(function (r) { return r.field === id; }); });
+	}
+	function nfErrors(fields) {
+		var ids = fields.map(nfId), deps = {}, errs = [], state = {};
+		fields.forEach(function (f) {
+			var id = nfId(f);
+			deps[id] = [];
+			((f.when && f.when.rules) || []).forEach(function (r) {
+				if (r.field === id) { errs.push({ field: id, code: 'self', ref: r.field }); }
+				else if (ids.indexOf(r.field) === -1) { errs.push({ field: id, code: 'missing', ref: r.field }); }
+				else { deps[id].push(r.field); }
+			});
+		});
+		var walk = function (id) {
+			state[id] = 1;
+			deps[id].forEach(function (to) {
+				if (state[to] === 1) { errs.push({ field: id, code: 'cycle', ref: to }); }
+				else if (!state[to]) { walk(to); }
+			});
+			state[id] = 2;
+		};
+		ids.forEach(function (id) { if (!state[id]) { walk(id); } });
+		return errs;
+	}
+	function nfMailUses(a, D, name) {
+		var tag = '[' + name + ']';
+		return ['mailTo', 'mailFrom', 'mailSubject', 'mailHeaders', 'mailBody', 'mail2To', 'mail2From', 'mail2Subject', 'mail2Headers', 'mail2Body'].some(function (k) {
+			return String(a[k] || D[k] || '').indexOf(tag) !== -1;
+		});
+	}
 	function NativeFormPanels(props) {
 		var a = props.attributes;
 		var T = 'bigspy-ai-theme-wp';
@@ -2733,7 +2771,18 @@
 		wp.element.useEffect(function () {
 			var patch = {};
 			if (!a.formKey) { patch.formKey = 'f' + Math.random().toString(36).slice(2, 10); }
-			if (!a.fields || !a.fields.length) { patch.fields = (D.fields || []).map(function (f) { return Object.assign({}, f); }); }
+			var base = a.fields && a.fields.length ? a.fields : (D.fields || []);
+			if (!a.fields || !a.fields.length || base.some(function (f) { return !f.id; })) {
+				var seen = {};
+				patch.fields = base.map(function (f) {
+					var n = Object.assign({}, f), id = nfId(f), b = id, k = 2;
+					while (seen[id]) { id = b + '_' + k++; }
+					seen[id] = true;
+					n.id = id;
+					return n;
+				});
+			}
+			if ((a.schemaVersion || 0) < 1) { patch.schemaVersion = 1; }
 			if (Object.keys(patch).length) { props.setAttributes(patch); }
 		}, []);
 		var tab = useState('fields');
@@ -2741,7 +2790,7 @@
 		var fields = a.fields && a.fields.length ? a.fields : (D.fields || []);
 		var setFields = function (next) { props.setAttributes({ fields: next }); };
 		var upd = function (i, key, v) {
-			setFields(fields.map(function (f, j) { if (j !== i) { return f; } var n = Object.assign({}, f); n[key] = v; if (key === 'label' && f.autoName !== false && !f.lockName) { n.name = nfSlug(v, fields.filter(function (x, k) { return k !== i; }).map(function (x) { return x.name; })); } return n; }));
+			setFields(fields.map(function (f, j) { if (j !== i) { return f; } var n = Object.assign({}, f); n[key] = v; if (key === 'label' && f.autoName !== false && !f.lockName && !nfMailUses(a, D, f.name)) { n.name = nfSlug(v, fields.filter(function (x, k) { return k !== i; }).map(function (x) { return x.name; })); } return n; }));
 		};
 		var move = function (i, d) { var n = fields.slice(); var t = n[i]; n[i] = n[i + d]; n[i + d] = t; setFields(n); openField[1](i + d); };
 		var txt = function (key, label, help, rows) {
@@ -2752,11 +2801,43 @@
 		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]';
 		var TABS = [['fields', __('Fields', T)], ['mail', __('Mail', T)], ['mail2', __('Mail (2)', T)], ['messages', __('Messages', T)], ['actions', __('Actions', T)]];
 		var body;
+		var NF_OPS = [['filled', __('is filled', T)], ['empty', __('is empty', T)], ['is', __('is', T)], ['not', __('is not', T)], ['gt', __('greater than', T)], ['lt', __('less than', T)]];
+		var nfWhen = function (f, i) {
+			var when = f.when && f.when.rules ? f.when : null;
+			var setWhen = function (w) { upd(i, 'when', w && w.rules.length ? w : undefined); };
+			var others = fields.filter(function (x) { return nfId(x) !== nfId(f) && x.type !== 'file'; });
+			if (!when) {
+				return others.length ? el(c.Button, { variant: 'secondary', size: 'small', icon: 'visibility', onClick: function () { setWhen({ logic: 'all', rules: [{ field: nfId(others[0]), op: 'filled', value: '' }] }); } }, __('Show only when…', T)) : null;
+			}
+			var setRule = function (k, key, v) { setWhen({ logic: when.logic, rules: when.rules.map(function (r, j) { if (j !== k) { return r; } var n = Object.assign({}, r); n[key] = v; return n; }) }); };
+			return el('div', { className: 'bst-nf-when' },
+				el(c.SelectControl, { label: __('Show this field when', T), value: when.logic, options: [{ value: 'all', label: __('all rules match', T) }, { value: 'any', label: __('any rule matches', T) }], onChange: function (v) { setWhen({ logic: v, rules: when.rules }); }, __nextHasNoMarginBottom: true }),
+				when.rules.map(function (r, k) {
+					var ref = fields.filter(function (x) { return nfId(x) === r.field; })[0];
+					var opts = ref && ['select', 'radio', 'checkbox'].indexOf(ref.type) !== -1 ? String(ref.options || '').split(/\r\n|\r|\n|,/).map(function (o) { return o.trim(); }).filter(Boolean) : [];
+					var needVal = ['is', 'not', 'gt', 'lt'].indexOf(r.op) !== -1;
+					return el('div', { key: k, className: 'bst-nf-rule' },
+						el(c.SelectControl, { label: __('Field', T), value: r.field, options: (ref ? [] : [{ value: r.field, label: __('(missing field)', T) }]).concat(others.map(function (x) { return { value: nfId(x), label: x.label || x.name }; })), onChange: function (v) { setRule(k, 'field', v); }, __nextHasNoMarginBottom: true }),
+						el(c.SelectControl, { label: __('Condition', T), value: r.op, options: NF_OPS.map(function (o) { return { value: o[0], label: o[1] }; }), onChange: function (v) { setRule(k, 'op', v); }, __nextHasNoMarginBottom: true }),
+						needVal ? (opts.length && (r.op === 'is' || r.op === 'not')
+							? el(c.SelectControl, { label: __('Value', T), value: r.value, options: [{ value: '', label: '—' }].concat(opts.map(function (o) { return { value: o, label: o }; })), onChange: function (v) { setRule(k, 'value', v); }, __nextHasNoMarginBottom: true })
+							: el(c.TextControl, { label: __('Value', T), value: r.value || '', onChange: function (v) { setRule(k, 'value', v); }, __nextHasNoMarginBottom: true })) : null,
+						el(c.Button, { size: 'small', icon: 'no-alt', label: __('Remove rule', T), onClick: function () { setWhen({ logic: when.logic, rules: when.rules.filter(function (x, j) { return j !== k; }) }); } })
+					);
+				}),
+				el(c.Button, { variant: 'link', onClick: function () { setWhen({ logic: when.logic, rules: when.rules.concat([{ field: others.length ? nfId(others[0]) : '', op: 'filled', value: '' }]) }); } }, __('Add rule', T))
+			);
+		};
+		var schemaErrs = nfErrors(fields);
+		var nameOf = function (id) { var x = fields.filter(function (f) { return nfId(f) === id; })[0]; return x ? (x.label || x.name) : id; };
+		var ERR = { missing: __('%1$s: a condition uses a removed field.', T), self: __('%1$s: a condition uses the field itself.', T), cycle: __('%1$s and %2$s depend on each other; the condition is ignored.', T) };
 		if (tab[0] === 'fields') {
 			body = el(Fragment, null,
+				schemaErrs.length ? el(c.Notice, { status: 'error', isDismissible: false }, schemaErrs.map(function (e, k) { return el('div', { key: k }, ERR[e.code].replace('%1$s', nameOf(e.field)).replace('%2$s', nameOf(e.ref))); })) : null,
 				fields.map(function (f, i) {
 					var open = openField[0] === i;
 					var needsOpts = ['select', 'radio', 'checkbox', 'file'].indexOf(f.type) !== -1;
+					var usedBy = nfUsedBy(fields, nfId(f));
 					return el('div', { key: i, className: 'bst-nf-item' + (open ? ' is-open' : '') },
 						el('div', { className: 'bst-nf-item__head' },
 							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : ''))),
@@ -2773,11 +2854,16 @@
 								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
 								el(c.ToggleControl, { label: __('Half width', T), checked: f.width === 'half', onChange: function (v) { upd(i, 'width', v ? 'half' : 'full'); }, __nextHasNoMarginBottom: true })
 							),
-							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1); } }, __('Remove field', T))
+							nfWhen(f, i),
+							usedBy.length ? el(c.Notice, { status: 'warning', isDismissible: false }, __('Used in the conditions of:', T) + ' ' + usedBy.map(function (x) { return x.label || x.name; }).join(', ') + '. ' + __('Change those conditions before removing this field.', T)) : null,
+							el(c.Button, { variant: 'link', isDestructive: true, disabled: !!usedBy.length, onClick: function () {
+								if (nfMailUses(a, D, f.name) && !window.confirm(__('This field’s mail tag is used in Mail or Mail (2). Remove it anyway? The tag will be empty.', T))) { return; }
+								setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1);
+							} }, __('Remove field', T))
 						) : null
 					);
 				}),
-				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
+				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ id: nfNewId(fields), type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
 				txt('submitText', __('Send button text', T)),
 				txt('formName', __('Form name (shown in Form entries)', T))
 			);

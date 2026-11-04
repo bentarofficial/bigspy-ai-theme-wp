@@ -930,6 +930,97 @@ document.addEventListener('wpcf7mailsent', function (e) {
 	}
 }, false);
 
+/*
+ * Built-in form conditions (G-57): show a field only when its rules match. Same
+ * rules as bst_form_visibility() on the server, which checks again on submit.
+ * Hidden fields are disabled, so they are neither required nor sent.
+ */
+(function () {
+	var value = function (form, wrap) {
+		var ctls = wrap.querySelectorAll('input, select, textarea');
+		var out = [];
+		ctls.forEach(function (c) {
+			if (c.type === 'checkbox' || c.type === 'radio') {
+				if (c.checked) {
+					out.push(c.value);
+				}
+			} else if (c.type !== 'file' || c.value) {
+				out.push(String(c.value).trim());
+			}
+		});
+		return out.filter(function (v) { return v !== ''; }).join(', ');
+	};
+	var match = function (r, v) {
+		switch (r.op) {
+			case 'empty': return v === '';
+			case 'is':
+			case 'not':
+				var hit = v !== '' && v.split(', ').indexOf(r.value) !== -1;
+				return r.op === 'is' ? hit : !hit;
+			case 'gt':
+			case 'lt':
+				var a = parseFloat(v), b = parseFloat(r.value);
+				if (isNaN(a) || isNaN(b) || !/^-?[0-9.]+$/.test(v)) { return false; }
+				return r.op === 'gt' ? a > b : a < b;
+			default: return v !== '';
+		}
+	};
+	var apply = function (form) {
+		var wraps = {};
+		form.querySelectorAll('[data-bs-fid]').forEach(function (w) { wraps[w.getAttribute('data-bs-fid')] = w; });
+		var whens = {}, deps = {};
+		Object.keys(wraps).forEach(function (id) {
+			try { whens[id] = JSON.parse(wraps[id].getAttribute('data-bs-when') || 'null'); } catch (e) { whens[id] = null; }
+			deps[id] = ((whens[id] && whens[id].rules) || []).map(function (r) { return r.field; }).filter(function (f) { return !!wraps[f]; });
+		});
+		// Rules inside a loop (or on the field itself) are ignored, like the server does.
+		var reaches = function (from, to) {
+			var todo = [from], seen = {};
+			while (todo.length) {
+				var x = todo.pop();
+				if (x === to) { return true; }
+				if (seen[x]) { continue; }
+				seen[x] = true;
+				todo = todo.concat(deps[x]);
+			}
+			return false;
+		};
+		var memo = {};
+		var visible = function (id, stack) {
+			if (id in memo) { return memo[id]; }
+			var when = whens[id];
+			var res = [];
+			((when && when.rules) || []).forEach(function (r) {
+				if (!wraps[r.field] || reaches(r.field, id) || stack.indexOf(r.field) !== -1) { return; }
+				var shown = visible(r.field, stack.concat([id]));
+				res.push(match(r, shown ? value(form, wraps[r.field]) : ''));
+			});
+			memo[id] = !res.length || (when.logic === 'any' ? res.indexOf(true) !== -1 : res.indexOf(false) === -1);
+			return memo[id];
+		};
+		Object.keys(wraps).forEach(function (id) {
+			var on = visible(id, []);
+			wraps[id].hidden = !on;
+			wraps[id].querySelectorAll('input, select, textarea').forEach(function (c) { c.disabled = !on; });
+		});
+	};
+	var init = function () {
+		document.querySelectorAll('[data-bs-native-form]').forEach(function (form) {
+			if (form.querySelector('[data-bs-when]')) {
+				apply(form);
+				form.addEventListener('input', function () { apply(form); });
+				form.addEventListener('change', function () { apply(form); });
+				form.addEventListener('reset', function () { setTimeout(function () { apply(form); }, 0); });
+			}
+		});
+	};
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+})();
+
 /* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */
 document.addEventListener('submit', function (e) {
 	var form = e.target;
@@ -957,6 +1048,9 @@ document.addEventListener('submit', function (e) {
 	};
 	var bad = false;
 	form.querySelectorAll('[required]').forEach(function (ctl) {
+		if (ctl.disabled) {
+			return;
+		}
 		var empty = ctl.type === 'checkbox' ? !ctl.checked : !String(ctl.value).trim();
 		if (empty) {
 			bad = true;

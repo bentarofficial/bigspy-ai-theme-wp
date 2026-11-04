@@ -3020,6 +3020,7 @@ input[type="submit"]:hover,
 .bs-form--labels-hidden .bs-native-form .bs-nf-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .bs-native-form .bs-nf-req { color: #dc2626; }
 .bs-native-form .bs-nf-hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.bs-native-form > .bs-nf-field[hidden] { display: none !important; }
 .bs-native-form .bs-nf-submit { display: flex; align-items: center; gap: 10px; }
 .bs-native-form.submitting .wpcf7-submit { opacity: .7; cursor: wait; }
 .bs-native-form .wpcf7-response-output { margin: 4px 0 0; padding: 12px 14px; border: 1px solid; border-radius: var(--bs-form-radius, 8px); font-size: .95em; }

@@ -10947,3 +10947,69 @@ msgstr ""
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr ""
 
+msgid "is filled"
+msgstr ""
+
+msgid "is empty"
+msgstr ""
+
+msgid "is"
+msgstr ""
+
+msgid "is not"
+msgstr ""
+
+msgid "greater than"
+msgstr ""
+
+msgid "less than"
+msgstr ""
+
+msgid "Show only when…"
+msgstr ""
+
+msgid "Show this field when"
+msgstr ""
+
+msgid "all rules match"
+msgstr ""
+
+msgid "any rule matches"
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "(missing field)"
+msgstr ""
+
+msgid "Condition"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Remove rule"
+msgstr ""
+
+msgid "Add rule"
+msgstr ""
+
+msgid "%1$s: a condition uses a removed field."
+msgstr ""
+
+msgid "%1$s: a condition uses the field itself."
+msgstr ""
+
+msgid "%1$s and %2$s depend on each other; the condition is ignored."
+msgstr ""
+
+msgid "Used in the conditions of:"
+msgstr ""
+
+msgid "Change those conditions before removing this field."
+msgstr ""
+
+msgid "This field’s mail tag is used in Mail or Mail (2). Remove it anyway? The tag will be empty."
+msgstr ""
+
