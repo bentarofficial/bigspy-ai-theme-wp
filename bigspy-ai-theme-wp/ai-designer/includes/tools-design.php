@@ -148,6 +148,17 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 	$out        = array();
 	foreach ( array_values( (array) $nodes ) as $i => $node ) {
 		$where = ltrim( $path . '/' . $i, '/' );
+		if ( is_array( $node ) && isset( $node['keep'] ) ) {
+			if ( $parent && ! empty( $containers[ $parent ] ) ) {
+				$issues['errors'][] = "$where: $parent requires its own child block type.";
+				continue;
+			}
+			$kept = bst_aid_keep_block( (string) $node['keep'], $where, $issues );
+			if ( $kept ) {
+				$out[] = $kept;
+			}
+			continue;
+		}
 		$name  = (string) ( $node['name'] ?? '' );
 		if ( '' !== $name && false === strpos( $name, '/' ) ) {
 			$name = 'bst/' . $name;
@@ -164,7 +175,9 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 			continue;
 		}
 		if ( ! isset( $types[ $name ] ) ) {
-			$issues['errors'][] = "$where: unknown or disabled block \"$name\". Use list_blocks.";
+			$issues['errors'][] = ! empty( $node['raw'] )
+				? "$where: $name is read-only for the AI. Send the node from get_page as { \"keep\": \"…\" } unchanged, or ask the user before removing it."
+				: "$where: unknown or disabled block \"$name\". Use list_blocks.";
 			continue;
 		}
 		if ( ! empty( $node['raw'] ) ) {
@@ -242,19 +255,23 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
  */
 function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 	if ( ! in_array( $name, bst_aid_core_blocks(), true ) ) {
-		$issues['errors'][] = "$where: core block \"$name\" is not allowed. Use a BIGSPY AI block.";
+		$issues['errors'][] = ! empty( $node['raw'] )
+			? "$where: $name is read-only for the AI. Send the node from get_page as { \"keep\": \"…\" } unchanged, or ask the user before removing it."
+			: "$where: core block \"$name\" is not allowed. Use a BIGSPY AI block.";
 		return null;
 	}
 	if ( ! empty( $node['raw'] ) ) {
 		$parsed = parse_blocks( (string) $node['raw'] );
 		foreach ( $parsed as $b ) {
 			if ( ( $b['blockName'] ?? '' ) === $name ) {
-				if ( ! bst_aid_known_core_block( $b, (int) ( $issues['source'] ?? 0 ) ) ) {
+				// Save the block as stored in the page or pattern, not the model's copy: the
+				// fingerprint ignores whitespace, which can matter (pre, code, inline spacing).
+				$known = bst_aid_known_core_block( $b, (int) ( $issues['source'] ?? 0 ) );
+				if ( ! $known ) {
 					$issues['errors'][] = "$where: raw is only for sending $name back unchanged from this page or a theme pattern. To change it, send BIGSPY AI blocks instead.";
 					return null;
 				}
-				$b = bst_aid_sanitize_raw_block( $b );
-				return $b;
+				return bst_aid_sanitize_raw_block( $known );
 			}
 		}
 		$issues['errors'][] = "$where: the raw markup of $name could not be read; send it again unchanged or use html.";
@@ -306,19 +323,19 @@ function bst_aid_block_key( $b ) {
 	return md5( preg_replace( '/\s+/', ' ', trim( serialize_block( $b ) ) ) );
 }
 
-/** Fingerprints of named blocks at every depth, as array( key => true ). */
+/** Fingerprints of named blocks at every depth, as array( key => first block with it ). */
 function bst_aid_block_keys( $blocks ) {
 	$keys = array();
 	foreach ( (array) $blocks as $b ) {
-		if ( ! empty( $b['blockName'] ) ) {
-			$keys[ bst_aid_block_key( $b ) ] = true;
+		if ( ! empty( $b['blockName'] ) && ! isset( $keys[ bst_aid_block_key( $b ) ] ) ) {
+			$keys[ bst_aid_block_key( $b ) ] = $b;
 		}
 		$keys += bst_aid_block_keys( $b['innerBlocks'] ?? array() );
 	}
 	return $keys;
 }
 
-/** True when a raw core block is unchanged from the source post or a theme pattern. */
+/** The stored block a raw core block matches in the source post or a theme pattern, or null. */
 function bst_aid_known_core_block( $b, $source ) {
 	static $patterns = null;
 	if ( null === $patterns ) {
@@ -329,8 +346,221 @@ function bst_aid_known_core_block( $b, $source ) {
 			}
 		}
 	}
-	$key = bst_aid_block_key( $b );
-	return isset( $patterns[ $key ] ) || ( $source && isset( bst_aid_block_keys( parse_blocks( (string) get_post_field( 'post_content', $source ) ) )[ $key ] ) );
+	$key  = bst_aid_block_key( $b );
+	$page = $source ? bst_aid_block_keys( parse_blocks( (string) get_post_field( 'post_content', $source ) ) ) : array();
+	return $page[ $key ] ?? $patterns[ $key ] ?? null;
+}
+
+/* ------------------------------------------------------------------ Read-only blocks (G-65) */
+
+/**
+ * True when the AI may not rebuild a stored block: Query Loop, synced patterns, plugin
+ * blocks, BIGSPY blocks that are off, and listed core blocks bound to dynamic data. These
+ * are kept exactly as stored; the model only gets a keep token for them.
+ *
+ * @param array $b     Parsed block.
+ * @param array $types bst_aid_block_types(), passed in by callers that walk a tree.
+ */
+function bst_aid_readonly_block( $b, $types = null ) {
+	$name = (string) ( $b['blockName'] ?? '' );
+	if ( '' === $name ) {
+		return false;
+	}
+	if ( 0 === strpos( $name, 'bst/' ) || 0 === strpos( $name, 'bigspy/' ) ) {
+		return ! isset( ( null === $types ? bst_aid_block_types() : $types )[ $name ] );
+	}
+	if ( in_array( $name, bst_aid_core_blocks(), true ) ) {
+		return ! empty( $b['attrs']['metadata']['bindings'] );
+	}
+	return true;
+}
+
+/** Token naming one stored read-only block by its exact markup. */
+function bst_aid_keep_token( $b ) {
+	return 'keep-' . substr( md5( serialize_block( $b ) ), 0, 12 );
+}
+
+/** Version of a page's content, so a write can tell whether the page changed since get_page. */
+function bst_aid_content_version( $content ) {
+	return substr( md5( (string) $content ), 0, 12 );
+}
+
+/**
+ * Outermost read-only blocks of a parsed tree at any depth, as token => array( block, count ).
+ * Read-only blocks inside read-only blocks belong to their parent and are not listed.
+ */
+function bst_aid_readonly_blocks( $blocks, $types = null ) {
+	$types = null === $types ? bst_aid_block_types() : $types;
+	$out   = array();
+	foreach ( (array) $blocks as $b ) {
+		if ( bst_aid_readonly_block( $b, $types ) ) {
+			$token = bst_aid_keep_token( $b );
+			$out[ $token ] = array( 'block' => $b, 'count' => ( $out[ $token ]['count'] ?? 0 ) + 1 );
+			continue;
+		}
+		foreach ( bst_aid_readonly_blocks( $b['innerBlocks'] ?? array(), $types ) as $token => $item ) {
+			$out[ $token ] = array( 'block' => $item['block'], 'count' => ( $out[ $token ]['count'] ?? 0 ) + $item['count'] );
+		}
+	}
+	return $out;
+}
+
+/** Synced pattern ids a pattern reaches, to spot a pattern that includes itself. */
+function bst_aid_pattern_loops( $ref, $seen = array() ) {
+	if ( in_array( $ref, $seen, true ) ) {
+		return true;
+	}
+	if ( count( $seen ) > 8 ) {
+		return false;
+	}
+	$p = get_post( $ref );
+	if ( ! $p || 'wp_block' !== $p->post_type ) {
+		return false;
+	}
+	$seen[] = $ref;
+	$found  = false;
+	$walk   = function ( $blocks ) use ( &$walk, &$found, $seen ) {
+		foreach ( $blocks as $b ) {
+			if ( 'core/block' === ( $b['blockName'] ?? '' ) && bst_aid_pattern_loops( (int) ( $b['attrs']['ref'] ?? 0 ), $seen ) ) {
+				$found = true;
+			}
+			$walk( $b['innerBlocks'] ?? array() );
+		}
+	};
+	$walk( parse_blocks( (string) $p->post_content ) );
+	return $found;
+}
+
+/** What the model and the user are told about a read-only block. No private pattern content. */
+function bst_aid_readonly_about( $b ) {
+	$name = (string) $b['blockName'];
+	$out  = array( 'why' => 'Kept exactly as stored: the AI cannot rebuild this block. Move it with { "keep" } or leave it; ask the user before removing it.' );
+	if ( 'core/block' === $name ) {
+		$ref = (int) ( $b['attrs']['ref'] ?? 0 );
+		$p   = $ref ? get_post( $ref ) : null;
+		$out['why'] = 'Synced pattern: it is shared by every page that uses it. The AI keeps the reference and any local overrides here and never edits the pattern itself; the user edits it in the editor.';
+		if ( ! $p || 'wp_block' !== $p->post_type ) {
+			$out['pattern'] = 'missing';
+		} elseif ( 'trash' === $p->post_status ) {
+			$out['pattern'] = 'deleted';
+		} elseif ( ! current_user_can( 'read_post', $ref ) ) {
+			$out['pattern'] = 'private';
+		} else {
+			$out['pattern']       = 'publish' === $p->post_status ? 'ok' : (string) $p->post_status;
+			$out['pattern_title'] = (string) $p->post_title;
+			if ( bst_aid_pattern_loops( $ref ) ) {
+				$out['pattern'] = 'loop';
+			}
+		}
+		if ( ! empty( $b['attrs']['content'] ) ) {
+			$out['overrides'] = count( (array) $b['attrs']['content'] );
+		}
+	} elseif ( 'core/query' === $name ) {
+		$q = (array) ( $b['attrs']['query'] ?? array() );
+		$out['why']   = 'Query Loop: lists posts dynamically. The AI keeps it unchanged; the user edits it in the editor.';
+		$out['query'] = array_intersect_key( $q, array_flip( array( 'postType', 'perPage', 'inherit', 'order', 'orderBy' ) ) );
+	} elseif ( 0 === strpos( $name, 'bst/' ) || 0 === strpos( $name, 'bigspy/' ) ) {
+		$out['why'] = 'This BIGSPY AI block is switched off, so the AI keeps it unchanged. The user can switch it back on to edit it.';
+	} elseif ( ! empty( $b['attrs']['metadata']['bindings'] ) ) {
+		$out['why']      = 'Bound to dynamic data. Rewriting it would drop the binding, so the AI keeps it unchanged.';
+		$out['bindings'] = array_keys( (array) $b['attrs']['metadata']['bindings'] );
+	}
+	if ( class_exists( 'WP_Block_Type_Registry' ) && ! WP_Block_Type_Registry::get_instance()->is_registered( $name ) ) {
+		$out['registered'] = false;
+		$out['why']       .= ' Its plugin or block is not active, so the saved markup is kept as is.';
+	}
+	return $out;
+}
+
+/** The stored read-only block for a keep token from get_page; only blocks on the page being edited resolve. */
+function bst_aid_keep_block( $token, $where, &$issues ) {
+	$source = (int) ( $issues['source'] ?? 0 );
+	if ( ! $source ) {
+		$issues['errors'][] = "$where: keep only works on the page it was read from. New content is built with BIGSPY AI blocks.";
+		return null;
+	}
+	if ( ! isset( $issues['keep_map'] ) ) {
+		$issues['keep_map'] = bst_aid_readonly_blocks( parse_blocks( (string) get_post_field( 'post_content', $source ) ) );
+	}
+	if ( ! isset( $issues['keep_map'][ $token ] ) ) {
+		$issues['errors'][] = "$where: \"$token\" is not a read-only block of this page (it changed, or comes from elsewhere). Call get_page again.";
+		return null;
+	}
+	return $issues['keep_map'][ $token ]['block'];
+}
+
+/**
+ * Compare read-only blocks before and after a write. None may be added or duplicated (theme
+ * patterns excepted), and none may disappear unless listed in $drop, after the user asked.
+ *
+ * @return array array( 'errors' => [...], 'removed' => [...] ) with token, name and about.
+ */
+function bst_aid_readonly_guard( $before, $after, $drop = array() ) {
+	static $patterns = null;
+	if ( null === $patterns ) {
+		$patterns = array();
+		foreach ( WP_Block_Patterns_Registry::get_instance()->get_all_registered() as $p ) {
+			if ( 0 === strpos( (string) $p['name'], 'bigspy-ai-theme-wp/' ) ) {
+				$patterns += bst_aid_readonly_blocks( parse_blocks( $p['content'] ) );
+			}
+		}
+	}
+	$types = bst_aid_block_types();
+	$old   = bst_aid_readonly_blocks( parse_blocks( (string) $before ), $types );
+	$new   = bst_aid_readonly_blocks( parse_blocks( (string) $after ), $types );
+	$drop  = array_map( 'strval', (array) $drop );
+	$out   = array( 'errors' => array(), 'removed' => array() );
+	foreach ( $new as $token => $item ) {
+		if ( $item['count'] > ( $old[ $token ]['count'] ?? 0 ) && ! isset( $patterns[ $token ] ) ) {
+			$out['errors'][] = array( 'keep' => $token, 'name' => $item['block']['blockName'], 'problem' => isset( $old[ $token ] ) ? 'used more often than on the page' : 'not on this page' );
+		}
+	}
+	foreach ( $old as $token => $item ) {
+		$gone = $item['count'] - ( $new[ $token ]['count'] ?? 0 );
+		if ( $gone <= 0 ) {
+			continue;
+		}
+		$row = array( 'keep' => $token, 'name' => $item['block']['blockName'], 'about' => bst_aid_readonly_about( $item['block'] ) );
+		if ( in_array( $token, $drop, true ) ) {
+			$out['removed'][] = $row;
+		} else {
+			$out['errors'][] = $row + array( 'problem' => 'missing' );
+		}
+	}
+	return $out;
+}
+
+/** Tool error for a failed guard, or null. */
+function bst_aid_readonly_error( $guard ) {
+	if ( ! $guard['errors'] ) {
+		return null;
+	}
+	return array(
+		'error'    => 'Not saved: read-only blocks must stay as they are. Send each one back as its { "keep": "…" } node from get_page. Remove one only after the user asked, by listing its token in drop_readonly. Read-only blocks cannot be copied or added.',
+		'readonly' => $guard['errors'],
+	);
+}
+
+/** True when a model tree uses keep nodes. */
+function bst_aid_tree_keeps( $nodes ) {
+	foreach ( (array) $nodes as $node ) {
+		if ( is_array( $node ) && ( isset( $node['keep'] ) || bst_aid_tree_keeps( $node['inner'] ?? array() ) ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/** Error when the page changed after the version the model read, or a keep write has no version. */
+function bst_aid_version_error( $a, $content ) {
+	$version = isset( $a['version'] ) ? (string) $a['version'] : '';
+	if ( '' !== $version && bst_aid_content_version( $content ) !== $version ) {
+		return array( 'error' => 'Not saved: the page changed after you read it (another editor or tab). Call get_page again and redo the change.' );
+	}
+	if ( '' === $version && ( bst_aid_tree_keeps( $a['blocks'] ?? array() ) || ! empty( $a['drop_readonly'] ) ) ) {
+		return array( 'error' => 'Pass the version from get_page when keeping or removing read-only blocks.' );
+	}
+	return null;
 }
 
 /** True when text HTML carries page layout rather than rich text. */
@@ -482,9 +712,10 @@ function bst_aid_tool_style_options( $a ) {
  * @param array $tree   Model tree.
  * @param int   $source Post being rewritten, 0 for new content.
  */
-function bst_aid_tree_to_markup( $tree, $source = 0 ) {
+function bst_aid_tree_to_markup( $tree, $source = 0, $drop = array() ) {
 	$issues = array( 'errors' => array(), 'warnings' => array(), 'source' => (int) $source );
 	$blocks = bst_aid_build_blocks( $tree, '', $issues );
+	unset( $issues['keep_map'] );
 	if ( $issues['errors'] ) {
 		return new WP_Error( 'bst_aid_blocks', 'Fix these block errors and call again', $issues );
 	}
@@ -492,16 +723,23 @@ function bst_aid_tree_to_markup( $tree, $source = 0 ) {
 		return new WP_Error( 'bst_aid_blocks', 'No blocks given.', $issues );
 	}
 	$markup = serialize_blocks( $blocks );
-	$error  = bst_aid_block_rule_error( $markup, $source ? (string) get_post_field( 'post_content', $source ) : '' );
+	$before = $source ? (string) get_post_field( 'post_content', $source ) : '';
+	$guard  = bst_aid_readonly_guard( $before, $markup, $drop );
+	if ( $guard['errors'] ) {
+		$error = bst_aid_readonly_error( $guard );
+		return new WP_Error( 'bst_aid_readonly', $error['error'], array( 'readonly' => $error['readonly'] ) + $issues );
+	}
+	$error = bst_aid_block_rule_error( $markup, $before );
 	if ( $error ) {
 		return new WP_Error( 'bst_aid_block_rule', $error, $issues );
 	}
-	return array( 'markup' => $markup, 'warnings' => array_slice( $issues['warnings'], 0, 30 ) );
+	return array( 'markup' => $markup, 'warnings' => array_slice( $issues['warnings'], 0, 30 ), 'removed_readonly' => $guard['removed'] );
 }
 
 /** Compact tree of parsed blocks for the model: only non-default attributes. */
-function bst_aid_compact_blocks( $blocks ) {
-	$out = array();
+function bst_aid_compact_blocks( $blocks, $types = null ) {
+	$types = null === $types ? bst_aid_block_types() : $types;
+	$out   = array();
 	foreach ( (array) $blocks as $b ) {
 		if ( empty( $b['blockName'] ) ) {
 			$html = trim( (string) $b['innerHTML'] );
@@ -511,6 +749,17 @@ function bst_aid_compact_blocks( $blocks ) {
 			continue;
 		}
 		$node = array( 'name' => $b['blockName'] );
+		if ( bst_aid_readonly_block( $b, $types ) ) {
+			// Read-only: no markup for the model to copy; the server keeps the stored block.
+			$node['keep']     = bst_aid_keep_token( $b );
+			$node['readonly'] = true;
+			$node['about']    = bst_aid_readonly_about( $b );
+			if ( 'core/block' !== $b['blockName'] || 'ok' === ( $node['about']['pattern'] ?? '' ) ) {
+				$node['text'] = mb_substr( trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( render_block( $b ) ) ) ), 0, 300 );
+			}
+			$out[] = $node;
+			continue;
+		}
 		if ( ! empty( $b['attrs'] ) ) {
 			$node['attrs'] = $b['attrs'];
 		}
@@ -523,7 +772,7 @@ function bst_aid_compact_blocks( $blocks ) {
 			continue;
 		}
 		if ( ! empty( $b['innerBlocks'] ) ) {
-			$node['inner'] = bst_aid_compact_blocks( $b['innerBlocks'] );
+			$node['inner'] = bst_aid_compact_blocks( $b['innerBlocks'], $types );
 		}
 		$out[] = $node;
 	}
@@ -750,7 +999,7 @@ add_filter(
 	function ( $tools ) {
 		$tree = array(
 			'type'        => 'array',
-			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style). Core blocks from get_page / get_pattern have a "raw" field: keep it unchanged to keep the block, or replace it with { "name": "core/paragraph", "html": "…" } / { "name": "core/heading", "attrs": { "level": 2 }, "html": "…" } to change the text.',
+			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style). Core blocks from get_page / get_pattern have a "raw" field: keep it unchanged to keep the block, or replace it with { "name": "core/paragraph", "html": "…" } / { "name": "core/heading", "attrs": { "level": 2 }, "html": "…" } to change the text. Read-only nodes (with "keep") go back as { "keep": "…" } only; they cannot be changed, copied or added.',
 			'items'       => array( 'type' => 'object' ),
 		);
 		$tools['list_blocks']   = array(
@@ -825,13 +1074,13 @@ add_filter(
 			'callback'    => 'bst_aid_tool_create_page',
 		);
 		$tools['get_page']      = array(
-			'description' => 'Read a page as a block tree (non-default attributes only), to edit it.',
+			'description' => 'Read a page as a block tree (non-default attributes only), to edit it. Read-only blocks (Query Loop, synced patterns, plugin blocks, blocks bound to data, switched-off blocks) come as { name, keep, readonly, about }: send them back as { "keep": "…" } to keep them exactly, and tell the user they stay unchanged. Pass version to update_page / page_sections.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'id' => array( 'type' => 'integer' ) ), 'required' => array( 'id' ) ),
 			'cap'         => 'edit_pages',
 			'callback'    => 'bst_aid_tool_get_page',
 		);
 		$tools['update_page']   = array(
-			'description' => 'Replace a page\'s blocks and/or title, status, template. A revision is kept. For a published page, ask first and pass confirmed: true.',
+			'description' => 'Replace a page\'s blocks and/or title, status, template. A revision is kept. For a published page, ask first and pass confirmed: true. To change only the title, status or template, leave out blocks. Every read-only block must come back as its { "keep" } node unless the user asked to remove it (drop_readonly).',
 			'parameters'  => array(
 				'type'       => 'object',
 				'properties' => array(
@@ -840,6 +1089,8 @@ add_filter(
 					'blocks'    => $tree,
 					'template'  => array( 'type' => 'string', 'enum' => array( 'default', 'full-width', 'blank' ) ),
 					'status'    => array( 'type' => 'string', 'enum' => array( 'draft', 'publish' ) ),
+					'version'   => array( 'type' => 'string', 'description' => 'version from get_page; the write stops if the page changed since.' ),
+					'drop_readonly' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ), 'description' => 'keep tokens of read-only blocks the user asked to remove.' ),
 					'confirmed' => array( 'type' => 'boolean' ),
 				),
 				'required'   => array( 'id' ),
@@ -856,6 +1107,8 @@ add_filter(
 					'mode'      => array( 'type' => 'string', 'enum' => array( 'append', 'insert', 'replace', 'remove' ) ),
 					'index'     => array( 'type' => 'integer', 'minimum' => 0, 'description' => 'Top-level block index (0 = first) for insert, replace, remove.' ),
 					'blocks'    => $tree,
+					'version'   => array( 'type' => 'string', 'description' => 'version from get_page; the write stops if the page changed since.' ),
+					'drop_readonly' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ), 'description' => 'keep tokens of read-only blocks the user asked to remove.' ),
 					'confirmed' => array( 'type' => 'boolean' ),
 				),
 				'required'   => array( 'id', 'mode' ),
@@ -1316,6 +1569,7 @@ function bst_aid_tool_get_page( $a ) {
 		'status'   => $p->post_status,
 		'template' => false !== strpos( $tpl, 'full-width' ) ? 'full-width' : ( false !== strpos( $tpl, 'blank' ) ? 'blank' : 'default' ),
 		'link'     => get_permalink( $p ),
+		'version'  => bst_aid_content_version( $p->post_content ),
 		'blocks'   => bst_aid_compact_blocks( parse_blocks( $p->post_content ) ),
 	);
 }
@@ -1336,13 +1590,24 @@ function bst_aid_tool_update_page( $a ) {
 	}
 	$data     = array( 'ID' => $p->ID );
 	$warnings = array();
+	$removed  = array();
 	if ( isset( $a['blocks'] ) ) {
-		$markup = bst_aid_tree_to_markup( $a['blocks'], $p->ID );
+		$stale = bst_aid_version_error( $a, $p->post_content );
+		if ( $stale ) {
+			return $stale;
+		}
+		$markup = bst_aid_tree_to_markup( $a['blocks'], $p->ID, (array) ( $a['drop_readonly'] ?? array() ) );
 		if ( is_wp_error( $markup ) ) {
-			return array( 'error' => $markup->get_error_message(), 'details' => $markup->get_error_data() );
+			$details = (array) $markup->get_error_data();
+			$out     = array( 'error' => $markup->get_error_message(), 'details' => $details );
+			if ( isset( $details['readonly'] ) ) {
+				$out['readonly'] = $details['readonly'];
+			}
+			return $out;
 		}
 		$data['post_content'] = wp_slash( $markup['markup'] );
 		$warnings             = $markup['warnings'];
+		$removed              = $markup['removed_readonly'];
 	}
 	if ( isset( $a['title'] ) ) {
 		$data['post_title'] = sanitize_text_field( bst_aid_clean_plain( (string) $a['title'] ) );
@@ -1361,7 +1626,11 @@ function bst_aid_tool_update_page( $a ) {
 			update_post_meta( $p->ID, '_wp_page_template', $tpl );
 		}
 	}
-	return array( 'id' => $p->ID, 'status' => get_post_status( $p->ID ), 'warnings' => $warnings, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) ) + bst_aid_editable_report( $p->ID );
+	$out = array( 'id' => $p->ID, 'status' => get_post_status( $p->ID ), 'warnings' => $warnings, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) ) + bst_aid_editable_report( $p->ID );
+	if ( $removed ) {
+		$out['removed_readonly'] = $removed; // Tell the user which kept blocks were removed at their request.
+	}
+	return $out;
 }
 
 function bst_aid_tool_page_sections( $a ) {
@@ -1369,8 +1638,18 @@ function bst_aid_tool_page_sections( $a ) {
 	if ( ! $p || 'page' !== $p->post_type || ! current_user_can( 'edit_post', $p->ID ) ) {
 		return array( 'error' => 'Page not found or not editable.' );
 	}
+	if ( ! function_exists( 'wp_check_post_lock' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/post.php';
+	}
+	if ( wp_check_post_lock( $p->ID ) ) {
+		return array( 'error' => 'Someone is editing this page right now. Try again when they are done.' );
+	}
 	if ( 'publish' === $p->post_status && empty( $a['confirmed'] ) ) {
 		return array( 'error' => 'needs_confirmation', 'message' => 'This page is published. Ask the user to confirm, then call again with confirmed: true.' );
+	}
+	$stale = bst_aid_version_error( $a, $p->post_content );
+	if ( $stale ) {
+		return $stale;
 	}
 	// Top-level blocks only; whitespace between blocks is dropped.
 	$top  = array_values( array_filter( parse_blocks( $p->post_content ), function ( $b ) { return ! empty( $b['blockName'] ) || '' !== trim( (string) $b['innerHTML'] ); } ) );
@@ -1381,6 +1660,7 @@ function bst_aid_tool_page_sections( $a ) {
 	if ( 'remove' !== $mode ) {
 		$issues = array( 'errors' => array(), 'warnings' => array(), 'source' => $p->ID );
 		$new    = bst_aid_build_blocks( $a['blocks'] ?? array(), '', $issues );
+		unset( $issues['keep_map'] );
 		if ( $issues['errors'] || ! $new ) {
 			return array( 'error' => 'Fix these block errors and call again', 'details' => $issues );
 		}
@@ -1402,6 +1682,11 @@ function bst_aid_tool_page_sections( $a ) {
 		default:
 			$top = array_merge( $top, $new );
 	}
+	// Read-only blocks (Query Loop, synced patterns, plugin blocks…) are never lost or copied by accident.
+	$guard = bst_aid_readonly_guard( $p->post_content, serialize_blocks( $top ), (array) ( $a['drop_readonly'] ?? array() ) );
+	if ( $guard['errors'] ) {
+		return bst_aid_readonly_error( $guard );
+	}
 	// Removing a section adds nothing, so it stays possible on old pages.
 	$error = 'remove' === $mode ? '' : bst_aid_block_rule_error( serialize_blocks( $top ), $p->post_content );
 	if ( $error ) {
@@ -1412,7 +1697,11 @@ function bst_aid_tool_page_sections( $a ) {
 	if ( is_wp_error( $r ) ) {
 		return array( 'error' => $r->get_error_message() );
 	}
-	return array( 'id' => $p->ID, 'sections' => count( $top ), 'warnings' => $warn, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) ) + bst_aid_editable_report( $p->ID );
+	$out = array( 'id' => $p->ID, 'sections' => count( $top ), 'warnings' => $warn, 'links' => bst_aid_links( $p->ID, get_the_title( $p->ID ) ), 'preview' => get_preview_post_link( $p->ID ) ) + bst_aid_editable_report( $p->ID );
+	if ( $guard['removed'] ) {
+		$out['removed_readonly'] = $guard['removed'];
+	}
+	return $out;
 }
 
 function bst_aid_tool_get_settings( $a ) {
@@ -1636,6 +1925,9 @@ function bst_aid_tool_show_palette( $a ) {
 
 /** Sanitize raw core markup recursively, including nested block attributes. */
 function bst_aid_sanitize_raw_block( $b ) {
+	if ( bst_aid_readonly_block( $b ) ) {
+		return $b; // Stored read-only blocks inside a kept core block stay exactly as they are.
+	}
 	$b['attrs'] = bst_aid_normalize_colors( $b['attrs'] );
     $b['innerHTML'] = bst_aid_clean_code( $b['innerHTML'] );
     $b['innerContent'] = array_map( function ( $s ) { return null === $s ? null : bst_aid_clean_code( $s ); }, $b['innerContent'] );

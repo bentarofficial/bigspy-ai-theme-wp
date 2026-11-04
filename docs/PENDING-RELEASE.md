@@ -36,6 +36,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Kiểm thử:** `node tools/tests/responsive-a11y-check.cjs` (fixture PHP stub, Chromium 153, 9 viewport 375–1440 kể cả sát breakpoint 549/550/849/850/1024/1025): trước 139/144, sau 144/144. Chưa chạy WordPress/editor/screen reader thật (Playground cloud `fetch failed`); chi tiết ở [RESPONSIVE-AI-RESEARCH.md](RESPONSIVE-AI-RESEARCH.md).
 - **Khi phát hành cần bổ sung:** dòng Có gì mới (tabs/reduced motion); mục 5 (cảnh báo AI) chưa làm.
 
+### G-65 — AI giữ nguyên block không hỗ trợ khi sửa trang
+
+- **Đã thay đổi:** `get_page` trả Query Loop, synced pattern (`core/block`), block plugin (kể cả plugin đã tắt), block có binding `metadata` và block BIGSPY đã tắt dưới dạng chỉ đọc `{ keep, readonly, about }` (không còn `raw`), kèm `version` của trang. `update_page`/`page_sections`/UX Block lấy lại đúng block đã lưu trên chính trang theo token, không tin markup của model; thiếu, nhân bản, chèn từ trang khác hoặc trang đã đổi (`version`) thì dừng trước khi ghi và liệt kê từng block. Chỉ xoá khi người dùng yêu cầu (`drop_readonly`), kết quả báo `removed_readonly`. Synced pattern báo thiếu/đã xoá/riêng tư/vòng lặp, không lộ nội dung riêng tư, không bao giờ sửa pattern. `raw` của core block được phép giờ lưu bản gốc của trang (không lưu khoảng trắng do model đổi trong `<pre>`). `page_sections` kiểm tra khoá chỉnh sửa. Quy tắc block (raw, 90%, `bst/code`, giới hạn) giữ nguyên.
+- **Kiểm thử:** trước khi sửa (PHP cô lập, parser block thật WordPress 6.8 + stub): gửi lại cây đầy đủ bị từ chối; bỏ node làm mất Query Loop/synced pattern/block plugin/binding; raw sửa khoảng trắng trong `<pre>` được lưu; đổi đoạn văn có binding làm mất binding. Sau khi sửa: 42/42 (round trip giữ nguyên byte các block chỉ đọc, sửa title riêng, bỏ/thay/nhân bản/đổi chỗ, token giả/từ trang khác, raw giả, version cũ, khoá, page_sections, pattern thiếu/xoá/riêng tư/vòng lặp, block BIGSPY tắt, quy tắc block) + 7/7 hồi quy raw cũ. Thêm case vào `tools/tests/designer-integration.php`, chưa chạy được (Playground cloud `fetch failed`); chưa thử editor thật, revision thật và model AI thật. Block BIGSPY được dựng lại vẫn đổi cách mã hoá attr (`<` → `\u003c`), nên chỉ cam kết giữ byte cho block chỉ đọc.
+- **Khi phát hành cần bổ sung:** Có gì mới (AI sửa trang có Query Loop/synced pattern an toàn); thao tác có cấu trúc trên block chỉ đọc chưa mở.
+
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
 - **Đã thay đổi:** các phần chức năng liên quan.

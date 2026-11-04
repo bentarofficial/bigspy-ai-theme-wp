@@ -354,6 +354,36 @@ bst_test( ! is_wp_error( bst_aid_tree_to_markup( array_merge( $text_nodes( 20 ),
 $legacy_code = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Legacy code', 'post_content' => wp_slash( serialize_blocks( bst_aid_build_blocks( array_merge( $text_nodes( 45 ), array_fill( 0, 13, $code_node() ) ), '', $unused ) ) ) ) );
 bst_test( empty( bst_test_run( 'update_page', array( 'id' => $legacy_code, 'blocks' => bst_aid_tool_get_page( array( 'id' => $legacy_code ) )['blocks'] ) )['error'] ), 'Old page already over the ceiling can be saved unchanged' );
 
+// G-65: Query Loop, synced patterns, plugin blocks and bound blocks stay read-only and intact.
+$ro_pattern = wp_insert_post( array( 'post_type' => 'wp_block', 'post_status' => 'publish', 'post_title' => 'G65 synced', 'post_content' => '<!-- wp:paragraph --><p>Synced text</p><!-- /wp:paragraph -->' ) );
+$ro_query   = '<!-- wp:query {"queryId":7,"query":{"perPage":2,"postType":"post","inherit":false},"oddAttr":{"a":[1,2]}} --><div class="wp-block-query"><!-- wp:post-template --><!-- wp:post-title /--><!-- /wp:post-template --></div><!-- /wp:query -->';
+$ro_sync    = '<!-- wp:block {"ref":' . $ro_pattern . '} /-->';
+$ro_bound   = '<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"price"}}}}} --><p>Price</p><!-- /wp:paragraph -->';
+$ro_plugin  = '<!-- wp:acme/widget {"foo":"bar"} --><div class="acme">  spaced   text  </div><!-- /wp:acme/widget -->';
+$ro_page    = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'G65 page', 'post_content' => wp_slash( '<!-- wp:bst/heading {"text":"Hi"} /-->' . $ro_query . $ro_sync . $ro_bound . $ro_plugin ) ) );
+$ro_before  = (string) get_post_field( 'post_content', $ro_page );
+$ro_get     = bst_aid_tool_get_page( array( 'id' => $ro_page ) );
+$ro_tree    = $ro_get['blocks'];
+bst_test( 4 === count( array_filter( $ro_tree, function ( $n ) { return isset( $n['keep'] ) && ! isset( $n['raw'] ); } ) ) && 'ok' === $ro_tree[2]['about']['pattern'], 'get_page marks Query Loop, synced pattern, bound and plugin blocks as keep' );
+$ro_tree[0]['attrs']['text'] = 'Edited';
+$r = bst_test_run( 'update_page', array( 'id' => $ro_page, 'blocks' => $ro_tree, 'version' => $ro_get['version'] ) );
+$ro_after = (string) get_post_field( 'post_content', $ro_page );
+bst_test( empty( $r['error'] ) && false !== strpos( $ro_after, 'Edited' ) && false !== strpos( $ro_after, $ro_query ) && false !== strpos( $ro_after, $ro_sync ) && false !== strpos( $ro_after, $ro_bound ) && false !== strpos( $ro_after, $ro_plugin ), 'Editing a page keeps read-only blocks byte for byte' );
+$ro_get = bst_aid_tool_get_page( array( 'id' => $ro_page ) );
+$r = bst_test_run( 'update_page', array( 'id' => $ro_page, 'blocks' => array( $ro_get['blocks'][0] ), 'version' => $ro_get['version'] ) );
+bst_test( ! empty( $r['error'] ) && 4 === count( $r['readonly'] ) && $ro_after === get_post_field( 'post_content', $ro_page ), 'Dropping read-only blocks is refused before writing' );
+$r = bst_test_run( 'update_page', array( 'id' => $ro_page, 'blocks' => array_merge( $ro_get['blocks'], array( $ro_get['blocks'][1] ) ), 'version' => $ro_get['version'] ) );
+bst_test( ! empty( $r['error'] ), 'Duplicating a read-only block is refused' );
+$r = bst_test_run( 'update_page', array( 'id' => $legacy, 'blocks' => array( array( 'name' => 'bst/heading', 'attrs' => array( 'text' => 'x' ) ), array( 'keep' => $ro_get['blocks'][1]['keep'] ) ), 'version' => bst_aid_content_version( get_post_field( 'post_content', $legacy ) ) ) );
+bst_test( ! empty( $r['error'] ), 'A keep token cannot copy a block to another page' );
+bst_test( ! empty( bst_test_run( 'update_page', array( 'id' => $ro_page, 'blocks' => array( array( 'name' => 'core/query', 'raw' => $ro_query ) ) ) )['error'] ), 'Forged Query Loop raw refused' );
+$r = bst_test_run( 'update_page', array( 'id' => $ro_page, 'blocks' => $ro_get['blocks'], 'version' => 'stale' ) );
+bst_test( ! empty( $r['error'] ) && $ro_after === get_post_field( 'post_content', $ro_page ), 'Stale version stops the write' );
+$r = bst_test_run( 'update_page', array( 'id' => $ro_page, 'blocks' => array( $ro_get['blocks'][0] ), 'version' => $ro_get['version'], 'drop_readonly' => array_column( array_slice( $ro_get['blocks'], 1 ), 'keep' ) ) );
+bst_test( empty( $r['error'] ) && 4 === count( $r['removed_readonly'] ) && false !== strpos( get_post_field( 'post_content', $ro_pattern ), 'Synced text' ), 'Removal the user asked for is reported; the synced pattern itself is untouched' );
+$r = bst_test_run( 'update_page', array( 'id' => $ro_page, 'title' => 'G65 renamed' ) );
+bst_test( empty( $r['error'] ) && 'G65 renamed' === get_the_title( $ro_page ), 'Title-only update still works' );
+
 // Every native motion family must survive get_page -> edit -> update_page.
 $motion_text = array( 'name' => 'bst/heading', 'attrs' => array( 'text' => 'Keep this editable heading', 'tag' => 'h3' ) );
 $motion_fixtures = array(
