@@ -218,6 +218,9 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 				$inner = bst_aid_build_blocks( $node['inner'], $name, $issues, $where );
 			}
 		}
+		if ( 'bst/row' === $name && ! empty( $attrs['reverseMobile'] ) && count( $inner ) > 1 && bst_aid_has_interactive( array( $inner[0] ) ) && bst_aid_has_interactive( array_slice( $inner, 1 ) ) ) {
+			$issues['warnings'][] = "$where (bst/row): reverseMobile shows the first column last on phones, but keyboard and screen-reader order stay as written and both columns hold links or buttons. Measured from block data only, not a viewport. Prefer putting the content in reading order and turning reverseMobile off.";
+		}
 		if ( 'bigspy/expand-gallery' === $name && ( count( $inner ) < 2 || count( $inner ) > 6 ) ) {
 			$issues['errors'][] = "$where: expanding galleries need 2 to 6 panels.";
 		}
@@ -429,6 +432,29 @@ function bst_aid_block_count( $blocks ) {
 }
 
 /** Share of blocks the user can edit with block options, in percent. bst/code illustrations are not counted; their own caps apply. */
+/**
+ * Whether built blocks contain something keyboard-focusable: a button, form or link.
+ *
+ * @param array $blocks Built blocks.
+ */
+function bst_aid_has_interactive( $blocks ) {
+	foreach ( (array) $blocks as $b ) {
+		$n = (string) ( $b['blockName'] ?? '' );
+		if ( preg_match( '#/(button|buttons|form|search)$#', $n ) || preg_match( '#<a\s[^>]*href#i', wp_json_encode( $b['attrs'] ?? array() ) ) ) {
+			return true;
+		}
+		foreach ( (array) ( $b['attrs'] ?? array() ) as $k => $v ) {
+			if ( is_string( $v ) && '' !== $v && preg_match( '/^(url|link|href)$/i', $k ) ) {
+				return true;
+			}
+		}
+		if ( ! empty( $b['innerBlocks'] ) && bst_aid_has_interactive( $b['innerBlocks'] ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
 function bst_aid_editable_percent( $content ) {
 	$count = function ( $blocks ) use ( &$count ) {
 		$all  = 0;
