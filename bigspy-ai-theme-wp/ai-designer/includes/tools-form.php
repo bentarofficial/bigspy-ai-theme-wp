@@ -22,11 +22,12 @@ add_filter(
 	'bst_aid_tools',
 	function ( $tools ) {
 		$tools['form_config'] = array(
-			'description' => 'Fields and price rules of a built-in Form block (provider "bigspy") on a page. Read get_knowledge(forms) first. mode "read": the forms on the page and the current config. mode "check": dry run of a full new config (fields + pricing): errors, a rules table, example quotes before/after for samples and the changes; nothing is saved; show the table and examples to the user. mode "save": the same config with the check token from that dry run, after the user agreed. Never invent prices: ask for missing prices and units, or use price_source "demo" only when the user wants sample prices.',
+			'description' => 'Fields and price rules of a built-in Form block (provider "bigspy") on a page. Read get_knowledge(forms) first. mode "read": the forms on the page and the current config. mode "check": dry run of a full new config (fields + pricing): errors, a rules table, example quotes before/after for samples and the changes; nothing is saved; show the table and examples to the user. mode "save": the same config with the check token from that dry run, after the user agreed. mode "preset": industry templates (no preset = the list; preset = its fields, demo price rules and sample quotes) to start from; replace every demo price with the user\'s prices, or keep them only when the user wants a demo (price_source "demo"). Never invent prices: ask for missing prices and units, or use price_source "demo" only when the user wants sample prices.',
 			'parameters'  => array(
 				'type'       => 'object',
 				'properties' => array(
-					'mode'         => array( 'type' => 'string', 'enum' => array( 'read', 'check', 'save' ) ),
+					'mode'         => array( 'type' => 'string', 'enum' => array( 'read', 'check', 'save', 'preset' ) ),
+					'preset'       => array( 'type' => 'string', 'description' => 'Preset key (mode "preset"): ' . implode( ', ', array_keys( function_exists( 'bst_form_presets' ) ? bst_form_presets() : array() ) ) . '.' ),
 					'id'           => array( 'type' => 'integer', 'description' => 'Page id.' ),
 					'form_key'     => array( 'type' => 'string', 'description' => 'formKey of the Form block; optional when the page has one form.' ),
 					'fields'       => array( 'type' => 'array', 'maxItems' => BST_AID_FORM_MAX_FIELDS, 'items' => array( 'type' => 'object', 'description' => '{ id?, type, name, label, placeholder?, required?, width: half|full, options? (one choice per line), default?, when? }' ) ),
@@ -339,6 +340,32 @@ function bst_aid_form_clean_pricing( $raw, $fields, $old, &$errors, &$warnings )
 	return $out;
 }
 
+/** Industry presets (G-69, inc/form-presets.php): the list, or one preset to start a check from. */
+function bst_aid_form_preset_result( $key ) {
+	$all = bst_form_presets();
+	if ( '' === $key || ! isset( $all[ sanitize_key( $key ) ] ) ) {
+		$list = array();
+		foreach ( $all as $k => $p ) {
+			$list[] = array( 'preset' => $k, 'title' => $p['title'], 'trade' => $p['trade'], 'kinds' => array_values( array_unique( array_column( $p['pricing']['lines'], 'kind' ) ) ) );
+		}
+		return array( 'presets' => $list, 'note' => ( '' === $key ? '' : 'Unknown preset "' . sanitize_key( $key ) . '". ' ) . 'Call again with preset to get its fields and price rules.' );
+	}
+	$p       = $all[ sanitize_key( $key ) ];
+	$samples = array();
+	foreach ( $p['samples'] as $i => $smp ) {
+		$samples[] = array( 'label' => 'Sample ' . ( $i + 1 ) . ' (demo total ' . $smp['total'] . ')', 'values' => $smp['values'] );
+	}
+	return array(
+		'preset'  => sanitize_key( $key ),
+		'title'   => $p['title'],
+		'trade'   => $p['trade'],
+		'fields'  => $p['fields'],
+		'pricing' => $p['pricing'],
+		'samples' => $samples,
+		'note'    => 'Every price here is a demo. Ask the user for the real prices and units and put them in before check with price_source "user"; keep the demo prices only when the user asked for sample prices (price_source "demo"). Rename fields and options to fit the business; keep ids so lines and conditions still match.',
+	);
+}
+
 /** Mark sample prices as demo, so they are never taken for real prices. */
 function bst_aid_form_mark_demo( $p ) {
 	foreach ( $p['lines'] as $i => $l ) {
@@ -574,6 +601,9 @@ function bst_aid_form_token( $page, $key, $fields, $pricing ) {
 /* ------------------------------------------------------------------ Tool */
 
 function bst_aid_tool_form_config( $a ) {
+	if ( 'preset' === ( $a['mode'] ?? '' ) ) {
+		return bst_aid_form_preset_result( (string) ( $a['preset'] ?? '' ) );
+	}
 	$post = get_post( (int) ( $a['id'] ?? 0 ) );
 	if ( ! $post || ! in_array( $post->post_type, array( 'page', 'post', 'bst_block' ), true ) || ! current_user_can( 'edit_post', $post->ID ) ) {
 		return array( 'error' => 'Page not found or not editable.' );

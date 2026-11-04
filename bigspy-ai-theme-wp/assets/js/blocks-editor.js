@@ -2858,39 +2858,12 @@
 			var unknown = (src.match(/\{[a-z0-9_-]+\}/g) || []).map(function (x) { return x.slice(1, -1); }).filter(function (id) { return known.indexOf(id) === -1; });
 			return unknown.length ? __('Unknown names (fields, or lines above this one):', T) + ' ' + unknown.join(', ') : '';
 		};
-		var preset = function (kind) {
-			var demo = ' (demo)';
-			var P = {
-				laundry: {
-					fields: [
-						{ id: 'f_name', type: 'text', name: 'your-name', label: __('Name', T), required: true, width: 'half' },
-						{ id: 'f_phone', type: 'tel', name: 'your-phone', label: __('Phone', T), required: true, width: 'half' },
-						{ id: 'f_kg', type: 'number', name: 'kg', label: __('Weight (kg)', T), required: true, width: 'half' },
-						{ id: 'f_ship', type: 'checkbox', name: 'pickup', label: __('Pickup and delivery', T), options: __('Pickup and delivery', T), width: 'half' },
-						{ id: 'f_fast', type: 'checkbox', name: 'express', label: __('Express', T), options: __('Express', T), width: 'full' },
-						{ id: 'f_addr', type: 'text', name: 'address', label: __('Address', T), required: true, width: 'full', when: { logic: 'all', rules: [{ field: 'f_ship', op: 'filled', value: '' }] } }
-					],
-					pricing: { enabled: true, currency: 'VND', decimals: 0, note: __('Demo prices: replace them before publishing.', T), lines: [
-						{ id: 'l_wash', kind: 'qty', label: __('Washing', T) + demo, field: 'f_kg', unit: 18000 },
-						{ id: 'l_ship', kind: 'fixed', label: __('Pickup and delivery', T) + demo, amount: 25000, when: { logic: 'all', rules: [{ field: 'f_ship', op: 'filled', value: '' }] } },
-						{ id: 'l_fast', kind: 'percent', label: __('Express', T) + ' +20%' + demo, pct: 20, targets: ['l_wash'], when: { logic: 'all', rules: [{ field: 'f_fast', op: 'filled', value: '' }] } }
-					] }
-				},
-				cleaning: {
-					fields: [
-						{ id: 'f_name', type: 'text', name: 'your-name', label: __('Name', T), required: true, width: 'half' },
-						{ id: 'f_phone', type: 'tel', name: 'your-phone', label: __('Phone', T), required: true, width: 'half' },
-						{ id: 'f_pkg', type: 'select', name: 'package', label: __('Package', T), placeholder: __('Choose a package', T), options: __('Basic', T) + '\n' + __('Deep clean', T), required: true, width: 'half' },
-						{ id: 'f_m2', type: 'number', name: 'area', label: __('Area (m²)', T), required: true, width: 'half' },
-						{ id: 'f_date', type: 'date', name: 'date', label: __('Preferred date', T), width: 'full' }
-					],
-					pricing: { enabled: true, currency: 'VND', decimals: 0, minTotal: 300000, roundStep: 1000, note: __('Demo prices: replace them before publishing.', T), lines: [
-						{ id: 'l_pkg', kind: 'option', label: __('Package per m²', T) + demo, field: 'f_pkg', qtyField: 'f_m2', prices: (function () { var o = {}; o[__('Basic', T)] = 12000; o[__('Deep clean', T)] = 20000; return o; })() }
-					] }
-				}
-			}[kind];
-			if (window.confirm(__('Replace the fields and price rules of this form with the demo template?', T))) {
-				props.setAttributes({ fields: P.fields, pricing: P.pricing, schemaVersion: 1 });
+		/* G-69: industry presets with demo prices, from inc/form-presets.php (same data the AI uses). */
+		var presets = Array.isArray(window.bstFormPresets) ? window.bstFormPresets : [];
+		var preset = function (key) {
+			var P = presets.filter(function (x) { return x.key === key; })[0];
+			if (P && window.confirm(__('Replace the fields and price rules of this form with the demo template?', T))) {
+				props.setAttributes({ fields: JSON.parse(JSON.stringify(P.fields)), pricing: JSON.parse(JSON.stringify(P.pricing)), schemaVersion: 1 });
 			}
 		};
 		var nfPricing = function () {
@@ -2903,10 +2876,14 @@
 			});
 			return el(Fragment, null,
 				el(c.ToggleControl, { label: __('Show a price estimate', T), help: __('The visitor sees the price while filling in the form. The price is computed again on the server when it is sent.', T), checked: on, onChange: function (v) { setPr({ enabled: v, currency: pr.currency || 'VND', lines: lines }); }, __nextHasNoMarginBottom: true }),
-				el('div', { className: 'bst-nf-row' },
-					el(c.Button, { variant: 'secondary', size: 'small', onClick: function () { preset('laundry'); } }, __('Template: laundry (demo)', T)),
-					el(c.Button, { variant: 'secondary', size: 'small', onClick: function () { preset('cleaning'); } }, __('Template: cleaning (demo)', T))
-				),
+				presets.length ? el(c.SelectControl, {
+					label: __('Start from an industry template (demo prices)', T),
+					help: __('Replaces the fields and price rules. Every price is a demo: put in your own prices before publishing.', T),
+					value: '',
+					options: [{ value: '', label: __('Choose a template…', T) }].concat(presets.map(function (x) { return { value: x.key, label: x.title + ' — ' + x.trade }; })),
+					onChange: function (v) { if (v) { preset(v); } },
+					__nextHasNoMarginBottom: true
+				}) : null,
 				!on ? null : el(Fragment, null,
 					problems.length ? el(c.Notice, { status: 'error', isDismissible: false }, problems.map(function (m, k) { return el('div', { key: k }, m); })) : null,
 					el('div', { className: 'bst-nf-row' },

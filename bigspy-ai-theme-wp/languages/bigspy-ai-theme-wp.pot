@@ -11250,3 +11250,174 @@ msgstr ""
 msgid "Custom HTML and CSS rendered on the page, or a code snippet with a copy button. Switch between Visual and Code while editing. Use it for illustrations drawn with SVG/HTML/CSS instead of images (icons, diagrams, mockups, charts, decorative shapes), small embeds, or code samples."
 msgstr ""
 
+msgid "1-ton truck"
+msgstr ""
+
+msgid "2-ton truck"
+msgstr ""
+
+msgid "Packing service"
+msgstr ""
+
+msgid "Two-sided"
+msgstr ""
+
+msgid "Fabric"
+msgstr ""
+
+msgid "Blackout"
+msgstr ""
+
+msgid "Installation"
+msgstr ""
+
+msgid "Weekday"
+msgstr ""
+
+msgid "Weekend"
+msgstr ""
+
+msgid "Body massage 60 min"
+msgstr ""
+
+msgid "Facial care"
+msgstr ""
+
+msgid "Laundry"
+msgstr ""
+
+msgid "Laundry by weight with pickup and express"
+msgstr ""
+
+msgid "Cleaning"
+msgstr ""
+
+msgid "Cleaning priced per m² by package, with a minimum order"
+msgstr ""
+
+msgid "House moving"
+msgstr ""
+
+msgid "Moving: truck type, distance, floors carried by stairs, packing"
+msgstr ""
+
+msgid "Truck"
+msgstr ""
+
+msgid "Choose a truck"
+msgstr ""
+
+msgid "Distance (km)"
+msgstr ""
+
+msgid "Floors without a lift"
+msgstr ""
+
+msgid "Distance"
+msgstr ""
+
+msgid "Carrying by stairs"
+msgstr ""
+
+msgid "Printing"
+msgstr ""
+
+msgid "Business cards by quantity tiers, two-sided surcharge"
+msgstr ""
+
+msgid "Boxes"
+msgstr ""
+
+msgid "Curtains"
+msgstr ""
+
+msgid "Curtains by width × height and material, minimum area, installation"
+msgstr ""
+
+msgid "Material"
+msgstr ""
+
+msgid "Choose a material"
+msgstr ""
+
+msgid "Width (m)"
+msgstr ""
+
+msgid "Height (m)"
+msgstr ""
+
+msgid "Homestay / hotel"
+msgstr ""
+
+msgid "Rooms: weekday or weekend rate × nights, extra guests per night"
+msgstr ""
+
+msgid "Check-in date"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Nights"
+msgstr ""
+
+msgid "Extra guests"
+msgstr ""
+
+msgid "Room per night"
+msgstr ""
+
+msgid "Extra guests per night"
+msgstr ""
+
+msgid "Spa session packages"
+msgstr ""
+
+msgid "Spa: price per session by service, discount for 5 and 10 sessions"
+msgstr ""
+
+msgid "Choose a service"
+msgstr ""
+
+msgid "Sessions"
+msgstr ""
+
+msgid "First visit"
+msgstr ""
+
+msgid "Session"
+msgstr ""
+
+msgid "5–9 sessions −10%"
+msgstr ""
+
+msgid "10+ sessions −20%"
+msgstr ""
+
+msgid "Installments"
+msgstr ""
+
+msgid "Monthly installment estimate at a flat monthly rate"
+msgstr ""
+
+msgid "Amount to borrow (VND)"
+msgstr ""
+
+msgid "Months"
+msgstr ""
+
+msgid "Monthly payment, flat rate 1.5%/month"
+msgstr ""
+
+msgid "Estimate per month at a flat rate on the amount borrowed; the lender confirms the real schedule."
+msgstr ""
+
+msgid "Start from an industry template (demo prices)"
+msgstr ""
+
+msgid "Replaces the fields and price rules. Every price is a demo: put in your own prices before publishing."
+msgstr ""
+
+msgid "Choose a template…"
+msgstr ""
+

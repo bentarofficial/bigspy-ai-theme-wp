@@ -19,7 +19,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 
 ## AI Designer (`ai-designer/`)
 - Entry: `ai-designer.php`; loaded by one line in `functions.php`.
-- `includes/`: `client.php` Kyma API, `prompt.php` system prompt, `tasks.php` task loop and REST, `tools.php` tool registry, `tools-site.php`, `tools-design.php`, `tools-form.php` (Form fields/prices: `form_config`), `tools-images.php`, `permissions.php` approval cards, `clean.php` output cleaning, `settings.php`, `guidelines.php`, `workspace.php`.
+- `includes/`: `client.php` Kyma API, `prompt.php` system prompt, `tasks.php` task loop and REST, `tools.php` tool registry, `tools-site.php`, `tools-design.php`, `tools-form.php` (Form fields/prices: `form_config`, mode `preset`), `tools-images.php`, `permissions.php` approval cards, `clean.php` output cleaning, `settings.php`, `guidelines.php`, `workspace.php`.
 - UI: `assets/`; knowledge: `knowledge/` (`forms.md` = Form/pricing guide); About page: `welcome/`.
 
 ## Translations
@@ -28,6 +28,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 
 ## Other
 - Version: `style.css` and `BST_VERSION` in `functions.php`. Readiness: `python tools/release.py`.
+- Form schema/pricing/presets: `inc/form-schema.php`, `inc/form-pricing.php`, `inc/form-presets.php` (industry presets, shared by the editor Pricing tab and AI). Test: `php tools/tests/form-presets-check.php`, `node tools/tests/form-presets-browser.cjs`.
 - Optional features: `inc/features.php` (page, toggles, field types), one file per feature in `inc/features/`. Test: `node tools/features-check.cjs`.
 - Theme panel: `inc/admin/`. Updater: `inc/updater.php`. Patterns: `patterns/`.
 

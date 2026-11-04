@@ -50,6 +50,7 @@ $bst_includes = array(
 	'inc/site-extras.php',
 	'inc/form-schema.php',
 	'inc/form-pricing.php',
+	'inc/form-presets.php',
 	'inc/form-native.php',
 	'inc/form-migrate.php',
 	'inc/block-shapes.php',

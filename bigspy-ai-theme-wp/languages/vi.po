@@ -7414,3 +7414,174 @@ msgstr "Trên điện thoại chỉ chuyển cột đầu xuống cuối trên m
 msgid "Custom HTML and CSS rendered on the page, or a code snippet with a copy button. Switch between Visual and Code while editing. Use it for illustrations drawn with SVG/HTML/CSS instead of images (icons, diagrams, mockups, charts, decorative shapes), small embeds, or code samples."
 msgstr "HTML và CSS tùy chỉnh hiển thị trên trang, hoặc đoạn code có nút sao chép. Chuyển giữa Visual và Code khi chỉnh sửa. Dùng để vẽ minh họa bằng SVG/HTML/CSS thay cho ảnh (icon, sơ đồ, mockup, biểu đồ, hình trang trí), nhúng nhỏ, hoặc hiện mẫu code."
 
+msgid "1-ton truck"
+msgstr "Xe tải 1 tấn"
+
+msgid "2-ton truck"
+msgstr "Xe tải 2 tấn"
+
+msgid "Packing service"
+msgstr "Đóng gói đồ"
+
+msgid "Two-sided"
+msgstr "In 2 mặt"
+
+msgid "Fabric"
+msgstr "Vải"
+
+msgid "Blackout"
+msgstr "Chống nắng (blackout)"
+
+msgid "Installation"
+msgstr "Lắp đặt"
+
+msgid "Weekday"
+msgstr "Ngày thường"
+
+msgid "Weekend"
+msgstr "Cuối tuần"
+
+msgid "Body massage 60 min"
+msgstr "Massage body 60 phút"
+
+msgid "Facial care"
+msgstr "Chăm sóc da mặt"
+
+msgid "Laundry"
+msgstr "Giặt là"
+
+msgid "Laundry by weight with pickup and express"
+msgstr "Giặt theo kg, có giao nhận và giặt nhanh"
+
+msgid "Cleaning"
+msgstr "Vệ sinh"
+
+msgid "Cleaning priced per m² by package, with a minimum order"
+msgstr "Vệ sinh tính theo m² và gói, có giá tối thiểu"
+
+msgid "House moving"
+msgstr "Chuyển nhà"
+
+msgid "Moving: truck type, distance, floors carried by stairs, packing"
+msgstr "Chuyển nhà: loại xe, quãng đường, số tầng khiêng bộ, đóng gói"
+
+msgid "Truck"
+msgstr "Loại xe"
+
+msgid "Choose a truck"
+msgstr "Chọn loại xe"
+
+msgid "Distance (km)"
+msgstr "Quãng đường (km)"
+
+msgid "Floors without a lift"
+msgstr "Số tầng không có thang máy"
+
+msgid "Distance"
+msgstr "Quãng đường"
+
+msgid "Carrying by stairs"
+msgstr "Khiêng bộ theo tầng"
+
+msgid "Printing"
+msgstr "In ấn"
+
+msgid "Business cards by quantity tiers, two-sided surcharge"
+msgstr "Danh thiếp giá theo bậc số lượng, phụ phí in 2 mặt"
+
+msgid "Boxes"
+msgstr "Số hộp"
+
+msgid "Curtains"
+msgstr "Rèm cửa"
+
+msgid "Curtains by width × height and material, minimum area, installation"
+msgstr "Rèm theo rộng × cao và chất liệu, diện tích tối thiểu, lắp đặt"
+
+msgid "Material"
+msgstr "Chất liệu"
+
+msgid "Choose a material"
+msgstr "Chọn chất liệu"
+
+msgid "Width (m)"
+msgstr "Rộng (m)"
+
+msgid "Height (m)"
+msgstr "Cao (m)"
+
+msgid "Homestay / hotel"
+msgstr "Homestay / khách sạn"
+
+msgid "Rooms: weekday or weekend rate × nights, extra guests per night"
+msgstr "Phòng: giá ngày thường/cuối tuần × số đêm, phụ thu thêm khách mỗi đêm"
+
+msgid "Check-in date"
+msgstr "Ngày nhận phòng"
+
+msgid "Days"
+msgstr "Loại ngày"
+
+msgid "Nights"
+msgstr "Số đêm"
+
+msgid "Extra guests"
+msgstr "Số khách thêm"
+
+msgid "Room per night"
+msgstr "Tiền phòng mỗi đêm"
+
+msgid "Extra guests per night"
+msgstr "Phụ thu thêm khách mỗi đêm"
+
+msgid "Spa session packages"
+msgstr "Spa gói buổi"
+
+msgid "Spa: price per session by service, discount for 5 and 10 sessions"
+msgstr "Spa: giá mỗi buổi theo dịch vụ, giảm giá gói 5 và 10 buổi"
+
+msgid "Choose a service"
+msgstr "Chọn dịch vụ"
+
+msgid "Sessions"
+msgstr "Số buổi"
+
+msgid "First visit"
+msgstr "Buổi đầu tiên"
+
+msgid "Session"
+msgstr "Buổi"
+
+msgid "5–9 sessions −10%"
+msgstr "Gói 5–9 buổi −10%"
+
+msgid "10+ sessions −20%"
+msgstr "Gói từ 10 buổi −20%"
+
+msgid "Installments"
+msgstr "Trả góp"
+
+msgid "Monthly installment estimate at a flat monthly rate"
+msgstr "Ước tính trả góp hằng tháng theo lãi phẳng"
+
+msgid "Amount to borrow (VND)"
+msgstr "Số tiền vay (VND)"
+
+msgid "Months"
+msgstr "Số tháng"
+
+msgid "Monthly payment, flat rate 1.5%/month"
+msgstr "Trả mỗi tháng, lãi phẳng 1,5%/tháng"
+
+msgid "Estimate per month at a flat rate on the amount borrowed; the lender confirms the real schedule."
+msgstr "Ước tính mỗi tháng theo lãi phẳng trên số tiền vay; bên cho vay xác nhận lịch trả thật."
+
+msgid "Start from an industry template (demo prices)"
+msgstr "Bắt đầu từ mẫu theo ngành (giá demo)"
+
+msgid "Replaces the fields and price rules. Every price is a demo: put in your own prices before publishing."
+msgstr "Thay toàn bộ trường và quy tắc giá. Mọi giá đều là demo: nhập giá thật trước khi xuất bản."
+
+msgid "Choose a template…"
+msgstr "Chọn mẫu…"
+

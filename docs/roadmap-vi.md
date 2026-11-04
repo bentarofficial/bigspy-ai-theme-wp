@@ -17,12 +17,12 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 
 ## Thứ tự làm đề xuất (rà 04-11-2026)
 
-**Đã triển khai, chờ phát hành** (xem [PENDING-RELEASE.md](PENDING-RELEASE.md)): sửa ảnh URL/hero và thanh free shipping, G-57, G-58, G-59, G-65, G-67 (mục 1–4, 6), hồ sơ khối Code cho AI.
+**Đã triển khai, chờ phát hành** (xem [PENDING-RELEASE.md](PENDING-RELEASE.md)): sửa ảnh URL/hero và thanh free shipping, G-57, G-58, G-59, G-65, G-67 (mục 1–4, 6), G-69, hồ sơ khối Code cho AI.
 
 **Còn lại:**
 
 1. **G-70 — Bộ đánh giá AI Designer:** khoảng 20 yêu cầu mẫu theo ngành với tiêu chí đo được (bố cục đúng block, tỷ lệ sửa được, không bịa giá/số liệu, mobile 375px không tràn, số lần server từ chối); ghi thời gian, số lượt gọi tool, token và chi phí. Chạy lại khi đổi model/prompt/kiến thức. Là nền để chứng minh mọi cải tiến AI sau này; không cam kết mức cải thiện khi chưa đo. Chạy với model thật cần owner duyệt ngân sách. **Đã có bộ công cụ** (`tools/eval/`, 20 case, chấm replay miễn phí + selftest bằng fixture); **chưa chạy model thật**: chờ owner duyệt ngân sách (ước tính ~3–30 USD cho 20 case tùy giá model, xem `tools/eval/README.md`; nên chạy thử 3 case trước).
-2. **G-69 — Preset theo ngành** (sau G-58/G-59) và **G-67 mục 5** (AI trả cảnh báo responsive có vị trí block). **G-68** khi owner chốt dịch vụ bản đồ/chi phí.
+2. ~~**G-69 — Preset theo ngành**~~ (đã làm: 8 preset Form giá demo trong `inc/form-presets.php`, dùng chung editor và AI) và **G-67 mục 5** (AI trả cảnh báo responsive có vị trí block). **G-68** khi owner chốt dịch vụ bản đồ/chi phí.
 3. **G-73 — Hồ sơ block v2** (sau G-70 để có số đo trước/sau): mỗi block có công dụng, ưu điểm, khi không dùng, block thay thế, ví dụ đúng và lỗi thường gặp, thuộc tính mặc định đã kiểm chứng; trả schema rút gọn ngay trong `block_catalog` để giảm lượt gọi `block_schema`; đi thẳng từ ngành → danh sách section (dùng chung với G-69); giữ hồ sơ ngắn và cố định đầu prompt để tận dụng prompt caching. Khối Code đã làm mẫu. Giữ nguyên Block rule trong AGENTS.md.
 4. **G-60 → G-63:** booking thật, sau khi Codex chốt backend.
 5. **G-71 — Dữ liệu có cấu trúc từ block:** sinh schema.org (dịch vụ, giá từ G-58, FAQ, đánh giá, giờ mở cửa, LocalBusiness) từ dữ liệu block để AI tìm kiếm đọc đúng; không trùng hoặc đè dữ liệu Rank Math/plugin SEO (phát hiện và nhường khi plugin đã xuất cùng loại). Cân nhắc tùy chọn `llms.txt` khi chuẩn ổn định.

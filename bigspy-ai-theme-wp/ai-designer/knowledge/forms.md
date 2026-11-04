@@ -49,6 +49,10 @@ Mail tags: `[price-total]`, `[price-lines]`, `[price-status]` (Estimate / To be 
 - lines: `l_wash` qty field f_kg unit 18000; `l_ship` fixed 25000 when f_pickup filled; `l_fast` percent 20 targets [l_wash] when f_express filled.
 - samples: 3 kg without extras; 3 kg + pickup + express (18,000×3 = 54,000; +25,000; +10,800 = 89,800 ₫).
 
+## Industry presets
+
+`form_config` mode `preset` lists ready configs built from the line kinds above: laundry, cleaning, moving, printing, curtains, lodging, spa (session packages), installment (flat-rate monthly estimate). With `preset: <key>` it returns `fields`, `pricing` and `samples`. Use one as a starting point when the trade fits: rename labels and options for the business, keep the ids, then replace every demo price with the user's numbers and run `check` with `price_source: "user"`. Keep the demo prices only when the user asked for a demo (`price_source: "demo"`). The editor's Pricing tab offers the same presets.
+
 ## Patterns by trade (ask the real numbers)
 
 - Cleaning, painting, flooring: option (package per m²) with qtyField m², minTotal.
