@@ -70,6 +70,17 @@ function bst_register_shop_patterns() {
 			. '<!-- wp:bst/tab {"title":"On sale"} --><!-- wp:bst/products {"type":"sale","count":8} /--><!-- /wp:bst/tab -->'
 			. '<!-- /wp:bst/tabs --><!-- /wp:bst/section -->',
 		),
+		'shop-tabs-heading'  => array(
+			__( 'Shop – product tabs with heading (scrolling tabs)', 'bigspy-ai-theme-wp' ),
+			'<!-- wp:bst/section {"paddingDesktop":70} --><!-- wp:bst/tabs {"heading":"Shop our products","style":"pills","overflow":"scroll","arrowStyle":"circle","mobile":"accordion","linkText":"View all","linkUrl":"' . $shop . '"} -->'
+			. '<!-- wp:bst/tab {"title":"New arrivals"} --><!-- wp:bst/products {"type":"latest","count":8} /--><!-- /wp:bst/tab -->'
+			. '<!-- wp:bst/tab {"title":"Best sellers"} --><!-- wp:bst/products {"type":"best_selling","count":8} /--><!-- /wp:bst/tab -->'
+			. '<!-- wp:bst/tab {"title":"Featured"} --><!-- wp:bst/products {"type":"featured","count":8} /--><!-- /wp:bst/tab -->'
+			. '<!-- wp:bst/tab {"title":"Top rated"} --><!-- wp:bst/products {"type":"top_rated","count":8} /--><!-- /wp:bst/tab -->'
+			. '<!-- wp:bst/tab {"title":"On sale"} --><!-- wp:bst/products {"type":"sale","count":8} /--><!-- /wp:bst/tab -->'
+			. bst_shop_category_tabs()
+			. '<!-- /wp:bst/tabs --><!-- /wp:bst/section -->',
+		),
 	);
 
 	foreach ( $sections as $slug => $pattern ) {
@@ -104,6 +115,28 @@ function bst_register_shop_patterns() {
 			),
 		)
 	);
+}
+
+/**
+ * One product tab per top-level product category (up to four), each with its own "View all" link.
+ */
+function bst_shop_category_tabs() {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'product_cat',
+			'parent'     => 0,
+			'hide_empty' => true,
+			'number'     => 4,
+			'orderby'    => 'count',
+			'order'      => 'DESC',
+		)
+	);
+	$out   = '';
+	foreach ( is_array( $terms ) ? $terms : array() as $term ) {
+		$link = get_term_link( $term );
+		$out .= '<!-- wp:bst/tab ' . serialize_block_attributes( array( 'title' => $term->name, 'link' => is_wp_error( $link ) ? '' : $link ) ) . ' --><!-- wp:bst/products {"category":' . (int) $term->term_id . ',"count":8} /--><!-- /wp:bst/tab -->';
+	}
+	return $out;
 }
 
 /**

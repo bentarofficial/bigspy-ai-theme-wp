@@ -248,26 +248,83 @@
 
 	/* ------------------------------------------------------------ Tabs */
 	function initTabs(root, uid) {
-		var buttons = root.querySelectorAll(':scope > .bs-tabs__nav [role="tab"]');
-		var panels = root.querySelectorAll(':scope > .bs-tabs__panels > .bs-tab');
+		if (root.dataset.bsTabsReady) {
+			return;
+		}
+		var head = root.querySelector(':scope > .bs-tabs__head');
+		var nav = head ? head.querySelector(':scope > .bs-tabs__bar > .bs-tabs__nav') : root.querySelector(':scope > .bs-tabs__nav');
+		var buttons = nav ? nav.querySelectorAll(':scope > [role="tab"]') : [];
+		var panelsWrap = root.querySelector(':scope > .bs-tabs__panels');
+		var panels = panelsWrap ? panelsWrap.querySelectorAll(':scope > .bs-tab') : [];
 		if (!buttons.length) {
 			return;
 		}
-		var activate = function (index, focus) {
+		root.dataset.bsTabsReady = '1';
+		var last = buttons.length - 1;
+		var current = -1;
+		var useHash = root.dataset.hash === '1';
+		var more = head ? head.querySelector(':scope > .bs-tabs__more') : null;
+		var next = head ? head.querySelector('.bs-tabs__arrow--next') : null;
+		var prev = head ? head.querySelector('.bs-tabs__arrow--prev') : null;
+		var toggles = [];
+		var accordionQuery = root.classList.contains('bs-tabs--m-accordion') && window.matchMedia ? window.matchMedia('(max-width: 767px)') : null;
+		var isAccordion = function () {
+			return !!(accordionQuery && accordionQuery.matches);
+		};
+
+		/* Bring the active tab into view inside a scrolling tab bar, without moving the page. */
+		var reveal = function (btn) {
+			if (!nav || nav.scrollWidth <= nav.clientWidth + 1) {
+				return;
+			}
+			var left = btn.offsetLeft - nav.offsetLeft;
+			if (left < nav.scrollLeft || left + btn.offsetWidth > nav.scrollLeft + nav.clientWidth) {
+				nav.scrollTo({ left: Math.max(0, left - (nav.clientWidth - btn.offsetWidth) / 2), behavior: reduceMotion ? 'auto' : 'smooth' });
+			}
+		};
+
+		var activate = function (index, focus, fromHash) {
 			buttons.forEach(function (btn, i) {
 				var active = i === index;
 				btn.setAttribute('aria-selected', active ? 'true' : 'false');
-				btn.tabIndex = active ? 0 : -1;
+				btn.tabIndex = active || (index < 0 && i === 0) ? 0 : -1;
 				btn.classList.toggle('is-active', active);
-				if (active && focus) {
-					btn.focus();
+				if (active) {
+					if (focus) {
+						btn.focus({ preventScroll: true });
+					}
+					reveal(btn);
 				}
 			});
 			panels.forEach(function (panel, i) {
 				panel.classList.toggle('is-active', i === index);
 				panel.hidden = i !== index;
+				if (toggles[i]) {
+					toggles[i].classList.toggle('is-active', i === index);
+					toggles[i].setAttribute('aria-expanded', i === index ? 'true' : 'false');
+				}
 			});
+			var changed = current !== index;
+			current = index;
+			var panel = panels[index];
+			if (more) {
+				var href = (panel && panel.dataset.link) || root.dataset.more || '';
+				if (href) {
+					more.href = href;
+				}
+				more.hidden = !href;
+			}
+			if (panel && changed) {
+				/* Sliders and other width-based blocks measured 0 while hidden: let them re-measure. */
+				if (panel.querySelector('[data-bs-slider], .bs-slider, canvas, iframe')) {
+					window.dispatchEvent(new Event('resize'));
+				}
+				if (useHash && !fromHash && panel.dataset.slug && window.history && history.replaceState) {
+					history.replaceState(null, '', '#' + panel.dataset.slug);
+				}
+			}
 		};
+
 		buttons.forEach(function (btn, i) {
 			var panel = panels[i];
 			btn.id = btn.id || 'bs-tab-' + uid + '-' + i;
@@ -287,7 +344,6 @@
 			}
 			btn.addEventListener('keydown', function (event) {
 				var key = event.key;
-				var last = buttons.length - 1;
 				var target = null;
 				if (key === 'ArrowRight' || key === 'ArrowDown') {
 					target = i === last ? 0 : i + 1;
@@ -303,9 +359,104 @@
 					activate(target, true);
 				}
 			});
+
+			/* Phone accordion: a title button before each panel (shown by CSS on small screens). */
+			if (panel && accordionQuery) {
+				var toggle = doc.createElement('button');
+				toggle.type = 'button';
+				toggle.className = 'bs-tabs__toggle';
+				toggle.setAttribute('aria-controls', panel.id);
+				toggle.innerHTML = btn.innerHTML + '<span class="bs-tabs__toggle-icon" aria-hidden="true"></span>';
+				toggle.addEventListener('click', function () {
+					activate(current === i ? -1 : i, false);
+				});
+				panelsWrap.insertBefore(toggle, panel);
+				toggles[i] = toggle;
+			}
 		});
+
+		/* Scrolling tab bar: one arrow that turns around at the end, or a pair of arrows. */
+		if (next && nav) {
+			var back = false;
+			var update = function () {
+				var overflowing = nav.scrollWidth > nav.clientWidth + 1;
+				var atStart = nav.scrollLeft <= 2;
+				var atEnd = nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 2;
+				root.classList.toggle('is-overflowing', overflowing);
+				if (prev) {
+					prev.hidden = !overflowing || atStart;
+					next.hidden = !overflowing || atEnd;
+					return;
+				}
+				next.hidden = !overflowing;
+				if (atEnd) {
+					back = true;
+				} else if (atStart) {
+					back = false;
+				}
+				next.classList.toggle('is-back', back);
+				next.setAttribute('aria-label', back ? next.dataset.labelBack : next.dataset.label);
+			};
+			next.dataset.label = next.getAttribute('aria-label') || '';
+			var step = function (dir) {
+				nav.scrollBy({ left: dir * Math.max(120, nav.clientWidth * 0.8), behavior: reduceMotion ? 'auto' : 'smooth' });
+			};
+			next.addEventListener('click', function () {
+				step(prev || !back ? 1 : -1);
+			});
+			if (prev) {
+				prev.addEventListener('click', function () {
+					step(-1);
+				});
+			}
+			nav.addEventListener('scroll', update, { passive: true });
+			if ('ResizeObserver' in window) {
+				new ResizeObserver(update).observe(nav);
+			} else {
+				window.addEventListener('resize', update);
+			}
+			update();
+		}
+
+		/* Open the tab named in the address (#slug), else the chosen default. */
+		var fromLocation = function () {
+			var hash = decodeURIComponent((window.location.hash || '').slice(1));
+			if (!hash) {
+				return -1;
+			}
+			for (var i = 0; i < panels.length; i++) {
+				if (panels[i].dataset.slug === hash || panels[i].id === hash) {
+					return i;
+				}
+			}
+			return -1;
+		};
+		var start = useHash ? fromLocation() : -1;
 		root.classList.add('is-ready');
-		activate(0, false);
+		activate(start >= 0 ? start : Math.min(last, Math.max(0, parseInt(root.dataset.default, 10) || 0)), false, true);
+		if (useHash) {
+			if (start >= 0) {
+				root.scrollIntoView({ block: 'start' });
+			}
+			window.addEventListener('hashchange', function () {
+				var target = fromLocation();
+				if (target >= 0) {
+					activate(target, false, true);
+					root.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+				}
+			});
+		}
+		if (accordionQuery) {
+			/* Leaving the phone layout with every panel closed: reopen one so the tabs are not empty. */
+			var onChange = function () {
+				if (!isAccordion() && current < 0) {
+					activate(0, false);
+				}
+			};
+			if (accordionQuery.addEventListener) {
+				accordionQuery.addEventListener('change', onChange);
+			}
+		}
 	}
 
 	/* ------------------------------------------------------------ Accordion (fallback for details[name]) */
