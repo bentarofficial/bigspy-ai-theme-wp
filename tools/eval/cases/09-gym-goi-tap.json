@@ -1,0 +1,50 @@
+{
+  "id": "09-gym-goi-tap",
+  "industry": "Phòng gym",
+  "effort": "medium",
+  "prompt": "Trang bảng giá cho phòng gym FitZone: gói 1 tháng 500.000đ, gói 3 tháng 1.350.000đ, gói 12 tháng 4.800.000đ. Mỗi gói gồm tập không giới hạn và tủ đồ. Có nút đăng ký gọi 0987 654 321.",
+  "facts": {
+    "business": "FitZone",
+    "prices": [
+      "500000",
+      "1350000",
+      "4800000"
+    ],
+    "numbers": [
+      "1",
+      "3",
+      "12",
+      "0987654321"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading"
+    ],
+    "blocks_any": [
+      [
+        "bst/price-table",
+        "bst/pricing-toggle",
+        "bst/table"
+      ],
+      [
+        "bst/button",
+        "bst/buttons"
+      ]
+    ],
+    "sections_min": 2,
+    "sections_max": 7,
+    "must_contain": [
+      "FitZone",
+      "1.350.000",
+      "4.800.000"
+    ]
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

@@ -1,0 +1,105 @@
+{
+ "case": "02-giat-la-bao-gia",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Bảng giá giặt là"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>Chỉ từ 19k/kg!</p>"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/form",
+     "attrs": {
+      "provider": "bigspy",
+      "formKey": "giat-la-quote",
+      "fields": [
+       {
+        "name": "kg",
+        "label": "Khối lượng",
+        "type": "slider"
+       },
+       {
+        "label": "",
+        "type": "text"
+       }
+      ],
+      "submitText": "Gửi",
+      "pricing": {
+       "enabled": true,
+       "currency": "VND",
+       "lines": [
+        {
+         "id": "giat",
+         "label": "Giặt sấy",
+         "kind": "qty",
+         "field": "kg",
+         "unit": 30000
+        },
+        {
+         "id": "vip",
+         "label": "Phí gấp",
+         "kind": "formula",
+         "expr": "{giat} * {heso} + 15000"
+        }
+       ]
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool-error",
+   "tool": "form_config",
+   "text": "fields/0: unknown type"
+  },
+  {
+   "kind": "tool-error",
+   "tool": "form_config",
+   "text": "line vip: formula"
+  },
+  {
+   "kind": "tool-error",
+   "tool": "create_page",
+   "text": "x"
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  }
+ ],
+ "metrics": {
+  "tool_calls": 4,
+  "model_calls": 8,
+  "tokens_in": 120000,
+  "tokens_out": 9000,
+  "seconds": 160.0,
+  "cost": 0.12,
+  "tools": {
+   "form_config": 2,
+   "create_page": 2
+  }
+ }
+}

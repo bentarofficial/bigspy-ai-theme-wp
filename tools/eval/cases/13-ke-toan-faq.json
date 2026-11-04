@@ -1,0 +1,46 @@
+{
+  "id": "13-ke-toan-faq",
+  "industry": "Dịch vụ kế toán",
+  "effort": "medium",
+  "prompt": "Trang dịch vụ kế toán thuế trọn gói Minh An cho doanh nghiệp nhỏ. Phí báo giá theo số hóa đơn mỗi tháng, chưa công bố giá. Câu hỏi thường gặp: 'Có nhận quyết toán năm cũ không?' – Có; 'Bao lâu nộp báo cáo?' – Theo quý; 'Có ký hợp đồng không?' – Có. Form tư vấn: họ tên, email, số điện thoại, tên công ty.",
+  "facts": {
+    "business": "Minh An",
+    "prices": [],
+    "numbers": [],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form",
+      "bst/accordion"
+    ],
+    "blocks_forbid": [
+      "bst/price-table",
+      "bst/pricing-toggle",
+      "bst/counter",
+      "bst/testimonial"
+    ],
+    "sections_min": 3,
+    "sections_max": 8,
+    "must_contain": [
+      "Minh An",
+      "quyết toán năm cũ"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 4,
+      "field_types": [
+        "email",
+        "tel"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

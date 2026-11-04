@@ -1,0 +1,60 @@
+{
+  "id": "15-thue-xe-tu-lai",
+  "industry": "Thuê xe tự lái",
+  "effort": "medium",
+  "prompt": "Trang thuê xe tự lái Xe Việt: xe 4 chỗ 800.000đ/ngày, xe 7 chỗ 1.200.000đ/ngày. Form đặt xe: họ tên, điện thoại, ngày nhận xe, loại xe, số ngày thuê; tạm tính = giá loại xe × số ngày.",
+  "facts": {
+    "business": "Xe Việt",
+    "prices": [
+      "800000",
+      "1200000"
+    ],
+    "numbers": [
+      "4",
+      "7"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 8,
+    "must_contain": [
+      "Xe Việt"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 4,
+      "field_types": [
+        "tel",
+        "date",
+        "number"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "loại xe|xe",
+              "option": "7"
+            },
+            {
+              "field": "số ngày|ngày thuê",
+              "value": "3"
+            }
+          ],
+          "total": 3600000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

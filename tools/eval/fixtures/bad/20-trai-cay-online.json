@@ -1,0 +1,92 @@
+{
+ "case": "20-trai-cay-online",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Vườn Xanh"
+     }
+    },
+    {
+     "name": "bst/code",
+     "attrs": {
+      "code": "<svg width=\"1200\" height=\"200\" viewBox=\"0 0 1200 200\" role=\"img\" aria-label=\"trang trí\"><rect width=\"1200\" height=\"200\" fill=\"var(--bs-primary)\"/></svg>",
+      "css": "selector svg{width:1200px;max-width:none;display:block}"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Ưu đãi"
+     }
+    },
+    {
+     "name": "bst/code",
+     "attrs": {
+      "code": "<table style=\"width:900px\"><tr><td>Táo</td><td>Nho</td></tr></table>"
+     }
+    },
+    {
+     "name": "bst/code",
+     "attrs": {
+      "code": "<div style=\"width:800px\">Banner</div>"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/products",
+     "attrs": {
+      "count": 8
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>Ship 0đ toàn quốc</p>"
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 1,
+  "model_calls": 3,
+  "tokens_in": 25000,
+  "tokens_out": 4000,
+  "seconds": 30.0,
+  "cost": 0.03,
+  "tools": {
+   "create_page": 1
+  }
+ }
+}

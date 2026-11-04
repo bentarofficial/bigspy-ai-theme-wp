@@ -1,0 +1,78 @@
+{
+  "id": "02-giat-la-bao-gia",
+  "industry": "Giặt là (báo giá)",
+  "effort": "medium",
+  "prompt": "Làm trang dịch vụ cho Giặt là Sạch Thơm có form báo giá tự tính tiền: giặt sấy 25.000đ/kg (khách nhập số kg), giặt hấp áo vest 80.000đ/cái (khách nhập số áo), nếu chọn giao nhận tận nơi cộng 20.000đ. Không cần hỏi lại, các con số trên là đủ.",
+  "facts": {
+    "business": "Sạch Thơm",
+    "prices": [
+      "25000",
+      "80000",
+      "20000"
+    ],
+    "numbers": [],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 8,
+    "must_contain": [
+      "Sạch Thơm"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 3,
+      "field_types": [
+        "number"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "kg|khối lượng|cân",
+              "value": "5"
+            },
+            {
+              "field": "vest|áo",
+              "value": "0"
+            },
+            {
+              "field": "giao|nhận",
+              "option": "có|tận nơi|giao"
+            }
+          ],
+          "total": 145000
+        },
+        {
+          "values": [
+            {
+              "field": "kg|khối lượng|cân",
+              "value": "2"
+            },
+            {
+              "field": "vest|áo",
+              "value": "3"
+            },
+            {
+              "field": "giao|nhận",
+              "option": "không|tự"
+            }
+          ],
+          "total": 290000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  },
+  "notes": "Giao nhận có thể là radio/select hoặc checkbox; quote chọn option khớp regex."
+}

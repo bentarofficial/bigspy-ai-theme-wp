@@ -1,0 +1,6 @@
+{
+  "run": "fixture-bad",
+  "mode": "fixture",
+  "model": "hand-made (bad)",
+  "note": "Hand-written results with typical mistakes; not model output."
+}

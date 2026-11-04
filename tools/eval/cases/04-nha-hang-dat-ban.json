@@ -1,0 +1,58 @@
+{
+  "id": "04-nha-hang-dat-ban",
+  "industry": "Nhà hàng",
+  "effort": "medium",
+  "prompt": "Trang chủ Nhà hàng Bếp Quê, mở cửa 10:00–22:00 hằng ngày, địa chỉ 45 Lê Lợi, Huế. Món nổi bật: Lẩu cá kèo 320.000đ, Gà nướng lá chanh 250.000đ, Cơm chiên hải sản 90.000đ. Form đặt bàn: họ tên, điện thoại, ngày, giờ, số khách.",
+  "facts": {
+    "business": "Bếp Quê",
+    "prices": [
+      "320000",
+      "250000",
+      "90000"
+    ],
+    "numbers": [
+      "45",
+      "10",
+      "22"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "blocks_any": [
+      [
+        "bst/price-table",
+        "bst/table",
+        "bst/icon-list",
+        "bst/image-box",
+        "bst/icon-box"
+      ]
+    ],
+    "sections_min": 3,
+    "sections_max": 9,
+    "must_contain": [
+      "Bếp Quê",
+      "320.000",
+      "10:00"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 5,
+      "field_types": [
+        "tel",
+        "date",
+        "number"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

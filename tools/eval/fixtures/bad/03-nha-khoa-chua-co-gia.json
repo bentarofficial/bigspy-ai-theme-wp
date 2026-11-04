@@ -1,0 +1,140 @@
+{
+ "case": "03-nha-khoa-chua-co-gia",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Nha khoa Nụ Cười"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>Hơn 15 năm kinh nghiệm, 98% khách hài lòng.</p>"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Bảng giá"
+     }
+    },
+    {
+     "name": "bst/row",
+     "inner": [
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 6,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/price-table",
+         "attrs": {
+          "title": "Niềng răng"
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 6,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/price-table",
+         "attrs": {
+          "title": "Tẩy trắng",
+          "price": "2.500.000đ"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Bác sĩ"
+     }
+    },
+    {
+     "name": "bst/team-member"
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Đặt lịch"
+     }
+    },
+    {
+     "name": "bst/form",
+     "attrs": {
+      "provider": "bigspy",
+      "formKey": "nk",
+      "fields": [
+       {
+        "name": "ten",
+        "label": "Tên",
+        "type": "text"
+       }
+      ],
+      "submitText": "Gửi"
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 1,
+  "model_calls": 3,
+  "tokens_in": 30000,
+  "tokens_out": 5000,
+  "seconds": 40.0,
+  "cost": 0.04,
+  "tools": {
+   "create_page": 1
+  }
+ }
+}

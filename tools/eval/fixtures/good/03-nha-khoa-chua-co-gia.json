@@ -1,0 +1,243 @@
+{
+ "case": "03-nha-khoa-chua-co-gia",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Nha khoa Nụ Cười"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>Niềng răng, bọc răng sứ, cạo vôi và tẩy trắng. Bảng giá: [giá dịch vụ – điền sau].</p>"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Dịch vụ"
+     }
+    },
+    {
+     "name": "bst/row",
+     "inner": [
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 6,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/icon-box",
+         "attrs": {
+          "icon": "check",
+          "title": "Niềng răng",
+          "text": "[mô tả]"
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 6,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/icon-box",
+         "attrs": {
+          "icon": "check",
+          "title": "Bọc răng sứ",
+          "text": "[mô tả]"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "bst/row",
+     "inner": [
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 6,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/icon-box",
+         "attrs": {
+          "icon": "check",
+          "title": "Cạo vôi",
+          "text": "[mô tả]"
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 6,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/icon-box",
+         "attrs": {
+          "icon": "check",
+          "title": "Tẩy trắng",
+          "text": "[mô tả]"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Câu hỏi thường gặp"
+     }
+    },
+    {
+     "name": "bst/accordion",
+     "inner": [
+      {
+       "name": "bst/accordion-item",
+       "attrs": {
+        "title": "Niềng răng mất bao lâu?"
+       },
+       "inner": [
+        {
+         "name": "bst/text",
+         "attrs": {
+          "html": "<p>[câu trả lời của phòng khám]</p>"
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/accordion-item",
+       "attrs": {
+        "title": "Có trả góp không?"
+       },
+       "inner": [
+        {
+         "name": "bst/text",
+         "attrs": {
+          "html": "<p>[câu trả lời của phòng khám]</p>"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Đặt lịch tư vấn"
+     }
+    },
+    {
+     "name": "bst/form",
+     "attrs": {
+      "provider": "bigspy",
+      "formKey": "nk-booking",
+      "fields": [
+       {
+        "name": "ho-ten",
+        "label": "Họ tên",
+        "type": "text",
+        "required": true
+       },
+       {
+        "name": "dien-thoai",
+        "label": "Số điện thoại",
+        "type": "tel",
+        "required": true
+       },
+       {
+        "name": "nhu-cau",
+        "label": "Dịch vụ quan tâm",
+        "type": "select",
+        "options": "Niềng răng\nBọc răng sứ\nCạo vôi\nTẩy trắng"
+       }
+      ],
+      "submitText": "Gửi"
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "block_catalog",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "page_plan",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "build_sections",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 4,
+  "model_calls": 5,
+  "tokens_in": 52000,
+  "tokens_out": 4800,
+  "seconds": 66.0,
+  "cost": 0.06,
+  "tools": {
+   "block_catalog": 1,
+   "page_plan": 1,
+   "build_sections": 1,
+   "create_page": 1
+  }
+ }
+}

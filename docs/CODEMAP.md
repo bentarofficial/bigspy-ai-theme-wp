@@ -34,4 +34,5 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 ## Testing
 - `node tools/playground-page.cjs` serves the theme on port 9418. Open `/?bst_autologin=1`; a test-only mu-plugin logs in, no password. Options: `--port=N`, `--woo=<plugin dir>`.
 - Designer tests: `node tools/playground-check.cjs`; see `docs/DEV-RULES.md`.
+- AI Designer eval (G-70, internal): `node tools/eval/eval.cjs selftest | score <runDir> | compare <a> <b> | live …` (live = paid model, owner approval). Cases `tools/eval/cases/`, scorer `tools/eval/score.php`; see `tools/eval/README.md`.
 - The test machine forces prefers-reduced-motion. The browser pane must be visible for animations to run.

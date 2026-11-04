@@ -1,0 +1,62 @@
+{
+  "id": "17-tiem-banh-tuy-chon",
+  "industry": "Tiệm bánh kem",
+  "effort": "medium",
+  "prompt": "Trang đặt bánh kem cho tiệm Bánh Nhà Mint: size 16cm 250.000đ, 20cm 350.000đ, 24cm 450.000đ; thêm viết chữ và trang trí hoa +30.000đ (ô chọn). Form: tên, điện thoại, ngày nhận, size, tùy chọn trang trí; tự tính tổng.",
+  "facts": {
+    "business": "Bánh Nhà Mint",
+    "prices": [
+      "250000",
+      "350000",
+      "450000",
+      "30000"
+    ],
+    "numbers": [
+      "16",
+      "20",
+      "24"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 8,
+    "must_contain": [
+      "Bánh Nhà Mint"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 4,
+      "field_types": [
+        "tel",
+        "date"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "size|kích thước|cỡ",
+              "option": "20"
+            },
+            {
+              "field": "trang trí|viết chữ|tùy chọn",
+              "option": "trang trí|chữ|có"
+            }
+          ],
+          "total": 380000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

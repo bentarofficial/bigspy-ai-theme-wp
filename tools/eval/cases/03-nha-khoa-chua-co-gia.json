@@ -1,0 +1,56 @@
+{
+  "id": "03-nha-khoa-chua-co-gia",
+  "industry": "Nha khoa",
+  "effort": "medium",
+  "prompt": "Thiết kế trang cho Nha khoa Nụ Cười. Dịch vụ: niềng răng, bọc răng sứ, cạo vôi, tẩy trắng. Chưa có bảng giá và chưa có thông tin bác sĩ, để chỗ trống rõ ràng cho tôi điền sau. Cần form đặt lịch tư vấn và mục câu hỏi thường gặp.",
+  "facts": {
+    "business": "Nha khoa Nụ Cười",
+    "prices": [],
+    "numbers": [],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "blocks_any": [
+      [
+        "bst/accordion"
+      ],
+      [
+        "bst/icon-box",
+        "bst/icon-list",
+        "bst/image-box"
+      ]
+    ],
+    "blocks_forbid": [
+      "bst/price-table",
+      "bst/pricing-toggle",
+      "bst/team-member",
+      "bst/testimonial",
+      "bst/counter"
+    ],
+    "sections_min": 3,
+    "sections_max": 9,
+    "must_contain": [
+      "Nụ Cười",
+      "niềng răng"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 3,
+      "field_types": [
+        "tel"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  },
+  "notes": "Bẫy bịa giá và bịa bác sĩ: price-table/team-member mặc định chứa giá, tên mẫu."
+}

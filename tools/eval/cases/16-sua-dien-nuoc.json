@@ -1,0 +1,55 @@
+{
+  "id": "16-sua-dien-nuoc",
+  "industry": "Sửa điện nước",
+  "effort": "medium",
+  "prompt": "Trang dịch vụ sửa điện nước tại nhà Thợ Nhanh ở Hà Nội. Phí kiểm tra 100.000đ (miễn phí nếu sửa), vật tư báo giá trước khi làm. Hotline 0912 345 678. Form gọi lại: tên, điện thoại, mô tả sự cố.",
+  "facts": {
+    "business": "Thợ Nhanh",
+    "prices": [
+      "100000"
+    ],
+    "numbers": [
+      "0912345678"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "blocks_any": [
+      [
+        "bst/icon-box",
+        "bst/icon-list",
+        "bst/timeline"
+      ]
+    ],
+    "blocks_forbid": [
+      "bst/testimonial",
+      "bst/counter"
+    ],
+    "sections_min": 3,
+    "sections_max": 8,
+    "must_contain": [
+      "Thợ Nhanh",
+      "0912 345 678",
+      "100.000"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 3,
+      "field_types": [
+        "tel",
+        "textarea"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

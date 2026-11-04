@@ -1,0 +1,57 @@
+{
+  "id": "14-tiec-cuoi-phan-tram",
+  "industry": "Tiệc cưới",
+  "effort": "medium",
+  "prompt": "Trang báo giá tiệc cưới Trung tâm Hồng Phúc: thực đơn 3.500.000đ/bàn 10 người, phí phục vụ 5% trên tiền thực đơn. Form: họ tên, điện thoại, ngày cưới, số bàn; tự tính tạm tính gồm phí phục vụ.",
+  "facts": {
+    "business": "Hồng Phúc",
+    "prices": [
+      "3500000",
+      "5"
+    ],
+    "numbers": [
+      "10",
+      "5"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 8,
+    "must_contain": [
+      "Hồng Phúc"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 4,
+      "field_types": [
+        "tel",
+        "date",
+        "number"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "số bàn|bàn",
+              "value": "20"
+            }
+          ],
+          "total": 73500000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  },
+  "notes": "Dòng percent 5% hoặc formula."
+}

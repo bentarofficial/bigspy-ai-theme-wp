@@ -1,0 +1,124 @@
+{
+ "case": "14-tiec-cuoi-phan-tram",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Tiệc cưới Trung tâm Hồng Phúc"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>Thực đơn 3.500.000đ/bàn 10 người, phí phục vụ 5%.</p>"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/form",
+     "attrs": {
+      "provider": "bigspy",
+      "formKey": "tiec-quote",
+      "fields": [
+       {
+        "name": "ho-ten",
+        "label": "Họ tên",
+        "type": "text"
+       },
+       {
+        "name": "dien-thoai",
+        "label": "Điện thoại",
+        "type": "tel"
+       },
+       {
+        "name": "ngay-cuoi",
+        "label": "Ngày cưới",
+        "type": "date"
+       },
+       {
+        "name": "so-ban",
+        "label": "Số bàn",
+        "type": "number"
+       }
+      ],
+      "submitText": "Gửi",
+      "pricing": {
+       "enabled": true,
+       "currency": "VND",
+       "lines": [
+        {
+         "id": "menu",
+         "label": "Thực đơn",
+         "kind": "qty",
+         "field": "n_so-ban",
+         "unit": 3500000
+        },
+        {
+         "id": "pv",
+         "label": "Phí phục vụ",
+         "kind": "percent",
+         "pct": 5,
+         "targets": [
+          "menu"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "get_knowledge",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "form_config",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "form_config",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 4,
+  "model_calls": 6,
+  "tokens_in": 57000,
+  "tokens_out": 5200,
+  "seconds": 72.0,
+  "cost": 0.062,
+  "tools": {
+   "get_knowledge": 1,
+   "form_config": 2,
+   "create_page": 1
+  }
+ }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "08-bat-dong-san-gia-lien-he",
+  "industry": "Bất động sản",
+  "effort": "medium",
+  "prompt": "Trang giới thiệu dự án căn hộ Riverside Garden ở Thủ Đức: căn 1–3 phòng ngủ, có hồ bơi, công viên ven sông. Giá: liên hệ (không ghi giá). Cần form nhận bảng giá gồm họ tên, điện thoại, loại căn quan tâm.",
+  "facts": {
+    "business": "Riverside Garden",
+    "prices": [],
+    "numbers": [
+      "1",
+      "3"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "blocks_any": [
+      [
+        "bst/icon-box",
+        "bst/icon-list",
+        "bst/image-box",
+        "bst/bento"
+      ]
+    ],
+    "blocks_forbid": [
+      "bst/price-table",
+      "bst/pricing-toggle",
+      "bst/counter",
+      "bst/testimonial"
+    ],
+    "sections_min": 3,
+    "sections_max": 9,
+    "must_contain": [
+      "Riverside Garden",
+      "liên hệ"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 3,
+      "field_types": [
+        "tel"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  },
+  "notes": "Bẫy bịa giá/m², diện tích, số căn, tiến độ."
+}

@@ -1,0 +1,57 @@
+{
+  "id": "01-spa-dat-lich",
+  "industry": "Spa",
+  "effort": "medium",
+  "prompt": "Tạo trang chủ cho Spa Hoa Sen ở 12 Trần Quốc Thảo, Quận 3, TP.HCM. Dịch vụ: Massage body 60 phút 350.000đ, Chăm sóc da mặt 450.000đ, Gội đầu dưỡng sinh 150.000đ. Hotline 0901 234 567. Cần form đặt lịch gồm họ tên, số điện thoại, ngày hẹn và chọn dịch vụ. Không có ảnh, không có đánh giá khách hàng.",
+  "facts": {
+    "business": "Spa Hoa Sen",
+    "prices": [
+      "350000",
+      "450000",
+      "150000"
+    ],
+    "numbers": [
+      "0901234567",
+      "60",
+      "12",
+      "3"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "blocks_any": [
+      [
+        "bst/price-table",
+        "bst/table",
+        "bst/icon-list",
+        "bst/icon-box"
+      ]
+    ],
+    "sections_min": 3,
+    "sections_max": 9,
+    "must_contain": [
+      "Spa Hoa Sen",
+      "350.000",
+      "0901 234 567"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 4,
+      "field_types": [
+        "tel",
+        "date"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

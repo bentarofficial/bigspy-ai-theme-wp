@@ -1,0 +1,70 @@
+{
+  "id": "10-homestay-gia-dem",
+  "industry": "Homestay",
+  "effort": "medium",
+  "prompt": "Trang đặt phòng Homestay Sương Mai Đà Lạt. Giá phòng: ngày thường 800.000đ/đêm, cuối tuần 1.000.000đ/đêm. Form đặt phòng: họ tên, điện thoại, ngày nhận phòng, chọn loại ngày (ngày thường/cuối tuần), số đêm; tự tính tạm tính = giá theo loại ngày × số đêm.",
+  "facts": {
+    "business": "Sương Mai",
+    "prices": [
+      "800000",
+      "1000000"
+    ],
+    "numbers": [],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 8,
+    "must_contain": [
+      "Sương Mai"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 4,
+      "field_types": [
+        "tel",
+        "date",
+        "number"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "loại ngày|ngày thường|cuối tuần|thời điểm",
+              "option": "cuối tuần"
+            },
+            {
+              "field": "số đêm|đêm",
+              "value": "2"
+            }
+          ],
+          "total": 2000000
+        },
+        {
+          "values": [
+            {
+              "field": "loại ngày|ngày thường|cuối tuần|thời điểm",
+              "option": "thường"
+            },
+            {
+              "field": "số đêm|đêm",
+              "value": "3"
+            }
+          ],
+          "total": 2400000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

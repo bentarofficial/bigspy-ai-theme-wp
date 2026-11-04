@@ -1,0 +1,212 @@
+{
+ "case": "01-spa-dat-lich",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Spa Hoa Sen – thư giãn giữa Quận 3"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>12 Trần Quốc Thảo, Quận 3, TP.HCM · Hotline <a href=\"tel:0901234567\">0901 234 567</a></p>"
+     }
+    },
+    {
+     "name": "bst/buttons",
+     "inner": [
+      {
+       "name": "bst/button",
+       "attrs": {
+        "text": "Đặt lịch ngay",
+        "url": "#dat-lich"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Dịch vụ & bảng giá"
+     }
+    },
+    {
+     "name": "bst/row",
+     "inner": [
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 4,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/price-table",
+         "attrs": {
+          "title": "Massage body 60 phút",
+          "price": "350.000đ",
+          "period": "",
+          "features": "Tinh dầu thiên nhiên",
+          "buttonText": "Đặt lịch",
+          "buttonUrl": "#dat-lich"
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 4,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/price-table",
+         "attrs": {
+          "title": "Chăm sóc da mặt",
+          "price": "450.000đ",
+          "period": "",
+          "features": "Làm sạch sâu",
+          "buttonText": "Đặt lịch",
+          "buttonUrl": "#dat-lich"
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 4,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/price-table",
+         "attrs": {
+          "title": "Gội đầu dưỡng sinh",
+          "price": "150.000đ",
+          "period": "",
+          "features": "Thảo dược",
+          "buttonText": "Đặt lịch",
+          "buttonUrl": "#dat-lich"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "attrs": {
+    "anchor": "dat-lich"
+   },
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Đặt lịch"
+     }
+    },
+    {
+     "name": "bst/form",
+     "attrs": {
+      "provider": "bigspy",
+      "formKey": "spa-booking",
+      "fields": [
+       {
+        "name": "ho-ten",
+        "label": "Họ tên",
+        "type": "text",
+        "required": true
+       },
+       {
+        "name": "dien-thoai",
+        "label": "Số điện thoại",
+        "type": "tel",
+        "required": true
+       },
+       {
+        "name": "ngay-hen",
+        "label": "Ngày hẹn",
+        "type": "date",
+        "required": true
+       },
+       {
+        "name": "dich-vu",
+        "label": "Dịch vụ",
+        "type": "select",
+        "options": "Massage body 60 phút\nChăm sóc da mặt\nGội đầu dưỡng sinh"
+       }
+      ],
+      "submitText": "Gửi"
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "get_knowledge",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "block_catalog",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "page_plan",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "build_sections",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 5,
+  "model_calls": 6,
+  "tokens_in": 61000,
+  "tokens_out": 5200,
+  "seconds": 74.2,
+  "cost": 0.071,
+  "tools": {
+   "get_knowledge": 1,
+   "block_catalog": 1,
+   "page_plan": 1,
+   "build_sections": 1,
+   "create_page": 1
+  }
+ }
+}

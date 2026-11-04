@@ -1,0 +1,148 @@
+{
+ "case": "02-giat-la-bao-gia",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Giặt là Sạch Thơm – báo giá ngay"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>Giặt sấy 25.000đ/kg, giặt hấp áo vest 80.000đ/cái, giao nhận tận nơi +20.000đ.</p>"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Tính tiền tạm"
+     }
+    },
+    {
+     "name": "bst/form",
+     "attrs": {
+      "provider": "bigspy",
+      "formKey": "giat-la-quote",
+      "fields": [
+       {
+        "name": "dien-thoai",
+        "label": "Số điện thoại",
+        "type": "tel",
+        "required": true
+       },
+       {
+        "name": "so-kg",
+        "label": "Số kg giặt sấy",
+        "type": "number"
+       },
+       {
+        "name": "so-vest",
+        "label": "Số áo vest giặt hấp",
+        "type": "number"
+       },
+       {
+        "name": "giao-nhan",
+        "label": "Giao nhận tận nơi",
+        "type": "radio",
+        "options": "Có\nKhông"
+       }
+      ],
+      "submitText": "Gửi",
+      "pricing": {
+       "enabled": true,
+       "currency": "VND",
+       "decimals": 0,
+       "lines": [
+        {
+         "id": "giat",
+         "label": "Giặt sấy",
+         "kind": "qty",
+         "field": "n_so-kg",
+         "unit": 25000
+        },
+        {
+         "id": "vest",
+         "label": "Giặt hấp vest",
+         "kind": "qty",
+         "field": "n_so-vest",
+         "unit": 80000
+        },
+        {
+         "id": "ship",
+         "label": "Giao nhận",
+         "kind": "fixed",
+         "amount": 20000,
+         "when": {
+          "logic": "all",
+          "rules": [
+           {
+            "field": "n_giao-nhan",
+            "op": "is",
+            "value": "Có"
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "get_knowledge",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "form_config",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "form_config",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 4,
+  "model_calls": 6,
+  "tokens_in": 58000,
+  "tokens_out": 6100,
+  "seconds": 81.0,
+  "cost": 0.069,
+  "tools": {
+   "get_knowledge": 1,
+   "form_config": 2,
+   "create_page": 1
+  }
+ }
+}

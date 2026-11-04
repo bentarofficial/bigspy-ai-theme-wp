@@ -1,0 +1,83 @@
+{
+  "id": "06-chuyen-nha-bao-gia",
+  "industry": "Dịch vụ chuyển nhà",
+  "effort": "medium",
+  "prompt": "Trang báo giá chuyển nhà Kiến Vàng. Khách chọn loại xe: xe 1 tấn 600.000đ hoặc xe 2 tấn 900.000đ; cộng 15.000đ mỗi km (khách nhập số km); cộng 50.000đ mỗi tầng phải khiêng bộ (khách nhập số tầng, 0 nếu có thang máy). Hiện tổng tạm tính trong form. Đủ thông tin, làm luôn.",
+  "facts": {
+    "business": "Kiến Vàng",
+    "prices": [
+      "600000",
+      "900000",
+      "15000",
+      "50000"
+    ],
+    "numbers": [
+      "1",
+      "2",
+      "0"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 8,
+    "must_contain": [
+      "Kiến Vàng"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 4,
+      "field_types": [
+        "tel",
+        "number"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "xe|tải",
+              "option": "2 tấn"
+            },
+            {
+              "field": "km|quãng|khoảng cách",
+              "value": "10"
+            },
+            {
+              "field": "tầng|lầu",
+              "value": "3"
+            }
+          ],
+          "total": 1200000
+        },
+        {
+          "values": [
+            {
+              "field": "xe|tải",
+              "option": "1 tấn"
+            },
+            {
+              "field": "km|quãng|khoảng cách",
+              "value": "4"
+            },
+            {
+              "field": "tầng|lầu",
+              "value": "0"
+            }
+          ],
+          "total": 660000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

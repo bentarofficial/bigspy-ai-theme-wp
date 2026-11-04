@@ -1,0 +1,6 @@
+{
+  "run": "fixture-good",
+  "mode": "fixture",
+  "model": "hand-made (good)",
+  "note": "Hand-written results that follow the block rule; not model output."
+}

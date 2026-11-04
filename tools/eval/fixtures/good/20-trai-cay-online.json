@@ -1,0 +1,178 @@
+{
+ "case": "20-trai-cay-online",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "Vườn Xanh – trái cây nhập khẩu"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>Miễn phí ship đơn từ 300.000đ · Đổi trả trong 24 giờ · Giao nhanh nội thành.</p>"
+     }
+    },
+    {
+     "name": "bst/buttons",
+     "inner": [
+      {
+       "name": "bst/button",
+       "attrs": {
+        "text": "Mua ngay",
+        "url": "/shop"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Danh mục"
+     }
+    },
+    {
+     "name": "bst/product-categories",
+     "attrs": {
+      "count": 6
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h2",
+      "text": "Bán chạy"
+     }
+    },
+    {
+     "name": "bst/products",
+     "attrs": {
+      "count": 8,
+      "type": "best_selling"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/row",
+     "inner": [
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 4,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/icon-box",
+         "attrs": {
+          "icon": "check",
+          "title": "Đổi trả 24 giờ",
+          "text": "Lỗi là đổi."
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 4,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/icon-box",
+         "attrs": {
+          "icon": "check",
+          "title": "Giao nhanh",
+          "text": "Nội thành."
+         }
+        }
+       ]
+      },
+      {
+       "name": "bst/column",
+       "attrs": {
+        "spanDesktop": 4,
+        "spanMobile": 12
+       },
+       "inner": [
+        {
+         "name": "bst/icon-box",
+         "attrs": {
+          "icon": "check",
+          "title": "Miễn phí ship",
+          "text": "Đơn từ 300.000đ."
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "site_info",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "block_catalog",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "build_sections",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 4,
+  "model_calls": 5,
+  "tokens_in": 49000,
+  "tokens_out": 4100,
+  "seconds": 58.3,
+  "cost": 0.055,
+  "tools": {
+   "site_info": 1,
+   "block_catalog": 1,
+   "build_sections": 1,
+   "create_page": 1
+  }
+ }
+}

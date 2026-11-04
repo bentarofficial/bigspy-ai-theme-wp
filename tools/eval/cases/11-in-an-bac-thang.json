@@ -1,0 +1,65 @@
+{
+  "id": "11-in-an-bac-thang",
+  "industry": "In ấn",
+  "effort": "medium",
+  "prompt": "Trang báo giá in danh thiếp In Tân Phát: từ 1 đến 4 hộp giá 60.000đ/hộp, từ 5 hộp trở lên 50.000đ/hộp cho toàn bộ số hộp. Form: họ tên, điện thoại, số hộp, tự tính tổng.",
+  "facts": {
+    "business": "Tân Phát",
+    "prices": [
+      "60000",
+      "50000"
+    ],
+    "numbers": [
+      "1",
+      "4",
+      "5"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 7,
+    "must_contain": [
+      "Tân Phát"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 3,
+      "field_types": [
+        "number"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "hộp|số lượng",
+              "value": "3"
+            }
+          ],
+          "total": 180000
+        },
+        {
+          "values": [
+            {
+              "field": "hộp|số lượng",
+              "value": "6"
+            }
+          ],
+          "total": 300000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  },
+  "notes": "Bậc thang mode all."
+}

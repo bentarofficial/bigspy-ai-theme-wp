@@ -1,0 +1,62 @@
+{
+  "id": "07-khoa-hoc-online",
+  "industry": "Khóa học",
+  "effort": "medium",
+  "prompt": "Landing page khóa Tiếng Anh giao tiếp online 12 buổi, học phí 2.400.000đ, khai giảng 15/12, mỗi buổi 90 phút qua Zoom. Có lộ trình 3 giai đoạn (nền tảng, phản xạ, thuyết trình), câu hỏi thường gặp và form đăng ký (họ tên, email, điện thoại).",
+  "facts": {
+    "business": "Tiếng Anh giao tiếp",
+    "prices": [
+      "2400000"
+    ],
+    "numbers": [
+      "12",
+      "15",
+      "90",
+      "3"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "blocks_any": [
+      [
+        "bst/accordion"
+      ],
+      [
+        "bst/timeline",
+        "bst/icon-box",
+        "bst/icon-list",
+        "bst/story-step"
+      ]
+    ],
+    "blocks_forbid": [
+      "bst/testimonial",
+      "bst/counter"
+    ],
+    "sections_min": 4,
+    "sections_max": 10,
+    "must_contain": [
+      "2.400.000",
+      "12 buổi",
+      "15/12"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 3,
+      "field_types": [
+        "email",
+        "tel"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

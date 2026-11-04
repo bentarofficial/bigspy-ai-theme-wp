@@ -1,0 +1,120 @@
+{
+ "case": "11-in-an-bac-thang",
+ "status": "done",
+ "tree": [
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/heading",
+     "attrs": {
+      "tag": "h1",
+      "text": "In danh thiếp In Tân Phát"
+     }
+    },
+    {
+     "name": "bst/text",
+     "attrs": {
+      "html": "<p>1–4 hộp: 60.000đ/hộp. Từ 5 hộp: 50.000đ/hộp cho toàn bộ số hộp.</p>"
+     }
+    }
+   ]
+  },
+  {
+   "name": "bst/section",
+   "inner": [
+    {
+     "name": "bst/form",
+     "attrs": {
+      "provider": "bigspy",
+      "formKey": "in-quote",
+      "fields": [
+       {
+        "name": "ho-ten",
+        "label": "Họ tên",
+        "type": "text"
+       },
+       {
+        "name": "dien-thoai",
+        "label": "Điện thoại",
+        "type": "tel"
+       },
+       {
+        "name": "so-hop",
+        "label": "Số hộp",
+        "type": "number"
+       }
+      ],
+      "submitText": "Gửi",
+      "pricing": {
+       "enabled": true,
+       "currency": "VND",
+       "lines": [
+        {
+         "id": "in",
+         "label": "In danh thiếp",
+         "kind": "tier",
+         "field": "n_so-hop",
+         "mode": "all",
+         "tiers": [
+          {
+           "from": 1,
+           "unit": 60000
+          },
+          {
+           "from": 5,
+           "unit": 50000
+          }
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "log": [
+  {
+   "kind": "user",
+   "text": "brief"
+  },
+  {
+   "kind": "tool",
+   "tool": "get_knowledge",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "form_config",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "form_config",
+   "text": ""
+  },
+  {
+   "kind": "tool",
+   "tool": "create_page",
+   "text": ""
+  },
+  {
+   "kind": "assistant",
+   "text": "Xong."
+  }
+ ],
+ "metrics": {
+  "tool_calls": 4,
+  "model_calls": 6,
+  "tokens_in": 55000,
+  "tokens_out": 5000,
+  "seconds": 70.0,
+  "cost": 0.06,
+  "tools": {
+   "get_knowledge": 1,
+   "form_config": 2,
+   "create_page": 1
+  }
+ }
+}

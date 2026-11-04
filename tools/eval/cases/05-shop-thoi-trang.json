@@ -1,0 +1,50 @@
+{
+  "id": "05-shop-thoi-trang",
+  "industry": "Shop thời trang (WooCommerce)",
+  "effort": "medium",
+  "prompt": "Làm trang chủ cho shop thời trang nữ Mây Boutique bán trên WooCommerce: banner đầu trang, danh mục sản phẩm, sản phẩm mới, chính sách đổi trả 7 ngày, miễn phí vận chuyển đơn từ 500.000đ. Lấy sản phẩm thật từ cửa hàng, không tự viết giá.",
+  "facts": {
+    "business": "Mây Boutique",
+    "prices": [
+      "500000"
+    ],
+    "numbers": [
+      "7"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading"
+    ],
+    "blocks_any": [
+      [
+        "bst/products",
+        "bst/products-list"
+      ],
+      [
+        "bst/product-categories",
+        "bst/banner-grid",
+        "bst/image-box"
+      ]
+    ],
+    "blocks_forbid": [
+      "bst/price-table",
+      "bst/pricing-toggle",
+      "bst/form"
+    ],
+    "sections_min": 3,
+    "sections_max": 9,
+    "must_contain": [
+      "Mây Boutique",
+      "7 ngày",
+      "500.000"
+    ]
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

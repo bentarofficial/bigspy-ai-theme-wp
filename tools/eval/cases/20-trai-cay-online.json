@@ -1,0 +1,48 @@
+{
+  "id": "20-trai-cay-online",
+  "industry": "Cửa hàng trái cây (WooCommerce)",
+  "effort": "medium",
+  "prompt": "Trang chủ cửa hàng trái cây nhập khẩu Vườn Xanh trên WooCommerce: banner, danh mục, sản phẩm bán chạy từ cửa hàng, cam kết đổi trả trong 24 giờ, giao nhanh nội thành, miễn phí ship đơn từ 300.000đ. Mobile phải gọn.",
+  "facts": {
+    "business": "Vườn Xanh",
+    "prices": [
+      "300000"
+    ],
+    "numbers": [
+      "24"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading"
+    ],
+    "blocks_any": [
+      [
+        "bst/products",
+        "bst/products-list"
+      ],
+      [
+        "bst/icon-box",
+        "bst/icon-list"
+      ]
+    ],
+    "blocks_forbid": [
+      "bst/price-table",
+      "bst/pricing-toggle"
+    ],
+    "sections_min": 3,
+    "sections_max": 9,
+    "must_contain": [
+      "Vườn Xanh",
+      "24 giờ",
+      "300.000"
+    ]
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

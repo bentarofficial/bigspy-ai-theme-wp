@@ -1,0 +1,52 @@
+{
+  "id": "12-ve-sinh-sofa",
+  "industry": "Vệ sinh sofa",
+  "effort": "medium",
+  "prompt": "Trang dịch vụ giặt sofa tại nhà Sofa Mới: 150.000đ mỗi chỗ ngồi, phí di chuyển 50.000đ mỗi lần. Form báo giá: điện thoại, địa chỉ, số chỗ ngồi; hiện tổng tạm tính.",
+  "facts": {
+    "business": "Sofa Mới",
+    "prices": [
+      "150000",
+      "50000"
+    ],
+    "numbers": [],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 7,
+    "must_contain": [
+      "Sofa Mới"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "fields_min": 3,
+      "field_types": [
+        "tel",
+        "number"
+      ],
+      "quotes": [
+        {
+          "values": [
+            {
+              "field": "chỗ ngồi|chỗ|ghế",
+              "value": "4"
+            }
+          ],
+          "total": 650000
+        }
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  }
+}

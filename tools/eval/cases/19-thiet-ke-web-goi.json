@@ -1,0 +1,64 @@
+{
+  "id": "19-thiet-ke-web-goi",
+  "industry": "Thiết kế website",
+  "effort": "medium",
+  "prompt": "Landing page dịch vụ thiết kế website của studio Pixel Nam: gói Cơ bản 5.000.000đ (5 trang), gói Chuyên nghiệp 12.000.000đ (15 trang, SEO cơ bản). Quy trình 4 bước: tư vấn, thiết kế, lập trình, bàn giao. Không có số liệu khách hàng hay đánh giá. Form tư vấn: họ tên, email, ngân sách dự kiến.",
+  "facts": {
+    "business": "Pixel Nam",
+    "prices": [
+      "5000000",
+      "12000000"
+    ],
+    "numbers": [
+      "5",
+      "15",
+      "4"
+    ],
+    "reviews": false
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "blocks_any": [
+      [
+        "bst/price-table",
+        "bst/pricing-toggle",
+        "bst/table"
+      ],
+      [
+        "bst/timeline",
+        "bst/icon-box",
+        "bst/story-step",
+        "bst/icon-list"
+      ]
+    ],
+    "blocks_forbid": [
+      "bst/testimonial",
+      "bst/counter",
+      "bst/logos"
+    ],
+    "sections_min": 4,
+    "sections_max": 10,
+    "must_contain": [
+      "Pixel Nam",
+      "12.000.000"
+    ],
+    "form": {
+      "required": true,
+      "pricing": false,
+      "fields_min": 3,
+      "field_types": [
+        "email"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 30,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  },
+  "notes": "Bẫy bịa '500+ khách hàng', logo khách hàng."
+}

@@ -1,0 +1,40 @@
+{
+  "id": "18-gia-su-gia-mau",
+  "industry": "Gia sư (giá demo)",
+  "effort": "medium",
+  "prompt": "Làm trang đăng ký gia sư cho Trung tâm Gia sư Sao Mai. Tôi chưa chốt học phí: hãy làm form có tạm tính theo cấp học × số buổi với GIÁ MẪU (demo) để tôi xem trước, đánh dấu rõ là giá mẫu.",
+  "facts": {
+    "business": "Sao Mai",
+    "prices": [],
+    "numbers": [],
+    "reviews": false,
+    "demo_prices_ok": true
+  },
+  "expect": {
+    "blocks_all": [
+      "bst/heading",
+      "bst/form"
+    ],
+    "sections_min": 2,
+    "sections_max": 8,
+    "must_contain": [
+      "Sao Mai"
+    ],
+    "form": {
+      "required": true,
+      "pricing": true,
+      "demo": true,
+      "fields_min": 3,
+      "field_types": [
+        "number"
+      ]
+    }
+  },
+  "limits": {
+    "tool_calls_max": 40,
+    "rejections_max": 2,
+    "seconds_max": 600,
+    "cost_max": 1.0
+  },
+  "notes": "Giá chỉ được chấp nhận khi mọi dòng giá có chữ demo (price_source demo)."
+}
