@@ -25,7 +25,7 @@ if ( ! empty( $a['imageId'] ) ) {
 	$img = wp_get_attachment_image( (int) $a['imageId'], $size, false, $attr );
 }
 if ( ! $img && ! empty( $a['imageUrl'] ) ) {
-	$img = '<img class="bs-image__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async">';
+	$img = '<img class="bs-image__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="' . esc_attr( $alt ) . '"' . bst_url_img_loading_attrs() . '>';
 }
 if ( ! $img ) {
 	return;

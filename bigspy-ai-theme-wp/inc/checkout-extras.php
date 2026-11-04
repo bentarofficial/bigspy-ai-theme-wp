@@ -27,44 +27,76 @@ add_filter(
 );
 
 /**
- * Amount needed for free shipping: the Customizer value, else the "Free shipping"
- * method of the zone that matches the current cart. 0 when there is none.
+ * Free-shipping rule for the current cart: the Customizer amount, else the
+ * "Free shipping" method of the zone that matches the cart, read the way
+ * WooCommerce checks it (requires, ignore_discounts). Null when there is none.
+ *
+ * @return array|null { min: float, ignore_discounts: bool, requires: string }
  */
-function bst_free_shipping_min() {
+function bst_free_shipping_rule() {
 	$manual = (float) bst_mod( 'free_ship_amount' );
 	if ( $manual > 0 ) {
-		return $manual;
+		return array( 'min' => $manual, 'ignore_discounts' => false, 'requires' => 'min_amount' );
 	}
 	if ( ! WC()->cart || ! class_exists( 'WC_Shipping_Zones' ) ) {
-		return 0.0;
+		return null;
 	}
 	$packages = WC()->cart->get_shipping_packages();
 	if ( ! $packages ) {
-		return 0.0;
+		return null;
 	}
 	$zone = WC_Shipping_Zones::get_zone_matching_package( reset( $packages ) );
 	foreach ( $zone->get_shipping_methods( true ) as $method ) {
-		if ( 'free_shipping' === $method->id && in_array( $method->requires, array( 'min_amount', 'either' ), true ) && (float) $method->min_amount > 0 ) {
-			return (float) $method->min_amount;
+		if ( 'free_shipping' === $method->id && in_array( $method->requires, array( 'min_amount', 'either', 'both' ), true ) && (float) $method->min_amount > 0 ) {
+			return array(
+				'min'              => (float) $method->min_amount,
+				'ignore_discounts' => 'yes' === $method->get_option( 'ignore_discounts', 'no' ),
+				'requires'         => (string) $method->requires,
+			);
 		}
 	}
-	return 0.0;
+	return null;
+}
+
+/** Amount needed for free shipping, 0 when there is none. */
+function bst_free_shipping_min() {
+	$rule = bst_free_shipping_rule();
+	return $rule ? $rule['min'] : 0.0;
+}
+
+/** Whether an applied coupon grants free shipping. */
+function bst_cart_has_free_shipping_coupon() {
+	foreach ( WC()->cart->get_coupons() as $coupon ) {
+		if ( $coupon->is_valid() && $coupon->get_free_shipping() ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 function bst_free_shipping_bar() {
 	if ( ! bst_mod( 'free_ship_bar' ) || ! WC()->cart || WC()->cart->is_empty() || ! WC()->cart->needs_shipping() ) {
 		return;
 	}
-	$min = bst_free_shipping_min();
-	if ( $min <= 0 ) {
+	$rule = bst_free_shipping_rule();
+	if ( ! $rule ) {
 		return;
 	}
-	$total = (float) WC()->cart->get_displayed_subtotal() - (float) WC()->cart->get_discount_total();
-	if ( WC()->cart->display_prices_including_tax() ) {
-		$total -= (float) WC()->cart->get_discount_tax();
+	$coupon = bst_cart_has_free_shipping_coupon();
+	if ( 'both' === $rule['requires'] && ! $coupon ) {
+		return; // The amount alone never qualifies; a progress bar would mislead.
 	}
-	$left = max( 0, $min - $total );
-	$pct  = (int) round( min( 100, $total / $min * 100 ) );
+	$min   = $rule['min'];
+	$total = (float) WC()->cart->get_displayed_subtotal();
+	if ( ! $rule['ignore_discounts'] ) {
+		$total -= (float) WC()->cart->get_discount_total();
+		if ( WC()->cart->display_prices_including_tax() ) {
+			$total -= (float) WC()->cart->get_discount_tax();
+		}
+	}
+	$total = round( $total, wc_get_price_decimals() );
+	$left  = ( 'either' === $rule['requires'] && $coupon ) ? 0 : max( 0, $min - $total );
+	$pct   = $left > 0 ? (int) round( min( 100, max( 0, $total ) / $min * 100 ) ) : 100;
 	$text = $left > 0
 		/* translators: %s: amount still needed, e.g. 120.000₫ */
 		? sprintf( __( 'Add %s more to get free shipping.', 'bigspy-ai-theme-wp' ), wc_price( $left ) )

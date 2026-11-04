@@ -274,6 +274,31 @@ function bst_block_num( $attrs, $key, $default, $min, $max ) {
 	return bst_clamp( $attrs[ $key ] ?? $default, $min, $max, $default );
 }
 
+/**
+ * Loading attributes for an image given only by URL (no Media ID, so no size
+ * data for WordPress to decide). Shares WordPress's content media counter with
+ * wp_get_attachment_image(): images within the "omit lazy" threshold load
+ * eagerly, a banner may take the single fetchpriority="high" slot, the rest stay lazy.
+ *
+ * @param bool $priority Allow fetchpriority="high" when this is the first image.
+ * @return string Attribute string starting with a space.
+ */
+function bst_url_img_loading_attrs( $priority = false ) {
+	$lazy = ' loading="lazy" decoding="async"';
+	if ( is_admin() || wp_is_serving_rest_request() || is_feed() || ! function_exists( 'wp_increase_content_media_count' ) ) {
+		return $lazy;
+	}
+	$count = wp_increase_content_media_count();
+	if ( $count > wp_omit_loading_attr_threshold() ) {
+		return $lazy;
+	}
+	if ( $priority && wp_high_priority_element_flag() ) {
+		wp_high_priority_element_flag( false );
+		return ' fetchpriority="high" decoding="async"';
+	}
+	return ' decoding="async"';
+}
+
 function bst_block_color( $attrs, $key ) {
 	$value = isset( $attrs[ $key ] ) ? (string) $attrs[ $key ] : '';
 	if ( preg_match( '/^#[0-9a-fA-F]{3,8}$/', $value ) || preg_match( '/^var\(--[a-z0-9-]+\)$/', $value ) || preg_match( '/^rgba?\([0-9., %]+\)$/', $value ) ) {
