@@ -45,6 +45,8 @@ Không có backend thì được dùng hai chế độ đầu. Chế độ thứ
 
 ## 5. Form tính giá — đặc tả block và trình cấu hình
 
+Danh mục mô hình giá theo ngành, 16 khối quy tắc và task G-68/G-69: [PRICING-MODELS-RESEARCH.md](PRICING-MODELS-RESEARCH.md).
+
 ### Trải nghiệm người cấu hình
 
 - Mở khối Form → thêm/sắp xếp trường → chọn “Tính giá”. Dùng ngay editor WordPress; không dựng một page builder riêng.

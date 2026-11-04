@@ -11,8 +11,21 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Ưu tiên **block kéo thả và AI trong theme**. Theme giữ giao diện, thiết kế và hiển thị dữ liệu; Rank Math/SEO chuyên sâu, WooCommerce/đơn hàng/thanh toán, inventory/booking và nghiệp vụ lâu dài thuộc plugin/provider. Điểm hay ngoài phạm vi là đề xuất để owner cân nhắc, không tự gộp vào theme.
 - **Vai trò:** Codex nghiên cứu/đặc tả/roadmap; Claude Code lập trình và kiểm thử. Áp dụng từ yêu cầu owner ngày 03-11 cho đến khi owner đổi phân công.
 - **Form tính giá và booking:** yêu cầu mới đã được nghiên cứu ở [FORMS-BOOKING-ROADMAP.md](FORMS-BOOKING-ROADMAP.md): Form native báo giá trước khi gửi; block tìm tuyến/chuyến/xe, lọc kết quả và tóm tắt; adapter plugin/provider cho giá/tồn chỗ/đặt thật. Không coi gửi mail thành đặt thành công.
+- **Mô hình giá theo ngành (04-11):** [PRICING-MODELS-RESEARCH.md](PRICING-MODELS-RESEARCH.md) gom 16 khối quy tắc dùng chung cho G-58; đề xuất G-68 adapter địa chỉ/khoảng cách (sau G-58, owner chốt nhà cung cấp/chi phí) và G-69 preset theo ngành.
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
+
+## Thứ tự làm đề xuất (rà 04-11-2026)
+
+Đối chiếu mã hiện tại: hai lỗi P1 của SOURCE-AUDIT vẫn còn (`blocks/banner/render.php:50`, `blocks/image/render.php:28` ghi cứng `loading="lazy"`; `inc/checkout-extras.php` chưa xử lý `ignore_discounts`).
+
+1. **Sửa nhanh có căn cứ:** ảnh hero/URL trực tiếp không lazy; thông báo free shipping đúng với `ignore_discounts`/coupon. Nhỏ, độc lập, ảnh hưởng mọi shop.
+2. **G-57 → G-58:** nền Form và pricing engine với schema đủ 16 khối; ưu tiên chính của owner.
+3. **G-65:** AI giữ nguyên block core/Query/synced khi sửa trang, tránh từ chối/mất nội dung.
+4. **G-59** (AI cấu hình form) và **G-69** (preset ngành) sau G-58; **G-68** khi owner chốt dịch vụ bản đồ.
+5. **G-67/G-41:** responsive/truy cập theo fixture và đo tài nguyên.
+6. **G-60 → G-63:** booking thật, sau khi Codex chốt backend.
+7. G-37/G-38/G-39/G-40 và backlog cũ theo thứ tự SOURCE-AUDIT.
 
 ## Bối cảnh roadmap cũ
 
