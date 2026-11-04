@@ -23,3 +23,21 @@
 6. Điều kiện nghiệm thu: fixture mới và trang cũ không thay đổi ngoài chủ đích; render/editor thống nhất trên các viewport; tương tác keyboard/focus và reduced motion đạt các kịch bản đã liệt kê; lưu kết quả trước/sau, lỗi còn lại và môi trường. Nếu có khác biệt/không thể kiểm chứng, báo rõ thay vì tuyên bố tuân thủ WCAG toàn bộ.
 
 **Ranh giới và thứ tự:** cải tiến editor/block/AI thuộc theme. SEO chuyên sâu, commerce, đơn/booking/đồng bộ tồn kho tiếp tục do plugin tương ứng. G-67 là đề xuất mới, không đổi thứ tự AI Designer owner đã chốt; G-41 là task đo tài nguyên hiện có, không lặp lại trong G-67.
+
+## Kết quả G-67 (mục 1–4, 6) — 04-11-2026
+
+**Môi trường:** Linux cloud, Chromium 153 (Playwright), PHP 8.3, Node 22; không có WordPress (Playground `fetch failed`): `tools/tests/responsive-fixture.php` render `render.php` thật với stub (wrapper attributes, kses, icon, không dynamic CSS), nạp `blocks.css` + `main.css` + `blocks.js` đầy đủ; slider là bản chép tay của `bst_slider_markup()`. Motion: chạy cả `no-preference` và `reduce`, và đổi sang `reduce` khi đang chạy. Chạy lại: `node tools/tests/responsive-a11y-check.cjs [outDir]` (report.json).
+
+**Fixture:** section + row 2 cột có liên kết; row `reverseMobile` 7/5; 3 tabs (underline, vertical, pills+hover) mỗi tabs 3 panel có link; banner ảnh JPEG 1600×900 có link toàn khối và CTA; slider autoplay. Viewport 375, 549, 550, 768, 849, 850, 1024, 1025, 1440.
+
+| Kiểm tra | Trước | Sau |
+| --- | --- | --- |
+| Tràn ngang, banner crop, CTA nhận click, cột xếp/đứng cạnh đúng breakpoint 550, nút tab ≥ 24px | đạt ở mọi viewport | đạt |
+| Tabs: id duy nhất giữa 3 tabs, tab↔tabpanel, roving tabindex, panel ẩn, mũi tên vòng/Home/End, Tab vào link panel, Shift+Tab, hover, đổi viewport giữ panel | đạt | đạt |
+| Tabs dọc ≥ 850px thiếu `aria-orientation="vertical"` | lỗi | sửa |
+| JS tắt: 9/9 panel hiện nhưng còn 12 thuộc tính `tablist/tab/aria-selected` không hoạt động | lỗi | sửa (role do JS gắn) |
+| Reduce: fade panel tab (`bs-tab-in`) và zoom ảnh banner (0.8s) vẫn chạy | lỗi | sửa |
+| Bật reduce khi đang xem: slider vẫn tự chuyển | lỗi | sửa |
+| `reverseMobile` @375: nhìn Ảnh→Chữ, DOM/Tab Chữ→Ảnh | khác biệt có chủ đích | giữ DOM; thêm gợi ý trong editor |
+
+**Còn lại / chưa kiểm chứng:** editor, preview, lưu/reload/undo trong WordPress thật; screen reader; tương phản màu. `reverseMobile` chỉ đưa cột đầu xuống cuối (3 cột → 2,3,1), không đảo toàn bộ; giữ nguyên để không đổi trang cũ. Không bật lại autoplay khi người xem tắt reduce. Slider chưa có nút tạm dừng (WCAG 2.2.2) — ngoài phạm vi phiên này. Tabs vẫn để class `is-active` cho nút đầu khi JS tắt (chỉ là kiểu hiển thị). Không chứng nhận tuân thủ WCAG toàn bộ. Mục 5 (cảnh báo AI) chưa làm.

@@ -7408,3 +7408,6 @@ msgstr "Form và bảng giá"
 msgid "Edit the page, select the Form block, then change the fields and price rules in its Fields and Pricing panels. Check the price preview, then save."
 msgstr "Sửa trang, chọn khối Form rồi đổi trường và quy tắc giá ở các bảng Trường và Bảng giá. Kiểm tra phần xem trước giá rồi lưu."
 
+msgid "Phones only move the first column to the end on screen; screen readers and the Tab key keep the editor order. Keep links and steps in reading order."
+msgstr "Trên điện thoại chỉ chuyển cột đầu xuống cuối trên màn hình; trình đọc màn hình và phím Tab vẫn theo thứ tự trong trình soạn thảo. Hãy giữ liên kết và các bước theo đúng thứ tự đọc."
+

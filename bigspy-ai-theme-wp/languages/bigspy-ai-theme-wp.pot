@@ -11244,3 +11244,6 @@ msgstr ""
 msgid "Edit the page, select the Form block, then change the fields and price rules in its Fields and Pricing panels. Check the price preview, then save."
 msgstr ""
 
+msgid "Phones only move the first column to the end on screen; screen readers and the Tab key keep the editor order. Keep links and steps in reading order."
+msgstr ""
+

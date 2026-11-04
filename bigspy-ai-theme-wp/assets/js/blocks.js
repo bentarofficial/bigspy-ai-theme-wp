@@ -3,7 +3,12 @@
 	'use strict';
 
 	var doc = document;
-	var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+	var reduceMotion = !!(motionQuery && motionQuery.matches);
+	/* Live value: the visitor can turn reduced motion on after the page loaded. */
+	var reducedNow = function () {
+		return !!(motionQuery && motionQuery.matches);
+	};
 
 	/* ------------------------------------------------------------ Slider */
 	function initSlider(root) {
@@ -40,7 +45,7 @@
 			if (index < 0) {
 				index = root.dataset.loop === '1' ? max : 0;
 			}
-			track.scrollTo({ left: index * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+			track.scrollTo({ left: index * step(), behavior: reducedNow() ? 'auto' : 'smooth' });
 		};
 
 		/* Fade effect: slides are stacked, the active one is shown. */
@@ -236,7 +241,7 @@
 			}, { passive: true });
 			restartBar();
 			window.setInterval(function () {
-				if (paused || doc.hidden) {
+				if (paused || doc.hidden || reducedNow()) {
 					return;
 				}
 				var index = current() + 1;
@@ -248,11 +253,23 @@
 
 	/* ------------------------------------------------------------ Tabs */
 	function initTabs(root, uid) {
-		var buttons = root.querySelectorAll(':scope > .bs-tabs__nav [role="tab"]');
+		var nav = root.querySelector(':scope > .bs-tabs__nav');
+		var buttons = root.querySelectorAll(':scope > .bs-tabs__nav > .bs-tabs__tab');
 		var panels = root.querySelectorAll(':scope > .bs-tabs__panels > .bs-tab');
 		if (!buttons.length) {
 			return;
 		}
+		/* Tab roles are added here, not in render.php: without JS every panel shows and the titles are plain buttons. */
+		nav.setAttribute('role', 'tablist');
+		var orient = function () {
+			if (getComputedStyle(nav).flexDirection.indexOf('column') === 0) {
+				nav.setAttribute('aria-orientation', 'vertical');
+			} else {
+				nav.removeAttribute('aria-orientation');
+			}
+		};
+		orient();
+		window.addEventListener('resize', orient);
 		var activate = function (index, focus) {
 			buttons.forEach(function (btn, i) {
 				var active = i === index;
@@ -270,6 +287,7 @@
 		};
 		buttons.forEach(function (btn, i) {
 			var panel = panels[i];
+			btn.setAttribute('role', 'tab');
 			btn.id = btn.id || 'bs-tab-' + uid + '-' + i;
 			if (panel) {
 				panel.id = panel.id || 'bs-tabpanel-' + uid + '-' + i;

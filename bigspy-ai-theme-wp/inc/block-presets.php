@@ -321,9 +321,9 @@ function bst_block_presets() {
 		),
 		'bst/tabs'        => array(
 			'nav' => array( $t( 'Tab buttons' ), true, array(
-				'tab-pill'  => array( $t( 'Pills' ), '& .bs-tabs__nav [role=tab]{border-radius:999px}' ),
+				'tab-pill'  => array( $t( 'Pills' ), '& .bs-tabs__nav .bs-tabs__tab{border-radius:999px}' ),
 				'tab-boxed' => array( $t( 'Boxed bar' ), '& .bs-tabs__nav{padding:6px;background:var(--bs-light);border-radius:14px}' ),
-				'tab-line'  => array( $t( 'Underline' ), '& .bs-tabs__nav [role=tab]{border-radius:0;background:transparent}& .bs-tabs__nav [aria-selected=true]{box-shadow:inset 0 -3px 0 var(--bs-primary)}' ),
+				'tab-line'  => array( $t( 'Underline' ), '& .bs-tabs__nav .bs-tabs__tab{border-radius:0;background:transparent}& .bs-tabs__nav .bs-tabs__tab.is-active{box-shadow:inset 0 -3px 0 var(--bs-primary)}' ),
 			) ),
 			'panel' => array( $t( 'Content panel' ), true, array(
 				'tab-card' => array( $t( 'Card' ), "& .bs-tab{padding:24px;background:#fff;border-radius:16px;box-shadow:$shadow_sm}" ),

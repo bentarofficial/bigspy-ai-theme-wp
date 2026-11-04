@@ -30,6 +30,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Kiểm thử:** `php -l`, `node --check`; test PHP cô lập 51/51 (stub WP + parser block thật của WordPress): ví dụ 3 kg = 54.000 ₫, có giao nhận + nhanh = 89.800 ₫ và server tính lại đúng từ khối đã lưu; giữ id theo tên, map tên → id; 13 loại lỗi; token sai/thiếu bị từ chối; check không ghi; mức duyệt nháp/đã đăng; page tools giữ/khôi phục cấu hình, khoá trùng; tắt giá. Thêm case vào `tools/tests/designer-integration.php` nhưng chưa chạy được (Playground lỗi `fetch failed` trên cloud); chưa thử với model AI thật.
 - **Khi phát hành cần bổ sung:** Có gì mới (AI dựng Form tính giá), tài liệu AI Designer.
 
+### G-67 — Responsive và truy cập cho section/row/column, tabs, banner (mục 1–4, 6)
+
+- **Đã thay đổi:** Tabs: `role="tablist"/"tab"` và `aria-selected` do `blocks.js` gắn (JS tắt: mọi panel hiện, tiêu đề là nút thường), chọn tab theo class, `aria-orientation="vertical"` khi tabs dọc đang xếp cột (cập nhật khi đổi kích thước); preset tab dùng class thay `[role=tab]`. Reduced motion: tắt hiệu ứng fade panel tab, zoom ảnh banner; slider dừng autoplay khi người xem bật reduced motion sau khi tải trang. Editor Row: gợi ý dưới “Đảo thứ tự cột trên di động” rằng Tab/trình đọc màn hình giữ thứ tự gốc. Không đổi DOM hay dữ liệu đã lưu.
+- **Kiểm thử:** `node tools/tests/responsive-a11y-check.cjs` (fixture PHP stub, Chromium 153, 9 viewport 375–1440 kể cả sát breakpoint 549/550/849/850/1024/1025): trước 139/144, sau 144/144. Chưa chạy WordPress/editor/screen reader thật (Playground cloud `fetch failed`); chi tiết ở [RESPONSIVE-AI-RESEARCH.md](RESPONSIVE-AI-RESEARCH.md).
+- **Khi phát hành cần bổ sung:** dòng Có gì mới (tabs/reduced motion); mục 5 (cảnh báo AI) chưa làm.
+
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
 - **Đã thay đổi:** các phần chức năng liên quan.

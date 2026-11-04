@@ -942,7 +942,7 @@
 					el(Select, Object.assign({ label: __('Gap between columns', 'bigspy-ai-theme-wp'), options: { none: __('None', 'bigspy-ai-theme-wp'), small: __('Small', 'bigspy-ai-theme-wp'), medium: __('Medium', 'bigspy-ai-theme-wp'), large: __('Large', 'bigspy-ai-theme-wp') } }, bind('gap'))),
 					el(Select, Object.assign({ label: __('Vertical align', 'bigspy-ai-theme-wp'), options: { stretch: __('Equal height', 'bigspy-ai-theme-wp'), top: __('Top', 'bigspy-ai-theme-wp'), center: __('Middle', 'bigspy-ai-theme-wp'), bottom: __('Bottom', 'bigspy-ai-theme-wp') } }, bind('verticalAlign'))),
 					el(Select, Object.assign({ label: __('Horizontal align (when columns do not fill 12)', 'bigspy-ai-theme-wp'), options: { start: __('Left', 'bigspy-ai-theme-wp'), center: __('Center', 'bigspy-ai-theme-wp'), end: __('Right', 'bigspy-ai-theme-wp') } }, bind('justify'))),
-					el(Toggle, Object.assign({ label: __('Reverse column order on mobile', 'bigspy-ai-theme-wp') }, bind('reverseMobile', true)))
+					el(Toggle, Object.assign({ label: __('Reverse column order on mobile', 'bigspy-ai-theme-wp'), help: a.reverseMobile ? __('Phones only move the first column to the end on screen; screen readers and the Tab key keep the editor order. Keep links and steps in reading order.', 'bigspy-ai-theme-wp') : '' }, bind('reverseMobile', true)))
 				)
 			),
 			el('div', innerProps)

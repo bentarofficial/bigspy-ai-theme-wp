@@ -29,9 +29,9 @@ $tab_vars  = bst_style_vars(
 );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => $tab_class, 'style' => $tab_vars ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-event="<?php echo 'hover' === ( $a['event'] ?? 'click' ) ? 'hover' : 'click'; ?>">
-	<div class="bs-tabs__nav" role="tablist">
+	<div class="bs-tabs__nav">
 		<?php foreach ( $titles as $i => $title ) : ?>
-			<button type="button" class="bs-tabs__tab<?php echo 0 === $i ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>"><?php echo $title[1] ? bst_icon( $title[1], 18 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo wp_kses_post( $title[0] ); ?></span></button>
+			<button type="button" class="bs-tabs__tab<?php echo 0 === $i ? ' is-active' : ''; ?>"><?php echo $title[1] ? bst_icon( $title[1], 18 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo wp_kses_post( $title[0] ); ?></span></button>
 		<?php endforeach; ?>
 	</div>
 	<div class="bs-tabs__panels"><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

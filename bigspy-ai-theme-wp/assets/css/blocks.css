@@ -412,6 +412,11 @@ input[type="submit"]:hover,
 	transform: scale(1.06);
 }
 
+@media (prefers-reduced-motion: reduce) {
+	.bs-banner__img { transition: none; }
+	.bs-banner--hover-zoom:hover .bs-banner__img { transform: none; }
+}
+
 .bs-banner--hover-glow:hover .bs-banner__overlay {
 	opacity: .1 !important;
 }
@@ -2647,6 +2652,7 @@ input[type="submit"]:hover,
 .bs-tabs--pills[style*="--bs-tabs-active"] .bs-tabs__tab.is-active, .bs-tabs--boxed[style*="--bs-tabs-active"] .bs-tabs__tab.is-active { color: var(--bs-tabs-active-text, #fff); background: var(--bs-tabs-active); }
 .bs-tabs--fade .bs-tab.is-active { animation: bs-tab-in .35s ease; }
 @keyframes bs-tab-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .bs-tabs--fade .bs-tab.is-active { animation: none; } }
 
 /* ================================================================ 1.29 – Map extras */
 .bs-map { position: relative; }
