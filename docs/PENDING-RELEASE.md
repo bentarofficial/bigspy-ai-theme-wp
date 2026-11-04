@@ -14,6 +14,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới / Giới thiệu nhắc khối Tabs mới.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+### Khối Tiêu đề mục: thẻ P/DIV, link cho tiêu đề, chữ link bên phải tùy chỉnh
+
+- **Đã thay đổi:** `bst/title` thêm thẻ H5, H6, P, DIV (P/DIV giữ dáng tiêu đề); link cho tiêu đề bên trái; khung “Liên kết” gom chữ link bên phải (vd “Xem thêm”), URL, mở tab mới, nofollow; `aria-label` tự tạo “{chữ link} – {tiêu đề}”; trên điện thoại hẹp link được xuống dòng. Trang cũ không đổi.
+- **Kiểm thử:** `php -l`, `node --check`; render PHP (hàm WP giả lập) với thẻ P + 2 link và thẻ không hợp lệ (về H2). Chưa thử trong trình soạn thảo WordPress.
+- **Khi phát hành cần bổ sung:** Có gì mới nhắc khối Tiêu đề mục.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

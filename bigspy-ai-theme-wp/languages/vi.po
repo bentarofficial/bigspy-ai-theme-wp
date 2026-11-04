@@ -7219,3 +7219,27 @@ msgstr "Cửa hàng – tab sản phẩm có tiêu đề (tab cuộn ngang)"
 msgid "Blog – post tabs by category"
 msgstr "Blog – tab bài viết theo chuyên mục"
 
+msgid "P (paragraph, not a heading)"
+msgstr "P (đoạn văn, không phải tiêu đề)"
+
+msgid "Links"
+msgstr "Liên kết"
+
+msgid "Title link (URL, empty = no link)"
+msgstr "Link của tiêu đề (URL, để trống = không gắn link)"
+
+msgid "Right link text (e.g. View all, See more)"
+msgstr "Chữ link bên phải (vd: Xem tất cả, Xem thêm)"
+
+msgid "Right link URL"
+msgstr "Link bên phải (URL)"
+
+msgid "Open links in a new tab"
+msgstr "Mở link trong tab mới"
+
+msgid "Add nofollow to links"
+msgstr "Thêm nofollow cho link"
+
+msgid "Set Align to Left to keep the title on the left and the link on the right. The right link shows when both its text and URL are filled."
+msgstr "Chọn Căn lề: Trái để tiêu đề nằm bên trái và link nằm bên phải. Link bên phải chỉ hiện khi đã điền cả chữ và URL."
+

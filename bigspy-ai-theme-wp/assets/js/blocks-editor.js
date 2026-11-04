@@ -1294,7 +1294,7 @@
 		var a = props.attributes;
 		var bind = B.binder(props);
 		var blockProps = useBlockProps({
-			className: 'bs-title bs-title--' + a.style + ' bs-title--align-' + a.align,
+			className: 'bs-title bs-title--' + a.style + ' bs-title--align-' + a.align + ' bs-title--tag-' + a.tag,
 			style: styleVars({ '--bs-title-size': a.size ? a.size + 'px' : '', '--bs-title-color': a.color, '--bs-title-line': a.lineColor })
 		});
 		return el(Fragment, null,
@@ -1302,10 +1302,16 @@
 				el(Panel, { title: __('Title', 'bigspy-ai-theme-wp') },
 					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { plain: __('Plain', 'bigspy-ai-theme-wp'), 'bottom-line': __('Short line below', 'bigspy-ai-theme-wp'), 'center-line': __('Lines on both sides', 'bigspy-ai-theme-wp'), 'left-bar': __('Bar on the left', 'bigspy-ai-theme-wp'), 'underline-full': __('Full-width underline', 'bigspy-ai-theme-wp') } }, bind('style'))),
 					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
-					el(Select, Object.assign({ label: __('Tag', 'bigspy-ai-theme-wp'), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4' } }, bind('tag'))),
-					el(Range, Object.assign({ label: __('Font size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120 }, bind('size'))),
-					el(Text, Object.assign({ label: __('“View all” text', 'bigspy-ai-theme-wp') }, bind('linkText'))),
-					el(Text, Object.assign({ label: __('“View all” link', 'bigspy-ai-theme-wp'), type: 'url' }, bind('linkUrl')))
+					el(Select, Object.assign({ label: __('Tag', 'bigspy-ai-theme-wp'), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6', p: __('P (paragraph, not a heading)', 'bigspy-ai-theme-wp'), div: 'DIV' } }, bind('tag'))),
+					el(Range, Object.assign({ label: __('Font size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120 }, bind('size')))
+				),
+				el(Panel, { title: __('Links', 'bigspy-ai-theme-wp') },
+					el(Text, Object.assign({ label: __('Title link (URL, empty = no link)', 'bigspy-ai-theme-wp'), type: 'url' }, bind('titleUrl'))),
+					el(Text, Object.assign({ label: __('Right link text (e.g. View all, See more)', 'bigspy-ai-theme-wp') }, bind('linkText'))),
+					el(Text, Object.assign({ label: __('Right link URL', 'bigspy-ai-theme-wp'), type: 'url' }, bind('linkUrl'))),
+					el(Toggle, Object.assign({ label: __('Open links in a new tab', 'bigspy-ai-theme-wp') }, bind('newTab', true))),
+					el(Toggle, Object.assign({ label: __('Add nofollow to links', 'bigspy-ai-theme-wp') }, bind('nofollow', true))),
+					el('p', { className: 'description' }, __('Set Align to Left to keep the title on the left and the link on the right. The right link shows when both its text and URL are filled.', 'bigspy-ai-theme-wp'))
 				),
 				el(B.ColorPanel, {
 					settings: [
@@ -1318,7 +1324,7 @@
 				el(RichText, { tagName: 'p', className: 'bs-title__subtitle', value: a.subtitle, placeholder: __('Subtitle (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ subtitle: v }); } }),
 				el('div', { className: 'bs-title__row' },
 					el(RichText, { tagName: a.tag, className: 'bs-title__text', value: a.text, placeholder: __('Section title', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } }),
-					a.linkText ? el('span', { className: 'bs-title__link' }, a.linkText) : null
+					a.linkText ? el('span', { className: 'bs-title__link' + (a.linkUrl ? '' : ' is-unlinked') }, a.linkText, el(B.Icon, { name: 'arrow-right', size: 16 })) : null
 				)
 			)
 		);

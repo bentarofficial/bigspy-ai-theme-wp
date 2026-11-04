@@ -5,7 +5,7 @@
 	"title": "Section Title",
 	"category": "bigspy",
 	"icon": "heading",
-	"description": "Section heading with a decorative line, small subtitle above and an optional \"view all\" link on the right. Keeps section titles consistent across the site.",
+	"description": "Section heading (H1–H6, P or DIV) with a decorative line, small subtitle above, an optional link on the title and an optional link on the right whose text you choose (\"View all\", \"See more\"…).",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"text": {
@@ -47,6 +47,18 @@
 		"linkUrl": {
 			"type": "string",
 			"default": ""
+		},
+		"titleUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"newTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"nofollow": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

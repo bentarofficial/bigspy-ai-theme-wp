@@ -11043,3 +11043,24 @@ msgstr ""
 msgid "Blog – post tabs by category"
 msgstr ""
 
+msgid "P (paragraph, not a heading)"
+msgstr ""
+
+msgid "Title link (URL, empty = no link)"
+msgstr ""
+
+msgid "Right link text (e.g. View all, See more)"
+msgstr ""
+
+msgid "Right link URL"
+msgstr ""
+
+msgid "Open links in a new tab"
+msgstr ""
+
+msgid "Add nofollow to links"
+msgstr ""
+
+msgid "Set Align to Left to keep the title on the left and the link on the right. The right link shows when both its text and URL are filled."
+msgstr ""
+
