@@ -21,7 +21,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 ### G-58 — Báo giá cho Form native
 
 - **Đã thay đổi:** `inc/form-pricing.php`: 7 kiểu dòng giá (cố định, số lượng, kích thước, theo lựa chọn, bậc, %, công thức giới hạn) có điều kiện, tổng tối thiểu, làm tròn, tính bằng đơn vị nhỏ nhất. Form hiện giá ước tính trực tiếp; server tính lại khi gửi và yêu cầu khách đồng ý khi giá/quy tắc đổi. Mail-tag `[price-total]`, `[price-lines]`, `[price-status]`, lưu snapshot báo giá trong entry, tab Pricing trong editor, mẫu demo giặt là/vệ sinh.
-- **Kiểm thử:** mục này bổ sung ở phiên G-59 từ commit `5397952`; kết quả kiểm thử của phiên G-58 không được ghi lại ở đây. Test G-59 dùng lại `bst_pricing_quote` và cho kết quả đúng với ví dụ giặt là.
+- **Kiểm thử:** PHP engine 24/24 (giặt 79.000/89.800, 1,5 và 1.5 kg, USD 2 số lẻ, option/area/bậc/công thức/tối thiểu/làm tròn, chặn biểu thức nguy hiểm); submit 6/6 (mail có giá, client sửa tổng → xác nhận lại, đổi bảng giá → gửi cấu hình mới, client không áp đơn giá); Chromium 375px 13/13 (JS = PHP 6 tình huống, trạng thái, luồng giá đổi, không tràn, không lỗi JS). Chưa chạy Playground, chưa thử tab Pricing trong editor WordPress thật. Ô số `type=number` nên dấu phẩy phụ thuộc locale trình duyệt; server nhận cả hai.
 - **Khi phát hành cần bổ sung:** Có gì mới (bảng giá Form), hướng dẫn tab Pricing.
 
 ### G-59 — AI cấu hình Form và bảng giá
@@ -30,6 +30,15 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Kiểm thử:** `php -l`, `node --check`; test PHP cô lập 51/51 (stub WP + parser block thật của WordPress): ví dụ 3 kg = 54.000 ₫, có giao nhận + nhanh = 89.800 ₫ và server tính lại đúng từ khối đã lưu; giữ id theo tên, map tên → id; 13 loại lỗi; token sai/thiếu bị từ chối; check không ghi; mức duyệt nháp/đã đăng; page tools giữ/khôi phục cấu hình, khoá trùng; tắt giá. Thêm case vào `tools/tests/designer-integration.php` nhưng chưa chạy được (Playground lỗi `fetch failed` trên cloud); chưa thử với model AI thật.
 - **Khi phát hành cần bổ sung:** Có gì mới (AI dựng Form tính giá), tài liệu AI Designer.
 
+
+- **Yêu cầu/tính năng:** mô tả ngắn.
+- **Đã thay đổi:** các phần chức năng liên quan.
+- **Kiểm thử:** kết quả và giới hạn cần biết.
+- **Khi phát hành cần bổ sung:** mục Giới thiệu/Có gì mới/tài liệu/kiến thức AI liên quan, hoặc “không cần”.
+- **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
+## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
 - **Đã thay đổi:** các phần chức năng liên quan.
