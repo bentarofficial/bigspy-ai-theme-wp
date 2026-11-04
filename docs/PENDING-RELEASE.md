@@ -50,6 +50,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+### Khối Code đa năng hơn cho AI
+
+- **Đã thay đổi:** hồ sơ `bst/code` trong `ai-designer/knowledge/blocks.php` viết lại: chế độ html = minh họa thay ảnh (icon/bộ icon, sơ đồ quy trình, mockup thiết bị/app, biểu đồ từ số liệu thật, hình trang trí/sóng/nền, badge, animation CSS nhẹ) kèm ưu điểm; chế độ snippet = hiện mẫu code có nhãn ngôn ngữ và nút copy; khi nào dùng block khác thay (Counter/Progress, Icon Box/List, Video/Map/Shortcode); thêm nhóm nhu cầu features/process. Sửa `min` sai (`mode visual` không tồn tại → html/snippet). Prompt, quy tắc trong `tools-design.php`, `knowledge/theme.md`, mô tả `blocks/code/block.json` (bỏ “special layouts”, bản dịch vi) và câu Block rule trong `AGENTS.md` được cập nhật cho khớp. Giới hạn an toàn giữ nguyên (không JS, ≤ 8 khối/6 KB không cần duyệt, tối đa 12 khối/40 KB, không nhiều hơn khối khác).
+- **Kiểm thử:** `php -l`, JSON hợp lệ, hồ sơ đủ 9 trường như các block khác. Chưa thử với model AI thật. Mã do AI viết trong chế độ snippet vẫn qua bộ lọc HTML an toàn, nên mẫu code HTML có script/sự kiện bị lược phần đó.
+- **Khi phát hành cần bổ sung:** không cần mục Có gì mới riêng (cải tiến kiến thức AI).
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

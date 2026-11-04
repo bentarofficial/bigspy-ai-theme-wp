@@ -7411,3 +7411,6 @@ msgstr "Sửa trang, chọn khối Form rồi đổi trường và quy tắc gi�
 msgid "Phones only move the first column to the end on screen; screen readers and the Tab key keep the editor order. Keep links and steps in reading order."
 msgstr "Trên điện thoại chỉ chuyển cột đầu xuống cuối trên màn hình; trình đọc màn hình và phím Tab vẫn theo thứ tự trong trình soạn thảo. Hãy giữ liên kết và các bước theo đúng thứ tự đọc."
 
+msgid "Custom HTML and CSS rendered on the page, or a code snippet with a copy button. Switch between Visual and Code while editing. Use it for illustrations drawn with SVG/HTML/CSS instead of images (icons, diagrams, mockups, charts, decorative shapes), small embeds, or code samples."
+msgstr "HTML và CSS tùy chỉnh hiển thị trên trang, hoặc đoạn code có nút sao chép. Chuyển giữa Visual và Code khi chỉnh sửa. Dùng để vẽ minh họa bằng SVG/HTML/CSS thay cho ảnh (icon, sơ đồ, mockup, biểu đồ, hình trang trí), nhúng nhỏ, hoặc hiện mẫu code."
+

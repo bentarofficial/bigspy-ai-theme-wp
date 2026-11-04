@@ -11247,3 +11247,6 @@ msgstr ""
 msgid "Phones only move the first column to the end on screen; screen readers and the Tab key keep the editor order. Keep links and steps in reading order."
 msgstr ""
 
+msgid "Custom HTML and CSS rendered on the page, or a code snippet with a copy button. Switch between Visual and Code while editing. Use it for illustrations drawn with SVG/HTML/CSS instead of images (icons, diagrams, mockups, charts, decorative shapes), small embeds, or code samples."
+msgstr ""
+

@@ -1219,7 +1219,7 @@ function bst_aid_tool_list_blocks() {
 			'A page is a list of bst/section blocks. Inside a section use bst/row > bst/column for columns (column width via its attributes), or put blocks directly.',
 			'Use bst/heading for headings (attribute tag h1–h6; one h1 per page) and bst/text for paragraphs (html attribute).',
 			'Images: set the image id and URL attributes (from ImageGen or the Media Library). Never invent image URLs.',
-			'bst/code holds safe SVG / HTML in "code" and scoped CSS in "css" (selector = this block) for illustrations blocks cannot do. No JavaScript.',
+			'bst/code holds safe SVG / HTML in "code" and scoped CSS in "css" (selector = this block) for illustrations blocks cannot do (icons, diagrams, mockups, charts of given figures, decorative shapes), or with mode "snippet" a code sample shown as text with a copy button. No JavaScript.',
 			'Start from get_pattern when a pattern fits, then change texts, colors and images.',
 		),
 	);
