@@ -1030,6 +1030,7 @@ function bsNfApply(form) {
 }
 document.addEventListener('input', function (e) { var f = e.target.closest && e.target.closest('[data-bs-native-form]'); if (f) { bsNfApply(f); } });
 document.addEventListener('change', function (e) { var f = e.target.closest && e.target.closest('[data-bs-native-form]'); if (f) { bsNfApply(f); } });
+window.bsNfApply = bsNfApply;
 document.querySelectorAll('[data-bs-native-form]').forEach(bsNfApply);
 
 /* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */

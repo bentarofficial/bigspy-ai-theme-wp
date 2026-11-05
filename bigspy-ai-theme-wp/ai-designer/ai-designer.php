@@ -30,6 +30,7 @@ require_once BST_AID_DIR . '/includes/tools-design.php';
 require_once BST_AID_DIR . '/includes/tools-images.php';
 require_once BST_AID_DIR . '/includes/permissions.php';
 require_once BST_AID_DIR . '/includes/tools-site.php';
+require_once BST_AID_DIR . '/includes/tools-form.php';
 require_once BST_AID_DIR . '/includes/prompt.php';
 require_once BST_AID_DIR . '/includes/tasks.php';
 require_once BST_AID_DIR . '/includes/attachments.php';
