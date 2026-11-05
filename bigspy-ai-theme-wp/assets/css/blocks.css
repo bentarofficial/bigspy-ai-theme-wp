@@ -176,6 +176,20 @@ input[type="submit"]:hover,
 	color: #fff;
 }
 
+.is-scheme-light .bs-counter__value {
+	color: var(--bs-counter-color, #fff);
+}
+
+.is-scheme-light .bs-btn--outline:not(.has-custom-colors):not([class*="bs-btn--c-"]) {
+	color: #fff;
+}
+
+.is-scheme-light .bs-btn--outline:not(.has-custom-colors):not([class*="bs-btn--c-"]):hover {
+	background: #fff;
+	color: var(--bs-primary);
+	border-color: #fff;
+}
+
 .is-scheme-dark {
 	color: var(--bs-text);
 }

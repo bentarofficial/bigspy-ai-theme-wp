@@ -56,7 +56,7 @@ function bst_native_form_defaults() {
 function bst_native_form_settings( $a ) {
 	$d = bst_native_form_defaults();
 	foreach ( $d as $k => $v ) {
-		if ( isset( $a[ $k ] ) && '' !== $a[ $k ] && null !== $a[ $k ] ) {
+		if ( isset( $a[ $k ] ) && '' !== $a[ $k ] && array() !== $a[ $k ] ) {
 			$d[ $k ] = $a[ $k ];
 		}
 	}

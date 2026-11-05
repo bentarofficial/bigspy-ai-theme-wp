@@ -306,6 +306,14 @@ $built_page = bst_test_run( 'build_sections', array( 'title' => 'Built in one go
 $built_html = (string) get_post_field( 'post_content', (int) ( $built_page['id'] ?? 0 ) );
 bst_test( empty( $built_page['error'] ) && 3 === count( $built_page['built'] ?? array() ) && false !== strpos( $built_html, 'Fast build H1' ) && false !== strpos( $built_html, 'Kind' ) && false !== strpos( $built_html, '"imageId":' . $plan_media ) && false === strpos( $built_html, '{{' ), 'build_sections fills several recipes, repeated slots and media in one call' );
 bst_test( 1 === ( $built_page['built'][2]['images_removed'] ?? 0 ) && in_array( 'reason', $built_page['built'][2]['empty_slots'] ?? array(), true ), 'build_sections drops images without media and reports empty slots' );
+$media_page = bst_test_run( 'build_sections', array( 'title' => 'Media and form', 'sections' => array(
+	array( 'recipe' => 'media-gallery', 'slots' => array( 'section title' => 'Work' ), 'media' => array( $plan_media ) ),
+	array( 'recipe' => 'proof-logos', 'slots' => array( 'trusted by line' => 'Trusted' ) ),
+	array( 'recipe' => 'contact-form-map', 'slots' => array( 'contact title' => 'Talk', 'address' => 'Hanoi' ) ),
+) ) );
+$media_html = (string) get_post_field( 'post_content', (int) ( $media_page['id'] ?? 0 ) );
+$media_form = (string) do_blocks( $media_html );
+bst_test( empty( $media_page['error'] ) && false !== strpos( $media_html, '"images":[{"id":' . $plan_media ) && in_array( 'bst/logos', $media_page['built'][1]['without_media'] ?? array(), true ) && preg_match( '/"formKey":"f[a-z0-9]{8}"/', $media_html ) && false !== strpos( $media_form, 'name="your-name"' ) && false !== strpos( $media_html, '"icon":"pin"' ), 'build_sections fills gallery/logos media, reports missing logos, and gives forms a native key with default fields' );
 $appended = bst_test_run( 'build_sections', array( 'id' => (int) $built_page['id'], 'sections' => array( array( 'recipe' => 'proof-marquee', 'slots' => array( 'keyword 1' => 'Alpha' ) ) ) ) );
 bst_test( empty( $appended['error'] ) && 4 === $appended['sections'], 'build_sections appends to an existing page' );
 bst_test( ! empty( bst_test_run( 'build_sections', array( 'title' => 'X', 'sections' => array( array( 'recipe' => 'nope', 'slots' => array() ) ) ) )['error'] ) && 'content' === bst_aid_tool_policy( 'build_sections', array() )['group'], 'build_sections refuses unknown recipes and is a content write' );

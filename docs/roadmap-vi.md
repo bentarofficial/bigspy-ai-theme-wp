@@ -14,7 +14,7 @@ Quy tắc phát triển, phát hành và ma trận kiểm tra: xem [DEV-RULES.md
 
 **Hàng đợi đề xuất (chưa bắt đầu, owner sắp thứ tự)**
 
-1. **Nghiệm thu 1.81.0 với AI thật:** dựng 2–3 trang mẫu qua `page_plan` → `build_sections`, đối chiếu số đo G-47, kiểm tra luật block (`editable_percent`, giới hạn `bst/code`) và hiển thị công thức section trên 375/768/1024/desktop. Lỗi tìm được sửa trước khi mở việc mới.
+1. **Nghiệm thu 1.81.0 với AI thật:** dựng 2–3 trang mẫu qua `page_plan` → `build_sections`, đối chiếu số đo G-47, kiểm tra luật block (`editable_percent`, giới hạn `bst/code`) và hiển thị công thức section trên 375/768/1024/desktop. Lỗi tìm được sửa trước khi mở việc mới. *05-11: phần không cần AI đã xong và sửa 5 lỗi (xem PENDING-RELEASE); còn lại cần khóa Kyma: chạy AI thật, thanh chat, thẻ sơ đồ, dòng "Lượt cuối".*
 2. **G-67** responsive và truy cập theo fixture ([RESPONSIVE-AI-RESEARCH.md](RESPONSIVE-AI-RESEARCH.md)); dùng lại fixture của bước 1.
 3. **G-65** tương thích AI và G-37/G-38/G-39 theo [BLOCK-AI-RESEARCH.md](BLOCK-AI-RESEARCH.md); G-41 đo tài nguyên chạy song song khi có fixture.
 4. **Form và booking:** G-57 → G-59, sau đó G-60 (cổng chọn backend) → G-63 theo [FORMS-BOOKING-ROADMAP.md](FORMS-BOOKING-ROADMAP.md).

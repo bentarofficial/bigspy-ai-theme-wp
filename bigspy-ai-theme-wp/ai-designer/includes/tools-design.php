@@ -1142,6 +1142,21 @@ function bst_aid_fill_recipe( $node, $slots, &$media, &$used, &$state ) {
 			$node['attrs']['items'][ $i ]['imageUrl'] = (string) wp_get_attachment_image_url( $id, 'large' );
 		}
 	}
+	if ( in_array( $node['name'], array( 'bst/gallery', 'bst/logos' ), true ) ) {
+		$images = array();
+		while ( $media ) {
+			$id       = array_shift( $media );
+			$images[] = array( 'id' => $id, 'url' => (string) wp_get_attachment_image_url( $id, 'large' ), 'alt' => (string) get_post_meta( $id, '_wp_attachment_image_alt', true ) );
+		}
+		if ( $images ) {
+			$node['attrs']['images'] = $images;
+		} else {
+			$state['missing'][] = $node['name'];
+		}
+	}
+	if ( 'bst/form' === $node['name'] && 'bigspy' === ( $node['attrs']['provider'] ?? '' ) && empty( $node['attrs']['formKey'] ) ) {
+		$node['attrs']['formKey'] = 'f' . strtolower( wp_generate_password( 8, false ) );
+	}
 	foreach ( bst_aid_media_slots( $node['name'] ) as $pair ) {
 		if ( $media ) {
 			$id                        = array_shift( $media );
