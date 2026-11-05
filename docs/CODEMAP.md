@@ -30,6 +30,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 - Version: `style.css` and `BST_VERSION` in `functions.php`. Readiness: `python tools/release.py`.
 - Optional features: `inc/features.php` (page, toggles, field types), one file per feature in `inc/features/`. Test: `node tools/features-check.cjs`.
 - Theme panel: `inc/admin/`. Updater: `inc/updater.php`. Patterns: `patterns/`.
+- Built-in Form: engine `inc/form-native.php`; schema (field IDs, conditions, dependency checks) `inc/form-schema.php`; front JS in `assets/js/blocks.js` (`bsNfApply`); editor `NativeFormPanels` in `blocks-editor.js`. Test: `php tools/tests/form-schema-check.php`.
 
 ## Testing
 - `node tools/playground-page.cjs` serves the theme on port 9418. Open `/?bst_autologin=1`; a test-only mu-plugin logs in, no password. Options: `--port=N`, `--woo=<plugin dir>`.

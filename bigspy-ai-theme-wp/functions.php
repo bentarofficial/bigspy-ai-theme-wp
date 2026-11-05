@@ -49,6 +49,7 @@ $bst_includes = array(
 	'inc/theme-language.php',
 	'inc/header-fit.php',
 	'inc/site-extras.php',
+	'inc/form-schema.php',
 	'inc/form-native.php',
 	'inc/form-migrate.php',
 	'inc/block-shapes.php',

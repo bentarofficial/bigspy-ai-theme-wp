@@ -63,6 +63,7 @@ function bst_native_form_settings( $a ) {
 	$d['fields'] = array_values( array_filter( (array) $d['fields'], function ( $f ) {
 		return is_array( $f ) && ! empty( $f['name'] );
 	} ) );
+	$d['fields'] = bst_form_schema_normalize( $d['fields'] );
 	return $d;
 }
 
@@ -130,21 +131,39 @@ function bst_native_form_markup( $a ) {
 		return '';
 	}
 	$out = '';
+	$bad = array_flip( array_column( bst_form_schema_validate( $s['fields'] ), 'field' ) );
+	$init = array(); // First paint matches the conditions before any script runs.
+	foreach ( $s['fields'] as $f ) {
+		$o     = bst_native_field_options( $f );
+		$p     = array_values( array_intersect( $o, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) ) );
+		$p     = ! $p && 'radio' === ( $f['type'] ?? '' ) && $o ? array( $o[0] ) : $p;
+		$init[ sanitize_key( $f['name'] ) ] = in_array( $f['type'] ?? '', array( 'select', 'radio', 'checkbox' ), true ) ? implode( ', ', $p ) : '';
+	}
+	$init = bst_form_schema_state( $s['fields'], $init );
 	foreach ( $s['fields'] as $f ) {
 		$type  = in_array( $f['type'] ?? 'text', bst_native_field_types(), true ) ? $f['type'] : 'text';
 		$name  = sanitize_key( $f['name'] );
 		$label = (string) ( $f['label'] ?? '' );
 		$ph    = (string) ( $f['placeholder'] ?? '' );
-		$req   = ! empty( $f['required'] );
-		$attr  = ' name="' . esc_attr( $name ) . '"' . ( $req ? ' required aria-required="true"' : '' );
+		$st    = $init[ $f['id'] ];
+		$req   = $st['required'];
+		$cond0 = ! $st['visible'] ? ' hidden' : '';
+		$attr  = ' name="' . esc_attr( $name ) . '"' . ( $req ? ' required aria-required="true"' : '' ) . ( $st['visible'] ? '' : ' disabled' );
 		$width = 'half' === ( $f['width'] ?? 'full' ) ? ' bs-nf-half' : '';
+		$cond  = ' data-bs-field="' . esc_attr( $f['id'] ) . '" data-bs-name="' . esc_attr( $name ) . '"';
+		foreach ( array( 'show' => 'data-bs-show', 'requiredWhen' => 'data-bs-req-when' ) as $ck => $ca ) {
+			if ( ! empty( $f[ $ck ] ) && ! isset( $bad[ $f['id'] ] ) ) {
+				$cond .= ' ' . $ca . '="' . esc_attr( wp_json_encode( $f[ $ck ] ) ) . '"';
+			}
+		}
+		$cond .= ( ! empty( $f['required'] ) ? ' data-bs-req="1"' : '' ) . $cond0;
 		$opts  = bst_native_field_options( $f );
 		$picks = array_intersect( $opts, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) );
-		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req ? ' <span class="bs-nf-req">*</span>' : '' ) . '</span>' : '';
+		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req || ! empty( $f['requiredWhen'] ) ? ' <span class="bs-nf-req"' . ( $req ? '' : ' hidden' ) . '>*</span>' : '' ) . '</span>' : '';
 		if ( 'file' === $type ) {
 			$accept  = '.' . implode( ',.', bst_native_file_types( $f ) );
 			$control = '<input type="file" class="wpcf7-form-control wpcf7-file"' . $attr . ' accept="' . esc_attr( $accept ) . '">';
-			$out    .= '<p class="bs-nf-field bs-nf-file' . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+			$out    .= '<p class="bs-nf-field bs-nf-file' . $width . '"' . $cond . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 			continue;
 		}
 		switch ( $type ) {
@@ -162,18 +181,18 @@ function bst_native_form_markup( $a ) {
 			case 'checkbox':
 				$control = '<span class="wpcf7-form-control wpcf7-' . $type . '">';
 				foreach ( $opts as $i => $o ) {
-					$control .= '<span class="wpcf7-list-item"><label><input type="' . $type . '" name="' . esc_attr( $name ) . ( 'checkbox' === $type ? '[]' : '' ) . '" value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) || ( ! $picks && 'radio' === $type && 0 === $i ) ? ' checked' : '' ) . '> <span class="wpcf7-list-item-label">' . esc_html( $o ) . '</span></label></span>';
+					$control .= '<span class="wpcf7-list-item"><label><input type="' . $type . '" name="' . esc_attr( $name ) . ( 'checkbox' === $type ? '[]' : '' ) . '" value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) || ( ! $picks && 'radio' === $type && 0 === $i ) ? ' checked' : '' ) . ( $st['visible'] ? '' : ' disabled' ) . '> <span class="wpcf7-list-item-label">' . esc_html( $o ) . '</span></label></span>';
 				}
 				$control .= '</span>';
 				break;
 			case 'acceptance':
-				$control = '<span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><label><input type="checkbox" name="' . esc_attr( $name ) . '" value="1"' . ( $req ? ' required' : '' ) . '> <span class="wpcf7-list-item-label">' . wp_kses_post( $ph ? $ph : $label ) . '</span></label></span></span>';
+				$control = '<span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><label><input type="checkbox" name="' . esc_attr( $name ) . '" value="1"' . ( $req ? ' required' : '' ) . ( $st['visible'] ? '' : ' disabled' ) . '> <span class="wpcf7-list-item-label">' . wp_kses_post( $ph ? $ph : $label ) . '</span></label></span></span>';
 				$lab     = '';
 				break;
 			default:
 				$control = '<input type="' . esc_attr( $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . '>';
 		}
-		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $cond . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}
 	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
 	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
@@ -320,14 +339,11 @@ function bst_native_form_submit() {
 				$v = UPLOAD_ERR_OK === (int) $up['error'] && is_uploaded_file( $up['tmp_name'] ) ? bst_native_file_check( $f, $up['tmp_name'], $up['name'], (int) $up['size'] ) : '';
 				if ( '' === $v ) {
 					$errors[ $n ] = $s['msgInvalid'];
-					continue;
+				} else {
+					$files[ $v ] = $up['tmp_name'];
 				}
-				$files[ $v ] = $up['tmp_name'];
 			}
 			$values[ $n ] = $v;
-			if ( ! empty( $f['required'] ) && '' === $v ) {
-				$errors[ $n ] = $s['msgRequired'];
-			}
 			continue;
 		}
 		$raw  = $_POST[ $n ] ?? ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -340,11 +356,27 @@ function bst_native_form_submit() {
 		if ( 'acceptance' === $type ) {
 			$v = '' !== $v ? __( 'Yes', 'bigspy-ai-theme-wp' ) : '';
 		}
-		$error = bst_native_field_error( $f, $v, $s );
+		$values[ $n ] = $v;
+	}
+
+	// Conditions (G-57): hidden fields send nothing and are never required.
+	$state = bst_form_schema_state( $s['fields'], $values );
+	foreach ( $s['fields'] as $f ) {
+		$n  = sanitize_key( $f['name'] );
+		$st = $state[ $f['id'] ];
+		if ( ! $st['visible'] ) {
+			$files = array_diff_key( $files, array( $values[ $n ] => true ) );
+			$values[ $n ] = '';
+			unset( $errors[ $n ] );
+			continue;
+		}
+		if ( isset( $errors[ $n ] ) ) {
+			continue;
+		}
+		$error = bst_native_field_error( array_merge( $f, array( 'required' => $st['required'] ) ), $values[ $n ], $s );
 		if ( '' !== $error ) {
 			$errors[ $n ] = $error;
 		}
-		$values[ $n ] = $v;
 	}
 	if ( $errors ) {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgInvalid'], 'errors' => $errors ) );
