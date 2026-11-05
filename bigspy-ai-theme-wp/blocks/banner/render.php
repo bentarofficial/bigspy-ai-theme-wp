@@ -47,7 +47,7 @@ if ( ! empty( $a['imageId'] ) ) {
 	$image = wp_get_attachment_image( (int) $a['imageId'], 'full', false, array( 'class' => 'bs-banner__img', 'alt' => '', 'style' => 'object-position:' . $focal, 'sizes' => '100vw' ) );
 }
 if ( ! $image && ! empty( $a['imageUrl'] ) ) {
-	$image = '<img class="bs-banner__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="" loading="lazy" decoding="async" style="object-position:' . esc_attr( $focal ) . '">';
+	$image = '<img class="bs-banner__img" src="' . esc_url( $a['imageUrl'] ) . '" alt=""' . bst_url_img_loading( array( 1920, 1080 ) ) . ' style="object-position:' . esc_attr( $focal ) . '">';
 }
 
 // Optional phone image (<= 549px), e.g. a portrait crop with the text area kept clear.

@@ -379,3 +379,23 @@ add_filter(
 	10,
 	2
 );
+
+/**
+ * Loading attributes for an image given by URL (no Media ID), decided by WordPress's own
+ * loading optimization like attachment images: the first content images are not lazy and the
+ * likely LCP image gets fetchpriority="high"; later ones are lazy. A URL has no known size, so
+ * a typical content size is assumed only for that decision; no width/height is printed.
+ */
+function bst_url_img_loading( $size = array( 1200, 800 ) ) {
+	$attr = array( 'decoding' => 'async', 'loading' => 'lazy' );
+	if ( function_exists( 'wp_get_loading_optimization_attributes' ) ) {
+		$attr = wp_get_loading_optimization_attributes( 'img', array( 'width' => (int) $size[0], 'height' => (int) $size[1] ), 'the_content' );
+	}
+	$out = '';
+	foreach ( array( 'loading', 'fetchpriority', 'decoding' ) as $k ) {
+		if ( ! empty( $attr[ $k ] ) ) {
+			$out .= ' ' . $k . '="' . esc_attr( $attr[ $k ] ) . '"';
+		}
+	}
+	return $out;
+}

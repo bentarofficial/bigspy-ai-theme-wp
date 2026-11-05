@@ -59,6 +59,16 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Giới hạn:** `both` khi đã có coupon nhưng thiếu tiền vẫn chưa hiện "thêm X" (giữ thận trọng). Cart/Checkout blocks vẫn chưa hỗ trợ, như trước.
 - **Khi phát hành cần bổ sung:** Có gì mới (sửa thông báo miễn phí vận chuyển).
 
+### Ảnh URL trực tiếp trong Banner/Image không còn luôn lazy (SOURCE-AUDIT P1)
+
+- **Yêu cầu/tính năng:** ảnh hero dùng URL (không có Media ID) bị ghi cứng `loading="lazy"`, làm chậm LCP.
+- **Đã thay đổi:**
+  - `bst_url_img_loading()` trong `inc/blocks.php` dùng `wp_get_loading_optimization_attributes()` của WordPress, cùng bộ đếm với ảnh Media. Kết quả: ảnh nội dung đầu tiên có `fetchpriority="high"`, vài ảnh đầu không lazy, các ảnh sau lazy.
+  - Kích thước giả định chỉ dùng để quyết định thứ tự, không in `width/height`.
+  - Áp dụng cho `blocks/banner/render.php` và `blocks/image/render.php`. Ảnh có Media ID không đổi.
+- **Kiểm thử:** `php tools/tests/image-loading-integration.php <wp>` đạt 6/6 trên WordPress 6.5 CLI. Chưa đo LCP/CLS trong trình duyệt. Các block khác dùng URL (gallery, icon-box…) vẫn lazy như cũ.
+- **Khi phát hành cần bổ sung:** Có gì mới (tốc độ ảnh hero).
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

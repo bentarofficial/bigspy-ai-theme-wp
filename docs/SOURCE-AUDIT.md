@@ -89,7 +89,7 @@ Trong danh sách thư mục `wp-content/plugins`, lọc các tên liên quan Ele
 | Ưu tiên | Việc có căn cứ | Điều kiện hoàn thành |
 | --- | --- | --- |
 | P1 | Đúng thông báo free shipping — **đã sửa, chờ phát hành** (`tools/tests/free-shipping-check.php`) | Bộ case WooCommerce ở mục 3 đạt; chưa được gọi là lỗi đã tái hiện trên hosting. Còn cần thử với WooCommerce thật. |
-| P1 | Tải ảnh hero/URL trực tiếp đúng | Test thuộc tính và số đo LCP/CLS, không phá ảnh Media ID/slider. |
+| P1 | Tải ảnh hero/URL trực tiếp đúng — **Banner/Image đã sửa, chờ phát hành** (`tools/tests/image-loading-integration.php`); chưa đo LCP | Test thuộc tính và số đo LCP/CLS, không phá ảnh Media ID/slider. |
 | P1 | Đo và giảm script không dùng — G-41 | Có fixture/số đo trước, giữ chức năng và reduced-motion. |
 | P2 | Binding dữ liệu + độ phủ AI — tinh chỉnh G-37 | Tận dụng shortcode/Product Part/core; test context/fallback/quyền và trang có core block. |
 | P2 | Token/class có tham chiếu — tinh chỉnh G-39 | Preview, usage, giữ ID, thay thế khi xoá và undo. |
