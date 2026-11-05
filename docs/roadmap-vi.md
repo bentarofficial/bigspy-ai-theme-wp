@@ -2,6 +2,24 @@
 
 Quy tắc phát triển, phát hành và ma trận kiểm tra: xem [DEV-RULES.md](DEV-RULES.md).
 
+## Tình trạng 05-11-2026
+
+**Bản đã cài:** 1.81.0 (kiểm tra `bigspy-ai-theme-wp/style.css`). `PENDING-RELEASE.md` đang trống: chưa có thay đổi sản phẩm chờ phát hành.
+
+**Đã phát hành 1.80.2–1.81.0**
+
+- 1.80.2: Horizontal Scroll ba panel trên desktop, giữ section toàn chiều rộng khi ghim. 1.80.3: Media ATND thành panel trong trình chọn media.
+- 1.81.0 (AI Designer): nguyên tắc thiết kế mặc định (G-45); hồ sơ block và `block_catalog` (G-46); đo mỗi lượt chạy (G-47); minh hoạ bằng `bst/code` có giới hạn (G-48); 42 công thức section (G-49); duyệt sơ đồ trang một lần và `build_sections` (G-50); model nhanh cho Effort Thấp (G-51); chọn model, đính kèm tệp, chọn chuyên môn ở thanh chat và context tự lưu/học từ người dùng (G-21–G-23, G-44).
+- Giới hạn còn ghi nhận: phần lớn mới qua lint và bộ test Designer với model giả lập; **chưa thử AI thật và giao diện trình duyệt** cho các mục trên.
+
+**Hàng đợi đề xuất (chưa bắt đầu, owner sắp thứ tự)**
+
+1. **Nghiệm thu 1.81.0 với AI thật:** dựng 2–3 trang mẫu qua `page_plan` → `build_sections`, đối chiếu số đo G-47, kiểm tra luật block (`editable_percent`, giới hạn `bst/code`) và hiển thị công thức section trên 375/768/1024/desktop. Lỗi tìm được sửa trước khi mở việc mới.
+2. **G-67** responsive và truy cập theo fixture ([RESPONSIVE-AI-RESEARCH.md](RESPONSIVE-AI-RESEARCH.md)); dùng lại fixture của bước 1.
+3. **G-65** tương thích AI và G-37/G-38/G-39 theo [BLOCK-AI-RESEARCH.md](BLOCK-AI-RESEARCH.md); G-41 đo tài nguyên chạy song song khi có fixture.
+4. **Form và booking:** G-57 → G-59, sau đó G-60 (cổng chọn backend) → G-63 theo [FORMS-BOOKING-ROADMAP.md](FORMS-BOOKING-ROADMAP.md).
+5. **Chuyển động đợt 2–3** (mục P1 bên dưới): chỉ phần chưa có; kiểm tra block đã có trước khi nhận việc.
+
 ## Phạm vi owner cập nhật 03-11-2026
 
 G-66: nghiên cứu [responsive và khả năng truy cập cho block/AI](RESPONSIVE-AI-RESEARCH.md); đề xuất G-67 kiểm chứng và cải tiến theo fixture, tiếp tục G-41 riêng cho đo tài nguyên.
