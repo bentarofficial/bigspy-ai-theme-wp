@@ -11025,3 +11025,147 @@ msgstr ""
 msgid "conditional"
 msgstr ""
 
+msgid "Price to be confirmed"
+msgstr ""
+
+msgid "Estimated total"
+msgstr ""
+
+msgid "Choose more details to see the price."
+msgstr ""
+
+msgid "The price is calculated when you send the form."
+msgstr ""
+
+msgid "Price quote"
+msgstr ""
+
+msgid "Estimate computed by the server when the form was sent."
+msgstr ""
+
+msgid "Full name"
+msgstr ""
+
+msgid "Weight (kg)"
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "Express"
+msgstr ""
+
+msgid "Pickup and delivery"
+msgstr ""
+
+msgid "Laundry by kg (demo prices)"
+msgstr ""
+
+msgid "Cleaning by area (demo prices)"
+msgstr ""
+
+msgid "Demo prices: replace them with your own before publishing."
+msgstr ""
+
+msgid "Washing"
+msgstr ""
+
+msgid "Express (+20% of washing)"
+msgstr ""
+
+msgid "Area (m²)"
+msgstr ""
+
+msgid "Package"
+msgstr ""
+
+msgid "Basic"
+msgstr ""
+
+msgid "Deep cleaning"
+msgstr ""
+
+msgid "Choose a package"
+msgstr ""
+
+msgid "Preferred date"
+msgstr ""
+
+msgid "Cleaning (minimum 300.000)"
+msgstr ""
+
+msgid "The formula cannot be read."
+msgstr ""
+
+msgid "Uses a field that no longer exists:"
+msgstr ""
+
+msgid "Unknown option:"
+msgstr ""
+
+msgid "Lines use each other in a loop."
+msgstr ""
+
+msgid "Option prices"
+msgstr ""
+
+msgid "One per line: Option = amount. Use the field in a price formula as"
+msgstr ""
+
+msgid "Insert a field or line…"
+msgstr ""
+
+msgid "Try it"
+msgstr ""
+
+msgid "Fill the required fields to see the price."
+msgstr ""
+
+msgid "Price to be confirmed: check the formulas and test values."
+msgstr ""
+
+msgid "Show a price quote before sending"
+msgstr ""
+
+msgid "The visitor sees an estimate; the server computes it again when the form is sent. No booking or payment."
+msgstr ""
+
+msgid "Replace the fields and prices of this form with the preset?"
+msgstr ""
+
+msgid "Currency symbol"
+msgstr ""
+
+msgid "Decimals"
+msgstr ""
+
+msgid "Formulas: + − × ÷ ( ), min(), max(), round(x, digits), ceil(), floor(), if(condition, then, else), comparisons > < >= <= == !=. {f_…} is a field (its number, or the price of the picked options), {f_…=Option} is 1 when that option is picked, {l_…} is another line."
+msgstr ""
+
+msgid "Line label"
+msgstr ""
+
+msgid "Formula"
+msgstr ""
+
+msgid "Insert"
+msgstr ""
+
+msgid "Remove line"
+msgstr ""
+
+msgid "New line"
+msgstr ""
+
+msgid "Add price line"
+msgstr ""
+
+msgid "Note under the price"
+msgstr ""
+
+msgid "For example what is included or not."
+msgstr ""
+
+msgid "Message when prices changed while the visitor was on the page"
+msgstr ""
+

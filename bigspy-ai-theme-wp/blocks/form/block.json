@@ -223,6 +223,14 @@
 			"type": "number",
 			"default": 0
 		},
+		"pricing": {
+			"type": "object",
+			"default": {}
+		},
+		"msgPriceChanged": {
+			"type": "string",
+			"default": ""
+		},
 		"submitText": {
 			"type": "string",
 			"default": ""

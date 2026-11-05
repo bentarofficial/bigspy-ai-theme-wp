@@ -49,6 +49,8 @@ function bst_native_form_defaults() {
 		'redirectNewTab'   => false,
 		'saveEntries'      => true,
 		'formName'         => '',
+		'pricing'          => array(),
+		'msgPriceChanged'  => 'Bảng giá vừa thay đổi. Vui lòng xem lại tổng mới trước khi gửi.',
 	);
 }
 
@@ -194,6 +196,7 @@ function bst_native_form_markup( $a ) {
 		}
 		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $cond . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}
+	$out .= bst_quote_markup( $s );
 	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
 	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
 	$out .= '<div class="wpcf7-response-output" aria-live="polite" hidden></div>';
@@ -253,7 +256,13 @@ function bst_native_form_tags( $text, $values, $fields, $exclude_blank, $html = 
 		$label = ! empty( $f['label'] ) ? $f['label'] : $n;
 		$all[] = $html ? '<p><strong>' . esc_html( $label ) . ':</strong><br>' . nl2br( esc_html( $v ) ) . '</p>' : $label . ': ' . $v;
 	}
+	$quote = bst_quote_current();
+	if ( $quote && 'off' !== $quote['status'] ) {
+		$all[] = $html ? bst_quote_text( $quote, true ) : "\n" . bst_quote_text( $quote );
+	}
 	$map = array(
+		'[_quote]'             => $quote ? bst_quote_text( $quote, $html ) : '',
+		'[_quote_total]'       => $quote && 'ok' === $quote['status'] ? bst_quote_money( $quote['total'], $quote ) : ( $quote && 'off' !== $quote['status'] ? bst_quote_text( $quote ) : '' ),
 		'[all-fields]'         => implode( $html ? '' : "\n", $all ),
 		'[_site_title]'        => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
 		'[_site_url]'          => home_url( '/' ),
@@ -382,6 +391,15 @@ function bst_native_form_submit() {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgInvalid'], 'errors' => $errors ) );
 	}
 
+	// Price (G-58): always computed here from the saved block; the browser's numbers are never used.
+	$quote = bst_quote_compute( $s['pricing'], $s['fields'], $values );
+	$seen  = isset( $_POST['bst_quote_rev'] ) ? sanitize_key( wp_unslash( $_POST['bst_quote_rev'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( 'off' !== $quote['status'] && '' !== $seen && $seen !== $quote['rev'] ) {
+		wp_send_json( array( 'ok' => false, 'message' => $s['msgPriceChanged'], 'priceChanged' => true ) );
+	}
+	$quote['time'] = time();
+	bst_quote_current( $quote );
+
 	$sent = bst_native_form_send( 'mail', $s, $values, $files );
 	if ( $sent && ! empty( $s['mail2Active'] ) ) {
 		bst_native_form_send( 'mail2', $s, $values );
@@ -448,6 +466,10 @@ function bst_native_form_save_entry( $s, $values, $post_id, $sent ) {
 		update_post_meta( $id, '_bst_fields', wp_list_pluck( $s['fields'], 'label', 'name' ) );
 		update_post_meta( $id, '_bst_source', $post_id );
 		update_post_meta( $id, '_bst_sent', $sent ? 1 : 0 );
+		$quote = bst_quote_current();
+		if ( $quote && 'off' !== $quote['status'] ) {
+			update_post_meta( $id, '_bst_quote', $quote );
+		}
 	}
 }
 
@@ -465,7 +487,13 @@ add_action(
 				foreach ( $values as $n => $v ) {
 					echo '<tr><th style="width:30%">' . esc_html( $labels[ $n ] ?? $n ) . '</th><td>' . nl2br( esc_html( $v ) ) . '</td></tr>';
 				}
-				echo '</tbody></table><p>' . esc_html__( 'Email sent:', 'bigspy-ai-theme-wp' ) . ' <strong>' . ( get_post_meta( $post->ID, '_bst_sent', true ) ? esc_html__( 'yes', 'bigspy-ai-theme-wp' ) : esc_html__( 'no – check the SMTP settings', 'bigspy-ai-theme-wp' ) ) . '</strong>';
+				echo '</tbody></table>';
+				$quote = get_post_meta( $post->ID, '_bst_quote', true );
+				if ( is_array( $quote ) && isset( $quote['status'] ) ) {
+					echo '<h4>' . esc_html__( 'Price quote', 'bigspy-ai-theme-wp' ) . '</h4>' . wp_kses_post( bst_quote_text( $quote, true ) );
+					echo '<p class="description">' . esc_html__( 'Estimate computed by the server when the form was sent.', 'bigspy-ai-theme-wp' ) . ' rev ' . esc_html( (string) ( $quote['rev'] ?? '' ) ) . '</p>';
+				}
+				echo '<p>' . esc_html__( 'Email sent:', 'bigspy-ai-theme-wp' ) . ' <strong>' . ( get_post_meta( $post->ID, '_bst_sent', true ) ? esc_html__( 'yes', 'bigspy-ai-theme-wp' ) : esc_html__( 'no – check the SMTP settings', 'bigspy-ai-theme-wp' ) ) . '</strong>';
 				if ( $source ) {
 					echo ' · ' . esc_html__( 'Form on:', 'bigspy-ai-theme-wp' ) . ' <a href="' . esc_url( get_permalink( $source ) ) . '" target="_blank">' . esc_html( get_the_title( $source ) ) . '</a>';
 				}
