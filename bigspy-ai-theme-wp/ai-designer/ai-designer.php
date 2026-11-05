@@ -28,6 +28,7 @@ require_once BST_AID_DIR . '/includes/context.php';
 require_once BST_AID_DIR . '/includes/tools.php';
 require_once BST_AID_DIR . '/includes/tools-design.php';
 require_once BST_AID_DIR . '/includes/tools-images.php';
+require_once BST_AID_DIR . '/includes/tools-forms.php';
 require_once BST_AID_DIR . '/includes/permissions.php';
 require_once BST_AID_DIR . '/includes/tools-site.php';
 require_once BST_AID_DIR . '/includes/prompt.php';

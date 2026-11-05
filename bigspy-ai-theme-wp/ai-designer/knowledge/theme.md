@@ -64,6 +64,16 @@ keys, orders and customers are outside AI tools. Explain manual configuration.
 Theme options export/import is a manual admin operation; inspect the theme's menu
 and follow its UI rather than invent an import tool. Never include service keys.
 
+## Forms and price quotes
+Built-in Form (bst/form, provider "bigspy") fields have stable ids; conditions and formulas
+point at ids, so keep ids and mail-tag names when editing. Read with get_form, change with
+form_config: dry_run first (diff, problems, price lines for a sample), show the user the
+rules and a worked example, then save with dry_run false. Price fields are type "calc"
+with a formula ({f_kg} * 18000, if({f_fast} > 0, {f_wash} * 0.2, 0)); choice fields carry
+optionPrices; one calc line is the total. The server recomputes on submit. Use only
+prices, units, surcharges and rules the user gave; ask for missing ones; label demo prices.
+A quote form sends a request; never call it a booking or claim availability.
+
 ## Homepage workflow
 Read site_info + overview and guidelines. Agree page goal, palette/fonts, sections
 and authentic facts. Build a draft page, one or two sections per page_sections call.

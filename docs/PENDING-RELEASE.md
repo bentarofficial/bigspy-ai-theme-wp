@@ -31,6 +31,22 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Giới hạn:** giá theo lựa chọn gắn với nhãn lựa chọn, nên đổi nhãn thì phải nhập lại giá. Chưa có hạn hiệu lực quote hay xác nhận lại khi giá đổi (phần đó thuộc luồng booking G-62). JS tắt thì form không gửi được, giống trước đây.
 - **Khi phát hành cần bổ sung:** Có gì mới (form tính giá); hướng dẫn công thức; kiến thức AI để ở G-59.
 
+### G-59 — AI cấu hình Form
+
+- **Yêu cầu/tính năng:** AI Designer đọc và sửa cấu hình Form native bằng schema (trường, điều kiện, giá lựa chọn, công thức, tiền tệ) với dry-run, diff, ví dụ và undo.
+- **Đã thay đổi:**
+  - `ai-designer/includes/tools-forms.php` (mới), gồm hai công cụ:
+    - `get_form`: đọc form kèm ID, các vấn đề còn lỗi và ghi chú với form plugin.
+    - `form_config`: mặc định dry-run, trả về diff, các lỗi và dòng giá cho dữ liệu mẫu. Chỉ lưu khi `dry_run: false`. Giữ ID theo ID cũ hoặc tên mail-tag. Từ chối schema lỗi (thiếu trường, vòng lặp, hàm lạ), snapshot để undo cả task.
+  - `permissions.php`: dry-run tính là đọc. Lưu thay đổi giá/công thức luôn cần duyệt, kể cả khi đi qua `update_page`/`page_sections`/`build_sections`/`ux_block`. Sửa form trên trang đã xuất bản cũng cần duyệt.
+  - `knowledge/theme.md`: quy trình form/báo giá; không bịa giá, thiếu thì hỏi; báo giá không phải booking.
+- **Kiểm thử:**
+  - `php tools/tests/form-integration.php <wp>` đạt 20/20 trên WordPress 6.5 + SQLite chạy bằng PHP CLI. Gồm form 1.81 cũ không hồi quy, dry-run không ghi, diff/ví dụ, mức duyệt, từ chối schema lỗi/xoá trường đang dùng, lưu giữ ID, gửi form tính 79.000 ₫, trường ẩn, snapshot entry và undo task.
+  - Các test G-57/G-58 vẫn đạt.
+  - Chưa chạy model AI thật (cần ngân sách được duyệt).
+  - Editor JS vẫn chưa thử trong trình duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới (AI cấu hình form/báo giá).
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

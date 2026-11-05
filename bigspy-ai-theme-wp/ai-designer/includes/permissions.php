@@ -35,12 +35,15 @@ function bst_aid_execution_busy( $task ) {
 
 function bst_aid_tool_policy( $name, $a ) {
 	if ( 'site_settings' === $name && empty( $a['values'] ) ) { return array( 'level' => 1, 'group' => 'read', 'write' => false ); }
-	$read = array( 'auto_detect_results', 'site_info', 'overview', 'get_knowledge', 'list_content', 'get_post', 'list_blocks', 'block_catalog', 'section_recipes', 'page_plan', 'style_options', 'block_schema', 'list_patterns', 'get_pattern', 'get_page', 'get_settings', 'get_menus', 'show_palette', 'list_media', 'check_page' );
+	$read = array( 'auto_detect_results', 'site_info', 'overview', 'get_knowledge', 'list_content', 'get_post', 'list_blocks', 'block_catalog', 'section_recipes', 'page_plan', 'style_options', 'block_schema', 'list_patterns', 'get_pattern', 'get_page', 'get_settings', 'get_menus', 'show_palette', 'list_media', 'check_page', 'get_form' );
+	if ( 'form_config' === $name && ( ! isset( $a['dry_run'] ) || ! empty( $a['dry_run'] ) ) ) {
+		return array( 'level' => 1, 'group' => 'read', 'write' => false ); // Dry run: validates only.
+	}
 	if ( in_array( $name, $read, true ) || ( 'header_layout' === $name && 'set' !== ( $a['mode'] ?? 'read' ) ) || ( in_array( $name, array( 'ux_block', 'theme_layout' ), true ) && in_array( $a['mode'] ?? '', array( 'list', 'get' ), true ) ) ) {
 		return array( 'level' => 1, 'group' => 'read', 'write' => false );
 	}
 	$groups = array(
-		'create_page' => 'content', 'update_page' => 'content', 'page_sections' => 'content', 'build_sections' => 'content', 'create_post' => 'content', 'update_post' => 'content', 'create_product' => 'content', 'update_product' => 'content', 'ux_block' => 'content', 'theme_layout' => 'content',
+		'create_page' => 'content', 'update_page' => 'content', 'page_sections' => 'content', 'build_sections' => 'content', 'create_post' => 'content', 'update_post' => 'content', 'create_product' => 'content', 'update_product' => 'content', 'ux_block' => 'content', 'theme_layout' => 'content', 'form_config' => 'content',
 		'ImageGen' => 'images', 'image_status' => 'images', 'optimize_image' => 'images', 'save_guidelines' => 'content', 'manual_checklist' => 'content',
 		'update_settings' => 'design', 'set_logo' => 'design', 'custom_css' => 'design', 'set_menu' => 'design', 'header_layout' => 'design', 'set_footer' => 'design', 'site_settings' => 'site', 'publish' => 'publish', 'seo_meta' => 'seo', 'install_plugin' => 'plugins', 'budget_extension' => 'budget',
 	);
@@ -52,7 +55,11 @@ function bst_aid_tool_policy( $name, $a ) {
 	if ( 'publish' === ( $a['status'] ?? '' ) || ! empty( $a['seo'] ) ) {
 		$level = 2;
 	}
-	if ( in_array( $name, array( 'update_page', 'page_sections', 'update_post', 'update_product', 'ux_block', 'theme_layout', 'optimize_image' ), true ) && ! empty( $a['id'] ) ) {
+	// Price rules of a form are business data: changing them always needs the user's approval.
+	if ( ( 'form_config' === $name && bst_aid_form_call_prices( $a ) ) || ( in_array( $name, array( 'create_page', 'update_page', 'page_sections', 'build_sections', 'ux_block' ), true ) && preg_match( '/"(optionPrices|formula)"/', (string) wp_json_encode( $a ) ) ) ) {
+		$level = 2;
+	}
+	if ( in_array( $name, array( 'update_page', 'page_sections', 'update_post', 'update_product', 'ux_block', 'theme_layout', 'optimize_image', 'form_config' ), true ) && ! empty( $a['id'] ) ) {
 		$p = get_post( (int) $a['id'] );
 		if ( $p && ! in_array( $p->post_status, array( 'draft', 'auto-draft' ), true ) ) {
 			$level = 2;
