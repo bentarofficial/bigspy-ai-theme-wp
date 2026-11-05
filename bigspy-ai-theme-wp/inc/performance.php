@@ -21,6 +21,7 @@ add_filter(
 			'perf_split_css'   => true,
 			'perf_local_fonts' => true,
 			'perf_css_file'    => true,
+			'perf_split_js'    => false,
 		);
 	}
 );
@@ -32,6 +33,7 @@ add_filter(
 		$fields[] = array( 'id' => 'perf_split_css', 'section' => $s, 'type' => 'checkbox', 'label' => __( 'Load block styles only on pages that use them', 'bigspy-ai-theme-wp' ), 'description' => __( 'Each page gets the shared styles plus the styles of the blocks it contains. The editor always loads everything.', 'bigspy-ai-theme-wp' ) );
 		$fields[] = array( 'id' => 'perf_local_fonts', 'section' => $s, 'type' => 'checkbox', 'label' => __( 'Host Google Fonts on this site', 'bigspy-ai-theme-wp' ), 'description' => __( 'Fonts are downloaded once to the uploads folder, so visitors never connect to Google. Until the download finishes, fonts load from Google as before.', 'bigspy-ai-theme-wp' ) );
 		$fields[] = array( 'id' => 'perf_css_file', 'section' => $s, 'type' => 'checkbox', 'label' => __( 'Serve generated CSS as a cached file', 'bigspy-ai-theme-wp' ), 'description' => __( 'Customizer colors, fonts and layout CSS go into a file the browser caches, instead of being repeated in every page.', 'bigspy-ai-theme-wp' ) );
+		$fields[] = array( 'id' => 'perf_split_js', 'section' => $s, 'type' => 'checkbox', 'label' => __( 'Skip the block script on pages that do not need it', 'bigspy-ai-theme-wp' ), 'description' => __( 'Pages without sliders, tabs, accordions, popups, lightboxes, counters, forms or similar blocks do not load blocks.js (about 35 KB). Shop pages always load it. Turn off if a block added by another plugin stops working.', 'bigspy-ai-theme-wp' ) );
 		return $fields;
 	},
 	20
@@ -81,6 +83,9 @@ add_action(
 		if ( bst_perf_split_on() ) {
 			ob_start( 'bst_perf_block_css_buffer' );
 		}
+		if ( bst_mod( 'perf_split_js' ) && bst_perf_front() ) {
+			ob_start( 'bst_perf_block_js_buffer' );
+		}
 	},
 	-1000
 );
@@ -117,6 +122,39 @@ function bst_perf_block_css_buffer( $html ) {
 	}
 	$new = preg_replace( '/href=(["\'])[^"\']*\1/', 'href="' . esc_url( $url ) . '"', $tag[0], 1 );
 	return str_replace( $tag[0], $new, $html );
+}
+
+/** Markup that blocks.js acts on. A page with none of these does not need the script. */
+function bst_perf_block_js_markers() {
+	return (array) apply_filters(
+		'bst_block_js_markers',
+		array(
+			'data-bs-slider', 'data-bs-lightbox', 'data-bs-counter', 'data-bs-progress', 'data-bs-infinite',
+			'data-bs-load-more', 'data-bs-parallax', 'data-bs-popup', 'data-bs-video', 'data-bs-pricing-toggle',
+			'data-bs-cookie-ok', '#popup-', 'bs-accordion', 'bs-tabs', 'bs-countup', 'bs-hotspot',
+			'bs-reading-progress', 'bs-cookie', 'bs-form', 'bs-instant-page', 'bs-mx-scramble', 'bs-products-block',
+			'data-bs-native-form', 'data-bs-redirect', 'data-bs-hide-on-success',
+		)
+	);
+}
+
+/** Output buffer callback: drop blocks.js when the page has nothing it works on. */
+function bst_perf_block_js_buffer( $html ) {
+	if ( ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) ) {
+		return $html;
+	}
+	if ( ! preg_match( '/<script\b[^>]*\bid=["\']bst-blocks-js["\'][^>]*><\/script>\s*/', $html, $tag ) ) {
+		return $html;
+	}
+	// Look at the body markup only: CSS selectors in <style> and code in <script> are not blocks.
+	$body = stristr( $html, '<body' );
+	$body = preg_replace( '#<(style|script)\b[^>]*>.*?</\1>#is', '', false === $body ? $html : $body );
+	foreach ( bst_perf_block_js_markers() as $marker ) {
+		if ( false !== strpos( $body, $marker ) ) {
+			return $html;
+		}
+	}
+	return str_replace( $tag[0], '', $html );
 }
 
 /** URL of the cached stylesheet with the shared rules plus these families, or '' on failure. */

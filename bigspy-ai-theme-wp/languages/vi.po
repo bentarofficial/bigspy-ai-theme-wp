@@ -7117,3 +7117,9 @@ msgstr "1.81.0: AI Designer nhanh và thông minh hơn: hồ sơ block và 42 c�
 msgid "Apply a free-shipping coupon to get free shipping."
 msgstr "Áp dụng mã miễn phí vận chuyển để được miễn phí vận chuyển."
 
+msgid "Skip the block script on pages that do not need it"
+msgstr "Bỏ script khối ở trang không cần"
+
+msgid "Pages without sliders, tabs, accordions, popups, lightboxes, counters, forms or similar blocks do not load blocks.js (about 35 KB). Shop pages always load it. Turn off if a block added by another plugin stops working."
+msgstr "Trang không có slider, tab, accordion, popup, lightbox, bộ đếm, form hoặc khối tương tự sẽ không tải blocks.js (khoảng 35 KB). Trang cửa hàng luôn tải. Tắt tùy chọn này nếu một khối do plugin khác thêm ngừng hoạt động."
+

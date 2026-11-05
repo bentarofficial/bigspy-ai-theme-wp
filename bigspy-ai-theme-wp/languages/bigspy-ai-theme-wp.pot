@@ -10950,3 +10950,9 @@ msgstr ""
 msgid "Apply a free-shipping coupon to get free shipping."
 msgstr ""
 
+msgid "Skip the block script on pages that do not need it"
+msgstr ""
+
+msgid "Pages without sliders, tabs, accordions, popups, lightboxes, counters, forms or similar blocks do not load blocks.js (about 35 KB). Shop pages always load it. Turn off if a block added by another plugin stops working."
+msgstr ""
+
