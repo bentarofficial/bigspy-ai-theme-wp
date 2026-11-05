@@ -163,6 +163,18 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 			}
 			continue;
 		}
+		if ( ! isset( $types[ $name ] ) && ! empty( $node['raw'] ) && 0 !== strpos( $name, 'bst/' ) && 0 !== strpos( $name, 'bigspy/' ) ) {
+			// A plugin block read with get_page: kept only as it is on the page.
+			if ( $parent && ! empty( $containers[ $parent ] ) ) {
+				$issues['errors'][] = "$where: $parent requires its own child block type.";
+				continue;
+			}
+			$kept = bst_aid_keep_block( $name, $node, $where, $issues );
+			if ( $kept ) {
+				$out[] = $kept;
+			}
+			continue;
+		}
 		if ( ! isset( $types[ $name ] ) ) {
 			$issues['errors'][] = "$where: unknown or disabled block \"$name\". Use list_blocks.";
 			continue;
@@ -239,6 +251,9 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
  */
 function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 	if ( ! in_array( $name, bst_aid_core_blocks(), true ) ) {
+		if ( ! empty( $node['raw'] ) ) {
+			return bst_aid_keep_block( $name, $node, $where, $issues );
+		}
 		$issues['errors'][] = "$where: core block \"$name\" is not allowed. Use a BIGSPY AI block.";
 		return null;
 	}
@@ -313,6 +328,41 @@ function bst_aid_block_keys( $blocks ) {
 		$keys += bst_aid_block_keys( $b['innerBlocks'] ?? array() );
 	}
 	return $keys;
+}
+
+/**
+ * A block the designer cannot edit (Query Loop, synced pattern, plugin block…), sent back in "raw".
+ * Kept only when it matches a block of the page being edited; the copy saved is the page's own,
+ * never the model's markup, so this cannot bring in new or changed content.
+ */
+function bst_aid_keep_block( $name, $node, $where, &$issues ) {
+	$source = (int) ( $issues['source'] ?? 0 );
+	foreach ( parse_blocks( (string) $node['raw'] ) as $b ) {
+		if ( ( $b['blockName'] ?? '' ) !== $name ) {
+			continue;
+		}
+		$found = $source ? bst_aid_find_block( parse_blocks( (string) get_post_field( 'post_content', $source ) ), bst_aid_block_key( $b ) ) : null;
+		if ( $found ) {
+			return $found;
+		}
+		break;
+	}
+	$issues['errors'][] = "$where: $name cannot be edited by the designer. Send its raw back exactly as get_page returned it to keep it, or leave it out only if the user asked to remove it.";
+	return null;
+}
+
+/** The first block at any depth with this fingerprint, or null. */
+function bst_aid_find_block( $blocks, $key ) {
+	foreach ( (array) $blocks as $b ) {
+		if ( ! empty( $b['blockName'] ) && bst_aid_block_key( $b ) === $key ) {
+			return $b;
+		}
+		$hit = bst_aid_find_block( $b['innerBlocks'] ?? array(), $key );
+		if ( $hit ) {
+			return $hit;
+		}
+	}
+	return null;
 }
 
 /** True when a raw core block is unchanged from the source post or a theme pattern. */
@@ -747,7 +797,7 @@ add_filter(
 	function ( $tools ) {
 		$tree = array(
 			'type'        => 'array',
-			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style). Core blocks from get_page / get_pattern have a "raw" field: keep it unchanged to keep the block, or replace it with { "name": "core/paragraph", "html": "…" } / { "name": "core/heading", "attrs": { "level": 2 }, "html": "…" } to change the text.',
+			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style). Core blocks from get_page / get_pattern have a "raw" field: keep it unchanged to keep the block, or replace it with { "name": "core/paragraph", "html": "…" } / { "name": "core/heading", "attrs": { "level": 2 }, "html": "…" } to change the text. Blocks the designer cannot edit (Query Loop, synced patterns, plugin blocks) also come with "raw": send it back exactly as read to keep them in place.',
 			'items'       => array( 'type' => 'object' ),
 		);
 		$tools['list_blocks']   = array(
