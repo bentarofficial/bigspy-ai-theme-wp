@@ -643,3 +643,19 @@ function bst_clamp( $value, $min, $max, $default ) {
 function bst_choice( $value, $allowed, $default ) {
 	return in_array( $value, $allowed, true ) ? $value : $default;
 }
+
+/**
+ * Loading attributes for an <img> given by URL (no Media ID, so WordPress cannot optimise it).
+ * A hero image takes the page's single high-priority slot while WordPress has not used it yet,
+ * and is never lazy-loaded; everything else stays lazy.
+ *
+ * @param bool $hero Whether the image may be the largest element at the top of the page.
+ * @return string Attribute string starting with a space.
+ */
+function bst_url_img_loading( $hero = false ) {
+	if ( $hero && ! is_admin() && ! wp_is_serving_rest_request() && wp_high_priority_element_flag() ) {
+		wp_high_priority_element_flag( false );
+		return ' fetchpriority="high" decoding="async"';
+	}
+	return ' loading="lazy" decoding="async"';
+}

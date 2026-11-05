@@ -10947,3 +10947,6 @@ msgstr ""
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr ""
 
+msgid "Apply a free-shipping coupon to get free shipping."
+msgstr ""
+

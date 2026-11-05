@@ -227,6 +227,7 @@ return array(
 		'Any other questions? Send us a message for a free consultation.' => 'Bạn có thắc mắc khác? Nhắn tin cho chúng tôi để được tư vấn miễn phí.',
 		'Apartment specialist' => 'Chuyên viên căn hộ',
 		'Apply' => 'Áp dụng',
+		'Apply a free-shipping coupon to get free shipping.' => 'Áp dụng mã miễn phí vận chuyển để được miễn phí vận chuyển.',
 		'Apply what you learn to real situations.' => 'Áp dụng kiến thức vào tình huống thực tế.',
 		'Approval required' => 'Cần bạn duyệt',
 		'Approve a plan, let the agent draft, then review desktop and mobile.' => 'Duyệt kế hoạch, để AI dựng nháp rồi kiểm tra desktop và mobile.',

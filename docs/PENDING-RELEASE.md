@@ -6,7 +6,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới (1.81.0 đã gom G-21–G-23, G-44–G-51).
+- **P1 free shipping khớp điều kiện WooCommerce:** thanh tiến độ đọc `requires` min_amount/either/both, `ignore_discounts`, coupon free shipping và làm tròn theo số lẻ của shop; `both` khi đủ tiền nhưng thiếu coupon sẽ nhắc áp mã. Kiểm thử: 8 case logic bằng stub PHP; chưa thử giỏ thật/nhiều package, chưa hỗ trợ Cart/Checkout blocks. Phát hành: thêm vào Có gì mới.
+- **P1 ảnh banner từ URL:** banner dùng URL trực tiếp không còn lazy-load; nhận `fetchpriority="high"` nếu WordPress chưa dùng suất ưu tiên của trang (`bst_url_img_loading()`). Block Image từ URL vẫn lazy. Kiểm thử: `php -l`; chưa đo LCP/CLS trên fixture.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
