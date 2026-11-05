@@ -1,6 +1,6 @@
-/* G-58: run the shared formula fixtures against the browser calculator in assets/js/blocks.js. */
+/* G-58: run the shared formula fixtures against the browser calculator in assets/js/form.js. */
 const fs = require('fs'), path = require('path');
-const src = fs.readFileSync(path.join(__dirname, '../../bigspy-ai-theme-wp/assets/js/blocks.js'), 'utf8');
+const src = fs.readFileSync(path.join(__dirname, '../../bigspy-ai-theme-wp/assets/js/form.js'), 'utf8');
 const start = src.indexOf('var bstCalc = '), end = src.indexOf('\n(function () {\n\tif (typeof document', start);
 const bstCalc = new Function(src.slice(start, end) + '\nreturn bstCalc;')();
 let fail = 0;

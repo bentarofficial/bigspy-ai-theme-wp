@@ -30,6 +30,8 @@ function bst_front_assets() {
 
 	wp_enqueue_script( 'bst-main', BST_URI . '/assets/js/main.js', array(), bst_asset_version( 'assets/js/main.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	wp_enqueue_script( 'bst-blocks', BST_URI . '/assets/js/blocks.js', array(), bst_asset_version( 'assets/js/blocks.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+	// Enqueued by the Form block when it renders, so pages without a form skip it (G-41).
+	wp_register_script( 'bst-form', BST_URI . '/assets/js/form.js', array(), bst_asset_version( 'assets/js/form.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

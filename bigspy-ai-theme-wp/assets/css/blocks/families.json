@@ -118,6 +118,34 @@
 	"progress": [
 		"bs-progress"
 	],
+	"posts": [
+		"bs-posts",
+		"bs-loop"
+	],
+	"image-box": [
+		"bs-image-box"
+	],
+	"icon-box": [
+		"bs-icon-box"
+	],
+	"icon-list": [
+		"bs-icon-list"
+	],
+	"product-list": [
+		"bs-product-list"
+	],
+	"shape": [
+		"bs-shape"
+	],
+	"mx-bg": [
+		"bs-mx-bg"
+	],
+	"mx-shine": [
+		"bs-mx-shine"
+	],
+	"mx-reveal": [
+		"bs-mx-reveal"
+	],
 	"slider": [
 		"bs-slider"
 	],

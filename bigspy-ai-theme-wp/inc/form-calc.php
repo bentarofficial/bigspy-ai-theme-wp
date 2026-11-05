@@ -11,7 +11,7 @@
  * Formula grammar (no eval, no PHP/JS, no network):
  *   numbers, {field_id}, + - * / ( ), comparisons > < >= <= == !=, && ||,
  *   min(a,b,...) max(...) round(x[,d]) ceil(x) floor(x) abs(x) if(cond,a,b).
- * The JS twin is in assets/js/blocks.js; both pass tools/tests/form-calc-fixtures.json.
+ * The JS twin is in assets/js/form.js; both pass tools/tests/form-calc-fixtures.json.
  *
  * @package BigspyTheme
  */

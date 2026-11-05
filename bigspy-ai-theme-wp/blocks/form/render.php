@@ -9,6 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $a    = (array) $attributes;
+wp_enqueue_script( 'bst-form' );
 $form = 'bigspy' === ( $a['provider'] ?? '' ) && function_exists( 'bst_native_form_markup' ) ? bst_native_form_markup( $a ) : ( function_exists( 'bst_form_markup' ) ? bst_form_markup( sanitize_key( $a['provider'] ?? 'cf7' ), $a['formId'] ?? 0 ) : '' );
 if ( '' === trim( $form ) ) {
 	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {

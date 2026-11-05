@@ -87,17 +87,22 @@ add_action(
 
 /** Output buffer callback: point the blocks.css link at the file for this page's families. */
 function bst_perf_block_css_buffer( $html ) {
+	$all = array();
+	if ( preg_match_all( '/\sclass\s*=\s*(["\'])(.*?)\1/s', $html, $m ) ) {
+		foreach ( $m[2] as $value ) {
+			foreach ( preg_split( '/\s+/', $value, -1, PREG_SPLIT_NO_EMPTY ) as $t ) {
+				$all[ $t ] = true;
+			}
+		}
+	}
+	$html = bst_perf_drop_legacy_css( $html, $all );
 	if ( ! preg_match( '/<link[^>]+id=["\']bst-blocks-css["\'][^>]*>/', $html, $tag ) ) {
 		return $html;
 	}
 	$tokens = array();
-	if ( preg_match_all( '/\sclass\s*=\s*(["\'])(.*?)\1/s', $html, $m ) ) {
-		foreach ( $m[2] as $value ) {
-			foreach ( preg_split( '/\s+/', $value ) as $t ) {
-				if ( 0 === strpos( $t, 'bs-' ) ) {
-					$tokens[ $t ] = true;
-				}
-			}
+	foreach ( array_keys( $all ) as $t ) {
+		if ( 0 === strpos( $t, 'bs-' ) ) {
+			$tokens[ $t ] = true;
 		}
 	}
 	$need = array();
@@ -117,6 +122,58 @@ function bst_perf_block_css_buffer( $html ) {
 	}
 	$new = preg_replace( '/href=(["\'])[^"\']*\1/', 'href="' . esc_url( $url ) . '"', $tag[0], 1 );
 	return str_replace( $tag[0], $new, $html );
+}
+
+/**
+ * Selectors of legacy.css as class sets (G-41): a rule can match only when an element has
+ * every class of one set. Classes inside :not/:is/:where/:has are optional and ignored; a
+ * selector without classes (rare) keeps the file on every page. Cached by file time.
+ */
+function bst_perf_legacy_selectors() {
+	$file = BST_DIR . '/assets/css/legacy.css';
+	if ( ! is_readable( $file ) ) {
+		return array();
+	}
+	$key   = 'bst_legacy_sel_' . filemtime( $file );
+	$cache = get_transient( $key );
+	if ( is_array( $cache ) ) {
+		return $cache;
+	}
+	$css = preg_replace( '#/\*.*?\*/#s', '', (string) file_get_contents( $file ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	$css = preg_replace( '/\{[^{}]*\}/', '{}', $css );
+	preg_match_all( '/([^{}]+)\{\}/', $css, $rules );
+	$sets = array();
+	foreach ( $rules[1] as $sel ) {
+		$sel = trim( $sel );
+		if ( '' === $sel || '@' === $sel[0] || preg_match( '/^(from|to|[0-9.]+%)/', $sel ) ) {
+			continue;
+		}
+		do {
+			$sel = preg_replace( '/:(not|is|where|has)\([^()]*\)/', '', $sel, -1, $n );
+		} while ( $n );
+		foreach ( explode( ',', $sel ) as $part ) {
+			preg_match_all( '/\.(-?[A-Za-z_][A-Za-z0-9_-]*)/', $part, $m );
+			$set = array_values( array_unique( $m[1] ) );
+			sort( $set );
+			$sets[ implode( ' ', $set ) ] = $set;
+		}
+	}
+	$sets = array_values( $sets );
+	set_transient( $key, $sets, WEEK_IN_SECONDS );
+	return $sets;
+}
+
+/** Remove the legacy.css link when none of its selectors can match an element class set on the page. */
+function bst_perf_drop_legacy_css( $html, $classes ) {
+	if ( ! preg_match( '/<link[^>]+id=["\']bst-legacy-css["\'][^>]*>\s*/', $html, $tag ) ) {
+		return $html;
+	}
+	foreach ( bst_perf_legacy_selectors() as $set ) {
+		if ( ! $set || ! array_diff( $set, array_keys( $classes ) ) ) {
+			return $html; // Could match: keep the file.
+		}
+	}
+	return str_replace( $tag[0], '', $html );
 }
 
 /** URL of the cached stylesheet with the shared rules plus these families, or '' on failure. */

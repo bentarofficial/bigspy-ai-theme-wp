@@ -80,6 +80,15 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Kiểm thử:** `tools/tests/g67/` — trình duyệt 6 viewport + bàn phím + JS tắt + reduced motion đạt; `check_page` 7/7. Chi tiết, môi trường và giới hạn: [VERIFICATION-G67.md](VERIFICATION-G67.md).
 - **Khi phát hành cần bổ sung:** Có gì mới (trợ năng tabs, cảnh báo responsive của AI).
 
+### G-41 — Giảm JS/CSS tải trên mọi trang
+
+- **Đã thay đổi:**
+  - `assets/js/form.js` (mới) tách code Form khỏi `blocks.js`, chỉ tải khi có block Form.
+  - `legacy.css` bị bỏ khỏi trang không có class nào nó style (`inc/performance.php`, khi bật tách CSS).
+  - Thêm 9 họ CSS cho block do PHP render trong `tools/split-blocks-css.py`; core CSS 67,8 → 52,3 KB.
+- **Kiểm thử:** `tools/tests/g41/` (render + coverage Chromium): trang chữ JS 64,0 → 48,4 KB, CSS 139,2 → 109,1 KB; landing/form CSS −20%. Hành vi đạt; các test G-57/58/59/67 không hồi quy. Chi tiết: [VERIFICATION-G41.md](VERIFICATION-G41.md).
+- **Khi phát hành cần bổ sung:** Có gì mới (trang nhẹ hơn). Cần thử trên site thật có nội dung Flatsome cũ để chắc `legacy.css` vẫn được tải ở đó.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
