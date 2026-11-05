@@ -18,6 +18,14 @@
 		"icon": {
 			"type": "string",
 			"default": ""
+		},
+		"slug": {
+			"type": "string",
+			"default": ""
+		},
+		"link": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

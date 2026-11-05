@@ -5,7 +5,7 @@
 	"title": "Tabs",
 	"category": "bigspy",
 	"icon": "index-card",
-	"description": "Tabbed content: each tab title switches the panel below. Choose horizontal or vertical tabs and the style. Saves space for specifications, services and pricing.",
+	"description": "Tabbed content: a heading on the left, tab titles on the right and any blocks in each tab. Tabs can wrap or scroll with an arrow, turn into an accordion on phones and open from a #link. Great for product or post groups.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"style": {
@@ -39,6 +39,62 @@
 		"fade": {
 			"type": "boolean",
 			"default": true
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"headingTag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"headingSize": {
+			"type": "number",
+			"default": 0
+		},
+		"headingColor": {
+			"type": "string",
+			"default": ""
+		},
+		"overflow": {
+			"type": "string",
+			"default": "wrap"
+		},
+		"arrows": {
+			"type": "string",
+			"default": "toggle"
+		},
+		"arrowStyle": {
+			"type": "string",
+			"default": "chevron"
+		},
+		"radius": {
+			"type": "number",
+			"default": -1
+		},
+		"gap": {
+			"type": "number",
+			"default": -1
+		},
+		"mobile": {
+			"type": "string",
+			"default": "tabs"
+		},
+		"defaultTab": {
+			"type": "number",
+			"default": 1
+		},
+		"hashLink": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkText": {
+			"type": "string",
+			"default": ""
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

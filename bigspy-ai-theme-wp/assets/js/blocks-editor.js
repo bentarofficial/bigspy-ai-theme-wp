@@ -1294,7 +1294,7 @@
 		var a = props.attributes;
 		var bind = B.binder(props);
 		var blockProps = useBlockProps({
-			className: 'bs-title bs-title--' + a.style + ' bs-title--align-' + a.align,
+			className: 'bs-title bs-title--' + a.style + ' bs-title--align-' + a.align + ' bs-title--tag-' + a.tag,
 			style: styleVars({ '--bs-title-size': a.size ? a.size + 'px' : '', '--bs-title-color': a.color, '--bs-title-line': a.lineColor })
 		});
 		return el(Fragment, null,
@@ -1302,10 +1302,16 @@
 				el(Panel, { title: __('Title', 'bigspy-ai-theme-wp') },
 					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { plain: __('Plain', 'bigspy-ai-theme-wp'), 'bottom-line': __('Short line below', 'bigspy-ai-theme-wp'), 'center-line': __('Lines on both sides', 'bigspy-ai-theme-wp'), 'left-bar': __('Bar on the left', 'bigspy-ai-theme-wp'), 'underline-full': __('Full-width underline', 'bigspy-ai-theme-wp') } }, bind('style'))),
 					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
-					el(Select, Object.assign({ label: __('Tag', 'bigspy-ai-theme-wp'), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4' } }, bind('tag'))),
-					el(Range, Object.assign({ label: __('Font size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120 }, bind('size'))),
-					el(Text, Object.assign({ label: __('“View all” text', 'bigspy-ai-theme-wp') }, bind('linkText'))),
-					el(Text, Object.assign({ label: __('“View all” link', 'bigspy-ai-theme-wp'), type: 'url' }, bind('linkUrl')))
+					el(Select, Object.assign({ label: __('Tag', 'bigspy-ai-theme-wp'), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6', p: __('P (paragraph, not a heading)', 'bigspy-ai-theme-wp'), div: 'DIV' } }, bind('tag'))),
+					el(Range, Object.assign({ label: __('Font size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120 }, bind('size')))
+				),
+				el(Panel, { title: __('Links', 'bigspy-ai-theme-wp') },
+					el(Text, Object.assign({ label: __('Title link (URL, empty = no link)', 'bigspy-ai-theme-wp'), type: 'url' }, bind('titleUrl'))),
+					el(Text, Object.assign({ label: __('Right link text (e.g. View all, See more)', 'bigspy-ai-theme-wp') }, bind('linkText'))),
+					el(Text, Object.assign({ label: __('Right link URL', 'bigspy-ai-theme-wp'), type: 'url' }, bind('linkUrl'))),
+					el(Toggle, Object.assign({ label: __('Open links in a new tab', 'bigspy-ai-theme-wp') }, bind('newTab', true))),
+					el(Toggle, Object.assign({ label: __('Add nofollow to links', 'bigspy-ai-theme-wp') }, bind('nofollow', true))),
+					el('p', { className: 'description' }, __('Set Align to Left to keep the title on the left and the link on the right. The right link shows when both its text and URL are filled.', 'bigspy-ai-theme-wp'))
 				),
 				el(B.ColorPanel, {
 					settings: [
@@ -1318,7 +1324,7 @@
 				el(RichText, { tagName: 'p', className: 'bs-title__subtitle', value: a.subtitle, placeholder: __('Subtitle (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ subtitle: v }); } }),
 				el('div', { className: 'bs-title__row' },
 					el(RichText, { tagName: a.tag, className: 'bs-title__text', value: a.text, placeholder: __('Section title', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } }),
-					a.linkText ? el('span', { className: 'bs-title__link' }, a.linkText) : null
+					a.linkText ? el('span', { className: 'bs-title__link' + (a.linkUrl ? '' : ' is-unlinked') }, a.linkText, el(B.Icon, { name: 'arrow-right', size: 16 })) : null
 				)
 			)
 		);
@@ -1331,32 +1337,66 @@
 		var tabs = useSelect(function (select) {
 			return select('core/block-editor').getBlocks(props.clientId);
 		}, [props.clientId]);
-		var blockProps = useBlockProps({ className: 'bs-tabs bs-tabs--' + a.style + ' bs-tabs--align-' + a.align + (a.stretch ? ' bs-tabs--stretch' : '') + ' bst-tabs-editor', style: styleVars({ '--bs-tabs-size': a.navSize ? a.navSize + 'px' : '', '--bs-tabs-active': a.activeColor, '--bs-tabs-active-text': a.activeText }) });
+		var scroll = a.style !== 'vertical' && a.overflow !== 'wrap';
+		var active = Math.min(Math.max(0, (a.defaultTab || 1) - 1), Math.max(0, tabs.length - 1));
+		var blockProps = useBlockProps({
+			className: 'bs-tabs bs-tabs--' + a.style + ' bs-tabs--align-' + a.align + ' bs-tabs--overflow-' + (a.style === 'vertical' ? 'wrap' : a.overflow) + ' bs-tabs--arrow-' + a.arrowStyle + (a.stretch ? ' bs-tabs--stretch' : '') + (a.heading ? ' has-heading' : '') + ' bst-tabs-editor',
+			style: styleVars({ '--bs-tabs-size': a.navSize ? a.navSize + 'px' : '', '--bs-tabs-active': a.activeColor, '--bs-tabs-active-text': a.activeText, '--bs-tabs-radius': a.radius >= 0 ? a.radius + 'px' : '', '--bs-tabs-gap': a.gap >= 0 ? a.gap + 'px' : '', '--bs-tabs-heading-size': a.headingSize ? a.headingSize + 'px' : '', '--bs-tabs-heading-color': a.headingColor })
+		});
 		var innerProps = useInnerBlocksProps({ className: 'bs-tabs__panels' }, {
 			allowedBlocks: ['bst/tab'],
 			template: [['bst/tab', { title: __('Tab 1', 'bigspy-ai-theme-wp') }], ['bst/tab', { title: __('Tab 2', 'bigspy-ai-theme-wp') }]]
 		});
+		var arrowIcon = el(B.Icon, { name: a.arrowStyle === 'arrow' ? 'arrow-right' : 'chevron-right', size: 18 });
 		return el(Fragment, null,
 			el(Inspector, null,
+				el(Panel, { title: __('Heading', 'bigspy-ai-theme-wp') },
+					el(Text, Object.assign({ label: __('Heading text (empty = no heading)', 'bigspy-ai-theme-wp') }, bind('heading'))),
+					el(Select, Object.assign({ label: __('Heading tag', 'bigspy-ai-theme-wp'), options: { h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6', p: 'P', div: 'DIV' } }, bind('headingTag'))),
+					el(Range, Object.assign({ label: __('Heading size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 80 }, bind('headingSize'))),
+					el(Text, Object.assign({ label: __('“View all” text (empty = hidden)', 'bigspy-ai-theme-wp') }, bind('linkText'))),
+					el(Text, Object.assign({ label: __('“View all” link (a tab can set its own)', 'bigspy-ai-theme-wp'), type: 'url' }, bind('linkUrl')))
+				),
 				el(Panel, { title: __('Tabs', 'bigspy-ai-theme-wp') },
-					sliderChoice(props, __('Style', 'bigspy-ai-theme-wp'), 'style', [['underline', __('Underline', 'bigspy-ai-theme-wp')], ['pills', __('Pills', 'bigspy-ai-theme-wp')], ['boxed', __('Boxed', 'bigspy-ai-theme-wp')], ['vertical', __('Vertical', 'bigspy-ai-theme-wp')]]),
-					sliderChoice(props, __('Align', 'bigspy-ai-theme-wp'), 'align', [['left', __('Left', 'bigspy-ai-theme-wp')], ['center', __('Center', 'bigspy-ai-theme-wp')]]),
+					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { underline: __('Underline', 'bigspy-ai-theme-wp'), pills: __('Pills', 'bigspy-ai-theme-wp'), 'pills-outline': __('Outline pills', 'bigspy-ai-theme-wp'), boxed: __('Boxed', 'bigspy-ai-theme-wp'), text: __('Text only', 'bigspy-ai-theme-wp'), vertical: __('Vertical', 'bigspy-ai-theme-wp') } }, bind('style'))),
+					sliderChoice(props, __('Align', 'bigspy-ai-theme-wp'), 'align', [['left', __('Left', 'bigspy-ai-theme-wp')], ['center', __('Center', 'bigspy-ai-theme-wp')], ['right', __('Right', 'bigspy-ai-theme-wp')]]),
 					sliderChoice(props, __('Open a tab on', 'bigspy-ai-theme-wp'), 'event', [['click', __('Click', 'bigspy-ai-theme-wp')], ['hover', __('Hover', 'bigspy-ai-theme-wp')]]),
+					el(Range, Object.assign({ label: __('Tab open first', 'bigspy-ai-theme-wp'), min: 1, max: Math.max(1, tabs.length) }, bind('defaultTab'))),
 					el(Toggle, Object.assign({ label: __('Stretch tabs to full width', 'bigspy-ai-theme-wp') }, bind('stretch', true))),
 					el(Toggle, Object.assign({ label: __('Fade between tabs', 'bigspy-ai-theme-wp') }, bind('fade', true))),
 					el(Range, Object.assign({ label: __('Tab text size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 30 }, bind('navSize'))),
-					el('p', { className: 'description' }, __('Select a tab inside to rename it or give it an icon.', 'bigspy-ai-theme-wp'))
+					el(Range, Object.assign({ label: __('Tab corner radius (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 60 }, bind('radius'))),
+					el(Range, Object.assign({ label: __('Space between tabs (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 60 }, bind('gap'))),
+					el('p', { className: 'description' }, __('Select a tab inside to rename it, give it an icon, a #link name or its own “View all” link.', 'bigspy-ai-theme-wp'))
 				),
-				el(B.ColorPanel, { title: __('Active tab colors', 'bigspy-ai-theme-wp'), settings: [
+				a.style !== 'vertical' ? el(Panel, { title: __('Many tabs', 'bigspy-ai-theme-wp') },
+					el(Select, Object.assign({ label: __('When tabs do not fit', 'bigspy-ai-theme-wp'), options: { wrap: __('Wrap to a new line', 'bigspy-ai-theme-wp'), scroll: __('Scroll with an arrow', 'bigspy-ai-theme-wp'), 'scroll-mobile': __('Wrap on computers, scroll on phones', 'bigspy-ai-theme-wp') } }, bind('overflow'))),
+					scroll ? el(Select, Object.assign({ label: __('Arrows', 'bigspy-ai-theme-wp'), options: { toggle: __('One arrow on the right that turns back at the end', 'bigspy-ai-theme-wp'), both: __('An arrow on each side', 'bigspy-ai-theme-wp') } }, bind('arrows'))) : null,
+					scroll ? el(Select, Object.assign({ label: __('Arrow look', 'bigspy-ai-theme-wp'), options: { chevron: __('Chevron', 'bigspy-ai-theme-wp'), arrow: __('Arrow', 'bigspy-ai-theme-wp'), circle: __('Chevron in a circle', 'bigspy-ai-theme-wp'), square: __('Chevron in a square', 'bigspy-ai-theme-wp') } }, bind('arrowStyle'))) : null
+				) : null,
+				el(Panel, { title: __('Phones and links', 'bigspy-ai-theme-wp'), initialOpen: false },
+					el(Select, Object.assign({ label: __('On phones show', 'bigspy-ai-theme-wp'), options: { tabs: __('Tabs', 'bigspy-ai-theme-wp'), accordion: __('An accordion (titles stacked)', 'bigspy-ai-theme-wp') } }, bind('mobile'))),
+					el(Toggle, Object.assign({ label: __('Open a tab from the address (#tab-name) and update it on click', 'bigspy-ai-theme-wp') }, bind('hashLink', true)))
+				),
+				el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
+					{ label: __('Heading', 'bigspy-ai-theme-wp'), value: a.headingColor, onChange: function (v) { props.setAttributes({ headingColor: v || '' }); } },
 					{ label: __('Active tab', 'bigspy-ai-theme-wp'), value: a.activeColor, onChange: function (v) { props.setAttributes({ activeColor: v || '' }); } },
 					{ label: __('Active tab text', 'bigspy-ai-theme-wp'), value: a.activeText, onChange: function (v) { props.setAttributes({ activeText: v || '' }); } }
 				] })
 			),
 			el('div', blockProps,
-				el('div', { className: 'bs-tabs__nav' },
-					tabs.map(function (tab, i) {
-						return el('span', { key: tab.clientId, className: 'bs-tabs__tab' + (i === 0 ? ' is-active' : '') }, tab.attributes.icon ? el(B.Icon, { name: tab.attributes.icon, size: 18 }) : null, el('span', null, tab.attributes.title || __('Tab', 'bigspy-ai-theme-wp')));
-					})
+				el('div', { className: 'bs-tabs__head' },
+					a.heading || props.isSelected ? el(RichText, { tagName: a.headingTag || 'h2', className: 'bs-tabs__heading', value: a.heading, placeholder: __('Heading (optional)', 'bigspy-ai-theme-wp'), allowedFormats: ['core/bold', 'core/italic'], onChange: function (v) { props.setAttributes({ heading: v }); } }) : null,
+					el('div', { className: 'bs-tabs__bar' },
+						scroll && a.arrows === 'both' ? el('span', { className: 'bs-tabs__arrow bs-tabs__arrow--prev' }, arrowIcon) : null,
+						el('div', { className: 'bs-tabs__nav' },
+							tabs.map(function (tab, i) {
+								return el('span', { key: tab.clientId, className: 'bs-tabs__tab' + (i === active ? ' is-active' : '') }, tab.attributes.icon ? el(B.Icon, { name: tab.attributes.icon, size: 18 }) : null, el('span', null, tab.attributes.title || __('Tab', 'bigspy-ai-theme-wp')));
+							})
+						),
+						scroll ? el('span', { className: 'bs-tabs__arrow bs-tabs__arrow--next' }, arrowIcon) : null
+					),
+					a.linkText ? el('span', { className: 'bs-tabs__more' }, a.linkText, el(B.Icon, { name: 'arrow-right', size: 16 })) : null
 				),
 				el('div', innerProps)
 			)
@@ -1364,14 +1404,17 @@
 	}, saveInner);
 
 	register('tab', function (props) {
+		var a = props.attributes;
 		var blockProps = useBlockProps({ className: 'bs-tab bst-tab-editor' });
 		var innerProps = useInnerBlocksProps({ className: 'bst-tab-editor__content' }, { template: [['core/paragraph', { placeholder: __('Tab content…', 'bigspy-ai-theme-wp') }]] });
 		return el('div', blockProps,
 			el(Inspector, null, el(Panel, { title: __('Tab', 'bigspy-ai-theme-wp') },
-				el(Text, { label: __('Tab title', 'bigspy-ai-theme-wp'), value: props.attributes.title, onChange: function (v) { props.setAttributes({ title: v }); } }),
-				el(B.IconPicker, { label: __('Tab icon (optional)', 'bigspy-ai-theme-wp'), value: props.attributes.icon, onChange: function (v) { props.setAttributes({ icon: v }); } })
+				el(Text, { label: __('Tab title', 'bigspy-ai-theme-wp'), value: a.title, onChange: function (v) { props.setAttributes({ title: v }); } }),
+				el(B.IconPicker, { label: __('Tab icon (optional)', 'bigspy-ai-theme-wp'), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v }); } }),
+				el(Text, { label: __('Link name (#…, empty = from the title)', 'bigspy-ai-theme-wp'), value: a.slug, onChange: function (v) { props.setAttributes({ slug: v }); } }),
+				el(Text, { label: __('“View all” link for this tab', 'bigspy-ai-theme-wp'), type: 'url', value: a.link, onChange: function (v) { props.setAttributes({ link: v }); } })
 			)),
-			el('div', { className: 'bst-tab-label' }, props.attributes.icon ? el(B.Icon, { name: props.attributes.icon, size: 14 }) : null, props.attributes.title || __('Tab', 'bigspy-ai-theme-wp')),
+			el('div', { className: 'bst-tab-label' }, a.icon ? el(B.Icon, { name: a.icon, size: 14 }) : null, a.title || __('Tab', 'bigspy-ai-theme-wp')),
 			el('div', innerProps)
 		);
 	}, saveInner);

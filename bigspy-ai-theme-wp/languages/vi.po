@@ -7114,3 +7114,132 @@ msgstr "Hoàn tác lần lưu này"
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr "1.81.0: AI Designer nhanh và thông minh hơn: hồ sơ block và 42 công thức section có sẵn hiệu ứng, duyệt sơ đồ trang một lần rồi dựng nhiều section mỗi lượt, minh hoạ bằng SVG/HTML/CSS, chọn model và chuyên môn ngay trong chat, model nhanh cho Effort Thấp, đính kèm file, đo thời gian và chi phí từng lượt, ngữ cảnh tự lưu và tự học điều bạn nói áp dụng từ nay."
 
+msgid "Heading text (empty = no heading)"
+msgstr "Chữ tiêu đề (để trống = không hiện)"
+
+msgid "Heading tag"
+msgstr "Thẻ tiêu đề"
+
+msgid "Heading size (px, 0 = default)"
+msgstr "Cỡ chữ tiêu đề (px, 0 = mặc định)"
+
+msgid "Heading (optional)"
+msgstr "Tiêu đề (tùy chọn)"
+
+msgid "“View all” text (empty = hidden)"
+msgstr "Chữ “Xem tất cả” (để trống = ẩn)"
+
+msgid "“View all” link (a tab can set its own)"
+msgstr "Link “Xem tất cả” (mỗi tab có thể đặt riêng)"
+
+msgid "Outline pills"
+msgstr "Viên thuốc viền"
+
+msgid "Text only"
+msgstr "Chỉ chữ"
+
+msgid "Tab open first"
+msgstr "Tab mở đầu tiên"
+
+msgid "Tab corner radius (px, -1 = default)"
+msgstr "Bo góc tab (px, -1 = mặc định)"
+
+msgid "Space between tabs (px, -1 = default)"
+msgstr "Khoảng cách giữa các tab (px, -1 = mặc định)"
+
+msgid "Select a tab inside to rename it, give it an icon, a #link name or its own “View all” link."
+msgstr "Chọn một tab bên trong để đổi tên, thêm icon, đặt tên #link hoặc link “Xem tất cả” riêng."
+
+msgid "Many tabs"
+msgstr "Khi có nhiều tab"
+
+msgid "When tabs do not fit"
+msgstr "Khi không đủ chỗ cho các tab"
+
+msgid "Wrap to a new line"
+msgstr "Xuống dòng"
+
+msgid "Scroll with an arrow"
+msgstr "Cuộn ngang kèm mũi tên"
+
+msgid "Wrap on computers, scroll on phones"
+msgstr "Máy tính xuống dòng, điện thoại cuộn ngang"
+
+msgid "Arrows"
+msgstr "Mũi tên"
+
+msgid "One arrow on the right that turns back at the end"
+msgstr "Một mũi tên bên phải, tự quay đầu khi tới cuối"
+
+msgid "An arrow on each side"
+msgstr "Mỗi bên một mũi tên"
+
+msgid "Arrow look"
+msgstr "Kiểu mũi tên"
+
+msgid "Chevron"
+msgstr "Dấu mũ"
+
+msgid "Chevron in a circle"
+msgstr "Dấu mũ trong hình tròn"
+
+msgid "Chevron in a square"
+msgstr "Dấu mũ trong hình vuông"
+
+msgid "Phones and links"
+msgstr "Điện thoại và liên kết"
+
+msgid "On phones show"
+msgstr "Trên điện thoại hiển thị"
+
+msgid "An accordion (titles stacked)"
+msgstr "Accordion (tiêu đề xếp chồng)"
+
+msgid "Open a tab from the address (#tab-name) and update it on click"
+msgstr "Mở tab theo địa chỉ (#ten-tab) và cập nhật địa chỉ khi bấm"
+
+msgid "Colors"
+msgstr "Màu sắc"
+
+msgid "Link name (#…, empty = from the title)"
+msgstr "Tên liên kết (#…, để trống = lấy theo tên tab)"
+
+msgid "“View all” link for this tab"
+msgstr "Link “Xem tất cả” của tab này"
+
+msgid "Previous tabs"
+msgstr "Các tab trước"
+
+msgid "Next tabs"
+msgstr "Các tab tiếp theo"
+
+msgid "Shop – product tabs with heading (scrolling tabs)"
+msgstr "Cửa hàng – tab sản phẩm có tiêu đề (tab cuộn ngang)"
+
+msgid "Blog – post tabs by category"
+msgstr "Blog – tab bài viết theo chuyên mục"
+
+msgid "P (paragraph, not a heading)"
+msgstr "P (đoạn văn, không phải tiêu đề)"
+
+msgid "Links"
+msgstr "Liên kết"
+
+msgid "Title link (URL, empty = no link)"
+msgstr "Link của tiêu đề (URL, để trống = không gắn link)"
+
+msgid "Right link text (e.g. View all, See more)"
+msgstr "Chữ link bên phải (vd: Xem tất cả, Xem thêm)"
+
+msgid "Right link URL"
+msgstr "Link bên phải (URL)"
+
+msgid "Open links in a new tab"
+msgstr "Mở link trong tab mới"
+
+msgid "Add nofollow to links"
+msgstr "Thêm nofollow cho link"
+
+msgid "Set Align to Left to keep the title on the left and the link on the right. The right link shows when both its text and URL are filled."
+msgstr "Chọn Căn lề: Trái để tiêu đề nằm bên trái và link nằm bên phải. Link bên phải chỉ hiện khi đã điền cả chữ và URL."
+

@@ -10947,3 +10947,120 @@ msgstr ""
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr ""
 
+msgid "Heading text (empty = no heading)"
+msgstr ""
+
+msgid "Heading tag"
+msgstr ""
+
+msgid "Heading size (px, 0 = default)"
+msgstr ""
+
+msgid "Heading (optional)"
+msgstr ""
+
+msgid "“View all” text (empty = hidden)"
+msgstr ""
+
+msgid "“View all” link (a tab can set its own)"
+msgstr ""
+
+msgid "Outline pills"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Tab open first"
+msgstr ""
+
+msgid "Tab corner radius (px, -1 = default)"
+msgstr ""
+
+msgid "Space between tabs (px, -1 = default)"
+msgstr ""
+
+msgid "Select a tab inside to rename it, give it an icon, a #link name or its own “View all” link."
+msgstr ""
+
+msgid "Many tabs"
+msgstr ""
+
+msgid "When tabs do not fit"
+msgstr ""
+
+msgid "Wrap to a new line"
+msgstr ""
+
+msgid "Scroll with an arrow"
+msgstr ""
+
+msgid "Wrap on computers, scroll on phones"
+msgstr ""
+
+msgid "One arrow on the right that turns back at the end"
+msgstr ""
+
+msgid "An arrow on each side"
+msgstr ""
+
+msgid "Arrow look"
+msgstr ""
+
+msgid "Chevron in a circle"
+msgstr ""
+
+msgid "Chevron in a square"
+msgstr ""
+
+msgid "Phones and links"
+msgstr ""
+
+msgid "On phones show"
+msgstr ""
+
+msgid "An accordion (titles stacked)"
+msgstr ""
+
+msgid "Open a tab from the address (#tab-name) and update it on click"
+msgstr ""
+
+msgid "Link name (#…, empty = from the title)"
+msgstr ""
+
+msgid "“View all” link for this tab"
+msgstr ""
+
+msgid "Previous tabs"
+msgstr ""
+
+msgid "Next tabs"
+msgstr ""
+
+msgid "Shop – product tabs with heading (scrolling tabs)"
+msgstr ""
+
+msgid "Blog – post tabs by category"
+msgstr ""
+
+msgid "P (paragraph, not a heading)"
+msgstr ""
+
+msgid "Title link (URL, empty = no link)"
+msgstr ""
+
+msgid "Right link text (e.g. View all, See more)"
+msgstr ""
+
+msgid "Right link URL"
+msgstr ""
+
+msgid "Open links in a new tab"
+msgstr ""
+
+msgid "Add nofollow to links"
+msgstr ""
+
+msgid "Set Align to Left to keep the title on the left and the link on the right. The right link shows when both its text and URL are filled."
+msgstr ""
+
