@@ -47,6 +47,18 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
   - Editor JS vẫn chưa thử trong trình duyệt.
 - **Khi phát hành cần bổ sung:** Có gì mới (AI cấu hình form/báo giá).
 
+### Thanh miễn phí vận chuyển khớp điều kiện WooCommerce (SOURCE-AUDIT §3, P1)
+
+- **Yêu cầu/tính năng:** thanh chỉ báo "đủ điều kiện" khi WooCommerce thật sự cho Free shipping, và chỉ hiện "thêm X" khi chỉ cần mua thêm là được.
+- **Đã thay đổi:** `inc/checkout-extras.php` có thêm hai hàm:
+  - `bst_free_shipping_state()`: trạng thái "đủ điều kiện" lấy từ `is_available()` của phương thức Free shipping cho từng package. Tiền còn thiếu tính giống WooCommerce: xét `ignore_discounts`, thuế giảm giá và làm tròn theo số lẻ của shop. `either` có coupon thì đủ điều kiện. `coupon` hoặc `both` thiếu coupon thì không hiện gì. Có package ở zone không có Free shipping thì không hiện. Đủ số tiền mà WooCommerce vẫn không cho (do filter) thì không hứa.
+  - `bst_free_shipping_cart_total()`: tính tổng giỏ hàng theo cách WooCommerce dùng.
+  - Thanh tiến độ không chạm 100% trước khi đủ điều kiện. Số tiền nhập tay trong Customizer vẫn ưu tiên như trước.
+  - Đã bỏ hàm `bst_free_shipping_min()` (không nơi nào còn gọi).
+- **Kiểm thử:** `php tools/tests/free-shipping-check.php` đạt 18/18. Stub mô phỏng quyết định của `WC_Shipping_Free_Shipping::is_available()`. Chưa chạy với WooCommerce thật (môi trường không tải được plugin).
+- **Giới hạn:** `both` khi đã có coupon nhưng thiếu tiền vẫn chưa hiện "thêm X" (giữ thận trọng). Cart/Checkout blocks vẫn chưa hỗ trợ, như trước.
+- **Khi phát hành cần bổ sung:** Có gì mới (sửa thông báo miễn phí vận chuyển).
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
