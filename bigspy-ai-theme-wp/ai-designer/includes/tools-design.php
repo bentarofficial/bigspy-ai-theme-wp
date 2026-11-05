@@ -343,12 +343,35 @@ function bst_aid_keep_block( $name, $node, $where, &$issues ) {
 		}
 		$found = $source ? bst_aid_find_block( parse_blocks( (string) get_post_field( 'post_content', $source ) ), bst_aid_block_key( $b ) ) : null;
 		if ( $found ) {
+			if ( 'core/block' === $name ) {
+				$ref = get_post( (int) ( $found['attrs']['ref'] ?? 0 ) );
+				if ( ! $ref || 'wp_block' !== $ref->post_type || 'publish' !== $ref->post_status ) {
+					$issues['warnings'][] = "$where: synced pattern #" . (int) ( $found['attrs']['ref'] ?? 0 ) . ' is missing, unpublished or in the trash, so visitors may see nothing there. It was kept as is; tell the user.';
+				}
+			}
 			return $found;
 		}
 		break;
 	}
 	$issues['errors'][] = "$where: $name cannot be edited by the designer. Send its raw back exactly as get_page returned it to keep it, or leave it out only if the user asked to remove it.";
 	return null;
+}
+
+/** Outermost blocks the designer cannot edit, as array( fingerprint => block name ). */
+function bst_aid_locked_blocks( $blocks ) {
+	$out = array();
+	foreach ( (array) $blocks as $b ) {
+		$name = (string) ( $b['blockName'] ?? '' );
+		if ( '' === $name ) {
+			continue;
+		}
+		if ( 0 !== strpos( $name, 'bst/' ) && 0 !== strpos( $name, 'bigspy/' ) && ! in_array( $name, bst_aid_core_blocks(), true ) ) {
+			$out[ bst_aid_block_key( $b ) ] = $name;
+			continue;
+		}
+		$out += bst_aid_locked_blocks( $b['innerBlocks'] ?? array() );
+	}
+	return $out;
 }
 
 /** The first block at any depth with this fingerprint, or null. */
@@ -529,7 +552,7 @@ function bst_aid_tool_style_options( $a ) {
  * @param array $tree   Model tree.
  * @param int   $source Post being rewritten, 0 for new content.
  */
-function bst_aid_tree_to_markup( $tree, $source = 0 ) {
+function bst_aid_tree_to_markup( $tree, $source = 0, $remove_ok = false ) {
 	$issues = array( 'errors' => array(), 'warnings' => array(), 'source' => (int) $source );
 	$blocks = bst_aid_build_blocks( $tree, '', $issues );
 	if ( $issues['errors'] ) {
@@ -537,6 +560,18 @@ function bst_aid_tree_to_markup( $tree, $source = 0 ) {
 	}
 	if ( ! $blocks ) {
 		return new WP_Error( 'bst_aid_blocks', 'No blocks given.', $issues );
+	}
+	if ( $source && ! $remove_ok ) {
+		$kept    = bst_aid_block_keys( $blocks );
+		$missing = array();
+		foreach ( bst_aid_locked_blocks( parse_blocks( (string) get_post_field( 'post_content', $source ) ) ) as $key => $name ) {
+			if ( ! isset( $kept[ $key ] ) ) {
+				$missing[] = $name;
+			}
+		}
+		if ( $missing ) {
+			return new WP_Error( 'bst_aid_blocks', 'Not saved: this would remove blocks the designer cannot edit (' . implode( ', ', array_unique( $missing ) ) . '). Send their raw back unchanged to keep them. Remove them only after the user confirms, by calling again with remove_blocks: true.', $issues );
+		}
 	}
 	$markup = serialize_blocks( $blocks );
 	$error  = bst_aid_block_rule_error( $markup, $source ? (string) get_post_field( 'post_content', $source ) : '' );
@@ -888,6 +923,7 @@ add_filter(
 					'template'  => array( 'type' => 'string', 'enum' => array( 'default', 'full-width', 'blank' ) ),
 					'status'    => array( 'type' => 'string', 'enum' => array( 'draft', 'publish' ) ),
 					'confirmed' => array( 'type' => 'boolean' ),
+					'remove_blocks' => array( 'type' => 'boolean', 'description' => 'Only after the user confirmed removing blocks the designer cannot edit (Query Loop, synced patterns, plugin blocks).' ),
 				),
 				'required'   => array( 'id' ),
 			),
@@ -904,6 +940,7 @@ add_filter(
 					'index'     => array( 'type' => 'integer', 'minimum' => 0, 'description' => 'Top-level block index (0 = first) for insert, replace, remove.' ),
 					'blocks'    => $tree,
 					'confirmed' => array( 'type' => 'boolean' ),
+					'remove_blocks' => array( 'type' => 'boolean', 'description' => 'Only after the user confirmed removing blocks the designer cannot edit.' ),
 				),
 				'required'   => array( 'id', 'mode' ),
 			),
@@ -1384,7 +1421,7 @@ function bst_aid_tool_update_page( $a ) {
 	$data     = array( 'ID' => $p->ID );
 	$warnings = array();
 	if ( isset( $a['blocks'] ) ) {
-		$markup = bst_aid_tree_to_markup( $a['blocks'], $p->ID );
+		$markup = bst_aid_tree_to_markup( $a['blocks'], $p->ID, ! empty( $a['remove_blocks'] ) );
 		if ( is_wp_error( $markup ) ) {
 			return array( 'error' => $markup->get_error_message(), 'details' => $markup->get_error_data() );
 		}
@@ -1448,6 +1485,14 @@ function bst_aid_tool_page_sections( $a ) {
 			break;
 		default:
 			$top = array_merge( $top, $new );
+	}
+	if ( empty( $a['remove_blocks'] ) ) {
+		$kept = bst_aid_block_keys( $top );
+		foreach ( bst_aid_locked_blocks( parse_blocks( $p->post_content ) ) as $key => $name ) {
+			if ( ! isset( $kept[ $key ] ) ) {
+				return array( 'error' => "Not saved: this would remove $name, which the designer cannot edit. Send its raw back unchanged to keep it, or call again with remove_blocks: true after the user confirms." );
+			}
+		}
 	}
 	// Removing a section adds nothing, so it stays possible on old pages.
 	$error = 'remove' === $mode ? '' : bst_aid_block_rule_error( serialize_blocks( $top ), $p->post_content );
