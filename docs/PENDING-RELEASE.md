@@ -69,6 +69,17 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Kiểm thử:** `php tools/tests/image-loading-integration.php <wp>` đạt 6/6 trên WordPress 6.5 CLI. Chưa đo LCP/CLS trong trình duyệt. Các block khác dùng URL (gallery, icon-box…) vẫn lazy như cũ.
 - **Khi phát hành cần bổ sung:** Có gì mới (tốc độ ảnh hero).
 
+### G-67 — Responsive và bàn phím cho tabs/row/banner
+
+- **Đã thay đổi:**
+  - Tabs:
+    - Panel không có phần tử focus được thì nhận `tabindex="0"`.
+    - `aria-orientation` theo bố cục đang hiện (tabs dọc ≥ 850px).
+    - Tắt fade khi bật giảm chuyển động.
+  - AI `check_page` trả thêm cảnh báo theo đường dẫn block: `reverseMobile` có liên kết, tabs trống/trùng/dài, chữ trên ảnh banner overlay nhẹ, nút không có link. AI chỉ báo, không tự sửa.
+- **Kiểm thử:** `tools/tests/g67/` — trình duyệt 6 viewport + bàn phím + JS tắt + reduced motion đạt; `check_page` 7/7. Chi tiết, môi trường và giới hạn: [VERIFICATION-G67.md](VERIFICATION-G67.md).
+- **Khi phát hành cần bổ sung:** Có gì mới (trợ năng tabs, cảnh báo responsive của AI).
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

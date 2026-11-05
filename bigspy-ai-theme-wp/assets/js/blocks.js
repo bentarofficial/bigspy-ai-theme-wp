@@ -304,6 +304,22 @@
 				}
 			});
 		});
+		// APG: a panel with nothing focusable inside is itself in the Tab order.
+		panels.forEach(function (panel) {
+			if (!panel.hasAttribute('tabindex') && !panel.querySelector('a[href], button, input, select, textarea, [tabindex]')) {
+				panel.tabIndex = 0;
+			}
+		});
+		// Vertical tabs stack horizontally on small screens: report the layout actually shown.
+		var nav = root.querySelector(':scope > .bs-tabs__nav');
+		var orient = function () {
+			var dir = nav ? getComputedStyle(nav).flexDirection : 'row';
+			nav.setAttribute('aria-orientation', dir.indexOf('column') === 0 ? 'vertical' : 'horizontal');
+		};
+		if (nav) {
+			orient();
+			window.addEventListener('resize', orient, { passive: true });
+		}
 		root.classList.add('is-ready');
 		activate(0, false);
 	}

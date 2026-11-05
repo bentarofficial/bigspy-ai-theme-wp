@@ -16,7 +16,7 @@ add_filter( 'bst_aid_tools', function ( $tools ) {
 		'install_plugin' => array( 'Install and activate an exact WordPress.org plugin slug only, after approval. First offer manual installation instructions and explain the cost.', array( 'slug' => $s ), array( 'slug' ), 'install_plugins' ),
 		'seo_meta' => array( 'Update Rank Math or Yoast SEO title, description and optional focus keyword. Requires approval.', array( 'id' => $i, 'provider' => array( 'type' => 'string', 'enum' => array( 'rankmath', 'yoast' ) ), 'title' => $s, 'description' => $s, 'focus_keyword' => $s ), array( 'id', 'provider' ), 'edit_pages' ),
 		'publish' => array( 'Publish an existing draft page, post, product, UX Block or Theme Builder layout. Requires approval.', array( 'id' => $i ), array( 'id' ), 'edit_pages' ),
-		'check_page' => array( 'Check rendered markup for H1, headings, SEO, alt text, local broken links, large media and likely mobile overflow. Markup checks do not replace visual testing.', array( 'id' => $i ), array( 'id' ), 'edit_pages' ),
+		'check_page' => array( 'Check rendered markup for H1, headings, SEO, alt text, local broken links, large media and likely mobile overflow, plus block warnings (path, viewport, structure or suggestion) for reverse-on-mobile reading order, tabs, banner text on photos and empty buttons. Show warnings to the user; fix only what they agree to. Markup checks do not replace visual testing.', array( 'id' => $i ), array( 'id' ), 'edit_pages' ),
 		'manual_checklist' => array( 'Save task checklist items the user should do manually. Preserve previous items when updating.', array( 'items' => array( 'type' => 'array', 'maxItems' => 40, 'items' => array( 'type' => 'object', 'properties' => array( 'text' => $s, 'done' => array( 'type' => 'boolean' ) ), 'required' => array( 'text' ) ) ) ), array( 'items' ), 'edit_pages' ),
 		'budget_extension' => array( 'Request explicit approval for extra USD for this task. Daily allowance expires at the WordPress UTC spend-day boundary; global settings are never changed.', array( 'task_usd' => array( 'type' => 'number', 'minimum' => 0, 'maximum' => 100 ), 'day_usd' => array( 'type' => 'number', 'minimum' => 0, 'maximum' => 100 ) ), array(), 'manage_options' ),
 	);
@@ -286,5 +286,55 @@ function bst_aid_tool_check_page( $a ) {
 	$large = array();
 	preg_match_all( '/wp-image-(\d+)/', $html, $ids );
 	foreach ( array_unique( $ids[1] ) as $id ) { $file = get_attached_file( (int) $id ); if ( $file && is_file( $file ) && filesize( $file ) > 500000 ) { $large[] = array( 'id' => (int) $id, 'bytes' => filesize( $file ) ); } }
-	return array( 'h1_in_content' => $h1, 'template_title_h1' => $title_h1, 'issues' => array_values( array_unique( $issues ) ), 'seo' => $seo, 'large_images' => $large, 'limits' => 'Markup checks only. External links, computed responsive styles and image appearance require browser verification.' );
+	return array( 'h1_in_content' => $h1, 'template_title_h1' => $title_h1, 'issues' => array_values( array_unique( $issues ) ), 'blocks' => bst_aid_block_warnings( parse_blocks( $p->post_content ) ), 'seo' => $seo, 'large_images' => $large, 'limits' => 'Markup checks only. External links, computed responsive styles, contrast and image appearance require browser verification; block warnings are suggestions unless kind is "structure".' );
+}
+
+/**
+ * Responsive and keyboard warnings from the block structure (G-67). Each has the block path
+ * (indexes from the top, e.g. "2.0.1"), the block, the viewport it concerns, kind
+ * "structure" (read from attributes) or "suggestion" (needs a human look) and advice.
+ * Nothing is changed; the AI shows these and fixes only what the user agrees to.
+ */
+function bst_aid_block_warnings( $blocks, $path = '' ) {
+	$out = array();
+	foreach ( $blocks as $i => $b ) {
+		$name = (string) ( $b['blockName'] ?? '' );
+		$here = '' === $path ? (string) $i : $path . '.' . $i;
+		$a    = (array) ( $b['attrs'] ?? array() );
+		$add  = function ( $viewport, $kind, $issue, $advice ) use ( &$out, $here, $name ) {
+			$out[] = array( 'path' => $here, 'block' => $name, 'viewport' => $viewport, 'kind' => $kind, 'issue' => $issue, 'advice' => $advice );
+		};
+		$inner = (array) ( $b['innerBlocks'] ?? array() );
+		if ( 'bst/row' === $name && ! empty( $a['reverseMobile'] ) && count( $inner ) > 1 && preg_match( '/<a\b|<button\b|wp:bst\/(button|form)/', serialize_blocks( $inner ) ) ) {
+			$add( 'mobile', 'structure', 'Reverse on mobile shows the last column first, but keyboard and screen readers still follow the original order.', 'Keep it only when the reading order does not matter (e.g. image + text). Otherwise put the columns in reading order and turn reverse off.' );
+		}
+		if ( 'bst/tabs' === $name ) {
+			$titles = array();
+			foreach ( $inner as $tab ) {
+				$titles[] = trim( wp_strip_all_tags( (string) ( $tab['attrs']['title'] ?? '' ) ) );
+				if ( empty( $tab['innerBlocks'] ) ) {
+					$add( 'all', 'structure', 'A tab panel is empty.', 'Add content or remove the tab.' );
+				}
+			}
+			if ( in_array( '', $titles, true ) || count( $titles ) !== count( array_unique( $titles ) ) ) {
+				$add( 'all', 'structure', 'Tab titles are missing or repeated, so screen readers cannot tell the tabs apart.', 'Give every tab a short, unique title.' );
+			}
+			if ( count( $titles ) > 5 || mb_strlen( implode( '', $titles ) ) > 48 ) {
+				$add( 'mobile', 'suggestion', 'Many or long tab titles may scroll sideways on a 375px screen.', 'Use up to 4–5 short titles, or an Accordion for long lists. Check the preview on a phone.' );
+			}
+		}
+		if ( 'bst/banner' === $name && ( ! empty( $a['imageId'] ) || ! empty( $a['imageUrl'] ) ) && $inner && isset( $a['overlayOpacity'] ) && (float) $a['overlayOpacity'] < 20 ) {
+			$add( 'all', 'suggestion', 'Text sits on a photo with a light overlay; contrast was not measured.', 'Raise the overlay to 35–60% or check the text on the busiest part of the image.' );
+		}
+		if ( 'bst/button' === $name && ( empty( $a['url'] ) || '#' === $a['url'] ) ) {
+			$add( 'all', 'structure', 'A button has no link.', 'Add the target page or remove the button.' );
+		}
+		if ( $inner ) {
+			$out = array_merge( $out, bst_aid_block_warnings( $inner, $here ) );
+		}
+		if ( count( $out ) >= 40 ) {
+			break;
+		}
+	}
+	return array_slice( $out, 0, 40 );
 }
