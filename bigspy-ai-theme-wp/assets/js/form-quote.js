@@ -109,4 +109,8 @@
 	}
 
 	window.bsQuote = { number: bsQNumber, round: bsQRound, parse: bsQParse, evaluate: bsQEval, money: bsQMoney, compute: bsQCompute };
+	// blocks.js may run first: draw the price of forms already on the page.
+	if (typeof window.bsNfApply === 'function' && typeof document !== 'undefined') {
+		document.querySelectorAll('[data-bs-native-form]').forEach(window.bsNfApply);
+	}
 })();
