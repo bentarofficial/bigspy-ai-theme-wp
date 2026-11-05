@@ -930,6 +930,29 @@ document.addEventListener('wpcf7mailsent', function (e) {
 	}
 }, false);
 
+/* Built-in form price (G-58): live preview; the engine is assets/js/form-quote.js (loaded with priced forms). */
+function bsNfQuote(box, ctx) {
+	var cfg;
+	try { cfg = JSON.parse(box.getAttribute('data-bs-quote')); } catch (err) { return; }
+	if (!window.bsQuote) {
+		return;
+	}
+	var q = window.bsQuote.compute(cfg, ctx);
+	var body = box.querySelector('.bs-nf-quote__body');
+	var key = JSON.stringify(q);
+	if (body.getAttribute('data-last') === key) { return; }
+	body.setAttribute('data-last', key);
+	box.setAttribute('data-status', q.status);
+	var esc = function (s) { var d = document.createElement('span'); d.textContent = s; return d.innerHTML; };
+	if (q.status !== 'ok') {
+		body.innerHTML = '<p class="bs-nf-quote__status">' + esc(box.getAttribute(q.status === 'incomplete' ? 'data-msg-incomplete' : 'data-msg-error')) + '</p>';
+		return;
+	}
+	body.innerHTML = '<table class="bs-nf-quote__table"><tbody>' + q.lines.filter(function (l) { return l.amount !== 0; }).map(function (l) {
+		return '<tr><th scope="row">' + esc(l.label) + '</th><td>' + esc(window.bsQuote.money(l.amount, cfg)) + '</td></tr>';
+	}).join('') + '</tbody><tfoot><tr><th scope="row">' + esc(box.getAttribute('data-msg-total')) + '</th><td>' + esc(window.bsQuote.money(q.total, cfg)) + '</td></tr></tfoot></table>';
+}
+
 /* Built-in form conditions (G-57): show / require fields from other answers, same rules as the server. */
 function bsNfRule(r, v) {
 	var list = v === '' ? [] : v.split(', ');
@@ -946,7 +969,8 @@ function bsNfRule(r, v) {
 }
 function bsNfApply(form) {
 	var boxes = Array.prototype.slice.call(form.querySelectorAll('[data-bs-field]'));
-	if (!boxes.some(function (b) { return b.hasAttribute('data-bs-show') || b.hasAttribute('data-bs-req-when'); })) {
+	var quote = form.querySelector('[data-bs-quote]');
+	if (!quote && !boxes.some(function (b) { return b.hasAttribute('data-bs-show') || b.hasAttribute('data-bs-req-when'); })) {
 		return;
 	}
 	var byId = {}, memo = {};
@@ -977,6 +1001,7 @@ function bsNfApply(form) {
 		}
 		return memo[id] !== false;
 	};
+	var reqs = {};
 	boxes.forEach(function (b) {
 		var on = visible(b);
 		var rw = b.getAttribute('data-bs-req-when');
@@ -993,7 +1018,15 @@ function bsNfApply(form) {
 		if (mark) {
 			mark.hidden = !req;
 		}
+		reqs[b.getAttribute('data-bs-field')] = req;
 	});
+	if (quote) {
+		bsNfQuote(quote, {
+			visible: function (id) { return !!byId[id] && visible(byId[id]); },
+			required: function (id) { return !!reqs[id]; },
+			value: function (id) { return byId[id] ? value(byId[id]) : ''; }
+		});
+	}
 }
 document.addEventListener('input', function (e) { var f = e.target.closest && e.target.closest('[data-bs-native-form]'); if (f) { bsNfApply(f); } });
 document.addEventListener('change', function (e) { var f = e.target.closest && e.target.closest('[data-bs-native-form]'); if (f) { bsNfApply(f); } });
@@ -1052,6 +1085,10 @@ document.addEventListener('submit', function (e) {
 	data.append('bst_form_key', form.getAttribute('data-key'));
 	data.append('bst_form_post', form.getAttribute('data-post') || '0');
 	data.append('bst_form_ts', form.getAttribute('data-ts') || '0');
+	var qbox = form.querySelector('[data-bs-quote]');
+	if (qbox) {
+		data.append('bst_quote_rev', qbox.getAttribute('data-rev') || '');
+	}
 	form.classList.add('submitting');
 	if (btn) {
 		btn.disabled = true;
