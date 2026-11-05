@@ -7114,3 +7114,84 @@ msgstr "Hoàn tác lần lưu này"
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr "1.81.0: AI Designer nhanh và thông minh hơn: hồ sơ block và 42 công thức section có sẵn hiệu ứng, duyệt sơ đồ trang một lần rồi dựng nhiều section mỗi lượt, minh hoạ bằng SVG/HTML/CSS, chọn model và chuyên môn ngay trong chat, model nhanh cho Effort Thấp, đính kèm file, đo thời gian và chi phí từng lượt, ngữ cảnh tự lưu và tự học điều bạn nói áp dụng từ nay."
 
+msgid "This field is used in the conditions of:"
+msgstr "Trường này đang được dùng trong điều kiện của:"
+
+msgid "Change those conditions first."
+msgstr "Hãy sửa các điều kiện đó trước."
+
+msgid "Show only under conditions"
+msgstr "Chỉ hiện theo điều kiện"
+
+msgid "Action"
+msgstr "Hành động"
+
+msgid "Show when"
+msgstr "Hiện khi"
+
+msgid "Hide when"
+msgstr "Ẩn khi"
+
+msgid "Match"
+msgstr "Khớp"
+
+msgid "all rules"
+msgstr "tất cả quy tắc"
+
+msgid "any rule"
+msgstr "bất kỳ quy tắc nào"
+
+msgid "Field"
+msgstr "Trường"
+
+msgid "Missing field"
+msgstr "Trường không còn"
+
+msgid "Operator"
+msgstr "Phép so sánh"
+
+msgid "is"
+msgstr "là"
+
+msgid "is not"
+msgstr "không là"
+
+msgid "is empty"
+msgstr "để trống"
+
+msgid "is filled"
+msgstr "đã điền"
+
+msgid "contains"
+msgstr "có chứa"
+
+msgid "greater than"
+msgstr "lớn hơn"
+
+msgid "less than"
+msgstr "nhỏ hơn"
+
+msgid "Value"
+msgstr "Giá trị"
+
+msgid "Remove rule"
+msgstr "Xoá quy tắc"
+
+msgid "Add rule"
+msgstr "Thêm quy tắc"
+
+msgid "Fix the conditions of:"
+msgstr "Cần sửa điều kiện của:"
+
+msgid "loop"
+msgstr "vòng lặp"
+
+msgid "missing field"
+msgstr "thiếu trường"
+
+msgid "Until then these fields are always shown."
+msgstr "Trong lúc chờ sửa, các trường này luôn được hiện."
+
+msgid "conditional"
+msgstr "có điều kiện"
+

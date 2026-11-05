@@ -2725,6 +2725,38 @@
 		while (taken.indexOf(n) !== -1) { n = base + '-' + i++; }
 		return n;
 	}
+	/* G-57 schema: stable field IDs (same rule as bst_form_legacy_id in PHP) and condition checks. */
+	var NF_ID = /^[a-z][a-z0-9_]{1,31}$/;
+	function nfLegacyId(name) { return ('n_' + String(name).toLowerCase().replace(/[^a-z0-9]+/g, '_').slice(0, 29)).replace(/_+$/, ''); }
+	function nfNewId(taken) { var id; do { id = 'f_' + Math.random().toString(36).slice(2, 8); } while (taken.indexOf(id) !== -1); return id; }
+	function nfWithIds(list) {
+		var used = [];
+		return list.map(function (f) {
+			var id = f.id && NF_ID.test(f.id) ? f.id : nfLegacyId(f.name || 'field');
+			if (!NF_ID.test(id)) { id = 'n_field'; }
+			var base = id, i = 2;
+			while (used.indexOf(id) !== -1) { id = base.slice(0, 28) + '_' + i++; }
+			used.push(id);
+			return id === f.id ? f : Object.assign({}, f, { id: id });
+		});
+	}
+	function nfDeps(f) { return ((f.conditions && f.conditions.rules) || []).map(function (r) { return r.field; }); }
+	function nfProblems(list) {
+		var ids = list.map(function (f) { return f.id; }), out = {};
+		list.forEach(function (f) {
+			nfDeps(f).forEach(function (d) { if (d === f.id || ids.indexOf(d) === -1) { out[f.id] = 'ref'; } });
+		});
+		var left = {};
+		list.forEach(function (f) { left[f.id] = nfDeps(f).filter(function (d) { return d !== f.id; }); });
+		var moved = true;
+		while (moved) {
+			moved = false;
+			Object.keys(left).forEach(function (id) { if (!left[id].some(function (d) { return left[d]; })) { delete left[id]; moved = true; } });
+		}
+		Object.keys(left).forEach(function (id) { out[id] = 'cycle'; });
+		return out;
+	}
+	var NF_OPS = [['is', 'is'], ['is_not', 'is not'], ['empty', 'is empty'], ['not_empty', 'is filled'], ['contains', 'contains'], ['gt', 'greater than'], ['lt', 'less than']];
 	function NativeFormPanels(props) {
 		var a = props.attributes;
 		var T = 'bigspy-ai-theme-wp';
@@ -2733,11 +2765,15 @@
 		wp.element.useEffect(function () {
 			var patch = {};
 			if (!a.formKey) { patch.formKey = 'f' + Math.random().toString(36).slice(2, 10); }
-			if (!a.fields || !a.fields.length) { patch.fields = (D.fields || []).map(function (f) { return Object.assign({}, f); }); }
+			var base = a.fields && a.fields.length ? a.fields : (D.fields || []).map(function (f) { return Object.assign({}, f); });
+			var withIds = nfWithIds(base);
+			if (!a.fields || !a.fields.length || withIds.some(function (f, i) { return f !== base[i]; })) { patch.fields = withIds; }
+			if ((a.schemaVersion || 0) < 2) { patch.schemaVersion = 2; }
 			if (Object.keys(patch).length) { props.setAttributes(patch); }
 		}, []);
 		var tab = useState('fields');
 		var openField = useState(0);
+		var blocked = useState('');
 		var fields = a.fields && a.fields.length ? a.fields : (D.fields || []);
 		var setFields = function (next) { props.setAttributes({ fields: next }); };
 		var upd = function (i, key, v) {
@@ -2751,15 +2787,43 @@
 		var tog = function (key, label) { return el(c.ToggleControl, { label: label, checked: a[key] === undefined ? !!D[key] : !!a[key], onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true }); };
 		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]';
 		var TABS = [['fields', __('Fields', T)], ['mail', __('Mail', T)], ['mail2', __('Mail (2)', T)], ['messages', __('Messages', T)], ['actions', __('Actions', T)]];
+		var problems = nfProblems(fields);
+		var nameOf = function (id) { var x = fields.filter(function (y) { return y.id === id; })[0]; return x ? (x.label || x.name) : id; };
+		var nfConditionsUI = function (f, i) {
+			var cond = f.conditions || null;
+			var others = fields.filter(function (x) { return x.id !== f.id && x.type !== 'file'; });
+			var setCond = function (next) { var n = fields.slice(); n[i] = Object.assign({}, f); if (next) { n[i].conditions = next; } else { delete n[i].conditions; } setFields(n); };
+			var setRule = function (k, key, v) { var rules = cond.rules.slice(); rules[k] = Object.assign({}, rules[k]); rules[k][key] = v; setCond(Object.assign({}, cond, { rules: rules })); };
+			return el('div', { className: 'bst-nf-cond' },
+				el(c.ToggleControl, { label: __('Show only under conditions', T), disabled: !others.length, checked: !!cond, onChange: function (v) { setCond(v ? { action: 'show', match: 'all', rules: [{ field: others[0].id, op: 'not_empty', value: '' }] } : null); }, __nextHasNoMarginBottom: true }),
+				cond ? el(Fragment, null,
+					el('div', { className: 'bst-nf-row' },
+						el(c.SelectControl, { label: __('Action', T), value: cond.action || 'show', options: [{ value: 'show', label: __('Show when', T) }, { value: 'hide', label: __('Hide when', T) }], onChange: function (v) { setCond(Object.assign({}, cond, { action: v })); }, __nextHasNoMarginBottom: true }),
+						el(c.SelectControl, { label: __('Match', T), value: cond.match || 'all', options: [{ value: 'all', label: __('all rules', T) }, { value: 'any', label: __('any rule', T) }], onChange: function (v) { setCond(Object.assign({}, cond, { match: v })); }, __nextHasNoMarginBottom: true })
+					),
+					cond.rules.map(function (r, k) {
+						var exists = fields.some(function (x) { return x.id === r.field; });
+						return el('div', { key: k, className: 'bst-nf-rule' },
+							el(c.SelectControl, { label: __('Field', T), value: r.field, options: (exists ? [] : [{ value: r.field, label: '⚠ ' + __('Missing field', T) }]).concat(others.map(function (x) { return { value: x.id, label: x.label || x.name }; })), onChange: function (v) { setRule(k, 'field', v); }, __nextHasNoMarginBottom: true }),
+							el(c.SelectControl, { label: __('Operator', T), value: r.op, options: NF_OPS.map(function (o) { return { value: o[0], label: __(o[1], T) }; }), onChange: function (v) { setRule(k, 'op', v); }, __nextHasNoMarginBottom: true }),
+							['empty', 'not_empty'].indexOf(r.op) === -1 ? el(c.TextControl, { label: __('Value', T), value: r.value || '', onChange: function (v) { setRule(k, 'value', v); }, __nextHasNoMarginBottom: true }) : null,
+							el(c.Button, { size: 'small', isDestructive: true, icon: 'no-alt', label: __('Remove rule', T), onClick: function () { var rules = cond.rules.filter(function (x, j) { return j !== k; }); setCond(rules.length ? Object.assign({}, cond, { rules: rules }) : null); } })
+						);
+					}),
+					cond.rules.length < 10 ? el(c.Button, { variant: 'link', onClick: function () { setCond(Object.assign({}, cond, { rules: cond.rules.concat([{ field: others[0] ? others[0].id : '', op: 'is', value: '' }]) })); } }, __('Add rule', T)) : null
+				) : null
+			);
+		};
 		var body;
 		if (tab[0] === 'fields') {
 			body = el(Fragment, null,
+				Object.keys(problems).length ? el(c.Notice, { status: 'error', isDismissible: false }, __('Fix the conditions of:', T) + ' ' + Object.keys(problems).map(function (id) { return nameOf(id) + ' (' + (problems[id] === 'cycle' ? __('loop', T) : __('missing field', T)) + ')'; }).join(', ') + '. ' + __('Until then these fields are always shown.', T)) : null,
 				fields.map(function (f, i) {
 					var open = openField[0] === i;
 					var needsOpts = ['select', 'radio', 'checkbox', 'file'].indexOf(f.type) !== -1;
 					return el('div', { key: i, className: 'bst-nf-item' + (open ? ' is-open' : '') },
 						el('div', { className: 'bst-nf-item__head' },
-							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : ''))),
+							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : '') + (f.conditions ? ' · ' + __('conditional', T) : '') + (problems[f.id] ? ' ⚠' : ''))),
 							el(c.Button, { size: 'small', icon: 'arrow-up-alt2', label: __('Move up', T), disabled: i === 0, onClick: function () { move(i, -1); } }),
 							el(c.Button, { size: 'small', icon: 'arrow-down-alt2', label: __('Move down', T), disabled: i === fields.length - 1, onClick: function () { move(i, 1); } })
 						),
@@ -2773,11 +2837,21 @@
 								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
 								el(c.ToggleControl, { label: __('Half width', T), checked: f.width === 'half', onChange: function (v) { upd(i, 'width', v ? 'half' : 'full'); }, __nextHasNoMarginBottom: true })
 							),
-							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1); } }, __('Remove field', T))
+							nfConditionsUI(f, i),
+							blocked[0] && open ? el(c.Notice, { status: 'warning', isDismissible: true, onRemove: function () { blocked[1](''); } }, blocked[0]) : null,
+							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () {
+								var users = fields.filter(function (x) { return x.id !== f.id && nfDeps(x).indexOf(f.id) !== -1; });
+								if (users.length) {
+									blocked[1](__('This field is used in the conditions of:', T) + ' ' + users.map(function (x) { return x.label || x.name; }).join(', ') + '. ' + __('Change those conditions first.', T));
+									return;
+								}
+								blocked[1]('');
+								setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1);
+							} }, __('Remove field', T))
 						) : null
 					);
 				}),
-				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
+				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ id: nfNewId(fields.map(function (x) { return x.id; })), type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
 				txt('submitText', __('Send button text', T)),
 				txt('formName', __('Form name (shown in Form entries)', T))
 			);

@@ -3016,6 +3016,7 @@ input[type="submit"]:hover,
 .bs-native-form { display: flex; flex-wrap: wrap; gap: 0 16px; }
 .bs-native-form > * { flex: 1 1 100%; }
 .bs-native-form > .bs-nf-half { flex: 1 1 calc(50% - 8px); min-width: 200px; }
+.bs-native-form > [hidden] { display: none !important; }
 .bs-native-form .bs-nf-label { display: block; margin-bottom: 6px; font-weight: 600; font-size: .95em; }
 .bs-form--labels-hidden .bs-native-form .bs-nf-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .bs-native-form .bs-nf-req { color: #dc2626; }

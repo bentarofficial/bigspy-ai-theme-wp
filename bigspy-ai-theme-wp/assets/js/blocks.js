@@ -930,6 +930,76 @@ document.addEventListener('wpcf7mailsent', function (e) {
 	}
 }, false);
 
+/* Built-in form conditions (G-57): show/hide fields by other fields' values, same rules as the server. */
+(function () {
+	var valueOf = function (form, id) {
+		var wrap = form.querySelector('[data-bs-fid="' + id + '"]');
+		if (!wrap || wrap.hidden) {
+			return '';
+		}
+		var list = [];
+		wrap.querySelectorAll('input, select, textarea').forEach(function (c) {
+			if ((c.type === 'checkbox' || c.type === 'radio') ? c.checked : c.type !== 'file') {
+				var v = String(c.value).trim();
+				if (v !== '') {
+					list.push(v);
+				}
+			}
+		});
+		return list.join(', ');
+	};
+	var match = function (r, value) {
+		var parts = value === '' ? [] : value.split(', ');
+		var num = function (x) { return x !== '' && !isNaN(x); };
+		switch (r.op) {
+			case 'empty': return value === '';
+			case 'not_empty': return value !== '';
+			case 'is_not': return parts.indexOf(r.value) === -1 && value !== r.value;
+			case 'contains': return r.value !== '' && value.toLowerCase().indexOf(String(r.value).toLowerCase()) !== -1;
+			case 'gt': return num(value) && num(r.value) && parseFloat(value) > parseFloat(r.value);
+			case 'lt': return num(value) && num(r.value) && parseFloat(value) < parseFloat(r.value);
+			default: return parts.indexOf(r.value) !== -1 || value === r.value;
+		}
+	};
+	var apply = function (form) {
+		var wraps = form.querySelectorAll('[data-bs-cond]');
+		// Repeat so chains settle (a field hidden by another hidden field).
+		for (var pass = 0; pass <= wraps.length; pass++) {
+			var changed = false;
+			wraps.forEach(function (w) {
+				var c;
+				try { c = JSON.parse(w.getAttribute('data-bs-cond')); } catch (e) { return; }
+				var hits = (c.rules || []).map(function (r) { return match(r, valueOf(form, r.field)); });
+				var met = c.match === 'any' ? hits.indexOf(true) !== -1 : hits.indexOf(false) === -1;
+				var show = c.action === 'hide' ? !met : met;
+				if (w.hidden === show) {
+					w.hidden = !show;
+					changed = true;
+				}
+				w.querySelectorAll('input, select, textarea').forEach(function (ctl) { ctl.disabled = !show; });
+			});
+			if (!changed) {
+				break;
+			}
+		}
+	};
+	var all = function () { document.querySelectorAll('form[data-bs-native-form]').forEach(apply); };
+	var on = function (e) {
+		var form = e.target && e.target.closest && e.target.closest('form[data-bs-native-form]');
+		if (form && form.querySelector('[data-bs-cond]')) {
+			apply(form);
+		}
+	};
+	document.addEventListener('input', on);
+	document.addEventListener('change', on);
+	document.addEventListener('reset', function (e) { if (e.target.matches && e.target.matches('form[data-bs-native-form]')) { setTimeout(function () { apply(e.target); }, 0); } }, true);
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', all);
+	} else {
+		all();
+	}
+})();
+
 /* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */
 document.addEventListener('submit', function (e) {
 	var form = e.target;
@@ -956,7 +1026,7 @@ document.addEventListener('submit', function (e) {
 		wrap.appendChild(s);
 	};
 	var bad = false;
-	form.querySelectorAll('[required]').forEach(function (ctl) {
+	form.querySelectorAll('[required]:not(:disabled)').forEach(function (ctl) {
 		var empty = ctl.type === 'checkbox' ? !ctl.checked : !String(ctl.value).trim();
 		if (empty) {
 			bad = true;

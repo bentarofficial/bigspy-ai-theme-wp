@@ -63,6 +63,7 @@ function bst_native_form_settings( $a ) {
 	$d['fields'] = array_values( array_filter( (array) $d['fields'], function ( $f ) {
 		return is_array( $f ) && ! empty( $f['name'] );
 	} ) );
+	$d['fields'] = bst_form_schema_normalize( $d['fields'] );
 	return $d;
 }
 
@@ -129,7 +130,17 @@ function bst_native_form_markup( $a ) {
 	if ( ! $key ) {
 		return '';
 	}
-	$out = '';
+	$out   = '';
+	$start = array();
+	foreach ( $s['fields'] as $f ) {
+		$opts  = bst_native_field_options( $f );
+		$picks = array_values( array_intersect( $opts, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) ) );
+		if ( ! $picks && 'radio' === ( $f['type'] ?? '' ) && $opts ) {
+			$picks = array( $opts[0] );
+		}
+		$start[ sanitize_key( $f['name'] ) ] = implode( ', ', $picks );
+	}
+	$seen = bst_form_schema_visibility( $s['fields'], $start );
 	foreach ( $s['fields'] as $f ) {
 		$type  = in_array( $f['type'] ?? 'text', bst_native_field_types(), true ) ? $f['type'] : 'text';
 		$name  = sanitize_key( $f['name'] );
@@ -138,13 +149,14 @@ function bst_native_form_markup( $a ) {
 		$req   = ! empty( $f['required'] );
 		$attr  = ' name="' . esc_attr( $name ) . '"' . ( $req ? ' required aria-required="true"' : '' );
 		$width = 'half' === ( $f['width'] ?? 'full' ) ? ' bs-nf-half' : '';
+		$meta  = ' data-bs-fid="' . esc_attr( $f['id'] ) . '"' . ( empty( $f['conditions'] ) ? '' : ' data-bs-cond="' . esc_attr( wp_json_encode( $f['conditions'] ) ) . '"' ) . ( empty( $seen[ $f['id'] ] ) ? ' hidden' : '' );
 		$opts  = bst_native_field_options( $f );
 		$picks = array_intersect( $opts, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) );
 		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req ? ' <span class="bs-nf-req">*</span>' : '' ) . '</span>' : '';
 		if ( 'file' === $type ) {
 			$accept  = '.' . implode( ',.', bst_native_file_types( $f ) );
 			$control = '<input type="file" class="wpcf7-form-control wpcf7-file"' . $attr . ' accept="' . esc_attr( $accept ) . '">';
-			$out    .= '<p class="bs-nf-field bs-nf-file' . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+			$out    .= '<p class="bs-nf-field bs-nf-file' . $width . '"' . $meta . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 			continue;
 		}
 		switch ( $type ) {
@@ -173,7 +185,7 @@ function bst_native_form_markup( $a ) {
 			default:
 				$control = '<input type="' . esc_attr( $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . '>';
 		}
-		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $meta . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}
 	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
 	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
@@ -307,10 +319,26 @@ function bst_native_form_submit() {
 	}
 	set_transient( $rate, $hits + 1, MINUTE_IN_SECONDS );
 
+	// First pass: read every value; second pass: validate only the fields shown.
 	$values = array();
 	$errors = array();
 	$files  = array(); // Name => PHP temp path: mailed as attachments, never stored on the site.
+	$raws   = array();
 	foreach ( $s['fields'] as $f ) {
+		$n = sanitize_key( $f['name'] );
+		if ( 'file' === ( $f['type'] ?? 'text' ) ) {
+			$raws[ $n ] = '';
+			continue;
+		}
+		$raw = $_POST[ $n ] ?? ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$raws[ $n ] = is_array( $raw ) ? implode( ', ', array_map( 'sanitize_text_field', wp_unslash( $raw ) ) ) : sanitize_text_field( wp_unslash( $raw ) );
+	}
+	$seen = bst_form_schema_visibility( $s['fields'], $raws );
+	foreach ( $s['fields'] as $f ) {
+		if ( empty( $seen[ $f['id'] ] ) ) {
+			$values[ sanitize_key( $f['name'] ) ] = ''; // Hidden by a condition: skipped and kept empty.
+			continue;
+		}
 		$n    = sanitize_key( $f['name'] );
 		$type = $f['type'] ?? 'text';
 		if ( 'file' === $type ) {

@@ -314,6 +314,10 @@
 		"saveEntries": {
 			"type": "boolean",
 			"default": true
+		},
+		"schemaVersion": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"supports": {
