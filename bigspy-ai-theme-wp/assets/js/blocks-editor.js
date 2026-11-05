@@ -2718,7 +2718,7 @@
 	 * Built-in form (provider "bigspy"): Contact Form 7 style tabs inside the block –
 	 * Fields, Mail, Mail (2), Messages, Actions. Empty texts fall back to the defaults.
 	 */
-	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL'], ['file', 'File upload']];
+	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL'], ['file', 'File upload'], ['calc', 'Price (formula)']];
 	function nfSlug(label, taken) {
 		var base = String(label || 'field').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'field';
 		var n = base, i = 2;
@@ -2740,7 +2740,36 @@
 			return id === f.id ? f : Object.assign({}, f, { id: id });
 		});
 	}
-	function nfDeps(f) { return ((f.conditions && f.conditions.rules) || []).map(function (r) { return r.field; }); }
+	function nfRefs(src) { var out = [], m, re = /\{([a-z][a-z0-9_]{1,31})\}/g; while ((m = re.exec(String(src || '')))) { if (out.indexOf(m[1]) === -1) { out.push(m[1]); } } return out; }
+	function nfDeps(f) { return ((f.conditions && f.conditions.rules) || []).map(function (r) { return r.field; }).concat(f.type === 'calc' ? nfRefs(f.formula) : []); }
+	/* Quick editor check of a formula; the full parser runs on the server and in the page (inc/form-calc.php). */
+	function nfFormulaError(src, ids) {
+		src = String(src || '').trim();
+		if (!src) { return 'empty'; }
+		if (src.length > 500) { return 'too long'; }
+		var bare = src.replace(/\{[a-z][a-z0-9_]{1,31}\}/g, '0');
+		if (/[^0-9.\s+\-*\/(),<>=!&|a-z]/.test(bare)) { return 'character'; }
+		var fn = bare.match(/[a-z]+/g) || [];
+		if (fn.some(function (n) { return ['min', 'max', 'round', 'ceil', 'floor', 'abs', 'if'].indexOf(n) === -1; })) { return 'function'; }
+		var depth = 0;
+		for (var k = 0; k < bare.length; k++) { depth += bare[k] === '(' ? 1 : (bare[k] === ')' ? -1 : 0); if (depth < 0) { return 'brackets'; } }
+		if (depth) { return 'brackets'; }
+		if (nfRefs(src).some(function (r) { return ids.indexOf(r) === -1; })) { return 'missing field'; }
+		return '';
+	}
+	/* Laundry quote preset (G-58). Prices are demo values the admin must replace. */
+	function nfLaundryPreset(taken) {
+		var id = function () { var x = nfNewId(taken); taken.push(x); return x; };
+		var kg = id(), ship = id(), fast = id(), wash = id(), rush = id(), total = id();
+		return [
+			{ id: kg, type: 'number', name: 'so-kg', label: 'Khối lượng (kg)', placeholder: 'VD: 3', required: true, min: 0.5, max: 200, width: 'half' },
+			{ id: ship, type: 'checkbox', name: 'giao-nhan', label: 'Giao nhận', options: 'Giao nhận tận nơi', optionPrices: { 'Giao nhận tận nơi': 25000 }, width: 'half' },
+			{ id: fast, type: 'checkbox', name: 'giat-nhanh', label: 'Tuỳ chọn', options: 'Giặt nhanh (+20% tiền giặt)', optionPrices: { 'Giặt nhanh (+20% tiền giặt)': 1 }, width: 'full' },
+			{ id: wash, type: 'calc', name: 'tien-giat', label: 'Tiền giặt (18.000 ₫/kg – giá demo)', formula: '{' + kg + '} * 18000', width: 'half' },
+			{ id: rush, type: 'calc', name: 'phu-phi-nhanh', label: 'Phụ phí giặt nhanh', formula: 'if({' + fast + '} > 0, {' + wash + '} * 0.2, 0)', width: 'half' },
+			{ id: total, type: 'calc', name: 'tong-tam-tinh', label: 'Tổng tạm tính', formula: '{' + wash + '} + {' + rush + '} + {' + ship + '}', isTotal: true, width: 'full' }
+		];
+	}
 	function nfProblems(list) {
 		var ids = list.map(function (f) { return f.id; }), out = {};
 		list.forEach(function (f) {
@@ -2785,10 +2814,41 @@
 			return el(ctl, { label: label, help: help, rows: rows, value: a[key] || '', placeholder: D[key] || '', onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true });
 		};
 		var tog = function (key, label) { return el(c.ToggleControl, { label: label, checked: a[key] === undefined ? !!D[key] : !!a[key], onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true }); };
-		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]';
+		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + (fields.some(function (f) { return f.type === 'calc'; }) ? ' [_quote]' : '') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]';
 		var TABS = [['fields', __('Fields', T)], ['mail', __('Mail', T)], ['mail2', __('Mail (2)', T)], ['messages', __('Messages', T)], ['actions', __('Actions', T)]];
 		var problems = nfProblems(fields);
 		var nameOf = function (id) { var x = fields.filter(function (y) { return y.id === id; })[0]; return x ? (x.label || x.name) : id; };
+		var nfPriceUI = function (f, i) {
+			var ids = fields.map(function (x) { return x.id; });
+			if (f.type === 'calc') {
+				var err = nfFormulaError(f.formula, ids);
+				var self = nfRefs(f.formula).indexOf(f.id) !== -1;
+				return el('div', { className: 'bst-nf-calc-edit' },
+					el(c.TextareaControl, { label: __('Formula', T), rows: 2, value: f.formula || '', placeholder: '{f_kg} * 18000', help: __('Use + - * / ( ), min, max, round, ceil, floor, abs, if(condition, a, b). Click a field to insert it.', T), onChange: function (v) { upd(i, 'formula', v); }, __nextHasNoMarginBottom: true }),
+					el('div', { className: 'bst-nf-chips' }, fields.filter(function (x) { return x.id !== f.id && ['number', 'select', 'radio', 'checkbox', 'acceptance', 'calc'].indexOf(x.type) !== -1; }).map(function (x) {
+						return el(c.Button, { key: x.id, size: 'small', variant: 'secondary', onClick: function () { upd(i, 'formula', String(f.formula || '') + (f.formula ? ' ' : '') + '{' + x.id + '}'); } }, x.label || x.name);
+					})),
+					err || self ? el(c.Notice, { status: 'error', isDismissible: false }, __('Formula problem:', T) + ' ' + (self ? __('uses itself', T) : __(err, T))) : el('p', { className: 'description' }, '✓ ' + __('Formula is valid. Prices are checked again on the server when the form is sent.', T)),
+					el(c.ToggleControl, { label: __('This is the total', T), checked: !!f.isTotal, onChange: function (v) { upd(i, 'isTotal', v); }, __nextHasNoMarginBottom: true })
+				);
+			}
+			if (f.type === 'number') {
+				return el('div', { className: 'bst-nf-row' },
+					el(c.TextControl, { label: __('Minimum', T), type: 'number', value: f.min === undefined ? '' : f.min, onChange: function (v) { upd(i, 'min', v === '' ? '' : Number(v)); }, __nextHasNoMarginBottom: true }),
+					el(c.TextControl, { label: __('Maximum', T), type: 'number', value: f.max === undefined ? '' : f.max, onChange: function (v) { upd(i, 'max', v === '' ? '' : Number(v)); }, __nextHasNoMarginBottom: true })
+				);
+			}
+			if (['select', 'radio', 'checkbox'].indexOf(f.type) === -1) { return null; }
+			var opts = String(f.options || '').split(/\r\n|\r|\n|,/).map(function (o) { return o.trim(); }).filter(Boolean);
+			var prices = f.optionPrices || {};
+			return el('details', { className: 'bst-nf-prices' },
+				el('summary', null, __('Prices per option (for formulas)', T)),
+				el('p', { className: 'description' }, __('Leave empty when an option has no price: the total then shows “Price needs confirmation”. For a flag, use 1.', T)),
+				opts.map(function (o) {
+					return el(c.TextControl, { key: o, label: o, type: 'number', value: prices[o] === undefined ? '' : prices[o], onChange: function (v) { var n = Object.assign({}, prices); if (v === '') { delete n[o]; } else { n[o] = Number(v); } upd(i, 'optionPrices', n); }, __nextHasNoMarginBottom: true });
+				})
+			);
+		};
 		var nfConditionsUI = function (f, i) {
 			var cond = f.conditions || null;
 			var others = fields.filter(function (x) { return x.id !== f.id && x.type !== 'file'; });
@@ -2830,8 +2890,9 @@
 						open ? el('div', { className: 'bst-nf-item__body' },
 							el(c.SelectControl, { label: __('Type', T), value: f.type, options: NF_TYPES.map(function (t) { return { value: t[0], label: t[1] }; }), onChange: function (v) { upd(i, 'type', v); }, __nextHasNoMarginBottom: true }),
 							el(c.TextControl, { label: __('Label', T), value: f.label || '', onChange: function (v) { upd(i, 'label', v); }, __nextHasNoMarginBottom: true }),
-							el(c.TextControl, { label: f.type === 'acceptance' ? __('Consent text', T) : __('Placeholder', T), value: f.placeholder || '', onChange: function (v) { upd(i, 'placeholder', v); }, __nextHasNoMarginBottom: true }),
+							f.type === 'calc' ? null : el(c.TextControl, { label: f.type === 'acceptance' ? __('Consent text', T) : __('Placeholder', T), value: f.placeholder || '', onChange: function (v) { upd(i, 'placeholder', v); }, __nextHasNoMarginBottom: true }),
 							needsOpts ? el(c.TextareaControl, { label: __('Options (one per line)', T), value: f.options || '', rows: 4, onChange: function (v) { upd(i, 'options', v); }, __nextHasNoMarginBottom: true }) : null,
+							nfPriceUI(f, i),
 							el(c.TextControl, { label: __('Field name (mail tag)', T), help: '[' + f.name + ']', value: f.name, onChange: function (v) { var n = fields.slice(); n[i] = Object.assign({}, f, { name: nfSlug(v, []), lockName: true }); setFields(n); }, __nextHasNoMarginBottom: true }),
 							el('div', { className: 'bst-nf-row' },
 								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
@@ -2853,7 +2914,13 @@
 				}),
 				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ id: nfNewId(fields.map(function (x) { return x.id; })), type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
 				txt('submitText', __('Send button text', T)),
-				txt('formName', __('Form name (shown in Form entries)', T))
+				txt('formName', __('Form name (shown in Form entries)', T)),
+				fields.some(function (x) { return x.type === 'calc'; }) ? el('div', { className: 'bst-nf-row' },
+					txt('priceCurrency', __('Currency', T), 'VND, USD…'),
+					el(c.TextControl, { label: __('Decimals', T), type: 'number', min: 0, max: 4, value: a.priceDecimals === undefined ? '' : a.priceDecimals, placeholder: 'auto', onChange: function (v) { props.setAttributes({ priceDecimals: v }); }, __nextHasNoMarginBottom: true })
+				) : null,
+				fields.some(function (x) { return x.type === 'calc'; }) ? txt('priceNote', __('Note under the total', T)) : null,
+				el(c.Button, { variant: 'tertiary', icon: 'calculator', onClick: function () { var n = fields.concat(nfLaundryPreset(fields.map(function (x) { return x.id; }))); setFields(n); if (!a.submitText) { props.setAttributes({ fields: n, submitText: 'Gửi yêu cầu báo giá' }); } } }, __('Add laundry quote preset (demo prices)', T))
 			);
 		} else if (tab[0] === 'mail') {
 			body = el(Fragment, null,

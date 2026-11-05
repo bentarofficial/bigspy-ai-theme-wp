@@ -13,6 +13,24 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Kiểm thử:** `php tools/tests/form-schema-check.php` 19/19 đạt (đổi nhãn/tên/thứ tự, xoá trường đang dùng, vòng lặp, migration lặp). Đã thử luồng gửi trên server với WP giả lập (form cũ, trường ẩn, gửi giá trị giả cho trường ẩn) và JS phía khách trong Chromium 375px. Chưa thử editor trong Playground vì môi trường không tải được WordPress.
 - **Khi phát hành cần bổ sung:** Có gì mới (điều kiện trường Form); kiến thức AI về `id`/`conditions` để ở G-59.
 
+### G-58 — Form tính giá/báo giá native
+
+- **Yêu cầu/tính năng:** Form native hiện giá tạm tính ngay khi khách chọn. Khi gửi, server tính lại từ cấu hình đã lưu, mail/entry dùng cùng một bản tính.
+- **Đã thay đổi:**
+  - `inc/form-calc.php` (mới): bộ tính công thức giới hạn, không dùng eval. Cho phép số, `{id trường}`, `+ - * / ( )`, so sánh, `&& ||` và các hàm `min/max/round/ceil/floor/abs/if`. Chặn chia 0, NaN, vượt 1e12 và tổng âm. Làm tròn half-up theo số lẻ của tiền tệ (VND 0).
+  - Có loại trường `calc` (dòng giá, có thể đánh dấu là tổng). Trường chọn lựa có `optionPrices`; trường số có min/max và nhận "1,5".
+  - Bản JS tương ứng trong `blocks.js` cập nhật giá realtime, chống nhảy số khi gõ nhanh; ô tổng có live region.
+  - Server không đọc giá trị dòng giá do trình duyệt gửi. Mail có tag `[_quote]`; entry lưu snapshot `_bst_quote` (dòng giá, tiền tệ, revision, thời điểm, trạng thái estimate/needs_confirmation).
+  - Editor: soạn công thức, bấm để chèn trường, kiểm tra nhanh lỗi, toggle tổng, giá theo lựa chọn, tiền tệ/số lẻ/ghi chú, nút mẫu giặt là (giá demo). Công thức cũng tính là phụ thuộc trong schema G-57 (chặn xoá trường đang dùng, báo vòng lặp).
+- **Kiểm thử:**
+  - `php tools/tests/form-calc-check.php` và `node tools/tests/form-calc-check.cjs` cùng chạy 17 fixture trong `form-calc-fixtures.json`, PHP và JS cho cùng kết quả. Fixture gồm case nghiệm thu 79.000/89.800, 1,5 kg, thiếu dữ liệu, trường ẩn, chia 0, gọi script, số âm/quá lớn, USD 2 số lẻ.
+  - Luồng gửi trên server với WP giả lập: gửi tổng giả bị bỏ qua, lựa chọn lạ và số âm bị từ chối.
+  - Chromium 375px: giá cập nhật đúng, không tràn ngang.
+  - G-57 không hồi quy.
+  - Chưa thử editor trong Playground (môi trường chặn wordpress.org).
+- **Giới hạn:** giá theo lựa chọn gắn với nhãn lựa chọn, nên đổi nhãn thì phải nhập lại giá. Chưa có hạn hiệu lực quote hay xác nhận lại khi giá đổi (phần đó thuộc luồng booking G-62). JS tắt thì form không gửi được, giống trước đây.
+- **Khi phát hành cần bổ sung:** Có gì mới (form tính giá); hướng dẫn công thức; kiến thức AI để ở G-59.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

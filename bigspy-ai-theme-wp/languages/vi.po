@@ -7195,3 +7195,78 @@ msgstr "Trong lúc chờ sửa, các trường này luôn được hiện."
 msgid "conditional"
 msgstr "có điều kiện"
 
+msgid "Choose more details to see the price"
+msgstr "Chọn thêm thông tin để tính giá"
+
+msgid "Price needs confirmation"
+msgstr "Cần xác nhận giá"
+
+msgid "Price:"
+msgstr "Giá:"
+
+msgid "estimate computed by the server when the form was sent"
+msgstr "tạm tính do máy chủ tính lại khi gửi form"
+
+msgid "needs confirmation (an input had no price)"
+msgstr "cần xác nhận (có lựa chọn chưa có giá)"
+
+msgid "Currency"
+msgstr "Tiền tệ"
+
+msgid "Decimals"
+msgstr "Số chữ số thập phân"
+
+msgid "Note under the total"
+msgstr "Ghi chú dưới tổng"
+
+msgid "Add laundry quote preset (demo prices)"
+msgstr "Thêm mẫu báo giá giặt là (giá demo)"
+
+msgid "Formula"
+msgstr "Công thức"
+
+msgid "Use + - * / ( ), min, max, round, ceil, floor, abs, if(condition, a, b). Click a field to insert it."
+msgstr "Dùng + - * / ( ), min, max, round, ceil, floor, abs, if(điều kiện, a, b). Bấm vào tên trường để chèn."
+
+msgid "Formula problem:"
+msgstr "Công thức có lỗi:"
+
+msgid "uses itself"
+msgstr "tự tham chiếu chính nó"
+
+msgid "Formula is valid. Prices are checked again on the server when the form is sent."
+msgstr "Công thức hợp lệ. Giá được máy chủ tính lại khi gửi form."
+
+msgid "This is the total"
+msgstr "Đây là tổng"
+
+msgid "Minimum"
+msgstr "Tối thiểu"
+
+msgid "Maximum"
+msgstr "Tối đa"
+
+msgid "Prices per option (for formulas)"
+msgstr "Giá theo từng lựa chọn (dùng trong công thức)"
+
+msgid "Leave empty when an option has no price: the total then shows “Price needs confirmation”. For a flag, use 1."
+msgstr "Để trống nếu lựa chọn chưa có giá: tổng sẽ hiện “Cần xác nhận giá”. Dùng 1 cho lựa chọn kiểu bật/tắt."
+
+msgid "empty"
+msgstr "đang trống"
+
+msgid "too long"
+msgstr "quá dài"
+
+msgid "character"
+msgstr "có ký tự không hợp lệ"
+
+msgid "function"
+msgstr "có hàm không được phép"
+
+msgid "brackets"
+msgstr "ngoặc chưa khớp"
+
+msgid "Price (formula)"
+msgstr "Giá (công thức)"
+

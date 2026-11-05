@@ -318,6 +318,18 @@
 		"schemaVersion": {
 			"type": "number",
 			"default": 0
+		},
+		"priceCurrency": {
+			"type": "string",
+			"default": ""
+		},
+		"priceDecimals": {
+			"type": "string",
+			"default": ""
+		},
+		"priceNote": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

@@ -600,6 +600,10 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-nf-item__title small { color: #757575; }
 .bst-nf-item__body { display: grid; gap: 10px; padding: 10px; border-top: 1px solid #f0f0f1; }
 .bst-nf-row { display: flex; gap: 16px; }
+.bst-nf-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 8px; }
+.bst-nf-prices { margin: 8px 0; }
+.bst-nf-prices > summary { cursor: pointer; font-weight: 600; }
+.bst-nf-calc-edit, .bst-nf-cond { margin: 8px 0; }
 .bst-nf-tags { display: block; margin-top: 4px; padding: 6px; font-size: 11px; line-height: 1.6; white-space: normal; word-break: break-word; }
 .bst-nf-panel .components-base-control { margin-bottom: 10px; }
 

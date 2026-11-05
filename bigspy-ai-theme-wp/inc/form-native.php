@@ -49,6 +49,9 @@ function bst_native_form_defaults() {
 		'redirectNewTab'   => false,
 		'saveEntries'      => true,
 		'formName'         => '',
+		'priceCurrency'    => 'VND',
+		'priceDecimals'    => '',
+		'priceNote'        => 'Giá tạm tính, chưa phải xác nhận cuối cùng.',
 	);
 }
 
@@ -69,7 +72,7 @@ function bst_native_form_settings( $a ) {
 
 /** Field types the engine renders. */
 function bst_native_field_types() {
-	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file' );
+	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file', 'calc' );
 }
 
 /** Choices of a select, radio or checkbox field. */
@@ -114,7 +117,8 @@ function bst_native_field_error( $f, $v, $s ) {
 	if ( 'url' === $type ) {
 		$ok = (bool) wp_http_validate_url( $v );
 	} elseif ( 'number' === $type ) {
-		$ok = is_numeric( $v );
+		$num = bst_calc_number( $v );
+		$ok  = null !== $num && ( ! isset( $f['min'] ) || '' === $f['min'] || $num >= (float) $f['min'] ) && ( ! isset( $f['max'] ) || '' === $f['max'] || $num <= (float) $f['max'] ) && abs( $num ) <= bst_calc_limit();
 	} elseif ( 'date' === $type ) {
 		$ok = (bool) preg_match( '/^\d{4}-\d{2}-\d{2}$/', $v );
 	} elseif ( in_array( $type, array( 'select', 'radio', 'checkbox' ), true ) && bst_native_field_options( $f ) ) {
@@ -141,6 +145,15 @@ function bst_native_form_markup( $a ) {
 		$start[ sanitize_key( $f['name'] ) ] = implode( ', ', $picks );
 	}
 	$seen = bst_form_schema_visibility( $s['fields'], $start );
+	$cur  = bst_calc_currency( $s );
+	$wait = __( 'Choose more details to see the price', 'bigspy-ai-theme-wp' );
+	$calc = array();
+	foreach ( $s['fields'] as $f ) {
+		if ( 'calc' === ( $f['type'] ?? '' ) || bst_calc_option_prices( $f ) || 'number' === ( $f['type'] ?? '' ) ) {
+			$calc[] = array_intersect_key( $f, array_flip( array( 'id', 'type', 'name', 'formula', 'isTotal', 'optionPrices' ) ) );
+		}
+	}
+	$has_calc = (bool) array_filter( $calc, function ( $f ) { return 'calc' === $f['type']; } );
 	foreach ( $s['fields'] as $f ) {
 		$type  = in_array( $f['type'] ?? 'text', bst_native_field_types(), true ) ? $f['type'] : 'text';
 		$name  = sanitize_key( $f['name'] );
@@ -153,6 +166,15 @@ function bst_native_form_markup( $a ) {
 		$opts  = bst_native_field_options( $f );
 		$picks = array_intersect( $opts, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) );
 		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req ? ' <span class="bs-nf-req">*</span>' : '' ) . '</span>' : '';
+		if ( 'calc' === $type ) {
+			$total = ! empty( $f['isTotal'] );
+			$out  .= '<p class="bs-nf-field bs-nf-calc' . ( $total ? ' bs-nf-calc--total' : '' ) . $width . '"' . $meta . '><span class="bs-nf-label" id="bs-nf-' . esc_attr( $key . '-' . $f['id'] ) . '">' . esc_html( $label ) . '</span><output class="bs-nf-calc__value" data-bs-calc-out aria-labelledby="bs-nf-' . esc_attr( $key . '-' . $f['id'] ) . '"' . ( $total ? ' aria-live="polite"' : '' ) . '>' . esc_html( $wait ) . '</output>' . ( $total && $s['priceNote'] ? '<small class="bs-nf-calc__note">' . esc_html( $s['priceNote'] ) . '</small>' : '' ) . '</p>';
+			continue;
+		}
+		$prices = bst_calc_option_prices( $f );
+		$tag    = function ( $o ) use ( $prices, $cur ) {
+			return isset( $prices[ $o ] ) && 0.0 !== (float) $prices[ $o ] && 1.0 !== (float) $prices[ $o ] ? ' <span class="bs-nf-price">' . ( $prices[ $o ] > 0 ? '+' : '' ) . esc_html( bst_calc_money( $prices[ $o ], $cur ) ) . '</span>' : '';
+		};
 		if ( 'file' === $type ) {
 			$accept  = '.' . implode( ',.', bst_native_file_types( $f ) );
 			$control = '<input type="file" class="wpcf7-form-control wpcf7-file"' . $attr . ' accept="' . esc_attr( $accept ) . '">';
@@ -166,7 +188,7 @@ function bst_native_form_markup( $a ) {
 			case 'select':
 				$control = '<select class="wpcf7-form-control wpcf7-select"' . $attr . '>' . ( $ph ? '<option value="">' . esc_html( $ph ) . '</option>' : '' );
 				foreach ( $opts as $o ) {
-					$control .= '<option value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) ? ' selected' : '' ) . '>' . esc_html( $o ) . '</option>';
+					$control .= '<option value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) ? ' selected' : '' ) . '>' . esc_html( $o ) . wp_strip_all_tags( $tag( $o ) ) . '</option>';
 				}
 				$control .= '</select>';
 				break;
@@ -174,7 +196,7 @@ function bst_native_form_markup( $a ) {
 			case 'checkbox':
 				$control = '<span class="wpcf7-form-control wpcf7-' . $type . '">';
 				foreach ( $opts as $i => $o ) {
-					$control .= '<span class="wpcf7-list-item"><label><input type="' . $type . '" name="' . esc_attr( $name ) . ( 'checkbox' === $type ? '[]' : '' ) . '" value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) || ( ! $picks && 'radio' === $type && 0 === $i ) ? ' checked' : '' ) . '> <span class="wpcf7-list-item-label">' . esc_html( $o ) . '</span></label></span>';
+					$control .= '<span class="wpcf7-list-item"><label><input type="' . $type . '" name="' . esc_attr( $name ) . ( 'checkbox' === $type ? '[]' : '' ) . '" value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) || ( ! $picks && 'radio' === $type && 0 === $i ) ? ' checked' : '' ) . '> <span class="wpcf7-list-item-label">' . esc_html( $o ) . $tag( $o ) . '</span></label></span>';
 				}
 				$control .= '</span>';
 				break;
@@ -183,14 +205,14 @@ function bst_native_form_markup( $a ) {
 				$lab     = '';
 				break;
 			default:
-				$control = '<input type="' . esc_attr( $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . '>';
+				$control = '<input type="' . esc_attr( $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . ( 'number' === $type ? ' step="any" inputmode="decimal"' . ( isset( $f['min'] ) && '' !== $f['min'] ? ' min="' . esc_attr( $f['min'] ) . '"' : '' ) . ( isset( $f['max'] ) && '' !== $f['max'] ? ' max="' . esc_attr( $f['max'] ) . '"' : '' ) : '' ) . '>';
 		}
 		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $meta . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}
 	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
 	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
 	$out .= '<div class="wpcf7-response-output" aria-live="polite" hidden></div>';
-	return '<form class="wpcf7-form bs-native-form" method="post" action="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" novalidate data-bs-native-form data-key="' . esc_attr( $key ) . '" data-post="' . esc_attr( (string) get_queried_object_id() ) . '" data-ts="' . esc_attr( (string) time() ) . '" data-msg-required="' . esc_attr( $s['msgRequired'] ) . '" data-msg-email="' . esc_attr( $s['msgEmail'] ) . '" data-msg-tel="' . esc_attr( $s['msgTel'] ) . '"' . ( $s['redirectNewTab'] ? ' data-new-tab="1"' : '' ) . '>' . $out . '</form>';
+	return '<form class="wpcf7-form bs-native-form" method="post" action="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" novalidate data-bs-native-form data-key="' . esc_attr( $key ) . '" data-post="' . esc_attr( (string) get_queried_object_id() ) . '" data-ts="' . esc_attr( (string) time() ) . '" data-msg-required="' . esc_attr( $s['msgRequired'] ) . '" data-msg-email="' . esc_attr( $s['msgEmail'] ) . '" data-msg-tel="' . esc_attr( $s['msgTel'] ) . '"' . ( $s['redirectNewTab'] ? ' data-new-tab="1"' : '' ) . ( $has_calc ? ' data-bs-calc="' . esc_attr( wp_json_encode( array( 'cur' => $cur, 'fields' => $calc, 'wait' => $wait, 'check' => __( 'Price needs confirmation', 'bigspy-ai-theme-wp' ) ) ) ) . '"' : '' ) . '>' . $out . '</form>';
 }
 
 /** Find the saved Form block with this key (the page shown, then any post that contains it). */
@@ -248,6 +270,7 @@ function bst_native_form_tags( $text, $values, $fields, $exclude_blank, $html = 
 	}
 	$map = array(
 		'[all-fields]'         => implode( $html ? '' : "\n", $all ),
+		'[_quote]'             => $html ? nl2br( esc_html( bst_native_form_quote_text() ) ) : bst_native_form_quote_text(),
 		'[_site_title]'        => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
 		'[_site_url]'          => home_url( '/' ),
 		'[_site_domain]'       => preg_replace( '/^www\./', '', (string) $host ),
@@ -326,8 +349,8 @@ function bst_native_form_submit() {
 	$raws   = array();
 	foreach ( $s['fields'] as $f ) {
 		$n = sanitize_key( $f['name'] );
-		if ( 'file' === ( $f['type'] ?? 'text' ) ) {
-			$raws[ $n ] = '';
+		if ( in_array( $f['type'] ?? 'text', array( 'file', 'calc' ), true ) ) {
+			$raws[ $n ] = ''; // Price lines are never read from the browser.
 			continue;
 		}
 		$raw = $_POST[ $n ] ?? ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -341,6 +364,10 @@ function bst_native_form_submit() {
 		}
 		$n    = sanitize_key( $f['name'] );
 		$type = $f['type'] ?? 'text';
+		if ( 'calc' === $type ) {
+			$values[ $n ] = '';
+			continue;
+		}
 		if ( 'file' === $type ) {
 			$up = $_FILES[ $n ] ?? null; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput
 			$v  = '';
@@ -378,12 +405,18 @@ function bst_native_form_submit() {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgInvalid'], 'errors' => $errors ) );
 	}
 
+	$quote = bst_native_form_quote( $s, $values, $seen );
+	foreach ( $quote['lines'] as $line ) {
+		$values[ $line['name'] ] = $line['text'];
+	}
+	bst_native_form_quote_text( $quote['text'] );
+
 	$sent = bst_native_form_send( 'mail', $s, $values, $files );
 	if ( $sent && ! empty( $s['mail2Active'] ) ) {
 		bst_native_form_send( 'mail2', $s, $values );
 	}
 	if ( ! empty( $s['saveEntries'] ) ) {
-		bst_native_form_save_entry( $s, $values, (int) ( $a['__post'] ?? 0 ), $sent );
+		bst_native_form_save_entry( $s, $values, (int) ( $a['__post'] ?? 0 ), $sent, $quote['snapshot'] );
 	}
 	if ( ! $sent ) {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgError'] ) );
@@ -391,6 +424,9 @@ function bst_native_form_submit() {
 	$redirect = esc_url_raw( (string) ( $a['redirectUrl'] ?? '' ) );
 	if ( $redirect && ! empty( $s['redirectPass'] ) ) {
 		$redirect = add_query_arg( array_map( 'rawurlencode', $values ), $redirect );
+	}
+	if ( $quote['snapshot'] ) {
+		wp_send_json( array( 'ok' => true, 'message' => $s['msgSuccess'], 'redirect' => $redirect, 'quote' => $quote['snapshot'] ) );
 	}
 	wp_send_json( array( 'ok' => true, 'message' => $s['msgSuccess'], 'redirect' => $redirect ) );
 }
@@ -424,7 +460,52 @@ add_action(
 	}
 );
 
-function bst_native_form_save_entry( $s, $values, $post_id, $sent ) {
+/**
+ * Server price of a submission: every line recomputed from the saved form.
+ * Returns lines (for mail tags), the [_quote] text and the snapshot kept with the entry.
+ */
+function bst_native_form_quote( $s, $values, $seen ) {
+	$out = array( 'lines' => array(), 'text' => '', 'snapshot' => null );
+	$has = array_filter( $s['fields'], function ( $f ) { return 'calc' === ( $f['type'] ?? '' ); } );
+	if ( ! $has ) {
+		return $out;
+	}
+	$cur  = bst_calc_currency( $s );
+	$q    = bst_calc_quote( $s['fields'], $values, $seen, $cur );
+	$snap = array( 'currency' => $cur['code'], 'decimals' => $cur['decimals'], 'lines' => array(), 'total' => null, 'status' => 'estimate', 'revision' => md5( wp_json_encode( $s['fields'] ) ), 'time' => time() );
+	$text = array();
+	foreach ( $has as $f ) {
+		if ( empty( $seen[ $f['id'] ] ) ) {
+			continue;
+		}
+		$line = $q['lines'][ $f['id'] ] ?? array( 'error', 0 );
+		$ok   = 'ok' === $line[0];
+		$str  = $ok ? bst_calc_money( $line[1], $cur ) : __( 'Price needs confirmation', 'bigspy-ai-theme-wp' );
+		$out['lines'][]   = array( 'name' => sanitize_key( $f['name'] ), 'text' => $str );
+		$snap['lines'][]  = array( 'id' => $f['id'], 'label' => (string) ( $f['label'] ?? '' ), 'state' => $line[0], 'amount' => $ok ? $line[1] : null );
+		$text[]           = ( ! empty( $f['label'] ) ? $f['label'] : $f['name'] ) . ': ' . $str;
+		if ( $f['id'] === $q['total'] ) {
+			$snap['total'] = $ok ? $line[1] : null;
+		}
+		if ( ! $ok ) {
+			$snap['status'] = 'needs_confirmation';
+		}
+	}
+	$out['text']     = implode( "\n", $text );
+	$out['snapshot'] = $snap;
+	return $out;
+}
+
+/** The price breakdown for the [_quote] mail tag of the current submission. */
+function bst_native_form_quote_text( $set = null ) {
+	static $text = '';
+	if ( null !== $set ) {
+		$text = (string) $set;
+	}
+	return $text;
+}
+
+function bst_native_form_save_entry( $s, $values, $post_id, $sent, $quote = null ) {
 	$first = '';
 	foreach ( $values as $v ) {
 		if ( '' !== $v ) {
@@ -444,6 +525,9 @@ function bst_native_form_save_entry( $s, $values, $post_id, $sent ) {
 		update_post_meta( $id, '_bst_fields', wp_list_pluck( $s['fields'], 'label', 'name' ) );
 		update_post_meta( $id, '_bst_source', $post_id );
 		update_post_meta( $id, '_bst_sent', $sent ? 1 : 0 );
+		if ( $quote ) {
+			update_post_meta( $id, '_bst_quote', $quote );
+		}
 	}
 }
 
@@ -461,7 +545,9 @@ add_action(
 				foreach ( $values as $n => $v ) {
 					echo '<tr><th style="width:30%">' . esc_html( $labels[ $n ] ?? $n ) . '</th><td>' . nl2br( esc_html( $v ) ) . '</td></tr>';
 				}
-				echo '</tbody></table><p>' . esc_html__( 'Email sent:', 'bigspy-ai-theme-wp' ) . ' <strong>' . ( get_post_meta( $post->ID, '_bst_sent', true ) ? esc_html__( 'yes', 'bigspy-ai-theme-wp' ) : esc_html__( 'no – check the SMTP settings', 'bigspy-ai-theme-wp' ) ) . '</strong>';
+				$quote = get_post_meta( $post->ID, '_bst_quote', true );
+				$quote_note = is_array( $quote ) ? '<p><strong>' . esc_html__( 'Price:', 'bigspy-ai-theme-wp' ) . '</strong> ' . ( 'estimate' === ( $quote['status'] ?? '' ) ? esc_html__( 'estimate computed by the server when the form was sent', 'bigspy-ai-theme-wp' ) : esc_html__( 'needs confirmation (an input had no price)', 'bigspy-ai-theme-wp' ) ) . ' · ' . esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) ( $quote['time'] ?? 0 ) ) ) . '</p>' : '';
+				echo '</tbody></table>' . $quote_note . '<p>' . esc_html__( 'Email sent:', 'bigspy-ai-theme-wp' ) . ' <strong>' . ( get_post_meta( $post->ID, '_bst_sent', true ) ? esc_html__( 'yes', 'bigspy-ai-theme-wp' ) : esc_html__( 'no – check the SMTP settings', 'bigspy-ai-theme-wp' ) ) . '</strong>';
 				if ( $source ) {
 					echo ' · ' . esc_html__( 'Form on:', 'bigspy-ai-theme-wp' ) . ' <a href="' . esc_url( get_permalink( $source ) ) . '" target="_blank">' . esc_html( get_the_title( $source ) ) . '</a>';
 				}

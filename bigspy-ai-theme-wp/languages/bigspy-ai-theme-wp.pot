@@ -11028,3 +11028,78 @@ msgstr ""
 msgid "conditional"
 msgstr ""
 
+msgid "Choose more details to see the price"
+msgstr ""
+
+msgid "Price needs confirmation"
+msgstr ""
+
+msgid "Price:"
+msgstr ""
+
+msgid "estimate computed by the server when the form was sent"
+msgstr ""
+
+msgid "needs confirmation (an input had no price)"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "Decimals"
+msgstr ""
+
+msgid "Note under the total"
+msgstr ""
+
+msgid "Add laundry quote preset (demo prices)"
+msgstr ""
+
+msgid "Formula"
+msgstr ""
+
+msgid "Use + - * / ( ), min, max, round, ceil, floor, abs, if(condition, a, b). Click a field to insert it."
+msgstr ""
+
+msgid "Formula problem:"
+msgstr ""
+
+msgid "uses itself"
+msgstr ""
+
+msgid "Formula is valid. Prices are checked again on the server when the form is sent."
+msgstr ""
+
+msgid "This is the total"
+msgstr ""
+
+msgid "Minimum"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "Prices per option (for formulas)"
+msgstr ""
+
+msgid "Leave empty when an option has no price: the total then shows “Price needs confirmation”. For a flag, use 1."
+msgstr ""
+
+msgid "empty"
+msgstr ""
+
+msgid "too long"
+msgstr ""
+
+msgid "character"
+msgstr ""
+
+msgid "function"
+msgstr ""
+
+msgid "brackets"
+msgstr ""
+
+msgid "Price (formula)"
+msgstr ""
+

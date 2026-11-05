@@ -3017,6 +3017,13 @@ input[type="submit"]:hover,
 .bs-native-form > * { flex: 1 1 100%; }
 .bs-native-form > .bs-nf-half { flex: 1 1 calc(50% - 8px); min-width: 200px; }
 .bs-native-form > [hidden] { display: none !important; }
+.bs-native-form .bs-nf-calc { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding: 10px 0; border-top: 1px dashed currentColor; border-top-color: color-mix(in srgb, currentColor 20%, transparent); }
+.bs-native-form .bs-nf-calc .bs-nf-label { margin: 0; }
+.bs-native-form .bs-nf-calc__value { font-variant-numeric: tabular-nums; font-weight: 600; overflow-wrap: anywhere; }
+.bs-native-form .bs-nf-calc[data-state="incomplete"] .bs-nf-calc__value, .bs-native-form .bs-nf-calc[data-state="error"] .bs-nf-calc__value { font-weight: 400; opacity: .75; font-style: italic; }
+.bs-native-form .bs-nf-calc--total .bs-nf-calc__value { font-size: 1.35em; }
+.bs-native-form .bs-nf-calc__note { flex: 1 1 100%; opacity: .7; }
+.bs-native-form .bs-nf-price { opacity: .7; font-size: .9em; white-space: nowrap; }
 .bs-native-form .bs-nf-label { display: block; margin-bottom: 6px; font-weight: 600; font-size: .95em; }
 .bs-form--labels-hidden .bs-native-form .bs-nf-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .bs-native-form .bs-nf-req { color: #dc2626; }

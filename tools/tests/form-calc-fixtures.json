@@ -1,0 +1,749 @@
+[
+ {
+  "name": "laundry demo 3 kg + delivery = 79.000",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_kg",
+    "type": "number",
+    "name": "kg"
+   },
+   {
+    "id": "f_ship",
+    "type": "checkbox",
+    "name": "ship",
+    "optionPrices": {
+     "Giao nhận tận nơi": 25000
+    }
+   },
+   {
+    "id": "f_fast",
+    "type": "checkbox",
+    "name": "fast",
+    "optionPrices": {
+     "Giặt nhanh": 1
+    }
+   },
+   {
+    "id": "f_wash",
+    "type": "calc",
+    "name": "wash",
+    "formula": "{f_kg} * 18000"
+   },
+   {
+    "id": "f_rush",
+    "type": "calc",
+    "name": "rush",
+    "formula": "if({f_fast} > 0, {f_wash} * 0.2, 0)"
+   },
+   {
+    "id": "f_total",
+    "type": "calc",
+    "name": "total",
+    "formula": "{f_wash} + {f_rush} + {f_ship}",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "kg": "3",
+   "ship": "Giao nhận tận nơi"
+  },
+  "seen": null,
+  "expect": {
+   "f_wash": [
+    "ok",
+    54000
+   ],
+   "f_rush": [
+    "ok",
+    0
+   ],
+   "f_total": [
+    "ok",
+    79000
+   ]
+  }
+ },
+ {
+  "name": "express +20% on washing only = 89.800",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_kg",
+    "type": "number",
+    "name": "kg"
+   },
+   {
+    "id": "f_ship",
+    "type": "checkbox",
+    "name": "ship",
+    "optionPrices": {
+     "Giao nhận tận nơi": 25000
+    }
+   },
+   {
+    "id": "f_fast",
+    "type": "checkbox",
+    "name": "fast",
+    "optionPrices": {
+     "Giặt nhanh": 1
+    }
+   },
+   {
+    "id": "f_wash",
+    "type": "calc",
+    "name": "wash",
+    "formula": "{f_kg} * 18000"
+   },
+   {
+    "id": "f_rush",
+    "type": "calc",
+    "name": "rush",
+    "formula": "if({f_fast} > 0, {f_wash} * 0.2, 0)"
+   },
+   {
+    "id": "f_total",
+    "type": "calc",
+    "name": "total",
+    "formula": "{f_wash} + {f_rush} + {f_ship}",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "kg": "3",
+   "ship": "Giao nhận tận nơi",
+   "fast": "Giặt nhanh"
+  },
+  "seen": null,
+  "expect": {
+   "f_rush": [
+    "ok",
+    10800
+   ],
+   "f_total": [
+    "ok",
+    89800
+   ]
+  }
+ },
+ {
+  "name": "1,5 kg locale comma",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_kg",
+    "type": "number",
+    "name": "kg"
+   },
+   {
+    "id": "f_ship",
+    "type": "checkbox",
+    "name": "ship",
+    "optionPrices": {
+     "Giao nhận tận nơi": 25000
+    }
+   },
+   {
+    "id": "f_fast",
+    "type": "checkbox",
+    "name": "fast",
+    "optionPrices": {
+     "Giặt nhanh": 1
+    }
+   },
+   {
+    "id": "f_wash",
+    "type": "calc",
+    "name": "wash",
+    "formula": "{f_kg} * 18000"
+   },
+   {
+    "id": "f_rush",
+    "type": "calc",
+    "name": "rush",
+    "formula": "if({f_fast} > 0, {f_wash} * 0.2, 0)"
+   },
+   {
+    "id": "f_total",
+    "type": "calc",
+    "name": "total",
+    "formula": "{f_wash} + {f_rush} + {f_ship}",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "kg": "1,5"
+  },
+  "seen": null,
+  "expect": {
+   "f_wash": [
+    "ok",
+    27000
+   ],
+   "f_total": [
+    "ok",
+    27000
+   ]
+  }
+ },
+ {
+  "name": "1.5 kg dot",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_kg",
+    "type": "number",
+    "name": "kg"
+   },
+   {
+    "id": "f_ship",
+    "type": "checkbox",
+    "name": "ship",
+    "optionPrices": {
+     "Giao nhận tận nơi": 25000
+    }
+   },
+   {
+    "id": "f_fast",
+    "type": "checkbox",
+    "name": "fast",
+    "optionPrices": {
+     "Giặt nhanh": 1
+    }
+   },
+   {
+    "id": "f_wash",
+    "type": "calc",
+    "name": "wash",
+    "formula": "{f_kg} * 18000"
+   },
+   {
+    "id": "f_rush",
+    "type": "calc",
+    "name": "rush",
+    "formula": "if({f_fast} > 0, {f_wash} * 0.2, 0)"
+   },
+   {
+    "id": "f_total",
+    "type": "calc",
+    "name": "total",
+    "formula": "{f_wash} + {f_rush} + {f_ship}",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "kg": "1.5"
+  },
+  "seen": null,
+  "expect": {
+   "f_total": [
+    "ok",
+    27000
+   ]
+  }
+ },
+ {
+  "name": "no weight yet: incomplete, not 0",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_kg",
+    "type": "number",
+    "name": "kg"
+   },
+   {
+    "id": "f_ship",
+    "type": "checkbox",
+    "name": "ship",
+    "optionPrices": {
+     "Giao nhận tận nơi": 25000
+    }
+   },
+   {
+    "id": "f_fast",
+    "type": "checkbox",
+    "name": "fast",
+    "optionPrices": {
+     "Giặt nhanh": 1
+    }
+   },
+   {
+    "id": "f_wash",
+    "type": "calc",
+    "name": "wash",
+    "formula": "{f_kg} * 18000"
+   },
+   {
+    "id": "f_rush",
+    "type": "calc",
+    "name": "rush",
+    "formula": "if({f_fast} > 0, {f_wash} * 0.2, 0)"
+   },
+   {
+    "id": "f_total",
+    "type": "calc",
+    "name": "total",
+    "formula": "{f_wash} + {f_rush} + {f_ship}",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "ship": "Giao nhận tận nơi"
+  },
+  "seen": null,
+  "expect": {
+   "f_wash": [
+    "incomplete",
+    0
+   ],
+   "f_total": [
+    "incomplete",
+    0
+   ]
+  }
+ },
+ {
+  "name": "hidden delivery charges nothing",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_kg",
+    "type": "number",
+    "name": "kg"
+   },
+   {
+    "id": "f_ship",
+    "type": "checkbox",
+    "name": "ship",
+    "optionPrices": {
+     "Giao nhận tận nơi": 25000
+    }
+   },
+   {
+    "id": "f_fast",
+    "type": "checkbox",
+    "name": "fast",
+    "optionPrices": {
+     "Giặt nhanh": 1
+    }
+   },
+   {
+    "id": "f_wash",
+    "type": "calc",
+    "name": "wash",
+    "formula": "{f_kg} * 18000"
+   },
+   {
+    "id": "f_rush",
+    "type": "calc",
+    "name": "rush",
+    "formula": "if({f_fast} > 0, {f_wash} * 0.2, 0)"
+   },
+   {
+    "id": "f_total",
+    "type": "calc",
+    "name": "total",
+    "formula": "{f_wash} + {f_rush} + {f_ship}",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "kg": "2",
+   "ship": "Giao nhận tận nơi"
+  },
+  "seen": {
+   "f_kg": true,
+   "f_ship": false,
+   "f_fast": true,
+   "f_wash": true,
+   "f_rush": true,
+   "f_total": true
+  },
+  "expect": {
+   "f_total": [
+    "ok",
+    36000
+   ]
+  }
+ },
+ {
+  "name": "option without price needs confirmation",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_z",
+    "type": "select",
+    "name": "zone",
+    "optionPrices": {
+     "Nội thành": 0
+    }
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "{f_z} + 10",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "zone": "Ngoại tỉnh"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "error",
+    0
+   ]
+  }
+ },
+ {
+  "name": "select empty is incomplete",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_z",
+    "type": "select",
+    "name": "zone",
+    "optionPrices": {
+     "A": 5
+    }
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "{f_z} + 10"
+   }
+  ],
+  "values": {},
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "incomplete",
+    0
+   ]
+  }
+ },
+ {
+  "name": "division by zero",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_n",
+    "type": "number",
+    "name": "n"
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "100 / {f_n}"
+   }
+  ],
+  "values": {
+   "n": "0"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "error",
+    0
+   ]
+  }
+ },
+ {
+  "name": "script call refused",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "eval(1)"
+   },
+   {
+    "id": "f_u",
+    "type": "calc",
+    "name": "u",
+    "formula": "alert`x`"
+   },
+   {
+    "id": "f_v",
+    "type": "calc",
+    "name": "v",
+    "formula": "1 +"
+   }
+  ],
+  "values": {},
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "error",
+    0
+   ],
+   "f_u": [
+    "error",
+    0
+   ],
+   "f_v": [
+    "error",
+    0
+   ]
+  }
+ },
+ {
+  "name": "negative total refused",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_n",
+    "type": "number",
+    "name": "n"
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "{f_n} * 1000",
+    "isTotal": true
+   }
+  ],
+  "values": {
+   "n": "-3"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "error",
+    0
+   ]
+  }
+ },
+ {
+  "name": "huge value refused",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_n",
+    "type": "number",
+    "name": "n"
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "{f_n} * 1000000000"
+   }
+  ],
+  "values": {
+   "n": "99999"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "error",
+    0
+   ]
+  }
+ },
+ {
+  "name": "USD two decimals, half up",
+  "cur": {
+   "code": "USD",
+   "decimals": 2
+  },
+  "fields": [
+   {
+    "id": "f_n",
+    "type": "number",
+    "name": "n"
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "{f_n} * 1.5"
+   },
+   {
+    "id": "f_u",
+    "type": "calc",
+    "name": "u",
+    "formula": "0.1 + 0.2"
+   }
+  ],
+  "values": {
+   "n": "6.67"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "ok",
+    10.01
+   ],
+   "f_u": [
+    "ok",
+    0.3
+   ]
+  }
+ },
+ {
+  "name": "VND rounds to whole dong",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "1000 / 3"
+   },
+   {
+    "id": "f_u",
+    "type": "calc",
+    "name": "u",
+    "formula": "2.5"
+   }
+  ],
+  "values": {},
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "ok",
+    333
+   ],
+   "f_u": [
+    "ok",
+    3
+   ]
+  }
+ },
+ {
+  "name": "functions and precedence",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_n",
+    "type": "number",
+    "name": "n"
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "max(50000, {f_n} * 12000) + min(2, 3) * -(1 - 3) + ceil(1.2) + floor(1.8) + abs(-1) + round(1.25, 1) * 10"
+   }
+  ],
+  "values": {
+   "n": "5"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "ok",
+    60021
+   ]
+  }
+ },
+ {
+  "name": "comparisons and logic",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_n",
+    "type": "number",
+    "name": "n"
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "({f_n} >= 10 && {f_n} != 11) * 100 + ({f_n} < 5 || {f_n} == 12) * 7"
+   }
+  ],
+  "values": {
+   "n": "12"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "ok",
+    107
+   ]
+  }
+ },
+ {
+  "name": "tier by quantity",
+  "cur": {
+   "code": "VND",
+   "decimals": 0
+  },
+  "fields": [
+   {
+    "id": "f_n",
+    "type": "number",
+    "name": "n"
+   },
+   {
+    "id": "f_t",
+    "type": "calc",
+    "name": "t",
+    "formula": "{f_n} * if({f_n} >= 10, 15000, if({f_n} >= 5, 17000, 18000))"
+   }
+  ],
+  "values": {
+   "n": "6"
+  },
+  "seen": null,
+  "expect": {
+   "f_t": [
+    "ok",
+    102000
+   ]
+  }
+ }
+]

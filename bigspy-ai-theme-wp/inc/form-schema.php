@@ -91,6 +91,19 @@ function bst_form_schema_normalize( $fields ) {
 		}
 		$used[ $id ] = true;
 		$f['id']     = $id;
+		if ( 'calc' === ( $f['type'] ?? '' ) ) {
+			$f['formula'] = mb_substr( trim( (string) ( $f['formula'] ?? '' ) ), 0, 500 );
+			$f['isTotal'] = ! empty( $f['isTotal'] );
+		}
+		if ( isset( $f['optionPrices'] ) ) {
+			$prices = array();
+			foreach ( is_array( $f['optionPrices'] ) ? $f['optionPrices'] : array() as $o => $v ) {
+				if ( is_numeric( $v ) && count( $prices ) < 50 ) {
+					$prices[ mb_substr( (string) $o, 0, 200 ) ] = 0 + $v;
+				}
+			}
+			$f['optionPrices'] = $prices;
+		}
 		$c           = bst_form_clean_conditions( $f['conditions'] ?? null );
 		if ( $c ) {
 			$f['conditions'] = $c;
@@ -102,11 +115,14 @@ function bst_form_schema_normalize( $fields ) {
 	return $out;
 }
 
-/** IDs a field depends on (its condition rules). */
+/** IDs a field depends on (its condition rules and, for a price line, its formula). */
 function bst_form_field_deps( $f ) {
 	$deps = array();
 	foreach ( (array) ( $f['conditions']['rules'] ?? array() ) as $r ) {
 		$deps[] = (string) $r['field'];
+	}
+	if ( 'calc' === ( $f['type'] ?? '' ) && function_exists( 'bst_calc_refs' ) ) {
+		$deps = array_merge( $deps, bst_calc_refs( $f['formula'] ?? '' ) );
 	}
 	return array_values( array_unique( $deps ) );
 }
