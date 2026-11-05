@@ -930,6 +930,75 @@ document.addEventListener('wpcf7mailsent', function (e) {
 	}
 }, false);
 
+/* Built-in form conditions (G-57): show / require fields from other answers, same rules as the server. */
+function bsNfRule(r, v) {
+	var list = v === '' ? [] : v.split(', ');
+	switch (r.op) {
+		case 'empty': return v === '';
+		case 'not_empty': return v !== '';
+		case 'is': return v === r.value || list.indexOf(r.value) !== -1;
+		case 'is_not': return v !== r.value && list.indexOf(r.value) === -1;
+		case 'contains': return r.value !== '' && v.toLowerCase().indexOf(String(r.value).toLowerCase()) !== -1;
+		case 'gt': return v !== '' && !isNaN(v) && !isNaN(r.value) && parseFloat(v) > parseFloat(r.value);
+		case 'lt': return v !== '' && !isNaN(v) && !isNaN(r.value) && parseFloat(v) < parseFloat(r.value);
+	}
+	return false;
+}
+function bsNfApply(form) {
+	var boxes = Array.prototype.slice.call(form.querySelectorAll('[data-bs-field]'));
+	if (!boxes.some(function (b) { return b.hasAttribute('data-bs-show') || b.hasAttribute('data-bs-req-when'); })) {
+		return;
+	}
+	var byId = {}, memo = {};
+	boxes.forEach(function (b) { byId[b.getAttribute('data-bs-field')] = b; });
+	var value = function (b) {
+		var ctls = b.querySelectorAll('input, select, textarea');
+		var out = [];
+		Array.prototype.forEach.call(ctls, function (c) {
+			if ((c.type === 'checkbox' || c.type === 'radio') ? c.checked : c.value.trim() !== '') {
+				out.push(c.type === 'file' ? c.value.split(/[\\/]/).pop() : c.value.trim());
+			}
+		});
+		return out.join(', ');
+	};
+	var met = function (c) {
+		var hits = (c.rules || []).map(function (r) {
+			var src = byId[r.field];
+			return bsNfRule(r, src && visible(src) ? value(src) : '');
+		});
+		return c.logic === 'any' ? hits.indexOf(true) !== -1 : hits.indexOf(false) === -1;
+	};
+	var visible = function (b) {
+		var id = b.getAttribute('data-bs-field');
+		if (memo[id] === undefined) {
+			memo[id] = 'busy';
+			var show = b.getAttribute('data-bs-show');
+			memo[id] = !show || met(JSON.parse(show));
+		}
+		return memo[id] !== false;
+	};
+	boxes.forEach(function (b) {
+		var on = visible(b);
+		var rw = b.getAttribute('data-bs-req-when');
+		var req = on && (b.getAttribute('data-bs-req') === '1' || (rw ? met(JSON.parse(rw)) : false));
+		b.hidden = !on;
+		b.querySelectorAll('input, select, textarea').forEach(function (c) {
+			c.disabled = !on;
+			if (c.type !== 'radio' && !(c.type === 'checkbox' && /\[\]$/.test(c.name))) {
+				c.required = req;
+				c.setAttribute('aria-required', req ? 'true' : 'false');
+			}
+		});
+		var mark = b.querySelector('.bs-nf-req');
+		if (mark) {
+			mark.hidden = !req;
+		}
+	});
+}
+document.addEventListener('input', function (e) { var f = e.target.closest && e.target.closest('[data-bs-native-form]'); if (f) { bsNfApply(f); } });
+document.addEventListener('change', function (e) { var f = e.target.closest && e.target.closest('[data-bs-native-form]'); if (f) { bsNfApply(f); } });
+document.querySelectorAll('[data-bs-native-form]').forEach(bsNfApply);
+
 /* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */
 document.addEventListener('submit', function (e) {
 	var form = e.target;
@@ -956,7 +1025,7 @@ document.addEventListener('submit', function (e) {
 		wrap.appendChild(s);
 	};
 	var bad = false;
-	form.querySelectorAll('[required]').forEach(function (ctl) {
+	form.querySelectorAll('[required]:not(:disabled)').forEach(function (ctl) {
 		var empty = ctl.type === 'checkbox' ? !ctl.checked : !String(ctl.value).trim();
 		if (empty) {
 			bad = true;
@@ -996,6 +1065,7 @@ document.addEventListener('submit', function (e) {
 		show(res.message, !!res.ok);
 		if (res.ok) {
 			form.reset();
+			bsNfApply(form);
 			form.dispatchEvent(new CustomEvent('wpcf7mailsent', { bubbles: true, detail: { native: true } }));
 			if (res.redirect) {
 				var box = form.closest('.bs-form');

@@ -7114,3 +7114,81 @@ msgstr "Hoàn tác lần lưu này"
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr "1.81.0: AI Designer nhanh và thông minh hơn: hồ sơ block và 42 công thức section có sẵn hiệu ứng, duyệt sơ đồ trang một lần rồi dựng nhiều section mỗi lượt, minh hoạ bằng SVG/HTML/CSS, chọn model và chuyên môn ngay trong chat, model nhanh cho Effort Thấp, đính kèm file, đo thời gian và chi phí từng lượt, ngữ cảnh tự lưu và tự học điều bạn nói áp dụng từ nay."
 
+msgid "Another field already uses this field name."
+msgstr "Một trường khác đã dùng tên trường này."
+
+msgid "A condition reads this same field."
+msgstr "Điều kiện đang đọc chính trường này."
+
+msgid "A condition reads a field that no longer exists."
+msgstr "Điều kiện đang đọc một trường không còn tồn tại."
+
+msgid "Conditions form a loop with other fields."
+msgstr "Điều kiện tạo vòng lặp với các trường khác."
+
+msgid "is"
+msgstr "là"
+
+msgid "is not"
+msgstr "không là"
+
+msgid "is empty"
+msgstr "để trống"
+
+msgid "is filled"
+msgstr "đã điền"
+
+msgid "contains"
+msgstr "chứa"
+
+msgid "greater than"
+msgstr "lớn hơn"
+
+msgid "less than"
+msgstr "nhỏ hơn"
+
+msgid "Match"
+msgstr "Khớp"
+
+msgid "All rules"
+msgstr "Tất cả quy tắc"
+
+msgid "Any rule"
+msgstr "Bất kỳ quy tắc nào"
+
+msgid "Field"
+msgstr "Trường"
+
+msgid "Condition"
+msgstr "Điều kiện"
+
+msgid "Value"
+msgstr "Giá trị"
+
+msgid "(deleted field)"
+msgstr "(trường đã xoá)"
+
+msgid "Remove rule"
+msgstr "Xoá quy tắc"
+
+msgid "Add rule"
+msgstr "Thêm quy tắc"
+
+msgid "Show this field"
+msgstr "Hiện trường này"
+
+msgid "Only show when…"
+msgstr "Chỉ hiện khi…"
+
+msgid "Required only when…"
+msgstr "Chỉ bắt buộc khi…"
+
+msgid "Used by the conditions of:"
+msgstr "Đang được dùng trong điều kiện của:"
+
+msgid "Change those conditions before removing this field."
+msgstr "Hãy sửa các điều kiện đó trước khi xoá trường này."
+
+msgid "conditional"
+msgstr "có điều kiện"
+

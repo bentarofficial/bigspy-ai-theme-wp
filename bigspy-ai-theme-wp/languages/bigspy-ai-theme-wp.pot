@@ -10947,3 +10947,81 @@ msgstr ""
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr ""
 
+msgid "Another field already uses this field name."
+msgstr ""
+
+msgid "A condition reads this same field."
+msgstr ""
+
+msgid "A condition reads a field that no longer exists."
+msgstr ""
+
+msgid "Conditions form a loop with other fields."
+msgstr ""
+
+msgid "is"
+msgstr ""
+
+msgid "is not"
+msgstr ""
+
+msgid "is empty"
+msgstr ""
+
+msgid "is filled"
+msgstr ""
+
+msgid "contains"
+msgstr ""
+
+msgid "greater than"
+msgstr ""
+
+msgid "less than"
+msgstr ""
+
+msgid "Match"
+msgstr ""
+
+msgid "All rules"
+msgstr ""
+
+msgid "Any rule"
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "Condition"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "(deleted field)"
+msgstr ""
+
+msgid "Remove rule"
+msgstr ""
+
+msgid "Add rule"
+msgstr ""
+
+msgid "Show this field"
+msgstr ""
+
+msgid "Only show when…"
+msgstr ""
+
+msgid "Required only when…"
+msgstr ""
+
+msgid "Used by the conditions of:"
+msgstr ""
+
+msgid "Change those conditions before removing this field."
+msgstr ""
+
+msgid "conditional"
+msgstr ""
+
