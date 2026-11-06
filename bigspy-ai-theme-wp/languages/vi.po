@@ -7138,3 +7138,54 @@ msgstr "Chiều cao gốc (px)"
 msgid "Reserves space so the page does not jump while the image loads."
 msgstr "Giữ chỗ để trang không bị nhảy khi ảnh đang tải."
 
+msgid "Get the theme"
+msgstr "Nhận theme"
+
+msgid "Join the Telegram group to read the guides and get the GitHub download link."
+msgstr "Vào nhóm Telegram để xem hướng dẫn và nhận link tải theme trên GitHub."
+
+msgid "Current version"
+msgstr "Phiên bản hiện tại"
+
+msgid "Blocks"
+msgstr "Khối"
+
+msgid "Feature groups"
+msgstr "Nhóm tính năng"
+
+msgid "Recent updates"
+msgstr "Bản cập nhật gần đây"
+
+msgid "Theme Showcase"
+msgstr "Giới thiệu theme"
+
+msgid "Show introduction"
+msgstr "Hiện phần giới thiệu"
+
+msgid "Show features"
+msgstr "Hiện tính năng"
+
+msgid "Show updates"
+msgstr "Hiện cập nhật"
+
+msgid "Updates shown"
+msgstr "Số cập nhật hiển thị"
+
+msgid "Button text"
+msgstr "Chữ trên nút"
+
+msgid "Empty uses \"Get the theme\"."
+msgstr "Để trống sẽ dùng \"Nhận theme\"."
+
+msgid "Button link"
+msgstr "Liên kết nút"
+
+msgid "For example your Telegram group. Empty hides the button."
+msgstr "Ví dụ nhóm Telegram. Để trống sẽ ẩn nút."
+
+msgid "Note under the button"
+msgstr "Ghi chú dưới nút"
+
+msgid "Introduce BIGSPY AI Theme WP with its current version, block count, feature list and latest updates. Everything is read from the installed theme, so the block stays current after each theme update."
+msgstr "Giới thiệu BIGSPY AI Theme WP với phiên bản, số khối, tính năng và cập nhật mới nhất. Dữ liệu đọc từ theme đang cài nên tự cập nhật sau mỗi lần nâng cấp theme."
+

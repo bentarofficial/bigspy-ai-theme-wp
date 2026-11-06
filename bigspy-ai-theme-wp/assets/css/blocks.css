@@ -3568,3 +3568,25 @@ body.bs-has-scroll-bg .bs-section[data-bs-scroll-bg] { background-color: transpa
 .bs-counter--inline .bs-counter__label { margin: 0 0 0 .3em; opacity: 1; }
 .bs-counter--inline .bs-counter__affix:first-child { margin-right: .3em; }
 .bs-countup { font-variant-numeric: tabular-nums; }
+
+/* Theme Showcase */
+.bs-tsc { display: grid; gap: clamp(24px, 4vw, 40px); }
+.bs-tsc__hero { padding: clamp(24px, 4vw, 48px); border-radius: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--bs-primary) 12%, #fff), #fff); border: 1px solid rgba(148, 163, 184, .25); }
+.bs-tsc__eyebrow { margin: 0 0 8px; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bs-primary); }
+.bs-tsc__title { margin: 0 0 12px; }
+.bs-tsc__lead { max-width: 640px; margin: 0 0 24px; opacity: .85; }
+.bs-tsc__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 24px; }
+.bs-tsc__stats div { padding: 14px 16px; border-radius: 16px; background: #fff; box-shadow: 0 6px 20px rgba(15, 23, 42, .06); }
+.bs-tsc__stats dt { font-size: .8rem; opacity: .7; }
+.bs-tsc__stats dd { margin: 4px 0 0; font-size: 1.5rem; font-weight: 800; color: var(--bs-primary); }
+.bs-tsc__cta { margin: 0 0 8px; }
+.bs-tsc__button { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; background: var(--bs-primary); color: #fff; font-weight: 700; text-decoration: none; }
+.bs-tsc__button:hover { color: #fff; filter: brightness(1.08); }
+.bs-tsc__note { margin: 0; font-size: .9rem; opacity: .75; }
+.bs-tsc__features { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.bs-tsc__card { padding: 20px; border-radius: 18px; border: 1px solid rgba(148, 163, 184, .25); background: #fff; }
+.bs-tsc__card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.bs-tsc__card p { margin: 0 0 10px; font-size: .92rem; opacity: .8; }
+.bs-tsc__badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .75rem; background: color-mix(in srgb, var(--bs-primary) 10%, transparent); color: var(--bs-primary); }
+.bs-tsc__news ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+@media (max-width: 767px) { .bs-tsc__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

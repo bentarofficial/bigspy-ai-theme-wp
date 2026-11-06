@@ -1,4 +1,7 @@
 {
+	"theme-showcase": [
+		"bs-tsc"
+	],
 	"ticker": [
 		"bs-ticker"
 	],

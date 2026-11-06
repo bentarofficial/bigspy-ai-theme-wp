@@ -18,3 +18,4 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** mục Giới thiệu/Có gì mới/tài liệu/kiến thức AI liên quan, hoặc “không cần”.
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+- G-72: new Theme Showcase block (bigspy/theme-showcase) introduces the theme with live version, block count, feature list and latest updates read from the installed theme, plus a "Get the theme" button (default: Telegram group).

@@ -10971,3 +10971,48 @@ msgstr ""
 msgid "Reserves space so the page does not jump while the image loads."
 msgstr ""
 
+msgid "Get the theme"
+msgstr ""
+
+msgid "Join the Telegram group to read the guides and get the GitHub download link."
+msgstr ""
+
+msgid "Current version"
+msgstr ""
+
+msgid "Blocks"
+msgstr ""
+
+msgid "Feature groups"
+msgstr ""
+
+msgid "Recent updates"
+msgstr ""
+
+msgid "Theme Showcase"
+msgstr ""
+
+msgid "Show introduction"
+msgstr ""
+
+msgid "Show features"
+msgstr ""
+
+msgid "Show updates"
+msgstr ""
+
+msgid "Updates shown"
+msgstr ""
+
+msgid "Empty uses \"Get the theme\"."
+msgstr ""
+
+msgid "For example your Telegram group. Empty hides the button."
+msgstr ""
+
+msgid "Note under the button"
+msgstr ""
+
+msgid "Introduce BIGSPY AI Theme WP with its current version, block count, feature list and latest updates. Everything is read from the installed theme, so the block stays current after each theme update."
+msgstr ""
+
