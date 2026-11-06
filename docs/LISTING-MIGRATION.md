@@ -100,7 +100,7 @@ Ràng buộc mỏng, nên lớp tương thích chỉ cần vài hàm và hook n�
 3. **G-76 Block listing:** listing-grid, category-grid, listing search, sidebar elements; giữ shortcode cũ.
 4. **G-77 Template:** trang chi tiết listing, lưu trữ danh mục, trang Categories, kết quả tìm kiếm, trang chủ mẫu (pattern) kiểu thư mục.
 5. **G-78 Cài đặt và AI Designer:** tùy chọn listing trong Customizer, kiến thức AI Designer, bản dịch.
-6. **G-79 Chuyển bigspyai.com (cần owner):** thử trên staging, so URL/slug, schema, breadcrumb, sitemap; rồi chuyển site thật và tắt "Discourage search engines".
+6. **G-79 Chuyển bigspyai.com (cần owner):** thử trên staging, so URL/slug, schema, breadcrumb, sitemap; rồi chuyển site thật và tắt "Discourage search engines". Sau khi chuyển, dựng trang bigspyai.com/bigspy-ai-theme-wp (tiếng Anh) bằng khối **Theme Showcase** có sẵn từ 1.82.0: phiên bản, tính năng và mục "What is new" lấy từ trang About nên tự cập nhật theo mỗi bản theme, không nhập tay. Nội dung tiếng Anh tham khảo ở `brand/bigspyai-page/page-content-en.html`; mu-plugin changelog GitHub trong cùng thư mục chỉ dùng nếu cần trước khi chuyển.
 7. **G-80 Ngừng theme cũ:** sau khi site chạy ổn, lưu trữ repo `theme-bigspy-ai-list`.
 
 Tiêu chí chung: không mất dữ liệu sản phẩm, URL giữ nguyên, site không có WooCommerce hoặc tắt Listing mode không bị ảnh hưởng, các test chính đạt.
