@@ -15,6 +15,15 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** nhánh `feature/ai-designer`, xem commit G-74.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+### G-75 Sponsored và cột AD (BIGSPY AI List)
+
+- **Yêu cầu/tính năng:** chuyển Sponsored và cột AD của theme cũ (`inc/categories-sponsored.php`).
+- **Đã thay đổi:** `inc/listing/sponsored.php`, `assets/js/sponsored.js`, CSS trong `listing.css`. Cột AD trong Products bật/tắt một chạm (giữ action `bigspy_toggle_ad` và nonce cũ); listing AD có URL đối tác vào ô Sponsored, xoay vòng theo lượt xem (localStorage, bước nhảy, phiên bản xoay đổi khi tập AD đổi, xoá cache LiteSpeed); một ô Sponsored dưới tóm tắt trang sản phẩm; shortcode `[bigspy_sponsored_grid]`; cài đặt trong Features (bật ô, chữ nút, tab mới, bước nhảy), mặc định lấy từ option cũ `bigspy_categories_promotions`; giữ `bigspy_listing_is_ad`, `bigspy_sponsored_refresh_rotation`. Featured trên trang Categories để G-77.
+- **Kiểm thử:** features-check đạt trên WP 7.1.3 và 6.5 (7 mục sponsored mới); check-block-previews đạt. Chưa thử trên trình duyệt với WooCommerce thật (cột AD, xoay vòng).
+- **Khi phát hành cần bổ sung:** gộp với G-74.
+- **Git:** nhánh `feature/ai-designer`, commit G-75.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
