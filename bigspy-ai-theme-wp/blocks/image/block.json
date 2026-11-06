@@ -61,6 +61,18 @@
 			"type": "string",
 			"default": "none"
 		},
+		"loadPriority": {
+			"type": "string",
+			"default": "auto"
+		},
+		"urlWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"urlHeight": {
+			"type": "number",
+			"default": 0
+		},
 		"caption": {
 			"type": "string",
 			"default": ""

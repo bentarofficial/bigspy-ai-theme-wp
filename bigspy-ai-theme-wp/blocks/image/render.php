@@ -16,16 +16,30 @@ $hover = bst_choice( $a['hover'] ?? 'none', array( 'none', 'zoom', 'zoom-fade', 
 $height = trim( (string) ( $a['height'] ?? '' ) );
 $height = preg_match( '/^[0-9.]+(px|%|vh)$/', $height ) ? $height : ( is_numeric( $height ) && $height > 0 ? $height . 'px' : '' );
 
-$img = '';
+// Load priority: auto leaves Media IDs to WordPress and keeps URLs lazy; high is for the image above the fold.
+$prio = bst_choice( $a['loadPriority'] ?? 'auto', array( 'auto', 'high', 'lazy' ), 'auto' );
+$img  = '';
 if ( ! empty( $a['imageId'] ) ) {
 	$attr = array( 'class' => 'bs-image__img' );
 	if ( '' !== $alt ) {
 		$attr['alt'] = $alt;
 	}
+	if ( 'high' === $prio ) {
+		$attr['loading']       = false;
+		$attr['fetchpriority'] = 'high';
+	} elseif ( 'lazy' === $prio ) {
+		$attr['loading']       = 'lazy';
+		$attr['fetchpriority'] = false;
+	}
 	$img = wp_get_attachment_image( (int) $a['imageId'], $size, false, $attr );
 }
 if ( ! $img && ! empty( $a['imageUrl'] ) ) {
-	$img = '<img class="bs-image__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async">';
+	// URL images only get width/height the editor typed in; the theme never fetches the URL to guess them.
+	$url_w = isset( $a['urlWidth'] ) ? absint( $a['urlWidth'] ) : 0;
+	$url_h = isset( $a['urlHeight'] ) ? absint( $a['urlHeight'] ) : 0;
+	$dims  = $url_w > 0 && $url_h > 0 && $url_w <= 10000 && $url_h <= 10000 ? ' width="' . $url_w . '" height="' . $url_h . '"' : '';
+	$load  = 'high' === $prio ? 'fetchpriority="high"' : 'loading="lazy"';
+	$img   = '<img class="bs-image__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="' . esc_attr( $alt ) . '"' . $dims . ' ' . $load . ' decoding="async">';
 }
 if ( ! $img ) {
 	return;

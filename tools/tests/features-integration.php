@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -314,6 +314,43 @@ function bst_t_aid() {
 	$opt = bst_aid_tool_style_options( array( 'names' => array_slice( array_keys( bst_block_presets() ), 0, 1 ) ) );
 	bst_test( ! empty( $opt['css_library'] ) && ! empty( $opt['blocks'] ), 'style options listed' );
 	bst_test( 1 === bst_aid_tool_policy( 'style_options', array() )['level'], 'style options is read only' );
+}
+
+/** G-55: load priority on banner/image, for Media IDs and URLs. */
+function bst_t_hero() {
+	$r = function ( $name, $attrs ) {
+		return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+	};
+	$url = 'https://example.com/hero.jpg';
+	foreach ( array( 'bst/banner', 'bst/image' ) as $b ) {
+		$auto = $r( $b, array( 'imageUrl' => $url ) );
+		bst_test( false !== strpos( $auto, 'loading="lazy"' ) && false === strpos( $auto, 'fetchpriority' ), "$b url auto stays lazy" );
+		$high = $r( $b, array( 'imageUrl' => $url, 'loadPriority' => 'high' ) );
+		bst_test( false !== strpos( $high, 'fetchpriority="high"' ) && false === strpos( $high, 'loading=' ), "$b url high is eager + high" );
+		$bad = $r( $b, array( 'imageUrl' => $url, 'loadPriority' => 'x' ) );
+		bst_test( false !== strpos( $bad, 'loading="lazy"' ), "$b unknown priority falls back to auto" );
+	}
+	$dims = $r( 'bst/image', array( 'imageUrl' => $url, 'urlWidth' => 1200, 'urlHeight' => 600 ) );
+	bst_test( false !== strpos( $dims, 'width="1200" height="600"' ), 'image url width/height output' );
+	$half = $r( 'bst/image', array( 'imageUrl' => $url, 'urlWidth' => 1200 ) );
+	bst_test( false === strpos( $half, 'width="' ), 'image url needs both sizes' );
+
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	$dir = wp_upload_dir()['path'];
+	$img = imagecreatetruecolor( 1600, 800 );
+	imagejpeg( $img, "$dir/hero-g55.jpg", 80 );
+	$id = wp_insert_attachment( array( 'post_mime_type' => 'image/jpeg', 'post_title' => 'hero', 'post_status' => 'inherit' ), "$dir/hero-g55.jpg" );
+	wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, "$dir/hero-g55.jpg" ) );
+	foreach ( array( 'bst/banner', 'bst/image' ) as $b ) {
+		$high = $r( $b, array( 'imageId' => $id, 'loadPriority' => 'high' ) );
+		bst_test( false !== strpos( $high, 'fetchpriority="high"' ) && false === strpos( $high, 'loading="lazy"' ), "$b media high" );
+		$lazy = $r( $b, array( 'imageId' => $id, 'loadPriority' => 'lazy' ) );
+		bst_test( false !== strpos( $lazy, 'loading="lazy"' ) && false === strpos( $lazy, 'fetchpriority="high"' ), "$b media lazy" );
+		$auto = $r( $b, array( 'imageId' => $id ) );
+		bst_test( ! ( false !== strpos( $auto, 'loading="lazy"' ) && false !== strpos( $auto, 'fetchpriority="high"' ) ), "$b media auto never lazy+high" );
+	}
+	$mob = $r( 'bst/banner', array( 'imageUrl' => $url, 'imageMobileUrl' => 'https://example.com/m.jpg', 'loadPriority' => 'high' ) );
+	bst_test( 1 === substr_count( $mob, 'fetchpriority="high"' ) && false !== strpos( $mob, '<source media="(max-width: 549px)"' ), 'banner mobile source keeps one high img' );
 }
 
 /** A JPEG with an EXIF block saying "rotate 90 degrees". */
