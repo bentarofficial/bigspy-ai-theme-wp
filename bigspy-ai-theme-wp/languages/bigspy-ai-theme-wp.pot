@@ -11019,3 +11019,330 @@ msgstr ""
 msgid "1.82.0: New Theme Showcase block introduces the theme with its live version, block count, features and the latest updates from this About page, plus a Get the theme button. Hero images can load first with the new Load priority option in Banner and Image. The free-shipping bar follows every WooCommerce Free shipping rule."
 msgstr ""
 
+msgid "Sponsored"
+msgstr ""
+
+msgid "Visit"
+msgstr ""
+
+msgid "Search tools, software and services..."
+msgstr ""
+
+msgid "Search listings"
+msgstr ""
+
+msgid "Contact for pricing"
+msgstr ""
+
+msgid "Quote required"
+msgstr ""
+
+msgid "Price varies"
+msgstr ""
+
+msgid "Price on website"
+msgstr ""
+
+msgid "Company"
+msgstr ""
+
+msgid "Founded"
+msgstr ""
+
+msgid "Free trial"
+msgstr ""
+
+msgid "API"
+msgstr ""
+
+msgid "Sponsored listing."
+msgstr ""
+
+msgid "%1$s paid to be listed on %2$s. Our editorial rules still apply."
+msgstr ""
+
+msgid "We may earn a commission if you buy through links on this page, at no extra cost to you. This does not affect our editorial review."
+msgstr ""
+
+msgid "Rating %s out of 5"
+msgstr ""
+
+msgid "Visit website"
+msgstr ""
+
+msgid "BIGSPY Listing Information"
+msgstr ""
+
+msgid "Listing fields"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "AD: show in Sponsored slots"
+msgstr ""
+
+msgid "Paid listing"
+msgstr ""
+
+msgid "Tick when the company paid for this listing or placement. The listing then shows a \"Sponsored\" label and a disclosure line."
+msgstr ""
+
+msgid "Sponsor name (optional, defaults to the company name)"
+msgstr ""
+
+msgid "Listing type"
+msgstr ""
+
+msgid "AI Tool, Travel, Product, Service…"
+msgstr ""
+
+msgid "Listing information"
+msgstr ""
+
+msgid "Any label and value. Empty rows are ignored."
+msgstr ""
+
+msgid "Add information"
+msgstr ""
+
+msgid "One per line: Question | Answer"
+msgstr ""
+
+msgid "Listings"
+msgstr ""
+
+msgid "Show Sponsored slots"
+msgstr ""
+
+msgid "Listings with the AD switch on rotate through the Sponsored slots. Their button opens the partner site directly."
+msgstr ""
+
+msgid "Sponsored button text"
+msgstr ""
+
+msgid "Open site →"
+msgstr ""
+
+msgid "Open sponsors in a new tab"
+msgstr ""
+
+msgid "Sponsors to skip on each visit"
+msgstr ""
+
+msgid "Sponsored (AD)"
+msgstr ""
+
+msgid "Remove from Sponsored"
+msgstr ""
+
+msgid "Add to Sponsored"
+msgstr ""
+
+msgid "On, but hidden: this listing has no partner URL"
+msgstr ""
+
+msgid "You are not allowed to change this listing."
+msgstr ""
+
+msgid "Listing cards on shop, category and search pages"
+msgstr ""
+
+msgid "Related listings on the listing page"
+msgstr ""
+
+msgid "Related listings"
+msgstr ""
+
+msgid "BIGSPY AI List"
+msgstr ""
+
+msgid "Find the right tool"
+msgstr ""
+
+msgid "Browse by category"
+msgstr ""
+
+msgid "Latest listings"
+msgstr ""
+
+msgid "Directory – search hero"
+msgstr ""
+
+msgid "Directory – categories"
+msgstr ""
+
+msgid "Directory – featured listings"
+msgstr ""
+
+msgid "Directory – latest listings"
+msgstr ""
+
+msgid "Homepage – directory"
+msgstr ""
+
+msgid "Categories page – directory"
+msgstr ""
+
+msgid "BIGSPY AI List mode uses WooCommerce products as listings. Install and activate WooCommerce to show listings on the site."
+msgstr ""
+
+msgid "BIGSPY AI List mode"
+msgstr ""
+
+msgid "Turn WooCommerce products into directory listings: listing details, facts, pricing, rating, disclosures, schema and the BIGSPY AI List blocks. Turning it off keeps all listing data."
+msgstr ""
+
+msgid "On. WooCommerce products are shown as directory listings."
+msgstr ""
+
+msgid "Off. Turn it on to build a directory site such as an AI tools list, with listing blocks, Sponsored slots and listing schema."
+msgstr ""
+
+msgid "Open Features"
+msgstr ""
+
+msgid "BIGSPY AI List mode is on. Reload the editor to use this block."
+msgstr ""
+
+msgid "BIGSPY AI List block"
+msgstr ""
+
+msgid "Turn on BIGSPY AI List mode in the theme settings to use this block. It shows nothing on the site until then."
+msgstr ""
+
+msgid "Turn on BIGSPY AI List"
+msgstr ""
+
+msgid "Open settings"
+msgstr ""
+
+msgid "Remove block"
+msgstr ""
+
+msgid "(Locked: turn on BIGSPY AI List mode.)"
+msgstr ""
+
+msgid "Square card"
+msgstr ""
+
+msgid "Vertical card"
+msgstr ""
+
+msgid "Horizontal card"
+msgstr ""
+
+msgid "Horizontal, two columns"
+msgstr ""
+
+msgid "Featured listings"
+msgstr ""
+
+msgid "Popular listings"
+msgstr ""
+
+msgid "All listings"
+msgstr ""
+
+msgid "Blog posts"
+msgstr ""
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Number of listings"
+msgstr ""
+
+msgid "Newest / Z–A first"
+msgstr ""
+
+msgid "Oldest / A–Z first"
+msgstr ""
+
+msgid "Number of listings (0 = all)"
+msgstr ""
+
+msgid "Number of items"
+msgstr ""
+
+msgid "Category ID (0 = all)"
+msgstr ""
+
+msgid "Only children of category ID"
+msgstr ""
+
+msgid "Start at item"
+msgstr ""
+
+msgid "Maximum width (px)"
+msgstr ""
+
+msgid "Featured only"
+msgstr ""
+
+msgid "Sponsored slot"
+msgstr ""
+
+msgid "Nothing to show yet: add listings (WooCommerce products) or change the settings."
+msgstr ""
+
+msgid "Listing info"
+msgstr ""
+
+msgid "Listing (product) ID, 0 = current product"
+msgstr ""
+
+msgid "Tagline"
+msgstr ""
+
+msgid "Facts"
+msgstr ""
+
+msgid "Visit button"
+msgstr ""
+
+msgid "Facts shown"
+msgstr ""
+
+msgid "Pick a product that has listing information, or place this block in a product template."
+msgstr ""
+
+msgid "SPONSORED"
+msgstr ""
+
+msgid "Listing name"
+msgstr ""
+
+msgid "Short tagline of the listing"
+msgstr ""
+
+msgid "From $19 / month"
+msgstr ""
+
+msgid "Listing categories"
+msgstr ""
+
+msgid "Grid of listing categories (product categories) with image, name, number of listings and description. Needs BIGSPY AI List mode."
+msgstr ""
+
+msgid "Listing elements"
+msgstr ""
+
+msgid "Ready sections for a directory: Featured, Latest, Popular or Related listings, categories or blog posts, with a title and an optional Sponsored slot. Needs BIGSPY AI List mode."
+msgstr ""
+
+msgid "Listing grid"
+msgstr ""
+
+msgid "Grid of directory listings with logo, category, rating, price and short text; filter by category or Featured. Needs BIGSPY AI List mode."
+msgstr ""
+
+msgid "Summary of one directory listing: tagline, rating, price, facts, visit button and the sponsored or affiliate disclosure. Needs BIGSPY AI List mode and WooCommerce."
+msgstr ""
+
+msgid "Listing search"
+msgstr ""
+
+msgid "Search box that searches directory listings only, with placeholder, button text, width and alignment. Needs BIGSPY AI List mode."
+msgstr ""
+

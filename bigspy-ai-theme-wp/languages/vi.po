@@ -7192,3 +7192,354 @@ msgstr "Giới thiệu BIGSPY AI Theme WP với phiên bản, số khối, tính
 msgid "1.82.0: New Theme Showcase block introduces the theme with its live version, block count, features and the latest updates from this About page, plus a Get the theme button. Hero images can load first with the new Load priority option in Banner and Image. The free-shipping bar follows every WooCommerce Free shipping rule."
 msgstr "1.82.0: Khối mới Giới thiệu theme hiển thị phiên bản, số khối, tính năng và các cập nhật mới nhất lấy từ trang Giới thiệu này, kèm nút Nhận theme. Ảnh đầu trang có thể tải trước nhờ tuỳ chọn Ưu tiên tải trong Banner và Ảnh. Thanh miễn phí vận chuyển theo đúng mọi quy tắc Free shipping của WooCommerce."
 
+msgid "Sponsored"
+msgstr "Tài trợ"
+
+msgid "Featured"
+msgstr "Nổi bật"
+
+msgid "Visit"
+msgstr "Truy cập"
+
+msgid "Search tools, software and services..."
+msgstr "Tìm công cụ, phần mềm và dịch vụ..."
+
+msgid "Search listings"
+msgstr "Tìm listing"
+
+msgid "Search"
+msgstr "Tìm kiếm"
+
+msgid "From"
+msgstr "Từ"
+
+msgid "Contact for pricing"
+msgstr "Liên hệ để biết giá"
+
+msgid "Quote required"
+msgstr "Cần báo giá"
+
+msgid "Price varies"
+msgstr "Giá thay đổi"
+
+msgid "Price on website"
+msgstr "Giá trên website"
+
+msgid "Company"
+msgstr "Công ty"
+
+msgid "Founded"
+msgstr "Thành lập"
+
+msgid "Free trial"
+msgstr "Dùng thử miễn phí"
+
+msgid "API"
+msgstr "API"
+
+msgid "Rating"
+msgstr "Đánh giá"
+
+msgid "Sponsored listing."
+msgstr "Listing được tài trợ."
+
+msgid "%1$s paid to be listed on %2$s. Our editorial rules still apply."
+msgstr "%1$s đã trả phí để có mặt trên %2$s. Quy tắc biên tập của chúng tôi vẫn được áp dụng."
+
+msgid "We may earn a commission if you buy through links on this page, at no extra cost to you. This does not affect our editorial review."
+msgstr "Chúng tôi có thể nhận hoa hồng nếu bạn mua qua liên kết trên trang này, bạn không mất thêm phí. Điều này không ảnh hưởng đến đánh giá biên tập của chúng tôi."
+
+msgid "Rating %s out of 5"
+msgstr "Đánh giá %s trên 5"
+
+msgid "Visit website"
+msgstr "Truy cập website"
+
+msgid "BIGSPY Listing Information"
+msgstr "Thông tin listing BIGSPY"
+
+msgid "Listing fields"
+msgstr "Trường listing"
+
+msgid "Label"
+msgstr "Nhãn"
+
+msgid "Value"
+msgstr "Giá trị"
+
+msgid "AD: show in Sponsored slots"
+msgstr "AD: hiện trong ô Tài trợ"
+
+msgid "Paid listing"
+msgstr "Listing trả phí"
+
+msgid "Tick when the company paid for this listing or placement. The listing then shows a \"Sponsored\" label and a disclosure line."
+msgstr "Tích khi công ty đã trả phí cho listing hoặc vị trí này. Listing khi đó hiện nhãn \"Tài trợ\" và một dòng công bố."
+
+msgid "Sponsor name (optional, defaults to the company name)"
+msgstr "Tên nhà tài trợ (không bắt buộc, mặc định là tên công ty)"
+
+msgid "Listing type"
+msgstr "Loại listing"
+
+msgid "AI Tool, Travel, Product, Service…"
+msgstr "Công cụ AI, Du lịch, Sản phẩm, Dịch vụ…"
+
+msgid "Listing information"
+msgstr "Thông tin listing"
+
+msgid "Any label and value. Empty rows are ignored."
+msgstr "Nhãn và giá trị bất kỳ. Dòng trống sẽ bị bỏ qua."
+
+msgid "Add information"
+msgstr "Thêm thông tin"
+
+msgid "One per line: Question | Answer"
+msgstr "Mỗi dòng một mục: Câu hỏi | Trả lời"
+
+msgid "Listings"
+msgstr "Listing"
+
+msgid "Show Sponsored slots"
+msgstr "Hiện ô Tài trợ"
+
+msgid "Listings with the AD switch on rotate through the Sponsored slots. Their button opens the partner site directly."
+msgstr "Listing bật AD sẽ xoay vòng trong các ô Tài trợ. Nút của chúng mở thẳng trang đối tác."
+
+msgid "Sponsored button text"
+msgstr "Chữ trên nút Tài trợ"
+
+msgid "Open site →"
+msgstr "Mở trang →"
+
+msgid "Open sponsors in a new tab"
+msgstr "Mở nhà tài trợ trong tab mới"
+
+msgid "Sponsors to skip on each visit"
+msgstr "Số nhà tài trợ bỏ qua mỗi lượt xem"
+
+msgid "Sponsored (AD)"
+msgstr "Tài trợ (AD)"
+
+msgid "Remove from Sponsored"
+msgstr "Bỏ khỏi Tài trợ"
+
+msgid "Add to Sponsored"
+msgstr "Thêm vào Tài trợ"
+
+msgid "On, but hidden: this listing has no partner URL"
+msgstr "Đang bật nhưng bị ẩn: listing chưa có URL đối tác"
+
+msgid "You are not allowed to change this listing."
+msgstr "Bạn không có quyền thay đổi listing này."
+
+msgid "Listing cards on shop, category and search pages"
+msgstr "Thẻ listing trên trang cửa hàng, danh mục và tìm kiếm"
+
+msgid "Related listings on the listing page"
+msgstr "Listing liên quan trên trang listing"
+
+msgid "Related listings"
+msgstr "Listing liên quan"
+
+msgid "BIGSPY AI List"
+msgstr "BIGSPY AI List"
+
+msgid "Find the right tool"
+msgstr "Tìm đúng công cụ"
+
+msgid "Browse by category"
+msgstr "Duyệt theo danh mục"
+
+msgid "Latest listings"
+msgstr "Listing mới nhất"
+
+msgid "Categories"
+msgstr "Danh mục"
+
+msgid "Directory – search hero"
+msgstr "Thư mục – hero tìm kiếm"
+
+msgid "Directory – categories"
+msgstr "Thư mục – danh mục"
+
+msgid "Directory – featured listings"
+msgstr "Thư mục – listing nổi bật"
+
+msgid "Directory – latest listings"
+msgstr "Thư mục – listing mới nhất"
+
+msgid "Homepage – directory"
+msgstr "Trang chủ – thư mục"
+
+msgid "Categories page – directory"
+msgstr "Trang Danh mục – thư mục"
+
+msgid "BIGSPY AI List mode uses WooCommerce products as listings. Install and activate WooCommerce to show listings on the site."
+msgstr "Chế độ BIGSPY AI List dùng sản phẩm WooCommerce làm listing. Hãy cài và kích hoạt WooCommerce để hiện listing trên site."
+
+msgid "BIGSPY AI List mode"
+msgstr "Chế độ BIGSPY AI List"
+
+msgid "Turn WooCommerce products into directory listings: listing details, facts, pricing, rating, disclosures, schema and the BIGSPY AI List blocks. Turning it off keeps all listing data."
+msgstr "Biến sản phẩm WooCommerce thành listing thư mục: chi tiết, thông tin, giá, đánh giá, công bố, schema và các khối BIGSPY AI List. Tắt đi vẫn giữ nguyên dữ liệu listing."
+
+msgid "On. WooCommerce products are shown as directory listings."
+msgstr "Đang bật. Sản phẩm WooCommerce hiển thị dạng listing thư mục."
+
+msgid "Off. Turn it on to build a directory site such as an AI tools list, with listing blocks, Sponsored slots and listing schema."
+msgstr "Đang tắt. Bật lên để làm site thư mục như danh sách công cụ AI, có khối listing, ô Tài trợ và schema listing."
+
+msgid "Open Features"
+msgstr "Mở Tính năng"
+
+msgid "BIGSPY AI List mode is on. Reload the editor to use this block."
+msgstr "Đã bật chế độ BIGSPY AI List. Tải lại trình soạn thảo để dùng khối này."
+
+msgid "BIGSPY AI List block"
+msgstr "Khối BIGSPY AI List"
+
+msgid "Turn on BIGSPY AI List mode in the theme settings to use this block. It shows nothing on the site until then."
+msgstr "Bật chế độ BIGSPY AI List trong cài đặt theme để dùng khối này. Trước đó khối không hiển thị gì trên site."
+
+msgid "Turn on BIGSPY AI List"
+msgstr "Bật BIGSPY AI List"
+
+msgid "Open settings"
+msgstr "Mở cài đặt"
+
+msgid "Remove block"
+msgstr "Gỡ khối"
+
+msgid "(Locked: turn on BIGSPY AI List mode.)"
+msgstr "(Đang khoá: bật chế độ BIGSPY AI List.)"
+
+msgid "Square card"
+msgstr "Thẻ vuông"
+
+msgid "Vertical card"
+msgstr "Thẻ dọc"
+
+msgid "Horizontal card"
+msgstr "Thẻ ngang"
+
+msgid "Horizontal, two columns"
+msgstr "Ngang, hai cột"
+
+msgid "Featured listings"
+msgstr "Listing nổi bật"
+
+msgid "Popular listings"
+msgstr "Listing phổ biến"
+
+msgid "All listings"
+msgstr "Tất cả listing"
+
+msgid "Blog posts"
+msgstr "Bài blog"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Last updated"
+msgstr "Cập nhật gần nhất"
+
+msgid "Random"
+msgstr "Ngẫu nhiên"
+
+msgid "Number of listings"
+msgstr "Số listing"
+
+msgid "Newest / Z–A first"
+msgstr "Mới nhất / Z–A trước"
+
+msgid "Oldest / A–Z first"
+msgstr "Cũ nhất / A–Z trước"
+
+msgid "Number of listings (0 = all)"
+msgstr "Số listing (0 = tất cả)"
+
+msgid "Number of items"
+msgstr "Số mục"
+
+msgid "Category ID (0 = all)"
+msgstr "ID danh mục (0 = tất cả)"
+
+msgid "Only children of category ID"
+msgstr "Chỉ danh mục con của ID"
+
+msgid "Start at item"
+msgstr "Bắt đầu từ mục"
+
+msgid "Maximum width (px)"
+msgstr "Chiều rộng tối đa (px)"
+
+msgid "Featured only"
+msgstr "Chỉ listing nổi bật"
+
+msgid "Sponsored slot"
+msgstr "Ô Tài trợ"
+
+msgid "Nothing to show yet: add listings (WooCommerce products) or change the settings."
+msgstr "Chưa có gì để hiện: thêm listing (sản phẩm WooCommerce) hoặc đổi cài đặt."
+
+msgid "Listing info"
+msgstr "Thông tin listing"
+
+msgid "Listing (product) ID, 0 = current product"
+msgstr "ID listing (sản phẩm), 0 = sản phẩm hiện tại"
+
+msgid "Tagline"
+msgstr "Khẩu hiệu"
+
+msgid "Facts"
+msgstr "Thông tin nhanh"
+
+msgid "Visit button"
+msgstr "Nút truy cập"
+
+msgid "Facts shown"
+msgstr "Số thông tin hiển thị"
+
+msgid "Pick a product that has listing information, or place this block in a product template."
+msgstr "Chọn một sản phẩm có thông tin listing, hoặc đặt khối này trong template sản phẩm."
+
+msgid "SPONSORED"
+msgstr "TÀI TRỢ"
+
+msgid "Listing name"
+msgstr "Tên listing"
+
+msgid "Short tagline of the listing"
+msgstr "Khẩu hiệu ngắn của listing"
+
+msgid "From $19 / month"
+msgstr "Từ $19 / tháng"
+
+msgid "Listing categories"
+msgstr "Danh mục listing"
+
+msgid "Grid of listing categories (product categories) with image, name, number of listings and description. Needs BIGSPY AI List mode."
+msgstr "Lưới danh mục listing (danh mục sản phẩm) có ảnh, tên, số listing và mô tả. Cần chế độ BIGSPY AI List."
+
+msgid "Listing elements"
+msgstr "Phần tử listing"
+
+msgid "Ready sections for a directory: Featured, Latest, Popular or Related listings, categories or blog posts, with a title and an optional Sponsored slot. Needs BIGSPY AI List mode."
+msgstr "Phần dựng sẵn cho thư mục: listing Nổi bật, Mới nhất, Phổ biến hoặc Liên quan, danh mục hay bài blog, có tiêu đề và ô Tài trợ tuỳ chọn. Cần chế độ BIGSPY AI List."
+
+msgid "Listing grid"
+msgstr "Lưới listing"
+
+msgid "Grid of directory listings with logo, category, rating, price and short text; filter by category or Featured. Needs BIGSPY AI List mode."
+msgstr "Lưới listing thư mục có logo, danh mục, đánh giá, giá và mô tả ngắn; lọc theo danh mục hoặc Nổi bật. Cần chế độ BIGSPY AI List."
+
+msgid "Summary of one directory listing: tagline, rating, price, facts, visit button and the sponsored or affiliate disclosure. Needs BIGSPY AI List mode and WooCommerce."
+msgstr "Tóm tắt một listing thư mục: khẩu hiệu, đánh giá, giá, thông tin nhanh, nút truy cập và công bố tài trợ hoặc affiliate. Cần chế độ BIGSPY AI List và WooCommerce."
+
+msgid "Listing search"
+msgstr "Tìm kiếm listing"
+
+msgid "Search box that searches directory listings only, with placeholder, button text, width and alignment. Needs BIGSPY AI List mode."
+msgstr "Ô tìm kiếm chỉ tìm trong listing thư mục, có chữ gợi ý, chữ nút, độ rộng và căn lề. Cần chế độ BIGSPY AI List."
+

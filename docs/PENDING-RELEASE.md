@@ -38,6 +38,14 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** nhánh `feature/ai-designer`, commit G-77.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+### G-78 Cài đặt, AI Designer, bản dịch cho listing
+
+- **Đã thay đổi:** cài đặt listing nằm trong trang Features (Sponsored, thẻ listing ở trang lưu trữ, listing liên quan); trang About có một dòng về chế độ BIGSPY AI List kèm liên kết Features. AI Designer bỏ các khối nhóm BIGSPY AI List khi chế độ tắt hoặc thiếu WooCommerce (hồ sơ khối đã có từ G-74/G-76). Thêm 117 chuỗi tiếng Việt (vi.po/.mo/.l10n.php, pot). Chưa dịch: nhãn tự sinh trong bảng thuộc tính khối (Tagline, Show…), chuỗi số nhiều "%s listing".
+- **Kiểm thử:** features-check 121 ok, playground-check 204 PASS (thêm kiểm tra AI Designer bỏ khối listing khi tắt), woo-check 24 ok.
+- **Khi phát hành cần bổ sung:** Có gì mới và README: chế độ BIGSPY AI List (G-74–G-78).
+- **Git:** nhánh `feature/ai-designer`, commit G-78.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

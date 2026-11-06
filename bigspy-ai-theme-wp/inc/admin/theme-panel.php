@@ -287,6 +287,9 @@ function bst_panel_header( $title, $lead ) {
 /** Read-only overview of the theme and its update source. */
 function bst_panel_about_page() {
 	bst_welcome_screen( 'theme' );
+	// One line about the optional directory mode; the switch lives on the Features page.
+	$on = function_exists( 'bst_feature_on' ) && bst_feature_on( 'listing' );
+	echo '<div class="wrap"><p class="bst-listing-mode-note"><strong>' . esc_html__( 'BIGSPY AI List mode', 'bigspy-ai-theme-wp' ) . ':</strong> ' . esc_html( $on ? __( 'On. WooCommerce products are shown as directory listings.', 'bigspy-ai-theme-wp' ) : __( 'Off. Turn it on to build a directory site such as an AI tools list, with listing blocks, Sponsored slots and listing schema.', 'bigspy-ai-theme-wp' ) ) . ' <a href="' . esc_url( admin_url( 'admin.php?page=bigspy-features' ) ) . '">' . esc_html__( 'Open Features', 'bigspy-ai-theme-wp' ) . '</a></p></div>';
 }
 
 function bst_panel_options_page() {
