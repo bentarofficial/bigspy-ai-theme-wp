@@ -44,6 +44,18 @@ function bst_aid_tool_policy( $name, $a ) {
 		'ImageGen' => 'images', 'image_status' => 'images', 'optimize_image' => 'images', 'save_guidelines' => 'content', 'manual_checklist' => 'content',
 		'update_settings' => 'design', 'set_logo' => 'design', 'custom_css' => 'design', 'set_menu' => 'design', 'header_layout' => 'design', 'set_footer' => 'design', 'site_settings' => 'site', 'publish' => 'publish', 'seo_meta' => 'seo', 'install_plugin' => 'plugins', 'budget_extension' => 'budget',
 	);
+	// Tools that plugins add through bst_aid_tools declare a group here. Only 'read' and 'content'
+	// are accepted, and core tool names cannot be redeclared, so a plugin cannot loosen any rule.
+	if ( ! isset( $groups[ $name ] ) ) {
+		$extra = (array) apply_filters( 'bst_aid_extra_tool_groups', array() );
+		$kind  = $extra[ $name ] ?? '';
+		if ( 'read' === $kind ) {
+			return array( 'level' => 1, 'group' => 'read', 'write' => false );
+		}
+		if ( 'content' === $kind ) {
+			$groups[ $name ] = 'content';
+		}
+	}
 	if ( ! isset( $groups[ $name ] ) ) {
 		return array( 'level' => 3, 'group' => 'blocked', 'write' => true );
 	}

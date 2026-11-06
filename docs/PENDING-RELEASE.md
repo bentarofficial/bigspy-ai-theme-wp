@@ -56,3 +56,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
 - G-88: Re-register the 14 legacy BIGSPY AI List layout blocks (`bigspy/section`, `row`, `column`, `heading`, `text`, `button`, `button-group`, `tabs`, `tab`, `code`, `callout`, `badge`, `divider`, `home-seo-divider`) display-only and hidden from the inserter (`legacy-list/`, `inc/legacy-list-blocks.php`), so old bigspyai.com content keeps rendering. Styles extracted from the old main.css (~18 KB, loaded only when a block is on the page).
+
+### G-87 Quyền cho tool của plugin trong AI Designer
+
+- **Yêu cầu/tính năng:** cho BIGSPY AI List Suite thêm tool vào AI Designer mà không nới quyền.
+- **Đã thay đổi:** `ai-designer/includes/permissions.php`: filter `bst_aid_extra_tool_groups` để plugin khai báo tool mới là `read` hoặc `content`; nhóm khác bị bỏ qua, tên tool lõi không khai báo lại được, tool không khai báo vẫn bị chặn (level 3). Tool `content` theo đúng luật phê duyệt và mức quyền nhóm Nội dung như tool lõi.
+- **Kiểm thử:** playground-check 204 PASS, features-check đạt; Playground với List Suite: tool đọc chạy không cần task, tool ghi đòi task, `publish`/tool lạ vẫn bị chặn dù plugin khai báo sai.
+- **Khi phát hành cần bổ sung:** một dòng trong Có gì mới cùng List Suite.
+- **Git:** nhánh `feature/ai-designer`, commit G-87.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
