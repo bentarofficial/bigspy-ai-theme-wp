@@ -1,0 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+$a = is_array( $attributes ?? null ) ? $attributes : array(); $level = max( 1, min( 6, (int) ( $a['level'] ?? 2 ) ) ); $tag = 'h' . $level;
+$align = in_array( $a['align'] ?? 'left', array( 'left', 'center', 'right' ), true ) ? $a['align'] : 'left'; $preset = in_array( $a['preset'] ?? 'default', array( 'default', 'display', 'section', 'eyebrow' ), true ) ? $a['preset'] : 'default';
+$num = static function( $v, $max ) { return max( 0, min( $max, is_numeric( $v ) ? (int) $v : 0 ) ); };
+$style = '--bigspy-heading-max:' . $num( $a['maxWidth'] ?? 0, 1400 ) . 'px;--bigspy-heading-size-d:' . ( $num( $a['fontSizeDesktop'] ?? 0, 96 ) ? $num( $a['fontSizeDesktop'], 96 ) . 'px' : 'var(--bigspy-heading-preset-size)' ) . ';--bigspy-heading-size-t:' . ( $num( $a['fontSizeTablet'] ?? 0, 80 ) ? $num( $a['fontSizeTablet'], 80 ) . 'px' : 'var(--bigspy-heading-preset-size)' ) . ';--bigspy-heading-size-m:' . ( $num( $a['fontSizeMobile'] ?? 0, 64 ) ? $num( $a['fontSizeMobile'], 64 ) . 'px' : 'var(--bigspy-heading-preset-size)' ) . ';text-align:' . $align . ';';
+echo '<' . $tag . ' ' . get_block_wrapper_attributes( array( 'class' => 'bigspy-builder-heading bigspy-heading--' . $preset, 'style' => $style ) ) . '>' . wp_kses_post( $a['text'] ?? '' ) . '</' . $tag . '>';

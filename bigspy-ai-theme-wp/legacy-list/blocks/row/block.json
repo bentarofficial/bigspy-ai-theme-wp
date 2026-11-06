@@ -1,0 +1,79 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/row",
+	"title": "BIGSPY Row",
+	"category": "bigspy-list",
+	"icon": "columns",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"columnsDesktop": {
+			"type": "number",
+			"default": 2
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"gapDesktop": {
+			"type": "number",
+			"default": 24
+		},
+		"gapTablet": {
+			"type": "number",
+			"default": 20
+		},
+		"gapMobile": {
+			"type": "number",
+			"default": 16
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"reverseMobile": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideDesktop": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideTablet": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideMobile": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"inserter": false,
+		"reusable": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"style": "bst-legacy-list",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,68 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/button",
+	"title": "BIGSPY Button",
+	"category": "bigspy-list",
+	"icon": "button",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": "Learn more"
+		},
+		"url": {
+			"type": "string",
+			"default": "#"
+		},
+		"style": {
+			"type": "string",
+			"default": "solid"
+		},
+		"size": {
+			"type": "string",
+			"default": "medium"
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"width": {
+			"type": "string",
+			"default": "auto"
+		},
+		"icon": {
+			"type": "string",
+			"default": "arrow"
+		},
+		"targetBlank": {
+			"type": "boolean",
+			"default": false
+		},
+		"nofollow": {
+			"type": "boolean",
+			"default": false
+		},
+		"sponsored": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"color": {
+			"text": true,
+			"background": true
+		},
+		"spacing": {
+			"margin": true
+		},
+		"inserter": false,
+		"reusable": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"style": "bst-legacy-list",
+	"render": "file:./render.php"
+}

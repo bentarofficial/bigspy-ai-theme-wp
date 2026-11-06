@@ -1,0 +1,118 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/section",
+	"title": "BIGSPY Section",
+	"category": "bigspy-list",
+	"icon": "align-wide",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"contentWidth": {
+			"type": "string",
+			"default": "boxed"
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 1200
+		},
+		"paddingYDesktop": {
+			"type": "number",
+			"default": 64
+		},
+		"paddingYTablet": {
+			"type": "number",
+			"default": 48
+		},
+		"paddingYMobile": {
+			"type": "number",
+			"default": 32
+		},
+		"paddingX": {
+			"type": "number",
+			"default": 24
+		},
+		"minHeight": {
+			"type": "number",
+			"default": 0
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"overflow": {
+			"type": "string",
+			"default": "hidden"
+		},
+		"hideDesktop": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideTablet": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideMobile": {
+			"type": "boolean",
+			"default": false
+		},
+		"backgroundImageUrl": {
+			"default": "",
+			"type": "string"
+		},
+		"backgroundBlur": {
+			"default": 0,
+			"type": "number"
+		},
+		"overlayOpacity": {
+			"default": 0,
+			"type": "number"
+		},
+		"overlayColor": {
+			"default": "",
+			"type": "string"
+		},
+		"backgroundOpacity": {
+			"default": 100,
+			"type": "number"
+		},
+		"backgroundImageId": {
+			"default": 0,
+			"type": "number"
+		},
+		"backgroundSize": {
+			"default": "cover",
+			"type": "string"
+		},
+		"backgroundPosition": {
+			"default": "center",
+			"type": "string"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"inserter": false,
+		"reusable": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"style": "bst-legacy-list",
+	"render": "file:./render.php"
+}

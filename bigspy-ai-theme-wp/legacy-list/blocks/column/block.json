@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/column",
+	"title": "BIGSPY Column",
+	"category": "bigspy-list",
+	"icon": "editor-table",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"spanDesktop": {
+			"type": "number",
+			"default": 1
+		},
+		"spanTablet": {
+			"type": "number",
+			"default": 1
+		},
+		"spanMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"contentGap": {
+			"type": "number",
+			"default": 16
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": "start"
+		},
+		"hideDesktop": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideTablet": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideMobile": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"inserter": false,
+		"reusable": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"style": "bst-legacy-list",
+	"render": "file:./render.php"
+}

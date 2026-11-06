@@ -54,3 +54,5 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** mục Giới thiệu/Có gì mới/tài liệu/kiến thức AI liên quan, hoặc “không cần”.
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
+- G-88: Re-register the 14 legacy BIGSPY AI List layout blocks (`bigspy/section`, `row`, `column`, `heading`, `text`, `button`, `button-group`, `tabs`, `tab`, `code`, `callout`, `badge`, `divider`, `home-seo-divider`) display-only and hidden from the inserter (`legacy-list/`, `inc/legacy-list-blocks.php`), so old bigspyai.com content keeps rendering. Styles extracted from the old main.css (~18 KB, loaded only when a block is on the page).

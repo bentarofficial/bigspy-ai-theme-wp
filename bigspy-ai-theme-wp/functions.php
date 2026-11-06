@@ -13,6 +13,7 @@ define( 'BST_URI', get_template_directory_uri() );
 
 $bst_includes = array(
 	'inc/helpers.php',
+	'inc/legacy-list-blocks.php',
 	'inc/css-presets.php',
 	'inc/setup.php',
 	'inc/updater.php',

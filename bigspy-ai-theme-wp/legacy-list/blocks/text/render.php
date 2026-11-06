@@ -1,0 +1,4 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) { exit; } $a = is_array( $attributes ?? null ) ? $attributes : array();
+$align = in_array( $a['align'] ?? 'left', array( 'left', 'center', 'right' ), true ) ? $a['align'] : 'left'; $preset = in_array( $a['preset'] ?? 'body', array( 'body', 'lead', 'small', 'muted' ), true ) ? $a['preset'] : 'body'; $max = max( 0, min( 1200, (int) ( $a['maxWidth'] ?? 0 ) ) );
+echo '<p ' . get_block_wrapper_attributes( array( 'class' => 'bigspy-builder-text bigspy-text--' . $preset, 'style' => 'text-align:' . $align . ';--bigspy-text-max:' . $max . 'px;' ) ) . '>' . wp_kses_post( nl2br( $a['text'] ?? '' ) ) . '</p>';
