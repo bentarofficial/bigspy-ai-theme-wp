@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.82.0: Theme Showcase block
+
+- **Theme Showcase:** a new block that introduces the theme with its live version, block count, features and the latest updates, read from the installed theme so it stays current after each update. Its button points to the Telegram group by default.
+- **Hero images:** Banner and Image have a Load priority option; Above the fold loads the image first with fetchpriority=high.
+- **WooCommerce:** the free-shipping bar follows every Free shipping rule, including coupons and ignoring discounts.
+
 ### 1.81.0: Faster, smarter AI Designer
 
 - **Building:** block profiles tell the AI when each block fits; 42 ready section recipes come with motion. You approve the page outline once, then the AI builds up to 8 sections per call.

@@ -7114,3 +7114,81 @@ msgstr "Hoàn tác lần lưu này"
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr "1.81.0: AI Designer nhanh và thông minh hơn: hồ sơ block và 42 công thức section có sẵn hiệu ứng, duyệt sơ đồ trang một lần rồi dựng nhiều section mỗi lượt, minh hoạ bằng SVG/HTML/CSS, chọn model và chuyên môn ngay trong chat, model nhanh cho Effort Thấp, đính kèm file, đo thời gian và chi phí từng lượt, ngữ cảnh tự lưu và tự học điều bạn nói áp dụng từ nay."
 
+msgid "Load priority"
+msgstr "Ưu tiên tải"
+
+msgid "Automatic"
+msgstr "Tự động"
+
+msgid "Top of page (load first)"
+msgstr "Ảnh đầu trang (tải trước)"
+
+msgid "Load later"
+msgstr "Tải trễ"
+
+msgid "Use \"Top of page\" only for the first image visitors see."
+msgstr "Chỉ chọn \"Ảnh đầu trang\" cho ảnh khách thấy đầu tiên."
+
+msgid "Original width (px)"
+msgstr "Chiều rộng gốc (px)"
+
+msgid "Original height (px)"
+msgstr "Chiều cao gốc (px)"
+
+msgid "Reserves space so the page does not jump while the image loads."
+msgstr "Giữ chỗ để trang không bị nhảy khi ảnh đang tải."
+
+msgid "Get the theme"
+msgstr "Nhận theme"
+
+msgid "Join the Telegram group to read the guides and get the GitHub download link."
+msgstr "Vào nhóm Telegram để xem hướng dẫn và nhận link tải theme trên GitHub."
+
+msgid "Current version"
+msgstr "Phiên bản hiện tại"
+
+msgid "Blocks"
+msgstr "Khối"
+
+msgid "Feature groups"
+msgstr "Nhóm tính năng"
+
+msgid "Recent updates"
+msgstr "Bản cập nhật gần đây"
+
+msgid "Theme Showcase"
+msgstr "Giới thiệu theme"
+
+msgid "Show introduction"
+msgstr "Hiện phần giới thiệu"
+
+msgid "Show features"
+msgstr "Hiện tính năng"
+
+msgid "Show updates"
+msgstr "Hiện cập nhật"
+
+msgid "Updates shown"
+msgstr "Số cập nhật hiển thị"
+
+msgid "Button text"
+msgstr "Chữ trên nút"
+
+msgid "Empty uses \"Get the theme\"."
+msgstr "Để trống sẽ dùng \"Nhận theme\"."
+
+msgid "Button link"
+msgstr "Liên kết nút"
+
+msgid "For example your Telegram group. Empty hides the button."
+msgstr "Ví dụ nhóm Telegram. Để trống sẽ ẩn nút."
+
+msgid "Note under the button"
+msgstr "Ghi chú dưới nút"
+
+msgid "Introduce BIGSPY AI Theme WP with its current version, block count, feature list and latest updates. Everything is read from the installed theme, so the block stays current after each theme update."
+msgstr "Giới thiệu BIGSPY AI Theme WP với phiên bản, số khối, tính năng và cập nhật mới nhất. Dữ liệu đọc từ theme đang cài nên tự cập nhật sau mỗi lần nâng cấp theme."
+
+msgid "1.82.0: New Theme Showcase block introduces the theme with its live version, block count, features and the latest updates from this About page, plus a Get the theme button. Hero images can load first with the new Load priority option in Banner and Image. The free-shipping bar follows every WooCommerce Free shipping rule."
+msgstr "1.82.0: Khối mới Giới thiệu theme hiển thị phiên bản, số khối, tính năng và các cập nhật mới nhất lấy từ trang Giới thiệu này, kèm nút Nhận theme. Ảnh đầu trang có thể tải trước nhờ tuỳ chọn Ưu tiên tải trong Banner và Ảnh. Thanh miễn phí vận chuyển theo đúng mọi quy tắc Free shipping của WooCommerce."
+

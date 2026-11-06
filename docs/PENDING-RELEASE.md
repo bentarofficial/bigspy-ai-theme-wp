@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới (1.81.0 đã gom G-21–G-23, G-44–G-51).
+Chưa có. G-54, G-55, G-72 đã phát hành trong 1.82.0.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

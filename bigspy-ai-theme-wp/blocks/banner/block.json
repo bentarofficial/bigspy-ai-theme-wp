@@ -89,6 +89,10 @@
 			"type": "string",
 			"default": "zoom"
 		},
+		"loadPriority": {
+			"type": "string",
+			"default": "auto"
+		},
 		"radius": {
 			"type": "number",
 			"default": 0

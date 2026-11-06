@@ -18,11 +18,12 @@ function bst_welcome_label( $kind ) {
 
 add_action( 'admin_menu', function () {
 	global $submenu;
-	foreach ( array( 'bigspy-ai-theme-wp' => 'bigspy-about', 'bst-ai-designer' => 'bst-ai-about' ) as $parent => $slug ) {
+	// About goes first in the theme menu, right after Workspace in AI Designer.
+	foreach ( array( 'bigspy-ai-theme-wp' => array( 'bigspy-about', 0 ), 'bst-ai-designer' => array( 'bst-ai-about', 1 ) ) as $parent => list( $slug, $pos ) ) {
 		foreach ( $submenu[ $parent ] ?? array() as $i => $item ) {
 			if ( $slug === $item[2] ) {
 				unset( $submenu[ $parent ][ $i ] );
-				array_unshift( $submenu[ $parent ], $item );
+				array_splice( $submenu[ $parent ], $pos, 0, array( $item ) );
 				break;
 			}
 		}

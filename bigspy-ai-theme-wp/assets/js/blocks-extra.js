@@ -167,6 +167,22 @@
 		);
 	});
 
+	/* ---------------------------------------------------------------- Theme Showcase: data comes from the installed theme */
+	reg('bigspy/theme-showcase', function (props) {
+		return el(Fragment, null,
+			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Theme Showcase', T) },
+				toggle(props, __('Show introduction', T), 'showHero'),
+				toggle(props, __('Show features', T), 'showFeatures'),
+				toggle(props, __('Show updates', T), 'showNews'),
+				range(props, __('Updates shown', T), 'newsCount', 1, 20),
+				text(props, __('Button text', T), 'buttonText', __('Empty uses "Get the theme".', T)),
+				text(props, __('Button link', T), 'buttonUrl', __('For example your Telegram group. Empty hides the button.', T)),
+				text(props, __('Note under the button', T), 'note')
+			)),
+			preview('bigspy/theme-showcase', props)
+		);
+	});
+
 	/* ---------------------------------------------------------------- Payment icons */
 	var PAY = [['visa', 'Visa'], ['mastercard', 'Mastercard'], ['jcb', 'JCB'], ['amex', 'American Express'], ['paypal', 'PayPal'], ['momo', 'MoMo'], ['zalopay', 'ZaloPay'], ['vnpay', 'VNPAY'], ['shopeepay', 'ShopeePay'], ['vietqr', 'VietQR'], ['bank', __('Bank transfer', T)], ['cod', 'COD'], ['applepay', 'Apple Pay'], ['googlepay', 'Google Pay']];
 	reg('bst/payment-icons', function (props) {

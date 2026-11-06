@@ -10947,3 +10947,75 @@ msgstr ""
 msgid "1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on."
 msgstr ""
 
+msgid "Load priority"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
+
+msgid "Top of page (load first)"
+msgstr ""
+
+msgid "Load later"
+msgstr ""
+
+msgid "Use \"Top of page\" only for the first image visitors see."
+msgstr ""
+
+msgid "Original width (px)"
+msgstr ""
+
+msgid "Original height (px)"
+msgstr ""
+
+msgid "Reserves space so the page does not jump while the image loads."
+msgstr ""
+
+msgid "Get the theme"
+msgstr ""
+
+msgid "Join the Telegram group to read the guides and get the GitHub download link."
+msgstr ""
+
+msgid "Current version"
+msgstr ""
+
+msgid "Blocks"
+msgstr ""
+
+msgid "Feature groups"
+msgstr ""
+
+msgid "Recent updates"
+msgstr ""
+
+msgid "Theme Showcase"
+msgstr ""
+
+msgid "Show introduction"
+msgstr ""
+
+msgid "Show features"
+msgstr ""
+
+msgid "Show updates"
+msgstr ""
+
+msgid "Updates shown"
+msgstr ""
+
+msgid "Empty uses \"Get the theme\"."
+msgstr ""
+
+msgid "For example your Telegram group. Empty hides the button."
+msgstr ""
+
+msgid "Note under the button"
+msgstr ""
+
+msgid "Introduce BIGSPY AI Theme WP with its current version, block count, feature list and latest updates. Everything is read from the installed theme, so the block stays current after each theme update."
+msgstr ""
+
+msgid "1.82.0: New Theme Showcase block introduces the theme with its live version, block count, features and the latest updates from this About page, plus a Get the theme button. Hero images can load first with the new Load priority option in Banner and Image. The free-shipping bar follows every WooCommerce Free shipping rule."
+msgstr ""
+

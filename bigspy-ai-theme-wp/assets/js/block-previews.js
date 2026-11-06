@@ -135,6 +135,7 @@
 		popup: function () { return frame(box('position:relative;height:150px;border-radius:10px;background:#18394f55;display:grid;place-items:center', box('width:200px;padding:12px;border-radius:12px;background:#fff;box-shadow:0 16px 40px #0003;position:relative', span('position:absolute;right:8px;top:4px;font-size:12px;color:' + MUTED, '×') + title(__('Get 10% off', T), 12) + lines(2) + btn(__('Claim offer', T))))); },
 		logos: function () { return frame(box('display:flex;gap:10px;align-items:center;overflow:hidden;padding:16px 0', rep(6, function (i) { return span('flex:0 0 60px;height:26px;border-radius:6px;background:#e4ebf1;color:#9fb0bf;font-size:9px;font-weight:800;display:grid;place-items:center', 'LOGO ' + (i + 1)); }).join(''))); },
 		'widget-area': function () { return frame(row([box('flex:2', lines(6)), card(title(__('Sidebar', T), 10) + rep(4, function () { return box('display:flex;gap:5px;align-items:center', dot(A, 5) + bar('70%')); }).join(''))], 12)); },
+		'theme-showcase': function () { return frame(box('padding:10px;border-radius:10px;background:#eef2ff', lines(2) + box('display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:6px 0', box('height:16px;background:#fff;border-radius:4px', '').repeat(4)) + btn(__('Get the theme', T)))); },
 		shortcode: function () { return frame(box('padding:10px;border:1px dashed ' + A + ';border-radius:10px;font-family:monospace;font-size:10px;color:' + A + ';text-align:center', '[contact-form-7 id="123"]') + box('margin-top:8px;padding:10px;border:1px solid ' + LINE + ';border-radius:10px', lines(2) + btn(__('Send', T)))); },
 		'payment-icons': function () { return frame(box('display:flex;gap:6px;justify-content:center;padding:24px 0', ['VISA', 'MC', 'MoMo', 'ZaloPay', 'COD'].map(function (p) { return span('padding:6px 9px;border:1px solid ' + LINE + ';border-radius:6px;background:#fff;font-size:8px;font-weight:800;color:' + INK, p); }).join(''))); },
 		marquee: function () { return frame(box('overflow:hidden;white-space:nowrap;padding:14px 0;background:' + A + ';border-radius:8px;color:#fff;font-size:13px;font-weight:800', '&nbsp;SEO ✦ WEB DESIGN ✦ GOOGLE ADS ✦ BRANDING ✦ SEO ✦ WEB DESIGN ✦') + box('text-align:center;font-size:8px;color:' + MUTED + ';margin-top:6px', '← ← ←')); },
@@ -166,7 +167,7 @@
 	/* Icon color per block family, so blocks are easy to tell apart in the inserter. */
 	var FAMILY = {
 		'#4f46e5': ['section', 'row', 'column', 'spacer', 'divider', 'widget-area'], // layout
-		'#2563eb': ['heading', 'title', 'text', 'icon-list', 'table', 'alert', 'code', 'shortcode'], // text
+		'#2563eb': ['heading', 'title', 'text', 'icon-list', 'table', 'alert', 'code', 'shortcode', 'theme-showcase'], // text
 		'#db2777': ['image', 'gallery', 'banner', 'banner-grid', 'video', 'video-button', 'audio', 'lottie', 'before-after', 'hotspot', 'map'], // media
 		'#7c3aed': ['slider', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'marquee', 'logos', 'flip-box', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell'], // motion
 		'#ea580c': ['tabs', 'tab', 'accordion', 'accordion-item', 'popup', 'button', 'buttons', 'form', 'nav-menu'], // interactive

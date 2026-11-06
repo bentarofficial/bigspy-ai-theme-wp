@@ -22,6 +22,7 @@
 	var Range = B.Range;
 	var Toggle = B.Toggle;
 	var Text = B.Text;
+	var LOAD_PRIORITY = { auto: __('Automatic', 'bigspy-ai-theme-wp'), high: __('Top of page (load first)', 'bigspy-ai-theme-wp'), lazy: __('Load later', 'bigspy-ai-theme-wp') };
 
 	var saveInner = function () {
 		return el(InnerBlocks.Content);
@@ -1018,7 +1019,8 @@
 							props.setAttributes({ focalX: Math.round(v.x * 100), focalY: Math.round(v.y * 100) });
 						}
 					}) : null,
-					el(Select, Object.assign({ label: __('Hover effect', 'bigspy-ai-theme-wp'), options: { none: __('None', 'bigspy-ai-theme-wp'), zoom: __('Zoom image', 'bigspy-ai-theme-wp'), glow: __('Lighten overlay', 'bigspy-ai-theme-wp') } }, bind('hover')))
+					el(Select, Object.assign({ label: __('Hover effect', 'bigspy-ai-theme-wp'), options: { none: __('None', 'bigspy-ai-theme-wp'), zoom: __('Zoom image', 'bigspy-ai-theme-wp'), glow: __('Lighten overlay', 'bigspy-ai-theme-wp') } }, bind('hover'))),
+					el(Select, Object.assign({ label: __('Load priority', 'bigspy-ai-theme-wp'), help: __('Use "Top of page" only for the first image visitors see.', 'bigspy-ai-theme-wp'), options: LOAD_PRIORITY }, bind('loadPriority')))
 				),
 				el(Panel, { title: __('Size', 'bigspy-ai-theme-wp') },
 					sliderChoice(props, __('Height', 'bigspy-ai-theme-wp'), 'heightMode', [['px', __('Fixed (px)', 'bigspy-ai-theme-wp')], ['vh', __('% of screen', 'bigspy-ai-theme-wp')], ['image', __('Fit image', 'bigspy-ai-theme-wp')]]),
@@ -1738,7 +1740,10 @@
 				el(Panel, { title: __('Image', 'bigspy-ai-theme-wp') },
 					el(B.MediaPicker, { id: a.imageId, url: a.imageUrl, onChange: setImage }),
 					el(Text, Object.assign({ label: __('Alt text (describes the image)', 'bigspy-ai-theme-wp') }, bind('alt'))),
-					el(Select, Object.assign({ label: __('Resolution', 'bigspy-ai-theme-wp'), options: { thumbnail: __('Thumbnail', 'bigspy-ai-theme-wp'), medium: __('Medium', 'bigspy-ai-theme-wp'), medium_large: __('Medium large', 'bigspy-ai-theme-wp'), large: __('Large', 'bigspy-ai-theme-wp'), full: __('Full size', 'bigspy-ai-theme-wp') } }, bind('size')))
+					el(Select, Object.assign({ label: __('Resolution', 'bigspy-ai-theme-wp'), options: { thumbnail: __('Thumbnail', 'bigspy-ai-theme-wp'), medium: __('Medium', 'bigspy-ai-theme-wp'), medium_large: __('Medium large', 'bigspy-ai-theme-wp'), large: __('Large', 'bigspy-ai-theme-wp'), full: __('Full size', 'bigspy-ai-theme-wp') } }, bind('size'))),
+					el(Select, Object.assign({ label: __('Load priority', 'bigspy-ai-theme-wp'), help: __('Use "Top of page" only for the first image visitors see.', 'bigspy-ai-theme-wp'), options: LOAD_PRIORITY }, bind('loadPriority'))),
+					!a.imageId && a.imageUrl ? el(Text, { label: __('Original width (px)', 'bigspy-ai-theme-wp'), type: 'number', value: a.urlWidth || '', onChange: function (v) { props.setAttributes({ urlWidth: Math.max(0, parseInt(v, 10) || 0) }); } }) : null,
+					!a.imageId && a.imageUrl ? el(Text, { label: __('Original height (px)', 'bigspy-ai-theme-wp'), help: __('Reserves space so the page does not jump while the image loads.', 'bigspy-ai-theme-wp'), type: 'number', value: a.urlHeight || '', onChange: function (v) { props.setAttributes({ urlHeight: Math.max(0, parseInt(v, 10) || 0) }); } }) : null
 				),
 				el(Panel, { title: __('Layout & style', 'bigspy-ai-theme-wp') },
 					el(Range, Object.assign({ label: __('Width (%)', 'bigspy-ai-theme-wp'), min: 5, max: 100 }, bind('width'))),

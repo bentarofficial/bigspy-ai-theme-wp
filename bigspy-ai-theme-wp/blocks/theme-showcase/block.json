@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/theme-showcase",
+	"title": "Theme Showcase",
+	"category": "bigspy",
+	"icon": "star",
+	"description": "Introduce BIGSPY AI Theme WP with its current version, block count, feature list and latest updates. Everything is read from the installed theme, so the block stays current after each theme update.",
+	"keywords": [
+		"theme",
+		"about",
+		"features",
+		"changelog"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"showHero": {
+			"type": "boolean",
+			"default": true
+		},
+		"showFeatures": {
+			"type": "boolean",
+			"default": true
+		},
+		"showNews": {
+			"type": "boolean",
+			"default": true
+		},
+		"newsCount": {
+			"type": "number",
+			"default": 5
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonUrl": {
+			"type": "string",
+			"default": "https://t.me/bigspyaithemewp"
+		},
+		"note": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "bst-blocks-extra",
+	"render": "file:./render.php"
+}
