@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -28,7 +28,11 @@ function bst_t_off() {
 	ob_start();
 	bst_features_page();
 	$html = ob_get_clean();
-	bst_test( 4 === substr_count( $html, 'name="bst_on[]"' ) && false === strpos( $html, 'checked' ), 'page lists 4 unticked features' );
+	bst_test( 5 === substr_count( $html, 'name="bst_on[]"' ) && false === strpos( $html, 'checked' ), 'page lists 5 unticked features' );
+	bst_test( ! function_exists( 'bst_listing_field' ) && ! function_exists( 'bigspy_dynamic_attributes' ), 'listing: no code loaded while off' );
+	bst_test( WP_Block_Type_Registry::get_instance()->is_registered( 'bst/listing-info' ) && '' === render_block( array( 'blockName' => 'bst/listing-info', 'attrs' => array(), 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) ), 'listing: block registered, renders nothing while off' );
+	$cats = array_column( get_block_categories( get_post( wp_insert_post( array( 'post_title' => 'c', 'post_status' => 'draft' ) ) ) ), 'slug' );
+	bst_test( array( 'bigspy', 'bigspy-list' ) === array_slice( $cats, 0, 2 ), 'listing: BIGSPY AI List category right under BIGSPY AI Builder' );
 	bst_features_save( array( 'bst_on' => array( 'webp', 'nope' ) ) );
 	bst_test( array( 'webp' ) === get_option( 'bst_features' ), 'save keeps known ids only' );
 	wp_set_current_user( 0 );
@@ -42,7 +46,7 @@ function bst_t_on() {
 	ob_start();
 	bst_features_page();
 	$html = ob_get_clean();
-	bst_test( substr_count( $html, "checked='checked'" ) >= 4, 'features show as on' );
+	bst_test( substr_count( $html, "checked='checked'" ) >= 5, 'features show as on' );
 }
 
 function bst_t_webp() {
@@ -365,4 +369,52 @@ function bst_exif_jpeg( $w, $h ) {
 	$tiff = "MM\x00\x2a\x00\x00\x00\x08\x00\x01\x01\x12\x00\x03\x00\x00\x00\x01\x00\x06\x00\x00\x00\x00\x00\x00";
 	$exif = "Exif\x00\x00" . $tiff;
 	return substr( $jpg, 0, 2 ) . "\xff\xe1" . pack( 'n', strlen( $exif ) + 2 ) . $exif . substr( $jpg, 2 );
+}
+
+function bst_t_listing() {
+	if ( ! post_type_exists( 'product' ) ) {
+		register_post_type( 'product', array( 'public' => true ) );
+	}
+	bst_test( function_exists( 'bst_listing_field' ) && '1.6.0' === bigspy_theme_integration_version(), 'listing: module and compat layer loaded' );
+	$id = wp_insert_post( array( 'post_type' => 'product', 'post_title' => 'Acme AI', 'post_status' => 'publish' ) );
+	update_post_meta( $id, '_bigspy_dynamic_attributes', wp_slash( '[{"label":"Platform","value":"Web","order":1},{"label":"Plan","value":"Free","order":0}]' ) );
+	$attrs = bigspy_dynamic_attributes( $id );
+	bst_test( 2 === count( $attrs ) && 'Plan' === $attrs[0]['label'], 'listing: dynamic attributes read and sorted' );
+	add_filter( 'bigspy_dynamic_listing_attributes', $f = function ( $a ) { $a[] = array( 'label' => 'X', 'value' => 'Y', 'order' => 9 ); return $a; } );
+	bst_test( 3 === count( bigspy_dynamic_attributes( $id ) ), 'listing: bigspy_dynamic_listing_attributes filter' );
+	remove_filter( 'bigspy_dynamic_listing_attributes', $f );
+	update_post_meta( $id, 'pricing_type', 'starting_at' );
+	update_post_meta( $id, 'starting_price', '19' );
+	update_post_meta( $id, 'price_currency', 'usd' );
+	update_post_meta( $id, 'price_unit', 'month' );
+	bst_test( 'From USD 19 / month' === bst_listing_price_label( $id ), 'listing: price label' );
+	update_post_meta( $id, 'official_url', 'https://acme.test/' );
+	bst_test( 'https://acme.test/' === bigspy_listing_url( $id ), 'listing: official url' );
+	update_post_meta( $id, 'affiliate_url', 'https://acme.test/?ref=1' );
+	bst_test( 'https://acme.test/?ref=1' === bigspy_listing_url( $id ) && 'https://acme.test/?ref=1' === bigspy_theme_external_url( $id ), 'listing: affiliate link wins (bigspy_listing_url filter)' );
+	add_filter( 'bigspy_theme_external_url', $g = function () { return 'https://x.test/'; } );
+	bst_test( 'https://x.test/' === bigspy_theme_external_url( $id ), 'listing: bigspy_theme_external_url filter' );
+	remove_filter( 'bigspy_theme_external_url', $g );
+	update_post_meta( $id, '_bigspy_paid_listing', '1' );
+	update_post_meta( $id, 'company_name', 'Acme Inc' );
+	$d = bst_listing_disclosure( $id );
+	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false !== strpos( $d, 'commission' ), 'listing: paid and affiliate disclosure' );
+	update_post_meta( $id, 'rating', '4.6' );
+	update_post_meta( $id, 'faq', "What is it? | A tool.
+Broken line" );
+	bst_test( 1 === count( bst_listing_faq( $id ) ) && 4.6 === bst_listing_rating( $id ), 'listing: faq rows and rating' );
+	$html = bst_listing_info_html( $id );
+	bst_test( false !== strpos( $html, 'Sponsored' ) && false !== strpos( $html, 'rel="sponsored noopener"' ) && false !== strpos( $html, '<dt>Plan</dt>' ), 'listing: info html' );
+	bst_listing_save( $id, array( '_bigspy_ad' => '1', '_bigspy_listing_type' => 'AI Tool', 'bst_attr_label' => array( 'A', '' ), 'bst_attr_value' => array( 'B<script>', 'z' ), 'bst_lf' => array( 'free_trial' => '1', 'official_url' => 'javascript:alert(1)', 'rating' => '4.2' ) ) );
+	$saved = json_decode( get_post_meta( $id, '_bigspy_dynamic_attributes', true ), true );
+	bst_test( '1' === get_post_meta( $id, '_bigspy_ad', true ) && '' === get_post_meta( $id, '_bigspy_paid_listing', true ) && 'AI Tool' === get_post_meta( $id, '_bigspy_listing_type', true ) && 1 === count( $saved ) && 'B' === $saved[0]['value'], 'listing: meta box save keeps old keys and cleans values' );
+	bst_test( '1' === get_post_meta( $id, 'free_trial', true ) && '' === get_post_meta( $id, 'official_url', true ) && '4.2' === get_post_meta( $id, 'rating', true ), 'listing: listing fields saved by type' );
+	$req = new WP_REST_Request( 'POST', '/bst/v1/feature' );
+	$req->set_body_params( array( 'id' => 'listing', 'on' => false ) );
+	wp_set_current_user( 0 );
+	bst_test( 401 === rest_do_request( $req )->get_status(), 'listing: visitors cannot switch the mode' );
+	wp_set_current_user( 1 );
+	$res = rest_do_request( $req );
+	bst_test( 200 === $res->get_status() && ! bst_feature_on( 'listing' ), 'listing: admin turns the mode off over REST' );
+	bst_feature_set( 'listing', true );
 }

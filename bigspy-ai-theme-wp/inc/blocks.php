@@ -12,7 +12,7 @@ function bst_block_names() {
 	// Shop blocks are always registered so pages keep working if WooCommerce is
 	// deactivated later; they only appear in the inserter while WooCommerce is active
 	// (see blocks-editor.js) and render nothing without it.
-	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell', 'theme-showcase' );
+	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell', 'theme-showcase', 'listing-info' );
 }
 
 function bst_register_blocks() {
@@ -53,6 +53,18 @@ function bst_register_blocks() {
 	}
 	wp_add_inline_script( 'bst-blocks-extra', 'window.bstWidgetAreas=' . wp_json_encode( $areas ) . ';', 'before' );
 
+	// BIGSPY AI List blocks: always registered so saved content stays valid; locked while the mode is off.
+	wp_register_script( 'bst-blocks-listing', BST_URI . '/assets/js/blocks-listing.js', array( 'bst-editor-helpers', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-api-fetch', 'wp-hooks' ), bst_asset_version( 'assets/js/blocks-listing.js' ), true );
+	wp_localize_script(
+		'bst-blocks-listing',
+		'bstListing',
+		array(
+			'on'        => function_exists( 'bst_feature_on' ) && bst_feature_on( 'listing' ),
+			'canManage' => current_user_can( 'manage_options' ),
+			'settings'  => admin_url( 'admin.php?page=bigspy-features' ),
+		)
+	);
+
 	foreach ( bst_block_names() as $block ) {
 		register_block_type( BST_DIR . '/blocks/' . $block );
 	}
@@ -60,7 +72,12 @@ function bst_register_blocks() {
 add_action( 'init', 'bst_register_blocks', 20 );
 
 function bst_block_category( $categories ) {
-	array_unshift( $categories, array( 'slug' => 'bigspy', 'title' => __( 'BIGSPY AI Builder', 'bigspy-ai-theme-wp' ), 'icon' => null ) );
+	// BIGSPY AI List sits right under BIGSPY AI Builder in the inserter.
+	array_unshift(
+		$categories,
+		array( 'slug' => 'bigspy', 'title' => __( 'BIGSPY AI Builder', 'bigspy-ai-theme-wp' ), 'icon' => null ),
+		array( 'slug' => 'bigspy-list', 'title' => __( 'BIGSPY AI List', 'bigspy-ai-theme-wp' ), 'icon' => null )
+	);
 	return $categories;
 }
 add_filter( 'block_categories_all', 'bst_block_category' );

@@ -1,0 +1,15 @@
+/* BIGSPY AI List mode: listing summary, facts, disclosure and FAQ. */
+.bst-listing-info{margin:12px 0 18px;display:grid;gap:10px}
+.bst-listing-badge{justify-self:start;padding:3px 10px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:12px;font-weight:700}
+.bst-listing-tagline{margin:0;font-size:1.05em;opacity:.85}
+.bst-listing-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-weight:600}
+.bst-listing-rating span{color:#f5a623}
+.bst-listing-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:0}
+.bst-listing-facts div{padding:8px 10px;border:1px solid rgba(0,0,0,.1);border-radius:8px}
+.bst-listing-facts dt{font-size:12px;opacity:.7}
+.bst-listing-facts dd{margin:0;font-weight:600}
+.bst-listing-cta{display:inline-block;padding:10px 18px;border-radius:8px;background:var(--bst-primary,#3557a7);color:#fff;text-decoration:none;font-weight:700}
+.bst-listing-disclosure{margin:0;font-size:13px;opacity:.75}
+.bst-listing-faq{clear:both;margin:32px 0}
+.bst-listing-faq details{border-bottom:1px solid rgba(0,0,0,.1);padding:10px 0}
+.bst-listing-faq summary{cursor:pointer;font-weight:600}
