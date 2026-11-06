@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.82.0 =
+* New block: Theme Showcase (bigspy/theme-showcase) shows the installed version, block count, features and latest updates, with a Get the theme button.
+* Banner and Image: Load priority option (Auto, Above the fold, Lazy) adds fetchpriority=high for hero images.
+* WooCommerce: the free-shipping bar follows min_amount/either/both, ignore discounts and free-shipping coupons.
+
 = 1.81.0 =
 * AI Designer: block profiles (block_catalog) and 42 section recipes with motion (section_recipes).
 * AI Designer: page outline card (page_plan); build_sections builds up to 8 recipe sections per call.

@@ -3,8 +3,9 @@
 defined( 'ABSPATH' ) || exit;
 return array('title' => __('BIGSPY AI Theme WP', 'bigspy-ai-theme-wp'),
 'lead' => __('Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace.', 'bigspy-ai-theme-wp'),
-'news_version' => '1.81.0',
-'news' => array(__('1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on.', 'bigspy-ai-theme-wp'),
+'news_version' => '1.82.0',
+'news' => array(__('1.82.0: New Theme Showcase block introduces the theme with its live version, block count, features and the latest updates from this About page, plus a Get the theme button. Hero images can load first with the new Load priority option in Banner and Image. The free-shipping bar follows every WooCommerce Free shipping rule.', 'bigspy-ai-theme-wp'),
+__('1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on.', 'bigspy-ai-theme-wp'),
 __('1.80.3: Media ATND moves into the media picker: enter a keyword and short description, choose language and model, and press Generate to write alt text, title, caption and description.', 'bigspy-ai-theme-wp'),
 __('1.80.2: Horizontal Scroll shows up to three panels on desktop and slides from the fourth, and full-width sections keep their width while pinned.', 'bigspy-ai-theme-wp'),
 __('1.80.1: Horizontal Scroll fix: panel width now follows the block width and matches the editor, and the whole section stays on screen while pinned, removing the blank space above and below.', 'bigspy-ai-theme-wp'),
