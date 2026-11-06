@@ -54,3 +54,4 @@
 .bst-lsearch button{padding:0 20px;border:0;background:var(--bst-primary,#3557a7);color:#fff;font-weight:700;cursor:pointer}
 .bst-lelements__title{margin:0 0 14px;font-size:1.25rem}
 .bst-lposts{margin:0;padding-left:18px;display:grid;gap:6px}
+.bst-litem{list-style:none}.bst-litem .bst-lcard{height:100%}

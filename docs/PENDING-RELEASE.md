@@ -31,6 +31,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** nhánh `feature/ai-designer`, commit G-76.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+### G-77 Template listing (BIGSPY AI List)
+
+- **Đã thay đổi:** `inc/listing/templates.php`, `woocommerce/content-listing.php`. Khi bật chế độ: trang Shop, danh mục, thẻ và tìm kiếm sản phẩm dùng thẻ listing (tắt được trong Features); trang listing thay "sản phẩm liên quan" bằng "Related listings" (tắt được). Nhóm pattern "BIGSPY AI List": search hero, danh mục, featured, latest, trang chủ thư mục, trang Categories. Trang chi tiết listing đã có tóm tắt, FAQ, Sponsored, schema từ G-74/G-75. Chưa làm: nút điểm đến trang chủ (`bigspy_home_destination_buttons`), hero riêng từng trang của theme cũ (dùng khối banner sẵn có).
+- **Kiểm thử:** woo-check WP 7.1.3 24 mục (pattern chỉ dùng khối đã đăng ký, vòng lặp shop đổi sang thẻ listing, tắt được). Chưa xem trang trên trình duyệt.
+- **Git:** nhánh `feature/ai-designer`, commit G-77.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

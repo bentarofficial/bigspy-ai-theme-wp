@@ -124,6 +124,29 @@ try {
 	update_post_meta( $a2, '_bigspy_ad', '1' );
 	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1 ) );
 	bst_test( false !== strpos( do_shortcode( '[bigspy_home_sponsor]' ), 'beta-writer.test' ), 'listing: home sponsor is the first AD listing' );
+	// Templates: patterns use registered blocks only; shop loops use listing cards.
+	bst_listing_patterns();
+	$bad = array();
+	foreach ( WP_Block_Patterns_Registry::get_instance()->get_all_registered() as $pat ) {
+		if ( in_array( 'bigspy-list', (array) ( $pat['categories'] ?? array() ), true ) ) {
+			$walk = function ( $blocks ) use ( &$walk, &$bad ) {
+				foreach ( $blocks as $b ) {
+					if ( $b['blockName'] && ! WP_Block_Type_Registry::get_instance()->is_registered( $b['blockName'] ) ) {
+						$bad[] = $b['blockName'];
+					}
+					$walk( $b['innerBlocks'] );
+				}
+			};
+			$walk( parse_blocks( $pat['content'] ) );
+			$bad[] = 'ok';
+		}
+	}
+	bst_test( 6 === count( array_keys( $bad, 'ok', true ) ) && 6 === count( $bad ), 'listing: 6 patterns, all blocks registered ' . implode( ',', array_diff( $bad, array( 'ok' ) ) ) );
+	query_posts( array( 'post_type' => 'product' ) );
+	bst_test( str_ends_with( (string) apply_filters( 'wc_get_template_part', 'x', 'content', 'product' ), 'content-listing.php' ), 'listing: shop loop uses listing cards' );
+	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1, 'archive_cards' => 0 ) );
+	bst_test( 'x' === apply_filters( 'wc_get_template_part', 'x', 'content', 'product' ), 'listing: archive cards can be turned off' );
+	wp_reset_query();
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }
