@@ -24,6 +24,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** nhánh `feature/ai-designer`, commit G-75.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+### G-76 Block listing và shortcode cũ (BIGSPY AI List)
+
+- **Đã thay đổi:** 4 khối trong nhóm BIGSPY AI List, giữ đúng tên và thuộc tính của theme cũ để trang cũ hiển thị không cần sửa: `bigspy/listing-grid`, `bigspy/category-grid`, `bigspy/search`, `bigspy/elements` (Featured/Latest/Popular/Related/All, danh mục, bài blog, kèm ô Sponsored). Thẻ listing `bst_listing_card` (Sponsored/Featured, rating, giá). Shortcode cũ `bigspy_search`, `bigspy_elements`, `bigspy_categories`, `bigspy_home_sponsor`. Khoá khối khi tắt chế độ như `bst/listing-info`. Hồ sơ AI Designer cho 4 khối. Sửa: ô Sponsored không đọc danh sách AD khi đang tắt. Bỏ qua: slider, "load more", tuỳ chỉnh viền/hover chi tiết của Elements cũ; `bigspy_home_destination_buttons` để G-77.
+- **Kiểm thử:** woo-check WP 7.1.3 21 mục (10 mục listing mới với WooCommerce 11.2.1); features-check 7.1.3 và 6.5; playground-check 203 PASS; check-block-previews 82 khối. WooCommerce 11.2 cần WP ≥ 7.0 nên chưa thử listing với Woo trên 6.5; chưa xem giao diện thẻ trên trình duyệt.
+- **Git:** nhánh `feature/ai-designer`, commit G-76.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

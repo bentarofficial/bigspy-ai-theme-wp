@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/search",
+	"title": "Listing search",
+	"category": "bigspy-list",
+	"icon": "search",
+	"description": "Search box that searches directory listings only, with placeholder, button text, width and alignment. Needs BIGSPY AI List mode.",
+	"keywords": [
+		"search",
+		"directory",
+		"bigspy ai list"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"placeholder": {
+			"type": "string",
+			"default": "Search tools, software and services..."
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Search"
+		},
+		"showButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 760
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-listing",
+	"render": "file:./render.php"
+}

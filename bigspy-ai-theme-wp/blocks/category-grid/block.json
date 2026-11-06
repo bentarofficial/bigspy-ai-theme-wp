@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/category-grid",
+	"title": "Listing categories",
+	"category": "bigspy-list",
+	"icon": "category",
+	"description": "Grid of listing categories (product categories) with image, name, number of listings and description. Needs BIGSPY AI List mode.",
+	"keywords": [
+		"categories",
+		"directory",
+		"bigspy ai list"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"count": {
+			"type": "number",
+			"default": 8
+		},
+		"columnsDesktop": {
+			"type": "number",
+			"default": 5
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 2
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"showImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": false
+		},
+		"parent": {
+			"type": "number",
+			"default": 0
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "name"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-listing",
+	"render": "file:./render.php"
+}

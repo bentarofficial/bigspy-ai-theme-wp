@@ -56,6 +56,55 @@
 	}, 20);
 
 	var Inspector = be.InspectorControls;
+
+	/* Choices for text attributes; other attributes get a control from their type. */
+	var CHOICES = {
+		layout: { square: __('Square card', T), vertical: __('Vertical card', T), horizontal: __('Horizontal card', T), 'horizontal-2': __('Horizontal, two columns', T), minimal: __('Minimal', T) },
+		elementType: { featured: __('Featured listings', T), latest: __('Latest listings', T), popular: __('Popular listings', T), related: __('Related listings', T), listing_grid: __('All listings', T), categories: __('Categories', T), blog: __('Blog posts', T) },
+		orderBy: { date: __('Date', T), title: __('Name', T), modified: __('Last updated', T), rand: __('Random', T), name: __('Name', T), count: __('Number of listings', T) },
+		order: { DESC: __('Newest / Z–A first', T), ASC: __('Oldest / A–Z first', T) },
+		alignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) }
+	};
+	var LABELS = {
+		columnsDesktop: __('Columns – desktop', T), columnsTablet: __('Columns – tablet', T), columnsMobile: __('Columns – mobile', T),
+		limit: __('Number of listings (0 = all)', T), count: __('Number of items', T), categoryId: __('Category ID (0 = all)', T), parent: __('Only children of category ID', T),
+		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T)
+	};
+	function label(key) {
+		return LABELS[key] || key.replace(/^show/, '').replace(/([A-Z])/g, ' $1').replace(/^./, function (s) { return s.toUpperCase(); }).trim();
+	}
+
+	function ssrBlock(name) {
+		wp.blocks.registerBlockType(name, {
+			edit: function (props) {
+				var a = props.attributes;
+				var attrs = wp.blocks.getBlockType(name).attributes;
+				var rows = Object.keys(attrs).filter(function (k) { return !/^(bs|bst|mx|className|lock|metadata|anchor)/.test(k); }).map(function (k) {
+					var set = function (v) { var o = {}; o[k] = v; props.setAttributes(o); };
+					var common = { key: k, label: label(k), __nextHasNoMarginBottom: true };
+					if (attrs[k].type === 'boolean') { return el(c.ToggleControl, Object.assign(common, { checked: !!a[k], onChange: set })); }
+					if (attrs[k].type === 'number') { return el(c.TextControl, Object.assign(common, { type: 'number', value: a[k], onChange: function (v) { set(parseInt(v, 10) || 0); } })); }
+					if (CHOICES[k]) {
+						return el(c.SelectControl, Object.assign(common, { value: a[k], onChange: set, options: Object.keys(CHOICES[k]).map(function (v) { return { value: v, label: CHOICES[k][v] }; }) }));
+					}
+					return el(c.TextControl, Object.assign(common, { value: a[k], onChange: set }));
+				});
+				return el(wp.element.Fragment, null,
+					el(Inspector, null, el(c.PanelBody, { title: __('Settings', T) }, rows)),
+					el('div', be.useBlockProps(), el(wp.serverSideRender, {
+						block: name,
+						attributes: a,
+						httpMethod: 'POST',
+						EmptyResponsePlaceholder: function () {
+							return el(c.Placeholder, { icon: 'list-view', label: wp.blocks.getBlockType(name).title, instructions: __('Nothing to show yet: add listings (WooCommerce products) or change the settings.', T) });
+						}
+					}))
+				);
+			},
+			save: function () { return null; }
+		});
+	}
+	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/search', 'bigspy/elements'].forEach(ssrBlock);
 	wp.blocks.registerBlockType('bst/listing-info', {
 		edit: function (props) {
 			var a = props.attributes;

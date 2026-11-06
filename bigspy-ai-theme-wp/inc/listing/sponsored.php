@@ -102,8 +102,8 @@ add_action( 'bst_listing_ad_changed', 'bst_sponsored_refresh_rotation' );
 function bst_sponsored_slot( $slot = 0, $context = 'elements' ) {
 	static $pool = false;
 	$config = bst_sponsored_config();
-	$items  = bst_sponsored_items();
-	if ( ! $config['on'] || ! $items ) {
+	$items  = $config['on'] ? bst_sponsored_items() : array();
+	if ( ! $items ) {
 		return '';
 	}
 	$context = in_array( $context, array( 'categories', 'single', 'shortcode' ), true ) ? $context : 'elements';

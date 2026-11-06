@@ -1,0 +1,86 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/elements",
+	"title": "Listing elements",
+	"category": "bigspy-list",
+	"icon": "screenoptions",
+	"description": "Ready sections for a directory: Featured, Latest, Popular or Related listings, categories or blog posts, with a title and an optional Sponsored slot. Needs BIGSPY AI List mode.",
+	"keywords": [
+		"featured",
+		"latest",
+		"popular",
+		"related",
+		"sidebar",
+		"bigspy ai list"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"elementType": {
+			"type": "string",
+			"default": "featured"
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"count": {
+			"type": "number",
+			"default": 12
+		},
+		"startPosition": {
+			"type": "number",
+			"default": 1
+		},
+		"layout": {
+			"type": "string",
+			"default": "square"
+		},
+		"columnsDesktop": {
+			"type": "number",
+			"default": 4
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 2
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"categoryId": {
+			"type": "number",
+			"default": 0
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": "DESC"
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"showPricing": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSponsored": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-listing",
+	"render": "file:./render.php"
+}

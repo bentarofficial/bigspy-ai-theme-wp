@@ -88,6 +88,42 @@ try {
 	set_theme_mod( 'free_ship_amount', 500 );
 	$reset( 1 );
 	bst_test( abs( bst_free_shipping_min() - 500 ) < 0.01, 'manual amount overrides zone' );
+
+	// BIGSPY AI List mode with WooCommerce: blocks keep the old names and attributes.
+	update_option( 'bst_features', array( 'listing' ) );
+	require_once get_template_directory() . '/inc/features/listing.php';
+	$cat = wp_insert_term( 'Writing AI', 'product_cat' );
+	$mk  = function ( $name, $featured = false ) use ( $cat ) {
+		$p = new WC_Product_External();
+		$p->set_name( $name );
+		$p->set_status( 'publish' );
+		$p->set_product_url( 'https://' . sanitize_title( $name ) . '.test/?ref=bs' );
+		$p->set_featured( $featured );
+		$p->set_category_ids( array( $cat['term_id'] ) );
+		return $p->save();
+	};
+	$a1 = $mk( 'Alpha Writer', true );
+	$a2 = $mk( 'Beta Writer' );
+	update_post_meta( $a1, 'tool_tagline', 'Writes blog posts' );
+	update_post_meta( $a1, 'rating', '4.5' );
+	$block = function ( $name, $attrs = array() ) {
+		return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+	};
+	$grid = $block( 'bigspy/listing-grid', array( 'limit' => 10 ) );
+	bst_test( substr_count( $grid, 'class="bst-lcard ' ) >= 2 && false !== strpos( $grid, 'Writes blog posts' ) && false !== strpos( $grid, '4.5' ), 'listing: bigspy/listing-grid renders cards' );
+	$feat = $block( 'bigspy/listing-grid', array( 'featuredOnly' => true ) );
+	bst_test( 1 === substr_count( $feat, 'class="bst-lcard ' ) && false !== strpos( $feat, 'Featured' ), 'listing: featuredOnly filter and badge' );
+	bst_test( false !== strpos( $block( 'bigspy/category-grid', array() ), 'Writing AI' ), 'listing: bigspy/category-grid' );
+	bst_test( false !== strpos( $block( 'bigspy/search', array( 'buttonText' => 'Go' ) ), 'name="post_type" value="product"' ), 'listing: bigspy/search searches listings' );
+	$GLOBALS['wp_query']->is_singular = false;
+	bst_test( '' === $block( 'bigspy/elements', array( 'elementType' => 'related' ) ) && 1 === substr_count( $block( 'bigspy/elements', array( 'elementType' => 'related', 'relatedContextId' => $a1 ) ), 'class="bst-lcard ' ), 'listing: elements related excludes the listing itself' );
+	bst_test( false !== strpos( do_shortcode( '[bigspy_elements type="latest"]' ), 'Beta Writer' ) && false !== strpos( do_shortcode( '[bigspy_categories]' ), 'Writing AI' ) && false !== strpos( do_shortcode( '[bigspy_search]' ), 'bst-lsearch' ), 'listing: old shortcodes render' );
+	bst_test( 'https://alpha-writer.test/?ref=bs' === bigspy_listing_url( $a1 ) && bst_listing_has_affiliate( $a1 ), 'listing: external product URL is the listing link' );
+	$nodes = bst_listing_schema_nodes( $a1 );
+	bst_test( 'ItemPage' === $nodes['bigspy_listing_webpage']['@type'] && 'Writing AI' === $nodes['bigspy_listing_breadcrumb']['itemListElement'][2]['name'], 'listing: schema breadcrumb through the category' );
+	update_post_meta( $a2, '_bigspy_ad', '1' );
+	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1 ) );
+	bst_test( false !== strpos( do_shortcode( '[bigspy_home_sponsor]' ), 'beta-writer.test' ), 'listing: home sponsor is the first AD listing' );
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }
