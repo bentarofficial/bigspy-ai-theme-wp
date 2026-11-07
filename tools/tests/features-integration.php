@@ -426,6 +426,21 @@ Broken line" );
 	bst_test( '' === get_post_meta( $plain, '_bigspy_ad', true ) && 5 === $after['rotation_version'] && 'Go →' === $after['button_text'], 'sponsored: AD toggle refreshes rotation, keeps settings' );
 	$cols = apply_filters( 'manage_edit-product_columns', array( 'name' => 'Name', 'featured' => 'F', 'date' => 'D' ) );
 	bst_test( array( 'name', 'featured', 'bigspy_ad', 'date' ) === array_keys( $cols ), 'sponsored: AD column after Featured' );
+	$hp = "<!-- wp:paragraph --><p>A</p><!-- /wp:paragraph -->
+
+<!-- wp:paragraph --><p>B</p><!-- /wp:paragraph -->
+
+<!-- wp:paragraph --><p>C</p><!-- /wp:paragraph -->
+
+<!-- wp:bigspy/home-seo-divider /-->
+
+<!-- wp:paragraph --><p>D</p><!-- /wp:paragraph -->";
+	$w  = bst_home_sidebar_wrap( $hp, 1, 3 );
+	bst_test( preg_match( '#<p>A</p>.*bs-home-sb.*<p>B</p>.*bst-home-sidebar.*<p>C</p>#s', $w ) && false === strpos( substr( $w, strpos( $w, 'bst-home-sidebar' ) ), '<p>B</p>' ), 'home sidebar: start after block 1, end before block 3' );
+	$w = bst_home_sidebar_wrap( $hp, 0, 0 );
+	bst_test( preg_match( '#bs-home-sb.*<p>C</p>.*bst-home-sidebar.*home-seo-divider.*<p>D</p>#s', $w ), 'home sidebar: no end block stops at the old SEO divider' );
+	bst_test( $hp === bst_home_sidebar_wrap( $hp, 3, 2 ) && 'home_sidebar' && false === (bool) bst_mod( 'home_sidebar' ), 'home sidebar: off by default, reversed range left alone' );
+	bst_test( count( bst_home_sidebar_choices( '-' ) ) >= 1 && is_registered_sidebar( 'sidebar-home' ), 'home sidebar: widget area and block choices' );
 	update_option( 'bst_feature_listing', array( 'sponsored_on' => 0 ) );
 	bst_test( '' === bst_sponsored_slot( 0 ), 'sponsored: off in Features hides slots' );
 	$req = new WP_REST_Request( 'POST', '/bst/v1/feature' );

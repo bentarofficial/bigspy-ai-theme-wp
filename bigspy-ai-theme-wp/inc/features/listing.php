@@ -10,6 +10,7 @@ require_once BST_DIR . '/inc/listing/core.php';
 require_once BST_DIR . '/inc/listing/compat.php';
 require_once BST_DIR . '/inc/listing/meta-box.php';
 require_once BST_DIR . '/inc/listing/sponsored.php';
+require_once BST_DIR . '/inc/listing/home-sidebar.php';
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once BST_DIR . '/inc/listing/display.php';
 	require_once BST_DIR . '/inc/listing/schema.php';

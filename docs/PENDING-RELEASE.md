@@ -65,3 +65,5 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** một dòng trong Có gì mới cùng List Suite.
 - **Git:** nhánh `feature/ai-designer`, commit G-87.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
+- G-90: BIGSPY AI List mode adds Customizer → Layout → Homepage sidebar (off by default): turn it on, pick "Start after block" and "End before block" from the homepage's top-level blocks; only that range sits beside the new "Homepage sidebar" widget area, the rest stays full width. Replaces the old Homepage SEO Full-width Divider; with no end block chosen, an existing `bigspy/home-seo-divider` still ends the range.
