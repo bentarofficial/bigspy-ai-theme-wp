@@ -6,7 +6,14 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới. G-93 đã phát hành trong 1.83.2.
+### G-65 — AI Designer giữ nguyên block không hỗ trợ
+
+- **Yêu cầu/tính năng:** trang có Query Loop, synced pattern (`core/block`), block plugin bên thứ ba hoặc core block ngoài danh sách AI trước đây làm `update_page` từ chối cả trang.
+- **Đã thay đổi:** `get_page` đánh dấu các block này `read_only`; AI chỉ được giữ (gửi lại `raw` không đổi), di chuyển hoặc bỏ. Server so dấu vân tay với chính trang đang sửa và ghi bản gốc của trang, không dùng văn bản model gửi; `raw` bị sửa, thiếu, đã mất khỏi trang hoặc chép sang trang khác bị từ chối trước khi ghi. Không mở quyền sửa các block này; quy tắc block/`editable_percent`/`bst/code` giữ nguyên. Cập nhật mô tả tool và prompt.
+- **Kiểm thử:** `tools/playground-check.cjs` 216/216 đạt, gồm 8 kiểm tra G-65 (round trip, binding metadata, khoảng trắng, di chuyển/bỏ, raw giả, chép sang trang khác, chỉ đổi tiêu đề, synced pattern không bị sửa). Chạy trên WordPress 6.6-RC3 offline vì môi trường cloud chặn tải 7.1.3; nên chạy lại trên 7.1.3 khi có máy local.
+- **Khi phát hành cần bổ sung:** Có gì mới và kiến thức AI Designer: AI giữ nguyên block chỉ đọc.
+- **Git:** nhánh `ccr-8b690458-vk9zem`.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

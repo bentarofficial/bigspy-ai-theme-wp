@@ -173,12 +173,12 @@ function bst_aid_build_blocks( $nodes, $parent, &$issues, $path = '' ) {
 		if ( '' !== $name && false === strpos( $name, '/' ) ) {
 			$name = 'bst/' . $name;
 		}
-		if ( 0 === strpos( $name, 'core/' ) ) {
+		if ( 0 === strpos( $name, 'core/' ) || ( false !== strpos( $name, '/' ) && ! bst_aid_is_theme_name( $name ) ) ) {
 			if ( $parent && ! empty( $containers[ $parent ] ) ) {
 				$issues['errors'][] = "$where: $parent requires its own child block type.";
 				continue;
 			}
-			$core = bst_aid_build_core_block( $name, $node, $where, $issues );
+			$core = in_array( $name, bst_aid_core_blocks(), true ) ? bst_aid_build_core_block( $name, $node, $where, $issues ) : bst_aid_keep_read_only_block( $name, $node, $where, $issues );
 			if ( $core ) {
 				$out[] = $core;
 			}
@@ -305,6 +305,52 @@ function bst_aid_build_core_block( $name, $node, $where, &$issues ) {
 			return bst_aid_theme_block( 'bst/text', array( 'html' => wp_kses_post( bst_aid_clean_html( $html ) ) ), $where, $issues );
 	}
 	return array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => $html, 'innerContent' => array( $html ) );
+}
+
+/** True for BIGSPY block names (bst/…, bigspy/…). */
+function bst_aid_is_theme_name( $name ) {
+	return 0 === strpos( $name, 'bst/' ) || 0 === strpos( $name, 'bigspy/' );
+}
+
+/**
+ * A block the AI cannot edit (Query Loop, synced pattern, plugin blocks, other core blocks).
+ * It may be kept, moved or removed, never changed: "raw" must match a block already on the
+ * page being rewritten, and the page's own copy is saved, not the model's text.
+ */
+function bst_aid_keep_read_only_block( $name, $node, $where, &$issues ) {
+	$source = (int) ( $issues['source'] ?? 0 );
+	if ( empty( $node['raw'] ) || ! $source ) {
+		$issues['errors'][] = "$where: $name is read-only for the AI. It can only be kept by sending its raw value unchanged from get_page of this page, moved or left out; use BIGSPY AI blocks for new content.";
+		return null;
+	}
+	foreach ( parse_blocks( (string) $node['raw'] ) as $b ) {
+		if ( ( $b['blockName'] ?? '' ) !== $name ) {
+			continue;
+		}
+		$known = bst_aid_source_blocks( $source );
+		$key   = bst_aid_block_key( $b );
+		if ( isset( $known[ $key ] ) ) {
+			return $known[ $key ];
+		}
+		break;
+	}
+	$issues['errors'][] = "$where: $name is read-only and its raw value no longer matches this page. Call get_page again and send it back unchanged, or leave it out.";
+	return null;
+}
+
+/** Fingerprint => original parsed block for every named block of a post, nested ones included. */
+function bst_aid_source_blocks( $post_id ) {
+	$out  = array();
+	$walk = function ( $blocks ) use ( &$walk, &$out ) {
+		foreach ( $blocks as $b ) {
+			if ( ! empty( $b['blockName'] ) ) {
+				$out[ bst_aid_block_key( $b ) ] = $b;
+			}
+			$walk( $b['innerBlocks'] ?? array() );
+		}
+	};
+	$walk( parse_blocks( (string) get_post_field( 'post_content', $post_id ) ) );
+	return $out;
 }
 
 /** A BIGSPY AI block in place of a core block; an error if the user switched that block off. */
@@ -532,9 +578,12 @@ function bst_aid_compact_blocks( $blocks ) {
 		if ( ! empty( $b['attrs'] ) ) {
 			$node['attrs'] = $b['attrs'];
 		}
-		if ( 0 !== strpos( $b['blockName'], 'bst/' ) && 0 !== strpos( $b['blockName'], 'bigspy/' ) ) {
+		if ( ! bst_aid_is_theme_name( $b['blockName'] ) ) {
 			// Core blocks: keep the exact markup ("raw") so they can be sent back unchanged.
 			$node['raw']  = serialize_block( $b );
+			if ( ! in_array( $b['blockName'], bst_aid_core_blocks(), true ) ) {
+				$node['read_only'] = true; // Query Loop, synced pattern, plugin block…: keep, move or remove only.
+			}
 			$node['text'] = mb_substr( trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( render_block( $b ) ) ) ), 0, 300 );
 			unset( $node['attrs'] );
 			$out[] = $node;
@@ -768,7 +817,7 @@ add_filter(
 	function ( $tools ) {
 		$tree = array(
 			'type'        => 'array',
-			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style). Core blocks from get_page / get_pattern have a "raw" field: keep it unchanged to keep the block, or replace it with { "name": "core/paragraph", "html": "…" } / { "name": "core/heading", "attrs": { "level": 2 }, "html": "…" } to change the text.',
+			'description' => 'Block tree: [{ "name": "bst/section", "attrs": {…}, "inner": [ … ] }]. Use block_schema for attribute names. Containers: section, row (only columns), column, banner, slider, icon-box, tabs (only tab), tab, accordion (only accordion-item), accordion-item, buttons (only button), popup. Text attributes accept simple HTML (strong, em, a, br, span with style). Core blocks from get_page / get_pattern have a "raw" field: keep it unchanged to keep the block, or replace it with { "name": "core/paragraph", "html": "…" } / { "name": "core/heading", "attrs": { "level": 2 }, "html": "…" } to change the text. Blocks with "read_only": true (Query Loop, synced patterns, plugin blocks) can only be kept with raw unchanged, moved or left out.',
 			'items'       => array( 'type' => 'object' ),
 		);
 		$tools['list_blocks']   = array(
