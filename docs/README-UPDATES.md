@@ -6,6 +6,14 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.83.0: BIGSPY AI List mode
+
+- **Directory mode:** turn on BIGSPY AI List in Features (off by default) and WooCommerce products become listings with listing fields (ACF optional), FAQ and structured data.
+- **Sponsored:** one-click AD column in Products, rotating Sponsored slots and the `[bigspy_sponsored_grid]` shortcode.
+- **Blocks and pages:** listing, category, search and elements blocks plus the old shortcodes, listing cards on shop pages, Related listings and directory patterns. Legacy BIGSPY AI List blocks keep rendering on old content.
+- **Homepage sidebar:** Customizer → Layout → Homepage sidebar shows a chosen range of homepage blocks beside a widget area.
+- **AI Designer:** plugins such as BIGSPY AI List Suite can add read or content tools without widening permissions.
+
 ### 1.82.0: Theme Showcase block
 
 - **Theme Showcase:** a new block that introduces the theme with its live version, block count, features and the latest updates, read from the installed theme so it stays current after each update. Its button points to the Telegram group by default.
