@@ -7561,3 +7561,6 @@ msgstr "Cần WooCommerce: hãy cài và kích hoạt, nếu không các khối 
 msgid "Sponsored, listing cards and other listing settings are on the Features page."
 msgstr "Sponsored, thẻ listing và các cài đặt listing khác nằm ở trang Tính năng."
 
+msgid "1.83.2: BIGSPY AI List mode can now be turned on or off in BIGSPY AI Theme → Settings, next to the theme language, as well as on the Features page."
+msgstr "1.83.2: Giờ có thể bật hoặc tắt chế độ BIGSPY AI List ngay trong BIGSPY AI Theme → Cài đặt, cạnh ngôn ngữ theme, ngoài trang Tính năng."
+

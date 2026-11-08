@@ -6,14 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-G-91, G-92 đã phát hành trong 1.83.1.
-
-### G-93 Công tắc BIGSPY AI List trong Settings
-
-- **Đã thay đổi:** BIGSPY AI Theme → Settings có mục "BIGSPY AI List mode" (ô bật/tắt, cùng trạng thái với trang Features, chỉ `manage_options`), nhắc cần WooCommerce, liên kết sang Features cho cài đặt chi tiết. 4 chuỗi tiếng Việt.
-- **Kiểm thử:** features-check thêm mục hiển thị công tắc; đường lưu dùng `bst_feature_set` sẵn có, chưa bấm thử trên trình duyệt.
-- **Khi phát hành cần bổ sung:** một dòng Có gì mới.
-- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+Chưa có thay đổi sản phẩm mới. G-93 đã phát hành trong 1.83.2.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
