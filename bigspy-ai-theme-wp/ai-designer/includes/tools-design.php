@@ -67,6 +67,11 @@ function bst_aid_core_blocks() {
 	return array( 'core/paragraph', 'core/heading', 'core/list', 'core/list-item', 'core/buttons', 'core/button', 'core/image', 'core/spacer', 'core/separator', 'core/group', 'core/columns', 'core/column', 'core/quote', 'core/html', 'core/shortcode', 'core/table', 'core/details' );
 }
 
+/** BIGSPY AI List mode is on and WooCommerce is active. */
+function bst_aid_listing_on() {
+	return class_exists( 'WooCommerce' ) && function_exists( 'bst_feature_on' ) && bst_feature_on( 'listing' );
+}
+
 /** Registered BIGSPY block types the user has not switched off. */
 function bst_aid_block_types() {
 	$off = function_exists( 'bst_disabled_blocks' ) ? (array) bst_disabled_blocks() : array();
@@ -80,8 +85,15 @@ function bst_aid_block_types() {
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		unset( $out['bst/products'], $out['bst/product-categories'] );
 	}
+	// Display-only blocks (legacy BIGSPY AI List layout) are never for the AI.
+	$out = array_filter(
+		$out,
+		function ( $type ) {
+			return ! isset( $type->supports['inserter'] ) || false !== $type->supports['inserter'];
+		}
+	);
 	// BIGSPY AI List blocks show nothing until that mode is on and WooCommerce is active.
-	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'bst_feature_on' ) || ! bst_feature_on( 'listing' ) ) {
+	if ( ! bst_aid_listing_on() ) {
 		$out = array_filter(
 			$out,
 			function ( $type ) {

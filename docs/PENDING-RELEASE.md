@@ -6,7 +6,14 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới. G-74–G-78, G-87, G-88, G-90 đã phát hành trong 1.83.0.
+G-74–G-78, G-87, G-88, G-90 đã phát hành trong 1.83.0.
+
+### G-91 AI Designer theo chế độ BIGSPY AI List
+
+- **Đã thay đổi:** lời nhắc hệ thống nói rõ: chế độ tắt thì chỉ dùng khối BIGSPY AI Theme WP, user hỏi thư mục thì nhắc bật trong Features; chế độ bật (có WooCommerce) thì thiết kế cả với khối BIGSPY AI List. Khối chỉ hiển thị (inserter false, gồm 14 khối layout cũ) không bao giờ vào danh sách khối của AI, kể cả khi bật chế độ (trước đây lọt vào). Hàm `bst_aid_listing_on()`.
+- **Kiểm thử:** playground-check 205 PASS, woo-check thêm 2 mục đạt.
+- **Khi phát hành cần bổ sung:** một dòng Có gì mới.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
