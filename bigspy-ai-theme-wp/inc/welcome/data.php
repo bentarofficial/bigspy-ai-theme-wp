@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 return array('title' => __('BIGSPY AI Theme WP', 'bigspy-ai-theme-wp'),
 'lead' => __('Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace.', 'bigspy-ai-theme-wp'),
-'news_version' => '1.83.0',
+'news_version' => '1.83.1',
 'news' => array(__("1.83.0: New BIGSPY AI List mode (Features, off by default) turns WooCommerce products into a directory: listing fields and FAQ, Sponsored slots with one-click AD column, listing, category, search and elements blocks with the old shortcodes, directory patterns and listing cards on shop pages, a homepage sidebar range in the Customizer, and legacy BIGSPY AI List blocks still render. Plugins can add read or content tools to AI Designer.", 'bigspy-ai-theme-wp'),
 __('1.82.0: New Theme Showcase block introduces the theme with its live version, block count, features and the latest updates from this About page, plus a Get the theme button. Hero images can load first with the new Load priority option in Banner and Image. The free-shipping bar follows every WooCommerce Free shipping rule.', 'bigspy-ai-theme-wp'),
 __('1.81.0: AI Designer works faster and smarter: block profiles and 42 ready section recipes with motion, page outline approved once then many sections built per call, SVG/HTML/CSS illustrations, model and specialty pickers in the chat, a fast model for Effort Low, file attachments, per-run time and cost measurements, and context that saves itself and learns what you say applies from now on.', 'bigspy-ai-theme-wp'),

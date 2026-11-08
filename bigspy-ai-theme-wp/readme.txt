@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.83.1 =
+* AI Designer: uses only theme blocks while BIGSPY AI List is off, adds listing blocks when it is on; display-only legacy blocks are never offered.
+* AI Designer: every block profile has use, avoid, mobile, pairs and minimum attributes.
+* AI Designer: page_plan reports block variety (count, target, advice) so pages use more fitting blocks.
+
 = 1.83.0 =
 * New BIGSPY AI List mode (Features, off by default): WooCommerce products become directory listings with 21 listing fields (ACF optional), FAQ and ItemPage/FAQPage schema.
 * Sponsored slots and one-click AD column in Products, rotating by views; [bigspy_sponsored_grid] shortcode.
