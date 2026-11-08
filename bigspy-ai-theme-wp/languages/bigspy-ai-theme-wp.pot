@@ -11346,3 +11346,6 @@ msgstr ""
 msgid "Search box that searches directory listings only, with placeholder, button text, width and alignment. Needs BIGSPY AI List mode."
 msgstr ""
 
+msgid "1.83.0: New BIGSPY AI List mode (Features, off by default) turns WooCommerce products into a directory: listing fields and FAQ, Sponsored slots with one-click AD column, listing, category, search and elements blocks with the old shortcodes, directory patterns and listing cards on shop pages, a homepage sidebar range in the Customizer, and legacy BIGSPY AI List blocks still render. Plugins can add read or content tools to AI Designer."
+msgstr ""
+
