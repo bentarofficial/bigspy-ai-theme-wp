@@ -80,6 +80,15 @@ function bst_aid_block_types() {
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		unset( $out['bst/products'], $out['bst/product-categories'] );
 	}
+	// BIGSPY AI List blocks show nothing until that mode is on and WooCommerce is active.
+	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'bst_feature_on' ) || ! bst_feature_on( 'listing' ) ) {
+		$out = array_filter(
+			$out,
+			function ( $type ) {
+				return 'bigspy-list' !== $type->category;
+			}
+		);
+	}
 	return $out;
 }
 

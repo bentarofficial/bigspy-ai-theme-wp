@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/listing-info",
+	"title": "Listing info",
+	"category": "bigspy-list",
+	"icon": "list-view",
+	"description": "Summary of one directory listing: tagline, rating, price, facts, visit button and the sponsored or affiliate disclosure. Needs BIGSPY AI List mode and WooCommerce.",
+	"keywords": [
+		"listing",
+		"directory",
+		"facts",
+		"bigspy ai list"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"usesContext": [
+		"postId"
+	],
+	"attributes": {
+		"productId": {
+			"type": "number",
+			"default": 0
+		},
+		"showTagline": {
+			"type": "boolean",
+			"default": true
+		},
+		"showFacts": {
+			"type": "boolean",
+			"default": true
+		},
+		"showButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"limit": {
+			"type": "number",
+			"default": 8
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-listing",
+	"render": "file:./render.php"
+}

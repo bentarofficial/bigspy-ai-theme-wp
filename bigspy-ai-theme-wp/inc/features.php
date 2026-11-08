@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Feature ids; each one has a file of the same name in inc/features/. */
 function bst_feature_ids() {
-	return array( 'webp', 'smtp', 'inline-related', 'code-inject' );
+	return array( 'webp', 'smtp', 'inline-related', 'code-inject', 'listing' );
 }
 
 function bst_feature_catalog() {
@@ -16,6 +16,7 @@ function bst_feature_catalog() {
 		'smtp'           => array( __( 'SMTP email', 'bigspy-ai-theme-wp' ), __( 'Send WordPress email through your mail server.', 'bigspy-ai-theme-wp' ) ),
 		'inline-related' => array( __( 'Related links in posts', 'bigspy-ai-theme-wp' ), __( 'Add a short list of related posts in the middle of each post.', 'bigspy-ai-theme-wp' ) ),
 		'code-inject'    => array( __( 'Header and footer code', 'bigspy-ai-theme-wp' ), __( 'Add tracking or verification code to every front page.', 'bigspy-ai-theme-wp' ) ),
+		'listing'        => array( __( 'BIGSPY AI List mode', 'bigspy-ai-theme-wp' ), __( 'Turn WooCommerce products into directory listings: listing details, facts, pricing, rating, disclosures, schema and the BIGSPY AI List blocks. Turning it off keeps all listing data.', 'bigspy-ai-theme-wp' ) ),
 	);
 }
 
@@ -53,6 +54,39 @@ foreach ( bst_feature_ids() as $bst_feature_id ) {
 		require_once __DIR__ . '/features/' . $bst_feature_id . '.php';
 	}
 }
+
+/** Turn one feature on or off, e.g. from the locked BIGSPY AI List block in the editor. */
+function bst_feature_set( $id, $on ) {
+	$ids = array_diff( (array) get_option( 'bst_features', array() ), array( $id ) );
+	if ( $on && in_array( $id, bst_feature_ids(), true ) ) {
+		$ids[] = $id;
+	}
+	update_option( 'bst_features', array_values( $ids ) );
+}
+
+add_action(
+	'rest_api_init',
+	function () {
+		register_rest_route(
+			'bst/v1',
+			'/feature',
+			array(
+				'methods'             => 'POST',
+				'permission_callback' => function () {
+					return current_user_can( 'manage_options' );
+				},
+				'args'                => array(
+					'id' => array( 'type' => 'string', 'required' => true, 'enum' => bst_feature_ids() ),
+					'on' => array( 'type' => 'boolean', 'default' => true ),
+				),
+				'callback'            => function ( WP_REST_Request $request ) {
+					bst_feature_set( $request['id'], (bool) $request['on'] );
+					return array( 'features' => array_values( (array) get_option( 'bst_features', array() ) ) );
+				},
+			)
+		);
+	}
+);
 
 /** Shown in place of a saved password; the real value never reaches the page. */
 const BST_FEATURE_PASSWORD_MASK = '********';

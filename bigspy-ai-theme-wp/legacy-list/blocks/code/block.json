@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/code",
+	"title": "BIGSPY Code / HTML",
+	"category": "bigspy-list",
+	"icon": "editor-code",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"code": {
+			"type": "string",
+			"default": "<div style=\"padding:20px;border:1px solid #dbe7f0;border-radius:16px;background:#ffffff;\"><strong>Your custom HTML</strong></div>"
+		},
+		"language": {
+			"type": "string",
+			"default": "Code"
+		},
+		"theme": {
+			"type": "string",
+			"default": "dark"
+		},
+		"wrap": {
+			"type": "boolean",
+			"default": false
+		},
+		"showCopy": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"inserter": false,
+		"reusable": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"style": "bst-legacy-list",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/callout",
+	"title": "BIGSPY Callout",
+	"category": "bigspy-list",
+	"icon": "info-outline",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Good to know"
+		},
+		"text": {
+			"type": "string",
+			"default": "Add a short and useful note for readers."
+		},
+		"tone": {
+			"type": "string",
+			"default": "info"
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"inserter": false,
+		"reusable": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"style": "bst-legacy-list",
+	"render": "file:./render.php"
+}

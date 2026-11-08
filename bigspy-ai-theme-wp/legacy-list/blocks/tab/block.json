@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/tab",
+	"title": "BIGSPY Tab",
+	"category": "bigspy-list",
+	"icon": "excerpt-view",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"parent": [
+		"bigspy/tabs"
+	],
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Tab title"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"reusable": false,
+		"inserter": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"style": "bst-legacy-list",
+	"render": "file:./render.php"
+}

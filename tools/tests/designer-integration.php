@@ -265,6 +265,7 @@ $catalog_all = (array) include BST_AID_DIR . '/knowledge/blocks.php';
 $catalog_parents = bst_aid_block_parents();
 $catalog_missing = array_diff( array_keys( bst_aid_block_types() ), array_keys( $catalog_all ), array_keys( $catalog_parents ) );
 bst_test( ! $catalog_missing, 'Every top-level block has a catalog profile: ' . implode( ', ', $catalog_missing ) );
+bst_test( ! isset( bst_aid_block_types()['bigspy/listing-grid'] ) && ! isset( bst_aid_block_types()['bst/listing-info'] ), 'BIGSPY AI List blocks are left out while that mode is off' );
 $catalog_bad = array();
 foreach ( $catalog_all as $name => $p ) {
 	if ( 9 !== count( $p ) || array_diff( $p[0], bst_aid_block_needs() ) || ! in_array( $p[4], array( 'light', 'medium', 'heavy' ), true ) || '' === $p[1] || '' === $p[8] ) { $catalog_bad[] = $name; }

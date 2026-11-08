@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/home-seo-divider",
+	"title": "Homepage SEO Full-width Divider",
+	"category": "bigspy-list",
+	"icon": "minus",
+	"description": "Legacy BIGSPY AI List block, kept so old content still renders. Not insertable.",
+	"textdomain": "bigspy-ai-theme-wp",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"inserter": false
+	},
+	"editorScript": "bst-legacy-list-editor",
+	"render": "file:./render.php"
+}

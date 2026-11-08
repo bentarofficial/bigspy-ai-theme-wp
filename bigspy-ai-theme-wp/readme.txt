@@ -15,6 +15,16 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.83.0 =
+* New BIGSPY AI List mode (Features, off by default): WooCommerce products become directory listings with 21 listing fields (ACF optional), FAQ and ItemPage/FAQPage schema.
+* Sponsored slots and one-click AD column in Products, rotating by views; [bigspy_sponsored_grid] shortcode.
+* Blocks bigspy/listing-grid, category-grid, search, elements and bst/listing-info, plus the old shortcodes; locked with an enable button while the mode is off.
+* Listing cards on shop, category, tag and search pages; Related listings; BIGSPY AI List patterns.
+* Customizer > Layout > Homepage sidebar: choose the block range shown beside the new Homepage sidebar widget area.
+* Legacy BIGSPY AI List layout blocks render on old content (hidden from the inserter).
+* AI Designer: plugins can declare read or content tools with bst_aid_extra_tool_groups; listing blocks are skipped while the mode is off.
+* 117 new Vietnamese strings.
+
 = 1.82.0 =
 * New block: Theme Showcase (bigspy/theme-showcase) shows the installed version, block count, features and latest updates, with a Get the theme button.
 * Banner and Image: Load priority option (Auto, Above the fold, Lazy) adds fetchpriority=high for hero images.

@@ -1,0 +1,3 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) { exit; } $a = is_array( $attributes ?? null ) ? $attributes : array(); $align = in_array( $a['align'] ?? 'left', array( 'left', 'center', 'right', 'between' ), true ) ? $a['align'] : 'left'; $gap = max( 0, min( 60, (int) ( $a['gap'] ?? 12 ) ) ); $class = 'bigspy-button-group bigspy-button-group--' . $align . ( ! isset( $a['stackMobile'] ) || $a['stackMobile'] ? ' bigspy-button-group--stack-mobile' : '' );
+echo '<div ' . get_block_wrapper_attributes( array( 'class' => $class, 'style' => '--bigspy-button-group-gap:' . $gap . 'px;' ) ) . '>' . $content . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
