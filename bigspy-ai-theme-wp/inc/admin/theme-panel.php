@@ -228,6 +228,10 @@ add_action(
 			}
 			set_theme_mod( $field['id'], bst_panel_sanitize( $field, $input[ $field['id'] ] ?? '' ) );
 		}
+		// BIGSPY AI List mode switch on the Settings page; same state as the Features page.
+		if ( 'settings' === $tab && isset( $_POST['bst_listing_mode_shown'] ) && current_user_can( 'manage_options' ) && function_exists( 'bst_feature_set' ) ) {
+			bst_feature_set( 'listing', ! empty( $_POST['bst_listing_mode'] ) );
+		}
 		$page = 'settings' === $tab ? 'bigspy-settings' : 'bigspy-options';
 		wp_safe_redirect( add_query_arg( array( 'page' => $page, 'tab' => $tab, 'saved' => 1 ), admin_url( 'admin.php' ) ) );
 		exit;
@@ -329,6 +333,18 @@ function bst_panel_settings_page() {
 		bst_panel_field_html( $field );
 	}
 	echo '</tbody></table>';
+	if ( current_user_can( 'manage_options' ) && function_exists( 'bst_feature_on' ) ) {
+		$woo = class_exists( 'WooCommerce' );
+		echo '<h2>' . esc_html__( 'BIGSPY AI List mode', 'bigspy-ai-theme-wp' ) . '</h2>';
+		echo '<p class="description">' . esc_html__( 'Turn WooCommerce products into directory listings with listing blocks, Sponsored slots and directory patterns. AI Designer uses the listing blocks only while this is on.', 'bigspy-ai-theme-wp' ) . '</p>';
+		echo '<table class="form-table" role="presentation"><tbody><tr><th scope="row">' . esc_html__( 'BIGSPY AI List mode', 'bigspy-ai-theme-wp' ) . '</th><td>';
+		echo '<input type="hidden" name="bst_listing_mode_shown" value="1"><label><input type="checkbox" name="bst_listing_mode" value="1"' . checked( bst_feature_on( 'listing' ), true, false ) . '> ' . esc_html__( 'Turn on BIGSPY AI List mode', 'bigspy-ai-theme-wp' ) . '</label>';
+		if ( ! $woo ) {
+			echo '<p class="description">' . esc_html__( 'Needs WooCommerce: install and activate it, or the listing blocks stay locked.', 'bigspy-ai-theme-wp' ) . '</p>';
+		}
+		echo '<p class="description"><a href="' . esc_url( admin_url( 'admin.php?page=bigspy-features' ) ) . '">' . esc_html__( 'Sponsored, listing cards and other listing settings are on the Features page.', 'bigspy-ai-theme-wp' ) . '</a></p>';
+		echo '</td></tr></tbody></table>';
+	}
 	submit_button( __( 'Save changes', 'bigspy-ai-theme-wp' ) );
 	echo '</form></div>';
 }

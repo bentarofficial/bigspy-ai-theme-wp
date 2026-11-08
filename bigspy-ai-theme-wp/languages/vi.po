@@ -7549,3 +7549,15 @@ msgstr "1.83.0: Chế độ BIGSPY AI List mới (trong Tính năng, mặc đị
 msgid "1.83.1: AI Designer follows BIGSPY AI List mode: theme blocks only while it is off, listing blocks too when it is on, never display-only legacy blocks. Every block profile is complete, and the page outline reports how many different blocks a page uses with advice for a richer design."
 msgstr "1.83.1: AI Designer theo chế độ BIGSPY AI List: khi tắt chỉ dùng khối của theme, khi bật dùng thêm khối listing, không bao giờ dùng khối cũ chỉ để hiển thị. Hồ sơ mọi khối đã đầy đủ, và dàn ý trang báo số khối khác nhau đang dùng kèm gợi ý để thiết kế phong phú hơn."
 
+msgid "Turn WooCommerce products into directory listings with listing blocks, Sponsored slots and directory patterns. AI Designer uses the listing blocks only while this is on."
+msgstr "Biến sản phẩm WooCommerce thành listing thư mục với các khối listing, ô Sponsored và pattern thư mục. AI Designer chỉ dùng khối listing khi chế độ này bật."
+
+msgid "Turn on BIGSPY AI List mode"
+msgstr "Bật chế độ BIGSPY AI List"
+
+msgid "Needs WooCommerce: install and activate it, or the listing blocks stay locked."
+msgstr "Cần WooCommerce: hãy cài và kích hoạt, nếu không các khối listing vẫn bị khoá."
+
+msgid "Sponsored, listing cards and other listing settings are on the Features page."
+msgstr "Sponsored, thẻ listing và các cài đặt listing khác nằm ở trang Tính năng."
+

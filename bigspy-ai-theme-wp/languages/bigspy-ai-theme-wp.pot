@@ -11352,3 +11352,15 @@ msgstr ""
 msgid "1.83.1: AI Designer follows BIGSPY AI List mode: theme blocks only while it is off, listing blocks too when it is on, never display-only legacy blocks. Every block profile is complete, and the page outline reports how many different blocks a page uses with advice for a richer design."
 msgstr ""
 
+msgid "Turn WooCommerce products into directory listings with listing blocks, Sponsored slots and directory patterns. AI Designer uses the listing blocks only while this is on."
+msgstr ""
+
+msgid "Turn on BIGSPY AI List mode"
+msgstr ""
+
+msgid "Needs WooCommerce: install and activate it, or the listing blocks stay locked."
+msgstr ""
+
+msgid "Sponsored, listing cards and other listing settings are on the Features page."
+msgstr ""
+
