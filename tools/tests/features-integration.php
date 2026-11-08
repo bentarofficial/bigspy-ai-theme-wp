@@ -450,5 +450,11 @@ Broken line" );
 	wp_set_current_user( 1 );
 	$res = rest_do_request( $req );
 	bst_test( 200 === $res->get_status() && ! bst_feature_on( 'listing' ), 'listing: admin turns the mode off over REST' );
+	if ( function_exists( 'bst_panel_settings_page' ) ) {
+		ob_start();
+		bst_panel_settings_page();
+		$settings_html = ob_get_clean();
+		bst_test( false !== strpos( $settings_html, 'name="bst_listing_mode"' ) && false === strpos( $settings_html, 'name="bst_listing_mode" value="1" checked' ), 'listing: Settings page shows the BIGSPY AI List switch, off' );
+	}
 	bst_feature_set( 'listing', true );
 }

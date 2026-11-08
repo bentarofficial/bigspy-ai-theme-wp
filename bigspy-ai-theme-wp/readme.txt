@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.83.2 =
+* Settings: BIGSPY AI List mode switch, shared with the Features page; notes when WooCommerce is missing.
+
 = 1.83.1 =
 * AI Designer: uses only theme blocks while BIGSPY AI List is off, adds listing blocks when it is on; display-only legacy blocks are never offered.
 * AI Designer: every block profile has use, avoid, mobile, pairs and minimum attributes.

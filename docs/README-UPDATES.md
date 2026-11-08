@@ -6,6 +6,10 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.83.2: List mode switch in Settings
+
+- **Easier to find:** BIGSPY AI Theme → Settings has a BIGSPY AI List mode switch, the same setting as on the Features page.
+
 ### 1.83.1: AI Designer block choice
 
 - **BIGSPY AI List aware:** with the mode off the AI designs with theme blocks only; with it on it also uses the listing blocks. Display-only legacy blocks are never used.
