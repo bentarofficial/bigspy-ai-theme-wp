@@ -65,6 +65,8 @@ function bst_form_editor_data() {
 		'formNative'    => function_exists( 'bst_native_form_defaults' ) ? bst_native_form_defaults() : array(),
 		'formEntries'   => admin_url( 'edit.php?post_type=bst_form_entry' ),
 	);
+	// Same formula checker as the front end, for the Form block's price fields.
+	wp_enqueue_script( 'bst-form-calc', BST_URI . '/assets/js/form-calc.js', array(), bst_asset_version( 'assets/js/form-calc.js' ), true );
 	wp_add_inline_script( 'bst-editor-helpers', 'Object.assign(window.bstEditor || {}, ' . wp_json_encode( $data ) . ');', 'after' );
 }
 add_action( 'enqueue_block_editor_assets', 'bst_form_editor_data' );

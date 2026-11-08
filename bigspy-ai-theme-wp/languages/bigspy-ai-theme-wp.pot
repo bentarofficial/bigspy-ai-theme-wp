@@ -11367,3 +11367,30 @@ msgstr ""
 msgid "1.83.2: BIGSPY AI List mode can now be turned on or off in BIGSPY AI Theme → Settings, next to the theme language, as well as on the Features page."
 msgstr ""
 
+msgid "Choose more details to see the price"
+msgstr ""
+
+msgid "Price to be confirmed"
+msgstr ""
+
+msgid "Add a price after a bar for price totals: Express | 20000"
+msgstr ""
+
+msgid "Formula"
+msgstr ""
+
+msgid "Use [mail-tag] of number or choice fields, + - * / ( ), min(), max(), round(), if(condition, then, else). A choice counts as the price of what is picked. Example: [kg] * 18000 + [delivery]"
+msgstr ""
+
+msgid "Formula OK. The server recalculates it on every submit."
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "Used in price formula:"
+msgstr ""
+
+msgid "A price formula uses this field. Remove it anyway? The total will show “Price to be confirmed” until you fix the formula."
+msgstr ""
+

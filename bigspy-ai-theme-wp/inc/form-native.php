@@ -68,12 +68,16 @@ function bst_native_form_settings( $a ) {
 
 /** Field types the engine renders. */
 function bst_native_field_types() {
-	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file' );
+	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file', 'calc' );
 }
 
 /** Choices of a select, radio or checkbox field. */
 function bst_native_field_options( $f ) {
-	return array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n|,/', (string) ( $f['options'] ?? '' ) ) ) ) );
+	$raw = (string) ( $f['options'] ?? '' );
+	if ( false !== strpos( $raw, '|' ) ) {
+		return array_keys( bst_native_option_prices( $f ) ); // "Label | price" lines: only line breaks separate options.
+	}
+	return array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n|,/', $raw ) ) ) );
 }
 
 /** File extensions a file field accepts: its own list, limited to safe types. */
@@ -129,7 +133,8 @@ function bst_native_form_markup( $a ) {
 	if ( ! $key ) {
 		return '';
 	}
-	$out = '';
+	$out      = '';
+	$has_calc = false;
 	foreach ( $s['fields'] as $f ) {
 		$type  = in_array( $f['type'] ?? 'text', bst_native_field_types(), true ) ? $f['type'] : 'text';
 		$name  = sanitize_key( $f['name'] );
@@ -141,6 +146,12 @@ function bst_native_form_markup( $a ) {
 		$opts  = bst_native_field_options( $f );
 		$picks = array_intersect( $opts, array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) ( $f['default'] ?? '' ) ) ) );
 		$lab   = $label ? '<span class="bs-nf-label">' . esc_html( $label ) . ( $req ? ' <span class="bs-nf-req">*</span>' : '' ) . '</span>' : '';
+		if ( 'calc' === $type ) {
+			$calc_id = bst_native_field_id( $f );
+			$out    .= '<p class="bs-nf-field bs-nf-calc' . $width . '"><span class="bs-nf-label">' . esc_html( $label ) . '</span><output class="bs-nf-total" data-calc="' . esc_attr( $calc_id ) . '" aria-live="polite" aria-atomic="true">' . esc_html( bst_calc_msg( 'incomplete' ) ) . '</output>' . ( $ph ? '<small class="bs-nf-note">' . esc_html( $ph ) . '</small>' : '' ) . '</p>';
+			$has_calc = true;
+			continue;
+		}
 		if ( 'file' === $type ) {
 			$accept  = '.' . implode( ',.', bst_native_file_types( $f ) );
 			$control = '<input type="file" class="wpcf7-form-control wpcf7-file"' . $attr . ' accept="' . esc_attr( $accept ) . '">';
@@ -175,10 +186,15 @@ function bst_native_form_markup( $a ) {
 		}
 		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}
+	$calc_attr = '';
+	if ( $has_calc ) {
+		wp_enqueue_script( 'bst-form-calc', BST_URI . '/assets/js/form-calc.js', array(), bst_asset_version( 'assets/js/form-calc.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
+		$calc_attr = " data-bs-calc='" . esc_attr( wp_json_encode( bst_calc_client_config( $s['fields'] ) ) ) . "'";
+	}
 	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
 	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
 	$out .= '<div class="wpcf7-response-output" aria-live="polite" hidden></div>';
-	return '<form class="wpcf7-form bs-native-form" method="post" action="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" novalidate data-bs-native-form data-key="' . esc_attr( $key ) . '" data-post="' . esc_attr( (string) get_queried_object_id() ) . '" data-ts="' . esc_attr( (string) time() ) . '" data-msg-required="' . esc_attr( $s['msgRequired'] ) . '" data-msg-email="' . esc_attr( $s['msgEmail'] ) . '" data-msg-tel="' . esc_attr( $s['msgTel'] ) . '"' . ( $s['redirectNewTab'] ? ' data-new-tab="1"' : '' ) . '>' . $out . '</form>';
+	return '<form class="wpcf7-form bs-native-form" method="post" action="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" novalidate data-bs-native-form data-key="' . esc_attr( $key ) . '" data-post="' . esc_attr( (string) get_queried_object_id() ) . '" data-ts="' . esc_attr( (string) time() ) . '" data-msg-required="' . esc_attr( $s['msgRequired'] ) . '" data-msg-email="' . esc_attr( $s['msgEmail'] ) . '" data-msg-tel="' . esc_attr( $s['msgTel'] ) . '"' . ( $s['redirectNewTab'] ? ' data-new-tab="1"' : '' ) . $calc_attr . '>' . $out . '</form>';
 }
 
 /** Find the saved Form block with this key (the page shown, then any post that contains it). */
@@ -313,6 +329,9 @@ function bst_native_form_submit() {
 	foreach ( $s['fields'] as $f ) {
 		$n    = sanitize_key( $f['name'] );
 		$type = $f['type'] ?? 'text';
+		if ( 'calc' === $type ) {
+			continue; // Totals are computed below from the saved formula, never taken from the browser.
+		}
 		if ( 'file' === $type ) {
 			$up = $_FILES[ $n ] ?? null; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput
 			$v  = '';
@@ -350,6 +369,18 @@ function bst_native_form_submit() {
 		wp_send_json( array( 'ok' => false, 'message' => $s['msgInvalid'], 'errors' => $errors ) );
 	}
 
+	$quote = bst_calc_run( $s['fields'], $values );
+	if ( $quote ) {
+		$named = array();
+		foreach ( $s['fields'] as $f ) {
+			if ( 'calc' === ( $f['type'] ?? '' ) ) {
+				$id                                  = bst_native_field_id( $f );
+				$values[ sanitize_key( $f['name'] ) ] = $quote[ $id ]['text'] ?? '';
+				$named[ $id ]                        = array( 'name' => sanitize_key( $f['name'] ), 'status' => $quote[ $id ]['status'] ?? 'confirm', 'amount' => $quote[ $id ]['amount'] ?? null, 'currency' => strtoupper( (string) ( $f['currency'] ?? 'VND' ) ), 'formula' => (string) ( $f['formula'] ?? '' ) );
+			}
+		}
+		$GLOBALS['bst_native_quote'] = array( 'calcs' => $named, 'rules' => md5( wp_json_encode( $s['fields'] ) ), 'time' => time() );
+	}
 	$sent = bst_native_form_send( 'mail', $s, $values, $files );
 	if ( $sent && ! empty( $s['mail2Active'] ) ) {
 		bst_native_form_send( 'mail2', $s, $values );
@@ -416,6 +447,9 @@ function bst_native_form_save_entry( $s, $values, $post_id, $sent ) {
 		update_post_meta( $id, '_bst_fields', wp_list_pluck( $s['fields'], 'label', 'name' ) );
 		update_post_meta( $id, '_bst_source', $post_id );
 		update_post_meta( $id, '_bst_sent', $sent ? 1 : 0 );
+		if ( ! empty( $GLOBALS['bst_native_quote'] ) ) {
+			update_post_meta( $id, '_bst_quote', $GLOBALS['bst_native_quote'] ); // Server-computed lines, rule revision and time.
+		}
 	}
 }
 

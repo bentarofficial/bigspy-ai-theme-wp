@@ -34,4 +34,5 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 ## Testing
 - `node tools/playground-page.cjs` serves the theme on port 9418. Open `/?bst_autologin=1`; a test-only mu-plugin logs in, no password. Options: `--port=N`, `--woo=<plugin dir>`.
 - Designer tests: `node tools/playground-check.cjs`; see `docs/DEV-RULES.md`.
+- Built-in Form: `inc/form-native.php` (fields, render, submit, entries), `inc/form-calc.php` (stable field IDs, price formulas, server totals), `assets/js/form-calc.js` (same grammar for preview and editor check), editor panel in `blocks-editor.js` (search `NF_TYPES`). Tests: `node tools/form-calc-parity.cjs` (PHP = JS), `bst_t_calc` in `tools/tests/features-integration.php`.
 - The test machine forces prefers-reduced-motion. The browser pane must be visible for animations to run.

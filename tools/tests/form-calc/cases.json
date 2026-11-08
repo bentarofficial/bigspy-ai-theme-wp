@@ -1,0 +1,24 @@
+[
+ {"label":"laundry demo","fields":[
+   {"id":"fkg","name":"kg","type":"number","required":true},
+   {"id":"fship","name":"ship","type":"radio","options":"Tự mang đến | 0\nGiao nhận | 25000"},
+   {"id":"ffast","name":"fast","type":"checkbox","options":"Giặt nhanh | 1"},
+   {"id":"fwash","name":"wash","type":"calc","formula":"{fkg} * 18000","currency":"VND"},
+   {"id":"ftot","name":"total","type":"calc","formula":"{fwash} + {fwash} * 0.2 * {ffast} + {fship}","currency":"VND"}],
+  "runs":[{"kg":"3","ship":"Giao nhận","fast":""},{"kg":"3","ship":"Giao nhận","fast":"Giặt nhanh"},{"kg":"1,5","ship":"Tự mang đến","fast":""},{"kg":"1.5","ship":"","fast":""},{"kg":"","ship":"Giao nhận","fast":""}]},
+ {"label":"usd and funcs","fields":[
+   {"id":"fq","name":"q","type":"number"},
+   {"id":"fp","name":"p","type":"select","required":true,"options":"Basic | 9.99\nPro | 19.5"},
+   {"id":"ft","name":"t","type":"calc","formula":"if({fq} >= 10, round({fq} * {fp} * 0.9, 2), max(15, {fq} * {fp}))","currency":"USD"},
+   {"id":"fd","name":"d","type":"calc","formula":"{ft} / ({fq} - 2)","currency":"USD"},
+   {"id":"fn","name":"n","type":"calc","formula":"0 - {ft}","currency":"USD"}],
+  "runs":[{"q":"12","p":"Pro"},{"q":"1","p":"Basic"},{"q":"2","p":"Basic"},{"q":"3","p":""}]},
+ {"label":"broken","fields":[
+   {"id":"fa","name":"a","type":"calc","formula":"{fb} + 1"},
+   {"id":"fb","name":"b","type":"calc","formula":"{fa} + 1"},
+   {"id":"fc","name":"c","type":"calc","formula":"{zz} * 2"},
+   {"id":"fe","name":"e","type":"calc","formula":"alert(1)"},
+   {"id":"fx","name":"x","type":"text"},
+   {"id":"fy","name":"y","type":"calc","formula":"{fx} + 1"}],
+  "runs":[{"x":"5"}]}
+]

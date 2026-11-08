@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'calc', 'cf7', 'aid', 'hero', 'listing' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -457,4 +457,55 @@ Broken line" );
 		bst_test( false !== strpos( $settings_html, 'name="bst_listing_mode"' ) && false === strpos( $settings_html, 'name="bst_listing_mode" value="1" checked' ), 'listing: Settings page shows the BIGSPY AI List switch, off' );
 	}
 	bst_feature_set( 'listing', true );
+}
+
+/** G-57/G-58: stable field IDs and server-side price totals on the built-in Form. */
+function bst_t_calc() {
+	$fields = array(
+		array( 'id' => 'fkg', 'type' => 'number', 'name' => 'kg', 'label' => 'Khối lượng (kg)', 'required' => true ),
+		array( 'id' => 'fship', 'type' => 'radio', 'name' => 'ship', 'label' => 'Giao nhận', 'options' => "Tự mang đến | 0\nGiao nhận | 25000" ),
+		array( 'id' => 'ffast', 'type' => 'checkbox', 'name' => 'fast', 'label' => 'Nhanh', 'options' => 'Giặt nhanh | 1' ),
+		array( 'id' => 'fwash', 'type' => 'calc', 'name' => 'wash', 'label' => 'Tiền giặt', 'formula' => '{fkg} * 18000' ),
+		array( 'id' => 'ftot', 'type' => 'calc', 'name' => 'total', 'label' => 'Tạm tính', 'formula' => '{fwash} + {fwash} * 0.2 * {ffast} + {fship}' ),
+	);
+	$attrs = array( 'provider' => 'bigspy', 'formKey' => 'fcalctest', 'fields' => $fields, 'mailBody' => 'Total: [total]', 'saveEntries' => true );
+	$page  = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Calc form', 'post_content' => wp_slash( serialize_block( array( 'blockName' => 'bst/form', 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) ) ) ) );
+	$html  = bst_native_form_markup( $attrs );
+	bst_test( false !== strpos( $html, 'data-bs-calc=' ) && false !== strpos( $html, 'data-calc="ftot"' ) && false !== strpos( $html, 'value="Giao nhận"' ) && false === strpos( $html, '25000"' ) && wp_script_is( 'bst-form-calc', 'enqueued' ), 'calc: form renders totals, option labels without prices and loads the preview script' );
+	$cfg = json_decode( html_entity_decode( preg_replace( '/.*data-bs-calc=\'([^\']*)\'.*/s', '$1', $html ), ENT_QUOTES ), true );
+	bst_test( isset( $cfg['fields']['fkg'], $cfg['calcs'][1]['formula'] ) && ! isset( $cfg['mailTo'] ), 'calc: browser config has fields and formulas, no mail settings' );
+	// Renaming labels/mail tags and moving fields keeps the same totals (formulas use ids).
+	$moved = array_reverse( $fields );
+	$moved[4]['label'] = 'Weight'; $moved[4]['name'] = 'weight';
+	$r1 = bst_calc_run( $fields, array( 'kg' => '3', 'ship' => 'Giao nhận', 'fast' => 'Giặt nhanh' ) );
+	$r2 = bst_calc_run( $moved, array( 'weight' => '3', 'ship' => 'Giao nhận', 'fast' => 'Giặt nhanh' ) );
+	bst_test( 89800.0 === $r1['ftot']['amount'] && $r1['ftot']['amount'] === $r2['ftot']['amount'], 'calc: demo laundry total 89.800 and same after rename and reorder' );
+	$old = array( array( 'type' => 'number', 'name' => 'qty' ), array( 'type' => 'calc', 'name' => 'sum', 'formula' => '{n_qty} * 2' ) );
+	bst_test( 'n_qty' === bst_native_field_id( $old[0] ) && 8.0 === bst_calc_run( $old, array( 'qty' => '4' ) )['n_sum']['amount'], 'calc: old fields without id get a derived id, nothing is rewritten' );
+	$bad = bst_calc_plan( array( array( 'id' => 'fa', 'type' => 'calc', 'name' => 'a', 'formula' => '{fb}' ), array( 'id' => 'fb', 'type' => 'calc', 'name' => 'b', 'formula' => '{fa}' ), array( 'id' => 'fc', 'type' => 'calc', 'name' => 'c', 'formula' => '{gone} + 1' ), array( 'id' => 'fd', 'type' => 'calc', 'name' => 'd', 'formula' => 'system("x")' ) ) );
+	bst_test( 4 === count( $bad['errors'] ) && ! $bad['order'], 'calc: loops, deleted fields and code are refused with a reason' );
+
+	// Submit through the AJAX handler: the server ignores a forged total and recomputes.
+	$mails = array();
+	add_filter( 'pre_wp_mail', function ( $r, $atts ) use ( &$mails ) { $mails[] = $atts; return true; }, 10, 2 );
+	add_filter( 'wp_doing_ajax', '__return_true' );
+	add_filter( 'wp_die_ajax_handler', function () { return function () { throw new RuntimeException( 'bst-die' ); }; } );
+	$submit = function ( $post ) {
+		delete_transient( 'bst_nf_' . md5( '' ) );
+		$_POST = $post + array( 'bst_form_key' => 'fcalctest', 'bst_form_post' => 0 );
+		ob_start();
+		try { bst_native_form_submit(); } catch ( RuntimeException $e ) {}
+		return json_decode( ob_get_clean(), true );
+	};
+	$res   = $submit( array( 'kg' => '3', 'ship' => 'Giao nhận', 'fast' => array( 'Giặt nhanh' ), 'total' => '1', 'wash' => '0' ) );
+	$entry = get_posts( array( 'post_type' => 'bst_form_entry', 'post_status' => 'private', 'numberposts' => 1 ) );
+	$vals  = $entry ? get_post_meta( $entry[0]->ID, '_bst_values', true ) : array();
+	$quote = $entry ? get_post_meta( $entry[0]->ID, '_bst_quote', true ) : array();
+	bst_test( ! empty( $res['ok'] ) && '89.800 ₫' === ( $vals['total'] ?? '' ) && false !== strpos( (string) ( end( $mails )['message'] ?? '' ), 'Total: 89.800 ₫' ), 'calc: submit recomputes the total on the server for mail and entry ' . wp_json_encode( $res ) );
+	bst_test( 89800.0 === ( $quote['calcs']['ftot']['amount'] ?? null ) && 'ok' === $quote['calcs']['ftot']['status'] && ! empty( $quote['rules'] ), 'calc: entry keeps the quote snapshot with rule revision' );
+	$res = $submit( array( 'kg' => '', 'ship' => 'Giao nhận' ) );
+	bst_test( empty( $res['ok'] ) && isset( $res['errors']['kg'] ), 'calc: required number still validated' );
+	$res = $submit( array( 'kg' => '2', 'ship' => 'Express | 1' ) );
+	bst_test( empty( $res['ok'] ) && isset( $res['errors']['ship'] ), 'calc: unknown or price-forged option refused' );
+	wp_delete_post( $page, true );
 }

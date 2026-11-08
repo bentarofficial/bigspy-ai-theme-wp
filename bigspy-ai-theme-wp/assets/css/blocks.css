@@ -3016,6 +3016,10 @@ input[type="submit"]:hover,
 .bs-native-form { display: flex; flex-wrap: wrap; gap: 0 16px; }
 .bs-native-form > * { flex: 1 1 100%; }
 .bs-native-form > .bs-nf-half { flex: 1 1 calc(50% - 8px); min-width: 200px; }
+.bs-native-form > .bs-nf-calc { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding: 12px 14px; background: color-mix(in srgb, var(--bs-primary, #0a4d8c) 7%, transparent); border-radius: 8px; }
+.bs-native-form .bs-nf-total { font-size: 1.25em; font-weight: 700; color: var(--bs-heading, inherit); overflow-wrap: anywhere; }
+.bs-native-form .bs-nf-total:not([data-status="ok"]) { font-size: 1em; font-weight: 600; opacity: .8; }
+.bs-native-form .bs-nf-note { flex-basis: 100%; opacity: .75; }
 .bs-native-form .bs-nf-label { display: block; margin-bottom: 6px; font-weight: 600; font-size: .95em; }
 .bs-form--labels-hidden .bs-native-form .bs-nf-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .bs-native-form .bs-nf-req { color: #dc2626; }

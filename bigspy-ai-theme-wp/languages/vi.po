@@ -7564,3 +7564,30 @@ msgstr "Sponsored, thẻ listing và các cài đặt listing khác nằm ở tr
 msgid "1.83.2: BIGSPY AI List mode can now be turned on or off in BIGSPY AI Theme → Settings, next to the theme language, as well as on the Features page."
 msgstr "1.83.2: Giờ có thể bật hoặc tắt chế độ BIGSPY AI List ngay trong BIGSPY AI Theme → Cài đặt, cạnh ngôn ngữ theme, ngoài trang Tính năng."
 
+msgid "Choose more details to see the price"
+msgstr "Chọn thêm thông tin để xem giá"
+
+msgid "Price to be confirmed"
+msgstr "Cần xác nhận giá"
+
+msgid "Add a price after a bar for price totals: Express | 20000"
+msgstr "Thêm giá sau dấu gạch đứng để tính tổng: Giao nhanh | 20000"
+
+msgid "Formula"
+msgstr "Công thức"
+
+msgid "Use [mail-tag] of number or choice fields, + - * / ( ), min(), max(), round(), if(condition, then, else). A choice counts as the price of what is picked. Example: [kg] * 18000 + [delivery]"
+msgstr "Dùng [mail-tag] của trường số hoặc trường lựa chọn, + - * / ( ), min(), max(), round(), if(điều kiện, đúng, sai). Trường lựa chọn được tính bằng giá của mục đã chọn. Ví dụ: [kg] * 18000 + [giao-nhan]"
+
+msgid "Formula OK. The server recalculates it on every submit."
+msgstr "Công thức hợp lệ. Máy chủ tính lại mỗi lần khách gửi."
+
+msgid "Currency"
+msgstr "Tiền tệ"
+
+msgid "Used in price formula:"
+msgstr "Đang dùng trong công thức giá:"
+
+msgid "A price formula uses this field. Remove it anyway? The total will show “Price to be confirmed” until you fix the formula."
+msgstr "Một công thức giá đang dùng trường này. Vẫn xoá? Tổng sẽ hiện “Cần xác nhận giá” cho tới khi bạn sửa công thức."
+

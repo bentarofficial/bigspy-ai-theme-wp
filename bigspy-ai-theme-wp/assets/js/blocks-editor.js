@@ -2723,7 +2723,20 @@
 	 * Built-in form (provider "bigspy"): Contact Form 7 style tabs inside the block –
 	 * Fields, Mail, Mail (2), Messages, Actions. Empty texts fall back to the defaults.
 	 */
-	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL'], ['file', 'File upload']];
+	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL'], ['file', 'File upload'], ['calc', 'Price total (calculated)']];
+	function nfId() { return 'f' + Math.random().toString(36).slice(2, 10); }
+	// Formulas are saved with {fieldId}; the editor shows [mail-tag] so people can read and type them.
+	function nfShowFormula(src, fields) { return String(src || '').replace(/\{([a-z][a-z0-9_]{1,31})\}/g, function (m, id) { var f = fields.filter(function (x) { return x.id === id; })[0]; return f ? '[' + f.name + ']' : m; }); }
+	function nfSaveFormula(src, fields) { return String(src || '').replace(/\[([a-z0-9_-]+)\]/g, function (m, n) { var f = fields.filter(function (x) { return x.name === n && x.id; })[0]; return f ? '{' + f.id + '}' : m; }); }
+	function nfCheckFormula(f, fields) {
+		var C = window.bstFormCalc, ok = ['number', 'select', 'radio', 'checkbox', 'acceptance', 'calc'];
+		if (!C) { return ''; }
+		try {
+			var tree = C.parse(f.formula || '');
+			var bad = C.refs(tree).filter(function (id) { var x = fields.filter(function (y) { return y.id === id; })[0]; return !x || ok.indexOf(x.type) === -1 || x.id === f.id; });
+			return bad.length ? 'Unknown, self or non-number field in the formula: ' + bad.join(', ') : '';
+		} catch (e) { return e.message; }
+	}
 	function nfSlug(label, taken) {
 		var base = String(label || 'field').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'field';
 		var n = base, i = 2;
@@ -2738,7 +2751,9 @@
 		wp.element.useEffect(function () {
 			var patch = {};
 			if (!a.formKey) { patch.formKey = 'f' + Math.random().toString(36).slice(2, 10); }
-			if (!a.fields || !a.fields.length) { patch.fields = (D.fields || []).map(function (f) { return Object.assign({}, f); }); }
+			var base = a.fields && a.fields.length ? a.fields : (D.fields || []);
+			// G-57: every field gets a stable id once; formulas point to it, not to the label or position.
+			if (!a.fields || !a.fields.length || base.some(function (f) { return !f.id; })) { patch.fields = base.map(function (f) { return f.id ? Object.assign({}, f) : Object.assign({}, f, { id: nfId() }); }); }
 			if (Object.keys(patch).length) { props.setAttributes(patch); }
 		}, []);
 		var tab = useState('fields');
@@ -2762,6 +2777,9 @@
 				fields.map(function (f, i) {
 					var open = openField[0] === i;
 					var needsOpts = ['select', 'radio', 'checkbox', 'file'].indexOf(f.type) !== -1;
+					var isCalc = f.type === 'calc';
+					var usedBy = fields.filter(function (x) { return x.type === 'calc' && f.id && String(x.formula || '').indexOf('{' + f.id + '}') !== -1; });
+					var calcErr = isCalc ? nfCheckFormula(f, fields) : '';
 					return el('div', { key: i, className: 'bst-nf-item' + (open ? ' is-open' : '') },
 						el('div', { className: 'bst-nf-item__head' },
 							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : ''))),
@@ -2772,17 +2790,21 @@
 							el(c.SelectControl, { label: __('Type', T), value: f.type, options: NF_TYPES.map(function (t) { return { value: t[0], label: t[1] }; }), onChange: function (v) { upd(i, 'type', v); }, __nextHasNoMarginBottom: true }),
 							el(c.TextControl, { label: __('Label', T), value: f.label || '', onChange: function (v) { upd(i, 'label', v); }, __nextHasNoMarginBottom: true }),
 							el(c.TextControl, { label: f.type === 'acceptance' ? __('Consent text', T) : __('Placeholder', T), value: f.placeholder || '', onChange: function (v) { upd(i, 'placeholder', v); }, __nextHasNoMarginBottom: true }),
-							needsOpts ? el(c.TextareaControl, { label: __('Options (one per line)', T), value: f.options || '', rows: 4, onChange: function (v) { upd(i, 'options', v); }, __nextHasNoMarginBottom: true }) : null,
+							needsOpts ? el(c.TextareaControl, { label: __('Options (one per line)', T), help: f.type === 'file' ? null : __('Add a price after a bar for price totals: Express | 20000', T), value: f.options || '', rows: 4, onChange: function (v) { upd(i, 'options', v); }, __nextHasNoMarginBottom: true }) : null,
+							isCalc ? el(c.TextareaControl, { label: __('Formula', T), help: __('Use [mail-tag] of number or choice fields, + - * / ( ), min(), max(), round(), if(condition, then, else). A choice counts as the price of what is picked. Example: [kg] * 18000 + [delivery]', T), value: nfShowFormula(f.formula, fields), rows: 3, onChange: function (v) { upd(i, 'formula', nfSaveFormula(v, fields)); }, __nextHasNoMarginBottom: true }) : null,
+							isCalc ? el('p', { className: calcErr ? 'bst-nf-error' : 'description', style: calcErr ? { color: '#b32d2e' } : null }, calcErr || __('Formula OK. The server recalculates it on every submit.', T)) : null,
+							isCalc ? el(c.SelectControl, { label: __('Currency', T), value: f.currency || 'VND', options: ['VND', 'USD', 'EUR', 'JPY'].map(function (x) { return { value: x, label: x }; }), onChange: function (v) { upd(i, 'currency', v); }, __nextHasNoMarginBottom: true }) : null,
+							usedBy.length ? el('p', { className: 'description' }, __('Used in price formula:', T) + ' ' + usedBy.map(function (x) { return x.label || x.name; }).join(', ')) : null,
 							el(c.TextControl, { label: __('Field name (mail tag)', T), help: '[' + f.name + ']', value: f.name, onChange: function (v) { var n = fields.slice(); n[i] = Object.assign({}, f, { name: nfSlug(v, []), lockName: true }); setFields(n); }, __nextHasNoMarginBottom: true }),
 							el('div', { className: 'bst-nf-row' },
 								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
 								el(c.ToggleControl, { label: __('Half width', T), checked: f.width === 'half', onChange: function (v) { upd(i, 'width', v ? 'half' : 'full'); }, __nextHasNoMarginBottom: true })
 							),
-							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1); } }, __('Remove field', T))
+							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { if (usedBy.length && !window.confirm(__('A price formula uses this field. Remove it anyway? The total will show “Price to be confirmed” until you fix the formula.', T))) { return; } setFields(fields.filter(function (x, j) { return j !== i; })); openField[1](-1); } }, __('Remove field', T))
 						) : null
 					);
 				}),
-				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
+				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ id: nfId(), type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
 				txt('submitText', __('Send button text', T)),
 				txt('formName', __('Form name (shown in Form entries)', T))
 			);
