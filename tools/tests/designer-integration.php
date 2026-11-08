@@ -265,6 +265,13 @@ $catalog_all = (array) include BST_AID_DIR . '/knowledge/blocks.php';
 $catalog_parents = bst_aid_block_parents();
 $catalog_missing = array_diff( array_keys( bst_aid_block_types() ), array_keys( $catalog_all ), array_keys( $catalog_parents ) );
 bst_test( ! $catalog_missing, 'Every top-level block has a catalog profile: ' . implode( ', ', $catalog_missing ) );
+$catalog_thin = array();
+foreach ( bst_aid_block_profiles() as $name => $p ) {
+	if ( '' === $p[1] || '' === $p[2] || '' === $p[6] || '' === $p[7] || '' === $p[8] ) {
+		$catalog_thin[] = $name;
+	}
+}
+bst_test( ! $catalog_thin, 'Every block profile has use, avoid, mobile, pairs and min: ' . implode( ', ', $catalog_thin ) );
 bst_test( ! isset( bst_aid_block_types()['bigspy/listing-grid'] ) && ! isset( bst_aid_block_types()['bst/listing-info'] ), 'BIGSPY AI List blocks are left out while that mode is off' );
 bst_test( false !== strpos( bst_aid_system_prompt(), 'BIGSPY AI List mode is off: use only BIGSPY AI Theme WP blocks' ), 'Prompt limits the AI to theme blocks while BIGSPY AI List is off' );
 $catalog_bad = array();
@@ -299,6 +306,10 @@ bst_test( ! empty( bst_test_run( 'section_recipes', array( 'id' => 'nope' ) )['e
 $GLOBALS['bst_aid_task_id'] = $task;
 $plan = bst_test_run( 'page_plan', array( 'page' => 'Home', 'sections' => array( array( 'recipe' => 'hero-split', 'purpose' => 'Open the page' ), array( 'blocks' => 'bst/text', 'purpose' => 'Note' ) ) ) );
 bst_test( 'Split hero, text and image' === ( $plan['plan']['sections'][0]['title'] ?? '' ) && 2 === count( bst_aid_task_get( $task, '_bst_aid_plan' )['sections'] ?? array() ) && 'read' === bst_aid_tool_policy( 'page_plan', array() )['group'], 'page_plan shows and stores the outline without writing' );
+$variety = $plan['variety'] ?? array();
+bst_test( isset( $variety['count'], $variety['target'] ) && $variety['count'] < $variety['target'] && preg_grep( '/only headings and text/', (array) $variety['advice'] ), 'page_plan reports block variety and advises on a plain section' );
+$rich = bst_test_run( 'page_plan', array( 'page' => 'Home', 'sections' => array( array( 'blocks' => 'bst/banner' ), array( 'blocks' => 'bst/image-box, bst/icon-list' ), array( 'blocks' => 'bst/counter, bst/testimonial' ), array( 'blocks' => 'bst/timeline, bst/accordion' ), array( 'blocks' => 'bst/form, bst/map' ) ) ) );
+bst_test( ! ( $rich['variety']['advice'] ?? array( 1 ) ) && 9 === $rich['variety']['count'], 'page_plan gives no advice for a varied outline' );
 $plan_media = wp_insert_attachment( array( 'post_title' => 'Plan image', 'post_mime_type' => 'image/png', 'post_status' => 'inherit' ) );
 $built_page = bst_test_run( 'build_sections', array( 'title' => 'Built in one go', 'sections' => array(
 	array( 'recipe' => 'hero-split', 'slots' => array( 'eyebrow' => 'New', 'page H1' => 'Fast build H1', 'one clear message' => 'Message', 'primary action' => 'Call', 'secondary action' => 'Read', 'link' => array( '/contact', '/about' ), 'image description' => 'Team' ), 'media' => array( $plan_media ) ),

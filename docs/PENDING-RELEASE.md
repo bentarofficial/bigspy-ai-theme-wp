@@ -15,6 +15,13 @@ G-74–G-78, G-87, G-88, G-90 đã phát hành trong 1.83.0.
 - **Khi phát hành cần bổ sung:** một dòng Có gì mới.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
 
+### G-92 Hồ sơ khối đầy đủ và độ đa dạng khối
+
+- **Đã thay đổi:** rà 69 khối: đều có hồ sơ; điền 99 trường trống (avoid, mobile, pairs) để block_catalog trả đủ thông tin chọn khối. page_plan trả `variety` (số khối nội dung khác nhau, mục tiêu theo số section, lời khuyên: section chỉ có chữ, công thức lặp, 2 section liền nhau cùng khối); prompt và rules của block_catalog yêu cầu làm theo trước khi đưa dàn ý.
+- **Kiểm thử:** playground-check đạt, thêm 3 mục (hồ sơ đủ trường, page_plan khuyên khi nghèo khối, không khuyên khi đa dạng). Chưa thử với AI thật.
+- **Khi phát hành cần bổ sung:** một dòng Có gì mới.
+- **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
