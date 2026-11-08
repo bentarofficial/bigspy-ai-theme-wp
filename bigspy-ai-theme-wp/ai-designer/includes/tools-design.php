@@ -67,6 +67,11 @@ function bst_aid_core_blocks() {
 	return array( 'core/paragraph', 'core/heading', 'core/list', 'core/list-item', 'core/buttons', 'core/button', 'core/image', 'core/spacer', 'core/separator', 'core/group', 'core/columns', 'core/column', 'core/quote', 'core/html', 'core/shortcode', 'core/table', 'core/details' );
 }
 
+/** BIGSPY AI List mode is on and WooCommerce is active. */
+function bst_aid_listing_on() {
+	return class_exists( 'WooCommerce' ) && function_exists( 'bst_feature_on' ) && bst_feature_on( 'listing' );
+}
+
 /** Registered BIGSPY block types the user has not switched off. */
 function bst_aid_block_types() {
 	$off = function_exists( 'bst_disabled_blocks' ) ? (array) bst_disabled_blocks() : array();
@@ -80,8 +85,15 @@ function bst_aid_block_types() {
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		unset( $out['bst/products'], $out['bst/product-categories'] );
 	}
+	// Display-only blocks (legacy BIGSPY AI List layout) are never for the AI.
+	$out = array_filter(
+		$out,
+		function ( $type ) {
+			return ! isset( $type->supports['inserter'] ) || false !== $type->supports['inserter'];
+		}
+	);
 	// BIGSPY AI List blocks show nothing until that mode is on and WooCommerce is active.
-	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'bst_feature_on' ) || ! bst_feature_on( 'listing' ) ) {
+	if ( ! bst_aid_listing_on() ) {
 		$out = array_filter(
 			$out,
 			function ( $type ) {
@@ -998,6 +1010,7 @@ function bst_aid_tool_block_catalog( $a ) {
 		'Choose by content: a block whose "data" you do not have (images, real figures, reviews, prices) is the wrong block.',
 		'At most 2 blocks with pin true per page, never in adjacent sections. Prefer light blocks; one or two heavy blocks per page.',
 		'Call block_schema for the blocks you pick before writing attributes.',
+		'Make each page rich: every section shows its content with the block that fits it best, a full page uses many different blocks (page_plan reports variety), and no two sections in a row share a layout.',
 	);
 	if ( ! $needs ) {
 		$groups = array();
@@ -1094,7 +1107,50 @@ function bst_aid_tool_page_plan( $a ) {
 	if ( $task ) {
 		bst_aid_task_set( $task, '_bst_aid_plan', $plan );
 	}
-	return array( 'plan' => $plan, 'next' => 'Ask the user to approve or change this outline. After OK, build it with build_sections (several sections per call).' );
+	return array( 'plan' => $plan, 'variety' => bst_aid_plan_variety( (array) ( $a['sections'] ?? array() ), $recipes ), 'next' => 'If variety lists advice, improve the outline first where the content allows. Then ask the user to approve or change this outline. After OK, build it with build_sections (several sections per call).' );
+}
+
+/**
+ * How many different BIGSPY blocks a page outline uses, with advice for a richer page.
+ * Counts blocks of each recipe tree and any block names written in "blocks".
+ */
+function bst_aid_plan_variety( $sections, $recipes ) {
+	$types    = bst_aid_block_types();
+	$skip     = array( 'bst/section', 'bst/row', 'bst/column', 'bst/spacer', 'bst/heading', 'bst/text', 'bst/buttons', 'bst/button', 'bst/title' );
+	$per      = array();
+	$recipe_n = array();
+	foreach ( array_slice( $sections, 0, 20 ) as $sec ) {
+		$recipe = sanitize_key( (string) ( $sec['recipe'] ?? '' ) );
+		$names  = array();
+		if ( isset( $recipes[ $recipe ] ) ) {
+			$names = bst_aid_tree_names( array( $recipes[ $recipe ][4] ) );
+			$recipe_n[ $recipe ] = ( $recipe_n[ $recipe ] ?? 0 ) + 1;
+		}
+		if ( preg_match_all( '#\b(?:bst|bigspy)/[a-z0-9-]+#', (string) ( $sec['blocks'] ?? '' ), $m ) ) {
+			$names = array_merge( $names, $m[0] );
+		}
+		$per[] = array_values( array_diff( array_unique( array_intersect( $names, array_keys( $types ) ) ), $skip ) );
+	}
+	$used   = array_values( array_unique( array_merge( array(), ...( $per ?: array( array() ) ) ) ) );
+	$advice = array();
+	$target = min( 12, max( 4, count( $per ) + 2 ) );
+	if ( count( $used ) < $target ) {
+		$advice[] = sprintf( 'Only %d different content blocks for %d sections; aim for %d or more. Swap plain text rows for blocks that fit the content (cards, icon lists, counters, tabs, timelines, testimonials, motion blocks).', count( $used ), count( $per ), $target );
+	}
+	foreach ( $recipe_n as $id => $n ) {
+		if ( $n > 1 ) {
+			$advice[] = 'Recipe ' . $id . ' is used ' . $n . ' times; use a different recipe or blocks for the repeat.';
+		}
+	}
+	for ( $i = 1; $i < count( $per ); $i++ ) {
+		if ( $per[ $i ] && $per[ $i ] === $per[ $i - 1 ] ) {
+			$advice[] = sprintf( 'Sections %d and %d use the same blocks; change one layout.', $i, $i + 1 );
+		}
+		if ( ! $per[ $i ] ) {
+			$advice[] = sprintf( 'Section %d has only headings and text; give it a block that shows the content.', $i + 1 );
+		}
+	}
+	return array( 'blocks' => $used, 'count' => count( $used ), 'target' => $target, 'advice' => array_slice( $advice, 0, 6 ) );
 }
 
 /** Image attribute pairs (id, url) a recipe node takes, in order. */

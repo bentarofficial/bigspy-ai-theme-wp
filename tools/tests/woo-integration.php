@@ -146,6 +146,12 @@ try {
 	bst_test( str_ends_with( (string) apply_filters( 'wc_get_template_part', 'x', 'content', 'product' ), 'content-listing.php' ), 'listing: shop loop uses listing cards' );
 	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1, 'archive_cards' => 0 ) );
 	bst_test( 'x' === apply_filters( 'wc_get_template_part', 'x', 'content', 'product' ), 'listing: archive cards can be turned off' );
+	if ( ! function_exists( 'bst_aid_block_types' ) ) {
+		require_once BST_DIR . '/ai-designer/includes/tools-design.php';
+	}
+	$aid_types = bst_aid_block_types();
+	bst_test( isset( $aid_types['bigspy/listing-grid'], $aid_types['bst/listing-info'] ), 'listing: AI Designer gets BIGSPY AI List blocks when the mode is on' );
+	bst_test( ! isset( $aid_types['bigspy/section'] ) && ! isset( $aid_types['bigspy/home-seo-divider'] ), 'listing: AI Designer never gets display-only legacy blocks' );
 	wp_reset_query();
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );

@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.83.1: AI Designer block choice
+
+- **BIGSPY AI List aware:** with the mode off the AI designs with theme blocks only; with it on it also uses the listing blocks. Display-only legacy blocks are never used.
+- **Richer pages:** every block profile is complete, and the page outline reports how many different blocks a page uses, with advice before you approve it.
+
 ### 1.83.0: BIGSPY AI List mode
 
 - **Directory mode:** turn on BIGSPY AI List in Features (off by default) and WooCommerce products become listings with listing fields (ACF optional), FAQ and structured data.

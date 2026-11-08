@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới. G-74–G-78, G-87, G-88, G-90 đã phát hành trong 1.83.0.
+Chưa có thay đổi sản phẩm mới. G-91, G-92 đã phát hành trong 1.83.1.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
