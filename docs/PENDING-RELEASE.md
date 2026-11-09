@@ -13,6 +13,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** `feature/ai-designer`, commit bên dưới.
 - **Trạng thái:** chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-101, thẻ listing tự thích nghi theo chiều rộng của chính nó, giống theme BIGSPY AI List cũ.
+- **Đã thay đổi:** `inc/listing/blocks.php` (thẻ có watermark logo mờ, khối `__brand/__head/__body`, số dòng tiêu đề/mô tả, tag, bật/tắt logo/rating/Featured/watermark; mặc định đọc `bigspy_card_show_*` của theme cũ; Sponsored chèn sau mỗi N hàng hoặc trên đầu lưới), `inc/listing/sponsored.php` (thêm `__in`), `assets/css/listing.css` (container query cho thẻ listing và Sponsored, thay cách sửa theo vị trí của G-105), 10 thuộc tính mới trong `listing-elements`/`listing-grid`, nhãn trong `blocks-listing.js`.
+- **Kiểm thử:** woo-check đạt (2 test mới: thẻ ngang có watermark và số dòng; ẩn watermark theo khối); features-check 137 ok, playground-check đạt, previews đạt. Xem thử trên bigspyai.com bằng cách chèn tạm markup/CSS mới trong trình duyệt.
+- **Khi phát hành cần bổ sung:** Có gì mới: "Thẻ listing tự co giãn theo chỗ đặt, có watermark logo, tag, chọn số dòng, chèn Sponsored giữa các hàng".
+- **Git:** `feature/ai-designer`, e0af524 và commit chỉnh ngưỡng sau đó.
+- **Trạng thái:** chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
