@@ -122,6 +122,16 @@ try {
 	wp_update_post( array( 'ID' => $a2, 'post_content' => '<h2>FAQ</h2><details><summary>Is it free?</summary><p>Yes.</p></details>' ) );
 	$faq_schema = bst_listing_faq_schema( $a2 );
 	bst_test( 'FAQPage' === ( $faq_schema['@type'] ?? '' ) && 'Is it free?' === ( $faq_schema['mainEntity'][0]['name'] ?? '' ), 'listing: FAQPage schema from the FAQ in the description' );
+	update_post_meta( $a1, 'key_features', "Fast drafts\nSEO mode" );
+	update_post_meta( $a1, 'pros', 'Cheap' );
+	update_post_meta( $a1, 'integrations', "Slack\nZapier" );
+	update_post_meta( $a1, '_bigspy_internal_links', array( array( 'label' => 'Writing AI', 'url' => home_url( '/writing/' ) ), array( 'label' => 'Spam', 'url' => 'https://evil.test/' ) ) );
+	$sec = bst_listing_sections_html( $a1 );
+	bst_test( 2 === substr_count( $sec, '<li>' ) - 1 && false !== strpos( $sec, 'Pros &amp; Cons' ) && false !== strpos( $sec, '<span>Zapier</span>' ) && false === strpos( $sec, 'bst-listing-cons' ), 'listing: key features, pros and integrations sections' );
+	$links = bst_listing_internal_links( $a1 );
+	bst_test( 1 === count( $links ) && false !== strpos( bst_listing_links_html( $a1 ), 'Writing AI' ), 'listing: related resources keep same-site links only' );
+	$toc = bst_toc_apply( bst_listing_h2_dividers( '<h2>One</h2><p>a</p><h2>Two</h2><h3>Sub</h3>' ), 3 );
+	bst_test( 1 === substr_count( $toc, 'bst-listing-divider' ) && false !== strpos( $toc, 'class="bs-toc"' ) && false !== strpos( $toc, 'href="#two"' ), 'listing: description TOC and H2 dividers' );
 	$nodes = bst_listing_schema_nodes( $a1 );
 	bst_test( 'ItemPage' === $nodes['bigspy_listing_webpage']['@type'] && 'Writing AI' === $nodes['bigspy_listing_breadcrumb']['itemListElement'][2]['name'], 'listing: schema breadcrumb through the category' );
 	update_post_meta( $a2, '_bigspy_ad', '1' );

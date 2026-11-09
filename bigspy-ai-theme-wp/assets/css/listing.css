@@ -55,3 +55,21 @@
 .bst-lelements__title{margin:0 0 14px;font-size:1.25rem}
 .bst-lposts{margin:0;padding-left:18px;display:grid;gap:6px}
 .bst-litem{list-style:none}.bst-litem .bst-lcard{height:100%}
+/* Listing page sections: TOC, dividers, features, pros & cons, integrations, related resources. */
+.single-product .bs-toc{margin:0 0 24px;padding:14px 18px;border:1px solid rgba(0,0,0,.1);border-radius:10px}
+.single-product .bs-toc__title{cursor:pointer;font-weight:700}
+.single-product .bs-toc__list{margin:8px 0 0;padding-left:20px}
+.single-product .bs-toc__item--h3{margin-left:14px;font-size:.95em}
+.bst-listing-divider{border:0;height:1px;margin:28px 0;background:linear-gradient(90deg,transparent,#dbe7f0,transparent)}
+.bst-listing-section{clear:both;margin:32px 0}
+.bst-listing-features ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 20px;padding-left:20px}
+.bst-listing-proscons{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bst-listing-proscons>div{padding:14px 18px;border-radius:10px;border:1px solid rgba(0,0,0,.1)}
+.bst-listing-pros{background:#f0fdf4}.bst-listing-cons{background:#fef2f2}
+.bst-listing-proscons h3{margin:0 0 6px;font-size:1em}
+.bst-listing-chips{display:flex;flex-wrap:wrap;gap:8px}
+.bst-listing-chips span{padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.05);font-size:14px}
+.bst-listing-links div{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.bst-listing-links a{padding:10px 14px;border:1px solid rgba(0,0,0,.1);border-radius:8px;text-decoration:none;font-weight:600}
+.bst-listing-updated{clear:both;margin:24px 0;font-size:14px;opacity:.75}
+@media (max-width:600px){.bst-listing-proscons{grid-template-columns:1fr}}
