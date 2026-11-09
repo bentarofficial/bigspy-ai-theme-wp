@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.86.1 =
+* Fix: the admin area showed a critical error in 1.86.0 (unescaped quote in the What is new text).
+
 = 1.86.0 =
 * BIGSPY AI List: listing and Sponsored cards pick their layout from their own width (horizontal with the logo beside the text, one column when narrow), so they fit any column, sidebar or grid.
 * BIGSPY AI List: faint logo watermark on cards (follows the old theme setting, Show/Hide per block), tags, title and description line counts, show/hide logo, rating, Featured badge and Visit button.
