@@ -13,6 +13,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** `feature/ai-designer` 1b77732.
 - **Trạng thái:** chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-106, Icon List: sửa link của từng dòng ngay trên thanh công cụ; editor giống bản xuất bản.
+- **Đã thay đổi:** `assets/js/blocks-editor.js` (dòng đang sửa có nút "Item link" trên thanh công cụ mở ô link của WordPress: xem, sửa, bỏ link; dòng có link có dấu mắt xích khi chọn khối; dấu "+" của dòng không icon chỉ hiện khi đang chọn khối), `assets/css/editor.css`.
+- **Kiểm thử:** cú pháp JS đạt; thử trên editor UX Block Footer của bigspyai.com bằng cách nạp tạm khối mới trong trình duyệt (không lưu): nút hiện "Item link: …/about-us/", ô link mở đúng, 4 dấu mắt xích, cột khác không còn "+".
+- **Khi phát hành cần bổ sung:** Có gì mới: "Icon List: bấm nút link trên thanh công cụ để xem, sửa hoặc bỏ link của dòng đang chọn".
+- **Git:** `feature/ai-designer` 1c7decc.
+- **Trạng thái:** chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
