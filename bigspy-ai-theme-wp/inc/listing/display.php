@@ -17,6 +17,16 @@ add_action(
 	}
 );
 
+// The listing blocks render on the server; the editor needs the same CSS so cards look as published.
+add_action(
+	'enqueue_block_assets',
+	function () {
+		if ( is_admin() ) {
+			wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
+		}
+	}
+);
+
 add_action(
 	'woocommerce_single_product_summary',
 	function () {

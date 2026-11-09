@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.85.3 =
+* BIGSPY AI List: the homepage "Sponsored by" brand ([bigspy_home_sponsor]) moves to the next Sponsored listing on every visit, like the other Sponsored slots.
+* BIGSPY AI List: Featured on the Categories page changes order on every load (unless rotation was turned off in the old theme).
+
 = 1.85.2 =
 * Layout: a page whose first block is full width (such as a Banner hero) and shows no title now sits right under the header, without the gap above.
 

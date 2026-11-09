@@ -261,11 +261,16 @@ add_shortcode(
 		return bst_listing_render_block( 'bigspy/elements', array( 'elementType' => 'categories' ) );
 	}
 );
-// The old homepage "Sponsored by" brand: now the first Sponsored listing.
+// The old homepage "Sponsored by" brand: the Sponsored listings, rotating on every visit.
 add_shortcode(
 	'bigspy_home_sponsor',
 	function () {
 		$items = function_exists( 'bst_sponsored_items' ) && bst_sponsored_config()['on'] ? bst_sponsored_items() : array();
-		return $items ? '<a class="bst-home-sponsor" href="' . esc_url( $items[0]['url'] ) . '" target="_blank" rel="sponsored nofollow noopener">' . esc_html( $items[0]['name'] ) . '</a>' : '';
+		if ( ! $items ) {
+			return '';
+		}
+		// A one-line slot: sponsored.js moves it to the next sponsor on every visit, like the old theme.
+		$config = bst_sponsored_config();
+		return '<span class="bst-home-sponsor-slot" data-bst-sponsored="0" data-context="home" data-version="' . (int) $config['version'] . '" data-jump="1"><a class="bst-home-sponsor" data-link data-name href="' . esc_url( $items[0]['url'] ) . '" target="_blank" rel="sponsored nofollow noopener">' . esc_html( $items[0]['name'] ) . '</a></span>' . bst_sponsored_pool_html();
 	}
 );
