@@ -6,19 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-### BIGSPY AI List: box "BIGSPY FAQ & FAQ Schema"
-
-- **Đã thay đổi:** port từ theme cũ bigspy-ai-list. Khi trường `faq` trống, FAQ được đọc từ mục H2 "FAQ / Frequently asked" trong mô tả (do Generator viết), nên listing cũ vẫn có schema FAQPage. Box mới cùng ID `bigspy-listing-faq-schema` cho sửa FAQ, xem trạng thái và JSON-LD; lưu vào trường `faq` cũ (ACF nếu có). Khi đã lưu, mục FAQ hiển thị riêng và được bỏ khỏi mô tả để không lặp. Box "Listing fields" không còn ô FAQ trùng.
-- **Kiểm thử:** features-check 133 ok (thêm 7 test FAQ), woo-check 27 ok (thêm test schema FAQPage). Chưa kiểm tra trên site thật.
-- **Khi phát hành cần bổ sung:** Có gì mới + bản dịch vi cho chuỗi mới của box FAQ.
-- **Trạng thái:** đã triển khai và kiểm thử; chờ owner yêu cầu phát hành.
-
-### BIGSPY AI List: các phần trang listing từ theme cũ
-
-- **Đã thay đổi:** `inc/listing/single.php` thêm mục lục + đường chia H2 trong mô tả, Key features, Pros & Cons, Integrations, Related resources (link nội bộ `_bigspy_internal_links` của Generator, chỉ cùng site) và ngày cập nhật. Mỗi phần có công tắc trong Features → BIGSPY AI List. Mục lục bài viết tách thành `bst_toc_apply()` dùng chung.
-- **Kiểm thử:** woo-check 30 ok (thêm 3 test), features-check 133 ok. Chưa kiểm tra giao diện trên site thật.
-- **Khi phát hành cần bổ sung:** Có gì mới + bản dịch vi.
-- **Trạng thái:** đã triển khai và kiểm thử; chờ owner yêu cầu phát hành.
+Không có thay đổi đang chờ (1.84.0 đã phát hành các mục FAQ và các phần trang listing).
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

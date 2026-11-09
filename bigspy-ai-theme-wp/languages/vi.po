@@ -7564,3 +7564,63 @@ msgstr "Sponsored, thẻ listing và các cài đặt listing khác nằm ở tr
 msgid "1.83.2: BIGSPY AI List mode can now be turned on or off in BIGSPY AI Theme → Settings, next to the theme language, as well as on the Features page."
 msgstr "1.83.2: Giờ có thể bật hoặc tắt chế độ BIGSPY AI List ngay trong BIGSPY AI Theme → Cài đặt, cạnh ngôn ngữ theme, ngoài trang Tính năng."
 
+msgid "BIGSPY FAQ & FAQ Schema"
+msgstr "BIGSPY FAQ & FAQ Schema"
+
+msgid "Cons"
+msgstr "Nhược điểm"
+
+msgid "Found in the listing description."
+msgstr "Tìm thấy trong mô tả listing."
+
+msgid "Integrations"
+msgstr "Tích hợp"
+
+msgid "Key features"
+msgstr "Tính năng chính"
+
+msgid "Key features, pros & cons and integrations on the listing page"
+msgstr "Tính năng chính, ưu nhược điểm và tích hợp trên trang listing"
+
+msgid "Last updated date on the listing page"
+msgstr "Ngày cập nhật trên trang listing"
+
+msgid "Last updated:"
+msgstr "Cập nhật lần cuối:"
+
+msgid "No valid FAQ rows. Add both a question and an answer."
+msgstr "Chưa có dòng FAQ hợp lệ. Hãy nhập cả câu hỏi và câu trả lời."
+
+msgid "One item per line: Question | Answer. Saving the listing updates the FAQ on the page and its FAQPage schema."
+msgstr "Mỗi dòng một mục: Câu hỏi | Câu trả lời. Lưu listing sẽ cập nhật FAQ trên trang và schema FAQPage."
+
+msgid "Pros"
+msgstr "Ưu điểm"
+
+msgid "Pros & Cons"
+msgstr "Ưu & nhược điểm"
+
+msgid "Related resources"
+msgstr "Tài nguyên liên quan"
+
+msgid "Related resources (internal links) on the listing page"
+msgstr "Tài nguyên liên quan (liên kết nội bộ) trên trang listing"
+
+msgid "Schema status:"
+msgstr "Trạng thái schema:"
+
+msgid "Table of contents and section dividers in the listing description"
+msgstr "Mục lục và đường chia mục trong mô tả listing"
+
+msgid "Update the listing once to save these rows as its FAQ; the FAQ section is then shown from this box instead of the description."
+msgstr "Cập nhật listing một lần để lưu các dòng này làm FAQ; khi đó mục FAQ được hiển thị từ box này thay vì từ mô tả."
+
+msgid "View FAQPage JSON-LD"
+msgstr "Xem JSON-LD FAQPage"
+
+msgid "What is this listing? | Add the answer here."
+msgstr "Listing này là gì? | Nhập câu trả lời tại đây."
+
+msgid "1.84.0: BIGSPY AI List listings get the old theme's page sections back: a BIGSPY FAQ & FAQ Schema box that also reads the FAQ the Generator wrote in the description, a table of contents with section dividers, Key features, Pros & Cons, Integrations, Related resources and the last updated date, each with its own switch in Features."
+msgstr "1.84.0: Trang listing BIGSPY AI List có lại các phần của theme cũ: box BIGSPY FAQ & FAQ Schema đọc được cả FAQ do Generator viết trong mô tả, mục lục kèm đường chia mục, Tính năng chính, Ưu & nhược điểm, Tích hợp, Tài nguyên liên quan và ngày cập nhật, mỗi phần có công tắc riêng trong Features."
+
