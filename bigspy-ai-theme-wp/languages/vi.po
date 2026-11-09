@@ -7624,3 +7624,102 @@ msgstr "Listing này là gì? | Nhập câu trả lời tại đây."
 msgid "1.84.0: BIGSPY AI List listings get the old theme's page sections back: a BIGSPY FAQ & FAQ Schema box that also reads the FAQ the Generator wrote in the description, a table of contents with section dividers, Key features, Pros & Cons, Integrations, Related resources and the last updated date, each with its own switch in Features."
 msgstr "1.84.0: Trang listing BIGSPY AI List có lại các phần của theme cũ: box BIGSPY FAQ & FAQ Schema đọc được cả FAQ do Generator viết trong mô tả, mục lục kèm đường chia mục, Tính năng chính, Ưu & nhược điểm, Tích hợp, Tài nguyên liên quan và ngày cập nhật, mỗi phần có công tắc riêng trong Features."
 
+msgid "All Listings"
+msgstr "Tất cả listing"
+
+msgid "All categories"
+msgstr "Tất cả danh mục"
+
+msgid "Browse the directory"
+msgstr "Khám phá danh bạ"
+
+msgid "Category directory on the Categories page (when the page has no content)"
+msgstr "Danh bạ danh mục trên trang Categories (khi trang chưa có nội dung)"
+
+msgid "Clear filters"
+msgstr "Xóa bộ lọc"
+
+msgid "Directory layout on listing pages (header card, facts and sidebar instead of the product layout)"
+msgstr "Bố cục danh bạ cho trang listing (thẻ đầu trang, thông tin nhanh và sidebar thay cho bố cục sản phẩm)"
+
+msgid "Discover more"
+msgstr "Khám phá thêm"
+
+msgid "Discover the best tools, software and services."
+msgstr "Khám phá công cụ, phần mềm và dịch vụ tốt nhất."
+
+msgid "Discover the newest tools, software and services added to our directory."
+msgstr "Khám phá công cụ, phần mềm và dịch vụ mới nhất trong danh bạ."
+
+msgid "Explore %s"
+msgstr "Khám phá %s"
+
+msgid "Explore featured tools, software and services in our directory."
+msgstr "Khám phá công cụ, phần mềm và dịch vụ nổi bật trong danh bạ."
+
+msgid "Explore the tools highlighted in our Popular collection."
+msgstr "Khám phá các công cụ trong bộ sưu tập Phổ biến."
+
+msgid "Explore tools, software and services organized by category."
+msgstr "Khám phá công cụ, phần mềm và dịch vụ theo danh mục."
+
+msgid "Find tools"
+msgstr "Tìm công cụ"
+
+msgid "Homepage hero from the BIGSPY AI List theme (content, background and buttons saved in that theme)"
+msgstr "Hero trang chủ từ theme BIGSPY AI List (nội dung, nền và các nút đã lưu ở theme đó)"
+
+msgid "Ideas & guides"
+msgstr "Ý tưởng & hướng dẫn"
+
+msgid "Latest directory"
+msgstr "Danh bạ mới nhất"
+
+msgid "Name A–Z"
+msgstr "Tên A–Z"
+
+msgid "Newest first"
+msgstr "Mới nhất trước"
+
+msgid "Page hero with a Sponsored tool on Categories, Listings, Featured, Popular and Blog"
+msgstr "Hero trang kèm công cụ tài trợ trên Categories, Listings, Featured, Popular và Blog"
+
+msgid "Popular"
+msgstr "Phổ biến"
+
+msgid "Search tools"
+msgstr "Tìm công cụ"
+
+msgid "Search, category and sort toolbar on listing archives"
+msgstr "Thanh tìm kiếm, danh mục và sắp xếp trên trang danh sách listing"
+
+msgid "Sort by"
+msgstr "Sắp xếp theo"
+
+msgid "Stories, practical guides and updates to help you get more from your tools."
+msgstr "Câu chuyện, hướng dẫn thực tế và cập nhật giúp bạn tận dụng công cụ tốt hơn."
+
+msgid "Tool name or keyword"
+msgstr "Tên công cụ hoặc từ khóa"
+
+msgid "Top rated"
+msgstr "Đánh giá cao nhất"
+
+msgid "Visit Website →"
+msgstr "Truy cập website →"
+
+msgid "1.85.0: Switching from the BIGSPY AI List theme keeps the site looking the same: List mode turns on by itself, the homepage hero, page heroes with a Sponsored tool, the Categories directory, the listings search toolbar and a directory layout for listing pages are read from the old theme's settings, each with a switch in Features."
+msgstr "1.85.0: Chuyển từ theme BIGSPY AI List mà giao diện vẫn giữ nguyên: chế độ List tự bật, hero trang chủ, hero trang kèm công cụ tài trợ, danh bạ Categories, thanh tìm kiếm listing và bố cục danh bạ cho trang listing được đọc từ cài đặt của theme cũ, mỗi phần có công tắc trong Features."
+
+msgid "1 listing"
+msgstr "1 listing"
+
+msgid "%s listings"
+msgstr "%s listing"
+
+msgid "1 listing found"
+msgstr "Tìm thấy 1 listing"
+
+msgid "%s listings found"
+msgstr "Tìm thấy %s listing"
+

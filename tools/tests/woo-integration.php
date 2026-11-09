@@ -166,6 +166,40 @@ try {
 	bst_test( isset( $aid_types['bigspy/listing-grid'], $aid_types['bst/listing-info'] ), 'listing: AI Designer gets BIGSPY AI List blocks when the mode is on' );
 	bst_test( ! isset( $aid_types['bigspy/section'] ) && ! isset( $aid_types['bigspy/home-seo-divider'] ), 'listing: AI Designer never gets display-only legacy blocks' );
 	wp_reset_query();
+	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1 ) );
+	bst_test( '' === bst_legacy_home_hero_html(), 'listing: no homepage hero without old BIGSPY AI List settings' );
+	update_option( 'theme_mods_bigspy-ai-list', array( 'bigspy_hero_visual_content' => '<h1>Old hero</h1><p>{{listing_count}} tools</p><script>x</script>[bigspy_home_destination_buttons]', 'bigspy_home_destination_buttons' => array( array( 'label' => 'Go', 'url' => 'https://example.com/go/' ) ) ) );
+	$hero = bst_legacy_home_hero_html();
+	bst_test( str_contains( $hero, '<h1>Old hero</h1>' ) && ! str_contains( $hero, '<script' ) && ! str_contains( $hero, '{{' ) && str_contains( $hero, 'href="https://example.com/go/"' ), 'listing: homepage hero renders old content, counters and destination buttons safely' );
+	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1, 'home_hero' => 0 ) );
+	bst_test( '' === bst_legacy_home_hero_html(), 'listing: homepage hero can be turned off' );
+	bst_feature_set( 'listing', false );
+	do_action( 'after_switch_theme', 'BIGSPY AI List', wp_get_theme() );
+	$auto = bst_feature_on( 'listing' );
+	bst_feature_set( 'listing', false );
+	do_action( 'after_switch_theme', 'BIGSPY AI List', wp_get_theme() );
+	bst_test( $auto && ! bst_feature_on( 'listing' ), 'listing: switching from the old theme turns List mode on once' );
+	bst_feature_set( 'listing', true );
+	$lp = wc_get_products( array( 'limit' => 1, 'return' => 'ids' ) );
+	if ( $lp ) {
+		$lp = $lp[0];
+		$head = bst_listing_header_html( $lp );
+		bst_test( str_contains( $head, 'bst-ls-hero__title' ) && str_contains( $head, esc_html( get_the_title( $lp ) ) ), 'listing: directory layout header card' );
+		$GLOBALS['wp_query']->is_product = true;
+		$GLOBALS['wp_query']->is_singular = true;
+		$GLOBALS['wp_query']->queried_object = get_post( $lp );
+		$GLOBALS['wp_query']->queried_object_id = $lp;
+		$GLOBALS['wp_query']->set( 'post_type', 'product' );
+		bst_test( str_ends_with( apply_filters( 'template_include', 'x.php' ), 'woocommerce/single-listing.php' ) || ! is_product(), 'listing: product pages use the directory layout' );
+		update_option( 'bst_feature_listing', array( 'sponsored_on' => 1, 'single_layout' => 0 ) );
+		bst_test( ! str_ends_with( apply_filters( 'template_include', 'x.php' ), 'single-listing.php' ), 'listing: directory layout can be turned off' );
+	}
+	$dir = bst_category_directory_html();
+	bst_test( '' === $dir || ( str_contains( $dir, 'bst-catdir__nav' ) && str_contains( $dir, 'bst-catdir__section' ) ), 'listing: category directory renders navigation and sections' );
+	$bar = bst_shop_toolbar_html();
+	bst_test( str_contains( $bar, 'name="product_cat"' ) && str_contains( $bar, 'name="orderby"' ) && str_contains( $bar, 'name="s"' ), 'listing: shop toolbar has search, category and sort' );
+	$hs = bst_collection_hero_settings( 'categories' );
+	bst_test( 'Old categories' === $hs['title'] || ! empty( $hs['eyebrow'] ), 'listing: collection hero settings have defaults' );
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }

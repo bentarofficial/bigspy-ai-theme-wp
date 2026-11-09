@@ -11427,3 +11427,96 @@ msgstr ""
 msgid "1.84.0: BIGSPY AI List listings get the old theme's page sections back: a BIGSPY FAQ & FAQ Schema box that also reads the FAQ the Generator wrote in the description, a table of contents with section dividers, Key features, Pros & Cons, Integrations, Related resources and the last updated date, each with its own switch in Features."
 msgstr ""
 
+msgid "All Listings"
+msgstr ""
+
+msgid "All categories"
+msgstr ""
+
+msgid "Browse the directory"
+msgstr ""
+
+msgid "Category directory on the Categories page (when the page has no content)"
+msgstr ""
+
+msgid "Clear filters"
+msgstr ""
+
+msgid "Directory layout on listing pages (header card, facts and sidebar instead of the product layout)"
+msgstr ""
+
+msgid "Discover more"
+msgstr ""
+
+msgid "Discover the best tools, software and services."
+msgstr ""
+
+msgid "Discover the newest tools, software and services added to our directory."
+msgstr ""
+
+msgid "Explore %s"
+msgstr ""
+
+msgid "Explore featured tools, software and services in our directory."
+msgstr ""
+
+msgid "Explore the tools highlighted in our Popular collection."
+msgstr ""
+
+msgid "Explore tools, software and services organized by category."
+msgstr ""
+
+msgid "Find tools"
+msgstr ""
+
+msgid "Homepage hero from the BIGSPY AI List theme (content, background and buttons saved in that theme)"
+msgstr ""
+
+msgid "Ideas & guides"
+msgstr ""
+
+msgid "Latest directory"
+msgstr ""
+
+msgid "Newest first"
+msgstr ""
+
+msgid "Page hero with a Sponsored tool on Categories, Listings, Featured, Popular and Blog"
+msgstr ""
+
+msgid "Popular"
+msgstr ""
+
+msgid "Search tools"
+msgstr ""
+
+msgid "Search, category and sort toolbar on listing archives"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Stories, practical guides and updates to help you get more from your tools."
+msgstr ""
+
+msgid "Tool name or keyword"
+msgstr ""
+
+msgid "Visit Website →"
+msgstr ""
+
+msgid "1.85.0: Switching from the BIGSPY AI List theme keeps the site looking the same: List mode turns on by itself, the homepage hero, page heroes with a Sponsored tool, the Categories directory, the listings search toolbar and a directory layout for listing pages are read from the old theme's settings, each with a switch in Features."
+msgstr ""
+
+msgid "1 listing"
+msgstr ""
+
+msgid "%s listings"
+msgstr ""
+
+msgid "1 listing found"
+msgstr ""
+
+msgid "%s listings found"
+msgstr ""
+

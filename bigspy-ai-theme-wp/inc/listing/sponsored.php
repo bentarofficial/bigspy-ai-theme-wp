@@ -148,7 +148,7 @@ add_shortcode( 'bigspy_sponsored_grid', 'bst_sponsored_grid' );
 add_action(
 	'woocommerce_after_single_product_summary',
 	function () {
-		if ( ! bst_listing_is_ad( get_the_ID() ) ) {
+		if ( ! bst_listing_is_ad( get_the_ID() ) && ! ( function_exists( 'bst_listing_layout_active' ) && bst_listing_layout_active() ) ) {
 			echo bst_sponsored_slot( 0, 'single' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
 		}
 	},
