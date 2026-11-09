@@ -75,6 +75,46 @@
 		"showSponsored": {
 			"type": "boolean",
 			"default": true
+		},
+		"showLogo": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTags": {
+			"type": "boolean",
+			"default": false
+		},
+		"showCTA": {
+			"type": "boolean",
+			"default": false
+		},
+		"showFeatured": {
+			"type": "string",
+			"default": "default"
+		},
+		"showWatermark": {
+			"type": "string",
+			"default": "default"
+		},
+		"titleLines": {
+			"type": "number",
+			"default": 1
+		},
+		"descriptionLines": {
+			"type": "number",
+			"default": 2
+		},
+		"sponsoredPosition": {
+			"type": "string",
+			"default": "between"
+		},
+		"sponsoredEvery": {
+			"type": "number",
+			"default": 3
 		}
 	},
 	"supports": {

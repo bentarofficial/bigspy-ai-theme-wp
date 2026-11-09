@@ -111,6 +111,12 @@ try {
 	};
 	$grid = $block( 'bigspy/listing-grid', array( 'limit' => 10 ) );
 	bst_test( substr_count( $grid, 'class="bst-lcard ' ) >= 2 && false !== strpos( $grid, 'Writes blog posts' ) && false !== strpos( $grid, '4.5' ), 'listing: bigspy/listing-grid renders cards' );
+	$logo_id = wp_insert_attachment( array( 'post_mime_type' => 'image/png', 'post_title' => 'alpha-logo', 'post_status' => 'inherit' ), 'alpha-logo.png' );
+	update_post_meta( $logo_id, '_wp_attached_file', 'alpha-logo.png' );
+	set_post_thumbnail( $a1, $logo_id );
+	$h2 = $block( 'bigspy/elements', array( 'elementType' => 'latest', 'layout' => 'horizontal-2', 'showTags' => true, 'descriptionLines' => 3 ) );
+	bst_test( str_contains( $h2, 'bst-lcard--horizontal' ) && str_contains( $h2, 'class="bst-lcard__watermark"' ) && str_contains( $h2, '--bst-lc-desc-lines:3' ) && str_contains( $h2, 'class="bst-lcard__in"' ), 'listing: horizontal card with logo watermark and line count' );
+	bst_test( ! str_contains( $block( 'bigspy/elements', array( 'elementType' => 'latest', 'showWatermark' => 'hide' ) ), 'bst-lcard__watermark' ), 'listing: watermark can be hidden per block' );
 	$feat = $block( 'bigspy/listing-grid', array( 'featuredOnly' => true ) );
 	bst_test( 1 === substr_count( $feat, 'class="bst-lcard ' ) && false !== strpos( $feat, 'Featured' ), 'listing: featuredOnly filter and badge' );
 	bst_test( false !== strpos( $block( 'bigspy/category-grid', array() ), 'Writing AI' ), 'listing: bigspy/category-grid' );

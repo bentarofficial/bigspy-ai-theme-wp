@@ -61,6 +61,30 @@
 		"categoryId": {
 			"type": "number",
 			"default": 0
+		},
+		"showLogo": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showFeatured": {
+			"type": "string",
+			"default": "default"
+		},
+		"showWatermark": {
+			"type": "string",
+			"default": "default"
+		},
+		"titleLines": {
+			"type": "number",
+			"default": 1
+		},
+		"descriptionLines": {
+			"type": "number",
+			"default": 2
 		}
 	},
 	"supports": {

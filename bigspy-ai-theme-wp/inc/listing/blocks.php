@@ -9,45 +9,76 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/** One listing card: logo, name, category, rating, price, short text, Sponsored/Featured badge. */
+/** Site-wide default for one card part: the old theme's saved setting when there is one. */
+function bst_listing_card_default( $part, $fallback ) {
+	$legacy = function_exists( 'bst_legacy_list_mod' ) ? bst_legacy_list_mod( 'bigspy_card_show_' . $part, null ) : null;
+	return null === $legacy ? $fallback : (bool) $legacy;
+}
+
+/** "default" / "show" / "hide" (block setting) to true or false. */
+function bst_listing_card_toggle( $value, $part, $fallback ) {
+	if ( true === $value || 'show' === $value ) {
+		return true;
+	}
+	if ( false === $value || 'hide' === $value ) {
+		return false;
+	}
+	return bst_listing_card_default( $part, $fallback );
+}
+
+/**
+ * One listing card: logo, name, category, rating, price, short text, tags, Sponsored/Featured
+ * badge and a faint logo watermark. The card measures its own width (container query), so the
+ * same layout fits a wide row, a narrow column or a sidebar without page-specific CSS.
+ */
 function bst_listing_card( $post_id, $args = array() ) {
-	$args  = wp_parse_args( $args, array( 'layout' => 'square', 'showDescription' => true, 'showCategory' => true, 'showPricing' => true, 'showTags' => false, 'showRating' => true, 'showCTA' => false ) );
-	$title = get_the_title( $post_id );
-	$link  = get_permalink( $post_id );
-	$cats  = bst_listing_terms( $post_id, 'product_cat' );
-	$text  = trim( wp_strip_all_tags( (string) get_post_field( 'post_excerpt', $post_id ) ) );
-	$text  = '' !== $text ? $text : (string) bst_listing_field( 'tool_tagline', $post_id, '' );
-	$text  = '' !== $text ? $text : wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) );
-	$logo  = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'bst-lcard__logo', 'alt' => '', 'loading' => 'lazy' ) );
-	$logo  = $logo ? $logo : '<span class="bst-lcard__logo bst-lcard__logo--text" aria-hidden="true">' . esc_html( mb_strtoupper( mb_substr( $title, 0, 1 ) ) ) . '</span>';
-	$paid  = bst_listing_is_paid( $post_id );
-	$feat  = ! $paid && function_exists( 'wc_get_product' ) && ( $product = wc_get_product( $post_id ) ) && $product->is_featured(); // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition
-	$price = $args['showPricing'] ? bst_listing_price_label( $post_id ) : '';
-	$out   = '<article class="bst-lcard bst-lcard--' . esc_attr( sanitize_key( $args['layout'] ) ) . ( $paid ? ' is-sponsored' : '' ) . '">';
-	$out  .= '<a class="bst-lcard__cover" href="' . esc_url( $link ) . '" aria-label="' . esc_attr( $title ) . '"></a>';
+	$args   = wp_parse_args( $args, array( 'layout' => 'square', 'showLogo' => true, 'showDescription' => true, 'showCategory' => true, 'showPricing' => true, 'showTags' => false, 'showRating' => true, 'showCTA' => false, 'showFeatured' => 'default', 'showWatermark' => 'default', 'titleLines' => 1, 'descriptionLines' => 2 ) );
+	$layout = sanitize_key( $args['layout'] );
+	$layout = 'horizontal-2' === $layout ? 'horizontal' : $layout;
+	$layout = in_array( $layout, array( 'square', 'vertical', 'horizontal', 'featured', 'minimal' ), true ) ? $layout : 'square';
+	$title  = get_the_title( $post_id );
+	$link   = get_permalink( $post_id );
+	$cats   = bst_listing_terms( $post_id, 'product_cat' );
+	$text   = trim( wp_strip_all_tags( (string) get_post_field( 'post_excerpt', $post_id ) ) );
+	$text   = '' !== $text ? $text : (string) bst_listing_field( 'tool_tagline', $post_id, '' );
+	$text   = '' !== $text ? $text : wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) );
+	$logo   = get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'bst-lcard__logo', 'alt' => '', 'loading' => 'lazy' ) );
+	$logo   = $logo ? $logo : '<span class="bst-lcard__logo bst-lcard__logo--text" aria-hidden="true">' . esc_html( mb_strtoupper( mb_substr( $title, 0, 1 ) ) ) . '</span>';
+	$paid   = bst_listing_is_paid( $post_id );
+	$feat   = ! $paid && bst_listing_card_toggle( $args['showFeatured'], 'featured', true ) && function_exists( 'wc_get_product' ) && ( $product = wc_get_product( $post_id ) ) && $product->is_featured(); // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition
+	$mark   = 'minimal' !== $layout && bst_listing_card_toggle( $args['showWatermark'], 'watermark', true ) ? get_the_post_thumbnail( $post_id, 'medium', array( 'class' => 'bst-lcard__watermark-img', 'alt' => '', 'loading' => 'lazy' ) ) : '';
+	$price  = $args['showPricing'] ? bst_listing_price_label( $post_id ) : '';
+	$vars   = '--bst-lc-title-lines:' . max( 1, min( 3, (int) $args['titleLines'] ) ) . ';--bst-lc-desc-lines:' . max( 1, min( 6, (int) $args['descriptionLines'] ) );
+	$out    = '<article class="bst-lcard bst-lcard--' . esc_attr( $layout ) . ( $paid ? ' is-sponsored' : '' ) . ( $feat ? ' is-featured' : '' ) . '" style="' . esc_attr( $vars ) . '">';
+	$out   .= $mark ? '<span class="bst-lcard__watermark" aria-hidden="true">' . $mark . '</span>' : '';
+	$out   .= '<a class="bst-lcard__cover" href="' . esc_url( $link ) . '" aria-label="' . esc_attr( $title ) . '"></a>';
 	if ( $paid || $feat ) {
 		$out .= '<span class="bst-lcard__badge">' . esc_html( $paid ? __( 'Sponsored', 'bigspy-ai-theme-wp' ) : __( 'Featured', 'bigspy-ai-theme-wp' ) ) . '</span>';
 	}
-	$out .= '<div class="bst-lcard__top">' . $logo . '<div class="bst-lcard__head"><h3 class="bst-lcard__title"><a href="' . esc_url( $link ) . '">' . esc_html( $title ) . '</a></h3>';
+	$out .= '<div class="bst-lcard__in">';
+	$out .= $args['showLogo'] ? '<div class="bst-lcard__brand">' . $logo . '</div>' : '';
+	$out .= '<div class="bst-lcard__head"><h3 class="bst-lcard__title"><a href="' . esc_url( $link ) . '">' . esc_html( $title ) . '</a></h3>';
 	if ( $args['showCategory'] && $cats ) {
 		$out .= '<span class="bst-lcard__cat">' . esc_html( $cats[0]->name ) . '</span>';
 	}
-	$out .= '</div>' . ( $args['showRating'] ? bst_listing_rating_html( $post_id ) : '' ) . '</div>';
+	$out .= ( $args['showRating'] ? bst_listing_rating_html( $post_id ) : '' ) . '</div>';
+	$body = '';
 	if ( '' !== $price ) {
-		$out .= '<span class="bst-lcard__price">' . esc_html( $price ) . '</span>';
+		$body .= '<span class="bst-lcard__price">' . esc_html( $price ) . '</span>';
 	}
 	if ( $args['showDescription'] && '' !== trim( $text ) ) {
-		$out .= '<p class="bst-lcard__text">' . esc_html( wp_trim_words( $text, 22, '…' ) ) . '</p>';
+		$body .= '<p class="bst-lcard__text">' . esc_html( wp_trim_words( $text, 40, '…' ) ) . '</p>';
 	}
 	if ( $args['showTags'] ) {
-		$tags = array_slice( bst_listing_terms( $post_id, 'product_tag' ), 0, 4 );
-		$out .= $tags ? '<div class="bst-lcard__tags">' . implode( '', array_map( function ( $t ) { return '<span>#' . esc_html( $t->name ) . '</span>'; }, $tags ) ) . '</div>' : '';
+		$tags  = array_slice( bst_listing_terms( $post_id, 'product_tag' ), 0, 6 );
+		$body .= $tags ? '<div class="bst-lcard__tags">' . implode( '', array_map( function ( $t ) { return '<span>#' . esc_html( $t->name ) . '</span>'; }, $tags ) ) . '</div>' : '';
 	}
 	if ( $args['showCTA'] ) {
-		$url  = bst_listing_url( $post_id );
-		$out .= '<a class="bst-lcard__cta" href="' . esc_url( $url ) . '"' . ( $url !== $link ? ' target="_blank" rel="sponsored noopener"' : '' ) . '>' . esc_html__( 'Visit', 'bigspy-ai-theme-wp' ) . '</a>';
+		$url   = bst_listing_url( $post_id );
+		$body .= '<a class="bst-lcard__cta" href="' . esc_url( $url ) . '"' . ( $url !== $link ? ' target="_blank" rel="sponsored noopener"' : '' ) . '>' . esc_html__( 'Visit', 'bigspy-ai-theme-wp' ) . '</a>';
 	}
-	return $out . '</article>';
+	$out .= '' !== $body ? '<div class="bst-lcard__body">' . $body . '</div>' : '';
+	return $out . '</div></article>';
 }
 
 function bst_listing_cols_style( $a, $d, $t, $m ) {
@@ -64,9 +95,17 @@ function bst_listing_grid( $query_args, $card_args = array(), $style = '' ) {
 		return '';
 	}
 	wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
-	$out = '';
-	foreach ( $ids as $id ) {
+	// Sponsored rows: after every N cards (adEvery), a full-width Sponsored card, as in the old theme.
+	$every = max( 0, (int) ( $card_args['adEvery'] ?? 0 ) );
+	$start = max( 0, (int) ( $card_args['adOffset'] ?? 0 ) );
+	$out   = '';
+	foreach ( $ids as $i => $id ) {
 		$out .= bst_listing_card( $id, $card_args );
+		$pos  = $start + $i + 1;
+		if ( $every && 0 === $pos % $every && $i < count( $ids ) - 1 && function_exists( 'bst_sponsored_slot' ) ) {
+			$ad   = bst_sponsored_slot( (int) ( $pos / $every ) - 1, 'elements' );
+			$out .= '' !== $ad ? '<div class="bst-lgrid__ad">' . $ad . '</div>' : '';
+		}
 	}
 	return '<div class="bst-lgrid" style="' . esc_attr( $style ) . '">' . $out . '</div>';
 }
@@ -104,7 +143,7 @@ function bst_render_listing_grid( $a ) {
 			'showPricing'     => $a['showPricing'] ?? true,
 			'showTags'        => ! empty( $a['showTags'] ),
 			'showCTA'         => ! empty( $a['showCTA'] ),
-		),
+		) + bst_listing_card_style_args( $a ),
 		$style
 	);
 }
@@ -156,6 +195,23 @@ function bst_render_listing_search( $a ) {
 		$out .= '<button type="submit">' . esc_html( (string) ( $a['buttonText'] ?? __( 'Search', 'bigspy-ai-theme-wp' ) ) ) . '</button>';
 	}
 	return $out . '</form>';
+}
+
+/** Card look and Sponsored rows from block attributes (shared by the listing blocks). */
+function bst_listing_card_style_args( $a, $type = '' ) {
+	$cols  = max( 1, min( 6, (int) ( $a['columnsDesktop'] ?? 4 ) ) );
+	$rows  = max( 0, min( 20, (int) ( $a['sponsoredEvery'] ?? 3 ) ) );
+	$inner = ( $a['showSponsored'] ?? true ) && 'between' === ( $a['sponsoredPosition'] ?? 'between' ) && 'related' !== $type;
+	return array(
+		'showLogo'         => $a['showLogo'] ?? true,
+		'showRating'       => $a['showRating'] ?? true,
+		'showFeatured'     => $a['showFeatured'] ?? 'default',
+		'showWatermark'    => $a['showWatermark'] ?? 'default',
+		'titleLines'       => $a['titleLines'] ?? 1,
+		'descriptionLines' => $a['descriptionLines'] ?? 2,
+		'adEvery'          => $inner ? $rows * $cols : 0,
+		'adOffset'         => max( 0, (int) ( $a['startPosition'] ?? 1 ) - 1 ),
+	);
 }
 
 /** bigspy/elements: featured, latest, popular, related listings, categories or blog posts. */
@@ -222,10 +278,10 @@ function bst_render_listing_elements( $a ) {
 				'showPricing'     => $a['showPricing'] ?? true,
 				'showTags'        => ! empty( $a['showTags'] ),
 				'showCTA'         => ! empty( $a['showCTA'] ),
-			),
+			) + bst_listing_card_style_args( $a, $type ),
 			bst_listing_cols_style( $a, 4, 2, 1 )
 		);
-		if ( $body && ( $a['showSponsored'] ?? true ) && function_exists( 'bst_sponsored_slot' ) ) {
+		if ( $body && ( $a['showSponsored'] ?? true ) && 'top' === ( $a['sponsoredPosition'] ?? 'between' ) && function_exists( 'bst_sponsored_slot' ) ) {
 			$body = bst_sponsored_slot( 0, 'elements' ) . $body;
 		}
 	}
