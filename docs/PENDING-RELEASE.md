@@ -6,7 +6,12 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới. G-93 đã phát hành trong 1.83.2.
+### BIGSPY AI List: box "BIGSPY FAQ & FAQ Schema"
+
+- **Đã thay đổi:** port từ theme cũ bigspy-ai-list. Khi trường `faq` trống, FAQ được đọc từ mục H2 "FAQ / Frequently asked" trong mô tả (do Generator viết), nên listing cũ vẫn có schema FAQPage. Box mới cùng ID `bigspy-listing-faq-schema` cho sửa FAQ, xem trạng thái và JSON-LD; lưu vào trường `faq` cũ (ACF nếu có). Khi đã lưu, mục FAQ hiển thị riêng và được bỏ khỏi mô tả để không lặp. Box "Listing fields" không còn ô FAQ trùng.
+- **Kiểm thử:** features-check 133 ok (thêm 7 test FAQ), woo-check 27 ok (thêm test schema FAQPage). Chưa kiểm tra trên site thật.
+- **Khi phát hành cần bổ sung:** Có gì mới + bản dịch vi cho chuỗi mới của box FAQ.
+- **Trạng thái:** đã triển khai và kiểm thử; chờ owner yêu cầu phát hành.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

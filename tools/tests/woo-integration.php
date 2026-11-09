@@ -119,6 +119,9 @@ try {
 	bst_test( '' === $block( 'bigspy/elements', array( 'elementType' => 'related' ) ) && 1 === substr_count( $block( 'bigspy/elements', array( 'elementType' => 'related', 'relatedContextId' => $a1 ) ), 'class="bst-lcard ' ), 'listing: elements related excludes the listing itself' );
 	bst_test( false !== strpos( do_shortcode( '[bigspy_elements type="latest"]' ), 'Beta Writer' ) && false !== strpos( do_shortcode( '[bigspy_categories]' ), 'Writing AI' ) && false !== strpos( do_shortcode( '[bigspy_search]' ), 'bst-lsearch' ), 'listing: old shortcodes render' );
 	bst_test( 'https://alpha-writer.test/?ref=bs' === bigspy_listing_url( $a1 ) && bst_listing_has_affiliate( $a1 ), 'listing: external product URL is the listing link' );
+	wp_update_post( array( 'ID' => $a2, 'post_content' => '<h2>FAQ</h2><details><summary>Is it free?</summary><p>Yes.</p></details>' ) );
+	$faq_schema = bst_listing_faq_schema( $a2 );
+	bst_test( 'FAQPage' === ( $faq_schema['@type'] ?? '' ) && 'Is it free?' === ( $faq_schema['mainEntity'][0]['name'] ?? '' ), 'listing: FAQPage schema from the FAQ in the description' );
 	$nodes = bst_listing_schema_nodes( $a1 );
 	bst_test( 'ItemPage' === $nodes['bigspy_listing_webpage']['@type'] && 'Writing AI' === $nodes['bigspy_listing_breadcrumb']['itemListElement'][2]['name'], 'listing: schema breadcrumb through the category' );
 	update_post_meta( $a2, '_bigspy_ad', '1' );

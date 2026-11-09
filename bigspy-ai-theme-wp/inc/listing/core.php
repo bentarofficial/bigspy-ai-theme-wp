@@ -224,9 +224,73 @@ function bst_listing_facts( $post_id = 0 ) {
 	return $facts;
 }
 
-/** FAQ rows from the faq field ("Question | Answer" per line, or ACF rows). */
+/** The listing has its own saved FAQ (not only an FAQ section inside the description). */
+function bst_listing_has_faq_field( $post_id = 0 ) {
+	$faq = bst_listing_field( 'faq', $post_id, array() );
+	return is_string( $faq ) ? '' !== trim( $faq ) : ! empty( $faq );
+}
+
+/** Start and end offsets of the first H2 section whose heading says FAQ or "Frequently asked". */
+function bst_listing_faq_section_range( $content ) {
+	if ( ! is_string( $content ) || ! preg_match_all( '/<h2\b[^>]*>.*?<\/h2>/is', $content, $h, PREG_OFFSET_CAPTURE ) ) {
+		return null;
+	}
+	$count = count( $h[0] );
+	for ( $i = 0; $i < $count; $i++ ) {
+		$text = strtolower( trim( wp_strip_all_tags( $h[0][ $i ][0] ) ) );
+		if ( false === strpos( $text, 'faq' ) && false === strpos( $text, 'frequently asked' ) ) {
+			continue;
+		}
+		return array( $h[0][ $i ][1], strlen( $h[0][ $i ][0] ), $i + 1 < $count ? $h[0][ $i + 1 ][1] : strlen( $content ) );
+	}
+	return null;
+}
+
+/** FAQ rows written by the generator into the description: <details> items, or H3–H6 questions. */
+function bst_listing_faq_from_content( $content ) {
+	$range = bst_listing_faq_section_range( $content );
+	if ( ! $range ) {
+		return array();
+	}
+	$section = substr( $content, $range[0] + $range[1], $range[2] - $range[0] - $range[1] );
+	$clean   = function ( $html ) {
+		return trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $html ) ) );
+	};
+	$items = array();
+	if ( preg_match_all( '/<details\b[^>]*>\s*<summary\b[^>]*>(.*?)<\/summary>(.*?)<\/details>/is', $section, $d, PREG_SET_ORDER ) ) {
+		foreach ( $d as $row ) {
+			if ( '' !== $clean( $row[1] ) && '' !== $clean( $row[2] ) ) {
+				$items[] = array( 'question' => $clean( $row[1] ), 'answer' => $clean( $row[2] ) );
+			}
+		}
+	}
+	if ( ! $items && preg_match_all( '/<h([3-6])\b[^>]*>(.*?)<\/h\1>/is', $section, $q, PREG_OFFSET_CAPTURE ) ) {
+		$count = count( $q[0] );
+		for ( $i = 0; $i < $count; $i++ ) {
+			$start  = $q[0][ $i ][1] + strlen( $q[0][ $i ][0] );
+			$end    = $i + 1 < $count ? $q[0][ $i + 1 ][1] : strlen( $section );
+			$answer = $clean( substr( $section, $start, $end - $start ) );
+			if ( '' !== $clean( $q[2][ $i ][0] ) && '' !== $answer ) {
+				$items[] = array( 'question' => $clean( $q[2][ $i ][0] ), 'answer' => $answer );
+			}
+		}
+	}
+	return $items;
+}
+
+/** The description without its FAQ section, used once the FAQ has its own saved field. */
+function bst_listing_remove_faq_section( $content ) {
+	$range = bst_listing_faq_section_range( $content );
+	return $range ? substr( $content, 0, $range[0] ) . substr( $content, $range[2] ) : $content;
+}
+
+/** FAQ rows from the faq field ("Question | Answer" per line, or ACF rows); falls back to the FAQ section in the description. */
 function bst_listing_faq( $post_id = 0 ) {
-	$faq   = bst_listing_field( 'faq', $post_id, array() );
+	$faq = bst_listing_field( 'faq', $post_id, array() );
+	if ( ! bst_listing_has_faq_field( $post_id ) ) {
+		$post = get_post( bst_listing_id( $post_id ) );
+		return $post ? bst_listing_faq_from_content( $post->post_content ) : array();
+	}
 	$faq   = is_string( $faq ) ? preg_split( '/\r\n|\r|\n/', $faq ) : (array) $faq;
 	$items = array();
 	foreach ( $faq as $row ) {

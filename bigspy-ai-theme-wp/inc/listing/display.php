@@ -28,7 +28,8 @@ add_action(
 add_action(
 	'woocommerce_after_single_product_summary',
 	function () {
-		$items = bst_listing_faq( get_the_ID() );
+		// Without a saved FAQ the description already shows its own FAQ section.
+		$items = bst_listing_has_faq_field( get_the_ID() ) ? bst_listing_faq( get_the_ID() ) : array();
 		if ( ! $items ) {
 			return;
 		}
@@ -39,4 +40,16 @@ add_action(
 		echo '</section>';
 	},
 	12
+);
+
+// Once the FAQ has its own saved field it shows in the FAQ section above, so drop the copy in the description.
+add_filter(
+	'the_content',
+	function ( $content ) {
+		if ( function_exists( 'is_product' ) && is_product() && in_the_loop() && is_main_query() && get_the_ID() === get_queried_object_id() && bst_listing_has_faq_field( get_the_ID() ) ) {
+			return bst_listing_remove_faq_section( $content );
+		}
+		return $content;
+	},
+	8
 );
