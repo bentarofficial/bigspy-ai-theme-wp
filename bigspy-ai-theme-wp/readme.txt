@@ -15,6 +15,12 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.86.0 =
+* BIGSPY AI List: listing and Sponsored cards pick their layout from their own width (horizontal with the logo beside the text, one column when narrow), so they fit any column, sidebar or grid.
+* BIGSPY AI List: faint logo watermark on cards (follows the old theme setting, Show/Hide per block), tags, title and description line counts, show/hide logo, rating, Featured badge and Visit button.
+* BIGSPY AI List: Sponsored can sit between rows (after every N rows, as in the old theme) or above the grid.
+* BIGSPY AI List: listing blocks use the site CSS in the editor, so they look the same while editing.
+
 = 1.85.3 =
 * BIGSPY AI List: the homepage "Sponsored by" brand ([bigspy_home_sponsor]) moves to the next Sponsored listing on every visit, like the other Sponsored slots.
 * BIGSPY AI List: Featured on the Categories page changes order on every load (unless rotation was turned off in the old theme).

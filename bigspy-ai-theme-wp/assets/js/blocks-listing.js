@@ -63,12 +63,17 @@
 		elementType: { featured: __('Featured listings', T), latest: __('Latest listings', T), popular: __('Popular listings', T), related: __('Related listings', T), listing_grid: __('All listings', T), categories: __('Categories', T), blog: __('Blog posts', T) },
 		orderBy: { date: __('Date', T), title: __('Name', T), modified: __('Last updated', T), rand: __('Random', T), name: __('Name', T), count: __('Number of listings', T) },
 		order: { DESC: __('Newest / Z–A first', T), ASC: __('Oldest / A–Z first', T) },
-		alignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) }
+		alignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) },
+		showWatermark: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
+		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
+		sponsoredPosition: { between: __('Between rows', T), top: __('Above the grid', T) }
 	};
 	var LABELS = {
 		columnsDesktop: __('Columns – desktop', T), columnsTablet: __('Columns – tablet', T), columnsMobile: __('Columns – mobile', T),
 		limit: __('Number of listings (0 = all)', T), count: __('Number of items', T), categoryId: __('Category ID (0 = all)', T), parent: __('Only children of category ID', T),
-		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T)
+		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
+		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
+		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T)
 	};
 	function label(key) {
 		return LABELS[key] || key.replace(/^show/, '').replace(/([A-Z])/g, ' $1').replace(/^./, function (s) { return s.toUpperCase(); }).trim();

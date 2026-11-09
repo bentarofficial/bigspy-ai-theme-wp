@@ -111,9 +111,9 @@ function bst_sponsored_slot( $slot = 0, $context = 'elements' ) {
 	$logo    = '' !== $item['logo'] ? '<img src="' . esc_url( $item['logo'] ) . '" alt="" loading="lazy">' : esc_html( strtoupper( mb_substr( $item['name'], 0, 1 ) ) );
 	$out     = '<aside class="bst-sponsored" data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . (int) $config['jump'] . '" aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
 	$out    .= '<span class="bst-sponsored__label">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>';
-	$out    .= '<span class="bst-sponsored__logo" data-logo aria-hidden="true">' . $logo . '</span>';
+	$out    .= '<div class="bst-sponsored__in"><span class="bst-sponsored__logo" data-logo aria-hidden="true">' . $logo . '</span>';
 	$out    .= '<span class="bst-sponsored__text"><strong data-name>' . esc_html( $item['name'] ) . '</strong><span data-desc>' . esc_html( $item['description'] ) . '</span></span>';
-	$out    .= '<a class="bst-sponsored__button" data-link href="' . esc_url( $item['url'] ) . '"' . $rel . '>' . esc_html( $config['button'] ) . '</a>';
+	$out    .= '<a class="bst-sponsored__button" data-link href="' . esc_url( $item['url'] ) . '"' . $rel . '>' . esc_html( $config['button'] ) . '</a></div>';
 	$out .= bst_sponsored_pool_html();
 	wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
 	return $out . '</aside>';
