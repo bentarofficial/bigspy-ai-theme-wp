@@ -239,6 +239,11 @@ body.bs-layout-boxed {
 	padding-bottom: 0;
 }
 
+/* First block is full width (e.g. a Banner hero): no gap under the header. */
+.bs-flush-top .bs-layout {
+	padding-top: 0;
+}
+
 @media (min-width: 850px) {
 	.bs-layout--right {
 		grid-template-columns: minmax(0, 1fr) var(--bs-sidebar-width);

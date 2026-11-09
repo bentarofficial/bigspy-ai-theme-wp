@@ -481,3 +481,13 @@ try {
 } catch ( Throwable $e ) {
 	bst_test( false, 'welcome: What is new data loads ' . $e->getMessage() );
 }
+// A page that starts with a full-width block (Banner hero) and no printed title sits under the header.
+$bst_flush = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Flush', 'post_content' => '<!-- wp:bst/banner {"align":"full"} /-->' ) );
+$bst_plain = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Plain', 'post_content' => '<!-- wp:paragraph --><p>x</p><!-- /wp:paragraph -->' ) );
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $bst_flush ) );
+$GLOBALS['wp_the_query'] = $GLOBALS['wp_query'];
+$bst_a = bst_starts_full_width();
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $bst_plain ) );
+$GLOBALS['wp_the_query'] = $GLOBALS['wp_query'];
+bst_test( $bst_a && ! bst_starts_full_width(), 'layout: full-width first block removes the gap under the header' );
+wp_reset_query();

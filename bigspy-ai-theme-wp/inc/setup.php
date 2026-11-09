@@ -67,6 +67,22 @@ function bst_widgets_init() {
 }
 add_action( 'widgets_init', 'bst_widgets_init' );
 
+/**
+ * True on a page or post without a printed title whose first block is full width
+ * (a Banner hero, for example): that block then sits right under the header.
+ */
+function bst_starts_full_width() {
+	if ( ! is_singular() || ( function_exists( 'is_product' ) && is_product() ) || bst_show_title() ) {
+		return false;
+	}
+	foreach ( parse_blocks( (string) get_post_field( 'post_content', get_queried_object_id() ) ) as $block ) {
+		if ( $block['blockName'] ) {
+			return 'full' === ( $block['attrs']['align'] ?? '' );
+		}
+	}
+	return false;
+}
+
 function bst_body_classes( $classes ) {
 	$classes[] = 'bs-layout-' . sanitize_html_class( bst_mod( 'site_layout' ) );
 	$classes[] = 'bs-sidebar-' . bst_sidebar_position();
@@ -84,6 +100,8 @@ function bst_body_classes( $classes ) {
 	}
 	if ( 'none' === bst_post_option( 'content_padding' ) ) {
 		$classes[] = 'bs-no-content-padding';
+	} elseif ( bst_starts_full_width() ) {
+		$classes[] = 'bs-flush-top';
 	}
 	if ( bst_mod( 'float_enable' ) && function_exists( 'bst_float_mobile_style' ) && 'bar' === bst_float_mobile_style() ) {
 		$classes[] = 'bs-has-mobile-bar';

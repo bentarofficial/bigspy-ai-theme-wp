@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 return array('title' => __('BIGSPY AI Theme WP', 'bigspy-ai-theme-wp'),
 'lead' => __('Build your site with one integrated theme: editable blocks, reusable layouts and a built-in AI workspace.', 'bigspy-ai-theme-wp'),
-'news_version' => '1.85.1',
+'news_version' => '1.85.2',
 'news' => array(__('1.85.0: Switching from the BIGSPY AI List theme keeps the site looking the same: List mode turns on by itself, the homepage hero, page heroes with a Sponsored tool, the Categories directory, the listings search toolbar and a directory layout for listing pages are read from the old theme settings, each with a switch in Features.', 'bigspy-ai-theme-wp'),
 __('1.84.0: BIGSPY AI List listings get the old theme\'s page sections back: a BIGSPY FAQ & FAQ Schema box that also reads the FAQ the Generator wrote in the description, a table of contents with section dividers, Key features, Pros & Cons, Integrations, Related resources and the last updated date, each with its own switch in Features.', 'bigspy-ai-theme-wp'),
 __("1.83.0: New BIGSPY AI List mode (Features, off by default) turns WooCommerce products into a directory: listing fields and FAQ, Sponsored slots with one-click AD column, listing, category, search and elements blocks with the old shortcodes, directory patterns and listing cards on shop pages, a homepage sidebar range in the Customizer, and legacy BIGSPY AI List blocks still render. Plugins can add read or content tools to AI Designer.", 'bigspy-ai-theme-wp'),

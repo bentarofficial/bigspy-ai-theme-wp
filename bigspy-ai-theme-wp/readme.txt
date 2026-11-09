@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.85.2 =
+* Layout: a page whose first block is full width (such as a Banner hero) and shows no title now sits right under the header, without the gap above.
+
 = 1.85.1 =
 * BIGSPY AI List: the theme no longer adds its own homepage and page heroes; design heroes with the Banner block. [bigspy_home_destination_buttons] and {{listing_count}}-style counters work inside it.
 * Fix: the admin area showed a critical error in 1.85.0 (syntax error in the What is new text).

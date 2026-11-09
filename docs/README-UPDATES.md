@@ -6,6 +6,10 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.85.2: Banner hero right under the header
+
+- A page that starts with a full-width block, such as a Banner hero, and shows no title no longer has a gap under the header.
+
 ### 1.85.1: Fix and Banner heroes
 
 - **Fix:** the admin area showed a critical error in 1.85.0.
