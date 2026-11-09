@@ -48,8 +48,8 @@ function bst_listing_card( $post_id, $args = array() ) {
 	$feat   = ! $paid && bst_listing_card_toggle( $args['showFeatured'], 'featured', true ) && function_exists( 'wc_get_product' ) && ( $product = wc_get_product( $post_id ) ) && $product->is_featured(); // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition
 	$mark   = 'minimal' !== $layout && bst_listing_card_toggle( $args['showWatermark'], 'watermark', true ) ? get_the_post_thumbnail( $post_id, 'medium', array( 'class' => 'bst-lcard__watermark-img', 'alt' => '', 'loading' => 'lazy' ) ) : '';
 	$price  = $args['showPricing'] ? bst_listing_price_label( $post_id ) : '';
-	$vars   = '--bst-lc-title-lines:' . max( 1, min( 3, (int) $args['titleLines'] ) ) . ';--bst-lc-desc-lines:' . max( 1, min( 6, (int) $args['descriptionLines'] ) );
-	$out    = '<article class="bst-lcard bst-lcard--' . esc_attr( $layout ) . ( $paid ? ' is-sponsored' : '' ) . ( $feat ? ' is-featured' : '' ) . '" style="' . esc_attr( $vars ) . '">';
+	$vars   = '--bst-lc-title-lines:' . max( 1, min( 3, (int) $args['titleLines'] ) ) . ';--bst-lc-desc-lines:' . max( 1, min( 6, (int) $args['descriptionLines'] ) ) . ';--bst-lc-cta:' . ( array( 'left' => 'start', 'center' => 'center', 'right' => 'end' )[ $args['ctaAlignment'] ?? 'left' ] ?? 'start' );
+	$out    = '<article class="bst-lcard bst-lcard--' . esc_attr( $layout ) . ( $args['showCTA'] && 'top' === ( $args['ctaPosition'] ?? 'bottom' ) ? ' is-cta-top' : '' ) . ( $paid ? ' is-sponsored' : '' ) . ( $feat ? ' is-featured' : '' ) . '" style="' . esc_attr( $vars ) . '">';
 	$out   .= $mark ? '<span class="bst-lcard__watermark" aria-hidden="true">' . $mark . '</span>' : '';
 	$out   .= '<a class="bst-lcard__cover" href="' . esc_url( $link ) . '" aria-label="' . esc_attr( $title ) . '"></a>';
 	if ( $paid || $feat ) {
@@ -73,11 +73,15 @@ function bst_listing_card( $post_id, $args = array() ) {
 		$tags  = array_slice( bst_listing_terms( $post_id, 'product_tag' ), 0, 6 );
 		$body .= $tags ? '<div class="bst-lcard__tags">' . implode( '', array_map( function ( $t ) { return '<span>#' . esc_html( $t->name ) . '</span>'; }, $tags ) ) . '</div>' : '';
 	}
+	$cta = '';
 	if ( $args['showCTA'] ) {
-		$url   = bst_listing_url( $post_id );
-		$body .= '<a class="bst-lcard__cta" href="' . esc_url( $url ) . '"' . ( $url !== $link ? ' target="_blank" rel="sponsored noopener"' : '' ) . '>' . esc_html__( 'Visit', 'bigspy-ai-theme-wp' ) . '</a>';
+		$url = bst_listing_url( $post_id );
+		$cta = '<a class="bst-lcard__cta" href="' . esc_url( $url ) . '"' . ( $url !== $link ? ' target="_blank" rel="sponsored noopener"' : '' ) . '>' . esc_html__( 'Visit', 'bigspy-ai-theme-wp' ) . '</a>';
 	}
-	$out .= '' !== $body ? '<div class="bst-lcard__body">' . $body . '</div>' : '';
+	$top  = 'top' === ( $args['ctaPosition'] ?? 'bottom' );
+	$body .= $top ? '' : $cta;
+	$out  .= $top ? $cta : '';
+	$out  .= '' !== $body ? '<div class="bst-lcard__body">' . $body . '</div>' : '';
 	return $out . '</div></article>';
 }
 
@@ -178,7 +182,7 @@ function bst_render_category_grid( $a ) {
 		}
 		$out .= '</a>';
 	}
-	return '<div class="bst-lcats" style="' . esc_attr( bst_listing_cols_style( $a, 5, 3, 2 ) ) . '">' . $out . '</div>';
+	return '<div class="bst-lcats" style="' . esc_attr( bst_listing_cols_style( $a, 5, 3, 2 ) . ';' . ( $a['style'] ?? '' ) ) . '">' . $out . '</div>';
 }
 
 /** bigspy/search: searches listings (products). */
@@ -214,36 +218,165 @@ function bst_listing_card_style_args( $a, $type = '' ) {
 	);
 }
 
-/** bigspy/elements: featured, latest, popular, related listings, categories or blog posts. */
+/** Choice helper for block attributes. */
+function bst_le_pick( $a, $key, $allowed, $default ) {
+	$v = isset( $a[ $key ] ) ? (string) $a[ $key ] : $default;
+	return in_array( $v, $allowed, true ) ? $v : $default;
+}
+
+/** "View more" link for a listing type: the category, the chosen page, or the matching collection page. */
+function bst_le_view_more_url( $a, $type, $context_terms = array() ) {
+	if ( ! empty( $a['categoryId'] ) && 'related' !== $type ) {
+		$link = get_term_link( absint( $a['categoryId'] ), 'product_cat' );
+		if ( ! is_wp_error( $link ) ) {
+			return $link;
+		}
+	}
+	$dest = sanitize_key( $a['viewMoreDestination'] ?? 'automatic' );
+	if ( 'custom' === $dest && ! empty( $a['viewMoreUrl'] ) ) {
+		return esc_url_raw( $a['viewMoreUrl'] );
+	}
+	if ( 'related' === $type && 'automatic' === $dest && $context_terms ) {
+		$link = get_term_link( $context_terms[0] );
+		if ( ! is_wp_error( $link ) ) {
+			return $link;
+		}
+	}
+	$key = 'automatic' === $dest ? ( in_array( $type, array( 'featured', 'popular', 'blog', 'categories' ), true ) ? $type : 'listings' ) : $dest;
+	$id  = function_exists( 'bst_collection_page_id' ) ? bst_collection_page_id( $key ) : 0;
+	if ( $id ) {
+		return get_permalink( $id );
+	}
+	if ( 'listings' === $key ) {
+		return function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : (string) get_post_type_archive_link( 'product' );
+	}
+	return home_url( '/' . $key . '/' );
+}
+
+/** View more: a link, or a button that loads the next items in place (assets/js/listing-elements.js). */
+function bst_le_view_more( $a, $type, $shown, $text, $url ) {
+	$align = bst_le_pick( $a, 'seeMoreAlignment', array( 'left', 'center', 'right' ), 'right' );
+	$text  = '' !== trim( (string) $text ) ? $text : __( 'View more →', 'bigspy-ai-theme-wp' );
+	if ( 'categories' !== $type && 'load' === ( $a['viewMoreBehavior'] ?? 'redirect' ) ) {
+		$next = $a;
+		unset( $next['className'], $next['style'], $next['lock'], $next['metadata'] );
+		$next['startPosition'] = max( 1, (int) ( $a['startPosition'] ?? 1 ) ) + $shown;
+		wp_enqueue_script( 'bst-listing-elements', BST_URI . '/assets/js/listing-elements.js', array(), bst_asset_version( 'assets/js/listing-elements.js' ), true );
+		return '<div class="bst-lelements__more bst-lelements__more--' . esc_attr( $align ) . '"><button type="button" class="bst-lelements__more-btn" data-bst-le-load="' . esc_attr( wp_json_encode( $next ) ) . '" data-endpoint="' . esc_url( rest_url( 'bst/v1/listing-elements' ) ) . '" data-loading="' . esc_attr__( 'Loading…', 'bigspy-ai-theme-wp' ) . '">' . esc_html( $text ) . '</button></div>';
+	}
+	return '' !== $url ? '<div class="bst-lelements__more bst-lelements__more--' . esc_attr( $align ) . '"><a class="bst-lelements__more-btn" href="' . esc_url( $url ) . '">' . esc_html( $text ) . '</a></div>' : '';
+}
+
+/** Blog posts for bigspy/elements: cards, compact rows or a numbered title list. */
+function bst_le_blog( $a, $count ) {
+	$layout = bst_le_pick( $a, 'blogLayout', array( 'cards', 'compact', 'titles' ), 'cards' );
+	$layout = 'homepage-sidebar' === ( $a['displayLocation'] ?? '' ) ? 'titles' : $layout;
+	$query  = array( 'post_type' => 'post', 'posts_per_page' => $count, 'offset' => max( 0, (int) ( $a['startPosition'] ?? 1 ) - 1 ), 'no_found_rows' => true, 'ignore_sticky_posts' => true );
+	if ( ! empty( $a['blogCategoryId'] ) ) {
+		$query['cat'] = absint( $a['blogCategoryId'] );
+	}
+	$posts = get_posts( $query );
+	if ( ! $posts ) {
+		return array( '', 0 );
+	}
+	$img   = ( $a['blogShowImage'] ?? true ) && 'titles' !== $layout;
+	$words = max( 5, min( 80, (int) ( $a['blogExcerptWords'] ?? 24 ) ) );
+	$out   = '';
+	foreach ( $posts as $i => $post ) {
+		$meta = array();
+		if ( $a['blogShowDate'] ?? true ) {
+			$meta[] = '<time datetime="' . esc_attr( get_the_date( 'c', $post ) ) . '">' . esc_html( get_the_date( '', $post ) ) . '</time>';
+		}
+		if ( ! empty( $a['blogShowAuthor'] ) ) {
+			$meta[] = '<span>' . esc_html( get_the_author_meta( 'display_name', $post->post_author ) ) . '</span>';
+		}
+		if ( ! empty( $a['blogShowCategory'] ) ) {
+			$cat    = get_the_category( $post->ID );
+			$meta[] = $cat ? '<span>' . esc_html( $cat[0]->name ) . '</span>' : '';
+		}
+		$meta  = array_filter( $meta );
+		$num   = 'titles' === $layout && ( $a['blogShowNumber'] ?? true ) ? '<span class="bst-lpost__num">' . ( $i + 1 + max( 0, (int) ( $a['startPosition'] ?? 1 ) - 1 ) ) . '</span>' : '';
+		$thumb = $img ? get_the_post_thumbnail( $post, 'medium', array( 'class' => 'bst-lpost__img', 'alt' => '', 'loading' => 'lazy' ) ) : '';
+		$out  .= '<li class="bst-lpost">' . $num . ( $thumb ? '<a class="bst-lpost__media" href="' . esc_url( get_permalink( $post ) ) . '" tabindex="-1" aria-hidden="true">' . $thumb . '</a>' : '' ) . '<div class="bst-lpost__body"><a class="bst-lpost__title" href="' . esc_url( get_permalink( $post ) ) . '">' . esc_html( get_the_title( $post ) ) . '</a>';
+		$out  .= $meta ? '<span class="bst-lpost__meta">' . implode( ' · ', $meta ) . '</span>' : '';
+		$out  .= ! empty( $a['blogShowExcerpt'] ) && 'titles' !== $layout ? '<p class="bst-lpost__excerpt">' . esc_html( wp_trim_words( get_the_excerpt( $post ), $words, '…' ) ) . '</p>' : '';
+		$out  .= '</div></li>';
+	}
+	return array( '<ul class="bst-lposts bst-lposts--' . esc_attr( $layout ) . '" style="' . esc_attr( bst_listing_cols_style( $a, 3, 2, 1 ) ) . '">' . $out . '</ul>', count( $posts ) );
+}
+
+/** Look of the category grid: border and hover from the block, as CSS variables. */
+function bst_le_category_style( $a ) {
+	$c = function ( $key ) use ( $a ) {
+		return function_exists( 'sanitize_hex_color' ) ? (string) sanitize_hex_color( (string) ( $a[ $key ] ?? '' ) ) : '';
+	};
+	$v = array(
+		'--bst-lcat-bw'     => ( ( $a['categoryBorderEnabled'] ?? true ) ? max( 0, min( 6, (int) ( $a['categoryBorderWidth'] ?? 1 ) ) ) : 0 ) . 'px',
+		'--bst-lcat-radius' => max( 0, min( 40, (int) ( $a['categoryBorderRadius'] ?? 14 ) ) ) . 'px',
+	);
+	if ( $c( 'categoryBorderColor' ) ) {
+		$v['--bst-lcat-bc'] = $c( 'categoryBorderColor' );
+	}
+	if ( $a['categoryHoverEnabled'] ?? true ) {
+		$v['--bst-lcat-lift'] = -max( 0, min( 12, (int) ( $a['categoryHoverLift'] ?? 2 ) ) ) . 'px';
+		$v['--bst-lcat-zoom'] = max( 1, min( 1.3, (float) ( $a['categoryHoverImageZoom'] ?? 1.02 ) ) );
+		$v['--bst-lcat-hbw']  = max( 0, min( 6, (int) ( $a['categoryHoverBorderWidth'] ?? 1 ) ) ) . 'px';
+		$v['--bst-lcat-dur']  = max( 0, min( 1000, (int) ( $a['categoryHoverTransition'] ?? 200 ) ) ) . 'ms';
+		$shadow               = bst_le_pick( $a, 'categoryHoverShadow', array( 'none', 'soft', 'medium', 'strong' ), 'soft' );
+		$v['--bst-lcat-hsh']  = array( 'none' => 'none', 'soft' => '0 6px 18px rgba(15,23,42,.08)', 'medium' => '0 10px 28px rgba(15,23,42,.14)', 'strong' => '0 16px 40px rgba(15,23,42,.22)' )[ $shadow ];
+		if ( $c( 'categoryHoverBorderColor' ) ) {
+			$v['--bst-lcat-hbc'] = $c( 'categoryHoverBorderColor' );
+		}
+	} else {
+		$v['--bst-lcat-lift'] = '0px';
+		$v['--bst-lcat-zoom'] = 1;
+		$v['--bst-lcat-hsh']  = 'none';
+	}
+	$out = '';
+	foreach ( $v as $k => $val ) {
+		$out .= $k . ':' . $val . ';';
+	}
+	return $out;
+}
+
+/**
+ * bigspy/elements: featured, latest, popular, related or all listings, categories or blog posts,
+ * as a grid or a slider, with a View more link or Load more button.
+ */
 function bst_render_listing_elements( $a ) {
-	$type  = sanitize_key( $a['elementType'] ?? 'featured' );
-	$count = max( 1, min( 40, (int) ( $a['count'] ?? 12 ) ) );
-	$title = trim( (string) ( $a['title'] ?? '' ) );
-	$body  = '';
+	$type     = sanitize_key( $a['elementType'] ?? 'featured' );
+	$count    = max( 1, min( 40, (int) ( $a['count'] ?? 12 ) ) );
+	$title    = trim( (string) ( $a['title'] ?? '' ) );
+	$mode     = 'slider' === ( $a['displayMode'] ?? 'grid' ) && 'categories' !== $type ? 'slider' : 'grid';
+	$gap      = max( 0, min( 64, (int) ( $a['gap'] ?? 16 ) ) );
+	$body     = '';
+	$more     = '';
 	if ( in_array( $type, array( 'categories', 'category_grid' ), true ) ) {
+		$type = 'categories';
 		$body = bst_render_category_grid(
 			array(
-				'count'           => $a['categoryCount'] ?? 12,
+				'count'           => $a['categoryCount'] ?? 24,
 				'showCount'       => $a['categoryShowCount'] ?? true,
 				'showImage'       => $a['categoryShowImage'] ?? true,
 				'showDescription' => $a['categoryShowDescription'] ?? false,
-				'columnsDesktop'  => $a['categoryColumnsDesktop'] ?? 4,
-				'columnsTablet'   => $a['categoryColumnsTablet'] ?? 2,
-				'columnsMobile'   => $a['categoryColumnsMobile'] ?? 1,
+				'columnsDesktop'  => $a['categoryColumnsDesktop'] ?? 5,
+				'columnsTablet'   => $a['categoryColumnsTablet'] ?? 3,
+				'columnsMobile'   => $a['categoryColumnsMobile'] ?? 2,
+				'style'           => bst_le_category_style( $a ),
 			)
 		);
+		if ( $body && ( $a['categoryShowViewMore'] ?? false ) ) {
+			$more = bst_le_view_more( $a, 'categories', 0, $a['categoryViewMoreText'] ?? __( 'View all categories →', 'bigspy-ai-theme-wp' ), bst_le_view_more_url( array( 'viewMoreDestination' => 'categories' ), 'categories' ) );
+		}
 	} elseif ( 'blog' === $type ) {
-		$query = array( 'post_type' => 'post', 'posts_per_page' => $count, 'no_found_rows' => true, 'ignore_sticky_posts' => true );
-		if ( ! empty( $a['blogCategoryId'] ) ) {
-			$query['cat'] = absint( $a['blogCategoryId'] );
+		list( $body, $shown ) = bst_le_blog( $a, $count );
+		if ( $body && ( $a['blogShowViewMore'] ?? true ) ) {
+			$more = bst_le_view_more( $a, 'blog', $shown, $a['blogViewMoreText'] ?? __( 'Read more articles →', 'bigspy-ai-theme-wp' ), bst_le_view_more_url( $a, 'blog' ) );
 		}
-		foreach ( get_posts( $query ) as $post ) {
-			$body .= '<li><a href="' . esc_url( get_permalink( $post ) ) . '">' . esc_html( get_the_title( $post ) ) . '</a></li>';
-		}
-		$body = $body ? '<ul class="bst-lposts">' . $body . '</ul>' : '';
 	} else {
 		$query = array( 'posts_per_page' => $count, 'offset' => max( 0, (int) ( $a['startPosition'] ?? 1 ) - 1 ) );
 		$tax   = array();
+		$terms = array();
 		if ( 'featured' === $type ) {
 			$tax[] = bst_featured_filter();
 		}
@@ -257,39 +390,74 @@ function bst_render_listing_elements( $a ) {
 		if ( 'related' === $type ) {
 			$context = absint( $a['relatedContextId'] ?? 0 );
 			$context = $context ? $context : ( is_singular( 'product' ) ? get_queried_object_id() : 0 );
-			$cats    = $context ? wp_list_pluck( bst_listing_terms( $context, 'product_cat' ), 'term_id' ) : array();
-			if ( ! $cats ) {
+			$terms   = $context ? bst_listing_terms( $context, 'product_cat' ) : array();
+			if ( ! $terms ) {
 				return '';
 			}
-			$tax[]                  = array( 'taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => $cats );
+			$tax[]                  = array( 'taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => wp_list_pluck( $terms, 'term_id' ) );
 			$query['post__not_in'] = array( $context );
+			$a['relatedContextId'] = $context;
 		} elseif ( ! empty( $a['categoryId'] ) ) {
 			$tax[] = array( 'taxonomy' => 'product_cat', 'field' => 'term_id', 'terms' => absint( $a['categoryId'] ) );
 		}
 		if ( $tax ) {
 			$query['tax_query'] = bst_listing_tax( $tax ); // phpcs:ignore WordPress.DB.SlowDBQuery
 		}
-		$body = bst_listing_grid(
-			$query,
-			array(
-				'layout'          => sanitize_key( $a['layout'] ?? 'square' ),
-				'showDescription' => $a['showDescription'] ?? true,
-				'showCategory'    => $a['showCategory'] ?? true,
-				'showPricing'     => $a['showPricing'] ?? true,
-				'showTags'        => ! empty( $a['showTags'] ),
-				'showCTA'         => ! empty( $a['showCTA'] ),
-			) + bst_listing_card_style_args( $a, $type ),
-			bst_listing_cols_style( $a, 4, 2, 1 )
-		);
-		if ( $body && ( $a['showSponsored'] ?? true ) && 'top' === ( $a['sponsoredPosition'] ?? 'between' ) && function_exists( 'bst_sponsored_slot' ) ) {
+		$card = array(
+			'layout'          => sanitize_key( $a['layout'] ?? 'square' ),
+			'showDescription' => $a['showDescription'] ?? true,
+			'showCategory'    => $a['showCategory'] ?? true,
+			'showPricing'     => $a['showPricing'] ?? true,
+			'showTags'        => ! empty( $a['showTags'] ),
+			'showCTA'         => ! empty( $a['showCTA'] ),
+			'ctaPosition'     => bst_le_pick( $a, 'ctaPosition', array( 'top', 'bottom' ), 'bottom' ),
+			'ctaAlignment'    => bst_le_pick( $a, 'ctaAlignment', array( 'left', 'center', 'right' ), 'right' ),
+		) + bst_listing_card_style_args( 'slider' === $mode ? array( 'sponsoredPosition' => 'top' ) + $a : $a, $type );
+		$body = bst_listing_grid( $query, $card, bst_listing_cols_style( $a, 4, 2, 1 ) . ';--bst-lgap:' . $gap . 'px' );
+		if ( $body && ( $a['showSponsored'] ?? true ) && 'top' === ( 'slider' === $mode ? 'top' : ( $a['sponsoredPosition'] ?? 'between' ) ) && function_exists( 'bst_sponsored_slot' ) && empty( $a['bstLoadMore'] ) ) {
 			$body = bst_sponsored_slot( 0, 'elements' ) . $body;
+		}
+		if ( $body && ( $a['showViewMore'] ?? true ) ) {
+			$more = bst_le_view_more( $a, $type, $count, $a['viewMoreText'] ?? '', bst_le_view_more_url( $a, $type, $terms ) );
 		}
 	}
 	if ( '' === $body ) {
 		return '';
 	}
-	return '<div class="bst-lelements bst-lelements--' . esc_attr( $type ) . '">' . ( '' !== $title ? '<h2 class="bst-lelements__title">' . esc_html( $title ) . '</h2>' : '' ) . $body . '</div>';
+	if ( ! empty( $a['bstLoadMore'] ) ) {
+		return $body . $more;
+	}
+	if ( 'slider' === $mode ) {
+		wp_enqueue_script( 'bst-listing-elements', BST_URI . '/assets/js/listing-elements.js', array(), bst_asset_version( 'assets/js/listing-elements.js' ), true );
+		$body = '<div class="bst-lslider" data-bst-le-slider><button type="button" class="bst-lslider__btn bst-lslider__btn--prev" data-dir="-1" aria-label="' . esc_attr__( 'Previous', 'bigspy-ai-theme-wp' ) . '">&#8592;</button>' . $body . '<button type="button" class="bst-lslider__btn bst-lslider__btn--next" data-dir="1" aria-label="' . esc_attr__( 'Next', 'bigspy-ai-theme-wp' ) . '">&#8594;</button></div>';
+	}
+	$class = 'bst-lelements bst-lelements--' . $type . ' bst-lelements--' . $mode . ( 'homepage-sidebar' === ( $a['displayLocation'] ?? '' ) ? ' bst-lelements--sidebar' : '' );
+	return '<div class="' . esc_attr( $class ) . '" style="--bst-lgap:' . $gap . 'px">' . ( '' !== $title ? '<h2 class="bst-lelements__title">' . esc_html( $title ) . '</h2>' : '' ) . $body . $more . '</div>';
 }
+
+/* Load more: the next items of a bigspy/elements block, rendered with the same attributes. */
+add_action(
+	'rest_api_init',
+	function () {
+		register_rest_route(
+			'bst/v1',
+			'/listing-elements',
+			array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'args'                => array( 'attrs' => array( 'type' => 'object', 'required' => true ) ),
+				'callback'            => function ( WP_REST_Request $req ) {
+					$a = (array) $req->get_param( 'attrs' );
+					$a = array_intersect_key( $a, (array) ( WP_Block_Type_Registry::get_instance()->get_registered( 'bigspy/elements' )->attributes ?? array() ) );
+					$a['bstLoadMore'] = true;
+					$a['title']       = '';
+					$a['count']       = max( 1, min( 24, (int) ( $a['count'] ?? 12 ) ) );
+					return array( 'html' => bst_render_listing_elements( $a ) );
+				},
+			)
+		);
+	}
+);
 
 /** Render one of the listing blocks with attributes, for the old shortcodes. */
 function bst_listing_render_block( $name, $attrs = array() ) {
