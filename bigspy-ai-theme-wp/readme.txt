@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.84.0 =
+* BIGSPY AI List: BIGSPY FAQ & FAQ Schema box on the listing edit screen; FAQ read from the description when the field is empty.
+* BIGSPY AI List: listing page table of contents, section dividers, Key features, Pros & Cons, Integrations, Related resources and last updated date, each with a switch in Features.
+
 = 1.83.2 =
 * Settings: BIGSPY AI List mode switch, shared with the Features page; notes when WooCommerce is missing.
 

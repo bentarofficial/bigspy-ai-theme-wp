@@ -13,6 +13,7 @@ require_once BST_DIR . '/inc/listing/sponsored.php';
 require_once BST_DIR . '/inc/listing/home-sidebar.php';
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once BST_DIR . '/inc/listing/display.php';
+	require_once BST_DIR . '/inc/listing/single.php';
 	require_once BST_DIR . '/inc/listing/schema.php';
 	require_once BST_DIR . '/inc/listing/blocks.php';
 	require_once BST_DIR . '/inc/listing/templates.php';

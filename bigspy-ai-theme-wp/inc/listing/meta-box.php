@@ -15,6 +15,7 @@ add_action(
 		if ( ! function_exists( 'acf_get_field_group' ) || ! acf_get_field_group( 'group_bigspy_listing' ) ) {
 			add_meta_box( 'bst_listing_fields', __( 'Listing fields', 'bigspy-ai-theme-wp' ), 'bst_listing_fields_box', 'product', 'normal', 'default' );
 		}
+		add_meta_box( 'bigspy-listing-faq-schema', __( 'BIGSPY FAQ & FAQ Schema', 'bigspy-ai-theme-wp' ), 'bst_listing_faq_box', 'product', 'normal', 'low' );
 	}
 );
 
@@ -43,6 +44,9 @@ function bst_listing_meta_box( $post ) {
 function bst_listing_fields_box( $post ) {
 	echo '<table class="form-table" role="presentation">';
 	foreach ( bst_listing_fields() as $key => $type ) {
+		if ( 'faq' === $key ) {
+			continue; // Edited in the "BIGSPY FAQ & FAQ Schema" box.
+		}
 		$value = get_post_meta( $post->ID, $key, true );
 		$name  = 'bst_lf[' . $key . ']';
 		$label = ucfirst( str_replace( '_', ' ', $key ) );
@@ -52,9 +56,6 @@ function bst_listing_fields_box( $post ) {
 			$input = '<textarea class="large-text" rows="3" name="' . esc_attr( $name ) . '">' . esc_textarea( is_array( $value ) ? '' : (string) $value ) . '</textarea>';
 		} else {
 			$input = '<input type="' . ( 'url' === $type ? 'url' : 'text' ) . '" class="regular-text" name="' . esc_attr( $name ) . '" value="' . esc_attr( is_array( $value ) ? '' : (string) $value ) . '">';
-		}
-		if ( 'faq' === $key ) {
-			$input .= '<p class="description">' . esc_html__( 'One per line: Question | Answer', 'bigspy-ai-theme-wp' ) . '</p>';
 		}
 		echo '<tr><th scope="row">' . esc_html( $label ) . '</th><td>' . $input . '</td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
 	}
@@ -102,6 +103,9 @@ function bst_listing_save( $post_id, $post_data ) {
 	if ( isset( $post_data['bst_lf'] ) && is_array( $post_data['bst_lf'] ) ) {
 		$fields = wp_unslash( $post_data['bst_lf'] );
 		foreach ( bst_listing_fields() as $key => $type ) {
+			if ( 'faq' === $key ) {
+				continue; // Saved by the FAQ box.
+			}
 			$raw = $fields[ $key ] ?? '';
 			if ( 'bool' === $type ) {
 				$clean = empty( $raw ) ? '' : '1';
@@ -135,4 +139,58 @@ add_action(
 		bst_listing_save( $post_id, $_POST ); // phpcs:ignore WordPress.Security.NonceVerification -- checked above; values are cleaned per field.
 	},
 	20
+);
+
+/** "BIGSPY FAQ & FAQ Schema" box: one editable FAQ that feeds the visible FAQ and its FAQPage schema. */
+function bst_listing_faq_box( $post ) {
+	$items    = bst_listing_faq( $post->ID );
+	$detected = ! bst_listing_has_faq_field( $post->ID ) && $items;
+	$lines    = array();
+	foreach ( $items as $item ) {
+		$lines[] = $item['question'] . ' | ' . preg_replace( '/\s+/', ' ', $item['answer'] );
+	}
+	wp_nonce_field( 'bst_listing_faq_save', 'bst_listing_faq_nonce' );
+	echo '<p class="description">' . esc_html__( 'One item per line: Question | Answer. Saving the listing updates the FAQ on the page and its FAQPage schema.', 'bigspy-ai-theme-wp' ) . '</p>';
+	echo '<textarea name="bigspy_listing_faq_schema_source" class="widefat" rows="10" placeholder="' . esc_attr__( 'What is this listing? | Add the answer here.', 'bigspy-ai-theme-wp' ) . '">' . esc_textarea( implode( "\n", $lines ) ) . '</textarea>';
+	if ( $detected ) {
+		echo '<p style="color:#2271b1"><strong>' . esc_html__( 'Found in the listing description.', 'bigspy-ai-theme-wp' ) . '</strong> ' . esc_html__( 'Update the listing once to save these rows as its FAQ; the FAQ section is then shown from this box instead of the description.', 'bigspy-ai-theme-wp' ) . '</p>';
+	}
+	echo '<p><strong>' . esc_html__( 'Schema status:', 'bigspy-ai-theme-wp' ) . '</strong> ';
+	if ( $items ) {
+		/* translators: %d: number of FAQ items. */
+		echo '<span style="color:#067647">' . esc_html( sprintf( _n( 'Active: %d FAQ item', 'Active: %d FAQ items', count( $items ), 'bigspy-ai-theme-wp' ), count( $items ) ) ) . '</span>';
+	} else {
+		echo '<span style="color:#64748b">' . esc_html__( 'No valid FAQ rows. Add both a question and an answer.', 'bigspy-ai-theme-wp' ) . '</span>';
+	}
+	echo '</p>';
+	$schema = function_exists( 'bst_listing_faq_schema' ) ? bst_listing_faq_schema( $post->ID ) : array();
+	if ( $schema ) {
+		echo '<details><summary style="cursor:pointer;font-weight:600">' . esc_html__( 'View FAQPage JSON-LD', 'bigspy-ai-theme-wp' ) . '</summary><pre style="max-height:320px;overflow:auto;padding:12px;background:#f6f7f7;white-space:pre-wrap">' . esc_html( wp_json_encode( array_merge( array( '@context' => 'https://schema.org' ), $schema ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) ) . '</pre></details>';
+	}
+}
+
+/** Save the FAQ under the old "faq" field (ACF when its group exists, plain meta otherwise). */
+function bst_listing_faq_save( $post_id, $raw ) {
+	$faq = sanitize_textarea_field( (string) $raw );
+	if ( function_exists( 'update_field' ) && function_exists( 'acf_get_field_group' ) && acf_get_field_group( 'group_bigspy_listing' ) ) {
+		update_field( 'faq', $faq, $post_id );
+	} elseif ( '' !== $faq ) {
+		update_post_meta( $post_id, 'faq', $faq );
+	} else {
+		delete_post_meta( $post_id, 'faq' );
+	}
+}
+
+add_action(
+	'save_post_product',
+	function ( $post_id ) {
+		if ( ! isset( $_POST['bst_listing_faq_nonce'], $_POST['bigspy_listing_faq_schema_source'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['bst_listing_faq_nonce'] ) ), 'bst_listing_faq_save' ) ) {
+			return;
+		}
+		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_id ) || ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+		bst_listing_faq_save( $post_id, wp_unslash( $_POST['bigspy_listing_faq_schema_source'] ) ); // phpcs:ignore WordPress.Security.ValidationSanitization -- sanitized in bst_listing_faq_save().
+	},
+	30
 );

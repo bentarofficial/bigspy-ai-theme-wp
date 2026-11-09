@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Chưa có thay đổi sản phẩm mới. G-93 đã phát hành trong 1.83.2.
+Không có thay đổi đang chờ (1.84.0 đã phát hành các mục FAQ và các phần trang listing).
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

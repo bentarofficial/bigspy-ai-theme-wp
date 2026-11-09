@@ -240,6 +240,13 @@ add_filter(
 		if ( ! bst_mod( 'single_toc' ) || ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() ) {
 			return $content;
 		}
+		return bst_toc_apply( $content, (int) bst_mod( 'single_toc_min' ) );
+	},
+	20
+);
+
+/** Add ids to H2/H3 and put a "Contents" list on top when there are at least $min headings. Also used by listing pages. */
+function bst_toc_apply( $content, $min = 3 ) {
 		$items = array();
 		$used  = array();
 		$content = preg_replace_callback(
@@ -268,7 +275,7 @@ add_filter(
 			},
 			$content
 		);
-		if ( count( $items ) < max( 1, (int) bst_mod( 'single_toc_min' ) ) ) {
+		if ( count( $items ) < max( 1, (int) $min ) ) {
 			return $content;
 		}
 		$list = '';
@@ -277,6 +284,4 @@ add_filter(
 		}
 		$toc = '<details class="bs-toc" open><summary class="bs-toc__title">' . esc_html__( 'Contents', 'bigspy-ai-theme-wp' ) . '</summary><ol class="bs-toc__list">' . $list . '</ol></details>';
 		return $toc . $content;
-	},
-	20
-);
+}
