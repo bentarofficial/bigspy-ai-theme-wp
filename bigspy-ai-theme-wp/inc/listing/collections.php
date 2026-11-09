@@ -1,9 +1,8 @@
 <?php
 /**
- * Collection pages from the old BIGSPY AI List theme: a page hero with a rotating
- * Sponsored tool on Categories, Listings (shop), Featured, Popular and Blog, the
- * category directory on the Categories page and the search toolbar on listing
- * archives. Hero texts and colors are read from the old theme's saved settings.
+ * Collection pages from the old BIGSPY AI List theme: the category directory on the
+ * Categories page and the search toolbar on listing archives. Page heroes are
+ * designed with the Banner block in the page content.
  *
  * @package BigspyTheme
  */
@@ -13,7 +12,6 @@ defined( 'ABSPATH' ) || exit;
 add_filter(
 	'bst_feature_fields',
 	function ( $fields ) {
-		$fields['listing']['page_heroes']   = array( 'type' => 'checkbox', 'label' => __( 'Page hero with a Sponsored tool on Categories, Listings, Featured, Popular and Blog', 'bigspy-ai-theme-wp' ), 'default' => 1 );
 		$fields['listing']['category_dir']  = array( 'type' => 'checkbox', 'label' => __( 'Category directory on the Categories page (when the page has no content)', 'bigspy-ai-theme-wp' ), 'default' => 1 );
 		$fields['listing']['shop_toolbar']  = array( 'type' => 'checkbox', 'label' => __( 'Search, category and sort toolbar on listing archives', 'bigspy-ai-theme-wp' ), 'default' => 1 );
 		return $fields;
@@ -58,75 +56,6 @@ function bst_collection_context() {
 	}
 	return '';
 }
-
-/** Hero settings of one collection, from the old theme with its defaults. */
-function bst_collection_hero_settings( $key ) {
-	$eyebrows = array(
-		'categories' => array( __( 'Browse the directory', 'bigspy-ai-theme-wp' ), __( 'Explore tools, software and services organized by category.', 'bigspy-ai-theme-wp' ) ),
-		'listings'   => array( __( 'Latest directory', 'bigspy-ai-theme-wp' ), __( 'Discover the newest tools, software and services added to our directory.', 'bigspy-ai-theme-wp' ) ),
-		'featured'   => array( __( 'Featured collection', 'bigspy-ai-theme-wp' ), __( 'Explore featured tools, software and services in our directory.', 'bigspy-ai-theme-wp' ) ),
-		'popular'    => array( __( 'Discover more', 'bigspy-ai-theme-wp' ), __( 'Explore the tools highlighted in our Popular collection.', 'bigspy-ai-theme-wp' ) ),
-		'blog'       => array( __( 'Ideas & guides', 'bigspy-ai-theme-wp' ), __( 'Stories, practical guides and updates to help you get more from your tools.', 'bigspy-ai-theme-wp' ) ),
-	);
-	$base  = array( 'enabled' => true, 'show_sponsored' => true, 'title' => '', 'eyebrow' => $eyebrows[ $key ][0], 'description' => $eyebrows[ $key ][1], 'background' => '#f1f7fb', 'background_end' => '#eef7f5', 'accent' => '#008080', 'padding' => 32 );
-	$saved = function_exists( 'bst_legacy_list_mod' ) ? bst_legacy_list_mod( 'bigspy_page_heroes', array() ) : array();
-	return isset( $saved[ $key ] ) && is_array( $saved[ $key ] ) ? array_merge( $base, $saved[ $key ] ) : $base;
-}
-
-/** Hero HTML for the current collection view, or ''. */
-function bst_collection_hero_html() {
-	$key = bst_collection_context();
-	if ( '' === $key || ! bst_feature_get( 'listing', 'page_heroes', 1 ) ) {
-		return '';
-	}
-	$data = bst_collection_hero_settings( $key );
-	if ( empty( $data['enabled'] ) ) {
-		return '';
-	}
-	$page_id = bst_collection_page_id( $key );
-	$title   = '' !== trim( (string) $data['title'] ) ? $data['title'] : ( $page_id ? get_the_title( $page_id ) : ucfirst( $key ) );
-	$sponsor = ! empty( $data['show_sponsored'] ) && function_exists( 'bst_sponsored_slot' ) ? bst_sponsored_slot( 0, 'categories' === $key ? 'categories' : 'elements' ) : '';
-	$style   = '';
-	foreach ( array( 'background' => 'bg', 'background_end' => 'end', 'accent' => 'accent' ) as $field => $var ) {
-		$color  = sanitize_hex_color( (string) $data[ $field ] );
-		$style .= $color ? '--bst-ch-' . $var . ':' . $color . ';' : '';
-	}
-	$style .= '--bst-ch-pad:' . max( 16, min( 80, absint( $data['padding'] ) ) ) . 'px;';
-	$out    = '<header class="bst-ch' . ( $sponsor ? ' bst-ch--sponsor' : '' ) . '" style="' . esc_attr( $style ) . '"><div class="bst-ch__intro">';
-	$out   .= '' !== $data['eyebrow'] ? '<p class="bst-ch__eyebrow">' . esc_html( $data['eyebrow'] ) . '</p>' : '';
-	$out   .= '<h1 class="bst-ch__title">' . esc_html( wp_strip_all_tags( $title ) ) . '</h1>';
-	$out   .= '' !== $data['description'] ? '<p class="bst-ch__desc">' . esc_html( $data['description'] ) . '</p>' : '';
-	return $out . '</div>' . $sponsor . '</header>';
-}
-
-/** The hero is built once per request: its Sponsored slot carries the rotation pool. */
-function bst_collection_hero_cached() {
-	static $hero = null;
-	if ( null === $hero ) {
-		$hero = did_action( 'wp' ) ? bst_collection_hero_html() : '';
-	}
-	return $hero;
-}
-
-add_action(
-	'bst_before_layout',
-	function () {
-		$hero = bst_collection_hero_cached();
-		if ( '' !== $hero ) {
-			echo '<div class="bs-container bst-ch-wrap">';
-			bst_breadcrumbs();
-			echo $hero . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
-		}
-	}
-);
-
-// The hero holds the H1, so the normal title is not printed again.
-add_filter(
-	'bst_show_title',
-	function ( $show ) {
-		return $show && '' !== bst_collection_hero_cached() ? false : $show;
-	}
-);
 
 /** Category directory: left navigation, Featured listings, then each top category with its subcategories. */
 function bst_category_directory_html() {

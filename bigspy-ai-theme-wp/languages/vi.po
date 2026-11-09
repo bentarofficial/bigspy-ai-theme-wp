@@ -7708,7 +7708,7 @@ msgstr "Đánh giá cao nhất"
 msgid "Visit Website →"
 msgstr "Truy cập website →"
 
-msgid "1.85.0: Switching from the BIGSPY AI List theme keeps the site looking the same: List mode turns on by itself, the homepage hero, page heroes with a Sponsored tool, the Categories directory, the listings search toolbar and a directory layout for listing pages are read from the old theme's settings, each with a switch in Features."
+msgid "1.85.0: Switching from the BIGSPY AI List theme keeps the site looking the same: List mode turns on by itself, the homepage hero, page heroes with a Sponsored tool, the Categories directory, the listings search toolbar and a directory layout for listing pages are read from the old theme settings, each with a switch in Features."
 msgstr "1.85.0: Chuyển từ theme BIGSPY AI List mà giao diện vẫn giữ nguyên: chế độ List tự bật, hero trang chủ, hero trang kèm công cụ tài trợ, danh bạ Categories, thanh tìm kiếm listing và bố cục danh bạ cho trang listing được đọc từ cài đặt của theme cũ, mỗi phần có công tắc trong Features."
 
 msgid "1 listing"

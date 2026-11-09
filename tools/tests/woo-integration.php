@@ -167,12 +167,9 @@ try {
 	bst_test( ! isset( $aid_types['bigspy/section'] ) && ! isset( $aid_types['bigspy/home-seo-divider'] ), 'listing: AI Designer never gets display-only legacy blocks' );
 	wp_reset_query();
 	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1 ) );
-	bst_test( '' === bst_legacy_home_hero_html(), 'listing: no homepage hero without old BIGSPY AI List settings' );
-	update_option( 'theme_mods_bigspy-ai-list', array( 'bigspy_hero_visual_content' => '<h1>Old hero</h1><p>{{listing_count}} tools</p><script>x</script>[bigspy_home_destination_buttons]', 'bigspy_home_destination_buttons' => array( array( 'label' => 'Go', 'url' => 'https://example.com/go/' ) ) ) );
-	$hero = bst_legacy_home_hero_html();
-	bst_test( str_contains( $hero, '<h1>Old hero</h1>' ) && ! str_contains( $hero, '<script' ) && ! str_contains( $hero, '{{' ) && str_contains( $hero, 'href="https://example.com/go/"' ), 'listing: homepage hero renders old content, counters and destination buttons safely' );
-	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1, 'home_hero' => 0 ) );
-	bst_test( '' === bst_legacy_home_hero_html(), 'listing: homepage hero can be turned off' );
+	update_option( 'theme_mods_bigspy-ai-list', array( 'bigspy_home_destination_buttons' => array( array( 'label' => 'Go', 'url' => 'https://example.com/go/' ) ) ) );
+	$sc = do_shortcode( '[bigspy_home_destination_buttons]' );
+	bst_test( str_contains( $sc, 'href="https://example.com/go/"' ) && ! str_contains( bst_legacy_hero_tokens( '{{listing_count}} tools' ), '{{' ), 'listing: destination buttons shortcode and counters for Banner heroes' );
 	bst_feature_set( 'listing', false );
 	do_action( 'after_switch_theme', 'BIGSPY AI List', wp_get_theme() );
 	$auto = bst_feature_on( 'listing' );
@@ -198,8 +195,6 @@ try {
 	bst_test( '' === $dir || ( str_contains( $dir, 'bst-catdir__nav' ) && str_contains( $dir, 'bst-catdir__section' ) ), 'listing: category directory renders navigation and sections' );
 	$bar = bst_shop_toolbar_html();
 	bst_test( str_contains( $bar, 'name="product_cat"' ) && str_contains( $bar, 'name="orderby"' ) && str_contains( $bar, 'name="s"' ), 'listing: shop toolbar has search, category and sort' );
-	$hs = bst_collection_hero_settings( 'categories' );
-	bst_test( 'Old categories' === $hs['title'] || ! empty( $hs['eyebrow'] ), 'listing: collection hero settings have defaults' );
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }
