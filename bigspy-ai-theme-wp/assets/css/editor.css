@@ -57,6 +57,9 @@ a {
 .bst-icon-toggle:hover { outline: 1px dashed currentColor; }
 .bst-il-remove { position: absolute; top: 0; right: -24px; width: 20px; height: 20px; padding: 0; color: #cc1818; background: #fff; border: 1px solid #ddd; border-radius: 50%; font-size: 14px; line-height: 1; cursor: pointer; }
 .bst-il-add { list-style: none; }
+.bst-icon-toggle__empty { opacity: .45; font-weight: 600; }
+.bst-il-linkmark { display: inline-flex; margin-left: 4px; vertical-align: middle; color: var(--wp-admin-theme-color, #3858e9); opacity: .8; }
+.bst-il-item.is-active { outline: 1px dashed rgba(56, 88, 233, .45); outline-offset: 2px; border-radius: 3px; }
 .bst-stars-pick { cursor: pointer; }
 
 .bst-ssr-loading { display: flex; align-items: center; gap: 8px; min-height: 120px; justify-content: center; color: #64748b; background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 10px, #f1f5f9 10px, #f1f5f9 20px); border-radius: 8px; }

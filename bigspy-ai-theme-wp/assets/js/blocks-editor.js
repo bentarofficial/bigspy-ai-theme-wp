@@ -2358,7 +2358,7 @@
 			contentClassName: 'bst-icon-dropdown__content',
 			popoverProps: { placement: 'bottom-start' },
 			renderToggle: function (o) {
-				return el('button', { type: 'button', className: 'bs-icon-list__icon bst-icon-toggle', onClick: o.onToggle, 'aria-expanded': o.isOpen, title: __('Change icon', 'bigspy-ai-theme-wp') }, props.value ? el(B.Icon, { name: props.value, size: props.size }) : '+');
+				return el('button', { type: 'button', className: 'bs-icon-list__icon bst-icon-toggle', onClick: o.onToggle, 'aria-expanded': o.isOpen, title: __('Change icon', 'bigspy-ai-theme-wp') }, props.value ? el(B.Icon, { name: props.value, size: props.size }) : el('span', { className: 'bst-icon-toggle__empty' }, '+'));
 			},
 			renderContent: function () {
 				return el('div', { style: { padding: 8, width: 260 } }, el(B.IconPicker, { value: props.value, onChange: props.onChange }));
@@ -2385,11 +2385,34 @@
 			list.splice(after + 1, 0, { icon: icon, text: '', link: '' });
 			props.setAttributes({ items: list });
 		};
+		// The item being edited, so the toolbar link button edits that item's link.
+		var active = useState(-1);
+		var linkOpen = useState(false);
+		var current = active[0] > -1 && active[0] < items.length ? items[active[0]] : null;
+		var LinkUI = be.LinkControl || be.__experimentalLinkControl;
+		var linkButton = current ? el(c.ToolbarGroup, null,
+			el(c.ToolbarButton, {
+				icon: 'admin-links',
+				label: current.link ? __('Item link: ', 'bigspy-ai-theme-wp') + current.link : __('Link this item', 'bigspy-ai-theme-wp'),
+				isPressed: !!current.link,
+				onClick: function () { linkOpen[1](!linkOpen[0]); }
+			}),
+			linkOpen[0] ? el(c.Popover, { placement: 'bottom', onClose: function () { linkOpen[1](false); }, focusOnMount: 'firstElement' },
+				LinkUI ? el(LinkUI, {
+					value: { url: current.link || '' },
+					forceIsEditingLink: !current.link,
+					onChange: function (v) { setItem(active[0], 'link', (v && v.url) || ''); },
+					onRemove: function () { setItem(active[0], 'link', ''); linkOpen[1](false); },
+					settings: []
+				}) : el('div', { style: { padding: 12, width: 280 } }, el(c.TextControl, { label: __('Link', 'bigspy-ai-theme-wp'), value: current.link || '', placeholder: 'https://', onChange: function (v) { setItem(active[0], 'link', v); }, __nextHasNoMarginBottom: true }))
+			) : null
+		) : null;
 		var blockProps = useBlockProps({
 			className: 'bs-icon-list bs-icon-list--' + a.layout + ' bs-icon-list--align-' + a.align + (a.divider ? ' has-divider' : '') + (a.iconBg ? ' has-icon-bg' : ''),
 			style: styleVars({ '--bs-il-size': a.iconSize + 'px', '--bs-il-color': a.iconColor, '--bs-il-gap': a.gap + 'px', '--bs-il-cols': a.columns, '--bs-il-text': a.textSize ? a.textSize + 'px' : '' })
 		});
 		return el(Fragment, null,
+			props.isSelected ? el(be.BlockControls, null, linkButton) : null,
 			el(Inspector, null,
 				el(Panel, { title: __('List', 'bigspy-ai-theme-wp') },
 					el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: { vertical: __('Vertical', 'bigspy-ai-theme-wp'), inline: __('Inline (one line)', 'bigspy-ai-theme-wp'), columns: __('Columns', 'bigspy-ai-theme-wp') } }, bind('layout'))),
@@ -2410,8 +2433,8 @@
 			),
 			el('ul', blockProps,
 				items.map(function (it, i) {
-					return el('li', { key: i, className: 'bs-icon-list__item bst-il-item' },
-						el(IconDropdown, { value: it.icon, size: a.iconSize, onChange: function (v) { setItem(i, 'icon', v); } }),
+					return el('li', { key: i, className: 'bs-icon-list__item bst-il-item' + (it.link ? ' has-link' : '') + (i === active[0] && props.isSelected ? ' is-active' : ''), onFocus: function () { if (active[0] !== i) { active[1](i); linkOpen[1](false); } } },
+						it.icon || props.isSelected ? el(IconDropdown, { value: it.icon, size: a.iconSize, onChange: function (v) { setItem(i, 'icon', v); } }) : null,
 						el(RichText, {
 							tagName: 'span', className: 'bs-icon-list__text', value: it.text, placeholder: __('List item…', 'bigspy-ai-theme-wp'),
 							allowedFormats: ['core/bold', 'core/italic', 'core/link'],
@@ -2420,6 +2443,7 @@
 							__unstableOnSplitAtEnd: function () { add(i); },
 							onRemove: function () { remove(i); }
 						}),
+						props.isSelected && it.link ? el('span', { className: 'bst-il-linkmark', title: it.link }, el(c.Dashicon, { icon: 'admin-links', size: 14 })) : null,
 						props.isSelected ? el('button', { type: 'button', className: 'bst-il-remove', onClick: function () { remove(i); }, 'aria-label': __('Remove item', 'bigspy-ai-theme-wp') }, '×') : null
 					);
 				}),
