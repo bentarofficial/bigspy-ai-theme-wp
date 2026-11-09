@@ -29,9 +29,13 @@
 	document.querySelectorAll('[data-bst-sponsored]').forEach(function (slot) {
 		var item = items[((parseInt(slot.getAttribute('data-bst-sponsored'), 10) || 0) + shiftFor(slot)) % items.length];
 		var logo = slot.querySelector('[data-logo]');
-		slot.querySelector('[data-name]').textContent = item.name || '';
-		slot.querySelector('[data-desc]').textContent = item.description || '';
-		slot.querySelector('[data-link]').href = item.url || '#';
+		var name = slot.querySelector('[data-name]');
+		var desc = slot.querySelector('[data-desc]');
+		var link = slot.querySelector('[data-link]');
+		if (name) { name.textContent = item.name || ''; }
+		if (desc) { desc.textContent = item.description || ''; }
+		if (link) { link.href = item.url || '#'; }
+		if (!logo) { return; }
 		logo.replaceChildren();
 		if (item.logo) {
 			var img = document.createElement('img');

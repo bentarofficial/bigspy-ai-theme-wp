@@ -100,7 +100,6 @@ add_action( 'bst_listing_ad_changed', 'bst_sponsored_refresh_rotation' );
  * that rotate together (categories, single, shortcode, elements).
  */
 function bst_sponsored_slot( $slot = 0, $context = 'elements' ) {
-	static $pool = false;
 	$config = bst_sponsored_config();
 	$items  = $config['on'] ? bst_sponsored_items() : array();
 	if ( ! $items ) {
@@ -115,19 +114,27 @@ function bst_sponsored_slot( $slot = 0, $context = 'elements' ) {
 	$out    .= '<span class="bst-sponsored__logo" data-logo aria-hidden="true">' . $logo . '</span>';
 	$out    .= '<span class="bst-sponsored__text"><strong data-name>' . esc_html( $item['name'] ) . '</strong><span data-desc>' . esc_html( $item['description'] ) . '</span></span>';
 	$out    .= '<a class="bst-sponsored__button" data-link href="' . esc_url( $item['url'] ) . '"' . $rel . '>' . esc_html( $config['button'] ) . '</a>';
-	if ( ! $pool ) {
-		$pool = true;
-		$data = array_map(
-			function ( $i ) {
-				return array_intersect_key( $i, array_flip( array( 'name', 'description', 'url', 'logo' ) ) );
-			},
-			$items
-		);
-		$out .= '<script type="application/json" data-bst-sponsored-pool>' . wp_json_encode( $data, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
-		wp_enqueue_script( 'bst-sponsored', BST_URI . '/assets/js/sponsored.js', array(), bst_asset_version( 'assets/js/sponsored.js' ), true );
-	}
+	$out .= bst_sponsored_pool_html();
 	wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
 	return $out . '</aside>';
+}
+
+/** The rotation pool and script, printed once per page. */
+function bst_sponsored_pool_html() {
+	static $done = false;
+	$items = bst_sponsored_config()['on'] ? bst_sponsored_items() : array();
+	if ( $done || ! $items ) {
+		return '';
+	}
+	$done = true;
+	$data = array_map(
+		function ( $i ) {
+			return array_intersect_key( $i, array_flip( array( 'name', 'description', 'url', 'logo' ) ) );
+		},
+		$items
+	);
+	wp_enqueue_script( 'bst-sponsored', BST_URI . '/assets/js/sponsored.js', array(), bst_asset_version( 'assets/js/sponsored.js' ), true );
+	return '<script type="application/json" data-bst-sponsored-pool>' . wp_json_encode( $data, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
 }
 
 /** [bigspy_sponsored_grid]: up to six rotating Sponsored cards (name kept from the old theme). */

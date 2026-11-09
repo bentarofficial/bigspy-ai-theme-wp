@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.85.3: Sponsored and Featured rotate again
+
+- The homepage "Sponsored by" brand moves to the next Sponsored listing on every visit.
+- Featured on the Categories page changes order on every load.
+
 ### 1.85.2: Banner hero right under the header
 
 - A page that starts with a full-width block, such as a Banner hero, and shows no title no longer has a gap under the header.

@@ -57,6 +57,12 @@ function bst_collection_context() {
 	return '';
 }
 
+/** Featured on the Categories page changes order on every load unless the old theme turned rotation off. */
+function bst_category_featured_order() {
+	$old = get_option( 'bigspy_categories_promotions', array() );
+	return is_array( $old ) && isset( $old['featured_rotate'] ) && ! $old['featured_rotate'] ? 'date' : 'rand';
+}
+
 /** Category directory: left navigation, Featured listings, then each top category with its subcategories. */
 function bst_category_directory_html() {
 	$tops = get_terms( array( 'taxonomy' => 'product_cat', 'parent' => 0, 'hide_empty' => true, 'orderby' => 'name' ) );
@@ -83,7 +89,7 @@ function bst_category_directory_html() {
 			$dir .= bst_sponsored_slot( $i, 'categories' );
 		}
 	}
-	$featured = function_exists( 'bst_render_listing_elements' ) ? bst_render_listing_elements( array( 'elementType' => 'featured', 'title' => __( 'Featured', 'bigspy-ai-theme-wp' ), 'count' => 4, 'showSponsored' => false ) ) : '';
+	$featured = function_exists( 'bst_render_listing_elements' ) ? bst_render_listing_elements( array( 'elementType' => 'featured', 'title' => __( 'Featured', 'bigspy-ai-theme-wp' ), 'count' => 4, 'showSponsored' => false, 'orderBy' => bst_category_featured_order() ) ) : '';
 	return '<div class="bst-catdir"><nav class="bst-catdir__nav" aria-label="' . esc_attr__( 'Categories', 'bigspy-ai-theme-wp' ) . '"><ul>' . $nav . '</ul></nav><div class="bst-catdir__main">' . $featured . $dir . '</div></div>';
 }
 
