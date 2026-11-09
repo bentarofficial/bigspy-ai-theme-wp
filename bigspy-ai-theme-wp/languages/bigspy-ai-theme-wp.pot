@@ -11505,7 +11505,7 @@ msgstr ""
 msgid "Visit Website →"
 msgstr ""
 
-msgid "1.85.0: Switching from the BIGSPY AI List theme keeps the site looking the same: List mode turns on by itself, the homepage hero, page heroes with a Sponsored tool, the Categories directory, the listings search toolbar and a directory layout for listing pages are read from the old theme's settings, each with a switch in Features."
+msgid "1.85.0: Switching from the BIGSPY AI List theme keeps the site looking the same: List mode turns on by itself, the homepage hero, page heroes with a Sponsored tool, the Categories directory, the listings search toolbar and a directory layout for listing pages are read from the old theme settings, each with a switch in Features."
 msgstr ""
 
 msgid "1 listing"

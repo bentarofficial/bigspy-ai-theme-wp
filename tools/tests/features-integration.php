@@ -474,3 +474,10 @@ Broken line" );
 	}
 	bst_feature_set( 'listing', true );
 }
+// Admin-only files must parse: a syntax error there breaks the whole dashboard.
+try {
+	$bst_news = include BST_DIR . '/inc/welcome/data.php';
+	bst_test( is_array( $bst_news ) && ! empty( $bst_news['news'] ), 'welcome: What is new data loads' );
+} catch ( Throwable $e ) {
+	bst_test( false, 'welcome: What is new data loads ' . $e->getMessage() );
+}

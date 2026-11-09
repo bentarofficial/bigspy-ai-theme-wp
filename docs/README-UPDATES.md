@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.85.1: Fix and Banner heroes
+
+- **Fix:** the admin area showed a critical error in 1.85.0.
+- **Heroes use the Banner block:** the theme no longer adds its own homepage or page heroes. The `[bigspy_home_destination_buttons]` shortcode and counters such as `{{listing_count}}` work inside a Banner.
+
 ### 1.85.0: Switch from BIGSPY AI List without redesigning
 
 - **List mode on by itself** when the site comes from the old theme.
