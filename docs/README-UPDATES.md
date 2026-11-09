@@ -6,6 +6,13 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.86.0: Listing cards that fit anywhere
+
+- Listing and Sponsored cards choose their layout from their own width: horizontal with the logo beside the text when there is room, one column in narrow spots.
+- The old theme's faint logo watermark, tags, title and description line counts, and switches for logo, rating, Featured badge and Visit button.
+- Sponsored can sit between rows, after every N rows, or above the grid.
+- Listing blocks look the same in the editor as on the site.
+
 ### 1.85.3: Sponsored and Featured rotate again
 
 - The homepage "Sponsored by" brand moves to the next Sponsored listing on every visit.
