@@ -20,7 +20,11 @@
 .bst-sponsored__text{display:grid;gap:2px;min-width:0}
 .bst-sponsored__text span{font-size:13px;opacity:.8}
 .bst-sponsored__button{padding:8px 14px;border-radius:8px;background:var(--bst-primary,#3557a7);color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
-.bst-sponsored-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0 16px}
+.bst-sponsored-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:4px 16px;align-items:stretch}
+/* In a grid cell or a sidebar the card is too narrow for logo | text | button: stack it like the old theme. */
+.bst-sponsored-grid .bst-sponsored,[class*=sidebar] .bst-sponsored{grid-template-columns:44px 1fr;align-items:start;align-content:start}
+.bst-sponsored-grid .bst-sponsored__text span,[class*=sidebar] .bst-sponsored__text span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bst-sponsored-grid .bst-sponsored__button,[class*=sidebar] .bst-sponsored__button{grid-column:1/-1;justify-self:start;align-self:end}
 @media (max-width:600px){.bst-sponsored{grid-template-columns:44px 1fr}.bst-sponsored__button{grid-column:1/-1;text-align:center}}
 /* Listing blocks */
 .bst-lgrid,.bst-lcats{display:grid;gap:16px;grid-template-columns:repeat(var(--bst-lc-d,4),minmax(0,1fr))}
