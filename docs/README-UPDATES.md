@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.85.0: Switch from BIGSPY AI List without redesigning
+
+- **List mode on by itself** when the site comes from the old theme.
+- **Same look:** homepage hero, page heroes with a Sponsored tool, Categories directory, listings search toolbar and a directory layout for listing pages, read from the old theme's settings. Each part has a switch in Features → BIGSPY AI List.
+
 ### 1.84.0: Listing page sections from the old theme
 
 - **FAQ & FAQ Schema box:** edit the listing FAQ, see its schema status and JSON-LD. Listings written by the Generator keep their FAQPage schema from the description.

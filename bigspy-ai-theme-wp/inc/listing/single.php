@@ -123,7 +123,7 @@ add_filter(
 add_action(
 	'woocommerce_after_single_product_summary',
 	function () {
-		if ( bst_feature_get( 'listing', 'single_sections', 1 ) ) {
+		if ( bst_feature_get( 'listing', 'single_sections', 1 ) && ! bst_listing_layout_active() ) {
 			echo bst_listing_sections_html( get_the_ID() ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
 		}
 	},
@@ -133,7 +133,7 @@ add_action(
 add_action(
 	'woocommerce_after_single_product_summary',
 	function () {
-		if ( bst_feature_get( 'listing', 'single_links', 1 ) ) {
+		if ( bst_feature_get( 'listing', 'single_links', 1 ) && ! bst_listing_layout_active() ) {
 			echo bst_listing_links_html( get_the_ID() ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
 		}
 		if ( bst_feature_get( 'listing', 'single_updated', 1 ) ) {

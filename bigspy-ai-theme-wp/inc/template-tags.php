@@ -11,6 +11,8 @@ defined( 'ABSPATH' ) || exit;
  * Open the content + sidebar layout.
  */
 function bst_layout_open() {
+	/** Full-width content above the page layout, such as the homepage hero. */
+	do_action( 'bst_before_layout' );
 	$sidebar = bst_sidebar_position();
 	echo '<div class="bs-container bs-layout bs-layout--' . esc_attr( $sidebar ) . '"><div class="bs-layout__content">';
 }

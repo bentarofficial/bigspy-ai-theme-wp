@@ -64,6 +64,17 @@ function bst_feature_set( $id, $on ) {
 	update_option( 'bst_features', array_values( $ids ) );
 }
 
+// Coming from the old BIGSPY AI List theme: turn on List mode once, so listings, blocks and shortcodes keep working.
+add_action(
+	'after_switch_theme',
+	function () {
+		if ( ! get_option( 'bst_listing_auto_on' ) && false !== get_option( 'theme_mods_bigspy-ai-list', false ) && class_exists( 'WooCommerce' ) ) {
+			update_option( 'bst_listing_auto_on', 1, false );
+			bst_feature_set( 'listing', true );
+		}
+	}
+);
+
 add_action(
 	'rest_api_init',
 	function () {
