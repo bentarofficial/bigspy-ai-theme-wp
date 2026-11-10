@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Đã phát hành ở 1.88.0: G-89 (khối Sponsored), G-107, G-127, tuỳ chọn Sponsored/Listing elements/Divider, công tắc hiện tác giả listing. Không có thay đổi đang chờ.
+Đã phát hành ở 1.89.0: G-57, G-58, G-59 (Form điều kiện, báo giá, AI cấu hình Form). Không có thay đổi đang chờ.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

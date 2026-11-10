@@ -598,6 +598,15 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-nf-item__head { display: flex; align-items: center; gap: 2px; padding: 4px 4px 4px 8px; }
 .bst-nf-item__title { flex: 1; display: grid; padding: 4px 0; text-align: left; background: none; border: 0; cursor: pointer; }
 .bst-nf-item__title small { color: #757575; }
+.bst-nf-item__title .bst-nf-item__error { color: #cc1818; }
+.bst-nf-cond { display: grid; gap: 8px; padding: 8px 0; border-top: 1px solid #e0e0e0; }
+.bst-nf-cond__title { margin: 0; }
+.bst-nf-cond__rule { display: grid; gap: 6px; padding: 8px; background: #f6f7f7; border-radius: 2px; }
+.bst-nf-test { display: grid; gap: 8px; padding: 10px; background: #f0f6fc; border-radius: 2px; }
+.bst-nf-test p { margin: 0; }
+.bst-nf-test__table { width: 100%; border-collapse: collapse; }
+.bst-nf-test__table td, .bst-nf-test__table th { padding: 2px 0; text-align: left; }
+.bst-nf-test__table td + td, .bst-nf-test__table th + th { text-align: right; }
 .bst-nf-item__body { display: grid; gap: 10px; padding: 10px; border-top: 1px solid #f0f0f1; }
 .bst-nf-row { display: flex; gap: 16px; }
 .bst-nf-tags { display: block; margin-top: 4px; padding: 6px; font-size: 11px; line-height: 1.6; white-space: normal; word-break: break-word; }

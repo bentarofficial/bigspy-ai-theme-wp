@@ -21,6 +21,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 - Entry: `ai-designer.php`; loaded by one line in `functions.php`.
 - `includes/`: `client.php` Kyma API, `prompt.php` system prompt, `tasks.php` task loop and REST, `tools.php` tool registry, `tools-site.php`, `tools-design.php`, `tools-images.php`, `permissions.php` approval cards, `clean.php` output cleaning, `settings.php`, `guidelines.php`, `workspace.php`.
 - UI: `assets/`; knowledge: `knowledge/`; About page: `welcome/`.
+- Form tools (G-59): `includes/tools-form.php` (`form_get`, `form_configure` with dry run, diff, sample quote); policy in `permissions.php`. Test inside WordPress: `tools/tests/form-ai-integration.php` (load after wp-load.php, prints ok/FAIL).
 
 ## Translations
 - Source: `languages/vi.po` (never read whole). Add with `python tools/add-strings.py strings.json`, where the JSON maps English to Vietnamese. It skips existing strings and compiles.
@@ -30,8 +31,10 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 - Version: `style.css` and `BST_VERSION` in `functions.php`. Readiness: `python tools/release.py`.
 - Optional features: `inc/features.php` (page, toggles, field types), one file per feature in `inc/features/`. Test: `node tools/features-check.cjs`.
 - Theme panel: `inc/admin/`. Updater: `inc/updater.php`. Patterns: `patterns/`.
+- Built-in Form: engine `inc/form-native.php`; schema (field IDs, conditions, dependency checks) `inc/form-schema.php`; front JS in `assets/js/blocks.js` (`bsNfApply`); editor `NativeFormPanels` in `blocks-editor.js`. Price quote (G-58): `inc/form-quote.php` (formula, quote, snapshot, `[_quote]` tags), shared JS engine `assets/js/form-quote.js` (`window.bsQuote`, loaded only with priced forms and in the editor). Tests: `php tools/tests/form-schema-check.php`, `php tools/tests/form-quote-check.php`, `node tools/tests/form-quote-parity.cjs`.
 
 ## Testing
 - `node tools/playground-page.cjs` serves the theme on port 9418. Open `/?bst_autologin=1`; a test-only mu-plugin logs in, no password. Options: `--port=N`, `--woo=<plugin dir>`.
 - Designer tests: `node tools/playground-check.cjs`; see `docs/DEV-RULES.md`.
+- Without wordpress.org access: `npm pack @wp-playground/wordpress-builds@0.9.19`, serve its `src/wordpress/wp-6.5.zip` on localhost and set `BST_TEST_WP` to that URL. PHP and the front end work; wp-admin static JS/CSS are missing, so the block editor cannot be tested this way.
 - The test machine forces prefers-reduced-motion. The browser pane must be visible for animations to run.
