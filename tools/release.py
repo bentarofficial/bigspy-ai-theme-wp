@@ -12,6 +12,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+import lint
+
 REPO = Path(__file__).resolve().parents[1]
 THEME = REPO / 'bigspy-ai-theme-wp'
 STYLE = THEME / 'style.css'
@@ -42,7 +45,8 @@ def check():
 		problems.append('Uncommitted tracked changes')
 	if git('log', '-1', '--format=%ct', '--', str(CSS)) > git('log', '-1', '--format=%ct', '--', str(SEGMENTS)):
 		problems.append('segments.json is older than blocks.css; run tools/split-blocks-css.py')
-	if 'Chưa có thay đổi sản phẩm mới' in (REPO / 'docs' / 'PENDING-RELEASE.md').read_text(encoding='utf-8'):
+	problems.extend(lint.problems())
+	if 'Không có thay đổi đang chờ' in (REPO / 'docs' / 'PENDING-RELEASE.md').read_text(encoding='utf-8'):
 		print('Note: PENDING-RELEASE.md reports no pending product changes.')
 	for problem in problems:
 		print('PROBLEM: ' + problem)

@@ -3,7 +3,11 @@ from pathlib import Path
 import hashlib
 import json
 import re
+import sys
 import zipfile
+
+sys.path.insert(0, str(Path(__file__).parent))
+import lint
 
 repo = Path(__file__).resolve().parents[1]
 theme = repo / 'bigspy-ai-theme-wp'
@@ -14,6 +18,11 @@ output = repo / 'releases'
 output.mkdir(exist_ok=True)
 archive = output / f'bigspy-ai-theme-wp-{version}.zip'
 temporary = output / f'bigspy-ai-theme-wp-{version}.tmp'
+found = lint.problems()
+if found:
+    raise SystemExit('Syntax problems:
+' + '
+'.join(found))
 with zipfile.ZipFile(temporary, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
     for file in files:
         z.write(file, 'bigspy-ai-theme-wp/' + file.relative_to(theme).as_posix())

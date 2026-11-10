@@ -42,6 +42,7 @@ At the release boundary, ask once whether to package the pending changes. If the
 | Scaffold a block | `python tools/add-block.py <slug> "<Title>" --prefix bs-x` |
 | Add translations | `python tools/add-strings.py strings.json` |
 | Check release readiness | `python tools/release.py` |
+| Syntax lint (PHP, JS, JSON) | `python tools/lint.py` |
 | Test page in Playground | `node tools/playground-page.cjs` |
 
 Use the scripts instead of rebuilding them in a scratchpad. See [docs/CODEMAP.md](docs/CODEMAP.md) for details.
