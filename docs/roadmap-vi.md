@@ -16,12 +16,12 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
-## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-106 → G-114)
+## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-106 → G-120)
 
 Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một phiên làm việc riêng theo AGENTS.md; làm theo thứ tự ưu tiên, không gộp. Đây là đề xuất chờ owner duyệt, chưa mục nào được triển khai.
 
 **Phạm vi đã xem:** bootstrap, nạp tài nguyên, `inc/performance.php`, updater, Form native, tìm kiếm trực tiếp, AJAX sản phẩm, Quick View, khóa API và vòng lặp tác vụ của AI Designer, công cụ build/phát hành/test, tài liệu. `php -l` toàn bộ tệp PHP hiện đạt trên PHP 8.3.
-**Chưa xem:** `blocks-editor.js`, `blocks.css`, phần lớn `render.php` của block, lớp tương thích Flatsome, template WooCommerce, trợ năng, nội bộ `tools-design.php`. Không chạy được bộ test Playground trong môi trường rà soát (xem G-112), nên các mục dưới đây dựa trên đọc mã, chưa tái hiện trên site thật trừ khi ghi rõ.
+**Đợt 2 (cùng ngày)** xem thêm `render.php` của block, script editor, quyền và luật block của AI Designer, lớp tương thích Flatsome, WooCommerce và trợ năng; kết quả ở mục “Đợt rà soát 2”. Các tệp lớn (`blocks-editor.js`, `blocks.css`, `tools-design.php`) chỉ được quét theo mẫu, không đọc từng dòng. Không chạy được bộ test Playground trong môi trường rà soát (xem G-112), nên các mục dưới đây dựa trên đọc mã, chưa tái hiện trên site thật trừ khi ghi rõ.
 
 ### P0 — Chặn lỗi phát hành
 
@@ -80,6 +80,33 @@ Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một
 - `TASKS.md` và `HANDOFF.md` ở gốc repo rỗng (0 byte) trong khi roadmap yêu cầu agent theo `TASKS.md`; hoặc dùng thật, hoặc bỏ tham chiếu.
 - Gom `HANDOFF-1.73.md`, `VERIFICATION-1.73*.md`, `VERIFICATION-1.74.md` vào thư mục lưu trữ.
 - Các mã G-87 → G-100, G-102 → G-104 không xuất hiện trong tài liệu nào; ghi một bảng tra mã → trạng thái để agent sau không dùng trùng.
+
+### Đợt rà soát 2 — block, editor, AI Designer, Flatsome, WooCommerce, trợ năng
+
+**Không thấy vấn đề:** đầu ra của 80 `render.php` đều qua hàm escape hoặc whitelist; các script editor dùng `apiVersion` 3, không `ServerSideRender`, không API `__experimental`; mọi công cụ ghi của AI Designer kiểm tra quyền theo từng bài, và luật block trong `tools-design.php:427-441` khớp AGENTS.md ở cả ba đường ghi (`create_page`, `update_page`, `page_sections`).
+
+**G-115 · P1 · Block Lottie nạp script từ unpkg.com** (`blocks/lottie/render.php:15`). Trình phát tải từ CDN bên thứ ba, không có SRI: CDN hỏng thì block hỏng, CDN bị chiếm thì mã lạ chạy trên site khách, và khách truy cập bị kết nối ra ngoài trong khi theme đã cam kết tự host font. Đưa trình phát vào `assets/js/vendor/` (ghi rõ giấy phép và phiên bản), vẫn chỉ nạp trên trang có block. Cân nhắc bản nhẹ hơn nếu dung lượng lớn; ghi số liệu vào PENDING-RELEASE.
+
+**G-116 · P1 · Block Map nhận iframe từ host không phải Google** (`blocks/map/render.php:18`). Mẫu `google\.[a-z.]+` khớp cả `https://google.example.com/maps/embed?…`, nên người có quyền viết bài nhưng không có `unfiltered_html` vẫn chèn được iframe tùy ý. Thay bằng danh sách host: `www.google.com`, `google.com`, `maps.google.com` và các tên miền quốc gia của Google theo mẫu chặt (`google\.(com|[a-z]{2}|com?\.[a-z]{2})`, neo bằng `/`). Thêm ca kiểm thử cho host giả. Nhân tiện đặt `title` cho iframe khi chỉ có mã nhúng (hiện rỗng).
+
+**G-117 · P2 · Trợ năng của hộp thoại và slider** (`assets/js/blocks.js`, `main.js`, `quick-view.js`).
+- Popup, lightbox, video modal, ngăn menu di động và Quick View đóng được bằng Escape và trả focus, nhưng không giữ focus bên trong: không có xử lý phím Tab hay `inert` ở tệp nào. Viết một hàm giữ focus dùng chung và áp cho cả năm.
+- Popup có `role="dialog"` nhưng thiếu tên (`blocks/popup/render.php`); thêm `aria-label` hoặc `aria-labelledby`.
+- Nhãn lightbox viết cứng tiếng Anh trong JS (`blocks.js:589-591`), chấm slider chỉ có nhãn “1”, “2” (`:156`); đưa chuỗi dịch qua `wp_localize_script`.
+- Slider tự chạy chỉ dừng khi rê chuột hoặc focus (`:194-207`), không có nút dừng và không điều khiển được bằng phím mũi tên. Thêm nút Tạm dừng/Chạy khi `autoplay` bật.
+- Kiểm tra bằng bàn phím trên Playground; không cần công cụ mới.
+
+**G-118 · P2 · Ảnh nền Section không responsive** (`blocks/section/render.php:16, 52`). Nền in bằng `background-image:url(…)` với URL gốc dù block đã lưu `bgImageId`: không `srcset`, không ưu tiên tải, nên hero dựng bằng Section tải ảnh cỡ đầy đủ trên di động và LCP chậm. Banner đã làm đúng bằng `<img fetchpriority>`. Khi có `bgImageId` và không dùng chế độ cần CSS (parallax/fixed/lặp), in `wp_get_attachment_image()` với `object-fit`, section đầu trang đặt `fetchpriority="high"`; giữ nền CSS cho các trường hợp còn lại và cho nội dung cũ không có ID. Đo trước/sau cùng G-111.
+
+**G-119 · P2 · Lớp tương thích Flatsome luôn bật.** `functions.php` nạp ba tệp `inc/compat-flatsome*.php` (~1.950 dòng) ở mọi request, và `bst_legacy_register_shortcodes()` chiếm các tên chung `[section]`, `[row]`, `[col]`, `[button]`, `[title]`, `[gap]`, `[accordion]`, `[block]` trên cả site chưa từng dùng Flatsome (`inc/compat-flatsome.php:17-52`). Chuyển thành tính năng trong `inc/features.php`. Điều kiện bắt buộc để không làm vỡ site đang chạy: khi nâng cấp, tự bật nếu có bài chứa shortcode Flatsome hoặc có bài kiểu `blocks`; site cài mới thì tắt. `form-migrate.php` và các bộ lọc `bst_legacy_*` phải chạy đúng ở cả hai trạng thái. Kiểm tra bằng `tools/tests/features-integration.php` với cả hai loại site.
+
+**G-120 · P2 · WooCommerce: kiểm chứng trước, sửa sau.**
+- `assets/css/woocommerce.css` không có rule `wc-block` nào, trong khi Giỏ hàng và Thanh toán dạng block là mặc định của WooCommerce trên site mới. Dựng hai trang này trên Playground (`--woo`), chụp so với trang shortcode; chỉ thêm CSS theo biến màu/font của theme nếu lệch rõ.
+- `woocommerce/content-product.php` ghi `@version 9.4.0`; so với template của bản WooCommerce đang hỗ trợ và cập nhật nếu WooCommerce báo template lỗi thời.
+
+**Ghi chú nhỏ, gộp vào mục liên quan khi làm:**
+- Ảnh bìa video mặc định lấy từ `i.ytimg.com` trước khi khách bấm phát (`blocks/video/render.php:33`, `blocks/video-button/render.php:23`); cùng hướng với G-115 nếu owner muốn site không kết nối bên thứ ba trước tương tác.
+- `bst_aid_download()` gửi lại request kèm khóa API tới host kymaapi.com (`ai-designer/includes/tools-images.php:293`); đặt `'redirection' => 0` để khóa không thể theo chuyển hướng sang host khác.
 
 ### Cần kiểm chứng trước khi lên kế hoạch
 
