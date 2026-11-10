@@ -16,7 +16,9 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
-## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-106 → G-123)
+## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-107 → G-124)
+
+Mã G-124 (cổng cú pháp) ban đầu ghi là G-106; đổi vì G-106 đã dùng cho việc Icon List (1c7decc). Sổ việc và trạng thái nằm ở `TASKS.md` thư mục làm việc ngoài repo.
 
 Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một phiên làm việc riêng theo AGENTS.md; làm theo thứ tự ưu tiên, không gộp. **Cách làm chi tiết cho từng mã (tệp, đoạn mã hiện tại, từng bước sửa, ca kiểm thử, tiêu chí nghiệm thu) nằm ở [OPTIMIZATION-SPEC-2026-11.md](OPTIMIZATION-SPEC-2026-11.md); agent lập trình đọc đúng mục của mã đang làm trước khi sửa.** Đây là đề xuất chờ owner duyệt, chưa mục nào được triển khai.
 
@@ -25,7 +27,7 @@ Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một
 
 ### P0 — Chặn lỗi phát hành
 
-**G-106 · Cổng cú pháp trước khi đóng gói.** Hai bản liên tiếp (1.85.0 và 1.86.0) làm vỡ toàn bộ trang quản trị vì dấu nháy chưa escape trong `inc/welcome/data.php`; updater đẩy bản lỗi đến mọi site. `tools/release.py` và `tools/build-theme.py` hiện không kiểm tra cú pháp.
+**G-124 · Cổng cú pháp trước khi đóng gói.** Hai bản liên tiếp (1.85.0 và 1.86.0) làm vỡ toàn bộ trang quản trị vì dấu nháy chưa escape trong `inc/welcome/data.php`; updater đẩy bản lỗi đến mọi site. `tools/release.py` và `tools/build-theme.py` hiện không kiểm tra cú pháp.
 - `release.py check()`: chạy `php -l` cho mọi tệp `.php` của theme, `node --check` cho `assets/js/*.js` và `ai-designer/assets/*.js`, `json.loads` cho mọi `block.json`/`theme.json`; có lỗi thì báo `PROBLEM` và không cho `--version`. Thiếu `php` trên máy cũng là `PROBLEM`, không bỏ qua im lặng.
 - `build-theme.py`: gọi cùng hàm kiểm tra trước khi ghi ZIP.
 - Sửa luôn `release.py:45`: chuỗi đang dò là “Chưa có thay đổi sản phẩm mới” nhưng PENDING-RELEASE.md hiện ghi “Không có thay đổi đang chờ”, nên ghi chú không bao giờ in.
@@ -143,7 +145,7 @@ Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một
 
 ### Thứ tự thực hiện đề xuất
 
-1. G-106 (cổng cú pháp) — làm trước mọi bản phát hành tiếp theo.
+1. G-124 (cổng cú pháp) — làm trước mọi bản phát hành tiếp theo.
 2. G-116, G-115, G-107 — bảo mật.
 3. G-108, G-109, G-110, G-122 — độ tin cậy và siêu dữ liệu phát hành.
 4. G-112 — để các mục sau có test chạy được.

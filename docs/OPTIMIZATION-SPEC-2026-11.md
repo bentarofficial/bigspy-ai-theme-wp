@@ -1,4 +1,4 @@
-# Đặc tả triển khai G-106 → G-123
+# Đặc tả triển khai G-107 → G-124
 
 Tài liệu đi kèm mục “Đợt tối ưu sau rà soát mã nguồn 10-11-2026” trong [roadmap-vi.md](roadmap-vi.md). Roadmap nêu lý do và ưu tiên; tệp này nêu cách làm cho agent lập trình.
 
@@ -16,7 +16,7 @@ Tài liệu đi kèm mục “Đợt tối ưu sau rà soát mã nguồn 10-11-2
 
 ---
 
-## G-106 · Cổng cú pháp trước khi đóng gói
+## G-124 · Cổng cú pháp trước khi đóng gói
 
 **Ưu tiên:** P0 · **Sản phẩm:** không · **Tệp:** `tools/release.py`, `tools/build-theme.py`
 
@@ -359,7 +359,7 @@ wp_enqueue_script( 'bst-lottie-player', 'https://unpkg.com/@lottiefiles/lottie-p
 2. Đổi dòng enqueue thành `BST_URI . '/assets/js/vendor/lottie-player.js'`, phiên bản `'2.0.8'`, giữ `defer` và `in_footer`.
 3. Kiểm tra editor: grep `lottie` trong `assets/js/blocks-*.js` và `inc/`; nếu editor nạp trình phát từ URL ngoài, đổi sang cùng tệp.
 4. `readme.txt`: thêm tên thư viện, phiên bản, giấy phép và URL nguồn vào phần ghi công/bản quyền (tạo mục `== Copyright ==` nếu chưa có). Xác nhận giấy phép từ `package.json` của gói, không ghi theo trí nhớ.
-5. `tools/lint.py` (G-106) chỉ quét `assets/js/*.js` nên không đụng `vendor/`; giữ như vậy.
+5. `tools/lint.py` (G-124) chỉ quét `assets/js/*.js` nên không đụng `vendor/`; giữ như vậy.
 6. Ghi dung lượng tệp (gốc và gzip) vào PENDING-RELEASE. Nếu trên 400 KB gốc, nêu trong bàn giao để owner cân nhắc thư viện nhẹ hơn ở đợt sau; không tự đổi thư viện.
 
 **Kiểm thử.** Trang có block Lottie: hoạt ảnh chạy, tab Network không có request tới `unpkg.com`. Trang không có block: không nạp `lottie-player.js`. `grep -rn "unpkg\|jsdelivr\|cdnjs" bigspy-ai-theme-wp --include=*.php --include=*.js` không còn kết quả.
