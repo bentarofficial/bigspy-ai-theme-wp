@@ -15,6 +15,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** `feature/ai-designer`, xem HANDOFF.
 - **Trạng thái:** chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-107 (owner 10-11: banner trang chủ bigspyai.com không đẹp bằng site nháp): màu khối Heading bị chế độ chữ của Banner/Section đè; khối Listing search chưa đổi được màu nút.
+- **Đã thay đổi:** `assets/css/blocks.css` (`.is-scheme-dark/light` dùng `var(--bs-heading-color, …)` nên màu riêng của Heading được giữ; đã chạy lại `split-blocks-css.py`), `inc/listing/blocks.php` + `assets/css/listing.css` + `blocks/listing-search/block.json` (màu nút, màu chữ nút, màu viền, bo góc, chiều cao), nhãn trong `blocks-listing.js`.
+- **Kiểm thử:** woo-check 50 ok (test mới: màu/bo góc/chiều cao ô tìm kiếm, chặn màu sai), features-check 143 ok, previews 83 khối. Đã chèn tạm CSS sửa màu tiêu đề trên bigspyai.com: H1 #003366 và H2 teal hiện đúng.
+- **Khi phát hành cần bổ sung:** Có gì mới: "Màu riêng của tiêu đề giữ nguyên trong Banner/Section; ô tìm kiếm listing đổi được màu nút, viền, bo góc, chiều cao". Trang chủ bigspyai.com đã đặt sẵn nút tìm kiếm teal, sẽ hiện sau khi cập nhật.
+- **Git:** `feature/ai-designer` c3ab887.
+- **Trạng thái:** chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
