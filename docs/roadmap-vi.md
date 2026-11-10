@@ -16,6 +16,76 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
+## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-106 → G-114)
+
+Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một phiên làm việc riêng theo AGENTS.md; làm theo thứ tự ưu tiên, không gộp. Đây là đề xuất chờ owner duyệt, chưa mục nào được triển khai.
+
+**Phạm vi đã xem:** bootstrap, nạp tài nguyên, `inc/performance.php`, updater, Form native, tìm kiếm trực tiếp, AJAX sản phẩm, Quick View, khóa API và vòng lặp tác vụ của AI Designer, công cụ build/phát hành/test, tài liệu. `php -l` toàn bộ tệp PHP hiện đạt trên PHP 8.3.
+**Chưa xem:** `blocks-editor.js`, `blocks.css`, phần lớn `render.php` của block, lớp tương thích Flatsome, template WooCommerce, trợ năng, nội bộ `tools-design.php`. Không chạy được bộ test Playground trong môi trường rà soát (xem G-112), nên các mục dưới đây dựa trên đọc mã, chưa tái hiện trên site thật trừ khi ghi rõ.
+
+### P0 — Chặn lỗi phát hành
+
+**G-106 · Cổng cú pháp trước khi đóng gói.** Hai bản liên tiếp (1.85.0 và 1.86.0) làm vỡ toàn bộ trang quản trị vì dấu nháy chưa escape trong `inc/welcome/data.php`; updater đẩy bản lỗi đến mọi site. `tools/release.py` và `tools/build-theme.py` hiện không kiểm tra cú pháp.
+- `release.py check()`: chạy `php -l` cho mọi tệp `.php` của theme, `node --check` cho `assets/js/*.js` và `ai-designer/assets/*.js`, `json.loads` cho mọi `block.json`/`theme.json`; có lỗi thì báo `PROBLEM` và không cho `--version`. Thiếu `php` trên máy cũng là `PROBLEM`, không bỏ qua im lặng.
+- `build-theme.py`: gọi cùng hàm kiểm tra trước khi ghi ZIP.
+- Sửa luôn `release.py:45`: chuỗi đang dò là “Chưa có thay đổi sản phẩm mới” nhưng PENDING-RELEASE.md hiện ghi “Không có thay đổi đang chờ”, nên ghi chú không bao giờ in.
+- Nghiệm thu: chèn thử một dấu nháy lỗi vào `data.php` → `python tools/release.py` trả mã khác 0 và nêu tên tệp; gỡ ra → `Ready.`.
+- Mở rộng cần owner duyệt riêng: workflow GitHub Actions chạy `php -l` trên PHP 7.4 và 8.3 cho mỗi push (theme khai báo `Requires PHP: 7.4` nhưng hiện chỉ được lint trên 8.3).
+
+### P1 — Bảo mật và độ tin cậy
+
+**G-107 · Form native: siết chống spam** (`inc/form-native.php:288-303`).
+- Kiểm tra thời gian điền bị bỏ qua khi request không gửi `bst_form_ts` (`$ts && …`). Bắt buộc có `ts` kèm chữ ký HMAC (`wp_salt`), không gắn với người dùng để vẫn chạy được với cache trang; thiếu hoặc sai chữ ký thì coi là spam.
+- Bộ đếm 5 lượt/phút tăng trước khi kiểm tra dữ liệu, nên khách nhập sai vài lần sẽ nhận thông báo spam. Chỉ tính lượt đã qua kiểm tra dữ liệu.
+- Giới hạn theo `REMOTE_ADDR`: site sau proxy/CDN có thể thấy mọi khách chung một IP, khi đó cả site chỉ gửi được 5 form/phút. Thêm filter `bst_form_client_ip` và ghi tài liệu; không tự tin `X-Forwarded-For`.
+- Mail 2 gửi đến địa chỉ do khách nhập kèm nội dung khách nhập, có thể bị lợi dụng để gửi thư rác cho bên thứ ba. Thêm giới hạn theo từng địa chỉ nhận (đề xuất 3 thư/giờ).
+- `redirectPass` đưa mọi giá trị form lên URL (`:361-363`). Bỏ trường textarea/file và cho chọn trường được chuyển.
+- Kiểm tra: mở rộng `tools/tests/features-integration.php` cho từng trường hợp trên; form hợp lệ trên trang có cache vẫn gửi được.
+
+**G-108 · Per-page CSS có thể tự tắt sau khi cập nhật** (`inc/performance.php:72-77`). Tính năng chỉ bật khi `filemtime(segments.json) >= filemtime(blocks.css)`. ZIP phát hành xếp `blocks/segments.json` trước `blocks.css` (`build-theme.py` sắp theo đường dẫn) và WordPress giải nén không giữ mtime, nên nếu hai tệp rơi vào hai giây khác nhau thì site âm thầm quay về nạp cả `blocks.css` (~195 KB) cho đến lần cập nhật sau. Rủi ro suy ra từ mã, chưa quan sát trên site thật.
+- `tools/split-blocks-css.py` ghi hash của `blocks.css` vào một tệp riêng cạnh `segments.json` (không thêm khóa vào `families.json` vì runtime lặp qua toàn bộ khóa của tệp này).
+- Runtime so hash thay cho mtime; lưu kết quả vào transient gắn `BST_VERSION` để không băm tệp ở mỗi request.
+- `release.py`: so hash thay cho so thời điểm commit; `build-theme.py` assert hash khớp trong ZIP.
+- Thêm một dòng trạng thái trong bảng kiểm tra của Theme panel (`inc/admin/theme-panel.php:366`) cho biết per-page CSS đang hoạt động.
+
+**G-109 · Điểm cuối công khai: giảm tải truy vấn.**
+- Tìm kiếm trực tiếp (`inc/header-extras.php:171-292`): mỗi lần gõ gọi `admin-ajax.php` và chạy tới 4 truy vấn, gồm `_sku LIKE` trên postmeta, không cache. Cache kết quả theo từ khóa + phạm vi trong transient ngắn (đề xuất 60 giây); xóa khi lưu bài/sản phẩm là không cần.
+- `strlen( $term ) < 2` đếm byte, một ký tự tiếng Việt có dấu đã vượt ngưỡng; đổi sang `mb_strlen`.
+- `assets/js/main.js:289-292`: tệp không dùng `AbortController`, nên request cũ vẫn chạy hết khi người dùng gõ tiếp; hủy request trước khi gửi request mới.
+- `bst_products_ajax` (`inc/woocommerce-elements.php:271-284`): tùy chọn đã được whitelist; cân nhắc cache ngắn cho các kiểu không ngẫu nhiên.
+- Kiểm tra: `node tools/woo-check.cjs` và thao tác tìm kiếm trên Playground.
+
+**G-110 · Updater khai báo yêu cầu hệ thống** (`inc/updater.php:74`). Phản hồi cập nhật thiếu `requires` và `requires_php`, nên WordPress không chặn được bản không tương thích. Đọc hai giá trị từ release (ví dụ từ `readme.txt`/`style.css` trong gói hoặc một dòng quy ước trong ghi chú Release) và trả về trong `response` lẫn `themes_api`. Đồng thời xác minh rồi cập nhật `Tested up to: 6.8` trong `style.css`. Kiểm tra: `node tools/updater-playground-check.cjs`.
+
+### P2 — Hiệu năng front-end
+
+**G-111 · Giảm dung lượng tài nguyên front.** Hiện không có bước nén: `main.css` 57 KB, `woocommerce.css` 43 KB, `blocks.js` 36 KB, `main.js` 17 KB được phát nguyên bản; `blocks.js` nạp trên mọi trang kể cả trang không có block cần JS (`inc/assets.php:31-32`). Nối tiếp G-41 (đo tài nguyên): đo trước, làm sau.
+- Bước 1, ít rủi ro: nơi ghi tệp CSS theo trang (`inc/performance.php:136-147`) bỏ chú thích và khoảng trắng thừa trước khi ghi; giữ nguyên thứ tự rule.
+- Bước 2: tách phần slider/counter/tabs… trong `blocks.js` thành tệp theo tính năng và enqueue từ `render.php` như `motion-*.js` đang làm. Tách từng phần một, không tách cả tệp trong một phiên.
+- Bước 3, cần owner duyệt vì thêm công cụ build: sinh `.min.css`/`.min.js` lúc đóng gói, `SCRIPT_DEBUG` dùng tệp gốc.
+- Nghiệm thu: bảng số liệu trước/sau (byte truyền tải, số request) trên trang chủ, trang shop, một trang block; không lệch giao diện ở `tools/tests/browser-check.cjs`.
+
+### P2 — Chất lượng và công cụ
+
+**G-112 · Chạy test được trên mọi máy.** Tám runner trong `tools/` và `tools/tests/` mặc định trỏ đến `C:/Users/DELL/...`; repo không có `package.json`. Agent chạy trên máy khác hoặc trên cloud không chạy được test nào (đợt rà soát này cũng vậy). Đây là mục “Đề xuất chưa triển khai” trong DEV-RULES.md.
+- Thêm `package.json` ở gốc repo với `devDependencies` ghim phiên bản (`@wp-playground/cli`, `playwright`); runner `require` theo cách thường, vẫn giữ `BST_PLAYGROUND_MODULES`/`BST_PLAYWRIGHT`/`BST_CHROME` để ghi đè.
+- Thêm tùy chọn số worker (mặc định tuần tự) như DEV-RULES đã nêu.
+- Xóa hoặc sửa `tools/build-translations.js` (CODEMAP ghi là đã lỗi thời).
+- Nghiệm thu: clone mới → `npm ci` → `node tools/playground-check.cjs` chạy không cần sửa đường dẫn.
+
+**G-113 · Chuỗi giao diện viết cứng bằng tiếng Việt.** Các chuỗi sau không qua hàm dịch nên site tiếng Anh vẫn hiện tiếng Việt: `inc/quick-view.php` (nhãn Customizer, “Xem nhanh”, “Xem chi tiết sản phẩm”, thông báo lỗi), `inc/product-options.php:8-11, 44-45`, `inc/admin/dashboard.php:114` (msgid tiếng Việt). Đổi sang msgid tiếng Anh và thêm bản dịch bằng `python tools/add-strings.py`. Rà thêm cùng kiểu trong `inc/customizer/controls.php`, `inc/header-*.php`, `inc/mega-menu.php`, `inc/meta-boxes.php`, `inc/listing/meta-box.php`, `blocks/payment-icons/render.php` (grep ra chữ có dấu, chưa xác nhận từng dòng). Không dịch lại toàn bộ catalog.
+
+**G-114 · Dọn tài liệu điều hướng.** Việc nội bộ, không cần ghi PENDING-RELEASE.
+- Mục “Bối cảnh roadmap cũ” vẫn ghi mốc 1.18.1; chuyển phần lịch sử sang một tệp lưu trữ để roadmap chỉ còn việc đang mở.
+- `TASKS.md` và `HANDOFF.md` ở gốc repo rỗng (0 byte) trong khi roadmap yêu cầu agent theo `TASKS.md`; hoặc dùng thật, hoặc bỏ tham chiếu.
+- Gom `HANDOFF-1.73.md`, `VERIFICATION-1.73*.md`, `VERIFICATION-1.74.md` vào thư mục lưu trữ.
+- Các mã G-87 → G-100, G-102 → G-104 không xuất hiện trong tài liệu nào; ghi một bảng tra mã → trạng thái để agent sau không dùng trùng.
+
+### Cần kiểm chứng trước khi lên kế hoạch
+
+- **AI Designer sau proxy:** một bước tác vụ giữ request tới 150–170 giây (`ai-designer/includes/tasks.php:329`, `client.php` timeout 150). Cloudflare và nhiều hosting cắt kết nối sớm hơn trong khi PHP vẫn chạy. Cần thử trên hosting thật xem giao diện có tự nối lại qua trạng thái `busy` hay báo lỗi; chỉ mở mã G mới nếu tái hiện được.
+- **Không đề xuất lúc này:** tách `blocks-editor.js` (234 KB) hay `tools-design.php` (1.719 dòng). AGENTS.md đã quy định chỉ tách phần đang sửa.
+
 ## Bối cảnh roadmap cũ
 
 **Mốc phát hành:** 1.18.1 · **Đối chiếu:** Flatsome Classic 3.20.11. Trang Home Fresh Mart được quan sát ở bản 3.20.10; UX-Themes công bố Flatsome Site Builder beta ngày 30-09-2026, là sản phẩm block/plugin riêng.
