@@ -60,7 +60,7 @@
 	/* Choices for text attributes; other attributes get a control from their type. */
 	var CHOICES = {
 		layout: { square: __('Square card', T), vertical: __('Vertical card', T), horizontal: __('Horizontal card', T), 'horizontal-2': __('Horizontal, two columns', T), minimal: __('Minimal', T) },
-		elementType: { featured: __('Featured listings', T), latest: __('Latest listings', T), popular: __('Popular listings', T), related: __('Related listings', T), listing_grid: __('All listings', T), categories: __('Categories', T), blog: __('Blog posts', T) },
+		elementType: { featured: __('Featured listings', T), latest: __('Latest listings', T), popular: __('Popular listings', T), related: __('Related listings', T), listing_grid: __('All listings', T), categories: __('Categories', T), blog: __('Blog posts', T), sponsored: __('Sponsored', T) },
 		orderBy: { date: __('Date', T), title: __('Name', T), modified: __('Last updated', T), rand: __('Random', T), name: __('Name', T), count: __('Number of listings', T) },
 		order: { DESC: __('Newest / Z–A first', T), ASC: __('Oldest / A–Z first', T) },
 		alignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) },
@@ -68,6 +68,8 @@
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		buttonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
 		openNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
+		sponsoredOpenNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
+		sponsoredButtonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
 		display: { cards: __('Cards', T), badge: __('"Sponsored by" badge (one line, for heroes)', T) },
 		sponsoredPosition: { between: __('Between rows', T), top: __('Above the grid', T) },
 		displayMode: { grid: __('Grid', T), slider: __('Slider (one row with arrows)', T) },
@@ -86,6 +88,7 @@
 		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
 		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
 		display: __('Show as', T), badgeText: __('Badge text', T),
+		sponsoredButtonStyle: __('Button', T), sponsoredButtonText: __('Button text (empty = site default)', T), sponsoredShowLabel: __('"Sponsored" label', T), sponsoredOpenNewTab: __('Open the partner in', T),
 		buttonStyle: __('Button', T), buttonText: __('Button text (empty = site default)', T), showLabel: __('"Sponsored" label', T), openNewTab: __('Open the partner in', T),
 		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
 		elementType: __('Show', T), displayMode: __('Display', T), displayLocation: __('Placed in', T), gap: __('Gap between items (px)', T), relatedContextId: __('Related to listing ID (0 = current)', T),
@@ -106,6 +109,7 @@
 	var PANELS = {
 		'bigspy/elements': [
 			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'blogCategoryId', 'displayLocation'] },
+			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['columnsDesktop', 'columnsTablet', 'columnsMobile', 'showDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
 			{ title: __('Layout', T), types: LISTINGS.concat(['blog']), keys: ['displayMode', 'layout', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'gap'] },
 			{ title: __('Card parts', T), types: LISTINGS, keys: ['showLogo', 'showDescription', 'showCategory', 'showPricing', 'showRating', 'showTags', 'showFeatured', 'showWatermark', 'titleLines', 'descriptionLines', 'showCTA', 'ctaPosition', 'ctaAlignment'] },
 			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery'] },

@@ -376,6 +376,23 @@ function bst_render_listing_elements( $a ) {
 		if ( $body && ( $a['categoryShowViewMore'] ?? false ) ) {
 			$more = bst_le_view_more( $a, 'categories', 0, $a['categoryViewMoreText'] ?? __( 'View all categories →', 'bigspy-ai-theme-wp' ), bst_le_view_more_url( array( 'viewMoreDestination' => 'categories' ), 'categories' ) );
 		}
+	} elseif ( 'sponsored' === $type ) {
+		// The old [bigspy_sponsored_grid]: rotating Sponsored cards, as a Listing elements option.
+		$mode = 'grid';
+		$body = function_exists( 'bst_render_sponsored' ) ? bst_render_sponsored(
+			array(
+				'count'           => min( 6, $count ),
+				'columnsDesktop'  => $a['columnsDesktop'] ?? 3,
+				'columnsTablet'   => $a['columnsTablet'] ?? 2,
+				'columnsMobile'   => $a['columnsMobile'] ?? 1,
+				'startPosition'   => max( 0, (int) ( $a['startPosition'] ?? 1 ) - 1 ),
+				'buttonStyle'     => $a['sponsoredButtonStyle'] ?? 'default',
+				'buttonText'      => $a['sponsoredButtonText'] ?? '',
+				'showLabel'       => $a['sponsoredShowLabel'] ?? true,
+				'showDescription' => $a['showDescription'] ?? true,
+				'openNewTab'      => $a['sponsoredOpenNewTab'] ?? 'default',
+			)
+		) : '';
 	} elseif ( 'blog' === $type ) {
 		list( $body, $shown ) = bst_le_blog( $a, $count );
 		if ( $body && ( $a['blogShowViewMore'] ?? true ) ) {

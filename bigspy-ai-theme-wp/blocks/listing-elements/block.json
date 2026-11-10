@@ -287,6 +287,22 @@
 		"viewMoreUrl": {
 			"type": "string",
 			"default": ""
+		},
+		"sponsoredButtonStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"sponsoredButtonText": {
+			"type": "string",
+			"default": ""
+		},
+		"sponsoredShowLabel": {
+			"type": "boolean",
+			"default": true
+		},
+		"sponsoredOpenNewTab": {
+			"type": "string",
+			"default": "default"
 		}
 	},
 	"supports": {
