@@ -20,9 +20,7 @@ archive = output / f'bigspy-ai-theme-wp-{version}.zip'
 temporary = output / f'bigspy-ai-theme-wp-{version}.tmp'
 found = lint.problems()
 if found:
-    raise SystemExit('Syntax problems:
-' + '
-'.join(found))
+    raise SystemExit('Syntax problems:' + chr(10) + chr(10).join(found))
 with zipfile.ZipFile(temporary, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
     for file in files:
         z.write(file, 'bigspy-ai-theme-wp/' + file.relative_to(theme).as_posix())

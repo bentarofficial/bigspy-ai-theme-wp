@@ -7723,3 +7723,72 @@ msgstr "Tìm thấy 1 listing"
 msgid "%s listings found"
 msgstr "Tìm thấy %s listing"
 
+msgid "1.87.0: Section and Banner get animated code backgrounds with no image or video: animated gradient, aurora, floating blobs, moving grid, drifting dots, light rays, particles network, flowing lines and starfield, or your own scoped CSS and animated SVG, with palette colors, speed, density and a mobile switch. Listing elements regains the options of the old BIGSPY AI List block (View more or Load more, slider, blog layouts, category grid styles), Icon List edits each item link from the toolbar, breadcrumbs fall back when the SEO plugin breadcrumb is off, and live search, Map, Lottie and the updater are safer and faster."
+msgstr "1.87.0: Section và Banner có nền động bằng code, không cần ảnh hay video: gradient chuyển màu, aurora, blobs trôi, lưới chuyển động, chấm trôi, tia sáng, mạng hạt, đường sóng và bầu trời sao, hoặc CSS và SVG động tự viết, chỉnh màu theo palette, tốc độ, mật độ và bật/tắt trên mobile. Listing elements có lại các tuỳ chọn của khối BIGSPY AI List cũ (View more hoặc Load more, slider, kiểu blog, kiểu lưới danh mục), Icon List sửa link từng dòng trên thanh công cụ, breadcrumb có dự phòng khi breadcrumb của plugin SEO tắt, tìm kiếm trực tiếp, Map, Lottie và trình cập nhật an toàn và nhanh hơn."
+
+msgid "Code background (animated)"
+msgstr "Nền động bằng code"
+
+msgid "Code background colors"
+msgstr "Màu nền code"
+
+msgid "Animated gradient"
+msgstr "Gradient chuyển màu"
+
+msgid "Floating blobs (mesh)"
+msgstr "Blobs trôi (mesh)"
+
+msgid "Moving grid (perspective)"
+msgstr "Lưới phối cảnh chuyển động"
+
+msgid "Drifting dots"
+msgstr "Chấm trôi"
+
+msgid "Rotating light rays"
+msgstr "Tia sáng xoay"
+
+msgid "Particles network (canvas)"
+msgstr "Mạng hạt (canvas)"
+
+msgid "Flowing lines (canvas)"
+msgstr "Đường sóng (canvas)"
+
+msgid "Starfield (canvas)"
+msgstr "Bầu trời sao (canvas)"
+
+msgid "Custom code (CSS + HTML/SVG)"
+msgstr "Code tuỳ chỉnh (CSS + HTML/SVG)"
+
+msgid "Drawn with code, no image or video needed. Sits above the background image and below the overlay. Stops animating for visitors who prefer reduced motion."
+msgstr "Vẽ bằng code, không cần ảnh hay video. Nằm trên ảnh nền và dưới lớp phủ. Dừng chuyển động với người xem chọn giảm chuyển động."
+
+msgid "Speed (%)"
+msgstr "Tốc độ (%)"
+
+msgid "Density"
+msgstr "Mật độ"
+
+msgid "Layer opacity (%)"
+msgstr "Độ mờ lớp (%)"
+
+msgid "Show on mobile"
+msgstr "Hiện trên điện thoại"
+
+msgid "Scoped to this layer: use :scope for the layer itself and @keyframes for animation. Colors: var(--cbg-c1), var(--cbg-c2), var(--cbg-c3)."
+msgstr "Chỉ áp dụng cho lớp này: dùng :scope cho chính lớp và @keyframes để tạo chuyển động. Màu: var(--cbg-c1), var(--cbg-c2), var(--cbg-c3)."
+
+msgid "Custom HTML / SVG"
+msgstr "HTML / SVG tuỳ chỉnh"
+
+msgid "HTML and animated SVG (<animate>) are allowed; scripts and event handlers are removed."
+msgstr "Cho phép HTML và SVG động (<animate>); script và thuộc tính sự kiện sẽ bị loại bỏ."
+
+msgid "Color 1"
+msgstr "Màu 1"
+
+msgid "Color 2"
+msgstr "Màu 2"
+
+msgid "Color 3"
+msgstr "Màu 3"
+
