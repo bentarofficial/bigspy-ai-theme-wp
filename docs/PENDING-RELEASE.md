@@ -22,6 +22,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** `feature/ai-designer` c3ab887.
 - **Trạng thái:** chờ owner yêu cầu phát hành.
 
+- **Yêu cầu/tính năng:** G-127 (owner 10-11): trang listing chi tiết tràn sang phải trên điện thoại, ảnh cũng tràn.
+- **Đã thay đổi:** `assets/css/listing.css`: ở ≤900px lưới `bst-ls-layout--sidebar` dùng `minmax(0,1fr)` thay `1fr` (trước đây ảnh có caption WordPress `width:1908px` và bảng thông số kéo cột tới 1898px trên khổ 375px); `.bst-ls-main/.bst-ls-sidebar{min-width:0}`; ảnh, video, iframe, svg, `.wp-caption`/figure không vượt cột; bảng cuộn ngang trong khung; từ/URL dài tự xuống dòng; hero ≤600px cũng `minmax(0,1fr)`.
+- **Kiểm thử:** chèn tạm CSS trên bigspyai.com/higgsfield-ai/ ở 375px: cột nội dung 345px, scrollWidth 375, không còn phần tử nào vượt màn hình (trừ watermark thẻ đã bị cắt trong khung). Chưa thử iPhone/Android thật.
+- **Khi phát hành cần bổ sung:** Có gì mới: "Trang listing không còn tràn ngang trên điện thoại; ảnh, caption và bảng tự co theo màn hình".
+- **Git:** `feature/ai-designer`, commit bên dưới.
+- **Trạng thái:** chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

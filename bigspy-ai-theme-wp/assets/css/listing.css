@@ -180,8 +180,16 @@
 .bst-ls-box h3{margin:0 0 12px;font-size:15px}
 .bst-ls-box .bst-listing-chips{display:flex;flex-wrap:wrap;gap:6px}
 .bst-ls-box.bst-listing-links div{display:grid;gap:8px}
-@media (max-width:900px){.bst-ls-layout--sidebar{grid-template-columns:1fr}.bst-ls-sidebar{position:static}}
-@media (max-width:600px){.bst-ls-hero{grid-template-columns:1fr;padding:20px}.bst-ls-hero__visual{width:88px;height:88px}}
+@media (max-width:900px){.bst-ls-layout--sidebar{grid-template-columns:minmax(0,1fr)}.bst-ls-sidebar{position:static}}
+/* Content never widens the page: wide images, captions, tables and embeds stay inside the column. */
+.bst-ls-main,.bst-ls-sidebar{min-width:0}
+.bst-ls-main :is(img,video,iframe,embed,object,svg){max-width:100%}
+.bst-ls-main :is(img,video){height:auto}
+.bst-ls-main .wp-caption,.bst-ls-main figure{max-width:100%;width:auto!important}
+.bst-ls-main table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.bst-ls-main :is(pre,code){max-width:100%;overflow-x:auto}
+.bst-ls-main :is(p,li,h2,h3,h4,td,th,a){overflow-wrap:anywhere}
+@media (max-width:600px){.bst-ls-hero{grid-template-columns:minmax(0,1fr);padding:20px}.bst-ls-hero__visual{width:88px;height:88px}}
 
 /* Collection pages */
 .bst-catdir{display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px;align-items:start}
