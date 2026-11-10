@@ -8,6 +8,22 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/** A Google Maps embed URL on a Google host, or ''. */
+function bst_map_embed_url( $url ) {
+	$url  = trim( (string) $url );
+	$p    = wp_parse_url( $url );
+	$host = strtolower( (string) ( $p['host'] ?? '' ) );
+	if ( 'https' !== ( $p['scheme'] ?? '' ) || isset( $p['user'] ) || ! preg_match( '/^(www\.|maps\.)?google\.(com|[a-z]{2}|com?\.[a-z]{2})$/', $host ) ) {
+		return '';
+	}
+	$path  = (string) ( $p['path'] ?? '' );
+	$query = (string) ( $p['query'] ?? '' );
+	if ( '/maps/embed' === $path && '' !== $query ) {
+		return $url;
+	}
+	return ( '/maps' === $path && false !== strpos( $query, 'output=embed' ) ) ? $url : '';
+}
+
 function bst_block_names() {
 	// Shop blocks are always registered so pages keep working if WooCommerce is
 	// deactivated later; they only appear in the inserter while WooCommerce is active

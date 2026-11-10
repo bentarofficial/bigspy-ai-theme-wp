@@ -313,6 +313,7 @@ See README.md in the source repository for the full feature list and the site-bu
 
 BIGSPY AI Theme WP, (C) 2026 Bentar. Distributed under the terms of the GNU GPL v2 or later.
 Bundled icons are simple inline SVG paths shipped with the theme. Social network names and logos are trademarks of their respective owners.
+Bundled library: @lottiefiles/lottie-player 2.0.8 (MIT), https://www.npmjs.com/package/@lottiefiles/lottie-player, in assets/js/vendor/lottie-player.js.
 
 = 1.15.2 =
 * Prevent a page selected as a custom header from rendering itself inside the header area; retain the normal site header on that page.

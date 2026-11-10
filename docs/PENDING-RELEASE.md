@@ -20,6 +20,11 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Git:** `feature/ai-designer` 1c7decc.
 - **Trạng thái:** chờ owner yêu cầu phát hành.
 
+- **G-116 Block Map:** chỉ nhận iframe từ host Google thật (`bst_map_embed_url()`), tiêu đề iframe mặc định "Map". Kiểm thử: lint đạt; chưa chạy test PHP (máy không có PHP), chưa thêm ca test.
+- **G-115 Block Lottie:** tự host `lottie-player.js` 2.0.8 (MIT, 380 KB gốc, 97 KB gzip, sha256 f16bdeb47f643a09ec70a37397bf0134c311413395d164744d12cba7098bce49), bỏ unpkg.com; readme.txt ghi công. Chưa thử hoạt ảnh trên trình duyệt.
+- **G-124 Cổng lint:** `tools/lint.py` chạy trong release.py và build-theme.py (không đổi sản phẩm).
+- **Khi phát hành cần bổ sung:** không cần.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
