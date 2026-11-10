@@ -6,6 +6,14 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.87.0: Animated code backgrounds
+
+- Section and Banner can use a background drawn with code instead of an image or video: nine animated presets or your own scoped CSS and animated SVG, with palette colors, speed, density, opacity and a mobile switch.
+- Listing elements gets the old BIGSPY AI List options back: View more or Load more, slider, blog layouts and category grid styles.
+- Icon List edits each item's link from the toolbar.
+- Breadcrumb fallback when the SEO plugin breadcrumb is off, Sponsored card and category directory shortcodes, Key features cards.
+- Faster live search, Google-only Map embeds, self-hosted Lottie player, updater shows WordPress and PHP requirements.
+
 ### 1.86.0: Listing cards that fit anywhere
 
 - Listing and Sponsored cards choose their layout from their own width: horizontal with the logo beside the text when there is room, one column in narrow spots.
