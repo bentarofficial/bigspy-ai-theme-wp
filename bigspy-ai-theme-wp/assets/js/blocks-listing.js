@@ -68,6 +68,8 @@
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		buttonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
 		openNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
+		buttonAlign: { '': __('Default', T), left: __('Left', T), center: __('Center', T), right: __('Right', T), full: __('Full width', T) },
+		buttonFontWeight: { '': __('Default', T), 400: __('Regular', T), 500: __('Medium', T), 600: __('Semibold', T), 700: __('Bold', T), 800: __('Extra bold', T) },
 		sponsoredOpenNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
 		sponsoredButtonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
 		display: { cards: __('Cards', T), badge: __('"Sponsored by" badge (one line, for heroes)', T) },
@@ -88,6 +90,9 @@
 		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
 		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
 		display: __('Show as', T), badgeText: __('Badge text', T),
+		buttonAlign: __('Button position', T), buttonBg: __('Button background', T), buttonColor: __('Button text color', T), buttonBorderColor: __('Button border color', T), buttonHoverBg: __('Button hover background', T), buttonHoverColor: __('Button hover text color', T),
+		buttonBorderWidth: __('Button border thickness (px, empty = default)', T), buttonRadius: __('Button corner radius (px)', T), buttonFontSize: __('Button font size (px)', T), buttonFontWeight: __('Button font weight', T), buttonHeight: __('Button height (px)', T), buttonPaddingX: __('Button side padding (px)', T),
+		cardBg: __('Card background', T), cardBorderColor: __('Card border color', T), cardBorderWidth: __('Card border thickness (px, empty = default)', T), cardRadius: __('Card corner radius (px)', T),
 		sponsoredButtonStyle: __('Button', T), sponsoredButtonText: __('Button text (empty = site default)', T), sponsoredShowLabel: __('"Sponsored" label', T), sponsoredOpenNewTab: __('Open the partner in', T),
 		buttonStyle: __('Button', T), buttonText: __('Button text (empty = site default)', T), showLabel: __('"Sponsored" label', T), openNewTab: __('Open the partner in', T),
 		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
@@ -107,9 +112,16 @@
 	/* Listing elements: options in groups, each shown only for the content types it applies to. */
 	var LISTINGS = ['featured', 'latest', 'popular', 'related', 'listing_grid'];
 	var PANELS = {
+		'bigspy/sponsored': [
+			{ title: __('Sponsored', T), keys: ['display', 'badgeText', 'alignment', 'count', 'startPosition', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'showLabel', 'showDescription', 'buttonStyle', 'buttonText', 'openNewTab'] },
+			{ title: __('Button style', T), keys: ['buttonAlign', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor'] },
+			{ title: __('Card style', T), keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] }
+		],
 		'bigspy/elements': [
 			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'blogCategoryId', 'displayLocation'] },
 			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['columnsDesktop', 'columnsTablet', 'columnsMobile', 'showDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
+			{ title: __('Sponsored button style', T), types: ['sponsored'], keys: ['buttonAlign', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor'] },
+			{ title: __('Sponsored card style', T), types: ['sponsored'], keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] },
 			{ title: __('Layout', T), types: LISTINGS.concat(['blog']), keys: ['displayMode', 'layout', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'gap'] },
 			{ title: __('Card parts', T), types: LISTINGS, keys: ['showLogo', 'showDescription', 'showCategory', 'showPricing', 'showRating', 'showTags', 'showFeatured', 'showWatermark', 'titleLines', 'descriptionLines', 'showCTA', 'ctaPosition', 'ctaAlignment'] },
 			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery'] },
@@ -122,6 +134,10 @@
 
 	/* Options that only make sense for some content types or with other settings. */
 	function relevant(k, a) {
+		if (a.display !== undefined) {
+			var badgeKeys = ['display', 'badgeText', 'alignment'];
+			return a.display === 'badge' ? badgeKeys.indexOf(k) > -1 : (k === 'display' || badgeKeys.indexOf(k) === -1);
+		}
 		var t = a.elementType || 'featured';
 		var list = LISTINGS.indexOf(t) > -1;
 		var blogMore = t === 'blog' && a.blogShowViewMore !== false;
@@ -156,7 +172,7 @@
 		if (CHOICES[k]) {
 			return el(c.SelectControl, Object.assign(common, { value: a[k], onChange: set, options: Object.keys(CHOICES[k]).map(function (v) { return { value: v, label: CHOICES[k][v] }; }) }));
 		}
-		if (/Color$/.test(k)) {
+		if (/(Color|Bg)$/.test(k)) {
 			return el(c.BaseControl, { key: k, label: label(k), __nextHasNoMarginBottom: true }, el(c.ColorPalette, { value: a[k] || undefined, onChange: function (v) { set(v || ''); }, clearable: true }));
 		}
 		return el(c.TextControl, Object.assign(common, { value: a[k], onChange: set }));

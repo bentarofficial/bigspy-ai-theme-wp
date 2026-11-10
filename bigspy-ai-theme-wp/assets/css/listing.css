@@ -224,3 +224,25 @@
 .bst-sponsor-badge__brand .bst-home-sponsor { display: inline-block; padding: 4px 12px; border-radius: 999px; background: #f4e7d4; color: #80551f; font-weight: 700; text-decoration: none; transition: background-color .2s ease; }
 .bst-sponsor-badge__brand .bst-home-sponsor:hover { background: #ecd9bd; color: #6b4517; }
 .bst-sponsor-badge-wrap:not(:last-child) { margin-bottom: 14px; }
+
+/* Sponsored card and button options (only the ones set on the block override the defaults). */
+.bst-sponsored[style*="--bst-spc-bg"]{background:var(--bst-spc-bg)}
+.bst-sponsored[style*="--bst-spc-bc"],.bst-sponsored[style*="--bst-spc-bc"]:hover{border-color:var(--bst-spc-bc)}
+.bst-sponsored[style*="--bst-spc-bw"]{border-width:var(--bst-spc-bw)}
+.bst-sponsored[style*="--bst-spc-r"]{border-radius:var(--bst-spc-r)}
+.bst-sponsored[style*="--bst-spb-bg"] .bst-sponsored__button{background:var(--bst-spb-bg)}
+.bst-sponsored[style*="--bst-spb-c:"] .bst-sponsored__button{color:var(--bst-spb-c)}
+.bst-sponsored[style*="--bst-spb-bc"] .bst-sponsored__button{border-color:var(--bst-spb-bc)}
+.bst-sponsored[style*="--bst-spb-bw"] .bst-sponsored__button{border-width:var(--bst-spb-bw);border-style:solid}
+.bst-sponsored[style*="--bst-spb-r"] .bst-sponsored__button{border-radius:var(--bst-spb-r)}
+.bst-sponsored[style*="--bst-spb-fs"] .bst-sponsored__button{font-size:var(--bst-spb-fs)}
+.bst-sponsored[style*="--bst-spb-fw"] .bst-sponsored__button{font-weight:var(--bst-spb-fw)}
+.bst-sponsored[style*="--bst-spb-h"] .bst-sponsored__button{min-height:var(--bst-spb-h);padding-block:0;display:inline-flex;align-items:center}
+.bst-sponsored[style*="--bst-spb-px"] .bst-sponsored__button{padding-inline:var(--bst-spb-px)}
+.bst-sponsored[style*="--bst-spb-hbg"]:hover .bst-sponsored__button{background:var(--bst-spb-hbg);filter:none}
+.bst-sponsored[style*="--bst-spb-hc"]:hover .bst-sponsored__button{color:var(--bst-spb-hc)}
+.bst-sponsored--btn-align-left .bst-sponsored__button{justify-self:start}
+.bst-sponsored--btn-align-center .bst-sponsored__button{justify-self:center}
+.bst-sponsored--btn-align-right .bst-sponsored__button{justify-self:end}
+.bst-sponsored--btn-align-full .bst-sponsored__button{justify-self:stretch;justify-content:center;text-align:center}
+@container (min-width:520px){.bst-sponsored--btn-align-full .bst-sponsored__button{justify-self:end}}

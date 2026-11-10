@@ -391,7 +391,7 @@ function bst_render_listing_elements( $a ) {
 				'showLabel'       => $a['sponsoredShowLabel'] ?? true,
 				'showDescription' => $a['showDescription'] ?? true,
 				'openNewTab'      => $a['sponsoredOpenNewTab'] ?? 'default',
-			)
+			) + array_intersect_key( $a, array_flip( bst_sponsored_style_keys() ) )
 		) : '';
 	} elseif ( 'blog' === $type ) {
 		list( $body, $shown ) = bst_le_blog( $a, $count );

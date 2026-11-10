@@ -103,6 +103,38 @@ add_action( 'bst_listing_ad_changed', 'bst_sponsored_refresh_rotation' );
  * to the partner; $opts sets the optional button (none, soft or solid), its text, the
  * "Sponsored" label, the description and the new-tab behaviour (the site settings are the default).
  */
+/** Keys of the per-block Sponsored card and button style options. */
+function bst_sponsored_style_keys() {
+	return array( 'buttonAlign', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'cardBg', 'cardBorderColor', 'cardBorderWidth', 'cardRadius' );
+}
+
+/** CSS variables for the Sponsored card and button options that are set (empty = theme default). */
+function bst_sponsored_style_vars( $o ) {
+	$vars = array();
+	foreach ( array( 'buttonBg' => 'bg', 'buttonColor' => 'c', 'buttonBorderColor' => 'bc', 'buttonHoverBg' => 'hbg', 'buttonHoverColor' => 'hc' ) as $k => $v ) {
+		$vars[ '--bst-spb-' . $v ] = bst_block_color( $o, $k );
+	}
+	foreach ( array( 'cardBg' => 'bg', 'cardBorderColor' => 'bc' ) as $k => $v ) {
+		$vars[ '--bst-spc-' . $v ] = bst_block_color( $o, $k );
+	}
+	$nums = array(
+		'buttonBorderWidth' => array( '--bst-spb-bw', 0, 6, 'px' ),
+		'buttonRadius'      => array( '--bst-spb-r', 0, 40, 'px' ),
+		'buttonFontSize'    => array( '--bst-spb-fs', 10, 22, 'px' ),
+		'buttonFontWeight'  => array( '--bst-spb-fw', 300, 900, '' ),
+		'buttonHeight'      => array( '--bst-spb-h', 20, 64, 'px' ),
+		'buttonPaddingX'    => array( '--bst-spb-px', 0, 40, 'px' ),
+		'cardBorderWidth'   => array( '--bst-spc-bw', 0, 6, 'px' ),
+		'cardRadius'        => array( '--bst-spc-r', 0, 40, 'px' ),
+	);
+	foreach ( $nums as $k => $n ) {
+		if ( isset( $o[ $k ] ) && '' !== $o[ $k ] && is_numeric( $o[ $k ] ) && (float) $o[ $k ] >= 0 && ! ( 0 === (int) $o[ $k ] && $n[1] > 0 ) ) {
+			$vars[ $n[0] ] = max( $n[1], min( $n[2], (int) $o[ $k ] ) ) . $n[3];
+		}
+	}
+	return bst_style_vars( $vars );
+}
+
 function bst_sponsored_slot( $slot = 0, $context = 'elements', $opts = array() ) {
 	$config = bst_sponsored_config();
 	$items  = $config['on'] ? bst_sponsored_items() : array();
@@ -117,7 +149,9 @@ function bst_sponsored_slot( $slot = 0, $context = 'elements', $opts = array() )
 	$text    = '' !== trim( (string) $opts['buttonText'] ) ? (string) $opts['buttonText'] : $config['button'];
 	$rel     = $tab ? ' target="_blank" rel="sponsored nofollow noopener"' : ' rel="sponsored nofollow"';
 	$logo    = '' !== $item['logo'] ? '<img src="' . esc_url( $item['logo'] ) . '" alt="" loading="lazy">' : esc_html( strtoupper( mb_substr( $item['name'], 0, 1 ) ) );
-	$out     = '<aside class="bst-sponsored bst-sponsored--btn-' . esc_attr( $style ) . '" data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . (int) $config['jump'] . '" aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
+	$vars    = bst_sponsored_style_vars( $opts );
+	$align   = in_array( $opts['buttonAlign'] ?? '', array( 'left', 'center', 'right', 'full' ), true ) ? ' bst-sponsored--btn-align-' . $opts['buttonAlign'] : '';
+	$out     = '<aside class="bst-sponsored bst-sponsored--btn-' . esc_attr( $style . $align ) . '"' . ( $vars ? ' style="' . esc_attr( $vars ) . '"' : '' ) . ' data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . (int) $config['jump'] . '" aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
 	$out    .= filter_var( $opts['showLabel'], FILTER_VALIDATE_BOOLEAN ) ? '<span class="bst-sponsored__label">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>' : '';
 	$out    .= '<a class="bst-sponsored__cover" data-link data-cover href="' . esc_url( $item['url'] ) . '"' . $rel . ' aria-label="' . esc_attr( $item['name'] ) . '"></a>';
 	$out    .= '<div class="bst-sponsored__in"><span class="bst-sponsored__logo" data-logo aria-hidden="true">' . $logo . '</span>';
@@ -165,7 +199,7 @@ function bst_render_sponsored( $a = array() ) {
 		return '<div class="bst-sponsor-badge-wrap" style="text-align:' . esc_attr( $align ) . '"><span class="bst-sponsor-badge">' . ( '' !== trim( $label ) ? '<span class="bst-sponsor-badge__label">' . esc_html( $label ) . '</span>' : '' ) . '<span class="bst-sponsor-badge__brand">' . do_shortcode( '[bigspy_home_sponsor]' ) . '</span></span></div>';
 	}
 	$count = max( 1, min( 6, (int) $a['count'], count( $items ) ) );
-	$opts  = array_intersect_key( $a, array_flip( array( 'buttonStyle', 'buttonText', 'showLabel', 'showDescription', 'openNewTab' ) ) );
+	$opts  = array_intersect_key( $a, array_flip( array_merge( array( 'buttonStyle', 'buttonText', 'showLabel', 'showDescription', 'openNewTab' ), bst_sponsored_style_keys() ) ) );
 	$out   = '';
 	for ( $i = 0; $i < $count; $i++ ) {
 		$out .= bst_sponsored_slot( max( 0, (int) $a['startPosition'] ) + $i, 'shortcode', $opts );
