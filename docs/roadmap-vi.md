@@ -16,7 +16,7 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
-## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-106 → G-120)
+## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-106 → G-123)
 
 Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một phiên làm việc riêng theo AGENTS.md; làm theo thứ tự ưu tiên, không gộp. Đây là đề xuất chờ owner duyệt, chưa mục nào được triển khai.
 
@@ -107,6 +107,49 @@ Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một
 **Ghi chú nhỏ, gộp vào mục liên quan khi làm:**
 - Ảnh bìa video mặc định lấy từ `i.ytimg.com` trước khi khách bấm phát (`blocks/video/render.php:33`, `blocks/video-button/render.php:23`); cùng hướng với G-115 nếu owner muốn site không kết nối bên thứ ba trước tương tác.
 - `bst_aid_download()` gửi lại request kèm khóa API tới host kymaapi.com (`ai-designer/includes/tools-images.php:293`); đặt `'redirection' => 0` để khóa không thể theo chuyển hướng sang host khác.
+
+### Đợt rà soát 3 — nội dung đã lỗi thời cần cập nhật
+
+Đã kiểm và không cần sửa: danh sách block đăng ký khớp 80 thư mục `blocks/`; `node tools/check-block-previews.js` đạt; `python tools/release.py` báo `Ready.`; `theme.json` phiên bản 3 phù hợp `Requires at least: 6.5`; không thấy hàm WordPress đã bị loại bỏ.
+
+**G-121 · P1 · Bản dịch tiếng Việt thiếu khoảng một nửa.** `.pot` có 3.837 chuỗi, `vi.po` có 2.499; 1.960 chuỗi trong `.pot` không có trong `vi.po` (ví dụ “Map”, “Top”, “Background color”), nên các phần đó hiện tiếng Anh trên site tiếng Việt. Tập trung ở giao diện editor và Customizer, đếm theo tệp (số chuỗi thiếu / tổng, ước lượng bằng regex):
+
+| Tệp | Thiếu |
+| --- | --- |
+| `assets/js/blocks-editor.js` | 749 / 934 |
+| `inc/colorful.php` | 222 / 223 |
+| `inc/customizer/fields.php` | 201 / 263 |
+| `inc/css-presets.php` | 144 / 144 |
+| `assets/js/blocks-more.js` | 119 / 151 |
+| `inc/header-elements.php` | 98 / 144 |
+| `assets/js/block-design.js` | 88 / 101 |
+| `assets/js/blocks-extra.js` | 74 / 104 |
+| `inc/floating-contact.php` | 67 / 79 |
+
+- AGENTS.md cấm dịch hàng loạt khi không có nhu cầu cụ thể, nên mục này cần owner duyệt phạm vi trước. Đề xuất làm theo từng tệp, mỗi phiên một tệp, bắt đầu từ `blocks-editor.js` (dùng grep để lấy chuỗi, không đọc cả tệp).
+- Thêm `tools/check-strings.py`: liệt kê chuỗi trong mã chưa có trong `vi.po`, theo tệp. `release.py` in con số này dưới dạng ghi chú, không chặn phát hành.
+- Dùng `python tools/add-strings.py`; không sửa tay `vi.po`.
+
+**G-122 · P2 · Siêu dữ liệu phát hành lệch phiên bản.**
+- `readme.txt:6` ghi `Stable tag: 1.19.1` trong khi theme ở 1.86.1. `release.py` chỉ nâng `style.css` và `functions.php`; thêm `readme.txt` vào bước nâng và vào kiểm tra lệch phiên bản.
+- `docs/README-UPDATES.md` chưa có mục 1.86.1 (`readme.txt` đã có). Cho `release.py` cảnh báo khi changelog thiếu mục của phiên bản hiện tại.
+- `Tested up to: 6.8` ở `style.css` và `readme.txt`: chạy bộ test trên bản WordPress mới nhất rồi cập nhật (cùng việc với G-110).
+- `vi.po` ghi `Project-Id-Version: BIGSPY Theme`; `.pot` ghi ngày tạo 24-10-2026 và không được sinh lại từ mã: `add-strings.py` chỉ nối thêm, nên khoảng 770 chuỗi trong `.pot` không còn trong mã và một số chuỗi trong mã chưa vào `.pot` (ước lượng bằng regex, cần xác nhận khi làm). Sinh lại `.pot` từ mã một lần trong đợt phát hành đã duyệt, rồi đối chiếu với `vi.po`.
+
+**G-123 · P2 · Kiến thức AI và CODEMAP thiếu phần mới.**
+- `ai-designer/knowledge/` không nhắc đến `listing-elements` và `listing-search`; `theme.md` không có dòng nào về BIGSPY AI List. Bổ sung mô tả ngắn, chỉ áp dụng khi `bst_aid_listing_on()` đúng.
+- Thêm kiểm tra vào `tools/check-block-previews.js` (hoặc script riêng): mọi block trong `blocks/` phải được nêu tên trong thư mục knowledge.
+- `docs/CODEMAP.md` chưa có mục cho Listing (`inc/listing/`, `inc/features/listing.php`, `woocommerce/*-listing.php`), WooCommerce (`inc/woocommerce*.php`, `inc/quick-view.php`, `inc/product-options.php`), hiệu năng (`inc/performance.php`) và Form (`inc/form-native.php`, `inc/form-migrate.php`). Thêm mỗi mục một dòng.
+
+### Thứ tự thực hiện đề xuất
+
+1. G-106 (cổng cú pháp) — làm trước mọi bản phát hành tiếp theo.
+2. G-116, G-115, G-107 — bảo mật.
+3. G-108, G-109, G-110, G-122 — độ tin cậy và siêu dữ liệu phát hành.
+4. G-112 — để các mục sau có test chạy được.
+5. G-121 — sau khi owner duyệt phạm vi dịch.
+6. G-111, G-118, G-117, G-119, G-120 — hiệu năng, trợ năng, tương thích.
+7. G-113, G-123, G-114 — chuỗi viết cứng và tài liệu.
 
 ### Cần kiểm chứng trước khi lên kế hoạch
 
