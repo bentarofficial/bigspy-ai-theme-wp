@@ -137,6 +137,10 @@ try {
 	bst_test( 1 === substr_count( $feat, 'class="bst-lcard ' ) && false !== strpos( $feat, 'Featured' ), 'listing: featuredOnly filter and badge' );
 	bst_test( false !== strpos( $block( 'bigspy/category-grid', array() ), 'Writing AI' ), 'listing: bigspy/category-grid' );
 	bst_test( false !== strpos( $block( 'bigspy/search', array( 'buttonText' => 'Go' ) ), 'name="post_type" value="product"' ), 'listing: bigspy/search searches listings' );
+	$ls = $block( 'bigspy/search', array( 'buttonColor' => '#008080', 'radius' => 20, 'height' => 56, 'borderColor' => 'red;x' ) );
+	bst_test( str_contains( $ls, '--bst-ls-btn:#008080' ) && str_contains( $ls, '--bst-ls-radius:20px' ) && str_contains( $ls, '--bst-ls-h:56px' ) && ! str_contains( $ls, 'red;x' ), 'listing: search button colour, radius and height' );
+	$css = (string) file_get_contents( get_template_directory() . '/assets/css/blocks.css' );
+	bst_test( str_contains( $css, 'color: var(--bs-heading-color, var(--bs-heading));' ) && str_contains( $css, 'color: var(--bs-heading-color, #fff);' ), 'blocks: Banner/Section text scheme keeps a Heading block colour' );
 	$GLOBALS['wp_query']->is_singular = false;
 	bst_test( '' === $block( 'bigspy/elements', array( 'elementType' => 'related' ) ) && 1 === substr_count( $block( 'bigspy/elements', array( 'elementType' => 'related', 'relatedContextId' => $a1 ) ), 'class="bst-lcard ' ), 'listing: elements related excludes the listing itself' );
 	bst_test( false !== strpos( do_shortcode( '[bigspy_elements type="latest"]' ), 'Beta Writer' ) && false !== strpos( do_shortcode( '[bigspy_categories]' ), 'Writing AI' ) && false !== strpos( do_shortcode( '[bigspy_search]' ), 'bst-lsearch' ), 'listing: old shortcodes render' );

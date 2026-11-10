@@ -192,7 +192,15 @@ function bst_render_listing_search( $a ) {
 	$align  = in_array( $a['alignment'] ?? 'left', array( 'left', 'center', 'right' ), true ) ? $a['alignment'] : 'left';
 	$width  = max( 240, min( 1400, (int) ( $a['maxWidth'] ?? 760 ) ) );
 	wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
-	$out  = '<form role="search" method="get" class="bst-lsearch bst-lsearch--' . esc_attr( $align ) . '" style="max-width:' . $width . 'px" action="' . esc_url( home_url( '/' ) ) . '">';
+	$style = 'max-width:' . $width . 'px;--bst-ls-radius:' . max( 0, min( 40, (int) ( $a['radius'] ?? 14 ) ) ) . 'px';
+	if ( ! empty( $a['height'] ) ) {
+		$style .= ';--bst-ls-h:' . max( 36, min( 80, (int) $a['height'] ) ) . 'px';
+	}
+	foreach ( array( 'buttonColor' => '--bst-ls-btn', 'buttonTextColor' => '--bst-ls-btn-text', 'borderColor' => '--bst-ls-border' ) as $key => $var ) {
+		$color = sanitize_hex_color( (string) ( $a[ $key ] ?? '' ) );
+		$style .= $color ? ';' . $var . ':' . $color : '';
+	}
+	$out  = '<form role="search" method="get" class="bst-lsearch bst-lsearch--' . esc_attr( $align ) . '" style="' . esc_attr( $style ) . '" action="' . esc_url( home_url( '/' ) ) . '">';
 	$out .= '<label class="screen-reader-text" for="' . esc_attr( $id ) . '">' . esc_html__( 'Search listings', 'bigspy-ai-theme-wp' ) . '</label>';
 	$out .= '<input id="' . esc_attr( $id ) . '" type="search" name="s" value="' . esc_attr( get_search_query() ) . '" placeholder="' . esc_attr( $holder ) . '"><input type="hidden" name="post_type" value="product">';
 	if ( $a['showButton'] ?? true ) {

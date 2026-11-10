@@ -92,6 +92,7 @@
 		blogLayout: __('Layout', T), blogCategoryId: __('Post category ID (0 = all)', T), blogExcerptWords: __('Excerpt words', T), blogShowViewMore: __('View more', T), blogViewMoreText: __('View more text', T),
 		categoryCount: __('Number of categories', T), categoryColumnsDesktop: __('Columns – desktop', T), categoryColumnsTablet: __('Columns – tablet', T), categoryColumnsMobile: __('Columns – mobile', T),
 		categoryShowViewMore: __('View all link', T), categoryViewMoreText: __('View all text', T), categoryBorderEnabled: __('Border', T), categoryBorderWidth: __('Border width (px)', T), categoryBorderColor: __('Border color', T), categoryBorderRadius: __('Corner radius (px)', T),
+		buttonColor: __('Button color', T), buttonTextColor: __('Button text color', T), borderColor: __('Border color', T), radius: __('Corner radius (px)', T), height: __('Height (px, 0 = default)', T),
 		categoryHoverEnabled: __('Hover effect', T), categoryHoverBorderWidth: __('Hover border width (px)', T), categoryHoverBorderColor: __('Hover border color', T), categoryHoverLift: __('Hover lift (px)', T), categoryHoverImageZoom: __('Hover image zoom (1–1.3)', T), categoryHoverShadow: __('Hover shadow', T), categoryHoverTransition: __('Hover speed (ms)', T)
 	};
 	function label(key) {
