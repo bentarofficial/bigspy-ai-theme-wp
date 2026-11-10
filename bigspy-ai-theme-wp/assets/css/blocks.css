@@ -1804,6 +1804,28 @@ input[type="submit"]:hover,
 	border-top-width: max(3px, var(--bs-divider-size, 3px));
 }
 
+/* Wrapper: the space above and below is padding, so it never collapses into the neighbours' margins (as in BIGSPY AI List). */
+.bs-divider-wrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding-block: var(--bs-divider-spacing, 24px);
+	margin: 0;
+}
+.bs-divider-wrap--left { justify-content: flex-start; }
+.bs-divider-wrap--right { justify-content: flex-end; }
+.bs-divider-wrap > .bs-divider { margin: 0; }
+
+/* Fade: the chosen color fading out at both ends. */
+.bs-divider.is-fade {
+	height: var(--bs-divider-size, 1px);
+	border: 0;
+	background: linear-gradient(90deg, transparent, var(--bs-divider-color, var(--bs-border)), transparent);
+}
+.bs-divider-x.is-fade::before, .bs-divider-x.is-fade::after { border: 0; height: var(--bs-divider-size, 1px); }
+.bs-divider-x.is-fade::before { background: linear-gradient(90deg, transparent, var(--bs-divider-color, var(--bs-border))); }
+.bs-divider-x.is-fade::after { background: linear-gradient(90deg, var(--bs-divider-color, var(--bs-border)), transparent); }
+
 .bs-spacer {
 	height: var(--bs-spacer-d, 60px);
 	margin: 0 !important;
