@@ -7,6 +7,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 ## Các thay đổi sản phẩm đang chờ
 
 - Trang listing đơn và khối BIGSPY AI List: sửa nội dung, ảnh, bảng tràn viền phải trên laptop/tablet/mobile (CSS `listing.css`, `legacy-list.css`).
+- Trang listing: công tắc Customizer → Layout → Listing page → hiện author (avatar + tên user WordPress) trong header card, mặc định tắt.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
