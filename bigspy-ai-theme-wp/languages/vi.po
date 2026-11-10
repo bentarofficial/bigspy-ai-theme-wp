@@ -7803,3 +7803,220 @@ msgstr "Hiện tác giả trên trang listing"
 
 msgid "Shows the WordPress user who published the listing, with their avatar, in the header card."
 msgstr "Hiện người dùng WordPress đã đăng listing, kèm ảnh đại diện, trong thẻ đầu trang."
+
+msgid "Another field already uses this field name."
+msgstr "Một trường khác đã dùng tên trường này."
+
+msgid "A condition reads this same field."
+msgstr "Điều kiện đang đọc chính trường này."
+
+msgid "A condition reads a field that no longer exists."
+msgstr "Điều kiện đang đọc một trường không còn tồn tại."
+
+msgid "Conditions form a loop with other fields."
+msgstr "Điều kiện tạo vòng lặp với các trường khác."
+
+msgid "is"
+msgstr "là"
+
+msgid "is not"
+msgstr "không là"
+
+msgid "is empty"
+msgstr "để trống"
+
+msgid "is filled"
+msgstr "đã điền"
+
+msgid "contains"
+msgstr "chứa"
+
+msgid "greater than"
+msgstr "lớn hơn"
+
+msgid "less than"
+msgstr "nhỏ hơn"
+
+msgid "Match"
+msgstr "Khớp"
+
+msgid "All rules"
+msgstr "Tất cả quy tắc"
+
+msgid "Any rule"
+msgstr "Bất kỳ quy tắc nào"
+
+msgid "Field"
+msgstr "Trường"
+
+msgid "Condition"
+msgstr "Điều kiện"
+
+msgid "(deleted field)"
+msgstr "(trường đã xoá)"
+
+msgid "Remove rule"
+msgstr "Xoá quy tắc"
+
+msgid "Add rule"
+msgstr "Thêm quy tắc"
+
+msgid "Show this field"
+msgstr "Hiện trường này"
+
+msgid "Only show when…"
+msgstr "Chỉ hiện khi…"
+
+msgid "Required only when…"
+msgstr "Chỉ bắt buộc khi…"
+
+msgid "Used by the conditions of:"
+msgstr "Đang được dùng trong điều kiện của:"
+
+msgid "Change those conditions before removing this field."
+msgstr "Hãy sửa các điều kiện đó trước khi xoá trường này."
+
+msgid "conditional"
+msgstr "có điều kiện"
+
+msgid "Price to be confirmed"
+msgstr "Cần xác nhận giá"
+
+msgid "Estimated total"
+msgstr "Tổng tạm tính"
+
+msgid "Choose more details to see the price."
+msgstr "Chọn thêm thông tin để tính giá."
+
+msgid "The price is calculated when you send the form."
+msgstr "Giá sẽ được tính khi bạn gửi biểu mẫu."
+
+msgid "Price quote"
+msgstr "Báo giá"
+
+msgid "Estimate computed by the server when the form was sent."
+msgstr "Giá tạm tính do máy chủ tính lúc gửi biểu mẫu."
+
+msgid "Weight (kg)"
+msgstr "Khối lượng (kg)"
+
+msgid "Standard"
+msgstr "Thường"
+
+msgid "Express"
+msgstr "Nhanh"
+
+msgid "Pickup and delivery"
+msgstr "Giao nhận tận nơi"
+
+msgid "Laundry by kg (demo prices)"
+msgstr "Giặt là theo kg (giá demo)"
+
+msgid "Cleaning by area (demo prices)"
+msgstr "Vệ sinh theo diện tích (giá demo)"
+
+msgid "Demo prices: replace them with your own before publishing."
+msgstr "Giá demo: hãy thay bằng giá của bạn trước khi công khai."
+
+msgid "Washing"
+msgstr "Tiền giặt"
+
+msgid "Express (+20% of washing)"
+msgstr "Giặt nhanh (+20% tiền giặt)"
+
+msgid "Area (m²)"
+msgstr "Diện tích (m²)"
+
+msgid "Package"
+msgstr "Gói"
+
+msgid "Deep cleaning"
+msgstr "Tổng vệ sinh"
+
+msgid "Choose a package"
+msgstr "Chọn gói"
+
+msgid "Preferred date"
+msgstr "Ngày mong muốn"
+
+msgid "Cleaning (minimum 300.000)"
+msgstr "Vệ sinh (tối thiểu 300.000)"
+
+msgid "The formula cannot be read."
+msgstr "Không đọc được công thức."
+
+msgid "Uses a field that no longer exists:"
+msgstr "Dùng trường không còn tồn tại:"
+
+msgid "Unknown option:"
+msgstr "Lựa chọn không có:"
+
+msgid "Lines use each other in a loop."
+msgstr "Các dòng giá dùng lẫn nhau thành vòng lặp."
+
+msgid "Option prices"
+msgstr "Giá theo lựa chọn"
+
+msgid "One per line: Option = amount. Use the field in a price formula as"
+msgstr "Mỗi dòng: Lựa chọn = số tiền. Dùng trường này trong công thức giá bằng"
+
+msgid "Insert a field or line…"
+msgstr "Chèn trường hoặc dòng giá…"
+
+msgid "Line"
+msgstr "Dòng"
+
+msgid "Try it"
+msgstr "Thử tính"
+
+msgid "Fill the required fields to see the price."
+msgstr "Điền các trường bắt buộc để xem giá."
+
+msgid "Price to be confirmed: check the formulas and test values."
+msgstr "Cần xác nhận giá: kiểm tra công thức và giá trị thử."
+
+msgid "Show a price quote before sending"
+msgstr "Hiện báo giá trước khi gửi"
+
+msgid "The visitor sees an estimate; the server computes it again when the form is sent. No booking or payment."
+msgstr "Khách thấy giá tạm tính; máy chủ tính lại khi gửi. Không giữ chỗ, không thanh toán."
+
+msgid "Replace the fields and prices of this form with the preset?"
+msgstr "Thay các trường và bảng giá của form này bằng mẫu?"
+
+msgid "Currency symbol"
+msgstr "Ký hiệu tiền tệ"
+
+msgid "Decimals"
+msgstr "Số chữ số thập phân"
+
+msgid "Formulas: + − × ÷ ( ), min(), max(), round(x, digits), ceil(), floor(), if(condition, then, else), comparisons > < >= <= == !=. {f_…} is a field (its number, or the price of the picked options), {f_…=Option} is 1 when that option is picked, {l_…} is another line."
+msgstr "Công thức: + − × ÷ ( ), min(), max(), round(x, số chữ số), ceil(), floor(), if(điều kiện, đúng, sai), so sánh > < >= <= == !=. {f_…} là một trường (số đã nhập, hoặc giá của lựa chọn), {f_…=Lựa chọn} bằng 1 khi lựa chọn đó được chọn, {l_…} là một dòng giá khác."
+
+msgid "Line label"
+msgstr "Tên dòng"
+
+msgid "Formula"
+msgstr "Công thức"
+
+msgid "Insert"
+msgstr "Chèn"
+
+msgid "Remove line"
+msgstr "Xoá dòng"
+
+msgid "New line"
+msgstr "Dòng mới"
+
+msgid "Add price line"
+msgstr "Thêm dòng giá"
+
+msgid "Note under the price"
+msgstr "Ghi chú dưới giá"
+
+msgid "For example what is included or not."
+msgstr "Ví dụ: đã gồm hoặc chưa gồm những gì."
+
+msgid "Message when prices changed while the visitor was on the page"
+msgstr "Thông báo khi bảng giá thay đổi lúc khách đang xem"
+
