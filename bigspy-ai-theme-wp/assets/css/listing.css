@@ -158,3 +158,20 @@
 .bigspy-home-hero-destinations{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
 .bigspy-home-hero-destinations__button{padding:5px 14px;border:1px solid rgba(0,51,102,.2);border-radius:999px;background:rgba(255,255,255,.9);color:#036;font-size:12.5px;font-weight:700;text-decoration:none}
 .bigspy-home-hero-destinations__button:hover{border-color:#008080;color:#008080}
+
+/* Responsive containment: keep listing pages inside the viewport (laptop, tablet, mobile) */
+.bst-ls,.bst-ls-article,.bst-ls-layout,.bst-ls-main,.bst-ls-content,.bst-ls-sidebar{box-sizing:border-box;min-width:0;max-width:100%}
+.bst-ls-layout--sidebar>*{min-width:0}
+.bst-ls-content,.bst-ls-box,.bst-ls-hero__intro{overflow-wrap:anywhere;word-break:break-word}
+.bst-ls-article :is(img,video,iframe,embed,object,svg,canvas,figure){max-width:100%}
+.bst-ls-article :is(img,video,canvas){height:auto}
+.bst-ls-article :is(table,pre){display:block;max-width:100%;overflow-x:auto}
+.bst-ls-content :is(.wp-block-columns,.wp-block-group,.wp-block-image,.alignwide,.alignfull){max-width:100%;box-sizing:border-box}
+.bst-ls-content :is(.wp-block-columns){flex-wrap:wrap}
+.bst-ls-content :is(.alignfull,.alignwide){margin-inline:0;width:auto}
+.bst-ls-hero__title{overflow-wrap:anywhere}
+.bst-ls-facts>div{min-width:0}
+.bst-ls-facts dd{overflow-wrap:anywhere}
+@media (max-width:1024px){.bst-ls-layout--sidebar{grid-template-columns:minmax(0,1fr) 260px;gap:24px}}
+@media (max-width:900px){.bst-ls-layout--sidebar{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){.bst-ls{padding-block:12px 32px}.bst-ls-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.bst-listing-features ul,.bst-listing-links div,.bst-listing-facts{grid-template-columns:minmax(0,1fr)}.bst-ls-box{padding:14px}}

@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Không có thay đổi đang chờ (1.86.0 đã phát hành G-101; G-105 đã vào 1.85.3).
+- Trang listing đơn và khối BIGSPY AI List: sửa nội dung, ảnh, bảng tràn viền phải trên laptop/tablet/mobile (CSS `listing.css`, `legacy-list.css`).
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

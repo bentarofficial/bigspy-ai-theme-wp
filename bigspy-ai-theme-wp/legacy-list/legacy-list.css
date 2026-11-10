@@ -217,3 +217,7 @@
 .bigspy-html-content{box-sizing:border-box;min-width:0;max-width:100%}
 .bigspy-html-content :is(img,video,iframe,embed,object,svg,canvas){max-width:100%;height:auto}
 .bigspy-html-content :is(table,pre){max-width:100%;overflow:auto}
+.bigspy-section,.bigspy-section__container,.bigspy-row,.bigspy-column{max-width:100%}
+.bigspy-column :is(img,video,iframe,svg,canvas){max-width:100%;height:auto}
+.bigspy-column :is(table,pre){display:block;max-width:100%;overflow-x:auto}
+@media(max-width:640px){.bigspy-row{grid-template-columns:minmax(0,1fr)}.bigspy-column{grid-column:auto}}
