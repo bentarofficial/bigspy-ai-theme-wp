@@ -107,7 +107,7 @@ function bst_listing_grid( $query_args, $card_args = array(), $style = '' ) {
 		$out .= bst_listing_card( $id, $card_args );
 		$pos  = $start + $i + 1;
 		if ( $every && 0 === $pos % $every && $i < count( $ids ) - 1 && function_exists( 'bst_sponsored_slot' ) ) {
-			$ad   = bst_sponsored_slot( (int) ( $pos / $every ) - 1, 'elements' );
+			$ad   = bst_sponsored_slot( (int) ( $pos / $every ) - 1, 'elements', (array) ( $card_args['adOpts'] ?? array() ) );
 			$out .= '' !== $ad ? '<div class="bst-lgrid__ad">' . $ad . '</div>' : '';
 		}
 	}
@@ -209,6 +209,17 @@ function bst_render_listing_search( $a ) {
 	return $out . '</form>';
 }
 
+/** Sponsored card options from listing block attributes (label, button, colors, sizes). */
+function bst_le_sponsored_opts( $a ) {
+	return array(
+		'buttonStyle'     => $a['sponsoredButtonStyle'] ?? 'default',
+		'buttonText'      => $a['sponsoredButtonText'] ?? '',
+		'showLabel'       => $a['sponsoredShowLabel'] ?? true,
+		'showDescription' => $a['sponsoredShowDescription'] ?? true,
+		'openNewTab'      => $a['sponsoredOpenNewTab'] ?? 'default',
+	) + ( function_exists( 'bst_sponsored_style_keys' ) ? array_intersect_key( $a, array_flip( bst_sponsored_style_keys() ) ) : array() );
+}
+
 /** Card look and Sponsored rows from block attributes (shared by the listing blocks). */
 function bst_listing_card_style_args( $a, $type = '' ) {
 	$cols  = max( 1, min( 6, (int) ( $a['columnsDesktop'] ?? 4 ) ) );
@@ -223,6 +234,7 @@ function bst_listing_card_style_args( $a, $type = '' ) {
 		'descriptionLines' => $a['descriptionLines'] ?? 2,
 		'adEvery'          => $inner ? $rows * $cols : 0,
 		'adOffset'         => max( 0, (int) ( $a['startPosition'] ?? 1 ) - 1 ),
+		'adOpts'           => bst_le_sponsored_opts( $a ),
 	);
 }
 
@@ -386,12 +398,7 @@ function bst_render_listing_elements( $a ) {
 				'columnsTablet'   => $a['columnsTablet'] ?? 2,
 				'columnsMobile'   => $a['columnsMobile'] ?? 1,
 				'startPosition'   => max( 0, (int) ( $a['startPosition'] ?? 1 ) - 1 ),
-				'buttonStyle'     => $a['sponsoredButtonStyle'] ?? 'default',
-				'buttonText'      => $a['sponsoredButtonText'] ?? '',
-				'showLabel'       => $a['sponsoredShowLabel'] ?? true,
-				'showDescription' => $a['showDescription'] ?? true,
-				'openNewTab'      => $a['sponsoredOpenNewTab'] ?? 'default',
-			) + array_intersect_key( $a, array_flip( bst_sponsored_style_keys() ) )
+			) + bst_le_sponsored_opts( $a )
 		) : '';
 	} elseif ( 'blog' === $type ) {
 		list( $body, $shown ) = bst_le_blog( $a, $count );
@@ -440,7 +447,7 @@ function bst_render_listing_elements( $a ) {
 		) + bst_listing_card_style_args( 'slider' === $mode ? array( 'sponsoredPosition' => 'top' ) + $a : $a, $type );
 		$body = bst_listing_grid( $query, $card, bst_listing_cols_style( $a, 4, 2, 1 ) . ';--bst-lgap:' . $gap . 'px' );
 		if ( $body && ( $a['showSponsored'] ?? true ) && 'top' === ( 'slider' === $mode ? 'top' : ( $a['sponsoredPosition'] ?? 'between' ) ) && function_exists( 'bst_sponsored_slot' ) && empty( $a['bstLoadMore'] ) ) {
-			$body = bst_sponsored_slot( 0, 'elements' ) . $body;
+			$body = bst_sponsored_slot( 0, 'elements', bst_le_sponsored_opts( $a ) ) . $body;
 		}
 		if ( $body && ( $a['showViewMore'] ?? true ) ) {
 			$more = bst_le_view_more( $a, $type, $count, $a['viewMoreText'] ?? '', bst_le_view_more_url( $a, $type, $terms ) );

@@ -93,7 +93,7 @@
 		buttonAlign: __('Button position', T), buttonBg: __('Button background', T), buttonColor: __('Button text color', T), buttonBorderColor: __('Button border color', T), buttonHoverBg: __('Button hover background', T), buttonHoverColor: __('Button hover text color', T),
 		buttonBorderWidth: __('Button border thickness (px, empty = default)', T), buttonRadius: __('Button corner radius (px)', T), buttonFontSize: __('Button font size (px)', T), buttonFontWeight: __('Button font weight', T), buttonHeight: __('Button height (px)', T), buttonPaddingX: __('Button side padding (px)', T),
 		cardBg: __('Card background', T), cardBorderColor: __('Card border color', T), cardBorderWidth: __('Card border thickness (px, empty = default)', T), cardRadius: __('Card corner radius (px)', T),
-		sponsoredButtonStyle: __('Button', T), sponsoredButtonText: __('Button text (empty = site default)', T), sponsoredShowLabel: __('"Sponsored" label', T), sponsoredOpenNewTab: __('Open the partner in', T),
+		sponsoredButtonStyle: __('Button', T), sponsoredButtonText: __('Button text (empty = site default)', T), sponsoredShowLabel: __('"Sponsored" label', T), sponsoredShowDescription: __('Sponsored description', T), sponsoredOpenNewTab: __('Open the partner in', T),
 		buttonStyle: __('Button', T), buttonText: __('Button text (empty = site default)', T), showLabel: __('"Sponsored" label', T), openNewTab: __('Open the partner in', T),
 		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
 		elementType: __('Show', T), displayMode: __('Display', T), displayLocation: __('Placed in', T), gap: __('Gap between items (px)', T), relatedContextId: __('Related to listing ID (0 = current)', T),
@@ -119,12 +119,12 @@
 		],
 		'bigspy/elements': [
 			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'blogCategoryId', 'displayLocation'] },
-			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['columnsDesktop', 'columnsTablet', 'columnsMobile', 'showDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
-			{ title: __('Sponsored button style', T), types: ['sponsored'], keys: ['buttonAlign', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor'] },
-			{ title: __('Sponsored card style', T), types: ['sponsored'], keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] },
+			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['columnsDesktop', 'columnsTablet', 'columnsMobile', 'sponsoredShowDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
 			{ title: __('Layout', T), types: LISTINGS.concat(['blog']), keys: ['displayMode', 'layout', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'gap'] },
 			{ title: __('Card parts', T), types: LISTINGS, keys: ['showLogo', 'showDescription', 'showCategory', 'showPricing', 'showRating', 'showTags', 'showFeatured', 'showWatermark', 'titleLines', 'descriptionLines', 'showCTA', 'ctaPosition', 'ctaAlignment'] },
-			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery'] },
+			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery', 'sponsoredShowLabel', 'sponsoredShowDescription', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
+			{ title: __('Sponsored button style', T), types: LISTINGS.concat(['sponsored']), keys: ['buttonAlign', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor'] },
+			{ title: __('Sponsored card style', T), types: LISTINGS.concat(['sponsored']), keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] },
 			{ title: __('Blog posts', T), types: ['blog'], keys: ['blogLayout', 'blogShowImage', 'blogShowDate', 'blogShowAuthor', 'blogShowCategory', 'blogShowExcerpt', 'blogExcerptWords', 'blogShowNumber'] },
 			{ title: __('Categories', T), types: ['categories'], keys: ['categoryCount', 'categoryColumnsDesktop', 'categoryColumnsTablet', 'categoryColumnsMobile', 'categoryShowImage', 'categoryShowCount', 'categoryShowDescription'] },
 			{ title: __('Category style', T), types: ['categories'], keys: ['categoryBorderEnabled', 'categoryBorderWidth', 'categoryBorderColor', 'categoryBorderRadius', 'categoryHoverEnabled', 'categoryHoverBorderWidth', 'categoryHoverBorderColor', 'categoryHoverLift', 'categoryHoverImageZoom', 'categoryHoverShadow', 'categoryHoverTransition'] },
@@ -139,6 +139,11 @@
 			return a.display === 'badge' ? badgeKeys.indexOf(k) > -1 : (k === 'display' || badgeKeys.indexOf(k) === -1);
 		}
 		var t = a.elementType || 'featured';
+		if (/^(sponsored(ShowLabel|ShowDescription|ButtonStyle|ButtonText|OpenNewTab)|button[A-Z]|card[A-Z])/.test(k) && a.elementType !== undefined) {
+			if (t === 'sponsored') { return !(/^button[A-Z]/.test(k) && a.sponsoredButtonStyle === 'none'); }
+			if (a.showSponsored === false) { return false; }
+			return !(/^button[A-Z]/.test(k) && a.sponsoredButtonStyle === 'none');
+		}
 		var list = LISTINGS.indexOf(t) > -1;
 		var blogMore = t === 'blog' && a.blogShowViewMore !== false;
 		var listMore = list && a.showViewMore !== false;
