@@ -68,6 +68,7 @@
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		buttonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
 		openNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
+		popularSource: { clicks: __('Clicks to the tool on this site', T), traffic: __('Website traffic (Site Insights)', T), blend: __('Both: clicks + website traffic', T) },
 		buttonAlign: { '': __('Default', T), left: __('Left', T), center: __('Center', T), right: __('Right', T), full: __('Full width', T) },
 		buttonFontWeight: { '': __('Default', T), 400: __('Regular', T), 500: __('Medium', T), 600: __('Semibold', T), 700: __('Bold', T), 800: __('Extra bold', T) },
 		sponsoredOpenNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
@@ -93,6 +94,7 @@
 		buttonAlign: __('Button position', T), buttonBg: __('Button background', T), buttonColor: __('Button text color', T), buttonBorderColor: __('Button border color', T), buttonHoverBg: __('Button hover background', T), buttonHoverColor: __('Button hover text color', T),
 		buttonBorderWidth: __('Button border thickness (px, empty = default)', T), buttonRadius: __('Button corner radius (px)', T), buttonFontSize: __('Button font size (px)', T), buttonFontWeight: __('Button font weight', T), buttonHeight: __('Button height (px)', T), buttonPaddingX: __('Button side padding (px)', T),
 		cardBg: __('Card background', T), cardBorderColor: __('Card border color', T), cardBorderWidth: __('Card border thickness (px, empty = default)', T), cardRadius: __('Card corner radius (px)', T),
+		popularSource: __('Rank popular listings by', T),
 		sponsoredButtonStyle: __('Button', T), sponsoredButtonText: __('Button text (empty = site default)', T), sponsoredShowLabel: __('"Sponsored" label', T), sponsoredShowDescription: __('Sponsored description', T), sponsoredOpenNewTab: __('Open the partner in', T),
 		buttonStyle: __('Button', T), buttonText: __('Button text (empty = site default)', T), showLabel: __('"Sponsored" label', T), openNewTab: __('Open the partner in', T),
 		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
@@ -118,7 +120,7 @@
 			{ title: __('Card style', T), keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] }
 		],
 		'bigspy/elements': [
-			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'blogCategoryId', 'displayLocation'] },
+			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'popularSource', 'blogCategoryId', 'displayLocation'] },
 			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['columnsDesktop', 'columnsTablet', 'columnsMobile', 'sponsoredShowDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
 			{ title: __('Layout', T), types: LISTINGS.concat(['blog']), keys: ['displayMode', 'layout', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'gap'] },
 			{ title: __('Card parts', T), types: LISTINGS, keys: ['showLogo', 'showDescription', 'showCategory', 'showPricing', 'showRating', 'showTags', 'showFeatured', 'showWatermark', 'titleLines', 'descriptionLines', 'showCTA', 'ctaPosition', 'ctaAlignment'] },
@@ -148,7 +150,7 @@
 		var blogMore = t === 'blog' && a.blogShowViewMore !== false;
 		var listMore = list && a.showViewMore !== false;
 		var rules = {
-			categoryId: list && t !== 'related', orderBy: list && t !== 'popular', order: list && t !== 'popular', relatedContextId: t === 'related',
+			categoryId: list && t !== 'related', orderBy: list && t !== 'popular', order: list && t !== 'popular', relatedContextId: t === 'related', popularSource: t === 'popular',
 			blogCategoryId: t === 'blog', displayLocation: t === 'blog', count: t !== 'categories', startPosition: t !== 'categories',
 			layout: list, displayMode: list, ctaPosition: !!a.showCTA, ctaAlignment: !!a.showCTA && a.ctaPosition !== 'top',
 			sponsoredPosition: a.showSponsored !== false && a.displayMode !== 'slider',

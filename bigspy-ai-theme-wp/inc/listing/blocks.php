@@ -415,6 +415,8 @@ function bst_render_listing_elements( $a ) {
 		if ( 'popular' === $type ) {
 			$query = array_merge( $query, array( 'orderby' => 'date', 'order' => 'DESC' ) );
 			$query = function_exists( 'bigspy_popular_query_args' ) ? bigspy_popular_query_args( $query ) : $query;
+			// Ranking source, read by BIGSPY AI List Suite: clicks on this site, the tool website's traffic (Site Insights) or both.
+			$query['bigspy_popular_source'] = bst_le_pick( $a, 'popularSource', array( 'clicks', 'traffic', 'blend' ), 'clicks' );
 		} else {
 			$query['orderby'] = in_array( $a['orderBy'] ?? 'date', array( 'date', 'title', 'modified', 'comment_count', 'rand' ), true ) ? $a['orderBy'] : 'date';
 			$query['order']   = 'ASC' === strtoupper( $a['order'] ?? 'DESC' ) ? 'ASC' : 'DESC';
