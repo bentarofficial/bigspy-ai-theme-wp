@@ -52,6 +52,7 @@ $bst_includes = array(
 	'inc/form-native.php',
 	'inc/form-migrate.php',
 	'inc/block-shapes.php',
+	'inc/code-bg.php',
 	'inc/block-manager.php',
 	'inc/colorful.php',
 	'inc/forms.php',

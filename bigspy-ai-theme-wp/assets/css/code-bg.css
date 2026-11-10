@@ -1,0 +1,103 @@
+/* Code backgrounds (Section / Banner). Image → code layer → overlay → content. */
+.bs-codebg {
+	--cbg-c1: var(--bs-primary, #6366f1);
+	--cbg-c2: var(--bs-secondary, #ec4899);
+	--cbg-c3: var(--bs-accent, #06b6d4);
+	--cbg-speed: 1;
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
+}
+.bs-banner__codebg { z-index: -2; }
+.bs-codebg > canvas { display: block; width: 100%; height: 100%; }
+.bs-codebg > i { position: absolute; display: block; }
+
+/* Animated gradient */
+.bs-codebg--gradient {
+	background: linear-gradient(120deg, var(--cbg-c1), var(--cbg-c2), var(--cbg-c3), var(--cbg-c1));
+	background-size: 300% 300%;
+	animation: bs-cbg-pan calc(16s * var(--cbg-speed)) ease-in-out infinite;
+}
+.bs-codebg--gradient > i { display: none; }
+@keyframes bs-cbg-pan { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+/* Aurora: soft blurred ribbons */
+.bs-codebg--aurora { background: color-mix(in srgb, var(--cbg-c1) 25%, #050816); }
+.bs-codebg--aurora > i {
+	inset: -40% -20%;
+	background: radial-gradient(ellipse 40% 30% at 30% 40%, var(--cbg-c1), transparent 70%);
+	filter: blur(40px);
+	opacity: .8;
+	mix-blend-mode: screen;
+	animation: bs-cbg-drift calc(18s * var(--cbg-speed)) ease-in-out infinite alternate;
+}
+.bs-codebg--aurora > i:nth-child(2) { background: radial-gradient(ellipse 45% 25% at 70% 50%, var(--cbg-c2), transparent 70%); animation-duration: calc(23s * var(--cbg-speed)); animation-direction: alternate-reverse; }
+.bs-codebg--aurora > i:nth-child(3) { background: radial-gradient(ellipse 35% 35% at 50% 70%, var(--cbg-c3), transparent 70%); animation-duration: calc(29s * var(--cbg-speed)); }
+@keyframes bs-cbg-drift {
+	0% { transform: translate(-8%, -4%) rotate(0deg) scale(1); }
+	50% { transform: translate(6%, 5%) rotate(8deg) scale(1.15); }
+	100% { transform: translate(10%, -6%) rotate(-6deg) scale(1.05); }
+}
+
+/* Floating blobs (mesh) */
+.bs-codebg--blobs { background: color-mix(in srgb, var(--cbg-c1) 8%, #fff); }
+.bs-codebg--blobs > i {
+	width: 45%; aspect-ratio: 1; border-radius: 42% 58% 60% 40% / 45% 45% 55% 55%;
+	background: var(--cbg-c1); filter: blur(50px); opacity: .55;
+	top: -10%; left: -5%;
+	animation: bs-cbg-blob calc(20s * var(--cbg-speed)) ease-in-out infinite alternate;
+}
+.bs-codebg--blobs > i:nth-child(2) { background: var(--cbg-c2); top: 40%; left: 55%; animation-duration: calc(26s * var(--cbg-speed)); animation-direction: alternate-reverse; }
+.bs-codebg--blobs > i:nth-child(3) { background: var(--cbg-c3); top: 50%; left: 5%; width: 35%; animation-duration: calc(31s * var(--cbg-speed)); }
+@keyframes bs-cbg-blob {
+	0% { transform: translate(0, 0) rotate(0deg); border-radius: 42% 58% 60% 40% / 45% 45% 55% 55%; }
+	100% { transform: translate(40%, 20%) rotate(120deg); border-radius: 60% 40% 35% 65% / 55% 60% 40% 45%; }
+}
+
+/* Moving perspective grid */
+.bs-codebg--grid { background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--cbg-c1) 35%, #050816), #050816 70%); }
+.bs-codebg--grid > i:first-child {
+	inset: 40% -50% -60%;
+	background-image: linear-gradient(var(--cbg-c2) 1px, transparent 1px), linear-gradient(90deg, var(--cbg-c2) 1px, transparent 1px);
+	background-size: calc(240px - var(--cbg-density) * 1.8px) calc(240px - var(--cbg-density) * 1.8px);
+	opacity: .45;
+	transform: perspective(400px) rotateX(60deg);
+	mask-image: linear-gradient(transparent, #000 40%);
+	animation: bs-cbg-grid calc(4s * var(--cbg-speed)) linear infinite;
+}
+.bs-codebg--grid > i:nth-child(n+2) { display: none; }
+@keyframes bs-cbg-grid { to { background-position: 0 calc(240px - var(--cbg-density) * 1.8px); } }
+
+/* Drifting dot pattern */
+.bs-codebg--dots { background: color-mix(in srgb, var(--cbg-c1) 6%, #fff); }
+.bs-codebg--dots > i:first-child {
+	inset: -100px;
+	background-image: radial-gradient(var(--cbg-c1) 1.5px, transparent 2px);
+	background-size: calc(64px - var(--cbg-density) * .4px) calc(64px - var(--cbg-density) * .4px);
+	opacity: .5;
+	mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+	animation: bs-cbg-dots calc(12s * var(--cbg-speed)) linear infinite;
+}
+.bs-codebg--dots > i:nth-child(n+2) { display: none; }
+@keyframes bs-cbg-dots { to { transform: translate(calc(64px - var(--cbg-density) * .4px), calc(64px - var(--cbg-density) * .4px)); } }
+
+/* Rotating light rays */
+.bs-codebg--rays { background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--cbg-c1) 30%, #050816), #050816 75%); }
+.bs-codebg--rays > i:first-child {
+	inset: -75%;
+	background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--cbg-c2) 35%, transparent) 0deg 6deg, transparent 6deg 18deg);
+	mask-image: radial-gradient(circle, #000 10%, transparent 60%);
+	animation: bs-cbg-spin calc(60s * var(--cbg-speed)) linear infinite;
+}
+.bs-codebg--rays > i:nth-child(n+2) { display: none; }
+@keyframes bs-cbg-spin { to { transform: rotate(360deg); } }
+
+/* Canvas presets get a matching base color before JS paints. */
+.bs-codebg--particles, .bs-codebg--waves, .bs-codebg--stars { background: #050816; }
+.bs-codebg--waves { background: color-mix(in srgb, var(--cbg-c1) 12%, #050816); }
+
+@media (prefers-reduced-motion: reduce) {
+	.bs-codebg, .bs-codebg * { animation: none !important; }
+}

@@ -64,6 +64,7 @@ if ( $image ) {
 	<?php if ( $image && $blur ) : ?>
 		<div class="bs-section__blur" style="<?php echo esc_attr( '--bs-bg-blur:' . $blur . 'px' ); ?>" aria-hidden="true"></div>
 	<?php endif; ?>
+	<?php echo bst_code_bg( $a, 'section' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<?php if ( $overlay ) : ?>
 		<div class="bs-section__overlay" style="<?php echo esc_attr( 'background:' . $overlay . ';opacity:' . ( bst_block_num( $a, 'overlayOpacity', 50, 0, 100 ) / 100 ) ); ?>" aria-hidden="true"></div>
 	<?php endif; ?>

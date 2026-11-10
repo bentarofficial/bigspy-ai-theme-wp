@@ -42,3 +42,10 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** mục Giới thiệu/Có gì mới/tài liệu/kiến thức AI liên quan, hoặc “không cần”.
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
+## G-126 Code background (animated) cho Section và Banner
+
+- **Đã thay đổi:** panel mới "Code background (animated)" ở Section và Banner: 6 preset CSS (gradient động, aurora, blobs, lưới phối cảnh, chấm trôi, tia sáng xoay), 3 preset canvas (mạng hạt, đường sóng, bầu trời sao), và "Custom code" (CSS scoped bằng @scope + HTML/SVG động, đã lọc script/handler). Tuỳ chọn: 3 màu (mặc định theo palette), tốc độ, mật độ, độ mờ lớp, ẩn trên mobile. Lớp nằm giữa ảnh nền và overlay. File: inc/code-bg.php, assets/css/code-bg.css, assets/js/code-bg.js (chỉ tải khi dùng), blocks-editor.js, render.php của section/banner.
+- **Kiểm thử:** lint sạch; Playground: 10 kiểu render đúng ngoài site và trong editor (canvas chạy trong iframe editor), script/onload trong custom HTML bị loại. check-block-previews báo lỗi có sẵn bigspy/sponsored (không liên quan). Chưa dịch chuỗi vi, chưa thêm vào kiến thức AI Designer.
+- **Khi phát hành cần bổ sung:** mục Có gì mới; bản dịch vi; hồ sơ khối AI Designer (thuộc tính codeBg).
+- **Trạng thái:** chờ owner yêu cầu phát hành.
