@@ -1,0 +1,68 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/sponsored",
+	"title": "Sponsored",
+	"category": "bigspy-list",
+	"icon": "megaphone",
+	"description": "Sponsored partner cards that rotate on every visit. The whole card links to the partner; the button, its text, the label, the description and the number of cards are options. Needs BIGSPY AI List mode.",
+	"keywords": [
+		"sponsored",
+		"ad",
+		"partner",
+		"bigspy ai list"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"count": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsDesktop": {
+			"type": "number",
+			"default": 0
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"buttonStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"openNewTab": {
+			"type": "string",
+			"default": "default"
+		},
+		"startPosition": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-listing",
+	"render": "file:./render.php"
+}

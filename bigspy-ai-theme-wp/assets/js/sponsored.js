@@ -31,10 +31,13 @@
 		var logo = slot.querySelector('[data-logo]');
 		var name = slot.querySelector('[data-name]');
 		var desc = slot.querySelector('[data-desc]');
-		var link = slot.querySelector('[data-link]');
+		var links = slot.querySelectorAll('[data-link]');
 		if (name) { name.textContent = item.name || ''; }
 		if (desc) { desc.textContent = item.description || ''; }
-		if (link) { link.href = item.url || '#'; }
+		links.forEach(function (link) {
+			link.href = item.url || '#';
+			if (link.hasAttribute('data-cover')) { link.setAttribute('aria-label', item.name || ''); }
+		});
 		if (!logo) { return; }
 		logo.replaceChildren();
 		if (item.logo) {

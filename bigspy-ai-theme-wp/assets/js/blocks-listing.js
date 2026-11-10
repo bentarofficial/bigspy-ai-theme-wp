@@ -66,6 +66,8 @@
 		alignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) },
 		showWatermark: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
+		buttonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
+		openNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
 		sponsoredPosition: { between: __('Between rows', T), top: __('Above the grid', T) },
 		displayMode: { grid: __('Grid', T), slider: __('Slider (one row with arrows)', T) },
 		displayLocation: { normal: __('Page content', T), 'homepage-sidebar': __('Sidebar (compact)', T) },
@@ -82,6 +84,7 @@
 		limit: __('Number of listings (0 = all)', T), count: __('Number of items', T), categoryId: __('Category ID (0 = all)', T), parent: __('Only children of category ID', T),
 		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
 		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
+		buttonStyle: __('Button', T), buttonText: __('Button text (empty = site default)', T), showLabel: __('"Sponsored" label', T), openNewTab: __('Open the partner in', T),
 		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
 		elementType: __('Show', T), displayMode: __('Display', T), displayLocation: __('Placed in', T), gap: __('Gap between items (px)', T), relatedContextId: __('Related to listing ID (0 = current)', T),
 		ctaPosition: __('Visit button position', T), ctaAlignment: __('Visit button alignment', T),
@@ -182,7 +185,7 @@
 			save: function () { return null; }
 		});
 	}
-	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/search', 'bigspy/elements'].forEach(ssrBlock);
+	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/search', 'bigspy/elements', 'bigspy/sponsored'].forEach(ssrBlock);
 	wp.blocks.registerBlockType('bst/listing-info', {
 		edit: function (props) {
 			var a = props.attributes;
