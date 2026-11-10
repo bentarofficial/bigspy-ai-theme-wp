@@ -11589,3 +11589,14 @@ msgstr ""
 msgid "Color 3"
 msgstr ""
 
+msgid "1.88.0: A dedicated Sponsored block with columns, label, description, new tab and full button and card styling; the whole Sponsored card is the link and buttons are soft outlines like the old theme, and Sponsored rows in Listing elements and Listing grid get the same options. Heroes can show a rotating Sponsored by badge, Listing elements ranks Popular by clicks or Site Insights traffic, Heading colors survive Banner and Section text schemes, the Listing search button takes its own colors, border, radius and height, listing pages no longer overflow on phones and can show the author, and Divider gets a Fade line."
+msgstr ""
+
+msgid "Listing page"
+msgstr ""
+
+msgid "Show the author on listing pages"
+msgstr ""
+
+msgid "Shows the WordPress user who published the listing, with their avatar, in the header card."
+msgstr ""

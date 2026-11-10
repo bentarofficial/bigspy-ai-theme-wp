@@ -7792,3 +7792,14 @@ msgstr "Màu 2"
 msgid "Color 3"
 msgstr "Màu 3"
 
+msgid "1.88.0: A dedicated Sponsored block with columns, label, description, new tab and full button and card styling; the whole Sponsored card is the link and buttons are soft outlines like the old theme, and Sponsored rows in Listing elements and Listing grid get the same options. Heroes can show a rotating Sponsored by badge, Listing elements ranks Popular by clicks or Site Insights traffic, Heading colors survive Banner and Section text schemes, the Listing search button takes its own colors, border, radius and height, listing pages no longer overflow on phones and can show the author, and Divider gets a Fade line."
+msgstr "1.88.0: Khối Sponsored riêng với số cột, nhãn, mô tả, mở tab mới và đầy đủ kiểu nút, kiểu thẻ; cả thẻ Sponsored là liên kết, nút viền nhẹ như theme cũ, và hàng Sponsored trong Listing elements, Listing grid có cùng tuỳ chọn. Hero hiện được huy hiệu Sponsored by xoay vòng, Listing elements xếp Popular theo lượt bấm hoặc lưu lượng Site Insights, màu riêng của Heading giữ nguyên trong Banner và Section, nút Listing search đổi được màu, viền, bo góc, chiều cao, trang listing không còn tràn ngang trên điện thoại và hiện được tác giả, Divider có kiểu đường Fade."
+
+msgid "Listing page"
+msgstr "Trang listing"
+
+msgid "Show the author on listing pages"
+msgstr "Hiện tác giả trên trang listing"
+
+msgid "Shows the WordPress user who published the listing, with their avatar, in the header card."
+msgstr "Hiện người dùng WordPress đã đăng listing, kèm ảnh đại diện, trong thẻ đầu trang."
