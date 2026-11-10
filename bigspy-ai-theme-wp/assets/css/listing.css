@@ -246,3 +246,6 @@
 .bst-sponsored--btn-align-right .bst-sponsored__button{justify-self:end}
 .bst-sponsored--btn-align-full .bst-sponsored__button{justify-self:stretch;justify-content:center;text-align:center}
 @container (min-width:520px){.bst-sponsored--btn-align-full .bst-sponsored__button{justify-self:end}}
+.bst-ls-author{display:inline-flex;align-items:center;gap:8px;min-width:0;color:#036;font-size:13px;font-weight:600;text-decoration:none}
+.bst-ls-author__avatar{width:28px;height:28px;border-radius:50%;flex:none}
+.bst-ls-author span{overflow-wrap:anywhere}

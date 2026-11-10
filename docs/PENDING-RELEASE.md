@@ -28,6 +28,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** Có gì mới: "Trang listing không còn tràn ngang trên điện thoại; ảnh, caption và bảng tự co theo màn hình".
 - **Git:** `feature/ai-designer`, commit bên dưới.
 - **Trạng thái:** chờ owner yêu cầu phát hành.
+- Trang listing: công tắc Customizer → Layout → Listing page → hiện author (avatar + tên user WordPress) trong header card, mặc định tắt.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
