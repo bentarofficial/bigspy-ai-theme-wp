@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.89.0 =
+* Form price quote: price formulas (numbers, + - * /, comparisons, min/max/round/if, field references) and per-option prices, live total with line items, server-side recalculation and a saved quote snapshot with each submission. No eval; tampered input is ignored.
+* Form fields keep stable IDs through renames and reordering, and can be shown or required depending on other fields (all/any rules). Duplicate names, missing references and loops are reported. Existing forms and mail tags keep working.
+* AI Designer: form_get and form_configure read and change Form fields, conditions and price rules with a dry run, a diff and undo.
+
 = 1.88.0 =
 * New Sponsored block (BIGSPY AI List group): cards, columns per device, label, description, new tab, button style and text; the whole card is the partner link; soft outline buttons like the old theme (no button by default, set in Features or the block). Optional rotating "Sponsored by" badge for heroes.
 * Sponsored cards: button position, border, radius, font size and weight, height, padding, colors and hover colors; card border, radius and background. Listing elements and Listing grid Sponsored rows get the same options; Listing elements can show rotating Sponsored cards.

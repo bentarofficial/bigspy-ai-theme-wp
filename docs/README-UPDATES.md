@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.89.0: Form price quotes
+
+- The built-in Form shows a live price before sending, from formulas and per-option prices; the server recalculates it and saves the quote with the submission.
+- Fields keep stable IDs and can be shown or required depending on other answers.
+- AI Designer builds and edits forms and price rules with a dry run, a diff and undo.
+
 ### 1.88.0: Sponsored block
 
 - New Sponsored block with columns, label, description and full button and card styling; the whole card is the partner link and buttons are soft outlines by default.
