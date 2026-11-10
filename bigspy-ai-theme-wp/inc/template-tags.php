@@ -88,7 +88,11 @@ function bst_show_title() {
  * Full-width title bar printed above the layout ("bar" style).
  */
 function bst_title_bar() {
-	if ( 'bar' !== bst_mod( 'title_bar_style' ) || ! bst_show_title() || ( is_singular( 'post' ) ) || ( function_exists( 'is_product' ) && is_product() ) ) {
+	if ( 'bar' !== bst_mod( 'title_bar_style' ) || ( is_singular( 'post' ) ) || ( function_exists( 'is_product' ) && is_product() ) ) {
+		return;
+	}
+	if ( ! bst_show_title() ) {
+		bst_page_crumbs_only();
 		return;
 	}
 	echo '<div class="bs-title-bar' . ( bst_mod( 'title_bar_image' ) ? ' has-image' : '' ) . '"><div class="bs-container bs-title-bar__inner">';
@@ -102,7 +106,11 @@ function bst_title_bar() {
  * Simple in-content title ("simple" style).
  */
 function bst_simple_title() {
-	if ( 'simple' !== bst_mod( 'title_bar_style' ) || ! bst_show_title() ) {
+	if ( 'simple' !== bst_mod( 'title_bar_style' ) ) {
+		return;
+	}
+	if ( ! bst_show_title() ) {
+		bst_page_crumbs_only();
 		return;
 	}
 	echo '<header class="bs-page-header">';
@@ -110,6 +118,23 @@ function bst_simple_title() {
 	echo '<h1 class="bs-page-title">' . wp_kses_post( bst_get_title() ) . '</h1>';
 	bst_archive_description();
 	echo '</header>';
+}
+
+/**
+ * Pages whose H1 is a Heading block (the title is off) can still show the breadcrumb trail above the content.
+ * Opt-in: Customizer > Page title & breadcrumbs. Never on the front page, the blank/full-width templates or
+ * cart, checkout and account pages.
+ */
+function bst_page_crumbs_only() {
+	if ( ! ( is_page() || ( function_exists( 'is_shop' ) && is_shop() ) ) || is_front_page() || ! bst_mod( 'breadcrumbs' ) || ! bst_mod( 'breadcrumbs_pages' ) || is_page_template( array( 'templates/full-width.php', 'templates/blank.php' ) ) || '1' === bst_post_option( 'hide_title' ) ) {
+		return;
+	}
+	if ( function_exists( 'is_woocommerce' ) && ( is_cart() || is_checkout() || is_account_page() ) ) {
+		return;
+	}
+	echo '<div class="bs-page-crumbs bs-container">';
+	bst_breadcrumbs();
+	echo '</div>';
 }
 
 function bst_archive_description() {
@@ -128,15 +153,22 @@ function bst_breadcrumbs() {
 	if ( ! bst_mod( 'breadcrumbs' ) || is_front_page() ) {
 		return;
 	}
+	// An SEO plugin's breadcrumb module can be switched off and then prints nothing: fall back to the theme's own trail.
 	if ( function_exists( 'rank_math_the_breadcrumbs' ) ) {
-		echo '<div class="bs-breadcrumbs">';
+		ob_start();
 		rank_math_the_breadcrumbs();
-		echo '</div>';
-		return;
+		$seo_trail = trim( ob_get_clean() );
+		if ( '' !== $seo_trail ) {
+			echo '<div class="bs-breadcrumbs">' . $seo_trail . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return;
+		}
 	}
 	if ( function_exists( 'yoast_breadcrumb' ) ) {
-		yoast_breadcrumb( '<div class="bs-breadcrumbs">', '</div>' );
-		return;
+		$seo_trail = trim( (string) yoast_breadcrumb( '<div class="bs-breadcrumbs">', '</div>', false ) );
+		if ( '' !== $seo_trail ) {
+			echo $seo_trail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return;
+		}
 	}
 	if ( function_exists( 'woocommerce_breadcrumb' ) && function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
 		woocommerce_breadcrumb( array( 'wrap_before' => '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">', 'wrap_after' => '</nav>', 'delimiter' => '<span class="bs-breadcrumbs__sep">/</span>' ) );

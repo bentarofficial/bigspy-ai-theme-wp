@@ -127,6 +127,7 @@ function bst_defaults() {
 		'title_bar_color'        => '#111827',
 		'title_bar_image'        => '',
 		'breadcrumbs'            => true,
+		'breadcrumbs_pages'      => false,
 
 		// Blog.
 		'blog_layout'            => 'grid',

@@ -216,6 +216,7 @@ try {
 	$dir = bst_category_directory_html();
 	bst_test( '' === $dir || ( str_contains( $dir, 'bst-catdir__nav' ) && str_contains( $dir, 'bst-catdir__section' ) ), 'listing: category directory renders navigation and sections' );
 	bst_test( 'rand' === bst_category_featured_order(), 'listing: Categories Featured changes order on every load by default' );
+	bst_test( do_shortcode( '[bigspy_category_directory]' ) === $dir, 'listing: [bigspy_category_directory] places the directory under a hero' );
 	$hs = do_shortcode( '[bigspy_home_sponsor]' );
 	bst_test( '' === $hs || ( str_contains( $hs, 'data-bst-sponsored="0"' ) && str_contains( $hs, 'data-context="home"' ) ), 'listing: homepage Sponsored-by brand joins the rotation' );
 	$bar = bst_shop_toolbar_html();

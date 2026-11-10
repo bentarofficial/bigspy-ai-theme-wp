@@ -71,6 +71,14 @@ add_action(
 		if ( ! get_option( 'bst_listing_auto_on' ) && false !== get_option( 'theme_mods_bigspy-ai-list', false ) && class_exists( 'WooCommerce' ) ) {
 			update_option( 'bst_listing_auto_on', 1, false );
 			bst_feature_set( 'listing', true );
+			// Category and listing URLs need fresh rewrite rules, and a page cache can hold 404s from before the switch.
+			add_action(
+				'shutdown',
+				function () {
+					flush_rewrite_rules( false );
+					do_action( 'litespeed_purge_all' );
+				}
+			);
 		}
 	}
 );

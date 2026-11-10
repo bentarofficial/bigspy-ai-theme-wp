@@ -27,6 +27,13 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **G-124 Cổng lint:** `tools/lint.py` chạy trong release.py và build-theme.py (không đổi sản phẩm).
 - **Khi phát hành cần bổ sung:** không cần.
 
+- **Yêu cầu/tính năng:** G-89 (chuyển bigspyai.com sang theme mới): các lỗ hổng tìm thấy khi so site nháp (theme cũ) với site thật.
+- **Đã thay đổi:** `inc/template-tags.php` (breadcrumb: khi Rank Math/Yoast tắt mô-đun breadcrumb và không in gì thì dùng chuỗi breadcrumb của theme thay vì để ô trống; trang tắt H1 có thể vẫn hiện breadcrumb, `bst_page_crumbs_only`), tuỳ chọn Customizer "Show breadcrumbs on pages whose H1 is off" (`breadcrumbs_pages`, mặc định tắt), shortcode `[bigspy_sponsored_card]` (một thẻ Sponsored xoay vòng cho hero) và `[bigspy_category_directory]` (đặt thư mục danh mục sau hero của trang Categories), `assets/css/listing.css` (Key features thành ô viền như theme cũ), `inc/features.php` (khi chuyển từ BIGSPY AI List: làm mới rewrite và xoá cache LiteSpeed sau khi chuyển).
+- **Kiểm thử:** features-check đạt (2 test mới: thẻ Sponsored, breadcrumb dự phòng); woo-check đạt (1 test mới: shortcode thư mục danh mục). Chưa xem breadcrumb, ô Key features và thẻ Sponsored trên bigspyai.com vì bản 1.86.1 đang cài chưa có các thay đổi này.
+- **Khi phát hành cần bổ sung:** Có gì mới: "Breadcrumb có dự phòng khi mô-đun breadcrumb của SEO plugin tắt; tuỳ chọn breadcrumb cho trang tắt H1; shortcode thẻ Sponsored và thư mục danh mục cho hero; Key features dạng ô". Lưu ý khi chuyển từ BIGSPY AI List: nếu site có LiteSpeed, sau khi chuyển nên lưu lại Permalinks và Purge All.
+- **Git:** `feature/ai-designer`, xem commit trong HANDOFF.
+- **Trạng thái:** chờ owner yêu cầu phát hành.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

@@ -437,6 +437,16 @@ Broken line" );
 	$slot = bst_sponsored_slot( 0, 'single' );
 	bst_test( false !== strpos( $slot, 'rel="sponsored nofollow noopener"' ) && false !== strpos( $slot, 'data-bst-sponsored-pool' ) && false !== strpos( $slot, 'Go →' ), 'sponsored: slot html with pool' );
 	bst_test( 1 === substr_count( do_shortcode( '[bigspy_sponsored_grid]' ), 'class="bst-sponsored"' ), 'sponsored: [bigspy_sponsored_grid] shortcode' );
+	bst_test( 1 === substr_count( do_shortcode( '[bigspy_sponsored_card]' ), 'class="bst-sponsored"' ), 'sponsored: [bigspy_sponsored_card] one card for page heroes' );
+	// A Rank Math breadcrumb module that is switched off prints nothing: the theme's own trail must show instead.
+	if ( ! function_exists( 'rank_math_the_breadcrumbs' ) ) {
+		function rank_math_the_breadcrumbs() {} // phpcs:ignore
+	}
+	ob_start();
+	bst_breadcrumbs();
+	$crumbs = ob_get_clean();
+	bst_test( false !== strpos( $crumbs, '<nav class="bs-breadcrumbs"' ) && false !== strpos( $crumbs, 'Home' ), 'breadcrumbs: theme trail when the SEO plugin prints nothing' );
+	bst_test( false === bst_mod( 'breadcrumbs_pages' ) || ! bst_mod( 'breadcrumbs_pages' ), 'breadcrumbs: pages without an H1 stay as before by default' );
 	bst_toggle_listing_ad( $plain );
 	$after = get_option( 'bigspy_categories_promotions' );
 	bst_test( '' === get_post_meta( $plain, '_bigspy_ad', true ) && 5 === $after['rotation_version'] && 'Go →' === $after['button_text'], 'sponsored: AD toggle refreshes rotation, keeps settings' );

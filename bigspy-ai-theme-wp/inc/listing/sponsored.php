@@ -137,6 +137,12 @@ function bst_sponsored_pool_html() {
 	return '<script type="application/json" data-bst-sponsored-pool>' . wp_json_encode( $data, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
 }
 
+/** [bigspy_sponsored_card]: one rotating Sponsored card, for page heroes (the old hero's Sponsored box). */
+function bst_sponsored_card_shortcode() {
+	return bst_sponsored_slot( 0, 'shortcode' );
+}
+add_shortcode( 'bigspy_sponsored_card', 'bst_sponsored_card_shortcode' );
+
 /** [bigspy_sponsored_grid]: up to six rotating Sponsored cards (name kept from the old theme). */
 function bst_sponsored_grid() {
 	$count = min( 6, count( bst_sponsored_items() ) );
