@@ -79,6 +79,7 @@ if ( $image ) {
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => $classes, 'style' => $style ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="bs-banner__bg" aria-hidden="true"><?php echo $image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+	<?php echo bst_code_bg( $a, 'banner' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<?php if ( $overlay ) : ?>
 		<div class="bs-banner__overlay" style="<?php echo esc_attr( 'background:' . $overlay . ';opacity:' . ( bst_block_num( $a, 'overlayOpacity', 35, 0, 100 ) / 100 ) ); ?>" aria-hidden="true"></div>
 	<?php endif; ?>

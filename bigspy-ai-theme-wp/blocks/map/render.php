@@ -15,9 +15,7 @@ if ( '' !== $embed_raw ) {
 		$embed_raw = $m[1];
 	}
 	$embed_raw = html_entity_decode( $embed_raw, ENT_QUOTES );
-	if ( preg_match( '#^https://(www\.)?google\.[a-z.]+/maps/embed\?#i', $embed_raw ) || preg_match( '#^https://maps\.google\.[a-z.]+/maps\?.*output=embed#i', $embed_raw ) ) {
-		$embed_src = $embed_raw;
-	}
+	$embed_src = bst_map_embed_url( $embed_raw );
 }
 $address = trim( wp_strip_all_tags( (string) ( $a['address'] ?? '' ) ) );
 $lat     = is_numeric( $a['lat'] ?? '' ) ? (float) $a['lat'] : null;
@@ -64,5 +62,5 @@ $style = bst_style_vars(
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
-	<iframe src="<?php echo esc_url( $src ); ?>" title="<?php echo esc_attr( $address ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+	<iframe src="<?php echo esc_url( $src ); ?>" title="<?php echo esc_attr( '' !== $address ? $address : __( 'Map', 'bigspy-ai-theme-wp' ) ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 </div>

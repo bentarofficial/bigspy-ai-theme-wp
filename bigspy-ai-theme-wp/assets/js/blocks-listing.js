@@ -66,17 +66,90 @@
 		alignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) },
 		showWatermark: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
-		sponsoredPosition: { between: __('Between rows', T), top: __('Above the grid', T) }
+		sponsoredPosition: { between: __('Between rows', T), top: __('Above the grid', T) },
+		displayMode: { grid: __('Grid', T), slider: __('Slider (one row with arrows)', T) },
+		displayLocation: { normal: __('Page content', T), 'homepage-sidebar': __('Sidebar (compact)', T) },
+		ctaPosition: { bottom: __('Under the text', T), top: __('Beside the title', T) },
+		ctaAlignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) },
+		seeMoreAlignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) },
+		viewMoreBehavior: { redirect: __('Open a page', T), load: __('Load more here', T) },
+		viewMoreDestination: { automatic: __('Automatic', T), listings: __('Listings page', T), featured: __('Featured page', T), popular: __('Popular page', T), categories: __('Categories page', T), blog: __('Blog page', T), custom: __('Custom URL', T) },
+		blogLayout: { cards: __('Cards', T), compact: __('Compact rows', T), titles: __('Numbered titles', T) },
+		categoryHoverShadow: { none: __('None', T), soft: __('Soft', T), medium: __('Medium', T), strong: __('Strong', T) }
 	};
 	var LABELS = {
 		columnsDesktop: __('Columns – desktop', T), columnsTablet: __('Columns – tablet', T), columnsMobile: __('Columns – mobile', T),
 		limit: __('Number of listings (0 = all)', T), count: __('Number of items', T), categoryId: __('Category ID (0 = all)', T), parent: __('Only children of category ID', T),
 		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
 		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
-		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T)
+		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
+		elementType: __('Show', T), displayMode: __('Display', T), displayLocation: __('Placed in', T), gap: __('Gap between items (px)', T), relatedContextId: __('Related to listing ID (0 = current)', T),
+		ctaPosition: __('Visit button position', T), ctaAlignment: __('Visit button alignment', T),
+		showViewMore: __('View more', T), viewMoreText: __('View more text', T), viewMoreBehavior: __('When clicked', T), viewMoreDestination: __('Go to', T), viewMoreUrl: __('Custom URL', T), seeMoreAlignment: __('View more alignment', T),
+		blogLayout: __('Layout', T), blogCategoryId: __('Post category ID (0 = all)', T), blogExcerptWords: __('Excerpt words', T), blogShowViewMore: __('View more', T), blogViewMoreText: __('View more text', T),
+		categoryCount: __('Number of categories', T), categoryColumnsDesktop: __('Columns – desktop', T), categoryColumnsTablet: __('Columns – tablet', T), categoryColumnsMobile: __('Columns – mobile', T),
+		categoryShowViewMore: __('View all link', T), categoryViewMoreText: __('View all text', T), categoryBorderEnabled: __('Border', T), categoryBorderWidth: __('Border width (px)', T), categoryBorderColor: __('Border color', T), categoryBorderRadius: __('Corner radius (px)', T),
+		categoryHoverEnabled: __('Hover effect', T), categoryHoverBorderWidth: __('Hover border width (px)', T), categoryHoverBorderColor: __('Hover border color', T), categoryHoverLift: __('Hover lift (px)', T), categoryHoverImageZoom: __('Hover image zoom (1–1.3)', T), categoryHoverShadow: __('Hover shadow', T), categoryHoverTransition: __('Hover speed (ms)', T)
 	};
 	function label(key) {
 		return LABELS[key] || key.replace(/^show/, '').replace(/([A-Z])/g, ' $1').replace(/^./, function (s) { return s.toUpperCase(); }).trim();
+	}
+
+	/* Listing elements: options in groups, each shown only for the content types it applies to. */
+	var LISTINGS = ['featured', 'latest', 'popular', 'related', 'listing_grid'];
+	var PANELS = {
+		'bigspy/elements': [
+			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'blogCategoryId', 'displayLocation'] },
+			{ title: __('Layout', T), types: LISTINGS.concat(['blog']), keys: ['displayMode', 'layout', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'gap'] },
+			{ title: __('Card parts', T), types: LISTINGS, keys: ['showLogo', 'showDescription', 'showCategory', 'showPricing', 'showRating', 'showTags', 'showFeatured', 'showWatermark', 'titleLines', 'descriptionLines', 'showCTA', 'ctaPosition', 'ctaAlignment'] },
+			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery'] },
+			{ title: __('Blog posts', T), types: ['blog'], keys: ['blogLayout', 'blogShowImage', 'blogShowDate', 'blogShowAuthor', 'blogShowCategory', 'blogShowExcerpt', 'blogExcerptWords', 'blogShowNumber'] },
+			{ title: __('Categories', T), types: ['categories'], keys: ['categoryCount', 'categoryColumnsDesktop', 'categoryColumnsTablet', 'categoryColumnsMobile', 'categoryShowImage', 'categoryShowCount', 'categoryShowDescription'] },
+			{ title: __('Category style', T), types: ['categories'], keys: ['categoryBorderEnabled', 'categoryBorderWidth', 'categoryBorderColor', 'categoryBorderRadius', 'categoryHoverEnabled', 'categoryHoverBorderWidth', 'categoryHoverBorderColor', 'categoryHoverLift', 'categoryHoverImageZoom', 'categoryHoverShadow', 'categoryHoverTransition'] },
+			{ title: __('View more', T), keys: ['showViewMore', 'blogShowViewMore', 'categoryShowViewMore', 'viewMoreText', 'blogViewMoreText', 'categoryViewMoreText', 'viewMoreBehavior', 'viewMoreDestination', 'viewMoreUrl', 'seeMoreAlignment'] }
+		]
+	};
+
+	/* Options that only make sense for some content types or with other settings. */
+	function relevant(k, a) {
+		var t = a.elementType || 'featured';
+		var list = LISTINGS.indexOf(t) > -1;
+		var blogMore = t === 'blog' && a.blogShowViewMore !== false;
+		var listMore = list && a.showViewMore !== false;
+		var rules = {
+			categoryId: list && t !== 'related', orderBy: list && t !== 'popular', order: list && t !== 'popular', relatedContextId: t === 'related',
+			blogCategoryId: t === 'blog', displayLocation: t === 'blog', count: t !== 'categories', startPosition: t !== 'categories',
+			layout: list, displayMode: list, ctaPosition: !!a.showCTA, ctaAlignment: !!a.showCTA && a.ctaPosition !== 'top',
+			sponsoredPosition: a.showSponsored !== false && a.displayMode !== 'slider',
+			sponsoredEvery: a.showSponsored !== false && a.displayMode !== 'slider' && a.sponsoredPosition !== 'top',
+			blogExcerptWords: !!a.blogShowExcerpt, blogShowNumber: a.blogLayout === 'titles' || a.displayLocation === 'homepage-sidebar',
+			showViewMore: list, viewMoreText: listMore, blogShowViewMore: t === 'blog', blogViewMoreText: blogMore,
+			categoryShowViewMore: t === 'categories', categoryViewMoreText: t === 'categories' && a.categoryShowViewMore !== false,
+			viewMoreBehavior: listMore || blogMore,
+			viewMoreDestination: (listMore || blogMore) && a.viewMoreBehavior !== 'load',
+			viewMoreUrl: (listMore || blogMore) && a.viewMoreDestination === 'custom' && a.viewMoreBehavior !== 'load',
+			seeMoreAlignment: listMore || blogMore || (t === 'categories' && a.categoryShowViewMore !== false),
+			categoryBorderWidth: a.categoryBorderEnabled !== false, categoryBorderColor: a.categoryBorderEnabled !== false
+		};
+		if (/^categoryHover/.test(k) && k !== 'categoryHoverEnabled') { return a.categoryHoverEnabled !== false; }
+		return Object.prototype.hasOwnProperty.call(rules, k) ? rules[k] : true;
+	}
+
+	function control(k, a, attrs, props) {
+		var set = function (v) { var o = {}; o[k] = v; props.setAttributes(o); };
+		var common = { key: k, label: label(k), __nextHasNoMarginBottom: true };
+		if (attrs[k].type === 'boolean') { return el(c.ToggleControl, Object.assign(common, { checked: !!a[k], onChange: set })); }
+		if (attrs[k].type === 'number') {
+			var isFloat = String(attrs[k].default).indexOf('.') > -1;
+			return el(c.TextControl, Object.assign(common, { type: 'number', step: isFloat ? 0.01 : 1, value: a[k], onChange: function (v) { set(isFloat ? (parseFloat(v) || 0) : (parseInt(v, 10) || 0)); } }));
+		}
+		if (CHOICES[k]) {
+			return el(c.SelectControl, Object.assign(common, { value: a[k], onChange: set, options: Object.keys(CHOICES[k]).map(function (v) { return { value: v, label: CHOICES[k][v] }; }) }));
+		}
+		if (/Color$/.test(k)) {
+			return el(c.BaseControl, { key: k, label: label(k), __nextHasNoMarginBottom: true }, el(c.ColorPalette, { value: a[k] || undefined, onChange: function (v) { set(v || ''); }, clearable: true }));
+		}
+		return el(c.TextControl, Object.assign(common, { value: a[k], onChange: set }));
 	}
 
 	function ssrBlock(name) {
@@ -84,18 +157,18 @@
 			edit: function (props) {
 				var a = props.attributes;
 				var attrs = wp.blocks.getBlockType(name).attributes;
-				var rows = Object.keys(attrs).filter(function (k) { return !/^(bs|bst|mx|className|lock|metadata|anchor)/.test(k); }).map(function (k) {
-					var set = function (v) { var o = {}; o[k] = v; props.setAttributes(o); };
-					var common = { key: k, label: label(k), __nextHasNoMarginBottom: true };
-					if (attrs[k].type === 'boolean') { return el(c.ToggleControl, Object.assign(common, { checked: !!a[k], onChange: set })); }
-					if (attrs[k].type === 'number') { return el(c.TextControl, Object.assign(common, { type: 'number', value: a[k], onChange: function (v) { set(parseInt(v, 10) || 0); } })); }
-					if (CHOICES[k]) {
-						return el(c.SelectControl, Object.assign(common, { value: a[k], onChange: set, options: Object.keys(CHOICES[k]).map(function (v) { return { value: v, label: CHOICES[k][v] }; }) }));
-					}
-					return el(c.TextControl, Object.assign(common, { value: a[k], onChange: set }));
-				});
+				var panels;
+				if (PANELS[name]) {
+					var type = a.elementType || 'featured';
+					panels = PANELS[name].filter(function (p) { return !p.types || p.types.indexOf(type) > -1; }).map(function (p, i) {
+						var rows = p.keys.filter(function (k) { return attrs[k] && relevant(k, a); }).map(function (k) { return control(k, a, attrs, props); });
+						return rows.length ? el(c.PanelBody, { key: p.title, title: p.title, initialOpen: i === 0 }, rows) : null;
+					});
+				} else {
+					panels = el(c.PanelBody, { title: __('Settings', T) }, Object.keys(attrs).filter(function (k) { return !/^(bs|bst|mx|className|lock|metadata|anchor)/.test(k); }).map(function (k) { return control(k, a, attrs, props); }));
+				}
 				return el(wp.element.Fragment, null,
-					el(Inspector, null, el(c.PanelBody, { title: __('Settings', T) }, rows)),
+					el(Inspector, null, panels),
 					el('div', be.useBlockProps(), el(wp.serverSideRender, {
 						block: name,
 						attributes: a,

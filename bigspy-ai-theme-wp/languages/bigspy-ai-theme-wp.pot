@@ -11520,3 +11520,72 @@ msgstr ""
 msgid "%s listings found"
 msgstr ""
 
+msgid "1.87.0: Section and Banner get animated code backgrounds with no image or video: animated gradient, aurora, floating blobs, moving grid, drifting dots, light rays, particles network, flowing lines and starfield, or your own scoped CSS and animated SVG, with palette colors, speed, density and a mobile switch. Listing elements regains the options of the old BIGSPY AI List block (View more or Load more, slider, blog layouts, category grid styles), Icon List edits each item link from the toolbar, breadcrumbs fall back when the SEO plugin breadcrumb is off, and live search, Map, Lottie and the updater are safer and faster."
+msgstr ""
+
+msgid "Code background (animated)"
+msgstr ""
+
+msgid "Code background colors"
+msgstr ""
+
+msgid "Animated gradient"
+msgstr ""
+
+msgid "Aurora"
+msgstr ""
+
+msgid "Floating blobs (mesh)"
+msgstr ""
+
+msgid "Moving grid (perspective)"
+msgstr ""
+
+msgid "Drifting dots"
+msgstr ""
+
+msgid "Rotating light rays"
+msgstr ""
+
+msgid "Particles network (canvas)"
+msgstr ""
+
+msgid "Flowing lines (canvas)"
+msgstr ""
+
+msgid "Starfield (canvas)"
+msgstr ""
+
+msgid "Custom code (CSS + HTML/SVG)"
+msgstr ""
+
+msgid "Drawn with code, no image or video needed. Sits above the background image and below the overlay. Stops animating for visitors who prefer reduced motion."
+msgstr ""
+
+msgid "Speed (%)"
+msgstr ""
+
+msgid "Density"
+msgstr ""
+
+msgid "Layer opacity (%)"
+msgstr ""
+
+msgid "Scoped to this layer: use :scope for the layer itself and @keyframes for animation. Colors: var(--cbg-c1), var(--cbg-c2), var(--cbg-c3)."
+msgstr ""
+
+msgid "Custom HTML / SVG"
+msgstr ""
+
+msgid "HTML and animated SVG (<animate>) are allowed; scripts and event handlers are removed."
+msgstr ""
+
+msgid "Color 1"
+msgstr ""
+
+msgid "Color 2"
+msgstr ""
+
+msgid "Color 3"
+msgstr ""
+

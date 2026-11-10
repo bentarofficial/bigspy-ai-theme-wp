@@ -693,6 +693,84 @@
 			})
 		);
 	}
+
+	/* Code background (animated CSS / canvas / custom code), shared by Section and Banner. */
+	var CODE_BG = {
+		'': __('None', 'bigspy-ai-theme-wp'),
+		gradient: __('Animated gradient', 'bigspy-ai-theme-wp'),
+		aurora: __('Aurora', 'bigspy-ai-theme-wp'),
+		blobs: __('Floating blobs (mesh)', 'bigspy-ai-theme-wp'),
+		grid: __('Moving grid (perspective)', 'bigspy-ai-theme-wp'),
+		dots: __('Drifting dots', 'bigspy-ai-theme-wp'),
+		rays: __('Rotating light rays', 'bigspy-ai-theme-wp'),
+		particles: __('Particles network (canvas)', 'bigspy-ai-theme-wp'),
+		waves: __('Flowing lines (canvas)', 'bigspy-ai-theme-wp'),
+		stars: __('Starfield (canvas)', 'bigspy-ai-theme-wp'),
+		custom: __('Custom code (CSS + HTML/SVG)', 'bigspy-ai-theme-wp')
+	};
+	var CODE_BG_CANVAS = ['particles', 'waves', 'stars'];
+	function codeBgPanels(a, props, bind) {
+		var set = function (k) { return function (v) { var o = {}; o[k] = v || ''; props.setAttributes(o); }; };
+		var on = !!a.codeBg;
+		var mono = { fontFamily: 'monospace', fontSize: 12 };
+		return [
+			el(Panel, { key: 'cbg', title: __('Code background (animated)', 'bigspy-ai-theme-wp'), initialOpen: on },
+				el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), help: __('Drawn with code, no image or video needed. Sits above the background image and below the overlay. Stops animating for visitors who prefer reduced motion.', 'bigspy-ai-theme-wp'), options: CODE_BG }, bind('codeBg'))),
+				on && a.codeBg !== 'custom' ? el(Range, Object.assign({ label: __('Speed (%)', 'bigspy-ai-theme-wp'), min: 10, max: 400, reset: 100 }, bind('codeBgSpeed'))) : null,
+				on && ['grid', 'dots', 'particles', 'waves', 'stars'].indexOf(a.codeBg) !== -1 ? el(Range, Object.assign({ label: __('Density', 'bigspy-ai-theme-wp'), min: 5, max: 100, reset: 50 }, bind('codeBgDensity'))) : null,
+				on ? el(Range, Object.assign({ label: __('Layer opacity (%)', 'bigspy-ai-theme-wp'), max: 100, reset: 100 }, bind('codeBgOpacity'))) : null,
+				on ? el(Toggle, Object.assign({ label: __('Show on mobile', 'bigspy-ai-theme-wp') }, bind('codeBgMobile', true))) : null,
+				a.codeBg === 'custom' ? el(c.TextareaControl, { label: __('Custom CSS', 'bigspy-ai-theme-wp'), help: __('Scoped to this layer: use :scope for the layer itself and @keyframes for animation. Colors: var(--cbg-c1), var(--cbg-c2), var(--cbg-c3).', 'bigspy-ai-theme-wp'), rows: 8, value: a.codeBgCss || '', onChange: set('codeBgCss'), style: mono }) : null,
+				a.codeBg === 'custom' ? el(c.TextareaControl, { label: __('Custom HTML / SVG', 'bigspy-ai-theme-wp'), help: __('HTML and animated SVG (<animate>) are allowed; scripts and event handlers are removed.', 'bigspy-ai-theme-wp'), rows: 6, value: a.codeBgHtml || '', onChange: set('codeBgHtml'), style: mono }) : null
+			),
+			on ? el(B.ColorPanel, { key: 'cbgc', title: __('Code background colors', 'bigspy-ai-theme-wp'), initialOpen: false, settings: [
+				{ label: __('Color 1', 'bigspy-ai-theme-wp'), value: a.codeBgC1, onChange: set('codeBgC1') },
+				{ label: __('Color 2', 'bigspy-ai-theme-wp'), value: a.codeBgC2, onChange: set('codeBgC2') },
+				{ label: __('Color 3', 'bigspy-ai-theme-wp'), value: a.codeBgC3, onChange: set('codeBgC3') }
+			] }) : null
+		];
+	}
+	function codeBgLayer(a, block, id) {
+		if (!a.codeBg || !CODE_BG[a.codeBg]) {
+			return null;
+		}
+		var uid = 'bs-cbg-' + id;
+		var st = { '--cbg-speed': String(Math.round(100 / (a.codeBgSpeed || 100) * 1000) / 1000), '--cbg-density': String(a.codeBgDensity || 50) };
+		if (a.codeBgC1) { st['--cbg-c1'] = a.codeBgC1; }
+		if (a.codeBgC2) { st['--cbg-c2'] = a.codeBgC2; }
+		if (a.codeBgC3) { st['--cbg-c3'] = a.codeBgC3; }
+		if (a.codeBgOpacity != null && a.codeBgOpacity !== 100) { st.opacity = a.codeBgOpacity / 100; }
+		var p = { key: a.codeBg, id: uid, className: 'bs-codebg bs-codebg--' + a.codeBg + ' bs-' + block + '__codebg', style: st, 'aria-hidden': true };
+		if (CODE_BG_CANVAS.indexOf(a.codeBg) !== -1) {
+			p['data-bs-codebg'] = a.codeBg;
+			p['data-speed'] = (a.codeBgSpeed || 100) / 100;
+			p['data-density'] = a.codeBgDensity || 50;
+			/* Start the painter inside the editor iframe as soon as the node exists. */
+			p.ref = function (n) {
+				var w = n && n.ownerDocument && n.ownerDocument.defaultView;
+				var tries = 0;
+				(function go() {
+					if (!w || !n.isConnected) {
+						return;
+					}
+					if (w.bstCodeBg) {
+						w.bstCodeBg.scan(n.parentNode);
+					} else if (tries++ < 50) {
+						setTimeout(go, 200); /* iframe scripts may load after the blocks render */
+					}
+				})();
+			};
+			return el('div', p, el('canvas'));
+		}
+		if (a.codeBg === 'custom') {
+			var css = String(a.codeBgCss || '').replace(/[<>]/g, '').replace(/@import[^;]*;?|expression\s*\(|javascript\s*:/gi, '');
+			var html = String(a.codeBgHtml || '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\son\w+\s*=/gi, ' data-x=');
+			p.dangerouslySetInnerHTML = { __html: (css ? '<style>@scope (#' + uid + ') {' + css + '}</style>' : '') + html };
+			return el('div', p);
+		}
+		return el('div', p, el('i'), el('i'), el('i'));
+	}
+
 	register('section', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
@@ -756,6 +834,7 @@
 					el(Text, Object.assign({ label: __('YouTube URL or .mp4/.webm file URL', 'bigspy-ai-theme-wp'), help: __('Plays muted and looped behind the content. Set a background image too as the poster/fallback.', 'bigspy-ai-theme-wp') }, bind('videoUrl'))),
 					a.videoUrl ? el(Toggle, Object.assign({ label: __('Also play on mobile', 'bigspy-ai-theme-wp') }, bind('videoMobile', true))) : null
 				),
+				codeBgPanels(a, props, bind),
 				shapePanel(a, props, bind, 'Top', __('Shape divider – top', 'bigspy-ai-theme-wp')),
 				shapePanel(a, props, bind, 'Bottom', __('Shape divider – bottom', 'bigspy-ai-theme-wp'))
 			),
@@ -763,6 +842,7 @@
 				shapeDivider(a, 'Top', 'top'),
 				shapeDivider(a, 'Bottom', 'bottom'),
 				a.bgImage ? el('div', { className: 'bs-section__bg', style: { backgroundImage: 'url(' + a.bgImage + ')', backgroundSize: a.bgSize, backgroundPosition: a.bgPosition, filter: a.bgBrightness != null && a.bgBrightness !== 100 ? 'brightness(' + a.bgBrightness / 100 + ')' : undefined } }) : null,
+				codeBgLayer(a, 'section', props.clientId),
 				a.bgImage && a.bgBlur ? el('div', { className: 'bs-section__blur', style: { '--bs-bg-blur': a.bgBlur + 'px' } }) : null,
 				a.overlayColor ? el('div', { className: 'bs-section__overlay', style: { background: a.overlayColor, opacity: a.overlayOpacity / 100 } }) : null,
 				el('div', innerProps)
@@ -1045,14 +1125,16 @@
 					el(Text, Object.assign({ label: __('Link the whole banner (URL)', 'bigspy-ai-theme-wp'), type: 'url' }, bind('link'))),
 					a.link ? el(Toggle, Object.assign({ label: __('Open in new tab', 'bigspy-ai-theme-wp') }, bind('linkNewTab', true))) : null
 				),
-				el(B.ColorPanel, { title: __('Overlay color', 'bigspy-ai-theme-wp'), settings: [{ label: __('Overlay', 'bigspy-ai-theme-wp'), value: a.overlayColor, onChange: function (v) { props.setAttributes({ overlayColor: v || '' }); } }] })
+				el(B.ColorPanel, { title: __('Overlay color', 'bigspy-ai-theme-wp'), settings: [{ label: __('Overlay', 'bigspy-ai-theme-wp'), value: a.overlayColor, onChange: function (v) { props.setAttributes({ overlayColor: v || '' }); } }] }),
+				codeBgPanels(a, props, bind)
 			),
 			el('div', blockProps,
 				el('div', { className: 'bs-banner__bg' },
 					a.imageUrl ? el('img', { className: 'bs-banner__img', src: a.imageUrl, alt: '', style: { objectPosition: a.focalX + '% ' + a.focalY + '%' } }) :
-						el(be.MediaPlaceholder, { icon: 'format-image', labels: { title: __('Banner image', 'bigspy-ai-theme-wp') }, accept: 'image/*', allowedTypes: ['image'], onSelect: function (m) { setImage({ id: m.id, url: m.url }); } })
+						a.codeBg ? null : el(be.MediaPlaceholder, { icon: 'format-image', labels: { title: __('Banner image', 'bigspy-ai-theme-wp') }, accept: 'image/*', allowedTypes: ['image'], onSelect: function (m) { setImage({ id: m.id, url: m.url }); } })
 				),
-				a.overlayColor && a.imageUrl ? el('div', { className: 'bs-banner__overlay', style: { background: a.overlayColor, opacity: a.overlayOpacity / 100 } }) : null,
+				codeBgLayer(a, 'banner', props.clientId),
+				a.overlayColor && (a.imageUrl || a.codeBg) ? el('div', { className: 'bs-banner__overlay', style: { background: a.overlayColor, opacity: a.overlayOpacity / 100 } }) : null,
 				el('div', { className: 'bs-banner__content' }, el('div', innerProps))
 			)
 		);
@@ -2358,7 +2440,7 @@
 			contentClassName: 'bst-icon-dropdown__content',
 			popoverProps: { placement: 'bottom-start' },
 			renderToggle: function (o) {
-				return el('button', { type: 'button', className: 'bs-icon-list__icon bst-icon-toggle', onClick: o.onToggle, 'aria-expanded': o.isOpen, title: __('Change icon', 'bigspy-ai-theme-wp') }, props.value ? el(B.Icon, { name: props.value, size: props.size }) : '+');
+				return el('button', { type: 'button', className: 'bs-icon-list__icon bst-icon-toggle', onClick: o.onToggle, 'aria-expanded': o.isOpen, title: __('Change icon', 'bigspy-ai-theme-wp') }, props.value ? el(B.Icon, { name: props.value, size: props.size }) : el('span', { className: 'bst-icon-toggle__empty' }, '+'));
 			},
 			renderContent: function () {
 				return el('div', { style: { padding: 8, width: 260 } }, el(B.IconPicker, { value: props.value, onChange: props.onChange }));
@@ -2385,11 +2467,34 @@
 			list.splice(after + 1, 0, { icon: icon, text: '', link: '' });
 			props.setAttributes({ items: list });
 		};
+		// The item being edited, so the toolbar link button edits that item's link.
+		var active = useState(-1);
+		var linkOpen = useState(false);
+		var current = active[0] > -1 && active[0] < items.length ? items[active[0]] : null;
+		var LinkUI = be.LinkControl || be.__experimentalLinkControl;
+		var linkButton = current ? el(c.ToolbarGroup, null,
+			el(c.ToolbarButton, {
+				icon: 'admin-links',
+				label: current.link ? __('Item link: ', 'bigspy-ai-theme-wp') + current.link : __('Link this item', 'bigspy-ai-theme-wp'),
+				isPressed: !!current.link,
+				onClick: function () { linkOpen[1](!linkOpen[0]); }
+			}),
+			linkOpen[0] ? el(c.Popover, { placement: 'bottom', onClose: function () { linkOpen[1](false); }, focusOnMount: 'firstElement' },
+				LinkUI ? el(LinkUI, {
+					value: { url: current.link || '' },
+					forceIsEditingLink: !current.link,
+					onChange: function (v) { setItem(active[0], 'link', (v && v.url) || ''); },
+					onRemove: function () { setItem(active[0], 'link', ''); linkOpen[1](false); },
+					settings: []
+				}) : el('div', { style: { padding: 12, width: 280 } }, el(c.TextControl, { label: __('Link', 'bigspy-ai-theme-wp'), value: current.link || '', placeholder: 'https://', onChange: function (v) { setItem(active[0], 'link', v); }, __nextHasNoMarginBottom: true }))
+			) : null
+		) : null;
 		var blockProps = useBlockProps({
 			className: 'bs-icon-list bs-icon-list--' + a.layout + ' bs-icon-list--align-' + a.align + (a.divider ? ' has-divider' : '') + (a.iconBg ? ' has-icon-bg' : ''),
 			style: styleVars({ '--bs-il-size': a.iconSize + 'px', '--bs-il-color': a.iconColor, '--bs-il-gap': a.gap + 'px', '--bs-il-cols': a.columns, '--bs-il-text': a.textSize ? a.textSize + 'px' : '' })
 		});
 		return el(Fragment, null,
+			props.isSelected ? el(be.BlockControls, null, linkButton) : null,
 			el(Inspector, null,
 				el(Panel, { title: __('List', 'bigspy-ai-theme-wp') },
 					el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: { vertical: __('Vertical', 'bigspy-ai-theme-wp'), inline: __('Inline (one line)', 'bigspy-ai-theme-wp'), columns: __('Columns', 'bigspy-ai-theme-wp') } }, bind('layout'))),
@@ -2410,8 +2515,8 @@
 			),
 			el('ul', blockProps,
 				items.map(function (it, i) {
-					return el('li', { key: i, className: 'bs-icon-list__item bst-il-item' },
-						el(IconDropdown, { value: it.icon, size: a.iconSize, onChange: function (v) { setItem(i, 'icon', v); } }),
+					return el('li', { key: i, className: 'bs-icon-list__item bst-il-item' + (it.link ? ' has-link' : '') + (i === active[0] && props.isSelected ? ' is-active' : ''), onFocus: function () { if (active[0] !== i) { active[1](i); linkOpen[1](false); } } },
+						it.icon || props.isSelected ? el(IconDropdown, { value: it.icon, size: a.iconSize, onChange: function (v) { setItem(i, 'icon', v); } }) : null,
 						el(RichText, {
 							tagName: 'span', className: 'bs-icon-list__text', value: it.text, placeholder: __('List item…', 'bigspy-ai-theme-wp'),
 							allowedFormats: ['core/bold', 'core/italic', 'core/link'],
@@ -2420,6 +2525,7 @@
 							__unstableOnSplitAtEnd: function () { add(i); },
 							onRemove: function () { remove(i); }
 						}),
+						props.isSelected && it.link ? el('span', { className: 'bst-il-linkmark', title: it.link }, el(c.Dashicon, { icon: 'admin-links', size: 14 })) : null,
 						props.isSelected ? el('button', { type: 'button', className: 'bst-il-remove', onClick: function () { remove(i); }, 'aria-label': __('Remove item', 'bigspy-ai-theme-wp') }, '×') : null
 					);
 				}),

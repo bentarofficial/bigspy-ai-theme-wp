@@ -115,6 +115,178 @@
 		"sponsoredEvery": {
 			"type": "number",
 			"default": 3
+		},
+		"displayLocation": {
+			"type": "string",
+			"default": "normal"
+		},
+		"displayMode": {
+			"type": "string",
+			"default": "grid"
+		},
+		"ctaPosition": {
+			"type": "string",
+			"default": "bottom"
+		},
+		"ctaAlignment": {
+			"type": "string",
+			"default": "right"
+		},
+		"seeMoreAlignment": {
+			"type": "string",
+			"default": "right"
+		},
+		"showViewMore": {
+			"type": "boolean",
+			"default": true
+		},
+		"viewMoreText": {
+			"type": "string",
+			"default": "View more →"
+		},
+		"viewMoreDestination": {
+			"type": "string",
+			"default": "automatic"
+		},
+		"blogShowImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"blogShowDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"blogShowExcerpt": {
+			"type": "boolean",
+			"default": false
+		},
+		"categoryCount": {
+			"type": "number",
+			"default": 24
+		},
+		"categoryShowCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"categoryShowImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"categoryShowDescription": {
+			"type": "boolean",
+			"default": false
+		},
+		"categoryColumnsDesktop": {
+			"type": "number",
+			"default": 5
+		},
+		"categoryColumnsTablet": {
+			"type": "number",
+			"default": 3
+		},
+		"categoryColumnsMobile": {
+			"type": "number",
+			"default": 2
+		},
+		"gap": {
+			"type": "number",
+			"default": 16
+		},
+		"categoryBorderEnabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"categoryBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"categoryBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"categoryBorderRadius": {
+			"type": "number",
+			"default": 14
+		},
+		"categoryHoverEnabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"categoryHoverBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"categoryHoverBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"categoryHoverLift": {
+			"type": "number",
+			"default": 2
+		},
+		"categoryHoverImageZoom": {
+			"type": "number",
+			"default": 1.02
+		},
+		"categoryHoverShadow": {
+			"type": "string",
+			"default": "soft"
+		},
+		"categoryHoverTransition": {
+			"type": "number",
+			"default": 200
+		},
+		"blogLayout": {
+			"type": "string",
+			"default": "cards"
+		},
+		"blogCategoryId": {
+			"type": "number",
+			"default": 0
+		},
+		"blogShowNumber": {
+			"type": "boolean",
+			"default": true
+		},
+		"blogShowAuthor": {
+			"type": "boolean",
+			"default": false
+		},
+		"blogShowCategory": {
+			"type": "boolean",
+			"default": false
+		},
+		"blogExcerptWords": {
+			"type": "number",
+			"default": 24
+		},
+		"blogShowViewMore": {
+			"type": "boolean",
+			"default": true
+		},
+		"blogViewMoreText": {
+			"type": "string",
+			"default": "Read more articles →"
+		},
+		"viewMoreBehavior": {
+			"type": "string",
+			"default": "redirect"
+		},
+		"relatedContextId": {
+			"type": "number",
+			"default": 0
+		},
+		"categoryShowViewMore": {
+			"type": "boolean",
+			"default": true
+		},
+		"categoryViewMoreText": {
+			"type": "string",
+			"default": "View all categories →"
+		},
+		"viewMoreUrl": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

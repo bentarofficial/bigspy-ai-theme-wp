@@ -20,7 +20,15 @@ $fixture = array(
 	'assets' => array( array( 'name' => 'bigspy-ai-theme-wp-9.9.9.zip', 'browser_download_url' => 'https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/download/v9.9.9/bigspy-ai-theme-wp-9.9.9.zip' ) ),
 );
 $GLOBALS['bst_release_fixture'] = $fixture;
+$GLOBALS['bst_style_fixture'] = "Theme Name: X
+Requires at least: 6.5
+Requires PHP: 99.0
+";
 add_filter( 'pre_http_request', function ( $pre, $args, $url ) {
+	if ( false !== strpos( $url, 'raw.githubusercontent.com/bentarofficial/bigspy-ai-theme-wp/' ) ) {
+		if ( null === $GLOBALS['bst_style_fixture'] ) { return array( 'response' => array( 'code' => 404, 'message' => 'Not Found' ), 'headers' => array(), 'body' => '', 'cookies' => array() ); }
+		return array( 'response' => array( 'code' => 200, 'message' => 'OK' ), 'headers' => array(), 'body' => $GLOBALS['bst_style_fixture'], 'cookies' => array() );
+	}
 	if ( false === strpos( $url, 'api.github.com/repos/bentarofficial/bigspy-ai-theme-wp/releases/latest' ) ) { return $pre; }
 	if ( null === $GLOBALS['bst_release_fixture'] ) { return new WP_Error( 'test_network', 'Offline' ); }
 	return array( 'response' => array( 'code' => 200, 'message' => 'OK' ), 'headers' => array(), 'body' => wp_json_encode( $GLOBALS['bst_release_fixture'] ), 'cookies' => array() );
@@ -29,6 +37,16 @@ add_filter( 'pre_http_request', function ( $pre, $args, $url ) {
 delete_transient( BST_UPDATE_CACHE );
 $release = bst_update_release();
 bst_updater_check( '9.9.9' === $release['version'], 'Release and asset accepted' );
+bst_updater_check( '99.0' === $release['requires_php'] && '6.5' === $release['requires'], 'Release reads Requires headers from style.css' );
+$GLOBALS['bst_style_fixture'] = null;
+delete_transient( BST_UPDATE_CACHE );
+$missing = bst_update_release();
+bst_updater_check( '9.9.9' === $missing['version'] && '' === $missing['requires_php'] && '' === $missing['requires'], 'Missing style.css leaves requirements empty but keeps the release' );
+$GLOBALS['bst_style_fixture'] = "Requires at least: 6.5
+Requires PHP: 99.0
+";
+delete_transient( BST_UPDATE_CACHE );
+bst_update_release();
 set_transient( BST_UPDATE_CACHE, array( 'version' => '1.73.3' ), 12 * HOUR_IN_SECONDS );
 bst_updater_check( '1.73.3' === bst_update_release()['version'], 'Automatic checks reuse the provider cache' );
 $GLOBALS['pagenow'] = 'update-core.php';
@@ -43,6 +61,7 @@ bst_updater_check( '9.9.9' === bst_update_release()['version'], 'Manual check di
 unset( $_GET['force-check'] );
 $transient = apply_filters( 'pre_set_site_transient_update_themes', (object) array( 'response' => array(), 'no_update' => array() ) );
 bst_updater_check( isset( $transient->response['bigspy-ai-theme-wp'] ), 'WordPress update offered' );
+bst_updater_check( '99.0' === ( $transient->response['bigspy-ai-theme-wp']['requires_php'] ?? '' ), 'Update response declares requires_php' );
 $info = apply_filters( 'themes_api', false, 'theme_information', (object) array( 'slug' => 'bigspy-ai-theme-wp' ) );
 bst_updater_check( is_object( $info ) && false !== strpos( $info->sections['changelog'], 'Fixed one item' ), 'Release notes displayed' );
 ob_start();

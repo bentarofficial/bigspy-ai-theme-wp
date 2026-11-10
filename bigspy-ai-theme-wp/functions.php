@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.86.1' );
+define( 'BST_VERSION', '1.87.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -52,6 +52,7 @@ $bst_includes = array(
 	'inc/form-native.php',
 	'inc/form-migrate.php',
 	'inc/block-shapes.php',
+	'inc/code-bg.php',
 	'inc/block-manager.php',
 	'inc/colorful.php',
 	'inc/forms.php',

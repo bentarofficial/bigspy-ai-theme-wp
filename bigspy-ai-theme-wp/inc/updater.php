@@ -59,7 +59,19 @@ function bst_update_release() {
 		set_transient( BST_UPDATE_CACHE, array(), HOUR_IN_SECONDS );
 		return array();
 	}
-	$release = array( 'version' => $version, 'package' => $package, 'url' => esc_url_raw( $data['html_url'] ?? '' ), 'body' => (string) ( $data['body'] ?? '' ) );
+	// Read the tag's style.css header for the minimum WordPress/PHP versions; a failed fetch leaves them empty.
+	$requires = array( 'wp' => '', 'php' => '' );
+	$head     = wp_remote_get( 'https://raw.githubusercontent.com/bentarofficial/bigspy-ai-theme-wp/' . rawurlencode( $data['tag_name'] ) . '/bigspy-ai-theme-wp/style.css', array( 'timeout' => 10, 'limit_response_size' => 8 * KB_IN_BYTES ) );
+	if ( ! is_wp_error( $head ) && 200 === wp_remote_retrieve_response_code( $head ) ) {
+		$text = (string) wp_remote_retrieve_body( $head );
+		if ( preg_match( '/^Requires at least:\s*([\d.]+)/mi', $text, $m ) ) {
+			$requires['wp'] = $m[1];
+		}
+		if ( preg_match( '/^Requires PHP:\s*([\d.]+)/mi', $text, $m ) ) {
+			$requires['php'] = $m[1];
+		}
+	}
+	$release = array( 'version' => $version, 'package' => $package, 'url' => esc_url_raw( $data['html_url'] ?? '' ), 'body' => (string) ( $data['body'] ?? '' ), 'requires' => $requires['wp'], 'requires_php' => $requires['php'] );
 	set_transient( BST_UPDATE_CACHE, $release, 12 * HOUR_IN_SECONDS );
 	return $release;
 }
@@ -72,6 +84,11 @@ add_filter( 'pre_set_site_transient_update_themes', function ( $transient ) {
 	$theme = wp_get_theme( BST_UPDATE_SLUG );
 	if ( $release && $theme->exists() && version_compare( $release['version'], $theme->get( 'Version' ), '>' ) ) {
 		$transient->response[ BST_UPDATE_SLUG ] = array( 'theme' => BST_UPDATE_SLUG, 'new_version' => $release['version'], 'url' => $release['url'], 'package' => $release['package'] );
+		foreach ( array( 'requires', 'requires_php' ) as $key ) {
+			if ( ! empty( $release[ $key ] ) ) {
+				$transient->response[ BST_UPDATE_SLUG ][ $key ] = $release[ $key ];
+			}
+		}
 		unset( $transient->no_update[ BST_UPDATE_SLUG ] );
 	} else {
 		unset( $transient->response[ BST_UPDATE_SLUG ] );
@@ -87,7 +104,7 @@ add_filter( 'themes_api', function ( $result, $action, $args ) {
 	if ( ! $release ) {
 		return $result;
 	}
-	return (object) array( 'name' => 'BIGSPY AI Theme WP', 'slug' => BST_UPDATE_SLUG, 'version' => $release['version'], 'author' => 'Bentar', 'homepage' => $release['url'], 'download_link' => $release['package'], 'sections' => array( 'changelog' => wp_kses_post( wpautop( esc_html( $release['body'] ) ) ) ) );
+	return (object) array( 'name' => 'BIGSPY AI Theme WP', 'slug' => BST_UPDATE_SLUG, 'version' => $release['version'], 'author' => 'Bentar', 'homepage' => $release['url'], 'download_link' => $release['package'], 'requires' => $release['requires'] ?? '', 'requires_php' => $release['requires_php'] ?? '', 'sections' => array( 'changelog' => wp_kses_post( wpautop( esc_html( $release['body'] ) ) ) ) );
 }, 10, 3 );
 
 add_filter( 'upgrader_source_selection', function ( $source, $remote_source, $upgrader, $hook_extra ) {

@@ -222,7 +222,7 @@
 	if (live && window.fetch) {
 		var states = new WeakMap();
 		var stateFor = function (form) {
-			if (!states.has(form)) states.set(form, { timer: null, request: 0 });
+			if (!states.has(form)) states.set(form, { timer: null, request: 0, controller: null });
 			return states.get(form);
 		};
 
@@ -290,7 +290,16 @@
 				var request = state.request;
 				var postType = form.querySelector('input[name="post_type"]');
 				var url = live.url + '?action=bst_live_search&s=' + encodeURIComponent(term) + (postType ? '&post_type=' + encodeURIComponent(postType.value) : '');
-				fetch(url, { credentials: 'same-origin' })
+				// Cancel the previous request for this form; the state.request check below stays as a fallback.
+				if (state.controller) {
+					state.controller.abort();
+				}
+				var options = { credentials: 'same-origin' };
+				if (window.AbortController) {
+					state.controller = new AbortController();
+					options.signal = state.controller.signal;
+				}
+				fetch(url, options)
 					.then(function (response) {
 						return response.json();
 					})

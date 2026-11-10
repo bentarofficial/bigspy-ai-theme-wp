@@ -12,7 +12,7 @@ $src = esc_url( (string) ( $a['src'] ?? '' ) );
 if ( '' === $src ) {
 	return;
 }
-wp_enqueue_script( 'bst-lottie-player', 'https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js', array(), '2.0.8', array( 'in_footer' => true, 'strategy' => 'defer' ) );
+wp_enqueue_script( 'bst-lottie-player', BST_URI . '/assets/js/vendor/lottie-player.js', array(), '2.0.8', array( 'in_footer' => true, 'strategy' => 'defer' ) );
 $align = bst_choice( (string) ( $a['align'] ?? 'center' ), array( 'left', 'center', 'right', 'wide', 'full' ), 'center' );
 $label = trim( (string) ( $a['label'] ?? '' ) );
 printf(

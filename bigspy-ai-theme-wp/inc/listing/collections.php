@@ -104,6 +104,14 @@ add_filter(
 	30
 );
 
+/** [bigspy_category_directory]: the category directory placed by hand, so the Categories page can have its own hero above it. */
+add_shortcode(
+	'bigspy_category_directory',
+	function () {
+		return bst_category_directory_html();
+	}
+);
+
 /** Search, category and sort toolbar for listing archives. */
 function bst_shop_toolbar_html() {
 	$shop = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );

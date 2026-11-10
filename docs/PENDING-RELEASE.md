@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Không có thay đổi đang chờ (1.86.0 đã phát hành G-101; G-105 đã vào 1.85.3).
+Không có (G-89, G-102, G-106, G-109, G-110, G-115, G-116, G-124, G-126 đã phát hành ở 1.87.0).
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

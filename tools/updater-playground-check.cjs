@@ -35,7 +35,7 @@ foreach($files as $file){$dest=$to.'/'.substr($file->getPathname(),strlen($from)
     login: true, skipBrowser: true, verbosity: 'normal' });
   console.log('PLAYGROUND_READY', server.serverUrl);
   const results = JSON.parse(fs.readFileSync(path.join(fixture, 'updater-results.json'), 'utf8'));
-  if (results.length !== 14) throw new Error('Incomplete updater checks');
+  if (results.length !== 17) throw new Error('Incomplete updater checks');
   console.log(JSON.stringify({ passed: results.length, checks: results }, null, 2));
   await server[Symbol.asyncDispose]();
 })().catch(e => { console.error(e.messages || e.stack || e); process.exit(1); });

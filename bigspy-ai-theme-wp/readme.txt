@@ -15,6 +15,14 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.87.0 =
+* Section and Banner: new Code background (animated) panel with nine presets (animated gradient, aurora, floating blobs, perspective grid, drifting dots, light rays, particles network, flowing lines, starfield) and a custom mode with scoped CSS plus HTML/animated SVG (scripts removed). Colors follow the palette; speed, density, opacity and mobile switch. Stops for reduced motion and pauses off screen.
+* Listing elements: View more or Load more, slider mode, gap, Visit button position, blog card/compact/numbered layouts, category grid columns, border, radius and hover, grouped editor panels.
+* Icon List: edit, open or remove the selected item's link from the toolbar; linked items are marked while editing.
+* Breadcrumbs fall back to the theme trail when the SEO plugin breadcrumb module is off; optional breadcrumbs on pages whose H1 is hidden. New [bigspy_sponsored_card] and [bigspy_category_directory] shortcodes, Key features as cards, rewrite flush after switching from BIGSPY AI List.
+* Live search caches results for visitors, counts characters correctly and cancels stale requests.
+* Map accepts only real Google Maps embeds; Lottie player is self-hosted; the updater reports Requires WordPress and PHP.
+
 = 1.86.1 =
 * Fix: the admin area showed a critical error in 1.86.0 (unescaped quote in the What is new text).
 
@@ -313,6 +321,7 @@ See README.md in the source repository for the full feature list and the site-bu
 
 BIGSPY AI Theme WP, (C) 2026 Bentar. Distributed under the terms of the GNU GPL v2 or later.
 Bundled icons are simple inline SVG paths shipped with the theme. Social network names and logos are trademarks of their respective owners.
+Bundled library: @lottiefiles/lottie-player 2.0.8 (MIT), https://www.npmjs.com/package/@lottiefiles/lottie-player, in assets/js/vendor/lottie-player.js.
 
 = 1.15.2 =
 * Prevent a page selected as a custom header from rendering itself inside the header area; retain the normal site header on that page.
