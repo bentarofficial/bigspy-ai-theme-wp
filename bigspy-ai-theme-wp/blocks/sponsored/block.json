@@ -14,6 +14,18 @@
 	],
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
+		"display": {
+			"type": "string",
+			"default": "cards"
+		},
+		"badgeText": {
+			"type": "string",
+			"default": "Sponsored by"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
 		"count": {
 			"type": "number",
 			"default": 3

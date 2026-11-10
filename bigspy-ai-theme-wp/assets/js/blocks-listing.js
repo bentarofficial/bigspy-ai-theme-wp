@@ -68,6 +68,7 @@
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		buttonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
 		openNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
+		display: { cards: __('Cards', T), badge: __('"Sponsored by" badge (one line, for heroes)', T) },
 		sponsoredPosition: { between: __('Between rows', T), top: __('Above the grid', T) },
 		displayMode: { grid: __('Grid', T), slider: __('Slider (one row with arrows)', T) },
 		displayLocation: { normal: __('Page content', T), 'homepage-sidebar': __('Sidebar (compact)', T) },
@@ -84,6 +85,7 @@
 		limit: __('Number of listings (0 = all)', T), count: __('Number of items', T), categoryId: __('Category ID (0 = all)', T), parent: __('Only children of category ID', T),
 		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
 		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
+		display: __('Show as', T), badgeText: __('Badge text', T),
 		buttonStyle: __('Button', T), buttonText: __('Button text (empty = site default)', T), showLabel: __('"Sponsored" label', T), openNewTab: __('Open the partner in', T),
 		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
 		elementType: __('Show', T), displayMode: __('Display', T), displayLocation: __('Placed in', T), gap: __('Gap between items (px)', T), relatedContextId: __('Related to listing ID (0 = current)', T),
@@ -169,7 +171,7 @@
 						return rows.length ? el(c.PanelBody, { key: p.title, title: p.title, initialOpen: i === 0 }, rows) : null;
 					});
 				} else {
-					panels = el(c.PanelBody, { title: __('Settings', T) }, Object.keys(attrs).filter(function (k) { return !/^(bs|bst|mx|className|lock|metadata|anchor)/.test(k); }).map(function (k) { return control(k, a, attrs, props); }));
+					panels = el(c.PanelBody, { title: __('Settings', T) }, Object.keys(attrs).filter(function (k) { return !/^(bs|bst|mx|className|lock|metadata|anchor)/.test(k) && (name !== 'bigspy/sponsored' || (a.display === 'badge' ? ['display', 'badgeText', 'alignment'].indexOf(k) > -1 : ['badgeText', 'alignment'].indexOf(k) === -1)); }).map(function (k) { return control(k, a, attrs, props); }));
 				}
 				return el(wp.element.Fragment, null,
 					el(Inspector, null, panels),

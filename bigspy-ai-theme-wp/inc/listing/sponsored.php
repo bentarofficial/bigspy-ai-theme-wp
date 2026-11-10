@@ -157,6 +157,13 @@ function bst_render_sponsored( $a = array() ) {
 	if ( ! $items ) {
 		return '';
 	}
+	// "Sponsored by <brand>" pill for heroes: the old [bigspy_home_sponsor], rotating on every visit.
+	if ( 'badge' === ( $a['display'] ?? '' ) ) {
+		wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
+		$align = in_array( $a['alignment'] ?? '', array( 'left', 'center', 'right' ), true ) ? $a['alignment'] : 'center';
+		$label = isset( $a['badgeText'] ) ? (string) $a['badgeText'] : __( 'Sponsored by', 'bigspy-ai-theme-wp' );
+		return '<div class="bst-sponsor-badge-wrap" style="text-align:' . esc_attr( $align ) . '"><span class="bst-sponsor-badge">' . ( '' !== trim( $label ) ? '<span class="bst-sponsor-badge__label">' . esc_html( $label ) . '</span>' : '' ) . '<span class="bst-sponsor-badge__brand">' . do_shortcode( '[bigspy_home_sponsor]' ) . '</span></span></div>';
+	}
 	$count = max( 1, min( 6, (int) $a['count'], count( $items ) ) );
 	$opts  = array_intersect_key( $a, array_flip( array( 'buttonStyle', 'buttonText', 'showLabel', 'showDescription', 'openNewTab' ) ) );
 	$out   = '';

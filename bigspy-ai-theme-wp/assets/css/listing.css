@@ -209,3 +209,9 @@
 .bigspy-home-hero-destinations{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
 .bigspy-home-hero-destinations__button{padding:5px 14px;border:1px solid rgba(0,51,102,.2);border-radius:999px;background:rgba(255,255,255,.9);color:#036;font-size:12.5px;font-weight:700;text-decoration:none}
 .bigspy-home-hero-destinations__button:hover{border-color:#008080;color:#008080}
+
+/* Sponsored block, "Sponsored by" badge (hero). */
+.bst-sponsor-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 9px 7px 17px; border: 1px solid rgba(183, 130, 61, .25); border-radius: 999px; background: #fffaf3; color: #64748b; font-size: 13px; font-weight: 500; line-height: 1.6; }
+.bst-sponsor-badge__brand .bst-home-sponsor { display: inline-block; padding: 4px 12px; border-radius: 999px; background: #f4e7d4; color: #80551f; font-weight: 700; text-decoration: none; transition: background-color .2s ease; }
+.bst-sponsor-badge__brand .bst-home-sponsor:hover { background: #ecd9bd; color: #6b4517; }
+.bst-sponsor-badge-wrap:not(:last-child) { margin-bottom: 14px; }
