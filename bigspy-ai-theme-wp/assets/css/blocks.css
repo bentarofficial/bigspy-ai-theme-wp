@@ -169,7 +169,7 @@ input[type="submit"]:hover,
 }
 
 .is-scheme-light :is(h1, h2, h3, h4, h5, h6, .bs-title__text, .bs-icon-box__title, .bs-icon-box__title a) {
-	color: #fff;
+	color: var(--bs-heading-color, #fff);
 }
 
 .is-scheme-light a:not(.wp-block-button__link):not(.bs-btn) {
@@ -181,7 +181,7 @@ input[type="submit"]:hover,
 }
 
 .is-scheme-dark :is(h1, h2, h3, h4, h5, h6) {
-	color: var(--bs-heading);
+	color: var(--bs-heading-color, var(--bs-heading));
 }
 
 /* ---------------------------------------------------------------- Section */
@@ -1803,6 +1803,28 @@ input[type="submit"]:hover,
 .bs-divider[style*="--bs-divider-style:double"] {
 	border-top-width: max(3px, var(--bs-divider-size, 3px));
 }
+
+/* Wrapper: the space above and below is padding, so it never collapses into the neighbours' margins (as in BIGSPY AI List). */
+.bs-divider-wrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding-block: var(--bs-divider-spacing, 24px);
+	margin: 0;
+}
+.bs-divider-wrap--left { justify-content: flex-start; }
+.bs-divider-wrap--right { justify-content: flex-end; }
+.bs-divider-wrap > .bs-divider { margin: 0; }
+
+/* Fade: the chosen color fading out at both ends. */
+.bs-divider.is-fade {
+	height: var(--bs-divider-size, 1px);
+	border: 0;
+	background: linear-gradient(90deg, transparent, var(--bs-divider-color, var(--bs-border)), transparent);
+}
+.bs-divider-x.is-fade::before, .bs-divider-x.is-fade::after { border: 0; height: var(--bs-divider-size, 1px); }
+.bs-divider-x.is-fade::before { background: linear-gradient(90deg, transparent, var(--bs-divider-color, var(--bs-border))); }
+.bs-divider-x.is-fade::after { background: linear-gradient(90deg, var(--bs-divider-color, var(--bs-border)), transparent); }
 
 .bs-spacer {
 	height: var(--bs-spacer-d, 60px);

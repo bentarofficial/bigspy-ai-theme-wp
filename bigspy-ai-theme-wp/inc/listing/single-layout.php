@@ -34,6 +34,45 @@ add_filter(
 	99
 );
 
+add_filter(
+	'bst_defaults',
+	function ( $defaults ) {
+		return $defaults + array( 'listing_single_author' => false );
+	}
+);
+
+add_filter(
+	'bst_customizer_sections',
+	function ( $sections ) {
+		$sections['bst_listing_single'] = array( 'title' => __( 'Listing page', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_layout', 'priority' => 4 );
+		return $sections;
+	}
+);
+
+add_filter(
+	'bst_customizer_fields',
+	function ( $fields ) {
+		if ( ! is_customize_preview() && ! is_admin() ) {
+			return $fields;
+		}
+		$fields[] = array( 'id' => 'listing_single_author', 'section' => 'bst_listing_single', 'type' => 'checkbox', 'label' => __( 'Show the author on listing pages', 'bigspy-ai-theme-wp' ), 'description' => __( 'Shows the WordPress user who published the listing, with their avatar, in the header card.', 'bigspy-ai-theme-wp' ) );
+		return $fields;
+	}
+);
+
+/** Author line for the listing header (off by default, Customizer → Layout → Listing page). */
+function bst_listing_author_html( $post_id ) {
+	if ( ! bst_mod( 'listing_single_author' ) ) {
+		return '';
+	}
+	$uid = (int) get_post_field( 'post_author', $post_id );
+	if ( ! $uid ) {
+		return '';
+	}
+	$name = get_the_author_meta( 'display_name', $uid );
+	return '<a class="bst-ls-author" href="' . esc_url( get_author_posts_url( $uid ) ) . '">' . get_avatar( $uid, 28, '', '', array( 'class' => 'bst-ls-author__avatar' ) ) . '<span>' . esc_html( $name ) . '</span></a>';
+}
+
 /** Header card of the directory layout. */
 function bst_listing_header_html( $post_id ) {
 	$price   = bst_listing_price_label( $post_id );
@@ -49,7 +88,7 @@ function bst_listing_header_html( $post_id ) {
 	$out    .= '' !== $price ? '<p class="bst-ls-hero__eyebrow">' . esc_html( $price ) . '</p>' : '';
 	$out    .= '<h1 class="bst-ls-hero__title">' . esc_html( get_the_title( $post_id ) ) . '</h1>';
 	$out    .= '' !== $tagline ? '<p class="bst-ls-hero__tagline">' . esc_html( $tagline ) . '</p>' : '';
-	$meta    = bst_listing_rating_html( $post_id ) . ( $cats ? '<a class="bst-ls-chip" href="' . esc_url( get_term_link( $cats[0] ) ) . '">' . esc_html( $cats[0]->name ) . '</a>' : '' );
+	$meta    = bst_listing_rating_html( $post_id ) . ( $cats ? '<a class="bst-ls-chip" href="' . esc_url( get_term_link( $cats[0] ) ) . '">' . esc_html( $cats[0]->name ) . '</a>' : '' ) . bst_listing_author_html( $post_id );
 	$out    .= '' !== $meta ? '<div class="bst-ls-hero__meta">' . $meta . '</div>' : '';
 	$out    .= bst_listing_disclosure( $post_id );
 	if ( $url && get_permalink( $post_id ) !== $url ) {

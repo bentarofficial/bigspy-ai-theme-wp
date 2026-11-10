@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Không có (G-89, G-102, G-106, G-109, G-110, G-115, G-116, G-124, G-126 đã phát hành ở 1.87.0).
+Đã phát hành ở 1.88.0: G-89 (khối Sponsored), G-107, G-127, tuỳ chọn Sponsored/Listing elements/Divider, công tắc hiện tác giả listing. Không có thay đổi đang chờ.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

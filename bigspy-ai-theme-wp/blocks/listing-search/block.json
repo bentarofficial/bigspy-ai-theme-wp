@@ -32,6 +32,26 @@
 		"alignment": {
 			"type": "string",
 			"default": "left"
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"radius": {
+			"type": "number",
+			"default": 14
+		},
+		"height": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"supports": {

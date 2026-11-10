@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $a     = (array) $attributes;
-$style = bst_choice( $a['style'] ?? 'solid', array( 'solid', 'dashed', 'dotted', 'double' ), 'solid' );
+$style = bst_choice( $a['style'] ?? 'solid', array( 'solid', 'dashed', 'dotted', 'double', 'fade' ), 'solid' );
 $align = bst_choice( $a['align'] ?? 'center', array( 'left', 'center', 'right' ), 'center' );
 $vars  = bst_style_vars(
 	array(
@@ -21,9 +21,9 @@ $vars  = bst_style_vars(
 );
 ?>
 <?php if ( ! empty( $a['text'] ) || ! empty( $a['icon'] ) ) : ?>
-<div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-divider-x bs-divider-x--' . $align . ( ! empty( $a['gradient'] ) ? ' is-gradient' : '' ), 'style' => $vars . ( bst_block_color( $a, 'contentColor' ) ? ';--bs-divider-content:' . bst_block_color( $a, 'contentColor' ) : '' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="separator">
+<div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-divider-x bs-divider-x--' . $align . ( ! empty( $a['gradient'] ) ? ' is-gradient' : '' ) . ( 'fade' === $style ? ' is-fade' : '' ), 'style' => $vars . ( bst_block_color( $a, 'contentColor' ) ? ';--bs-divider-content:' . bst_block_color( $a, 'contentColor' ) : '' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="separator">
 	<span class="bs-divider-x__content"><?php echo ! empty( $a['icon'] ) ? bst_icon( sanitize_key( $a['icon'] ), 20 ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo ! empty( $a['text'] ) ? '<span>' . esc_html( $a['text'] ) . '</span>' : ''; ?></span>
 </div>
 <?php else : ?>
-<hr <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-divider bs-divider--' . $align . ( ! empty( $a['gradient'] ) ? ' is-gradient' : '' ), 'style' => $vars ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-divider-wrap bs-divider-wrap--' . $align, 'style' => $vars ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><hr class="<?php echo esc_attr( 'bs-divider bs-divider--' . $align . ( ! empty( $a['gradient'] ) ? ' is-gradient' : '' ) . ( 'fade' === $style ? ' is-fade' : '' ) ); ?>"></div>
 <?php endif; ?>

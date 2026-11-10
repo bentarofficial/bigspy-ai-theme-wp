@@ -60,12 +60,20 @@
 	/* Choices for text attributes; other attributes get a control from their type. */
 	var CHOICES = {
 		layout: { square: __('Square card', T), vertical: __('Vertical card', T), horizontal: __('Horizontal card', T), 'horizontal-2': __('Horizontal, two columns', T), minimal: __('Minimal', T) },
-		elementType: { featured: __('Featured listings', T), latest: __('Latest listings', T), popular: __('Popular listings', T), related: __('Related listings', T), listing_grid: __('All listings', T), categories: __('Categories', T), blog: __('Blog posts', T) },
+		elementType: { featured: __('Featured listings', T), latest: __('Latest listings', T), popular: __('Popular listings', T), related: __('Related listings', T), listing_grid: __('All listings', T), categories: __('Categories', T), blog: __('Blog posts', T), sponsored: __('Sponsored', T) },
 		orderBy: { date: __('Date', T), title: __('Name', T), modified: __('Last updated', T), rand: __('Random', T), name: __('Name', T), count: __('Number of listings', T) },
 		order: { DESC: __('Newest / Z–A first', T), ASC: __('Oldest / A–Z first', T) },
 		alignment: { left: __('Left', T), center: __('Center', T), right: __('Right', T) },
 		showWatermark: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
+		buttonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
+		openNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
+		popularSource: { clicks: __('Clicks to the tool on this site', T), traffic: __('Website traffic (Site Insights)', T), blend: __('Both: clicks + website traffic', T) },
+		buttonAlign: { '': __('Default', T), left: __('Left', T), center: __('Center', T), right: __('Right', T), full: __('Full width', T) },
+		buttonFontWeight: { '': __('Default', T), 400: __('Regular', T), 500: __('Medium', T), 600: __('Semibold', T), 700: __('Bold', T), 800: __('Extra bold', T) },
+		sponsoredOpenNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
+		sponsoredButtonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
+		display: { cards: __('Cards', T), badge: __('"Sponsored by" badge (one line, for heroes)', T) },
 		sponsoredPosition: { between: __('Between rows', T), top: __('Above the grid', T) },
 		displayMode: { grid: __('Grid', T), slider: __('Slider (one row with arrows)', T) },
 		displayLocation: { normal: __('Page content', T), 'homepage-sidebar': __('Sidebar (compact)', T) },
@@ -82,6 +90,13 @@
 		limit: __('Number of listings (0 = all)', T), count: __('Number of items', T), categoryId: __('Category ID (0 = all)', T), parent: __('Only children of category ID', T),
 		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
 		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
+		display: __('Show as', T), badgeText: __('Badge text', T),
+		buttonAlign: __('Button position', T), buttonBg: __('Button background', T), buttonColor: __('Button text color', T), buttonBorderColor: __('Button border color', T), buttonHoverBg: __('Button hover background', T), buttonHoverColor: __('Button hover text color', T),
+		buttonBorderWidth: __('Button border thickness (px, empty = default)', T), buttonRadius: __('Button corner radius (px)', T), buttonFontSize: __('Button font size (px)', T), buttonFontWeight: __('Button font weight', T), buttonHeight: __('Button height (px)', T), buttonPaddingX: __('Button side padding (px)', T),
+		cardBg: __('Card background', T), cardBorderColor: __('Card border color', T), cardBorderWidth: __('Card border thickness (px, empty = default)', T), cardRadius: __('Card corner radius (px)', T),
+		popularSource: __('Rank popular listings by', T),
+		sponsoredButtonStyle: __('Button', T), sponsoredButtonText: __('Button text (empty = site default)', T), sponsoredShowLabel: __('"Sponsored" label', T), sponsoredShowDescription: __('Sponsored description', T), sponsoredOpenNewTab: __('Open the partner in', T),
+		buttonStyle: __('Button', T), buttonText: __('Button text (empty = site default)', T), showLabel: __('"Sponsored" label', T), openNewTab: __('Open the partner in', T),
 		sponsoredPosition: __('Sponsored position', T), sponsoredEvery: __('Sponsored after every N rows', T),
 		elementType: __('Show', T), displayMode: __('Display', T), displayLocation: __('Placed in', T), gap: __('Gap between items (px)', T), relatedContextId: __('Related to listing ID (0 = current)', T),
 		ctaPosition: __('Visit button position', T), ctaAlignment: __('Visit button alignment', T),
@@ -89,6 +104,7 @@
 		blogLayout: __('Layout', T), blogCategoryId: __('Post category ID (0 = all)', T), blogExcerptWords: __('Excerpt words', T), blogShowViewMore: __('View more', T), blogViewMoreText: __('View more text', T),
 		categoryCount: __('Number of categories', T), categoryColumnsDesktop: __('Columns – desktop', T), categoryColumnsTablet: __('Columns – tablet', T), categoryColumnsMobile: __('Columns – mobile', T),
 		categoryShowViewMore: __('View all link', T), categoryViewMoreText: __('View all text', T), categoryBorderEnabled: __('Border', T), categoryBorderWidth: __('Border width (px)', T), categoryBorderColor: __('Border color', T), categoryBorderRadius: __('Corner radius (px)', T),
+		buttonColor: __('Button color', T), buttonTextColor: __('Button text color', T), borderColor: __('Border color', T), radius: __('Corner radius (px)', T), height: __('Height (px, 0 = default)', T),
 		categoryHoverEnabled: __('Hover effect', T), categoryHoverBorderWidth: __('Hover border width (px)', T), categoryHoverBorderColor: __('Hover border color', T), categoryHoverLift: __('Hover lift (px)', T), categoryHoverImageZoom: __('Hover image zoom (1–1.3)', T), categoryHoverShadow: __('Hover shadow', T), categoryHoverTransition: __('Hover speed (ms)', T)
 	};
 	function label(key) {
@@ -98,11 +114,19 @@
 	/* Listing elements: options in groups, each shown only for the content types it applies to. */
 	var LISTINGS = ['featured', 'latest', 'popular', 'related', 'listing_grid'];
 	var PANELS = {
+		'bigspy/sponsored': [
+			{ title: __('Sponsored', T), keys: ['display', 'badgeText', 'alignment', 'count', 'startPosition', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'showLabel', 'showDescription', 'buttonStyle', 'buttonText', 'openNewTab'] },
+			{ title: __('Button style', T), keys: ['buttonAlign', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor'] },
+			{ title: __('Card style', T), keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] }
+		],
 		'bigspy/elements': [
-			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'blogCategoryId', 'displayLocation'] },
+			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'popularSource', 'blogCategoryId', 'displayLocation'] },
+			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['columnsDesktop', 'columnsTablet', 'columnsMobile', 'sponsoredShowDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
 			{ title: __('Layout', T), types: LISTINGS.concat(['blog']), keys: ['displayMode', 'layout', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'gap'] },
 			{ title: __('Card parts', T), types: LISTINGS, keys: ['showLogo', 'showDescription', 'showCategory', 'showPricing', 'showRating', 'showTags', 'showFeatured', 'showWatermark', 'titleLines', 'descriptionLines', 'showCTA', 'ctaPosition', 'ctaAlignment'] },
-			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery'] },
+			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery', 'sponsoredShowLabel', 'sponsoredShowDescription', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
+			{ title: __('Sponsored button style', T), types: LISTINGS.concat(['sponsored']), keys: ['buttonAlign', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor'] },
+			{ title: __('Sponsored card style', T), types: LISTINGS.concat(['sponsored']), keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] },
 			{ title: __('Blog posts', T), types: ['blog'], keys: ['blogLayout', 'blogShowImage', 'blogShowDate', 'blogShowAuthor', 'blogShowCategory', 'blogShowExcerpt', 'blogExcerptWords', 'blogShowNumber'] },
 			{ title: __('Categories', T), types: ['categories'], keys: ['categoryCount', 'categoryColumnsDesktop', 'categoryColumnsTablet', 'categoryColumnsMobile', 'categoryShowImage', 'categoryShowCount', 'categoryShowDescription'] },
 			{ title: __('Category style', T), types: ['categories'], keys: ['categoryBorderEnabled', 'categoryBorderWidth', 'categoryBorderColor', 'categoryBorderRadius', 'categoryHoverEnabled', 'categoryHoverBorderWidth', 'categoryHoverBorderColor', 'categoryHoverLift', 'categoryHoverImageZoom', 'categoryHoverShadow', 'categoryHoverTransition'] },
@@ -112,12 +136,21 @@
 
 	/* Options that only make sense for some content types or with other settings. */
 	function relevant(k, a) {
+		if (a.display !== undefined) {
+			var badgeKeys = ['display', 'badgeText', 'alignment'];
+			return a.display === 'badge' ? badgeKeys.indexOf(k) > -1 : (k === 'display' || badgeKeys.indexOf(k) === -1);
+		}
 		var t = a.elementType || 'featured';
+		if (/^(sponsored(ShowLabel|ShowDescription|ButtonStyle|ButtonText|OpenNewTab)|button[A-Z]|card[A-Z])/.test(k) && a.elementType !== undefined) {
+			if (t === 'sponsored') { return !(/^button[A-Z]/.test(k) && a.sponsoredButtonStyle === 'none'); }
+			if (a.showSponsored === false) { return false; }
+			return !(/^button[A-Z]/.test(k) && a.sponsoredButtonStyle === 'none');
+		}
 		var list = LISTINGS.indexOf(t) > -1;
 		var blogMore = t === 'blog' && a.blogShowViewMore !== false;
 		var listMore = list && a.showViewMore !== false;
 		var rules = {
-			categoryId: list && t !== 'related', orderBy: list && t !== 'popular', order: list && t !== 'popular', relatedContextId: t === 'related',
+			categoryId: list && t !== 'related', orderBy: list && t !== 'popular', order: list && t !== 'popular', relatedContextId: t === 'related', popularSource: t === 'popular',
 			blogCategoryId: t === 'blog', displayLocation: t === 'blog', count: t !== 'categories', startPosition: t !== 'categories',
 			layout: list, displayMode: list, ctaPosition: !!a.showCTA, ctaAlignment: !!a.showCTA && a.ctaPosition !== 'top',
 			sponsoredPosition: a.showSponsored !== false && a.displayMode !== 'slider',
@@ -146,7 +179,7 @@
 		if (CHOICES[k]) {
 			return el(c.SelectControl, Object.assign(common, { value: a[k], onChange: set, options: Object.keys(CHOICES[k]).map(function (v) { return { value: v, label: CHOICES[k][v] }; }) }));
 		}
-		if (/Color$/.test(k)) {
+		if (/(Color|Bg)$/.test(k)) {
 			return el(c.BaseControl, { key: k, label: label(k), __nextHasNoMarginBottom: true }, el(c.ColorPalette, { value: a[k] || undefined, onChange: function (v) { set(v || ''); }, clearable: true }));
 		}
 		return el(c.TextControl, Object.assign(common, { value: a[k], onChange: set }));
@@ -165,7 +198,7 @@
 						return rows.length ? el(c.PanelBody, { key: p.title, title: p.title, initialOpen: i === 0 }, rows) : null;
 					});
 				} else {
-					panels = el(c.PanelBody, { title: __('Settings', T) }, Object.keys(attrs).filter(function (k) { return !/^(bs|bst|mx|className|lock|metadata|anchor)/.test(k); }).map(function (k) { return control(k, a, attrs, props); }));
+					panels = el(c.PanelBody, { title: __('Settings', T) }, Object.keys(attrs).filter(function (k) { return !/^(bs|bst|mx|className|lock|metadata|anchor)/.test(k) && (name !== 'bigspy/sponsored' || (a.display === 'badge' ? ['display', 'badgeText', 'alignment'].indexOf(k) > -1 : ['badgeText', 'alignment'].indexOf(k) === -1)); }).map(function (k) { return control(k, a, attrs, props); }));
 				}
 				return el(wp.element.Fragment, null,
 					el(Inspector, null, panels),
@@ -182,7 +215,7 @@
 			save: function () { return null; }
 		});
 	}
-	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/search', 'bigspy/elements'].forEach(ssrBlock);
+	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/search', 'bigspy/elements', 'bigspy/sponsored'].forEach(ssrBlock);
 	wp.blocks.registerBlockType('bst/listing-info', {
 		edit: function (props) {
 			var a = props.attributes;

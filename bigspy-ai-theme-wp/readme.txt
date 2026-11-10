@@ -15,6 +15,14 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.88.0 =
+* New Sponsored block (BIGSPY AI List group): cards, columns per device, label, description, new tab, button style and text; the whole card is the partner link; soft outline buttons like the old theme (no button by default, set in Features or the block). Optional rotating "Sponsored by" badge for heroes.
+* Sponsored cards: button position, border, radius, font size and weight, height, padding, colors and hover colors; card border, radius and background. Listing elements and Listing grid Sponsored rows get the same options; Listing elements can show rotating Sponsored cards.
+* Listing elements Popular ranks by clicks, website traffic (Site Insights) or both.
+* Heading keeps its own color inside Banner and Section text schemes. Listing search: button color, text color, border, radius and height; keeps a gap below it.
+* Listing pages no longer overflow on phones (images, captions and tables stay inside). New Customizer switch to show the author on listing pages (off by default).
+* Divider: spacing as padding so it never collapses, new Fade line style.
+
 = 1.87.0 =
 * Section and Banner: new Code background (animated) panel with nine presets (animated gradient, aurora, floating blobs, perspective grid, drifting dots, light rays, particles network, flowing lines, starfield) and a custom mode with scoped CSS plus HTML/animated SVG (scripts removed). Colors follow the palette; speed, density, opacity and mobile switch. Stops for reduced motion and pauses off screen.
 * Listing elements: View more or Load more, slider mode, gap, Visit button position, blog card/compact/numbered layouts, category grid columns, border, radius and hover, grouped editor panels.

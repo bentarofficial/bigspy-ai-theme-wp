@@ -6,6 +6,14 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.88.0: Sponsored block
+
+- New Sponsored block with columns, label, description and full button and card styling; the whole card is the partner link and buttons are soft outlines by default.
+- Rotating "Sponsored by" badge for heroes; Sponsored rows in Listing elements and Listing grid share the same options.
+- Listing elements ranks Popular by clicks or Site Insights traffic.
+- Heading colors survive Banner and Section text schemes; Listing search button colors, border, radius and height.
+- Listing pages fit phone screens and can show the author; Divider gets a Fade line.
+
 ### 1.87.0: Animated code backgrounds
 
 - Section and Banner can use a background drawn with code instead of an image or video: nine animated presets or your own scoped CSS and animated SVG, with palette colors, speed, density, opacity and a mobile switch.

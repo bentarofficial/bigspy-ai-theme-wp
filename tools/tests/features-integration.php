@@ -434,10 +434,15 @@ Broken line" );
 	update_post_meta( $plain, '_bigspy_ad', '1' );
 	$items = bst_sponsored_items();
 	bst_test( 1 === count( $items ) && $id === $items[0]['id'] && bigspy_listing_is_ad( $id ), 'sponsored: AD listings with a partner URL only' );
-	$slot = bst_sponsored_slot( 0, 'single' );
+	$slot = bst_sponsored_slot( 0, 'single', array( 'buttonStyle' => 'soft' ) );
 	bst_test( false !== strpos( $slot, 'rel="sponsored nofollow noopener"' ) && false !== strpos( $slot, 'data-bst-sponsored-pool' ) && false !== strpos( $slot, 'Go →' ), 'sponsored: slot html with pool' );
-	bst_test( 1 === substr_count( do_shortcode( '[bigspy_sponsored_grid]' ), 'class="bst-sponsored"' ), 'sponsored: [bigspy_sponsored_grid] shortcode' );
-	bst_test( 1 === substr_count( do_shortcode( '[bigspy_sponsored_card]' ), 'class="bst-sponsored"' ), 'sponsored: [bigspy_sponsored_card] one card for page heroes' );
+	bst_test( 1 === substr_count( do_shortcode( '[bigspy_sponsored_grid]' ), 'class="bst-sponsored ' ), 'sponsored: [bigspy_sponsored_grid] shortcode' );
+	$plain_slot = bst_sponsored_slot( 0, 'single' );
+	bst_test( false !== strpos( $plain_slot, 'bst-sponsored__cover' ) && false === strpos( $plain_slot, 'bst-sponsored__button' ) && false !== strpos( $plain_slot, 'bst-sponsored--btn-none' ), 'sponsored: no button by default, the whole card is the link' );
+	$solid_slot = bst_sponsored_slot( 0, 'single', array( 'buttonStyle' => 'solid', 'buttonText' => 'Visit partner', 'showLabel' => false, 'showDescription' => false ) );
+	bst_test( false !== strpos( $solid_slot, 'bst-sponsored--btn-solid' ) && false !== strpos( $solid_slot, 'Visit partner' ) && false === strpos( $solid_slot, 'bst-sponsored__label' ) && false === strpos( $solid_slot, 'data-desc' ), 'sponsored: block options set the button, label and description' );
+	bst_test( 1 === substr_count( bst_render_sponsored( array( 'count' => 1, 'columnsDesktop' => 2 ) ), 'class="bst-sponsored ' ) && false !== strpos( bst_render_sponsored( array( 'columnsDesktop' => 2 ) ), '--bst-sp-d:2' ), 'sponsored: block renders cards with its own columns' );
+	bst_test( 1 === substr_count( do_shortcode( '[bigspy_sponsored_card]' ), 'class="bst-sponsored ' ), 'sponsored: [bigspy_sponsored_card] one card for page heroes' );
 	// A Rank Math breadcrumb module that is switched off prints nothing: the theme's own trail must show instead.
 	if ( ! function_exists( 'rank_math_the_breadcrumbs' ) ) {
 		function rank_math_the_breadcrumbs() {} // phpcs:ignore

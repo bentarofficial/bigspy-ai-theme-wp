@@ -1,0 +1,144 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bigspy/sponsored",
+	"title": "Sponsored",
+	"category": "bigspy-list",
+	"icon": "megaphone",
+	"description": "Sponsored partner cards that rotate on every visit. The whole card links to the partner; the button, its text, the label, the description and the number of cards are options. Needs BIGSPY AI List mode.",
+	"keywords": [
+		"sponsored",
+		"ad",
+		"partner",
+		"bigspy ai list"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"display": {
+			"type": "string",
+			"default": "cards"
+		},
+		"badgeText": {
+			"type": "string",
+			"default": "Sponsored by"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"count": {
+			"type": "number",
+			"default": 3
+		},
+		"columnsDesktop": {
+			"type": "number",
+			"default": 0
+		},
+		"columnsTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"columnsMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"buttonStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"openNewTab": {
+			"type": "string",
+			"default": "default"
+		},
+		"startPosition": {
+			"type": "number",
+			"default": 0
+		},
+		"buttonAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonBg": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonBorderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonFontSize": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonFontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHeight": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonPaddingX": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBg": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"cardRadius": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "bst-blocks-listing",
+	"render": "file:./render.php"
+}

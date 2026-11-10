@@ -287,6 +287,94 @@
 		"viewMoreUrl": {
 			"type": "string",
 			"default": ""
+		},
+		"sponsoredButtonStyle": {
+			"type": "string",
+			"default": "default"
+		},
+		"sponsoredButtonText": {
+			"type": "string",
+			"default": ""
+		},
+		"sponsoredShowLabel": {
+			"type": "boolean",
+			"default": true
+		},
+		"sponsoredOpenNewTab": {
+			"type": "string",
+			"default": "default"
+		},
+		"buttonAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonBg": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverBg": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonBorderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonFontSize": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonFontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHeight": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonPaddingX": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBg": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBorderWidth": {
+			"type": "string",
+			"default": ""
+		},
+		"cardRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"sponsoredShowDescription": {
+			"type": "boolean",
+			"default": true
+		},
+		"popularSource": {
+			"type": "string",
+			"default": "clicks"
 		}
 	},
 	"supports": {

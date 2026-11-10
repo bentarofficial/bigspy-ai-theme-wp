@@ -1991,7 +1991,7 @@
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Divider', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Line style', 'bigspy-ai-theme-wp'), options: { solid: __('Solid', 'bigspy-ai-theme-wp'), dashed: __('Dashed', 'bigspy-ai-theme-wp'), dotted: __('Dotted', 'bigspy-ai-theme-wp'), double: __('Double', 'bigspy-ai-theme-wp') } }, bind('style'))),
+					el(Select, Object.assign({ label: __('Line style', 'bigspy-ai-theme-wp'), options: { solid: __('Solid', 'bigspy-ai-theme-wp'), dashed: __('Dashed', 'bigspy-ai-theme-wp'), dotted: __('Dotted', 'bigspy-ai-theme-wp'), double: __('Double', 'bigspy-ai-theme-wp'), fade: __('Fade at both ends', 'bigspy-ai-theme-wp') } }, bind('style'))),
 					el(Range, Object.assign({ label: __('Width (%)', 'bigspy-ai-theme-wp'), min: 1, max: 100 }, bind('width'))),
 					el(Range, Object.assign({ label: __('Thickness (px)', 'bigspy-ai-theme-wp'), min: 1, max: 20 }, bind('thickness'))),
 					el(Range, Object.assign({ label: __('Space above & below (px)', 'bigspy-ai-theme-wp'), max: 200 }, bind('spacing'))),
@@ -2005,9 +2005,9 @@
 					{ label: __('Text / icon color', 'bigspy-ai-theme-wp'), value: a.contentColor, onChange: function (v) { props.setAttributes({ contentColor: v || '' }); } }
 				] })
 			),
-			(a.text || a.icon) ? el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-x bs-divider-x--') + (a.gradient ? ' is-gradient' : ''), style: Object.assign({}, blockProps.style, styleVars({ '--bs-divider-content': a.contentColor })) }),
+			(a.text || a.icon) ? el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-x bs-divider-x--') + (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : ''), style: Object.assign({}, blockProps.style, styleVars({ '--bs-divider-content': a.contentColor })) }),
 				el('span', { className: 'bs-divider-x__content' }, a.icon ? el(B.Icon, { name: a.icon, size: 20 }) : null, a.text ? el('span', null, a.text) : null)
-			) : el('hr', Object.assign({}, blockProps, { className: blockProps.className + (a.gradient ? ' is-gradient' : '') }))
+			) : el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-wrap bs-divider-wrap--') }), el('hr', { className: 'bs-divider bs-divider--' + a.align + (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : '') }))
 		);
 	});
 

@@ -18,6 +18,7 @@ add_filter(
 			array(
 				'sponsored_on'     => array( 'type' => 'checkbox', 'label' => __( 'Show Sponsored slots', 'bigspy-ai-theme-wp' ), 'default' => empty( $old['sponsored_enabled'] ) ? 0 : 1, 'help' => __( 'Listings with the AD switch on rotate through the Sponsored slots. Their button opens the partner site directly.', 'bigspy-ai-theme-wp' ) ),
 				'sponsored_button' => array( 'type' => 'text', 'label' => __( 'Sponsored button text', 'bigspy-ai-theme-wp' ), 'default' => $old['button_text'] ?? __( 'Open site →', 'bigspy-ai-theme-wp' ) ),
+				'sponsored_style'  => array( 'type' => 'select', 'label' => __( 'Sponsored button', 'bigspy-ai-theme-wp' ), 'default' => 'none', 'choices' => array( 'none' => __( 'No button: the whole card is the link', 'bigspy-ai-theme-wp' ), 'soft' => __( 'Soft outline button', 'bigspy-ai-theme-wp' ), 'solid' => __( 'Solid button', 'bigspy-ai-theme-wp' ) ), 'help' => __( 'Each Sponsored block can override this in its own settings.', 'bigspy-ai-theme-wp' ) ),
 				'sponsored_tab'    => array( 'type' => 'checkbox', 'label' => __( 'Open sponsors in a new tab', 'bigspy-ai-theme-wp' ), 'default' => isset( $old['open_new_tab'] ) && ! $old['open_new_tab'] ? 0 : 1 ),
 				'sponsored_jump'   => array( 'type' => 'number', 'label' => __( 'Sponsors to skip on each visit', 'bigspy-ai-theme-wp' ), 'min' => 1, 'max' => 20, 'default' => (int) ( $old['rotation_jump'] ?? 3 ) ),
 			)
@@ -37,6 +38,7 @@ function bst_sponsored_config() {
 	return array(
 		'on'      => (bool) bst_feature_get( 'listing', 'sponsored_on', empty( $old['sponsored_enabled'] ) ? 0 : 1 ),
 		'button'  => (string) bst_feature_get( 'listing', 'sponsored_button', $old['button_text'] ?? __( 'Open site →', 'bigspy-ai-theme-wp' ) ),
+		'style'   => in_array( bst_feature_get( 'listing', 'sponsored_style', 'none' ), array( 'none', 'soft', 'solid' ), true ) ? bst_feature_get( 'listing', 'sponsored_style', 'none' ) : 'none',
 		'tab'     => (bool) bst_feature_get( 'listing', 'sponsored_tab', isset( $old['open_new_tab'] ) && ! $old['open_new_tab'] ? 0 : 1 ),
 		'jump'    => max( 1, min( 20, (int) bst_feature_get( 'listing', 'sponsored_jump', $old['rotation_jump'] ?? 3 ) ) ),
 		'version' => max( 1, absint( $old['rotation_version'] ?? 1 ) ),
@@ -97,24 +99,68 @@ add_action( 'bst_listing_ad_changed', 'bst_sponsored_refresh_rotation' );
 
 /**
  * One Sponsored card. $slot is its position in a group of slots, $context groups slots
- * that rotate together (categories, single, shortcode, elements).
+ * that rotate together (categories, single, shortcode, elements). The whole card is the link
+ * to the partner; $opts sets the optional button (none, soft or solid), its text, the
+ * "Sponsored" label, the description and the new-tab behaviour (the site settings are the default).
  */
-function bst_sponsored_slot( $slot = 0, $context = 'elements' ) {
+/** Keys of the per-block Sponsored card and button style options. */
+function bst_sponsored_style_keys() {
+	return array( 'buttonAlign', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'cardBg', 'cardBorderColor', 'cardBorderWidth', 'cardRadius' );
+}
+
+/** CSS variables for the Sponsored card and button options that are set (empty = theme default). */
+function bst_sponsored_style_vars( $o ) {
+	$vars = array();
+	foreach ( array( 'buttonBg' => 'bg', 'buttonColor' => 'c', 'buttonBorderColor' => 'bc', 'buttonHoverBg' => 'hbg', 'buttonHoverColor' => 'hc' ) as $k => $v ) {
+		$vars[ '--bst-spb-' . $v ] = bst_block_color( $o, $k );
+	}
+	foreach ( array( 'cardBg' => 'bg', 'cardBorderColor' => 'bc' ) as $k => $v ) {
+		$vars[ '--bst-spc-' . $v ] = bst_block_color( $o, $k );
+	}
+	$nums = array(
+		'buttonBorderWidth' => array( '--bst-spb-bw', 0, 6, 'px' ),
+		'buttonRadius'      => array( '--bst-spb-r', 0, 40, 'px' ),
+		'buttonFontSize'    => array( '--bst-spb-fs', 10, 22, 'px' ),
+		'buttonFontWeight'  => array( '--bst-spb-fw', 300, 900, '' ),
+		'buttonHeight'      => array( '--bst-spb-h', 20, 64, 'px' ),
+		'buttonPaddingX'    => array( '--bst-spb-px', 0, 40, 'px' ),
+		'cardBorderWidth'   => array( '--bst-spc-bw', 0, 6, 'px' ),
+		'cardRadius'        => array( '--bst-spc-r', 0, 40, 'px' ),
+	);
+	foreach ( $nums as $k => $n ) {
+		if ( isset( $o[ $k ] ) && '' !== $o[ $k ] && is_numeric( $o[ $k ] ) && (float) $o[ $k ] >= 0 && ! ( 0 === (int) $o[ $k ] && $n[1] > 0 ) ) {
+			$vars[ $n[0] ] = max( $n[1], min( $n[2], (int) $o[ $k ] ) ) . $n[3];
+		}
+	}
+	return bst_style_vars( $vars );
+}
+
+function bst_sponsored_slot( $slot = 0, $context = 'elements', $opts = array() ) {
 	$config = bst_sponsored_config();
 	$items  = $config['on'] ? bst_sponsored_items() : array();
 	if ( ! $items ) {
 		return '';
 	}
+	$opts    = wp_parse_args( $opts, array( 'buttonStyle' => 'default', 'buttonText' => '', 'showLabel' => true, 'showDescription' => true, 'openNewTab' => 'default' ) );
 	$context = in_array( $context, array( 'categories', 'single', 'shortcode' ), true ) ? $context : 'elements';
 	$item    = $items[ absint( $slot ) % count( $items ) ];
-	$rel     = $config['tab'] ? ' target="_blank" rel="sponsored nofollow noopener"' : ' rel="sponsored nofollow"';
+	$style   = in_array( $opts['buttonStyle'], array( 'none', 'soft', 'solid' ), true ) ? $opts['buttonStyle'] : $config['style'];
+	$tab     = 'yes' === $opts['openNewTab'] ? true : ( 'no' === $opts['openNewTab'] ? false : $config['tab'] );
+	$text    = '' !== trim( (string) $opts['buttonText'] ) ? (string) $opts['buttonText'] : $config['button'];
+	$rel     = $tab ? ' target="_blank" rel="sponsored nofollow noopener"' : ' rel="sponsored nofollow"';
 	$logo    = '' !== $item['logo'] ? '<img src="' . esc_url( $item['logo'] ) . '" alt="" loading="lazy">' : esc_html( strtoupper( mb_substr( $item['name'], 0, 1 ) ) );
-	$out     = '<aside class="bst-sponsored" data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . (int) $config['jump'] . '" aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
-	$out    .= '<span class="bst-sponsored__label">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>';
+	$vars    = bst_sponsored_style_vars( $opts );
+	$align   = in_array( $opts['buttonAlign'] ?? '', array( 'left', 'center', 'right', 'full' ), true ) ? ' bst-sponsored--btn-align-' . $opts['buttonAlign'] : '';
+	$out     = '<aside class="bst-sponsored bst-sponsored--btn-' . esc_attr( $style . $align ) . '"' . ( $vars ? ' style="' . esc_attr( $vars ) . '"' : '' ) . ' data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . (int) $config['jump'] . '" aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
+	$out    .= filter_var( $opts['showLabel'], FILTER_VALIDATE_BOOLEAN ) ? '<span class="bst-sponsored__label">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>' : '';
+	$out    .= '<a class="bst-sponsored__cover" data-link data-cover href="' . esc_url( $item['url'] ) . '"' . $rel . ' aria-label="' . esc_attr( $item['name'] ) . '"></a>';
 	$out    .= '<div class="bst-sponsored__in"><span class="bst-sponsored__logo" data-logo aria-hidden="true">' . $logo . '</span>';
-	$out    .= '<span class="bst-sponsored__text"><strong data-name>' . esc_html( $item['name'] ) . '</strong><span data-desc>' . esc_html( $item['description'] ) . '</span></span>';
-	$out    .= '<a class="bst-sponsored__button" data-link href="' . esc_url( $item['url'] ) . '"' . $rel . '>' . esc_html( $config['button'] ) . '</a></div>';
-	$out .= bst_sponsored_pool_html();
+	$out    .= '<span class="bst-sponsored__text"><strong data-name>' . esc_html( $item['name'] ) . '</strong>';
+	$out    .= filter_var( $opts['showDescription'], FILTER_VALIDATE_BOOLEAN ) ? '<span data-desc>' . esc_html( $item['description'] ) . '</span>' : '';
+	$out    .= '</span>';
+	$out    .= 'none' !== $style ? '<span class="bst-sponsored__button" aria-hidden="true">' . esc_html( $text ) . '</span>' : '';
+	$out    .= '</div>';
+	$out    .= bst_sponsored_pool_html();
 	wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
 	return $out . '</aside>';
 }
@@ -137,23 +183,44 @@ function bst_sponsored_pool_html() {
 	return '<script type="application/json" data-bst-sponsored-pool>' . wp_json_encode( $data, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
 }
 
-/** [bigspy_sponsored_card]: one rotating Sponsored card, for page heroes (the old hero's Sponsored box). */
+/** The Sponsored block (bigspy/sponsored): up to six rotating cards in a grid with the block's own options. */
+function bst_render_sponsored( $a = array() ) {
+	$a      = wp_parse_args( $a, array( 'count' => 3, 'columnsDesktop' => 0, 'columnsTablet' => 0, 'columnsMobile' => 1, 'startPosition' => 0 ) );
+	$config = bst_sponsored_config();
+	$items  = $config['on'] ? bst_sponsored_items() : array();
+	if ( ! $items ) {
+		return '';
+	}
+	// "Sponsored by <brand>" pill for heroes: the old [bigspy_home_sponsor], rotating on every visit.
+	if ( 'badge' === ( $a['display'] ?? '' ) ) {
+		wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
+		$align = in_array( $a['alignment'] ?? '', array( 'left', 'center', 'right' ), true ) ? $a['alignment'] : 'center';
+		$label = isset( $a['badgeText'] ) ? (string) $a['badgeText'] : __( 'Sponsored by', 'bigspy-ai-theme-wp' );
+		return '<div class="bst-sponsor-badge-wrap" style="text-align:' . esc_attr( $align ) . '"><span class="bst-sponsor-badge">' . ( '' !== trim( $label ) ? '<span class="bst-sponsor-badge__label">' . esc_html( $label ) . '</span>' : '' ) . '<span class="bst-sponsor-badge__brand">' . do_shortcode( '[bigspy_home_sponsor]' ) . '</span></span></div>';
+	}
+	$count = max( 1, min( 6, (int) $a['count'], count( $items ) ) );
+	$opts  = array_intersect_key( $a, array_flip( array_merge( array( 'buttonStyle', 'buttonText', 'showLabel', 'showDescription', 'openNewTab' ), bst_sponsored_style_keys() ) ) );
+	$out   = '';
+	for ( $i = 0; $i < $count; $i++ ) {
+		$out .= bst_sponsored_slot( max( 0, (int) $a['startPosition'] ) + $i, 'shortcode', $opts );
+	}
+	$vars = '';
+	foreach ( array( 'columnsDesktop' => 'd', 'columnsTablet' => 't', 'columnsMobile' => 'm' ) as $key => $short ) {
+		$n     = max( 0, min( 6, (int) $a[ $key ] ) );
+		$vars .= $n ? '--bst-sp-' . $short . ':' . $n . ';' : '';
+	}
+	return '<div class="bst-sponsored-grid' . ( $vars ? ' has-columns' : '' ) . '"' . ( $vars ? ' style="' . esc_attr( $vars ) . '"' : '' ) . '>' . $out . '</div>';
+}
+
+/** [bigspy_sponsored_card]: one rotating Sponsored card. Same as the Sponsored block with one item. */
 function bst_sponsored_card_shortcode() {
-	return bst_sponsored_slot( 0, 'shortcode' );
+	return bst_render_sponsored( array( 'count' => 1 ) );
 }
 add_shortcode( 'bigspy_sponsored_card', 'bst_sponsored_card_shortcode' );
 
 /** [bigspy_sponsored_grid]: up to six rotating Sponsored cards (name kept from the old theme). */
 function bst_sponsored_grid() {
-	$count = min( 6, count( bst_sponsored_items() ) );
-	if ( ! bst_sponsored_config()['on'] || ! $count ) {
-		return '';
-	}
-	$out = '';
-	for ( $i = 0; $i < $count; $i++ ) {
-		$out .= bst_sponsored_slot( $i, 'shortcode' );
-	}
-	return '<div class="bst-sponsored-grid">' . $out . '</div>';
+	return bst_render_sponsored( array( 'count' => 6 ) );
 }
 add_shortcode( 'bigspy_sponsored_grid', 'bst_sponsored_grid' );
 
