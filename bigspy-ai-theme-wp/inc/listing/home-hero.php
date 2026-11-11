@@ -69,3 +69,19 @@ function bst_legacy_hero_tokens( $content ) {
 
 // Counters such as {{listing_count}} work in any content, so a Banner hero can show them.
 add_filter( 'the_content', 'bst_legacy_hero_tokens', 12 );
+
+// Widgets and UX Blocks (footer, sidebar) render outside the_content.
+add_filter( 'widget_block_content', 'bst_legacy_hero_tokens', 12 );
+add_filter( 'widget_text_content', 'bst_legacy_hero_tokens', 12 );
+
+/**
+ * [bigspy_stat type="listing|category|sponsored|post|user|current_category"]:
+ * one live counter, usable in a Counter, Shortcode or Code block.
+ */
+function bst_listing_stat_shortcode( $atts ) {
+	$atts = shortcode_atts( array( 'type' => 'listing' ), $atts, 'bigspy_stat' );
+	$type = sanitize_key( $atts['type'] );
+	$out  = bst_legacy_hero_tokens( '{{' . $type . '_count}}' );
+	return '{{' === substr( $out, 0, 2 ) ? '' : esc_html( $out );
+}
+add_shortcode( 'bigspy_stat', 'bst_listing_stat_shortcode' );
