@@ -274,7 +274,16 @@
 		if (!buttons.length) {
 			return;
 		}
-		var activate = function (index, focus) {
+		var d = root.dataset;
+		var select = root.querySelector(':scope > .bs-tabs__select');
+		var accs = [];
+		var current = -1;
+		var storeKey = 'bst-tabs:' + location.pathname + ':' + (root.id || uid);
+		var usable = function (i) {
+			return buttons[i] && !buttons[i].disabled;
+		};
+		var activate = function (index, focus, user) {
+			current = index;
 			buttons.forEach(function (btn, i) {
 				var active = i === index;
 				btn.setAttribute('aria-selected', active ? 'true' : 'false');
@@ -286,9 +295,34 @@
 			});
 			panels.forEach(function (panel, i) {
 				panel.classList.toggle('is-active', i === index);
+				panel.classList.remove('is-collapsed');
 				panel.hidden = i !== index;
 			});
+			accs.forEach(function (acc, i) {
+				acc.setAttribute('aria-expanded', i === index ? 'true' : 'false');
+			});
+			if (select) {
+				select.value = String(index);
+			}
+			if (user && d.remember === '1') {
+				try { sessionStorage.setItem(storeKey, String(index)); } catch (e) { /* storage blocked */ }
+			}
+			var panel = panels[index];
+			if (user && d.deeplink === '1' && panel && panel.id && panel.id.indexOf('bs-tabpanel-') !== 0 && history.replaceState) {
+				history.replaceState(null, '', '#' + panel.id);
+			}
 		};
+		/* Next usable tab from i in direction step (skips disabled tabs). */
+		var step = function (i, dir) {
+			for (var n = 0; n < buttons.length; n++) {
+				i = (i + dir + buttons.length) % buttons.length;
+				if (usable(i)) {
+					return i;
+				}
+			}
+			return i;
+		};
+		var stop = function () {};
 		buttons.forEach(function (btn, i) {
 			var panel = panels[i];
 			btn.id = btn.id || 'bs-tab-' + uid + '-' + i;
@@ -299,34 +333,119 @@
 				btn.setAttribute('aria-controls', panel.id);
 			}
 			btn.addEventListener('click', function () {
-				activate(i, false);
+				stop();
+				activate(i, false, true);
 			});
-			if (root.dataset.event === 'hover') {
+			if (d.event === 'hover') {
 				btn.addEventListener('mouseenter', function () {
-					activate(i, false);
+					if (usable(i)) {
+						activate(i, false, true);
+					}
 				});
 			}
 			btn.addEventListener('keydown', function (event) {
 				var key = event.key;
-				var last = buttons.length - 1;
 				var target = null;
 				if (key === 'ArrowRight' || key === 'ArrowDown') {
-					target = i === last ? 0 : i + 1;
+					target = step(i, 1);
 				} else if (key === 'ArrowLeft' || key === 'ArrowUp') {
-					target = i === 0 ? last : i - 1;
+					target = step(i, -1);
 				} else if (key === 'Home') {
-					target = 0;
+					target = step(buttons.length - 1, 1);
 				} else if (key === 'End') {
-					target = last;
+					target = step(0, -1);
 				}
 				if (target !== null) {
 					event.preventDefault();
-					activate(target, true);
+					stop();
+					activate(target, true, true);
 				}
 			});
+			/* Mobile accordion: a heading button before each panel (shown by CSS ≤549px only). */
+			if (panel && root.classList.contains('bs-tabs--m-accordion')) {
+				var acc = doc.createElement('button');
+				acc.type = 'button';
+				acc.className = 'bs-tabs__acc';
+				acc.textContent = (btn.querySelector(':scope > span') || btn).textContent;
+				acc.disabled = btn.disabled;
+				acc.setAttribute('aria-controls', panel.id);
+				acc.addEventListener('click', function () {
+					stop();
+					if (current === i) {
+						var open = acc.getAttribute('aria-expanded') === 'true';
+						acc.setAttribute('aria-expanded', open ? 'false' : 'true');
+						panel.classList.toggle('is-collapsed', open);
+					} else {
+						activate(i, false, true);
+					}
+				});
+				panel.parentNode.insertBefore(acc, panel);
+				accs[i] = acc;
+			}
 		});
+		if (select) {
+			select.addEventListener('change', function () {
+				stop();
+				activate(parseInt(select.value, 10) || 0, false, true);
+			});
+		}
+		/* Opening tab: #hash (deep link), then remembered tab, then data-default. */
+		var start = parseInt(d.default || '0', 10) || 0;
+		if (d.remember === '1') {
+			try {
+				var saved = parseInt(sessionStorage.getItem(storeKey), 10);
+				if (usable(saved)) {
+					start = saved;
+				}
+			} catch (e) { /* storage blocked */ }
+		}
+		var fromHash = function () {
+			var hash = decodeURIComponent((location.hash || '').slice(1));
+			var found = -1;
+			if (hash) {
+				panels.forEach(function (panel, i) {
+					if (panel.id === hash && usable(i)) {
+						found = i;
+					}
+				});
+			}
+			return found;
+		};
+		if (d.deeplink === '1') {
+			var h = fromHash();
+			if (h > -1) {
+				start = h;
+			}
+			window.addEventListener('hashchange', function () {
+				var n = fromHash();
+				if (n > -1) {
+					activate(n, false, false);
+				}
+			});
+		}
 		root.classList.add('is-ready');
-		activate(0, false);
+		activate(usable(start) ? start : step(start, 1), false, false);
+
+		/* Autoplay: stops for good on any user action; pauses on hover/focus; off with reduced motion. */
+		var seconds = parseInt(d.autoplay || '0', 10);
+		if (seconds > 0 && !reduceMotion) {
+			var paused = false;
+			var timer = setInterval(function () {
+				if (!paused && !doc.hidden) {
+					activate(step(current, 1), false, false);
+				}
+			}, seconds * 1000);
+			stop = function () {
+				clearInterval(timer);
+				stop = function () {};
+			};
+			if (d.pause !== '0') {
+				root.addEventListener('mouseenter', function () { paused = true; });
+				root.addEventListener('mouseleave', function () { paused = false; });
+			}
+			root.addEventListener('focusin', function () { paused = true; });
+			root.addEventListener('focusout', function () { paused = false; });
+		}
 	}
 
 	/* ------------------------------------------------------------ Accordion (fallback for details[name]) */

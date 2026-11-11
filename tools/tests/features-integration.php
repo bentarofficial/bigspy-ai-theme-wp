@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design', 'flatsome' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -22,13 +22,25 @@ try {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }
 
+function bst_t_flatsome() {
+	bst_test( shortcode_exists( 'ux_text' ) && false !== strpos( do_shortcode( '[ux_text]x[/ux_text]' ), 'x' ), 'flatsome: shortcodes work while on' );
+}
+
 function bst_t_off() {
 	bst_test( array() === (array) get_option( 'bst_features', array() ), 'all features off by default' );
 	bst_test( ! function_exists( 'bst_webp_convert' ) && ! function_exists( 'bst_smtp_configure' ) && ! function_exists( 'bst_ir_insert' ) && ! function_exists( 'bst_code_print' ), 'no feature code loaded while off' );
 	ob_start();
 	bst_features_page();
 	$html = ob_get_clean();
-	bst_test( 5 === substr_count( $html, 'name="bst_on[]"' ) && false === strpos( $html, 'checked' ), 'page lists 5 unticked features' );
+	$listed = substr_count( $html, 'name="bst_on[]"' );
+	bst_test( 7 === $listed && false === strpos( $html, 'checked' ), 'page lists 7 unticked features (' . $listed . ')' );
+	bst_test( ! bst_feature_on( 'flatsome' ) && ! shortcode_exists( 'ux_text' ) && post_type_exists( 'blocks' ) && ! wp_style_is( 'bst-legacy', 'registered' ), 'flatsome: off on a new site, UX Blocks post type kept' );
+	delete_option( 'bst_flatsome_checked' );
+	$fs = wp_insert_post( array( 'post_title' => 'fs', 'post_status' => 'publish', 'post_type' => 'page', 'post_content' => '[section][ux_text]x[/ux_text][/section]' ) );
+	bst_feature_flatsome_migrate();
+	bst_test( bst_feature_on( 'flatsome' ), 'flatsome: turns on once when Flatsome content exists' );
+	wp_delete_post( $fs, true );
+	update_option( 'bst_features', array() );
 	bst_test( ! function_exists( 'bst_listing_field' ) && ! function_exists( 'bigspy_dynamic_attributes' ), 'listing: no code loaded while off' );
 	bst_test( WP_Block_Type_Registry::get_instance()->is_registered( 'bst/listing-info' ) && '' === render_block( array( 'blockName' => 'bst/listing-info', 'attrs' => array(), 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) ), 'listing: block registered, renders nothing while off' );
 	$cats = array_column( get_block_categories( get_post( wp_insert_post( array( 'post_title' => 'c', 'post_status' => 'draft' ) ) ) ), 'slug' );

@@ -67,11 +67,9 @@ $bst_includes = array(
 	'inc/pattern-studio.php',
 	'inc/auto-detect.php',
 	'inc/media-atnd.php',
+	'inc/ux-blocks.php',
 	'inc/features.php',
 
-	'inc/compat-flatsome.php',
-	'inc/compat-flatsome-elements.php',
-	'inc/compat-flatsome-settings.php',
 	'inc/admin/dashboard.php',
 	'inc/admin/theme-panel.php',
 );
