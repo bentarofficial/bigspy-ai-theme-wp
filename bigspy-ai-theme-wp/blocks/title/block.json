@@ -47,6 +47,38 @@
 		"linkUrl": {
 			"type": "string",
 			"default": ""
+		},
+		"number": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"sizeTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"sizeMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"subtitleSize": {
+			"type": "number",
+			"default": 0
+		},
+		"subtitleColor": {
+			"type": "string",
+			"default": ""
+		},
+		"lineWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"lineLength": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"supports": {

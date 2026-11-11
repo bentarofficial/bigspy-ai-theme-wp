@@ -19,6 +19,42 @@
 		"stackMobile": {
 			"type": "boolean",
 			"default": false
+		},
+		"alignTablet": {
+			"type": "string",
+			"default": ""
+		},
+		"alignMobile": {
+			"type": "string",
+			"default": ""
+		},
+		"direction": {
+			"type": "string",
+			"default": ""
+		},
+		"directionTablet": {
+			"type": "string",
+			"default": ""
+		},
+		"directionMobile": {
+			"type": "string",
+			"default": ""
+		},
+		"gapMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"noWrap": {
+			"type": "boolean",
+			"default": false
+		},
+		"equalWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"separator": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

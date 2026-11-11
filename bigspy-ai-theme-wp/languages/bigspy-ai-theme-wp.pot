@@ -11955,3 +11955,81 @@ msgstr ""
 msgid "Save current style"
 msgstr ""
 
+msgid "vh (% of screen height)"
+msgstr ""
+
+msgid "A negative value pulls the next block up so the two overlap."
+msgstr ""
+
+msgid "Show striped guide in the editor"
+msgstr ""
+
+msgid "overlap"
+msgstr ""
+
+msgid "Equal button widths"
+msgstr ""
+
+msgid "Keep on one line (scroll if too wide)"
+msgstr ""
+
+msgid "Separator text between buttons"
+msgstr ""
+
+msgid "For example \"or\". Leave empty for none."
+msgstr ""
+
+msgid "Tablet & mobile"
+msgstr ""
+
+msgid "Same as larger screen"
+msgstr ""
+
+msgid "Align on tablet"
+msgstr ""
+
+msgid "Direction on tablet"
+msgstr ""
+
+msgid "Align on mobile"
+msgstr ""
+
+msgid "Direction on mobile"
+msgstr ""
+
+msgid "Gap on mobile (px, 0 = same)"
+msgstr ""
+
+msgid "Double underline"
+msgstr ""
+
+msgid "Label background"
+msgstr ""
+
+msgid "Gradient bar"
+msgstr ""
+
+msgid "Number before the title (optional)"
+msgstr ""
+
+msgid "For example 01 for step-by-step sections."
+msgstr ""
+
+msgid "Icon before the title (optional)"
+msgstr ""
+
+msgid "Title style"
+msgstr ""
+
+msgid "Line thickness (px, 0 = default)"
+msgstr ""
+
+msgid "Line length (px, 0 = default)"
+msgstr ""
+
+msgid "Line / accent"
+msgstr ""
+
+msgid "Subtitle size (px, 0 = default)"
+msgstr ""
+

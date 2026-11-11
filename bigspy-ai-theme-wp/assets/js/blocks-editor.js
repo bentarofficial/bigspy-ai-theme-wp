@@ -1379,31 +1379,63 @@
 	register('title', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
+		var T = 'bigspy-ai-theme-wp';
+		var px = function (v) { return v ? v + 'px' : ''; };
 		var blockProps = useBlockProps({
 			className: 'bs-title bs-title--' + a.style + ' bs-title--align-' + a.align,
-			style: styleVars({ '--bs-title-size': a.size ? a.size + 'px' : '', '--bs-title-color': a.color, '--bs-title-line': a.lineColor })
+			style: styleVars({ '--bs-title-size': px(a.size), '--bs-title-color': a.color, '--bs-title-line': a.lineColor,
+				'--bs-title-size-t': px(a.sizeTablet), '--bs-title-size-m': px(a.sizeMobile), '--bs-title-sub-fs': px(a.subtitleSize), '--bs-title-sub-c': a.subtitleColor,
+				'--bs-title-line-w': px(a.lineWidth), '--bs-title-line-l': px(a.lineLength) })
 		});
+		var bar = function (x, w, h) { return '<rect x="' + x + '" y="4" width="' + w + '" height="5" rx="1" fill="currentColor" opacity=".35"/>' + (h || ''); };
+		var STYLES = [
+			{ value: 'plain', label: __('Plain', T), svg: bar(10, 36) },
+			{ value: 'bottom-line', label: __('Short line below', T), svg: bar(10, 36, '<rect x="10" y="14" width="10" height="2" fill="currentColor"/>') },
+			{ value: 'center-line', label: __('Lines on both sides', T), svg: bar(18, 20, '<path d="M2 6.5H14M42 6.5H54" stroke="currentColor"/>') },
+			{ value: 'left-bar', label: __('Bar on the left', T), svg: bar(14, 34, '<rect x="8" y="2" width="2.5" height="9" fill="currentColor"/>') },
+			{ value: 'underline-full', label: __('Full-width underline', T), svg: bar(4, 30, '<path d="M2 15H54" stroke="currentColor" stroke-width="1.5"/>') },
+			{ value: 'double', label: __('Double underline', T), svg: bar(10, 36, '<path d="M10 13H46M10 16H46" stroke="currentColor"/>') },
+			{ value: 'label', label: __('Label background', T), svg: '<rect x="8" y="1" width="40" height="12" rx="3" fill="currentColor"/><rect x="14" y="5" width="28" height="4" rx="1" fill="#fff"/>' },
+			{ value: 'dots', label: __('Dots', T), svg: bar(18, 20, [3, 8, 13, 43, 48, 53].map(function (x) { return '<circle cx="' + x + '" cy="6.5" r="1.6" fill="currentColor"/>'; }).join('')) },
+			{ value: 'gradient', label: __('Gradient bar', T), svg: '<defs><linearGradient id="bstg"><stop offset="0" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity=".1"/></linearGradient></defs>' + bar(10, 36, '<rect x="10" y="13" width="36" height="3" rx="1.5" fill="url(#bstg)"/>') }
+		];
+		var lineStyle = a.style !== 'plain';
+		var pre = (a.number ? el('span', { className: 'bs-title__num' }, a.number) : null);
+		var ico = a.icon ? el('span', { className: 'bs-title__icon' }, el(B.Icon, { name: a.icon, size: 24 })) : null;
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Title', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { plain: __('Plain', 'bigspy-ai-theme-wp'), 'bottom-line': __('Short line below', 'bigspy-ai-theme-wp'), 'center-line': __('Lines on both sides', 'bigspy-ai-theme-wp'), 'left-bar': __('Bar on the left', 'bigspy-ai-theme-wp'), 'underline-full': __('Full-width underline', 'bigspy-ai-theme-wp') } }, bind('style'))),
-					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
-					el(Select, Object.assign({ label: __('Tag', 'bigspy-ai-theme-wp'), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4' } }, bind('tag'))),
-					el(Range, Object.assign({ label: __('Font size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120 }, bind('size'))),
-					el(Text, Object.assign({ label: __('“View all” text', 'bigspy-ai-theme-wp') }, bind('linkText'))),
-					el(Text, Object.assign({ label: __('“View all” link', 'bigspy-ai-theme-wp'), type: 'url' }, bind('linkUrl')))
+				el(Panel, { title: __('Title', T) },
+					el(Select, Object.assign({ label: __('Tag', T), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4' } }, bind('tag'))),
+					el(Text, Object.assign({ label: __('Number before the title (optional)', T), help: __('For example 01 for step-by-step sections.', T) }, bind('number'))),
+					el(B.IconPicker, { label: __('Icon before the title (optional)', T), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v || '' }); } }),
+					el(Text, Object.assign({ label: __('“View all” text', T) }, bind('linkText'))),
+					el(Text, Object.assign({ label: __('“View all” link', T), type: 'url' }, bind('linkUrl')))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Title style', T) },
+					el(B.StylePicker, { label: __('Style', T), value: a.style, options: STYLES, onChange: function (v) { props.setAttributes({ style: v }); } }),
+					el(Select, Object.assign({ label: __('Align', T), options: ALIGN3 }, bind('align'))),
+					el(B.Resp, { props: props, name: 'size', label: __('Font size (px, 0 = default)', T), min: 0, max: 120, reset: 0 }),
+					lineStyle ? el(Range, Object.assign({ label: __('Line thickness (px, 0 = default)', T), min: 0, max: 20, reset: 0 }, bind('lineWidth'))) : null,
+					['bottom-line', 'gradient', 'dots'].indexOf(a.style) > -1 ? el(Range, Object.assign({ label: __('Line length (px, 0 = default)', T), min: 0, max: 600, reset: 0 }, bind('lineLength'))) : null
 				),
 				el(B.ColorPanel, {
 					settings: [
-						{ label: __('Text', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
-						{ label: __('Line', 'bigspy-ai-theme-wp'), value: a.lineColor, onChange: function (v) { props.setAttributes({ lineColor: v || '' }); } }
+						{ label: __('Text', T), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+						{ label: a.style === 'label' ? __('Label background', T) : __('Line / accent', T), value: a.lineColor, onChange: function (v) { props.setAttributes({ lineColor: v || '' }); } },
+						{ label: __('Subtitle', T), value: a.subtitleColor, onChange: function (v) { props.setAttributes({ subtitleColor: v || '' }); } }
 					]
-				})
+				}),
+				el(Panel, { title: __('Subtitle', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Subtitle size (px, 0 = default)', T), min: 0, max: 60, reset: 0 }, bind('subtitleSize')))
+				)
 			),
 			el('div', blockProps,
-				el(RichText, { tagName: 'p', className: 'bs-title__subtitle', value: a.subtitle, placeholder: __('Subtitle (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ subtitle: v }); } }),
+				el(RichText, { tagName: 'p', className: 'bs-title__subtitle', value: a.subtitle, placeholder: __('Subtitle (optional)', T), onChange: function (v) { props.setAttributes({ subtitle: v }); } }),
 				el('div', { className: 'bs-title__row' },
-					el(RichText, { tagName: a.tag, className: 'bs-title__text', value: a.text, placeholder: __('Section title', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } }),
+					pre || ico ? el(a.tag, { className: 'bs-title__text has-pre' }, pre, ico, el(RichText, { tagName: 'span', value: a.text, placeholder: __('Section title', T), onChange: function (v) { props.setAttributes({ text: v }); } }))
+						: el(RichText, { tagName: a.tag, className: 'bs-title__text', value: a.text, placeholder: __('Section title', T), onChange: function (v) { props.setAttributes({ text: v }); } }),
 					a.linkText ? el('span', { className: 'bs-title__link' }, a.linkText) : null
 				)
 			)
@@ -1877,21 +1909,41 @@
 	register('buttons', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({
-			className: 'bs-buttons bs-buttons--' + a.align + (a.stackMobile ? ' bs-buttons--stack-mobile' : ''),
-			style: { '--bs-buttons-gap': a.gap + 'px' }
-		});
+		var T = 'bigspy-ai-theme-wp';
+		var cls = 'bs-buttons bs-buttons--' + a.align + (a.stackMobile ? ' bs-buttons--stack-mobile' : '');
+		[['Tablet', 't'], ['Mobile', 'm']].forEach(function (d) { if (a['align' + d[0]]) { cls += ' bs-buttons--' + d[1] + '-' + a['align' + d[0]]; } });
+		[['', 'd'], ['Tablet', 't'], ['Mobile', 'm']].forEach(function (d) { if (a['direction' + d[0]]) { cls += ' bs-buttons--' + d[1] + '-' + a['direction' + d[0]]; } });
+		cls += (a.noWrap ? ' bs-buttons--nowrap' : '') + (a.equalWidth ? ' bs-buttons--equal' : '') + (a.separator ? ' has-separator' : '');
+		var st = { '--bs-buttons-gap': a.gap + 'px' };
+		if (a.gapMobile) { st['--bs-buttons-gap-m'] = a.gapMobile + 'px'; }
+		if (a.separator) { st['--bs-buttons-sep'] = '"' + String(a.separator).slice(0, 20).replace(/["\\;]/g, '') + '"'; }
+		var blockProps = useBlockProps({ className: cls, style: st });
 		var innerProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['bst/button'],
-			template: [['bst/button', { text: __('Get started', 'bigspy-ai-theme-wp') }], ['bst/button', { text: __('Learn more', 'bigspy-ai-theme-wp'), style: 'outline' }]],
-			orientation: 'horizontal'
+			template: [['bst/button', { text: __('Get started', T) }], ['bst/button', { text: __('Learn more', T), style: 'outline' }]],
+			orientation: a.direction === 'column' ? 'vertical' : 'horizontal'
 		});
+		var alignOpts = B.assign({}, ALIGN3, { stretch: __('Stretch (equal width)', T) });
+		var inherit = { '': __('Same as larger screen', T) };
+		var dirs = { row: __('Horizontal', T), column: __('Vertical', T) };
+		var pill = function (x, y, o) { return '<rect x="' + x + '" y="' + y + '" width="16" height="7" rx="2" fill="currentColor"' + (o ? ' opacity=".5"' : '') + '/>'; };
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Buttons', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: B.assign({}, ALIGN3, { stretch: __('Stretch (equal width)', 'bigspy-ai-theme-wp') }) }, bind('align'))),
-					el(Range, Object.assign({ label: __('Gap (px)', 'bigspy-ai-theme-wp'), max: 60 }, bind('gap'))),
-					el(Toggle, Object.assign({ label: __('Stack on mobile', 'bigspy-ai-theme-wp') }, bind('stackMobile', true)))
+				el(Panel, { title: __('Buttons', T) },
+					el(B.StylePicker, { label: __('Direction', T), value: a.direction || 'row', options: [{ value: 'row', label: __('Horizontal', T), svg: pill(4, 6) + pill(36, 6, 1) }, { value: 'column', label: __('Vertical', T), svg: pill(20, 1) + pill(20, 11, 1) }], onChange: function (v) { props.setAttributes({ direction: v === 'row' ? '' : v }); } }),
+					el(Select, Object.assign({ label: __('Align', T), options: alignOpts }, bind('align'))),
+					el(Range, Object.assign({ label: __('Gap (px)', T), max: 60 }, bind('gap'))),
+					el(Toggle, Object.assign({ label: __('Equal button widths', T) }, bind('equalWidth', true))),
+					el(Toggle, Object.assign({ label: __('Keep on one line (scroll if too wide)', T) }, bind('noWrap', true))),
+					el(Text, Object.assign({ label: __('Separator text between buttons', T), help: __('For example "or". Leave empty for none.', T) }, bind('separator')))
+				),
+				el(Panel, { title: __('Tablet & mobile', T), initialOpen: false },
+					el(Select, Object.assign({ label: __('Align on tablet', T), options: B.assign({}, inherit, alignOpts) }, bind('alignTablet'))),
+					el(Select, Object.assign({ label: __('Direction on tablet', T), options: B.assign({}, inherit, dirs) }, bind('directionTablet'))),
+					el(Select, Object.assign({ label: __('Align on mobile', T), options: B.assign({}, inherit, alignOpts) }, bind('alignMobile'))),
+					el(Select, Object.assign({ label: __('Direction on mobile', T), options: B.assign({}, inherit, dirs) }, bind('directionMobile'))),
+					el(Toggle, Object.assign({ label: __('Stack on mobile', T) }, bind('stackMobile', true))),
+					el(Range, Object.assign({ label: __('Gap on mobile (px, 0 = same)', T), max: 60 }, bind('gapMobile')))
 				)
 			),
 			el('div', innerProps)
@@ -2059,13 +2111,20 @@
 	register('spacer', function (props) {
 		var bind = B.binder(props);
 		var a = props.attributes;
-		var blockProps = useBlockProps({ className: 'bs-spacer bst-spacer-editor', style: { '--bs-spacer-d': a.heightDesktop + 'px', '--bs-spacer-t': a.heightTablet + 'px', '--bs-spacer-m': a.heightMobile + 'px' } });
+		var T = 'bigspy-ai-theme-wp';
+		var u = a.unit || 'px';
+		var max = u === 'vh' ? 100 : (u === 'rem' ? 40 : 600);
+		var blockProps = useBlockProps({ className: 'bs-spacer' + (a.showGuide === false ? ' bst-spacer-editor is-plain' : ' bst-spacer-editor'), style: { '--bs-spacer-d': a.heightDesktop + u, '--bs-spacer-t': a.heightTablet + u, '--bs-spacer-m': a.heightMobile + u } });
+		var range = function (key, label) { return el(Range, Object.assign({ label: label + ' (' + u + ')', min: -max, max: max, step: u === 'rem' ? 0.5 : 1 }, bind(key))); };
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Height', 'bigspy-ai-theme-wp') },
-					el(Range, Object.assign({ label: __('Desktop (px)', 'bigspy-ai-theme-wp'), max: 400 }, bind('heightDesktop'))),
-					el(Range, Object.assign({ label: __('Tablet (px)', 'bigspy-ai-theme-wp'), max: 400 }, bind('heightTablet'))),
-					el(Range, Object.assign({ label: __('Mobile (px)', 'bigspy-ai-theme-wp'), max: 400 }, bind('heightMobile')))
+				el(Panel, { title: __('Height', T) },
+					el(Select, Object.assign({ label: __('Unit', T), options: { '': 'px', vh: __('vh (% of screen height)', T), rem: 'rem' } }, bind('unit'))),
+					range('heightDesktop', __('Desktop', T)),
+					range('heightTablet', __('Tablet', T)),
+					range('heightMobile', __('Mobile', T)),
+					el('p', { className: 'components-base-control__help' }, __('A negative value pulls the next block up so the two overlap.', T)),
+					el(Toggle, Object.assign({ label: __('Show striped guide in the editor', T) }, bind('showGuide', true)))
 				)
 			),
 			el('div', blockProps,
@@ -2078,6 +2137,11 @@
 		var device = useDevice();
 		var key = device === 'Tablet' ? 'heightTablet' : (device === 'Mobile' ? 'heightMobile' : 'heightDesktop');
 		var h = props.attributes[key];
+		var u = props.attributes.unit || 'px';
+		var label = h + u + (h < 0 ? ' · ' + __('overlap', 'bigspy-ai-theme-wp') : '') + (device !== 'Desktop' ? ' · ' + device : '');
+		if (u !== 'px' || h < 0) {
+			return el('div', { className: 'bst-spacer-resize', style: { height: h < 0 ? '16px' : h + u } }, el('span', { className: 'bst-spacer-resize__label' }, label));
+		}
 		return el(c.ResizableBox, {
 			className: 'bst-spacer-resize',
 			size: { height: h, width: '100%' },
@@ -2090,7 +2154,7 @@
 				o[key] = Math.max(0, Math.min(600, Math.round(h + delta.height)));
 				props.setAttributes(o);
 			}
-		}, el('span', { className: 'bst-spacer-resize__label' }, h + 'px' + (device !== 'Desktop' ? ' · ' + device : '')));
+		}, el('span', { className: 'bst-spacer-resize__label' }, label));
 	}
 
 	/* ================================================================ Shop blocks (WooCommerce) */

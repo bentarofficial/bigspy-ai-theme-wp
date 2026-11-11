@@ -8212,3 +8212,87 @@ msgstr "Đã lưu trên site"
 msgid "Save current style"
 msgstr "Lưu kiểu hiện tại"
 
+msgid "vh (% of screen height)"
+msgstr "vh (% chiều cao màn hình)"
+
+msgid "A negative value pulls the next block up so the two overlap."
+msgstr "Giá trị âm kéo khối phía sau lên để hai khối chồng lên nhau."
+
+msgid "Show striped guide in the editor"
+msgstr "Hiện vạch sọc trong trình soạn thảo"
+
+msgid "overlap"
+msgstr "chồng lên"
+
+msgid "Horizontal"
+msgstr "Ngang"
+
+msgid "Vertical"
+msgstr "Dọc"
+
+msgid "Equal button widths"
+msgstr "Các nút rộng bằng nhau"
+
+msgid "Keep on one line (scroll if too wide)"
+msgstr "Giữ trên một dòng (cuộn nếu quá rộng)"
+
+msgid "Separator text between buttons"
+msgstr "Chữ ngăn cách giữa các nút"
+
+msgid "For example \"or\". Leave empty for none."
+msgstr "Ví dụ \"hoặc\". Để trống nếu không cần."
+
+msgid "Tablet & mobile"
+msgstr "Tablet & điện thoại"
+
+msgid "Same as larger screen"
+msgstr "Giống màn hình lớn hơn"
+
+msgid "Align on tablet"
+msgstr "Căn trên tablet"
+
+msgid "Direction on tablet"
+msgstr "Hướng trên tablet"
+
+msgid "Align on mobile"
+msgstr "Căn trên điện thoại"
+
+msgid "Direction on mobile"
+msgstr "Hướng trên điện thoại"
+
+msgid "Gap on mobile (px, 0 = same)"
+msgstr "Khoảng cách trên điện thoại (px, 0 = như cũ)"
+
+msgid "Double underline"
+msgstr "Gạch chân đôi"
+
+msgid "Label background"
+msgstr "Nền nhãn"
+
+msgid "Gradient bar"
+msgstr "Gạch gradient"
+
+msgid "Number before the title (optional)"
+msgstr "Số trước tiêu đề (tuỳ chọn)"
+
+msgid "For example 01 for step-by-step sections."
+msgstr "Ví dụ 01 cho các mục theo bước."
+
+msgid "Icon before the title (optional)"
+msgstr "Icon trước tiêu đề (tuỳ chọn)"
+
+msgid "Title style"
+msgstr "Kiểu tiêu đề"
+
+msgid "Line thickness (px, 0 = default)"
+msgstr "Độ dày đường kẻ (px, 0 = mặc định)"
+
+msgid "Line length (px, 0 = default)"
+msgstr "Độ dài đường kẻ (px, 0 = mặc định)"
+
+msgid "Line / accent"
+msgstr "Đường kẻ / điểm nhấn"
+
+msgid "Subtitle size (px, 0 = default)"
+msgstr "Cỡ chữ phụ (px, 0 = mặc định)"
+

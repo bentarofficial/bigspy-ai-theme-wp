@@ -51,7 +51,9 @@ a {
 .bst-column-inner > * { margin-top: 0; }
 .bst-spacer-resize { position: relative; display: flex; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg, rgba(56, 88, 233, .05), rgba(56, 88, 233, .05) 6px, transparent 6px, transparent 12px); outline: 1px dashed rgba(56, 88, 233, .35); }
 .bst-spacer-resize__label { font: 600 11px/1 system-ui, sans-serif; color: var(--wp-admin-theme-color, #3858e9); opacity: .8; }
-.bst-spacer-editor { height: auto !important; }
+.bst-spacer-editor { height: auto !important; margin-bottom: 0 !important; }
+.bst-spacer-editor.is-plain { background: none; outline: 0; }
+.bst-spacer-editor.is-plain:not(.is-selected) .bst-spacer-resize__label { opacity: 0; }
 .bst-il-item { position: relative; }
 .bst-icon-toggle { padding: 0; color: inherit; background: none; border: 0; cursor: pointer; border-radius: 4px; }
 .bst-icon-toggle:hover { outline: 1px dashed currentColor; }
