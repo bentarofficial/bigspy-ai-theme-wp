@@ -1277,3 +1277,26 @@ ul.products.bs-slider__track {
 .widget_shopping_cart .bs-free-ship { margin: 10px 0; }
 .bs-checkout-note { margin: 0 0 16px; padding: 12px 14px; border-left: 3px solid var(--bs-primary); border-radius: 0 10px 10px 0; background: rgba(148, 163, 184, .12); }
 .bs-checkout-note > :last-child { margin-bottom: 0; }
+
+/* Cart and Checkout blocks: same main button and links as the classic pages. Layout stays WooCommerce's. */
+.wc-block-cart__submit-button,
+.wc-block-components-checkout-place-order-button,
+.wp-block-woocommerce-cart .wc-block-components-button.contained,
+.wp-block-woocommerce-checkout .wc-block-components-button.contained {
+	background: var(--bs-secondary) !important;
+	color: #fff !important;
+	border-radius: var(--bs-btn-radius, 6px);
+	font-weight: 600;
+}
+
+.wc-block-cart__submit-button:hover,
+.wc-block-components-checkout-place-order-button:hover,
+.wp-block-woocommerce-cart .wc-block-components-button.contained:hover,
+.wp-block-woocommerce-checkout .wc-block-components-button.contained:hover {
+	background: color-mix(in srgb, var(--bs-secondary) 85%, #000) !important;
+}
+
+.wp-block-woocommerce-cart a:not(.wc-block-components-button),
+.wp-block-woocommerce-checkout a:not(.wc-block-components-button) {
+	color: var(--bs-primary);
+}
