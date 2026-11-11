@@ -10,7 +10,7 @@ $title  = trim( (string) ( $a['title'] ?? '' ) );
 $alt    = ! empty( $a['posterId'] ) ? (string) get_post_meta( (int) $a['posterId'], '_wp_attachment_image_alt', true ) : '';
 $link   = trim( (string) ( $a['link'] ?? '' ) );
 $inner  = '<span class="bs-vcard__media">'
-	. ( $poster ? '<img class="bs-vcard__poster" src="' . esc_url( $poster ) . '" alt="' . esc_attr( '' !== $alt ? $alt : $title ) . '" loading="lazy" decoding="async">' : '' )
+	. ( $poster ? '<img class="bs-vcard__poster" src="' . esc_url( $poster ) . '" alt="' . esc_attr( '' !== $alt ? $alt : $title ) . '" ' . bst_image_load_html( bst_image_priority( $a['loadPriority'] ?? 'auto' ) ) . ' decoding="async">' : '' )
 	. ( $video ? '<video class="bs-vcard__video" muted loop playsinline preload="none" data-src="' . esc_url( $video ) . '"' . ( $poster ? ' poster="' . esc_url( $poster ) . '"' : '' ) . ' aria-hidden="true"></video><span class="bs-vcard__play" aria-hidden="true"></span>' : '' )
 	. '</span>'
 	. ( '' !== $title || '' !== trim( (string) ( $a['text'] ?? '' ) ) ? '<span class="bs-vcard__body">' . ( '' !== $title ? '<strong class="bs-vcard__title">' . esc_html( $title ) . '</strong>' : '' ) . ( '' !== trim( (string) ( $a['text'] ?? '' ) ) ? '<span class="bs-vcard__text">' . esc_html( $a['text'] ) . '</span>' : '' ) . '</span>' : '' );

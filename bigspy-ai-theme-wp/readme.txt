@@ -15,6 +15,12 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.90.0 =
+* Automatic image load priority: the first large image on a page (Banner, slider's first slide, Zoom hero, Image, Gallery, Before/After, Hotspot, video posters, Scroll story, the single post featured image and Flatsome-compat banners and images) loads at once with fetchpriority high and is preloaded in the head; every later image is lazy-loaded. The logo loads at once but no longer takes the high priority. The per-block Load priority option still overrides it.
+* Sponsored block and Listing elements Sponsored cards: new "Sponsors in the rotation list (0 = all)". Each reload shows the next sponsors by the number of cards and starts over only after the whole list was shown (fixes sponsors repeating between two sets).
+* Editor: a Banner without an image no longer shows the upload box under its text.
+* Admin: other plugins' notices are hidden on the theme's own admin pages (they still show on the Dashboard).
+
 = 1.89.0 =
 * Form price quote: price formulas (numbers, + - * /, comparisons, min/max/round/if, field references) and per-option prices, live total with line items, server-side recalculation and a saved quote snapshot with each submission. No eval; tampered input is ignored.
 * Form fields keep stable IDs through renames and reordering, and can be shown or required depending on other fields (all/any rules). Duplicate names, missing references and loops are reported. Existing forms and mail tags keep working.

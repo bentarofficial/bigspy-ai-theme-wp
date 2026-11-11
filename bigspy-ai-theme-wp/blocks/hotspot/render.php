@@ -15,9 +15,10 @@ if ( ! $url ) {
 $marker  = bst_choice( $a['marker'] ?? 'pulse', array( 'pulse', 'plus', 'number', 'dot', 'icon' ), 'pulse' );
 $trigger = bst_choice( $a['trigger'] ?? 'hover', array( 'hover', 'click' ), 'hover' );
 $style   = bst_style_vars( array( '--bs-hs-color' => bst_block_color( $a, 'color' ), '--bs-hs-radius' => bst_block_num( $a, 'radius', 12, 0, 60 ) . 'px', '--bs-hs-tip' => bst_block_num( $a, 'tipWidth', 240, 140, 420 ) . 'px' ) );
-$img     = ! empty( $a['imageId'] ) ? wp_get_attachment_image( (int) $a['imageId'], 'full', false, array( 'class' => 'bs-hotspot__img', 'alt' => (string) ( $a['alt'] ?? '' ) ) ) : '';
+$prio    = bst_image_priority( $a['loadPriority'] ?? 'auto' );
+$img     = ! empty( $a['imageId'] ) ? wp_get_attachment_image( (int) $a['imageId'], 'full', false, array( 'class' => 'bs-hotspot__img', 'alt' => (string) ( $a['alt'] ?? '' ) ) + bst_image_load_attrs( $prio ) ) : '';
 if ( ! $img ) {
-	$img = '<img class="bs-hotspot__img" src="' . $url . '" alt="' . esc_attr( $a['alt'] ?? '' ) . '" loading="lazy">';
+	$img = '<img class="bs-hotspot__img" src="' . $url . '" alt="' . esc_attr( $a['alt'] ?? '' ) . '" ' . bst_image_load_html( $prio ) . ' decoding="async">';
 }
 $points = '';
 foreach ( (array) ( $a['points'] ?? array() ) as $i => $p ) {

@@ -28,9 +28,11 @@ foreach ( $images as $image ) {
 		$alt = (string) get_post_meta( $id, '_wp_attachment_image_alt', true );
 	}
 	$cap = (string) ( $image['caption'] ?? '' );
-	$img = $id ? wp_get_attachment_image( $id, $size, false, array( 'class' => 'bs-gallery__img', 'alt' => $alt ) ) : '';
+	// Only the gallery's first image can become the page hero; the rest are always lazy.
+	$prio = ( $id || ! empty( $image['url'] ) ) && '' === $items ? bst_image_priority( $a['loadPriority'] ?? 'auto', 'thumbnail' !== $size ) : 'lazy';
+	$img  = $id ? wp_get_attachment_image( $id, $size, false, array( 'class' => 'bs-gallery__img', 'alt' => $alt ) + bst_image_load_attrs( $prio ) ) : '';
 	if ( ! $img && ! empty( $image['url'] ) ) {
-		$img = '<img class="bs-gallery__img" src="' . esc_url( $image['url'] ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async">';
+		$img = '<img class="bs-gallery__img" src="' . esc_url( $image['url'] ) . '" alt="' . esc_attr( $alt ) . '" ' . bst_image_load_html( $prio ) . ' decoding="async">';
 	}
 	if ( ! $img ) {
 		continue;

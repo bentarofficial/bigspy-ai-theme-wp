@@ -13,7 +13,7 @@ foreach ( $block->inner_blocks as $i => $step ) {
 	$url = $url ? $url : esc_url_raw( (string) ( $s['mediaUrl'] ?? '' ) );
 	$alt = ! empty( $s['mediaId'] ) ? (string) get_post_meta( (int) $s['mediaId'], '_wp_attachment_image_alt', true ) : '';
 	$alt = '' !== $alt ? $alt : (string) ( $s['mediaAlt'] ?? '' );
-	$media .= '<figure class="bs-story__media-item' . ( 0 === $i ? ' is-active' : '' ) . '">' . ( $url ? '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '" loading="' . ( 0 === $i ? 'eager' : 'lazy' ) . '" decoding="async">' : '<span class="bs-story__placeholder"></span>' ) . '</figure>';
+	$media .= '<figure class="bs-story__media-item' . ( 0 === $i ? ' is-active' : '' ) . '">' . ( $url ? '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '" ' . bst_image_load_html( 0 === $i ? bst_image_priority( $a['loadPriority'] ?? 'auto' ) : 'lazy' ) . ' decoding="async">' : '<span class="bs-story__placeholder"></span>' ) . '</figure>';
 	$dots  .= '<span class="bs-story__dot' . ( 0 === $i ? ' is-active' : '' ) . '"></span>';
 }
 $style = '--bs-story-top:' . bst_block_num( $a, 'stickyTop', 100, 0, 400 ) . 'px;--bs-story-radius:' . bst_block_num( $a, 'radius', 16, 0, 80 ) . 'px;--bs-story-gap:' . bst_block_num( $a, 'gap', 48, 0, 160 ) . 'px';

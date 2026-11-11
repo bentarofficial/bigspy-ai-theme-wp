@@ -88,7 +88,7 @@
 	var LABELS = {
 		columnsDesktop: __('Columns – desktop', T), columnsTablet: __('Columns – tablet', T), columnsMobile: __('Columns – mobile', T),
 		limit: __('Number of listings (0 = all)', T), count: __('Number of items', T), categoryId: __('Category ID (0 = all)', T), parent: __('Only children of category ID', T),
-		startPosition: __('Start at item', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
+		startPosition: __('Start at item', T), rotateStep: __('Sponsors in the rotation list (0 = all)', T), sponsoredRotateStep: __('Sponsors in the rotation list (0 = all)', T), maxWidth: __('Maximum width (px)', T), featuredOnly: __('Featured only', T), showSponsored: __('Sponsored slot', T),
 		showWatermark: __('Logo watermark', T), showFeatured: __('Featured badge', T), showCTA: __('Visit button', T), titleLines: __('Title lines', T), descriptionLines: __('Description lines', T),
 		display: __('Show as', T), badgeText: __('Badge text', T),
 		buttonAlign: __('Button position', T), buttonBg: __('Button background', T), buttonColor: __('Button text color', T), buttonBorderColor: __('Button border color', T), buttonHoverBg: __('Button hover background', T), buttonHoverColor: __('Button hover text color', T),
@@ -115,13 +115,13 @@
 	var LISTINGS = ['featured', 'latest', 'popular', 'related', 'listing_grid'];
 	var PANELS = {
 		'bigspy/sponsored': [
-			{ title: __('Sponsored', T), keys: ['display', 'badgeText', 'alignment', 'count', 'startPosition', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'showLabel', 'showDescription', 'buttonStyle', 'buttonText', 'openNewTab'] },
+			{ title: __('Sponsored', T), keys: ['display', 'badgeText', 'alignment', 'count', 'rotateStep', 'startPosition', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'showLabel', 'showDescription', 'buttonStyle', 'buttonText', 'openNewTab'] },
 			{ title: __('Button style', T), keys: ['buttonAlign', 'buttonBorderWidth', 'buttonRadius', 'buttonFontSize', 'buttonFontWeight', 'buttonHeight', 'buttonPaddingX', 'buttonBg', 'buttonColor', 'buttonBorderColor', 'buttonHoverBg', 'buttonHoverColor'] },
 			{ title: __('Card style', T), keys: ['cardBorderWidth', 'cardRadius', 'cardBg', 'cardBorderColor'] }
 		],
 		'bigspy/elements': [
 			{ title: __('Content', T), keys: ['elementType', 'title', 'count', 'startPosition', 'categoryId', 'orderBy', 'order', 'relatedContextId', 'popularSource', 'blogCategoryId', 'displayLocation'] },
-			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['columnsDesktop', 'columnsTablet', 'columnsMobile', 'sponsoredShowDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
+			{ title: __('Sponsored cards', T), types: ['sponsored'], keys: ['sponsoredRotateStep', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'sponsoredShowDescription', 'sponsoredShowLabel', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },
 			{ title: __('Layout', T), types: LISTINGS.concat(['blog']), keys: ['displayMode', 'layout', 'columnsDesktop', 'columnsTablet', 'columnsMobile', 'gap'] },
 			{ title: __('Card parts', T), types: LISTINGS, keys: ['showLogo', 'showDescription', 'showCategory', 'showPricing', 'showRating', 'showTags', 'showFeatured', 'showWatermark', 'titleLines', 'descriptionLines', 'showCTA', 'ctaPosition', 'ctaAlignment'] },
 			{ title: __('Sponsored', T), types: LISTINGS, keys: ['showSponsored', 'sponsoredPosition', 'sponsoredEvery', 'sponsoredShowLabel', 'sponsoredShowDescription', 'sponsoredButtonStyle', 'sponsoredButtonText', 'sponsoredOpenNewTab'] },

@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.90.0: Faster hero images and Sponsored rotation lists
+
+- The first large image on each page loads at once with high priority and is preloaded; every later image is lazy-loaded, with no setting needed.
+- Sponsored cards rotate through a list of their own: each reload shows the next sponsors until the whole list has been shown.
+- Cleaner editor and admin: no upload box under Banner text, no plugin notices on the theme's pages.
+
 ### 1.89.0: Form price quotes
 
 - The built-in Form shows a live price before sending, from formulas and per-option prices; the server recalculates it and saves the quote with the submission.

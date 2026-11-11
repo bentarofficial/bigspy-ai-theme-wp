@@ -16,7 +16,7 @@ if ( 'overlay' === $bst_layout && ( ! $bst_thumb || '1' === bst_post_option( 'hi
 $bst_ratio   = bst_choice( bst_mod( 'single_image_ratio' ), array( 'auto', '16-9', '21-9', '4-3' ), 'auto' );
 $bst_width   = $bst_is_post ? (int) bst_mod( 'single_width' ) : 0;
 $bst_classes = 'bs-entry bs-entry--single bs-entry--' . $bst_layout . ( $bst_is_post && bst_mod( 'single_dropcap' ) ? ' has-dropcap' : '' ) . ( $bst_width > 0 ? ' has-width' : '' );
-$bst_figure  = $bst_thumb ? '<figure class="bs-entry__thumb' . ( 'auto' !== $bst_ratio ? ' bs-ratio bs-ratio--' . $bst_ratio : '' ) . '">' . get_the_post_thumbnail( null, 'large' ) . '</figure>' : '';
+$bst_figure  = $bst_thumb ? '<figure class="bs-entry__thumb' . ( 'auto' !== $bst_ratio ? ' bs-ratio bs-ratio--' . $bst_ratio : '' ) . '">' . get_the_post_thumbnail( null, 'large', bst_image_load_attrs( bst_image_priority() ) ) . '</figure>' : '';
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( $bst_classes ); ?><?php echo $bst_width > 0 ? ' style="--bs-single-w:' . (int) $bst_width . 'px"' : ''; ?>>
 	<?php

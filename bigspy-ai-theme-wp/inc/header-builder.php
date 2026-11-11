@@ -218,7 +218,7 @@ function bst_logo() {
 	$inner = '';
 
 	if ( $logo ) {
-		$inner = wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'bs-logo__img', 'alt' => $name, 'loading' => false, 'fetchpriority' => 'high' ) );
+		$inner = wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'bs-logo__img', 'alt' => $name, 'loading' => false, 'fetchpriority' => false ) ); // Loads at once, but leaves fetchpriority="high" to the page's hero image.
 	}
 	if ( ! $inner ) {
 		$inner = '<span class="bs-logo__text">' . esc_html( $name ) . '</span>';

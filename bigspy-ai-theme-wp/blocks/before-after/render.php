@@ -8,18 +8,23 @@
 defined( 'ABSPATH' ) || exit;
 
 $a   = (array) $attributes;
-$img = function ( $id, $url, $class, $alt ) {
+// Both images show at once: if the block is the page hero, the first loads with high priority and the
+// second loads straight away too (without a second high-priority request); otherwise both are lazy.
+$prio = ! empty( $a['beforeId'] ) || ! empty( $a['beforeUrl'] ) ? bst_image_priority( $a['loadPriority'] ?? 'auto' ) : 'lazy';
+$img  = function ( $id, $url, $class, $alt, $load ) {
+	$attrs = 'eager' === $load ? array( 'loading' => false, 'fetchpriority' => false ) : bst_image_load_attrs( $load );
 	if ( $id ) {
-		$html = wp_get_attachment_image( (int) $id, 'large', false, array( 'class' => $class, 'alt' => $alt, 'draggable' => 'false' ) );
+		$html = wp_get_attachment_image( (int) $id, 'large', false, array( 'class' => $class, 'alt' => $alt, 'draggable' => 'false' ) + $attrs );
 		if ( $html ) {
 			return $html;
 		}
 	}
-	return $url ? '<img class="' . esc_attr( $class ) . '" src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async" draggable="false">' : '';
+	$html_load = 'eager' === $load ? '' : bst_image_load_html( $load ) . ' ';
+	return $url ? '<img class="' . esc_attr( $class ) . '" src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '" ' . $html_load . 'decoding="async" draggable="false">' : '';
 };
 $alt    = (string) ( $a['alt'] ?? '' );
-$before = $img( $a['beforeId'] ?? 0, $a['beforeUrl'] ?? '', 'bs-ba__img bs-ba__img--before', $alt );
-$after  = $img( $a['afterId'] ?? 0, $a['afterUrl'] ?? '', 'bs-ba__img bs-ba__img--after', $alt );
+$before = $img( $a['beforeId'] ?? 0, $a['beforeUrl'] ?? '', 'bs-ba__img bs-ba__img--before', $alt, $prio );
+$after  = $img( $a['afterId'] ?? 0, $a['afterUrl'] ?? '', 'bs-ba__img bs-ba__img--after', $alt, 'high' === $prio ? 'eager' : 'lazy' );
 if ( ! $before || ! $after ) {
 	return;
 }

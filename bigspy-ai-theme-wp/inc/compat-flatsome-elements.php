@@ -301,13 +301,17 @@ function bst_legacy_banner( $atts, $content = '' ) {
 		)
 	);
 
+	// The page's first large image is the hero (the LCP image): load it at once, lazy-load the rest.
+	$first = '' !== $a['bg'] && 'high' === bst_image_priority();
 	$image = '';
 	if ( is_numeric( $a['bg'] ) && (int) $a['bg'] > 0 ) {
 		$size     = in_array( $a['bg_size'], array( 'thumbnail', 'medium', 'large', 'original', 'full' ), true ) ? ( 'original' === $a['bg_size'] ? 'full' : $a['bg_size'] ) : 'large';
 		$position = preg_match( '/^[0-9.]+% [0-9.]+%$/', $a['bg_pos'] ) ? $a['bg_pos'] : '50% 50%';
-		$image    = wp_get_attachment_image( (int) $a['bg'], $size, false, array( 'class' => 'bs-banner__img', 'alt' => '', 'style' => 'object-position:' . $position ) );
+		$attr     = array( 'class' => 'bs-banner__img', 'alt' => '', 'style' => 'object-position:' . $position );
+		$attr += bst_image_load_attrs( $first ? 'high' : 'lazy' );
+		$image = wp_get_attachment_image( (int) $a['bg'], $size, false, $attr );
 	} elseif ( '' !== $a['bg'] ) {
-		$image = '<img class="bs-banner__img" src="' . esc_url( $a['bg'] ) . '" alt="" loading="lazy" decoding="async">';
+		$image = '<img class="bs-banner__img" src="' . esc_url( $a['bg'] ) . '" alt="" ' . bst_image_load_html( $first ? 'high' : 'lazy' ) . ' decoding="async">';
 	}
 
 	$out  = '<div class="' . esc_attr( bst_legacy_classes( $classes, $a['class'] ) ) . '"' . ( $style ? ' style="' . esc_attr( implode( ';', $style ) ) . '"' : '' ) . '>';

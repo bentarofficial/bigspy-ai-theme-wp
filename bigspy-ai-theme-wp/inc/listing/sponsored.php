@@ -151,7 +151,7 @@ function bst_sponsored_slot( $slot = 0, $context = 'elements', $opts = array() )
 	$logo    = '' !== $item['logo'] ? '<img src="' . esc_url( $item['logo'] ) . '" alt="" loading="lazy">' : esc_html( strtoupper( mb_substr( $item['name'], 0, 1 ) ) );
 	$vars    = bst_sponsored_style_vars( $opts );
 	$align   = in_array( $opts['buttonAlign'] ?? '', array( 'left', 'center', 'right', 'full' ), true ) ? ' bst-sponsored--btn-align-' . $opts['buttonAlign'] : '';
-	$out     = '<aside class="bst-sponsored bst-sponsored--btn-' . esc_attr( $style . $align ) . '"' . ( $vars ? ' style="' . esc_attr( $vars ) . '"' : '' ) . ' data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . (int) $config['jump'] . '" aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
+	$out     = '<aside class="bst-sponsored bst-sponsored--btn-' . esc_attr( $style . $align ) . '"' . ( $vars ? ' style="' . esc_attr( $vars ) . '"' : '' ) . ' data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . ( ! empty( $opts['jump'] ) ? max( 1, min( 50, (int) $opts['jump'] ) ) : (int) $config['jump'] ) . '"' . ( ! empty( $opts['pool'] ) ? ' data-pool="' . (int) $opts['pool'] . '" data-start="' . (int) ( $opts['start'] ?? 0 ) . '"' : '' ) . ' aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
 	$out    .= filter_var( $opts['showLabel'], FILTER_VALIDATE_BOOLEAN ) ? '<span class="bst-sponsored__label">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>' : '';
 	$out    .= '<a class="bst-sponsored__cover" data-link data-cover href="' . esc_url( $item['url'] ) . '"' . $rel . ' aria-label="' . esc_attr( $item['name'] ) . '"></a>';
 	$out    .= '<div class="bst-sponsored__in"><span class="bst-sponsored__logo" data-logo aria-hidden="true">' . $logo . '</span>';
@@ -200,9 +200,19 @@ function bst_render_sponsored( $a = array() ) {
 	}
 	$count = max( 1, min( 6, (int) $a['count'], count( $items ) ) );
 	$opts  = array_intersect_key( $a, array_flip( array_merge( array( 'buttonStyle', 'buttonText', 'showLabel', 'showDescription', 'openNewTab' ), bst_sponsored_style_keys() ) ) );
+	// Rotation list: the sponsors this block cycles through (0 = all), starting at "Start at item".
+	// Every reload moves on by the number of cards, so visitors see each sponsor in the list once
+	// before the list starts over.
+	$start         = max( 0, (int) $a['startPosition'] );
+	$pool          = (int) ( $a['rotateStep'] ?? 0 );
+	$pool          = $pool > 0 ? min( $pool, count( $items ) ) : count( $items );
+	$count         = min( $count, $pool );
+	$opts['jump']  = $count;
+	$opts['pool']  = $pool;
+	$opts['start'] = $start;
 	$out   = '';
 	for ( $i = 0; $i < $count; $i++ ) {
-		$out .= bst_sponsored_slot( max( 0, (int) $a['startPosition'] ) + $i, 'shortcode', $opts );
+		$out .= bst_sponsored_slot( $start + $i, 'shortcode', $opts );
 	}
 	$vars = '';
 	foreach ( array( 'columnsDesktop' => 'd', 'columnsTablet' => 't', 'columnsMobile' => 'm' ) as $key => $short ) {

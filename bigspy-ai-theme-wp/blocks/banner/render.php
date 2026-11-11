@@ -42,23 +42,15 @@ if ( 'vh' === $h_mode ) {
 }
 $focal = bst_block_num( $a, 'focalX', 50, 0, 100 ) . '% ' . bst_block_num( $a, 'focalY', 50, 0, 100 ) . '%';
 
-// Load priority: auto leaves Media IDs to WordPress and keeps URLs lazy; high is for the image above the fold.
-$prio  = bst_choice( $a['loadPriority'] ?? 'auto', array( 'auto', 'high', 'lazy' ), 'auto' );
+// Load priority: auto loads the page's first large image at once (the hero) and lazy-loads the rest.
+$prio  = ! empty( $a['imageId'] ) || ! empty( $a['imageUrl'] ) ? bst_image_priority( $a['loadPriority'] ?? 'auto' ) : 'lazy';
 $image = '';
 if ( ! empty( $a['imageId'] ) ) {
-	$attr = array( 'class' => 'bs-banner__img', 'alt' => '', 'style' => 'object-position:' . $focal, 'sizes' => '100vw' );
-	if ( 'high' === $prio ) {
-		$attr['loading']       = false;
-		$attr['fetchpriority'] = 'high';
-	} elseif ( 'lazy' === $prio ) {
-		$attr['loading']       = 'lazy';
-		$attr['fetchpriority'] = false;
-	}
+	$attr  = array( 'class' => 'bs-banner__img', 'alt' => '', 'style' => 'object-position:' . $focal, 'sizes' => '100vw' ) + bst_image_load_attrs( $prio );
 	$image = wp_get_attachment_image( (int) $a['imageId'], 'full', false, $attr );
 }
 if ( ! $image && ! empty( $a['imageUrl'] ) ) {
-	$load  = 'high' === $prio ? 'fetchpriority="high"' : 'loading="lazy"';
-	$image = '<img class="bs-banner__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="" ' . $load . ' decoding="async" style="object-position:' . esc_attr( $focal ) . '">';
+	$image = '<img class="bs-banner__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="" ' . bst_image_load_html( $prio ) . ' decoding="async" style="object-position:' . esc_attr( $focal ) . '">';
 }
 
 // Optional phone image (<= 549px), e.g. a portrait crop with the text area kept clear.

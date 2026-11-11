@@ -394,6 +394,7 @@ function bst_render_listing_elements( $a ) {
 		$body = function_exists( 'bst_render_sponsored' ) ? bst_render_sponsored(
 			array(
 				'count'           => min( 6, $count ),
+				'rotateStep'      => (int) ( $a['sponsoredRotateStep'] ?? 0 ),
 				'columnsDesktop'  => $a['columnsDesktop'] ?? 3,
 				'columnsTablet'   => $a['columnsTablet'] ?? 2,
 				'columnsMobile'   => $a['columnsMobile'] ?? 1,

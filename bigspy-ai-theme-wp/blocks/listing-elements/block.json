@@ -288,6 +288,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"sponsoredRotateStep": {
+			"type": "number",
+			"default": 0
+		},
 		"sponsoredButtonStyle": {
 			"type": "string",
 			"default": "default"

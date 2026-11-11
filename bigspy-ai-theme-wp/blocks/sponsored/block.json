@@ -62,6 +62,10 @@
 			"type": "string",
 			"default": "default"
 		},
+		"rotateStep": {
+			"type": "number",
+			"default": 0
+		},
 		"startPosition": {
 			"type": "number",
 			"default": 0

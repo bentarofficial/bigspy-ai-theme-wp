@@ -10,7 +10,7 @@ $style = '--bs-zh-inset:' . bst_block_num( $a, 'startInset', 18, 0, 40 ) . '%;--
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => 'bs-zhero alignfull', 'style' => $style, 'data-bs-zhero' => '1' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="bs-zhero__sticky">
-		<div class="bs-zhero__media"><?php echo $url ? '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '" fetchpriority="high" decoding="async">' : ''; ?></div>
+		<div class="bs-zhero__media"><?php echo $url ? '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '" ' . bst_image_load_html( bst_image_priority( 'auto' ) ) . ' decoding="async">' : ''; ?></div>
 		<div class="bs-zhero__content"><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 	</div>
 </div>
