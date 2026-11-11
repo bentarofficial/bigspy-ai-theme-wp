@@ -8028,3 +8028,118 @@ msgstr "1.90.0: Trang tải nhanh hơn: ảnh lớn đầu tiên của mỗi tra
 
 msgid "Sponsors in the rotation list (0 = all)"
 msgstr "Số sponsor trong danh sách xoay vòng (0 = tất cả)"
+
+msgid "Desktop"
+msgstr "Máy tính"
+
+msgid "Tablet"
+msgstr "Máy tính bảng"
+
+msgid "Mobile"
+msgstr "Điện thoại"
+
+msgid "Use the larger screen value"
+msgstr "Dùng giá trị của màn hình lớn hơn"
+
+msgid "Font size (px)"
+msgstr "Cỡ chữ (px)"
+
+msgid "Line height"
+msgstr "Chiều cao dòng"
+
+msgid "Letter spacing (px)"
+msgstr "Giãn chữ (px)"
+
+msgid "Transform"
+msgstr "Kiểu chữ hoa/thường"
+
+msgid "Hover color"
+msgstr "Màu khi rê chuột"
+
+msgid "Hover"
+msgstr "Rê chuột"
+
+msgid "Active"
+msgstr "Đang chọn"
+
+msgid "Box"
+msgstr "Khung"
+
+msgid "Padding (px)"
+msgstr "Khoảng đệm (px)"
+
+msgid "Corner radius (px)"
+msgstr "Bo góc (px)"
+
+msgid "Border width (px)"
+msgstr "Độ dày viền (px)"
+
+msgid "Border color"
+msgstr "Màu viền"
+
+msgid "Link URL"
+msgstr "Đường dẫn"
+
+msgid "Open in new tab"
+msgstr "Mở trong tab mới"
+
+msgid "Rel (e.g. nofollow sponsored)"
+msgstr "Rel (vd. nofollow sponsored)"
+
+msgid "Accessible label (aria-label)"
+msgstr "Nhãn trợ năng (aria-label)"
+
+msgid "Round dots"
+msgstr "Chấm tròn"
+
+msgid "Thick & thin"
+msgstr "Dày và mỏng"
+
+msgid "Text / icon position"
+msgstr "Vị trí chữ / icon"
+
+msgid "Draw in when scrolled into view"
+msgstr "Tự vẽ khi cuộn tới"
+
+msgid "Skipped when the visitor prefers reduced motion."
+msgstr "Bỏ qua khi người xem chọn giảm chuyển động."
+
+msgid "Width unit"
+msgstr "Đơn vị độ rộng"
+
+msgid "Width (px)"
+msgstr "Độ rộng (px)"
+
+msgid "Gradient line"
+msgstr "Đường gradient"
+
+msgid "Gradient from"
+msgstr "Gradient từ"
+
+msgid "Gradient to"
+msgstr "Gradient đến"
+
+msgid "Icon round background"
+msgstr "Nền tròn của icon"
+
+msgid "Icon size (px)"
+msgstr "Cỡ icon (px)"
+
+msgid "AI abilities (MCP)"
+msgstr "Năng lực AI (MCP)"
+
+msgid "Let outside AI apps read the site and edit pages and theme settings through the WordPress Abilities API and MCP Adapter (WordPress 6.9+). They use the same rights, approvals, block rules and undo as AI Designer."
+msgstr "Cho ứng dụng AI bên ngoài đọc site, sửa trang và cài đặt theme qua Abilities API và MCP Adapter của WordPress (WordPress 6.9+). Dùng cùng quyền, bước duyệt, luật khối và hoàn tác như AI Designer."
+
+msgid "Read the site and edit pages and theme settings with the same rules and undo as AI Designer."
+msgstr "Đọc site, sửa trang và cài đặt theme với cùng luật và hoàn tác như AI Designer."
+
+msgid "External AI (MCP)"
+msgstr "AI bên ngoài (MCP)"
+
+msgid "Could not create the AI Designer task."
+msgstr "Không tạo được tác vụ AI Designer."
+
+msgid "This change needs approval in WordPress: open AI Designer, task \"External AI (MCP)\", and approve or skip it."
+msgstr "Thay đổi này cần duyệt trong WordPress: mở AI Designer, tác vụ \"AI bên ngoài (MCP)\", rồi duyệt hoặc bỏ qua."
+

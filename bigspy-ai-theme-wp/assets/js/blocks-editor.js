@@ -1986,30 +1986,73 @@
 	register('divider', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({
-			className: 'bs-divider bs-divider--' + a.align,
-			style: styleVars({ '--bs-divider-width': a.width + '%', '--bs-divider-size': a.thickness + 'px', '--bs-divider-color': a.color, '--bs-divider-spacing': a.spacing + 'px', '--bs-divider-style': a.style })
-		});
+		var T = 'bigspy-ai-theme-wp';
+		var shape = ['wave', 'zigzag', 'dots', 'thick-thin', 'shadow'].indexOf(a.style) > -1;
+		var unit = a.widthUnit === 'px' ? 'px' : '%';
+		var w = function (v) { return typeof v === 'number' && v > 0 ? v + unit : ''; };
+		var sp = function (v) { return typeof v === 'number' ? v + 'px' : ''; };
+		var mods = (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : '') + (shape ? ' is-' + a.style : '') + (a.draw ? ' is-draw' : '');
+		var vars = Object.assign(styleVars({
+			'--bs-divider-width': a.width + unit, '--bs-divider-size': a.thickness + 'px', '--bs-divider-color': a.color, '--bs-divider-spacing': a.spacing + 'px', '--bs-divider-style': shape ? 'solid' : a.style,
+			'--bs-divider-width-t': w(a.widthTablet), '--bs-divider-width-m': w(a.widthMobile), '--bs-divider-spacing-t': sp(a.spacingTablet), '--bs-divider-spacing-m': sp(a.spacingMobile),
+			'--bs-divider-from': a.gradientFrom, '--bs-divider-to': a.gradientTo, '--bs-divider-icon-size': a.iconSize ? a.iconSize + 'px' : '', '--bs-divider-icon-bg': a.iconBg
+		}), B.partVars(a, 'divider', 'text', ['Size', 'Weight', 'LetterSpacing', 'Transform']));
+		var blockProps = useBlockProps({ className: 'bs-divider bs-divider--' + a.align, style: vars });
+		var hasContent = !!(a.text || a.icon);
+		var line = function (d, sw) { return '<path d="' + d + '" fill="none" stroke="currentColor" stroke-width="' + (sw || 2) + '"/>'; };
+		var STYLES = [
+			{ value: 'solid', label: __('Solid', T), svg: line('M2 10H54') },
+			{ value: 'dashed', label: __('Dashed', T), svg: '<path d="M2 10H54" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>' },
+			{ value: 'dotted', label: __('Dotted', T), svg: '<path d="M2 10H54" stroke="currentColor" stroke-width="2" stroke-dasharray="2 3"/>' },
+			{ value: 'double', label: __('Double', T), svg: line('M2 8H54') + line('M2 12H54') },
+			{ value: 'fade', label: __('Fade at both ends', T), svg: '<defs><linearGradient id="bsdf"><stop offset="0" stop-color="currentColor" stop-opacity="0"/><stop offset=".5" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><rect x="2" y="9" width="52" height="2" fill="url(#bsdf)"/>' },
+			{ value: 'wave', label: __('Wave', T), svg: line('M2 10Q8 4 14 10T26 10T38 10T50 10') },
+			{ value: 'zigzag', label: __('Zigzag', T), svg: line('M2 13L8 7L14 13L20 7L26 13L32 7L38 13L44 7L50 13') },
+			{ value: 'dots', label: __('Round dots', T), svg: [4, 12, 20, 28, 36, 44, 52].map(function (x) { return '<circle cx="' + x + '" cy="10" r="2.5" fill="currentColor"/>'; }).join('') },
+			{ value: 'thick-thin', label: __('Thick & thin', T), svg: line('M2 8H54', 3.5) + line('M2 13H54', 1) },
+			{ value: 'shadow', label: __('Shadow', T), svg: '<rect x="2" y="12" width="52" height="4" rx="2" fill="currentColor" opacity=".2"/>' + line('M2 9H54') }
+		];
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Divider', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Line style', 'bigspy-ai-theme-wp'), options: { solid: __('Solid', 'bigspy-ai-theme-wp'), dashed: __('Dashed', 'bigspy-ai-theme-wp'), dotted: __('Dotted', 'bigspy-ai-theme-wp'), double: __('Double', 'bigspy-ai-theme-wp'), fade: __('Fade at both ends', 'bigspy-ai-theme-wp') } }, bind('style'))),
-					el(Range, Object.assign({ label: __('Width (%)', 'bigspy-ai-theme-wp'), min: 1, max: 100 }, bind('width'))),
-					el(Range, Object.assign({ label: __('Thickness (px)', 'bigspy-ai-theme-wp'), min: 1, max: 20 }, bind('thickness'))),
-					el(Range, Object.assign({ label: __('Space above & below (px)', 'bigspy-ai-theme-wp'), max: 200 }, bind('spacing'))),
-					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
-					el(Toggle, Object.assign({ label: __('Gradient line (brand colors)', 'bigspy-ai-theme-wp') }, bind('gradient', true))),
-					el(Text, Object.assign({ label: __('Text in the middle (optional)', 'bigspy-ai-theme-wp') }, bind('text'))),
-					el(B.IconPicker, { label: __('Icon in the middle (optional)', 'bigspy-ai-theme-wp'), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v }); } })
+				el(Panel, { title: __('Divider', T) },
+					el(Text, Object.assign({ label: __('Text in the middle (optional)', T) }, bind('text'))),
+					el(B.IconPicker, { label: __('Icon in the middle (optional)', T), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v }); } }),
+					hasContent ? el(Select, Object.assign({ label: __('Text / icon position', T), options: { '': __('Center', T), left: __('Left', T), right: __('Right', T) } }, bind('contentPosition'))) : null,
+					el(Toggle, Object.assign({ label: __('Draw in when scrolled into view', T), help: __('Skipped when the visitor prefers reduced motion.', T) }, bind('draw', true)))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Line', T) },
+					el(B.StylePicker, { label: __('Line style', T), value: a.style, options: STYLES, onChange: function (v) { props.setAttributes({ style: v }); } }),
+					el(Select, Object.assign({ label: __('Width unit', T), options: { '': '%', px: 'px' } }, bind('widthUnit'))),
+					el(B.Resp, { props: props, name: 'width', label: unit === 'px' ? __('Width (px)', T) : __('Width (%)', T), min: 1, max: unit === 'px' ? 1200 : 100 }),
+					el(Range, Object.assign({ label: __('Thickness (px)', T), min: 1, max: 20 }, bind('thickness'))),
+					el(B.Resp, { props: props, name: 'spacing', label: __('Space above & below (px)', T), min: 0, max: 200 }),
+					el(Select, Object.assign({ label: __('Align', T), options: ALIGN3 }, bind('align'))),
+					el(Toggle, Object.assign({ label: __('Gradient line', T) }, bind('gradient', true)))
 				),
 				el(B.ColorPanel, { settings: [
-					{ label: __('Line color', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
-					{ label: __('Text / icon color', 'bigspy-ai-theme-wp'), value: a.contentColor, onChange: function (v) { props.setAttributes({ contentColor: v || '' }); } }
-				] })
+					{ label: __('Line color', T), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+					{ label: __('Text / icon color', T), value: a.contentColor, onChange: function (v) { props.setAttributes({ contentColor: v || '' }); } }
+				].concat(a.gradient ? [
+					{ label: __('Gradient from', T), value: a.gradientFrom, onChange: function (v) { props.setAttributes({ gradientFrom: v || '' }); } },
+					{ label: __('Gradient to', T), value: a.gradientTo, onChange: function (v) { props.setAttributes({ gradientTo: v || '' }); } }
+				] : []).concat(a.icon ? [
+					{ label: __('Icon round background', T), value: a.iconBg, onChange: function (v) { props.setAttributes({ iconBg: v || '' }); } }
+				] : []) }),
+				a.text ? el(Panel, { title: __('Text', T), initialOpen: false },
+					el(B.Resp, { props: props, name: 'textSize', label: __('Font size (px)', T), min: 8, max: 60, reset: 0 }),
+					el(Select, Object.assign({ label: __('Weight', T), options: { '': __('Default', T), '400': '400', '500': '500', '600': '600', '700': '700', '800': '800', '900': '900' } }, bind('textWeight'))),
+					el(Range, Object.assign({ label: __('Letter spacing (px)', T), min: -2, max: 10, step: 0.5, reset: 0 }, bind('textLetterSpacing'))),
+					el(Select, Object.assign({ label: __('Transform', T), options: { '': __('Default', T), none: __('None', T), uppercase: 'ABC', lowercase: 'abc', capitalize: 'Abc' } }, bind('textTransform')))
+				) : null,
+				a.icon ? el(Panel, { title: __('Icon', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Icon size (px)', T), min: 8, max: 120, reset: 0 }, bind('iconSize')))
+				) : null
 			),
-			(a.text || a.icon) ? el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-x bs-divider-x--') + (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : ''), style: Object.assign({}, blockProps.style, styleVars({ '--bs-divider-content': a.contentColor })) }),
-				el('span', { className: 'bs-divider-x__content' }, a.icon ? el(B.Icon, { name: a.icon, size: 20 }) : null, a.text ? el('span', null, a.text) : null)
-			) : el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-wrap bs-divider-wrap--') }), el('hr', { className: 'bs-divider bs-divider--' + a.align + (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : '') }))
+			hasContent ? el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-x bs-divider-x--') + mods + (a.contentPosition ? ' is-content-' + a.contentPosition : '') + (a.iconBg ? ' has-icon-bg' : ''), style: Object.assign({}, blockProps.style, styleVars({ '--bs-divider-content': a.contentColor })) }),
+				el('span', { className: 'bs-divider-x__content' }, a.icon ? el(B.Icon, { name: a.icon, size: a.iconSize || 20 }) : null, a.text ? el('span', null, a.text) : null)
+			) : el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-wrap bs-divider-wrap--') }), el('hr', { className: 'bs-divider bs-divider--' + a.align + mods }))
 		);
 	});
 

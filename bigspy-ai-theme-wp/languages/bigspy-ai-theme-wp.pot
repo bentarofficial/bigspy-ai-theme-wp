@@ -11822,3 +11822,76 @@ msgstr ""
 
 msgid "Sponsors in the rotation list (0 = all)"
 msgstr ""
+
+msgid "Use the larger screen value"
+msgstr ""
+
+msgid "Hover color"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Padding (px)"
+msgstr ""
+
+msgid "Border width (px)"
+msgstr ""
+
+msgid "Link URL"
+msgstr ""
+
+msgid "Rel (e.g. nofollow sponsored)"
+msgstr ""
+
+msgid "Round dots"
+msgstr ""
+
+msgid "Thick & thin"
+msgstr ""
+
+msgid "Text / icon position"
+msgstr ""
+
+msgid "Draw in when scrolled into view"
+msgstr ""
+
+msgid "Skipped when the visitor prefers reduced motion."
+msgstr ""
+
+msgid "Width unit"
+msgstr ""
+
+msgid "Width (px)"
+msgstr ""
+
+msgid "Gradient line"
+msgstr ""
+
+msgid "Gradient from"
+msgstr ""
+
+msgid "Gradient to"
+msgstr ""
+
+msgid "Icon round background"
+msgstr ""
+
+msgid "AI abilities (MCP)"
+msgstr ""
+
+msgid "Let outside AI apps read the site and edit pages and theme settings through the WordPress Abilities API and MCP Adapter (WordPress 6.9+). They use the same rights, approvals, block rules and undo as AI Designer."
+msgstr ""
+
+msgid "Read the site and edit pages and theme settings with the same rules and undo as AI Designer."
+msgstr ""
+
+msgid "External AI (MCP)"
+msgstr ""
+
+msgid "Could not create the AI Designer task."
+msgstr ""
+
+msgid "This change needs approval in WordPress: open AI Designer, task \"External AI (MCP)\", and approve or skip it."
+msgstr ""
+

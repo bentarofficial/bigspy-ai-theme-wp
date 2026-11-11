@@ -2684,14 +2684,42 @@ input[type="submit"]:hover,
 }
 
 /* ================================================================ 1.29 – Divider with text / icon, gradient line */
-.bs-divider.is-gradient { height: var(--bs-divider-size, 2px); border: 0; background: linear-gradient(90deg, var(--bs-primary), var(--bs-secondary)); border-radius: 99px; }
+.bs-divider.is-gradient { height: var(--bs-divider-size, 2px); border: 0; background: linear-gradient(90deg, var(--bs-divider-from, var(--bs-primary)), var(--bs-divider-to, var(--bs-secondary))); border-radius: 99px; }
 .bs-divider-x { display: flex; align-items: center; gap: 16px; width: var(--bs-divider-width, 100%); max-width: 100%; margin: var(--bs-divider-spacing, 24px) auto; color: var(--bs-divider-content, var(--bs-primary)); }
 .bs-divider-x--left { margin-left: 0; }
 .bs-divider-x--right { margin-right: 0; }
 .bs-divider-x::before, .bs-divider-x::after { content: ""; flex: 1; border-top: var(--bs-divider-size, 1px) var(--bs-divider-style, solid) var(--bs-divider-color, var(--bs-border, #e5e7eb)); }
-.bs-divider-x.is-gradient::before { border: 0; height: var(--bs-divider-size, 2px); background: linear-gradient(90deg, transparent, var(--bs-primary)); }
-.bs-divider-x.is-gradient::after { border: 0; height: var(--bs-divider-size, 2px); background: linear-gradient(90deg, var(--bs-secondary), transparent); }
-.bs-divider-x__content { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .9em; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.bs-divider-x.is-gradient::before { border: 0; height: var(--bs-divider-size, 2px); background: linear-gradient(90deg, transparent, var(--bs-divider-from, var(--bs-primary))); }
+.bs-divider-x.is-gradient::after { border: 0; height: var(--bs-divider-size, 2px); background: linear-gradient(90deg, var(--bs-divider-to, var(--bs-secondary)), transparent); }
+.bs-divider-x__content { display: inline-flex; align-items: center; gap: 8px; font-weight: var(--bs-divider-text-fw, 700); font-size: var(--bs-divider-text-fs, .9em); letter-spacing: var(--bs-divider-text-ls, .06em); text-transform: var(--bs-divider-text-tt, uppercase); white-space: nowrap; }
+/* G-129 – Divider styles, per-device width/spacing, content position, icon background, draw-in. */
+.bs-divider.is-wave, .bs-divider.is-zigzag, .bs-divider-x.is-wave::before, .bs-divider-x.is-wave::after, .bs-divider-x.is-zigzag::before, .bs-divider-x.is-zigzag::after { height: calc(var(--bs-divider-size, 1px) * 4 + 6px); border: 0; background-color: var(--bs-divider-color, var(--bs-border)); -webkit-mask: var(--bs-divider-mask) left center / calc(var(--bs-divider-size, 1px) * 8 + 12px) 100% repeat-x; mask: var(--bs-divider-mask) left center / calc(var(--bs-divider-size, 1px) * 8 + 12px) 100% repeat-x; }
+.bs-divider.is-wave, .bs-divider-x.is-wave { --bs-divider-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E"); }
+.bs-divider.is-zigzag, .bs-divider-x.is-zigzag { --bs-divider-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 8' preserveAspectRatio='none'%3E%3Cpath d='M0 7 L5 1 L10 7 L15 1 L20 7' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E"); }
+.bs-divider.is-dots, .bs-divider-x.is-dots::before, .bs-divider-x.is-dots::after { --bs-dd: max(4px, calc(var(--bs-divider-size, 1px) * 2)); height: var(--bs-dd); border: 0; background: radial-gradient(circle closest-side, var(--bs-divider-color, var(--bs-border)) 92%, transparent) left center / calc(var(--bs-dd) * 2.2) 100% repeat-x; }
+.bs-divider.is-thick-thin, .bs-divider-x.is-thick-thin::before, .bs-divider-x.is-thick-thin::after { height: 3px; border: 0; border-top: max(2px, var(--bs-divider-size, 1px)) solid var(--bs-divider-color, var(--bs-border)); border-bottom: 1px solid var(--bs-divider-color, var(--bs-border)); background: none; }
+.bs-divider.is-shadow, .bs-divider-x.is-shadow::before, .bs-divider-x.is-shadow::after { height: var(--bs-divider-size, 1px); border: 0; background-color: var(--bs-divider-color, var(--bs-border)); box-shadow: 0 4px 10px -2px rgba(0, 0, 0, .28); border-radius: 99px; }
+.bs-divider-x.is-content-left::before, .bs-divider-x.is-content-right::after { flex: 0 0 24px; }
+.bs-divider-x__content .bs-icon { width: var(--bs-divider-icon-size, 20px); height: var(--bs-divider-icon-size, 20px); }
+.bs-divider-x.has-icon-bg .bs-icon { box-sizing: content-box; padding: .5em; border-radius: 50%; background: var(--bs-divider-icon-bg); }
+@media (max-width: 849px) {
+	.bs-divider, .bs-divider-x { width: var(--bs-divider-width-t, var(--bs-divider-width, 100%)); }
+	.bs-divider-wrap { padding-block: var(--bs-divider-spacing-t, var(--bs-divider-spacing, 24px)); }
+	.bs-divider-x, .bs-divider:not(.bs-divider-wrap > .bs-divider) { margin-block: var(--bs-divider-spacing-t, var(--bs-divider-spacing, 24px)); }
+	.bs-divider-x__content { font-size: var(--bs-divider-text-fs-t, var(--bs-divider-text-fs, .9em)); }
+}
+@media (max-width: 549px) {
+	.bs-divider, .bs-divider-x { width: var(--bs-divider-width-m, var(--bs-divider-width-t, var(--bs-divider-width, 100%))); }
+	.bs-divider-wrap { padding-block: var(--bs-divider-spacing-m, var(--bs-divider-spacing-t, var(--bs-divider-spacing, 24px))); }
+	.bs-divider-x, .bs-divider:not(.bs-divider-wrap > .bs-divider) { margin-block: var(--bs-divider-spacing-m, var(--bs-divider-spacing-t, var(--bs-divider-spacing, 24px))); }
+	.bs-divider-x__content { font-size: var(--bs-divider-text-fs-m, var(--bs-divider-text-fs-t, var(--bs-divider-text-fs, .9em))); }
+}
+@keyframes bs-divider-draw { from { clip-path: inset(0 50% 0 50%); } to { clip-path: inset(0 0 0 0); } }
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: view()) {
+		.bs-divider.is-draw, .bs-divider-x.is-draw::before, .bs-divider-x.is-draw::after { animation: bs-divider-draw linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+	}
+}
 
 /* ================================================================ 1.29 – Team member */
 .bs-team { min-width: 0; --ta: var(--bs-team-accent, var(--bs-primary)); position: relative; display: flex; flex-direction: column; height: 100%; margin-bottom: 1.5em; overflow: hidden; border-radius: 16px; }

@@ -9,6 +9,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 Đã phát hành ở 1.90.0: tự động ưu tiên ảnh hero và preload, danh sách xoay vòng Sponsored, Banner không ảnh trong editor, ẩn thông báo plugin trên trang quản trị theme. Không có thay đổi đang chờ.
 
 - **G-141 Abilities API và MCP:** tính năng tuỳ chọn “AI abilities (MCP)”, mặc định tắt, cần WordPress 6.9+. 10 ability `bigspy/*` (site-info, list-content, get-post, block-catalog, section-recipes, get-settings, update-settings, get-page, update-page, page-sections) bọc công cụ AI Designer qua `bst_aid_run_tool()`; ghi chạy trên tác vụ “External AI (MCP)” của từng người để hoàn tác; việc cần duyệt trả lỗi `bst_approval_required`. Kiểm thử: 6 ca mới trong `designer-integration.php` đạt trên WP 7.1.3.
+- **G-129 Bộ điều khiển dùng chung + Divider:** `assets/js/editor-kit.js` thêm vào `bstEditor`: `Resp`, `PartTypo`, `ColorStates`, `PartBox`, `StylePicker`, `LinkControl`, `StyleTab`, `partVars`; PHP `bst_part_vars()`; `tools/check-block-options.js` (chỉ cảnh báo). Divider: kiểu sóng, răng cưa, chấm tròn, dày-mỏng, đổ bóng; độ rộng %/px theo D/T/M, khoảng cách T/M, màu gradient từ–đến, chữ/icon trái-giữa-phải, cỡ/đậm/giãn chữ, cỡ icon và nền tròn, tự vẽ khi cuộn tới; panel kiểu chuyển sang tab Kiểu. HTML Divider cũ giống hệt (7 ca so trên Playground).
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
