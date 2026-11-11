@@ -16,6 +16,26 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
+## Mở rộng tuỳ chọn cho mọi khối — owner yêu cầu 11-11-2026 (G-129 → G-139)
+
+Owner muốn mọi khối, kể cả khối phụ nhỏ và ít dùng (tìm kiếm, nút, đường kẻ…), có thật nhiều tuỳ chọn: không chỉ thông số cơ bản mà cả kiểu dáng và phong cách hiển thị. Nghiên cứu G-128 đếm thuộc tính của 81 khối: 22 khối có 0–5 thuộc tính riêng, 30 khối có 7–10; phần lớn khối chỉ có 2–5 kiểu dáng; lớp Design dùng chung chỉ chỉnh được vỏ ngoài, không chỉnh được phần bên trong. **Hiện trạng, nguyên tắc bắt buộc và danh sách kiểu dáng/tuỳ chọn cho từng khối nằm ở [BLOCK-OPTIONS-SPEC.md](BLOCK-OPTIONS-SPEC.md); agent lập trình đọc mục 2 và mục của mã đang làm trước khi sửa.** Đây là đề xuất chờ owner duyệt, chưa mục nào được triển khai; nghiên cứu dựa trên đọc `block.json` và `render.php`, chưa mở editor.
+
+| Mã | Việc | Ghi chú |
+| --- | --- | --- |
+| G-129 | Bộ điều khiển dùng chung cho editor (`block-kit.js`): giá trị theo thiết bị, chữ/màu/khung từng phần, chọn icon, link, chọn kiểu bằng hình, carousel, thẻ, truy vấn; `tools/check-block-options.js` | Nền tảng, làm đầu tiên |
+| G-130 | Mở rộng lớp Design chung: viền từng cạnh, bo từng góc, gradient/ảnh nền, bóng tuỳ chỉnh, opacity, bộ lọc, transform, sticky, thứ tự theo thiết bị, sao chép/dán kiểu | Mọi khối hưởng ngay |
+| G-131 | Kiểu dựng sẵn (`presets.json`) cho từng khối, người dùng lưu được kiểu riêng | Cần G-129 |
+| G-134 | Tìm kiếm và tiện ích: `listing-search`, khối mới `bst/search`, nav-menu, social, share, payment-icons, widget-area, shortcode, map, popup | Ví dụ owner nêu |
+| G-133 | Tabs, Accordion, Table, Timeline, Icon List | Ví dụ owner nêu |
+| G-132 | Khối cơ bản nhỏ: divider, spacer, buttons, button, title, heading, text, star-rating, alert, progress, counter | |
+| G-135 | Thẻ nội dung và media: icon-box, image-box, flip-box, testimonial, team-member, price-table, pricing-toggle, hotspot, before-after, audio, video, video-button, lottie, logos, image | |
+| G-136 | Bố cục và lưới ảnh: row, column, section, banner, banner-grid, bento, gallery, expand-gallery | |
+| G-137 | Khối chuyển động: marquee, ticker, horizontal-scroll, stack-cards, scroll-story, hover-reveal, video-cards, zoom-hero, line-draw, animated-text, slider | |
+| G-138 | Khối truy vấn: posts, products, products-list, product-categories, category-grid, listing-* | Phần cài đặt chung listing thuộc G-103 |
+| G-139 | Rà soát cuối: kiểm tra bắt buộc, preset, kiến thức AI, bản dịch, đo dung lượng | |
+
+Thứ tự: G-129 → G-130 → G-131 → G-134 → G-133 → G-132 → G-135 → G-136 → G-137 → G-138 → G-139. Mỗi mã nhóm khối chia thành nhiều phiên, mỗi phiên 2–4 khối với mã con (`G-133-a`…). Nên xong G-108 (per-page CSS) trước đợt này vì `blocks.css` sẽ tăng.
+
 ## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-107 → G-124)
 
 Mã G-124 (cổng cú pháp) ban đầu ghi là G-106; đổi vì G-106 đã dùng cho việc Icon List (1c7decc). Sổ việc và trạng thái nằm ở `TASKS.md` thư mục làm việc ngoài repo.
