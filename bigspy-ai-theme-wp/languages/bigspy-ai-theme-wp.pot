@@ -12231,3 +12231,12 @@ msgstr ""
 msgid "BIGSPY AI: Mega menu (child items become columns on desktop)"
 msgstr ""
 
+msgid "Go to slide %d"
+msgstr ""
+
+msgid "Pause slideshow"
+msgstr ""
+
+msgid "Play slideshow"
+msgstr ""
+

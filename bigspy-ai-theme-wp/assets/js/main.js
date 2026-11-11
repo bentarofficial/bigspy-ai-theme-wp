@@ -3,6 +3,21 @@
 	'use strict';
 
 	var doc = document;
+
+	/** Keep Tab inside `root` while it is open. Returns a function that removes the trap. */
+	window.bstTrapFocus = function (root) {
+		var sel = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),iframe,video[controls],[tabindex]:not([tabindex="-1"])';
+		var onKey = function (e) {
+			if (e.key !== 'Tab') { return; }
+			var items = Array.prototype.filter.call(root.querySelectorAll(sel), function (el) { return el.offsetParent !== null || el === document.activeElement; });
+			if (!items.length) { e.preventDefault(); return; }
+			var first = items[0], last = items[items.length - 1];
+			if (e.shiftKey && (document.activeElement === first || !root.contains(document.activeElement))) { e.preventDefault(); last.focus(); }
+			else if (!e.shiftKey && (document.activeElement === last || !root.contains(document.activeElement))) { e.preventDefault(); first.focus(); }
+		};
+		document.addEventListener('keydown', onKey);
+		return function () { document.removeEventListener('keydown', onKey); };
+	};
 	var body = doc.body;
 	var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -68,6 +83,7 @@
 	/* ------------------------------------------------------------ Off-canvas menu */
 	var offcanvas = doc.getElementById('bs-offcanvas');
 	var lastToggle = null;
+	var untrapOffcanvas = null;
 
 	function setExpanded(selector, value) {
 		doc.querySelectorAll(selector).forEach(function (btn) {
@@ -86,6 +102,7 @@
 		});
 		body.classList.add('bs-no-scroll');
 		setExpanded('[data-bs-offcanvas-open]', true);
+		untrapOffcanvas = window.bstTrapFocus(offcanvas);
 		var close = offcanvas.querySelector('[data-bs-offcanvas-close].bs-icon-btn');
 		if (close) {
 			close.focus();
@@ -99,6 +116,10 @@
 		offcanvas.classList.remove('is-open');
 		body.classList.remove('bs-no-scroll');
 		setExpanded('[data-bs-offcanvas-open]', false);
+		if (untrapOffcanvas) {
+			untrapOffcanvas();
+			untrapOffcanvas = null;
+		}
 		window.setTimeout(function () {
 			offcanvas.hidden = true;
 		}, reduceMotion ? 0 : 300);

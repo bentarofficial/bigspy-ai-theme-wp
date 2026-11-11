@@ -542,6 +542,45 @@ input[type="submit"]:hover,
 	opacity: 1;
 }
 
+.bs-slider__pause {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	z-index: 3;
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(15, 23, 42, .55);
+	color: #fff;
+	cursor: pointer;
+}
+
+.bs-slider__pause::before {
+	content: "";
+	width: 10px;
+	height: 12px;
+	border-left: 3px solid currentColor;
+	border-right: 3px solid currentColor;
+}
+
+.bs-slider__pause[aria-pressed="true"]::before {
+	width: 0;
+	height: 0;
+	border-left: 10px solid currentColor;
+	border-right: 0;
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;
+}
+
+.bs-slider__pause:focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 2px;
+}
+
 @media (hover: none) {
 	.bs-slider__arrow {
 		opacity: 1;

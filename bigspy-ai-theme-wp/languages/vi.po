@@ -8536,3 +8536,15 @@ msgstr "BIGSPY AI: Mega menu (các mục con thành cột trên desktop)"
 msgid "Bank transfer"
 msgstr "Chuyển khoản"
 
+msgid "Go to slide %d"
+msgstr "Đến slide %d"
+
+msgid "Pause slideshow"
+msgstr "Tạm dừng trình chiếu"
+
+msgid "Play slideshow"
+msgstr "Chạy trình chiếu"
+
+msgid "Close"
+msgstr "Đóng"
+

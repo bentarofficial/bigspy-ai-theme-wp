@@ -3,6 +3,7 @@
 	'use strict';
 
 	var doc = document;
+	var L = window.bstBlocksL10n || {};
 	var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	/* ------------------------------------------------------------ Slider */
@@ -134,6 +135,14 @@
 			});
 		}
 
+		root.addEventListener('keydown', function (e) {
+			if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
+				return;
+			}
+			e.preventDefault();
+			goTo(current() + (e.key === 'ArrowRight' ? 1 : -1));
+		});
+
 		var dotsWrap = root.querySelector('[data-bs-slider-dots]');
 		var dotTimer = !!root.querySelector('[data-bs-slider-dot-timer]') && !!dotsWrap;
 		if (dotTimer) {
@@ -153,7 +162,7 @@
 				if (dotTimer) {
 					dot.appendChild(doc.createElement('span')).className = 'bs-slider__dot-fill';
 				}
-				dot.setAttribute('aria-label', String(i + 1));
+				dot.setAttribute('aria-label', (L.slide || 'Go to slide %d').replace('%d', i + 1));
 				dot.dataset.index = String(i);
 				dotsWrap.appendChild(dot);
 			}
@@ -194,6 +203,18 @@
 		var interval = parseInt(root.dataset.autoplay || '0', 10);
 		if (interval > 0 && !reduceMotion) {
 			var paused = false;
+			var stopped = false;
+			var stopBtn = doc.createElement('button');
+			stopBtn.type = 'button';
+			stopBtn.className = 'bs-slider__pause';
+			stopBtn.setAttribute('aria-pressed', 'false');
+			stopBtn.setAttribute('aria-label', L.pause || 'Pause slideshow');
+			stopBtn.addEventListener('click', function () {
+				stopped = !stopped;
+				stopBtn.setAttribute('aria-pressed', stopped ? 'true' : 'false');
+				stopBtn.setAttribute('aria-label', stopped ? (L.play || 'Play slideshow') : (L.pause || 'Pause slideshow'));
+			});
+			root.appendChild(stopBtn);
 			var pause = function () {
 				paused = true;
 			};
@@ -236,7 +257,7 @@
 			}, { passive: true });
 			restartBar();
 			window.setInterval(function () {
-				if (paused || doc.hidden) {
+				if (paused || stopped || doc.hidden) {
 					return;
 				}
 				var index = current() + 1;
@@ -586,9 +607,9 @@
 			lightbox.setAttribute('role', 'dialog');
 			lightbox.setAttribute('aria-modal', 'true');
 			lightbox.innerHTML = '<span class="bs-lightbox__count"></span><figure class="bs-lightbox__figure"><img class="bs-lightbox__img" alt=""><figcaption class="bs-lightbox__caption"></figcaption></figure>' +
-				'<button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="Close">&#10005;</button>' +
-				'<button type="button" class="bs-lightbox__btn bs-lightbox__prev" aria-label="Previous">&#8249;</button>' +
-				'<button type="button" class="bs-lightbox__btn bs-lightbox__next" aria-label="Next">&#8250;</button>';
+				'<button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="' + (L.close || 'Close') + '">&#10005;</button>' +
+				'<button type="button" class="bs-lightbox__btn bs-lightbox__prev" aria-label="' + (L.previous || 'Previous') + '">&#8249;</button>' +
+				'<button type="button" class="bs-lightbox__btn bs-lightbox__next" aria-label="' + (L.next || 'Next') + '">&#8250;</button>';
 			doc.body.appendChild(lightbox);
 			lightbox.addEventListener('click', function (e) {
 				if (e.target === lightbox || e.target.classList.contains('bs-lightbox__close')) {
@@ -641,10 +662,17 @@
 		show();
 		lightbox.hidden = false;
 		doc.documentElement.style.overflow = 'hidden';
+		if (window.bstTrapFocus && !lightbox._untrap) {
+			lightbox._untrap = window.bstTrapFocus(lightbox);
+		}
 		lightbox.querySelector('.bs-lightbox__close').focus();
 	}
 	function closeLightbox() {
 		lightbox.hidden = true;
+		if (lightbox._untrap) {
+			lightbox._untrap();
+			lightbox._untrap = null;
+		}
 		doc.documentElement.style.overflow = '';
 		if (lightbox._opener) {
 			lightbox._opener.focus();
@@ -667,11 +695,14 @@
 			modal.className = 'bs-lightbox bs-video-modal';
 			modal.setAttribute('role', 'dialog');
 			modal.setAttribute('aria-modal', 'true');
-			modal.innerHTML = '<div class="bs-video-modal__frame">' + (embed ? '<iframe src="' + embed.replace(/"/g, '') + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>' : '<video src="' + String(file).replace(/"/g, '') + '" controls autoplay playsinline></video>') + '</div><button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="Close">&#10005;</button>';
+			modal.innerHTML = '<div class="bs-video-modal__frame">' + (embed ? '<iframe src="' + embed.replace(/"/g, '') + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>' : '<video src="' + String(file).replace(/"/g, '') + '" controls autoplay playsinline></video>') + '</div><button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="' + (L.close || 'Close') + '">&#10005;</button>';
 			var close = function () {
 				modal.remove();
 				doc.documentElement.style.overflow = '';
 				doc.removeEventListener('keydown', onKey);
+				if (untrap) {
+					untrap();
+				}
 				vtrigger.focus();
 			};
 			var onKey = function (ev) {
@@ -686,6 +717,7 @@
 			});
 			doc.addEventListener('keydown', onKey);
 			doc.body.appendChild(modal);
+			var untrap = window.bstTrapFocus ? window.bstTrapFocus(modal) : null;
 			doc.documentElement.style.overflow = 'hidden';
 			modal.querySelector('.bs-lightbox__close').focus();
 			return;
@@ -779,6 +811,7 @@
 			}
 		};
 		var lastFocus = null;
+		var untrapPopup = null;
 		var openPopup = function (pop) {
 			if (!pop || !pop.hidden) {
 				return;
@@ -790,12 +823,19 @@
 			var dialog = pop.querySelector('.bs-popup__dialog');
 			if (dialog) {
 				dialog.focus();
+				if (window.bstTrapFocus) {
+					untrapPopup = window.bstTrapFocus(dialog);
+				}
 			}
 			store(pop.getAttribute('data-bs-popup'), true);
 		};
 		var closePopup = function (pop) {
 			pop.classList.remove('is-open');
 			doc.documentElement.classList.remove('bs-popup-lock');
+			if (untrapPopup) {
+				untrapPopup();
+				untrapPopup = null;
+			}
 			setTimeout(function () { pop.hidden = true; }, 250);
 			if (lastFocus && lastFocus.focus) {
 				lastFocus.focus();

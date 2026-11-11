@@ -31,3 +31,4 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - G-123: AI Designer biết khối bigspy/sponsored và cách dùng khối List; check-block-previews báo khối thiếu trong kiến thức AI.
 - G-113: 22 chuỗi tiếng Việt viết cứng (Quick View, tuỳ chọn sản phẩm, điều hướng sản phẩm, header tự do, mega menu, Chuyển khoản, dashboard) thành chuỗi dịch được; site tiếng Anh không còn chữ Việt ở các chỗ này.
 - G-118: ảnh nền Section chọn từ thư viện in thành <img> có srcset, ảnh đầu trang tải ưu tiên; nền cố định (fixed), cỡ auto và ảnh URL ngoài giữ nền CSS như cũ. Chưa đo LCP, chưa so ảnh chụp 390/1440 px.
+- G-117: popup, lightbox, video popup, menu di động giữ focus bàn phím bên trong khi mở; popup có tên đọc màn hình; nhãn Close/Previous/Next/chấm slide dịch được; slider tự chạy có nút tạm dừng và điều khiển bằng phím mũi tên. Chưa thử tay bằng bàn phím.
