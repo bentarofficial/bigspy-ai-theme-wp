@@ -16,7 +16,7 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
-## Kế hoạch thực thi 11-11-2026: tuỳ chọn khối, cổng AI, hook (G-129 → G-149)
+## Kế hoạch thực thi 11-11-2026: tuỳ chọn khối, cổng AI, hook, Customizer (G-129 → G-151)
 
 **Dành cho agent lập trình: đọc hết mục này là đủ để bắt đầu.** Chỉ mở thêm tài liệu khi phiếu việc ghi rõ. Mọi mục là đề xuất đã được owner yêu cầu ghi vào roadmap; chưa mục nào được lập trình. Số dòng trong mục này đúng tại commit `c9df12e`; nếu lệch thì grep theo tên hàm.
 
@@ -48,6 +48,7 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 | CSS khối | `assets/css/blocks.css` (chỉ grep; Tabs bắt đầu dòng 807). Sửa xong chạy `python tools/split-blocks-css.py` |
 | JS front | `assets/js/blocks.js` (`initTabs()` dòng 250); khối chuyển động ở `motion-*.js` |
 | Tìm kiếm trực tiếp | `bst_live_search_ajax()` `inc/header-extras.php:172`, action `bst_live_search`; tài nguyên ở `bst_live_search_assets()` `:155` |
+| Customizer | trường ở `inc/customizer/fields.php`; đăng ký và nạp script ở `inc/customizer/customizer.php` (bảng: dòng 167, khung xem trước: dòng 199); `assets/js/customizer-controls.js` (593 dòng), `assets/js/customizer-preview.js` (19 dòng) |
 | Kiến thức AI về khối | `ai-designer/knowledge/blocks.php` (mỗi khối một dòng mảng), `knowledge/theme.md` |
 | Công cụ AI | `bst_aid_tools()` `ai-designer/includes/tools.php:15`, `bst_aid_run_tool()` `:156`; quyền ở `permissions.php`: `bst_aid_tool_policy()` `:36`, `bst_aid_permission_gate()` `:102` |
 | Auto Detect | `inc/auto-detect/` (h1, keywords, links, media, security); test `tools/tests/auto-detect-integration.php` (mảng `$tests` dòng 26) |
@@ -82,7 +83,7 @@ Trước khi test chạy `. ./env/env.ps1` ở thư mục làm việc. Máy khô
 
 ### D. Thứ tự và phiếu việc
 
-Thứ tự: **G-129 → G-130 → G-131 → G-133-a (Tabs) → G-134-a (Tìm kiếm) → G-141 → G-147** → các nhóm khối còn lại (G-132, G-133-b, G-134-b, G-135 → G-138) xen với G-142, G-143, G-148, G-149 → G-139 → G-145. Nên làm G-108 (per-page CSS so hash) trước vì `blocks.css` sẽ tăng. Mỗi phiếu là một phiên; phiếu nhóm khối chia mã con, mỗi phiên 2–4 khối.
+Thứ tự: **G-129 → G-130 → G-131 → G-133-a (Tabs) → G-134-a (Tìm kiếm) → G-141 → G-147** → các nhóm khối còn lại (G-132, G-133-b, G-134-b, G-135 → G-138) xen với G-142, G-143, G-148, G-149 → G-139 → G-145. **G-151 (nhãn sửa nhanh trong Customizer) độc lập với các phiếu khác, làm được bất cứ lúc nào; đề xuất làm ngay sau G-134-a.** Nên làm G-108 (per-page CSS so hash) trước vì `blocks.css` sẽ tăng. Mỗi phiếu là một phiên; phiếu nhóm khối chia mã con, mỗi phiên 2–4 khối.
 
 #### G-129 · Mở rộng bộ điều khiển dùng chung
 
@@ -198,6 +199,61 @@ Thứ tự: **G-129 → G-130 → G-131 → G-133-a (Tabs) → G-134-a (Tìm ki�
 - **Tên:** tiền tố `bst_`, dạng `bst_before_<vùng>`, `bst_after_<vùng>`. Grep hook hiện có trước để không trùng.
 - **Tài liệu:** `tools/list-hooks.py` sinh `docs/HOOKS.md` từ mã.
 - **Nghiệm thu:** không ai móc vào thì HTML không đổi; test trong `tools/tests/features-integration.php` móc một action và một filter rồi kiểm đầu ra.
+
+#### G-151 · Nhãn sửa nhanh trong Customizer (rê chuột vào phần tử, bấm là tới đúng mục)
+
+- **Yêu cầu của owner (11-11-2026):** trong Customizer, ở bất kỳ trang nào, rê chuột vào một phần tử trên khung xem trước (logo, hàng header, giỏ hàng, sidebar, bố cục blog, footer, dòng bản quyền…) thì hiện nhãn tên phần tử; bấm nhãn là bảng bên trái mở đúng mục cài đặt, không phải lục menu. Menu cũ giữ nguyên, vì có những mục không có phần tử tương ứng trên trang. Các phần tử owner chụp chỉ là ví dụ; phải phủ mọi vùng theme in ra.
+- **Flatsome làm thế nào** (xem trên site đối chiếu, Flatsome 3.20.10; chỉ ghi lại cơ chế, không chép mã):
+  - Script riêng chỉ nạp trong khung xem trước chứa một bảng 42 mục, mỗi mục gồm: selector CSS, chữ trên nhãn, ID đích, loại đích (`control`, `section` hoặc `panel`), vị trí nhãn.
+  - Rê chuột vào phần tử khớp selector thì hiện một nút nhỏ (nền xanh, chữ trắng 10px, mờ 50%, rõ 100% khi rê vào nút) và phần tử được viền mờ.
+  - Bấm nút thì gọi `wp.customize.control(id).focus()`, `section(id).focus()` hoặc `panel(id).focus()` của cửa sổ cha.
+  - Phần tử lồng nhau hiện nhiều nhãn cùng lúc (ví dụ Logo và Header Main).
+  - 42 nhãn của Flatsome: Top Bar, Header Main, Header Bottom, Logo, Transparent Header, Dropdown Style, Header Cart, Header Account, Header Search, Header Social, Header Newsletter, Header Vertical Menu, Button 1, Button 2, Custom Content, Layout, Sidebar Widgets, Blog Layout, Blog Single Post layout, Featured Blog Posts, Catalog Layout, Catalog Sidebar Widgets, Shop Breadcrumbs, Product Layout, Product Gallery, Product Summary, Product Tabs, Product Upsells, Related Products, Product Sidebar Widgets, Share Icons, Cart Layout, Checkout Layout, Portfolio Layout, Payment Icons, Footer 1/2 Options, Footer 1/2 Widgets, Absolute Footer, Cookie Notice.
+  - Ngoài ra Flatsome khai báo 66 “partial” của WordPress (selective refresh) để một số vùng tự vẽ lại không cần tải lại trang; đây là việc khác, không thuộc phiếu này.
+- **BIGSPY hiện có:** `assets/js/customizer-preview.js` chỉ 19 dòng, cập nhật biến CSS; không có nhãn nào. Bảng bên trái đã có hàm nhảy tới mục: chip của header builder gọi `api.section(id).focus()` (`assets/js/customizer-controls.js:145-153`), ô tìm cài đặt gọi `control.focus()` (`:477`). Script nạp ở `inc/customizer/customizer.php:167` (bảng) và `:199` (khung xem trước).
+- **Tệp sửa:** mới `inc/customizer/focus-map.php` (nạp từ `inc/customizer/customizer.php`); `assets/js/customizer-preview.js`; `assets/js/customizer-controls.js`; mới `assets/css/customizer-preview.css` (chỉ nạp ở `customize_preview_init`); `inc/header-builder.php:211`; các nơi in vùng (xem bảng dưới).
+- **Thiết kế:**
+  1. **Bảng ánh xạ ở PHP:** `bst_customize_focus_map()` trả danh sách `array( 'selector', 'type' => control|section|panel|url, 'id', 'label' )`, có `apply_filters( 'bst_customize_focus_map', … )` để child theme và plugin thêm mục. Nhãn lấy từ tiêu đề section/control đã đăng ký (`$wp_customize->get_section( $id )->title`) để không phải thêm chuỗi dịch; chỉ thêm chuỗi khi không có tiêu đề phù hợp. Mục có ID không tồn tại thì bỏ khỏi bảng.
+  2. **Thuộc tính trên phần tử động:** khi `is_customize_preview()`, thêm `data-bst-edit="<type>:<id>"` vào thẻ bọc của phần tử sinh động: từng phần tử header ở `bst_header_element()` (`inc/header-builder.php:211`, đích `section:bst_he_<khoá>`; kiểm tra section đó có tồn tại, không thì dùng section chung như `bst_header_logo`), từng vùng widget (đích `section:sidebar-widgets-<id sidebar>`). Ngoài Customizer không in thuộc tính này.
+  3. **Khung xem trước** (`customizer-preview.js`, không dùng jQuery plugin hay thư viện): lắng nghe `mouseover` uỷ quyền trên `document`; tìm phần tử gần nhất khớp bảng hoặc có `data-bst-edit`, cùng các phần tử cha cũng khớp; hiện **một thanh nhãn** bám góc trên trái của phần tử trong cùng, gồm các nút theo thứ tự từ ngoài vào trong (ví dụ `Header chính › Logo`); phần tử được viền bằng `outline` (không đổi kích thước). Thanh nhãn ẩn sau 300ms khi chuột rời cả phần tử lẫn thanh. Bấm nút gửi `wp.customize.preview.send( 'bst-focus', { type, id } )`.
+  4. **Bảng bên trái** (`customizer-controls.js`): `api.previewer.bind( 'bst-focus', … )` rồi gọi `api[type](id).focus()`; với `control` thì thêm class nháy sáng như ô tìm kiếm đang làm (`bst-csearch-hit`, dòng 477–480). Loại `url` mở liên kết ở tab mới (dùng cho “Sửa nội dung trang”).
+  5. **Chiều ngược lại (điểm làm tốt hơn Flatsome):** khi người dùng mở một section trong bảng, gửi `bst-highlight` sang khung xem trước để cuộn tới và nháy viền phần tử tương ứng. Nếu phần tử không có trên trang đang xem và mục có `preview_url` (trang shop, một sản phẩm, một bài viết, giỏ hàng, thanh toán) thì đổi `api.previewer.previewUrl` sang trang đó.
+  6. **Công tắc:** nút “Nhãn sửa nhanh” trong bảng (cạnh ô tìm cài đặt), mặc định bật, nhớ bằng `localStorage`; khi tắt thì khung xem trước không hiện nhãn. Cần vì nhãn có thể che menu thả xuống khi người dùng muốn thử thao tác thật.
+  7. **Không cản thao tác:** nhãn không chặn bấm vào liên kết, menu, giỏ hàng trong khung xem trước; `z-index` cao hơn header dính; trên bề rộng xem trước di động vẫn chạy.
+  8. **Trợ năng:** nhãn là `<button>` có `aria-label` “Sửa: <tên>”; phím Tab tới được; Escape ẩn thanh nhãn.
+- **Bảng ánh xạ tối thiểu** (agent phải grep selector và ID trước khi đưa vào; thêm mọi vùng khác theme in ra):
+
+| Vùng trên trang | Selector hiện có | Đích |
+| --- | --- | --- |
+| Thanh thông báo | grep trong `inc/announcement.php` | section `bst_announcement` |
+| Hàng header trên / chính / dưới | `.bs-header-row--top`, `--main`, `--bottom` | section `bst_header_rows`; nhãn phụ “Bố cục header” tới `bst_header_builder` |
+| Header dính | `.bs-header__sticky` | section `bst_header_general` |
+| 16 phần tử header (logo, menu chính, menu phụ, icon menu, tìm kiếm, ô tìm, tài khoản, giỏ hàng, nút 1–2, HTML 1–3, liên hệ, mạng xã hội, vạch ngăn) | `.bs-header-el--<khoá>` | section `bst_he_<khoá>`; dự phòng `bst_header_logo`, `bst_header_nav`, `bst_header_search`, `bst_header_buttons`, `bst_header_html`, `bst_contact` |
+| Menu (các mục) | thẻ `nav` trong phần tử menu | panel `nav_menus` (nhãn phụ) |
+| Mega menu, menu dọc | grep trong `inc/mega-menu.php` | section tương ứng nếu có, không thì `bst_header_nav` |
+| Thanh tiêu đề trang, breadcrumb | `.bs-title-bar`, `.bs-breadcrumbs` | section `bst_title_bar` |
+| Khung bố cục trang | `.bs-layout__content` | section `bst_layout_site` |
+| Sidebar | `.bs-layout__sidebar` | section `bst_sidebar`; nhãn phụ “Widget” tới `sidebar-widgets-<id>` |
+| Danh sách bài (blog, lưu trữ, tìm kiếm) | grep class bọc trong `index.php`, `inc/blog-options.php` | section `bst_blog_archive` |
+| Bài viết đơn | grep trong `single.php`, `template-parts/content-single.php` | section `bst_blog_single` |
+| Nội dung trang dựng bằng khối | vùng nội dung của `page.php` | loại `url`: liên kết sửa trang (`get_edit_post_link`) |
+| Trang shop, lưới sản phẩm, bộ lọc | grep trong `inc/shop-options.php`, `woocommerce/` | section `bst_shop` |
+| Thẻ sản phẩm, trang sản phẩm (ảnh, tóm tắt, tab, liên quan) | `.bs-product__*`, `.bs-product-part` | section `bst_product` |
+| Chế độ catalog | nơi thay nút mua | section `bst_catalog` |
+| Giỏ hàng, thanh toán | grep trong `inc/checkout-extras.php` | section `bst_checkout` |
+| Dải kêu gọi hành động ở footer | `.bs-footer-cta` | section `bst_footer_cta` |
+| Widget footer | `.bs-footer-widgets`, `.bs-footer-widgets__col` | section `bst_footer_widgets`; nhãn phụ tới `sidebar-widgets-<id>` |
+| Dòng bản quyền | `.bs-footer-bottom` | section `bst_footer_bottom` |
+| Nút liên hệ nổi | `.bs-fc` | section `bst_float` |
+| Header/footer dựng bằng Theme Builder | thẻ bọc của layout | loại `url`: liên kết sửa layout đó |
+| Vùng của chế độ BIGSPY AI List (thẻ listing, sidebar trang chủ) | grep trong `inc/listing/` | section cài đặt listing nếu có |
+
+- **Kiểm thử:**
+  - Thêm ca vào `tools/tests/admin-browser-check.cjs` (đọc cách tệp này mở trang quản trị trước): mở `customize.php`, rê chuột vào `.bs-header-el--logo` trong iframe, thấy nhãn, bấm, kiểm tra section đích đang mở; tắt công tắc thì không còn nhãn.
+  - Ca PHP trong `tools/tests/features-integration.php`: mọi mục của `bst_customize_focus_map()` trỏ tới section/control/panel có thật; ngoài Customizer HTML không chứa `data-bst-edit`.
+  - Thử tay trên Playground: trang chủ, blog, bài viết, shop, sản phẩm (`--woo`), giỏ hàng; bề rộng xem trước di động; menu thả xuống vẫn mở được khi nhãn bật.
+- **Nghiệm thu:** mọi vùng trong bảng có nhãn và nhảy đúng mục; menu cũ của Customizer không đổi; HTML ngoài Customizer giống hệt trước; không có lỗi console; `python tools/lint.py` và `node tools/features-check.cjs` đạt.
+- **Ngoài phạm vi:** vẽ lại từng vùng không tải trang (selective refresh) và sửa chữ trực tiếp trên khung xem trước; nếu owner muốn, mở mã riêng sau phiếu này.
 
 #### Các phiếu nhóm khối: G-132, G-133-b, G-134-b, G-135, G-136, G-137, G-138
 
