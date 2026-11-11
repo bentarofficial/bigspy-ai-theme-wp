@@ -205,6 +205,10 @@ function bst_header_element( $element, $device ) {
 			$html = (string) apply_filters( 'bst_header_element_' . $element, '', $device );
 	}
 
+	$html = bst_capture_action( 'bst_before_header_element', $element, $device ) . $html . bst_capture_action( 'bst_after_header_element', $element, $device );
+	if ( has_filter( 'bst_header_element_html' ) ) {
+		$html = (string) apply_filters( 'bst_header_element_html', $html, $element, $device );
+	}
 	if ( '' === trim( $html ) ) {
 		return '';
 	}

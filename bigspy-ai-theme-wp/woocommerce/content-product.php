@@ -59,6 +59,7 @@ if ( bst_mod( 'product_show_category' ) ) {
 }
 ?>
 <li <?php wc_product_class( 'bs-product', $product ); ?>>
+	<?php do_action( 'bst_before_product_card', $product ); ?>
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 	<div class="bs-product__media bs-ratio bs-ratio--<?php echo esc_attr( $bst_ratio ); ?>">
@@ -110,4 +111,5 @@ if ( bst_mod( 'product_show_category' ) ) {
 
 		<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
 	</div>
+	<?php do_action( 'bst_after_product_card', $product ); ?>
 </li>

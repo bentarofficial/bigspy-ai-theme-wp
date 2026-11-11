@@ -7,14 +7,17 @@
 
 defined( 'ABSPATH' ) || exit;
 bst_tb_render( 'after_content' );
+do_action( 'bst_after_content' );
 ?>
 </main>
 <?php
 if ( bst_show_footer() ) {
+	do_action( 'bst_before_footer' );
 	bst_tb_render( 'before_footer' );
 	if ( ! bst_tb_render( 'footer', true ) ) {
 		bst_render_footer();
 	}
+	do_action( 'bst_after_footer' );
 }
 ?>
 </div><!-- #page -->

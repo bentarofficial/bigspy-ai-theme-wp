@@ -37,6 +37,7 @@ $bst_includes = array(
 	'inc/portfolio.php',
 	'inc/customizer/customizer.php',
 	'inc/customizer/groups.php',
+	'inc/hooks.php',
 	'inc/blocks.php',
 	'inc/motion-blocks.php',
 	'inc/motion-wave.php',

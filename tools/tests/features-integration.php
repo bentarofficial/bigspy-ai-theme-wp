@@ -564,3 +564,24 @@ foreach ( array_keys( bst_he_schema() ) as $bst_k ) {
 	bst_test( '' !== bst_customize_target_title( 'section', 'bst_he_' . $bst_k ), 'quick-edit: header element section bst_he_' . $bst_k . ' exists' );
 }
 unset( $GLOBALS['wp_customize'] );
+// G-147: developer hooks. Unhooked output unchanged; one action and filters change output.
+$bst_hb   = array( 'blockName' => 'bst/divider', 'attrs' => array(), 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() );
+$bst_base = render_block( $bst_hb );
+$bst_logo = bst_header_element( 'logo', 'desktop' );
+$bst_cls  = function () { return array( 'g147-x' ); };
+$bst_htm  = function ( $html, $name ) { return 'bst/divider' === $name ? $html . '<!--g147-->' : $html; };
+$bst_act  = function ( $el ) { if ( 'logo' === $el ) { echo '<i class="g147-a"></i>'; } };
+add_filter( 'bst_block_classes', $bst_cls );
+add_filter( 'bst_block_html', $bst_htm, 10, 2 );
+add_action( 'bst_before_header_element', $bst_act );
+$bst_out  = render_block( $bst_hb );
+$bst_logo2 = bst_header_element( 'logo', 'desktop' );
+remove_filter( 'bst_block_classes', $bst_cls );
+remove_filter( 'bst_block_html', $bst_htm, 10 );
+remove_action( 'bst_before_header_element', $bst_act );
+bst_test( false !== strpos( $bst_out, 'g147-x' ) && false !== strpos( $bst_out, '<!--g147-->' ) && false !== strpos( $bst_logo2, 'g147-a' ), 'hooks: bst_block_classes, bst_block_html and bst_before_header_element change output' );
+bst_test( $bst_base === render_block( $bst_hb ) && $bst_logo === bst_header_element( 'logo', 'desktop' ), 'hooks: nothing hooked leaves HTML unchanged' );
+$bst_pf = function ( $p ) { $p['divider']['g147'] = array( 'G', false, array() ); return $p; };
+add_filter( 'bst_block_presets', $bst_pf );
+bst_test( isset( bst_block_presets()['divider']['g147'] ), 'hooks: bst_block_presets filter' );
+remove_filter( 'bst_block_presets', $bst_pf );

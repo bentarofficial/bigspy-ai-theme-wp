@@ -278,6 +278,7 @@ function bst_post_card( $args = array() ) {
 	}
 	$heading = bst_choice( $args['heading'], array( 'h2', 'h3', 'h4', 'h5' ), 'h2' );
 	?>
+	<?php do_action( 'bst_before_post_card', $args ); ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'bs-card bs-card--' . sanitize_html_class( $args['style'] ) ); ?>>
 		<?php if ( $args['image'] && has_post_thumbnail() ) : ?>
 			<a class="bs-card__media bs-ratio bs-ratio--<?php echo esc_attr( $args['ratio'] ); ?>" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
@@ -316,6 +317,7 @@ function bst_post_card( $args = array() ) {
 		</div>
 	</article>
 	<?php
+	do_action( 'bst_after_post_card', $args );
 }
 
 function bst_pagination() {
