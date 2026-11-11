@@ -637,3 +637,16 @@ $bst_r = new WP_REST_Request( 'DELETE', '/bst/v1/block-presets' );
 $bst_r->set_query_params( array( 'block' => 'bst/divider', 'id' => $bst_id ) );
 rest_do_request( $bst_r );
 bst_test( empty( bst_user_block_presets()['bst/divider'] ), 'presets: delete' );
+
+// G-132-c: Button styles, icon only, badge, per-device width, hover border/shadow.
+$bst_btn = function ( $attrs ) {
+	return render_block( array( 'blockName' => 'bst/button', 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+};
+$bst_h = $bst_btn( array( 'text' => 'Go', 'url' => 'https://example.com/', 'style' => 'arrow-circle' ) );
+bst_test( false !== strpos( $bst_h, 'bs-btn--arrow-circle' ) && false !== strpos( $bst_h, 'bs-icon' ) && false !== strpos( $bst_h, '<span>Go</span>' ), 'button: arrow-circle adds an icon' );
+$bst_h = $bst_btn( array( 'text' => 'Search', 'icon' => 'search', 'iconOnly' => true ) );
+bst_test( false !== strpos( $bst_h, 'bs-btn--icon-only' ) && false !== strpos( $bst_h, 'aria-label="Search"' ) && false === strpos( $bst_h, '<span>Search</span>' ), 'button: icon only keeps an aria-label' );
+$bst_h = $bst_btn( array( 'text' => 'Buy', 'badge' => '-20%', 'widthMobile' => 'full', 'widthTablet' => 'bad', 'hoverBorder' => '#ff0000', 'hoverShadow' => '#00ff00', 'style' => 'neon' ) );
+bst_test( false !== strpos( $bst_h, 'bs-btn__badge' ) && false !== strpos( $bst_h, 'bs-btn--m-full' ) && false === strpos( $bst_h, 'bs-btn--t-' ) && false !== strpos( $bst_h, '--bsb-hbc:#ff0000' ) && false !== strpos( $bst_h, '--bsb-hsh:' ) && false !== strpos( $bst_h, 'bs-btn--neon' ), 'button: badge, per-device width, hover colors' );
+$bst_h = $bst_btn( array( 'text' => 'Old', 'url' => '/x' ) );
+bst_test( '<a class="bs-btn bs-btn--primary wp-block-bst-button" href="/x"><span>Old</span></a>' === $bst_h, 'button: old attributes render as before' );

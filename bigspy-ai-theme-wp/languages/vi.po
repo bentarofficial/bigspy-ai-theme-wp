@@ -8992,3 +8992,45 @@ msgstr "Nút khi rê chuột"
 msgid "Button text on hover"
 msgstr "Chữ nút khi rê chuột"
 
+
+msgid "3D press"
+msgstr "Nhấn nổi 3D"
+
+msgid "Neon"
+msgstr "Neon"
+
+msgid "Dashed border"
+msgstr "Viền nét đứt"
+
+msgid "Slide fill"
+msgstr "Tô nền trượt"
+
+msgid "Arrow in circle"
+msgstr "Mũi tên trong vòng tròn"
+
+msgid "Width on tablet"
+msgstr "Độ rộng trên máy tính bảng"
+
+msgid "Width on mobile"
+msgstr "Độ rộng trên điện thoại"
+
+msgid "Same as tablet"
+msgstr "Như máy tính bảng"
+
+msgid "Icon only (text becomes the screen reader label)"
+msgstr "Chỉ icon (chữ thành nhãn cho trình đọc màn hình)"
+
+msgid "Badge (small label on the corner, e.g. New, -20%)"
+msgstr "Nhãn nhỏ ở góc (ví dụ Mới, -20%)"
+
+msgid "Hover border"
+msgstr "Viền khi rê chuột"
+
+msgid "Hover shadow"
+msgstr "Bóng khi rê chuột"
+
+msgid "Badge background"
+msgstr "Nền nhãn nhỏ"
+
+msgid "Screen reader label"
+msgstr "Nhãn cho trình đọc màn hình"

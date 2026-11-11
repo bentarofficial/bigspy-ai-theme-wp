@@ -3965,3 +3965,28 @@ body.bs-has-scroll-bg .bs-section[data-bs-scroll-bg] { background-color: transpa
 .bs-tsc__badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .75rem; background: color-mix(in srgb, var(--bs-primary) 10%, transparent); color: var(--bs-primary); }
 .bs-tsc__news ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
 @media (max-width: 767px) { .bs-tsc__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* G-132-c Button: extra styles, icon only, badge, per-device width, hover border/shadow. */
+.bs-btn.bs-btn--pop3d { background: var(--bsb-bg, var(--bs-primary)); color: var(--bsb-c, #fff); border: 0; box-shadow: 0 5px 0 color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 65%, #000); transform: translateY(0); transition: transform .15s ease, box-shadow .15s ease; }
+.bs-btn.bs-btn--pop3d:hover { transform: translateY(2px); box-shadow: 0 3px 0 color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 65%, #000); color: var(--bsb-hc, #fff); }
+.bs-btn.bs-btn--pop3d:active { transform: translateY(5px); box-shadow: none; }
+.bs-btn.bs-btn--neon { background: transparent; color: var(--bsb-c, var(--bsb-bg, var(--bs-primary))); border: 2px solid var(--bsb-bc, var(--bsb-bg, var(--bs-primary))); box-shadow: 0 0 8px color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 70%, transparent), inset 0 0 8px color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 45%, transparent); text-shadow: 0 0 6px color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 60%, transparent); }
+.bs-btn.bs-btn--neon:hover { background: var(--bsb-hbg, var(--bsb-bg, var(--bs-primary))); color: var(--bsb-hc, #fff); box-shadow: 0 0 22px var(--bsb-bg, var(--bs-primary)); }
+.bs-btn.bs-btn--dotted { background: transparent; color: var(--bsb-c, var(--bsb-bg, var(--bs-primary))); border: 2px dashed var(--bsb-bc, var(--bsb-bg, var(--bs-primary))); }
+.bs-btn.bs-btn--dotted:hover { border-style: solid; background: var(--bsb-hbg, color-mix(in srgb, var(--bsb-bg, var(--bs-primary)) 10%, transparent)); color: var(--bsb-hc, var(--bsb-bg, var(--bs-primary))); }
+.bs-btn.bs-btn--slide { position: relative; overflow: hidden; isolation: isolate; background: transparent; color: var(--bsb-c, var(--bsb-bg, var(--bs-primary))); border: 2px solid var(--bsb-bc, var(--bsb-bg, var(--bs-primary))); }
+.bs-btn.bs-btn--slide::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--bsb-hbg, var(--bsb-bg, var(--bs-primary))); transform: translateY(101%); transition: transform .3s ease; }
+.bs-btn.bs-btn--slide:hover { color: var(--bsb-hc, #fff); }
+.bs-btn.bs-btn--slide:hover::before, .bs-btn.bs-btn--slide:focus-visible::before { transform: none; }
+.bs-btn.bs-btn--arrow-circle { background: var(--bsb-bg, var(--bs-primary)); color: var(--bsb-c, #fff); border: 0; padding-right: .45em; gap: .75em; }
+.bs-btn.bs-btn--arrow-circle .bs-icon { display: inline-grid; place-items: center; width: 2em; height: 2em; padding: .45em; border-radius: 50%; background: rgba(255, 255, 255, .22); box-sizing: border-box; transition: transform .25s ease, background .25s ease; }
+.bs-btn.bs-btn--arrow-circle:hover { background: var(--bsb-hbg, var(--bsb-bg, var(--bs-primary))); color: var(--bsb-hc, #fff); }
+.bs-btn.bs-btn--arrow-circle:hover .bs-icon { transform: translateX(3px); background: rgba(255, 255, 255, .35); }
+.bs-btn.bs-btn--icon-only { padding: 0; width: var(--bsb-h, 2.75em); height: var(--bsb-h, 2.75em); justify-content: center; }
+.bs-btn.has-badge { position: relative; overflow: visible; }
+.bs-btn__badge { position: absolute; top: -.7em; right: -.6em; padding: .15em .5em; border-radius: 99px; background: var(--bs-alert, #e53935); color: #fff; font-size: .62em; font-weight: 700; line-height: 1.4; letter-spacing: .02em; text-transform: none; white-space: nowrap; pointer-events: none; }
+.bs-btn[style*="--bsb-hbc:"]:hover { border-color: var(--bsb-hbc) !important; }
+.bs-btn[style*="--bsb-hsh:"]:hover { box-shadow: var(--bsb-hsh) !important; }
+@media (max-width: 1024px) { .bs-btn.bs-btn--t-full { display: flex; width: 100%; } .bs-btn.bs-btn--t-auto { display: inline-flex; width: auto; } }
+@media (max-width: 767px) { .bs-btn.bs-btn--m-full { display: flex; width: 100%; } .bs-btn.bs-btn--m-auto { display: inline-flex; width: auto; } }
+@media (prefers-reduced-motion: reduce) { .bs-btn.bs-btn--slide::before, .bs-btn.bs-btn--pop3d, .bs-btn.bs-btn--arrow-circle .bs-icon { transition: none; } }

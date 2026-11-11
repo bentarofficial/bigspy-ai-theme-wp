@@ -2172,14 +2172,15 @@
 		);
 	}, saveInner);
 
-	var BTN_STYLES = [['primary', __('Solid', 'bigspy-ai-theme-wp')], ['secondary', __('Secondary', 'bigspy-ai-theme-wp')], ['outline', __('Outline', 'bigspy-ai-theme-wp')], ['soft', __('Soft', 'bigspy-ai-theme-wp')], ['gradient', __('Gradient', 'bigspy-ai-theme-wp')], ['shade', __('3D shade', 'bigspy-ai-theme-wp')], ['bevel', __('Bevel', 'bigspy-ai-theme-wp')], ['gloss', __('Gloss', 'bigspy-ai-theme-wp')], ['glass', __('Glass', 'bigspy-ai-theme-wp')], ['white', __('White', 'bigspy-ai-theme-wp')], ['underline', __('Underline', 'bigspy-ai-theme-wp')], ['link', __('Text link', 'bigspy-ai-theme-wp')]];
+	var BTN_STYLES = [['primary', __('Solid', 'bigspy-ai-theme-wp')], ['secondary', __('Secondary', 'bigspy-ai-theme-wp')], ['outline', __('Outline', 'bigspy-ai-theme-wp')], ['soft', __('Soft', 'bigspy-ai-theme-wp')], ['gradient', __('Gradient', 'bigspy-ai-theme-wp')], ['shade', __('3D shade', 'bigspy-ai-theme-wp')], ['bevel', __('Bevel', 'bigspy-ai-theme-wp')], ['gloss', __('Gloss', 'bigspy-ai-theme-wp')], ['glass', __('Glass', 'bigspy-ai-theme-wp')], ['white', __('White', 'bigspy-ai-theme-wp')], ['underline', __('Underline', 'bigspy-ai-theme-wp')], ['link', __('Text link', 'bigspy-ai-theme-wp')], ['pop3d', __('3D press', 'bigspy-ai-theme-wp')], ['neon', __('Neon', 'bigspy-ai-theme-wp')], ['dotted', __('Dashed border', 'bigspy-ai-theme-wp')], ['slide', __('Slide fill', 'bigspy-ai-theme-wp')], ['arrow-circle', __('Arrow in circle', 'bigspy-ai-theme-wp')]];
+	var BTN_CUSTOM = ['gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass', 'pop3d', 'neon', 'dotted', 'slide', 'arrow-circle'];
 
 	register('button', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var hasColors = a.bgColor || a.textColor || a.borderColor || a.hoverBg || a.hoverText || a.scheme || ['gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass'].indexOf(a.style) !== -1;
-		var cls = 'bs-btn bs-btn--' + a.style + (a.size !== 'md' ? ' bs-btn--' + a.size : '') + (a.fullWidth ? ' bs-btn--block' : '') + (hasColors ? ' has-custom-colors' : '') + (a.letterCase ? ' bs-btn--case-' + a.letterCase : '') + (a.scheme ? ' bs-btn--c-' + a.scheme : '') + (a.hoverEffect ? ' bs-btn--fx-' + a.hoverEffect : '');
-		var bstyle = styleVars({ '--bsb-bg': a.bgColor, '--bsb-c': a.textColor, '--bsb-bc': a.borderColor, '--bsb-hbg': a.hoverBg, '--bsb-hc': a.hoverText, '--bsb-bg2': a.bgColor2, '--bsb-angle': a.style === 'gradient' ? a.gradientAngle + 'deg' : '' });
+		var hasColors = a.bgColor || a.textColor || a.borderColor || a.hoverBg || a.hoverText || a.scheme || BTN_CUSTOM.indexOf(a.style) !== -1;
+		var cls = 'bs-btn bs-btn--' + a.style + (a.size !== 'md' ? ' bs-btn--' + a.size : '') + (a.fullWidth ? ' bs-btn--block' : '') + (hasColors ? ' has-custom-colors' : '') + (a.letterCase ? ' bs-btn--case-' + a.letterCase : '') + (a.scheme ? ' bs-btn--c-' + a.scheme : '') + (a.hoverEffect ? ' bs-btn--fx-' + a.hoverEffect : '') + (a.widthTablet ? ' bs-btn--t-' + a.widthTablet : '') + (a.widthMobile ? ' bs-btn--m-' + a.widthMobile : '') + (a.badge ? ' has-badge' : '');
+		var bstyle = styleVars({ '--bsb-bg': a.bgColor, '--bsb-c': a.textColor, '--bsb-bc': a.borderColor, '--bsb-hbg': a.hoverBg, '--bsb-hc': a.hoverText, '--bsb-hbc': a.hoverBorder, '--bsb-hsh': a.hoverShadow ? '0 10px 26px -6px ' + a.hoverShadow : '', '--bsb-bg2': a.bgColor2, '--bsb-angle': a.style === 'gradient' ? a.gradientAngle + 'deg' : '' });
 		if (a.radius >= 0) {
 			bstyle.borderRadius = a.radius + 'px';
 		}
@@ -2191,7 +2192,10 @@
 			cls += ' bs-btn--sized';
 		}
 		var blockProps = useBlockProps({ className: cls, style: bstyle });
-		var icon = a.icon ? el(B.Icon, { name: a.icon, size: a.size === 'lg' ? 20 : 17 }) : null;
+		var icon = (a.icon || a.style === 'arrow-circle') ? el(B.Icon, { name: a.icon || 'arrow-right', size: a.size === 'lg' ? 20 : 17 }) : null;
+		if (a.iconOnly && icon) {
+			cls += ' bs-btn--icon-only';
+		}
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Button', 'bigspy-ai-theme-wp') },
@@ -2203,7 +2207,7 @@
 						el('div', { className: 'bst-btn-styles__grid' },
 							BTN_STYLES.map(function (s) {
 								return el('button', { key: s[0], type: 'button', className: 'bst-btn-styles__item' + (a.style === s[0] ? ' is-selected' : ''), onClick: function () { props.setAttributes({ style: s[0] }); }, title: s[1] },
-									el('span', { className: 'bs-btn bs-btn--sm bs-btn--' + s[0] + (['gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass'].indexOf(s[0]) !== -1 ? ' has-custom-colors' : '') }, s[1])
+									el('span', { className: 'bs-btn bs-btn--sm bs-btn--' + s[0] + (BTN_CUSTOM.indexOf(s[0]) !== -1 ? ' has-custom-colors' : '') }, s[1])
 								);
 							})
 						)
@@ -2245,13 +2249,14 @@
 					a.icon ? el(Select, Object.assign({ label: __('Icon position', 'bigspy-ai-theme-wp'), options: { before: __('Before text', 'bigspy-ai-theme-wp'), after: __('After text', 'bigspy-ai-theme-wp') } }, bind('iconPosition'))) : null
 				)
 			),
-			el('span', blockProps,
-				a.iconPosition === 'before' ? icon : null,
+			a.iconOnly && icon ? el('span', blockProps, icon, a.badge ? el('span', { className: 'bs-btn__badge', style: a.badgeColor ? { background: a.badgeColor } : undefined }, a.badge) : null) : el('span', blockProps,
+				a.iconPosition === 'before' && a.style !== 'arrow-circle' ? icon : null,
 				a.subtext ? el('span', { className: 'bs-btn__text' },
 					el(RichText, { tagName: 'span', value: a.text, placeholder: __('Button text', 'bigspy-ai-theme-wp'), allowedFormats: ['core/bold', 'core/italic'], withoutInteractiveFormatting: true, onChange: function (v) { props.setAttributes({ text: v }); } }),
 					el('small', { className: 'bs-btn__sub' }, a.subtext)
 				) : el(RichText, { tagName: 'span', value: a.text, placeholder: __('Button text', 'bigspy-ai-theme-wp'), allowedFormats: ['core/bold', 'core/italic'], withoutInteractiveFormatting: true, onChange: function (v) { props.setAttributes({ text: v }); } }),
-				a.iconPosition !== 'before' ? icon : null
+				a.iconPosition !== 'before' || a.style === 'arrow-circle' ? icon : null,
+				a.badge ? el('span', { className: 'bs-btn__badge', style: a.badgeColor ? { background: a.badgeColor } : undefined }, a.badge) : null
 			)
 		);
 	});

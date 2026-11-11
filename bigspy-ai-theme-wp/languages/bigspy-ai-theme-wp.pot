@@ -12636,3 +12636,45 @@ msgstr ""
 msgid "Border when focused"
 msgstr ""
 
+
+msgid "3D press"
+msgstr ""
+
+msgid "Neon"
+msgstr ""
+
+msgid "Dashed border"
+msgstr ""
+
+msgid "Slide fill"
+msgstr ""
+
+msgid "Arrow in circle"
+msgstr ""
+
+msgid "Width on tablet"
+msgstr ""
+
+msgid "Width on mobile"
+msgstr ""
+
+msgid "Same as tablet"
+msgstr ""
+
+msgid "Icon only (text becomes the screen reader label)"
+msgstr ""
+
+msgid "Badge (small label on the corner, e.g. New, -20%)"
+msgstr ""
+
+msgid "Hover border"
+msgstr ""
+
+msgid "Hover shadow"
+msgstr ""
+
+msgid "Badge background"
+msgstr ""
+
+msgid "Screen reader label"
+msgstr ""

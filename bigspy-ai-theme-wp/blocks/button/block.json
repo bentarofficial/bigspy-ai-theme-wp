@@ -5,7 +5,7 @@
 	"title": "Button",
 	"category": "bigspy",
 	"icon": "admin-links",
-	"description": "A single button with style (filled, outline, soft, link), size, icon, colors, corner radius and link. Can open in a new tab, call a phone number or open a popup.",
+	"description": "A single button with style (filled, outline, soft, link, 3D, neon, dashed, slide fill, arrow in circle), icon only, corner badge, width per device, size, icon, colors, corner radius and link. Can open in a new tab, call a phone number or open a popup.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"text": {
@@ -102,6 +102,13 @@
 			"type": "number",
 			"default": 135
 		},
+		"iconOnly": { "type": "boolean", "default": false },
+		"badge": { "type": "string", "default": "" },
+		"badgeColor": { "type": "string", "default": "" },
+		"widthTablet": { "type": "string", "default": "" },
+		"widthMobile": { "type": "string", "default": "" },
+		"hoverBorder": { "type": "string", "default": "" },
+		"hoverShadow": { "type": "string", "default": "" },
 		"subtext": {
 			"type": "string",
 			"default": ""
