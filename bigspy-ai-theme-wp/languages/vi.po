@@ -8164,3 +8164,51 @@ msgstr "Widget"
 msgid "Edit layout: %s"
 msgstr "Sửa layout: %s"
 
+msgid "Hairline"
+msgstr "Đường mảnh"
+
+msgid "Short accent"
+msgstr "Vạch nhấn ngắn"
+
+msgid "Thick and thin"
+msgstr "Dày và mảnh"
+
+msgid "Solid"
+msgstr "Đặc"
+
+msgid "Pill outline"
+msgstr "Viền bo tròn"
+
+msgid "Gradient lift"
+msgstr "Chuyển màu nổi"
+
+msgid "Square caps"
+msgstr "Vuông chữ hoa"
+
+msgid "Text link"
+msgstr "Liên kết chữ"
+
+msgid "This block cannot have saved styles."
+msgstr "Khối này không lưu kiểu được."
+
+msgid "Nothing to save."
+msgstr "Không có gì để lưu."
+
+msgid "Limit reached: 50 saved styles per block. Delete one first."
+msgstr "Đã đủ 50 kiểu đã lưu cho khối này. Hãy xoá bớt một kiểu."
+
+msgid "Name for this style"
+msgstr "Tên cho kiểu này"
+
+msgid "Ready styles"
+msgstr "Kiểu dựng sẵn"
+
+msgid "Built-in"
+msgstr "Có sẵn"
+
+msgid "Saved on this site"
+msgstr "Đã lưu trên site"
+
+msgid "Save current style"
+msgstr "Lưu kiểu hiện tại"
+

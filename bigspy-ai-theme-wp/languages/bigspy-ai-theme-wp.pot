@@ -11913,3 +11913,45 @@ msgstr ""
 msgid "Edit layout: %s"
 msgstr ""
 
+msgid "Hairline"
+msgstr ""
+
+msgid "Short accent"
+msgstr ""
+
+msgid "Thick and thin"
+msgstr ""
+
+msgid "Pill outline"
+msgstr ""
+
+msgid "Gradient lift"
+msgstr ""
+
+msgid "Square caps"
+msgstr ""
+
+msgid "This block cannot have saved styles."
+msgstr ""
+
+msgid "Nothing to save."
+msgstr ""
+
+msgid "Limit reached: 50 saved styles per block. Delete one first."
+msgstr ""
+
+msgid "Name for this style"
+msgstr ""
+
+msgid "Ready styles"
+msgstr ""
+
+msgid "Built-in"
+msgstr ""
+
+msgid "Saved on this site"
+msgstr ""
+
+msgid "Save current style"
+msgstr ""
+

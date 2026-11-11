@@ -33,7 +33,7 @@ function bst_block_names() {
 
 function bst_register_blocks() {
 	// Per-part controls (Resp, PartTypo, ColorStates, PartBox, StylePicker, LinkControl, StyleTab).
-	wp_register_script( 'bst-editor-kit', BST_URI . '/assets/js/editor-kit.js', array( 'bst-editor-helpers', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-data', 'wp-i18n' ), bst_asset_version( 'assets/js/editor-kit.js' ), true );
+	wp_register_script( 'bst-editor-kit', BST_URI . '/assets/js/editor-kit.js', array( 'bst-editor-helpers', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-data', 'wp-i18n', 'wp-hooks', 'wp-compose', 'wp-blocks', 'wp-api-fetch' ), bst_asset_version( 'assets/js/editor-kit.js' ), true );
 	wp_register_script(
 		'bst-block-design',
 		BST_URI . '/assets/js/block-design.js',

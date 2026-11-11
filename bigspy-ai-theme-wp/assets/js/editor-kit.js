@@ -220,6 +220,85 @@
 		return out;
 	}
 
+	/* ---------------------------------------------------------------- Attribute presets (G-131) */
+
+	// Content attributes are never saved in a style preset.
+	var CONTENT = ['text', 'subtext', 'url', 'newTab', 'linkRel', 'ariaLabel', 'title', 'content', 'imageId', 'imageUrl', 'anchor', 'icon', 'lock', 'metadata', 'className'];
+
+	function PresetPanel(props) {
+		var data = window.bstAttrPresets || {};
+		var builtin = (data.builtin || {})[props.name] || [];
+		var st = wp.element.useState((data.user || {})[props.name] || {});
+		var user = st[0];
+		var setUser = st[1];
+		var busy = wp.element.useState(false);
+		var userList = Object.keys(user).map(function (id) { return { id: id, label: user[id].label, attrs: user[id].attrs }; });
+		var type = wp.blocks.getBlockType(props.name) || {};
+		var defs = type.attributes || {};
+		// Keys any built-in preset touches are reset to their defaults first, so looks never mix.
+		var resetKeys = {};
+		builtin.forEach(function (p) { Object.keys(p.attrs).forEach(function (k) { resetKeys[k] = true; }); });
+		var apply = function (p) {
+			var next = {};
+			Object.keys(resetKeys).forEach(function (k) { next[k] = defs[k] ? defs[k].default : undefined; });
+			props.setAttributes(B.assign(next, p.attrs));
+		};
+		var done = function (r) {
+			r = r || {};
+			setUser(r);
+			data.user = data.user || {};
+			data.user[props.name] = r;
+		};
+		var save = function () {
+			var label = window.prompt(__('Name for this style', T));
+			if (!label) {
+				return;
+			}
+			var attrs = {};
+			Object.keys(defs).forEach(function (k) {
+				var v = props.attributes[k];
+				if (CONTENT.indexOf(k) === -1 && v !== undefined && JSON.stringify(v) !== JSON.stringify(defs[k].default)) {
+					attrs[k] = v;
+				}
+			});
+			busy[1](true);
+			wp.apiFetch({ path: '/bst/v1/block-presets', method: 'POST', data: { block: props.name, label: label, attrs: attrs } })
+				.then(done)
+				.catch(function (e) { window.alert(e && e.message ? e.message : 'Error'); })
+				.then(function () { busy[1](false); });
+		};
+		var del = function (id) {
+			busy[1](true);
+			wp.apiFetch({ path: '/bst/v1/block-presets', method: 'DELETE', data: { block: props.name, id: id } })
+				.then(done)
+				.catch(function () {})
+				.then(function () { busy[1](false); });
+		};
+		return el(StyleTab, null,
+			el(c.PanelBody, { title: __('Ready styles', T), initialOpen: true, className: 'bst-attr-presets' },
+				builtin.length ? el(StylePicker, { label: __('Built-in', T), value: null, options: builtin.map(function (p) { return { value: p.id, label: p.label, svg: p.svg }; }), onChange: function (id) { apply(builtin.filter(function (p) { return p.id === id; })[0]); } }) : null,
+				userList.length ? el(c.BaseControl, { label: __('Saved on this site', T), __nextHasNoMarginBottom: true },
+					userList.map(function (p) {
+						return el('div', { key: p.id, style: { display: 'flex', gap: '4px', marginBottom: '4px' } },
+							el(c.Button, { variant: 'secondary', size: 'small', onClick: function () { apply(p); } }, p.label),
+							data.canSave ? el(c.Button, { size: 'small', isDestructive: true, icon: 'trash', label: __('Delete', T), disabled: busy[0], onClick: function () { del(p.id); } }) : null);
+					})) : null,
+				data.canSave ? el(c.Button, { variant: 'link', disabled: busy[0] || userList.length >= 50, onClick: save }, __('Save current style', T)) : null
+			)
+		);
+	}
+
+	if (wp.hooks && wp.compose) {
+		wp.hooks.addFilter('editor.BlockEdit', 'bst/attr-presets', wp.compose.createHigherOrderComponent(function (BlockEdit) {
+			return function (props) {
+				var data = window.bstAttrPresets || {};
+				// Blocks with no presets (built-in or saved) show no panel.
+				var has = props.isSelected && (((data.builtin || {})[props.name] || []).length || Object.keys((data.user || {})[props.name] || {}).length);
+				return has ? el(Fragment, null, el(PresetPanel, props), el(BlockEdit, props)) : el(BlockEdit, props);
+			};
+		}, 'withBstAttrPresets'));
+	}
+
 	window.bstEditor = B.assign(B, {
 		Resp: Resp,
 		PartTypo: PartTypo,

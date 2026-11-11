@@ -585,3 +585,29 @@ $bst_pf = function ( $p ) { $p['divider']['g147'] = array( 'G', false, array() )
 add_filter( 'bst_block_presets', $bst_pf );
 bst_test( isset( bst_block_presets()['divider']['g147'] ), 'hooks: bst_block_presets filter' );
 remove_filter( 'bst_block_presets', $bst_pf );
+
+// G-131: attribute presets (built-in Divider/Button, site presets saved and deleted, AI catalog).
+$bst_ap = bst_block_attr_presets();
+bst_test( count( $bst_ap['bst/divider'] ?? array() ) >= 4 && count( $bst_ap['bst/button'] ?? array() ) >= 4, 'presets: built-in Divider and Button' );
+$bst_ok = true;
+foreach ( $bst_ap as $bst_b => $bst_list ) {
+	foreach ( $bst_list as $bst_p ) {
+		$bst_s = bst_sanitize_preset_attrs( $bst_b, $bst_p[2] );
+		if ( $bst_s !== $bst_p[2] ) {
+			$bst_ok = 'bad ' . wp_json_encode( array_diff_assoc( array_map( 'wp_json_encode', $bst_p[2] ), array_map( 'wp_json_encode', $bst_s ) ) );
+		}
+	}
+}
+bst_test( true === $bst_ok, 'presets: built-in attrs are valid block.json attributes ' . ( true === $bst_ok ? '' : $bst_ok ) );
+wp_set_current_user( 1 );
+$bst_r = new WP_REST_Request( 'POST', '/bst/v1/block-presets' );
+$bst_r->set_body_params( array( 'block' => 'bst/divider', 'label' => 'Mine', 'attrs' => array( 'style' => 'wave', 'thickness' => 3, 'evil' => 'x', 'text' => 7 ) ) );
+$bst_res = rest_do_request( $bst_r );
+$bst_user = bst_user_block_presets()['bst/divider'] ?? array();
+$bst_id = key( $bst_user );
+bst_test( 200 === $bst_res->get_status() && 1 === count( $bst_user ) && array( 'style' => 'wave', 'thickness' => 3 ) === $bst_user[ $bst_id ]['attrs'], 'presets: save keeps only valid block.json attributes' );
+bst_test( isset( bst_aid_tool_block_catalog( array( 'needs' => bst_aid_block_needs() ) )['blocks'] ) && isset( bst_block_attr_preset_list( 'bst/divider' )[ $bst_id ] ), 'presets: AI catalog lists saved preset' );
+$bst_r = new WP_REST_Request( 'DELETE', '/bst/v1/block-presets' );
+$bst_r->set_query_params( array( 'block' => 'bst/divider', 'id' => $bst_id ) );
+rest_do_request( $bst_r );
+bst_test( empty( bst_user_block_presets()['bst/divider'] ), 'presets: delete' );

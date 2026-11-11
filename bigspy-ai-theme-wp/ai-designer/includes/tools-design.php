@@ -1009,7 +1009,7 @@ function bst_aid_tool_block_catalog( $a ) {
 	$rules    = array(
 		'Choose by content: a block whose "data" you do not have (images, real figures, reviews, prices) is the wrong block.',
 		'At most 2 blocks with pin true per page, never in adjacent sections. Prefer light blocks; one or two heavy blocks per page.',
-		'Call block_schema for the blocks you pick before writing attributes.',
+		'Call block_schema for the blocks you pick before writing attributes. A block row may list presets (ready looks): copy a preset\'s attrs into the block to use that look.',
 		'Make each page rich: every section shows its content with the block that fits it best, a full page uses many different blocks (page_plan reports variety), and no two sections in a row share a layout.',
 	);
 	if ( ! $needs ) {
@@ -1034,6 +1034,10 @@ function bst_aid_tool_block_catalog( $a ) {
 		}
 		if ( $p[5] ) {
 			$row['pin'] = true;
+		}
+		$presets = function_exists( 'bst_block_attr_preset_list' ) ? bst_block_attr_preset_list( $name ) : array();
+		if ( $presets ) {
+			$row['presets'] = $presets;
 		}
 		$out[] = $row;
 	}

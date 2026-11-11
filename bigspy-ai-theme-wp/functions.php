@@ -43,6 +43,7 @@ $bst_includes = array(
 	'inc/motion-wave.php',
 	'inc/block-design.php',
 	'inc/block-presets.php',
+	'inc/block-attr-presets.php',
 	'inc/sidebar-options.php',
 	'inc/blog-options.php',
 	'inc/shop-options.php',
