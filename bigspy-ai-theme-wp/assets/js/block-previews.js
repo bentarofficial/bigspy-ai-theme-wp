@@ -108,6 +108,7 @@
 		progress: function () { return frame([['SEO', 90], ['Design', 75], ['Ads', 60]].map(function (p) { return box('margin-bottom:9px', box('display:flex;justify-content:space-between;font-size:9px;font-weight:700;color:' + INK, p[0] + '<span>' + p[1] + '%</span>') + box('height:8px;border-radius:99px;background:' + LINE + ';margin-top:3px', box('height:8px;border-radius:99px;width:' + p[1] + '%;background:repeating-linear-gradient(45deg,' + A + ' 0 6px,' + A + 'cc 6px 12px)'))); }).join('')); },
 		'listing-grid': function () { var c = box('border:1px solid ' + LINE + ';border-radius:6px;padding:6px', box('display:flex;gap:5px;align-items:center', span('display:inline-block;width:14px;height:14px;border-radius:4px;background:' + A + '33') + bar('50%', 5, INK)) + lines(2)); return frame(box('padding:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px', c + c + c + c + c + c)); },
 		'category-grid': function () { var c = function (t) { return box('border:1px solid ' + LINE + ';border-radius:6px;padding:8px;text-align:center', box('height:22px;border-radius:5px;background:' + SOFT) + box('font-size:9px;font-weight:700;color:' + INK + ';margin-top:4px', t)); }; return frame(box('padding:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px', c(__('Writing', T)) + c(__('Video', T)) + c(__('Design', T)) + c(__('Code', T)))); },
+		'site-search': function () { return frame(box('padding:14px', box('display:flex;align-items:center;gap:6px;border:1px solid ' + LINE + ';border-radius:999px;padding:4px 4px 4px 12px', span('font-size:11px;color:' + MUTED, '⌕') + box('flex:1;font-size:10px;color:' + MUTED, __('Search…', T)) + span('padding:6px 12px;border-radius:999px;background:' + A + ';color:#fff;font-size:10px;font-weight:700', __('Search', T))) + box('display:flex;gap:4px;margin-top:8px', ['SEO', 'AI', 'Video'].map(function (t) { return span('padding:2px 8px;border:1px solid ' + LINE + ';border-radius:999px;font-size:9px', t); }).join('')))); },
 		'search': function () { return frame(box('padding:18px', box('display:flex;border:1px solid ' + LINE + ';border-radius:10px;overflow:hidden', box('flex:1;padding:9px;font-size:10px;color:' + MUTED, __('Search tools, software and services...', T)) + box('padding:9px 14px;background:' + A + ';color:#fff;font-size:10px;font-weight:700', __('Search', T))))); },
 		'sponsored': function () { var c = function (n) { return box('position:relative;border:1px solid #fcd34d;border-radius:8px;background:#fffbeb;padding:8px 8px 7px', span('position:absolute;top:-6px;left:8px;padding:0 6px;border-radius:99px;background:#fbbf24;color:#1f2937;font-size:7px;font-weight:700', __('Sponsored', T)) + box('display:flex;gap:6px;align-items:center', span('display:inline-block;width:18px;height:18px;border-radius:5px;background:' + A + '33') + bar('55%', 5, INK)) + lines(2)); }; return frame(box('padding:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px', c() + c() + c())); },
 		'elements': function () { var c = box('border:1px solid ' + LINE + ';border-radius:6px;padding:6px', box('display:flex;gap:5px;align-items:center', span('display:inline-block;width:14px;height:14px;border-radius:4px;background:' + A + '33') + bar('50%', 5, INK)) + lines(2)); return frame(box('padding:12px', title(__('Featured listings', T), 13) + box('display:grid;grid-template-columns:repeat(2,1fr);gap:6px', c + c + c + c))); },
@@ -161,7 +162,7 @@
 	};
 
 	function previewHtml(name, settings) {
-		var key = name.replace(/^(bst|bigspy)\//, '');
+		var key = name === 'bst/search' ? 'site-search' : name.replace(/^(bst|bigspy)\//, '');
 		var fn = P[key];
 		var body = fn ? fn() : frame(title(settings.title || key, 14) + lines(3));
 		var label = sprintf(__('Preview of the %s block', T), settings.title || key);
@@ -176,7 +177,7 @@
 		'#2563eb': ['heading', 'title', 'text', 'icon-list', 'table', 'alert', 'code', 'shortcode', 'theme-showcase'], // text
 		'#db2777': ['image', 'gallery', 'banner', 'banner-grid', 'video', 'video-button', 'audio', 'lottie', 'before-after', 'hotspot', 'map'], // media
 		'#7c3aed': ['slider', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'marquee', 'logos', 'flip-box', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell'], // motion
-		'#ea580c': ['tabs', 'tab', 'accordion', 'accordion-item', 'popup', 'button', 'buttons', 'form', 'nav-menu'], // interactive
+		'#ea580c': ['tabs', 'tab', 'accordion', 'accordion-item', 'popup', 'button', 'buttons', 'form', 'nav-menu', 'site-search'], // interactive
 		'#16a34a': ['products', 'products-list', 'product-categories', 'product-part', 'payment-icons', 'price-table', 'pricing-toggle', 'countdown'], // shop and pricing
 		'#0891b2': ['icon-box', 'image-box', 'counter', 'progress', 'star-rating', 'timeline', 'team-member', 'testimonial', 'posts', 'social', 'share'], // trust and content cards
 		'#9f1239': ['listing-info', 'listing-grid', 'category-grid', 'search', 'elements', 'sponsored'] // BIGSPY AI List
@@ -201,7 +202,7 @@
 		if (MX_ATTRS[name]) {
 			settings.attributes = Object.assign({}, settings.attributes, MX_ATTRS[name]);
 		}
-		var color = ICON_COLORS[name.replace(/^(bst|bigspy)\//, '')];
+		var color = ICON_COLORS[name === 'bst/search' ? 'site-search' : name.replace(/^(bst|bigspy)\//, '')];
 		if (color && settings.icon) {
 			// Colored inserter icons, one color per block family.
 			settings.icon = settings.icon.src ? Object.assign({}, settings.icon, { foreground: color }) : { src: settings.icon, foreground: color };

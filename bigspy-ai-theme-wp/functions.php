@@ -28,6 +28,7 @@ $bst_includes = array(
 	'inc/header-design.php',
 	'inc/header-elements.php',
 	'inc/header-extras.php',
+	'inc/search-block.php',
 	'inc/mega-menu.php',
 	'inc/footer.php',
 	'inc/footer-design.php',

@@ -20,10 +20,10 @@ const BLOCKS = path.join(THEME, 'blocks');
 const read = (f) => { try { return fs.readFileSync(f, 'utf8'); } catch (e) { return ''; } };
 
 const editorFiles = fs.readdirSync(path.join(THEME, 'assets', 'js'))
-	.filter((f) => /^(blocks-|block-design|editor-)/.test(f) && f.endsWith('.js'))
+	.filter((f) => /^(blocks-|block-design|editor-|search-editor)/.test(f) && f.endsWith('.js'))
 	.map((f) => read(path.join(THEME, 'assets', 'js', f)));
 const editorSrc = editorFiles.join('\n');
-const listingSrc = read(path.join(THEME, 'inc', 'listing', 'blocks.php'));
+const listingSrc = read(path.join(THEME, 'inc', 'listing', 'blocks.php')) + read(path.join(THEME, 'inc', 'search-block.php'));
 
 function used(src, name) {
 	return new RegExp("['\"]" + name + "['\"]|\\b(a|attributes|attrs|props\\.attributes)\\." + name + '\\b').test(src);

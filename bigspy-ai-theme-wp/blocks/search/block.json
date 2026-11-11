@@ -1,0 +1,200 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/search",
+	"title": "Search",
+	"category": "bigspy",
+	"icon": "search",
+	"description": "Search box for the whole site or chosen content types: 8 styles, instant suggestions, category filter, popular keyword chips, rotating placeholders and a \"/\" shortcut.",
+	"keywords": [
+		"search",
+		"find",
+		"live search"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"attributes": {
+		"placeholder": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"showButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"maxWidth": {
+			"type": "number",
+			"default": 760
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"radius": {
+			"type": "number",
+			"default": 14
+		},
+		"height": {
+			"type": "number",
+			"default": 0
+		},
+		"style": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonMode": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonPosition": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonRadius": {
+			"type": "number",
+			"default": -1
+		},
+		"heightMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"fontSize": {
+			"type": "number",
+			"default": 0
+		},
+		"padX": {
+			"type": "number",
+			"default": -1
+		},
+		"maxWidthTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"maxWidthMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"alignmentMobile": {
+			"type": "string",
+			"default": ""
+		},
+		"inputBg": {
+			"type": "string",
+			"default": ""
+		},
+		"inputColor": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": -1
+		},
+		"focusColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"shadow": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowFocus": {
+			"type": "boolean",
+			"default": false
+		},
+		"live": {
+			"type": "boolean",
+			"default": false
+		},
+		"liveCount": {
+			"type": "number",
+			"default": 6
+		},
+		"liveImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"livePrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"liveCategory": {
+			"type": "boolean",
+			"default": false
+		},
+		"minChars": {
+			"type": "number",
+			"default": 2
+		},
+		"postTypes": {
+			"type": "string",
+			"default": ""
+		},
+		"category": {
+			"type": "number",
+			"default": 0
+		},
+		"showCategorySelect": {
+			"type": "boolean",
+			"default": false
+		},
+		"chips": {
+			"type": "string",
+			"default": ""
+		},
+		"chipsLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholders": {
+			"type": "string",
+			"default": ""
+		},
+		"shortcut": {
+			"type": "boolean",
+			"default": false
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-search-editor",
+	"style": "bst-search",
+	"render": "file:./render.php"
+}
