@@ -5,10 +5,10 @@ add_filter( 'bst_defaults', function ( $defaults ) {
 	return $defaults + array( 'product_swatches' => false, 'product_archive_swatches' => false, 'product_buy_now' => false, 'product_navigation' => false );
 } );
 add_filter( 'bst_customizer_fields', function ( $fields ) {
-	$fields[] = array( 'id' => 'product_swatches', 'section' => 'bst_product', 'type' => 'checkbox', 'label' => 'Chọn biến thể bằng nút (thay dropdown)', 'description' => 'Tùy chọn độc lập; mặc định tắt. Giữ luồng giỏ hàng và biến thể của WooCommerce.' );
-	$fields[] = array( 'id' => 'product_archive_swatches', 'section' => 'bst_product', 'type' => 'checkbox', 'label' => 'Hiện swatch màu/ảnh trên thẻ sản phẩm', 'description' => 'Hiện các lựa chọn của thuộc tính toàn cục đã cấu hình swatch bên dưới tên sản phẩm. Bấm để mở trang sản phẩm và chọn sẵn giá trị tương ứng. Mặc định tắt.' );
-	foreach ( array( 'product_buy_now' => 'Nút Mua ngay trên trang sản phẩm', 'product_navigation' => 'Điều hướng sản phẩm trước / sau' ) as $id => $label ) {
-		$fields[] = array( 'id' => $id, 'section' => 'bst_product', 'type' => 'checkbox', 'label' => $label, 'description' => 'Tùy chọn độc lập; mặc định tắt.' );
+	$fields[] = array( 'id' => 'product_swatches', 'section' => 'bst_product', 'type' => 'checkbox', 'label' => __( 'Choose variations with buttons (instead of dropdowns)', 'bigspy-ai-theme-wp' ), 'description' => __( 'Independent option, off by default. Keeps the WooCommerce cart and variation flow.', 'bigspy-ai-theme-wp' ) );
+	$fields[] = array( 'id' => 'product_archive_swatches', 'section' => 'bst_product', 'type' => 'checkbox', 'label' => __( 'Show color/image swatches on product cards', 'bigspy-ai-theme-wp' ), 'description' => __( 'Shows the choices of global attributes with swatches under the product name. A click opens the product page with that value selected. Off by default.', 'bigspy-ai-theme-wp' ) );
+	foreach ( array( 'product_buy_now' => __( 'Buy now button on the product page', 'bigspy-ai-theme-wp' ), 'product_navigation' => __( 'Previous / next product navigation', 'bigspy-ai-theme-wp' ) ) as $id => $label ) {
+		$fields[] = array( 'id' => $id, 'section' => 'bst_product', 'type' => 'checkbox', 'label' => $label, 'description' => __( 'Independent option, off by default.', 'bigspy-ai-theme-wp' ) );
 	}
 	return $fields;
 } );
@@ -41,8 +41,8 @@ add_action( 'woocommerce_single_product_summary', function () {
 	$before = get_adjacent_post( false, '', true );
 	$after = get_adjacent_post( false, '', false );
 	if ( ! $before && ! $after ) { return; }
-	echo '<nav class="bst-product-navigation" aria-label="Điều hướng sản phẩm">';
-	foreach ( array( array( $before, '← Sản phẩm trước' ), array( $after, 'Sản phẩm sau →' ) ) as $item ) {
+	echo '<nav class="bst-product-navigation" aria-label="' . esc_attr__( 'Product navigation', 'bigspy-ai-theme-wp' ) . '">';
+	foreach ( array( array( $before, __( '← Previous product', 'bigspy-ai-theme-wp' ) ), array( $after, __( 'Next product →', 'bigspy-ai-theme-wp' ) ) ) as $item ) {
 		if ( $item[0] && 'publish' === $item[0]->post_status && ! post_password_required( $item[0] ) ) {
 			$adjacent = wc_get_product( $item[0]->ID );
 			if ( $adjacent && $adjacent->is_visible() ) { echo '<a href="' . esc_url( get_permalink( $item[0]->ID ) ) . '">' . esc_html( $item[1] ) . '</a>'; }

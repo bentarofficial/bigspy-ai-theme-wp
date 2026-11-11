@@ -29,3 +29,4 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - G-100: đổi từ BIGSPY AI List tự chuyển widget listing-sidebar → Homepage sidebar, secondary-pages-sidebar → Blog sidebar, footer-N → Footer 1 cột N (chỉ khi vùng đích trống).
 - G-103: Customizer → Layout → Listing design (nền, viền, bo góc, đổ bóng, hover, padding, khoảng cách, chiều cao tối thiểu, cỡ/hình logo); để trống thì đọc giá trị theme BIGSPY AI List cũ.
 - G-123: AI Designer biết khối bigspy/sponsored và cách dùng khối List; check-block-previews báo khối thiếu trong kiến thức AI.
+- G-113: 22 chuỗi tiếng Việt viết cứng (Quick View, tuỳ chọn sản phẩm, điều hướng sản phẩm, header tự do, mega menu, Chuyển khoản, dashboard) thành chuỗi dịch được; site tiếng Anh không còn chữ Việt ở các chỗ này.

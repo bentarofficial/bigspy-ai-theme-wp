@@ -111,7 +111,7 @@ function bst_dashboard_page() {
 		__( 'Logo & site identity', 'bigspy-ai-theme-wp' ) => bst_customizer_link( 'section', 'title_tagline' ),
 		__( 'Colors', 'bigspy-ai-theme-wp' )               => bst_customizer_link( 'section', 'bst_colors' ),
 		__( 'Typography', 'bigspy-ai-theme-wp' )           => bst_customizer_link( 'section', 'bst_typography' ),
-		__( 'Thư viện CSS · bật/tắt', 'bigspy-ai-theme-wp' ) => bst_customizer_link( 'section', 'custom_css' ),
+		__( 'CSS library · on/off', 'bigspy-ai-theme-wp' ) => bst_customizer_link( 'section', 'custom_css' ),
 		__( 'Layout', 'bigspy-ai-theme-wp' )               => bst_customizer_link( 'panel', 'bst_layout' ),
 		__( 'Blog', 'bigspy-ai-theme-wp' )                 => bst_customizer_link( 'panel', 'bst_blog' ),
 		__( 'Footer', 'bigspy-ai-theme-wp' )               => bst_customizer_link( 'panel', 'bst_footer' ),

@@ -8470,3 +8470,69 @@ msgstr "Phía dưới"
 msgid "Gap between icons (px, 0 = default)"
 msgstr "Khoảng cách giữa icon (px, 0 = mặc định)"
 
+msgid "Product quick view"
+msgstr "Xem nhanh thông tin sản phẩm"
+
+msgid "Opens the image, price and description in a window; buying continues on the full product page."
+msgstr "Mở ảnh, giá và mô tả trong cửa sổ; mua hàng trên trang sản phẩm đầy đủ."
+
+msgid "Quick view"
+msgstr "Xem nhanh"
+
+msgid "This product is not available."
+msgstr "Sản phẩm không khả dụng."
+
+msgid "View product details"
+msgstr "Xem chi tiết sản phẩm"
+
+msgid "Close quick view"
+msgstr "Đóng xem nhanh"
+
+msgid "Loading product…"
+msgstr "Đang tải sản phẩm…"
+
+msgid "Choose variations with buttons (instead of dropdowns)"
+msgstr "Chọn biến thể bằng nút (thay dropdown)"
+
+msgid "Independent option, off by default. Keeps the WooCommerce cart and variation flow."
+msgstr "Tùy chọn độc lập; mặc định tắt. Giữ luồng giỏ hàng và biến thể của WooCommerce."
+
+msgid "Show color/image swatches on product cards"
+msgstr "Hiện swatch màu/ảnh trên thẻ sản phẩm"
+
+msgid "Shows the choices of global attributes with swatches under the product name. A click opens the product page with that value selected. Off by default."
+msgstr "Hiện các lựa chọn của thuộc tính toàn cục đã cấu hình swatch bên dưới tên sản phẩm. Bấm để mở trang sản phẩm và chọn sẵn giá trị tương ứng. Mặc định tắt."
+
+msgid "Buy now button on the product page"
+msgstr "Nút Mua ngay trên trang sản phẩm"
+
+msgid "Previous / next product navigation"
+msgstr "Điều hướng sản phẩm trước / sau"
+
+msgid "Independent option, off by default."
+msgstr "Tùy chọn độc lập; mặc định tắt."
+
+msgid "Product navigation"
+msgstr "Điều hướng sản phẩm"
+
+msgid "← Previous product"
+msgstr "← Sản phẩm trước"
+
+msgid "Next product →"
+msgstr "Sản phẩm sau →"
+
+msgid "CSS library · on/off"
+msgstr "Thư viện CSS · bật/tắt"
+
+msgid "Free-form header built with BIGSPY AI blocks"
+msgstr "Header tự do bằng khối BIGSPY AI"
+
+msgid "A published public page replaces the whole row/column header. Use the WordPress logo, menu and search blocks; the default header sticky/transparent options do not apply."
+msgstr "Trang công khai đã xuất bản thay toàn bộ header hàng/cột. Dùng các khối logo, menu và tìm kiếm WordPress; các tùy chọn sticky/transparent của header mặc định không áp dụng."
+
+msgid "BIGSPY AI: Mega menu (child items become columns on desktop)"
+msgstr "BIGSPY AI: Mega menu (các mục con thành cột trên desktop)"
+
+msgid "Bank transfer"
+msgstr "Chuyển khoản"
+

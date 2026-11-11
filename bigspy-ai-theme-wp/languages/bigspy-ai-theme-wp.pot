@@ -12171,3 +12171,63 @@ msgstr ""
 msgid "Gap between icons (px, 0 = default)"
 msgstr ""
 
+msgid "Product quick view"
+msgstr ""
+
+msgid "Opens the image, price and description in a window; buying continues on the full product page."
+msgstr ""
+
+msgid "This product is not available."
+msgstr ""
+
+msgid "View product details"
+msgstr ""
+
+msgid "Close quick view"
+msgstr ""
+
+msgid "Loading product…"
+msgstr ""
+
+msgid "Choose variations with buttons (instead of dropdowns)"
+msgstr ""
+
+msgid "Independent option, off by default. Keeps the WooCommerce cart and variation flow."
+msgstr ""
+
+msgid "Show color/image swatches on product cards"
+msgstr ""
+
+msgid "Shows the choices of global attributes with swatches under the product name. A click opens the product page with that value selected. Off by default."
+msgstr ""
+
+msgid "Buy now button on the product page"
+msgstr ""
+
+msgid "Previous / next product navigation"
+msgstr ""
+
+msgid "Independent option, off by default."
+msgstr ""
+
+msgid "Product navigation"
+msgstr ""
+
+msgid "← Previous product"
+msgstr ""
+
+msgid "Next product →"
+msgstr ""
+
+msgid "CSS library · on/off"
+msgstr ""
+
+msgid "Free-form header built with BIGSPY AI blocks"
+msgstr ""
+
+msgid "A published public page replaces the whole row/column header. Use the WordPress logo, menu and search blocks; the default header sticky/transparent options do not apply."
+msgstr ""
+
+msgid "BIGSPY AI: Mega menu (child items become columns on desktop)"
+msgstr ""
+

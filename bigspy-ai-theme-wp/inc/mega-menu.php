@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 add_action( 'wp_nav_menu_item_custom_fields', function ( $id, $item, $depth ) {
 	if ( 0 !== (int) $depth ) { return; }
-	echo '<p class="description description-wide"><label><input type="checkbox" name="bst_mega_menu[' . absint( $id ) . ']" value="1" ' . checked( get_post_meta( $id, '_bst_mega_menu', true ), '1', false ) . '> BIGSPY AI: Mega menu (các mục con thành cột trên desktop)</label></p>';
+	echo '<p class="description description-wide"><label><input type="checkbox" name="bst_mega_menu[' . absint( $id ) . ']" value="1" ' . checked( get_post_meta( $id, '_bst_mega_menu', true ), '1', false ) . '> ' . esc_html__( 'BIGSPY AI: Mega menu (child items become columns on desktop)', 'bigspy-ai-theme-wp' ) . '</label></p>';
 }, 10, 3 );
 add_action( 'wp_update_nav_menu_item', function ( $menu_id, $item_id ) {
 	if ( ! current_user_can( 'edit_theme_options' ) || empty( $_POST['update-nav-menu-nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['update-nav-menu-nonce'] ) ), 'update-nav_menu' ) ) { return; }
