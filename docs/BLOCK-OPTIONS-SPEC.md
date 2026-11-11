@@ -6,6 +6,8 @@ Nghiên cứu G-128, ngày 11-11-2026, tại `feature/ai-designer` `5492268` (b�
 
 **Cách nghiên cứu:** đếm thuộc tính trong 81 `blocks/*/block.json`, đọc danh sách giá trị `bst_choice()` trong `render.php`, đọc lớp dùng chung `inc/block-design.php` và `inc/blocks.php:119-139`. Không đọc `blocks-editor.js` và `blocks.css` từng dòng, không mở editor để xem từng panel. Vì vậy các gợi ý “thêm” bên dưới là danh sách ứng viên: agent lập trình phải grep thuộc tính hiện có của khối trước khi thêm, bỏ mục đã có.
 
+> **Đính chính 11-11-2026 sau khi đọc mã:** bộ điều khiển dùng chung đã tồn tại (`window.bstEditor` trong `assets/js/editor-helpers.js`), preset dạng class đã có cho 21 khối (`inc/block-presets.php`), và Copy/Paste design đã có trong `block-design.js`. Vì vậy G-129 là **mở rộng** `bstEditor`, G-131 là **mở rộng** hệ preset hiện có, không tạo `block-kit.js` hay `presets.json`. Phiếu việc chính xác, kèm tệp và số dòng, nằm ở mục “Kế hoạch thực thi 11-11-2026” của [roadmap-vi.md](roadmap-vi.md); khi hai tài liệu khác nhau thì theo roadmap. Tài liệu này giữ vai trò danh sách kiểu dáng và tuỳ chọn cho từng khối (mục 4).
+
 ## 1. Hiện trạng
 
 ### Đã có cho mọi khối (không thêm lại ở từng khối)

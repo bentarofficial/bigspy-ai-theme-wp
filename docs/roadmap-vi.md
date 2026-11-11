@@ -16,39 +16,219 @@ Nghiên cứu bổ sung G-64 về AI bảo toàn block, dữ liệu động, Que
 - Các giai đoạn chưa triển khai: G-57 nền Form → G-58 calculator/quote → G-59 AI cấu hình; G-60 khảo sát/chốt backend → G-61 block tìm/hiện kết quả → G-62 adapter booking → G-63 nghiệm thu. G-60 là cổng chọn backend theo loại dịch vụ, không mặc định Woo Bookings đáp ứng bán ghế theo tuyến.
 - Đọc [SOURCE-AUDIT.md](SOURCE-AUDIT.md) trước khi mở rộng nền đang có; theo sổ nhận việc và TASKS.md của workspace, không nhận đè việc Claude đang làm. Các ưu tiên shop cũ phía dưới là lịch sử/đề xuất tham khảo, không thay phạm vi mới này.
 
-## Mở rộng tuỳ chọn cho mọi khối — owner yêu cầu 11-11-2026 (G-129 → G-139)
+## Kế hoạch thực thi 11-11-2026: tuỳ chọn khối, cổng AI, hook (G-129 → G-149)
 
-Owner muốn mọi khối, kể cả khối phụ nhỏ và ít dùng (tìm kiếm, nút, đường kẻ…), có thật nhiều tuỳ chọn: không chỉ thông số cơ bản mà cả kiểu dáng và phong cách hiển thị. Nghiên cứu G-128 đếm thuộc tính của 81 khối: 22 khối có 0–5 thuộc tính riêng, 30 khối có 7–10; phần lớn khối chỉ có 2–5 kiểu dáng; lớp Design dùng chung chỉ chỉnh được vỏ ngoài, không chỉnh được phần bên trong. **Hiện trạng, nguyên tắc bắt buộc và danh sách kiểu dáng/tuỳ chọn cho từng khối nằm ở [BLOCK-OPTIONS-SPEC.md](BLOCK-OPTIONS-SPEC.md); agent lập trình đọc mục 2 và mục của mã đang làm trước khi sửa.** Đây là đề xuất chờ owner duyệt, chưa mục nào được triển khai; nghiên cứu dựa trên đọc `block.json` và `render.php`, chưa mở editor.
+**Dành cho agent lập trình: đọc hết mục này là đủ để bắt đầu.** Chỉ mở thêm tài liệu khi phiếu việc ghi rõ. Mọi mục là đề xuất đã được owner yêu cầu ghi vào roadmap; chưa mục nào được lập trình. Số dòng trong mục này đúng tại commit `c9df12e`; nếu lệch thì grep theo tên hàm.
 
-| Mã | Việc | Ghi chú |
-| --- | --- | --- |
-| G-129 | Bộ điều khiển dùng chung cho editor (`block-kit.js`): giá trị theo thiết bị, chữ/màu/khung từng phần, chọn icon, link, chọn kiểu bằng hình, carousel, thẻ, truy vấn; `tools/check-block-options.js` | Nền tảng, làm đầu tiên |
-| G-130 | Mở rộng lớp Design chung: viền từng cạnh, bo từng góc, gradient/ảnh nền, bóng tuỳ chỉnh, opacity, bộ lọc, transform, sticky, thứ tự theo thiết bị, sao chép/dán kiểu | Mọi khối hưởng ngay |
-| G-131 | Kiểu dựng sẵn (`presets.json`) cho từng khối, người dùng lưu được kiểu riêng | Cần G-129 |
-| G-134 | Tìm kiếm và tiện ích: `listing-search`, khối mới `bst/search`, nav-menu, social, share, payment-icons, widget-area, shortcode, map, popup | Ví dụ owner nêu |
-| G-133 | Tabs, Accordion, Table, Timeline, Icon List | Ví dụ owner nêu |
-| G-132 | Khối cơ bản nhỏ: divider, spacer, buttons, button, title, heading, text, star-rating, alert, progress, counter | |
-| G-135 | Thẻ nội dung và media: icon-box, image-box, flip-box, testimonial, team-member, price-table, pricing-toggle, hotspot, before-after, audio, video, video-button, lottie, logos, image | |
-| G-136 | Bố cục và lưới ảnh: row, column, section, banner, banner-grid, bento, gallery, expand-gallery | |
-| G-137 | Khối chuyển động: marquee, ticker, horizontal-scroll, stack-cards, scroll-story, hover-reveal, video-cards, zoom-hero, line-draw, animated-text, slider | |
-| G-138 | Khối truy vấn: posts, products, products-list, product-categories, category-grid, listing-* | Phần cài đặt chung listing thuộc G-103 |
-| G-139 | Rà soát cuối: kiểm tra bắt buộc, preset, kiến thức AI, bản dịch, đo dung lượng | |
+### A. Vì sao làm
 
-**Đối chiếu đối thủ và định vị AI (G-140):** [COMPETITIVE-STRATEGY-2026-11.md](COMPETITIVE-STRATEGY-2026-11.md). Đo trên site đối chiếu: BIGSPY đã hơn Elementor miễn phí và Flatsome về số khối, ngang hoặc hơn Flatsome về tuỳ chọn, nhưng kém Elementor 3–6 lần về tuỳ chọn ở khối nhỏ (Tabs 8 so với 42, Testimonial 8 so với 53) và về lớp dùng chung (khoảng 60 so với 176 control). Astra 4.14.1 đã mở hơn 70 ability qua Abilities API và MCP cho AI bên ngoài; BIGSPY chưa có. Việc mới đề xuất:
+- Owner muốn BIGSPY vượt Astra, Flatsome, GeneratePress, Hello Elementor, Neve, OceanWP và Elementor. Mọi khối, kể cả khối phụ nhỏ, phải có thật nhiều tuỳ chọn, gồm cả **kiểu dáng** (bố cục, hình thức) và **phong cách** (skin). AI chỉ là công cụ hỗ trợ; theme phải là thứ khó thay thế.
+- Đo trên site đối chiếu (G-140, G-146): BIGSPY có 83 khối, hơn Elementor miễn phí (khoảng 30 widget) và Flatsome (60 phần tử). Nhưng tuỳ chọn riêng của khối nhỏ kém Elementor 3–6 lần (Tabs 8 so với 42, Testimonial 8 so với 53, Divider 10 so với 41); lớp dùng chung khoảng 60 control so với 176. Elementor đạt số đó vì **mỗi phần bên trong widget có một nhóm kiểu riêng** (chữ, màu thường/hover/đang chọn, viền, padding).
+- Astra (70 tệp ability) và Neve (13 ability) đã cho AI bên ngoài điều khiển theme qua Abilities API và MCP; BIGSPY chưa có.
+- BIGSPY chỉ có 15 `do_action` và 35 `apply_filters`; GeneratePress có 127 và 223.
+- Luận điểm sản phẩm: AI Designer chỉ được đặt thuộc tính của khối, nên **mỗi tuỳ chọn mới là một năng lực mới của AI** mà người dùng vẫn sửa tay được.
+- Số liệu đầy đủ: [COMPETITIVE-STRATEGY-2026-11.md](COMPETITIVE-STRATEGY-2026-11.md). Danh sách kiểu dáng và tuỳ chọn cho từng khối: [BLOCK-OPTIONS-SPEC.md](BLOCK-OPTIONS-SPEC.md) mục 4.
 
-| Mã | Việc |
+### B. Bản đồ mã cần biết
+
+Đường dẫn tính từ `bigspy-ai-theme-wp/`.
+
+| Thứ | Ở đâu |
 | --- | --- |
-| G-141 | Abilities API và MCP: AI bên ngoài điều khiển theme qua đúng lớp quyền, luật block và hoàn tác hiện có; mặc định tắt |
-| G-142 | Kiểm tra thiết kế dùng chung cho người và AI (tương phản, heading, di động, ảnh), mở rộng từ Auto Detect |
-| G-143 | Khối còn thiếu so với Elementor: mục lục, breadcrumb, trích dẫn, kêu gọi hành động, ngăn kéo, danh sách phát video… (kiểm tra trước khi làm) |
-| G-145 | Fixture so sánh cùng một trang với Elementor, Flatsome, Astra; cần owner đồng ý vì phải đổi theme trên site đối chiếu |
-| G-147 | Hook cho nhà phát triển: BIGSPY chỉ có 15 `do_action` và 35 `apply_filters`, GeneratePress có 127 và 223 |
-| G-148 | Tương thích đa ngôn ngữ (Polylang, WPML) và plugin phổ biến; chỉ công bố plugin đã thử |
-| G-149 | Đối chiếu tuỳ chọn cấp theme theo nhóm với OceanWP (khoảng 1.436), Astra (614), Flatsome (596); BIGSPY khoảng 276 |
+| Thuộc tính khối | `blocks/<slug>/block.json` (khối không khai báo thuộc tính trong JS) |
+| Đầu ra front | `blocks/<slug>/render.php`; khối listing render ở `inc/listing/blocks.php` |
+| Hàm PHP cho render | `bst_choice()` `inc/helpers.php:644`; `bst_block_num()` `inc/blocks.php:307`; `bst_block_color()` `:311`; `bst_style_vars()` `:324`; `bst_icon()` `inc/helpers.php:549` |
+| Editor của khối cũ | `assets/js/blocks-editor.js` (không đọc cả tệp): `register()` dòng 34, `styleVars()` 38, `sliderChoice()` 1147; ví dụ Tabs ở dòng 1413–1462 |
+| Editor khối khác | `blocks-extra.js`, `blocks-more.js`, `blocks-motion.js`, `blocks-listing.js` |
+| Bộ điều khiển dùng chung đã có | `assets/js/editor-helpers.js`, xuất `window.bstEditor` (dòng 174): `Icon`, `IconPicker`, `MediaPicker`, `ColorPanel`, `Select`, `Range`, `Toggle`, `Text`, `binder` |
+| Đăng ký script editor | `bst_register_blocks()` `inc/blocks.php:34` |
+| Lớp Design (`bsDesign`) | `inc/block-design.php` (`bst_design_rules()` dòng 67, `bst_design_hover_rules()` 197, `bst_design_css()` 228); `assets/js/block-design.js` (panel Design dòng 275, Typography 414, đưa vào tab Kiểu bằng `InspectorControls group: 'styles'` dòng 490, Copy/Paste design dòng 316–326) |
+| Thuộc tính chung (ẩn theo thiết bị, hiệu ứng) | `bst_global_block_attributes()` `inc/blocks.php:119` |
+| Preset dạng class đã có | `inc/block-presets.php`: `bst_block_presets()` dòng 17 trả `khối => nhóm => (nhãn, loại trừ nhau, tuỳ chọn(id => (nhãn, css)))`; lưu vào thuộc tính `bsPresets`, in class `bsp-<id>`; đã có cho 21 khối |
+| CSS khối | `assets/css/blocks.css` (chỉ grep; Tabs bắt đầu dòng 807). Sửa xong chạy `python tools/split-blocks-css.py` |
+| JS front | `assets/js/blocks.js` (`initTabs()` dòng 250); khối chuyển động ở `motion-*.js` |
+| Tìm kiếm trực tiếp | `bst_live_search_ajax()` `inc/header-extras.php:172`, action `bst_live_search`; tài nguyên ở `bst_live_search_assets()` `:155` |
+| Kiến thức AI về khối | `ai-designer/knowledge/blocks.php` (mỗi khối một dòng mảng), `knowledge/theme.md` |
+| Công cụ AI | `bst_aid_tools()` `ai-designer/includes/tools.php:15`, `bst_aid_run_tool()` `:156`; quyền ở `permissions.php`: `bst_aid_tool_policy()` `:36`, `bst_aid_permission_gate()` `:102` |
+| Auto Detect | `inc/auto-detect/` (h1, keywords, links, media, security); test `tools/tests/auto-detect-integration.php` (mảng `$tests` dòng 26) |
 
-G-146 đã quét đủ sáu theme và flatsome-child (mục 8 của tài liệu trên). Neve cũng đã có 13 ability, nên cả Astra lẫn Neve đều đi trước BIGSPY ở cổng cho AI bên ngoài.
+### C. Quy tắc bắt buộc cho mọi phiếu
 
-Thứ tự: G-129 → G-130 → G-131 → G-134 → G-133 → G-132 → G-135 → G-136 → G-137 → G-138 → G-139. Mỗi mã nhóm khối chia thành nhiều phiên, mỗi phiên 2–4 khối với mã con (`G-133-a`…). Nên xong G-108 (per-page CSS) trước đợt này vì `blocks.css` sẽ tăng.
+1. **Nội dung cũ không đổi giao diện.** Thuộc tính mới mặc định rỗng/0/false và khi đó không in CSS, không thêm class. Không đổi tên, không xoá, không đổi mặc định của thuộc tính cũ. Trước khi sửa một khối, lưu HTML render của khối đó với thuộc tính cũ; sau khi sửa so lại phải giống hệt.
+2. **Kiểu dáng là class, thông số là biến CSS.** Kiểu: thêm giá trị vào danh sách `bst_choice()` và class `bs-<khối>--<kiểu>`. Thông số: biến `--bs-<khối>-<phần>-<thuộc tính>` in bằng `bst_style_vars()` trên thẻ bọc; trong CSS dùng `var(--…, giá trị hiện tại)`.
+3. **Đặt tên thuộc tính:** `<phần><ThuộcTính><TrạngThái><ThiếtBị>`, ví dụ `navBg`, `navBgHover`, `tabColorActive`, `navSizeTablet`, `navSizeMobile`. Ngưỡng thiết bị 849px và 549px.
+4. **Mọi giá trị qua** `bst_choice`, `bst_block_num`, `bst_block_color`; đầu ra escape.
+5. **Editor phải giống front:** thêm cùng class và biến vào `useBlockProps` của khối.
+6. **Bố trí panel:** nội dung, dữ liệu, hành vi ở tab Cài đặt (`InspectorControls` mặc định); kiểu dáng và từng phần ở tab Kiểu (`group: 'styles'`). Panel phụ đóng sẵn. Tuỳ chọn phụ thuộc chỉ hiện khi tuỳ chọn cha bật.
+7. **Không thêm lại** margin, padding, nền, viền cho vỏ ngoài: lớp Design đã có.
+8. Mỗi tuỳ chọn phải tạo khác biệt nhìn thấy được; không thêm cho đủ số.
+9. JS front chỉ nạp khi trang dùng; không thêm thư viện; tôn trọng giảm chuyển động; dùng được bằng bàn phím.
+10. Chuỗi giao diện: msgid tiếng Anh, thêm tiếng Việt bằng `python tools/add-strings.py strings.json`.
+11. Cập nhật dòng của khối trong `ai-designer/knowledge/blocks.php` và `theme.md` khi thêm kiểu hoặc thuộc tính chính.
+12. Không chép mã đối thủ (theme là GPLv2, Elementor là GPLv3, tài nguyên Flatsome có giấy phép riêng).
+
+**Các bước chuẩn để thêm tuỳ chọn cho một khối:**
+
+1. `block.json`: thêm thuộc tính với mặc định trung tính.
+2. `render.php`: whitelist, thêm class kiểu và biến CSS.
+3. `blocks.css`: thêm rule cho kiểu mới và dùng biến; chạy `python tools/split-blocks-css.py`.
+4. Editor: thêm điều khiển (dùng kit của G-129) và cùng class/biến trong `useBlockProps`.
+5. JS front nếu có hành vi mới.
+6. Chuỗi dịch, kiến thức AI.
+7. Kiểm tra: `python tools/lint.py`, `node tools/check-block-previews.js`, `node tools/features-check.cjs`, `node tools/check-block-options.js` (có sau G-129); mở `node tools/playground-page.cjs` và xem khối trong editor lẫn front ở 1280, 768, 375px.
+8. Ghi `docs/PENDING-RELEASE.md`, commit theo từng khối, push `feature/ai-designer`.
+
+Trước khi test chạy `. ./env/env.ps1` ở thư mục làm việc. Máy không có PHP: lint bằng `python tools/lint.py`.
+
+### D. Thứ tự và phiếu việc
+
+Thứ tự: **G-129 → G-130 → G-131 → G-133-a (Tabs) → G-134-a (Tìm kiếm) → G-141 → G-147** → các nhóm khối còn lại (G-132, G-133-b, G-134-b, G-135 → G-138) xen với G-142, G-143, G-148, G-149 → G-139 → G-145. Nên làm G-108 (per-page CSS so hash) trước vì `blocks.css` sẽ tăng. Mỗi phiếu là một phiên; phiếu nhóm khối chia mã con, mỗi phiên 2–4 khối.
+
+#### G-129 · Mở rộng bộ điều khiển dùng chung
+
+- **Mục tiêu:** có sẵn các điều khiển “theo phần” để mỗi khối chỉ cần vài dòng là có nhóm chữ, màu theo trạng thái, khung.
+- **Tệp:** `assets/js/editor-helpers.js` (thêm vào `window.bstEditor`, không tạo tệp JS mới trừ khi tệp vượt khoảng 600 dòng, khi đó tạo `assets/js/editor-kit.js` và đăng ký trong `bst_register_blocks()` làm phụ thuộc của các script editor); `inc/blocks.php` (hàm PHP); `tools/check-block-options.js` (mới).
+- **Thêm vào `bstEditor`:**
+  - `Resp`: một giá trị theo máy tính/tablet/điện thoại, ghi vào ba thuộc tính `key`, `keyTablet`, `keyMobile`; nút chuyển thiết bị gọi `wp.data.dispatch('core/editor').setDeviceType` nếu có.
+  - `PartTypo`: cỡ (dùng `Resp`), độ đậm, line-height, letter-spacing, transform, màu, màu hover cho một tiền tố thuộc tính.
+  - `ColorStates`: bảng màu nền/chữ/viền với các tab Thường/Hover/Đang chọn, dựng trên `ColorPanel`.
+  - `PartBox`: padding, bo góc, độ dày và màu viền, mức bóng 0–5.
+  - `StylePicker`: lưới nút có hình SVG nhỏ và nhãn, thay cho `sliderChoice` khi chọn kiểu dáng.
+  - `LinkControl`: URL, tab mới, rel, aria-label.
+  - `StyleTab`: bọc `InspectorControls` với `group: 'styles'`.
+- **PHP:** `bst_part_vars( $a, $block, $part, $keys )` trả mảng biến CSS cho một phần (đọc `<part>Size`, `<part>SizeTablet`, `<part>Color`…), để nối vào `bst_style_vars()`. Biến theo thiết bị in dạng `--…-fs`, `--…-fs-t`, `--…-fs-m`; CSS dùng trong media query.
+- **`tools/check-block-options.js`:** với mỗi `blocks/*/block.json`, cảnh báo thuộc tính không xuất hiện trong `render.php` của khối (hoặc `inc/listing/blocks.php`) và không xuất hiện trong các tệp JS editor. Chỉ in cảnh báo, mã thoát 0.
+- **Áp mẫu:** chuyển khối `divider` (`blocks/divider/`, 10 thuộc tính) sang dùng kit và thêm các tuỳ chọn của nó ở BLOCK-OPTIONS-SPEC mục G-132.
+- **Nghiệm thu:** Divider cũ render giống hệt; các kiểu mới hiện đúng ở editor và front; script kiểm tra chạy được; các test ở mục C đạt.
+
+#### G-130 · Mở rộng lớp Design dùng chung
+
+- **Tệp:** `inc/block-design.php`, `assets/js/block-design.js`; test trong `tools/features-check.cjs`.
+- **Thêm khoá vào `bsDesign`** (xử lý trong `bst_design_rules()` và panel dòng 275):
+  - viền từng cạnh, bo góc từng góc;
+  - nền gradient (2–3 màu, góc, linear/radial), ảnh nền (vị trí, cỡ, lặp) kèm lớp phủ;
+  - bóng tuỳ chỉnh (x, y, blur, spread, màu) và bóng trong;
+  - opacity, bộ lọc (blur, brightness, grayscale), backdrop blur;
+  - transform tĩnh và khi hover (xoay, dịch, nghiêng); thời gian chuyển của hover (hiện cố định 0,3s ở dòng 167);
+  - mặt nạ hình (tròn, blob, vòm);
+  - màu, viền, bo góc theo tablet/điện thoại;
+  - chiều cao tối thiểu theo thiết bị, tỉ lệ khung;
+  - `order` và `align-self` theo thiết bị, sticky kèm khoảng cách trên;
+  - Overflow (visible/hidden/clip).
+- **Chú ý tương thích:** dòng 156 hiện in `border-radius` kèm `overflow:hidden`. Giữ hành vi đó cho `bsDesign` cũ; chỉ khi người dùng chọn Overflow mới in giá trị khác.
+- **CSS riêng theo khối và thuộc tính HTML tuỳ chỉnh:** thêm vào panel Nâng cao; CSS được gắn phạm vi vào class `bsd-…` của khối và lọc như khối Code; thuộc tính chỉ nhận `data-*` và `aria-*`.
+- **Copy/Paste design** (dòng 316–326) hiện chỉ sao chép `bsDesign`: mở rộng để sao chép thêm thuộc tính kiểu khi hai khối cùng loại; thêm nút Đặt lại.
+- **Nghiệm thu:** `bsDesign` cũ sinh CSS giống hệt trước (thêm ca test); mỗi khoá mới có ca test CSS; editor xem trước đúng.
+
+#### G-131 · Kiểu dựng sẵn bằng hình
+
+- **Hiện có:** preset dạng class cho 21 khối trong `inc/block-presets.php`, chọn bằng chữ ở panel “Style presets”.
+- **Làm:**
+  - thêm loại preset thứ hai “bộ thuộc tính”: `bst_block_attr_presets()` trả `khối => [ id => (nhãn, hình SVG, attrs) ]`; bấm là `setAttributes(attrs)`;
+  - panel hiện lưới hình thu nhỏ (dùng `StylePicker`), đặt đầu tab Kiểu;
+  - người dùng lưu kiểu hiện tại thành preset của site (option `bst_user_block_presets`, có xoá, giới hạn 50 mỗi khối, chỉ lưu thuộc tính có trong `block.json`);
+  - `block_catalog` của AI Designer trả danh sách preset của khối.
+- **Phạm vi phiên này:** hạ tầng và preset cho Divider, Button. Các khối khác thêm preset ở phiếu của chính khối đó (4–8 preset mỗi khối).
+- **Nghiệm thu:** áp preset rồi hoàn tác được bằng Ctrl+Z; preset người dùng lưu và xoá được; khối không có preset không hiện panel.
+
+#### G-133-a · Tabs (ví dụ owner nêu)
+
+- **Tệp:** `blocks/tabs/`, `blocks/tab/`, editor `blocks-editor.js:1413-1462`, CSS từ `blocks.css:807`, JS `blocks.js:250` (`initTabs`).
+- **Hiện có:** `style` (underline, pills, boxed, vertical), `align` (left, center), `event`, `stretch`, `navSize`, `activeColor`, `activeText`, `fade`; khối con có `title`, `icon`.
+- **Thêm vào `tabs`:**
+
+| Thuộc tính | Giá trị | Ghi chú |
+| --- | --- | --- |
+| `style` (thêm giá trị) | `underline-thick`, `line-top`, `folder`, `segmented`, `outline`, `cards`, `icon-top` | giữ 4 giá trị cũ |
+| `navPosition` | `''`, `top`, `bottom`, `left`, `right` | rỗng = hành vi cũ (`vertical` vẫn là trái) |
+| `align` (thêm) | `right`, `justify` | |
+| `sideWidth` | px, 0 = mặc định | bề rộng cột tab khi trái/phải |
+| `mobile` | `''`, `scroll`, `accordion`, `dropdown`, `stack` | rỗng = hành vi cũ |
+| `defaultTab` | số, 1 | tab mở sẵn |
+| `deepLink`, `remember` | boolean | mở theo `#id` của tab; nhớ tab bằng `sessionStorage` |
+| `autoplay`, `pauseHover` | giây (0 = tắt), boolean | dừng khi focus và khi giảm chuyển động |
+| `transition`, `transitionMs` | `''`, `slide`, `zoom`, `none`; ms | rỗng = theo `fade` cũ |
+| `sticky`, `stickyTop` | boolean, px | thanh tab dính |
+| `navGap`, `navPadX`, `navPadY`, `navRadius`, `navBg`, `navBorderColor`, `navBorderWidth` | số/màu | thanh tab |
+| `tabColor`, `tabColorHover`, `tabBg`, `tabBgHover`, `tabBgActive`, `indicatorColor`, `indicatorSize` | màu/số | `activeColor`, `activeText` cũ giữ nguyên nghĩa |
+| `navSizeTablet`, `navSizeMobile`, `navWeight`, `navTransform`, `navLetterSpacing` | | chữ thanh tab |
+| `iconPosition`, `iconSize`, `iconOnlyMobile` | `left`/`right`/`top`, px, boolean | |
+| `panelBg`, `panelBorderColor`, `panelBorderWidth`, `panelRadius`, `panelPadding`, `panelPaddingMobile`, `panelMinHeight`, `equalHeight` | | vùng nội dung |
+
+- **Thêm vào `tab`:** `subtitle`, `badge`, `badgeColor`, `imageId`/`imageUrl` (thay icon), `anchor`, `color`, `disabled`. `render.php` của Tabs đọc các thuộc tính này từ `innerBlocks` như đang đọc `title` và `icon`.
+- **Trợ năng:** giữ `role="tablist"`, phím mũi tên; chế độ accordion trên di động dùng nút có `aria-expanded`; chế độ dropdown dùng `<select>` có nhãn.
+- **Preset:** 6 preset (ví dụ Segmented tối, Thư mục, Viên thuốc mềm, Gạch chân dày, Thẻ bóng, Dọc trái).
+- **Nghiệm thu:** trang có Tabs cũ không đổi; từng kiểu, từng vị trí và từng chế độ di động chạy ở editor và front; bàn phím dùng được; test ở mục C đạt.
+
+#### G-134-a · Tìm kiếm (ví dụ owner nêu)
+
+- **Hiện có:** chỉ `listing-search` (cần chế độ BIGSPY AI List), render ở `bst_render_listing_search()` `inc/listing/blocks.php:189`, CSS `assets/css/listing.css:89-93` với biến `--bst-ls-radius`, `--bst-ls-h`, `--bst-ls-btn`, `--bst-ls-btn-text`, `--bst-ls-border`; editor trong `blocks-listing.js`. Màu hiện lọc bằng `sanitize_hex_color`.
+- **Làm:**
+  - tạo `inc/search-block.php` với `bst_render_search_form( $a, $context )` dùng chung; `bst_render_listing_search()` gọi hàm này với `post_type=product`; giữ nguyên tên biến CSS cũ và HTML khi không đặt tuỳ chọn mới;
+  - tạo khối mới `bst/search` cho site thường: `python tools/add-block.py search "Search" --prefix bs-search`, thêm vào `bst_block_names()` và hình xem trước trong `block-previews.js`;
+  - gợi ý tức thời dùng lại action `bst_live_search`.
+- **Thuộc tính cho cả hai khối** (mặc định rỗng = giao diện hiện tại):
+
+| Nhóm | Thuộc tính |
+| --- | --- |
+| Kiểu | `style`: `''`, `pill`, `boxed`, `underline`, `split`, `icon`, `hero`, `overlay` |
+| Icon và nút | `icon`: `''`, `left`, `right`; `buttonMode`: `text`, `icon`, `both`; `buttonPosition`: `inside`, `outside`, `below-mobile`; `buttonRadius` |
+| Kích thước | `heightMobile`, `fontSize`, `padX`, `maxWidthTablet`, `maxWidthMobile`, `alignmentMobile` |
+| Màu | `inputBg`, `inputColor`, `placeholderColor`, `borderWidth`, `focusColor`, `buttonHoverColor`, `buttonHoverTextColor`, `shadow` (0–5), `shadowFocus` |
+| Gợi ý tức thời | `live`, `liveCount`, `liveImage`, `livePrice`, `liveCategory`, `minChars` |
+| Phạm vi | `postTypes` (chỉ `bst/search`), `category`, `showCategorySelect` |
+| Tiện ích | `chips` (mỗi dòng một từ khoá), `chipsLabel`, `placeholders` (nhiều dòng, xoay vòng), `shortcut` (phím `/`), `ariaLabel` |
+
+- **Nghiệm thu:** `listing-search` cũ render giống hệt; `bst/search` chạy ở site thường; gợi ý tức thời dùng được bằng bàn phím và đóng bằng Escape; kiểu `overlay` giữ focus bên trong; `node tools/woo-check.cjs` đạt nếu chạy được.
+
+#### G-141 · Abilities API và MCP
+
+- **Mục tiêu:** AI bên ngoài điều khiển theme qua đúng lớp quyền, luật block và hoàn tác của AI Designer.
+- **Bước 1, xác minh (bắt buộc trước khi viết mã):** đọc tài liệu chính thức của WordPress về Abilities API và MCP adapter: phiên bản WordPress tối thiểu, chữ ký `wp_register_ability()`, `wp_register_ability_category()`, các hook `wp_abilities_api_init`, `wp_abilities_api_categories_init`, `mcp_adapter_init`. Các tên này thấy trong mã Astra 4.14.1, chưa đối chiếu tài liệu.
+- **Tệp:** mới `ai-designer/includes/abilities.php`, nạp từ `ai-designer.php`; công tắc trong `inc/features.php` (một tệp trong `inc/features/`), mặc định tắt.
+- **Thiết kế:** không viết logic mới; mỗi ability là một lớp bọc quanh công cụ trong `bst_aid_tools()` và gọi `bst_aid_run_tool()`. Theo kiểu gộp của Neve: ít ability, mỗi cái nhận schema. Đợt đầu: `site_info`, `list_content`, `get_post`, `block_catalog`, `section_recipes`, đọc và ghi cài đặt theme, `update_page`/`page_sections`.
+- **Quyền:** `permission_callback` dùng đúng capability mà công cụ đang kiểm; công cụ mà `bst_aid_tool_policy()` yêu cầu duyệt thì ability trả lỗi “cần duyệt trong WordPress”, không tự chạy. Luật block trong `tools-design.php` vẫn áp dụng vì đi qua cùng hàm.
+- **Điều kiện:** chỉ đăng ký khi `function_exists( 'wp_register_ability' )`; theme vẫn hỗ trợ WordPress 6.5.
+- **Nghiệm thu:** thêm ca vào `tools/tests/designer-integration.php`: tắt tính năng thì không đăng ký gì; bật thì ability đọc trả đúng dữ liệu; ability ghi vi phạm luật block bị từ chối; người không đủ quyền bị từ chối.
+
+#### G-147 · Hook cho nhà phát triển
+
+- **Mục tiêu:** child theme và plugin móc được vào theme mà không sửa tệp.
+- **Làm:** thêm `do_action` trước/sau header, footer, từng thành phần header, nội dung trang, vòng lặp bài, thẻ bài, thẻ sản phẩm; thêm filter chung trong render của khối: `bst_block_attributes` (trước khi render), `bst_block_classes`, `bst_block_html` (sau khi render, qua `render_block` cho tên bắt đầu bằng `bst/`); filter cho danh sách tuỳ chọn Customizer và danh sách kiểu của khối.
+- **Tên:** tiền tố `bst_`, dạng `bst_before_<vùng>`, `bst_after_<vùng>`. Grep hook hiện có trước để không trùng.
+- **Tài liệu:** `tools/list-hooks.py` sinh `docs/HOOKS.md` từ mã.
+- **Nghiệm thu:** không ai móc vào thì HTML không đổi; test trong `tools/tests/features-integration.php` móc một action và một filter rồi kiểm đầu ra.
+
+#### Các phiếu nhóm khối: G-132, G-133-b, G-134-b, G-135, G-136, G-137, G-138
+
+Danh sách kiểu dáng và tuỳ chọn của từng khối nằm ở BLOCK-OPTIONS-SPEC mục 4, đúng tiểu mục cùng mã. Cách làm cho mỗi khối theo “Các bước chuẩn” ở mục C. Lưu ý riêng:
+
+- **G-132** (divider đã làm ở G-129): spacer, buttons, button, title, heading, text, star-rating, alert, progress, counter.
+- **G-133-b:** accordion và accordion-item, table (soạn dạng lưới ô nhưng phải đọc được chuỗi `a | b` cũ), timeline, icon-list.
+- **G-134-b:** nav-menu, social và share (chuyển sang danh sách lặp nhưng đọc được các thuộc tính mạng xã hội cũ), payment-icons, widget-area, shortcode, map, popup.
+- **G-135:** icon-box, image-box, flip-box, testimonial, team-member, price-table, pricing-toggle, hotspot, before-after, audio, video, video-button, lottie, logos, image.
+- **G-136:** row, column, section, banner, banner-grid, bento, gallery, expand-gallery. Section và Banner đã có 26–32 thuộc tính: grep trước, chỉ thêm phần thiếu.
+- **G-137:** marquee, ticker, horizontal-scroll, stack-cards, scroll-story, hover-reveal, video-cards, zoom-hero, line-draw, animated-text, slider. Editor ở `blocks-motion.js`.
+- **G-138:** posts, products, products-list, product-categories, category-grid, listing-info; ba khối listing lớn chỉ sắp lại panel. Không thêm wishlist/compare (thuộc G-40); cài đặt chung listing thuộc G-103.
+
+Mức tối thiểu sau khi nâng cấp một khối: 4–6 kiểu khác nhau rõ rệt chọn bằng hình; căn chỉnh theo thiết bị; từng phần bên trong có màu (thường/hover), chữ, khoảng cách; 4–8 preset.
+
+#### Các phiếu còn lại
+
+- **G-142 · Kiểm tra thiết kế:** thêm mô-đun `inc/auto-detect/design.php` theo mẫu các mô-đun hiện có: tương phản chữ/nền, thứ tự heading, vùng bấm nhỏ trên di động, ảnh thiếu alt, ảnh đầu trang chưa ưu tiên tải. Đăng ký vào `$tests` của `tools/tests/auto-detect-integration.php`. AI Designer đọc qua công cụ `auto_detect_results` đã có.
+- **G-143 · Khối còn thiếu:** grep trước xem theme đã có dạng khác chưa. Ứng viên: mục lục, breadcrumb, trích dẫn, kêu gọi hành động, bảng giá dạng thực đơn, ngăn kéo, danh sách phát video, thanh tiến độ đọc, hộp tác giả, điều hướng bài, nhãn (badge), khối xếp chồng, tải thêm bằng AJAX dùng chung cho lưới. Mỗi khối một phiên, tạo bằng `python tools/add-block.py`.
+- **G-148 · Đa ngôn ngữ:** thử Polylang trên Playground; rà chuỗi trong Customizer, header builder, form, popup; thêm `wpml-config.xml`. Chỉ công bố plugin đã thử.
+- **G-149 · Đối chiếu tuỳ chọn cấp theme:** phiên nghiên cứu, kết quả là danh sách việc; so tên nhóm Customizer của BIGSPY (`inc/customizer/fields.php`, khoảng 276 tuỳ chọn) với OceanWP, Astra, Flatsome trên site đối chiếu; chú ý trợ năng, hiệu năng, chế độ sáng/tối, thành phần header.
+- **G-139 · Rà soát cuối:** `check-block-options.js` thành kiểm tra bắt buộc trong `tools/release.py`; đo `blocks.css` và JS editor trước/sau.
+- **G-145 · Fixture so sánh:** cần owner đồng ý vì phải đổi theme đang chạy trên site đối chiếu.
+
+### E. Prompt mẫu cho từng phiên
+
+```text
+Đọc AGENTS.md rồi làm G-129 theo mục "Kế hoạch thực thi 11-11-2026" trong repo/docs/roadmap-vi.md (đọc mục B, C và phiếu G-129). Báo ngắn bằng tiếng Việt.
+```
+
+Đổi mã việc cho các phiên sau. Với phiếu nhóm khối, ghi rõ khối, ví dụ “G-135-a: icon-box, image-box, flip-box”.
 
 ## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-107 → G-124)
 
