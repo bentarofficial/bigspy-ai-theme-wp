@@ -115,17 +115,204 @@
 			}
 			var br = len(d.br);
 			if (br !== '') {
-				out.push('border-radius:' + br + ';overflow:hidden');
+				out.push('border-radius:' + br + (overflow(d) ? '' : ';overflow:hidden'));
 			}
-			if (SHADOWS[d.depth]) {
+			if (SHADOWS[d.depth] && !customShadow(d)) {
 				out.push('box-shadow:' + SHADOWS[d.depth]);
 			}
 			if (d.z !== undefined && d.z !== '' && !isNaN(d.z)) {
 				out.push('position:relative;z-index:' + parseInt(d.z, 10));
 			}
 			if (hasHover(d)) {
-				out.push('transition:background-color .3s ease,color .3s ease,border-color .3s ease,border-radius .3s ease,box-shadow .3s ease,transform .3s ease');
+				var t = num(d.tdur, 0, 5000);
+				t = t === '' ? '.3s' : t + 'ms';
+				out.push(['background-color', 'color', 'border-color', 'border-radius', 'box-shadow', 'transform'].map(function (p) { return p + ' ' + t + ' ease'; }).join(',').replace(/^/, 'transition:'));
 			}
+		}
+		return out.concat(rulesExtra(d, s));
+	}
+
+	/* G-130 keys; mirrors inc/block-design.php. */
+	function num(v, min, max) {
+		if (v === undefined || v === null || v === '' || isNaN(v)) {
+			return '';
+		}
+		return String(Math.max(min, Math.min(max, parseFloat(v))));
+	}
+	function color(v) {
+		v = v ? String(v).trim() : '';
+		return /^#[0-9a-f]{3,8}$/i.test(v) || /^(rgb|rgba|hsl|hsla)\([0-9.,%\s\/]+\)$/i.test(v) || /^var\(--[a-z0-9-]+\)$/i.test(v) ? v : '';
+	}
+	function overflow(d) {
+		return ['visible', 'hidden', 'clip'].indexOf(d.ov) !== -1 ? d.ov : '';
+	}
+	function customShadow(d) {
+		var c = color(d.shc);
+		if (!c) {
+			return '';
+		}
+		var parts = ['shx', 'shy', 'shb', 'shs'].map(function (k) {
+			var n = num(d[k] || 0, -200, 200);
+			return n === '' || n === '0' ? '0' : n + 'px';
+		});
+		return (d.shi ? 'inset ' : '') + parts.join(' ') + ' ' + c;
+	}
+	function transformParts(d, p) {
+		var t = [];
+		var x = len(d[p + 'tx']);
+		var y = len(d[p + 'ty']);
+		if (x !== '' || y !== '') {
+			t.push('translate(' + (x === '' ? '0' : x) + ',' + (y === '' ? '0' : y) + ')');
+		}
+		var r = num(d[p + 'rot'], -360, 360);
+		if (r !== '' && r !== '0') {
+			t.push('rotate(' + r + 'deg)');
+		}
+		var k = num(d[p + 'skx'], -60, 60);
+		if (k !== '' && k !== '0') {
+			t.push('skewX(' + k + 'deg)');
+		}
+		return t;
+	}
+	var MASKS = {
+		circle: 'clip-path:circle(50% at 50% 50%)',
+		ellipse: 'clip-path:ellipse(50% 50% at 50% 50%)',
+		arch: 'clip-path:inset(0 round 9999px 9999px 0 0)',
+		blob: 'border-radius:42% 58% 63% 37%/41% 44% 56% 59%;overflow:hidden',
+		hexagon: 'clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)',
+		diamond: 'clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)'
+	};
+	function gradient(d) {
+		if (d.gt !== 'linear' && d.gt !== 'radial') {
+			return '';
+		}
+		var cs = [color(d.g1), color(d.g2), color(d.g3)].filter(Boolean);
+		if (cs.length < 2) {
+			return '';
+		}
+		if (d.gt === 'radial') {
+			return 'radial-gradient(circle,' + cs.join(',') + ')';
+		}
+		var a = num(d.ga, 0, 360);
+		return 'linear-gradient(' + (a === '' ? '180' : a) + 'deg,' + cs.join(',') + ')';
+	}
+	function safeUrl(v) {
+		v = v ? String(v).trim() : '';
+		return /^https?:\/\/[^"'()\\\s<>]+$/i.test(v) ? v : '';
+	}
+	function rulesExtra(d, s) {
+		var out = [];
+		var bstyle = ['solid', 'dashed', 'dotted', 'double'].indexOf(d.bs) !== -1 ? d.bs : 'solid';
+		if (s !== '') {
+			if (color(d['bg' + s])) {
+				out.push('background-color:' + color(d['bg' + s]));
+			}
+			if (color(d['color' + s])) {
+				out.push('color:' + color(d['color' + s]) + ';--bs-heading-color:' + color(d['color' + s]));
+			}
+			if (len(d['bw' + s]) !== '') {
+				out.push('border-width:' + len(d['bw' + s]) + ';border-style:' + bstyle);
+			}
+			if (color(d['bc' + s])) {
+				out.push('border-color:' + color(d['bc' + s]));
+			}
+			if (len(d['br' + s]) !== '') {
+				out.push('border-radius:' + len(d['br' + s]));
+			}
+		}
+		if (len(d['mh' + s]) !== '') {
+			out.push('min-height:' + len(d['mh' + s]));
+		}
+		if (['1/1', '4/3', '3/2', '16/9', '21/9', '3/4', '2/3', '9/16'].indexOf(d['ar' + s]) !== -1) {
+			out.push('aspect-ratio:' + d['ar' + s]);
+		}
+		var ord = num(d['ord' + s], -99, 99);
+		if (ord !== '') {
+			out.push('order:' + parseInt(ord, 10));
+		}
+		if (['auto', 'flex-start', 'center', 'flex-end', 'stretch'].indexOf(d['as' + s]) !== -1) {
+			out.push('align-self:' + d['as' + s]);
+		}
+		if (s === '' && (d.st === 'all' || d.st === 'desktop')) {
+			out.push('position:sticky;top:' + (len(d.stt) === '' ? '0' : len(d.stt)));
+		} else if (s === 'T' && d.st === 'desktop' && !d.posT) {
+			out.push('position:static');
+		}
+		if (s !== '') {
+			return out;
+		}
+		var base = len(d.bw);
+		var any = false;
+		var w = ['bwt', 'bwr', 'bwb', 'bwl'].map(function (k) {
+			var v = len(d[k]);
+			any = any || v !== '';
+			return v !== '' ? v : (base !== '' ? base : '0');
+		});
+		if (any) {
+			out.push('border-style:' + bstyle + ';border-color:' + (color(d.bc) || 'currentColor') + ';border-width:' + w.join(' '));
+		}
+		[['rtl', 'top-left'], ['rtr', 'top-right'], ['rbr', 'bottom-right'], ['rbl', 'bottom-left']].forEach(function (o) {
+			if (len(d[o[0]]) !== '') {
+				out.push('border-' + o[1] + '-radius:' + len(d[o[0]]));
+			}
+		});
+		var img = safeUrl(d.bgi);
+		var g = gradient(d);
+		if (img || g) {
+			var layers = [];
+			if (color(d.ovl)) {
+				layers.push('linear-gradient(' + color(d.ovl) + ',' + color(d.ovl) + ')');
+			}
+			if (img) {
+				layers.push('url("' + img + '")');
+			}
+			if (g) {
+				layers.push(g);
+			}
+			out.push('background-image:' + layers.join(','));
+			if (img) {
+				var pos = ['top', 'bottom', 'left', 'right', 'top left', 'top right', 'bottom left', 'bottom right'].indexOf(d.bgp) !== -1 ? d.bgp : 'center';
+				var size = ['contain', 'auto'].indexOf(d.bgs) !== -1 ? d.bgs : 'cover';
+				var rep = ['repeat', 'repeat-x', 'repeat-y'].indexOf(d.bgr) !== -1 ? d.bgr : 'no-repeat';
+				out.push('background-position:' + pos + ';background-size:' + size + ';background-repeat:' + rep);
+			}
+		}
+		if (customShadow(d)) {
+			out.push('box-shadow:' + customShadow(d));
+		}
+		var op = num(d.op, 0, 100);
+		if (op !== '' && op !== '100') {
+			out.push('opacity:' + parseFloat(op) / 100);
+		}
+		var f = [];
+		var v = num(d.fbl, 0, 50);
+		if (v !== '' && v !== '0') {
+			f.push('blur(' + v + 'px)');
+		}
+		v = num(d.fbr, 0, 300);
+		if (v !== '' && v !== '0' && v !== '100') {
+			f.push('brightness(' + v + '%)');
+		}
+		v = num(d.fgr, 0, 100);
+		if (v !== '' && v !== '0') {
+			f.push('grayscale(' + v + '%)');
+		}
+		if (f.length) {
+			out.push('filter:' + f.join(' '));
+		}
+		v = num(d.bdb, 0, 50);
+		if (v !== '' && v !== '0') {
+			out.push('-webkit-backdrop-filter:blur(' + v + 'px);backdrop-filter:blur(' + v + 'px)');
+		}
+		var t = transformParts(d, '');
+		if (t.length) {
+			out.push('transform:' + t.join(' '));
+		}
+		if (MASKS[d.msk]) {
+			out.push(MASKS[d.msk]);
+		}
+		if (overflow(d)) {
+			out.push('overflow:' + overflow(d));
 		}
 		return out;
 	}
@@ -136,7 +323,7 @@
 	}
 
 	function hasHover(d) {
-		return ['depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale'].some(function (k) { return d[k] !== undefined && d[k] !== '' && d[k] !== 0; });
+		return ['depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale', 'hrot', 'htx', 'hty', 'hskx'].some(function (k) { return d[k] !== undefined && d[k] !== '' && d[k] !== 0; });
 	}
 
 	function hoverRules(d) {
@@ -152,7 +339,9 @@
 		if (len(d.hbr) !== '') {
 			out.push('border-radius:' + len(d.hbr));
 		}
-		var t = [];
+		var own = transformParts(d, 'h');
+		var moves = own.length || d.hmove || (d.hscale && parseFloat(d.hscale) !== 100);
+		var t = moves ? transformParts(d, '').concat(own) : [];
 		if (d.hmove && !isNaN(d.hmove)) {
 			t.push('translateY(' + (-1 * parseFloat(d.hmove)) + 'px)');
 		}
@@ -236,6 +425,24 @@
 		);
 	}
 
+	/* Style attributes of a block (not content): numbers, booleans and short style-named strings. */
+	var STYLE_KEY = /color|bg|background|size|style|skin|variant|layout|align|radius|width|height|gap|shadow|font|weight|border|padding|spacing|columns|ratio|position|effect|animation|hover|overlay|opacity|presets/i;
+	var CONTENT_KEY = /^(content|text|title|label|url|href|link|items|images|media|id|ids|alt|caption|html|code|css|query|anchor|lock|metadata)$|Url$|Id$|Text$/;
+	function styleAttrs(props) {
+		var type = wp.blocks.getBlockType(props.name);
+		var out = {};
+		Object.keys((type && type.attributes) || {}).forEach(function (k) {
+			var v = props.attributes[k];
+			if (k === 'bsDesign' || CONTENT_KEY.test(k) || v === undefined) {
+				return;
+			}
+			if (typeof v === 'number' || typeof v === 'boolean' || (typeof v === 'string' && v.length <= 60 && STYLE_KEY.test(k)) || k === 'bsPresets') {
+				out[k] = v;
+			}
+		});
+		return out;
+	}
+
 	function DesignPanel(props) {
 		var d = props.attributes.bsDesign || {};
 		var editorDevice = wp.data.useSelect(function (select) {
@@ -312,14 +519,21 @@
 			) : null,
 			el('div', { className: 'bst-design-actions' },
 				el(c.Button, { variant: 'secondary', size: 'small', icon: 'admin-page', disabled: !isSet(d), onClick: function () {
-					try { window.localStorage.setItem('bstDesignClipboard', JSON.stringify(d)); } catch (e) {}
+					try {
+						window.localStorage.setItem('bstDesignClipboard', JSON.stringify(d));
+						window.localStorage.setItem('bstStyleClipboard', JSON.stringify({ name: props.name, attrs: styleAttrs(props) }));
+					} catch (e) {}
 					wp.data.dispatch('core/notices').createNotice('snackbar', __('Design copied. Select another block and click "Paste design".', T), { type: 'snackbar' });
 				} }, __('Copy design', T)),
 				el(c.Button, { variant: 'secondary', size: 'small', icon: 'clipboard', onClick: function () {
 					var saved = null;
 					try { saved = JSON.parse(window.localStorage.getItem('bstDesignClipboard') || 'null'); } catch (e) {}
+					var style = null;
+					try { style = JSON.parse(window.localStorage.getItem('bstStyleClipboard') || 'null'); } catch (e) {}
 					if (saved && typeof saved === 'object') {
-						props.setAttributes({ bsDesign: saved });
+						// Same block type: the block's own style options come along too.
+						var extra = style && style.name === props.name && style.attrs ? style.attrs : {};
+						props.setAttributes(Object.assign({}, extra, { bsDesign: saved }));
 					} else {
 						wp.data.dispatch('core/notices').createNotice('snackbar', __('Nothing copied yet.', T), { type: 'snackbar' });
 					}
@@ -327,6 +541,161 @@
 			),
 			isSet(d) ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { props.setAttributes({ bsDesign: {} }); } }, __('Reset design', T)) : null
 		);
+	}
+
+	/* G-130: borders per side, gradient / image, custom shadow, filters, transform, mask, layout per device. */
+	function useDevice() {
+		return wp.data.useSelect(function (select) {
+			var ed = select('core/editor');
+			var type = ed && ed.getDeviceType ? ed.getDeviceType() : 'Desktop';
+			return type === 'Tablet' ? 'T' : (type === 'Mobile' ? 'M' : '');
+		}, []);
+	}
+	var EFFECT_KEYS = ['bwt', 'bwr', 'bwb', 'bwl', 'rtl', 'rtr', 'rbr', 'rbl', 'gt', 'g1', 'g2', 'g3', 'ga', 'bgi', 'bgp', 'bgs', 'bgr', 'ovl', 'shx', 'shy', 'shb', 'shs', 'shc', 'shi', 'op', 'fbl', 'fbr', 'fgr', 'bdb', 'rot', 'tx', 'ty', 'skx', 'hrot', 'htx', 'hty', 'hskx', 'tdur', 'msk', 'ov', 'st', 'stt'];
+	var DEVICE_KEYS = ['bg', 'color', 'bw', 'bc', 'br', 'mh', 'ar', 'ord', 'as'];
+
+	function EffectsPanel(props) {
+		var d = props.attributes.bsDesign || {};
+		var device = useDevice();
+		var set = function (key, value) {
+			var next = Object.assign({}, d);
+			if (value === '' || value === undefined || value === null || value === false) {
+				delete next[key];
+			} else {
+				next[key] = value;
+			}
+			props.setAttributes({ bsDesign: next });
+		};
+		var setDevice = function (v) {
+			var ed = wp.data.dispatch('core/editor');
+			if (ed && ed.setDeviceType) {
+				ed.setDeviceType(v === 'T' ? 'Tablet' : (v === 'M' ? 'Mobile' : 'Desktop'));
+			}
+		};
+		var txt = function (label, key, ph) {
+			return el(c.TextControl, { label: label, value: d[key] === undefined ? '' : String(d[key]), placeholder: ph || '', onChange: function (v) { set(key, v); }, __nextHasNoMarginBottom: true });
+		};
+		var opt = function (label, key, list) {
+			return el(c.SelectControl, { label: label, value: d[key] === undefined ? '' : String(d[key]), options: list.map(function (o) { return { value: o[0], label: o[1] }; }), onChange: function (v) { set(key, v); }, __nextHasNoMarginBottom: true });
+		};
+		var range = function (label, key, min, max, def) {
+			return el(c.RangeControl, { label: label, min: min, max: max, value: d[key] === undefined || d[key] === '' ? def : d[key], allowReset: true, resetFallbackValue: def, onChange: function (v) { set(key, v === undefined || v === def ? '' : v); }, __nextHasNoMarginBottom: true });
+		};
+		var any = EFFECT_KEYS.concat(DEVICE_KEYS.map(function (k) { return k + 'T'; }), DEVICE_KEYS.map(function (k) { return k + 'M'; }), ['mh', 'ar', 'ord', 'as']).some(function (k) { return d[k] !== undefined && d[k] !== ''; });
+		var inherit = device ? __('Inherit', T) : __('Default', T);
+		return el(c.PanelBody, { title: __('Effects & layout', T) + (any ? ' •' : ''), initialOpen: false, className: 'bst-design-panel bst-effects-panel' },
+			el('div', { className: 'bst-design-devices' }, DEVICES.map(function (dev) {
+				return el(c.Button, { key: dev[0] || 'd', variant: device === dev[0] ? 'primary' : 'secondary', size: 'small', onClick: function () { setDevice(dev[0]); } }, dev[1]);
+			})),
+			el('div', { className: 'bst-design-sub' }, __('Layout', T)),
+			txt(__('Min height', T), 'mh' + device, device ? __('inherit', T) : 'e.g. 300, 50vh'),
+			opt(__('Aspect ratio', T), 'ar' + device, [['', inherit], ['1/1', '1:1'], ['4/3', '4:3'], ['3/2', '3:2'], ['16/9', '16:9'], ['21/9', '21:9'], ['3/4', '3:4'], ['2/3', '2:3'], ['9/16', '9:16']]),
+			txt(__('Order in row (flex order)', T), 'ord' + device, device ? __('inherit', T) : '0'),
+			opt(__('Align self', T), 'as' + device, [['', inherit], ['flex-start', __('Start', T)], ['center', __('Center', T)], ['flex-end', __('End', T)], ['stretch', __('Stretch', T)]]),
+			device ? el(Fragment, null,
+				el('div', { className: 'bst-design-sub' }, device === 'T' ? __('Tablet colors & border', T) : __('Mobile colors & border', T)),
+				el(ColorField, { label: __('Background color', T), value: d['bg' + device], onChange: function (v) { set('bg' + device, v); } }),
+				el(ColorField, { label: __('Text color', T), value: d['color' + device], onChange: function (v) { set('color' + device, v); } }),
+				txt(__('Border width', T), 'bw' + device, __('inherit', T)),
+				el(ColorField, { label: __('Border color', T), value: d['bc' + device], onChange: function (v) { set('bc' + device, v); } }),
+				txt(__('Corner radius', T), 'br' + device, __('inherit', T))
+			) : el(Fragment, null,
+				opt(__('Sticky', T), 'st', [['', __('Off', T)], ['all', __('All devices', T)], ['desktop', __('Desktop only', T)]]),
+				d.st ? txt(__('Sticky offset from top', T), 'stt', '0') : null,
+				opt(__('Overflow', T), 'ov', [['', __('Default', T)], ['visible', __('Visible', T)], ['hidden', __('Hidden', T)], ['clip', __('Clip', T)]]),
+				el('div', { className: 'bst-design-sub' }, __('Border per side', T)),
+				el(BoxInputs, { label: __('Border width per side', T), prefix: 'bw', device: '', d: d, set: set }),
+				el('div', { className: 'bst-design-box' },
+					el('div', { className: 'bst-design-box__label' }, __('Corner radius per corner', T)),
+					el('div', { className: 'bst-design-box__grid' }, [['rtl', __('Top left', T)], ['rtr', __('Top right', T)], ['rbr', __('Bottom right', T)], ['rbl', __('Bottom left', T)]].map(function (o) {
+						return el(c.TextControl, { key: o[0], label: o[1], value: d[o[0]] || '', placeholder: '–', onChange: function (v) { set(o[0], v); }, __nextHasNoMarginBottom: true });
+					}))
+				),
+				el('div', { className: 'bst-design-sub' }, __('Background gradient & image', T)),
+				opt(__('Gradient', T), 'gt', [['', __('None', T)], ['linear', __('Linear', T)], ['radial', __('Radial', T)]]),
+				d.gt ? el(Fragment, null,
+					el(ColorField, { label: __('Color 1', T), value: d.g1, onChange: function (v) { set('g1', v); } }),
+					el(ColorField, { label: __('Color 2', T), value: d.g2, onChange: function (v) { set('g2', v); } }),
+					el(ColorField, { label: __('Color 3 (optional)', T), value: d.g3, onChange: function (v) { set('g3', v); } }),
+					d.gt === 'linear' ? range(__('Angle', T), 'ga', 0, 360, 180) : null
+				) : null,
+				el(be.MediaUploadCheck, null, el(be.MediaUpload, { allowedTypes: ['image'], onSelect: function (m) { set('bgi', m && m.url ? m.url : ''); }, render: function (o) {
+					return el('div', { className: 'bst-design-actions' },
+						el(c.Button, { variant: 'secondary', size: 'small', onClick: o.open }, d.bgi ? __('Replace background image', T) : __('Background image', T)),
+						d.bgi ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { set('bgi', ''); } }, __('Remove', T)) : null
+					);
+				} })),
+				d.bgi ? el(Fragment, null,
+					opt(__('Image position', T), 'bgp', [['', __('Center', T)], ['top', __('Top', T)], ['bottom', __('Bottom', T)], ['left', __('Left', T)], ['right', __('Right', T)], ['top left', __('Top left', T)], ['top right', __('Top right', T)], ['bottom left', __('Bottom left', T)], ['bottom right', __('Bottom right', T)]]),
+					opt(__('Image size', T), 'bgs', [['', __('Cover', T)], ['contain', __('Contain', T)], ['auto', __('Original', T)]]),
+					opt(__('Repeat', T), 'bgr', [['', __('No repeat', T)], ['repeat', __('Repeat', T)], ['repeat-x', __('Horizontally', T)], ['repeat-y', __('Vertically', T)]])
+				) : null,
+				(d.bgi || d.gt) ? el(ColorField, { label: __('Overlay color (use transparency)', T), value: d.ovl, onChange: function (v) { set('ovl', v); } }) : null,
+				el('div', { className: 'bst-design-sub' }, __('Custom shadow', T)),
+				el(ColorField, { label: __('Shadow color (overrides Depth)', T), value: d.shc, onChange: function (v) { set('shc', v); } }),
+				d.shc ? el(Fragment, null,
+					range(__('Horizontal (px)', T), 'shx', -50, 50, 0),
+					range(__('Vertical (px)', T), 'shy', -50, 50, 0),
+					range(__('Blur (px)', T), 'shb', 0, 100, 0),
+					range(__('Spread (px)', T), 'shs', -50, 50, 0),
+					el(c.ToggleControl, { label: __('Inner shadow (inset)', T), checked: !!d.shi, onChange: function (v) { set('shi', v); }, __nextHasNoMarginBottom: true })
+				) : null,
+				el('div', { className: 'bst-design-sub' }, __('Filters', T)),
+				range(__('Opacity (%)', T), 'op', 0, 100, 100),
+				range(__('Blur (px)', T), 'fbl', 0, 20, 0),
+				range(__('Brightness (%)', T), 'fbr', 0, 200, 100),
+				range(__('Grayscale (%)', T), 'fgr', 0, 100, 0),
+				range(__('Backdrop blur (glass, px)', T), 'bdb', 0, 30, 0),
+				el('div', { className: 'bst-design-sub' }, __('Transform', T)),
+				range(__('Rotate (deg)', T), 'rot', -180, 180, 0),
+				txt(__('Move X', T), 'tx', '0'),
+				txt(__('Move Y', T), 'ty', '0'),
+				range(__('Skew (deg)', T), 'skx', -30, 30, 0),
+				el('div', { className: 'bst-design-sub' }, __('Transform on hover', T)),
+				range(__('Rotate on hover (deg)', T), 'hrot', -180, 180, 0),
+				txt(__('Move X on hover', T), 'htx', '0'),
+				txt(__('Move Y on hover', T), 'hty', '0'),
+				range(__('Skew on hover (deg)', T), 'hskx', -30, 30, 0),
+				range(__('Hover transition (ms)', T), 'tdur', 0, 2000, 300),
+				el('div', { className: 'bst-design-sub' }, __('Shape mask', T)),
+				opt(__('Shape', T), 'msk', [['', __('None', T)], ['circle', __('Circle', T)], ['ellipse', __('Ellipse', T)], ['arch', __('Arch', T)], ['blob', __('Blob', T)], ['hexagon', __('Hexagon', T)], ['diamond', __('Diamond', T)]])
+			),
+			any ? el(c.Button, { variant: 'link', isDestructive: true, onClick: function () {
+				var next = Object.assign({}, d);
+				EFFECT_KEYS.concat(['mh', 'ar', 'ord', 'as']).forEach(function (k) { delete next[k]; });
+				DEVICE_KEYS.forEach(function (k) { delete next[k + 'T']; delete next[k + 'M']; });
+				props.setAttributes({ bsDesign: next });
+			} }, __('Reset effects & layout', T)) : null
+		);
+	}
+
+	/* Advanced: per-block CSS ("selector" = this block) and data-* / aria-* attributes. */
+	function AdvancedPanel(props) {
+		var d = props.attributes.bsDesign || {};
+		var set = function (key, value) {
+			var next = Object.assign({}, d);
+			if (value === '') {
+				delete next[key];
+			} else {
+				next[key] = value;
+			}
+			props.setAttributes({ bsDesign: next });
+		};
+		return el(be.InspectorControls, { group: 'advanced' },
+			el(c.TextareaControl, { label: __('Custom CSS for this block', T), help: __('Use "selector" for this block, e.g. selector h2 { color: red; }. Plain declarations apply to the block. Printed only for users allowed to post unfiltered HTML.', T), value: d.ccss || '', rows: 5, className: 'bst-code-input', onChange: function (v) { set('ccss', v); }, __nextHasNoMarginBottom: true }),
+			el(c.TextareaControl, { label: __('Custom attributes', T), help: __('One per line, name=value. Only data-* and aria-* are allowed.', T), value: d.hattr || '', rows: 3, placeholder: 'data-track=hero\naria-label=Intro', onChange: function (v) { set('hattr', v); }, __nextHasNoMarginBottom: true })
+		);
+	}
+
+	function customCss(d, sel) {
+		var s = d && d.ccss ? String(d.ccss).replace(/<\/?style[^>]*>/gi, '') : '';
+		if (!s.trim()) {
+			return '';
+		}
+		if (s.indexOf('{') === -1) {
+			s = 'selector{' + s + '}';
+		}
+		return s.split('selector').join(sel);
 	}
 
 	/*
@@ -481,13 +850,14 @@
 			if (!isBst(props.name)) {
 				return el(BlockEdit, props);
 			}
-			var style = css(props.attributes.bsDesign, '.bsd-e-' + props.clientId);
+			var style = css(props.attributes.bsDesign, '.bsd-e-' + props.clientId) + customCss(props.attributes.bsDesign, '.bsd-e-' + props.clientId);
 			return el(Fragment, null,
 				el(BlockEdit, props),
 				el(WidthControls, props),
 				el(AlignToolbar, props),
 				style ? el('style', null, style) : null,
-				el(be.InspectorControls, { group: 'styles' }, el(TypographyPanel, props), el(DesignPanel, props))
+				el(be.InspectorControls, { group: 'styles' }, el(TypographyPanel, props), el(DesignPanel, props), el(EffectsPanel, props)),
+				el(AdvancedPanel, props)
 			);
 		};
 	}, 'withBstDesignPanel');

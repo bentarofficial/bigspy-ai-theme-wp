@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -488,6 +488,46 @@ Broken line" );
 		bst_test( false !== strpos( $settings_html, 'name="bst_listing_mode"' ) && false === strpos( $settings_html, 'name="bst_listing_mode" value="1" checked' ), 'listing: Settings page shows the BIGSPY AI List switch, off' );
 	}
 	bst_feature_set( 'listing', true );
+}
+// G-130: shared Design layer. Old designs print the same CSS; each new key prints its rule.
+function bst_t_design() {
+	$legacy = '.x{margin-top:10px;background-color:#fff;border-radius:8px;overflow:hidden;box-shadow:0 3px 6px -4px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.1);transition:background-color .3s ease,color .3s ease,border-color .3s ease,border-radius .3s ease,box-shadow .3s ease,transform .3s ease}.x:where(.bs-column,.bs-row,.bs-text,.bs-heading,.bs-buttons,.bs-icon-list,.bs-counter,.bs-social,.bs-title,.bs-code,.bs-share,.bs-star-rating,.bs-progress){padding:20px}@media (max-width:549px){.x{font-size:14px;--bs-fs:14px}}@media (hover:hover){.x:hover{transform:translateY(-5px)}}';
+	bst_test( $legacy === bst_design_css( array( 'mt' => 10, 'bg' => '#fff', 'br' => 8, 'depth' => 2, 'hmove' => 5, 'fsM' => 14 ), '.x' ), 'design: legacy bsDesign CSS unchanged' );
+	$cases = array(
+		'border per side'  => array( array( 'bwt' => 3, 'bc' => '#f00' ), '.x{border-style:solid;border-color:#f00;border-width:3px 0 0 0}' ),
+		'radius per corner' => array( array( 'rtl' => 20, 'rbr' => 4 ), '.x{border-top-left-radius:20px;border-bottom-right-radius:4px}' ),
+		'linear gradient'  => array( array( 'gt' => 'linear', 'g1' => '#f00', 'g2' => '#00f', 'ga' => 90 ), '.x{background-image:linear-gradient(90deg,#f00,#00f)}' ),
+		'radial gradient'  => array( array( 'gt' => 'radial', 'g1' => '#f00', 'g2' => '#0f0', 'g3' => '#00f' ), '.x{background-image:radial-gradient(circle,#f00,#0f0,#00f)}' ),
+		'image + overlay'  => array( array( 'bgi' => 'https://e.x/a.jpg', 'ovl' => 'rgba(0,0,0,.5)', 'bgs' => 'contain' ), '.x{background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("https://e.x/a.jpg");background-position:center;background-size:contain;background-repeat:no-repeat}' ),
+		'custom shadow'    => array( array( 'depth' => 3, 'shc' => '#000', 'shy' => 4, 'shb' => 10, 'shi' => true ), '.x{box-shadow:inset 0 4px 10px 0 #000}' ),
+		'filters'          => array( array( 'op' => 50, 'fbl' => 2, 'fbr' => 120, 'fgr' => 100, 'bdb' => 8 ), '.x{opacity:0.5;filter:blur(2px) brightness(120%) grayscale(100%);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}' ),
+		'transform'        => array( array( 'rot' => 5, 'tx' => 10, 'skx' => 3 ), '.x{transform:translate(10px,0) rotate(5deg) skewX(3deg)}' ),
+		'hover transform'  => array( array( 'rot' => 5, 'hrot' => 10, 'tdur' => 600 ), '.x{transition:background-color 600ms ease,color 600ms ease,border-color 600ms ease,border-radius 600ms ease,box-shadow 600ms ease,transform 600ms ease;transform:rotate(5deg)}@media (hover:hover){.x:hover{transform:rotate(5deg) rotate(10deg)}}' ),
+		'mask'             => array( array( 'msk' => 'circle' ), '.x{clip-path:circle(50% at 50% 50%)}' ),
+		'device colors'    => array( array( 'bgT' => '#eee', 'colorM' => '#111', 'bwT' => 2, 'bcM' => '#0f0', 'brM' => 4 ), '@media (max-width:849px){.x{background-color:#eee;border-width:2px;border-style:solid}}@media (max-width:549px){.x{color:#111;--bs-heading-color:#111;border-color:#0f0;border-radius:4px}}' ),
+		'layout'           => array( array( 'mh' => 300, 'mhM' => '50vh', 'ar' => '16/9', 'ord' => -1, 'ordM' => 2, 'asT' => 'center' ), '.x{min-height:300px;aspect-ratio:16/9;order:-1}@media (max-width:849px){.x{align-self:center}}@media (max-width:549px){.x{min-height:50vh;order:2}}' ),
+		'sticky'           => array( array( 'st' => 'desktop', 'stt' => 80 ), '.x{position:sticky;top:80px}@media (max-width:849px){.x{position:static}}' ),
+		'overflow'         => array( array( 'br' => 10, 'ov' => 'visible' ), '.x{border-radius:10px;overflow:visible}' ),
+		'bad url rejected' => array( array( 'bgi' => 'javascript:alert(1)' ), '' ),
+	);
+	foreach ( $cases as $label => $case ) {
+		$got = bst_design_css( $case[0], '.x' );
+		bst_test( $case[1] === $got, 'design: ' . $label . ( $case[1] === $got ? '' : ' got ' . $got ) );
+	}
+	$attrs = bst_design_html_attrs( array( 'hattr' => "data-track=hero\naria-label=\"Intro\"\nonclick=alert(1)\nstyle=x" ) );
+	bst_test( array( 'data-track' => 'hero', 'aria-label' => 'Intro' ) === $attrs, 'design: custom attributes only data-* and aria-*' );
+	$post = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Design', 'post_author' => 1, 'post_content' => '' ) );
+	$allow = function ( $caps, $cap, $user_id ) {
+		return 'unfiltered_html' === $cap && 1 === (int) $user_id ? array( 'exist' ) : $caps;
+	};
+	add_filter( 'map_meta_cap', $allow, 99, 3 ); // An earlier test denies unfiltered_html.
+	bst_test( '.x h2{color:red}.x{opacity:.5}' === bst_design_custom_css( array( 'ccss' => 'selector h2{color:red}selector{opacity:.5}' ), '.x', $post ) && '.x{color:red}' === bst_design_custom_css( array( 'ccss' => 'color:red' ), '.x', $post ), 'design: custom CSS scoped to the block' );
+	remove_filter( 'map_meta_cap', $allow, 99 );
+	$low = wp_insert_user( array( 'user_login' => 'bst_contrib', 'user_pass' => wp_generate_password(), 'role' => 'contributor' ) );
+	wp_update_post( array( 'ID' => $post, 'post_author' => $low ) );
+	bst_test( '' === bst_design_custom_css( array( 'ccss' => 'color:red' ), '.x', $post ), 'design: custom CSS ignored for authors without unfiltered_html' );
+	$html = bst_apply_block_design( '<div class="bs-text">x</div>', array( 'blockName' => 'bst/text', 'attrs' => array( 'bsDesign' => array( 'hattr' => 'data-x=1' ) ) ) );
+	bst_test( false !== strpos( $html, 'data-x="1"' ) && false === strpos( $html, 'bsd-' ), 'design: attributes alone add no design class' );
 }
 // Admin-only files must parse: a syntax error there breaks the whole dashboard.
 try {
