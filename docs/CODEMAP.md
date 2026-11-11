@@ -33,6 +33,15 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 - Theme panel: `inc/admin/`. Updater: `inc/updater.php`. Patterns: `patterns/`.
 - Built-in Form: engine `inc/form-native.php`; schema (field IDs, conditions, dependency checks) `inc/form-schema.php`; front JS in `assets/js/blocks.js` (`bsNfApply`); editor `NativeFormPanels` in `blocks-editor.js`. Price quote (G-58): `inc/form-quote.php` (formula, quote, snapshot, `[_quote]` tags), shared JS engine `assets/js/form-quote.js` (`window.bsQuote`, loaded only with priced forms and in the editor). Tests: `php tools/tests/form-schema-check.php`, `php tools/tests/form-quote-check.php`, `node tools/tests/form-quote-parity.cjs`.
 
+## Listing (BIGSPY AI List)
+- `inc/features/listing.php` loads `inc/listing/` (`core.php`, `blocks.php`, `sponsored.php`, `collections.php`, `schema.php`, `meta-box.php`, `single.php`, `design.php` for Customizer → Listing design, `home-hero.php` for tokens and `[bigspy_stat]`, `home-sidebar.php`). Templates `woocommerce/single-listing.php`, `content-listing.php`; CSS `assets/css/listing.css`; editor `assets/js/blocks-listing.js`; old blocks `legacy-list/`.
+
+## WooCommerce
+- `inc/woocommerce.php` (loaded only with WooCommerce), `inc/woocommerce-elements.php`, `inc/shop-options.php`, `inc/product-options.php`, `inc/quick-view.php`, `inc/variation-swatches.php`, `inc/checkout-extras.php`; template `woocommerce/content-product.php`; CSS `assets/css/woocommerce.css`; test `node tools/woo-check.cjs`.
+
+## Performance
+- `inc/performance.php`: per-page CSS, self-hosted fonts, generated CSS written to files in `uploads/bigspy/`.
+
 ## Testing
 - `node tools/playground-page.cjs` serves the theme on port 9418. Open `/?bst_autologin=1`; a test-only mu-plugin logs in, no password. Options: `--port=N`, `--woo=<plugin dir>`.
 - Designer tests: `node tools/playground-check.cjs`; see `docs/DEV-RULES.md`.

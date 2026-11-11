@@ -28,3 +28,4 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - G-94: shortcode [bigspy_stat type=listing|category|sponsored|post|user|current_category]; token {{listing_count}}... chạy cả trong widget.
 - G-100: đổi từ BIGSPY AI List tự chuyển widget listing-sidebar → Homepage sidebar, secondary-pages-sidebar → Blog sidebar, footer-N → Footer 1 cột N (chỉ khi vùng đích trống).
 - G-103: Customizer → Layout → Listing design (nền, viền, bo góc, đổ bóng, hover, padding, khoảng cách, chiều cao tối thiểu, cỡ/hình logo); để trống thì đọc giá trị theme BIGSPY AI List cũ.
+- G-123: AI Designer biết khối bigspy/sponsored và cách dùng khối List; check-block-previews báo khối thiếu trong kiến thức AI.

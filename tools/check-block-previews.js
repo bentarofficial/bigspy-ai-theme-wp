@@ -25,6 +25,18 @@ for (const [key, file] of [['countdown', 'inc/countdown.php'], ['product-part', 
 	if (!fs.readFileSync(path.join(theme, file), 'utf8').includes("'description' =>")) problems.push(`bst/${key}: description missing in ${file}`);
 }
 
+// AI Designer must know every block: its full name (bst/x, bigspy/x) appears in ai-designer/knowledge.
+const kdir = path.join(theme, 'ai-designer', 'knowledge');
+const knowledge = fs.readdirSync(kdir).map((f) => fs.readFileSync(path.join(kdir, f), 'utf8')).join('\n');
+// Child blocks are written by their parent block, so the AI never inserts them alone.
+const childOnly = new Set(['accordion-item', 'bento-cell', 'column', 'hover-reveal-item', 'hscroll-panel', 'stack-card', 'story-step', 'tab', 'ticker-slide']);
+for (const dir of blocks) {
+	if (childOnly.has(dir)) continue;
+	const name = JSON.parse(fs.readFileSync(path.join(theme, 'blocks', dir, 'block.json'), 'utf8')).name;
+	const re = new RegExp('(^|[^a-z/-])' + name.replace(/[/-]/g, '\\$&') + '([^a-z-]|$)');
+	if (!re.test(knowledge)) problems.push(`${name}: missing from ai-designer/knowledge`);
+}
+
 if (problems.length) {
 	console.error(problems.join('\n'));
 	process.exit(1);
