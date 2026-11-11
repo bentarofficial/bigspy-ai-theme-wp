@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Feature ids; each one has a file of the same name in inc/features/. */
 function bst_feature_ids() {
-	return array( 'webp', 'smtp', 'inline-related', 'code-inject', 'listing' );
+	return array( 'webp', 'smtp', 'inline-related', 'code-inject', 'listing', 'abilities' );
 }
 
 function bst_feature_catalog() {
@@ -17,6 +17,7 @@ function bst_feature_catalog() {
 		'inline-related' => array( __( 'Related links in posts', 'bigspy-ai-theme-wp' ), __( 'Add a short list of related posts in the middle of each post.', 'bigspy-ai-theme-wp' ) ),
 		'code-inject'    => array( __( 'Header and footer code', 'bigspy-ai-theme-wp' ), __( 'Add tracking or verification code to every front page.', 'bigspy-ai-theme-wp' ) ),
 		'listing'        => array( __( 'BIGSPY AI List mode', 'bigspy-ai-theme-wp' ), __( 'Turn WooCommerce products into directory listings: listing details, facts, pricing, rating, disclosures, schema and the BIGSPY AI List blocks. Turning it off keeps all listing data.', 'bigspy-ai-theme-wp' ) ),
+		'abilities'      => array( __( 'AI abilities (MCP)', 'bigspy-ai-theme-wp' ), __( 'Let outside AI apps read the site and edit pages and theme settings through the WordPress Abilities API and MCP Adapter (WordPress 6.9+). They use the same rights, approvals, block rules and undo as AI Designer.', 'bigspy-ai-theme-wp' ) ),
 	);
 }
 
