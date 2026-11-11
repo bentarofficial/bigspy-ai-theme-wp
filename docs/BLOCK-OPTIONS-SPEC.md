@@ -105,6 +105,7 @@ Sửa `inc/block-design.php` và `assets/js/block-design.js`. Mọi khối đư�
 - Thời gian và kiểu chuyển của hover (hiện cố định 0,3s).
 - Màu, viền, bo góc theo D/T/M (hiện chỉ áp cho desktop).
 - Chiều cao tối thiểu D/T/M; tỉ lệ khung.
+- Bổ sung sau đối chiếu Elementor (G-140): mặt nạ hình (tròn, blob, SVG), CSS riêng cho từng khối (phạm vi tự gắn vào khối, lọc như khối Code), thuộc tính HTML tuỳ chỉnh (`data-*`, `aria-*` theo whitelist), transform ở trạng thái hover; đánh giá thêm điểm ngắt laptop và màn rộng, chỉ làm nếu không phải nhân đôi mọi thuộc tính theo thiết bị.
 - Thứ tự hiển thị theo thiết bị (`order`) và tự căn (`align-self`) khi nằm trong Row/Column.
 - Dính khi cuộn (sticky) với khoảng cách trên.
 - Bo góc không tự kèm `overflow:hidden` cho nội dung mới; thêm tuỳ chọn Overflow (visible/hidden/clip). Nội dung cũ giữ hành vi cũ (xác định bằng cờ phiên bản trong `bsDesign`).
@@ -268,3 +269,27 @@ Mỗi mã từ G-132 đến G-138 gồm nhiều khối: mỗi phiên chỉ làm 
 - **`blocks-editor.js`** (3.464 dòng) không được tách một lần; panel mới viết trong `block-kit.js` hoặc tệp theo nhóm khối.
 - **AI Designer:** nhiều thuộc tính hơn làm `block_catalog` dài hơn; chỉ đưa kiểu dáng và thuộc tính chính vào hồ sơ khối.
 - **Chưa kiểm chứng:** nghiên cứu này không mở editor; một số tuỳ chọn có thể đã tồn tại dưới tên khác.
+
+## 7. Mốc tham chiếu Elementor (G-140)
+
+Đo ngày 11-11-2026 trên Elementor 4.3.6 miễn phí, số control riêng của widget không tính bản sao theo thiết bị và tab Nâng cao; chi tiết ở [COMPETITIVE-STRATEGY-2026-11.md](COMPETITIVE-STRATEGY-2026-11.md). Dùng làm mức tham chiếu về độ phủ, không phải chỉ tiêu số lượng (nguyên tắc 8 vẫn áp dụng).
+
+| Khối | Elementor | BIGSPY hiện tại |
+| --- | --- | --- |
+| tabs | 42 | 8 |
+| accordion | 46 | 16 |
+| button | 104 | 32 |
+| divider | 41 | 10 |
+| icon-box | 56 | 14 |
+| image-box | 73 | 16 |
+| image | 53 | 24 |
+| testimonial | 53 | 8 |
+| counter | 48 | 14 |
+| progress | 39 | 9 |
+| alert | 40 | 9 |
+| icon-list | 34 | 10 |
+| star-rating | 25 | 8 |
+| text | 41 | 16 |
+| video | 54 | 10 |
+
+Elementor đạt các số này bằng cách cho mỗi phần của widget một nhóm ở tab Kiểu với cùng bộ chữ/màu theo trạng thái/viền/padding; G-129 tạo đúng các kit đó để không phải viết lại ở từng khối.

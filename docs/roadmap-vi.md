@@ -34,6 +34,15 @@ Owner muốn mọi khối, kể cả khối phụ nhỏ và ít dùng (tìm ki�
 | G-138 | Khối truy vấn: posts, products, products-list, product-categories, category-grid, listing-* | Phần cài đặt chung listing thuộc G-103 |
 | G-139 | Rà soát cuối: kiểm tra bắt buộc, preset, kiến thức AI, bản dịch, đo dung lượng | |
 
+**Đối chiếu đối thủ và định vị AI (G-140):** [COMPETITIVE-STRATEGY-2026-11.md](COMPETITIVE-STRATEGY-2026-11.md). Đo trên site đối chiếu: BIGSPY đã hơn Elementor miễn phí và Flatsome về số khối, ngang hoặc hơn Flatsome về tuỳ chọn, nhưng kém Elementor 3–6 lần về tuỳ chọn ở khối nhỏ (Tabs 8 so với 42, Testimonial 8 so với 53) và về lớp dùng chung (khoảng 60 so với 176 control). Astra 4.14.1 đã mở hơn 70 ability qua Abilities API và MCP cho AI bên ngoài; BIGSPY chưa có. Việc mới đề xuất:
+
+| Mã | Việc |
+| --- | --- |
+| G-141 | Abilities API và MCP: AI bên ngoài điều khiển theme qua đúng lớp quyền, luật block và hoàn tác hiện có; mặc định tắt |
+| G-142 | Kiểm tra thiết kế dùng chung cho người và AI (tương phản, heading, di động, ảnh), mở rộng từ Auto Detect |
+| G-143 | Khối còn thiếu so với Elementor: mục lục, breadcrumb, trích dẫn, kêu gọi hành động, ngăn kéo, danh sách phát video… (kiểm tra trước khi làm) |
+| G-145 | Fixture so sánh cùng một trang với Elementor, Flatsome, Astra; cần owner đồng ý vì phải đổi theme trên site đối chiếu |
+
 Thứ tự: G-129 → G-130 → G-131 → G-134 → G-133 → G-132 → G-135 → G-136 → G-137 → G-138 → G-139. Mỗi mã nhóm khối chia thành nhiều phiên, mỗi phiên 2–4 khối với mã con (`G-133-a`…). Nên xong G-108 (per-page CSS) trước đợt này vì `blocks.css` sẽ tăng.
 
 ## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-107 → G-124)
