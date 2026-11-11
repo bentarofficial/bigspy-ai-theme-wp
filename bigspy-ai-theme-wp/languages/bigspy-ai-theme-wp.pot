@@ -12240,3 +12240,189 @@ msgstr ""
 msgid "Play slideshow"
 msgstr ""
 
+msgid "Choose a tab"
+msgstr ""
+
+msgid "Thick underline"
+msgstr ""
+
+msgid "Line on top"
+msgstr ""
+
+msgid "Segmented"
+msgstr ""
+
+msgid "Folder"
+msgstr ""
+
+msgid "Cards"
+msgstr ""
+
+msgid "Icon on top"
+msgstr ""
+
+msgid "Tab bar position"
+msgstr ""
+
+msgid "Default (from style)"
+msgstr ""
+
+msgid "Fill the row"
+msgstr ""
+
+msgid "Tab open at start"
+msgstr ""
+
+msgid "Select a tab inside to rename it, give it an icon, image, badge or link anchor."
+msgstr ""
+
+msgid "On phones (under 550px)"
+msgstr ""
+
+msgid "Wrap tabs (default)"
+msgstr ""
+
+msgid "Stack tabs"
+msgstr ""
+
+msgid "Turn into accordion"
+msgstr ""
+
+msgid "Drop-down list"
+msgstr ""
+
+msgid "Only show icons on phones"
+msgstr ""
+
+msgid "Tabs without an icon keep their text."
+msgstr ""
+
+msgid "Open a tab from the page link (#anchor)"
+msgstr ""
+
+msgid "Give the tab a link anchor in its own settings."
+msgstr ""
+
+msgid "Remember the last tab during the visit"
+msgstr ""
+
+msgid "Switch tabs automatically (seconds, 0 = off)"
+msgstr ""
+
+msgid "Sticky tab bar while scrolling"
+msgstr ""
+
+msgid "Distance from the top (px)"
+msgstr ""
+
+msgid "Same height for every panel"
+msgstr ""
+
+msgid "Tab style"
+msgstr ""
+
+msgid "Panel animation"
+msgstr ""
+
+msgid "Default (fade setting)"
+msgstr ""
+
+msgid "Animation time (ms, 0 = default)"
+msgstr ""
+
+msgid "Tab column width (px, 0 = default)"
+msgstr ""
+
+msgid "Tab text"
+msgstr ""
+
+msgid "Icon / image size (px, 0 = default)"
+msgstr ""
+
+msgid "Tab colors"
+msgstr ""
+
+msgid "Active background"
+msgstr ""
+
+msgid "Indicator line"
+msgstr ""
+
+msgid "Indicator thickness (px, 0 = default)"
+msgstr ""
+
+msgid "Tab bar"
+msgstr ""
+
+msgid "Space between tabs (px, -1 = default)"
+msgstr ""
+
+msgid "Tab padding left/right (px, -1 = default)"
+msgstr ""
+
+msgid "Tab padding top/bottom (px, -1 = default)"
+msgstr ""
+
+msgid "Tab corner radius (px, -1 = default)"
+msgstr ""
+
+msgid "Bar border width (px, -1 = default)"
+msgstr ""
+
+msgid "Bar colors"
+msgstr ""
+
+msgid "Bar background"
+msgstr ""
+
+msgid "Bar border"
+msgstr ""
+
+msgid "Content area"
+msgstr ""
+
+msgid "Padding (px, -1 = default)"
+msgstr ""
+
+msgid "Content colors"
+msgstr ""
+
+msgid "Small text under the title (optional)"
+msgstr ""
+
+msgid "Image instead of the icon (optional)"
+msgstr ""
+
+msgid "Badge (e.g. New, -20%)"
+msgstr ""
+
+msgid "Link anchor (opens this tab from #anchor)"
+msgstr ""
+
+msgid "Disabled (shown but cannot be opened)"
+msgstr ""
+
+msgid "This tab"
+msgstr ""
+
+msgid "Tab color"
+msgstr ""
+
+msgid "Badge color"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "Dark segmented"
+msgstr ""
+
+msgid "Soft pills"
+msgstr ""
+
+msgid "Shadow cards"
+msgstr ""
+
+msgid "Vertical left"
+msgstr ""
+

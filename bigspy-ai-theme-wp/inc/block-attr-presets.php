@@ -45,6 +45,14 @@ function bst_block_attr_presets() {
 			'caps'     => array( __( 'Square caps', 'bigspy-ai-theme-wp' ), $btn( 'fill="currentColor"', 0 ), $b( 'primary', 'lg', 0, 'shine', 'uppercase' ) ),
 			'link'     => array( __( 'Text link', 'bigspy-ai-theme-wp' ), '<rect x="10" y="9" width="28" height="2" rx="1" fill="currentColor"/>' . $line( 'M42 10h6m-3-3 3 3-3 3', 1.5 ), $b( 'link', 'md', -1, 'icon-move' ) ),
 		),
+		'bst/tabs'    => array(
+			'segmented-dark' => array( __( 'Dark segmented', 'bigspy-ai-theme-wp' ), '<rect x="2" y="3" width="52" height="14" rx="5" fill="currentColor" fill-opacity=".85"/><rect x="4" y="5" width="17" height="10" rx="4" fill="#fff"/>', array( 'style' => 'segmented', 'align' => 'center', 'navBg' => '#111827', 'tabColor' => '#d1d5db', 'tabBgActive' => '#ffffff', 'activeColor' => '#111827', 'navPosition' => '', 'mobile' => 'scroll' ) ),
+			'folder'         => array( __( 'Folder', 'bigspy-ai-theme-wp' ), '<path d="M4 17V7q0-3 3-3h10q3 0 3 3v10M22 17V9q0-2 2-2h8q2 0 2 2v8M2 17H54" fill="none" stroke="currentColor" stroke-width="1.5"/>', array( 'style' => 'folder', 'align' => 'left', 'navPosition' => '', 'panelRadius' => -1, 'mobile' => 'scroll' ) ),
+			'soft-pills'     => array( __( 'Soft pills', 'bigspy-ai-theme-wp' ), '<rect x="4" y="5" width="18" height="10" rx="5" fill="currentColor" fill-opacity=".25"/><rect x="26" y="5" width="18" height="10" rx="5" fill="none" stroke="currentColor" stroke-opacity=".3"/>', array( 'style' => 'pills', 'align' => 'center', 'tabBg' => '#f3f4f6', 'navGap' => 8, 'navPosition' => '', 'mobile' => 'scroll' ) ),
+			'thick-line'     => array( __( 'Thick underline', 'bigspy-ai-theme-wp' ), '<rect x="6" y="11" width="14" height="4" fill="currentColor"/><path d="M2 14H54" stroke="currentColor" stroke-opacity=".3" stroke-width="2"/>', array( 'style' => 'underline-thick', 'align' => 'justify', 'navWeight' => '700', 'navPosition' => '', 'mobile' => 'scroll' ) ),
+			'shadow-cards'   => array( __( 'Shadow cards', 'bigspy-ai-theme-wp' ), '<rect x="3" y="3" width="16" height="14" rx="3" fill="currentColor"/><rect x="22" y="3" width="16" height="14" rx="3" fill="none" stroke="currentColor" stroke-opacity=".4"/>', array( 'style' => 'cards', 'align' => 'center', 'iconPosition' => 'top', 'navPosition' => '', 'mobile' => 'stack' ) ),
+			'side-left'      => array( __( 'Vertical left', 'bigspy-ai-theme-wp' ), '<rect x="4" y="3" width="14" height="4" fill="currentColor"/><rect x="4" y="9" width="14" height="3" fill="currentColor" fill-opacity=".3"/><rect x="22" y="3" width="30" height="14" fill="currentColor" fill-opacity=".12"/>', array( 'style' => 'vertical', 'navPosition' => 'left', 'sideWidth' => 260, 'mobile' => 'accordion' ) ),
+		),
 	);
 	return (array) apply_filters( 'bst_block_attr_presets', $presets );
 }

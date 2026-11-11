@@ -1443,37 +1443,143 @@
 	});
 
 	/* ================================================================ Tabs */
+	/* Same classes and variables as blocks/tabs/render.php (G-133-a). */
+	function tabsLook(a) {
+		var px = function (v) { return typeof v === 'number' && v >= 0 ? v + 'px' : ''; };
+		var pos = function (v) { return v > 0 ? v + 'px' : ''; };
+		var cls = 'bs-tabs bs-tabs--' + a.style + ' bs-tabs--align-' + a.align + (a.stretch ? ' bs-tabs--stretch' : '') +
+			(!a.transition && a.fade ? ' bs-tabs--fade' : '') + (a.navPosition ? ' bs-tabs--nav-' + a.navPosition : '') +
+			(a.mobile ? ' bs-tabs--m-' + a.mobile : '') + (a.transition ? ' bs-tabs--tr-' + a.transition : '') +
+			(a.iconPosition && a.iconPosition !== 'left' ? ' bs-tabs--ipos-' + a.iconPosition : '') + (a.iconOnlyMobile ? ' bs-tabs--icon-only-m' : '') +
+			(a.sticky ? ' bs-tabs--sticky' : '') + (a.equalHeight ? ' bs-tabs--equal' : '');
+		return { className: cls, style: styleVars({
+			'--bs-tabs-size': a.navSize ? a.navSize + 'px' : '', '--bs-tabs-active': a.activeColor, '--bs-tabs-active-text': a.activeText,
+			'--bs-tabs-fst': pos(a.navSizeTablet), '--bs-tabs-fsm': pos(a.navSizeMobile), '--bs-tabs-fw': a.navWeight, '--bs-tabs-tt': a.navTransform,
+			'--bs-tabs-ls': a.navLetterSpacing ? a.navLetterSpacing + 'px' : '', '--bs-tabs-side': pos(a.sideWidth), '--bs-tabs-stop': a.sticky ? pos(a.stickyTop) : '',
+			'--bs-tabs-ms': a.transitionMs > 0 ? a.transitionMs + 'ms' : '', '--bs-tabs-gap': px(a.navGap), '--bs-tabs-padx': px(a.navPadX), '--bs-tabs-pady': px(a.navPadY),
+			'--bs-tabs-rad': px(a.navRadius), '--bs-tabs-navbg': a.navBg, '--bs-tabs-navbc': a.navBorderColor, '--bs-tabs-navbw': px(a.navBorderWidth),
+			'--bs-tabs-tcol': a.tabColor, '--bs-tabs-hcol': a.tabColorHover, '--bs-tabs-tbg': a.tabBg, '--bs-tabs-hbg': a.tabBgHover, '--bs-tabs-abg': a.tabBgActive,
+			'--bs-tabs-indc': a.indicatorColor, '--bs-tabs-indw': pos(a.indicatorSize), '--bs-tabs-isz': pos(a.iconSize),
+			'--bs-tabs-pbg': a.panelBg, '--bs-tabs-pbc': a.panelBorderColor, '--bs-tabs-pbw': px(a.panelBorderWidth), '--bs-tabs-prad': px(a.panelRadius),
+			'--bs-tabs-ppad': px(a.panelPadding), '--bs-tabs-mpad': px(a.panelPaddingMobile), '--bs-tabs-pminh': pos(a.panelMinHeight)
+		}) };
+	}
+
 	register('tabs', function (props) {
 		var a = props.attributes;
+		var T = 'bigspy-ai-theme-wp';
 		var bind = B.binder(props);
+		var set = function (k) { return function (v) { var o = {}; o[k] = v; props.setAttributes(o); }; };
 		var tabs = useSelect(function (select) {
 			return select('core/block-editor').getBlocks(props.clientId);
 		}, [props.clientId]);
-		var blockProps = useBlockProps({ className: 'bs-tabs bs-tabs--' + a.style + ' bs-tabs--align-' + a.align + (a.stretch ? ' bs-tabs--stretch' : '') + ' bst-tabs-editor', style: styleVars({ '--bs-tabs-size': a.navSize ? a.navSize + 'px' : '', '--bs-tabs-active': a.activeColor, '--bs-tabs-active-text': a.activeText }) });
+		var look = tabsLook(a);
+		var blockProps = useBlockProps({ className: look.className + ' bst-tabs-editor', style: look.style });
 		var innerProps = useInnerBlocksProps({ className: 'bs-tabs__panels' }, {
 			allowedBlocks: ['bst/tab'],
-			template: [['bst/tab', { title: __('Tab 1', 'bigspy-ai-theme-wp') }], ['bst/tab', { title: __('Tab 2', 'bigspy-ai-theme-wp') }]]
+			template: [['bst/tab', { title: __('Tab 1', T) }], ['bst/tab', { title: __('Tab 2', T) }]]
 		});
+		var nav = function (inner) { return '<rect x="2" y="2" width="52" height="16" rx="2" fill="none" stroke="currentColor" stroke-opacity=".25"/>' + inner; };
+		var STYLES = [
+			{ value: 'underline', label: __('Underline', T), svg: nav('<rect x="6" y="12" width="14" height="2" fill="currentColor"/><path d="M4 14H52" stroke="currentColor" stroke-opacity=".3"/>') },
+			{ value: 'underline-thick', label: __('Thick underline', T), svg: nav('<rect x="6" y="11" width="14" height="4" fill="currentColor"/>') },
+			{ value: 'line-top', label: __('Line on top', T), svg: nav('<rect x="6" y="3" width="14" height="3" fill="currentColor"/><rect x="6" y="6" width="14" height="9" fill="currentColor" fill-opacity=".15"/>') },
+			{ value: 'pills', label: __('Pills', T), svg: '<rect x="4" y="5" width="18" height="10" rx="5" fill="currentColor"/><rect x="26" y="7" width="12" height="6" rx="3" fill="currentColor" fill-opacity=".3"/>' },
+			{ value: 'segmented', label: __('Segmented', T), svg: '<rect x="2" y="3" width="52" height="14" rx="5" fill="currentColor" fill-opacity=".15"/><rect x="4" y="5" width="17" height="10" rx="4" fill="currentColor"/>' },
+			{ value: 'boxed', label: __('Boxed', T), svg: '<path d="M4 17V5h16v12M20 8h14v9" fill="none" stroke="currentColor"/>' },
+			{ value: 'folder', label: __('Folder', T), svg: '<path d="M4 17V7q0-3 3-3h10q3 0 3 3v10M22 17V9q0-2 2-2h8q2 0 2 2v8M2 17H54" fill="none" stroke="currentColor"/>' },
+			{ value: 'outline', label: __('Outline', T), svg: '<rect x="4" y="5" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="26" y="5" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-opacity=".3"/>' },
+			{ value: 'cards', label: __('Cards', T), svg: '<rect x="3" y="3" width="16" height="14" rx="3" fill="currentColor"/><rect x="22" y="3" width="16" height="14" rx="3" fill="none" stroke="currentColor" stroke-opacity=".4"/>' },
+			{ value: 'icon-top', label: __('Icon on top', T), svg: '<circle cx="12" cy="7" r="3" fill="currentColor"/><rect x="6" y="12" width="12" height="2" fill="currentColor"/><circle cx="32" cy="7" r="3" fill="currentColor" fill-opacity=".3"/>' },
+			{ value: 'vertical', label: __('Vertical', T), svg: '<rect x="4" y="3" width="14" height="4" fill="currentColor"/><rect x="4" y="9" width="14" height="3" fill="currentColor" fill-opacity=".3"/><rect x="22" y="3" width="30" height="14" fill="currentColor" fill-opacity=".12"/>' }
+		];
+		var opts = function (list) { var o = {}; list.forEach(function (x) { o[x[0]] = x[1]; }); return o; };
+		var side = a.navPosition === 'left' || a.navPosition === 'right' || (!a.navPosition && a.style === 'vertical');
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Tabs', 'bigspy-ai-theme-wp') },
-					sliderChoice(props, __('Style', 'bigspy-ai-theme-wp'), 'style', [['underline', __('Underline', 'bigspy-ai-theme-wp')], ['pills', __('Pills', 'bigspy-ai-theme-wp')], ['boxed', __('Boxed', 'bigspy-ai-theme-wp')], ['vertical', __('Vertical', 'bigspy-ai-theme-wp')]]),
-					sliderChoice(props, __('Align', 'bigspy-ai-theme-wp'), 'align', [['left', __('Left', 'bigspy-ai-theme-wp')], ['center', __('Center', 'bigspy-ai-theme-wp')]]),
-					sliderChoice(props, __('Open a tab on', 'bigspy-ai-theme-wp'), 'event', [['click', __('Click', 'bigspy-ai-theme-wp')], ['hover', __('Hover', 'bigspy-ai-theme-wp')]]),
-					el(Toggle, Object.assign({ label: __('Stretch tabs to full width', 'bigspy-ai-theme-wp') }, bind('stretch', true))),
-					el(Toggle, Object.assign({ label: __('Fade between tabs', 'bigspy-ai-theme-wp') }, bind('fade', true))),
-					el(Range, Object.assign({ label: __('Tab text size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 30 }, bind('navSize'))),
-					el('p', { className: 'description' }, __('Select a tab inside to rename it or give it an icon.', 'bigspy-ai-theme-wp'))
+				el(Panel, { title: __('Tabs', T) },
+					el(Select, Object.assign({ label: __('Tab bar position', T), options: opts([['', __('Default (from style)', T)], ['top', __('Top', T)], ['bottom', __('Bottom', T)], ['left', __('Left', T)], ['right', __('Right', T)]]) }, bind('navPosition'))),
+					el(Select, Object.assign({ label: __('Align', T), options: opts([['left', __('Left', T)], ['center', __('Center', T)], ['right', __('Right', T)], ['justify', __('Fill the row', T)]]) }, bind('align'))),
+					sliderChoice(props, __('Open a tab on', T), 'event', [['click', __('Click', T)], ['hover', __('Hover', T)]]),
+					el(Range, { label: __('Tab open at start', T), min: 1, max: Math.max(1, tabs.length), value: a.defaultTab || 1, onChange: set('defaultTab') }),
+					el(Toggle, Object.assign({ label: __('Stretch tabs to full width', T) }, bind('stretch', true))),
+					el('p', { className: 'description' }, __('Select a tab inside to rename it, give it an icon, image, badge or link anchor.', T))
 				),
-				el(B.ColorPanel, { title: __('Active tab colors', 'bigspy-ai-theme-wp'), settings: [
-					{ label: __('Active tab', 'bigspy-ai-theme-wp'), value: a.activeColor, onChange: function (v) { props.setAttributes({ activeColor: v || '' }); } },
-					{ label: __('Active tab text', 'bigspy-ai-theme-wp'), value: a.activeText, onChange: function (v) { props.setAttributes({ activeText: v || '' }); } }
-				] })
+				el(Panel, { title: __('Mobile', T), initialOpen: false },
+					el(Select, Object.assign({ label: __('On phones (under 550px)', T), options: opts([['', __('Wrap tabs (default)', T)], ['scroll', __('Scroll sideways', T)], ['stack', __('Stack tabs', T)], ['accordion', __('Turn into accordion', T)], ['dropdown', __('Drop-down list', T)]]) }, bind('mobile'))),
+					el(Toggle, Object.assign({ label: __('Only show icons on phones', T), help: __('Tabs without an icon keep their text.', T) }, bind('iconOnlyMobile', true)))
+				),
+				el(Panel, { title: __('Behaviour', T), initialOpen: false },
+					el(Toggle, Object.assign({ label: __('Open a tab from the page link (#anchor)', T), help: __('Give the tab a link anchor in its own settings.', T) }, bind('deepLink', true))),
+					el(Toggle, Object.assign({ label: __('Remember the last tab during the visit', T) }, bind('remember', true))),
+					el(Range, Object.assign({ label: __('Switch tabs automatically (seconds, 0 = off)', T), min: 0, max: 60 }, bind('autoplay'))),
+					a.autoplay > 0 ? el(Toggle, Object.assign({ label: __('Pause on hover', T) }, bind('pauseHover', true))) : null,
+					el(Toggle, Object.assign({ label: __('Sticky tab bar while scrolling', T) }, bind('sticky', true))),
+					a.sticky ? el(Range, Object.assign({ label: __('Distance from the top (px)', T), min: 0, max: 300 }, bind('stickyTop'))) : null,
+					el(Toggle, Object.assign({ label: __('Same height for every panel', T) }, bind('equalHeight', true)))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Tab style', T) },
+					el(B.StylePicker, { label: __('Style', T), value: a.style, options: STYLES, onChange: set('style') }),
+					el(Select, Object.assign({ label: __('Panel animation', T), options: opts([['', __('Default (fade setting)', T)], ['slide', __('Slide', T)], ['zoom', __('Zoom', T)], ['none', __('None', T)]]) }, bind('transition'))),
+					!a.transition ? el(Toggle, Object.assign({ label: __('Fade between tabs', T) }, bind('fade', true))) : null,
+					a.transition !== 'none' ? el(Range, Object.assign({ label: __('Animation time (ms, 0 = default)', T), min: 0, max: 2000, step: 50 }, bind('transitionMs'))) : null,
+					side ? el(Range, Object.assign({ label: __('Tab column width (px, 0 = default)', T), min: 0, max: 600 }, bind('sideWidth'))) : null
+				),
+				el(Panel, { title: __('Tab text', T), initialOpen: false },
+					el(B.Resp, { props: props, name: 'navSize', label: __('Tab text size (px, 0 = default)', T), min: 0, max: 30 }),
+					el(Select, Object.assign({ label: __('Weight', T), options: { '': __('Default', T), '400': '400', '500': '500', '600': '600', '700': '700', '800': '800' } }, bind('navWeight'))),
+					el(Select, Object.assign({ label: __('Transform', T), options: { '': __('Default', T), none: __('None', T), uppercase: 'ABC', lowercase: 'abc', capitalize: 'Abc' } }, bind('navTransform'))),
+					el(Range, Object.assign({ label: __('Letter spacing (px)', T), min: -5, max: 20, step: 0.5 }, bind('navLetterSpacing'))),
+					el(Select, Object.assign({ label: __('Icon position', T), options: opts([['', __('Left', T)], ['right', __('Right', T)], ['top', __('Top', T)]]) }, bind('iconPosition'))),
+					el(Range, Object.assign({ label: __('Icon / image size (px, 0 = default)', T), min: 0, max: 80 }, bind('iconSize')))
+				),
+				el(Panel, { title: __('Tab colors', T), initialOpen: false },
+					el(B.ColorStates, { props: props, states: [''], title: __('Normal', T), fields: [{ key: 'tabColor', label: __('Text', T) }, { key: 'tabBg', label: __('Background', T) }] }),
+					el(B.ColorPanel, { title: __('Hover', T), settings: [
+						{ label: __('Text', T), value: a.tabColorHover, onChange: function (v) { props.setAttributes({ tabColorHover: v || '' }); } },
+						{ label: __('Background', T), value: a.tabBgHover, onChange: function (v) { props.setAttributes({ tabBgHover: v || '' }); } }
+					] }),
+					el(B.ColorPanel, { title: __('Active tab colors', T), settings: [
+						{ label: __('Active tab', T), value: a.activeColor, onChange: function (v) { props.setAttributes({ activeColor: v || '' }); } },
+						{ label: __('Active tab text', T), value: a.activeText, onChange: function (v) { props.setAttributes({ activeText: v || '' }); } },
+						{ label: __('Active background', T), value: a.tabBgActive, onChange: function (v) { props.setAttributes({ tabBgActive: v || '' }); } },
+						{ label: __('Indicator line', T), value: a.indicatorColor, onChange: function (v) { props.setAttributes({ indicatorColor: v || '' }); } }
+					] }),
+					el(Range, Object.assign({ label: __('Indicator thickness (px, 0 = default)', T), min: 0, max: 12 }, bind('indicatorSize')))
+				),
+				el(Panel, { title: __('Tab bar', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Space between tabs (px, -1 = default)', T), min: -1, max: 60 }, bind('navGap'))),
+					el(Range, Object.assign({ label: __('Tab padding left/right (px, -1 = default)', T), min: -1, max: 60 }, bind('navPadX'))),
+					el(Range, Object.assign({ label: __('Tab padding top/bottom (px, -1 = default)', T), min: -1, max: 40 }, bind('navPadY'))),
+					el(Range, Object.assign({ label: __('Tab corner radius (px, -1 = default)', T), min: -1, max: 40 }, bind('navRadius'))),
+					el(Range, Object.assign({ label: __('Bar border width (px, -1 = default)', T), min: -1, max: 10 }, bind('navBorderWidth'))),
+					el(B.ColorPanel, { title: __('Bar colors', T), settings: [
+						{ label: __('Bar background', T), value: a.navBg, onChange: function (v) { props.setAttributes({ navBg: v || '' }); } },
+						{ label: __('Bar border', T), value: a.navBorderColor, onChange: function (v) { props.setAttributes({ navBorderColor: v || '' }); } }
+					] })
+				),
+				el(Panel, { title: __('Content area', T), initialOpen: false },
+					el(B.Resp, { props: props, name: 'panelPadding', label: __('Padding (px, -1 = default)', T), min: -1, max: 100 }),
+					el(Range, Object.assign({ label: __('Corner radius (px, -1 = default)', T), min: -1, max: 60 }, bind('panelRadius'))),
+					el(Range, Object.assign({ label: __('Border width (px, -1 = default)', T), min: -1, max: 10 }, bind('panelBorderWidth'))),
+					el(Range, Object.assign({ label: __('Minimum height (px, 0 = auto)', T), min: 0, max: 1200, step: 10 }, bind('panelMinHeight'))),
+					el(B.ColorPanel, { title: __('Content colors', T), settings: [
+						{ label: __('Background', T), value: a.panelBg, onChange: function (v) { props.setAttributes({ panelBg: v || '' }); } },
+						{ label: __('Border', T), value: a.panelBorderColor, onChange: function (v) { props.setAttributes({ panelBorderColor: v || '' }); } }
+					] })
+				)
 			),
 			el('div', blockProps,
 				el('div', { className: 'bs-tabs__nav' },
 					tabs.map(function (tab, i) {
-						return el('span', { key: tab.clientId, className: 'bs-tabs__tab' + (i === 0 ? ' is-active' : '') }, tab.attributes.icon ? el(B.Icon, { name: tab.attributes.icon, size: 18 }) : null, el('span', null, tab.attributes.title || __('Tab', 'bigspy-ai-theme-wp')));
+						var t = tab.attributes;
+						var media = t.imageUrl ? el('img', { className: 'bs-tabs__img', src: t.imageUrl, alt: '' }) : (t.icon ? el(B.Icon, { name: t.icon, size: 18 }) : null);
+						return el('span', { key: tab.clientId, className: 'bs-tabs__tab' + (i === Math.min(tabs.length, a.defaultTab || 1) - 1 ? ' is-active' : ''), style: t.color ? { '--bs-tab-c': t.color } : undefined },
+							media, el('span', null, t.title || __('Tab', T)),
+							t.subtitle ? el('small', { className: 'bs-tabs__sub' }, t.subtitle) : null,
+							t.badge ? el('span', { className: 'bs-tabs__badge', style: t.badgeColor ? { background: t.badgeColor } : undefined }, t.badge) : null);
 					})
 				),
 				el('div', innerProps)
@@ -1482,14 +1588,26 @@
 	}, saveInner);
 
 	register('tab', function (props) {
+		var a = props.attributes;
+		var T = 'bigspy-ai-theme-wp';
+		var set = function (k) { return function (v) { var o = {}; o[k] = v; props.setAttributes(o); }; };
 		var blockProps = useBlockProps({ className: 'bs-tab bst-tab-editor' });
-		var innerProps = useInnerBlocksProps({ className: 'bst-tab-editor__content' }, { template: [['core/paragraph', { placeholder: __('Tab content…', 'bigspy-ai-theme-wp') }]] });
+		var innerProps = useInnerBlocksProps({ className: 'bst-tab-editor__content' }, { template: [['core/paragraph', { placeholder: __('Tab content…', T) }]] });
 		return el('div', blockProps,
-			el(Inspector, null, el(Panel, { title: __('Tab', 'bigspy-ai-theme-wp') },
-				el(Text, { label: __('Tab title', 'bigspy-ai-theme-wp'), value: props.attributes.title, onChange: function (v) { props.setAttributes({ title: v }); } }),
-				el(B.IconPicker, { label: __('Tab icon (optional)', 'bigspy-ai-theme-wp'), value: props.attributes.icon, onChange: function (v) { props.setAttributes({ icon: v }); } })
+			el(Inspector, null, el(Panel, { title: __('Tab', T) },
+				el(Text, { label: __('Tab title', T), value: a.title, onChange: set('title') }),
+				el(Text, { label: __('Small text under the title (optional)', T), value: a.subtitle, onChange: set('subtitle') }),
+				el(B.IconPicker, { label: __('Tab icon (optional)', T), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v || '' }); } }),
+				el(B.MediaPicker, { label: __('Image instead of the icon (optional)', T), id: a.imageId, url: a.imageUrl, onChange: function (m) { props.setAttributes({ imageId: m && m.id ? m.id : 0, imageUrl: m && m.url ? m.url : '' }); } }),
+				el(Text, { label: __('Badge (e.g. New, -20%)', T), value: a.badge, onChange: set('badge') }),
+				el(Text, { label: __('Link anchor (opens this tab from #anchor)', T), value: a.anchor, onChange: function (v) { props.setAttributes({ anchor: (v || '').toLowerCase().replace(/[^a-z0-9_-]+/g, '-') }); } }),
+				el(Toggle, { label: __('Disabled (shown but cannot be opened)', T), checked: !!a.disabled, onChange: set('disabled') })
 			)),
-			el('div', { className: 'bst-tab-label' }, props.attributes.icon ? el(B.Icon, { name: props.attributes.icon, size: 14 }) : null, props.attributes.title || __('Tab', 'bigspy-ai-theme-wp')),
+			el(B.StyleTab, null, el(B.ColorPanel, { title: __('This tab', T), settings: [
+				{ label: __('Tab color', T), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+				{ label: __('Badge color', T), value: a.badgeColor, onChange: function (v) { props.setAttributes({ badgeColor: v || '' }); } }
+			] })),
+			el('div', { className: 'bst-tab-label' }, a.icon ? el(B.Icon, { name: a.icon, size: 14 }) : null, a.title || __('Tab', T), a.disabled ? ' (' + __('disabled', T) + ')' : ''),
 			el('div', innerProps)
 		);
 	}, saveInner);

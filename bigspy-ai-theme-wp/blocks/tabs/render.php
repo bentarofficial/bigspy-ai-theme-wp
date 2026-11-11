@@ -61,7 +61,7 @@ $pos = function ( $key, $max ) use ( $a ) {
 
 $tab_class = "bs-tabs bs-tabs--$style bs-tabs--align-$align" . ( ! empty( $a['stretch'] ) ? ' bs-tabs--stretch' : '' ) . ( ( '' === $trans && ( ! isset( $a['fade'] ) || ! empty( $a['fade'] ) ) ) ? ' bs-tabs--fade' : '' );
 $tab_class .= ( $nav_pos ? " bs-tabs--nav-$nav_pos" : '' ) . ( $mobile ? " bs-tabs--m-$mobile" : '' ) . ( $trans ? " bs-tabs--tr-$trans" : '' );
-$tab_class .= ( $icon_pos && 'left' !== $icon_pos ? " bs-tabs--icon-$icon_pos" : '' ) . ( ! empty( $a['iconOnlyMobile'] ) ? ' bs-tabs--icon-only-m' : '' );
+$tab_class .= ( $icon_pos && 'left' !== $icon_pos ? " bs-tabs--ipos-$icon_pos" : '' ) . ( ! empty( $a['iconOnlyMobile'] ) ? ' bs-tabs--icon-only-m' : '' );
 $tab_class .= ( ! empty( $a['sticky'] ) ? ' bs-tabs--sticky' : '' ) . ( ! empty( $a['equalHeight'] ) ? ' bs-tabs--equal' : '' );
 
 $tab_vars = bst_style_vars(

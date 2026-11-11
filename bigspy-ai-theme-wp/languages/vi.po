@@ -8548,3 +8548,210 @@ msgstr "Chạy trình chiếu"
 msgid "Close"
 msgstr "Đóng"
 
+msgid "Choose a tab"
+msgstr "Chọn một tab"
+
+msgid "Thick underline"
+msgstr "Gạch chân dày"
+
+msgid "Line on top"
+msgstr "Vạch phía trên"
+
+msgid "Segmented"
+msgstr "Dạng phân đoạn"
+
+msgid "Folder"
+msgstr "Thư mục"
+
+msgid "Cards"
+msgstr "Thẻ"
+
+msgid "Icon on top"
+msgstr "Biểu tượng phía trên"
+
+msgid "Tab bar position"
+msgstr "Vị trí thanh tab"
+
+msgid "Default (from style)"
+msgstr "Mặc định (theo kiểu)"
+
+msgid "Fill the row"
+msgstr "Phủ kín hàng"
+
+msgid "Tab open at start"
+msgstr "Tab mở sẵn"
+
+msgid "Select a tab inside to rename it, give it an icon, image, badge or link anchor."
+msgstr "Chọn một tab bên trong để đổi tên, gắn biểu tượng, ảnh, nhãn hoặc neo liên kết."
+
+msgid "On phones (under 550px)"
+msgstr "Trên điện thoại (dưới 550px)"
+
+msgid "Wrap tabs (default)"
+msgstr "Xuống dòng (mặc định)"
+
+msgid "Scroll sideways"
+msgstr "Cuộn ngang"
+
+msgid "Stack tabs"
+msgstr "Xếp chồng"
+
+msgid "Turn into accordion"
+msgstr "Chuyển thành accordion"
+
+msgid "Drop-down list"
+msgstr "Danh sách thả xuống"
+
+msgid "Only show icons on phones"
+msgstr "Chỉ hiện biểu tượng trên điện thoại"
+
+msgid "Tabs without an icon keep their text."
+msgstr "Tab không có biểu tượng vẫn giữ chữ."
+
+msgid "Behaviour"
+msgstr "Hành vi"
+
+msgid "Open a tab from the page link (#anchor)"
+msgstr "Mở tab theo liên kết trang (#neo)"
+
+msgid "Give the tab a link anchor in its own settings."
+msgstr "Đặt neo liên kết trong cài đặt của tab."
+
+msgid "Remember the last tab during the visit"
+msgstr "Nhớ tab đã mở trong lượt truy cập"
+
+msgid "Switch tabs automatically (seconds, 0 = off)"
+msgstr "Tự chuyển tab (giây, 0 = tắt)"
+
+msgid "Pause on hover"
+msgstr "Dừng khi rê chuột"
+
+msgid "Sticky tab bar while scrolling"
+msgstr "Thanh tab dính khi cuộn"
+
+msgid "Same height for every panel"
+msgstr "Mọi khung nội dung cao bằng nhau"
+
+msgid "Tab style"
+msgstr "Kiểu tab"
+
+msgid "Panel animation"
+msgstr "Hiệu ứng khung nội dung"
+
+msgid "Default (fade setting)"
+msgstr "Mặc định (theo mờ dần)"
+
+msgid "Slide"
+msgstr "Trượt"
+
+msgid "Animation time (ms, 0 = default)"
+msgstr "Thời gian hiệu ứng (ms, 0 = mặc định)"
+
+msgid "Tab column width (px, 0 = default)"
+msgstr "Bề rộng cột tab (px, 0 = mặc định)"
+
+msgid "Tab text"
+msgstr "Chữ tab"
+
+msgid "Icon position"
+msgstr "Vị trí biểu tượng"
+
+msgid "Icon / image size (px, 0 = default)"
+msgstr "Cỡ biểu tượng / ảnh (px, 0 = mặc định)"
+
+msgid "Tab colors"
+msgstr "Màu tab"
+
+msgid "Active background"
+msgstr "Nền tab đang chọn"
+
+msgid "Indicator line"
+msgstr "Vạch chỉ báo"
+
+msgid "Indicator thickness (px, 0 = default)"
+msgstr "Độ dày vạch chỉ báo (px, 0 = mặc định)"
+
+msgid "Tab bar"
+msgstr "Thanh tab"
+
+msgid "Space between tabs (px, -1 = default)"
+msgstr "Khoảng cách giữa các tab (px, -1 = mặc định)"
+
+msgid "Tab padding left/right (px, -1 = default)"
+msgstr "Đệm trái/phải của tab (px, -1 = mặc định)"
+
+msgid "Tab padding top/bottom (px, -1 = default)"
+msgstr "Đệm trên/dưới của tab (px, -1 = mặc định)"
+
+msgid "Tab corner radius (px, -1 = default)"
+msgstr "Bo góc tab (px, -1 = mặc định)"
+
+msgid "Bar border width (px, -1 = default)"
+msgstr "Độ dày viền thanh (px, -1 = mặc định)"
+
+msgid "Bar colors"
+msgstr "Màu thanh"
+
+msgid "Bar background"
+msgstr "Nền thanh"
+
+msgid "Bar border"
+msgstr "Viền thanh"
+
+msgid "Content area"
+msgstr "Vùng nội dung"
+
+msgid "Padding (px, -1 = default)"
+msgstr "Đệm (px, -1 = mặc định)"
+
+msgid "Corner radius (px, -1 = default)"
+msgstr "Bo góc (px, -1 = mặc định)"
+
+msgid "Border width (px, -1 = default)"
+msgstr "Độ dày viền (px, -1 = mặc định)"
+
+msgid "Minimum height (px, 0 = auto)"
+msgstr "Chiều cao tối thiểu (px, 0 = tự động)"
+
+msgid "Content colors"
+msgstr "Màu nội dung"
+
+msgid "Small text under the title (optional)"
+msgstr "Chữ nhỏ dưới tiêu đề (tuỳ chọn)"
+
+msgid "Image instead of the icon (optional)"
+msgstr "Ảnh thay cho biểu tượng (tuỳ chọn)"
+
+msgid "Badge (e.g. New, -20%)"
+msgstr "Nhãn (vd. Mới, -20%)"
+
+msgid "Link anchor (opens this tab from #anchor)"
+msgstr "Neo liên kết (mở tab này từ #neo)"
+
+msgid "Disabled (shown but cannot be opened)"
+msgstr "Vô hiệu (hiện nhưng không mở được)"
+
+msgid "This tab"
+msgstr "Tab này"
+
+msgid "Tab color"
+msgstr "Màu tab"
+
+msgid "Badge color"
+msgstr "Màu nhãn"
+
+msgid "disabled"
+msgstr "vô hiệu"
+
+msgid "Dark segmented"
+msgstr "Phân đoạn tối"
+
+msgid "Soft pills"
+msgstr "Viên thuốc mềm"
+
+msgid "Shadow cards"
+msgstr "Thẻ đổ bóng"
+
+msgid "Vertical left"
+msgstr "Dọc bên trái"
+
