@@ -300,7 +300,7 @@ function bst_tb_html( $m ) {
 	$html = do_shortcode( do_blocks( $post->post_content ) );
 	--$depth;
 	$class = 'bs-tb bs-tb--' . sanitize_html_class( $m['location'] ) . ( 'desktop' === $m['devices'] ? ' bs-hide-mobile' : '' ) . ( 'mobile' === $m['devices'] ? ' bs-hide-desktop' : '' );
-	return '<div class="' . esc_attr( $class ) . '" data-layout="' . (int) $post->ID . '">' . $html . '</div>';
+	return '<div class="' . esc_attr( $class ) . '" data-layout="' . (int) $post->ID . '"' . bst_edit_attr( array( array( 'url', (string) get_edit_post_link( $post->ID, 'raw' ), sprintf( /* translators: %s: layout title */ __( 'Edit layout: %s', 'bigspy-ai-theme-wp' ), get_the_title( $post ) ) ) ) ) . '>' . $html . '</div>';
 }
 
 /**

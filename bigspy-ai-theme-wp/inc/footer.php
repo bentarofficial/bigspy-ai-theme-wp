@@ -88,7 +88,7 @@ function bst_footer_widgets_row( $row ) {
 	echo '<div class="bs-footer-widgets bs-footer-widgets--' . (int) $row . '">';
 	echo '<div class="bs-container bs-footer-widgets__grid" style="--bs-footer-cols:' . (int) $columns . '">';
 	for ( $i = 1; $i <= $columns; $i++ ) {
-		echo '<div class="bs-footer-widgets__col">';
+		echo '<div class="bs-footer-widgets__col"' . bst_sidebar_edit_attr( 'footer-' . $row . '-' . $i ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		dynamic_sidebar( 'footer-' . $row . '-' . $i );
 		echo '</div>';
 	}

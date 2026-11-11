@@ -208,7 +208,7 @@ function bst_header_element( $element, $device ) {
 	if ( '' === trim( $html ) ) {
 		return '';
 	}
-	return '<div class="bs-header-el bs-header-el--' . esc_attr( str_replace( '_', '-', $element ) ) . ( function_exists( 'bst_he_classes' ) ? esc_attr( bst_he_classes( $element ) ) : '' ) . '">' . $html . '</div>';
+	return '<div class="bs-header-el bs-header-el--' . esc_attr( str_replace( '_', '-', $element ) ) . ( function_exists( 'bst_he_classes' ) ? esc_attr( bst_he_classes( $element ) ) : '' ) . '"' . bst_header_element_edit_attr( $element ) . '>' . $html . '</div>';
 }
 
 function bst_logo() {

@@ -11895,3 +11895,21 @@ msgstr ""
 msgid "This change needs approval in WordPress: open AI Designer, task \"External AI (MCP)\", and approve or skip it."
 msgstr ""
 
+msgid "Edit page content"
+msgstr ""
+
+msgid "Edit: %s"
+msgstr ""
+
+msgid "Quick-edit labels"
+msgstr ""
+
+msgid "Hover an element in the preview, then click its label to open its settings."
+msgstr ""
+
+msgid "Widgets"
+msgstr ""
+
+msgid "Edit layout: %s"
+msgstr ""
+

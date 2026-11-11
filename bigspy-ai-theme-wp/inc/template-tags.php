@@ -25,7 +25,7 @@ function bst_layout_close() {
 		$is_shop_sidebar = function_exists( 'is_woocommerce' ) && ! is_product() && ( is_shop() || is_product_taxonomy() );
 		$sidebar_id      = $is_shop_sidebar ? 'bs-shop-sidebar' : 'bs-layout-sidebar';
 		$sidebar_class   = 'bs-layout__sidebar widget-area' . ( $is_shop_sidebar ? ' bs-shop-sidebar' : '' );
-		echo '<aside id="' . esc_attr( $sidebar_id ) . '" class="' . esc_attr( $sidebar_class ) . '" aria-label="' . esc_attr( $is_shop_sidebar ? __( 'Product filters and shop widgets', 'bigspy-ai-theme-wp' ) : __( 'Sidebar', 'bigspy-ai-theme-wp' ) ) . '"' . ( $is_shop_sidebar ? ' tabindex="-1"' : '' ) . '>';
+		echo '<aside id="' . esc_attr( $sidebar_id ) . '" class="' . esc_attr( $sidebar_class ) . '" aria-label="' . esc_attr( $is_shop_sidebar ? __( 'Product filters and shop widgets', 'bigspy-ai-theme-wp' ) : __( 'Sidebar', 'bigspy-ai-theme-wp' ) ) . '"' . ( $is_shop_sidebar ? ' tabindex="-1"' : '' ) . bst_sidebar_edit_attr( $id ) . '>';
 		if ( is_active_sidebar( $id ) ) {
 			dynamic_sidebar( $id );
 		} elseif ( current_user_can( 'edit_theme_options' ) ) {

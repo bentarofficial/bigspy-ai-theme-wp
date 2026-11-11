@@ -142,7 +142,7 @@ add_filter(
 			return $content;
 		}
 		ob_start();
-		echo '<aside class="bs-layout__sidebar widget-area" aria-label="' . esc_attr__( 'Homepage sidebar', 'bigspy-ai-theme-wp' ) . '">';
+		echo '<aside class="bs-layout__sidebar widget-area" aria-label="' . esc_attr__( 'Homepage sidebar', 'bigspy-ai-theme-wp' ) . '"' . bst_sidebar_edit_attr( 'sidebar-home', 'bst_home_sidebar' ) . '>';
 		if ( is_active_sidebar( 'sidebar-home' ) ) {
 			dynamic_sidebar( 'sidebar-home' );
 		} elseif ( current_user_can( 'edit_theme_options' ) ) {

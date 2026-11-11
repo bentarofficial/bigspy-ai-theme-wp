@@ -546,3 +546,21 @@ $GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $bst_plain ) );
 $GLOBALS['wp_the_query'] = $GLOBALS['wp_query'];
 bst_test( $bst_a && ! bst_starts_full_width(), 'layout: full-width first block removes the gap under the header' );
 wp_reset_query();
+// G-151: quick-edit labels. Every focus-map item points at a real Customizer target; no attribute outside the Customizer.
+bst_test( '' === bst_header_element_edit_attr( 'logo' ) && false === strpos( bst_header_element( 'logo', 'desktop' ), 'data-bst-edit' ), 'quick-edit: no data-bst-edit outside the Customizer' );
+require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
+$GLOBALS['wp_customize'] = new WP_Customize_Manager();
+do_action( 'customize_register', $GLOBALS['wp_customize'] );
+$bst_raw  = bst_customize_focus_map_raw();
+$bst_map  = bst_customize_focus_map();
+$bst_miss = array();
+foreach ( $bst_raw as $bst_it ) {
+	if ( 'url' !== $bst_it['type'] && '' === bst_customize_target_title( $bst_it['type'], $bst_it['id'] ) && ! in_array( $bst_it['id'], array( 'bst_shop', 'bst_product', 'bst_catalog', 'bst_checkout', 'bst_listing_single', 'bst_home_sidebar' ), true ) ) {
+		$bst_miss[] = $bst_it['id'];
+	}
+}
+bst_test( ! $bst_miss && count( $bst_map ) >= 15, 'quick-edit: focus map targets exist (' . count( $bst_map ) . ' items' . ( $bst_miss ? '; missing ' . implode( ',', $bst_miss ) : '' ) . ')' );
+foreach ( array_keys( bst_he_schema() ) as $bst_k ) {
+	bst_test( '' !== bst_customize_target_title( 'section', 'bst_he_' . $bst_k ), 'quick-edit: header element section bst_he_' . $bst_k . ' exists' );
+}
+unset( $GLOBALS['wp_customize'] );

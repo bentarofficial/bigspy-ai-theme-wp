@@ -8143,3 +8143,24 @@ msgstr "Không tạo được tác vụ AI Designer."
 msgid "This change needs approval in WordPress: open AI Designer, task \"External AI (MCP)\", and approve or skip it."
 msgstr "Thay đổi này cần duyệt trong WordPress: mở AI Designer, tác vụ \"AI bên ngoài (MCP)\", rồi duyệt hoặc bỏ qua."
 
+msgid "Menus"
+msgstr "Menu"
+
+msgid "Edit page content"
+msgstr "Sửa nội dung trang"
+
+msgid "Edit: %s"
+msgstr "Sửa: %s"
+
+msgid "Quick-edit labels"
+msgstr "Nhãn sửa nhanh"
+
+msgid "Hover an element in the preview, then click its label to open its settings."
+msgstr "Rê chuột vào một phần tử trên khung xem trước rồi bấm nhãn để mở cài đặt của nó."
+
+msgid "Widgets"
+msgstr "Widget"
+
+msgid "Edit layout: %s"
+msgstr "Sửa layout: %s"
+
