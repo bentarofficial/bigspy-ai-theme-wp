@@ -146,23 +146,54 @@
 			el(be.InspectorControls, null,
 				el(c.PanelBody, { title: __('Milestones', T) },
 					el(Repeater, { attributes: props.attributes, setAttributes: props.setAttributes, attr: 'items', titleKey: 'title', blank: { date: '', title: __('New milestone', T), text: '' }, addLabel: __('Add milestone', T),
-						fields: [['date', __('Date / label', T)], ['title', __('Title', T)], ['text', __('Text', T), 'textarea'], ['icon', __('Icon name (when marker = icon)', T)]] })
+						fields: [['date', __('Date / label', T)], ['title', __('Title', T)], ['text', __('Text', T), 'textarea'], ['icon', __('Icon name (when marker = icon)', T)], ['image', __('Image', T), 'image'], ['badge', __('Badge (optional)', T)], ['link', __('Link (optional)', T)], ['btnText', __('Button text (needs a link)', T)]] })
 				),
 				el(c.PanelBody, { title: __('Style', T), initialOpen: false },
-					choice(props, __('Layout', T), 'layout', [['alternate', __('Alternating left / right', T)], ['left', __('All on one side', T)]]),
-					choice(props, __('Marker', T), 'marker', [['dot', __('Dot', T)], ['number', __('Number', T)], ['icon', __('Icon', T)]])
+					choice(props, __('Layout', T), 'layout', [['alternate', __('Alternating left / right', T)], ['left', __('All on one side', T)], ['right', __('All on the right', T)], ['horizontal', __('Horizontal', T)], ['scroll', __('Horizontal, scrolls sideways', T)], ['compact', __('Compact', T)]]),
+					choice(props, __('Marker', T), 'marker', [['dot', __('Dot', T)], ['number', __('Number', T)], ['icon', __('Icon', T)], ['date', __('Date', T)], ['image', __('Image', T)]]),
+					choice(props, __('Card', T), 'cardStyle', [['', __('Card with shadow', T)], ['outline', __('Outline', T)], ['arrow', __('Card with arrow', T)], ['none', __('No card', T)]]),
+					choice(props, __('Date position', T), 'datePos', [['', __('In the card', T)], ['opposite', __('Opposite side of the line', T)]]),
+					choice(props, __('Line', T), 'lineStyle', [['', __('Solid', T)], ['dashed', __('Dashed', T)], ['dotted', __('Dotted', T)], ['none', __('Hidden', T)]]),
+					range(props, __('Line thickness (px, 0 = default)', T), 'lineWidth', 0, 12),
+					toggle(props, __('Line fills in as visitors scroll', T), 'lineFill')
 				),
-				colors(props, [[__('Accent', T), 'accent']])
+				colors(props, [[__('Accent', T), 'accent'], [__('Line', T), 'lineColor'], [__('Card background', T), 'cardBg'], [__('Title', T), 'titleColor'], [__('Date', T), 'dateColor'], [__('Text', T), 'textColor']])
 			),
 			preview('bst/timeline', props)
 		);
 	});
+
+	/* Cell grid that reads and writes the "a | b" rows string. */
+	function TableGrid(props) {
+		var rows = String(props.value).replace(/\r/g, '').split('\n').filter(function (l) { return l.trim() !== ''; }).map(function (l) { return l.split('|').map(function (x) { return x.trim(); }); });
+		if (!rows.length) {
+			rows = [['', '']];
+		}
+		var cols = rows.reduce(function (m, r) { return Math.max(m, r.length); }, 1);
+		var pad = function () { return rows.map(function (r) { var n = r.slice(); while (n.length < cols) { n.push(''); } return n; }); };
+		var save = function (next) { props.onChange(next.map(function (r) { return r.join(' | '); }).join('\n')); };
+		var setCell = function (i, j, v) { var n = pad(); n[i][j] = v.replace(/\|/g, '/'); save(n); };
+		var blank = function () { return Array.apply(null, Array(cols)).map(function () { return ''; }); };
+		return el('div', { className: 'bst-table-grid' },
+			el('div', { className: 'bst-table-grid__scroll' }, el('table', null, el('tbody', null, rows.map(function (r, i) {
+				return el('tr', { key: i }, blank().map(function (x, j) {
+					return el('td', { key: j }, el('input', { type: 'text', value: r[j] || '', 'aria-label': (i + 1) + ':' + (j + 1), onChange: function (e) { setCell(i, j, e.target.value); } }));
+				}), el('td', null, el(c.Button, { icon: 'no-alt', size: 'small', label: __('Remove row', T), onClick: function () { save(pad().filter(function (z, k) { return k !== i; })); } })));
+			})))),
+			el('div', { className: 'bst-table-grid__actions' },
+				el(c.Button, { variant: 'secondary', size: 'small', onClick: function () { var n = pad(); n.push(blank()); save(n); } }, __('Add row', T)),
+				el(c.Button, { variant: 'secondary', size: 'small', onClick: function () { save(pad().map(function (r) { return r.concat(['']); })); } }, __('Add column', T)),
+				cols > 1 ? el(c.Button, { variant: 'tertiary', size: 'small', isDestructive: true, onClick: function () { save(pad().map(function (r) { return r.slice(0, cols - 1); })); } }, __('Remove last column', T)) : null
+			)
+		);
+	}
 
 	/* ---------------- Table */
 	reg('bst/table', function (props) {
 		return el(Fragment, null,
 			el(be.InspectorControls, null,
 				el(c.PanelBody, { title: __('Data', T) },
+					el(TableGrid, { value: props.attributes.data || '', onChange: set(props, 'data') }),
 					area(props, __('Rows', T), 'data', __('One row per line. Separate cells with |. Paste from a spreadsheet and replace tabs with |.', T), 8),
 					text(props, __('Caption (optional)', T), 'caption')
 				),
@@ -171,10 +202,27 @@
 					toggle(props, __('First column is a header', T), 'firstColumn'),
 					toggle(props, __('Striped rows', T), 'striped'),
 					toggle(props, __('Borders', T), 'bordered'),
+					choice(props, __('Table style', T), 'tableStyle', [['', __('Classic', T)], ['minimal', __('Minimal', T)], ['card', __('Card', T)], ['compare', __('Comparison', T)]]),
 					choice(props, __('Text alignment', T), 'align', [['left', __('Left', T)], ['center', __('Center', T)], ['right', __('Right', T)]]),
-					range(props, __('Font size (px)', T), 'size', 11, 22)
+					range(props, __('Font size (px)', T), 'size', 11, 22),
+					range(props, __('Cell padding (px, 0 = default)', T), 'cellPad', 0, 40),
+					range(props, __('Corner radius (px, -1 = default)', T), 'radius', -1, 40),
+					toggle(props, __('Highlight row on hover', T), 'hoverRow')
 				),
-				colors(props, [[__('Header color', T), 'accent']])
+				el(c.PanelBody, { title: __('Columns', T), initialOpen: false },
+					range(props, __('Highlight column (0 = none)', T), 'highlightCol', 0, 12),
+					text(props, __('Column alignment', T), 'colAlign', __('Comma separated, e.g. left,center,right', T)),
+					text(props, __('Column widths', T), 'colWidth', __('Comma separated, e.g. 200,25%,auto', T)),
+					toggle(props, __('Turn yes / no / v / x into ✓ and ✗', T), 'marks')
+				),
+				el(c.PanelBody, { title: __('Scrolling & mobile', T), initialOpen: false },
+					toggle(props, __('Sticky header row', T), 'stickyHead'),
+					toggle(props, __('Sticky first column', T), 'stickyCol'),
+					choice(props, __('On phones', T), 'mobile', [['scroll', __('Scroll sideways', T)], ['cards', __('Stack rows as cards (needs a header row)', T)]]),
+					toggle(props, __('Visitors can sort columns', T), 'sortable'),
+					toggle(props, __('Search box above the table', T), 'search')
+				),
+				colors(props, [[__('Header color', T), 'accent'], [__('Header background', T), 'headBg'], [__('Header text', T), 'headColor']])
 			),
 			preview('bst/table', props)
 		);

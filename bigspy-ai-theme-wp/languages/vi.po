@@ -9139,3 +9139,174 @@ msgstr "Màu icon và tiền tố/hậu tố"
 
 msgid "Prefix and suffix"
 msgstr "Tiền tố và hậu tố"
+
+msgid "Search the table"
+msgstr "Tìm trong bảng"
+
+msgid "Sort by this column"
+msgstr "Sắp xếp theo cột này"
+
+msgid "Table style"
+msgstr "Kiểu bảng"
+
+msgid "Classic"
+msgstr "Cổ điển"
+
+msgid "Comparison"
+msgstr "So sánh"
+
+msgid "Cell padding (px, 0 = default)"
+msgstr "Khoảng đệm ô (px, 0 = mặc định)"
+
+msgid "Highlight row on hover"
+msgstr "Tô sáng hàng khi rê chuột"
+
+msgid "Highlight column (0 = none)"
+msgstr "Tô nổi cột (0 = không)"
+
+msgid "Column alignment"
+msgstr "Căn lề từng cột"
+
+msgid "Comma separated, e.g. left,center,right"
+msgstr "Cách nhau bằng dấu phẩy, ví dụ left,center,right"
+
+msgid "Column widths"
+msgstr "Độ rộng từng cột"
+
+msgid "Comma separated, e.g. 200,25%,auto"
+msgstr "Cách nhau bằng dấu phẩy, ví dụ 200,25%,auto"
+
+msgid "Turn yes / no / v / x into ✓ and ✗"
+msgstr "Đổi yes / no / v / x thành ✓ và ✗"
+
+msgid "Scrolling & mobile"
+msgstr "Cuộn và điện thoại"
+
+msgid "Sticky header row"
+msgstr "Hàng tiêu đề dính"
+
+msgid "Sticky first column"
+msgstr "Cột đầu dính"
+
+msgid "On phones"
+msgstr "Trên điện thoại"
+
+msgid "Stack rows as cards (needs a header row)"
+msgstr "Xếp mỗi hàng thành thẻ (cần hàng tiêu đề)"
+
+msgid "Visitors can sort columns"
+msgstr "Khách sắp xếp được theo cột"
+
+msgid "Search box above the table"
+msgstr "Ô tìm kiếm phía trên bảng"
+
+msgid "Header background"
+msgstr "Nền tiêu đề"
+
+msgid "Header text"
+msgstr "Chữ tiêu đề"
+
+msgid "Remove row"
+msgstr "Xoá hàng"
+
+msgid "Add row"
+msgstr "Thêm hàng"
+
+msgid "Add column"
+msgstr "Thêm cột"
+
+msgid "Remove last column"
+msgstr "Xoá cột cuối"
+
+msgid "Badge (optional)"
+msgstr "Nhãn nhỏ (tuỳ chọn)"
+
+msgid "Link (optional)"
+msgstr "Liên kết (tuỳ chọn)"
+
+msgid "Button text (needs a link)"
+msgstr "Chữ nút (cần liên kết)"
+
+msgid "All on the right"
+msgstr "Tất cả bên phải"
+
+msgid "Horizontal, scrolls sideways"
+msgstr "Ngang, cuộn sang bên"
+
+msgid "Compact"
+msgstr "Gọn"
+
+msgid "Card with shadow"
+msgstr "Thẻ có bóng"
+
+msgid "Card with arrow"
+msgstr "Thẻ có mũi tên"
+
+msgid "No card"
+msgstr "Không có thẻ"
+
+msgid "Date position"
+msgstr "Vị trí ngày"
+
+msgid "In the card"
+msgstr "Trong thẻ"
+
+msgid "Opposite side of the line"
+msgstr "Phía đối diện đường kẻ"
+
+msgid "Dashed"
+msgstr "Nét đứt"
+
+msgid "Dotted"
+msgstr "Chấm"
+
+msgid "Line fills in as visitors scroll"
+msgstr "Đường kẻ tô dần khi cuộn"
+
+msgid "Divider style"
+msgstr "Kiểu đường ngăn"
+
+msgid "Icons & layout"
+msgstr "Icon và bố cục"
+
+msgid "Icon shape"
+msgstr "Hình icon"
+
+msgid "Plain (or soft circle above)"
+msgstr "Trơn (hoặc vòng tròn nhạt ở trên)"
+
+msgid "With the first line"
+msgstr "Theo dòng đầu"
+
+msgid "Vertically centered"
+msgstr "Giữa theo chiều dọc"
+
+msgid "Number the items instead of icons"
+msgstr "Đánh số thay cho icon"
+
+msgid "Columns on tablet (0 = same)"
+msgstr "Số cột trên máy tính bảng (0 = như máy tính)"
+
+msgid "Columns on mobile (0 = 1)"
+msgstr "Số cột trên điện thoại (0 = 1)"
+
+msgid "Space between columns (px, 0 = default)"
+msgstr "Khoảng cách giữa các cột (px, 0 = mặc định)"
+
+msgid "Separator between items (e.g. • or |)"
+msgstr "Dấu ngăn giữa các mục (ví dụ • hoặc |)"
+
+msgid "Second line"
+msgstr "Dòng phụ"
+
+msgid "Link hover"
+msgstr "Liên kết khi rê chuột"
+
+msgid "Items"
+msgstr "Các mục"
+
+msgid "Link"
+msgstr "Liên kết"
+
+msgid "Second line (optional)"
+msgstr "Dòng phụ (tuỳ chọn)"

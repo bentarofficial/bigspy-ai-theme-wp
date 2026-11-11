@@ -43,6 +43,16 @@
 			"type": "string",
 			"default": ""
 		},
+		"lineStyle": { "type": "string", "default": "" },
+		"lineWidth": { "type": "number", "default": 0 },
+		"lineColor": { "type": "string", "default": "" },
+		"lineFill": { "type": "boolean", "default": false },
+		"cardStyle": { "type": "string", "default": "" },
+		"datePos": { "type": "string", "default": "" },
+		"titleColor": { "type": "string", "default": "" },
+		"dateColor": { "type": "string", "default": "" },
+		"textColor": { "type": "string", "default": "" },
+		"cardBg": { "type": "string", "default": "" },
 		"marker": {
 			"type": "string",
 			"default": "dot"

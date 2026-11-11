@@ -715,6 +715,26 @@
 			}
 		});
 
+		/* Timeline line fills in with the scroll position. */
+		var fills = root.querySelectorAll('.bs-timeline.has-line-fill');
+		if (fills.length) {
+			var tick = function () {
+				var mid = window.innerHeight * 0.6;
+				fills.forEach(function (tl) {
+					var r = tl.getBoundingClientRect();
+					tl.style.setProperty('--bs-tl-p', reduceMotion ? 1 : Math.max(0, Math.min(1, (mid - r.top) / Math.max(1, r.height))).toFixed(3));
+				});
+			};
+			var queued = false;
+			window.addEventListener('scroll', function () {
+				if (!queued) {
+					queued = true;
+					window.requestAnimationFrame(function () { queued = false; tick(); });
+				}
+			}, { passive: true });
+			tick();
+		}
+
 		/* Progress bars fill when scrolled into view. */
 		var bars = root.querySelectorAll('[data-bs-progress].is-animated:not(.is-visible)');
 		if (bars.length) {

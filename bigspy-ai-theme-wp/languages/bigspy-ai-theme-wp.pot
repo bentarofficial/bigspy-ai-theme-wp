@@ -12765,3 +12765,156 @@ msgstr ""
 
 msgid "Prefix and suffix"
 msgstr ""
+
+msgid "Search the table"
+msgstr ""
+
+msgid "Sort by this column"
+msgstr ""
+
+msgid "Table style"
+msgstr ""
+
+msgid "Classic"
+msgstr ""
+
+msgid "Comparison"
+msgstr ""
+
+msgid "Cell padding (px, 0 = default)"
+msgstr ""
+
+msgid "Highlight row on hover"
+msgstr ""
+
+msgid "Highlight column (0 = none)"
+msgstr ""
+
+msgid "Column alignment"
+msgstr ""
+
+msgid "Comma separated, e.g. left,center,right"
+msgstr ""
+
+msgid "Column widths"
+msgstr ""
+
+msgid "Comma separated, e.g. 200,25%,auto"
+msgstr ""
+
+msgid "Turn yes / no / v / x into ✓ and ✗"
+msgstr ""
+
+msgid "Scrolling & mobile"
+msgstr ""
+
+msgid "Sticky header row"
+msgstr ""
+
+msgid "Sticky first column"
+msgstr ""
+
+msgid "Stack rows as cards (needs a header row)"
+msgstr ""
+
+msgid "Visitors can sort columns"
+msgstr ""
+
+msgid "Search box above the table"
+msgstr ""
+
+msgid "Header background"
+msgstr ""
+
+msgid "Header text"
+msgstr ""
+
+msgid "Remove row"
+msgstr ""
+
+msgid "Add row"
+msgstr ""
+
+msgid "Add column"
+msgstr ""
+
+msgid "Remove last column"
+msgstr ""
+
+msgid "Badge (optional)"
+msgstr ""
+
+msgid "Button text (needs a link)"
+msgstr ""
+
+msgid "All on the right"
+msgstr ""
+
+msgid "Horizontal, scrolls sideways"
+msgstr ""
+
+msgid "Compact"
+msgstr ""
+
+msgid "Card with arrow"
+msgstr ""
+
+msgid "No card"
+msgstr ""
+
+msgid "Date position"
+msgstr ""
+
+msgid "In the card"
+msgstr ""
+
+msgid "Opposite side of the line"
+msgstr ""
+
+msgid "Line fills in as visitors scroll"
+msgstr ""
+
+msgid "Divider style"
+msgstr ""
+
+msgid "Icons & layout"
+msgstr ""
+
+msgid "Icon shape"
+msgstr ""
+
+msgid "Plain (or soft circle above)"
+msgstr ""
+
+msgid "With the first line"
+msgstr ""
+
+msgid "Vertically centered"
+msgstr ""
+
+msgid "Number the items instead of icons"
+msgstr ""
+
+msgid "Columns on tablet (0 = same)"
+msgstr ""
+
+msgid "Columns on mobile (0 = 1)"
+msgstr ""
+
+msgid "Space between columns (px, 0 = default)"
+msgstr ""
+
+msgid "Separator between items (e.g. • or |)"
+msgstr ""
+
+msgid "Second line"
+msgstr ""
+
+msgid "Link hover"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Second line (optional)"
+msgstr ""

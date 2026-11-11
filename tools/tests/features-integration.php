@@ -670,3 +670,22 @@ $bst_h = $bst_rb( 'bst/counter', array( 'number' => '120', 'label' => 'Clients',
 bst_test( false !== strpos( $bst_h, 'bs-counter--side' ) && false !== strpos( $bst_h, 'bs-counter__main' ) && false !== strpos( $bst_h, 'data-replay' ) && false !== strpos( $bst_h, '--bs-counter-weight:600' ), 'counter: side, icon, replay, weight' );
 $bst_h = $bst_rb( 'bst/counter', array( 'number' => '120', 'label' => 'Clients' ) );
 bst_test( false === strpos( $bst_h, 'bs-counter__icon' ) && false === strpos( $bst_h, 'data-replay' ) && false === strpos( $bst_h, 'bs-counter--' ), 'counter: old attributes render as before' );
+
+// G-133-c: Table, Timeline, Icon List options; old attributes keep their HTML.
+$bst_rb = function ( $name, $attrs ) {
+	return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+};
+$bst_h = $bst_rb( 'bst/table', array( 'data' => "A | B\n1 | 2", 'header' => true ) );
+bst_test( false !== strpos( $bst_h, '<table><thead><tr><th scope="col">A</th><th scope="col">B</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr></tbody></table>' ) && false === strpos( $bst_h, 'data-bs-table' ), 'table: old attributes render as before' );
+$bst_h = $bst_rb( 'bst/table', array( 'data' => "Plan | Pro\nSupport | yes\nAds | no", 'header' => true, 'marks' => true, 'mobile' => 'cards', 'highlightCol' => 2, 'tableStyle' => 'compare', 'sortable' => true, 'colWidth' => '200,30%' ) );
+bst_test( false !== strpos( $bst_h, 'bs-table__mark is-yes' ) && false !== strpos( $bst_h, 'bs-table__mark is-no' ) && false !== strpos( $bst_h, 'data-label="Pro"' ) && false !== strpos( $bst_h, 'class="is-hl"' ) && false !== strpos( $bst_h, 'bs-table--compare' ) && false !== strpos( $bst_h, 'data-bs-table="sort"' ) && false !== strpos( $bst_h, '<col style="width:200px">' ) && wp_script_is( 'bst-table', 'enqueued' ), 'table: marks, cards, highlight, compare, sort, widths' );
+$bst_items = array( array( 'date' => '2020', 'title' => 'Start', 'text' => 'Hi' ) );
+$bst_h = $bst_rb( 'bst/timeline', array( 'items' => $bst_items ) );
+bst_test( false !== strpos( $bst_h, 'class="bs-timeline bs-timeline--alternate bs-timeline--dot wp-block-bst-timeline"' ) && false !== strpos( $bst_h, '<div class="bs-timeline__card"><span class="bs-timeline__date">2020</span><h3 class="bs-timeline__title">Start</h3>' ), 'timeline: old attributes render as before' );
+$bst_items[0] += array( 'badge' => 'New', 'link' => 'https://example.com/', 'btnText' => 'More' );
+$bst_h = $bst_rb( 'bst/timeline', array( 'items' => $bst_items, 'layout' => 'horizontal', 'marker' => 'date', 'cardStyle' => 'arrow', 'lineStyle' => 'dashed', 'lineFill' => true, 'lineColor' => '#ff0000' ) );
+bst_test( false !== strpos( $bst_h, 'bs-timeline--horizontal bs-timeline--date bs-timeline--card-arrow bs-timeline--line-dashed' ) && false !== strpos( $bst_h, 'has-line-fill' ) && false !== strpos( $bst_h, 'aria-hidden="true">2020</span>' ) && false !== strpos( $bst_h, 'bs-timeline__badge' ) && false !== strpos( $bst_h, 'class="bs-timeline__btn" href="https://example.com/"' ) && false !== strpos( $bst_h, '--bs-tl-lc:#ff0000' ), 'timeline: horizontal, date marker, card arrow, line, item extras' );
+$bst_h = $bst_rb( 'bst/icon-list', array( 'items' => array( array( 'icon' => 'check', 'text' => 'One' ) ) ) );
+bst_test( false !== strpos( $bst_h, '<li class="bs-icon-list__item"><span class="bs-icon-list__icon"><svg' ) && false !== strpos( $bst_h, '<span class="bs-icon-list__text">One</span></li>' ) && false === strpos( $bst_h, 'is-numbered' ), 'icon-list: old attributes render as before' );
+$bst_h = $bst_rb( 'bst/icon-list', array( 'items' => array( array( 'icon' => 'check', 'text' => 'One', 'sub' => 'Detail', 'badge' => 'Hot', 'color' => '#00ff00' ), array( 'text' => 'Two' ) ), 'numbered' => true, 'iconShape' => 'square', 'layout' => 'inline', 'separator' => 'â€¢', 'columnsMobile' => 2 ) );
+bst_test( false !== strpos( $bst_h, 'bs-icon-list__num" style="--bs-il-color:#00ff00">1</span>' ) && false !== strpos( $bst_h, '>2</span>' ) && false !== strpos( $bst_h, 'bs-icon-list__sub">Detail' ) && false !== strpos( $bst_h, 'bs-icon-list__badge">Hot' ) && false !== strpos( $bst_h, 'has-separator' ) && false !== strpos( $bst_h, 'bs-icon-list--shape-square' ), 'icon-list: numbered, item color, sub, badge, separator' );
