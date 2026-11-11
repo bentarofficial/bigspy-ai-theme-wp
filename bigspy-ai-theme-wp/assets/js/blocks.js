@@ -575,6 +575,7 @@
 	}
 
 	function runCounter(el) {
+		el._bsCounted = true;
 		var to = parseFloat(el.dataset.to || '0');
 		var from = parseFloat(el.dataset.from || '0') || 0;
 		var decimals = el.dataset.decimals !== undefined ? parseInt(el.dataset.decimals, 10) || 0 : (String(el.dataset.to).split('.')[1] || '').length;
@@ -696,6 +697,24 @@
 		});
 		root.querySelectorAll('.bs-accordion').forEach(initAccordion);
 
+		/* Alerts remembered as closed for some days (localStorage; ignored when storage is blocked). */
+		root.querySelectorAll('[data-bs-alert-key]').forEach(function (al) {
+			var key = 'bsAlert:' + al.getAttribute('data-bs-alert-key');
+			try {
+				var until = parseInt(localStorage.getItem(key) || '0', 10);
+				if (until > Date.now()) {
+					al.remove();
+					return;
+				}
+			} catch (e) {}
+			var close = al.querySelector('.bs-alert__close');
+			if (close) {
+				close.addEventListener('click', function () {
+					try { localStorage.setItem(key, String(Date.now() + parseInt(al.getAttribute('data-bs-alert-days'), 10) * 864e5)); } catch (e) {}
+				});
+			}
+		});
+
 		/* Progress bars fill when scrolled into view. */
 		var bars = root.querySelectorAll('[data-bs-progress].is-animated:not(.is-visible)');
 		if (bars.length) {
@@ -733,9 +752,14 @@
 				}
 				var io = new IntersectionObserver(function (entries) {
 					entries.forEach(function (entry) {
+						var replay = entry.target.hasAttribute('data-replay');
 						if (entry.isIntersecting) {
 							runCounter(entry.target);
-							io.unobserve(entry.target);
+							if (!replay) {
+								io.unobserve(entry.target);
+							}
+						} else if (replay && !reduceMotion && entry.target._bsCounted) {
+							runCounterStart(entry.target);
 						}
 					});
 				}, { threshold: 0.4 });

@@ -650,3 +650,23 @@ $bst_h = $bst_btn( array( 'text' => 'Buy', 'badge' => '-20%', 'widthMobile' => '
 bst_test( false !== strpos( $bst_h, 'bs-btn__badge' ) && false !== strpos( $bst_h, 'bs-btn--m-full' ) && false === strpos( $bst_h, 'bs-btn--t-' ) && false !== strpos( $bst_h, '--bsb-hbc:#ff0000' ) && false !== strpos( $bst_h, '--bsb-hsh:' ) && false !== strpos( $bst_h, 'bs-btn--neon' ), 'button: badge, per-device width, hover colors' );
 $bst_h = $bst_btn( array( 'text' => 'Old', 'url' => '/x' ) );
 bst_test( '<a class="bs-btn bs-btn--primary wp-block-bst-button" href="/x"><span>Old</span></a>' === $bst_h, 'button: old attributes render as before' );
+
+// G-132-d: Alert, Progress, Counter options; old attributes keep their HTML.
+$bst_rb = function ( $name, $attrs ) {
+	return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+};
+$bst_h = $bst_rb( 'bst/alert', array( 'title' => 'Sale', 'text' => 'Ends today', 'style' => 'toast', 'toastPos' => 'top-left', 'dismiss' => true, 'rememberDays' => 7, 'btnText' => 'Shop', 'btnUrl' => 'https://example.com/', 'titleTag' => 'h3', 'icon' => 'star', 'showIcon' => true ) );
+bst_test( false !== strpos( $bst_h, 'bs-alert--toast bs-alert--at-top-left' ) && false !== strpos( $bst_h, 'data-bs-alert-days="7"' ) && false !== strpos( $bst_h, '<h3 class="bs-alert__title">' ) && false !== strpos( $bst_h, 'class="bs-alert__btn" href="https://example.com/"' ), 'alert: toast, remember, button, title tag' );
+$bst_h = $bst_rb( 'bst/alert', array( 'title' => 'T', 'text' => 'X' ) );
+bst_test( false === strpos( $bst_h, 'data-bs-alert' ) && false !== strpos( $bst_h, '<p class="bs-alert__title">T</p>' ) && false === strpos( $bst_h, 'style=' ), 'alert: old attributes render as before' );
+$bst_items = array( array( 'label' => 'A', 'value' => 5 ) );
+$bst_h = $bst_rb( 'bst/progress', array( 'items' => $bst_items, 'layout' => 'circle', 'max' => 10, 'suffix' => '/10', 'showValue' => true ) );
+bst_test( false !== strpos( $bst_h, 'bs-progress--circle' ) && false !== strpos( $bst_h, '--v:50' ) && false !== strpos( $bst_h, '5/10' ) && false !== strpos( $bst_h, 'aria-valuemax="10"' ), 'progress: circle with max and suffix' );
+$bst_h = $bst_rb( 'bst/progress', array( 'items' => array( array( 'label' => 'A', 'value' => 50 ) ), 'layout' => 'steps', 'steps' => 4 ) );
+bst_test( 2 === substr_count( $bst_h, 'bs-progress__step is-on' ) && 4 === substr_count( $bst_h, 'style="--i:' ), 'progress: steps' );
+$bst_h = $bst_rb( 'bst/progress', array( 'items' => array( array( 'label' => 'A', 'value' => 40 ) ), 'showValue' => true ) );
+bst_test( false !== strpos( $bst_h, '40%</span>' ) && false !== strpos( $bst_h, 'aria-valuemax="100" aria-valuenow="40"' ) && false === strpos( $bst_h, 'bs-progress--' ), 'progress: old bar renders as before' );
+$bst_h = $bst_rb( 'bst/counter', array( 'number' => '120', 'label' => 'Clients', 'style' => 'side', 'icon' => 'star', 'replay' => true, 'weight' => '600' ) );
+bst_test( false !== strpos( $bst_h, 'bs-counter--side' ) && false !== strpos( $bst_h, 'bs-counter__main' ) && false !== strpos( $bst_h, 'data-replay' ) && false !== strpos( $bst_h, '--bs-counter-weight:600' ), 'counter: side, icon, replay, weight' );
+$bst_h = $bst_rb( 'bst/counter', array( 'number' => '120', 'label' => 'Clients' ) );
+bst_test( false === strpos( $bst_h, 'bs-counter__icon' ) && false === strpos( $bst_h, 'data-replay' ) && false === strpos( $bst_h, 'bs-counter--' ), 'counter: old attributes render as before' );

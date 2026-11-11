@@ -57,6 +57,14 @@
 			"type": "string",
 			"default": ""
 		},
+		"layout": { "type": "string", "default": "bar" },
+		"max": { "type": "number", "default": 100 },
+		"suffix": { "type": "string", "default": "%" },
+		"color2": { "type": "string", "default": "" },
+		"labelBelow": { "type": "boolean", "default": false },
+		"duration": { "type": "number", "default": 0 },
+		"steps": { "type": "number", "default": 10 },
+		"circleSize": { "type": "number", "default": 120 },
 		"labelInside": {
 			"type": "boolean",
 			"default": false

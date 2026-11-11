@@ -9034,3 +9034,108 @@ msgstr "Nền nhãn nhỏ"
 
 msgid "Screen reader label"
 msgstr "Nhãn cho trình đọc màn hình"
+
+msgid "Gradient"
+msgstr "Chuyển màu"
+
+msgid "Frosted glass"
+msgstr "Kính mờ"
+
+msgid "Full-width bar"
+msgstr "Thanh ngang toàn chiều rộng"
+
+msgid "Corner toast (floating)"
+msgstr "Thông báo nổi ở góc"
+
+msgid "Toast position"
+msgstr "Vị trí thông báo nổi"
+
+msgid "Bottom right"
+msgstr "Dưới phải"
+
+msgid "Bottom left"
+msgstr "Dưới trái"
+
+msgid "Top right"
+msgstr "Trên phải"
+
+msgid "Top left"
+msgstr "Trên trái"
+
+msgid "Icon name (empty = by type)"
+msgstr "Tên icon (để trống = theo loại)"
+
+msgid "Title tag"
+msgstr "Thẻ tiêu đề"
+
+msgid "Stay closed for (days, 0 = until reload)"
+msgstr "Giữ đóng trong (ngày, 0 = đến khi tải lại)"
+
+msgid "Button & shape"
+msgstr "Nút và hình dạng"
+
+msgid "Button text (optional)"
+msgstr "Chữ trên nút (tuỳ chọn)"
+
+msgid "Bar"
+msgstr "Thanh"
+
+msgid "Half circle"
+msgstr "Nửa vòng tròn"
+
+msgid "Dashed bar"
+msgstr "Thanh nét đứt"
+
+msgid "Number of steps"
+msgstr "Số bậc"
+
+msgid "Circle size (px)"
+msgstr "Cỡ vòng tròn (px)"
+
+msgid "Maximum value"
+msgstr "Giá trị tối đa"
+
+msgid "Value suffix (%, /10, pts…)"
+msgstr "Hậu tố giá trị (%, /10, điểm…)"
+
+msgid "Label below the bar"
+msgstr "Nhãn dưới thanh"
+
+msgid "Gradient end (optional)"
+msgstr "Màu cuối gradient (tuỳ chọn)"
+
+msgid "Look"
+msgstr "Giao diện"
+
+msgid "Box style"
+msgstr "Kiểu khung"
+
+msgid "Plain"
+msgstr "Đơn giản"
+
+msgid "With divider line"
+msgstr "Có đường ngăn"
+
+msgid "Icon beside the number"
+msgstr "Icon cạnh con số"
+
+msgid "Icon name (optional)"
+msgstr "Tên icon (tuỳ chọn)"
+
+msgid "Number weight"
+msgstr "Độ đậm con số"
+
+msgid "Black"
+msgstr "Rất đậm"
+
+msgid "Prefix and suffix size (px, 0 = same as number)"
+msgstr "Cỡ tiền tố và hậu tố (px, 0 = bằng con số)"
+
+msgid "Count again each time it scrolls into view"
+msgstr "Đếm lại mỗi lần cuộn tới"
+
+msgid "Icon and affix colors"
+msgstr "Màu icon và tiền tố/hậu tố"
+
+msgid "Prefix and suffix"
+msgstr "Tiền tố và hậu tố"

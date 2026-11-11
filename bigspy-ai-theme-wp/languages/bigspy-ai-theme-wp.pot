@@ -12678,3 +12678,90 @@ msgstr ""
 
 msgid "Screen reader label"
 msgstr ""
+
+msgid "Frosted glass"
+msgstr ""
+
+msgid "Full-width bar"
+msgstr ""
+
+msgid "Corner toast (floating)"
+msgstr ""
+
+msgid "Toast position"
+msgstr ""
+
+msgid "Bottom right"
+msgstr ""
+
+msgid "Bottom left"
+msgstr ""
+
+msgid "Top right"
+msgstr ""
+
+msgid "Top left"
+msgstr ""
+
+msgid "Icon name (empty = by type)"
+msgstr ""
+
+msgid "Stay closed for (days, 0 = until reload)"
+msgstr ""
+
+msgid "Button & shape"
+msgstr ""
+
+msgid "Button text (optional)"
+msgstr ""
+
+msgid "Half circle"
+msgstr ""
+
+msgid "Dashed bar"
+msgstr ""
+
+msgid "Number of steps"
+msgstr ""
+
+msgid "Circle size (px)"
+msgstr ""
+
+msgid "Maximum value"
+msgstr ""
+
+msgid "Value suffix (%, /10, pts…)"
+msgstr ""
+
+msgid "Label below the bar"
+msgstr ""
+
+msgid "Gradient end (optional)"
+msgstr ""
+
+msgid "With divider line"
+msgstr ""
+
+msgid "Icon beside the number"
+msgstr ""
+
+msgid "Icon name (optional)"
+msgstr ""
+
+msgid "Number weight"
+msgstr ""
+
+msgid "Black"
+msgstr ""
+
+msgid "Prefix and suffix size (px, 0 = same as number)"
+msgstr ""
+
+msgid "Count again each time it scrolls into view"
+msgstr ""
+
+msgid "Icon and affix colors"
+msgstr ""
+
+msgid "Prefix and suffix"
+msgstr ""
