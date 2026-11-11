@@ -30,3 +30,4 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - G-103: Customizer → Layout → Listing design (nền, viền, bo góc, đổ bóng, hover, padding, khoảng cách, chiều cao tối thiểu, cỡ/hình logo); để trống thì đọc giá trị theme BIGSPY AI List cũ.
 - G-123: AI Designer biết khối bigspy/sponsored và cách dùng khối List; check-block-previews báo khối thiếu trong kiến thức AI.
 - G-113: 22 chuỗi tiếng Việt viết cứng (Quick View, tuỳ chọn sản phẩm, điều hướng sản phẩm, header tự do, mega menu, Chuyển khoản, dashboard) thành chuỗi dịch được; site tiếng Anh không còn chữ Việt ở các chỗ này.
+- G-118: ảnh nền Section chọn từ thư viện in thành <img> có srcset, ảnh đầu trang tải ưu tiên; nền cố định (fixed), cỡ auto và ảnh URL ngoài giữ nền CSS như cũ. Chưa đo LCP, chưa so ảnh chụp 390/1440 px.

@@ -46,20 +46,26 @@ $style = bst_style_vars(
 );
 
 $bg_style = '';
+$bg_img   = '';
 if ( $image ) {
 	$size     = bst_choice( $a['bgSize'] ?? 'cover', array( 'cover', 'contain', 'auto' ), 'cover' );
 	$position = preg_match( '/^[a-z ]+$|^[0-9.]+% [0-9.]+%$/', (string) ( $a['bgPosition'] ?? '' ) ) ? $a['bgPosition'] : 'center center';
-	$bg_style = 'background-image:url(' . $image . ');background-size:' . $size . ';background-position:' . $position;
+	// A library image becomes a real <img> (srcset, priority loading); fixed or auto-size backgrounds stay CSS.
+	$bg_id    = absint( $a['bgImageId'] ?? 0 );
+	if ( $bg_id && empty( $a['bgFixed'] ) && 'auto' !== $size && wp_attachment_is_image( $bg_id ) ) {
+		$bg_img = wp_get_attachment_image( $bg_id, 'full', false, array( 'class' => 'bs-section__bg-img', 'alt' => '', 'sizes' => '100vw', 'decoding' => 'async', 'style' => 'object-fit:' . $size . ';object-position:' . $position ) + bst_image_load_attrs( bst_image_priority( 'auto' ) ) );
+	}
+	$bg_style = $bg_img ? '' : 'background-image:url(' . $image . ');background-size:' . $size . ';background-position:' . $position;
 	$blur     = bst_block_num( $a, 'bgBlur', 0, 0, 30 );
 	$bright   = bst_block_num( $a, 'bgBrightness', 100, 20, 150 );
 	if ( 100 !== (int) $bright ) {
-		$bg_style .= ';filter:brightness(' . ( $bright / 100 ) . ')';
+		$bg_style = ltrim( $bg_style . ';filter:brightness(' . ( $bright / 100 ) . ')', ';' );
 	}
 }
 ?>
 <section <?php echo get_block_wrapper_attributes( array( 'class' => implode( ' ', $classes ), 'style' => $style ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<?php if ( $image ) : ?>
-		<div class="bs-section__bg<?php echo ! empty( $a['parallax'] ) ? ' is-parallax' : ''; ?>" style="<?php echo esc_attr( $bg_style ); ?>"<?php echo ! empty( $a['parallax'] ) ? ' data-bs-parallax="' . esc_attr( bst_block_num( $a, 'parallax', 0, 0, 60 ) / 100 ) . '"' : ''; ?> aria-hidden="true"></div>
+		<div class="bs-section__bg<?php echo ! empty( $a['parallax'] ) ? ' is-parallax' : ''; ?>" style="<?php echo esc_attr( $bg_style ); ?>"<?php echo ! empty( $a['parallax'] ) ? ' data-bs-parallax="' . esc_attr( bst_block_num( $a, 'parallax', 0, 0, 60 ) / 100 ) . '"' : ''; ?> aria-hidden="true"><?php echo $bg_img; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core image markup. ?></div>
 	<?php endif; ?>
 	<?php if ( $image && $blur ) : ?>
 		<div class="bs-section__blur" style="<?php echo esc_attr( '--bs-bg-blur:' . $blur . 'px' ); ?>" aria-hidden="true"></div>

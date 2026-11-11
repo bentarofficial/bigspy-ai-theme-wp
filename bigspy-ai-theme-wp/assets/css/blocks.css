@@ -226,6 +226,14 @@ input[type="submit"]:hover,
 	background-repeat: no-repeat;
 }
 
+.bs-section__bg-img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+}
+
 .has-fixed-bg .bs-section__bg {
 	background-attachment: fixed;
 }
