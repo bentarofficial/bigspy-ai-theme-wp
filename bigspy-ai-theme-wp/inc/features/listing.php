@@ -15,6 +15,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 	require_once BST_DIR . '/inc/listing/display.php';
 	require_once BST_DIR . '/inc/listing/single.php';
 	require_once BST_DIR . '/inc/listing/single-layout.php';
+	require_once BST_DIR . '/inc/listing/design.php';
 	require_once BST_DIR . '/inc/listing/home-hero.php';
 	require_once BST_DIR . '/inc/listing/collections.php';
 	require_once BST_DIR . '/inc/listing/schema.php';
