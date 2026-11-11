@@ -25,7 +25,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 
 ## Translations
 - Source: `languages/vi.po` (never read whole). Add with `python tools/add-strings.py strings.json`, where the JSON maps English to Vietnamese. It skips existing strings and compiles.
-- Compile only: `python tools/compile-po.py vi`. Do not use `tools/build-translations.js` for vi; it is outdated.
+- Compile only: `python tools/compile-po.py vi`.
 
 ## Other
 - Version: `style.css` and `BST_VERSION` in `functions.php`. Readiness: `python tools/release.py`.

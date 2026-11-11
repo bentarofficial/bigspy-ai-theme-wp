@@ -61,9 +61,8 @@ Ma trận là hướng dẫn theo tác động, không phải giới hạn cứn
 - `--serve` giữ máy chủ Playground cho kiểm tra trình duyệt. Tái sử dụng máy chủ còn hợp lệ trong cùng đợt; kết thúc tiến trình mình tạo khi xong, không đóng tiến trình người khác hoặc giữ nhiều máy chủ dư thừa.
 - `tools/updater-playground-check.cjs` sao chép theme và tạo ZIP fixture cục bộ. Chỉ chạy khi liên quan updater/gói hoặc cần kiểm tra phát hành. Fixture không phải ZIP phân phối, không được upload hay làm tăng phiên bản sản phẩm. Kiểm tra cô lập không chứng minh site thật đã cập nhật.
 - `tools/build-theme.py` và `build.ps1` tạo gói phân phối, không phải lệnh lint/test mặc định: chỉ chạy khi đóng gói đã được duyệt. `build.ps1` còn dọn ZIP phiên bản khác trong `releases`; phải hiểu tác động trước khi chạy.
-- Runner có đường dẫn runtime mặc định phụ thuộc máy/thư mục tạm. Kiểm tra cấu hình hiện có và dùng `BST_PLAYGROUND_MODULES`, `BST_PLAYWRIGHT`, `BST_CHROME` khi script hỗ trợ. Không mặc định đường dẫn cũ còn tồn tại; kiểm tra khả năng tái sử dụng trước khi tải/cài lại môi trường. Không ghi đường dẫn cá nhân mới thành yêu cầu chung cho mọi agent.
-- Các runner WordPress hiện dùng 6 và 4 workers. Trên máy đã gặp thiếu bộ nhớ, mặc định chạy tuần tự; không mở đồng thời nhiều bộ WordPress. Lỗi bộ nhớ/dung lượng/port cần chẩn đoán và thay đổi điều kiện trước khi chạy lại.
-- **Đề xuất chưa triển khai:** tách runner theo nhóm và chuẩn hóa cấu hình môi trường. Việc ghi quy tắc không tạo ra các tính năng này. Không tự nhận script có chế độ chạy riêng/tùy chọn workers nếu chưa có. Chỉ cải tiến công cụ khi được yêu cầu hoặc cần để hoàn thành phạm vi hiện tại.
+- Cài phụ thuộc test một lần bằng `npm ci` ở gốc repo (`package.json` ghim `@wp-playground/cli`, `playwright`). Runner tự tìm trong `node_modules` của repo; muốn dùng bản cài sẵn nơi khác thì đặt `BST_PLAYGROUND_MODULES` (thư mục `node_modules`), `BST_PLAYWRIGHT`, `BST_CHROME`. Đường dẫn chung nằm ở `tools/lib/env.cjs`.
+- Số worker Playground: `BST_TEST_WORKERS` (playground-check) hoặc `BST_WORKERS`, mặc định 1.
 
 #### Ngữ cảnh, công cụ và bằng chứng
 

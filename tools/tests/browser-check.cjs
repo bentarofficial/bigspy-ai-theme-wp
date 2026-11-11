@@ -1,4 +1,4 @@
-const { chromium } = require(process.env.BST_PLAYWRIGHT || 'C:/Users/DELL/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const { chromium } = require('../lib/env.cjs').playwright();
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');

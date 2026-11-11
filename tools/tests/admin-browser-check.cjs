@@ -1,5 +1,5 @@
 /* Only the disposable local Playground fixture; never use these credentials on a real site. */
-const { chromium } = require(process.env.BST_PLAYWRIGHT || 'C:/Users/DELL/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const { chromium } = require('../lib/env.cjs').playwright();
 const fs = require('fs'), path = require('path'), assert = require('assert');
 (async () => {
   const browser = await chromium.launch({ executablePath: process.env.BST_CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true });

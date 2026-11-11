@@ -1,7 +1,7 @@
 /* Serve the working theme in Playground for browser checks. Log in by opening /?bst_autologin=1.
    Options: --port=9418 --woo=<unpacked plugin dir>. Uses the same runtime as playground-check.cjs. */
 const path = require('path');
-const base = process.env.BST_PLAYGROUND_MODULES || 'C:/Users/DELL/AppData/Local/Temp/claude/D--BIGSPY-AI-SEO/8d5a7c15-c757-46a3-83f5-2a433e0415e4/scratchpad/pg/node_modules';
+const base = require('./lib/env.cjs').modules();
 const arg = name => (process.argv.find(a => a.startsWith(`--${name}=`)) || '').split('=').slice(1).join('=');
 const nativeFetch = global.fetch;
 global.fetch = async (input, options) => {

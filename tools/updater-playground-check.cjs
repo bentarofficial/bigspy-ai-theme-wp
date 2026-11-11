@@ -12,7 +12,7 @@ fs.rmSync(fixture, { recursive: true, force: true });
 fs.cpSync(source, fixture, { recursive: true });
 const script = `import pathlib, zipfile, re\nbase=pathlib.Path(r'${source.replace(/\\/g, '/')}')\nout=pathlib.Path(r'${fixture.replace(/\\/g, '/')}')/'bst-test-update.zip'\nwith zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:\n for p in base.rglob('*'):\n  if p.is_file():\n   name='bigspy-ai-theme-wp/'+p.relative_to(base).as_posix()\n   data=p.read_bytes()\n   if name=='bigspy-ai-theme-wp/style.css': data=re.sub(rb'(?m)^Version: [0-9.]+',b'Version: 9.9.9',data,count=1)\n   z.writestr(name,data)\n`;
 cp.execFileSync('python', ['-c', script], { stdio: 'inherit' });
-const modules = process.env.BST_PLAYGROUND_MODULES || 'C:/Users/DELL/AppData/Local/Temp/claude/D--BIGSPY-AI-SEO/8d5a7c15-c757-46a3-83f5-2a433e0415e4/scratchpad/pg/node_modules';
+const modules = require('./lib/env.cjs').modules();
 const nativeFetch = global.fetch;
 global.fetch = async (input, options) => {
   const url = String(input.url || input);
@@ -29,7 +29,7 @@ mkdir($to,0777,true);
 $files=new RecursiveIteratorIterator(new RecursiveDirectoryIterator($from,FilesystemIterator::SKIP_DOTS),RecursiveIteratorIterator::SELF_FIRST);
 foreach($files as $file){$dest=$to.'/'.substr($file->getPathname(),strlen($from)+1);if($file->isDir()){if(!is_dir($dest))mkdir($dest,0777,true);}else{copy($file->getPathname(),$dest);}}
 `;
-  const server = await runCLI({ command: 'server', port: 9418, php: '8.3', wp: '7.1.3', workers: 4,
+  const server = await runCLI({ command: 'server', port: 9418, php: '8.3', wp: '7.1.3', workers: Number(process.env.BST_WORKERS || process.env.BST_TEST_WORKERS || 1),
     mount: [{ hostPath: fixture, vfsPath: '/wordpress/wp-content/bst-updater-source' }],
     blueprint: { steps: [{ step: 'runPHP', code: installFixture }, { step: 'activateTheme', themeFolderName: 'bigspy-ai-theme-wp' }, { step: 'runPHP', code }] },
     login: true, skipBrowser: true, verbosity: 'normal' });

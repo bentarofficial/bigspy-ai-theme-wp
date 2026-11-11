@@ -1,6 +1,6 @@
 /* G-151: Customizer quick-edit labels. Needs a Playground server: node tools/playground-page.cjs --port=9419
    then BST_URL=http://127.0.0.1:9419 node tools/tests/customizer-quick-edit.cjs */
-const { chromium } = require(process.env.BST_PLAYWRIGHT || 'C:/Users/DELL/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const { chromium } = require('../lib/env.cjs').playwright();
 const assert = require('assert');
 const base = process.env.BST_URL || 'http://127.0.0.1:9417';
 (async () => {

@@ -1,0 +1,9 @@
+{
+  "name": "bigspy-ai-theme-wp-tools",
+  "private": true,
+  "description": "Test runners for the BIGSPY AI Theme WP (Playground, Playwright).",
+  "devDependencies": {
+    "@wp-playground/cli": "3.1.60",
+    "playwright": "1.62.1"
+  }
+}
