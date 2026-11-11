@@ -44,7 +44,7 @@ $class = 'bs-video bs-ratio bs-ratio--' . $ratio;
 $style = '--bs-video-radius:' . bst_block_num( $a, 'radius', 8, 0, 60 ) . 'px';
 if ( $poster && ! $auto ) {
 	printf(
-		'<div %1$s><button type="button" class="bs-video__poster" data-bs-video="%2$s" aria-label="%3$s"><img src="%4$s" alt="" loading="lazy" decoding="async"><span class="bs-video__play">%5$s</span></button></div>',
+		'<div %1$s><button type="button" class="bs-video__poster" data-bs-video="%2$s" aria-label="%3$s"><img src="%4$s" alt="" ' . bst_image_load_html( bst_image_priority( $a['loadPriority'] ?? 'auto' ) ) . ' decoding="async"><span class="bs-video__play">%5$s</span></button></div>',
 		get_block_wrapper_attributes( array( 'class' => $class, 'style' => $style ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		esc_attr( $player ),
 		/* translators: %s: video title */

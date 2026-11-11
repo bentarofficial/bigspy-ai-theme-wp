@@ -157,6 +157,36 @@ add_action(
 	9
 );
 
+/**
+ * Keep the theme's own screens clean: hide other plugins' admin notices there.
+ * They still show on the WordPress Dashboard and other admin screens.
+ */
+add_action(
+	'in_admin_header',
+	function () {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || false === strpos( (string) $screen->id, 'bigspy' ) ) {
+			return;
+		}
+		foreach ( array( 'admin_notices', 'all_admin_notices', 'network_admin_notices', 'user_admin_notices' ) as $hook ) {
+			global $wp_filter;
+			if ( empty( $wp_filter[ $hook ] ) ) {
+				continue;
+			}
+			foreach ( $wp_filter[ $hook ]->callbacks as $priority => $callbacks ) {
+				foreach ( $callbacks as $id => $cb ) {
+					$fn = $cb['function'];
+					if ( is_string( $fn ) && 0 === strpos( $fn, 'bst_' ) ) {
+						continue; // Keep the theme's own notices.
+					}
+					remove_action( $hook, $fn, $priority );
+				}
+			}
+		}
+	},
+	1000
+);
+
 add_action(
 	'admin_enqueue_scripts',
 	function ( $hook ) {

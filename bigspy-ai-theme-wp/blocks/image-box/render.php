@@ -12,9 +12,10 @@ $layout = bst_choice( $a['layout'] ?? 'top', array( 'top', 'left', 'right', 'ove
 $ratio  = bst_choice( $a['ratio'] ?? '4-3', array( 'auto', '1-1', '4-3', '3-2', '16-9', '3-4' ), '4-3' );
 $tag    = bst_choice( $a['titleTag'] ?? 'h3', array( 'h2', 'h3', 'h4', 'p' ), 'h3' );
 $alt    = (string) ( $a['alt'] ?? '' );
-$img    = ! empty( $a['imageId'] ) ? wp_get_attachment_image( (int) $a['imageId'], 'large', false, array( 'class' => 'bs-image-box__img', 'alt' => $alt ) ) : '';
+$prio   = ! empty( $a['imageId'] ) || ! empty( $a['imageUrl'] ) ? bst_image_priority( $a['loadPriority'] ?? 'auto' ) : 'lazy';
+$img    = ! empty( $a['imageId'] ) ? wp_get_attachment_image( (int) $a['imageId'], 'large', false, array( 'class' => 'bs-image-box__img', 'alt' => $alt ) + bst_image_load_attrs( $prio ) ) : '';
 if ( ! $img && ! empty( $a['imageUrl'] ) ) {
-	$img = '<img class="bs-image-box__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async">';
+	$img = '<img class="bs-image-box__img" src="' . esc_url( $a['imageUrl'] ) . '" alt="' . esc_attr( $alt ) . '" ' . bst_image_load_html( $prio ) . ' decoding="async">';
 }
 $link   = esc_url( $a['link'] ?? '' );
 $target = ! empty( $a['newTab'] ) ? ' target="_blank" rel="noopener"' : '';

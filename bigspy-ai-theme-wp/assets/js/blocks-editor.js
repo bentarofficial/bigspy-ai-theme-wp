@@ -1131,7 +1131,9 @@
 			el('div', blockProps,
 				el('div', { className: 'bs-banner__bg' },
 					a.imageUrl ? el('img', { className: 'bs-banner__img', src: a.imageUrl, alt: '', style: { objectPosition: a.focalX + '% ' + a.focalY + '%' } }) :
-						a.codeBg ? null : el(be.MediaPlaceholder, { icon: 'format-image', labels: { title: __('Banner image', 'bigspy-ai-theme-wp') }, accept: 'image/*', allowedTypes: ['image'], onSelect: function (m) { setImage({ id: m.id, url: m.url }); } })
+						// The upload box only fills an empty banner; once it has text it would sit under that text
+						// (a colour-only banner is valid). The image can always be picked in the sidebar.
+						a.codeBg || wp.data.select('core/block-editor').getBlockCount(props.clientId) > 0 ? null : el(be.MediaPlaceholder, { icon: 'format-image', labels: { title: __('Banner image', 'bigspy-ai-theme-wp') }, accept: 'image/*', allowedTypes: ['image'], onSelect: function (m) { setImage({ id: m.id, url: m.url }); } })
 				),
 				codeBgLayer(a, 'banner', props.clientId),
 				a.overlayColor && (a.imageUrl || a.codeBg) ? el('div', { className: 'bs-banner__overlay', style: { background: a.overlayColor, opacity: a.overlayOpacity / 100 } }) : null,

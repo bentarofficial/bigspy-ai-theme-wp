@@ -432,10 +432,10 @@ function bst_legacy_image( $atts ) {
 	$img = '';
 	if ( is_numeric( $a['id'] ) && (int) $a['id'] > 0 ) {
 		$size = sanitize_key( $a['image_size'] );
-		$img  = wp_get_attachment_image( (int) $a['id'], $size ? $size : 'large', false, array( 'class' => 'bs-legacy-image__img' ) );
+		$img  = wp_get_attachment_image( (int) $a['id'], $size ? $size : 'large', false, array( 'class' => 'bs-legacy-image__img' ) + bst_image_load_attrs( bst_image_priority( 'auto', 'thumbnail' !== $size ) ) );
 	} elseif ( '' !== $a['id'] || '' !== $a['org_img'] ) {
 		$src = '' !== $a['org_img'] ? $a['org_img'] : $a['id'];
-		$img = '<img class="bs-legacy-image__img" src="' . esc_url( $src ) . '" alt="" loading="lazy" decoding="async">';
+		$img = '<img class="bs-legacy-image__img" src="' . esc_url( $src ) . '" alt="" ' . bst_image_load_html( bst_image_priority() ) . ' decoding="async">';
 	}
 	if ( '' === $img ) {
 		return '';
