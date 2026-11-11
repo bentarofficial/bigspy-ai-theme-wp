@@ -8755,3 +8755,240 @@ msgstr "Thẻ đổ bóng"
 msgid "Vertical left"
 msgstr "Dọc bên trái"
 
+msgid "Search questions…"
+msgstr "Tìm câu hỏi…"
+
+msgid "Search questions"
+msgstr "Tìm câu hỏi"
+
+msgid "Open all"
+msgstr "Mở tất cả"
+
+msgid "Close all"
+msgstr "Đóng tất cả"
+
+msgid "Solid background"
+msgstr "Nền đặc"
+
+msgid "Bar on the left"
+msgstr "Vạch bên trái"
+
+msgid "Big numbers"
+msgstr "Số lớn"
+
+msgid "Open on page load"
+msgstr "Mở khi tải trang"
+
+msgid "As set on each item"
+msgstr "Theo cài đặt từng mục"
+
+msgid "First item"
+msgstr "Mục đầu tiên"
+
+msgid "All items"
+msgstr "Tất cả các mục"
+
+msgid "Two columns become one under 850px."
+msgstr "Hai cột thành một cột khi màn hình dưới 850px."
+
+msgid "“Open all / Close all” button"
+msgstr "Nút “Mở tất cả / Đóng tất cả”"
+
+msgid "Search box to filter questions"
+msgstr "Ô tìm để lọc câu hỏi"
+
+msgid "Link to each item (#question opens it)"
+msgstr "Liên kết tới từng mục (#cau-hoi mở mục đó)"
+
+msgid "Accordion style"
+msgstr "Kiểu accordion"
+
+msgid "Icon size (px, 0 = default)"
+msgstr "Cỡ icon (px, 0 = mặc định)"
+
+msgid "Question"
+msgstr "Câu hỏi"
+
+msgid "Top and bottom padding (px, -1 = default)"
+msgstr "Khoảng đệm trên và dưới (px, -1 = mặc định)"
+
+msgid "Answer"
+msgstr "Câu trả lời"
+
+msgid "Text size (px, 0 = default)"
+msgstr "Cỡ chữ (px, 0 = mặc định)"
+
+msgid "Title on hover"
+msgstr "Tiêu đề khi rê chuột"
+
+msgid "Answer text"
+msgstr "Chữ câu trả lời"
+
+msgid "Subtitle under the question"
+msgstr "Chữ phụ dưới câu hỏi"
+
+msgid "Label next to the question (e.g. New)"
+msgstr "Nhãn cạnh câu hỏi (vd. Mới)"
+
+msgid "FAQ shadow cards"
+msgstr "FAQ thẻ đổ bóng"
+
+msgid "Soft solid"
+msgstr "Nền nhạt"
+
+msgid "Clean underline"
+msgstr "Gạch chân gọn"
+
+msgid "Numbered steps"
+msgstr "Các bước đánh số"
+
+msgid "Help center"
+msgstr "Trung tâm trợ giúp"
+
+msgid "Pill"
+msgstr "Viên thuốc"
+
+msgid "Split"
+msgstr "Tách rời"
+
+msgid "Icon button"
+msgstr "Nút biểu tượng"
+
+msgid "Hero"
+msgstr "Hero"
+
+msgid "Full-screen overlay"
+msgstr "Phủ toàn màn hình"
+
+msgid "Search box"
+msgstr "Ô tìm kiếm"
+
+msgid "Rotating placeholders (one per line)"
+msgstr "Gợi ý xoay vòng (mỗi dòng một câu)"
+
+msgid "Two or more lines: the hint changes every 3 seconds."
+msgstr "Từ hai dòng trở lên: gợi ý đổi sau mỗi 3 giây."
+
+msgid "Show the button"
+msgstr "Hiện nút"
+
+msgid "Read by screen readers. Empty = “Search”."
+msgstr "Trình đọc màn hình đọc nhãn này. Để trống = “Tìm kiếm”."
+
+msgid "What to search"
+msgstr "Tìm trong"
+
+msgid "Content types (comma separated, empty = all)"
+msgstr "Loại nội dung (cách nhau bằng dấu phẩy, trống = tất cả)"
+
+msgid "For example: post, page, product."
+msgstr "Ví dụ: post, page, product."
+
+msgid "Only in category ID (0 = all)"
+msgstr "Chỉ trong danh mục ID (0 = tất cả)"
+
+msgid "Category drop-down in the box"
+msgstr "Danh sách danh mục trong ô"
+
+msgid "Instant suggestions"
+msgstr "Gợi ý tức thời"
+
+msgid "Show results while typing"
+msgstr "Hiện kết quả khi đang gõ"
+
+msgid "Arrow keys move through results, Escape closes them."
+msgstr "Phím mũi tên để chọn kết quả, Escape để đóng."
+
+msgid "Number of results"
+msgstr "Số kết quả"
+
+msgid "Start after this many letters"
+msgstr "Bắt đầu sau số ký tự"
+
+msgid "Show images"
+msgstr "Hiện ảnh"
+
+msgid "Show prices"
+msgstr "Hiện giá"
+
+msgid "Show the category"
+msgstr "Hiện danh mục"
+
+msgid "Extras"
+msgstr "Tiện ích"
+
+msgid "Popular searches (one per line)"
+msgstr "Từ khoá phổ biến (mỗi dòng một từ)"
+
+msgid "Shown as clickable chips under the box."
+msgstr "Hiện thành nút bấm dưới ô tìm kiếm."
+
+msgid "Text before the chips"
+msgstr "Chữ trước các nút"
+
+msgid "Press “/” to jump to the search box"
+msgstr "Nhấn “/” để tới ô tìm kiếm"
+
+msgid "Search style"
+msgstr "Kiểu ô tìm kiếm"
+
+msgid "Magnifier icon in the box"
+msgstr "Biểu tượng kính lúp trong ô"
+
+msgid "Button shows"
+msgstr "Nút hiển thị"
+
+msgid "Icon and text"
+msgstr "Biểu tượng và chữ"
+
+msgid "Inside the box"
+msgstr "Bên trong ô"
+
+msgid "Next to the box"
+msgstr "Cạnh ô"
+
+msgid "Below the box on phones"
+msgstr "Dưới ô trên điện thoại"
+
+msgid "Size and position"
+msgstr "Kích thước và vị trí"
+
+msgid "Align on phones"
+msgstr "Căn lề trên điện thoại"
+
+msgid "Same as desktop"
+msgstr "Giống máy tính"
+
+msgid "Height on phones (px, 0 = same)"
+msgstr "Chiều cao trên điện thoại (px, 0 = như máy tính)"
+
+msgid "Inner side space (px, -1 = default)"
+msgstr "Khoảng đệm hai bên (px, -1 = mặc định)"
+
+msgid "Border and shadow"
+msgstr "Viền và bóng"
+
+msgid "Button corner radius (px, -1 = default)"
+msgstr "Bo góc nút (px, -1 = mặc định)"
+
+msgid "Glow when focused"
+msgstr "Phát sáng khi được chọn"
+
+msgid "Box colors"
+msgstr "Màu ô"
+
+msgid "Placeholder"
+msgstr "Chữ gợi ý"
+
+msgid "Border when focused"
+msgstr "Viền khi được chọn"
+
+msgid "Button colors"
+msgstr "Màu nút"
+
+msgid "Button on hover"
+msgstr "Nút khi rê chuột"
+
+msgid "Button text on hover"
+msgstr "Chữ nút khi rê chuột"
+

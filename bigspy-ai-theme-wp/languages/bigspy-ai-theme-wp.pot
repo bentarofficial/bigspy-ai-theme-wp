@@ -12426,3 +12426,213 @@ msgstr ""
 msgid "Vertical left"
 msgstr ""
 
+msgid "Search questions…"
+msgstr ""
+
+msgid "Search questions"
+msgstr ""
+
+msgid "Open all"
+msgstr ""
+
+msgid "Close all"
+msgstr ""
+
+msgid "Solid background"
+msgstr ""
+
+msgid "Big numbers"
+msgstr ""
+
+msgid "Open on page load"
+msgstr ""
+
+msgid "As set on each item"
+msgstr ""
+
+msgid "First item"
+msgstr ""
+
+msgid "All items"
+msgstr ""
+
+msgid "Two columns become one under 850px."
+msgstr ""
+
+msgid "“Open all / Close all” button"
+msgstr ""
+
+msgid "Search box to filter questions"
+msgstr ""
+
+msgid "Link to each item (#question opens it)"
+msgstr ""
+
+msgid "Accordion style"
+msgstr ""
+
+msgid "Question"
+msgstr ""
+
+msgid "Top and bottom padding (px, -1 = default)"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
+msgid "Title on hover"
+msgstr ""
+
+msgid "Answer text"
+msgstr ""
+
+msgid "Subtitle under the question"
+msgstr ""
+
+msgid "Label next to the question (e.g. New)"
+msgstr ""
+
+msgid "FAQ shadow cards"
+msgstr ""
+
+msgid "Soft solid"
+msgstr ""
+
+msgid "Clean underline"
+msgstr ""
+
+msgid "Numbered steps"
+msgstr ""
+
+msgid "Help center"
+msgstr ""
+
+msgid "Icon button"
+msgstr ""
+
+msgid "Hero"
+msgstr ""
+
+msgid "Full-screen overlay"
+msgstr ""
+
+msgid "Search box"
+msgstr ""
+
+msgid "Rotating placeholders (one per line)"
+msgstr ""
+
+msgid "Two or more lines: the hint changes every 3 seconds."
+msgstr ""
+
+msgid "Show the button"
+msgstr ""
+
+msgid "Read by screen readers. Empty = “Search”."
+msgstr ""
+
+msgid "What to search"
+msgstr ""
+
+msgid "Content types (comma separated, empty = all)"
+msgstr ""
+
+msgid "For example: post, page, product."
+msgstr ""
+
+msgid "Only in category ID (0 = all)"
+msgstr ""
+
+msgid "Category drop-down in the box"
+msgstr ""
+
+msgid "Instant suggestions"
+msgstr ""
+
+msgid "Show results while typing"
+msgstr ""
+
+msgid "Arrow keys move through results, Escape closes them."
+msgstr ""
+
+msgid "Number of results"
+msgstr ""
+
+msgid "Start after this many letters"
+msgstr ""
+
+msgid "Show images"
+msgstr ""
+
+msgid "Show prices"
+msgstr ""
+
+msgid "Show the category"
+msgstr ""
+
+msgid "Extras"
+msgstr ""
+
+msgid "Popular searches (one per line)"
+msgstr ""
+
+msgid "Shown as clickable chips under the box."
+msgstr ""
+
+msgid "Text before the chips"
+msgstr ""
+
+msgid "Press “/” to jump to the search box"
+msgstr ""
+
+msgid "Search style"
+msgstr ""
+
+msgid "Magnifier icon in the box"
+msgstr ""
+
+msgid "Button shows"
+msgstr ""
+
+msgid "Icon and text"
+msgstr ""
+
+msgid "Inside the box"
+msgstr ""
+
+msgid "Next to the box"
+msgstr ""
+
+msgid "Below the box on phones"
+msgstr ""
+
+msgid "Size and position"
+msgstr ""
+
+msgid "Align on phones"
+msgstr ""
+
+msgid "Same as desktop"
+msgstr ""
+
+msgid "Height on phones (px, 0 = same)"
+msgstr ""
+
+msgid "Inner side space (px, -1 = default)"
+msgstr ""
+
+msgid "Border and shadow"
+msgstr ""
+
+msgid "Button corner radius (px, -1 = default)"
+msgstr ""
+
+msgid "Glow when focused"
+msgstr ""
+
+msgid "Box colors"
+msgstr ""
+
+msgid "Border when focused"
+msgstr ""
+

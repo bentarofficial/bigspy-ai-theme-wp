@@ -1616,43 +1616,72 @@
 	register('accordion', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
+		var T = 'bigspy-ai-theme-wp';
+		var box = function (inner) { return '<rect x="2" y="2" width="52" height="16" rx="2" fill="none" stroke="currentColor" stroke-opacity=".15"/>' + inner; };
+		var STYLES = [
+			{ value: 'bordered', label: __('Bordered', T), svg: box('<rect x="6" y="4" width="44" height="12" rx="2" fill="none" stroke="currentColor"/><path d="M6 10H50" stroke="currentColor"/>') },
+			{ value: 'separated', label: __('Separated boxes', T), svg: box('<rect x="6" y="3" width="44" height="6" rx="2" fill="none" stroke="currentColor"/><rect x="6" y="11" width="44" height="6" rx="2" fill="none" stroke="currentColor"/>') },
+			{ value: 'minimal', label: __('Minimal lines', T), svg: box('<path d="M6 9H50M6 16H50" stroke="currentColor"/>') },
+			{ value: 'shadow', label: __('Shadow cards', T), svg: box('<rect x="7" y="4" width="42" height="5" rx="2" fill="currentColor" fill-opacity=".2"/><rect x="6" y="3" width="42" height="5" rx="2" fill="#fff" stroke="currentColor" stroke-opacity=".4"/><rect x="7" y="12" width="42" height="5" rx="2" fill="currentColor" fill-opacity=".2"/><rect x="6" y="11" width="42" height="5" rx="2" fill="#fff" stroke="currentColor" stroke-opacity=".4"/>') },
+			{ value: 'solid', label: __('Solid background', T), svg: box('<rect x="6" y="3" width="44" height="6" rx="2" fill="currentColor" fill-opacity=".25"/><rect x="6" y="11" width="44" height="6" rx="2" fill="currentColor" fill-opacity=".25"/>') },
+			{ value: 'underline', label: __('Underline', T), svg: box('<path d="M6 9H50" stroke="currentColor" stroke-width="2"/><path d="M6 16H50" stroke="currentColor" stroke-opacity=".3"/>') },
+			{ value: 'leftbar', label: __('Bar on the left', T), svg: box('<rect x="6" y="3" width="3" height="6" fill="currentColor"/><rect x="6" y="11" width="3" height="6" fill="currentColor" fill-opacity=".3"/><path d="M12 6H40M12 14H40" stroke="currentColor" stroke-opacity=".4"/>') },
+			{ value: 'bignum', label: __('Big numbers', T), svg: box('<text x="6" y="14" font-size="10" font-weight="800" fill="currentColor">01</text><path d="M22 10H50" stroke="currentColor" stroke-opacity=".4"/>') }
+		];
 		var blockProps = useBlockProps({
-			className: 'bs-accordion bs-accordion--' + a.style + ' bs-accordion--icon-' + (a.iconStyle || 'chevron') + ' bs-accordion--icon-' + (a.iconPosition || 'right') + (a.numbered ? ' bs-accordion--numbered' : ''),
-			style: styleVars({ '--bs-acc-title-size': a.titleSize ? a.titleSize + 'px' : '', '--bs-acc-title': a.titleColor, '--bs-acc-title-bg': a.titleBg, '--bs-acc-active': a.activeColor, '--bs-acc-active-bg': a.activeBg, '--bs-acc-content-bg': a.contentBg, '--bs-acc-radius': a.radius >= 0 ? a.radius + 'px' : '', '--bs-acc-gap': a.gap >= 0 ? a.gap + 'px' : '' })
+			className: 'bs-accordion bs-accordion--' + a.style + ' bs-accordion--icon-' + (a.iconStyle || 'chevron') + ' bs-accordion--icon-' + (a.iconPosition || 'right') + (a.numbered ? ' bs-accordion--numbered' : '') + (a.columns === 2 ? ' bs-accordion--cols-2' : ''),
+			style: styleVars({ '--bs-acc-title-size': a.titleSize ? a.titleSize + 'px' : '', '--bs-acc-title': a.titleColor, '--bs-acc-title-bg': a.titleBg, '--bs-acc-active': a.activeColor, '--bs-acc-active-bg': a.activeBg, '--bs-acc-content-bg': a.contentBg, '--bs-acc-radius': a.radius >= 0 ? a.radius + 'px' : '', '--bs-acc-gap': a.gap >= 0 ? a.gap + 'px' : '',
+				'--bs-acc-icon-c': a.iconColor, '--bs-acc-icon-size': a.iconSize ? a.iconSize + 'px' : '', '--bs-acc-title-fw': a.titleWeight ? String(a.titleWeight) : '', '--bs-acc-title-pad': a.titlePad >= 0 ? a.titlePad + 'px' : '', '--bs-acc-title-hover': a.titleHover, '--bs-acc-border-c': a.borderColor, '--bs-acc-border-w': a.borderWidth >= 0 ? a.borderWidth + 'px' : '', '--bs-acc-content-c': a.contentColor, '--bs-acc-content-fs': a.contentSize ? a.contentSize + 'px' : '' })
 		});
 		var innerProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['bst/accordion-item'],
 			template: [
-				['bst/accordion-item', { title: __('Question 1?', 'bigspy-ai-theme-wp'), open: true }],
-				['bst/accordion-item', { title: __('Question 2?', 'bigspy-ai-theme-wp') }],
-				['bst/accordion-item', { title: __('Question 3?', 'bigspy-ai-theme-wp') }]
+				['bst/accordion-item', { title: __('Question 1?', T), open: true }],
+				['bst/accordion-item', { title: __('Question 2?', T) }],
+				['bst/accordion-item', { title: __('Question 3?', T) }]
 			]
 		});
+		var color = function (label, key) { return { label: label, value: a[key], onChange: function (v) { var o = {}; o[key] = v || ''; props.setAttributes(o); } }; };
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Accordion', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { bordered: __('Bordered', 'bigspy-ai-theme-wp'), separated: __('Separated boxes', 'bigspy-ai-theme-wp'), minimal: __('Minimal lines', 'bigspy-ai-theme-wp') } }, bind('style'))),
-					el(Toggle, Object.assign({ label: __('Only one item open at a time', 'bigspy-ai-theme-wp') }, bind('single', true))),
-					el(Toggle, Object.assign({ label: __('Add FAQ schema (Google rich results)', 'bigspy-ai-theme-wp'), help: __('Turn off if an SEO plugin already outputs FAQ schema for this page.', 'bigspy-ai-theme-wp') }, bind('faqSchema', true))),
-					el(Toggle, Object.assign({ label: __('Smooth open / close animation', 'bigspy-ai-theme-wp') }, bind('smooth', true))),
-					el(Toggle, Object.assign({ label: __('Number the items (01, 02…)', 'bigspy-ai-theme-wp') }, bind('numbered', true))),
-					el(Select, Object.assign({ label: __('Question tag for all items (SEO)', 'bigspy-ai-theme-wp'), help: __('Each item can override it in its own settings.', 'bigspy-ai-theme-wp'), options: { div: __('Normal text (div)', 'bigspy-ai-theme-wp'), p: __('Paragraph (p)', 'bigspy-ai-theme-wp'), h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6' } }, bind('titleTag')))
+				el(Panel, { title: __('Accordion', T) },
+					el(Toggle, Object.assign({ label: __('Only one item open at a time', T) }, bind('single', true))),
+					el(Select, Object.assign({ label: __('Open on page load', T), options: { '': __('As set on each item', T), first: __('First item', T), all: __('All items', T), none: __('None', T) } }, bind('openMode'))),
+					el(Select, { label: __('Columns', T), help: __('Two columns become one under 850px.', T), options: { 1: '1', 2: '2' }, value: String(a.columns || 1), onChange: function (v) { props.setAttributes({ columns: parseInt(v, 10) || 1 }); } }),
+					el(Toggle, Object.assign({ label: __('“Open all / Close all” button', T) }, bind('expandAll', true))),
+					el(Toggle, Object.assign({ label: __('Search box to filter questions', T) }, bind('search', true))),
+					el(Toggle, Object.assign({ label: __('Link to each item (#question opens it)', T) }, bind('deepLink', true))),
+					el(Toggle, Object.assign({ label: __('Add FAQ schema (Google rich results)', T), help: __('Turn off if an SEO plugin already outputs FAQ schema for this page.', T) }, bind('faqSchema', true))),
+					el(Toggle, Object.assign({ label: __('Smooth open / close animation', T) }, bind('smooth', true))),
+					el(Toggle, Object.assign({ label: __('Number the items (01, 02…)', T) }, bind('numbered', true))),
+					el(Select, Object.assign({ label: __('Question tag for all items (SEO)', T), help: __('Each item can override it in its own settings.', T), options: { div: __('Normal text (div)', T), p: __('Paragraph (p)', T), h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6' } }, bind('titleTag')))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Accordion style', T) },
+					el(B.StylePicker, { label: __('Style', T), value: a.style, options: STYLES, onChange: function (v) { props.setAttributes({ style: v }); } }),
+					el(Range, Object.assign({ label: __('Corner radius (px, -1 = style default)', T), min: -1, max: 40 }, bind('radius'))),
+					el(Range, Object.assign({ label: __('Space between items (px, -1 = default)', T), min: -1, max: 40 }, bind('gap'))),
+					el(Range, Object.assign({ label: __('Border width (px, -1 = default)', T), min: -1, max: 8 }, bind('borderWidth')))
 				),
-				el(Panel, { title: __('Icon', 'bigspy-ai-theme-wp') },
-					sliderChoice(props, __('Icon', 'bigspy-ai-theme-wp'), 'iconStyle', [['chevron', '⌄ ' + __('Chevron', 'bigspy-ai-theme-wp')], ['plus', '+ ' + __('Plus', 'bigspy-ai-theme-wp')], ['circle', '⊕ ' + __('Circle', 'bigspy-ai-theme-wp')], ['arrow', '→ ' + __('Arrow', 'bigspy-ai-theme-wp')], ['none', __('None', 'bigspy-ai-theme-wp')]]),
-					sliderChoice(props, __('Position', 'bigspy-ai-theme-wp'), 'iconPosition', [['right', __('Right', 'bigspy-ai-theme-wp')], ['left', __('Left', 'bigspy-ai-theme-wp')]])
+				el(Panel, { title: __('Icon', T), initialOpen: false },
+					sliderChoice(props, __('Icon', T), 'iconStyle', [['chevron', '⌄ ' + __('Chevron', T)], ['plus', '+ ' + __('Plus', T)], ['circle', '⊕ ' + __('Circle', T)], ['arrow', '→ ' + __('Arrow', T)], ['none', __('None', T)]]),
+					sliderChoice(props, __('Position', T), 'iconPosition', [['right', __('Right', T)], ['left', __('Left', T)]]),
+					el(Range, Object.assign({ label: __('Icon size (px, 0 = default)', T), max: 48 }, bind('iconSize')))
 				),
-				el(Panel, { title: __('Size & spacing', 'bigspy-ai-theme-wp'), initialOpen: false },
-					el(Range, Object.assign({ label: __('Title size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 40 }, bind('titleSize'))),
-					el(Range, Object.assign({ label: __('Corner radius (px, -1 = style default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('radius'))),
-					el(Range, Object.assign({ label: __('Space between items (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('gap')))
+				el(Panel, { title: __('Question', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Title size (px, 0 = default)', T), max: 40 }, bind('titleSize'))),
+					el(Select, { label: __('Weight', T), options: { 0: __('Default', T), 400: '400', 500: '500', 600: '600', 700: '700', 800: '800' }, value: String(a.titleWeight || 0), onChange: function (v) { props.setAttributes({ titleWeight: parseInt(v, 10) || 0 }); } }),
+					el(Range, Object.assign({ label: __('Top and bottom padding (px, -1 = default)', T), min: -1, max: 48 }, bind('titlePad')))
 				),
-				el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
-					{ label: __('Title', 'bigspy-ai-theme-wp'), value: a.titleColor, onChange: function (v) { props.setAttributes({ titleColor: v || '' }); } },
-					{ label: __('Title background', 'bigspy-ai-theme-wp'), value: a.titleBg, onChange: function (v) { props.setAttributes({ titleBg: v || '' }); } },
-					{ label: __('Open item – title', 'bigspy-ai-theme-wp'), value: a.activeColor, onChange: function (v) { props.setAttributes({ activeColor: v || '' }); } },
-					{ label: __('Open item – background', 'bigspy-ai-theme-wp'), value: a.activeBg, onChange: function (v) { props.setAttributes({ activeBg: v || '' }); } },
-					{ label: __('Answer background', 'bigspy-ai-theme-wp'), value: a.contentBg, onChange: function (v) { props.setAttributes({ contentBg: v || '' }); } }
+				el(Panel, { title: __('Answer', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Text size (px, 0 = default)', T), max: 28 }, bind('contentSize')))
+				),
+				el(B.ColorPanel, { title: __('Colors', T), settings: [
+					color(__('Title', T), 'titleColor'), color(__('Title on hover', T), 'titleHover'), color(__('Title background', T), 'titleBg'),
+					color(__('Open item – title', T), 'activeColor'), color(__('Open item – background', T), 'activeBg'),
+					color(__('Icon', T), 'iconColor'), color(__('Border', T), 'borderColor'),
+					color(__('Answer text', T), 'contentColor'), color(__('Answer background', T), 'contentBg')
 				] })
 			),
 			el('div', innerProps)
@@ -1667,12 +1696,16 @@
 			el(Inspector, null,
 				el(Panel, { title: __('Item', 'bigspy-ai-theme-wp') },
 					el(Toggle, { label: __('Open by default', 'bigspy-ai-theme-wp'), checked: a.open, onChange: function (v) { props.setAttributes({ open: v }); } }),
+					el(c.TextControl, { label: __('Subtitle under the question', 'bigspy-ai-theme-wp'), value: a.subtitle || '', onChange: function (v) { props.setAttributes({ subtitle: v }); }, __nextHasNoMarginBottom: true }),
+					el(c.TextControl, { label: __('Label next to the question (e.g. New)', 'bigspy-ai-theme-wp'), value: a.badge || '', onChange: function (v) { props.setAttributes({ badge: v }); }, __nextHasNoMarginBottom: true }),
 					el(c.SelectControl, { label: __('Question tag (SEO)', 'bigspy-ai-theme-wp'), help: __('Same as accordion = the tag set on the Accordion block.', 'bigspy-ai-theme-wp'), value: a.titleTag || '', options: [{ value: '', label: __('Same as accordion', 'bigspy-ai-theme-wp') + (props.context && props.context['bst/accordionTitleTag'] ? ' (' + props.context['bst/accordionTitleTag'].toUpperCase() + ')' : '') }, { value: 'div', label: __('Normal text (div)', 'bigspy-ai-theme-wp') }, { value: 'p', label: __('Paragraph (p)', 'bigspy-ai-theme-wp') }, { value: 'h2', label: 'H2' }, { value: 'h3', label: 'H3' }, { value: 'h4', label: 'H4' }, { value: 'h5', label: 'H5' }, { value: 'h6', label: 'H6' }], onChange: function (v) { props.setAttributes({ titleTag: v }); }, __nextHasNoMarginBottom: true })
 				)
 			),
 			el('div', blockProps,
 				el('div', { className: 'bs-accordion__title' },
 					el(RichText, { tagName: 'span', className: 'bs-accordion__text', value: a.title, placeholder: __('Question / title', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ title: v }); } }),
+					a.badge ? el('span', { className: 'bs-accordion__badge' }, a.badge) : null,
+					a.subtitle ? el('span', { className: 'bs-accordion__sub' }, a.subtitle) : null,
 					el('span', { className: 'bst-acc-tag', title: __('Question tag', 'bigspy-ai-theme-wp') }, (a.titleTag || (props.context && props.context['bst/accordionTitleTag']) || 'div').toUpperCase()),
 					el('span', { className: 'bs-accordion__icon', 'aria-hidden': true, onClick: function () { props.setAttributes({ open: !a.open }); } }, el(B.Icon, { name: 'chevron-down', size: 18 }))
 				),

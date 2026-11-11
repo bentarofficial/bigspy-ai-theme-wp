@@ -450,6 +450,38 @@
 
 	/* ------------------------------------------------------------ Accordion (fallback for details[name]) */
 	function initAccordion(root) {
+		var items = function () { return Array.prototype.slice.call(root.querySelectorAll(':scope > details')); };
+		/* Open all / Close all. */
+		var all = root.querySelector(':scope > .bs-accordion__tools .bs-accordion__all');
+		if (all) {
+			all.addEventListener('click', function () {
+				var open = items().some(function (d) { return !d.open; });
+				items().forEach(function (d) { d.open = open; });
+				all.textContent = open ? all.dataset.close : all.dataset.open;
+			});
+		}
+		/* Filter questions as you type. */
+		var search = root.querySelector(':scope > .bs-accordion__tools .bs-accordion__search');
+		if (search) {
+			search.addEventListener('input', function () {
+				var q = search.value.trim().toLowerCase();
+				items().forEach(function (d) { d.classList.toggle('is-filtered', q !== '' && d.textContent.toLowerCase().indexOf(q) < 0); });
+			});
+		}
+		/* Deep link: #question opens that item; opening an item updates the address. */
+		if (root.dataset.deeplink === '1') {
+			var hash = decodeURIComponent(window.location.hash.slice(1));
+			var target = hash && document.getElementById(hash);
+			if (target && target.parentElement === root && target.tagName === 'DETAILS') {
+				target.open = true;
+				target.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+			}
+			root.addEventListener('toggle', function (event) {
+				if (event.target.tagName === 'DETAILS' && event.target.open && event.target.id && window.history.replaceState) {
+					window.history.replaceState(null, '', '#' + event.target.id);
+				}
+			}, true);
+		}
 		/* Smooth open / close: animate the content height instead of jumping. */
 		if (root.dataset.smooth === '1' && !reduceMotion) {
 			root.querySelectorAll(':scope > details > summary').forEach(function (summary) {

@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design', 'flatsome' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design', 'flatsome', 'accordion' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -24,6 +24,20 @@ try {
 
 function bst_t_flatsome() {
 	bst_test( shortcode_exists( 'ux_text' ) && false !== strpos( do_shortcode( '[ux_text]x[/ux_text]' ), 'x' ), 'flatsome: shortcodes work while on' );
+}
+
+function bst_t_accordion() {
+	$item = function ( $attrs, $answer = 'A' ) {
+		return '<!-- wp:bst/accordion-item ' . wp_json_encode( $attrs ) . ' --><!-- wp:paragraph --><p>' . $answer . '</p><!-- /wp:paragraph --><!-- /wp:bst/accordion-item -->';
+	};
+	$old = do_blocks( '<!-- wp:bst/accordion --><div>' . $item( array( 'title' => 'Q one', 'open' => true ) ) . $item( array( 'title' => 'Q two' ) ) . '</div><!-- /wp:bst/accordion -->' );
+	bst_test( false === strpos( $old, 'bs-accordion__tools' ) && false === strpos( $old, 'data-deeplink' ) && false === strpos( $old, ' id="q-' ) && false === strpos( $old, '--bs-acc-' ) && 1 === substr_count( $old, ' open' ), 'accordion: old content renders as before' );
+	$new = do_blocks( '<!-- wp:bst/accordion {"style":"shadow","openMode":"all","deepLink":true,"search":true,"expandAll":true,"columns":2,"iconColor":"#ff0000","titleWeight":700} --><div>' . $item( array( 'title' => 'Q one', 'subtitle' => 'Sub', 'badge' => 'New' ) ) . $item( array( 'title' => 'Q two' ) ) . '</div><!-- /wp:bst/accordion -->' );
+	bst_test( false !== strpos( $new, 'bs-accordion--shadow' ) && false !== strpos( $new, 'bs-accordion--cols-2' ) && 2 === substr_count( $new, '<details class="bs-accordion__item" open' ), 'accordion: style, columns, open all' );
+	bst_test( false !== strpos( $new, 'id="q-one"' ) && false !== strpos( $new, 'data-deeplink="1"' ) && false !== strpos( $new, 'bs-accordion__search' ) && false !== strpos( $new, 'bs-accordion__all' ), 'accordion: deep link, search, open all button' );
+	bst_test( false !== strpos( $new, 'bs-accordion__sub">Sub' ) && false !== strpos( $new, 'bs-accordion__badge">New' ) && false !== strpos( $new, '--bs-acc-icon-c:#ff0000' ) && false !== strpos( $new, '--bs-acc-title-fw:700' ), 'accordion: subtitle, badge, part vars' );
+	$first = do_blocks( '<!-- wp:bst/accordion {"openMode":"first"} --><div>' . $item( array( 'title' => 'A1' ) ) . $item( array( 'title' => 'A2', 'open' => true ) ) . '</div><!-- /wp:bst/accordion -->' );
+	bst_test( 1 === substr_count( $first, ' open' ) && strpos( $first, ' open' ) < strpos( $first, 'A2' ), 'accordion: open first overrides items' );
 }
 
 function bst_t_off() {

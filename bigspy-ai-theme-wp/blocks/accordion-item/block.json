@@ -22,6 +22,14 @@
 		"titleTag": {
 			"type": "string",
 			"default": ""
+		},
+		"subtitle": {
+			"type": "string",
+			"default": ""
+		},
+		"badge": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
@@ -31,6 +39,7 @@
 	"editorScript": "bst-blocks-editor",
 	"render": "file:./render.php",
 	"usesContext": [
-		"bst/accordionTitleTag"
+		"bst/accordionTitleTag",
+		"bst/accordionDeepLink"
 	]
 }
