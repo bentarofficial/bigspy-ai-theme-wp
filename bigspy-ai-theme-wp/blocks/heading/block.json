@@ -89,6 +89,74 @@
 		"textMotion": {
 			"type": "string",
 			"default": ""
+		},
+		"kicker": {
+			"type": "string",
+			"default": ""
+		},
+		"kickerSize": {
+			"type": "number",
+			"default": 0
+		},
+		"kickerColor": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 0
+		},
+		"iconColor": {
+			"type": "string",
+			"default": ""
+		},
+		"strokeWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"strokeColor": {
+			"type": "string",
+			"default": ""
+		},
+		"strokeHollow": {
+			"type": "boolean",
+			"default": false
+		},
+		"decor": {
+			"type": "string",
+			"default": ""
+		},
+		"decorColor": {
+			"type": "string",
+			"default": ""
+		},
+		"decorLength": {
+			"type": "number",
+			"default": 0
+		},
+		"decorWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowX": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowY": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowBlur": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowColor": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

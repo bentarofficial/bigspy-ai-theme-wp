@@ -8296,3 +8296,177 @@ msgstr "Đường kẻ / điểm nhấn"
 msgid "Subtitle size (px, 0 = default)"
 msgstr "Cỡ chữ phụ (px, 0 = mặc định)"
 
+msgid "Circle"
+msgstr "Khoanh tròn"
+
+msgid "Line before"
+msgstr "Đường kẻ phía trước"
+
+msgid "Line after"
+msgstr "Đường kẻ phía sau"
+
+msgid "Lines on both sides"
+msgstr "Đường kẻ hai bên"
+
+msgid "Kicker and icon"
+msgstr "Dòng nhỏ phía trên và icon"
+
+msgid "Small line above (kicker)"
+msgstr "Dòng nhỏ phía trên (kicker)"
+
+msgid "Icon before the heading (optional)"
+msgstr "Icon trước tiêu đề (tuỳ chọn)"
+
+msgid "Decorative lines"
+msgstr "Đường trang trí"
+
+msgid "Lines"
+msgstr "Đường kẻ"
+
+msgid "Text outline"
+msgstr "Viền chữ"
+
+msgid "Outline thickness (px, 0 = off)"
+msgstr "Độ dày viền chữ (px, 0 = tắt)"
+
+msgid "Outline only (hollow letters)"
+msgstr "Chỉ viền (chữ rỗng)"
+
+msgid "Text shadow"
+msgstr "Bóng chữ"
+
+msgid "Shadow (set a color to turn on)"
+msgstr "Bóng (chọn màu để bật)"
+
+msgid "Horizontal offset (px)"
+msgstr "Lệch ngang (px)"
+
+msgid "Vertical offset (px)"
+msgstr "Lệch dọc (px)"
+
+msgid "Blur (px)"
+msgstr "Độ nhoè (px)"
+
+msgid "Kicker and icon style"
+msgstr "Kiểu dòng nhỏ và icon"
+
+msgid "Kicker size (px, 0 = default)"
+msgstr "Cỡ dòng nhỏ (px, 0 = mặc định)"
+
+msgid "Icon size (px, 0 = same as text)"
+msgstr "Cỡ icon (px, 0 = bằng chữ)"
+
+msgid "Kicker"
+msgstr "Dòng nhỏ phía trên"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "Gap between columns (px, 0 = default)"
+msgstr "Khoảng cách giữa cột (px, 0 = mặc định)"
+
+msgid "Limit to lines with “Read more” (0 = off)"
+msgstr "Giới hạn số dòng kèm “Xem thêm” (0 = tắt)"
+
+msgid "The editor shows all the text; the page shows the limit."
+msgstr "Trình soạn thảo hiện đủ chữ; trang thật mới giới hạn."
+
+msgid "“Read more” text"
+msgstr "Chữ “Xem thêm”"
+
+msgid "Show less"
+msgstr "Thu gọn"
+
+msgid "Links on hover"
+msgstr "Link khi rê chuột"
+
+msgid "Line between columns"
+msgstr "Đường kẻ giữa cột"
+
+msgid "Lists, quotes and links"
+msgstr "Danh sách, trích dẫn và link"
+
+msgid "List style"
+msgstr "Kiểu danh sách"
+
+msgid "Check marks"
+msgstr "Dấu tích"
+
+msgid "Arrows"
+msgstr "Mũi tên"
+
+msgid "Numbers in circles"
+msgstr "Số trong vòng tròn"
+
+msgid "Quote style"
+msgstr "Kiểu trích dẫn"
+
+msgid "Big quote mark"
+msgstr "Dấu ngoặc kép lớn"
+
+msgid "Thin line"
+msgstr "Đường mảnh"
+
+msgid "Link style"
+msgstr "Kiểu link"
+
+msgid "Underlined"
+msgstr "Gạch chân"
+
+msgid "Underline on hover"
+msgstr "Gạch chân khi rê chuột"
+
+msgid "Highlighted"
+msgstr "Tô nền"
+
+msgid "(%s reviews)"
+msgstr "(%s đánh giá)"
+
+msgid "Number of reviews (0 = hide)"
+msgstr "Số lượt đánh giá (0 = ẩn)"
+
+msgid "Round the filled part"
+msgstr "Làm tròn phần tô"
+
+msgid "Exact"
+msgstr "Chính xác"
+
+msgid "To half points"
+msgstr "Đến nửa điểm"
+
+msgid "To whole points"
+msgstr "Đến điểm nguyên"
+
+msgid "Rating style"
+msgstr "Kiểu đánh giá"
+
+msgid "Stars"
+msgstr "Sao"
+
+msgid "Hearts"
+msgstr "Tim"
+
+msgid "Thumbs"
+msgstr "Ngón tay"
+
+msgid "Icons only"
+msgstr "Chỉ icon"
+
+msgid "Score 4.8/5"
+msgstr "Điểm 4,8/5"
+
+msgid "Badge"
+msgstr "Huy hiệu"
+
+msgid "Label position"
+msgstr "Vị trí nhãn"
+
+msgid "Above"
+msgstr "Phía trên"
+
+msgid "Below"
+msgstr "Phía dưới"
+
+msgid "Gap between icons (px, 0 = default)"
+msgstr "Khoảng cách giữa icon (px, 0 = mặc định)"
+

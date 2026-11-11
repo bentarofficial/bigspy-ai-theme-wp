@@ -44,6 +44,30 @@
 		"showNumber": {
 			"type": "boolean",
 			"default": false
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": ""
+		},
+		"round": {
+			"type": "string",
+			"default": ""
+		},
+		"labelPosition": {
+			"type": "string",
+			"default": ""
+		},
+		"count": {
+			"type": "number",
+			"default": 0
+		},
+		"gap": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"supports": {

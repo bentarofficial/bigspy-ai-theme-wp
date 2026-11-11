@@ -462,6 +462,28 @@
 		}
 	}
 
+	/* Text line limit: show “Read more” only when the text is longer than the limit. */
+	doc.querySelectorAll('.bs-text--clamp').forEach(function (box) {
+		var body = box.querySelector('.bs-text__body');
+		var btn = box.querySelector('.bs-text__more');
+		if (!body || !btn) {
+			return;
+		}
+		box.classList.add('is-ready');
+		if (body.scrollHeight <= body.clientHeight + 2) {
+			box.classList.remove('is-ready');
+			return;
+		}
+		var more = btn.textContent;
+		btn.hidden = false;
+		btn.setAttribute('aria-controls', body.id);
+		btn.addEventListener('click', function () {
+			var open = box.classList.toggle('is-open');
+			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+			btn.textContent = open ? (btn.getAttribute('data-less') || more) : more;
+		});
+	});
+
 	/* Scroll motion: move / zoom / rotate / fade with the scroll position. */
 	var scrollers = doc.querySelectorAll('[data-bs-scroll]');
 	if (scrollers.length && !reduceMotion) {

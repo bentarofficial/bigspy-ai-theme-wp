@@ -12033,3 +12033,141 @@ msgstr ""
 msgid "Subtitle size (px, 0 = default)"
 msgstr ""
 
+msgid "Line before"
+msgstr ""
+
+msgid "Line after"
+msgstr ""
+
+msgid "Kicker and icon"
+msgstr ""
+
+msgid "Small line above (kicker)"
+msgstr ""
+
+msgid "Icon before the heading (optional)"
+msgstr ""
+
+msgid "Decorative lines"
+msgstr ""
+
+msgid "Lines"
+msgstr ""
+
+msgid "Text outline"
+msgstr ""
+
+msgid "Outline thickness (px, 0 = off)"
+msgstr ""
+
+msgid "Outline only (hollow letters)"
+msgstr ""
+
+msgid "Shadow (set a color to turn on)"
+msgstr ""
+
+msgid "Horizontal offset (px)"
+msgstr ""
+
+msgid "Vertical offset (px)"
+msgstr ""
+
+msgid "Blur (px)"
+msgstr ""
+
+msgid "Kicker and icon style"
+msgstr ""
+
+msgid "Kicker size (px, 0 = default)"
+msgstr ""
+
+msgid "Icon size (px, 0 = same as text)"
+msgstr ""
+
+msgid "Kicker"
+msgstr ""
+
+msgid "Gap between columns (px, 0 = default)"
+msgstr ""
+
+msgid "Limit to lines with “Read more” (0 = off)"
+msgstr ""
+
+msgid "The editor shows all the text; the page shows the limit."
+msgstr ""
+
+msgid "Show less"
+msgstr ""
+
+msgid "Line between columns"
+msgstr ""
+
+msgid "Lists, quotes and links"
+msgstr ""
+
+msgid "List style"
+msgstr ""
+
+msgid "Numbers in circles"
+msgstr ""
+
+msgid "Quote style"
+msgstr ""
+
+msgid "Big quote mark"
+msgstr ""
+
+msgid "Thin line"
+msgstr ""
+
+msgid "Link style"
+msgstr ""
+
+msgid "Underlined"
+msgstr ""
+
+msgid "Highlighted"
+msgstr ""
+
+msgid "(%s reviews)"
+msgstr ""
+
+msgid "Number of reviews (0 = hide)"
+msgstr ""
+
+msgid "Round the filled part"
+msgstr ""
+
+msgid "Exact"
+msgstr ""
+
+msgid "To half points"
+msgstr ""
+
+msgid "To whole points"
+msgstr ""
+
+msgid "Rating style"
+msgstr ""
+
+msgid "Hearts"
+msgstr ""
+
+msgid "Thumbs"
+msgstr ""
+
+msgid "Icons only"
+msgstr ""
+
+msgid "Score 4.8/5"
+msgstr ""
+
+msgid "Badge"
+msgstr ""
+
+msgid "Label position"
+msgstr ""
+
+msgid "Gap between icons (px, 0 = default)"
+msgstr ""
+
