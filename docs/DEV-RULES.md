@@ -83,3 +83,11 @@ Ma trận là hướng dẫn theo tác động, không phải giới hạn cứn
 6. Ghi nhận các mục đã phát hành và xóa chúng khỏi danh sách đang chờ. Việc triển khai lên website là bước riêng, theo quyền owner đã cấp cho đúng website.
 
 Không tự quy đổi số lệnh, thời gian chạy test hoặc số token thành phần trăm hạn mức. Với đợt lớn, có thể ghi mức sử dụng đầu/cuối nếu công cụ cung cấp, nhưng phải nêu rõ đó là số liệu toàn tài khoản và không phải phép đo chi phí riêng từng lệnh.
+
+## Điều kiện đưa tính năng vào bản phát hành
+
+- Dùng API WordPress/WooCommerce và block native; không sao chép mã, asset hoặc thương hiệu Flatsome.
+- Tính năng làm thay đổi hành vi shop mặc định tắt hoặc có fallback điều hướng chuẩn.
+- Có trạng thái responsive, keyboard/focus và thông báo trợ năng phù hợp.
+- Tài liệu nêu rõ plugin/phạm vi tương thích và những gì chưa hỗ trợ.
+- Tạo bản xem trước/hoàn tác cho thao tác chuyển đổi nội dung hoặc cấu hình có thể gây mất dữ liệu.
