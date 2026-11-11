@@ -42,6 +42,11 @@ Owner muốn mọi khối, kể cả khối phụ nhỏ và ít dùng (tìm ki�
 | G-142 | Kiểm tra thiết kế dùng chung cho người và AI (tương phản, heading, di động, ảnh), mở rộng từ Auto Detect |
 | G-143 | Khối còn thiếu so với Elementor: mục lục, breadcrumb, trích dẫn, kêu gọi hành động, ngăn kéo, danh sách phát video… (kiểm tra trước khi làm) |
 | G-145 | Fixture so sánh cùng một trang với Elementor, Flatsome, Astra; cần owner đồng ý vì phải đổi theme trên site đối chiếu |
+| G-147 | Hook cho nhà phát triển: BIGSPY chỉ có 15 `do_action` và 35 `apply_filters`, GeneratePress có 127 và 223 |
+| G-148 | Tương thích đa ngôn ngữ (Polylang, WPML) và plugin phổ biến; chỉ công bố plugin đã thử |
+| G-149 | Đối chiếu tuỳ chọn cấp theme theo nhóm với OceanWP (khoảng 1.436), Astra (614), Flatsome (596); BIGSPY khoảng 276 |
+
+G-146 đã quét đủ sáu theme và flatsome-child (mục 8 của tài liệu trên). Neve cũng đã có 13 ability, nên cả Astra lẫn Neve đều đi trước BIGSPY ở cổng cho AI bên ngoài.
 
 Thứ tự: G-129 → G-130 → G-131 → G-134 → G-133 → G-132 → G-135 → G-136 → G-137 → G-138 → G-139. Mỗi mã nhóm khối chia thành nhiều phiên, mỗi phiên 2–4 khối với mã con (`G-133-a`…). Nên xong G-108 (per-page CSS) trước đợt này vì `blocks.css` sẽ tăng.
 

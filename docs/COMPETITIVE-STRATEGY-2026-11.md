@@ -126,3 +126,50 @@ AI viết HTML/CSS cho một trang rất nhanh, nên giá trị của theme khô
 3. Các nhóm khối còn lại (G-132, G-135 → G-138) xen với G-37/G-38/G-39.
 4. G-142, G-143.
 5. G-145 khi đã có đủ để so.
+
+## 8. Bổ sung G-146: đối chiếu đủ sáu theme và child theme
+
+Đợt G-140 mới đo kỹ Elementor, đếm dở Flatsome và chỉ đọc phần Abilities của Astra. Đợt này quét cả bảy thư mục theme trong ảnh owner gửi.
+
+**Cách làm:** lấy cây tệp của từng theme từ trình sửa theme (Astra 716 tệp, Flatsome 1.485, GeneratePress 134, Hello Elementor 76, Neve 407, OceanWP 559, flatsome-child 2), rồi đọc 845 tệp PHP thuộc các thư mục tuỳ chọn, builder, tiện ích mở rộng và đếm bằng biểu thức chính quy. Chỉ ghi số đếm và tên tệp/tên tính năng. Không lưu, không đổi gì trên site.
+
+**Giới hạn:** số đếm là số lần khai báo trong mã, gần đúng, không phải số tuỳ chọn người dùng thấy; một tuỳ chọn theo thiết bị có thể bị đếm nhiều lần và tuỳ chọn sinh bằng vòng lặp bị đếm thiếu. Bảng tổng lấy lúc quét được 828/845 tệp. Astra, Neve, OceanWP, Flatsome chỉ quét các thư mục đã chọn, nên số hook của bốn theme này là mức tối thiểu. Tuỳ chọn của bản Pro và plugin đi kèm (Astra Pro, Neve Pro, Ocean Extra, GP Premium) không có trên site. Chưa đo tốc độ.
+
+### Tuỳ chọn cấp theme (Customizer và bảng cài đặt)
+
+| Theme | Khai báo tuỳ chọn đếm được | Hook `do_action` / `apply_filters` | Ghi chú |
+| --- | --- | --- | --- |
+| OceanWP 4.2.8 | khoảng 1.436 | 8 / 339 (một phần) | 18 nhóm: a11y, blog, màu, EDD, footer, header, LearnDash, LifterLMS, hiệu năng, SEO, sidebar, topbar, typography, WooCommerce… |
+| Astra 4.14.1 | khoảng 614 | 102 / 205 (một phần) | 81 tệp cấu hình; header/footer builder 26 thành phần; 70 tệp Abilities |
+| Flatsome 3.20.10 | khoảng 596 | 16 / 43 (một phần) | 60 phần tử UX Builder, 102 shortcode, 11 tiện ích, 22 tích hợp plugin |
+| Neve 4.2.17 | khoảng 150–270 | 14 / 80 (một phần) | header/footer grid 16 thành phần; 13 Abilities |
+| GeneratePress 3.6.1 | khoảng 76 | 127 / 223 (toàn theme) | ít tuỳ chọn, nhiều hook nhất |
+| Hello Elementor 3.5.1 | khoảng 44 | 2 / 22 (toàn theme) | theme nền cho Elementor |
+| flatsome-child | 0 | 0 | 122 dòng PHP (ba hook, một hàm cho plugin đếm ngược), 27 rule CSS: không có tính năng nào để đối chiếu |
+| **BIGSPY 1.90** | khoảng 276 | **15 / 35 (toàn theme)** | 258 tệp PHP, 83 khối, AI Designer |
+
+### Nhận định theo từng theme
+
+- **OceanWP:** nhiều tuỳ chọn cấp theme nhất, gấp khoảng năm lần BIGSPY, có nhóm riêng cho trợ năng, hiệu năng, SEO và cho plugin học trực tuyến. Điểm yếu: phần dựng trang dựa vào Elementor hoặc plugin Ocean Extra. Học: nhóm tuỳ chọn trợ năng và hiệu năng trong Customizer.
+- **Astra:** header/footer builder có thành phần BIGSPY nên đối chiếu (tài khoản, off-canvas, nút mở menu di động, giỏ hàng Woo/EDD, ba hàng trên/chính/dưới); 19 lớp tương thích (AMP, Beaver, Divi, Elementor, Gutenberg, Jetpack, Yoast…); và 70 ability rất chi tiết, mỗi cài đặt một cặp đọc/ghi.
+- **Neve:** cũng đã có Abilities nhưng theo kiểu gộp: 13 ability như lấy trạng thái site, áp preset giao diện, cấu hình header, cấu hình footer, cập nhật bố cục trang, đặt hiệu năng. Header builder có nút đổi bảng màu (sáng/tối). Hai đối thủ có Abilities với hai cách thiết kế khác nhau là căn cứ tốt cho G-141.
+- **GeneratePress:** ít tuỳ chọn nhưng nhiều hook nhất, nên nhà phát triển mở rộng bằng child theme và plugin rất dễ.
+- **Hello Elementor:** gần như trống, chỉ có công tắc bỏ từng phần theme. Không có gì để học về tuỳ chọn; chỉ học cách giữ phần mặc định nhẹ.
+- **Flatsome:** 60 phần tử UX Builder so với 83 khối BIGSPY. Các nhóm tuỳ chọn dùng chung của Flatsome (nền, viền, kiểu hộp ảnh/chữ, vị trí, slider, truy vấn bài, đường chia hình, video nền) thì BIGSPY đều có phần tương ứng. Flatsome có mà BIGSPY chưa thấy: `relay` (phân trang/tải thêm bằng AJAX dùng chung cho mọi lưới), `ux_stack`, `ux_badge`, `page_header`, `scroll_to`, `ux_instagram_feed`, `ux_product_flip`, `ux_pages`; 22 tích hợp plugin (WPML, WooCommerce Bookings, YITH Wishlist, WP Rocket, các plugin SEO…).
+- **flatsome-child:** chỉ là vài dòng tuỳ biến của site đối chiếu.
+
+### Khoảng trống mới phát hiện ở BIGSPY
+
+1. **Hook cho nhà phát triển rất ít:** 15 `do_action` và 35 `apply_filters` trên toàn theme, so với 127/223 của GeneratePress. Child theme và plugin gần như không có điểm móc. Muốn “khó thay thế” thì cần hệ sinh thái mở rộng được.
+2. **Chưa có lớp tương thích đa ngôn ngữ:** grep không thấy WPML hay Polylang trong mã theme. Với tên “Global” đây là thiếu sót đáng kể; cần kiểm chứng trên site có plugin trước khi kết luận là lỗi.
+3. **Chưa có chuyển chế độ sáng/tối:** grep không thấy; Neve có sẵn trong header builder.
+4. **Tuỳ chọn cấp theme** khoảng 276, thấp hơn OceanWP, Astra, Flatsome. Chưa đối chiếu từng tuỳ chọn nên chưa biết thiếu cụ thể gì; cần một phiên so danh sách nhóm.
+5. **Wishlist/so sánh:** không có trong theme (đã ghi ở G-40, vẫn cần đặc tả riêng).
+
+### Việc mới đề xuất
+
+- **G-147 · Hook cho nhà phát triển.** Thêm `do_action` trước/sau các vùng chính (header, footer, từng thành phần header, vòng lặp bài, thẻ sản phẩm, trước/sau mỗi khối `bst/*`) và `apply_filters` cho thuộc tính, class, HTML đầu ra của khối và cho danh sách tuỳ chọn. Viết `docs/HOOKS.md` sinh tự động từ mã. Không đổi đầu ra khi không ai móc vào.
+- **G-148 · Tương thích đa ngôn ngữ và plugin phổ biến.** Thử trên Playground với Polylang (miễn phí) rồi WPML nếu owner có bản quyền: chuỗi trong Customizer, header builder, form, popup, khối có văn bản; khai báo `wpml-config.xml`. Sau đó rà LiteSpeed/WP Rocket, Rank Math/Yoast theo danh sách tích hợp của Flatsome và Astra. Chỉ công bố plugin đã thử thật.
+- **G-149 · Đối chiếu tuỳ chọn cấp theme theo nhóm.** So danh sách nhóm Customizer của BIGSPY với OceanWP, Astra, Flatsome (đọc tên nhóm và nhãn, không chép mã), liệt kê tuỳ chọn BIGSPY chưa có: trợ năng, hiệu năng, chế độ sáng/tối, thành phần header (tài khoản, off-canvas, đổi bảng màu), bố cục blog/trang. Kết quả là danh sách việc, chưa lập trình.
+- **Bổ sung G-141:** thiết kế ability theo kiểu gộp của Neve (ít ability, mỗi cái nhận một schema) cho thao tác lớn, và kiểu chi tiết của Astra chỉ cho cài đặt hay dùng.
+- **Bổ sung G-143:** thêm ứng viên từ Flatsome: phân trang/tải thêm AJAX dùng chung cho lưới, khối xếp chồng (stack), nhãn (badge), tiêu đề trang, cuộn tới, lật ảnh sản phẩm.
