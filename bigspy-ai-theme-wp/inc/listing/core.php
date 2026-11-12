@@ -315,8 +315,8 @@ function bst_listing_faq( $post_id = 0 ) {
 function bst_listing_disclosure( $post_id = 0 ) {
 	$post_id = bst_listing_id( $post_id );
 	$lines   = array();
-	// Customizer > Listing design: '' shows both lines, 'sponsored' only the Sponsored line, 'none' neither
-	// (for sites that publish one disclosure page instead).
+	// Customizer > Listing design: '' (default) and 'sponsored' show only the Sponsored line, 'all' adds the
+	// affiliate commission line, 'none' shows neither (for sites that publish one disclosure page instead).
 	$show = function_exists( 'bst_mod' ) ? (string) bst_mod( 'ld_disclosure' ) : '';
 	if ( 'none' === $show ) {
 		return '';
@@ -328,7 +328,7 @@ function bst_listing_disclosure( $post_id = 0 ) {
 		/* translators: 1: sponsor name, 2: site name */
 		$lines[] = '<strong>' . esc_html__( 'Sponsored listing.', 'bigspy-ai-theme-wp' ) . '</strong> ' . esc_html( sprintf( __( '%1$s paid to be listed on %2$s. Our editorial rules still apply.', 'bigspy-ai-theme-wp' ), $sponsor, get_bloginfo( 'name' ) ) );
 	}
-	if ( 'sponsored' !== $show && bst_listing_has_affiliate( $post_id ) ) {
+	if ( 'all' === $show && bst_listing_has_affiliate( $post_id ) ) {
 		$text = esc_html__( 'We may earn a commission if you buy through links on this page, at no extra cost to you. This does not affect our editorial review.', 'bigspy-ai-theme-wp' );
 		$page = get_page_by_path( 'affiliate-disclosure' );
 		if ( $page && 'publish' === $page->post_status ) {

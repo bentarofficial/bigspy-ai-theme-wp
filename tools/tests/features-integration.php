@@ -424,10 +424,13 @@ function bst_t_listing() {
 	update_post_meta( $id, '_bigspy_paid_listing', '1' );
 	update_post_meta( $id, 'company_name', 'Acme Inc' );
 	$d = bst_listing_disclosure( $id );
-	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false !== strpos( $d, 'commission' ), 'listing: paid and affiliate disclosure' );
+	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false === strpos( $d, 'commission' ), 'listing: disclosure default is the sponsored line only' );
 	set_theme_mod( 'ld_disclosure', 'sponsored' );
 	$d = bst_listing_disclosure( $id );
 	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false === strpos( $d, 'commission' ), 'listing: disclosure sponsored line only' );
+	set_theme_mod( 'ld_disclosure', 'all' );
+	$d = bst_listing_disclosure( $id );
+	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false !== strpos( $d, 'commission' ), 'listing: paid and affiliate disclosure' );
 	set_theme_mod( 'ld_disclosure', 'none' );
 	bst_test( '' === bst_listing_disclosure( $id ), 'listing: disclosure hidden' );
 	remove_theme_mod( 'ld_disclosure' );

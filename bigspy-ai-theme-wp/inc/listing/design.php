@@ -83,7 +83,7 @@ add_filter(
 			'type'        => 'select',
 			'label'       => __( 'Disclosure line on listings', 'bigspy-ai-theme-wp' ),
 			'description' => __( 'The line under the button of sponsored and affiliate listings. Hide it when the site has its own disclosure page linked from every page.', 'bigspy-ai-theme-wp' ),
-			'choices'     => array( '' => __( 'Sponsored and affiliate lines', 'bigspy-ai-theme-wp' ), 'sponsored' => __( 'Sponsored line only', 'bigspy-ai-theme-wp' ), 'none' => __( 'Hide', 'bigspy-ai-theme-wp' ) ),
+			'choices'     => array( '' => __( 'Sponsored line only', 'bigspy-ai-theme-wp' ), 'all' => __( 'Sponsored and affiliate lines', 'bigspy-ai-theme-wp' ), 'none' => __( 'Hide', 'bigspy-ai-theme-wp' ) ),
 		);
 		return $fields;
 	}

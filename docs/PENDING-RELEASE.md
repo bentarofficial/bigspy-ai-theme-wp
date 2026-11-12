@@ -8,7 +8,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 Đã phát hành ở 1.94.0: G-134-d, khoảng cách khối, banner điện thoại. Đã phát hành ở 1.93.0: Bento/Stacking Cards options, Footer scroll effect. Đã phát hành ở 1.92.0: G-163, G-164, G-134-c. Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Đang chờ:
 
-- Không có thay đổi đang chờ.
+- **Dòng hoa hồng affiliate mặc định tắt:** Customizer → Layout → Listing design → "Disclosure line on listings" giờ mặc định "Sponsored line only" (dòng "We may earn a commission…" ẩn); thêm lựa chọn "Sponsored and affiliate lines" (giá trị `all`) để bật lại. Site đã chọn "sponsored"/"none" giữ nguyên; site để mặc định sẽ mất dòng affiliate. Kiểm thử: 4 ca `listing: disclosure` trong features-check đạt; còn FAIL banner có từ trước. Chuỗi vi đã có.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
