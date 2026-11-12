@@ -156,12 +156,14 @@
 	wp.blocks.registerBlockType('bigspy/stack-cards', { edit: function (props) {
 		return el(Fragment, null,
 			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Stacking Cards', T) },
+				control(props, 'mode', __('Layout', T), 'select', [['stack', __('Stack on scroll', T)], ['list', __('Simple list (no overlap)', T)]]),
 				control(props, 'top', __('Distance from the top (px)', T), 'range', [0, 400]),
 				control(props, 'step', __('Offset between stacked cards (px)', T), 'range', [0, 80]),
 				control(props, 'minHeight', __('Card minimum height (px)', T), 'range', [120, 1200]),
 				control(props, 'radius', __('Corner radius', T), 'range', [0, 80]),
 				control(props, 'gap', __('Space between cards', T), 'range', [0, 200]),
 				control(props, 'shadow', __('Shadow', T), 'toggle'),
+				props.attributes.shadow ? control(props, 'shadowSize', __('Shadow strength', T), 'select', [['strong', __('Strong shadow', T)], ['soft', __('Soft shadow', T)]]) : null,
 				control(props, 'scaleEffect', __('Shrink and dim cards underneath', T), 'toggle'),
 				control(props, 'label', __('Accessible label', T))
 			)),
@@ -295,6 +297,10 @@
 		return el(Fragment, null,
 			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Bento Grid', T) },
 				control(props, 'rowHeight', __('Row height (px)', T), 'range', [80, 600]), control(props, 'gap', __('Gap', T), 'range', [0, 60]), control(props, 'radius', __('Corner radius', T), 'range', [0, 60]),
+				control(props, 'fit', __('Tile height', T), 'select', [['fixed', __('Fixed rows', T)], ['content', __('Grow with content', T)]]),
+				control(props, 'contentAlign', __('Content position', T), 'select', [['end', __('Bottom', T)], ['center', __('Middle', T)], ['start', __('Top', T)]]),
+				control(props, 'dense', __('Fill gaps automatically', T), 'toggle'),
+				control(props, 'hoverLift', __('Lift tiles on hover', T), 'toggle'),
 				control(props, 'glow', __('Light follows the mouse', T), 'toggle'), control(props, 'label', __('Accessible label', T))
 			)),
 			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-bento-editor' }),

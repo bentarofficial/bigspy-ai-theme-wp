@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 add_filter(
 	'bst_defaults',
 	function ( $d ) {
-		return $d + array( 'motion_intensity' => 'normal', 'motion_style' => 'default', 'page_transition' => 'none', 'site_magnetic' => false, 'site_cursor' => false );
+		return $d + array( 'motion_intensity' => 'normal', 'motion_style' => 'default', 'page_transition' => 'none', 'site_magnetic' => false, 'site_cursor' => false, 'footer_motion' => 'none' );
 	}
 );
 
@@ -23,6 +23,7 @@ add_filter(
 		$fields[] = array( 'id' => 'page_transition', 'section' => 'bst_performance', 'type' => 'select', 'label' => __( 'Page transitions', 'bigspy-ai-theme-wp' ), 'description' => __( 'Smooth change between pages of your site, done by the browser (no script). Browsers without support simply load the next page as usual.', 'bigspy-ai-theme-wp' ), 'choices' => array( 'none' => __( 'Off', 'bigspy-ai-theme-wp' ), 'fade' => __( 'Fade', 'bigspy-ai-theme-wp' ), 'slide' => __( 'Slide up', 'bigspy-ai-theme-wp' ) ) );
 		$fields[] = array( 'id' => 'site_magnetic', 'section' => 'bst_performance', 'type' => 'checkbox', 'label' => __( 'Magnetic buttons everywhere', 'bigspy-ai-theme-wp' ), 'description' => __( 'All buttons lean towards the mouse. Computers only.', 'bigspy-ai-theme-wp' ) );
 		$fields[] = array( 'id' => 'site_cursor', 'section' => 'bst_performance', 'type' => 'checkbox', 'label' => __( 'Custom cursor', 'bigspy-ai-theme-wp' ), 'description' => __( 'A dot with a following ring that grows over links. Computers only; the normal cursor stays usable.', 'bigspy-ai-theme-wp' ) );
+		$fields[] = array( 'id' => 'footer_motion', 'section' => 'bst_footer_widgets', 'type' => 'select', 'label' => __( 'Footer scroll effect', 'bigspy-ai-theme-wp' ), 'description' => __( 'Reveal: footer columns fade up one after another when visitors reach the end. Curtain: the page slides away and uncovers the footer underneath (only when the footer fits the screen). Visitors who ask for less motion see the footer as usual.', 'bigspy-ai-theme-wp' ), 'choices' => array( 'none' => __( 'Off', 'bigspy-ai-theme-wp' ), 'reveal' => __( 'Reveal columns', 'bigspy-ai-theme-wp' ), 'curtain' => __( 'Curtain + reveal', 'bigspy-ai-theme-wp' ) ) );
 		return $fields;
 	}
 );
@@ -37,6 +38,10 @@ add_filter(
 		}
 		if ( bst_mod( 'site_cursor' ) ) {
 			$classes[] = 'bs-site-cursor';
+		}
+		$footer = bst_choice( (string) bst_mod( 'footer_motion' ), array( 'none', 'reveal', 'curtain' ), 'none' );
+		if ( 'none' !== $footer ) {
+			$classes[] = 'bs-footer-fx bs-footer-fx--' . $footer;
 		}
 		return $classes;
 	}
@@ -59,6 +64,9 @@ add_action(
 	function () {
 		if ( bst_mod( 'site_magnetic' ) || bst_mod( 'site_cursor' ) ) {
 			wp_enqueue_script( 'bst-motion-site' );
+		}
+		if ( 'none' !== bst_choice( (string) bst_mod( 'footer_motion' ), array( 'none', 'reveal', 'curtain' ), 'none' ) && bst_show_footer() ) {
+			wp_enqueue_script( 'bst-footer-motion', BST_URI . '/assets/js/footer-motion.js', array(), bst_asset_version( 'assets/js/footer-motion.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 		}
 		$fx = bst_choice( bst_mod( 'page_transition' ), array( 'none', 'fade', 'slide' ), 'none' );
 		if ( 'none' !== $fx ) {

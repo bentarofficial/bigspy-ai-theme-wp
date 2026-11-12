@@ -9650,5 +9650,58 @@ msgstr "Nền khung thông tin"
 msgid "Info box text"
 msgstr "Chữ khung thông tin"
 
-msgid "1.93.0: Blocks keep the same spacing on the published page as in the editor, so stacked blocks no longer touch, and Banners on tablets and phones grow to fit their content instead of cutting it off. Map can load on click, set its height per device and place its info box beside, above or below; Popup opens on a CSS selector, after idle time or at the end of a post, with device, login and date rules, new positions and animations; Nav menu adds dividers, accordions, click-to-open sub-menus and a mobile drawer."
-msgstr "1.93.0: Các khối giữ khoảng cách trên trang đã xuất bản giống trong trình soạn thảo, không còn dính nhau, và Banner trên máy tính bảng, điện thoại tự cao theo nội dung thay vì bị cắt. Map có thể tải khi bấm, chỉnh chiều cao theo thiết bị và đặt khung thông tin bên cạnh, phía trên hoặc dưới; Popup mở theo bộ chọn CSS, sau thời gian không thao tác hoặc cuối bài, với quy tắc thiết bị, đăng nhập, ngày, vị trí và hiệu ứng mới; Nav menu thêm vạch ngăn, accordion, mở menu con khi bấm và ngăn kéo trên điện thoại."
+msgid "1.94.0: Blocks keep the same spacing on the published page as in the editor, so stacked blocks no longer touch, and Banners on tablets and phones grow to fit their content instead of cutting it off. Map can load on click, set its height per device and place its info box beside, above or below; Popup opens on a CSS selector, after idle time or at the end of a post, with device, login and date rules, new positions and animations; Nav menu adds dividers, accordions, click-to-open sub-menus and a mobile drawer."
+msgstr "1.94.0: Các khối giữ khoảng cách trên trang đã xuất bản giống trong trình soạn thảo, không còn dính nhau, và Banner trên máy tính bảng, điện thoại tự cao theo nội dung thay vì bị cắt. Map có thể tải khi bấm, chỉnh chiều cao theo thiết bị và đặt khung thông tin bên cạnh, phía trên hoặc dưới; Popup mở theo bộ chọn CSS, sau thời gian không thao tác hoặc cuối bài, với quy tắc thiết bị, đăng nhập, ngày, vị trí và hiệu ứng mới; Nav menu thêm vạch ngăn, accordion, mở menu con khi bấm và ngăn kéo trên điện thoại."
+msgid "Stack on scroll"
+msgstr "Xếp chồng khi cuộn"
+
+msgid "Simple list (no overlap)"
+msgstr "Danh sách thường (không chồng)"
+
+msgid "Shadow strength"
+msgstr "Độ đậm bóng"
+
+msgid "Tile height"
+msgstr "Chiều cao ô"
+
+msgid "Fixed rows"
+msgstr "Hàng cố định"
+
+msgid "Grow with content"
+msgstr "Cao theo nội dung"
+
+msgid "Content position"
+msgstr "Vị trí nội dung"
+
+msgid "Bottom"
+msgstr "Dưới"
+
+msgid "Middle"
+msgstr "Giữa"
+
+msgid "Top"
+msgstr "Trên"
+
+msgid "Fill gaps automatically"
+msgstr "Tự lấp chỗ trống"
+
+msgid "Lift tiles on hover"
+msgstr "Nâng ô khi rê chuột"
+
+msgid "Footer scroll effect"
+msgstr "Hiệu ứng cuộn footer"
+
+msgid "Reveal: footer columns fade up one after another when visitors reach the end. Curtain: the page slides away and uncovers the footer underneath (only when the footer fits the screen). Visitors who ask for less motion see the footer as usual."
+msgstr "Hiện dần: các cột footer lần lượt hiện lên khi khách cuộn tới cuối trang. Kéo rèm: nội dung trang trượt lên để lộ footer bên dưới (chỉ khi footer vừa màn hình). Khách bật giảm chuyển động sẽ thấy footer như bình thường."
+
+msgid "Reveal columns"
+msgstr "Hiện dần các cột"
+
+msgid "Curtain + reveal"
+msgstr "Kéo rèm + hiện dần"
+
+msgid "Strong shadow"
+msgstr "Bóng đậm"
+
+msgid "1.93.0: Bento Grid tiles can grow with their content, place text at the top, middle or bottom, fill gaps automatically and skip the hover lift. Stacking Cards gain a Simple list layout with no overlap and a soft shadow. A new Footer scroll effect in Customizer > Footer widgets reveals the footer columns one after another, or slides the page away like a curtain to uncover the footer. Existing content looks the same until you change these options."
+msgstr "1.93.0: Ô Bento Grid có thể cao theo nội dung, đặt chữ ở trên, giữa hoặc dưới, tự lấp chỗ trống và tắt hiệu ứng nâng khi rê chuột. Stacking Cards có thêm bố cục Danh sách thường không chồng thẻ và bóng nhẹ. Mục mới Hiệu ứng cuộn footer trong Tuỳ biến > Footer widgets cho các cột footer hiện dần lần lượt, hoặc kéo nội dung trang lên như tấm rèm để lộ footer. Nội dung hiện có giữ nguyên cho tới khi bạn đổi các tuỳ chọn này."

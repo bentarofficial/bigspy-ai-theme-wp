@@ -6,10 +6,15 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
-### 1.93.0: Editor-matching block spacing, Banner fit on phones, richer Map, Popup and Nav menu
+### 1.94.0: Editor-matching block spacing, Banner fit on phones, richer Map, Popup and Nav menu
 
 - Published pages keep the editor's block spacing; Banners on phones grow to fit their content.
 - Map loads on click and sets height per device; Popup gains new triggers, rules and positions; Nav menu adds accordions and a mobile drawer.
+### 1.93.0: Calmer Bento and Stacking Cards, footer scroll effect
+
+- Bento Grid tiles can grow with content, align text, fill gaps and skip the hover lift.
+- Stacking Cards can be a simple list with no overlap, with a soft shadow.
+- Footer scroll effect in the Customizer: reveal columns, or a curtain that uncovers the footer.
 
 ### 1.92.0: Listing sidebar, disclosure switch, richer Social, Share and Payment icons
 
