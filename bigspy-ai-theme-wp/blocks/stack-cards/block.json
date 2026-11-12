@@ -49,6 +49,14 @@
 		"label": {
 			"type": "string",
 			"default": ""
+		},
+		"mode": {
+			"type": "string",
+			"default": "stack"
+		},
+		"shadowSize": {
+			"type": "string",
+			"default": "strong"
 		}
 	},
 	"supports": {

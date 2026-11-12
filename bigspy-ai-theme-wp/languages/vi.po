@@ -9481,3 +9481,54 @@ msgstr "Hiện phần này cho listing đang xem. Chưa có gì để xem trư�
 
 msgid "1.92.0: Listing pages get their own sidebar: add widgets or the new Listing sidebar block (Sponsor, Categories, Related resources), or keep the default one. The listing disclosure line can show sponsorship and affiliate notes, only the sponsorship note, or nothing. Social icons add Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps and custom links, with grid or vertical layouts, hover effects and tooltips; Share adds Telegram, Messenger, Print and floating or bottom bars; Payment icons add NAPAS, card and dark styles and your own logos."
 msgstr "1.92.0: Trang listing có sidebar riêng: thêm widget hoặc khối Listing sidebar mới (Sponsor, Categories, Related resources), hoặc giữ sidebar mặc định. Dòng công bố trên listing có thể hiện cả ghi chú tài trợ và affiliate, chỉ ghi chú tài trợ, hoặc ẩn. Social thêm Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps và liên kết tuỳ chỉnh, bố cục lưới hoặc dọc, hiệu ứng rê chuột và tooltip; Share thêm Telegram, Messenger, In và thanh nổi hoặc thanh đáy; Payment icons thêm NAPAS, kiểu thẻ và nền tối cùng logo riêng."
+
+msgid "Stack on scroll"
+msgstr "Xếp chồng khi cuộn"
+
+msgid "Simple list (no overlap)"
+msgstr "Danh sách thường (không chồng)"
+
+msgid "Shadow strength"
+msgstr "Độ đậm bóng"
+
+msgid "Tile height"
+msgstr "Chiều cao ô"
+
+msgid "Fixed rows"
+msgstr "Hàng cố định"
+
+msgid "Grow with content"
+msgstr "Cao theo nội dung"
+
+msgid "Content position"
+msgstr "Vị trí nội dung"
+
+msgid "Bottom"
+msgstr "Dưới"
+
+msgid "Middle"
+msgstr "Giữa"
+
+msgid "Top"
+msgstr "Trên"
+
+msgid "Fill gaps automatically"
+msgstr "Tự lấp chỗ trống"
+
+msgid "Lift tiles on hover"
+msgstr "Nâng ô khi rê chuột"
+
+msgid "Footer scroll effect"
+msgstr "Hiệu ứng cuộn footer"
+
+msgid "Reveal: footer columns fade up one after another when visitors reach the end. Curtain: the page slides away and uncovers the footer underneath (only when the footer fits the screen). Visitors who ask for less motion see the footer as usual."
+msgstr "Hiện dần: các cột footer lần lượt hiện lên khi khách cuộn tới cuối trang. Kéo rèm: nội dung trang trượt lên để lộ footer bên dưới (chỉ khi footer vừa màn hình). Khách bật giảm chuyển động sẽ thấy footer như bình thường."
+
+msgid "Reveal columns"
+msgstr "Hiện dần các cột"
+
+msgid "Curtain + reveal"
+msgstr "Kéo rèm + hiện dần"
+
+msgid "Strong shadow"
+msgstr "Bóng đậm"

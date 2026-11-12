@@ -8,7 +8,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 Đã phát hành ở 1.92.0: G-163, G-164, G-134-c. Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Đang chờ:
 
-- Không có thay đổi đang chờ.
+- **Bento/Stacking Cards/Footer:** Bento thêm Chiều cao ô, Vị trí nội dung, Tự lấp chỗ trống, tắt Nâng ô; Stacking Cards thêm bố cục Danh sách thường và Bóng nhẹ; Customizer > Footer widgets thêm Hiệu ứng cuộn footer (Hiện dần / Kéo rèm). Kiểm thử: lint; Playground + Chrome headless 1366px, reduced-motion tắt hiệu ứng.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

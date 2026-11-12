@@ -13005,3 +13005,42 @@ msgstr ""
 
 msgid "Add logo"
 msgstr ""
+
+msgid "Stack on scroll"
+msgstr ""
+
+msgid "Simple list (no overlap)"
+msgstr ""
+
+msgid "Shadow strength"
+msgstr ""
+
+msgid "Tile height"
+msgstr ""
+
+msgid "Fixed rows"
+msgstr ""
+
+msgid "Grow with content"
+msgstr ""
+
+msgid "Fill gaps automatically"
+msgstr ""
+
+msgid "Lift tiles on hover"
+msgstr ""
+
+msgid "Footer scroll effect"
+msgstr ""
+
+msgid "Reveal: footer columns fade up one after another when visitors reach the end. Curtain: the page slides away and uncovers the footer underneath (only when the footer fits the screen). Visitors who ask for less motion see the footer as usual."
+msgstr ""
+
+msgid "Reveal columns"
+msgstr ""
+
+msgid "Curtain + reveal"
+msgstr ""
+
+msgid "Strong shadow"
+msgstr ""
