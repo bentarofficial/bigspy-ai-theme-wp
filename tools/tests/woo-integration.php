@@ -208,6 +208,25 @@ try {
 		$lp = $lp[0];
 		$head = bst_listing_header_html( $lp );
 		bst_test( str_contains( $head, 'bst-ls-hero__title' ) && str_contains( $head, esc_html( get_the_title( $lp ) ) ), 'listing: directory layout header card' );
+		$cat = wp_insert_term( 'Sidebar Cat', 'product_cat' );
+		wp_set_object_terms( $lp, array( (int) $cat['term_id'] ), 'product_cat', true );
+		$def = bst_listing_sidebar_html( $lp );
+		bst_test( str_contains( $def, 'bst-ls-sidebar' ) && str_contains( $def, 'Sidebar Cat' ), 'listing sidebar: default parts while the widget area is empty' );
+		bst_test( 3 === bst_listing_sidebar_fill_defaults() && 0 === bst_listing_sidebar_fill_defaults(), 'listing sidebar: default blocks added once' );
+		$w = get_option( 'widget_block' );
+		$areas = wp_get_sidebars_widgets();
+		$id = (int) str_replace( 'block-', '', $areas['sidebar-listing'][1] );
+		$w[ $id ]['content'] = '<!-- wp:bst/listing-sidebar {"part":"categories","title":"Topics"} /-->';
+		update_option( 'widget_block', $w );
+		$areas['sidebar-listing'] = array( $areas['sidebar-listing'][1] );
+		wp_set_sidebars_widgets( $areas );
+		// List mode was turned on after widgets_init in this run; on a site both happen on the next page load.
+		register_sidebar( array( 'id' => 'sidebar-listing', 'name' => 'Listing page sidebar' ) );
+		$GLOBALS['wp_widget_factory']->widgets['WP_Widget_Block']->_register();
+		$cus = bst_listing_sidebar_html( $lp );
+		bst_test( str_contains( $cus, '>Topics<' ) && str_contains( $cus, 'Sidebar Cat' ) && ! str_contains( $cus, 'Related resources' ), 'listing sidebar: widget area replaces the default, custom heading');
+		$areas['sidebar-listing'] = array();
+		wp_set_sidebars_widgets( $areas );
 		$GLOBALS['wp_query']->is_product = true;
 		$GLOBALS['wp_query']->is_singular = true;
 		$GLOBALS['wp_query']->queried_object = get_post( $lp );

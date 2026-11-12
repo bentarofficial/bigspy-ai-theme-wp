@@ -21,6 +21,12 @@
 			"type": "string",
 			"default": "facebook,zalo,x,linkedin,pinterest,mail,copy"
 		},
+		"layout": { "type": "string", "default": "" },
+		"showText": { "type": "boolean", "default": false },
+		"labelPos": { "type": "string", "default": "" },
+		"color": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "" },
+		"gap": { "type": "number", "default": 0 },
 		"style": {
 			"type": "string",
 			"default": "fill"

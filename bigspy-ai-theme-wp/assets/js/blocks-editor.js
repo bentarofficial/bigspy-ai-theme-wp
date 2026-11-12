@@ -2749,19 +2749,47 @@
 	});
 
 	/* ================================================================ Social follow */
-	var NETWORKS = { facebook: 'Facebook', instagram: 'Instagram', youtube: 'YouTube', tiktok: 'TikTok', zalo: 'Zalo (link or phone)', messenger: 'Messenger', whatsapp: 'WhatsApp', x: 'X (Twitter)', linkedin: 'LinkedIn', pinterest: 'Pinterest', mail: 'Email', phone: 'Phone' };
+	var NETWORKS = { facebook: 'Facebook', instagram: 'Instagram', youtube: 'YouTube', tiktok: 'TikTok', zalo: 'Zalo (link or phone)', messenger: 'Messenger', whatsapp: 'WhatsApp', x: 'X (Twitter)', linkedin: 'LinkedIn', pinterest: 'Pinterest', mail: 'Email', phone: 'Phone', telegram: 'Telegram', threads: 'Threads', github: 'GitHub', discord: 'Discord', shopee: 'Shopee', lazada: 'Lazada', maps: 'Google Maps', website: 'Website' };
+	var NET_ICON = { maps: 'pin', website: 'globe' };
 	register('social', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
 		var set = Object.keys(NETWORKS).filter(function (k) { return a[k]; });
 		var blockProps = useBlockProps({
-			className: 'bs-follow bs-follow--' + a.style + ' bs-follow--' + a.shape + ' bs-follow--align-' + a.align + (a.brand ? ' is-brand' : ''),
-			style: styleVars({ '--bs-follow-size': a.size + 'px', '--bs-follow-gap': a.gap + 'px', '--bs-follow-color': a.color })
+			className: 'bs-follow bs-follow--' + a.style + ' bs-follow--' + a.shape + ' bs-follow--align-' + a.align + (a.brand ? ' is-brand' : '') + (a.layout ? ' bs-follow--' + a.layout : '') + (a.showText ? ' has-text' : '') + (a.hover ? ' bs-follow--hover-' + a.hover : ''),
+			style: styleVars({ '--bs-follow-size': a.size + 'px', '--bs-follow-gap': a.gap + 'px', '--bs-follow-color': a.color, '--bs-follow-bg': a.bgColor, '--bs-follow-bc': a.borderColor })
 		});
+		var custom = a.custom || [];
+		var setCustom = function (i, k, v) { var n = custom.slice(); n[i] = Object.assign({}, n[i]); n[i][k] = v; props.setAttributes({ custom: n }); };
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Profiles', 'bigspy-ai-theme-wp') },
 					Object.keys(NETWORKS).map(function (k) { return el(Text, Object.assign({ key: k, label: NETWORKS[k] }, bind(k))); })
+				),
+				el(Panel, { title: __('Custom links', 'bigspy-ai-theme-wp'), initialOpen: false },
+					custom.map(function (it, i) {
+						return el('div', { key: i, className: 'bst-il-item-panel' },
+							el(Text, { label: __('Label', 'bigspy-ai-theme-wp'), value: it.label || '', onChange: function (v) { setCustom(i, 'label', v); } }),
+							el(Text, { label: __('Link', 'bigspy-ai-theme-wp'), value: it.url || '', placeholder: 'https://', onChange: function (v) { setCustom(i, 'url', v); } }),
+							el(Text, { label: __('Icon name', 'bigspy-ai-theme-wp'), value: it.icon || '', placeholder: 'link', onChange: function (v) { setCustom(i, 'icon', v); } }),
+							el(c.ColorPalette, { value: it.color || undefined, onChange: function (v) { setCustom(i, 'color', v || ''); }, clearable: true }),
+							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { props.setAttributes({ custom: custom.filter(function (x, j) { return j !== i; }) }); } }, __('Remove', 'bigspy-ai-theme-wp'))
+						);
+					}),
+					el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { props.setAttributes({ custom: custom.concat([{ label: '', url: '', icon: 'link', color: '' }]) }); } }, __('Add custom link', 'bigspy-ai-theme-wp'))
+				),
+				el(Panel, { title: __('Layout & effects', 'bigspy-ai-theme-wp'), initialOpen: false },
+					el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: { '': __('Row', 'bigspy-ai-theme-wp'), grid: __('Grid', 'bigspy-ai-theme-wp'), vertical: __('Vertical list', 'bigspy-ai-theme-wp') } }, bind('layout'))),
+					el(Toggle, Object.assign({ label: __('Show network name next to the icon', 'bigspy-ai-theme-wp') }, bind('showText', true))),
+					el(Select, Object.assign({ label: __('Hover effect', 'bigspy-ai-theme-wp'), options: { '': __('Lift a little', 'bigspy-ai-theme-wp'), lift: __('Lift with shadow', 'bigspy-ai-theme-wp'), color: __('Change color', 'bigspy-ai-theme-wp'), rotate: __('Spin', 'bigspy-ai-theme-wp'), none: __('None', 'bigspy-ai-theme-wp') } }, bind('hover'))),
+					el(Range, Object.assign({ label: __('Icon size (px, 0 = automatic)', 'bigspy-ai-theme-wp'), max: 64, reset: 0 }, bind('iconSize'))),
+					el(Toggle, Object.assign({ label: __('Tooltip with the name on hover', 'bigspy-ai-theme-wp') }, bind('tooltip', true))),
+					el(Select, Object.assign({ label: __('Align on mobile', 'bigspy-ai-theme-wp'), options: { '': __('Same as desktop', 'bigspy-ai-theme-wp'), left: __('Left', 'bigspy-ai-theme-wp'), center: __('Center', 'bigspy-ai-theme-wp'), right: __('Right', 'bigspy-ai-theme-wp') } }, bind('alignMobile'))),
+					el(Range, Object.assign({ label: __('Gap on mobile (px, 0 = same)', 'bigspy-ai-theme-wp'), max: 40, reset: 0 }, bind('gapMobile'))),
+					el(B.ColorPanel, { title: __('Box colors', 'bigspy-ai-theme-wp'), settings: [
+						{ label: __('Background', 'bigspy-ai-theme-wp'), value: a.bgColor, onChange: function (v) { props.setAttributes({ bgColor: v || '' }); } },
+						{ label: __('Border', 'bigspy-ai-theme-wp'), value: a.borderColor, onChange: function (v) { props.setAttributes({ borderColor: v || '' }); } }
+					] })
 				),
 				el(Panel, { title: __('Style', 'bigspy-ai-theme-wp') },
 					el(Text, Object.assign({ label: __('Label before icons (optional)', 'bigspy-ai-theme-wp') }, bind('label'))),
@@ -2776,9 +2804,11 @@
 			),
 			el('div', blockProps,
 				a.label ? el('span', { className: 'bs-follow__label' }, a.label) : null,
-				set.length ? el('div', { className: 'bs-follow__icons' }, set.map(function (k) {
-					return el('span', { key: k, className: 'bs-follow__link bs-follow__link--' + k }, el(B.Icon, { name: k, size: Math.round(a.size * 0.48) }));
-				})) : el('em', null, __('Add profile links in the block settings.', 'bigspy-ai-theme-wp'))
+				set.length || custom.length ? el('div', { className: 'bs-follow__icons' }, set.map(function (k) {
+					return el('span', { key: k, className: 'bs-follow__link bs-follow__link--' + k }, el(B.Icon, { name: NET_ICON[k] || k, size: a.iconSize || Math.round(a.size * 0.48) }), a.showText ? el('span', { className: 'bs-follow__text' }, NETWORKS[k].replace(/ \(.*\)$/, '')) : null);
+				}).concat(custom.filter(function (it) { return it.url; }).map(function (it, i) {
+					return el('span', { key: 'c' + i, className: 'bs-follow__link', style: it.color ? { '--c': it.color } : undefined }, el(B.Icon, { name: it.icon || 'link', size: a.iconSize || Math.round(a.size * 0.48) }), a.showText ? el('span', { className: 'bs-follow__text' }, it.label) : null);
+				}))) : el('em', null, __('Add profile links in the block settings.', 'bigspy-ai-theme-wp'))
 			)
 		);
 	});
@@ -3858,13 +3888,13 @@
 	register('share', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var all = [['facebook', 'Facebook'], ['zalo', 'Zalo'], ['x', 'X'], ['linkedin', 'LinkedIn'], ['pinterest', 'Pinterest'], ['whatsapp', 'WhatsApp'], ['mail', 'Email'], ['copy', __('Copy link', 'bigspy-ai-theme-wp')]];
+		var all = [['facebook', 'Facebook'], ['zalo', 'Zalo'], ['x', 'X'], ['linkedin', 'LinkedIn'], ['pinterest', 'Pinterest'], ['whatsapp', 'WhatsApp'], ['mail', 'Email'], ['telegram', 'Telegram'], ['messenger', 'Messenger'], ['copy', __('Copy link', 'bigspy-ai-theme-wp')], ['print', __('Print', 'bigspy-ai-theme-wp')]];
 		var on = String(a.networks || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
 		var toggle = function (k, v) {
 			var next = all.map(function (n) { return n[0]; }).filter(function (n) { return n === k ? v : on.indexOf(n) !== -1; });
 			props.setAttributes({ networks: next.join(',') });
 		};
-		var blockProps = useBlockProps({ className: 'bs-follow bs-share-block bs-follow--' + a.style + ' bs-follow--' + a.shape + ' bs-follow--align-' + a.align + (a.brand ? ' is-brand' : ''), style: { '--bs-follow-size': a.size + 'px' } });
+		var blockProps = useBlockProps({ className: 'bs-follow bs-share-block bs-follow--' + a.style + ' bs-follow--' + a.shape + ' bs-follow--align-' + a.align + (a.brand ? ' is-brand' : '') + (a.layout ? ' bs-share--' + a.layout : '') + (a.showText ? ' has-text' : '') + (a.labelPos ? ' bs-share--label-' + a.labelPos : ''), style: { '--bs-follow-color': a.color || undefined, '--bs-follow-bg': a.bgColor || undefined, '--bs-follow-gap': a.gap ? a.gap + 'px' : undefined, '--bs-follow-size': a.size + 'px' } });
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Share buttons', 'bigspy-ai-theme-wp') },
@@ -3876,12 +3906,20 @@
 					sliderChoice(props, __('Shape', 'bigspy-ai-theme-wp'), 'shape', [['circle', __('Circle', 'bigspy-ai-theme-wp')], ['rounded', __('Rounded', 'bigspy-ai-theme-wp')], ['square', __('Square', 'bigspy-ai-theme-wp')]]),
 					el(Range, Object.assign({ label: __('Size (px)', 'bigspy-ai-theme-wp'), min: 24, max: 80 }, bind('size'))),
 					sliderChoice(props, __('Align', 'bigspy-ai-theme-wp'), 'align', [['left', __('Left', 'bigspy-ai-theme-wp')], ['center', __('Center', 'bigspy-ai-theme-wp')], ['right', __('Right', 'bigspy-ai-theme-wp')]]),
-					el(Toggle, Object.assign({ label: __('Brand colors', 'bigspy-ai-theme-wp') }, bind('brand', true)))
+					el(Toggle, Object.assign({ label: __('Brand colors', 'bigspy-ai-theme-wp') }, bind('brand', true))),
+					el(Select, Object.assign({ label: __('Position', 'bigspy-ai-theme-wp'), options: { '': __('In the content', 'bigspy-ai-theme-wp'), float: __('Floating bar on the left (bottom bar on phones)', 'bigspy-ai-theme-wp'), bottom: __('Bottom bar on phones only', 'bigspy-ai-theme-wp') } }, bind('layout'))),
+					el(Toggle, Object.assign({ label: __('Show network names (pill buttons)', 'bigspy-ai-theme-wp') }, bind('showText', true))),
+					el(Select, Object.assign({ label: __('Label position', 'bigspy-ai-theme-wp'), options: { '': __('Before the buttons', 'bigspy-ai-theme-wp'), top: __('Above the buttons', 'bigspy-ai-theme-wp'), hidden: __('Hidden (screen readers only)', 'bigspy-ai-theme-wp') } }, bind('labelPos'))),
+					el(Range, Object.assign({ label: __('Gap (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 40, reset: 0 }, bind('gap'))),
+					!a.brand ? el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
+						{ label: __('Buttons', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+						{ label: __('Background', 'bigspy-ai-theme-wp'), value: a.bgColor, onChange: function (v) { props.setAttributes({ bgColor: v || '' }); } }
+					] }) : null
 				)
 			),
 			el('div', blockProps,
 				a.label ? el('span', { className: 'bs-follow__label' }, a.label) : null,
-				el('div', { className: 'bs-follow__icons' }, on.map(function (k) { return el('span', { key: k, className: 'bs-follow__link bs-follow__link--' + k }, el(B.Icon, { name: k === 'copy' ? 'check' : k, size: Math.round(a.size * 0.45) })); }))
+				el('div', { className: 'bs-follow__icons' }, on.map(function (k) { return el('span', { key: k, className: 'bs-follow__link bs-follow__link--' + k }, el(B.Icon, { name: k === 'copy' ? (a.showText ? 'link' : 'check') : k, size: Math.round(a.size * 0.45) }), a.showText ? el('span', { className: 'bs-follow__text' }, (all.filter(function (n) { return n[0] === k; })[0] || [k, k])[1]) : null); }))
 			)
 		);
 	});

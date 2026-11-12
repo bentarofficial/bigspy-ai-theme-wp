@@ -12918,3 +12918,90 @@ msgstr ""
 
 msgid "Second line (optional)"
 msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Print"
+msgstr ""
+
+msgid "Custom links"
+msgstr ""
+
+msgid "Icon name"
+msgstr ""
+
+msgid "Add custom link"
+msgstr ""
+
+msgid "Layout & effects"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+msgid "Vertical list"
+msgstr ""
+
+msgid "Show network name next to the icon"
+msgstr ""
+
+msgid "Lift a little"
+msgstr ""
+
+msgid "Lift with shadow"
+msgstr ""
+
+msgid "Change color"
+msgstr ""
+
+msgid "Spin"
+msgstr ""
+
+msgid "Icon size (px, 0 = automatic)"
+msgstr ""
+
+msgid "Tooltip with the name on hover"
+msgstr ""
+
+msgid "In the content"
+msgstr ""
+
+msgid "Floating bar on the left (bottom bar on phones)"
+msgstr ""
+
+msgid "Bottom bar on phones only"
+msgstr ""
+
+msgid "Show network names (pill buttons)"
+msgstr ""
+
+msgid "Before the buttons"
+msgstr ""
+
+msgid "Above the buttons"
+msgstr ""
+
+msgid "Hidden (screen readers only)"
+msgstr ""
+
+msgid "Gap (px, 0 = default)"
+msgstr ""
+
+msgid "White card with border"
+msgstr ""
+
+msgid "Gray until hovered"
+msgstr ""
+
+msgid "Label before the icons (optional)"
+msgstr ""
+
+msgid "Your own logos"
+msgstr ""
+
+msgid "Name (alt text)"
+msgstr ""
+
+msgid "Add logo"
+msgstr ""

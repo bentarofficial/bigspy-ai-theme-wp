@@ -37,7 +37,7 @@ function bst_listing_design_keys() {
 add_filter(
 	'bst_defaults',
 	function ( $d ) {
-		return $d + array_fill_keys( array_keys( bst_listing_design_keys() ), '' );
+		return $d + array_fill_keys( array_keys( bst_listing_design_keys() ), '' ) + array( 'ld_disclosure' => '' );
 	}
 );
 
@@ -76,6 +76,14 @@ add_filter(
 			'type'    => 'select',
 			'label'   => __( 'Logo shape', 'bigspy-ai-theme-wp' ),
 			'choices' => array( '' => __( 'Default (rounded)', 'bigspy-ai-theme-wp' ), 'square' => __( 'Square', 'bigspy-ai-theme-wp' ), 'rounded' => __( 'Rounded', 'bigspy-ai-theme-wp' ), 'circle' => __( 'Circle', 'bigspy-ai-theme-wp' ) ),
+		);
+		$fields[] = array(
+			'id'          => 'ld_disclosure',
+			'section'     => $s,
+			'type'        => 'select',
+			'label'       => __( 'Disclosure line on listings', 'bigspy-ai-theme-wp' ),
+			'description' => __( 'The line under the button of sponsored and affiliate listings. Hide it when the site has its own disclosure page linked from every page.', 'bigspy-ai-theme-wp' ),
+			'choices'     => array( '' => __( 'Sponsored and affiliate lines', 'bigspy-ai-theme-wp' ), 'sponsored' => __( 'Sponsored line only', 'bigspy-ai-theme-wp' ), 'none' => __( 'Hide', 'bigspy-ai-theme-wp' ) ),
 		);
 		return $fields;
 	}

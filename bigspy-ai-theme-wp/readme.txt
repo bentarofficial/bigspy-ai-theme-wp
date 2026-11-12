@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.91.0
+Stable tag: 1.92.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,13 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.92.0 =
+* Listing page sidebar: new "Listing page sidebar" widget area (Appearance > Widgets, List mode). With widgets it replaces the default sidebar; empty, the default Sponsor, Categories and Related resources still show. New Listing sidebar block (bst/listing-sidebar) with three inserter variations and editable titles, and an "Add them as blocks to edit" button that copies the default parts into blocks.
+* Customizer > Layout > Listing design: "Disclosure line on listings" shows sponsorship and affiliate notes (default, as before), only the sponsorship note, or nothing. The Sponsored label on cards is unchanged.
+* Social: Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps, website and custom links (icon, URL, color), labels next to icons, grid or vertical layouts, hover effects, separate icon size, background and border colors, tooltips, mobile alignment and spacing.
+* Share: Telegram, Messenger and Print, pill buttons with text, a floating left bar (bottom bar on phones) or a phone-only bottom bar, label position, colors and spacing.
+* Payment icons: NAPAS, white bordered card and dark styles, uploaded custom logos, spacing, radius, gray-to-color on hover and a leading label.
 
 = 1.91.0 =
 * Auto detect: new "Empty categories and tags" check. Lists post categories and tags with no published content (child categories counted), plus listing categories and tags in BIGSPY AI List mode. Select and delete; default categories and terms used in a menu are kept, and every deletion is logged so the term, its parent, meta and attached drafts can be restored.

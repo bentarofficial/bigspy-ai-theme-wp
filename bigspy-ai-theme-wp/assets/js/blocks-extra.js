@@ -184,7 +184,7 @@
 	});
 
 	/* ---------------------------------------------------------------- Payment icons */
-	var PAY = [['visa', 'Visa'], ['mastercard', 'Mastercard'], ['jcb', 'JCB'], ['amex', 'American Express'], ['paypal', 'PayPal'], ['momo', 'MoMo'], ['zalopay', 'ZaloPay'], ['vnpay', 'VNPAY'], ['shopeepay', 'ShopeePay'], ['vietqr', 'VietQR'], ['bank', __('Bank transfer', T)], ['cod', 'COD'], ['applepay', 'Apple Pay'], ['googlepay', 'Google Pay']];
+	var PAY = [['visa', 'Visa'], ['mastercard', 'Mastercard'], ['jcb', 'JCB'], ['amex', 'American Express'], ['paypal', 'PayPal'], ['momo', 'MoMo'], ['zalopay', 'ZaloPay'], ['vnpay', 'VNPAY'], ['shopeepay', 'ShopeePay'], ['vietqr', 'VietQR'], ['bank', __('Bank transfer', T)], ['napas', 'NAPAS'], ['cod', 'COD'], ['applepay', 'Apple Pay'], ['googlepay', 'Google Pay']];
 	reg('bst/payment-icons', function (props) {
 		var a = props.attributes;
 		var list = a.methods || [];
@@ -194,9 +194,24 @@
 					return el(c.CheckboxControl, { key: p[0], label: p[1], checked: list.indexOf(p[0]) !== -1, onChange: function (v) { props.setAttributes({ methods: v ? list.concat([p[0]]) : list.filter(function (x) { return x !== p[0]; }) }); }, __nextHasNoMarginBottom: true });
 				})),
 				el(c.PanelBody, { title: __('Look', T) },
-					choice(props, __('Style', T), 'style', [['color', __('Brand colors', T)], ['outline', __('Outline', T)], ['mono', __('Gray', T)]]),
+					choice(props, __('Style', T), 'style', [['color', __('Brand colors', T)], ['outline', __('Outline', T)], ['mono', __('Gray', T)], ['card', __('White card with border', T)], ['dark', __('Dark', T)]]),
 					choice(props, __('Alignment', T), 'align', [['left', __('Left', T)], ['center', __('Center', T)], ['right', __('Right', T)]]),
-					range(props, __('Height (px)', T), 'size', 20, 64)
+					range(props, __('Height (px)', T), 'size', 20, 64),
+					range(props, __('Gap (px, 0 = default)', T), 'gap', 0, 40),
+					range(props, __('Corner radius (px, -1 = default)', T), 'radius', -1, 30),
+					el(c.ToggleControl, { label: __('Gray until hovered', T), checked: !!a.grayHover, onChange: function (v) { props.setAttributes({ grayHover: v }); }, __nextHasNoMarginBottom: true }),
+					el(c.TextControl, { label: __('Label before the icons (optional)', T), value: a.label || '', onChange: function (v) { props.setAttributes({ label: v }); }, __nextHasNoMarginBottom: true })
+				),
+				el(c.PanelBody, { title: __('Your own logos', T), initialOpen: false },
+					(a.customImages || []).map(function (it, i) {
+						var upd = function (patch) { var n = (a.customImages || []).slice(); n[i] = Object.assign({}, it, patch); props.setAttributes({ customImages: n }); };
+						return el('div', { key: i, className: 'bst-il-item-panel' },
+							el(B.MediaPicker, { label: __('Logo', T), id: it.imageId, url: it.imageUrl, onChange: function (m) { upd({ imageId: m.id || 0, imageUrl: m.url || '' }); } }),
+							el(c.TextControl, { label: __('Name (alt text)', T), value: it.label || '', onChange: function (v) { upd({ label: v }); }, __nextHasNoMarginBottom: true }),
+							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { props.setAttributes({ customImages: (a.customImages || []).filter(function (x, j) { return j !== i; }) }); } }, __('Remove', T))
+						);
+					}),
+					el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { props.setAttributes({ customImages: (a.customImages || []).concat([{ imageId: 0, imageUrl: '', label: '' }]) }); } }, __('Add logo', T))
 				)
 			),
 			preview('bst/payment-icons', props)
