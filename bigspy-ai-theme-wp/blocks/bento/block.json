@@ -37,6 +37,22 @@
 		"label": {
 			"type": "string",
 			"default": ""
+		},
+		"fit": {
+			"type": "string",
+			"default": "fixed"
+		},
+		"contentAlign": {
+			"type": "string",
+			"default": "end"
+		},
+		"hoverLift": {
+			"type": "boolean",
+			"default": true
+		},
+		"dense": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {
