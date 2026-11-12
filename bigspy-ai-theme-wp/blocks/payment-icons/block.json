@@ -28,6 +28,11 @@
 				"cod"
 			]
 		},
+		"customImages": { "type": "array", "default": [] },
+		"gap": { "type": "number", "default": 0 },
+		"radius": { "type": "number", "default": -1 },
+		"grayHover": { "type": "boolean", "default": false },
+		"label": { "type": "string", "default": "" },
 		"style": {
 			"type": "string",
 			"default": "color"

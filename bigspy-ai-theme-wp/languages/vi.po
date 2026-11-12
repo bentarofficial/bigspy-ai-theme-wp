@@ -9358,3 +9358,93 @@ msgstr "Dòng tài trợ và affiliate"
 
 msgid "Sponsored line only"
 msgstr "Chỉ dòng tài trợ"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Print"
+msgstr "In"
+
+msgid "Custom links"
+msgstr "Liên kết tuỳ chỉnh"
+
+msgid "Icon name"
+msgstr "Tên icon"
+
+msgid "Add custom link"
+msgstr "Thêm liên kết tuỳ chỉnh"
+
+msgid "Layout & effects"
+msgstr "Bố cục và hiệu ứng"
+
+msgid "Vertical list"
+msgstr "Danh sách dọc"
+
+msgid "Show network name next to the icon"
+msgstr "Hiện tên mạng cạnh icon"
+
+msgid "Lift a little"
+msgstr "Nhấc nhẹ"
+
+msgid "Lift with shadow"
+msgstr "Nhấc có bóng"
+
+msgid "Change color"
+msgstr "Đổi màu"
+
+msgid "Spin"
+msgstr "Xoay"
+
+msgid "Icon size (px, 0 = automatic)"
+msgstr "Cỡ icon (px, 0 = tự động)"
+
+msgid "Tooltip with the name on hover"
+msgstr "Hiện tên khi rê chuột"
+
+msgid "In the content"
+msgstr "Trong nội dung"
+
+msgid "Floating bar on the left (bottom bar on phones)"
+msgstr "Thanh nổi bên trái (thanh dưới đáy trên điện thoại)"
+
+msgid "Bottom bar on phones only"
+msgstr "Thanh dưới đáy, chỉ trên điện thoại"
+
+msgid "Show network names (pill buttons)"
+msgstr "Hiện tên mạng (nút viên thuốc)"
+
+msgid "Before the buttons"
+msgstr "Trước các nút"
+
+msgid "Above the buttons"
+msgstr "Phía trên các nút"
+
+msgid "Hidden (screen readers only)"
+msgstr "Ẩn (chỉ cho trình đọc màn hình)"
+
+msgid "Gap (px, 0 = default)"
+msgstr "Khoảng cách (px, 0 = mặc định)"
+
+msgid "White card with border"
+msgstr "Thẻ trắng có viền"
+
+msgid "Dark"
+msgstr "Tối"
+
+msgid "Gray until hovered"
+msgstr "Xám, lên màu khi rê chuột"
+
+msgid "Label before the icons (optional)"
+msgstr "Nhãn trước các icon (tuỳ chọn)"
+
+msgid "Your own logos"
+msgstr "Logo riêng"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Name (alt text)"
+msgstr "Tên (chữ thay thế)"
+
+msgid "Add logo"
+msgstr "Thêm logo"

@@ -4160,3 +4160,62 @@ body.bs-has-scroll-bg .bs-section[data-bs-scroll-bg] { background-color: transpa
 .bs-icon-list[style*="--bs-il-hover:"] .bs-icon-list__item > a:hover .bs-icon-list__text { color: var(--bs-il-hover); }
 @media (max-width: 1024px) { .bs-icon-list--columns[style*="--bs-il-cols-t:"] { grid-template-columns: repeat(var(--bs-il-cols-t), minmax(0, 1fr)); } }
 @media (max-width: 767px) { .bs-icon-list--columns[style*="--bs-il-cols-m:"] { grid-template-columns: repeat(var(--bs-il-cols-m), minmax(0, 1fr)); } }
+
+/* G-134-c Social, Share, Payment icons: text with icon, grid/vertical, hover, colors, tooltip, per-device align/gap; floating/bottom share bars; payment card/dark styles, custom images, gray hover, label. */
+.bs-follow[style*="--bs-follow-bg:"] .bs-follow__link { background: var(--bs-follow-bg); color: var(--c); }
+.bs-follow[style*="--bs-follow-bc:"] .bs-follow__link { border-color: var(--bs-follow-bc); }
+.bs-follow.has-text .bs-follow__link { display: inline-flex; gap: .45em; width: auto; padding: 0 1em 0 .8em; border-radius: 99px; font-size: 14px; font-weight: 600; }
+.bs-follow.has-text.bs-follow--rounded .bs-follow__link { border-radius: 10px; }
+.bs-follow.has-text.bs-follow--square .bs-follow__link { border-radius: 0; }
+.bs-follow--grid .bs-follow__icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(max(var(--bs-follow-size, 40px), 140px), 1fr)); width: 100%; }
+.bs-follow--grid:not(.has-text) .bs-follow__icons { grid-template-columns: repeat(auto-fill, var(--bs-follow-size, 40px)); }
+.bs-follow--vertical, .bs-follow--vertical .bs-follow__icons { flex-direction: column; align-items: flex-start; }
+.bs-follow--vertical.bs-follow--align-center, .bs-follow--vertical.bs-follow--align-center .bs-follow__icons { align-items: center; }
+.bs-follow--vertical.bs-follow--align-right, .bs-follow--vertical.bs-follow--align-right .bs-follow__icons { align-items: flex-end; }
+.bs-follow--hover-none .bs-follow__link:hover { transform: none; opacity: 1; }
+.bs-follow--hover-color .bs-follow__link:hover { transform: none; opacity: 1; background: var(--bs-follow-color, var(--bs-primary)); border-color: var(--bs-follow-color, var(--bs-primary)); color: #fff; }
+.bs-follow--hover-rotate .bs-follow__link:hover { transform: rotate(360deg); transition: transform .5s ease; }
+.bs-follow--hover-lift .bs-follow__link:hover { transform: translateY(-4px); box-shadow: 0 8px 18px -8px var(--c); }
+.bs-follow.has-tip .bs-follow__link { position: relative; }
+.bs-follow.has-tip .bs-follow__link::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%; z-index: 5; padding: 4px 8px; border-radius: 6px; background: #111827; color: #fff; font-size: 12px; font-weight: 500; white-space: nowrap; opacity: 0; transform: translate(-50%, 4px); pointer-events: none; transition: opacity .15s ease, transform .15s ease; }
+.bs-follow.has-tip .bs-follow__link:hover::after, .bs-follow.has-tip .bs-follow__link:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+.bs-follow.is-brand .bs-follow__link--telegram { --c: #229ed9; }
+.bs-follow.is-brand .bs-follow__link--threads, .bs-follow.is-brand .bs-follow__link--github { --c: #111111; }
+.bs-follow.is-brand .bs-follow__link--discord { --c: #5865f2; }
+.bs-follow.is-brand .bs-follow__link--shopee { --c: #ee4d2d; }
+.bs-follow.is-brand .bs-follow__link--lazada { --c: #0f146d; }
+.bs-follow.is-brand .bs-follow__link--maps { --c: #ea4335; }
+.bs-follow.is-brand .bs-follow__link--website { --c: #475569; }
+.bs-follow.is-brand .bs-follow__link--print { --c: #475569; }
+.bs-follow__link--print { --c: #64748b; cursor: pointer; }
+@media (max-width: 767px) {
+	.bs-follow--m-left { justify-content: flex-start; }
+	.bs-follow--m-center { justify-content: center; }
+	.bs-follow--m-right { justify-content: flex-end; }
+	.bs-follow[style*="--bs-follow-gap-m:"] .bs-follow__icons { gap: var(--bs-follow-gap-m); }
+}
+.bs-share--label-top { flex-direction: column; align-items: flex-start; }
+.bs-share--label-top.bs-follow--align-center { align-items: center; }
+.bs-share--label-hidden .bs-follow__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.bs-share--float { position: fixed; left: 12px; top: 50%; z-index: 90; flex-direction: column; margin: 0; transform: translateY(-50%); }
+.bs-share--float .bs-follow__icons { flex-direction: column; }
+.bs-share--float .bs-follow__label { display: none; }
+@media (max-width: 767px) {
+	.bs-share--float, .bs-share--bottom { position: fixed; left: 0; right: 0; top: auto; bottom: 0; z-index: 90; justify-content: center; margin: 0; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); background: var(--bs-bg, #fff); box-shadow: 0 -6px 20px -10px rgba(0, 0, 0, .3); transform: none; flex-direction: row; }
+	.bs-share--float .bs-follow__icons, .bs-share--bottom .bs-follow__icons { flex-direction: row; justify-content: center; }
+	.bs-share--bottom .bs-follow__label { display: none; }
+}
+.editor-styles-wrapper .bs-share--float, .editor-styles-wrapper .bs-share--bottom { position: static; transform: none; box-shadow: none; }
+.bs-pay-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.bs-pay-wrap--align-center { justify-content: center; }
+.bs-pay-wrap--align-right { justify-content: flex-end; }
+.bs-pay__label { font-weight: 600; }
+.bs-pay[style*="--bs-pay-gap:"] { gap: var(--bs-pay-gap); }
+.bs-pay[style*="--bs-pay-r:"] .bs-pay__item { border-radius: var(--bs-pay-r); }
+.bs-pay--style-card .bs-pay__item { color: var(--bs-pay-bg); background: #fff; border: 1px solid #e5e7eb; box-shadow: 0 2px 6px -3px rgba(15, 23, 42, .25); }
+.bs-pay--style-card .bs-pay--googlepay.bs-pay__item { color: #3c4043; }
+.bs-pay--style-dark .bs-pay__item { color: #fff; background: #1f2937; border-color: #374151; }
+.bs-pay__item--img { padding: 0 6px; background: #fff; border: 1px solid #e5e7eb; }
+.bs-pay__item--img img { display: block; width: auto; height: calc(var(--bs-pay-h, 36px) - 10px); object-fit: contain; }
+.bs-pay.is-gray-hover .bs-pay__item { filter: grayscale(1); opacity: .7; transition: filter .25s ease, opacity .25s ease; }
+.bs-pay.is-gray-hover .bs-pay__item:hover { filter: none; opacity: 1; }
