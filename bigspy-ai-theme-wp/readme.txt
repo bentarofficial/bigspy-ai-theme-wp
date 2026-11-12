@@ -15,6 +15,13 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.93.0 =
+* Block spacing: blocks in page content are spaced by the theme.json block gap on the published page, as in the editor, so stacked blocks no longer touch. Block and author margins still win; full-width sections stay flush.
+* Banner: on tablets and phones the set height is a minimum, so stacked content is never cut off.
+* Map: per-device height or aspect ratio, load on click with a placeholder, info box beside, above or below with its own colors, direction button styles, full width, border and shadow.
+* Popup: open on a CSS selector, after idle time or at the end of a post; show by device, login state and date range; side panel, thin top/bottom bar and full-screen positions; open animations, close button styles, overlay color, width, padding, shadow, border and close after form submit.
+* Nav menu: divider and vertical accordion styles, active item colors, click-to-open sub-menus, depth, mobile drawer and accordion.
+
 = 1.92.0 =
 * Listing page sidebar: new "Listing page sidebar" widget area (Appearance > Widgets, List mode). With widgets it replaces the default sidebar; empty, the default Sponsor, Categories and Related resources still show. New Listing sidebar block (bst/listing-sidebar) with three inserter variations and editable titles, and an "Add them as blocks to edit" button that copies the default parts into blocks.
 * Customizer > Layout > Listing design: "Disclosure line on listings" shows sponsorship and affiliate notes (default, as before), only the sponsorship note, or nothing. The Sponsored label on cards is unchanged.

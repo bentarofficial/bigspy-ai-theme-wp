@@ -9649,3 +9649,6 @@ msgstr "Nền khung thông tin"
 
 msgid "Info box text"
 msgstr "Chữ khung thông tin"
+
+msgid "1.93.0: Blocks keep the same spacing on the published page as in the editor, so stacked blocks no longer touch, and Banners on tablets and phones grow to fit their content instead of cutting it off. Map can load on click, set its height per device and place its info box beside, above or below; Popup opens on a CSS selector, after idle time or at the end of a post, with device, login and date rules, new positions and animations; Nav menu adds dividers, accordions, click-to-open sub-menus and a mobile drawer."
+msgstr "1.93.0: Các khối giữ khoảng cách trên trang đã xuất bản giống trong trình soạn thảo, không còn dính nhau, và Banner trên máy tính bảng, điện thoại tự cao theo nội dung thay vì bị cắt. Map có thể tải khi bấm, chỉnh chiều cao theo thiết bị và đặt khung thông tin bên cạnh, phía trên hoặc dưới; Popup mở theo bộ chọn CSS, sau thời gian không thao tác hoặc cuối bài, với quy tắc thiết bị, đăng nhập, ngày, vị trí và hiệu ứng mới; Nav menu thêm vạch ngăn, accordion, mở menu con khi bấm và ngăn kéo trên điện thoại."

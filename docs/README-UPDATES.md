@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.93.0: Editor-matching block spacing, Banner fit on phones, richer Map, Popup and Nav menu
+
+- Published pages keep the editor's block spacing; Banners on phones grow to fit their content.
+- Map loads on click and sets height per device; Popup gains new triggers, rules and positions; Nav menu adds accordions and a mobile drawer.
+
 ### 1.92.0: Listing sidebar, disclosure switch, richer Social, Share and Payment icons
 
 - Listing pages get an editable sidebar: widgets or the new Listing sidebar block, with the default kept when empty.
