@@ -34,6 +34,14 @@
 			"type": "string",
 			"default": "toggle"
 		},
+		"subOpen": { "type": "string", "default": "" },
+		"depth": { "type": "number", "default": 0 },
+		"itemPad": { "type": "number", "default": -1 },
+		"gapMobile": { "type": "number", "default": 0 },
+		"activeColor": { "type": "string", "default": "" },
+		"activeBg": { "type": "string", "default": "" },
+		"weight": { "type": "string", "default": "" },
+		"textCase": { "type": "string", "default": "" },
 		"gap": {
 			"type": "number",
 			"default": 24

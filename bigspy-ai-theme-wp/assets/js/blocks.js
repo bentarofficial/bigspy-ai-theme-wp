@@ -993,6 +993,44 @@
 			}
 		});
 
+		/* Nav menu block: sub-menus that open on click (and accordion style). */
+		root.querySelectorAll('.bs-navmenu.is-sub-click, .bs-navmenu--m-accordion').forEach(function (nav) {
+			nav.querySelectorAll('li.menu-item-has-children').forEach(function (li) {
+				if (li.querySelector(':scope > .bs-navmenu__sub-toggle')) {
+					return;
+				}
+				var btn = doc.createElement('button');
+				btn.type = 'button';
+				btn.className = 'bs-navmenu__sub-toggle';
+				btn.setAttribute('aria-expanded', 'false');
+				var link = li.querySelector(':scope > a');
+				btn.setAttribute('aria-label', (link ? link.textContent.trim() + ': ' : '') + (L.submenu || 'Sub-menu'));
+				if (link) {
+					link.after(btn);
+				}
+				btn.addEventListener('click', function () {
+					var open = li.classList.toggle('is-sub-open');
+					btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+				});
+			});
+		});
+
+		/* Map: load the iframe only after a click (privacy and speed). */
+		doc.addEventListener('click', function (e) {
+			var load = e.target.closest && e.target.closest('[data-bs-map-src]');
+			if (!load) {
+				return;
+			}
+			var frame = doc.createElement('iframe');
+			frame.src = load.getAttribute('data-bs-map-src');
+			frame.title = load.getAttribute('data-bs-map-title') || '';
+			frame.setAttribute('allowfullscreen', '');
+			frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+			load.parentNode.classList.remove('is-click-load');
+			load.replaceWith(frame);
+			frame.focus();
+		});
+
 		/* Popups */
 		var store = function (id, set) {
 			try {
@@ -1042,8 +1080,59 @@
 			var days = parseFloat(pop.getAttribute('data-frequency') || '0');
 			var seen = store(id);
 			var allowed = !days || !seen || Date.now() - seen > days * 864e5;
+			var showOn = pop.getAttribute('data-show-on');
+			if (showOn && matchMedia('(max-width: 767px)').matches !== (showOn === 'mobile')) {
+				allowed = false;
+				if (trigger !== 'button' && trigger !== 'link' && trigger !== 'selector') {
+					pop.remove();
+					return;
+				}
+			}
 			if (pop.parentNode !== doc.body) {
 				doc.body.appendChild(pop);
+			}
+			if (trigger === 'selector') {
+				var sel = pop.getAttribute('data-selector');
+				if (sel) {
+					doc.addEventListener('click', function (e) {
+						var hit = null;
+						try { hit = e.target.closest(sel); } catch (err) { hit = null; }
+						if (hit && !pop.contains(hit)) {
+							e.preventDefault();
+							openPopup(pop);
+						}
+					});
+				}
+			}
+			if (trigger === 'idle' && allowed) {
+				var idleMs = parseFloat(pop.getAttribute('data-idle') || '30') * 1000;
+				var idleTimer = null;
+				var resetIdle = function () {
+					clearTimeout(idleTimer);
+					idleTimer = setTimeout(function () {
+						['mousemove', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { removeEventListener(ev, resetIdle); });
+						openPopup(pop);
+					}, idleMs);
+				};
+				['mousemove', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { addEventListener(ev, resetIdle, { passive: true }); });
+				resetIdle();
+			}
+			if (trigger === 'end' && allowed) {
+				var mark = doc.querySelector('[data-bs-popup-end="' + id + '"]');
+				if (mark && 'IntersectionObserver' in window) {
+					var eio = new IntersectionObserver(function (entries) {
+						if (entries[0].isIntersecting) {
+							eio.disconnect();
+							openPopup(pop);
+						}
+					});
+					eio.observe(mark);
+				}
+			}
+			if (pop.getAttribute('data-close-submit') === '1') {
+				pop.addEventListener('submit', function () {
+					setTimeout(function () { if (!pop.hidden) { closePopup(pop); } }, 2500);
+				});
 			}
 			if (trigger === 'delay' && allowed) {
 				setTimeout(function () { openPopup(pop); }, parseFloat(pop.getAttribute('data-delay') || '0') * 1000);

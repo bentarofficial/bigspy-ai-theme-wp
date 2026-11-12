@@ -9481,3 +9481,171 @@ msgstr "Hiện phần này cho listing đang xem. Chưa có gì để xem trư�
 
 msgid "1.92.0: Listing pages get their own sidebar: add widgets or the new Listing sidebar block (Sponsor, Categories, Related resources), or keep the default one. The listing disclosure line can show sponsorship and affiliate notes, only the sponsorship note, or nothing. Social icons add Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps and custom links, with grid or vertical layouts, hover effects and tooltips; Share adds Telegram, Messenger, Print and floating or bottom bars; Payment icons add NAPAS, card and dark styles and your own logos."
 msgstr "1.92.0: Trang listing có sidebar riêng: thêm widget hoặc khối Listing sidebar mới (Sponsor, Categories, Related resources), hoặc giữ sidebar mặc định. Dòng công bố trên listing có thể hiện cả ghi chú tài trợ và affiliate, chỉ ghi chú tài trợ, hoặc ẩn. Social thêm Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps và liên kết tuỳ chỉnh, bố cục lưới hoặc dọc, hiệu ứng rê chuột và tooltip; Share thêm Telegram, Messenger, In và thanh nổi hoặc thanh đáy; Payment icons thêm NAPAS, kiểu thẻ và nền tối cùng logo riêng."
+
+msgid "Show the map"
+msgstr "Xem bản đồ"
+
+msgid "Sub-menu"
+msgstr "Menu con"
+
+msgid "Separated by lines"
+msgstr "Ngăn bằng vạch"
+
+msgid "Slide-in drawer"
+msgstr "Ngăn kéo trượt vào"
+
+msgid "Stacked, sub-menus fold"
+msgstr "Xếp dọc, menu con gập lại"
+
+msgid "Open sub-menus"
+msgstr "Mở menu con"
+
+msgid "On hover"
+msgstr "Khi rê chuột"
+
+msgid "On click"
+msgstr "Khi bấm"
+
+msgid "Levels shown (0 = default)"
+msgstr "Số cấp hiển thị (0 = mặc định)"
+
+msgid "Space on mobile (px, 0 = default)"
+msgstr "Khoảng cách trên điện thoại (px, 0 = mặc định)"
+
+msgid "Item padding (px, -1 = default)"
+msgstr "Đệm mỗi mục (px, -1 = mặc định)"
+
+msgid "Current page text"
+msgstr "Chữ trang hiện tại"
+
+msgid "Current page background"
+msgstr "Nền trang hiện tại"
+
+msgid "CSS selector that opens it"
+msgstr "Bộ chọn CSS để mở"
+
+msgid "For example .open-offer or #buy-now"
+msgstr "Ví dụ .open-offer hoặc #buy-now"
+
+msgid "Seconds without activity"
+msgstr "Số giây không thao tác"
+
+msgid "Click on any element (CSS selector)"
+msgstr "Bấm vào phần tử bất kỳ (bộ chọn CSS)"
+
+msgid "After no activity"
+msgstr "Sau một lúc không thao tác"
+
+msgid "When this spot is reached (place at the end of the post)"
+msgstr "Khi cuộn tới chỗ này (đặt ở cuối bài)"
+
+msgid "Who sees it"
+msgstr "Ai thấy"
+
+msgid "All devices"
+msgstr "Mọi thiết bị"
+
+msgid "Desktop and tablet only"
+msgstr "Chỉ máy tính và máy tính bảng"
+
+msgid "Phones only"
+msgstr "Chỉ điện thoại"
+
+msgid "Logged-in only"
+msgstr "Chỉ người đã đăng nhập"
+
+msgid "Logged-out only"
+msgstr "Chỉ người chưa đăng nhập"
+
+msgid "Show from (YYYY-MM-DD)"
+msgstr "Hiện từ ngày (YYYY-MM-DD)"
+
+msgid "Show until (YYYY-MM-DD)"
+msgstr "Hiện đến ngày (YYYY-MM-DD)"
+
+msgid "Close a few seconds after a form is sent"
+msgstr "Tự đóng vài giây sau khi gửi form"
+
+msgid "Side panel left"
+msgstr "Bảng bên trái"
+
+msgid "Thin bar at the top (no overlay)"
+msgstr "Thanh mỏng ở trên (không phủ nền)"
+
+msgid "Thin bar at the bottom (no overlay)"
+msgstr "Thanh mỏng ở dưới (không phủ nền)"
+
+msgid "Full screen, content centered"
+msgstr "Toàn màn hình, nội dung ở giữa"
+
+msgid "Opening effect"
+msgstr "Hiệu ứng mở"
+
+msgid "Rise"
+msgstr "Nổi lên"
+
+msgid "Width (px, 0 = by size)"
+msgstr "Bề rộng (px, 0 = theo kích thước)"
+
+msgid "Large"
+msgstr "Lớn"
+
+msgid "Close button"
+msgstr "Nút đóng"
+
+msgid "Plain ×"
+msgstr "× đơn giản"
+
+msgid "× in a circle"
+msgstr "× trong vòng tròn"
+
+msgid "“Close ×” text"
+msgstr "Chữ “Đóng ×”"
+
+msgid "Close button position"
+msgstr "Vị trí nút đóng"
+
+msgid "Outside the corner"
+msgstr "Ngoài góc"
+
+msgid "Overlay color"
+msgstr "Màu lớp phủ"
+
+msgid "Height on tablet (px, 0 = same)"
+msgstr "Chiều cao trên máy tính bảng (px, 0 = như máy tính)"
+
+msgid "Height on mobile (px, 0 = same)"
+msgstr "Chiều cao trên điện thoại (px, 0 = như máy tính)"
+
+msgid "Aspect ratio (instead of height)"
+msgstr "Tỉ lệ khung (thay cho chiều cao)"
+
+msgid "Load the map only after a click"
+msgstr "Chỉ tải bản đồ khi bấm"
+
+msgid "Placeholder image"
+msgstr "Ảnh giữ chỗ"
+
+msgid "Info box beside the map (left)"
+msgstr "Khung thông tin cạnh bản đồ (trái)"
+
+msgid "Info box beside the map (right)"
+msgstr "Khung thông tin cạnh bản đồ (phải)"
+
+msgid "Info box above the map"
+msgstr "Khung thông tin trên bản đồ"
+
+msgid "Info box below the map"
+msgstr "Khung thông tin dưới bản đồ"
+
+msgid "Directions button"
+msgstr "Nút chỉ đường"
+
+msgid "Full width"
+msgstr "Toàn chiều rộng"
+
+msgid "Info box background"
+msgstr "Nền khung thông tin"
+
+msgid "Info box text"
+msgstr "Chữ khung thông tin"

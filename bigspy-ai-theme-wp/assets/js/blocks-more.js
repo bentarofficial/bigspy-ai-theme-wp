@@ -302,12 +302,18 @@
 					el('p', { className: 'description' }, el('a', { href: (window.ajaxurl || '/wp-admin/admin-ajax.php').replace('admin-ajax.php', 'nav-menus.php'), target: '_blank' }, __('Edit menus', T))),
 					choice(props, __('Layout', T), 'layout', [['horizontal', __('Horizontal', T)], ['vertical', __('Vertical (sidebar)', T)]]),
 					choice(props, __('Alignment', T), 'align', [['left', __('Left', T)], ['center', __('Center', T)], ['right', __('Right', T)]]),
-					choice(props, __('Style', T), 'style', [['plain', __('Plain', T)], ['underline', __('Underline on hover', T)], ['pill', __('Pill on hover', T)], ['boxed', __('Boxed items', T)]]),
-					choice(props, __('On phones', T), 'mobile', [['toggle', __('Collapse behind a Menu button', T)], ['stack', __('Stack items', T)], ['scroll', __('Scroll sideways', T)]]),
+					choice(props, __('Style', T), 'style', [['plain', __('Plain', T)], ['underline', __('Underline on hover', T)], ['pill', __('Pill on hover', T)], ['boxed', __('Boxed items', T)], ['divider', __('Separated by lines', T)], ['accordion', __('Vertical accordion', T)]]),
+					choice(props, __('On phones', T), 'mobile', [['toggle', __('Collapse behind a Menu button', T)], ['drawer', __('Slide-in drawer', T)], ['accordion', __('Stacked, sub-menus fold', T)], ['stack', __('Stack items', T)], ['scroll', __('Scroll sideways', T)]]),
+					choice(props, __('Open sub-menus', T), 'subOpen', [['', __('On hover', T)], ['click', __('On click', T)]]),
+					range(props, __('Levels shown (0 = default)', T), 'depth', 0, 4),
 					range(props, __('Space between items (px)', T), 'gap', 0, 60),
-					range(props, __('Font size (px, 0 = default)', T), 'size', 0, 32)
+					range(props, __('Space on mobile (px, 0 = default)', T), 'gapMobile', 0, 60),
+					range(props, __('Item padding (px, -1 = default)', T), 'itemPad', -1, 40),
+					range(props, __('Font size (px, 0 = default)', T), 'size', 0, 32),
+					choice(props, __('Font weight', T), 'weight', [['', __('Theme default', T)], ['400', __('Regular', T)], ['500', __('Medium', T)], ['600', __('Semi bold', T)], ['700', __('Bold', T)], ['800', __('Extra bold', T)]]),
+					choice(props, __('Letter case', T), 'textCase', [['', __('Theme default', T)], ['uppercase', __('UPPERCASE', T)], ['capitalize', __('Capitalize', T)], ['none', __('As typed', T)]])
 				),
-				colors(props, [[__('Link', T), 'color'], [__('Hover', T), 'hover']])
+				colors(props, [[__('Link', T), 'color'], [__('Hover', T), 'hover'], [__('Current page text', T), 'activeColor'], [__('Current page background', T), 'activeBg']])
 			),
 			preview('bst/nav-menu', props)
 		);

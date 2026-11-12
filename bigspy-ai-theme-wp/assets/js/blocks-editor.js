@@ -2605,7 +2605,7 @@
 	register('map', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({ className: 'bs-map' + (a.grayscale ? ' is-grayscale' : '') + ((a.boxTitle || a.boxText) ? ' has-box bs-map--box-' + (a.boxPosition || 'left') : ''), style: { '--bs-map-h': a.height + 'px', '--bs-map-radius': a.radius + 'px' } });
+		var blockProps = useBlockProps({ className: 'bs-map' + (a.grayscale ? ' is-grayscale' : '') + ((a.boxTitle || a.boxText) ? ' has-box bs-map--box-' + (a.boxPosition || 'left') : '') + (a.ratio ? ' has-ratio' : '') + (a.shadow ? ' has-shadow' : '') + (a.fullWidth ? ' bs-map--full' : ''), style: styleVars({ '--bs-map-h': a.height + 'px', '--bs-map-radius': a.radius + 'px', '--bs-map-ratio': a.ratio, '--bs-map-bbg': a.boxBg, '--bs-map-bc': a.boxColor, '--bs-map-bdc': a.borderColor, '--bs-map-bw': a.borderWidth ? a.borderWidth + 'px' : '' }) });
 		var embedSrc = '';
 		var embedOk = null;
 		if (a.embed && a.embed.trim()) {
@@ -2634,13 +2634,27 @@
 					el(Toggle, Object.assign({ label: __('Black & white map', 'bigspy-ai-theme-wp') }, bind('grayscale', true))),
 					el(Range, Object.assign({ label: __('Zoom', 'bigspy-ai-theme-wp'), min: 1, max: 21 }, bind('zoom'))),
 					el(Range, Object.assign({ label: __('Height (px)', 'bigspy-ai-theme-wp'), min: 150, max: 1000 }, bind('height'))),
-					el(Range, Object.assign({ label: __('Corner radius (px)', 'bigspy-ai-theme-wp'), max: 60 }, bind('radius')))
+					el(Range, Object.assign({ label: __('Corner radius (px)', 'bigspy-ai-theme-wp'), max: 60 }, bind('radius'))),
+					el(Range, Object.assign({ label: __('Height on tablet (px, 0 = same)', 'bigspy-ai-theme-wp'), max: 1200, reset: 0 }, bind('heightTablet'))),
+					el(Range, Object.assign({ label: __('Height on mobile (px, 0 = same)', 'bigspy-ai-theme-wp'), max: 1200, reset: 0 }, bind('heightMobile'))),
+					el(Select, Object.assign({ label: __('Aspect ratio (instead of height)', 'bigspy-ai-theme-wp'), options: { '': '—', '16/9': '16:9', '21/9': '21:9', '4/3': '4:3', '1/1': '1:1', '3/4': '3:4' } }, bind('ratio'))),
+					el(Toggle, Object.assign({ label: __('Load the map only after a click', 'bigspy-ai-theme-wp') }, bind('clickToLoad', true))),
+					a.clickToLoad ? el(B.MediaPicker, { label: __('Placeholder image', 'bigspy-ai-theme-wp'), id: a.placeholderId, url: a.placeholderUrl, onChange: function (m) { props.setAttributes({ placeholderId: m.id || 0, placeholderUrl: m.url || '' }); } }) : null,
+					el(Toggle, Object.assign({ label: __('Full width', 'bigspy-ai-theme-wp') }, bind('fullWidth', true))),
+					el(Toggle, Object.assign({ label: __('Shadow', 'bigspy-ai-theme-wp') }, bind('shadow', true))),
+					el(Range, Object.assign({ label: __('Border width (px)', 'bigspy-ai-theme-wp'), max: 10 }, bind('borderWidth')))
 				),
 				el(Panel, { title: __('Info box on the map', 'bigspy-ai-theme-wp'), initialOpen: false },
 					el(Text, Object.assign({ label: __('Title (e.g. shop name)', 'bigspy-ai-theme-wp') }, bind('boxTitle'))),
 					el(c.TextareaControl, { label: __('Text (address, hours, phone)', 'bigspy-ai-theme-wp'), value: a.boxText, onChange: function (v) { props.setAttributes({ boxText: v }); }, __nextHasNoMarginBottom: true }),
-					sliderChoice(props, __('Position', 'bigspy-ai-theme-wp'), 'boxPosition', [['left', __('Left', 'bigspy-ai-theme-wp')], ['right', __('Right', 'bigspy-ai-theme-wp')]]),
-					el(Toggle, Object.assign({ label: __('“Get directions” button', 'bigspy-ai-theme-wp') }, bind('directions', true)))
+					el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: { left: __('Left', 'bigspy-ai-theme-wp'), right: __('Right', 'bigspy-ai-theme-wp'), side: __('Info box beside the map (left)', 'bigspy-ai-theme-wp'), 'side-right': __('Info box beside the map (right)', 'bigspy-ai-theme-wp'), top: __('Info box above the map', 'bigspy-ai-theme-wp'), bottom: __('Info box below the map', 'bigspy-ai-theme-wp') } }, bind('boxPosition'))),
+					el(Toggle, Object.assign({ label: __('“Get directions” button', 'bigspy-ai-theme-wp') }, bind('directions', true))),
+					el(Select, Object.assign({ label: __('Directions button', 'bigspy-ai-theme-wp'), options: { '': __('Solid', 'bigspy-ai-theme-wp'), outline: __('Outline', 'bigspy-ai-theme-wp'), link: __('Text link', 'bigspy-ai-theme-wp') } }, bind('btnStyle'))),
+					el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
+						{ label: __('Info box background', 'bigspy-ai-theme-wp'), value: a.boxBg, onChange: function (v) { props.setAttributes({ boxBg: v || '' }); } },
+						{ label: __('Info box text', 'bigspy-ai-theme-wp'), value: a.boxColor, onChange: function (v) { props.setAttributes({ boxColor: v || '' }); } },
+						{ label: __('Border', 'bigspy-ai-theme-wp'), value: a.borderColor, onChange: function (v) { props.setAttributes({ borderColor: v || '' }); } }
+					] })
 				)
 			),
 			el('div', blockProps,

@@ -13005,3 +13005,159 @@ msgstr ""
 
 msgid "Add logo"
 msgstr ""
+
+msgid "Show the map"
+msgstr ""
+
+msgid "Sub-menu"
+msgstr ""
+
+msgid "Separated by lines"
+msgstr ""
+
+msgid "Vertical accordion"
+msgstr ""
+
+msgid "Slide-in drawer"
+msgstr ""
+
+msgid "Stacked, sub-menus fold"
+msgstr ""
+
+msgid "Open sub-menus"
+msgstr ""
+
+msgid "On click"
+msgstr ""
+
+msgid "Levels shown (0 = default)"
+msgstr ""
+
+msgid "Space on mobile (px, 0 = default)"
+msgstr ""
+
+msgid "Item padding (px, -1 = default)"
+msgstr ""
+
+msgid "Current page text"
+msgstr ""
+
+msgid "Current page background"
+msgstr ""
+
+msgid "CSS selector that opens it"
+msgstr ""
+
+msgid "For example .open-offer or #buy-now"
+msgstr ""
+
+msgid "Seconds without activity"
+msgstr ""
+
+msgid "Click on any element (CSS selector)"
+msgstr ""
+
+msgid "After no activity"
+msgstr ""
+
+msgid "When this spot is reached (place at the end of the post)"
+msgstr ""
+
+msgid "Who sees it"
+msgstr ""
+
+msgid "Desktop and tablet only"
+msgstr ""
+
+msgid "Phones only"
+msgstr ""
+
+msgid "Logged-in only"
+msgstr ""
+
+msgid "Logged-out only"
+msgstr ""
+
+msgid "Show from (YYYY-MM-DD)"
+msgstr ""
+
+msgid "Show until (YYYY-MM-DD)"
+msgstr ""
+
+msgid "Close a few seconds after a form is sent"
+msgstr ""
+
+msgid "Side panel left"
+msgstr ""
+
+msgid "Thin bar at the top (no overlay)"
+msgstr ""
+
+msgid "Thin bar at the bottom (no overlay)"
+msgstr ""
+
+msgid "Full screen, content centered"
+msgstr ""
+
+msgid "Opening effect"
+msgstr ""
+
+msgid "Rise"
+msgstr ""
+
+msgid "Slide up"
+msgstr ""
+
+msgid "Width (px, 0 = by size)"
+msgstr ""
+
+msgid "Close button"
+msgstr ""
+
+msgid "Plain ×"
+msgstr ""
+
+msgid "× in a circle"
+msgstr ""
+
+msgid "“Close ×” text"
+msgstr ""
+
+msgid "Close button position"
+msgstr ""
+
+msgid "Outside the corner"
+msgstr ""
+
+msgid "Height on tablet (px, 0 = same)"
+msgstr ""
+
+msgid "Aspect ratio (instead of height)"
+msgstr ""
+
+msgid "Load the map only after a click"
+msgstr ""
+
+msgid "Placeholder image"
+msgstr ""
+
+msgid "Info box beside the map (left)"
+msgstr ""
+
+msgid "Info box beside the map (right)"
+msgstr ""
+
+msgid "Info box above the map"
+msgstr ""
+
+msgid "Info box below the map"
+msgstr ""
+
+msgid "Directions button"
+msgstr ""
+
+msgid "Info box background"
+msgstr ""
+
+msgid "Info box text"
+msgstr ""
