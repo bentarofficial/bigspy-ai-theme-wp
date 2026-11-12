@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.94.1 =
+* Fix: a script error on every page ("root is not defined", added with the Nav menu click sub-menus in 1.94.0) stopped the block scripts that run after it.
+
 = 1.94.0 =
 * Block spacing: blocks in page content are spaced by the theme.json block gap on the published page, as in the editor, so stacked blocks no longer touch. Block and author margins still win; full-width sections stay flush.
 * Banner: on tablets and phones the set height is a minimum, so stacked content is never cut off.

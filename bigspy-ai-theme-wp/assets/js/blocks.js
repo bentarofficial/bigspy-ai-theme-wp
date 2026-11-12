@@ -994,7 +994,7 @@
 		});
 
 		/* Nav menu block: sub-menus that open on click (and accordion style). */
-		root.querySelectorAll('.bs-navmenu.is-sub-click, .bs-navmenu--m-accordion').forEach(function (nav) {
+		doc.querySelectorAll('.bs-navmenu.is-sub-click, .bs-navmenu--m-accordion').forEach(function (nav) {
 			nav.querySelectorAll('li.menu-item-has-children').forEach(function (li) {
 				if (li.querySelector(':scope > .bs-navmenu__sub-toggle')) {
 					return;
