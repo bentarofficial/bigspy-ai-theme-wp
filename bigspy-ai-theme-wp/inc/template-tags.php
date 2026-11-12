@@ -25,7 +25,7 @@ function bst_layout_close() {
 		$is_shop_sidebar = function_exists( 'is_woocommerce' ) && ! is_product() && ( is_shop() || is_product_taxonomy() );
 		$sidebar_id      = $is_shop_sidebar ? 'bs-shop-sidebar' : 'bs-layout-sidebar';
 		$sidebar_class   = 'bs-layout__sidebar widget-area' . ( $is_shop_sidebar ? ' bs-shop-sidebar' : '' );
-		echo '<aside id="' . esc_attr( $sidebar_id ) . '" class="' . esc_attr( $sidebar_class ) . '" aria-label="' . esc_attr( $is_shop_sidebar ? __( 'Product filters and shop widgets', 'bigspy-ai-theme-wp' ) : __( 'Sidebar', 'bigspy-ai-theme-wp' ) ) . '"' . ( $is_shop_sidebar ? ' tabindex="-1"' : '' ) . '>';
+		echo '<aside id="' . esc_attr( $sidebar_id ) . '" class="' . esc_attr( $sidebar_class ) . '" aria-label="' . esc_attr( $is_shop_sidebar ? __( 'Product filters and shop widgets', 'bigspy-ai-theme-wp' ) : __( 'Sidebar', 'bigspy-ai-theme-wp' ) ) . '"' . ( $is_shop_sidebar ? ' tabindex="-1"' : '' ) . bst_sidebar_edit_attr( $id ) . '>';
 		if ( is_active_sidebar( $id ) ) {
 			dynamic_sidebar( $id );
 		} elseif ( current_user_can( 'edit_theme_options' ) ) {
@@ -278,6 +278,7 @@ function bst_post_card( $args = array() ) {
 	}
 	$heading = bst_choice( $args['heading'], array( 'h2', 'h3', 'h4', 'h5' ), 'h2' );
 	?>
+	<?php do_action( 'bst_before_post_card', $args ); ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'bs-card bs-card--' . sanitize_html_class( $args['style'] ) ); ?>>
 		<?php if ( $args['image'] && has_post_thumbnail() ) : ?>
 			<a class="bs-card__media bs-ratio bs-ratio--<?php echo esc_attr( $args['ratio'] ); ?>" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
@@ -316,6 +317,7 @@ function bst_post_card( $args = array() ) {
 		</div>
 	</article>
 	<?php
+	do_action( 'bst_after_post_card', $args );
 }
 
 function bst_pagination() {

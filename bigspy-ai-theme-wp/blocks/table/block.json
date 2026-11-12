@@ -46,6 +46,21 @@
 			"type": "string",
 			"default": ""
 		},
+		"tableStyle": { "type": "string", "default": "" },
+		"headBg": { "type": "string", "default": "" },
+		"headColor": { "type": "string", "default": "" },
+		"stickyHead": { "type": "boolean", "default": false },
+		"stickyCol": { "type": "boolean", "default": false },
+		"mobile": { "type": "string", "default": "scroll" },
+		"highlightCol": { "type": "number", "default": 0 },
+		"marks": { "type": "boolean", "default": false },
+		"hoverRow": { "type": "boolean", "default": false },
+		"cellPad": { "type": "number", "default": 0 },
+		"radius": { "type": "number", "default": -1 },
+		"colAlign": { "type": "string", "default": "" },
+		"colWidth": { "type": "string", "default": "" },
+		"sortable": { "type": "boolean", "default": false },
+		"search": { "type": "boolean", "default": false },
 		"size": {
 			"type": "number",
 			"default": 15

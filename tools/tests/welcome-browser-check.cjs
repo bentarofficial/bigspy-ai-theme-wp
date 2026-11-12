@@ -1,5 +1,5 @@
 /* Disposable localhost Playground only. No real provider requests or credentials. */
-const {chromium}=require('C:/Users/DELL/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const {chromium}=require('../lib/env.cjs').playwright();
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');

@@ -13,7 +13,7 @@ if ( '' === trim( wp_strip_all_tags( $text ) ) ) {
 	return;
 }
 
-$style = bst_choice( $a['style'] ?? 'primary', array( 'primary', 'secondary', 'outline', 'white', 'link', 'gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass' ), 'primary' );
+$style = bst_choice( $a['style'] ?? 'primary', array( 'primary', 'secondary', 'outline', 'white', 'link', 'gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass', 'pop3d', 'neon', 'dotted', 'slide', 'arrow-circle' ), 'primary' );
 $scheme = bst_choice( $a['scheme'] ?? '', array( '', 'primary', 'secondary', 'success', 'alert', 'warning', 'dark', 'white' ), '' );
 $effect = bst_choice( $a['hoverEffect'] ?? '', array( '', 'lift', 'grow', 'shine', 'pulse', 'fill', 'icon-move', 'icon-reveal' ), '' );
 $size  = bst_choice( $a['size'] ?? 'md', array( 'xs', 'sm', 'md', 'lg', 'xl' ), 'md' );
@@ -30,9 +30,11 @@ $colors  = bst_style_vars(
 		'--bsb-bc'  => bst_block_color( $a, 'borderColor' ),
 		'--bsb-hbg' => bst_block_color( $a, 'hoverBg' ),
 		'--bsb-hc'  => bst_block_color( $a, 'hoverText' ),
+		'--bsb-hbc' => bst_block_color( $a, 'hoverBorder' ),
+		'--bsb-hsh' => ( $hs = bst_block_color( $a, 'hoverShadow' ) ) ? '0 10px 26px -6px ' . $hs : '',
 	)
 );
-if ( $colors || $scheme || in_array( $style, array( 'gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass' ), true ) ) {
+if ( $colors || $scheme || in_array( $style, array( 'gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass', 'pop3d', 'neon', 'dotted', 'slide', 'arrow-circle' ), true ) ) {
 	$classes .= ' has-custom-colors';
 }
 if ( $scheme ) {
@@ -81,13 +83,36 @@ if ( $grad ) {
 if ( $colors ) {
 	$css     .= ( $css ? ';' : '' ) . $colors;
 }
+foreach ( array( 'widthTablet' => 't', 'widthMobile' => 'm' ) as $wk => $wd ) {
+	$wv = bst_choice( $a[ $wk ] ?? '', array( '', 'auto', 'full' ), '' );
+	if ( $wv ) {
+		$classes .= ' bs-btn--' . $wd . '-' . $wv;
+	}
+}
+if ( 'arrow-circle' === $style ) {
+	$icon  = $icon ? $icon : bst_icon( 'arrow-right', 'lg' === $size ? 20 : 17 );
+	$after = true;
+}
+$icon_only = ! empty( $a['iconOnly'] ) && $icon;
+if ( $icon_only ) {
+	$classes .= ' bs-btn--icon-only';
+	if ( empty( $a['ariaLabel'] ) ) {
+		$a['ariaLabel'] = wp_strip_all_tags( $text );
+	}
+}
 $case = bst_choice( $a['letterCase'] ?? '', array( '', 'uppercase', 'none', 'capitalize' ), '' );
 if ( $case ) {
 	$classes .= ' bs-btn--case-' . $case;
 }
 $sub     = trim( (string) ( $a['subtext'] ?? '' ) );
 $inner   = '' !== $sub ? '<span class="bs-btn__text"><span>' . $text . '</span><small class="bs-btn__sub">' . esc_html( $sub ) . '</small></span>' : '<span>' . $text . '</span>';
-$label   = ( $icon && ! $after ? $icon : '' ) . $inner . ( $icon && $after ? $icon : '' );
+$label   = $icon_only ? $icon : ( $icon && ! $after ? $icon : '' ) . $inner . ( $icon && $after ? $icon : '' );
+$badge   = trim( (string) ( $a['badge'] ?? '' ) );
+if ( '' !== $badge ) {
+	$bc     = bst_block_color( $a, 'badgeColor' );
+	$label .= '<span class="bs-btn__badge"' . ( $bc ? ' style="background:' . esc_attr( $bc ) . '"' : '' ) . '>' . esc_html( $badge ) . '</span>';
+	$classes .= ' has-badge';
+}
 $extra   = array( 'class' => $classes, 'style' => $css );
 if ( ! empty( $a['ariaLabel'] ) ) {
 	$extra['aria-label'] = sanitize_text_field( $a['ariaLabel'] );

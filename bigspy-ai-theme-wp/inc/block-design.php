@@ -153,19 +153,239 @@ function bst_design_rules( $d, $suffix ) {
 		}
 		$br = bst_design_len( $d['br'] ?? '' );
 		if ( '' !== $br ) {
-			$out[] = "border-radius:$br;overflow:hidden";
+			$out[] = "border-radius:$br" . ( bst_design_overflow( $d ) ? '' : ';overflow:hidden' ); // Legacy: radius clips unless Overflow is chosen.
 		}
 		$shadows = bst_design_shadows();
 		$depth   = absint( $d['depth'] ?? 0 );
-		if ( isset( $shadows[ $depth ] ) ) {
+		if ( isset( $shadows[ $depth ] ) && '' === bst_design_custom_shadow( $d ) ) {
 			$out[] = 'box-shadow:' . $shadows[ $depth ];
 		}
 		if ( isset( $d['z'] ) && '' !== $d['z'] && is_numeric( $d['z'] ) ) {
 			$out[] = 'position:relative;z-index:' . (int) $d['z'];
 		}
 		if ( bst_design_has_hover( $d ) ) {
-			$out[] = 'transition:background-color .3s ease,color .3s ease,border-color .3s ease,border-radius .3s ease,box-shadow .3s ease,transform .3s ease';
+			$t     = bst_design_num( $d['tdur'] ?? '', 0, 5000 );
+			$t     = '' === $t ? '.3s' : $t . 'ms';
+			$out[] = "transition:background-color $t ease,color $t ease,border-color $t ease,border-radius $t ease,box-shadow $t ease,transform $t ease";
 		}
+	}
+	return array_merge( $out, bst_design_rules_extra( $d, $suffix ) );
+}
+
+/** Number within a range, or '' when unset/invalid. */
+function bst_design_num( $value, $min, $max ) {
+	if ( ! is_numeric( $value ) ) {
+		return '';
+	}
+	return (string) ( max( $min, min( $max, $value + 0 ) ) );
+}
+
+/** Chosen Overflow value or ''. */
+function bst_design_overflow( $d ) {
+	return in_array( $d['ov'] ?? '', array( 'visible', 'hidden', 'clip' ), true ) ? $d['ov'] : '';
+}
+
+/** Custom box-shadow (x, y, blur, spread, color, inset) or ''. */
+function bst_design_custom_shadow( $d ) {
+	$c = bst_design_color( $d['shc'] ?? '' );
+	if ( '' === $c ) {
+		return '';
+	}
+	$parts = array();
+	foreach ( array( 'shx', 'shy', 'shb', 'shs' ) as $k ) {
+		$n       = bst_design_num( $d[ $k ] ?? 0, -200, 200 );
+		$parts[] = ( '' === $n || '0' === $n ) ? '0' : $n . 'px';
+	}
+	return ( ! empty( $d['shi'] ) ? 'inset ' : '' ) . implode( ' ', $parts ) . ' ' . $c;
+}
+
+/** Transform parts (translate, rotate, skew) from keys "<prefix>tx", "ty", "rot", "skx". */
+function bst_design_transform( $d, $prefix ) {
+	$t = array();
+	$x = bst_design_len( $d[ $prefix . 'tx' ] ?? '' );
+	$y = bst_design_len( $d[ $prefix . 'ty' ] ?? '' );
+	if ( '' !== $x || '' !== $y ) {
+		$t[] = 'translate(' . ( '' === $x ? '0' : $x ) . ',' . ( '' === $y ? '0' : $y ) . ')';
+	}
+	$r = bst_design_num( $d[ $prefix . 'rot' ] ?? '', -360, 360 );
+	if ( '' !== $r && '0' !== $r ) {
+		$t[] = "rotate({$r}deg)";
+	}
+	$k = bst_design_num( $d[ $prefix . 'skx' ] ?? '', -60, 60 );
+	if ( '' !== $k && '0' !== $k ) {
+		$t[] = "skewX({$k}deg)";
+	}
+	return $t;
+}
+
+/** Shape masks. */
+function bst_design_masks() {
+	return array(
+		'circle'  => 'clip-path:circle(50% at 50% 50%)',
+		'ellipse' => 'clip-path:ellipse(50% 50% at 50% 50%)',
+		'arch'    => 'clip-path:inset(0 round 9999px 9999px 0 0)',
+		'blob'    => 'border-radius:42% 58% 63% 37%/41% 44% 56% 59%;overflow:hidden',
+		'hexagon' => 'clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)',
+		'diamond' => 'clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)',
+	);
+}
+
+/** Safe image URL for CSS url(""), or ''. */
+function bst_design_url( $value ) {
+	$url = esc_url_raw( trim( (string) $value ) );
+	if ( '' === $url || strpbrk( $url, "\"'()\\ <>\t\n" ) ) {
+		return '';
+	}
+	return $url;
+}
+
+/** Linear or radial gradient from 2–3 colours, or ''. */
+function bst_design_gradient( $d ) {
+	$type = $d['gt'] ?? '';
+	if ( ! in_array( $type, array( 'linear', 'radial' ), true ) ) {
+		return '';
+	}
+	$colors = array_values( array_filter( array( bst_design_color( $d['g1'] ?? '' ), bst_design_color( $d['g2'] ?? '' ), bst_design_color( $d['g3'] ?? '' ) ) ) );
+	if ( count( $colors ) < 2 ) {
+		return '';
+	}
+	if ( 'radial' === $type ) {
+		return 'radial-gradient(circle,' . implode( ',', $colors ) . ')';
+	}
+	$angle = bst_design_num( $d['ga'] ?? '', 0, 360 );
+	return 'linear-gradient(' . ( '' === $angle ? '180' : $angle ) . 'deg,' . implode( ',', $colors ) . ')';
+}
+
+/** Declarations added by G-130; all off by default, so older designs print the same CSS. */
+function bst_design_rules_extra( $d, $suffix ) {
+	$out    = array();
+	$bstyle = in_array( $d['bs'] ?? '', array( 'solid', 'dashed', 'dotted', 'double' ), true ) ? $d['bs'] : 'solid';
+	if ( '' !== $suffix ) {
+		$bg = bst_design_color( $d[ 'bg' . $suffix ] ?? '' );
+		if ( $bg ) {
+			$out[] = "background-color:$bg";
+		}
+		$color = bst_design_color( $d[ 'color' . $suffix ] ?? '' );
+		if ( $color ) {
+			$out[] = "color:$color;--bs-heading-color:$color";
+		}
+		$bw = bst_design_len( $d[ 'bw' . $suffix ] ?? '' );
+		if ( '' !== $bw ) {
+			$out[] = "border-width:$bw;border-style:$bstyle";
+		}
+		$bc = bst_design_color( $d[ 'bc' . $suffix ] ?? '' );
+		if ( $bc ) {
+			$out[] = "border-color:$bc";
+		}
+		$br = bst_design_len( $d[ 'br' . $suffix ] ?? '' );
+		if ( '' !== $br ) {
+			$out[] = "border-radius:$br";
+		}
+	}
+	$mh = bst_design_len( $d[ 'mh' . $suffix ] ?? '' );
+	if ( '' !== $mh ) {
+		$out[] = "min-height:$mh";
+	}
+	if ( in_array( $d[ 'ar' . $suffix ] ?? '', array( '1/1', '4/3', '3/2', '16/9', '21/9', '3/4', '2/3', '9/16' ), true ) ) {
+		$out[] = 'aspect-ratio:' . $d[ 'ar' . $suffix ];
+	}
+	$ord = bst_design_num( $d[ 'ord' . $suffix ] ?? '', -99, 99 );
+	if ( '' !== $ord ) {
+		$out[] = 'order:' . (int) $ord;
+	}
+	if ( in_array( $d[ 'as' . $suffix ] ?? '', array( 'auto', 'flex-start', 'center', 'flex-end', 'stretch' ), true ) ) {
+		$out[] = 'align-self:' . $d[ 'as' . $suffix ];
+	}
+	$st = $d['st'] ?? '';
+	if ( '' === $suffix && in_array( $st, array( 'all', 'desktop' ), true ) ) {
+		$top   = bst_design_len( $d['stt'] ?? '' );
+		$out[] = 'position:sticky;top:' . ( '' === $top ? '0' : $top );
+	} elseif ( 'T' === $suffix && 'desktop' === $st && '' === ( $d['posT'] ?? '' ) ) {
+		$out[] = 'position:static';
+	}
+	if ( '' !== $suffix ) {
+		return $out;
+	}
+	$sides = array( 'bwt', 'bwr', 'bwb', 'bwl' );
+	$w     = array();
+	$any   = false;
+	$base  = bst_design_len( $d['bw'] ?? '' );
+	foreach ( $sides as $key ) {
+		$v   = bst_design_len( $d[ $key ] ?? '' );
+		$any = $any || '' !== $v;
+		$w[] = '' !== $v ? $v : ( '' !== $base ? $base : '0' );
+	}
+	if ( $any ) {
+		$bc    = bst_design_color( $d['bc'] ?? '' );
+		$out[] = "border-style:$bstyle;border-color:" . ( $bc ? $bc : 'currentColor' ) . ';border-width:' . implode( ' ', $w );
+	}
+	foreach ( array( 'rtl' => 'top-left', 'rtr' => 'top-right', 'rbr' => 'bottom-right', 'rbl' => 'bottom-left' ) as $key => $corner ) {
+		$v = bst_design_len( $d[ $key ] ?? '' );
+		if ( '' !== $v ) {
+			$out[] = "border-$corner-radius:$v";
+		}
+	}
+	$img      = bst_design_url( $d['bgi'] ?? '' );
+	$gradient = bst_design_gradient( $d );
+	if ( $img || $gradient ) {
+		$layers = array();
+		$ovl    = bst_design_color( $d['ovl'] ?? '' );
+		if ( $ovl ) {
+			$layers[] = "linear-gradient($ovl,$ovl)";
+		}
+		if ( $img ) {
+			$layers[] = 'url("' . $img . '")';
+		}
+		if ( $gradient ) {
+			$layers[] = $gradient;
+		}
+		$out[] = 'background-image:' . implode( ',', $layers );
+		if ( $img ) {
+			$pos   = in_array( $d['bgp'] ?? '', array( 'top', 'bottom', 'left', 'right', 'top left', 'top right', 'bottom left', 'bottom right' ), true ) ? $d['bgp'] : 'center';
+			$size  = in_array( $d['bgs'] ?? '', array( 'contain', 'auto' ), true ) ? $d['bgs'] : 'cover';
+			$rep   = in_array( $d['bgr'] ?? '', array( 'repeat', 'repeat-x', 'repeat-y' ), true ) ? $d['bgr'] : 'no-repeat';
+			$out[] = "background-position:$pos;background-size:$size;background-repeat:$rep";
+		}
+	}
+	$shadow = bst_design_custom_shadow( $d );
+	if ( $shadow ) {
+		$out[] = "box-shadow:$shadow";
+	}
+	$op = bst_design_num( $d['op'] ?? '', 0, 100 );
+	if ( '' !== $op && '100' !== $op ) {
+		$out[] = 'opacity:' . ( $op / 100 );
+	}
+	$filter = array();
+	$v      = bst_design_num( $d['fbl'] ?? '', 0, 50 );
+	if ( '' !== $v && '0' !== $v ) {
+		$filter[] = "blur({$v}px)";
+	}
+	$v = bst_design_num( $d['fbr'] ?? '', 0, 300 );
+	if ( '' !== $v && '100' !== $v && '0' !== $v ) {
+		$filter[] = "brightness({$v}%)";
+	}
+	$v = bst_design_num( $d['fgr'] ?? '', 0, 100 );
+	if ( '' !== $v && '0' !== $v ) {
+		$filter[] = "grayscale({$v}%)";
+	}
+	if ( $filter ) {
+		$out[] = 'filter:' . implode( ' ', $filter );
+	}
+	$v = bst_design_num( $d['bdb'] ?? '', 0, 50 );
+	if ( '' !== $v && '0' !== $v ) {
+		$out[] = "-webkit-backdrop-filter:blur({$v}px);backdrop-filter:blur({$v}px)";
+	}
+	$transform = bst_design_transform( $d, '' );
+	if ( $transform ) {
+		$out[] = 'transform:' . implode( ' ', $transform );
+	}
+	$masks = bst_design_masks();
+	if ( isset( $masks[ $d['msk'] ?? '' ] ) ) {
+		$out[] = $masks[ $d['msk'] ];
+	}
+	$ov = bst_design_overflow( $d );
+	if ( $ov ) {
+		$out[] = "overflow:$ov";
 	}
 	return $out;
 }
@@ -185,7 +405,7 @@ function bst_design_needs_space( $d ) {
 }
 
 function bst_design_has_hover( $d ) {
-	foreach ( array( 'depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale' ) as $key ) { // Typography keys need no transition.
+	foreach ( array( 'depthHover', 'hbg', 'hcolor', 'hbc', 'hbr', 'hmove', 'hscale', 'hrot', 'htx', 'hty', 'hskx' ) as $key ) { // Typography keys need no transition.
 		if ( isset( $d[ $key ] ) && '' !== $d[ $key ] && 0 !== $d[ $key ] ) {
 			return true;
 		}
@@ -211,7 +431,10 @@ function bst_design_hover_rules( $d ) {
 	if ( '' !== $br ) {
 		$out[] = "border-radius:$br";
 	}
-	$transform = array();
+	// Hover adds to the static transform; with only the legacy keys the static part is empty.
+	$own       = bst_design_transform( $d, 'h' );
+	$moves     = $own || ! empty( $d['hmove'] ) || ( ! empty( $d['hscale'] ) && 100 != $d['hscale'] ); // phpcs:ignore Universal.Operators.StrictComparisons
+	$transform = $moves ? array_merge( bst_design_transform( $d, '' ), $own ) : array();
 	if ( isset( $d['hmove'] ) && is_numeric( $d['hmove'] ) && 0 != $d['hmove'] ) { // phpcs:ignore Universal.Operators.StrictComparisons
 		$transform[] = 'translateY(' . ( -1 * (float) $d['hmove'] ) . 'px)';
 	}
@@ -254,6 +477,39 @@ function bst_design_css( $d, $selector ) {
 	return $css;
 }
 
+/**
+ * Per-block custom CSS (Advanced): "selector" targets this block. Like the Code block,
+ * only printed when the post author may post unfiltered HTML.
+ */
+function bst_design_custom_css( $d, $selector, $post_id ) {
+	$css = trim( (string) ( $d['ccss'] ?? '' ) );
+	if ( '' === $css ) {
+		return '';
+	}
+	$author = $post_id ? (int) get_post_field( 'post_author', $post_id ) : 0;
+	if ( ! $author || ! user_can( $author, 'unfiltered_html' ) ) {
+		return '';
+	}
+	$css = preg_replace( '#</?style[^>]*>#i', '', $css );
+	if ( false === strpos( $css, '{' ) ) {
+		$css = 'selector{' . $css . '}'; // Bare declarations apply to the block itself.
+	}
+	return wp_strip_all_tags( str_replace( 'selector', $selector, $css ) );
+}
+
+/** Custom HTML attributes (Advanced): one "name=value" per line; only data-* and aria-*. */
+function bst_design_html_attrs( $d ) {
+	$out = array();
+	foreach ( preg_split( '/[\r\n]+/', (string) ( $d['hattr'] ?? '' ) ) as $line ) {
+		$parts = explode( '=', $line, 2 );
+		$name  = strtolower( trim( $parts[0] ) );
+		if ( preg_match( '/^(data-[a-z0-9_.-]+|aria-[a-z]+)$/', $name ) ) {
+			$out[ $name ] = isset( $parts[1] ) ? trim( trim( $parts[1] ), "\"'" ) : '';
+		}
+	}
+	return array_slice( $out, 0, 20, true );
+}
+
 /** Scoped class for a design array. */
 function bst_design_class( $d ) {
 	return 'bsd-' . substr( md5( wp_json_encode( $d ) ), 0, 10 );
@@ -268,15 +524,15 @@ function bst_design_registry( $class = null, $css = null ) {
 	return $all;
 }
 
-function bst_design_collect( $blocks ) {
+function bst_design_collect( $blocks, $post_id = 0 ) {
 	foreach ( (array) $blocks as $block ) {
 		$d = $block['attrs']['bsDesign'] ?? null;
 		if ( 0 === strpos( (string) ( $block['blockName'] ?? '' ), 'bst/' ) && is_array( $d ) && $d ) {
 			$class = bst_design_class( $d );
-			bst_design_registry( $class, bst_design_css( $d, '.' . $class ) );
+			bst_design_registry( $class, bst_design_css( $d, '.' . $class ) . bst_design_custom_css( $d, '.' . $class, $post_id ) );
 		}
 		if ( ! empty( $block['innerBlocks'] ) ) {
-			bst_design_collect( $block['innerBlocks'] );
+			bst_design_collect( $block['innerBlocks'], $post_id );
 		}
 	}
 }
@@ -295,7 +551,7 @@ function bst_design_head_css() {
 	foreach ( array_unique( $ids ) as $id ) {
 		$post = get_post( $id );
 		if ( $post && has_blocks( $post->post_content ) ) {
-			bst_design_collect( parse_blocks( $post->post_content ) );
+			bst_design_collect( parse_blocks( $post->post_content ), $id );
 		}
 	}
 	$css = implode( '', array_filter( bst_design_registry() ) );
@@ -351,16 +607,24 @@ function bst_apply_block_design( $content, $block ) {
 		return $content;
 	}
 	$class = bst_design_class( $d );
-	$css   = bst_design_css( $d, '.' . $class );
-	if ( '' === $css ) {
+	$css   = bst_design_css( $d, '.' . $class ) . bst_design_custom_css( $d, '.' . $class, (int) get_the_ID() );
+	$attrs = bst_design_html_attrs( $d );
+	if ( '' === $css && ! $attrs ) {
 		return $content;
 	}
 	$tags = new WP_HTML_Tag_Processor( $content );
 	if ( ! $tags->next_tag() ) {
 		return $content;
 	}
-	$tags->add_class( $class );
-	bst_design_registry( $class, $css );
+	if ( '' !== $css ) {
+		$tags->add_class( $class );
+		bst_design_registry( $class, $css );
+	}
+	foreach ( $attrs as $attr => $value ) {
+		if ( null === $tags->get_attribute( $attr ) ) {
+			$tags->set_attribute( $attr, $value );
+		}
+	}
 	return $tags->get_updated_html();
 }
 add_filter( 'render_block', 'bst_apply_block_design', 11, 2 );

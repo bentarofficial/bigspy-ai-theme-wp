@@ -11822,3 +11822,1099 @@ msgstr ""
 
 msgid "Sponsors in the rotation list (0 = all)"
 msgstr ""
+
+msgid "Use the larger screen value"
+msgstr ""
+
+msgid "Hover color"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Padding (px)"
+msgstr ""
+
+msgid "Border width (px)"
+msgstr ""
+
+msgid "Link URL"
+msgstr ""
+
+msgid "Rel (e.g. nofollow sponsored)"
+msgstr ""
+
+msgid "Round dots"
+msgstr ""
+
+msgid "Thick & thin"
+msgstr ""
+
+msgid "Text / icon position"
+msgstr ""
+
+msgid "Draw in when scrolled into view"
+msgstr ""
+
+msgid "Skipped when the visitor prefers reduced motion."
+msgstr ""
+
+msgid "Width unit"
+msgstr ""
+
+msgid "Width (px)"
+msgstr ""
+
+msgid "Gradient line"
+msgstr ""
+
+msgid "Gradient from"
+msgstr ""
+
+msgid "Gradient to"
+msgstr ""
+
+msgid "Icon round background"
+msgstr ""
+
+msgid "AI abilities (MCP)"
+msgstr ""
+
+msgid "Let outside AI apps read the site and edit pages and theme settings through the WordPress Abilities API and MCP Adapter (WordPress 6.9+). They use the same rights, approvals, block rules and undo as AI Designer."
+msgstr ""
+
+msgid "Read the site and edit pages and theme settings with the same rules and undo as AI Designer."
+msgstr ""
+
+msgid "External AI (MCP)"
+msgstr ""
+
+msgid "Could not create the AI Designer task."
+msgstr ""
+
+msgid "This change needs approval in WordPress: open AI Designer, task \"External AI (MCP)\", and approve or skip it."
+msgstr ""
+
+msgid "Edit page content"
+msgstr ""
+
+msgid "Edit: %s"
+msgstr ""
+
+msgid "Quick-edit labels"
+msgstr ""
+
+msgid "Hover an element in the preview, then click its label to open its settings."
+msgstr ""
+
+msgid "Widgets"
+msgstr ""
+
+msgid "Edit layout: %s"
+msgstr ""
+
+msgid "Hairline"
+msgstr ""
+
+msgid "Short accent"
+msgstr ""
+
+msgid "Thick and thin"
+msgstr ""
+
+msgid "Pill outline"
+msgstr ""
+
+msgid "Gradient lift"
+msgstr ""
+
+msgid "Square caps"
+msgstr ""
+
+msgid "This block cannot have saved styles."
+msgstr ""
+
+msgid "Nothing to save."
+msgstr ""
+
+msgid "Limit reached: 50 saved styles per block. Delete one first."
+msgstr ""
+
+msgid "Name for this style"
+msgstr ""
+
+msgid "Ready styles"
+msgstr ""
+
+msgid "Built-in"
+msgstr ""
+
+msgid "Saved on this site"
+msgstr ""
+
+msgid "Save current style"
+msgstr ""
+
+msgid "vh (% of screen height)"
+msgstr ""
+
+msgid "A negative value pulls the next block up so the two overlap."
+msgstr ""
+
+msgid "Show striped guide in the editor"
+msgstr ""
+
+msgid "overlap"
+msgstr ""
+
+msgid "Equal button widths"
+msgstr ""
+
+msgid "Keep on one line (scroll if too wide)"
+msgstr ""
+
+msgid "Separator text between buttons"
+msgstr ""
+
+msgid "For example \"or\". Leave empty for none."
+msgstr ""
+
+msgid "Tablet & mobile"
+msgstr ""
+
+msgid "Same as larger screen"
+msgstr ""
+
+msgid "Align on tablet"
+msgstr ""
+
+msgid "Direction on tablet"
+msgstr ""
+
+msgid "Align on mobile"
+msgstr ""
+
+msgid "Direction on mobile"
+msgstr ""
+
+msgid "Gap on mobile (px, 0 = same)"
+msgstr ""
+
+msgid "Double underline"
+msgstr ""
+
+msgid "Label background"
+msgstr ""
+
+msgid "Gradient bar"
+msgstr ""
+
+msgid "Number before the title (optional)"
+msgstr ""
+
+msgid "For example 01 for step-by-step sections."
+msgstr ""
+
+msgid "Icon before the title (optional)"
+msgstr ""
+
+msgid "Title style"
+msgstr ""
+
+msgid "Line thickness (px, 0 = default)"
+msgstr ""
+
+msgid "Line length (px, 0 = default)"
+msgstr ""
+
+msgid "Line / accent"
+msgstr ""
+
+msgid "Subtitle size (px, 0 = default)"
+msgstr ""
+
+msgid "Line before"
+msgstr ""
+
+msgid "Line after"
+msgstr ""
+
+msgid "Kicker and icon"
+msgstr ""
+
+msgid "Small line above (kicker)"
+msgstr ""
+
+msgid "Icon before the heading (optional)"
+msgstr ""
+
+msgid "Decorative lines"
+msgstr ""
+
+msgid "Lines"
+msgstr ""
+
+msgid "Text outline"
+msgstr ""
+
+msgid "Outline thickness (px, 0 = off)"
+msgstr ""
+
+msgid "Outline only (hollow letters)"
+msgstr ""
+
+msgid "Shadow (set a color to turn on)"
+msgstr ""
+
+msgid "Horizontal offset (px)"
+msgstr ""
+
+msgid "Vertical offset (px)"
+msgstr ""
+
+msgid "Blur (px)"
+msgstr ""
+
+msgid "Kicker and icon style"
+msgstr ""
+
+msgid "Kicker size (px, 0 = default)"
+msgstr ""
+
+msgid "Icon size (px, 0 = same as text)"
+msgstr ""
+
+msgid "Kicker"
+msgstr ""
+
+msgid "Gap between columns (px, 0 = default)"
+msgstr ""
+
+msgid "Limit to lines with “Read more” (0 = off)"
+msgstr ""
+
+msgid "The editor shows all the text; the page shows the limit."
+msgstr ""
+
+msgid "Show less"
+msgstr ""
+
+msgid "Line between columns"
+msgstr ""
+
+msgid "Lists, quotes and links"
+msgstr ""
+
+msgid "List style"
+msgstr ""
+
+msgid "Numbers in circles"
+msgstr ""
+
+msgid "Quote style"
+msgstr ""
+
+msgid "Big quote mark"
+msgstr ""
+
+msgid "Thin line"
+msgstr ""
+
+msgid "Link style"
+msgstr ""
+
+msgid "Underlined"
+msgstr ""
+
+msgid "Highlighted"
+msgstr ""
+
+msgid "(%s reviews)"
+msgstr ""
+
+msgid "Number of reviews (0 = hide)"
+msgstr ""
+
+msgid "Round the filled part"
+msgstr ""
+
+msgid "Exact"
+msgstr ""
+
+msgid "To half points"
+msgstr ""
+
+msgid "To whole points"
+msgstr ""
+
+msgid "Rating style"
+msgstr ""
+
+msgid "Hearts"
+msgstr ""
+
+msgid "Thumbs"
+msgstr ""
+
+msgid "Icons only"
+msgstr ""
+
+msgid "Score 4.8/5"
+msgstr ""
+
+msgid "Badge"
+msgstr ""
+
+msgid "Label position"
+msgstr ""
+
+msgid "Gap between icons (px, 0 = default)"
+msgstr ""
+
+msgid "Product quick view"
+msgstr ""
+
+msgid "Opens the image, price and description in a window; buying continues on the full product page."
+msgstr ""
+
+msgid "This product is not available."
+msgstr ""
+
+msgid "View product details"
+msgstr ""
+
+msgid "Close quick view"
+msgstr ""
+
+msgid "Loading product…"
+msgstr ""
+
+msgid "Choose variations with buttons (instead of dropdowns)"
+msgstr ""
+
+msgid "Independent option, off by default. Keeps the WooCommerce cart and variation flow."
+msgstr ""
+
+msgid "Show color/image swatches on product cards"
+msgstr ""
+
+msgid "Shows the choices of global attributes with swatches under the product name. A click opens the product page with that value selected. Off by default."
+msgstr ""
+
+msgid "Buy now button on the product page"
+msgstr ""
+
+msgid "Previous / next product navigation"
+msgstr ""
+
+msgid "Independent option, off by default."
+msgstr ""
+
+msgid "Product navigation"
+msgstr ""
+
+msgid "← Previous product"
+msgstr ""
+
+msgid "Next product →"
+msgstr ""
+
+msgid "CSS library · on/off"
+msgstr ""
+
+msgid "Free-form header built with BIGSPY AI blocks"
+msgstr ""
+
+msgid "A published public page replaces the whole row/column header. Use the WordPress logo, menu and search blocks; the default header sticky/transparent options do not apply."
+msgstr ""
+
+msgid "BIGSPY AI: Mega menu (child items become columns on desktop)"
+msgstr ""
+
+msgid "Go to slide %d"
+msgstr ""
+
+msgid "Pause slideshow"
+msgstr ""
+
+msgid "Play slideshow"
+msgstr ""
+
+msgid "Choose a tab"
+msgstr ""
+
+msgid "Thick underline"
+msgstr ""
+
+msgid "Line on top"
+msgstr ""
+
+msgid "Segmented"
+msgstr ""
+
+msgid "Folder"
+msgstr ""
+
+msgid "Cards"
+msgstr ""
+
+msgid "Icon on top"
+msgstr ""
+
+msgid "Tab bar position"
+msgstr ""
+
+msgid "Default (from style)"
+msgstr ""
+
+msgid "Fill the row"
+msgstr ""
+
+msgid "Tab open at start"
+msgstr ""
+
+msgid "Select a tab inside to rename it, give it an icon, image, badge or link anchor."
+msgstr ""
+
+msgid "On phones (under 550px)"
+msgstr ""
+
+msgid "Wrap tabs (default)"
+msgstr ""
+
+msgid "Stack tabs"
+msgstr ""
+
+msgid "Turn into accordion"
+msgstr ""
+
+msgid "Drop-down list"
+msgstr ""
+
+msgid "Only show icons on phones"
+msgstr ""
+
+msgid "Tabs without an icon keep their text."
+msgstr ""
+
+msgid "Open a tab from the page link (#anchor)"
+msgstr ""
+
+msgid "Give the tab a link anchor in its own settings."
+msgstr ""
+
+msgid "Remember the last tab during the visit"
+msgstr ""
+
+msgid "Switch tabs automatically (seconds, 0 = off)"
+msgstr ""
+
+msgid "Sticky tab bar while scrolling"
+msgstr ""
+
+msgid "Distance from the top (px)"
+msgstr ""
+
+msgid "Same height for every panel"
+msgstr ""
+
+msgid "Tab style"
+msgstr ""
+
+msgid "Panel animation"
+msgstr ""
+
+msgid "Default (fade setting)"
+msgstr ""
+
+msgid "Animation time (ms, 0 = default)"
+msgstr ""
+
+msgid "Tab column width (px, 0 = default)"
+msgstr ""
+
+msgid "Tab text"
+msgstr ""
+
+msgid "Icon / image size (px, 0 = default)"
+msgstr ""
+
+msgid "Tab colors"
+msgstr ""
+
+msgid "Active background"
+msgstr ""
+
+msgid "Indicator line"
+msgstr ""
+
+msgid "Indicator thickness (px, 0 = default)"
+msgstr ""
+
+msgid "Tab bar"
+msgstr ""
+
+msgid "Space between tabs (px, -1 = default)"
+msgstr ""
+
+msgid "Tab padding left/right (px, -1 = default)"
+msgstr ""
+
+msgid "Tab padding top/bottom (px, -1 = default)"
+msgstr ""
+
+msgid "Tab corner radius (px, -1 = default)"
+msgstr ""
+
+msgid "Bar border width (px, -1 = default)"
+msgstr ""
+
+msgid "Bar colors"
+msgstr ""
+
+msgid "Bar background"
+msgstr ""
+
+msgid "Bar border"
+msgstr ""
+
+msgid "Content area"
+msgstr ""
+
+msgid "Padding (px, -1 = default)"
+msgstr ""
+
+msgid "Content colors"
+msgstr ""
+
+msgid "Small text under the title (optional)"
+msgstr ""
+
+msgid "Image instead of the icon (optional)"
+msgstr ""
+
+msgid "Badge (e.g. New, -20%)"
+msgstr ""
+
+msgid "Link anchor (opens this tab from #anchor)"
+msgstr ""
+
+msgid "Disabled (shown but cannot be opened)"
+msgstr ""
+
+msgid "This tab"
+msgstr ""
+
+msgid "Tab color"
+msgstr ""
+
+msgid "Badge color"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "Dark segmented"
+msgstr ""
+
+msgid "Soft pills"
+msgstr ""
+
+msgid "Shadow cards"
+msgstr ""
+
+msgid "Vertical left"
+msgstr ""
+
+msgid "Search questions…"
+msgstr ""
+
+msgid "Search questions"
+msgstr ""
+
+msgid "Open all"
+msgstr ""
+
+msgid "Close all"
+msgstr ""
+
+msgid "Solid background"
+msgstr ""
+
+msgid "Big numbers"
+msgstr ""
+
+msgid "Open on page load"
+msgstr ""
+
+msgid "As set on each item"
+msgstr ""
+
+msgid "First item"
+msgstr ""
+
+msgid "All items"
+msgstr ""
+
+msgid "Two columns become one under 850px."
+msgstr ""
+
+msgid "“Open all / Close all” button"
+msgstr ""
+
+msgid "Search box to filter questions"
+msgstr ""
+
+msgid "Link to each item (#question opens it)"
+msgstr ""
+
+msgid "Accordion style"
+msgstr ""
+
+msgid "Question"
+msgstr ""
+
+msgid "Top and bottom padding (px, -1 = default)"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
+msgid "Title on hover"
+msgstr ""
+
+msgid "Answer text"
+msgstr ""
+
+msgid "Subtitle under the question"
+msgstr ""
+
+msgid "Label next to the question (e.g. New)"
+msgstr ""
+
+msgid "FAQ shadow cards"
+msgstr ""
+
+msgid "Soft solid"
+msgstr ""
+
+msgid "Clean underline"
+msgstr ""
+
+msgid "Numbered steps"
+msgstr ""
+
+msgid "Help center"
+msgstr ""
+
+msgid "Icon button"
+msgstr ""
+
+msgid "Hero"
+msgstr ""
+
+msgid "Full-screen overlay"
+msgstr ""
+
+msgid "Search box"
+msgstr ""
+
+msgid "Rotating placeholders (one per line)"
+msgstr ""
+
+msgid "Two or more lines: the hint changes every 3 seconds."
+msgstr ""
+
+msgid "Show the button"
+msgstr ""
+
+msgid "Read by screen readers. Empty = “Search”."
+msgstr ""
+
+msgid "What to search"
+msgstr ""
+
+msgid "Content types (comma separated, empty = all)"
+msgstr ""
+
+msgid "For example: post, page, product."
+msgstr ""
+
+msgid "Only in category ID (0 = all)"
+msgstr ""
+
+msgid "Category drop-down in the box"
+msgstr ""
+
+msgid "Instant suggestions"
+msgstr ""
+
+msgid "Show results while typing"
+msgstr ""
+
+msgid "Arrow keys move through results, Escape closes them."
+msgstr ""
+
+msgid "Number of results"
+msgstr ""
+
+msgid "Start after this many letters"
+msgstr ""
+
+msgid "Show images"
+msgstr ""
+
+msgid "Show prices"
+msgstr ""
+
+msgid "Show the category"
+msgstr ""
+
+msgid "Extras"
+msgstr ""
+
+msgid "Popular searches (one per line)"
+msgstr ""
+
+msgid "Shown as clickable chips under the box."
+msgstr ""
+
+msgid "Text before the chips"
+msgstr ""
+
+msgid "Press “/” to jump to the search box"
+msgstr ""
+
+msgid "Search style"
+msgstr ""
+
+msgid "Magnifier icon in the box"
+msgstr ""
+
+msgid "Button shows"
+msgstr ""
+
+msgid "Icon and text"
+msgstr ""
+
+msgid "Inside the box"
+msgstr ""
+
+msgid "Next to the box"
+msgstr ""
+
+msgid "Below the box on phones"
+msgstr ""
+
+msgid "Size and position"
+msgstr ""
+
+msgid "Align on phones"
+msgstr ""
+
+msgid "Same as desktop"
+msgstr ""
+
+msgid "Height on phones (px, 0 = same)"
+msgstr ""
+
+msgid "Inner side space (px, -1 = default)"
+msgstr ""
+
+msgid "Border and shadow"
+msgstr ""
+
+msgid "Button corner radius (px, -1 = default)"
+msgstr ""
+
+msgid "Glow when focused"
+msgstr ""
+
+msgid "Box colors"
+msgstr ""
+
+msgid "Border when focused"
+msgstr ""
+
+
+msgid "3D press"
+msgstr ""
+
+msgid "Neon"
+msgstr ""
+
+msgid "Dashed border"
+msgstr ""
+
+msgid "Slide fill"
+msgstr ""
+
+msgid "Arrow in circle"
+msgstr ""
+
+msgid "Width on tablet"
+msgstr ""
+
+msgid "Width on mobile"
+msgstr ""
+
+msgid "Same as tablet"
+msgstr ""
+
+msgid "Icon only (text becomes the screen reader label)"
+msgstr ""
+
+msgid "Badge (small label on the corner, e.g. New, -20%)"
+msgstr ""
+
+msgid "Hover border"
+msgstr ""
+
+msgid "Hover shadow"
+msgstr ""
+
+msgid "Badge background"
+msgstr ""
+
+msgid "Screen reader label"
+msgstr ""
+
+msgid "Frosted glass"
+msgstr ""
+
+msgid "Full-width bar"
+msgstr ""
+
+msgid "Corner toast (floating)"
+msgstr ""
+
+msgid "Toast position"
+msgstr ""
+
+msgid "Bottom right"
+msgstr ""
+
+msgid "Bottom left"
+msgstr ""
+
+msgid "Top right"
+msgstr ""
+
+msgid "Top left"
+msgstr ""
+
+msgid "Icon name (empty = by type)"
+msgstr ""
+
+msgid "Stay closed for (days, 0 = until reload)"
+msgstr ""
+
+msgid "Button & shape"
+msgstr ""
+
+msgid "Button text (optional)"
+msgstr ""
+
+msgid "Half circle"
+msgstr ""
+
+msgid "Dashed bar"
+msgstr ""
+
+msgid "Number of steps"
+msgstr ""
+
+msgid "Circle size (px)"
+msgstr ""
+
+msgid "Maximum value"
+msgstr ""
+
+msgid "Value suffix (%, /10, pts…)"
+msgstr ""
+
+msgid "Label below the bar"
+msgstr ""
+
+msgid "Gradient end (optional)"
+msgstr ""
+
+msgid "With divider line"
+msgstr ""
+
+msgid "Icon beside the number"
+msgstr ""
+
+msgid "Icon name (optional)"
+msgstr ""
+
+msgid "Number weight"
+msgstr ""
+
+msgid "Black"
+msgstr ""
+
+msgid "Prefix and suffix size (px, 0 = same as number)"
+msgstr ""
+
+msgid "Count again each time it scrolls into view"
+msgstr ""
+
+msgid "Icon and affix colors"
+msgstr ""
+
+msgid "Prefix and suffix"
+msgstr ""
+
+msgid "Search the table"
+msgstr ""
+
+msgid "Sort by this column"
+msgstr ""
+
+msgid "Table style"
+msgstr ""
+
+msgid "Classic"
+msgstr ""
+
+msgid "Comparison"
+msgstr ""
+
+msgid "Cell padding (px, 0 = default)"
+msgstr ""
+
+msgid "Highlight row on hover"
+msgstr ""
+
+msgid "Highlight column (0 = none)"
+msgstr ""
+
+msgid "Column alignment"
+msgstr ""
+
+msgid "Comma separated, e.g. left,center,right"
+msgstr ""
+
+msgid "Column widths"
+msgstr ""
+
+msgid "Comma separated, e.g. 200,25%,auto"
+msgstr ""
+
+msgid "Turn yes / no / v / x into ✓ and ✗"
+msgstr ""
+
+msgid "Scrolling & mobile"
+msgstr ""
+
+msgid "Sticky header row"
+msgstr ""
+
+msgid "Sticky first column"
+msgstr ""
+
+msgid "Stack rows as cards (needs a header row)"
+msgstr ""
+
+msgid "Visitors can sort columns"
+msgstr ""
+
+msgid "Search box above the table"
+msgstr ""
+
+msgid "Header background"
+msgstr ""
+
+msgid "Header text"
+msgstr ""
+
+msgid "Remove row"
+msgstr ""
+
+msgid "Add row"
+msgstr ""
+
+msgid "Add column"
+msgstr ""
+
+msgid "Remove last column"
+msgstr ""
+
+msgid "Badge (optional)"
+msgstr ""
+
+msgid "Button text (needs a link)"
+msgstr ""
+
+msgid "All on the right"
+msgstr ""
+
+msgid "Horizontal, scrolls sideways"
+msgstr ""
+
+msgid "Compact"
+msgstr ""
+
+msgid "Card with arrow"
+msgstr ""
+
+msgid "No card"
+msgstr ""
+
+msgid "Date position"
+msgstr ""
+
+msgid "In the card"
+msgstr ""
+
+msgid "Opposite side of the line"
+msgstr ""
+
+msgid "Line fills in as visitors scroll"
+msgstr ""
+
+msgid "Divider style"
+msgstr ""
+
+msgid "Icons & layout"
+msgstr ""
+
+msgid "Icon shape"
+msgstr ""
+
+msgid "Plain (or soft circle above)"
+msgstr ""
+
+msgid "With the first line"
+msgstr ""
+
+msgid "Vertically centered"
+msgstr ""
+
+msgid "Number the items instead of icons"
+msgstr ""
+
+msgid "Columns on tablet (0 = same)"
+msgstr ""
+
+msgid "Columns on mobile (0 = 1)"
+msgstr ""
+
+msgid "Space between columns (px, 0 = default)"
+msgstr ""
+
+msgid "Separator between items (e.g. • or |)"
+msgstr ""
+
+msgid "Second line"
+msgstr ""
+
+msgid "Link hover"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Second line (optional)"
+msgstr ""

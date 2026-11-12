@@ -28,10 +28,12 @@ function bst_block_names() {
 	// Shop blocks are always registered so pages keep working if WooCommerce is
 	// deactivated later; they only appear in the inserter while WooCommerce is active
 	// (see blocks-editor.js) and render nothing without it.
-	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell', 'theme-showcase', 'listing-info', 'listing-grid', 'category-grid', 'listing-search', 'listing-elements', 'sponsored' );
+	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell', 'theme-showcase', 'listing-info', 'listing-grid', 'category-grid', 'listing-search', 'listing-elements', 'sponsored', 'search' );
 }
 
 function bst_register_blocks() {
+	// Per-part controls (Resp, PartTypo, ColorStates, PartBox, StylePicker, LinkControl, StyleTab).
+	wp_register_script( 'bst-editor-kit', BST_URI . '/assets/js/editor-kit.js', array( 'bst-editor-helpers', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-data', 'wp-i18n', 'wp-hooks', 'wp-compose', 'wp-blocks', 'wp-api-fetch' ), bst_asset_version( 'assets/js/editor-kit.js' ), true );
 	wp_register_script(
 		'bst-block-design',
 		BST_URI . '/assets/js/block-design.js',
@@ -43,7 +45,7 @@ function bst_register_blocks() {
 	wp_register_script(
 		'bst-blocks-editor',
 		BST_URI . '/assets/js/blocks-editor.js',
-		array( 'bst-editor-helpers', 'bst-block-design', 'bst-form-quote', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-api-fetch' ),
+		array( 'bst-editor-helpers', 'bst-editor-kit', 'bst-block-design', 'bst-form-quote', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-api-fetch' ),
 		bst_asset_version( 'assets/js/blocks-editor.js' ),
 		true
 	);
@@ -51,14 +53,14 @@ function bst_register_blocks() {
 	wp_register_script(
 		'bst-blocks-extra',
 		BST_URI . '/assets/js/blocks-extra.js',
-		array( 'bst-editor-helpers', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data' ),
+		array( 'bst-editor-helpers', 'bst-editor-kit', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data' ),
 		bst_asset_version( 'assets/js/blocks-extra.js' ),
 		true
 	);
 	wp_register_script(
 		'bst-blocks-more',
 		BST_URI . '/assets/js/blocks-more.js',
-		array( 'bst-editor-helpers', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-core-data' ),
+		array( 'bst-editor-helpers', 'bst-editor-kit', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-core-data' ),
 		bst_asset_version( 'assets/js/blocks-more.js' ),
 		true
 	);
@@ -71,7 +73,7 @@ function bst_register_blocks() {
 	wp_add_inline_script( 'bst-blocks-extra', 'window.bstWidgetAreas=' . wp_json_encode( $areas ) . ';', 'before' );
 
 	// BIGSPY AI List blocks: always registered so saved content stays valid; locked while the mode is off.
-	wp_register_script( 'bst-blocks-listing', BST_URI . '/assets/js/blocks-listing.js', array( 'bst-editor-helpers', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-api-fetch', 'wp-hooks' ), bst_asset_version( 'assets/js/blocks-listing.js' ), true );
+	wp_register_script( 'bst-blocks-listing', BST_URI . '/assets/js/blocks-listing.js', array( 'bst-editor-helpers', 'bst-editor-kit', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-server-side-render', 'wp-data', 'wp-api-fetch', 'wp-hooks' ), bst_asset_version( 'assets/js/blocks-listing.js' ), true );
 	wp_localize_script(
 		'bst-blocks-listing',
 		'bstListing',
@@ -329,6 +331,82 @@ function bst_style_vars( $vars ) {
 		}
 	}
 	return implode( ';', $out );
+}
+
+/**
+ * CSS variables for one part of a block (G-129 editor kit, mirrors bstEditor.partVars).
+ *
+ * Reads <part><Suffix>[Tablet|Mobile] attributes, e.g. textSize, textSizeTablet,
+ * textColorHover, and returns --bs-<block>-<part>-<css>[-t|-m] => value. Empty, false
+ * and 0 are "not set" so the CSS fallback applies. Merge the result into bst_style_vars().
+ *
+ * @param array  $a     Block attributes.
+ * @param string $block Block slug used in the variable name.
+ * @param string $part  Attribute prefix and part name.
+ * @param array  $keys  Suffixes to read (Size, Weight, LineHeight, LetterSpacing, Transform,
+ *                      Color, ColorHover, ColorActive, Bg, BgHover, BgActive, BorderColor,
+ *                      BorderColorHover, BorderColorActive, Padding, Radius, BorderWidth,
+ *                      Shadow, Width, Gap). Empty = all.
+ * @return array
+ */
+function bst_part_vars( $a, $block, $part, $keys = array() ) {
+	// suffix => array( css suffix, type, responsive, min, max ).
+	$map     = array(
+		'Size'              => array( 'fs', 'px', true, 1, 400 ),
+		'Weight'            => array( 'fw', 'weight', false, 0, 0 ),
+		'LineHeight'        => array( 'lh', 'num', false, 0.5, 5 ),
+		'LetterSpacing'     => array( 'ls', 'px', false, -20, 50 ),
+		'Transform'         => array( 'tt', 'transform', false, 0, 0 ),
+		'Color'             => array( 'c', 'color', false, 0, 0 ),
+		'ColorHover'        => array( 'ch', 'color', false, 0, 0 ),
+		'ColorActive'       => array( 'ca', 'color', false, 0, 0 ),
+		'Bg'                => array( 'bg', 'color', false, 0, 0 ),
+		'BgHover'           => array( 'bgh', 'color', false, 0, 0 ),
+		'BgActive'          => array( 'bga', 'color', false, 0, 0 ),
+		'BorderColor'       => array( 'bc', 'color', false, 0, 0 ),
+		'BorderColorHover'  => array( 'bch', 'color', false, 0, 0 ),
+		'BorderColorActive' => array( 'bca', 'color', false, 0, 0 ),
+		'Padding'           => array( 'pad', 'px', true, 0, 400 ),
+		'Radius'            => array( 'r', 'px', false, 0, 400 ),
+		'BorderWidth'       => array( 'bw', 'px', false, 0, 50 ),
+		'Shadow'            => array( 'sh', 'shadow', false, 0, 5 ),
+		'Width'             => array( 'w', 'px', true, 1, 4000 ),
+		'Gap'               => array( 'gap', 'px', true, 0, 400 ),
+	);
+	$shadows = array( '', '0 1px 2px rgba(0,0,0,.08)', '0 2px 6px rgba(0,0,0,.1)', '0 6px 16px rgba(0,0,0,.12)', '0 12px 28px rgba(0,0,0,.16)', '0 20px 48px rgba(0,0,0,.2)' );
+	$out     = array();
+	foreach ( $keys ? $keys : array_keys( $map ) as $s ) {
+		if ( ! isset( $map[ $s ] ) ) {
+			continue;
+		}
+		list( $css, $type, $resp, $min, $max ) = $map[ $s ];
+		foreach ( array( '' => '', 'Tablet' => '-t', 'Mobile' => '-m' ) as $dev => $suf ) {
+			if ( $dev && ! $resp ) {
+				continue;
+			}
+			$key = $part . $s . $dev;
+			$raw = $a[ $key ] ?? '';
+			if ( '' === $raw || null === $raw || false === $raw || 0 === $raw || '0' === $raw || 0.0 === $raw ) {
+				continue;
+			}
+			$value = '';
+			if ( 'color' === $type ) {
+				$value = bst_block_color( $a, $key );
+			} elseif ( 'weight' === $type ) {
+				$value = bst_choice( (string) $raw, array( '100', '200', '300', '400', '500', '600', '700', '800', '900' ), '' );
+			} elseif ( 'transform' === $type ) {
+				$value = bst_choice( (string) $raw, array( 'none', 'uppercase', 'lowercase', 'capitalize' ), '' );
+			} elseif ( 'shadow' === $type ) {
+				$value = $shadows[ (int) bst_clamp( $raw, 0, 5, 0 ) ];
+			} elseif ( is_numeric( $raw ) ) {
+				$value = ( (float) bst_clamp( $raw, $min, $max, 0 ) ) . ( 'px' === $type ? 'px' : '' );
+			}
+			if ( '' !== $value ) {
+				$out[ '--bs-' . $block . '-' . $part . '-' . $css . $suf ] = $value;
+			}
+		}
+	}
+	return $out;
 }
 
 /**

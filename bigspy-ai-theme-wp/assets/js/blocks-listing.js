@@ -215,7 +215,7 @@
 			save: function () { return null; }
 		});
 	}
-	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/search', 'bigspy/elements', 'bigspy/sponsored'].forEach(ssrBlock);
+	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/elements', 'bigspy/sponsored'].forEach(ssrBlock); // bigspy/search: search-editor.js
 	wp.blocks.registerBlockType('bst/listing-info', {
 		edit: function (props) {
 			var a = props.attributes;

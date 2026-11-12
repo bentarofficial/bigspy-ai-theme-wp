@@ -640,3 +640,9 @@ body.modal-open .components-popover:has(.bst-format-bar) { display: none !import
 .bst-tc-pop__code { display: flex; gap: 6px; }
 .bst-tc-pop__code input { flex: 1; min-width: 0; height: 30px; padding: 0 8px; font: 13px ui-monospace, Menlo, Consolas, monospace; border: 1px solid #8c8f94; border-radius: 4px; }
 .bst-tc-pop__code input.is-invalid { border-color: #d63638; box-shadow: 0 0 0 1px #d63638; }
+/* G-133-c Table grid editor */
+.bst-table-grid__scroll { overflow-x: auto; margin-bottom: 8px; }
+.bst-table-grid table { border-collapse: collapse; }
+.bst-table-grid td { padding: 1px; }
+.bst-table-grid input { width: 90px; min-height: 28px; padding: 2px 6px; font-size: 12px; }
+.bst-table-grid__actions { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }

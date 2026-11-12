@@ -1,0 +1,10 @@
+/* BIGSPY AI Theme WP – Customizer quick-edit labels (loaded only in the Customizer preview). */
+.bst-qe { position: fixed; z-index: 2147483000; display: flex; flex-wrap: wrap; align-items: center; gap: 2px; max-width: calc(100vw - 8px); font: 600 11px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; pointer-events: auto; }
+.bst-qe[hidden] { display: none; }
+.bst-qe__btn { margin: 0; padding: 4px 7px; border: 0; border-radius: 3px; background: #2271b1; color: #fff; font: inherit; cursor: pointer; opacity: .6; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: opacity .15s; }
+.bst-qe__btn:hover, .bst-qe__btn:focus-visible { opacity: 1; outline: 2px solid #fff; outline-offset: -3px; }
+.bst-qe__sep { color: #2271b1; font-size: 13px; text-shadow: 0 0 2px #fff; }
+.bst-qe-outline { outline: 1px dashed rgba(34, 113, 177, .7) !important; outline-offset: -1px; }
+.bst-qe-flash { animation: bst-qe-flash 1.6s ease-out; outline: 2px solid #2271b1 !important; outline-offset: -2px; }
+@keyframes bst-qe-flash { 0%, 60% { outline-color: #2271b1; } 100% { outline-color: transparent; } }
+@media (prefers-reduced-motion: reduce) { .bst-qe-flash { animation: none; } }

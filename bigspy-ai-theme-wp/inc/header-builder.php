@@ -205,10 +205,14 @@ function bst_header_element( $element, $device ) {
 			$html = (string) apply_filters( 'bst_header_element_' . $element, '', $device );
 	}
 
+	$html = bst_capture_action( 'bst_before_header_element', $element, $device ) . $html . bst_capture_action( 'bst_after_header_element', $element, $device );
+	if ( has_filter( 'bst_header_element_html' ) ) {
+		$html = (string) apply_filters( 'bst_header_element_html', $html, $element, $device );
+	}
 	if ( '' === trim( $html ) ) {
 		return '';
 	}
-	return '<div class="bs-header-el bs-header-el--' . esc_attr( str_replace( '_', '-', $element ) ) . ( function_exists( 'bst_he_classes' ) ? esc_attr( bst_he_classes( $element ) ) : '' ) . '">' . $html . '</div>';
+	return '<div class="bs-header-el bs-header-el--' . esc_attr( str_replace( '_', '-', $element ) ) . ( function_exists( 'bst_he_classes' ) ? esc_attr( bst_he_classes( $element ) ) : '' ) . '"' . bst_header_element_edit_attr( $element ) . '>' . $html . '</div>';
 }
 
 function bst_logo() {

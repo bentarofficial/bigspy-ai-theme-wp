@@ -19,6 +19,14 @@
 		"heightMobile": {
 			"type": "number",
 			"default": 30
+		},
+		"unit": {
+			"type": "string",
+			"default": ""
+		},
+		"showGuide": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {

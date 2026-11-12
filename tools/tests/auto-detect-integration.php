@@ -23,7 +23,7 @@ function bst_body( $code, $body = '' ) {
 }
 try {
 	wp_set_current_user( 1 );
-	$tests = array( 'keywords', 'h1', 'media', 'links', 'security', 'designer' );
+	$tests = array( 'keywords', 'h1', 'media', 'links', 'security', 'terms', 'designer' );
 	foreach ( $tests as $test ) {
 		$fn   = 'bst_t_' . $test;
 		if ( function_exists( $fn ) ) {
@@ -265,4 +265,48 @@ function bst_t_designer() {
 	$r = bst_aid_run_tool( 'auto_detect_results', array( 'check' => 'links' ) );
 	bst_test( isset( $r['links']['items'] ) && ! isset( $r['media'] ), 'designer: reads one report ' . substr( wp_json_encode( $r ), 0, 120 ) );
 	bst_test( 1 === bst_aid_tool_policy( 'auto_detect_results', array() )['level'], 'designer: read level, no approval card' );
+}
+
+function bst_t_terms() {
+	register_taxonomy( 'bst_test_tax', 'post', array( 'hierarchical' => true ) );
+	add_filter( 'bst_ad_terms_taxonomies', function ( $t ) { $t[] = 'bst_test_tax'; return $t; } );
+	$parent = wp_insert_term( 'Empty Parent', 'category' )['term_id'];
+	$child  = wp_insert_term( 'Draft Child', 'category', array( 'parent' => $parent ) )['term_id'];
+	$used   = wp_insert_term( 'Used Cat', 'category' )['term_id'];
+	$menu   = wp_insert_term( 'Menu Cat', 'category' )['term_id'];
+	$etag   = wp_insert_term( 'empty-tag', 'post_tag' )['term_id'];
+	$xtax   = wp_insert_term( 'Extra Empty', 'bst_test_tax' )['term_id'];
+	$draft  = wp_insert_post( array( 'post_title' => 'D', 'post_status' => 'draft', 'post_category' => array( $child ) ) );
+	$pub    = bst_post( 'P' );
+	wp_set_object_terms( $pub, array( $used ), 'category' );
+	wp_set_object_terms( $pub, array( 'busy-tag' ), 'post_tag' );
+	$nav = wp_create_nav_menu( 'Test menu' );
+	wp_update_nav_menu_item( $nav, 0, array( 'menu-item-object' => 'category', 'menu-item-object-id' => $menu, 'menu-item-type' => 'taxonomy', 'menu-item-status' => 'publish' ) );
+	$items = bst_scan( 'terms' );
+	$by    = array();
+	foreach ( $items as $item ) {
+		$by[ $item['key'] ] = $item;
+	}
+	bst_test( 'done' === bst_ad_state( 'terms' )['status'], 'terms: scan finishes' );
+	bst_test( isset( $by[ 'term-' . $parent ], $by[ 'term-' . $child ], $by[ 'term-' . $etag ] ), 'terms: empty category, child and tag listed' );
+	bst_test( ! isset( $by[ 'term-' . $used ] ) && ! isset( $by[ 'term-' . (int) get_option( 'default_category' ) ] ), 'terms: used and default category not listed' );
+	bst_test( false !== strpos( $by[ 'term-' . $child ]['detail'] ?? '', 'drafts: 1' ), 'terms: draft count shown' );
+	bst_test( isset( $by[ 'term-' . $menu ] ) && empty( $by[ 'term-' . $menu ]['select'] ), 'terms: menu term shown, not selectable' );
+	bst_test( isset( $by[ 'term-' . $xtax ] ), 'terms: extra taxonomy from filter' );
+	$req = new WP_REST_Request( 'POST' );
+	$req->set_param( 'op', 'delete' );
+	$req->set_param( 'ids', array( $parent, $child, $menu, $used ) );
+	bst_ad_terms_action( $req );
+	bst_test( ! term_exists( $parent ) && ! term_exists( $child ), 'terms: empty terms deleted' );
+	bst_test( term_exists( $menu ) && term_exists( $used ), 'terms: menu and used terms kept on delete' );
+	bst_test( 2 === count( bst_ad_terms_log() ), 'terms: deletions logged' );
+	$keys = array_keys( bst_ad_terms_log() );
+	$req->set_param( 'op', 'restore' );
+	$req->set_param( 'ids', $keys );
+	bst_ad_terms_action( $req );
+	$p2 = get_term_by( 'slug', 'empty-parent', 'category' );
+	$c2 = get_term_by( 'slug', 'draft-child', 'category' );
+	bst_test( $p2 && $c2 && (int) $c2->parent === (int) $p2->term_id, 'terms: restore keeps hierarchy' );
+	bst_test( $c2 && has_term( $c2->term_id, 'category', $draft ), 'terms: restore re-links draft post' );
+	bst_test( 0 === count( bst_ad_terms_log() ), 'terms: log cleared after restore' );
 }

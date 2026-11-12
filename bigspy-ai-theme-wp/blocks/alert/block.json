@@ -46,6 +46,15 @@
 			"type": "string",
 			"default": ""
 		},
+		"icon": { "type": "string", "default": "" },
+		"iconSize": { "type": "number", "default": 0 },
+		"btnText": { "type": "string", "default": "" },
+		"btnUrl": { "type": "string", "default": "" },
+		"radius": { "type": "number", "default": -1 },
+		"borderWidth": { "type": "number", "default": -1 },
+		"titleTag": { "type": "string", "default": "p" },
+		"rememberDays": { "type": "number", "default": 0 },
+		"toastPos": { "type": "string", "default": "bottom-right" },
 		"style": {
 			"type": "string",
 			"default": "soft"

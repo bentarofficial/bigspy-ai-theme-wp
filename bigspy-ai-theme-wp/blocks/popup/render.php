@@ -30,10 +30,11 @@ foreach ( $data as $k => $v ) {
 }
 $button = 'button' === $trigger ? '<button type="button" class="bs-btn bs-popup__open" data-bs-popup-open="' . esc_attr( $id ) . '">' . esc_html( $a['buttonText'] ?? '' ) . '</button>' : '';
 printf(
-	'%1$s<div %2$s%3$s hidden><div class="bs-popup__overlay" data-bs-popup-close></div><div class="bs-popup__dialog" role="dialog" aria-modal="true" tabindex="-1"><button type="button" class="bs-popup__close" data-bs-popup-close aria-label="%4$s">&times;</button><div class="bs-popup__body">%5$s</div></div></div>',
+	'%1$s<div %2$s%3$s hidden><div class="bs-popup__overlay" data-bs-popup-close></div><div class="bs-popup__dialog" role="dialog" aria-modal="true" aria-label="%6$s" tabindex="-1"><button type="button" class="bs-popup__close" data-bs-popup-close aria-label="%4$s">&times;</button><div class="bs-popup__body">%5$s</div></div></div>',
 	$button, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	get_block_wrapper_attributes( array( 'class' => 'bs-popup bs-popup--' . $size . ' bs-popup--' . $position, 'style' => $style, 'id' => $id ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$attrs, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	esc_attr__( 'Close', 'bigspy-ai-theme-wp' ),
-	$content // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	$content, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	esc_attr( '' !== trim( (string) ( $a['buttonText'] ?? '' ) ) ? $a['buttonText'] : __( 'Popup', 'bigspy-ai-theme-wp' ) )
 );

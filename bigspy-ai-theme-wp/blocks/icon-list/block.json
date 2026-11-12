@@ -66,6 +66,17 @@
 			"type": "boolean",
 			"default": false
 		},
+		"iconShape": { "type": "string", "default": "" },
+		"iconAlign": { "type": "string", "default": "" },
+		"numbered": { "type": "boolean", "default": false },
+		"columnsTablet": { "type": "number", "default": 0 },
+		"columnsMobile": { "type": "number", "default": 0 },
+		"colGap": { "type": "number", "default": 0 },
+		"dividerStyle": { "type": "string", "default": "" },
+		"dividerColor": { "type": "string", "default": "" },
+		"separator": { "type": "string", "default": "" },
+		"linkHover": { "type": "string", "default": "" },
+		"subColor": { "type": "string", "default": "" },
 		"align": {
 			"type": "string",
 			"default": "left"

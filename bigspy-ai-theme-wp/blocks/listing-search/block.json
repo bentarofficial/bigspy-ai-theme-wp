@@ -52,12 +52,145 @@
 		"height": {
 			"type": "number",
 			"default": 0
+		},
+		"style": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonMode": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonPosition": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonRadius": {
+			"type": "number",
+			"default": -1
+		},
+		"heightMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"fontSize": {
+			"type": "number",
+			"default": 0
+		},
+		"padX": {
+			"type": "number",
+			"default": -1
+		},
+		"maxWidthTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"maxWidthMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"alignmentMobile": {
+			"type": "string",
+			"default": ""
+		},
+		"inputBg": {
+			"type": "string",
+			"default": ""
+		},
+		"inputColor": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": -1
+		},
+		"focusColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonHoverTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"shadow": {
+			"type": "number",
+			"default": 0
+		},
+		"shadowFocus": {
+			"type": "boolean",
+			"default": false
+		},
+		"live": {
+			"type": "boolean",
+			"default": false
+		},
+		"liveCount": {
+			"type": "number",
+			"default": 6
+		},
+		"liveImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"livePrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"liveCategory": {
+			"type": "boolean",
+			"default": false
+		},
+		"minChars": {
+			"type": "number",
+			"default": 2
+		},
+		"category": {
+			"type": "number",
+			"default": 0
+		},
+		"showCategorySelect": {
+			"type": "boolean",
+			"default": false
+		},
+		"chips": {
+			"type": "string",
+			"default": ""
+		},
+		"chipsLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholders": {
+			"type": "string",
+			"default": ""
+		},
+		"shortcut": {
+			"type": "boolean",
+			"default": false
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
 		"anchor": true,
 		"html": false
 	},
-	"editorScript": "bst-blocks-listing",
-	"render": "file:./render.php"
+	"editorScript": "bst-search-editor",
+	"render": "file:./render.php",
+	"style": "bst-search"
 }

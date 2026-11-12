@@ -1379,31 +1379,63 @@
 	register('title', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
+		var T = 'bigspy-ai-theme-wp';
+		var px = function (v) { return v ? v + 'px' : ''; };
 		var blockProps = useBlockProps({
 			className: 'bs-title bs-title--' + a.style + ' bs-title--align-' + a.align,
-			style: styleVars({ '--bs-title-size': a.size ? a.size + 'px' : '', '--bs-title-color': a.color, '--bs-title-line': a.lineColor })
+			style: styleVars({ '--bs-title-size': px(a.size), '--bs-title-color': a.color, '--bs-title-line': a.lineColor,
+				'--bs-title-size-t': px(a.sizeTablet), '--bs-title-size-m': px(a.sizeMobile), '--bs-title-sub-fs': px(a.subtitleSize), '--bs-title-sub-c': a.subtitleColor,
+				'--bs-title-line-w': px(a.lineWidth), '--bs-title-line-l': px(a.lineLength) })
 		});
+		var bar = function (x, w, h) { return '<rect x="' + x + '" y="4" width="' + w + '" height="5" rx="1" fill="currentColor" opacity=".35"/>' + (h || ''); };
+		var STYLES = [
+			{ value: 'plain', label: __('Plain', T), svg: bar(10, 36) },
+			{ value: 'bottom-line', label: __('Short line below', T), svg: bar(10, 36, '<rect x="10" y="14" width="10" height="2" fill="currentColor"/>') },
+			{ value: 'center-line', label: __('Lines on both sides', T), svg: bar(18, 20, '<path d="M2 6.5H14M42 6.5H54" stroke="currentColor"/>') },
+			{ value: 'left-bar', label: __('Bar on the left', T), svg: bar(14, 34, '<rect x="8" y="2" width="2.5" height="9" fill="currentColor"/>') },
+			{ value: 'underline-full', label: __('Full-width underline', T), svg: bar(4, 30, '<path d="M2 15H54" stroke="currentColor" stroke-width="1.5"/>') },
+			{ value: 'double', label: __('Double underline', T), svg: bar(10, 36, '<path d="M10 13H46M10 16H46" stroke="currentColor"/>') },
+			{ value: 'label', label: __('Label background', T), svg: '<rect x="8" y="1" width="40" height="12" rx="3" fill="currentColor"/><rect x="14" y="5" width="28" height="4" rx="1" fill="#fff"/>' },
+			{ value: 'dots', label: __('Dots', T), svg: bar(18, 20, [3, 8, 13, 43, 48, 53].map(function (x) { return '<circle cx="' + x + '" cy="6.5" r="1.6" fill="currentColor"/>'; }).join('')) },
+			{ value: 'gradient', label: __('Gradient bar', T), svg: '<defs><linearGradient id="bstg"><stop offset="0" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity=".1"/></linearGradient></defs>' + bar(10, 36, '<rect x="10" y="13" width="36" height="3" rx="1.5" fill="url(#bstg)"/>') }
+		];
+		var lineStyle = a.style !== 'plain';
+		var pre = (a.number ? el('span', { className: 'bs-title__num' }, a.number) : null);
+		var ico = a.icon ? el('span', { className: 'bs-title__icon' }, el(B.Icon, { name: a.icon, size: 24 })) : null;
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Title', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { plain: __('Plain', 'bigspy-ai-theme-wp'), 'bottom-line': __('Short line below', 'bigspy-ai-theme-wp'), 'center-line': __('Lines on both sides', 'bigspy-ai-theme-wp'), 'left-bar': __('Bar on the left', 'bigspy-ai-theme-wp'), 'underline-full': __('Full-width underline', 'bigspy-ai-theme-wp') } }, bind('style'))),
-					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
-					el(Select, Object.assign({ label: __('Tag', 'bigspy-ai-theme-wp'), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4' } }, bind('tag'))),
-					el(Range, Object.assign({ label: __('Font size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120 }, bind('size'))),
-					el(Text, Object.assign({ label: __('“View all” text', 'bigspy-ai-theme-wp') }, bind('linkText'))),
-					el(Text, Object.assign({ label: __('“View all” link', 'bigspy-ai-theme-wp'), type: 'url' }, bind('linkUrl')))
+				el(Panel, { title: __('Title', T) },
+					el(Select, Object.assign({ label: __('Tag', T), options: { h1: 'H1', h2: 'H2', h3: 'H3', h4: 'H4' } }, bind('tag'))),
+					el(Text, Object.assign({ label: __('Number before the title (optional)', T), help: __('For example 01 for step-by-step sections.', T) }, bind('number'))),
+					el(B.IconPicker, { label: __('Icon before the title (optional)', T), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v || '' }); } }),
+					el(Text, Object.assign({ label: __('“View all” text', T) }, bind('linkText'))),
+					el(Text, Object.assign({ label: __('“View all” link', T), type: 'url' }, bind('linkUrl')))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Title style', T) },
+					el(B.StylePicker, { label: __('Style', T), value: a.style, options: STYLES, onChange: function (v) { props.setAttributes({ style: v }); } }),
+					el(Select, Object.assign({ label: __('Align', T), options: ALIGN3 }, bind('align'))),
+					el(B.Resp, { props: props, name: 'size', label: __('Font size (px, 0 = default)', T), min: 0, max: 120, reset: 0 }),
+					lineStyle ? el(Range, Object.assign({ label: __('Line thickness (px, 0 = default)', T), min: 0, max: 20, reset: 0 }, bind('lineWidth'))) : null,
+					['bottom-line', 'gradient', 'dots'].indexOf(a.style) > -1 ? el(Range, Object.assign({ label: __('Line length (px, 0 = default)', T), min: 0, max: 600, reset: 0 }, bind('lineLength'))) : null
 				),
 				el(B.ColorPanel, {
 					settings: [
-						{ label: __('Text', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
-						{ label: __('Line', 'bigspy-ai-theme-wp'), value: a.lineColor, onChange: function (v) { props.setAttributes({ lineColor: v || '' }); } }
+						{ label: __('Text', T), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+						{ label: a.style === 'label' ? __('Label background', T) : __('Line / accent', T), value: a.lineColor, onChange: function (v) { props.setAttributes({ lineColor: v || '' }); } },
+						{ label: __('Subtitle', T), value: a.subtitleColor, onChange: function (v) { props.setAttributes({ subtitleColor: v || '' }); } }
 					]
-				})
+				}),
+				el(Panel, { title: __('Subtitle', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Subtitle size (px, 0 = default)', T), min: 0, max: 60, reset: 0 }, bind('subtitleSize')))
+				)
 			),
 			el('div', blockProps,
-				el(RichText, { tagName: 'p', className: 'bs-title__subtitle', value: a.subtitle, placeholder: __('Subtitle (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ subtitle: v }); } }),
+				el(RichText, { tagName: 'p', className: 'bs-title__subtitle', value: a.subtitle, placeholder: __('Subtitle (optional)', T), onChange: function (v) { props.setAttributes({ subtitle: v }); } }),
 				el('div', { className: 'bs-title__row' },
-					el(RichText, { tagName: a.tag, className: 'bs-title__text', value: a.text, placeholder: __('Section title', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } }),
+					pre || ico ? el(a.tag, { className: 'bs-title__text has-pre' }, pre, ico, el(RichText, { tagName: 'span', value: a.text, placeholder: __('Section title', T), onChange: function (v) { props.setAttributes({ text: v }); } }))
+						: el(RichText, { tagName: a.tag, className: 'bs-title__text', value: a.text, placeholder: __('Section title', T), onChange: function (v) { props.setAttributes({ text: v }); } }),
 					a.linkText ? el('span', { className: 'bs-title__link' }, a.linkText) : null
 				)
 			)
@@ -1411,37 +1443,143 @@
 	});
 
 	/* ================================================================ Tabs */
+	/* Same classes and variables as blocks/tabs/render.php (G-133-a). */
+	function tabsLook(a) {
+		var px = function (v) { return typeof v === 'number' && v >= 0 ? v + 'px' : ''; };
+		var pos = function (v) { return v > 0 ? v + 'px' : ''; };
+		var cls = 'bs-tabs bs-tabs--' + a.style + ' bs-tabs--align-' + a.align + (a.stretch ? ' bs-tabs--stretch' : '') +
+			(!a.transition && a.fade ? ' bs-tabs--fade' : '') + (a.navPosition ? ' bs-tabs--nav-' + a.navPosition : '') +
+			(a.mobile ? ' bs-tabs--m-' + a.mobile : '') + (a.transition ? ' bs-tabs--tr-' + a.transition : '') +
+			(a.iconPosition && a.iconPosition !== 'left' ? ' bs-tabs--ipos-' + a.iconPosition : '') + (a.iconOnlyMobile ? ' bs-tabs--icon-only-m' : '') +
+			(a.sticky ? ' bs-tabs--sticky' : '') + (a.equalHeight ? ' bs-tabs--equal' : '');
+		return { className: cls, style: styleVars({
+			'--bs-tabs-size': a.navSize ? a.navSize + 'px' : '', '--bs-tabs-active': a.activeColor, '--bs-tabs-active-text': a.activeText,
+			'--bs-tabs-fst': pos(a.navSizeTablet), '--bs-tabs-fsm': pos(a.navSizeMobile), '--bs-tabs-fw': a.navWeight, '--bs-tabs-tt': a.navTransform,
+			'--bs-tabs-ls': a.navLetterSpacing ? a.navLetterSpacing + 'px' : '', '--bs-tabs-side': pos(a.sideWidth), '--bs-tabs-stop': a.sticky ? pos(a.stickyTop) : '',
+			'--bs-tabs-ms': a.transitionMs > 0 ? a.transitionMs + 'ms' : '', '--bs-tabs-gap': px(a.navGap), '--bs-tabs-padx': px(a.navPadX), '--bs-tabs-pady': px(a.navPadY),
+			'--bs-tabs-rad': px(a.navRadius), '--bs-tabs-navbg': a.navBg, '--bs-tabs-navbc': a.navBorderColor, '--bs-tabs-navbw': px(a.navBorderWidth),
+			'--bs-tabs-tcol': a.tabColor, '--bs-tabs-hcol': a.tabColorHover, '--bs-tabs-tbg': a.tabBg, '--bs-tabs-hbg': a.tabBgHover, '--bs-tabs-abg': a.tabBgActive,
+			'--bs-tabs-indc': a.indicatorColor, '--bs-tabs-indw': pos(a.indicatorSize), '--bs-tabs-isz': pos(a.iconSize),
+			'--bs-tabs-pbg': a.panelBg, '--bs-tabs-pbc': a.panelBorderColor, '--bs-tabs-pbw': px(a.panelBorderWidth), '--bs-tabs-prad': px(a.panelRadius),
+			'--bs-tabs-ppad': px(a.panelPadding), '--bs-tabs-mpad': px(a.panelPaddingMobile), '--bs-tabs-pminh': pos(a.panelMinHeight)
+		}) };
+	}
+
 	register('tabs', function (props) {
 		var a = props.attributes;
+		var T = 'bigspy-ai-theme-wp';
 		var bind = B.binder(props);
+		var set = function (k) { return function (v) { var o = {}; o[k] = v; props.setAttributes(o); }; };
 		var tabs = useSelect(function (select) {
 			return select('core/block-editor').getBlocks(props.clientId);
 		}, [props.clientId]);
-		var blockProps = useBlockProps({ className: 'bs-tabs bs-tabs--' + a.style + ' bs-tabs--align-' + a.align + (a.stretch ? ' bs-tabs--stretch' : '') + ' bst-tabs-editor', style: styleVars({ '--bs-tabs-size': a.navSize ? a.navSize + 'px' : '', '--bs-tabs-active': a.activeColor, '--bs-tabs-active-text': a.activeText }) });
+		var look = tabsLook(a);
+		var blockProps = useBlockProps({ className: look.className + ' bst-tabs-editor', style: look.style });
 		var innerProps = useInnerBlocksProps({ className: 'bs-tabs__panels' }, {
 			allowedBlocks: ['bst/tab'],
-			template: [['bst/tab', { title: __('Tab 1', 'bigspy-ai-theme-wp') }], ['bst/tab', { title: __('Tab 2', 'bigspy-ai-theme-wp') }]]
+			template: [['bst/tab', { title: __('Tab 1', T) }], ['bst/tab', { title: __('Tab 2', T) }]]
 		});
+		var nav = function (inner) { return '<rect x="2" y="2" width="52" height="16" rx="2" fill="none" stroke="currentColor" stroke-opacity=".25"/>' + inner; };
+		var STYLES = [
+			{ value: 'underline', label: __('Underline', T), svg: nav('<rect x="6" y="12" width="14" height="2" fill="currentColor"/><path d="M4 14H52" stroke="currentColor" stroke-opacity=".3"/>') },
+			{ value: 'underline-thick', label: __('Thick underline', T), svg: nav('<rect x="6" y="11" width="14" height="4" fill="currentColor"/>') },
+			{ value: 'line-top', label: __('Line on top', T), svg: nav('<rect x="6" y="3" width="14" height="3" fill="currentColor"/><rect x="6" y="6" width="14" height="9" fill="currentColor" fill-opacity=".15"/>') },
+			{ value: 'pills', label: __('Pills', T), svg: '<rect x="4" y="5" width="18" height="10" rx="5" fill="currentColor"/><rect x="26" y="7" width="12" height="6" rx="3" fill="currentColor" fill-opacity=".3"/>' },
+			{ value: 'segmented', label: __('Segmented', T), svg: '<rect x="2" y="3" width="52" height="14" rx="5" fill="currentColor" fill-opacity=".15"/><rect x="4" y="5" width="17" height="10" rx="4" fill="currentColor"/>' },
+			{ value: 'boxed', label: __('Boxed', T), svg: '<path d="M4 17V5h16v12M20 8h14v9" fill="none" stroke="currentColor"/>' },
+			{ value: 'folder', label: __('Folder', T), svg: '<path d="M4 17V7q0-3 3-3h10q3 0 3 3v10M22 17V9q0-2 2-2h8q2 0 2 2v8M2 17H54" fill="none" stroke="currentColor"/>' },
+			{ value: 'outline', label: __('Outline', T), svg: '<rect x="4" y="5" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="26" y="5" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-opacity=".3"/>' },
+			{ value: 'cards', label: __('Cards', T), svg: '<rect x="3" y="3" width="16" height="14" rx="3" fill="currentColor"/><rect x="22" y="3" width="16" height="14" rx="3" fill="none" stroke="currentColor" stroke-opacity=".4"/>' },
+			{ value: 'icon-top', label: __('Icon on top', T), svg: '<circle cx="12" cy="7" r="3" fill="currentColor"/><rect x="6" y="12" width="12" height="2" fill="currentColor"/><circle cx="32" cy="7" r="3" fill="currentColor" fill-opacity=".3"/>' },
+			{ value: 'vertical', label: __('Vertical', T), svg: '<rect x="4" y="3" width="14" height="4" fill="currentColor"/><rect x="4" y="9" width="14" height="3" fill="currentColor" fill-opacity=".3"/><rect x="22" y="3" width="30" height="14" fill="currentColor" fill-opacity=".12"/>' }
+		];
+		var opts = function (list) { var o = {}; list.forEach(function (x) { o[x[0]] = x[1]; }); return o; };
+		var side = a.navPosition === 'left' || a.navPosition === 'right' || (!a.navPosition && a.style === 'vertical');
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Tabs', 'bigspy-ai-theme-wp') },
-					sliderChoice(props, __('Style', 'bigspy-ai-theme-wp'), 'style', [['underline', __('Underline', 'bigspy-ai-theme-wp')], ['pills', __('Pills', 'bigspy-ai-theme-wp')], ['boxed', __('Boxed', 'bigspy-ai-theme-wp')], ['vertical', __('Vertical', 'bigspy-ai-theme-wp')]]),
-					sliderChoice(props, __('Align', 'bigspy-ai-theme-wp'), 'align', [['left', __('Left', 'bigspy-ai-theme-wp')], ['center', __('Center', 'bigspy-ai-theme-wp')]]),
-					sliderChoice(props, __('Open a tab on', 'bigspy-ai-theme-wp'), 'event', [['click', __('Click', 'bigspy-ai-theme-wp')], ['hover', __('Hover', 'bigspy-ai-theme-wp')]]),
-					el(Toggle, Object.assign({ label: __('Stretch tabs to full width', 'bigspy-ai-theme-wp') }, bind('stretch', true))),
-					el(Toggle, Object.assign({ label: __('Fade between tabs', 'bigspy-ai-theme-wp') }, bind('fade', true))),
-					el(Range, Object.assign({ label: __('Tab text size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 30 }, bind('navSize'))),
-					el('p', { className: 'description' }, __('Select a tab inside to rename it or give it an icon.', 'bigspy-ai-theme-wp'))
+				el(Panel, { title: __('Tabs', T) },
+					el(Select, Object.assign({ label: __('Tab bar position', T), options: opts([['', __('Default (from style)', T)], ['top', __('Top', T)], ['bottom', __('Bottom', T)], ['left', __('Left', T)], ['right', __('Right', T)]]) }, bind('navPosition'))),
+					el(Select, Object.assign({ label: __('Align', T), options: opts([['left', __('Left', T)], ['center', __('Center', T)], ['right', __('Right', T)], ['justify', __('Fill the row', T)]]) }, bind('align'))),
+					sliderChoice(props, __('Open a tab on', T), 'event', [['click', __('Click', T)], ['hover', __('Hover', T)]]),
+					el(Range, { label: __('Tab open at start', T), min: 1, max: Math.max(1, tabs.length), value: a.defaultTab || 1, onChange: set('defaultTab') }),
+					el(Toggle, Object.assign({ label: __('Stretch tabs to full width', T) }, bind('stretch', true))),
+					el('p', { className: 'description' }, __('Select a tab inside to rename it, give it an icon, image, badge or link anchor.', T))
 				),
-				el(B.ColorPanel, { title: __('Active tab colors', 'bigspy-ai-theme-wp'), settings: [
-					{ label: __('Active tab', 'bigspy-ai-theme-wp'), value: a.activeColor, onChange: function (v) { props.setAttributes({ activeColor: v || '' }); } },
-					{ label: __('Active tab text', 'bigspy-ai-theme-wp'), value: a.activeText, onChange: function (v) { props.setAttributes({ activeText: v || '' }); } }
-				] })
+				el(Panel, { title: __('Mobile', T), initialOpen: false },
+					el(Select, Object.assign({ label: __('On phones (under 550px)', T), options: opts([['', __('Wrap tabs (default)', T)], ['scroll', __('Scroll sideways', T)], ['stack', __('Stack tabs', T)], ['accordion', __('Turn into accordion', T)], ['dropdown', __('Drop-down list', T)]]) }, bind('mobile'))),
+					el(Toggle, Object.assign({ label: __('Only show icons on phones', T), help: __('Tabs without an icon keep their text.', T) }, bind('iconOnlyMobile', true)))
+				),
+				el(Panel, { title: __('Behaviour', T), initialOpen: false },
+					el(Toggle, Object.assign({ label: __('Open a tab from the page link (#anchor)', T), help: __('Give the tab a link anchor in its own settings.', T) }, bind('deepLink', true))),
+					el(Toggle, Object.assign({ label: __('Remember the last tab during the visit', T) }, bind('remember', true))),
+					el(Range, Object.assign({ label: __('Switch tabs automatically (seconds, 0 = off)', T), min: 0, max: 60 }, bind('autoplay'))),
+					a.autoplay > 0 ? el(Toggle, Object.assign({ label: __('Pause on hover', T) }, bind('pauseHover', true))) : null,
+					el(Toggle, Object.assign({ label: __('Sticky tab bar while scrolling', T) }, bind('sticky', true))),
+					a.sticky ? el(Range, Object.assign({ label: __('Distance from the top (px)', T), min: 0, max: 300 }, bind('stickyTop'))) : null,
+					el(Toggle, Object.assign({ label: __('Same height for every panel', T) }, bind('equalHeight', true)))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Tab style', T) },
+					el(B.StylePicker, { label: __('Style', T), value: a.style, options: STYLES, onChange: set('style') }),
+					el(Select, Object.assign({ label: __('Panel animation', T), options: opts([['', __('Default (fade setting)', T)], ['slide', __('Slide', T)], ['zoom', __('Zoom', T)], ['none', __('None', T)]]) }, bind('transition'))),
+					!a.transition ? el(Toggle, Object.assign({ label: __('Fade between tabs', T) }, bind('fade', true))) : null,
+					a.transition !== 'none' ? el(Range, Object.assign({ label: __('Animation time (ms, 0 = default)', T), min: 0, max: 2000, step: 50 }, bind('transitionMs'))) : null,
+					side ? el(Range, Object.assign({ label: __('Tab column width (px, 0 = default)', T), min: 0, max: 600 }, bind('sideWidth'))) : null
+				),
+				el(Panel, { title: __('Tab text', T), initialOpen: false },
+					el(B.Resp, { props: props, name: 'navSize', label: __('Tab text size (px, 0 = default)', T), min: 0, max: 30 }),
+					el(Select, Object.assign({ label: __('Weight', T), options: { '': __('Default', T), '400': '400', '500': '500', '600': '600', '700': '700', '800': '800' } }, bind('navWeight'))),
+					el(Select, Object.assign({ label: __('Transform', T), options: { '': __('Default', T), none: __('None', T), uppercase: 'ABC', lowercase: 'abc', capitalize: 'Abc' } }, bind('navTransform'))),
+					el(Range, Object.assign({ label: __('Letter spacing (px)', T), min: -5, max: 20, step: 0.5 }, bind('navLetterSpacing'))),
+					el(Select, Object.assign({ label: __('Icon position', T), options: opts([['', __('Left', T)], ['right', __('Right', T)], ['top', __('Top', T)]]) }, bind('iconPosition'))),
+					el(Range, Object.assign({ label: __('Icon / image size (px, 0 = default)', T), min: 0, max: 80 }, bind('iconSize')))
+				),
+				el(Panel, { title: __('Tab colors', T), initialOpen: false },
+					el(B.ColorStates, { props: props, states: [''], title: __('Normal', T), fields: [{ key: 'tabColor', label: __('Text', T) }, { key: 'tabBg', label: __('Background', T) }] }),
+					el(B.ColorPanel, { title: __('Hover', T), settings: [
+						{ label: __('Text', T), value: a.tabColorHover, onChange: function (v) { props.setAttributes({ tabColorHover: v || '' }); } },
+						{ label: __('Background', T), value: a.tabBgHover, onChange: function (v) { props.setAttributes({ tabBgHover: v || '' }); } }
+					] }),
+					el(B.ColorPanel, { title: __('Active tab colors', T), settings: [
+						{ label: __('Active tab', T), value: a.activeColor, onChange: function (v) { props.setAttributes({ activeColor: v || '' }); } },
+						{ label: __('Active tab text', T), value: a.activeText, onChange: function (v) { props.setAttributes({ activeText: v || '' }); } },
+						{ label: __('Active background', T), value: a.tabBgActive, onChange: function (v) { props.setAttributes({ tabBgActive: v || '' }); } },
+						{ label: __('Indicator line', T), value: a.indicatorColor, onChange: function (v) { props.setAttributes({ indicatorColor: v || '' }); } }
+					] }),
+					el(Range, Object.assign({ label: __('Indicator thickness (px, 0 = default)', T), min: 0, max: 12 }, bind('indicatorSize')))
+				),
+				el(Panel, { title: __('Tab bar', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Space between tabs (px, -1 = default)', T), min: -1, max: 60 }, bind('navGap'))),
+					el(Range, Object.assign({ label: __('Tab padding left/right (px, -1 = default)', T), min: -1, max: 60 }, bind('navPadX'))),
+					el(Range, Object.assign({ label: __('Tab padding top/bottom (px, -1 = default)', T), min: -1, max: 40 }, bind('navPadY'))),
+					el(Range, Object.assign({ label: __('Tab corner radius (px, -1 = default)', T), min: -1, max: 40 }, bind('navRadius'))),
+					el(Range, Object.assign({ label: __('Bar border width (px, -1 = default)', T), min: -1, max: 10 }, bind('navBorderWidth'))),
+					el(B.ColorPanel, { title: __('Bar colors', T), settings: [
+						{ label: __('Bar background', T), value: a.navBg, onChange: function (v) { props.setAttributes({ navBg: v || '' }); } },
+						{ label: __('Bar border', T), value: a.navBorderColor, onChange: function (v) { props.setAttributes({ navBorderColor: v || '' }); } }
+					] })
+				),
+				el(Panel, { title: __('Content area', T), initialOpen: false },
+					el(B.Resp, { props: props, name: 'panelPadding', label: __('Padding (px, -1 = default)', T), min: -1, max: 100 }),
+					el(Range, Object.assign({ label: __('Corner radius (px, -1 = default)', T), min: -1, max: 60 }, bind('panelRadius'))),
+					el(Range, Object.assign({ label: __('Border width (px, -1 = default)', T), min: -1, max: 10 }, bind('panelBorderWidth'))),
+					el(Range, Object.assign({ label: __('Minimum height (px, 0 = auto)', T), min: 0, max: 1200, step: 10 }, bind('panelMinHeight'))),
+					el(B.ColorPanel, { title: __('Content colors', T), settings: [
+						{ label: __('Background', T), value: a.panelBg, onChange: function (v) { props.setAttributes({ panelBg: v || '' }); } },
+						{ label: __('Border', T), value: a.panelBorderColor, onChange: function (v) { props.setAttributes({ panelBorderColor: v || '' }); } }
+					] })
+				)
 			),
 			el('div', blockProps,
 				el('div', { className: 'bs-tabs__nav' },
 					tabs.map(function (tab, i) {
-						return el('span', { key: tab.clientId, className: 'bs-tabs__tab' + (i === 0 ? ' is-active' : '') }, tab.attributes.icon ? el(B.Icon, { name: tab.attributes.icon, size: 18 }) : null, el('span', null, tab.attributes.title || __('Tab', 'bigspy-ai-theme-wp')));
+						var t = tab.attributes;
+						var media = t.imageUrl ? el('img', { className: 'bs-tabs__img', src: t.imageUrl, alt: '' }) : (t.icon ? el(B.Icon, { name: t.icon, size: 18 }) : null);
+						return el('span', { key: tab.clientId, className: 'bs-tabs__tab' + (i === Math.min(tabs.length, a.defaultTab || 1) - 1 ? ' is-active' : ''), style: t.color ? { '--bs-tab-c': t.color } : undefined },
+							media, el('span', null, t.title || __('Tab', T)),
+							t.subtitle ? el('small', { className: 'bs-tabs__sub' }, t.subtitle) : null,
+							t.badge ? el('span', { className: 'bs-tabs__badge', style: t.badgeColor ? { background: t.badgeColor } : undefined }, t.badge) : null);
 					})
 				),
 				el('div', innerProps)
@@ -1450,14 +1588,26 @@
 	}, saveInner);
 
 	register('tab', function (props) {
+		var a = props.attributes;
+		var T = 'bigspy-ai-theme-wp';
+		var set = function (k) { return function (v) { var o = {}; o[k] = v; props.setAttributes(o); }; };
 		var blockProps = useBlockProps({ className: 'bs-tab bst-tab-editor' });
-		var innerProps = useInnerBlocksProps({ className: 'bst-tab-editor__content' }, { template: [['core/paragraph', { placeholder: __('Tab content…', 'bigspy-ai-theme-wp') }]] });
+		var innerProps = useInnerBlocksProps({ className: 'bst-tab-editor__content' }, { template: [['core/paragraph', { placeholder: __('Tab content…', T) }]] });
 		return el('div', blockProps,
-			el(Inspector, null, el(Panel, { title: __('Tab', 'bigspy-ai-theme-wp') },
-				el(Text, { label: __('Tab title', 'bigspy-ai-theme-wp'), value: props.attributes.title, onChange: function (v) { props.setAttributes({ title: v }); } }),
-				el(B.IconPicker, { label: __('Tab icon (optional)', 'bigspy-ai-theme-wp'), value: props.attributes.icon, onChange: function (v) { props.setAttributes({ icon: v }); } })
+			el(Inspector, null, el(Panel, { title: __('Tab', T) },
+				el(Text, { label: __('Tab title', T), value: a.title, onChange: set('title') }),
+				el(Text, { label: __('Small text under the title (optional)', T), value: a.subtitle, onChange: set('subtitle') }),
+				el(B.IconPicker, { label: __('Tab icon (optional)', T), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v || '' }); } }),
+				el(B.MediaPicker, { label: __('Image instead of the icon (optional)', T), id: a.imageId, url: a.imageUrl, onChange: function (m) { props.setAttributes({ imageId: m && m.id ? m.id : 0, imageUrl: m && m.url ? m.url : '' }); } }),
+				el(Text, { label: __('Badge (e.g. New, -20%)', T), value: a.badge, onChange: set('badge') }),
+				el(Text, { label: __('Link anchor (opens this tab from #anchor)', T), value: a.anchor, onChange: function (v) { props.setAttributes({ anchor: (v || '').toLowerCase().replace(/[^a-z0-9_-]+/g, '-') }); } }),
+				el(Toggle, { label: __('Disabled (shown but cannot be opened)', T), checked: !!a.disabled, onChange: set('disabled') })
 			)),
-			el('div', { className: 'bst-tab-label' }, props.attributes.icon ? el(B.Icon, { name: props.attributes.icon, size: 14 }) : null, props.attributes.title || __('Tab', 'bigspy-ai-theme-wp')),
+			el(B.StyleTab, null, el(B.ColorPanel, { title: __('This tab', T), settings: [
+				{ label: __('Tab color', T), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+				{ label: __('Badge color', T), value: a.badgeColor, onChange: function (v) { props.setAttributes({ badgeColor: v || '' }); } }
+			] })),
+			el('div', { className: 'bst-tab-label' }, a.icon ? el(B.Icon, { name: a.icon, size: 14 }) : null, a.title || __('Tab', T), a.disabled ? ' (' + __('disabled', T) + ')' : ''),
 			el('div', innerProps)
 		);
 	}, saveInner);
@@ -1466,43 +1616,72 @@
 	register('accordion', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
+		var T = 'bigspy-ai-theme-wp';
+		var box = function (inner) { return '<rect x="2" y="2" width="52" height="16" rx="2" fill="none" stroke="currentColor" stroke-opacity=".15"/>' + inner; };
+		var STYLES = [
+			{ value: 'bordered', label: __('Bordered', T), svg: box('<rect x="6" y="4" width="44" height="12" rx="2" fill="none" stroke="currentColor"/><path d="M6 10H50" stroke="currentColor"/>') },
+			{ value: 'separated', label: __('Separated boxes', T), svg: box('<rect x="6" y="3" width="44" height="6" rx="2" fill="none" stroke="currentColor"/><rect x="6" y="11" width="44" height="6" rx="2" fill="none" stroke="currentColor"/>') },
+			{ value: 'minimal', label: __('Minimal lines', T), svg: box('<path d="M6 9H50M6 16H50" stroke="currentColor"/>') },
+			{ value: 'shadow', label: __('Shadow cards', T), svg: box('<rect x="7" y="4" width="42" height="5" rx="2" fill="currentColor" fill-opacity=".2"/><rect x="6" y="3" width="42" height="5" rx="2" fill="#fff" stroke="currentColor" stroke-opacity=".4"/><rect x="7" y="12" width="42" height="5" rx="2" fill="currentColor" fill-opacity=".2"/><rect x="6" y="11" width="42" height="5" rx="2" fill="#fff" stroke="currentColor" stroke-opacity=".4"/>') },
+			{ value: 'solid', label: __('Solid background', T), svg: box('<rect x="6" y="3" width="44" height="6" rx="2" fill="currentColor" fill-opacity=".25"/><rect x="6" y="11" width="44" height="6" rx="2" fill="currentColor" fill-opacity=".25"/>') },
+			{ value: 'underline', label: __('Underline', T), svg: box('<path d="M6 9H50" stroke="currentColor" stroke-width="2"/><path d="M6 16H50" stroke="currentColor" stroke-opacity=".3"/>') },
+			{ value: 'leftbar', label: __('Bar on the left', T), svg: box('<rect x="6" y="3" width="3" height="6" fill="currentColor"/><rect x="6" y="11" width="3" height="6" fill="currentColor" fill-opacity=".3"/><path d="M12 6H40M12 14H40" stroke="currentColor" stroke-opacity=".4"/>') },
+			{ value: 'bignum', label: __('Big numbers', T), svg: box('<text x="6" y="14" font-size="10" font-weight="800" fill="currentColor">01</text><path d="M22 10H50" stroke="currentColor" stroke-opacity=".4"/>') }
+		];
 		var blockProps = useBlockProps({
-			className: 'bs-accordion bs-accordion--' + a.style + ' bs-accordion--icon-' + (a.iconStyle || 'chevron') + ' bs-accordion--icon-' + (a.iconPosition || 'right') + (a.numbered ? ' bs-accordion--numbered' : ''),
-			style: styleVars({ '--bs-acc-title-size': a.titleSize ? a.titleSize + 'px' : '', '--bs-acc-title': a.titleColor, '--bs-acc-title-bg': a.titleBg, '--bs-acc-active': a.activeColor, '--bs-acc-active-bg': a.activeBg, '--bs-acc-content-bg': a.contentBg, '--bs-acc-radius': a.radius >= 0 ? a.radius + 'px' : '', '--bs-acc-gap': a.gap >= 0 ? a.gap + 'px' : '' })
+			className: 'bs-accordion bs-accordion--' + a.style + ' bs-accordion--icon-' + (a.iconStyle || 'chevron') + ' bs-accordion--icon-' + (a.iconPosition || 'right') + (a.numbered ? ' bs-accordion--numbered' : '') + (a.columns === 2 ? ' bs-accordion--cols-2' : ''),
+			style: styleVars({ '--bs-acc-title-size': a.titleSize ? a.titleSize + 'px' : '', '--bs-acc-title': a.titleColor, '--bs-acc-title-bg': a.titleBg, '--bs-acc-active': a.activeColor, '--bs-acc-active-bg': a.activeBg, '--bs-acc-content-bg': a.contentBg, '--bs-acc-radius': a.radius >= 0 ? a.radius + 'px' : '', '--bs-acc-gap': a.gap >= 0 ? a.gap + 'px' : '',
+				'--bs-acc-icon-c': a.iconColor, '--bs-acc-icon-size': a.iconSize ? a.iconSize + 'px' : '', '--bs-acc-title-fw': a.titleWeight ? String(a.titleWeight) : '', '--bs-acc-title-pad': a.titlePad >= 0 ? a.titlePad + 'px' : '', '--bs-acc-title-hover': a.titleHover, '--bs-acc-border-c': a.borderColor, '--bs-acc-border-w': a.borderWidth >= 0 ? a.borderWidth + 'px' : '', '--bs-acc-content-c': a.contentColor, '--bs-acc-content-fs': a.contentSize ? a.contentSize + 'px' : '' })
 		});
 		var innerProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['bst/accordion-item'],
 			template: [
-				['bst/accordion-item', { title: __('Question 1?', 'bigspy-ai-theme-wp'), open: true }],
-				['bst/accordion-item', { title: __('Question 2?', 'bigspy-ai-theme-wp') }],
-				['bst/accordion-item', { title: __('Question 3?', 'bigspy-ai-theme-wp') }]
+				['bst/accordion-item', { title: __('Question 1?', T), open: true }],
+				['bst/accordion-item', { title: __('Question 2?', T) }],
+				['bst/accordion-item', { title: __('Question 3?', T) }]
 			]
 		});
+		var color = function (label, key) { return { label: label, value: a[key], onChange: function (v) { var o = {}; o[key] = v || ''; props.setAttributes(o); } }; };
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Accordion', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { bordered: __('Bordered', 'bigspy-ai-theme-wp'), separated: __('Separated boxes', 'bigspy-ai-theme-wp'), minimal: __('Minimal lines', 'bigspy-ai-theme-wp') } }, bind('style'))),
-					el(Toggle, Object.assign({ label: __('Only one item open at a time', 'bigspy-ai-theme-wp') }, bind('single', true))),
-					el(Toggle, Object.assign({ label: __('Add FAQ schema (Google rich results)', 'bigspy-ai-theme-wp'), help: __('Turn off if an SEO plugin already outputs FAQ schema for this page.', 'bigspy-ai-theme-wp') }, bind('faqSchema', true))),
-					el(Toggle, Object.assign({ label: __('Smooth open / close animation', 'bigspy-ai-theme-wp') }, bind('smooth', true))),
-					el(Toggle, Object.assign({ label: __('Number the items (01, 02…)', 'bigspy-ai-theme-wp') }, bind('numbered', true))),
-					el(Select, Object.assign({ label: __('Question tag for all items (SEO)', 'bigspy-ai-theme-wp'), help: __('Each item can override it in its own settings.', 'bigspy-ai-theme-wp'), options: { div: __('Normal text (div)', 'bigspy-ai-theme-wp'), p: __('Paragraph (p)', 'bigspy-ai-theme-wp'), h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6' } }, bind('titleTag')))
+				el(Panel, { title: __('Accordion', T) },
+					el(Toggle, Object.assign({ label: __('Only one item open at a time', T) }, bind('single', true))),
+					el(Select, Object.assign({ label: __('Open on page load', T), options: { '': __('As set on each item', T), first: __('First item', T), all: __('All items', T), none: __('None', T) } }, bind('openMode'))),
+					el(Select, { label: __('Columns', T), help: __('Two columns become one under 850px.', T), options: { 1: '1', 2: '2' }, value: String(a.columns || 1), onChange: function (v) { props.setAttributes({ columns: parseInt(v, 10) || 1 }); } }),
+					el(Toggle, Object.assign({ label: __('“Open all / Close all” button', T) }, bind('expandAll', true))),
+					el(Toggle, Object.assign({ label: __('Search box to filter questions', T) }, bind('search', true))),
+					el(Toggle, Object.assign({ label: __('Link to each item (#question opens it)', T) }, bind('deepLink', true))),
+					el(Toggle, Object.assign({ label: __('Add FAQ schema (Google rich results)', T), help: __('Turn off if an SEO plugin already outputs FAQ schema for this page.', T) }, bind('faqSchema', true))),
+					el(Toggle, Object.assign({ label: __('Smooth open / close animation', T) }, bind('smooth', true))),
+					el(Toggle, Object.assign({ label: __('Number the items (01, 02…)', T) }, bind('numbered', true))),
+					el(Select, Object.assign({ label: __('Question tag for all items (SEO)', T), help: __('Each item can override it in its own settings.', T), options: { div: __('Normal text (div)', T), p: __('Paragraph (p)', T), h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', h6: 'H6' } }, bind('titleTag')))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Accordion style', T) },
+					el(B.StylePicker, { label: __('Style', T), value: a.style, options: STYLES, onChange: function (v) { props.setAttributes({ style: v }); } }),
+					el(Range, Object.assign({ label: __('Corner radius (px, -1 = style default)', T), min: -1, max: 40 }, bind('radius'))),
+					el(Range, Object.assign({ label: __('Space between items (px, -1 = default)', T), min: -1, max: 40 }, bind('gap'))),
+					el(Range, Object.assign({ label: __('Border width (px, -1 = default)', T), min: -1, max: 8 }, bind('borderWidth')))
 				),
-				el(Panel, { title: __('Icon', 'bigspy-ai-theme-wp') },
-					sliderChoice(props, __('Icon', 'bigspy-ai-theme-wp'), 'iconStyle', [['chevron', '⌄ ' + __('Chevron', 'bigspy-ai-theme-wp')], ['plus', '+ ' + __('Plus', 'bigspy-ai-theme-wp')], ['circle', '⊕ ' + __('Circle', 'bigspy-ai-theme-wp')], ['arrow', '→ ' + __('Arrow', 'bigspy-ai-theme-wp')], ['none', __('None', 'bigspy-ai-theme-wp')]]),
-					sliderChoice(props, __('Position', 'bigspy-ai-theme-wp'), 'iconPosition', [['right', __('Right', 'bigspy-ai-theme-wp')], ['left', __('Left', 'bigspy-ai-theme-wp')]])
+				el(Panel, { title: __('Icon', T), initialOpen: false },
+					sliderChoice(props, __('Icon', T), 'iconStyle', [['chevron', '⌄ ' + __('Chevron', T)], ['plus', '+ ' + __('Plus', T)], ['circle', '⊕ ' + __('Circle', T)], ['arrow', '→ ' + __('Arrow', T)], ['none', __('None', T)]]),
+					sliderChoice(props, __('Position', T), 'iconPosition', [['right', __('Right', T)], ['left', __('Left', T)]]),
+					el(Range, Object.assign({ label: __('Icon size (px, 0 = default)', T), max: 48 }, bind('iconSize')))
 				),
-				el(Panel, { title: __('Size & spacing', 'bigspy-ai-theme-wp'), initialOpen: false },
-					el(Range, Object.assign({ label: __('Title size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 40 }, bind('titleSize'))),
-					el(Range, Object.assign({ label: __('Corner radius (px, -1 = style default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('radius'))),
-					el(Range, Object.assign({ label: __('Space between items (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('gap')))
+				el(Panel, { title: __('Question', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Title size (px, 0 = default)', T), max: 40 }, bind('titleSize'))),
+					el(Select, { label: __('Weight', T), options: { 0: __('Default', T), 400: '400', 500: '500', 600: '600', 700: '700', 800: '800' }, value: String(a.titleWeight || 0), onChange: function (v) { props.setAttributes({ titleWeight: parseInt(v, 10) || 0 }); } }),
+					el(Range, Object.assign({ label: __('Top and bottom padding (px, -1 = default)', T), min: -1, max: 48 }, bind('titlePad')))
 				),
-				el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
-					{ label: __('Title', 'bigspy-ai-theme-wp'), value: a.titleColor, onChange: function (v) { props.setAttributes({ titleColor: v || '' }); } },
-					{ label: __('Title background', 'bigspy-ai-theme-wp'), value: a.titleBg, onChange: function (v) { props.setAttributes({ titleBg: v || '' }); } },
-					{ label: __('Open item – title', 'bigspy-ai-theme-wp'), value: a.activeColor, onChange: function (v) { props.setAttributes({ activeColor: v || '' }); } },
-					{ label: __('Open item – background', 'bigspy-ai-theme-wp'), value: a.activeBg, onChange: function (v) { props.setAttributes({ activeBg: v || '' }); } },
-					{ label: __('Answer background', 'bigspy-ai-theme-wp'), value: a.contentBg, onChange: function (v) { props.setAttributes({ contentBg: v || '' }); } }
+				el(Panel, { title: __('Answer', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Text size (px, 0 = default)', T), max: 28 }, bind('contentSize')))
+				),
+				el(B.ColorPanel, { title: __('Colors', T), settings: [
+					color(__('Title', T), 'titleColor'), color(__('Title on hover', T), 'titleHover'), color(__('Title background', T), 'titleBg'),
+					color(__('Open item – title', T), 'activeColor'), color(__('Open item – background', T), 'activeBg'),
+					color(__('Icon', T), 'iconColor'), color(__('Border', T), 'borderColor'),
+					color(__('Answer text', T), 'contentColor'), color(__('Answer background', T), 'contentBg')
 				] })
 			),
 			el('div', innerProps)
@@ -1517,12 +1696,16 @@
 			el(Inspector, null,
 				el(Panel, { title: __('Item', 'bigspy-ai-theme-wp') },
 					el(Toggle, { label: __('Open by default', 'bigspy-ai-theme-wp'), checked: a.open, onChange: function (v) { props.setAttributes({ open: v }); } }),
+					el(c.TextControl, { label: __('Subtitle under the question', 'bigspy-ai-theme-wp'), value: a.subtitle || '', onChange: function (v) { props.setAttributes({ subtitle: v }); }, __nextHasNoMarginBottom: true }),
+					el(c.TextControl, { label: __('Label next to the question (e.g. New)', 'bigspy-ai-theme-wp'), value: a.badge || '', onChange: function (v) { props.setAttributes({ badge: v }); }, __nextHasNoMarginBottom: true }),
 					el(c.SelectControl, { label: __('Question tag (SEO)', 'bigspy-ai-theme-wp'), help: __('Same as accordion = the tag set on the Accordion block.', 'bigspy-ai-theme-wp'), value: a.titleTag || '', options: [{ value: '', label: __('Same as accordion', 'bigspy-ai-theme-wp') + (props.context && props.context['bst/accordionTitleTag'] ? ' (' + props.context['bst/accordionTitleTag'].toUpperCase() + ')' : '') }, { value: 'div', label: __('Normal text (div)', 'bigspy-ai-theme-wp') }, { value: 'p', label: __('Paragraph (p)', 'bigspy-ai-theme-wp') }, { value: 'h2', label: 'H2' }, { value: 'h3', label: 'H3' }, { value: 'h4', label: 'H4' }, { value: 'h5', label: 'H5' }, { value: 'h6', label: 'H6' }], onChange: function (v) { props.setAttributes({ titleTag: v }); }, __nextHasNoMarginBottom: true })
 				)
 			),
 			el('div', blockProps,
 				el('div', { className: 'bs-accordion__title' },
 					el(RichText, { tagName: 'span', className: 'bs-accordion__text', value: a.title, placeholder: __('Question / title', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ title: v }); } }),
+					a.badge ? el('span', { className: 'bs-accordion__badge' }, a.badge) : null,
+					a.subtitle ? el('span', { className: 'bs-accordion__sub' }, a.subtitle) : null,
 					el('span', { className: 'bst-acc-tag', title: __('Question tag', 'bigspy-ai-theme-wp') }, (a.titleTag || (props.context && props.context['bst/accordionTitleTag']) || 'div').toUpperCase()),
 					el('span', { className: 'bs-accordion__icon', 'aria-hidden': true, onClick: function () { props.setAttributes({ open: !a.open }); } }, el(B.Icon, { name: 'chevron-down', size: 18 }))
 				),
@@ -1692,7 +1875,7 @@
 			el(Panel, { title: __('Text effects', 'bigspy-ai-theme-wp'), initialOpen: !!(a.gradient || a.highlight) },
 				el(Toggle, Object.assign({ label: __('Gradient text', 'bigspy-ai-theme-wp') }, bind('gradient', true))),
 				a.gradient ? el(Range, Object.assign({ label: __('Gradient angle (°)', 'bigspy-ai-theme-wp'), min: 0, max: 360 }, bind('gradientAngle'))) : null,
-				sliderChoice(props, __('Animated highlight', 'bigspy-ai-theme-wp'), 'highlight', [['', __('None', 'bigspy-ai-theme-wp')], ['underline', __('Underline', 'bigspy-ai-theme-wp')], ['marker', __('Marker', 'bigspy-ai-theme-wp')], ['brush', __('Brush', 'bigspy-ai-theme-wp')], ['strike', __('Strike', 'bigspy-ai-theme-wp')]]),
+				sliderChoice(props, __('Animated highlight', 'bigspy-ai-theme-wp'), 'highlight', [['', __('None', 'bigspy-ai-theme-wp')], ['underline', __('Underline', 'bigspy-ai-theme-wp')], ['marker', __('Marker', 'bigspy-ai-theme-wp')], ['brush', __('Brush', 'bigspy-ai-theme-wp')], ['strike', __('Strike', 'bigspy-ai-theme-wp')], ['circle', __('Circle', 'bigspy-ai-theme-wp')], ['box', __('Box', 'bigspy-ai-theme-wp')]]),
 				sliderChoice(props, __('Text motion', 'bigspy-ai-theme-wp'), 'textMotion', [['', __('None', 'bigspy-ai-theme-wp')], ['reveal', __('Light up word by word while scrolling', 'bigspy-ai-theme-wp')], ['words', __('Words appear one by one', 'bigspy-ai-theme-wp')], ['scramble', __('Scramble then reveal', 'bigspy-ai-theme-wp')]]),
 				el('p', { className: 'description' }, __('The highlight draws itself when the heading scrolls into view.', 'bigspy-ai-theme-wp'))
 			),
@@ -1707,10 +1890,25 @@
 	register('heading', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
+		var T = 'bigspy-ai-theme-wp';
+		var px = function (v) { return v ? v + 'px' : ''; };
+		var shadow = a.shadowColor ? (a.shadowX || 0) + 'px ' + (a.shadowY || 0) + 'px ' + (a.shadowBlur || 0) + 'px ' + a.shadowColor : '';
 		var blockProps = useBlockProps({
-			className: 'bs-heading' + (a.gradient ? ' bs-heading--gradient' : '') + (a.highlight ? ' bs-heading--hl is-drawn bs-heading--hl-' + a.highlight : '') + '' + (a.balance ? ' bs-heading--balanced' : '') + (a.align ? ' has-text-align-' + a.align : ''),
-			style: styleVars({ '--bs-heading-size': a.size ? a.size + 'px' : '', '--bs-heading-size-tablet': a.sizeTablet ? a.sizeTablet + 'px' : '', '--bs-heading-size-mobile': a.sizeMobile ? a.sizeMobile + 'px' : '', '--bs-heading-leading': a.lineHeight || '', '--bs-heading-max': a.maxWidth ? a.maxWidth + 'px' : '', '--bs-heading-color': a.color, '--bs-heading-weight': a.weight || '', '--bs-grad-from': a.gradientFrom, '--bs-grad-to': a.gradientTo, '--bs-grad-angle': a.gradient ? (a.gradientAngle || 90) + 'deg' : '', '--bs-hl-color': a.highlightColor })
+			className: 'bs-heading' + (a.gradient ? ' bs-heading--gradient' : '') + (a.highlight ? ' bs-heading--hl is-drawn bs-heading--hl-' + a.highlight : '') + '' + (a.balance ? ' bs-heading--balanced' : '') + (a.align ? ' has-text-align-' + a.align : '')
+				+ (a.strokeWidth ? ' bs-heading--stroke' + (a.strokeHollow ? ' bs-heading--hollow' : '') : '') + (a.decor ? ' bs-heading--decor bs-heading--decor-' + a.decor : '') + (a.kicker ? ' has-kicker' : ''),
+			style: styleVars(B.assign({ '--bs-heading-size': a.size ? a.size + 'px' : '', '--bs-heading-size-tablet': a.sizeTablet ? a.sizeTablet + 'px' : '', '--bs-heading-size-mobile': a.sizeMobile ? a.sizeMobile + 'px' : '', '--bs-heading-leading': a.lineHeight || '', '--bs-heading-max': a.maxWidth ? a.maxWidth + 'px' : '', '--bs-heading-color': a.color, '--bs-heading-weight': a.weight || '', '--bs-grad-from': a.gradientFrom, '--bs-grad-to': a.gradientTo, '--bs-grad-angle': a.gradient ? (a.gradientAngle || 90) + 'deg' : '', '--bs-hl-color': a.highlightColor,
+				'--bs-heading-stroke-w': px(a.strokeWidth), '--bs-heading-stroke-c': a.strokeWidth ? a.strokeColor : '', '--bs-heading-decor-c': a.decor ? a.decorColor : '', '--bs-heading-decor-l': a.decor ? px(a.decorLength) : '', '--bs-heading-decor-w': a.decor ? px(a.decorWidth) : '', '--bs-heading-shadow': shadow },
+				B.partVars(a, 'heading', 'kicker', ['Size', 'Color']), a.icon ? B.partVars(a, 'heading', 'icon', ['Size', 'Color']) : {}))
 		});
+		var wrapText = !!(a.kicker || a.icon || a.decor || a.gradient || a.highlight);
+		var textEl = el(RichText, { tagName: 'span', className: 'bs-heading__text', value: a.text, placeholder: __('Write a heading…', T), onChange: function (v) { props.setAttributes({ text: v }); } });
+		var line = (a.icon || a.decor) ? el('span', { className: 'bs-heading__line' }, a.icon ? el('span', { className: 'bs-heading__icon' }, el(B.Icon, { name: a.icon, size: 24 })) : null, el('span', { className: 'bs-heading__body' }, textEl)) : textEl;
+		var DECOR = [
+			{ value: '', label: __('None', T), svg: '<rect x="14" y="4" width="28" height="5" rx="1" fill="currentColor" opacity=".35"/>' },
+			{ value: 'before', label: __('Line before', T), svg: '<path d="M4 6.5H16" stroke="currentColor" stroke-width="2"/><rect x="20" y="4" width="28" height="5" rx="1" fill="currentColor" opacity=".35"/>' },
+			{ value: 'after', label: __('Line after', T), svg: '<rect x="8" y="4" width="28" height="5" rx="1" fill="currentColor" opacity=".35"/><path d="M40 6.5H52" stroke="currentColor" stroke-width="2"/>' },
+			{ value: 'both', label: __('Lines on both sides', T), svg: '<path d="M2 6.5H14M42 6.5H54" stroke="currentColor" stroke-width="2"/><rect x="18" y="4" width="20" height="5" rx="1" fill="currentColor" opacity=".35"/>' }
+		];
 		return el(Fragment, null,
 			el(be.BlockControls, null,
 				el(c.ToolbarGroup, null,
@@ -1733,9 +1931,42 @@
 					el(Select, Object.assign({ label: __('Font weight', 'bigspy-ai-theme-wp'), options: { '': __('Default', 'bigspy-ai-theme-wp'), '300': '300', '400': '400', '500': '500', '600': '600', '700': '700', '800': '800', '900': '900' } }, bind('weight'))),
 					el(Text, Object.assign({ label: __('Link (URL)', 'bigspy-ai-theme-wp'), type: 'url' }, bind('link')))
 				),
+				el(Panel, { title: __('Kicker and icon', T), initialOpen: !!(a.kicker || a.icon) },
+					el(Text, Object.assign({ label: __('Small line above (kicker)', T) }, bind('kicker'))),
+					el(B.IconPicker, { label: __('Icon before the heading (optional)', T), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v || '' }); } })
+				),
 				el(B.ColorPanel, { settings: [{ label: __('Text', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } }] })
 			),
-			el(RichText, Object.assign({ tagName: a.tag === 'div' ? 'div' : a.tag, value: a.text, placeholder: __('Write a heading…', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } }, blockProps))
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Decorative lines', T), initialOpen: !!a.decor },
+					el(B.StylePicker, { label: __('Lines', T), value: a.decor, options: DECOR, columns: 2, onChange: function (v) { props.setAttributes({ decor: v }); } }),
+					a.decor ? el(Range, Object.assign({ label: __('Line length (px, 0 = default)', T), min: 0, max: 600, reset: 0 }, bind('decorLength'))) : null,
+					a.decor ? el(Range, Object.assign({ label: __('Line thickness (px, 0 = default)', T), min: 0, max: 20, reset: 0 }, bind('decorWidth'))) : null,
+					a.decor ? el(B.ColorPanel, { settings: [{ label: __('Line', T), value: a.decorColor, onChange: function (v) { props.setAttributes({ decorColor: v || '' }); } }] }) : null
+				),
+				el(Panel, { title: __('Text outline', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Outline thickness (px, 0 = off)', T), min: 0, max: 10, step: 0.5, reset: 0 }, bind('strokeWidth'))),
+					a.strokeWidth ? el(Toggle, Object.assign({ label: __('Outline only (hollow letters)', T) }, bind('strokeHollow', true))) : null,
+					a.strokeWidth ? el(B.ColorPanel, { settings: [{ label: __('Outline', T), value: a.strokeColor, onChange: function (v) { props.setAttributes({ strokeColor: v || '' }); } }] }) : null
+				),
+				el(Panel, { title: __('Text shadow', T), initialOpen: false },
+					el(B.ColorPanel, { settings: [{ label: __('Shadow (set a color to turn on)', T), value: a.shadowColor, onChange: function (v) { props.setAttributes({ shadowColor: v || '' }); } }] }),
+					a.shadowColor ? el(Range, Object.assign({ label: __('Horizontal offset (px)', T), min: -50, max: 50 }, bind('shadowX'))) : null,
+					a.shadowColor ? el(Range, Object.assign({ label: __('Vertical offset (px)', T), min: -50, max: 50 }, bind('shadowY'))) : null,
+					a.shadowColor ? el(Range, Object.assign({ label: __('Blur (px)', T), min: 0, max: 100 }, bind('shadowBlur'))) : null
+				),
+				a.kicker || a.icon ? el(Panel, { title: __('Kicker and icon style', T), initialOpen: false },
+					a.kicker ? el(Range, Object.assign({ label: __('Kicker size (px, 0 = default)', T), min: 0, max: 60, reset: 0 }, bind('kickerSize'))) : null,
+					a.icon ? el(Range, Object.assign({ label: __('Icon size (px, 0 = same as text)', T), min: 0, max: 160, reset: 0 }, bind('iconSize'))) : null,
+					el(B.ColorPanel, { settings: [].concat(
+						a.kicker ? [{ label: __('Kicker', T), value: a.kickerColor, onChange: function (v) { props.setAttributes({ kickerColor: v || '' }); } }] : [],
+						a.icon ? [{ label: __('Icon', T), value: a.iconColor, onChange: function (v) { props.setAttributes({ iconColor: v || '' }); } }] : []) })
+				) : null
+			),
+			wrapText ? el(a.tag === 'div' ? 'div' : a.tag, blockProps,
+				a.kicker ? el('span', { className: 'bs-heading__kicker' }, a.kicker) : null,
+				line)
+				: el(RichText, Object.assign({ tagName: a.tag === 'div' ? 'div' : a.tag, value: a.text, placeholder: __('Write a heading…', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } }, blockProps))
 		);
 	});
 
@@ -1749,11 +1980,13 @@
 		};
 		var editorRef = wp.element.useRef(null);
 		var blockProps = useBlockProps({
-			className: 'bs-text bst-text-inline' + (a.align ? ' has-text-align-' + a.align : '') + (a.columns > 1 ? ' has-columns' : '') + (a.dropCap ? ' has-drop-cap' : ''),
+			className: 'bs-text bst-text-inline' + (a.align ? ' has-text-align-' + a.align : '') + (a.columns > 1 ? ' has-columns' : '') + (a.dropCap ? ' has-drop-cap' : '')
+				+ (a.listStyle ? ' bs-text--list-' + a.listStyle : '') + (a.quoteStyle ? ' bs-text--quote-' + a.quoteStyle : '') + (a.linkStyle ? ' bs-text--link-' + a.linkStyle : '') + (a.columns > 1 && a.columnRuleColor ? ' has-column-rule' : ''),
 			style: styleVars({
 				'--bs-text-size': a.size ? a.size + 'px' : '', '--bs-text-color': a.color, '--bs-text-max': a.maxWidth ? a.maxWidth + 'px' : '',
 				'--bs-text-lh': a.lineHeight ? a.lineHeight : '', '--bs-text-ls': a.letterSpacing ? a.letterSpacing + 'px' : '', '--bs-text-weight': a.weight, '--bs-text-transform': a.transform,
-				'--bs-text-link': a.linkColor, '--bs-text-cols': a.columns > 1 ? a.columns : ''
+				'--bs-text-link': a.linkColor, '--bs-text-cols': a.columns > 1 ? a.columns : '',
+				'--bs-text-link-h': a.linkColorHover, '--bs-text-col-gap': a.columns > 1 && a.columnGap ? a.columnGap + 'px' : '', '--bs-text-col-rule': a.columns > 1 ? a.columnRuleColor : ''
 			})
 		});
 		return el(Fragment, null,
@@ -1763,6 +1996,9 @@
 					el(Range, Object.assign({ label: __('Max width (px, 0 = full)', 'bigspy-ai-theme-wp'), max: 1400, step: 10 }, bind('maxWidth'))),
 					el(Range, Object.assign({ label: __('Text columns', 'bigspy-ai-theme-wp'), min: 1, max: 4 }, bind('columns'))),
 					a.columns > 1 ? el(Toggle, Object.assign({ label: __('Keep columns on mobile', 'bigspy-ai-theme-wp') }, bind('columnsMobile', true))) : null,
+					a.columns > 1 ? el(Range, Object.assign({ label: __('Gap between columns (px, 0 = default)', 'bigspy-ai-theme-wp'), min: 0, max: 200, reset: 0 }, bind('columnGap'))) : null,
+					el(Range, Object.assign({ label: __('Limit to lines with “Read more” (0 = off)', 'bigspy-ai-theme-wp'), help: __('The editor shows all the text; the page shows the limit.', 'bigspy-ai-theme-wp'), min: 0, max: 40, reset: 0 }, bind('clampLines'))),
+					a.clampLines ? el(Text, Object.assign({ label: __('“Read more” text', 'bigspy-ai-theme-wp'), placeholder: __('Read more', 'bigspy-ai-theme-wp') }, bind('moreText'))) : null,
 					el(Toggle, Object.assign({ label: __('Large first letter (drop cap)', 'bigspy-ai-theme-wp') }, bind('dropCap', true))),
 					el(Toggle, Object.assign({ label: __('Paste as plain text (removes Word/web formatting)', 'bigspy-ai-theme-wp') }, bind('plainPaste', true)))
 				),
@@ -1780,8 +2016,26 @@
 				),
 				el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
 					{ label: __('Text', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
-					{ label: __('Links', 'bigspy-ai-theme-wp'), value: a.linkColor, onChange: function (v) { props.setAttributes({ linkColor: v || '' }); } }
-				] })
+					{ label: __('Links', 'bigspy-ai-theme-wp'), value: a.linkColor, onChange: function (v) { props.setAttributes({ linkColor: v || '' }); } },
+					{ label: __('Links on hover', 'bigspy-ai-theme-wp'), value: a.linkColorHover, onChange: function (v) { props.setAttributes({ linkColorHover: v || '' }); } }
+				].concat(a.columns > 1 ? [{ label: __('Line between columns', 'bigspy-ai-theme-wp'), value: a.columnRuleColor, onChange: function (v) { props.setAttributes({ columnRuleColor: v || '' }); } }] : []) })
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Lists, quotes and links', 'bigspy-ai-theme-wp'), initialOpen: !!(a.listStyle || a.quoteStyle || a.linkStyle) },
+					el(B.StylePicker, { label: __('List style', 'bigspy-ai-theme-wp'), value: a.listStyle, onChange: function (v) { props.setAttributes({ listStyle: v }); }, options: [
+						{ value: '', label: __('Default', 'bigspy-ai-theme-wp'), svg: '<circle cx="8" cy="4" r="1.5" fill="currentColor"/><circle cx="8" cy="10" r="1.5" fill="currentColor"/><rect x="13" y="3" width="30" height="2" fill="currentColor" opacity=".4"/><rect x="13" y="9" width="24" height="2" fill="currentColor" opacity=".4"/>' },
+						{ value: 'check', label: __('Check marks', 'bigspy-ai-theme-wp'), svg: '<path d="M5 4l2 2 3-3M5 10l2 2 3-3" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="13" y="3" width="30" height="2" fill="currentColor" opacity=".4"/><rect x="13" y="9" width="24" height="2" fill="currentColor" opacity=".4"/>' },
+						{ value: 'arrow', label: __('Arrows', 'bigspy-ai-theme-wp'), svg: '<path d="M4 4h6M8 2l2 2-2 2M4 10h6M8 8l2 2-2 2" stroke="currentColor" fill="none"/><rect x="13" y="3" width="30" height="2" fill="currentColor" opacity=".4"/><rect x="13" y="9" width="24" height="2" fill="currentColor" opacity=".4"/>' },
+						{ value: 'number', label: __('Numbers in circles', 'bigspy-ai-theme-wp'), svg: '<circle cx="7" cy="4" r="3" fill="currentColor"/><circle cx="7" cy="11" r="3" fill="currentColor"/><rect x="13" y="3" width="30" height="2" fill="currentColor" opacity=".4"/><rect x="13" y="10" width="24" height="2" fill="currentColor" opacity=".4"/>' }
+					] }),
+					el(B.StylePicker, { label: __('Quote style', 'bigspy-ai-theme-wp'), value: a.quoteStyle, onChange: function (v) { props.setAttributes({ quoteStyle: v }); }, options: [
+						{ value: '', label: __('Default', 'bigspy-ai-theme-wp'), svg: '<rect x="6" y="1" width="44" height="13" fill="currentColor" opacity=".12"/><rect x="6" y="1" width="2" height="13" fill="currentColor"/>' },
+						{ value: 'card', label: __('Card', 'bigspy-ai-theme-wp'), svg: '<rect x="6" y="1" width="44" height="13" rx="3" fill="currentColor" opacity=".2"/><rect x="12" y="6" width="30" height="2" fill="currentColor" opacity=".6"/>' },
+						{ value: 'big', label: __('Big quote mark', 'bigspy-ai-theme-wp'), svg: '<text x="4" y="13" font-size="16" font-family="Georgia" fill="currentColor">“</text><rect x="16" y="6" width="32" height="2" fill="currentColor" opacity=".5"/>' },
+						{ value: 'line', label: __('Thin line', 'bigspy-ai-theme-wp'), svg: '<rect x="6" y="1" width="1" height="13" fill="currentColor"/><rect x="11" y="6" width="34" height="2" fill="currentColor" opacity=".5"/>' }
+					] }),
+					el(Select, Object.assign({ label: __('Link style', 'bigspy-ai-theme-wp'), options: { '': __('Default', 'bigspy-ai-theme-wp'), underline: __('Underlined', 'bigspy-ai-theme-wp'), hover: __('Underline on hover', 'bigspy-ai-theme-wp'), highlight: __('Highlighted', 'bigspy-ai-theme-wp') } }, bind('linkStyle')))
+				)
 			),
 			el(be.BlockControls, { group: 'other' },
 				el(be.MediaUploadCheck, null, el(be.MediaUpload, {
@@ -1877,35 +2131,56 @@
 	register('buttons', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({
-			className: 'bs-buttons bs-buttons--' + a.align + (a.stackMobile ? ' bs-buttons--stack-mobile' : ''),
-			style: { '--bs-buttons-gap': a.gap + 'px' }
-		});
+		var T = 'bigspy-ai-theme-wp';
+		var cls = 'bs-buttons bs-buttons--' + a.align + (a.stackMobile ? ' bs-buttons--stack-mobile' : '');
+		[['Tablet', 't'], ['Mobile', 'm']].forEach(function (d) { if (a['align' + d[0]]) { cls += ' bs-buttons--' + d[1] + '-' + a['align' + d[0]]; } });
+		[['', 'd'], ['Tablet', 't'], ['Mobile', 'm']].forEach(function (d) { if (a['direction' + d[0]]) { cls += ' bs-buttons--' + d[1] + '-' + a['direction' + d[0]]; } });
+		cls += (a.noWrap ? ' bs-buttons--nowrap' : '') + (a.equalWidth ? ' bs-buttons--equal' : '') + (a.separator ? ' has-separator' : '');
+		var st = { '--bs-buttons-gap': a.gap + 'px' };
+		if (a.gapMobile) { st['--bs-buttons-gap-m'] = a.gapMobile + 'px'; }
+		if (a.separator) { st['--bs-buttons-sep'] = '"' + String(a.separator).slice(0, 20).replace(/["\\;]/g, '') + '"'; }
+		var blockProps = useBlockProps({ className: cls, style: st });
 		var innerProps = useInnerBlocksProps(blockProps, {
 			allowedBlocks: ['bst/button'],
-			template: [['bst/button', { text: __('Get started', 'bigspy-ai-theme-wp') }], ['bst/button', { text: __('Learn more', 'bigspy-ai-theme-wp'), style: 'outline' }]],
-			orientation: 'horizontal'
+			template: [['bst/button', { text: __('Get started', T) }], ['bst/button', { text: __('Learn more', T), style: 'outline' }]],
+			orientation: a.direction === 'column' ? 'vertical' : 'horizontal'
 		});
+		var alignOpts = B.assign({}, ALIGN3, { stretch: __('Stretch (equal width)', T) });
+		var inherit = { '': __('Same as larger screen', T) };
+		var dirs = { row: __('Horizontal', T), column: __('Vertical', T) };
+		var pill = function (x, y, o) { return '<rect x="' + x + '" y="' + y + '" width="16" height="7" rx="2" fill="currentColor"' + (o ? ' opacity=".5"' : '') + '/>'; };
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Buttons', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: B.assign({}, ALIGN3, { stretch: __('Stretch (equal width)', 'bigspy-ai-theme-wp') }) }, bind('align'))),
-					el(Range, Object.assign({ label: __('Gap (px)', 'bigspy-ai-theme-wp'), max: 60 }, bind('gap'))),
-					el(Toggle, Object.assign({ label: __('Stack on mobile', 'bigspy-ai-theme-wp') }, bind('stackMobile', true)))
+				el(Panel, { title: __('Buttons', T) },
+					el(B.StylePicker, { label: __('Direction', T), value: a.direction || 'row', options: [{ value: 'row', label: __('Horizontal', T), svg: pill(4, 6) + pill(36, 6, 1) }, { value: 'column', label: __('Vertical', T), svg: pill(20, 1) + pill(20, 11, 1) }], onChange: function (v) { props.setAttributes({ direction: v === 'row' ? '' : v }); } }),
+					el(Select, Object.assign({ label: __('Align', T), options: alignOpts }, bind('align'))),
+					el(Range, Object.assign({ label: __('Gap (px)', T), max: 60 }, bind('gap'))),
+					el(Toggle, Object.assign({ label: __('Equal button widths', T) }, bind('equalWidth', true))),
+					el(Toggle, Object.assign({ label: __('Keep on one line (scroll if too wide)', T) }, bind('noWrap', true))),
+					el(Text, Object.assign({ label: __('Separator text between buttons', T), help: __('For example "or". Leave empty for none.', T) }, bind('separator')))
+				),
+				el(Panel, { title: __('Tablet & mobile', T), initialOpen: false },
+					el(Select, Object.assign({ label: __('Align on tablet', T), options: B.assign({}, inherit, alignOpts) }, bind('alignTablet'))),
+					el(Select, Object.assign({ label: __('Direction on tablet', T), options: B.assign({}, inherit, dirs) }, bind('directionTablet'))),
+					el(Select, Object.assign({ label: __('Align on mobile', T), options: B.assign({}, inherit, alignOpts) }, bind('alignMobile'))),
+					el(Select, Object.assign({ label: __('Direction on mobile', T), options: B.assign({}, inherit, dirs) }, bind('directionMobile'))),
+					el(Toggle, Object.assign({ label: __('Stack on mobile', T) }, bind('stackMobile', true))),
+					el(Range, Object.assign({ label: __('Gap on mobile (px, 0 = same)', T), max: 60 }, bind('gapMobile')))
 				)
 			),
 			el('div', innerProps)
 		);
 	}, saveInner);
 
-	var BTN_STYLES = [['primary', __('Solid', 'bigspy-ai-theme-wp')], ['secondary', __('Secondary', 'bigspy-ai-theme-wp')], ['outline', __('Outline', 'bigspy-ai-theme-wp')], ['soft', __('Soft', 'bigspy-ai-theme-wp')], ['gradient', __('Gradient', 'bigspy-ai-theme-wp')], ['shade', __('3D shade', 'bigspy-ai-theme-wp')], ['bevel', __('Bevel', 'bigspy-ai-theme-wp')], ['gloss', __('Gloss', 'bigspy-ai-theme-wp')], ['glass', __('Glass', 'bigspy-ai-theme-wp')], ['white', __('White', 'bigspy-ai-theme-wp')], ['underline', __('Underline', 'bigspy-ai-theme-wp')], ['link', __('Text link', 'bigspy-ai-theme-wp')]];
+	var BTN_STYLES = [['primary', __('Solid', 'bigspy-ai-theme-wp')], ['secondary', __('Secondary', 'bigspy-ai-theme-wp')], ['outline', __('Outline', 'bigspy-ai-theme-wp')], ['soft', __('Soft', 'bigspy-ai-theme-wp')], ['gradient', __('Gradient', 'bigspy-ai-theme-wp')], ['shade', __('3D shade', 'bigspy-ai-theme-wp')], ['bevel', __('Bevel', 'bigspy-ai-theme-wp')], ['gloss', __('Gloss', 'bigspy-ai-theme-wp')], ['glass', __('Glass', 'bigspy-ai-theme-wp')], ['white', __('White', 'bigspy-ai-theme-wp')], ['underline', __('Underline', 'bigspy-ai-theme-wp')], ['link', __('Text link', 'bigspy-ai-theme-wp')], ['pop3d', __('3D press', 'bigspy-ai-theme-wp')], ['neon', __('Neon', 'bigspy-ai-theme-wp')], ['dotted', __('Dashed border', 'bigspy-ai-theme-wp')], ['slide', __('Slide fill', 'bigspy-ai-theme-wp')], ['arrow-circle', __('Arrow in circle', 'bigspy-ai-theme-wp')]];
+	var BTN_CUSTOM = ['gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass', 'pop3d', 'neon', 'dotted', 'slide', 'arrow-circle'];
 
 	register('button', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var hasColors = a.bgColor || a.textColor || a.borderColor || a.hoverBg || a.hoverText || a.scheme || ['gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass'].indexOf(a.style) !== -1;
-		var cls = 'bs-btn bs-btn--' + a.style + (a.size !== 'md' ? ' bs-btn--' + a.size : '') + (a.fullWidth ? ' bs-btn--block' : '') + (hasColors ? ' has-custom-colors' : '') + (a.letterCase ? ' bs-btn--case-' + a.letterCase : '') + (a.scheme ? ' bs-btn--c-' + a.scheme : '') + (a.hoverEffect ? ' bs-btn--fx-' + a.hoverEffect : '');
-		var bstyle = styleVars({ '--bsb-bg': a.bgColor, '--bsb-c': a.textColor, '--bsb-bc': a.borderColor, '--bsb-hbg': a.hoverBg, '--bsb-hc': a.hoverText, '--bsb-bg2': a.bgColor2, '--bsb-angle': a.style === 'gradient' ? a.gradientAngle + 'deg' : '' });
+		var hasColors = a.bgColor || a.textColor || a.borderColor || a.hoverBg || a.hoverText || a.scheme || BTN_CUSTOM.indexOf(a.style) !== -1;
+		var cls = 'bs-btn bs-btn--' + a.style + (a.size !== 'md' ? ' bs-btn--' + a.size : '') + (a.fullWidth ? ' bs-btn--block' : '') + (hasColors ? ' has-custom-colors' : '') + (a.letterCase ? ' bs-btn--case-' + a.letterCase : '') + (a.scheme ? ' bs-btn--c-' + a.scheme : '') + (a.hoverEffect ? ' bs-btn--fx-' + a.hoverEffect : '') + (a.widthTablet ? ' bs-btn--t-' + a.widthTablet : '') + (a.widthMobile ? ' bs-btn--m-' + a.widthMobile : '') + (a.badge ? ' has-badge' : '');
+		var bstyle = styleVars({ '--bsb-bg': a.bgColor, '--bsb-c': a.textColor, '--bsb-bc': a.borderColor, '--bsb-hbg': a.hoverBg, '--bsb-hc': a.hoverText, '--bsb-hbc': a.hoverBorder, '--bsb-hsh': a.hoverShadow ? '0 10px 26px -6px ' + a.hoverShadow : '', '--bsb-bg2': a.bgColor2, '--bsb-angle': a.style === 'gradient' ? a.gradientAngle + 'deg' : '' });
 		if (a.radius >= 0) {
 			bstyle.borderRadius = a.radius + 'px';
 		}
@@ -1917,7 +2192,10 @@
 			cls += ' bs-btn--sized';
 		}
 		var blockProps = useBlockProps({ className: cls, style: bstyle });
-		var icon = a.icon ? el(B.Icon, { name: a.icon, size: a.size === 'lg' ? 20 : 17 }) : null;
+		var icon = (a.icon || a.style === 'arrow-circle') ? el(B.Icon, { name: a.icon || 'arrow-right', size: a.size === 'lg' ? 20 : 17 }) : null;
+		if (a.iconOnly && icon) {
+			cls += ' bs-btn--icon-only';
+		}
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Button', 'bigspy-ai-theme-wp') },
@@ -1929,7 +2207,7 @@
 						el('div', { className: 'bst-btn-styles__grid' },
 							BTN_STYLES.map(function (s) {
 								return el('button', { key: s[0], type: 'button', className: 'bst-btn-styles__item' + (a.style === s[0] ? ' is-selected' : ''), onClick: function () { props.setAttributes({ style: s[0] }); }, title: s[1] },
-									el('span', { className: 'bs-btn bs-btn--sm bs-btn--' + s[0] + (['gradient', 'soft', 'shade', 'bevel', 'gloss', 'underline', 'glass'].indexOf(s[0]) !== -1 ? ' has-custom-colors' : '') }, s[1])
+									el('span', { className: 'bs-btn bs-btn--sm bs-btn--' + s[0] + (BTN_CUSTOM.indexOf(s[0]) !== -1 ? ' has-custom-colors' : '') }, s[1])
 								);
 							})
 						)
@@ -1971,13 +2249,14 @@
 					a.icon ? el(Select, Object.assign({ label: __('Icon position', 'bigspy-ai-theme-wp'), options: { before: __('Before text', 'bigspy-ai-theme-wp'), after: __('After text', 'bigspy-ai-theme-wp') } }, bind('iconPosition'))) : null
 				)
 			),
-			el('span', blockProps,
-				a.iconPosition === 'before' ? icon : null,
+			a.iconOnly && icon ? el('span', blockProps, icon, a.badge ? el('span', { className: 'bs-btn__badge', style: a.badgeColor ? { background: a.badgeColor } : undefined }, a.badge) : null) : el('span', blockProps,
+				a.iconPosition === 'before' && a.style !== 'arrow-circle' ? icon : null,
 				a.subtext ? el('span', { className: 'bs-btn__text' },
 					el(RichText, { tagName: 'span', value: a.text, placeholder: __('Button text', 'bigspy-ai-theme-wp'), allowedFormats: ['core/bold', 'core/italic'], withoutInteractiveFormatting: true, onChange: function (v) { props.setAttributes({ text: v }); } }),
 					el('small', { className: 'bs-btn__sub' }, a.subtext)
 				) : el(RichText, { tagName: 'span', value: a.text, placeholder: __('Button text', 'bigspy-ai-theme-wp'), allowedFormats: ['core/bold', 'core/italic'], withoutInteractiveFormatting: true, onChange: function (v) { props.setAttributes({ text: v }); } }),
-				a.iconPosition !== 'before' ? icon : null
+				a.iconPosition !== 'before' || a.style === 'arrow-circle' ? icon : null,
+				a.badge ? el('span', { className: 'bs-btn__badge', style: a.badgeColor ? { background: a.badgeColor } : undefined }, a.badge) : null
 			)
 		);
 	});
@@ -1986,43 +2265,93 @@
 	register('divider', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({
-			className: 'bs-divider bs-divider--' + a.align,
-			style: styleVars({ '--bs-divider-width': a.width + '%', '--bs-divider-size': a.thickness + 'px', '--bs-divider-color': a.color, '--bs-divider-spacing': a.spacing + 'px', '--bs-divider-style': a.style })
-		});
+		var T = 'bigspy-ai-theme-wp';
+		var shape = ['wave', 'zigzag', 'dots', 'thick-thin', 'shadow'].indexOf(a.style) > -1;
+		var unit = a.widthUnit === 'px' ? 'px' : '%';
+		var w = function (v) { return typeof v === 'number' && v > 0 ? v + unit : ''; };
+		var sp = function (v) { return typeof v === 'number' ? v + 'px' : ''; };
+		var mods = (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : '') + (shape ? ' is-' + a.style : '') + (a.draw ? ' is-draw' : '');
+		var vars = Object.assign(styleVars({
+			'--bs-divider-width': a.width + unit, '--bs-divider-size': a.thickness + 'px', '--bs-divider-color': a.color, '--bs-divider-spacing': a.spacing + 'px', '--bs-divider-style': shape ? 'solid' : a.style,
+			'--bs-divider-width-t': w(a.widthTablet), '--bs-divider-width-m': w(a.widthMobile), '--bs-divider-spacing-t': sp(a.spacingTablet), '--bs-divider-spacing-m': sp(a.spacingMobile),
+			'--bs-divider-from': a.gradientFrom, '--bs-divider-to': a.gradientTo, '--bs-divider-icon-size': a.iconSize ? a.iconSize + 'px' : '', '--bs-divider-icon-bg': a.iconBg
+		}), B.partVars(a, 'divider', 'text', ['Size', 'Weight', 'LetterSpacing', 'Transform']));
+		var blockProps = useBlockProps({ className: 'bs-divider bs-divider--' + a.align, style: vars });
+		var hasContent = !!(a.text || a.icon);
+		var line = function (d, sw) { return '<path d="' + d + '" fill="none" stroke="currentColor" stroke-width="' + (sw || 2) + '"/>'; };
+		var STYLES = [
+			{ value: 'solid', label: __('Solid', T), svg: line('M2 10H54') },
+			{ value: 'dashed', label: __('Dashed', T), svg: '<path d="M2 10H54" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>' },
+			{ value: 'dotted', label: __('Dotted', T), svg: '<path d="M2 10H54" stroke="currentColor" stroke-width="2" stroke-dasharray="2 3"/>' },
+			{ value: 'double', label: __('Double', T), svg: line('M2 8H54') + line('M2 12H54') },
+			{ value: 'fade', label: __('Fade at both ends', T), svg: '<defs><linearGradient id="bsdf"><stop offset="0" stop-color="currentColor" stop-opacity="0"/><stop offset=".5" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><rect x="2" y="9" width="52" height="2" fill="url(#bsdf)"/>' },
+			{ value: 'wave', label: __('Wave', T), svg: line('M2 10Q8 4 14 10T26 10T38 10T50 10') },
+			{ value: 'zigzag', label: __('Zigzag', T), svg: line('M2 13L8 7L14 13L20 7L26 13L32 7L38 13L44 7L50 13') },
+			{ value: 'dots', label: __('Round dots', T), svg: [4, 12, 20, 28, 36, 44, 52].map(function (x) { return '<circle cx="' + x + '" cy="10" r="2.5" fill="currentColor"/>'; }).join('') },
+			{ value: 'thick-thin', label: __('Thick & thin', T), svg: line('M2 8H54', 3.5) + line('M2 13H54', 1) },
+			{ value: 'shadow', label: __('Shadow', T), svg: '<rect x="2" y="12" width="52" height="4" rx="2" fill="currentColor" opacity=".2"/>' + line('M2 9H54') }
+		];
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Divider', 'bigspy-ai-theme-wp') },
-					el(Select, Object.assign({ label: __('Line style', 'bigspy-ai-theme-wp'), options: { solid: __('Solid', 'bigspy-ai-theme-wp'), dashed: __('Dashed', 'bigspy-ai-theme-wp'), dotted: __('Dotted', 'bigspy-ai-theme-wp'), double: __('Double', 'bigspy-ai-theme-wp'), fade: __('Fade at both ends', 'bigspy-ai-theme-wp') } }, bind('style'))),
-					el(Range, Object.assign({ label: __('Width (%)', 'bigspy-ai-theme-wp'), min: 1, max: 100 }, bind('width'))),
-					el(Range, Object.assign({ label: __('Thickness (px)', 'bigspy-ai-theme-wp'), min: 1, max: 20 }, bind('thickness'))),
-					el(Range, Object.assign({ label: __('Space above & below (px)', 'bigspy-ai-theme-wp'), max: 200 }, bind('spacing'))),
-					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
-					el(Toggle, Object.assign({ label: __('Gradient line (brand colors)', 'bigspy-ai-theme-wp') }, bind('gradient', true))),
-					el(Text, Object.assign({ label: __('Text in the middle (optional)', 'bigspy-ai-theme-wp') }, bind('text'))),
-					el(B.IconPicker, { label: __('Icon in the middle (optional)', 'bigspy-ai-theme-wp'), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v }); } })
+				el(Panel, { title: __('Divider', T) },
+					el(Text, Object.assign({ label: __('Text in the middle (optional)', T) }, bind('text'))),
+					el(B.IconPicker, { label: __('Icon in the middle (optional)', T), value: a.icon, onChange: function (v) { props.setAttributes({ icon: v }); } }),
+					hasContent ? el(Select, Object.assign({ label: __('Text / icon position', T), options: { '': __('Center', T), left: __('Left', T), right: __('Right', T) } }, bind('contentPosition'))) : null,
+					el(Toggle, Object.assign({ label: __('Draw in when scrolled into view', T), help: __('Skipped when the visitor prefers reduced motion.', T) }, bind('draw', true)))
+				)
+			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Line', T) },
+					el(B.StylePicker, { label: __('Line style', T), value: a.style, options: STYLES, onChange: function (v) { props.setAttributes({ style: v }); } }),
+					el(Select, Object.assign({ label: __('Width unit', T), options: { '': '%', px: 'px' } }, bind('widthUnit'))),
+					el(B.Resp, { props: props, name: 'width', label: unit === 'px' ? __('Width (px)', T) : __('Width (%)', T), min: 1, max: unit === 'px' ? 1200 : 100 }),
+					el(Range, Object.assign({ label: __('Thickness (px)', T), min: 1, max: 20 }, bind('thickness'))),
+					el(B.Resp, { props: props, name: 'spacing', label: __('Space above & below (px)', T), min: 0, max: 200 }),
+					el(Select, Object.assign({ label: __('Align', T), options: ALIGN3 }, bind('align'))),
+					el(Toggle, Object.assign({ label: __('Gradient line', T) }, bind('gradient', true)))
 				),
 				el(B.ColorPanel, { settings: [
-					{ label: __('Line color', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
-					{ label: __('Text / icon color', 'bigspy-ai-theme-wp'), value: a.contentColor, onChange: function (v) { props.setAttributes({ contentColor: v || '' }); } }
-				] })
+					{ label: __('Line color', T), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+					{ label: __('Text / icon color', T), value: a.contentColor, onChange: function (v) { props.setAttributes({ contentColor: v || '' }); } }
+				].concat(a.gradient ? [
+					{ label: __('Gradient from', T), value: a.gradientFrom, onChange: function (v) { props.setAttributes({ gradientFrom: v || '' }); } },
+					{ label: __('Gradient to', T), value: a.gradientTo, onChange: function (v) { props.setAttributes({ gradientTo: v || '' }); } }
+				] : []).concat(a.icon ? [
+					{ label: __('Icon round background', T), value: a.iconBg, onChange: function (v) { props.setAttributes({ iconBg: v || '' }); } }
+				] : []) }),
+				a.text ? el(Panel, { title: __('Text', T), initialOpen: false },
+					el(B.Resp, { props: props, name: 'textSize', label: __('Font size (px)', T), min: 8, max: 60, reset: 0 }),
+					el(Select, Object.assign({ label: __('Weight', T), options: { '': __('Default', T), '400': '400', '500': '500', '600': '600', '700': '700', '800': '800', '900': '900' } }, bind('textWeight'))),
+					el(Range, Object.assign({ label: __('Letter spacing (px)', T), min: -2, max: 10, step: 0.5, reset: 0 }, bind('textLetterSpacing'))),
+					el(Select, Object.assign({ label: __('Transform', T), options: { '': __('Default', T), none: __('None', T), uppercase: 'ABC', lowercase: 'abc', capitalize: 'Abc' } }, bind('textTransform')))
+				) : null,
+				a.icon ? el(Panel, { title: __('Icon', T), initialOpen: false },
+					el(Range, Object.assign({ label: __('Icon size (px)', T), min: 8, max: 120, reset: 0 }, bind('iconSize')))
+				) : null
 			),
-			(a.text || a.icon) ? el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-x bs-divider-x--') + (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : ''), style: Object.assign({}, blockProps.style, styleVars({ '--bs-divider-content': a.contentColor })) }),
-				el('span', { className: 'bs-divider-x__content' }, a.icon ? el(B.Icon, { name: a.icon, size: 20 }) : null, a.text ? el('span', null, a.text) : null)
-			) : el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-wrap bs-divider-wrap--') }), el('hr', { className: 'bs-divider bs-divider--' + a.align + (a.gradient ? ' is-gradient' : '') + (a.style === 'fade' ? ' is-fade' : '') }))
+			hasContent ? el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-x bs-divider-x--') + mods + (a.contentPosition ? ' is-content-' + a.contentPosition : '') + (a.iconBg ? ' has-icon-bg' : ''), style: Object.assign({}, blockProps.style, styleVars({ '--bs-divider-content': a.contentColor })) }),
+				el('span', { className: 'bs-divider-x__content' }, a.icon ? el(B.Icon, { name: a.icon, size: a.iconSize || 20 }) : null, a.text ? el('span', null, a.text) : null)
+			) : el('div', Object.assign({}, blockProps, { className: blockProps.className.replace('bs-divider bs-divider--', 'bs-divider-wrap bs-divider-wrap--') }), el('hr', { className: 'bs-divider bs-divider--' + a.align + mods }))
 		);
 	});
 
 	register('spacer', function (props) {
 		var bind = B.binder(props);
 		var a = props.attributes;
-		var blockProps = useBlockProps({ className: 'bs-spacer bst-spacer-editor', style: { '--bs-spacer-d': a.heightDesktop + 'px', '--bs-spacer-t': a.heightTablet + 'px', '--bs-spacer-m': a.heightMobile + 'px' } });
+		var T = 'bigspy-ai-theme-wp';
+		var u = a.unit || 'px';
+		var max = u === 'vh' ? 100 : (u === 'rem' ? 40 : 600);
+		var blockProps = useBlockProps({ className: 'bs-spacer' + (a.showGuide === false ? ' bst-spacer-editor is-plain' : ' bst-spacer-editor'), style: { '--bs-spacer-d': a.heightDesktop + u, '--bs-spacer-t': a.heightTablet + u, '--bs-spacer-m': a.heightMobile + u } });
+		var range = function (key, label) { return el(Range, Object.assign({ label: label + ' (' + u + ')', min: -max, max: max, step: u === 'rem' ? 0.5 : 1 }, bind(key))); };
 		return el(Fragment, null,
 			el(Inspector, null,
-				el(Panel, { title: __('Height', 'bigspy-ai-theme-wp') },
-					el(Range, Object.assign({ label: __('Desktop (px)', 'bigspy-ai-theme-wp'), max: 400 }, bind('heightDesktop'))),
-					el(Range, Object.assign({ label: __('Tablet (px)', 'bigspy-ai-theme-wp'), max: 400 }, bind('heightTablet'))),
-					el(Range, Object.assign({ label: __('Mobile (px)', 'bigspy-ai-theme-wp'), max: 400 }, bind('heightMobile')))
+				el(Panel, { title: __('Height', T) },
+					el(Select, Object.assign({ label: __('Unit', T), options: { '': 'px', vh: __('vh (% of screen height)', T), rem: 'rem' } }, bind('unit'))),
+					range('heightDesktop', __('Desktop', T)),
+					range('heightTablet', __('Tablet', T)),
+					range('heightMobile', __('Mobile', T)),
+					el('p', { className: 'components-base-control__help' }, __('A negative value pulls the next block up so the two overlap.', T)),
+					el(Toggle, Object.assign({ label: __('Show striped guide in the editor', T) }, bind('showGuide', true)))
 				)
 			),
 			el('div', blockProps,
@@ -2035,6 +2364,11 @@
 		var device = useDevice();
 		var key = device === 'Tablet' ? 'heightTablet' : (device === 'Mobile' ? 'heightMobile' : 'heightDesktop');
 		var h = props.attributes[key];
+		var u = props.attributes.unit || 'px';
+		var label = h + u + (h < 0 ? ' · ' + __('overlap', 'bigspy-ai-theme-wp') : '') + (device !== 'Desktop' ? ' · ' + device : '');
+		if (u !== 'px' || h < 0) {
+			return el('div', { className: 'bst-spacer-resize', style: { height: h < 0 ? '16px' : h + u } }, el('span', { className: 'bst-spacer-resize__label' }, label));
+		}
 		return el(c.ResizableBox, {
 			className: 'bst-spacer-resize',
 			size: { height: h, width: '100%' },
@@ -2047,7 +2381,7 @@
 				o[key] = Math.max(0, Math.min(600, Math.round(h + delta.height)));
 				props.setAttributes(o);
 			}
-		}, el('span', { className: 'bst-spacer-resize__label' }, h + 'px' + (device !== 'Desktop' ? ' · ' + device : '')));
+		}, el('span', { className: 'bst-spacer-resize__label' }, label));
 	}
 
 	/* ================================================================ Shop blocks (WooCommerce) */
@@ -2225,7 +2559,7 @@
 	register('counter', function (props) {
 		var a = props.attributes;
 		var bind = B.binder(props);
-		var blockProps = useBlockProps({ className: 'bs-counter has-text-align-' + a.align + (a.layout === 'inline' ? ' bs-counter--inline' : ''), style: styleVars({ '--bs-counter-size': a.size + 'px', '--bs-counter-color': a.color, '--bs-counter-text-size': a.textSize ? a.textSize + 'px' : '', '--bs-counter-text-color': a.textColor }) });
+		var blockProps = useBlockProps({ className: 'bs-counter has-text-align-' + a.align + (a.layout === 'inline' ? ' bs-counter--inline' : '') + (a.style ? ' bs-counter--' + a.style : '') + (a.icon ? ' has-icon' : ''), style: styleVars({ '--bs-counter-size': a.size + 'px', '--bs-counter-color': a.color, '--bs-counter-text-size': a.textSize ? a.textSize + 'px' : '', '--bs-counter-text-color': a.textColor, '--bs-counter-affix-size': a.affixSize ? a.affixSize + 'px' : '', '--bs-counter-affix-color': a.affixColor, '--bs-counter-weight': a.weight, '--bs-counter-icon-size': a.iconSize ? a.iconSize + 'px' : '', '--bs-counter-icon-color': a.iconColor }) });
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Counter', 'bigspy-ai-theme-wp') },
@@ -2241,9 +2575,22 @@
 					el(Select, Object.assign({ label: __('Counting style', 'bigspy-ai-theme-wp'), options: { out: __('Fast, then slows down', 'bigspy-ai-theme-wp'), linear: __('Steady', 'bigspy-ai-theme-wp'), bounce: __('Overshoot and settle', 'bigspy-ai-theme-wp') } }, bind('ease'))),
 					el(Range, Object.assign({ label: __('Text size for prefix, suffix and label (px, 0 = automatic)', 'bigspy-ai-theme-wp'), min: 0, max: 80 }, bind('textSize')))
 				),
+				el(Panel, { title: __('Look', 'bigspy-ai-theme-wp'), initialOpen: false },
+					el(Select, Object.assign({ label: __('Box style', 'bigspy-ai-theme-wp'), options: { '': __('Plain', 'bigspy-ai-theme-wp'), card: __('Card', 'bigspy-ai-theme-wp'), divided: __('With divider line', 'bigspy-ai-theme-wp'), side: __('Icon beside the number', 'bigspy-ai-theme-wp') } }, bind('style'))),
+					el(Text, Object.assign({ label: __('Icon name (optional)', 'bigspy-ai-theme-wp') }, bind('icon'))),
+					a.icon ? el(Range, Object.assign({ label: __('Icon size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 160, reset: 0 }, bind('iconSize'))) : null,
+					el(Select, Object.assign({ label: __('Number weight', 'bigspy-ai-theme-wp'), options: { '': __('Theme default', 'bigspy-ai-theme-wp'), 400: __('Regular', 'bigspy-ai-theme-wp'), 500: __('Medium', 'bigspy-ai-theme-wp'), 600: __('Semi bold', 'bigspy-ai-theme-wp'), 700: __('Bold', 'bigspy-ai-theme-wp'), 800: __('Extra bold', 'bigspy-ai-theme-wp'), 900: __('Black', 'bigspy-ai-theme-wp') } }, bind('weight'))),
+					el(Range, Object.assign({ label: __('Prefix and suffix size (px, 0 = same as number)', 'bigspy-ai-theme-wp'), max: 140, reset: 0 }, bind('affixSize'))),
+					el(Toggle, Object.assign({ label: __('Count again each time it scrolls into view', 'bigspy-ai-theme-wp') }, bind('replay', true)))
+				),
+				el(B.ColorPanel, { title: __('Icon and affix colors', 'bigspy-ai-theme-wp'), initialOpen: false, settings: [
+					{ label: __('Icon', 'bigspy-ai-theme-wp'), value: a.iconColor, onChange: function (v) { props.setAttributes({ iconColor: v || '' }); } },
+					{ label: __('Prefix and suffix', 'bigspy-ai-theme-wp'), value: a.affixColor, onChange: function (v) { props.setAttributes({ affixColor: v || '' }); } }
+				] }),
 				el(B.ColorPanel, { settings: [{ label: __('Number color', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } }, { label: __('Text color', 'bigspy-ai-theme-wp'), value: a.textColor, onChange: function (v) { props.setAttributes({ textColor: v || '' }); } }] })
 			),
 			el('div', blockProps,
+				a.icon ? el('span', { className: 'bs-counter__icon' }, el(B.Icon, { name: a.icon, size: 32 })) : null,
 				el('div', { className: 'bs-counter__value' },
 					a.prefix ? el('span', { className: 'bs-counter__affix' }, a.prefix) : null,
 					el('span', { className: 'bs-counter__number' }, a.number),
@@ -2492,8 +2839,8 @@
 			) : null
 		) : null;
 		var blockProps = useBlockProps({
-			className: 'bs-icon-list bs-icon-list--' + a.layout + ' bs-icon-list--align-' + a.align + (a.divider ? ' has-divider' : '') + (a.iconBg ? ' has-icon-bg' : ''),
-			style: styleVars({ '--bs-il-size': a.iconSize + 'px', '--bs-il-color': a.iconColor, '--bs-il-gap': a.gap + 'px', '--bs-il-cols': a.columns, '--bs-il-text': a.textSize ? a.textSize + 'px' : '' })
+			className: 'bs-icon-list bs-icon-list--' + a.layout + ' bs-icon-list--align-' + a.align + (a.divider ? ' has-divider' : '') + (a.iconBg ? ' has-icon-bg' : '') + (a.iconShape ? ' bs-icon-list--shape-' + a.iconShape : '') + (a.iconAlign === 'center' ? ' bs-icon-list--icon-center' : '') + (a.numbered ? ' is-numbered' : '') + (a.dividerStyle ? ' bs-icon-list--div-' + a.dividerStyle : '') + (a.separator && a.layout === 'inline' ? ' has-separator' : ''),
+			style: styleVars({ '--bs-il-size': a.iconSize + 'px', '--bs-il-color': a.iconColor, '--bs-il-gap': a.gap + 'px', '--bs-il-cols': a.columns, '--bs-il-text': a.textSize ? a.textSize + 'px' : '', '--bs-il-colgap': a.colGap ? a.colGap + 'px' : '', '--bs-il-dc': a.dividerColor, '--bs-il-hover': a.linkHover, '--bs-il-sub': a.subColor, '--bs-il-sep': a.separator && a.layout === 'inline' ? '"' + a.separator.replace(/["\\<>]/g, '').slice(0, 3) + '"' : '' })
 		});
 		return el(Fragment, null,
 			props.isSelected ? el(be.BlockControls, null, linkButton) : null,
@@ -2506,19 +2853,40 @@
 					el(Range, Object.assign({ label: __('Icon size (px)', 'bigspy-ai-theme-wp'), min: 10, max: 64 }, bind('iconSize'))),
 					el(Range, Object.assign({ label: __('Text size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 40 }, bind('textSize'))),
 					el(Toggle, Object.assign({ label: __('Icon in a soft circle', 'bigspy-ai-theme-wp') }, bind('iconBg', true))),
-					el(Toggle, Object.assign({ label: __('Divider between items', 'bigspy-ai-theme-wp') }, bind('divider', true)))
+					el(Toggle, Object.assign({ label: __('Divider between items', 'bigspy-ai-theme-wp') }, bind('divider', true))),
+					a.divider ? el(Select, Object.assign({ label: __('Divider style', 'bigspy-ai-theme-wp'), options: { '': __('Solid', 'bigspy-ai-theme-wp'), dashed: __('Dashed', 'bigspy-ai-theme-wp'), dotted: __('Dotted', 'bigspy-ai-theme-wp') } }, bind('dividerStyle'))) : null
 				),
-				el(B.ColorPanel, { title: __('Icon color', 'bigspy-ai-theme-wp'), settings: [{ label: __('Icon', 'bigspy-ai-theme-wp'), value: a.iconColor, onChange: function (v) { props.setAttributes({ iconColor: v || '' }); } }] }),
-				el(Panel, { title: __('Links', 'bigspy-ai-theme-wp'), initialOpen: false },
+				el(Panel, { title: __('Icons & layout', 'bigspy-ai-theme-wp'), initialOpen: false },
+					el(Select, Object.assign({ label: __('Icon shape', 'bigspy-ai-theme-wp'), options: { '': __('Plain (or soft circle above)', 'bigspy-ai-theme-wp'), circle: __('Filled circle', 'bigspy-ai-theme-wp'), square: __('Filled square', 'bigspy-ai-theme-wp') } }, bind('iconShape'))),
+					el(Select, Object.assign({ label: __('Icon position', 'bigspy-ai-theme-wp'), options: { '': __('With the first line', 'bigspy-ai-theme-wp'), center: __('Vertically centered', 'bigspy-ai-theme-wp') } }, bind('iconAlign'))),
+					el(Toggle, Object.assign({ label: __('Number the items instead of icons', 'bigspy-ai-theme-wp') }, bind('numbered', true))),
+					a.layout === 'columns' ? el(Range, Object.assign({ label: __('Columns on tablet (0 = same)', 'bigspy-ai-theme-wp'), max: 4, reset: 0 }, bind('columnsTablet'))) : null,
+					a.layout === 'columns' ? el(Range, Object.assign({ label: __('Columns on mobile (0 = 1)', 'bigspy-ai-theme-wp'), max: 4, reset: 0 }, bind('columnsMobile'))) : null,
+					a.layout !== 'vertical' ? el(Range, Object.assign({ label: __('Space between columns (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 120, reset: 0 }, bind('colGap'))) : null,
+					a.layout === 'inline' ? el(Text, Object.assign({ label: __('Separator between items (e.g. • or |)', 'bigspy-ai-theme-wp') }, bind('separator'))) : null
+				),
+				el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
+					{ label: __('Icon', 'bigspy-ai-theme-wp'), value: a.iconColor, onChange: function (v) { props.setAttributes({ iconColor: v || '' }); } },
+					{ label: __('Second line', 'bigspy-ai-theme-wp'), value: a.subColor, onChange: function (v) { props.setAttributes({ subColor: v || '' }); } },
+					{ label: __('Link hover', 'bigspy-ai-theme-wp'), value: a.linkHover, onChange: function (v) { props.setAttributes({ linkHover: v || '' }); } },
+					{ label: __('Divider', 'bigspy-ai-theme-wp'), value: a.dividerColor, onChange: function (v) { props.setAttributes({ dividerColor: v || '' }); } }
+				] }),
+				el(Panel, { title: __('Items', 'bigspy-ai-theme-wp'), initialOpen: false },
 					items.map(function (it, i) {
-						return el(Text, { key: i, label: (i + 1) + '. ' + (String(it.text || '').replace(/<[^>]+>/g, '').slice(0, 30) || __('(empty)', 'bigspy-ai-theme-wp')), value: it.link || '', placeholder: 'https://', onChange: function (v) { setItem(i, 'link', v); } });
+						return el('div', { key: i, className: 'bst-il-item-panel' },
+							el('strong', null, (i + 1) + '. ' + (String(it.text || '').replace(/<[^>]+>/g, '').slice(0, 30) || __('(empty)', 'bigspy-ai-theme-wp'))),
+							el(Text, { label: __('Link', 'bigspy-ai-theme-wp'), value: it.link || '', placeholder: 'https://', onChange: function (v) { setItem(i, 'link', v); } }),
+							el(Text, { label: __('Second line (optional)', 'bigspy-ai-theme-wp'), value: it.sub || '', onChange: function (v) { setItem(i, 'sub', v); } }),
+							el(Text, { label: __('Badge (optional)', 'bigspy-ai-theme-wp'), value: it.badge || '', onChange: function (v) { setItem(i, 'badge', v); } }),
+							el(c.ColorPalette, { value: it.color || undefined, onChange: function (v) { setItem(i, 'color', v || ''); }, clearable: true })
+						);
 					})
 				)
 			),
 			el('ul', blockProps,
 				items.map(function (it, i) {
 					return el('li', { key: i, className: 'bs-icon-list__item bst-il-item' + (it.link ? ' has-link' : '') + (i === active[0] && props.isSelected ? ' is-active' : ''), onFocus: function () { if (active[0] !== i) { active[1](i); linkOpen[1](false); } } },
-						it.icon || props.isSelected ? el(IconDropdown, { value: it.icon, size: a.iconSize, onChange: function (v) { setItem(i, 'icon', v); } }) : null,
+						a.numbered ? el('span', { className: 'bs-icon-list__icon bs-icon-list__num', style: it.color ? { '--bs-il-color': it.color } : undefined }, i + 1) : (it.icon || props.isSelected ? el('span', { style: it.color ? { '--bs-il-color': it.color, display: 'contents' } : { display: 'contents' } }, el(IconDropdown, { value: it.icon, size: a.iconSize, onChange: function (v) { setItem(i, 'icon', v); } })) : null),
 						el(RichText, {
 							tagName: 'span', className: 'bs-icon-list__text', value: it.text, placeholder: __('List item…', 'bigspy-ai-theme-wp'),
 							allowedFormats: ['core/bold', 'core/italic', 'core/link'],
@@ -2527,6 +2895,8 @@
 							__unstableOnSplitAtEnd: function () { add(i); },
 							onRemove: function () { remove(i); }
 						}),
+						it.badge ? el('span', { className: 'bs-icon-list__badge' }, it.badge) : null,
+						it.sub ? el('span', { className: 'bs-icon-list__sub bst-il-sub' }, it.sub) : null,
 						props.isSelected && it.link ? el('span', { className: 'bst-il-linkmark', title: it.link }, el(c.Dashicon, { icon: 'admin-links', size: 14 })) : null,
 						props.isSelected ? el('button', { type: 'button', className: 'bst-il-remove', onClick: function () { remove(i); }, 'aria-label': __('Remove item', 'bigspy-ai-theme-wp') }, '×') : null
 					);
@@ -2587,15 +2957,26 @@
 		var ICONS = { info: 'lightbulb', success: 'check', warning: 'shield', error: 'close', custom: 'message' };
 		var blockProps = useBlockProps({
 			className: 'bs-alert bs-alert--' + a.type + ' bs-alert--' + a.style,
-			style: styleVars({ '--bs-alert-bg': a.bgColor, '--bs-alert-color': a.textColor, '--bs-alert-accent': a.accent })
+			style: styleVars({ '--bs-alert-bg': a.bgColor, '--bs-alert-color': a.textColor, '--bs-alert-accent': a.accent, '--bs-alert-radius': a.radius >= 0 ? a.radius + 'px' : '', '--bs-alert-bw': a.borderWidth >= 0 ? a.borderWidth + 'px' : '', '--bs-alert-is': a.iconSize > 0 ? a.iconSize + 'px' : '' })
 		});
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Message box', 'bigspy-ai-theme-wp') },
 					el(Select, Object.assign({ label: __('Type', 'bigspy-ai-theme-wp'), options: { info: __('Info', 'bigspy-ai-theme-wp'), success: __('Success', 'bigspy-ai-theme-wp'), warning: __('Warning', 'bigspy-ai-theme-wp'), error: __('Error', 'bigspy-ai-theme-wp'), custom: __('Custom colors', 'bigspy-ai-theme-wp') } }, bind('type'))),
-					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { soft: __('Soft background', 'bigspy-ai-theme-wp'), solid: __('Solid', 'bigspy-ai-theme-wp'), outline: __('Outline', 'bigspy-ai-theme-wp'), 'left-bar': __('Left bar', 'bigspy-ai-theme-wp') } }, bind('style'))),
+					el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), options: { soft: __('Soft background', 'bigspy-ai-theme-wp'), solid: __('Solid', 'bigspy-ai-theme-wp'), outline: __('Outline', 'bigspy-ai-theme-wp'), 'left-bar': __('Left bar', 'bigspy-ai-theme-wp'), gradient: __('Gradient', 'bigspy-ai-theme-wp'), glass: __('Frosted glass', 'bigspy-ai-theme-wp'), bar: __('Full-width bar', 'bigspy-ai-theme-wp'), toast: __('Corner toast (floating)', 'bigspy-ai-theme-wp') } }, bind('style'))),
+					a.style === 'toast' ? el(Select, Object.assign({ label: __('Toast position', 'bigspy-ai-theme-wp'), options: { 'bottom-right': __('Bottom right', 'bigspy-ai-theme-wp'), 'bottom-left': __('Bottom left', 'bigspy-ai-theme-wp'), 'top-right': __('Top right', 'bigspy-ai-theme-wp'), 'top-left': __('Top left', 'bigspy-ai-theme-wp') } }, bind('toastPos'))) : null,
 					el(Toggle, Object.assign({ label: __('Show icon', 'bigspy-ai-theme-wp') }, bind('showIcon', true))),
-					el(Toggle, Object.assign({ label: __('Visitors can close it', 'bigspy-ai-theme-wp') }, bind('dismiss', true)))
+					a.showIcon ? el(Text, Object.assign({ label: __('Icon name (empty = by type)', 'bigspy-ai-theme-wp') }, bind('icon'))) : null,
+					a.showIcon ? el(Range, Object.assign({ label: __('Icon size (px, 0 = default)', 'bigspy-ai-theme-wp'), max: 64, reset: 0 }, bind('iconSize'))) : null,
+					el(Select, Object.assign({ label: __('Title tag', 'bigspy-ai-theme-wp'), options: { p: 'p', h2: 'H2', h3: 'H3', h4: 'H4', h5: 'H5', strong: 'strong' } }, bind('titleTag'))),
+					el(Toggle, Object.assign({ label: __('Visitors can close it', 'bigspy-ai-theme-wp') }, bind('dismiss', true))),
+					a.dismiss ? el(Range, Object.assign({ label: __('Stay closed for (days, 0 = until reload)', 'bigspy-ai-theme-wp'), max: 365, reset: 0 }, bind('rememberDays'))) : null
+				),
+				el(Panel, { title: __('Button & shape', 'bigspy-ai-theme-wp'), initialOpen: false },
+					el(Text, Object.assign({ label: __('Button text (optional)', 'bigspy-ai-theme-wp') }, bind('btnText'))),
+					a.btnText ? el(Text, Object.assign({ label: __('Button link', 'bigspy-ai-theme-wp') }, bind('btnUrl'))) : null,
+					el(Range, Object.assign({ label: __('Corner radius (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 60, reset: -1 }, bind('radius'))),
+					el(Range, Object.assign({ label: __('Border width (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 10, reset: -1 }, bind('borderWidth')))
 				),
 				a.type === 'custom' ? el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
 					{ label: __('Background', 'bigspy-ai-theme-wp'), value: a.bgColor, onChange: function (v) { props.setAttributes({ bgColor: v || '' }); } },
@@ -2604,10 +2985,11 @@
 				] }) : null
 			),
 			el('div', blockProps,
-				a.showIcon ? el('span', { className: 'bs-alert__icon' }, el(B.Icon, { name: ICONS[a.type] || 'message', size: 22 })) : null,
+				a.showIcon ? el('span', { className: 'bs-alert__icon' }, el(B.Icon, { name: a.icon || ICONS[a.type] || 'message', size: 22 })) : null,
 				el('div', { className: 'bs-alert__body' },
 					el(RichText, { tagName: 'p', className: 'bs-alert__title', value: a.title, placeholder: __('Title (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ title: v }); } }),
-					el(RichText, { tagName: 'div', className: 'bs-alert__text', value: a.text, placeholder: __('Message…', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } })
+					el(RichText, { tagName: 'div', className: 'bs-alert__text', value: a.text, placeholder: __('Message…', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ text: v }); } }),
+					a.btnText ? el('span', { className: 'bs-alert__btn' }, a.btnText) : null
 				),
 				a.dismiss ? el('span', { className: 'bs-alert__close' }, el(B.Icon, { name: 'close', size: 16 })) : null
 			)
@@ -2625,16 +3007,18 @@
 			list[i][key] = v;
 			props.setAttributes({ items: list });
 		};
-		var blockProps = useBlockProps({
-			className: 'bs-progress is-visible' + (a.striped ? ' is-striped' : '') + (a.labelInside ? ' has-label-inside' : ''),
-			style: styleVars({ '--bs-pg-h': a.height + 'px', '--bs-pg-radius': a.radius + 'px', '--bs-pg-color': a.color, '--bs-pg-track': a.track })
-		});
+		var plain = !a.layout || a.layout === 'bar';
+		var blockProps = useBlockProps(plain ? {
+			className: 'bs-progress is-visible' + (a.striped ? ' is-striped' : '') + (a.labelInside ? ' has-label-inside' : '') + (a.labelBelow ? ' has-label-below' : ''),
+			style: styleVars({ '--bs-pg-h': a.height + 'px', '--bs-pg-radius': a.radius + 'px', '--bs-pg-color': a.color, '--bs-pg-track': a.track, '--bs-pg-color2': a.color2 })
+		} : { className: 'bst-ssr-preview' });
 		return el(Fragment, null,
 			el(Inspector, null,
 				el(Panel, { title: __('Bars', 'bigspy-ai-theme-wp') },
 					items.map(function (it, i) {
 						return el('div', { key: i, className: 'bst-progress-row' },
-							el(Range, { label: (it.label || __('Bar', 'bigspy-ai-theme-wp') + ' ' + (i + 1)) + ' (%)', min: 0, max: 100, value: it.value, onChange: function (v) { setItem(i, 'value', v); } }),
+							el(Text, { label: __('Label', 'bigspy-ai-theme-wp'), value: it.label || '', onChange: function (v) { setItem(i, 'label', v); } }),
+							el(Range, { label: (it.label || __('Bar', 'bigspy-ai-theme-wp') + ' ' + (i + 1)) + ' (' + (a.suffix || '') + ')', min: 0, max: a.max > 0 ? a.max : 100, value: it.value, onChange: function (v) { setItem(i, 'value', v); } }),
 							el(c.ColorPalette, { value: it.color || undefined, onChange: function (v) { setItem(i, 'color', v || ''); }, clearable: true, disableCustomColors: false }),
 							el(c.Button, { variant: 'link', isDestructive: true, onClick: function () { props.setAttributes({ items: items.filter(function (x, j) { return j !== i; }) }); } }, __('Remove', 'bigspy-ai-theme-wp'))
 						);
@@ -2642,26 +3026,34 @@
 					el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { props.setAttributes({ items: items.concat([{ label: __('New bar', 'bigspy-ai-theme-wp'), value: 80, color: '' }]) }); } }, __('Add bar', 'bigspy-ai-theme-wp'))
 				),
 				el(Panel, { title: __('Style', 'bigspy-ai-theme-wp') },
+					el(Select, Object.assign({ label: __('Layout', 'bigspy-ai-theme-wp'), options: { bar: __('Bar', 'bigspy-ai-theme-wp'), circle: __('Circle', 'bigspy-ai-theme-wp'), semi: __('Half circle', 'bigspy-ai-theme-wp'), steps: __('Steps', 'bigspy-ai-theme-wp'), dashed: __('Dashed bar', 'bigspy-ai-theme-wp') } }, bind('layout'))),
+					a.layout === 'steps' ? el(Range, Object.assign({ label: __('Number of steps', 'bigspy-ai-theme-wp'), min: 2, max: 30 }, bind('steps'))) : null,
+					a.layout === 'circle' || a.layout === 'semi' ? el(Range, Object.assign({ label: __('Circle size (px)', 'bigspy-ai-theme-wp'), min: 50, max: 400 }, bind('circleSize'))) : null,
+					el(Range, Object.assign({ label: __('Maximum value', 'bigspy-ai-theme-wp'), min: 1, max: 1000 }, bind('max'))),
+					el(Text, Object.assign({ label: __('Value suffix (%, /10, pts…)', 'bigspy-ai-theme-wp') }, bind('suffix'))),
 					el(Range, Object.assign({ label: __('Bar height (px)', 'bigspy-ai-theme-wp'), min: 2, max: 60 }, bind('height'))),
 					el(Range, Object.assign({ label: __('Corner radius (px)', 'bigspy-ai-theme-wp'), max: 60 }, { value: Math.min(a.radius, 60), onChange: function (v) { props.setAttributes({ radius: v }); } })),
 					el(Toggle, Object.assign({ label: __('Show percentage', 'bigspy-ai-theme-wp') }, bind('showValue', true))),
 					el(Toggle, Object.assign({ label: __('Label inside the bar', 'bigspy-ai-theme-wp') }, bind('labelInside', true))),
 					el(Toggle, Object.assign({ label: __('Striped', 'bigspy-ai-theme-wp') }, bind('striped', true))),
-					el(Toggle, Object.assign({ label: __('Animate when scrolled into view', 'bigspy-ai-theme-wp') }, bind('animate', true)))
+					el(Toggle, Object.assign({ label: __('Label below the bar', 'bigspy-ai-theme-wp') }, bind('labelBelow', true))),
+					el(Toggle, Object.assign({ label: __('Animate when scrolled into view', 'bigspy-ai-theme-wp') }, bind('animate', true))),
+					a.animate ? el(Range, Object.assign({ label: __('Animation time (ms, 0 = default)', 'bigspy-ai-theme-wp'), max: 10000, step: 100, reset: 0 }, bind('duration'))) : null
 				),
 				el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
 					{ label: __('Bar', 'bigspy-ai-theme-wp'), value: a.color, onChange: function (v) { props.setAttributes({ color: v || '' }); } },
+					{ label: __('Gradient end (optional)', 'bigspy-ai-theme-wp'), value: a.color2, onChange: function (v) { props.setAttributes({ color2: v || '' }); } },
 					{ label: __('Track', 'bigspy-ai-theme-wp'), value: a.track, onChange: function (v) { props.setAttributes({ track: v || '' }); } }
 				] })
 			),
-			el('div', blockProps,
+			!plain ? el('div', blockProps, el(SSR, { block: 'bst/progress', attributes: Object.assign({}, a, { animate: false }), httpMethod: 'POST' })) : el('div', blockProps,
 				items.map(function (it, i) {
 					return el('div', { key: i, className: 'bs-progress__item' },
 						el('div', { className: 'bs-progress__head' },
 							el(RichText, { tagName: 'span', className: 'bs-progress__label', value: it.label, allowedFormats: [], placeholder: __('Label', 'bigspy-ai-theme-wp'), onChange: function (v) { setItem(i, 'label', v); } }),
-							a.showValue ? el('span', { className: 'bs-progress__value' }, it.value + '%') : null
+							a.showValue ? el('span', { className: 'bs-progress__value' }, it.value + (a.suffix === undefined ? '%' : a.suffix)) : null
 						),
-						el('div', { className: 'bs-progress__track' }, el('div', { className: 'bs-progress__fill', style: styleVars({ '--v': it.value + '%', '--bs-pg-color': it.color }) }))
+						el('div', { className: 'bs-progress__track' }, el('div', { className: 'bs-progress__fill', style: styleVars({ '--v': Math.min(100, it.value / (a.max > 0 ? a.max : 100) * 100) + '%', '--bs-pg-color': it.color }) }))
 					);
 				})
 			)
@@ -2674,13 +3066,23 @@
 		var bind = B.binder(props);
 		var hover = wp.element.useState(null);
 		var shown = hover[0] !== null ? hover[0] : a.rating;
+		var T = 'bigspy-ai-theme-wp';
+		var SHAPES = {
+			'': 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z',
+			heart: 'M12 20.5s-7.4-4.5-9.3-9.1C1.3 8 3.4 4.3 7 4.3c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.6 0 5.7 3.7 4.3 7.1-1.9 4.6-9.3 9.1-9.3 9.1z',
+			thumb: 'M2.5 10h3.5v10.5H2.5zM8 20.5h9.3a2 2 0 0 0 2-1.6l1.4-6.9A2 2 0 0 0 18.7 9.5h-5.2l.8-3.9a1.9 1.9 0 0 0-3.4-1.5L8 9.6z',
+			dot: 'M12 4.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 1 0 0-15z'
+		};
+		var shape = SHAPES[a.icon] ? a.icon : '';
+		var fillVal = a.round === 'half' ? Math.round(shown * 2) / 2 : (a.round === 'whole' ? Math.round(shown) : shown);
 		var blockProps = useBlockProps({
-			className: 'bs-stars bs-stars--align-' + a.align,
-			style: styleVars({ '--bs-star-size': a.size + 'px', '--bs-star-color': a.color, '--bs-star-empty': a.emptyColor, '--bs-star-fill': (shown / a.max * 100) + '%' })
+			className: 'bs-stars bs-stars--align-' + a.align + (shape ? ' bs-stars--icon-' + shape : '') + (a.layout ? ' bs-stars--' + a.layout : '') + (a.labelPosition ? ' bs-stars--label-' + a.labelPosition : ''),
+			style: styleVars({ '--bs-star-size': a.size + 'px', '--bs-star-color': a.color, '--bs-star-empty': a.emptyColor, '--bs-star-fill': (fillVal / a.max * 100) + '%', '--bs-star-gap': a.gap ? a.gap + 'px' : '' })
 		});
 		var star = function (i) {
-			return el('svg', { key: i, viewBox: '0 0 24 24', 'aria-hidden': true }, el('path', { d: 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z' }));
+			return el('svg', { key: i, viewBox: '0 0 24 24', 'aria-hidden': true }, el('path', { d: SHAPES[shape] }));
 		};
+		var mini = function (d) { return '<g transform="translate(4 1) scale(.5)"><path d="' + d + '" fill="currentColor"/></g><g transform="translate(17 1) scale(.5)"><path d="' + d + '" fill="currentColor"/></g><g transform="translate(30 1) scale(.5)"><path d="' + d + '" fill="currentColor" opacity=".3"/></g>'; };
 		var stars = []; for (var i = 0; i < a.max; i++) { stars.push(star(i)); }
 		var pick = function (e) {
 			var r = e.currentTarget.getBoundingClientRect();
@@ -2696,6 +3098,8 @@
 					el(Select, Object.assign({ label: __('Align', 'bigspy-ai-theme-wp'), options: ALIGN3 }, bind('align'))),
 					el(Text, Object.assign({ label: __('Label (e.g. 4.9/5 from 320 reviews)', 'bigspy-ai-theme-wp') }, bind('label'))),
 					el(Toggle, Object.assign({ label: __('Show the number', 'bigspy-ai-theme-wp') }, bind('showNumber', true))),
+					el(Range, Object.assign({ label: __('Number of reviews (0 = hide)', T), min: 0, max: 100000, reset: 0 }, bind('count'))),
+					el(Select, Object.assign({ label: __('Round the filled part', T), options: { '': __('Exact', T), half: __('To half points', T), whole: __('To whole points', T) } }, bind('round'))),
 					el('p', { className: 'description' }, __('Tip: click the stars on the canvas to set the rating (half stars supported).', 'bigspy-ai-theme-wp'))
 				),
 				el(B.ColorPanel, { title: __('Colors', 'bigspy-ai-theme-wp'), settings: [
@@ -2703,7 +3107,25 @@
 					{ label: __('Empty stars', 'bigspy-ai-theme-wp'), value: a.emptyColor, onChange: function (v) { props.setAttributes({ emptyColor: v || '' }); } }
 				] })
 			),
+			el(B.StyleTab, null,
+				el(Panel, { title: __('Rating style', T) },
+					el(B.StylePicker, { label: __('Icon', T), value: shape, columns: 4, onChange: function (v) { props.setAttributes({ icon: v }); }, options: [
+						{ value: '', label: __('Stars', T), svg: mini(SHAPES['']) },
+						{ value: 'heart', label: __('Hearts', T), svg: mini(SHAPES.heart) },
+						{ value: 'thumb', label: __('Thumbs', T), svg: mini(SHAPES.thumb) },
+						{ value: 'dot', label: __('Dots', T), svg: mini(SHAPES.dot) }
+					] }),
+					el(B.StylePicker, { label: __('Layout', T), value: a.layout, onChange: function (v) { props.setAttributes({ layout: v }); }, options: [
+						{ value: '', label: __('Icons only', T), svg: mini(SHAPES['']) },
+						{ value: 'score', label: __('Score 4.8/5', T), svg: '<text x="2" y="12" font-size="11" font-weight="700" fill="currentColor">4.8</text>' + '<g transform="translate(24 2) scale(.45)"><path d="' + SHAPES[''] + '" fill="currentColor"/></g><g transform="translate(36 2) scale(.45)"><path d="' + SHAPES[''] + '" fill="currentColor"/></g>' },
+						{ value: 'badge', label: __('Badge', T), svg: '<rect x="2" y="1" width="52" height="13" rx="6.5" fill="currentColor" opacity=".18"/><text x="7" y="11" font-size="9" font-weight="700" fill="currentColor">4.8</text><g transform="translate(26 3) scale(.38)"><path d="' + SHAPES[''] + '" fill="currentColor"/></g><g transform="translate(37 3) scale(.38)"><path d="' + SHAPES[''] + '" fill="currentColor"/></g>' }
+					] }),
+					el(Select, Object.assign({ label: __('Label position', T), options: { '': __('Right', T), left: __('Left', T), above: __('Above', T), below: __('Below', T) } }, bind('labelPosition'))),
+					el(Range, Object.assign({ label: __('Gap between icons (px, 0 = default)', T), min: 0, max: 40, reset: 0 }, bind('gap')))
+				)
+			),
 			el('div', blockProps,
+				a.layout ? el('span', { className: 'bs-stars__score' }, el('b', null, (Math.round(a.rating * 10) / 10).toFixed(1)), el('span', null, '/' + a.max)) : null,
 				el('span', {
 					className: 'bs-stars__icons bst-stars-pick',
 					onMouseMove: function (e) { hover[1](pick(e)); },
@@ -2711,7 +3133,9 @@
 					onClick: function (e) { props.setAttributes({ rating: pick(e) }); }
 				}, el('span', { className: 'bs-stars__empty' }, stars), el('span', { className: 'bs-stars__full' }, stars)),
 				a.showNumber ? el('span', { className: 'bs-stars__number' }, shown) : null,
-				el(RichText, { tagName: 'span', className: 'bs-stars__label', value: a.label, allowedFormats: [], placeholder: __('Label (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ label: v }); } })
+				el('span', { className: 'bs-stars__label' },
+					el(RichText, { tagName: 'span', value: a.label, allowedFormats: [], placeholder: __('Label (optional)', 'bigspy-ai-theme-wp'), onChange: function (v) { props.setAttributes({ label: v }); } }),
+					a.count ? el('span', { className: 'bs-stars__count' }, (a.label ? ' ' : '') + wp.i18n.sprintf(__('(%s reviews)', T), a.count.toLocaleString())) : null)
 			)
 		);
 	});

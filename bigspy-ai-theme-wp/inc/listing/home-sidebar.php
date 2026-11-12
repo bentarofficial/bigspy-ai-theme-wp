@@ -142,7 +142,7 @@ add_filter(
 			return $content;
 		}
 		ob_start();
-		echo '<aside class="bs-layout__sidebar widget-area" aria-label="' . esc_attr__( 'Homepage sidebar', 'bigspy-ai-theme-wp' ) . '">';
+		echo '<aside class="bs-layout__sidebar widget-area" aria-label="' . esc_attr__( 'Homepage sidebar', 'bigspy-ai-theme-wp' ) . '"' . bst_sidebar_edit_attr( 'sidebar-home', 'bst_home_sidebar' ) . '>';
 		if ( is_active_sidebar( 'sidebar-home' ) ) {
 			dynamic_sidebar( 'sidebar-home' );
 		} elseif ( current_user_can( 'edit_theme_options' ) ) {
@@ -163,3 +163,44 @@ add_action(
 	},
 	31
 );
+
+/**
+ * Switching from BIGSPY AI List: WordPress maps widget areas by guesswork, so the old
+ * "Listing Sidebar — Homepage" can land in the Blog sidebar. Move each old area into
+ * its counterpart here, only where that counterpart is still empty.
+ */
+function bst_listing_map_old_widgets() {
+	$mods = get_option( 'theme_mods_bigspy-ai-list', array() );
+	$old  = isset( $mods['sidebars_widgets']['data'] ) && is_array( $mods['sidebars_widgets']['data'] ) ? $mods['sidebars_widgets']['data'] : array();
+	if ( ! $old || get_option( 'bst_listing_widgets_mapped' ) ) {
+		return;
+	}
+	$map = array(
+		'listing-sidebar'         => 'sidebar-home',
+		'secondary-pages-sidebar' => 'sidebar-blog',
+	);
+	for ( $i = 1; $i <= 4; $i++ ) {
+		$map[ 'footer-' . $i ] = 'footer-1-' . $i;
+	}
+	$now   = wp_get_sidebars_widgets();
+	$moved = array();
+	foreach ( $map as $from => $to ) {
+		if ( empty( $old[ $from ] ) || ! empty( $now[ $to ] ) ) {
+			continue;
+		}
+		$ids = array_values( (array) $old[ $from ] );
+		// Take the widgets out of wherever WordPress guessed they belong.
+		foreach ( $now as $area => $list ) {
+			if ( is_array( $list ) && 'wp_inactive_widgets' !== $area ) {
+				$now[ $area ] = array_values( array_diff( $list, $ids ) );
+			}
+		}
+		$now[ $to ] = $ids;
+		$moved[]    = $to;
+	}
+	update_option( 'bst_listing_widgets_mapped', $moved ? $moved : 1, false );
+	if ( $moved ) {
+		wp_set_sidebars_widgets( $now );
+	}
+}
+add_action( 'after_switch_theme', 'bst_listing_map_old_widgets', 30 );

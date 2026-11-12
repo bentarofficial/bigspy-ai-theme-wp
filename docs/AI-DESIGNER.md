@@ -116,7 +116,7 @@ WordPress archive, runs `tools/tests/designer-integration.php`, and serves local
 for `tools/tests/browser-check.cjs`. Module/runtime paths can be supplied through
 BST_PLAYGROUND_MODULES / BST_PLAYWRIGHT / BST_CHROME. Local verification never uses
 a real Kyma key or incurs provider charges. PHP lint uses php-parser when PHP CLI
-is unavailable. See `docs/VERIFICATION-1.73.md` for the measured results and limits.
+is unavailable. See `docs/archive/VERIFICATION-1.73.md` for the measured results and limits.
 ## Product documentation and release gate
 
 Follow the owner-approved development/release policy in `docs/roadmap-vi.md`. A request to update code is not a request to release it. Implement and verify the agreed changes, record a short entry in `docs/PENDING-RELEASE.md`, then commit and push to the designated working branch. Verify the remote commit and include its branch/hash in the handoff; explicitly report any blocked push rather than silently leaving completed work locally. Defer About catalogs, What is new, README Updates, changelog and release-note maintenance until the owner approves packaging and release, unless that content is itself the requested change or is required for correct runtime behavior. Ask once at the release boundary if permission has not already been given; no answer means no release. Do not repeat the question after the owner chooses to accumulate more changes.

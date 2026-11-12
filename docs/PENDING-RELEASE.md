@@ -6,7 +6,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Đã phát hành ở 1.90.0: tự động ưu tiên ảnh hero và preload, danh sách xoay vòng Sponsored, Banner không ảnh trong editor, ẩn thông báo plugin trên trang quản trị theme. Không có thay đổi đang chờ.
+Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Không có thay đổi đang chờ.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

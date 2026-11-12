@@ -6,6 +6,13 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.91.0: Search block, richer blocks and empty term cleanup
+
+- A new Search block with eight styles and live suggestions, shared with Listing search.
+- Tabs, Accordion, Table, Timeline, Icon List and the basic blocks gain many new styles, with Ready styles picked by picture.
+- Auto detect finds empty categories and tags, deletes the ones you select and can restore them.
+- Customizer quick-edit labels, developer hooks, optional AI abilities (MCP), better keyboard focus, Flatsome compatibility as a feature switch.
+
 ### 1.90.0: Faster hero images and Sponsored rotation lists
 
 - The first large image on each page loads at once with high priority and is preloaded; every later image is lazy-loaded, with no setting needed.

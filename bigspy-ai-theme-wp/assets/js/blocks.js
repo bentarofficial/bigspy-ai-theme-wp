@@ -3,6 +3,7 @@
 	'use strict';
 
 	var doc = document;
+	var L = window.bstBlocksL10n || {};
 	var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	/* ------------------------------------------------------------ Slider */
@@ -134,6 +135,14 @@
 			});
 		}
 
+		root.addEventListener('keydown', function (e) {
+			if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
+				return;
+			}
+			e.preventDefault();
+			goTo(current() + (e.key === 'ArrowRight' ? 1 : -1));
+		});
+
 		var dotsWrap = root.querySelector('[data-bs-slider-dots]');
 		var dotTimer = !!root.querySelector('[data-bs-slider-dot-timer]') && !!dotsWrap;
 		if (dotTimer) {
@@ -153,7 +162,7 @@
 				if (dotTimer) {
 					dot.appendChild(doc.createElement('span')).className = 'bs-slider__dot-fill';
 				}
-				dot.setAttribute('aria-label', String(i + 1));
+				dot.setAttribute('aria-label', (L.slide || 'Go to slide %d').replace('%d', i + 1));
 				dot.dataset.index = String(i);
 				dotsWrap.appendChild(dot);
 			}
@@ -194,6 +203,18 @@
 		var interval = parseInt(root.dataset.autoplay || '0', 10);
 		if (interval > 0 && !reduceMotion) {
 			var paused = false;
+			var stopped = false;
+			var stopBtn = doc.createElement('button');
+			stopBtn.type = 'button';
+			stopBtn.className = 'bs-slider__pause';
+			stopBtn.setAttribute('aria-pressed', 'false');
+			stopBtn.setAttribute('aria-label', L.pause || 'Pause slideshow');
+			stopBtn.addEventListener('click', function () {
+				stopped = !stopped;
+				stopBtn.setAttribute('aria-pressed', stopped ? 'true' : 'false');
+				stopBtn.setAttribute('aria-label', stopped ? (L.play || 'Play slideshow') : (L.pause || 'Pause slideshow'));
+			});
+			root.appendChild(stopBtn);
 			var pause = function () {
 				paused = true;
 			};
@@ -236,7 +257,7 @@
 			}, { passive: true });
 			restartBar();
 			window.setInterval(function () {
-				if (paused || doc.hidden) {
+				if (paused || stopped || doc.hidden) {
 					return;
 				}
 				var index = current() + 1;
@@ -253,7 +274,16 @@
 		if (!buttons.length) {
 			return;
 		}
-		var activate = function (index, focus) {
+		var d = root.dataset;
+		var select = root.querySelector(':scope > .bs-tabs__select');
+		var accs = [];
+		var current = -1;
+		var storeKey = 'bst-tabs:' + location.pathname + ':' + (root.id || uid);
+		var usable = function (i) {
+			return buttons[i] && !buttons[i].disabled;
+		};
+		var activate = function (index, focus, user) {
+			current = index;
 			buttons.forEach(function (btn, i) {
 				var active = i === index;
 				btn.setAttribute('aria-selected', active ? 'true' : 'false');
@@ -265,9 +295,34 @@
 			});
 			panels.forEach(function (panel, i) {
 				panel.classList.toggle('is-active', i === index);
+				panel.classList.remove('is-collapsed');
 				panel.hidden = i !== index;
 			});
+			accs.forEach(function (acc, i) {
+				acc.setAttribute('aria-expanded', i === index ? 'true' : 'false');
+			});
+			if (select) {
+				select.value = String(index);
+			}
+			if (user && d.remember === '1') {
+				try { sessionStorage.setItem(storeKey, String(index)); } catch (e) { /* storage blocked */ }
+			}
+			var panel = panels[index];
+			if (user && d.deeplink === '1' && panel && panel.id && panel.id.indexOf('bs-tabpanel-') !== 0 && history.replaceState) {
+				history.replaceState(null, '', '#' + panel.id);
+			}
 		};
+		/* Next usable tab from i in direction step (skips disabled tabs). */
+		var step = function (i, dir) {
+			for (var n = 0; n < buttons.length; n++) {
+				i = (i + dir + buttons.length) % buttons.length;
+				if (usable(i)) {
+					return i;
+				}
+			}
+			return i;
+		};
+		var stop = function () {};
 		buttons.forEach(function (btn, i) {
 			var panel = panels[i];
 			btn.id = btn.id || 'bs-tab-' + uid + '-' + i;
@@ -278,38 +333,155 @@
 				btn.setAttribute('aria-controls', panel.id);
 			}
 			btn.addEventListener('click', function () {
-				activate(i, false);
+				stop();
+				activate(i, false, true);
 			});
-			if (root.dataset.event === 'hover') {
+			if (d.event === 'hover') {
 				btn.addEventListener('mouseenter', function () {
-					activate(i, false);
+					if (usable(i)) {
+						activate(i, false, true);
+					}
 				});
 			}
 			btn.addEventListener('keydown', function (event) {
 				var key = event.key;
-				var last = buttons.length - 1;
 				var target = null;
 				if (key === 'ArrowRight' || key === 'ArrowDown') {
-					target = i === last ? 0 : i + 1;
+					target = step(i, 1);
 				} else if (key === 'ArrowLeft' || key === 'ArrowUp') {
-					target = i === 0 ? last : i - 1;
+					target = step(i, -1);
 				} else if (key === 'Home') {
-					target = 0;
+					target = step(buttons.length - 1, 1);
 				} else if (key === 'End') {
-					target = last;
+					target = step(0, -1);
 				}
 				if (target !== null) {
 					event.preventDefault();
-					activate(target, true);
+					stop();
+					activate(target, true, true);
 				}
 			});
+			/* Mobile accordion: a heading button before each panel (shown by CSS ≤549px only). */
+			if (panel && root.classList.contains('bs-tabs--m-accordion')) {
+				var acc = doc.createElement('button');
+				acc.type = 'button';
+				acc.className = 'bs-tabs__acc';
+				acc.textContent = (btn.querySelector(':scope > span') || btn).textContent;
+				acc.disabled = btn.disabled;
+				acc.setAttribute('aria-controls', panel.id);
+				acc.addEventListener('click', function () {
+					stop();
+					if (current === i) {
+						var open = acc.getAttribute('aria-expanded') === 'true';
+						acc.setAttribute('aria-expanded', open ? 'false' : 'true');
+						panel.classList.toggle('is-collapsed', open);
+					} else {
+						activate(i, false, true);
+					}
+				});
+				panel.parentNode.insertBefore(acc, panel);
+				accs[i] = acc;
+			}
 		});
+		if (select) {
+			select.addEventListener('change', function () {
+				stop();
+				activate(parseInt(select.value, 10) || 0, false, true);
+			});
+		}
+		/* Opening tab: #hash (deep link), then remembered tab, then data-default. */
+		var start = parseInt(d.default || '0', 10) || 0;
+		if (d.remember === '1') {
+			try {
+				var saved = parseInt(sessionStorage.getItem(storeKey), 10);
+				if (usable(saved)) {
+					start = saved;
+				}
+			} catch (e) { /* storage blocked */ }
+		}
+		var fromHash = function () {
+			var hash = decodeURIComponent((location.hash || '').slice(1));
+			var found = -1;
+			if (hash) {
+				panels.forEach(function (panel, i) {
+					if (panel.id === hash && usable(i)) {
+						found = i;
+					}
+				});
+			}
+			return found;
+		};
+		if (d.deeplink === '1') {
+			var h = fromHash();
+			if (h > -1) {
+				start = h;
+			}
+			window.addEventListener('hashchange', function () {
+				var n = fromHash();
+				if (n > -1) {
+					activate(n, false, false);
+				}
+			});
+		}
 		root.classList.add('is-ready');
-		activate(0, false);
+		activate(usable(start) ? start : step(start, 1), false, false);
+
+		/* Autoplay: stops for good on any user action; pauses on hover/focus; off with reduced motion. */
+		var seconds = parseInt(d.autoplay || '0', 10);
+		if (seconds > 0 && !reduceMotion) {
+			var paused = false;
+			var timer = setInterval(function () {
+				if (!paused && !doc.hidden) {
+					activate(step(current, 1), false, false);
+				}
+			}, seconds * 1000);
+			stop = function () {
+				clearInterval(timer);
+				stop = function () {};
+			};
+			if (d.pause !== '0') {
+				root.addEventListener('mouseenter', function () { paused = true; });
+				root.addEventListener('mouseleave', function () { paused = false; });
+			}
+			root.addEventListener('focusin', function () { paused = true; });
+			root.addEventListener('focusout', function () { paused = false; });
+		}
 	}
 
 	/* ------------------------------------------------------------ Accordion (fallback for details[name]) */
 	function initAccordion(root) {
+		var items = function () { return Array.prototype.slice.call(root.querySelectorAll(':scope > details')); };
+		/* Open all / Close all. */
+		var all = root.querySelector(':scope > .bs-accordion__tools .bs-accordion__all');
+		if (all) {
+			all.addEventListener('click', function () {
+				var open = items().some(function (d) { return !d.open; });
+				items().forEach(function (d) { d.open = open; });
+				all.textContent = open ? all.dataset.close : all.dataset.open;
+			});
+		}
+		/* Filter questions as you type. */
+		var search = root.querySelector(':scope > .bs-accordion__tools .bs-accordion__search');
+		if (search) {
+			search.addEventListener('input', function () {
+				var q = search.value.trim().toLowerCase();
+				items().forEach(function (d) { d.classList.toggle('is-filtered', q !== '' && d.textContent.toLowerCase().indexOf(q) < 0); });
+			});
+		}
+		/* Deep link: #question opens that item; opening an item updates the address. */
+		if (root.dataset.deeplink === '1') {
+			var hash = decodeURIComponent(window.location.hash.slice(1));
+			var target = hash && document.getElementById(hash);
+			if (target && target.parentElement === root && target.tagName === 'DETAILS') {
+				target.open = true;
+				target.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+			}
+			root.addEventListener('toggle', function (event) {
+				if (event.target.tagName === 'DETAILS' && event.target.open && event.target.id && window.history.replaceState) {
+					window.history.replaceState(null, '', '#' + event.target.id);
+				}
+			}, true);
+		}
 		/* Smooth open / close: animate the content height instead of jumping. */
 		if (root.dataset.smooth === '1' && !reduceMotion) {
 			root.querySelectorAll(':scope > details > summary').forEach(function (summary) {
@@ -403,6 +575,7 @@
 	}
 
 	function runCounter(el) {
+		el._bsCounted = true;
 		var to = parseFloat(el.dataset.to || '0');
 		var from = parseFloat(el.dataset.from || '0') || 0;
 		var decimals = el.dataset.decimals !== undefined ? parseInt(el.dataset.decimals, 10) || 0 : (String(el.dataset.to).split('.')[1] || '').length;
@@ -524,6 +697,44 @@
 		});
 		root.querySelectorAll('.bs-accordion').forEach(initAccordion);
 
+		/* Alerts remembered as closed for some days (localStorage; ignored when storage is blocked). */
+		root.querySelectorAll('[data-bs-alert-key]').forEach(function (al) {
+			var key = 'bsAlert:' + al.getAttribute('data-bs-alert-key');
+			try {
+				var until = parseInt(localStorage.getItem(key) || '0', 10);
+				if (until > Date.now()) {
+					al.remove();
+					return;
+				}
+			} catch (e) {}
+			var close = al.querySelector('.bs-alert__close');
+			if (close) {
+				close.addEventListener('click', function () {
+					try { localStorage.setItem(key, String(Date.now() + parseInt(al.getAttribute('data-bs-alert-days'), 10) * 864e5)); } catch (e) {}
+				});
+			}
+		});
+
+		/* Timeline line fills in with the scroll position. */
+		var fills = root.querySelectorAll('.bs-timeline.has-line-fill');
+		if (fills.length) {
+			var tick = function () {
+				var mid = window.innerHeight * 0.6;
+				fills.forEach(function (tl) {
+					var r = tl.getBoundingClientRect();
+					tl.style.setProperty('--bs-tl-p', reduceMotion ? 1 : Math.max(0, Math.min(1, (mid - r.top) / Math.max(1, r.height))).toFixed(3));
+				});
+			};
+			var queued = false;
+			window.addEventListener('scroll', function () {
+				if (!queued) {
+					queued = true;
+					window.requestAnimationFrame(function () { queued = false; tick(); });
+				}
+			}, { passive: true });
+			tick();
+		}
+
 		/* Progress bars fill when scrolled into view. */
 		var bars = root.querySelectorAll('[data-bs-progress].is-animated:not(.is-visible)');
 		if (bars.length) {
@@ -561,9 +772,14 @@
 				}
 				var io = new IntersectionObserver(function (entries) {
 					entries.forEach(function (entry) {
+						var replay = entry.target.hasAttribute('data-replay');
 						if (entry.isIntersecting) {
 							runCounter(entry.target);
-							io.unobserve(entry.target);
+							if (!replay) {
+								io.unobserve(entry.target);
+							}
+						} else if (replay && !reduceMotion && entry.target._bsCounted) {
+							runCounterStart(entry.target);
 						}
 					});
 				}, { threshold: 0.4 });
@@ -586,9 +802,9 @@
 			lightbox.setAttribute('role', 'dialog');
 			lightbox.setAttribute('aria-modal', 'true');
 			lightbox.innerHTML = '<span class="bs-lightbox__count"></span><figure class="bs-lightbox__figure"><img class="bs-lightbox__img" alt=""><figcaption class="bs-lightbox__caption"></figcaption></figure>' +
-				'<button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="Close">&#10005;</button>' +
-				'<button type="button" class="bs-lightbox__btn bs-lightbox__prev" aria-label="Previous">&#8249;</button>' +
-				'<button type="button" class="bs-lightbox__btn bs-lightbox__next" aria-label="Next">&#8250;</button>';
+				'<button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="' + (L.close || 'Close') + '">&#10005;</button>' +
+				'<button type="button" class="bs-lightbox__btn bs-lightbox__prev" aria-label="' + (L.previous || 'Previous') + '">&#8249;</button>' +
+				'<button type="button" class="bs-lightbox__btn bs-lightbox__next" aria-label="' + (L.next || 'Next') + '">&#8250;</button>';
 			doc.body.appendChild(lightbox);
 			lightbox.addEventListener('click', function (e) {
 				if (e.target === lightbox || e.target.classList.contains('bs-lightbox__close')) {
@@ -641,10 +857,17 @@
 		show();
 		lightbox.hidden = false;
 		doc.documentElement.style.overflow = 'hidden';
+		if (window.bstTrapFocus && !lightbox._untrap) {
+			lightbox._untrap = window.bstTrapFocus(lightbox);
+		}
 		lightbox.querySelector('.bs-lightbox__close').focus();
 	}
 	function closeLightbox() {
 		lightbox.hidden = true;
+		if (lightbox._untrap) {
+			lightbox._untrap();
+			lightbox._untrap = null;
+		}
 		doc.documentElement.style.overflow = '';
 		if (lightbox._opener) {
 			lightbox._opener.focus();
@@ -667,11 +890,14 @@
 			modal.className = 'bs-lightbox bs-video-modal';
 			modal.setAttribute('role', 'dialog');
 			modal.setAttribute('aria-modal', 'true');
-			modal.innerHTML = '<div class="bs-video-modal__frame">' + (embed ? '<iframe src="' + embed.replace(/"/g, '') + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>' : '<video src="' + String(file).replace(/"/g, '') + '" controls autoplay playsinline></video>') + '</div><button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="Close">&#10005;</button>';
+			modal.innerHTML = '<div class="bs-video-modal__frame">' + (embed ? '<iframe src="' + embed.replace(/"/g, '') + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>' : '<video src="' + String(file).replace(/"/g, '') + '" controls autoplay playsinline></video>') + '</div><button type="button" class="bs-lightbox__btn bs-lightbox__close" aria-label="' + (L.close || 'Close') + '">&#10005;</button>';
 			var close = function () {
 				modal.remove();
 				doc.documentElement.style.overflow = '';
 				doc.removeEventListener('keydown', onKey);
+				if (untrap) {
+					untrap();
+				}
 				vtrigger.focus();
 			};
 			var onKey = function (ev) {
@@ -686,6 +912,7 @@
 			});
 			doc.addEventListener('keydown', onKey);
 			doc.body.appendChild(modal);
+			var untrap = window.bstTrapFocus ? window.bstTrapFocus(modal) : null;
 			doc.documentElement.style.overflow = 'hidden';
 			modal.querySelector('.bs-lightbox__close').focus();
 			return;
@@ -779,6 +1006,7 @@
 			}
 		};
 		var lastFocus = null;
+		var untrapPopup = null;
 		var openPopup = function (pop) {
 			if (!pop || !pop.hidden) {
 				return;
@@ -790,12 +1018,19 @@
 			var dialog = pop.querySelector('.bs-popup__dialog');
 			if (dialog) {
 				dialog.focus();
+				if (window.bstTrapFocus) {
+					untrapPopup = window.bstTrapFocus(dialog);
+				}
 			}
 			store(pop.getAttribute('data-bs-popup'), true);
 		};
 		var closePopup = function (pop) {
 			pop.classList.remove('is-open');
 			doc.documentElement.classList.remove('bs-popup-lock');
+			if (untrapPopup) {
+				untrapPopup();
+				untrapPopup = null;
+			}
 			setTimeout(function () { pop.hidden = true; }, 250);
 			if (lastFocus && lastFocus.focus) {
 				lastFocus.focus();

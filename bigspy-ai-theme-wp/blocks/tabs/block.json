@@ -39,6 +39,174 @@
 		"fade": {
 			"type": "boolean",
 			"default": true
+		},
+		"navPosition": {
+			"type": "string",
+			"default": ""
+		},
+		"sideWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"mobile": {
+			"type": "string",
+			"default": ""
+		},
+		"defaultTab": {
+			"type": "number",
+			"default": 1
+		},
+		"deepLink": {
+			"type": "boolean",
+			"default": false
+		},
+		"remember": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplay": {
+			"type": "number",
+			"default": 0
+		},
+		"pauseHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"transition": {
+			"type": "string",
+			"default": ""
+		},
+		"transitionMs": {
+			"type": "number",
+			"default": 0
+		},
+		"sticky": {
+			"type": "boolean",
+			"default": false
+		},
+		"stickyTop": {
+			"type": "number",
+			"default": 0
+		},
+		"navGap": {
+			"type": "number",
+			"default": -1
+		},
+		"navPadX": {
+			"type": "number",
+			"default": -1
+		},
+		"navPadY": {
+			"type": "number",
+			"default": -1
+		},
+		"navRadius": {
+			"type": "number",
+			"default": -1
+		},
+		"navBg": {
+			"type": "string",
+			"default": ""
+		},
+		"navBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"navBorderWidth": {
+			"type": "number",
+			"default": -1
+		},
+		"tabColor": {
+			"type": "string",
+			"default": ""
+		},
+		"tabColorHover": {
+			"type": "string",
+			"default": ""
+		},
+		"tabBg": {
+			"type": "string",
+			"default": ""
+		},
+		"tabBgHover": {
+			"type": "string",
+			"default": ""
+		},
+		"tabBgActive": {
+			"type": "string",
+			"default": ""
+		},
+		"indicatorColor": {
+			"type": "string",
+			"default": ""
+		},
+		"indicatorSize": {
+			"type": "number",
+			"default": 0
+		},
+		"navSizeTablet": {
+			"type": "number",
+			"default": 0
+		},
+		"navSizeMobile": {
+			"type": "number",
+			"default": 0
+		},
+		"navWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"navTransform": {
+			"type": "string",
+			"default": ""
+		},
+		"navLetterSpacing": {
+			"type": "number",
+			"default": 0
+		},
+		"iconPosition": {
+			"type": "string",
+			"default": ""
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 0
+		},
+		"iconOnlyMobile": {
+			"type": "boolean",
+			"default": false
+		},
+		"panelBg": {
+			"type": "string",
+			"default": ""
+		},
+		"panelBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"panelBorderWidth": {
+			"type": "number",
+			"default": -1
+		},
+		"panelRadius": {
+			"type": "number",
+			"default": -1
+		},
+		"panelPadding": {
+			"type": "number",
+			"default": -1
+		},
+		"panelPaddingMobile": {
+			"type": "number",
+			"default": -1
+		},
+		"panelMinHeight": {
+			"type": "number",
+			"default": 0
+		},
+		"equalHeight": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

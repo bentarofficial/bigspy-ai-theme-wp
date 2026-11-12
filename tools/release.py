@@ -19,6 +19,7 @@ REPO = Path(__file__).resolve().parents[1]
 THEME = REPO / 'bigspy-ai-theme-wp'
 STYLE = THEME / 'style.css'
 FUNCTIONS = THEME / 'functions.php'
+README = THEME / 'readme.txt'
 CSS = THEME / 'assets' / 'css' / 'blocks.css'
 SEGMENTS = THEME / 'assets' / 'css' / 'blocks' / 'segments.json'
 
@@ -30,16 +31,21 @@ def git(*args):
 def versions():
 	style = re.search(r'^Version:\s*([\d.]+)', STYLE.read_text(encoding='utf-8'), re.M).group(1)
 	code = re.search(r"define\( 'BST_VERSION', '([\d.]+)' \);", FUNCTIONS.read_text(encoding='utf-8')).group(1)
-	return style, code
+	stable = re.search(r'^Stable tag:\s*([\d.]+)', README.read_text(encoding='utf-8'), re.M)
+	return style, code, stable.group(1) if stable else ''
 
 
 def check():
 	problems = []
-	style, code = versions()
-	print('Version: style.css %s, BST_VERSION %s' % (style, code))
+	style, code, stable = versions()
+	print('Version: style.css %s, BST_VERSION %s, Stable tag %s' % (style, code, stable))
 	print('Branch: %s' % git('branch', '--show-current'))
-	if style != code:
+	if not (style == code == stable):
 		problems.append('Version mismatch')
+	if not re.search(r'^= %s =' % re.escape(style), README.read_text(encoding='utf-8'), re.M):
+		print('Note: readme.txt has no changelog entry = %s =' % style)
+	if not re.search(r'^### %s' % re.escape(style), (REPO / 'docs' / 'README-UPDATES.md').read_text(encoding='utf-8'), re.M):
+		print('Note: docs/README-UPDATES.md has no ### %s entry' % style)
 	dirty = git('status', '--porcelain', '--untracked-files=no')
 	if dirty:
 		problems.append('Uncommitted tracked changes')
@@ -76,6 +82,7 @@ def main():
 	if not re.fullmatch(r'\d+\.\d+\.\d+', args.version):
 		raise SystemExit('Version must look like 1.77.0')
 	bump(STYLE, r'^Version:\s*[\d.]+', 'Version: ' + args.version)
+	bump(README, r'^Stable tag:\s*[\d.]+', 'Stable tag: ' + args.version)
 	bump(FUNCTIONS, r"define\( 'BST_VERSION', '[\d.]+' \);", "define( 'BST_VERSION', '%s' );" % args.version)
 	subprocess.run([sys.executable, str(REPO / 'tools' / 'build-theme.py')], check=True)
 	print('Built %s locally. Update readme.txt and About if needed, then continue with docs/DEV-RULES.md.' % args.version)

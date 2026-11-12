@@ -35,6 +35,7 @@ require_once BST_AID_DIR . '/includes/prompt.php';
 require_once BST_AID_DIR . '/includes/tasks.php';
 require_once BST_AID_DIR . '/includes/attachments.php';
 require_once BST_AID_DIR . '/includes/workspace.php';
+require_once BST_AID_DIR . '/includes/abilities.php';
 
 /** Capability needed to use the AI Designer. */
 function bst_aid_cap() {

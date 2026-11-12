@@ -422,6 +422,77 @@
 		/* Search box: finds any option by its label, description or section name. */
 		var $search = $('<div class="bst-csearch"><span class="dashicons dashicons-search" aria-hidden="true"></span><input type="search" class="bst-csearch__input" placeholder="Search settings… (logo, menu, color, zalo…)" aria-label="Search settings"><ul class="bst-csearch__results" hidden></ul></div>');
 		$('#customize-theme-controls').before($search);
+
+		/* Quick-edit labels (G-151): toggle, jump from preview labels, highlight on section open. */
+		(function () {
+			var qc = window.bstFocusControls || { urls: {}, label: 'Quick-edit labels', help: '' };
+			var key = 'bstQuickLabels';
+			var on = true;
+			try { on = window.localStorage.getItem(key) !== '0'; } catch (e) { on = true; }
+			var $toggle = $('<label class="bst-qe-toggle"><input type="checkbox"> <span></span></label>');
+			$toggle.attr('title', qc.help).find('span').text(qc.label);
+			$toggle.find('input').prop('checked', on).on('change', function () {
+				on = this.checked;
+				try { window.localStorage.setItem(key, on ? '1' : '0'); } catch (e) { /* private mode */ }
+				sendLabels();
+			});
+			$search.append($toggle);
+			var sendLabels = function () {
+				var titles = {};
+				['panel', 'section', 'control'].forEach(function (type) {
+					api[type].each(function (obj) {
+						var p = obj.params || {};
+						titles[type + ':' + obj.id] = String((type === 'control' ? p.label : p.title) || obj.id).replace(/<[^>]*>/g, '');
+					});
+				});
+				api.previewer.send('bst-labels', { on: on, titles: titles });
+			};
+			api.previewer.bind('bst-labels-ready', sendLabels);
+			var lastAsked = '';
+			api.previewer.bind('bst-focus', function (data) {
+				if (!data || !data.id) {
+					return;
+				}
+				if (data.type === 'url') {
+					window.open(data.id, '_blank', 'noopener');
+					return;
+				}
+				var obj = api[data.type] && api[data.type](data.id);
+				if (!obj) {
+					return;
+				}
+				lastAsked = data.type + ':' + data.id;
+				obj.focus();
+				if (data.type === 'control') {
+					obj.container.addClass('bst-csearch-hit');
+					setTimeout(function () { obj.container.removeClass('bst-csearch-hit'); }, 1800);
+				}
+			});
+			api.previewer.bind('bst-highlight-miss', function (data) {
+				var url = data && qc.urls[data.id];
+				if (url && api.previewer.previewUrl() !== url) {
+					api.previewer.previewUrl(url);
+				}
+			});
+			var watch = function (type) {
+				return function (obj) {
+					obj.expanded.bind(function (open) {
+						var k = type + ':' + obj.id;
+						if (!open) {
+							return;
+						}
+						if (k === lastAsked) {
+							lastAsked = '';
+							return;
+						}
+						api.previewer.send('bst-highlight', { type: type, id: obj.id });
+					});
+				};
+			};
+			api.section.each(watch('section'));
+			api.section.bind('add', watch('section'));
+			api.panel.each(watch('panel'));
+		})();
 		var $input = $search.find('input');
 		var $results = $search.find('.bst-csearch__results');
 		var norm = function (str) {

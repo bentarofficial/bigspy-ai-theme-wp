@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design', 'flatsome', 'accordion' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -22,13 +22,39 @@ try {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }
 
+function bst_t_flatsome() {
+	bst_test( shortcode_exists( 'ux_text' ) && false !== strpos( do_shortcode( '[ux_text]x[/ux_text]' ), 'x' ), 'flatsome: shortcodes work while on' );
+}
+
+function bst_t_accordion() {
+	$item = function ( $attrs, $answer = 'A' ) {
+		return '<!-- wp:bst/accordion-item ' . wp_json_encode( $attrs ) . ' --><!-- wp:paragraph --><p>' . $answer . '</p><!-- /wp:paragraph --><!-- /wp:bst/accordion-item -->';
+	};
+	$old = do_blocks( '<!-- wp:bst/accordion --><div>' . $item( array( 'title' => 'Q one', 'open' => true ) ) . $item( array( 'title' => 'Q two' ) ) . '</div><!-- /wp:bst/accordion -->' );
+	bst_test( false === strpos( $old, 'bs-accordion__tools' ) && false === strpos( $old, 'data-deeplink' ) && false === strpos( $old, ' id="q-' ) && false === strpos( $old, '--bs-acc-' ) && 1 === substr_count( $old, ' open' ), 'accordion: old content renders as before' );
+	$new = do_blocks( '<!-- wp:bst/accordion {"style":"shadow","openMode":"all","deepLink":true,"search":true,"expandAll":true,"columns":2,"iconColor":"#ff0000","titleWeight":700} --><div>' . $item( array( 'title' => 'Q one', 'subtitle' => 'Sub', 'badge' => 'New' ) ) . $item( array( 'title' => 'Q two' ) ) . '</div><!-- /wp:bst/accordion -->' );
+	bst_test( false !== strpos( $new, 'bs-accordion--shadow' ) && false !== strpos( $new, 'bs-accordion--cols-2' ) && 2 === substr_count( $new, '<details class="bs-accordion__item" open' ), 'accordion: style, columns, open all' );
+	bst_test( false !== strpos( $new, 'id="q-one"' ) && false !== strpos( $new, 'data-deeplink="1"' ) && false !== strpos( $new, 'bs-accordion__search' ) && false !== strpos( $new, 'bs-accordion__all' ), 'accordion: deep link, search, open all button' );
+	bst_test( false !== strpos( $new, 'bs-accordion__sub">Sub' ) && false !== strpos( $new, 'bs-accordion__badge">New' ) && false !== strpos( $new, '--bs-acc-icon-c:#ff0000' ) && false !== strpos( $new, '--bs-acc-title-fw:700' ), 'accordion: subtitle, badge, part vars' );
+	$first = do_blocks( '<!-- wp:bst/accordion {"openMode":"first"} --><div>' . $item( array( 'title' => 'A1' ) ) . $item( array( 'title' => 'A2', 'open' => true ) ) . '</div><!-- /wp:bst/accordion -->' );
+	bst_test( 1 === substr_count( $first, ' open' ) && strpos( $first, ' open' ) < strpos( $first, 'A2' ), 'accordion: open first overrides items' );
+}
+
 function bst_t_off() {
 	bst_test( array() === (array) get_option( 'bst_features', array() ), 'all features off by default' );
 	bst_test( ! function_exists( 'bst_webp_convert' ) && ! function_exists( 'bst_smtp_configure' ) && ! function_exists( 'bst_ir_insert' ) && ! function_exists( 'bst_code_print' ), 'no feature code loaded while off' );
 	ob_start();
 	bst_features_page();
 	$html = ob_get_clean();
-	bst_test( 5 === substr_count( $html, 'name="bst_on[]"' ) && false === strpos( $html, 'checked' ), 'page lists 5 unticked features' );
+	$listed = substr_count( $html, 'name="bst_on[]"' );
+	bst_test( 7 === $listed && false === strpos( $html, 'checked' ), 'page lists 7 unticked features (' . $listed . ')' );
+	bst_test( ! bst_feature_on( 'flatsome' ) && ! shortcode_exists( 'ux_text' ) && post_type_exists( 'blocks' ) && ! wp_style_is( 'bst-legacy', 'registered' ), 'flatsome: off on a new site, UX Blocks post type kept' );
+	delete_option( 'bst_flatsome_checked' );
+	$fs = wp_insert_post( array( 'post_title' => 'fs', 'post_status' => 'publish', 'post_type' => 'page', 'post_content' => '[section][ux_text]x[/ux_text][/section]' ) );
+	bst_feature_flatsome_migrate();
+	bst_test( bst_feature_on( 'flatsome' ), 'flatsome: turns on once when Flatsome content exists' );
+	wp_delete_post( $fs, true );
+	update_option( 'bst_features', array() );
 	bst_test( ! function_exists( 'bst_listing_field' ) && ! function_exists( 'bigspy_dynamic_attributes' ), 'listing: no code loaded while off' );
 	bst_test( WP_Block_Type_Registry::get_instance()->is_registered( 'bst/listing-info' ) && '' === render_block( array( 'blockName' => 'bst/listing-info', 'attrs' => array(), 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) ), 'listing: block registered, renders nothing while off' );
 	$cats = array_column( get_block_categories( get_post( wp_insert_post( array( 'post_title' => 'c', 'post_status' => 'draft' ) ) ) ), 'slug' );
@@ -489,6 +515,46 @@ Broken line" );
 	}
 	bst_feature_set( 'listing', true );
 }
+// G-130: shared Design layer. Old designs print the same CSS; each new key prints its rule.
+function bst_t_design() {
+	$legacy = '.x{margin-top:10px;background-color:#fff;border-radius:8px;overflow:hidden;box-shadow:0 3px 6px -4px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.1);transition:background-color .3s ease,color .3s ease,border-color .3s ease,border-radius .3s ease,box-shadow .3s ease,transform .3s ease}.x:where(.bs-column,.bs-row,.bs-text,.bs-heading,.bs-buttons,.bs-icon-list,.bs-counter,.bs-social,.bs-title,.bs-code,.bs-share,.bs-star-rating,.bs-progress){padding:20px}@media (max-width:549px){.x{font-size:14px;--bs-fs:14px}}@media (hover:hover){.x:hover{transform:translateY(-5px)}}';
+	bst_test( $legacy === bst_design_css( array( 'mt' => 10, 'bg' => '#fff', 'br' => 8, 'depth' => 2, 'hmove' => 5, 'fsM' => 14 ), '.x' ), 'design: legacy bsDesign CSS unchanged' );
+	$cases = array(
+		'border per side'  => array( array( 'bwt' => 3, 'bc' => '#f00' ), '.x{border-style:solid;border-color:#f00;border-width:3px 0 0 0}' ),
+		'radius per corner' => array( array( 'rtl' => 20, 'rbr' => 4 ), '.x{border-top-left-radius:20px;border-bottom-right-radius:4px}' ),
+		'linear gradient'  => array( array( 'gt' => 'linear', 'g1' => '#f00', 'g2' => '#00f', 'ga' => 90 ), '.x{background-image:linear-gradient(90deg,#f00,#00f)}' ),
+		'radial gradient'  => array( array( 'gt' => 'radial', 'g1' => '#f00', 'g2' => '#0f0', 'g3' => '#00f' ), '.x{background-image:radial-gradient(circle,#f00,#0f0,#00f)}' ),
+		'image + overlay'  => array( array( 'bgi' => 'https://e.x/a.jpg', 'ovl' => 'rgba(0,0,0,.5)', 'bgs' => 'contain' ), '.x{background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("https://e.x/a.jpg");background-position:center;background-size:contain;background-repeat:no-repeat}' ),
+		'custom shadow'    => array( array( 'depth' => 3, 'shc' => '#000', 'shy' => 4, 'shb' => 10, 'shi' => true ), '.x{box-shadow:inset 0 4px 10px 0 #000}' ),
+		'filters'          => array( array( 'op' => 50, 'fbl' => 2, 'fbr' => 120, 'fgr' => 100, 'bdb' => 8 ), '.x{opacity:0.5;filter:blur(2px) brightness(120%) grayscale(100%);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}' ),
+		'transform'        => array( array( 'rot' => 5, 'tx' => 10, 'skx' => 3 ), '.x{transform:translate(10px,0) rotate(5deg) skewX(3deg)}' ),
+		'hover transform'  => array( array( 'rot' => 5, 'hrot' => 10, 'tdur' => 600 ), '.x{transition:background-color 600ms ease,color 600ms ease,border-color 600ms ease,border-radius 600ms ease,box-shadow 600ms ease,transform 600ms ease;transform:rotate(5deg)}@media (hover:hover){.x:hover{transform:rotate(5deg) rotate(10deg)}}' ),
+		'mask'             => array( array( 'msk' => 'circle' ), '.x{clip-path:circle(50% at 50% 50%)}' ),
+		'device colors'    => array( array( 'bgT' => '#eee', 'colorM' => '#111', 'bwT' => 2, 'bcM' => '#0f0', 'brM' => 4 ), '@media (max-width:849px){.x{background-color:#eee;border-width:2px;border-style:solid}}@media (max-width:549px){.x{color:#111;--bs-heading-color:#111;border-color:#0f0;border-radius:4px}}' ),
+		'layout'           => array( array( 'mh' => 300, 'mhM' => '50vh', 'ar' => '16/9', 'ord' => -1, 'ordM' => 2, 'asT' => 'center' ), '.x{min-height:300px;aspect-ratio:16/9;order:-1}@media (max-width:849px){.x{align-self:center}}@media (max-width:549px){.x{min-height:50vh;order:2}}' ),
+		'sticky'           => array( array( 'st' => 'desktop', 'stt' => 80 ), '.x{position:sticky;top:80px}@media (max-width:849px){.x{position:static}}' ),
+		'overflow'         => array( array( 'br' => 10, 'ov' => 'visible' ), '.x{border-radius:10px;overflow:visible}' ),
+		'bad url rejected' => array( array( 'bgi' => 'javascript:alert(1)' ), '' ),
+	);
+	foreach ( $cases as $label => $case ) {
+		$got = bst_design_css( $case[0], '.x' );
+		bst_test( $case[1] === $got, 'design: ' . $label . ( $case[1] === $got ? '' : ' got ' . $got ) );
+	}
+	$attrs = bst_design_html_attrs( array( 'hattr' => "data-track=hero\naria-label=\"Intro\"\nonclick=alert(1)\nstyle=x" ) );
+	bst_test( array( 'data-track' => 'hero', 'aria-label' => 'Intro' ) === $attrs, 'design: custom attributes only data-* and aria-*' );
+	$post = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Design', 'post_author' => 1, 'post_content' => '' ) );
+	$allow = function ( $caps, $cap, $user_id ) {
+		return 'unfiltered_html' === $cap && 1 === (int) $user_id ? array( 'exist' ) : $caps;
+	};
+	add_filter( 'map_meta_cap', $allow, 99, 3 ); // An earlier test denies unfiltered_html.
+	bst_test( '.x h2{color:red}.x{opacity:.5}' === bst_design_custom_css( array( 'ccss' => 'selector h2{color:red}selector{opacity:.5}' ), '.x', $post ) && '.x{color:red}' === bst_design_custom_css( array( 'ccss' => 'color:red' ), '.x', $post ), 'design: custom CSS scoped to the block' );
+	remove_filter( 'map_meta_cap', $allow, 99 );
+	$low = wp_insert_user( array( 'user_login' => 'bst_contrib', 'user_pass' => wp_generate_password(), 'role' => 'contributor' ) );
+	wp_update_post( array( 'ID' => $post, 'post_author' => $low ) );
+	bst_test( '' === bst_design_custom_css( array( 'ccss' => 'color:red' ), '.x', $post ), 'design: custom CSS ignored for authors without unfiltered_html' );
+	$html = bst_apply_block_design( '<div class="bs-text">x</div>', array( 'blockName' => 'bst/text', 'attrs' => array( 'bsDesign' => array( 'hattr' => 'data-x=1' ) ) ) );
+	bst_test( false !== strpos( $html, 'data-x="1"' ) && false === strpos( $html, 'bsd-' ), 'design: attributes alone add no design class' );
+}
 // Admin-only files must parse: a syntax error there breaks the whole dashboard.
 try {
 	$bst_news = include BST_DIR . '/inc/welcome/data.php';
@@ -506,3 +572,120 @@ $GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $bst_plain ) );
 $GLOBALS['wp_the_query'] = $GLOBALS['wp_query'];
 bst_test( $bst_a && ! bst_starts_full_width(), 'layout: full-width first block removes the gap under the header' );
 wp_reset_query();
+// G-151: quick-edit labels. Every focus-map item points at a real Customizer target; no attribute outside the Customizer.
+bst_test( '' === bst_header_element_edit_attr( 'logo' ) && false === strpos( bst_header_element( 'logo', 'desktop' ), 'data-bst-edit' ), 'quick-edit: no data-bst-edit outside the Customizer' );
+require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
+$GLOBALS['wp_customize'] = new WP_Customize_Manager();
+do_action( 'customize_register', $GLOBALS['wp_customize'] );
+$bst_raw  = bst_customize_focus_map_raw();
+$bst_map  = bst_customize_focus_map();
+$bst_miss = array();
+foreach ( $bst_raw as $bst_it ) {
+	if ( 'url' !== $bst_it['type'] && '' === bst_customize_target_title( $bst_it['type'], $bst_it['id'] ) && ! in_array( $bst_it['id'], array( 'bst_shop', 'bst_product', 'bst_catalog', 'bst_checkout', 'bst_listing_single', 'bst_home_sidebar' ), true ) ) {
+		$bst_miss[] = $bst_it['id'];
+	}
+}
+bst_test( ! $bst_miss && count( $bst_map ) >= 15, 'quick-edit: focus map targets exist (' . count( $bst_map ) . ' items' . ( $bst_miss ? '; missing ' . implode( ',', $bst_miss ) : '' ) . ')' );
+foreach ( array_keys( bst_he_schema() ) as $bst_k ) {
+	bst_test( '' !== bst_customize_target_title( 'section', 'bst_he_' . $bst_k ), 'quick-edit: header element section bst_he_' . $bst_k . ' exists' );
+}
+unset( $GLOBALS['wp_customize'] );
+// G-147: developer hooks. Unhooked output unchanged; one action and filters change output.
+$bst_hb   = array( 'blockName' => 'bst/divider', 'attrs' => array(), 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() );
+$bst_base = render_block( $bst_hb );
+$bst_logo = bst_header_element( 'logo', 'desktop' );
+$bst_cls  = function () { return array( 'g147-x' ); };
+$bst_htm  = function ( $html, $name ) { return 'bst/divider' === $name ? $html . '<!--g147-->' : $html; };
+$bst_act  = function ( $el ) { if ( 'logo' === $el ) { echo '<i class="g147-a"></i>'; } };
+add_filter( 'bst_block_classes', $bst_cls );
+add_filter( 'bst_block_html', $bst_htm, 10, 2 );
+add_action( 'bst_before_header_element', $bst_act );
+$bst_out  = render_block( $bst_hb );
+$bst_logo2 = bst_header_element( 'logo', 'desktop' );
+remove_filter( 'bst_block_classes', $bst_cls );
+remove_filter( 'bst_block_html', $bst_htm, 10 );
+remove_action( 'bst_before_header_element', $bst_act );
+bst_test( false !== strpos( $bst_out, 'g147-x' ) && false !== strpos( $bst_out, '<!--g147-->' ) && false !== strpos( $bst_logo2, 'g147-a' ), 'hooks: bst_block_classes, bst_block_html and bst_before_header_element change output' );
+bst_test( $bst_base === render_block( $bst_hb ) && $bst_logo === bst_header_element( 'logo', 'desktop' ), 'hooks: nothing hooked leaves HTML unchanged' );
+$bst_pf = function ( $p ) { $p['divider']['g147'] = array( 'G', false, array() ); return $p; };
+add_filter( 'bst_block_presets', $bst_pf );
+bst_test( isset( bst_block_presets()['divider']['g147'] ), 'hooks: bst_block_presets filter' );
+remove_filter( 'bst_block_presets', $bst_pf );
+
+// G-131: attribute presets (built-in Divider/Button, site presets saved and deleted, AI catalog).
+$bst_ap = bst_block_attr_presets();
+bst_test( count( $bst_ap['bst/divider'] ?? array() ) >= 4 && count( $bst_ap['bst/button'] ?? array() ) >= 4, 'presets: built-in Divider and Button' );
+$bst_ok = true;
+foreach ( $bst_ap as $bst_b => $bst_list ) {
+	foreach ( $bst_list as $bst_p ) {
+		$bst_s = bst_sanitize_preset_attrs( $bst_b, $bst_p[2] );
+		if ( $bst_s !== $bst_p[2] ) {
+			$bst_ok = 'bad ' . wp_json_encode( array_diff_assoc( array_map( 'wp_json_encode', $bst_p[2] ), array_map( 'wp_json_encode', $bst_s ) ) );
+		}
+	}
+}
+bst_test( true === $bst_ok, 'presets: built-in attrs are valid block.json attributes ' . ( true === $bst_ok ? '' : $bst_ok ) );
+wp_set_current_user( 1 );
+$bst_r = new WP_REST_Request( 'POST', '/bst/v1/block-presets' );
+$bst_r->set_body_params( array( 'block' => 'bst/divider', 'label' => 'Mine', 'attrs' => array( 'style' => 'wave', 'thickness' => 3, 'evil' => 'x', 'text' => 7 ) ) );
+$bst_res = rest_do_request( $bst_r );
+$bst_user = bst_user_block_presets()['bst/divider'] ?? array();
+$bst_id = key( $bst_user );
+bst_test( 200 === $bst_res->get_status() && 1 === count( $bst_user ) && array( 'style' => 'wave', 'thickness' => 3 ) === $bst_user[ $bst_id ]['attrs'], 'presets: save keeps only valid block.json attributes' );
+bst_test( isset( bst_aid_tool_block_catalog( array( 'needs' => bst_aid_block_needs() ) )['blocks'] ) && isset( bst_block_attr_preset_list( 'bst/divider' )[ $bst_id ] ), 'presets: AI catalog lists saved preset' );
+$bst_r = new WP_REST_Request( 'DELETE', '/bst/v1/block-presets' );
+$bst_r->set_query_params( array( 'block' => 'bst/divider', 'id' => $bst_id ) );
+rest_do_request( $bst_r );
+bst_test( empty( bst_user_block_presets()['bst/divider'] ), 'presets: delete' );
+
+// G-132-c: Button styles, icon only, badge, per-device width, hover border/shadow.
+$bst_btn = function ( $attrs ) {
+	return render_block( array( 'blockName' => 'bst/button', 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+};
+$bst_h = $bst_btn( array( 'text' => 'Go', 'url' => 'https://example.com/', 'style' => 'arrow-circle' ) );
+bst_test( false !== strpos( $bst_h, 'bs-btn--arrow-circle' ) && false !== strpos( $bst_h, 'bs-icon' ) && false !== strpos( $bst_h, '<span>Go</span>' ), 'button: arrow-circle adds an icon' );
+$bst_h = $bst_btn( array( 'text' => 'Search', 'icon' => 'search', 'iconOnly' => true ) );
+bst_test( false !== strpos( $bst_h, 'bs-btn--icon-only' ) && false !== strpos( $bst_h, 'aria-label="Search"' ) && false === strpos( $bst_h, '<span>Search</span>' ), 'button: icon only keeps an aria-label' );
+$bst_h = $bst_btn( array( 'text' => 'Buy', 'badge' => '-20%', 'widthMobile' => 'full', 'widthTablet' => 'bad', 'hoverBorder' => '#ff0000', 'hoverShadow' => '#00ff00', 'style' => 'neon' ) );
+bst_test( false !== strpos( $bst_h, 'bs-btn__badge' ) && false !== strpos( $bst_h, 'bs-btn--m-full' ) && false === strpos( $bst_h, 'bs-btn--t-' ) && false !== strpos( $bst_h, '--bsb-hbc:#ff0000' ) && false !== strpos( $bst_h, '--bsb-hsh:' ) && false !== strpos( $bst_h, 'bs-btn--neon' ), 'button: badge, per-device width, hover colors' );
+$bst_h = $bst_btn( array( 'text' => 'Old', 'url' => '/x' ) );
+bst_test( '<a class="bs-btn bs-btn--primary wp-block-bst-button" href="/x"><span>Old</span></a>' === $bst_h, 'button: old attributes render as before' );
+
+// G-132-d: Alert, Progress, Counter options; old attributes keep their HTML.
+$bst_rb = function ( $name, $attrs ) {
+	return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+};
+$bst_h = $bst_rb( 'bst/alert', array( 'title' => 'Sale', 'text' => 'Ends today', 'style' => 'toast', 'toastPos' => 'top-left', 'dismiss' => true, 'rememberDays' => 7, 'btnText' => 'Shop', 'btnUrl' => 'https://example.com/', 'titleTag' => 'h3', 'icon' => 'star', 'showIcon' => true ) );
+bst_test( false !== strpos( $bst_h, 'bs-alert--toast bs-alert--at-top-left' ) && false !== strpos( $bst_h, 'data-bs-alert-days="7"' ) && false !== strpos( $bst_h, '<h3 class="bs-alert__title">' ) && false !== strpos( $bst_h, 'class="bs-alert__btn" href="https://example.com/"' ), 'alert: toast, remember, button, title tag' );
+$bst_h = $bst_rb( 'bst/alert', array( 'title' => 'T', 'text' => 'X' ) );
+bst_test( false === strpos( $bst_h, 'data-bs-alert' ) && false !== strpos( $bst_h, '<p class="bs-alert__title">T</p>' ) && false === strpos( $bst_h, 'style=' ), 'alert: old attributes render as before' );
+$bst_items = array( array( 'label' => 'A', 'value' => 5 ) );
+$bst_h = $bst_rb( 'bst/progress', array( 'items' => $bst_items, 'layout' => 'circle', 'max' => 10, 'suffix' => '/10', 'showValue' => true ) );
+bst_test( false !== strpos( $bst_h, 'bs-progress--circle' ) && false !== strpos( $bst_h, '--v:50' ) && false !== strpos( $bst_h, '5/10' ) && false !== strpos( $bst_h, 'aria-valuemax="10"' ), 'progress: circle with max and suffix' );
+$bst_h = $bst_rb( 'bst/progress', array( 'items' => array( array( 'label' => 'A', 'value' => 50 ) ), 'layout' => 'steps', 'steps' => 4 ) );
+bst_test( 2 === substr_count( $bst_h, 'bs-progress__step is-on' ) && 4 === substr_count( $bst_h, 'style="--i:' ), 'progress: steps' );
+$bst_h = $bst_rb( 'bst/progress', array( 'items' => array( array( 'label' => 'A', 'value' => 40 ) ), 'showValue' => true ) );
+bst_test( false !== strpos( $bst_h, '40%</span>' ) && false !== strpos( $bst_h, 'aria-valuemax="100" aria-valuenow="40"' ) && false === strpos( $bst_h, 'bs-progress--' ), 'progress: old bar renders as before' );
+$bst_h = $bst_rb( 'bst/counter', array( 'number' => '120', 'label' => 'Clients', 'style' => 'side', 'icon' => 'star', 'replay' => true, 'weight' => '600' ) );
+bst_test( false !== strpos( $bst_h, 'bs-counter--side' ) && false !== strpos( $bst_h, 'bs-counter__main' ) && false !== strpos( $bst_h, 'data-replay' ) && false !== strpos( $bst_h, '--bs-counter-weight:600' ), 'counter: side, icon, replay, weight' );
+$bst_h = $bst_rb( 'bst/counter', array( 'number' => '120', 'label' => 'Clients' ) );
+bst_test( false === strpos( $bst_h, 'bs-counter__icon' ) && false === strpos( $bst_h, 'data-replay' ) && false === strpos( $bst_h, 'bs-counter--' ), 'counter: old attributes render as before' );
+
+// G-133-c: Table, Timeline, Icon List options; old attributes keep their HTML.
+$bst_rb = function ( $name, $attrs ) {
+	return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+};
+$bst_h = $bst_rb( 'bst/table', array( 'data' => "A | B\n1 | 2", 'header' => true ) );
+bst_test( false !== strpos( $bst_h, '<table><thead><tr><th scope="col">A</th><th scope="col">B</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr></tbody></table>' ) && false === strpos( $bst_h, 'data-bs-table' ), 'table: old attributes render as before' );
+$bst_h = $bst_rb( 'bst/table', array( 'data' => "Plan | Pro\nSupport | yes\nAds | no", 'header' => true, 'marks' => true, 'mobile' => 'cards', 'highlightCol' => 2, 'tableStyle' => 'compare', 'sortable' => true, 'colWidth' => '200,30%' ) );
+bst_test( false !== strpos( $bst_h, 'bs-table__mark is-yes' ) && false !== strpos( $bst_h, 'bs-table__mark is-no' ) && false !== strpos( $bst_h, 'data-label="Pro"' ) && false !== strpos( $bst_h, 'class="is-hl"' ) && false !== strpos( $bst_h, 'bs-table--compare' ) && false !== strpos( $bst_h, 'data-bs-table="sort"' ) && false !== strpos( $bst_h, '<col style="width:200px">' ) && wp_script_is( 'bst-table', 'enqueued' ), 'table: marks, cards, highlight, compare, sort, widths' );
+$bst_items = array( array( 'date' => '2020', 'title' => 'Start', 'text' => 'Hi' ) );
+$bst_h = $bst_rb( 'bst/timeline', array( 'items' => $bst_items ) );
+bst_test( false !== strpos( $bst_h, 'class="bs-timeline bs-timeline--alternate bs-timeline--dot wp-block-bst-timeline"' ) && false !== strpos( $bst_h, '<div class="bs-timeline__card"><span class="bs-timeline__date">2020</span><h3 class="bs-timeline__title">Start</h3>' ), 'timeline: old attributes render as before' );
+$bst_items[0] += array( 'badge' => 'New', 'link' => 'https://example.com/', 'btnText' => 'More' );
+$bst_h = $bst_rb( 'bst/timeline', array( 'items' => $bst_items, 'layout' => 'horizontal', 'marker' => 'date', 'cardStyle' => 'arrow', 'lineStyle' => 'dashed', 'lineFill' => true, 'lineColor' => '#ff0000' ) );
+bst_test( false !== strpos( $bst_h, 'bs-timeline--horizontal bs-timeline--date bs-timeline--card-arrow bs-timeline--line-dashed' ) && false !== strpos( $bst_h, 'has-line-fill' ) && false !== strpos( $bst_h, 'aria-hidden="true">2020</span>' ) && false !== strpos( $bst_h, 'bs-timeline__badge' ) && false !== strpos( $bst_h, 'class="bs-timeline__btn" href="https://example.com/"' ) && false !== strpos( $bst_h, '--bs-tl-lc:#ff0000' ), 'timeline: horizontal, date marker, card arrow, line, item extras' );
+$bst_h = $bst_rb( 'bst/icon-list', array( 'items' => array( array( 'icon' => 'check', 'text' => 'One' ) ) ) );
+bst_test( false !== strpos( $bst_h, '<li class="bs-icon-list__item"><span class="bs-icon-list__icon"><svg' ) && false !== strpos( $bst_h, '<span class="bs-icon-list__text">One</span></li>' ) && false === strpos( $bst_h, 'is-numbered' ), 'icon-list: old attributes render as before' );
+$bst_h = $bst_rb( 'bst/icon-list', array( 'items' => array( array( 'icon' => 'check', 'text' => 'One', 'sub' => 'Detail', 'badge' => 'Hot', 'color' => '#00ff00' ), array( 'text' => 'Two' ) ), 'numbered' => true, 'iconShape' => 'square', 'layout' => 'inline', 'separator' => 'â€¢', 'columnsMobile' => 2 ) );
+bst_test( false !== strpos( $bst_h, 'bs-icon-list__num" style="--bs-il-color:#00ff00">1</span>' ) && false !== strpos( $bst_h, '>2</span>' ) && false !== strpos( $bst_h, 'bs-icon-list__sub">Detail' ) && false !== strpos( $bst_h, 'bs-icon-list__badge">Hot' ) && false !== strpos( $bst_h, 'has-separator' ) && false !== strpos( $bst_h, 'bs-icon-list--shape-square' ), 'icon-list: numbered, item color, sub, badge, separator' );

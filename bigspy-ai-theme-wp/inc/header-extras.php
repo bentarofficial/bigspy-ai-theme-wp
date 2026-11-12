@@ -173,7 +173,8 @@ function bst_live_search_ajax() {
 	$term = sanitize_text_field( wp_unslash( $_GET['s'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- public search.
 	$term = function_exists( 'mb_substr' ) ? mb_substr( $term, 0, 80 ) : substr( $term, 0, 80 );
 	$len  = function_exists( 'mb_strlen' ) ? mb_strlen( $term ) : strlen( $term );
-	if ( $len < 2 ) {
+	$block = ! empty( $_GET['bst_block'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- public search.
+	if ( $len < ( $block ? 1 : 2 ) ) {
 		wp_send_json_success( array( 'items' => array() ) );
 	}
 
@@ -182,9 +183,11 @@ function bst_live_search_ajax() {
 	$products_only = $shop && ( bst_mod( 'search_products' ) || 'products' === $scope || 'product' === sanitize_key( $_GET['post_type'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$content_only  = ! $products_only && 'content' === $scope;
 	$count         = (int) bst_clamp( bst_mod( 'live_search_count' ), 3, 12, 6 );
+	$block_args    = $block ? bst_search_block_ajax_args() : array();
+	$count         = $block ? $block_args['count'] : $count;
 	// Short-lived cache for anonymous visitors only (prices can depend on the logged-in user).
 	$cache_ttl = is_user_logged_in() ? 0 : (int) apply_filters( 'bst_live_search_cache_ttl', MINUTE_IN_SECONDS );
-	$cache_key = 'bst_ls_' . md5( wp_json_encode( array( BST_VERSION, strtolower( $term ), $scope, $products_only, $count, (bool) bst_mod( 'search_sku' ), (bool) bst_mod( 'search_tags' ), (bool) bst_mod( 'catalog_mode' ), get_locale() ) ) );
+	$cache_key = 'bst_ls_' . md5( wp_json_encode( array( BST_VERSION, strtolower( $term ), $scope, $products_only, $count, (bool) bst_mod( 'search_sku' ), (bool) bst_mod( 'search_tags' ), (bool) bst_mod( 'catalog_mode' ), get_locale(), $block_args ) ) );
 	if ( $cache_ttl > 0 ) {
 		$cached = get_transient( $cache_key );
 		if ( is_array( $cached ) ) {
@@ -207,7 +210,9 @@ function bst_live_search_ajax() {
 		),
 	);
 	$posts = array();
-	if ( $products_only ) {
+	if ( $block ) {
+		$posts = ( new WP_Query( apply_filters( 'bst_live_search_args', bst_search_block_query( $base_args, $block_args ), $term ) ) )->posts;
+	} elseif ( $products_only ) {
 		$product_args = $base_args + array( 'post_type' => 'product', 'tax_query' => $product_visibility ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		$posts        = ( new WP_Query( apply_filters( 'bst_live_search_args', $product_args, $term ) ) )->posts;
 	} elseif ( $shop && ! $content_only ) {
@@ -230,7 +235,7 @@ function bst_live_search_ajax() {
 	}
 
 	$seen = array_fill_keys( wp_list_pluck( $posts, 'ID' ), true );
-	if ( $shop && ! $content_only ) {
+	if ( $shop && ! $content_only && ! $block ) {
 		$extra_ids = array();
 		if ( bst_mod( 'search_sku' ) ) {
 			$extra_ids = array_merge(
@@ -297,6 +302,9 @@ function bst_live_search_ajax() {
 			'price' => $price,
 			'type'  => ( 'product' === $post->post_type || ! $type ) ? '' : $type->labels->singular_name,
 		);
+		if ( $block ) {
+			$items[ count( $items ) - 1 ]['cat'] = bst_search_item_category( $post );
+		}
 	}
 	if ( $cache_ttl > 0 ) {
 		set_transient( $cache_key, $items, $cache_ttl );

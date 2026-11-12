@@ -437,6 +437,35 @@ foreach ( array( 2, 3, 4, 6 ) as $count ) {
 }
 $page = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Motion block verification', 'post_content' => wp_slash( $html ), 'page_template' => 'templates/full-width.php' ) );
 update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', $page );
+// G-141: Abilities API wraps the AI Designer tools; off by default.
+if ( function_exists( 'wp_register_ability' ) ) {
+	$saved_task = $GLOBALS['bst_aid_task_id'] ?? null;
+	bst_test( ! bst_feature_on( 'abilities' ) && ! wp_has_ability( 'bigspy/site-info' ) && ! wp_get_ability_category( 'bigspy-ai' ), 'Abilities off: nothing registered' );
+	bst_feature_set( 'abilities', true );
+	remove_all_actions( 'wp_abilities_api_categories_init' );
+	remove_all_actions( 'wp_abilities_api_init' );
+	require_once get_template_directory() . '/inc/features/abilities.php';
+	do_action( 'wp_abilities_api_categories_init' );
+	do_action( 'wp_abilities_api_init' );
+	bst_test( wp_has_ability( 'bigspy/site-info' ) && wp_has_ability( 'bigspy/update-page' ) && wp_get_ability_category( 'bigspy-ai' ), 'Abilities on: bigspy abilities registered' );
+	$info = wp_get_ability( 'bigspy/site-info' )->execute();
+	bst_test( ! is_wp_error( $info ) && get_bloginfo( 'name' ) === ( $info['name'] ?? '' ), 'Read ability returns site data ' . ( is_wp_error( $info ) ? $info->get_error_message() : '' ) );
+	$draft = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Ability draft', 'post_content' => '' ) );
+	$bad = wp_get_ability( 'bigspy/update-page' )->execute( array( 'id' => $draft, 'blocks' => array( array( 'name' => 'bst/text', 'attrs' => array( 'html' => '<div class="grid"><p>A</p></div>' ) ) ) ) );
+	bst_test( is_wp_error( $bad ) && '' === get_post( $draft )->post_content, 'Write ability breaking block rules refused' );
+	$ok = wp_get_ability( 'bigspy/update-page' )->execute( array( 'id' => $draft, 'blocks' => array( array( 'name' => 'bst/heading', 'attrs' => array( 'tag' => 'h2', 'text' => 'From MCP' ) ) ) ) );
+	$ext = (int) get_user_meta( 1, '_bst_aid_external_task', true );
+	bst_test( ! is_wp_error( $ok ) && false !== strpos( get_post( $draft )->post_content, 'From MCP' ) && $ext && bst_aid_task_get( $ext, '_bst_aid_snapshots' ), 'Write ability edits draft and records undo on external task ' . ( is_wp_error( $ok ) ? $ok->get_error_message() : '' ) );
+	$appr = wp_get_ability( 'bigspy/update-settings' )->execute( array( 'values' => array( 'color_primary' => '#123456' ) ) );
+	bst_test( is_wp_error( $appr ) && 'bst_approval_required' === $appr->get_error_code(), 'Approval-level ability is not run, asks for approval in WordPress' );
+	$sub = wp_insert_user( array( 'user_login' => 'ability-sub', 'user_pass' => wp_generate_password(), 'role' => 'subscriber' ) );
+	wp_set_current_user( $sub );
+	$denied = wp_get_ability( 'bigspy/update-page' )->execute( array( 'id' => $draft, 'title' => 'x' ) );
+	bst_test( is_wp_error( $denied ) && 'Ability draft' === get_the_title( $draft ), 'User without rights refused' );
+	wp_set_current_user( 1 );
+	bst_feature_set( 'abilities', false );
+	$GLOBALS['bst_aid_task_id'] = $saved_task;
+}
 update_option( 'bst_test_checks', $checks );
 $uploads = wp_upload_dir();
 file_put_contents( $uploads['basedir'] . '/bst-verification.json', wp_json_encode( array( 'passed' => count( $checks ), 'checks' => $checks ), JSON_PRETTY_PRINT ) );

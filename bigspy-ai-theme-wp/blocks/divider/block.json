@@ -5,7 +5,7 @@
 	"title": "Divider",
 	"category": "bigspy",
 	"icon": "minus",
-	"description": "Horizontal line with style (solid, dashed, dotted, double), width, thickness, color and alignment. Separates content or decorates under a heading.",
+	"description": "Horizontal line: solid, dashed, dotted, double, fade, wave, zigzag, round dots, thick-thin or shadow; width in % or px per device, spacing per device, gradient colors, text/icon left-center-right with typography, icon size and round background, draw-in animation.",
 	"textdomain": "bigspy-ai-theme-wp",
 	"attributes": {
 		"style": {
@@ -45,6 +45,66 @@
 			"default": ""
 		},
 		"gradient": {
+			"type": "boolean",
+			"default": false
+		},
+		"widthUnit": {
+			"type": "string",
+			"default": ""
+		},
+		"widthTablet": {
+			"type": "number"
+		},
+		"widthMobile": {
+			"type": "number"
+		},
+		"spacingTablet": {
+			"type": "number"
+		},
+		"spacingMobile": {
+			"type": "number"
+		},
+		"gradientFrom": {
+			"type": "string",
+			"default": ""
+		},
+		"gradientTo": {
+			"type": "string",
+			"default": ""
+		},
+		"contentPosition": {
+			"type": "string",
+			"default": ""
+		},
+		"textSize": {
+			"type": "number"
+		},
+		"textSizeTablet": {
+			"type": "number"
+		},
+		"textSizeMobile": {
+			"type": "number"
+		},
+		"textWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"textLetterSpacing": {
+			"type": "number"
+		},
+		"textTransform": {
+			"type": "string",
+			"default": ""
+		},
+		"iconSize": {
+			"type": "number",
+			"default": 0
+		},
+		"iconBg": {
+			"type": "string",
+			"default": ""
+		},
+		"draw": {
 			"type": "boolean",
 			"default": false
 		}

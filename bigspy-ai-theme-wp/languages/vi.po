@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: BIGSPY Theme\n"
+"Project-Id-Version: BIGSPY AI Theme WP\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -8028,3 +8028,1321 @@ msgstr "1.90.0: Trang tải nhanh hơn: ảnh lớn đầu tiên của mỗi tra
 
 msgid "Sponsors in the rotation list (0 = all)"
 msgstr "Số sponsor trong danh sách xoay vòng (0 = tất cả)"
+
+msgid "Desktop"
+msgstr "Máy tính"
+
+msgid "Tablet"
+msgstr "Máy tính bảng"
+
+msgid "Mobile"
+msgstr "Điện thoại"
+
+msgid "Use the larger screen value"
+msgstr "Dùng giá trị của màn hình lớn hơn"
+
+msgid "Font size (px)"
+msgstr "Cỡ chữ (px)"
+
+msgid "Line height"
+msgstr "Chiều cao dòng"
+
+msgid "Letter spacing (px)"
+msgstr "Giãn chữ (px)"
+
+msgid "Transform"
+msgstr "Kiểu chữ hoa/thường"
+
+msgid "Hover color"
+msgstr "Màu khi rê chuột"
+
+msgid "Hover"
+msgstr "Rê chuột"
+
+msgid "Active"
+msgstr "Đang chọn"
+
+msgid "Box"
+msgstr "Khung"
+
+msgid "Padding (px)"
+msgstr "Khoảng đệm (px)"
+
+msgid "Corner radius (px)"
+msgstr "Bo góc (px)"
+
+msgid "Border width (px)"
+msgstr "Độ dày viền (px)"
+
+msgid "Border color"
+msgstr "Màu viền"
+
+msgid "Link URL"
+msgstr "Đường dẫn"
+
+msgid "Open in new tab"
+msgstr "Mở trong tab mới"
+
+msgid "Rel (e.g. nofollow sponsored)"
+msgstr "Rel (vd. nofollow sponsored)"
+
+msgid "Accessible label (aria-label)"
+msgstr "Nhãn trợ năng (aria-label)"
+
+msgid "Round dots"
+msgstr "Chấm tròn"
+
+msgid "Thick & thin"
+msgstr "Dày và mỏng"
+
+msgid "Text / icon position"
+msgstr "Vị trí chữ / icon"
+
+msgid "Draw in when scrolled into view"
+msgstr "Tự vẽ khi cuộn tới"
+
+msgid "Skipped when the visitor prefers reduced motion."
+msgstr "Bỏ qua khi người xem chọn giảm chuyển động."
+
+msgid "Width unit"
+msgstr "Đơn vị độ rộng"
+
+msgid "Width (px)"
+msgstr "Độ rộng (px)"
+
+msgid "Gradient line"
+msgstr "Đường gradient"
+
+msgid "Gradient from"
+msgstr "Gradient từ"
+
+msgid "Gradient to"
+msgstr "Gradient đến"
+
+msgid "Icon round background"
+msgstr "Nền tròn của icon"
+
+msgid "Icon size (px)"
+msgstr "Cỡ icon (px)"
+
+msgid "AI abilities (MCP)"
+msgstr "Năng lực AI (MCP)"
+
+msgid "Let outside AI apps read the site and edit pages and theme settings through the WordPress Abilities API and MCP Adapter (WordPress 6.9+). They use the same rights, approvals, block rules and undo as AI Designer."
+msgstr "Cho ứng dụng AI bên ngoài đọc site, sửa trang và cài đặt theme qua Abilities API và MCP Adapter của WordPress (WordPress 6.9+). Dùng cùng quyền, bước duyệt, luật khối và hoàn tác như AI Designer."
+
+msgid "Read the site and edit pages and theme settings with the same rules and undo as AI Designer."
+msgstr "Đọc site, sửa trang và cài đặt theme với cùng luật và hoàn tác như AI Designer."
+
+msgid "External AI (MCP)"
+msgstr "AI bên ngoài (MCP)"
+
+msgid "Could not create the AI Designer task."
+msgstr "Không tạo được tác vụ AI Designer."
+
+msgid "This change needs approval in WordPress: open AI Designer, task \"External AI (MCP)\", and approve or skip it."
+msgstr "Thay đổi này cần duyệt trong WordPress: mở AI Designer, tác vụ \"AI bên ngoài (MCP)\", rồi duyệt hoặc bỏ qua."
+
+msgid "Menus"
+msgstr "Menu"
+
+msgid "Edit page content"
+msgstr "Sửa nội dung trang"
+
+msgid "Edit: %s"
+msgstr "Sửa: %s"
+
+msgid "Quick-edit labels"
+msgstr "Nhãn sửa nhanh"
+
+msgid "Hover an element in the preview, then click its label to open its settings."
+msgstr "Rê chuột vào một phần tử trên khung xem trước rồi bấm nhãn để mở cài đặt của nó."
+
+msgid "Widgets"
+msgstr "Widget"
+
+msgid "Edit layout: %s"
+msgstr "Sửa layout: %s"
+
+msgid "Hairline"
+msgstr "Đường mảnh"
+
+msgid "Short accent"
+msgstr "Vạch nhấn ngắn"
+
+msgid "Thick and thin"
+msgstr "Dày và mảnh"
+
+msgid "Solid"
+msgstr "Đặc"
+
+msgid "Pill outline"
+msgstr "Viền bo tròn"
+
+msgid "Gradient lift"
+msgstr "Chuyển màu nổi"
+
+msgid "Square caps"
+msgstr "Vuông chữ hoa"
+
+msgid "Text link"
+msgstr "Liên kết chữ"
+
+msgid "This block cannot have saved styles."
+msgstr "Khối này không lưu kiểu được."
+
+msgid "Nothing to save."
+msgstr "Không có gì để lưu."
+
+msgid "Limit reached: 50 saved styles per block. Delete one first."
+msgstr "Đã đủ 50 kiểu đã lưu cho khối này. Hãy xoá bớt một kiểu."
+
+msgid "Name for this style"
+msgstr "Tên cho kiểu này"
+
+msgid "Ready styles"
+msgstr "Kiểu dựng sẵn"
+
+msgid "Built-in"
+msgstr "Có sẵn"
+
+msgid "Saved on this site"
+msgstr "Đã lưu trên site"
+
+msgid "Save current style"
+msgstr "Lưu kiểu hiện tại"
+
+msgid "vh (% of screen height)"
+msgstr "vh (% chiều cao màn hình)"
+
+msgid "A negative value pulls the next block up so the two overlap."
+msgstr "Giá trị âm kéo khối phía sau lên để hai khối chồng lên nhau."
+
+msgid "Show striped guide in the editor"
+msgstr "Hiện vạch sọc trong trình soạn thảo"
+
+msgid "overlap"
+msgstr "chồng lên"
+
+msgid "Horizontal"
+msgstr "Ngang"
+
+msgid "Vertical"
+msgstr "Dọc"
+
+msgid "Equal button widths"
+msgstr "Các nút rộng bằng nhau"
+
+msgid "Keep on one line (scroll if too wide)"
+msgstr "Giữ trên một dòng (cuộn nếu quá rộng)"
+
+msgid "Separator text between buttons"
+msgstr "Chữ ngăn cách giữa các nút"
+
+msgid "For example \"or\". Leave empty for none."
+msgstr "Ví dụ \"hoặc\". Để trống nếu không cần."
+
+msgid "Tablet & mobile"
+msgstr "Tablet & điện thoại"
+
+msgid "Same as larger screen"
+msgstr "Giống màn hình lớn hơn"
+
+msgid "Align on tablet"
+msgstr "Căn trên tablet"
+
+msgid "Direction on tablet"
+msgstr "Hướng trên tablet"
+
+msgid "Align on mobile"
+msgstr "Căn trên điện thoại"
+
+msgid "Direction on mobile"
+msgstr "Hướng trên điện thoại"
+
+msgid "Gap on mobile (px, 0 = same)"
+msgstr "Khoảng cách trên điện thoại (px, 0 = như cũ)"
+
+msgid "Double underline"
+msgstr "Gạch chân đôi"
+
+msgid "Label background"
+msgstr "Nền nhãn"
+
+msgid "Gradient bar"
+msgstr "Gạch gradient"
+
+msgid "Number before the title (optional)"
+msgstr "Số trước tiêu đề (tuỳ chọn)"
+
+msgid "For example 01 for step-by-step sections."
+msgstr "Ví dụ 01 cho các mục theo bước."
+
+msgid "Icon before the title (optional)"
+msgstr "Icon trước tiêu đề (tuỳ chọn)"
+
+msgid "Title style"
+msgstr "Kiểu tiêu đề"
+
+msgid "Line thickness (px, 0 = default)"
+msgstr "Độ dày đường kẻ (px, 0 = mặc định)"
+
+msgid "Line length (px, 0 = default)"
+msgstr "Độ dài đường kẻ (px, 0 = mặc định)"
+
+msgid "Line / accent"
+msgstr "Đường kẻ / điểm nhấn"
+
+msgid "Subtitle size (px, 0 = default)"
+msgstr "Cỡ chữ phụ (px, 0 = mặc định)"
+
+msgid "Circle"
+msgstr "Khoanh tròn"
+
+msgid "Line before"
+msgstr "Đường kẻ phía trước"
+
+msgid "Line after"
+msgstr "Đường kẻ phía sau"
+
+msgid "Lines on both sides"
+msgstr "Đường kẻ hai bên"
+
+msgid "Kicker and icon"
+msgstr "Dòng nhỏ phía trên và icon"
+
+msgid "Small line above (kicker)"
+msgstr "Dòng nhỏ phía trên (kicker)"
+
+msgid "Icon before the heading (optional)"
+msgstr "Icon trước tiêu đề (tuỳ chọn)"
+
+msgid "Decorative lines"
+msgstr "Đường trang trí"
+
+msgid "Lines"
+msgstr "Đường kẻ"
+
+msgid "Text outline"
+msgstr "Viền chữ"
+
+msgid "Outline thickness (px, 0 = off)"
+msgstr "Độ dày viền chữ (px, 0 = tắt)"
+
+msgid "Outline only (hollow letters)"
+msgstr "Chỉ viền (chữ rỗng)"
+
+msgid "Text shadow"
+msgstr "Bóng chữ"
+
+msgid "Shadow (set a color to turn on)"
+msgstr "Bóng (chọn màu để bật)"
+
+msgid "Horizontal offset (px)"
+msgstr "Lệch ngang (px)"
+
+msgid "Vertical offset (px)"
+msgstr "Lệch dọc (px)"
+
+msgid "Blur (px)"
+msgstr "Độ nhoè (px)"
+
+msgid "Kicker and icon style"
+msgstr "Kiểu dòng nhỏ và icon"
+
+msgid "Kicker size (px, 0 = default)"
+msgstr "Cỡ dòng nhỏ (px, 0 = mặc định)"
+
+msgid "Icon size (px, 0 = same as text)"
+msgstr "Cỡ icon (px, 0 = bằng chữ)"
+
+msgid "Kicker"
+msgstr "Dòng nhỏ phía trên"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "Gap between columns (px, 0 = default)"
+msgstr "Khoảng cách giữa cột (px, 0 = mặc định)"
+
+msgid "Limit to lines with “Read more” (0 = off)"
+msgstr "Giới hạn số dòng kèm “Xem thêm” (0 = tắt)"
+
+msgid "The editor shows all the text; the page shows the limit."
+msgstr "Trình soạn thảo hiện đủ chữ; trang thật mới giới hạn."
+
+msgid "“Read more” text"
+msgstr "Chữ “Xem thêm”"
+
+msgid "Show less"
+msgstr "Thu gọn"
+
+msgid "Links on hover"
+msgstr "Link khi rê chuột"
+
+msgid "Line between columns"
+msgstr "Đường kẻ giữa cột"
+
+msgid "Lists, quotes and links"
+msgstr "Danh sách, trích dẫn và link"
+
+msgid "List style"
+msgstr "Kiểu danh sách"
+
+msgid "Check marks"
+msgstr "Dấu tích"
+
+msgid "Arrows"
+msgstr "Mũi tên"
+
+msgid "Numbers in circles"
+msgstr "Số trong vòng tròn"
+
+msgid "Quote style"
+msgstr "Kiểu trích dẫn"
+
+msgid "Big quote mark"
+msgstr "Dấu ngoặc kép lớn"
+
+msgid "Thin line"
+msgstr "Đường mảnh"
+
+msgid "Link style"
+msgstr "Kiểu link"
+
+msgid "Underlined"
+msgstr "Gạch chân"
+
+msgid "Underline on hover"
+msgstr "Gạch chân khi rê chuột"
+
+msgid "Highlighted"
+msgstr "Tô nền"
+
+msgid "(%s reviews)"
+msgstr "(%s đánh giá)"
+
+msgid "Number of reviews (0 = hide)"
+msgstr "Số lượt đánh giá (0 = ẩn)"
+
+msgid "Round the filled part"
+msgstr "Làm tròn phần tô"
+
+msgid "Exact"
+msgstr "Chính xác"
+
+msgid "To half points"
+msgstr "Đến nửa điểm"
+
+msgid "To whole points"
+msgstr "Đến điểm nguyên"
+
+msgid "Rating style"
+msgstr "Kiểu đánh giá"
+
+msgid "Stars"
+msgstr "Sao"
+
+msgid "Hearts"
+msgstr "Tim"
+
+msgid "Thumbs"
+msgstr "Ngón tay"
+
+msgid "Icons only"
+msgstr "Chỉ icon"
+
+msgid "Score 4.8/5"
+msgstr "Điểm 4,8/5"
+
+msgid "Badge"
+msgstr "Huy hiệu"
+
+msgid "Label position"
+msgstr "Vị trí nhãn"
+
+msgid "Above"
+msgstr "Phía trên"
+
+msgid "Below"
+msgstr "Phía dưới"
+
+msgid "Gap between icons (px, 0 = default)"
+msgstr "Khoảng cách giữa icon (px, 0 = mặc định)"
+
+msgid "Product quick view"
+msgstr "Xem nhanh thông tin sản phẩm"
+
+msgid "Opens the image, price and description in a window; buying continues on the full product page."
+msgstr "Mở ảnh, giá và mô tả trong cửa sổ; mua hàng trên trang sản phẩm đầy đủ."
+
+msgid "Quick view"
+msgstr "Xem nhanh"
+
+msgid "This product is not available."
+msgstr "Sản phẩm không khả dụng."
+
+msgid "View product details"
+msgstr "Xem chi tiết sản phẩm"
+
+msgid "Close quick view"
+msgstr "Đóng xem nhanh"
+
+msgid "Loading product…"
+msgstr "Đang tải sản phẩm…"
+
+msgid "Choose variations with buttons (instead of dropdowns)"
+msgstr "Chọn biến thể bằng nút (thay dropdown)"
+
+msgid "Independent option, off by default. Keeps the WooCommerce cart and variation flow."
+msgstr "Tùy chọn độc lập; mặc định tắt. Giữ luồng giỏ hàng và biến thể của WooCommerce."
+
+msgid "Show color/image swatches on product cards"
+msgstr "Hiện swatch màu/ảnh trên thẻ sản phẩm"
+
+msgid "Shows the choices of global attributes with swatches under the product name. A click opens the product page with that value selected. Off by default."
+msgstr "Hiện các lựa chọn của thuộc tính toàn cục đã cấu hình swatch bên dưới tên sản phẩm. Bấm để mở trang sản phẩm và chọn sẵn giá trị tương ứng. Mặc định tắt."
+
+msgid "Buy now button on the product page"
+msgstr "Nút Mua ngay trên trang sản phẩm"
+
+msgid "Previous / next product navigation"
+msgstr "Điều hướng sản phẩm trước / sau"
+
+msgid "Independent option, off by default."
+msgstr "Tùy chọn độc lập; mặc định tắt."
+
+msgid "Product navigation"
+msgstr "Điều hướng sản phẩm"
+
+msgid "← Previous product"
+msgstr "← Sản phẩm trước"
+
+msgid "Next product →"
+msgstr "Sản phẩm sau →"
+
+msgid "CSS library · on/off"
+msgstr "Thư viện CSS · bật/tắt"
+
+msgid "Free-form header built with BIGSPY AI blocks"
+msgstr "Header tự do bằng khối BIGSPY AI"
+
+msgid "A published public page replaces the whole row/column header. Use the WordPress logo, menu and search blocks; the default header sticky/transparent options do not apply."
+msgstr "Trang công khai đã xuất bản thay toàn bộ header hàng/cột. Dùng các khối logo, menu và tìm kiếm WordPress; các tùy chọn sticky/transparent của header mặc định không áp dụng."
+
+msgid "BIGSPY AI: Mega menu (child items become columns on desktop)"
+msgstr "BIGSPY AI: Mega menu (các mục con thành cột trên desktop)"
+
+msgid "Bank transfer"
+msgstr "Chuyển khoản"
+
+msgid "Go to slide %d"
+msgstr "Đến slide %d"
+
+msgid "Pause slideshow"
+msgstr "Tạm dừng trình chiếu"
+
+msgid "Play slideshow"
+msgstr "Chạy trình chiếu"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "Choose a tab"
+msgstr "Chọn một tab"
+
+msgid "Thick underline"
+msgstr "Gạch chân dày"
+
+msgid "Line on top"
+msgstr "Vạch phía trên"
+
+msgid "Segmented"
+msgstr "Dạng phân đoạn"
+
+msgid "Folder"
+msgstr "Thư mục"
+
+msgid "Cards"
+msgstr "Thẻ"
+
+msgid "Icon on top"
+msgstr "Biểu tượng phía trên"
+
+msgid "Tab bar position"
+msgstr "Vị trí thanh tab"
+
+msgid "Default (from style)"
+msgstr "Mặc định (theo kiểu)"
+
+msgid "Fill the row"
+msgstr "Phủ kín hàng"
+
+msgid "Tab open at start"
+msgstr "Tab mở sẵn"
+
+msgid "Select a tab inside to rename it, give it an icon, image, badge or link anchor."
+msgstr "Chọn một tab bên trong để đổi tên, gắn biểu tượng, ảnh, nhãn hoặc neo liên kết."
+
+msgid "On phones (under 550px)"
+msgstr "Trên điện thoại (dưới 550px)"
+
+msgid "Wrap tabs (default)"
+msgstr "Xuống dòng (mặc định)"
+
+msgid "Scroll sideways"
+msgstr "Cuộn ngang"
+
+msgid "Stack tabs"
+msgstr "Xếp chồng"
+
+msgid "Turn into accordion"
+msgstr "Chuyển thành accordion"
+
+msgid "Drop-down list"
+msgstr "Danh sách thả xuống"
+
+msgid "Only show icons on phones"
+msgstr "Chỉ hiện biểu tượng trên điện thoại"
+
+msgid "Tabs without an icon keep their text."
+msgstr "Tab không có biểu tượng vẫn giữ chữ."
+
+msgid "Behaviour"
+msgstr "Hành vi"
+
+msgid "Open a tab from the page link (#anchor)"
+msgstr "Mở tab theo liên kết trang (#neo)"
+
+msgid "Give the tab a link anchor in its own settings."
+msgstr "Đặt neo liên kết trong cài đặt của tab."
+
+msgid "Remember the last tab during the visit"
+msgstr "Nhớ tab đã mở trong lượt truy cập"
+
+msgid "Switch tabs automatically (seconds, 0 = off)"
+msgstr "Tự chuyển tab (giây, 0 = tắt)"
+
+msgid "Pause on hover"
+msgstr "Dừng khi rê chuột"
+
+msgid "Sticky tab bar while scrolling"
+msgstr "Thanh tab dính khi cuộn"
+
+msgid "Same height for every panel"
+msgstr "Mọi khung nội dung cao bằng nhau"
+
+msgid "Tab style"
+msgstr "Kiểu tab"
+
+msgid "Panel animation"
+msgstr "Hiệu ứng khung nội dung"
+
+msgid "Default (fade setting)"
+msgstr "Mặc định (theo mờ dần)"
+
+msgid "Slide"
+msgstr "Trượt"
+
+msgid "Animation time (ms, 0 = default)"
+msgstr "Thời gian hiệu ứng (ms, 0 = mặc định)"
+
+msgid "Tab column width (px, 0 = default)"
+msgstr "Bề rộng cột tab (px, 0 = mặc định)"
+
+msgid "Tab text"
+msgstr "Chữ tab"
+
+msgid "Icon position"
+msgstr "Vị trí biểu tượng"
+
+msgid "Icon / image size (px, 0 = default)"
+msgstr "Cỡ biểu tượng / ảnh (px, 0 = mặc định)"
+
+msgid "Tab colors"
+msgstr "Màu tab"
+
+msgid "Active background"
+msgstr "Nền tab đang chọn"
+
+msgid "Indicator line"
+msgstr "Vạch chỉ báo"
+
+msgid "Indicator thickness (px, 0 = default)"
+msgstr "Độ dày vạch chỉ báo (px, 0 = mặc định)"
+
+msgid "Tab bar"
+msgstr "Thanh tab"
+
+msgid "Space between tabs (px, -1 = default)"
+msgstr "Khoảng cách giữa các tab (px, -1 = mặc định)"
+
+msgid "Tab padding left/right (px, -1 = default)"
+msgstr "Đệm trái/phải của tab (px, -1 = mặc định)"
+
+msgid "Tab padding top/bottom (px, -1 = default)"
+msgstr "Đệm trên/dưới của tab (px, -1 = mặc định)"
+
+msgid "Tab corner radius (px, -1 = default)"
+msgstr "Bo góc tab (px, -1 = mặc định)"
+
+msgid "Bar border width (px, -1 = default)"
+msgstr "Độ dày viền thanh (px, -1 = mặc định)"
+
+msgid "Bar colors"
+msgstr "Màu thanh"
+
+msgid "Bar background"
+msgstr "Nền thanh"
+
+msgid "Bar border"
+msgstr "Viền thanh"
+
+msgid "Content area"
+msgstr "Vùng nội dung"
+
+msgid "Padding (px, -1 = default)"
+msgstr "Đệm (px, -1 = mặc định)"
+
+msgid "Corner radius (px, -1 = default)"
+msgstr "Bo góc (px, -1 = mặc định)"
+
+msgid "Border width (px, -1 = default)"
+msgstr "Độ dày viền (px, -1 = mặc định)"
+
+msgid "Minimum height (px, 0 = auto)"
+msgstr "Chiều cao tối thiểu (px, 0 = tự động)"
+
+msgid "Content colors"
+msgstr "Màu nội dung"
+
+msgid "Small text under the title (optional)"
+msgstr "Chữ nhỏ dưới tiêu đề (tuỳ chọn)"
+
+msgid "Image instead of the icon (optional)"
+msgstr "Ảnh thay cho biểu tượng (tuỳ chọn)"
+
+msgid "Badge (e.g. New, -20%)"
+msgstr "Nhãn (vd. Mới, -20%)"
+
+msgid "Link anchor (opens this tab from #anchor)"
+msgstr "Neo liên kết (mở tab này từ #neo)"
+
+msgid "Disabled (shown but cannot be opened)"
+msgstr "Vô hiệu (hiện nhưng không mở được)"
+
+msgid "This tab"
+msgstr "Tab này"
+
+msgid "Tab color"
+msgstr "Màu tab"
+
+msgid "Badge color"
+msgstr "Màu nhãn"
+
+msgid "disabled"
+msgstr "vô hiệu"
+
+msgid "Dark segmented"
+msgstr "Phân đoạn tối"
+
+msgid "Soft pills"
+msgstr "Viên thuốc mềm"
+
+msgid "Shadow cards"
+msgstr "Thẻ đổ bóng"
+
+msgid "Vertical left"
+msgstr "Dọc bên trái"
+
+msgid "Search questions…"
+msgstr "Tìm câu hỏi…"
+
+msgid "Search questions"
+msgstr "Tìm câu hỏi"
+
+msgid "Open all"
+msgstr "Mở tất cả"
+
+msgid "Close all"
+msgstr "Đóng tất cả"
+
+msgid "Solid background"
+msgstr "Nền đặc"
+
+msgid "Bar on the left"
+msgstr "Vạch bên trái"
+
+msgid "Big numbers"
+msgstr "Số lớn"
+
+msgid "Open on page load"
+msgstr "Mở khi tải trang"
+
+msgid "As set on each item"
+msgstr "Theo cài đặt từng mục"
+
+msgid "First item"
+msgstr "Mục đầu tiên"
+
+msgid "All items"
+msgstr "Tất cả các mục"
+
+msgid "Two columns become one under 850px."
+msgstr "Hai cột thành một cột khi màn hình dưới 850px."
+
+msgid "“Open all / Close all” button"
+msgstr "Nút “Mở tất cả / Đóng tất cả”"
+
+msgid "Search box to filter questions"
+msgstr "Ô tìm để lọc câu hỏi"
+
+msgid "Link to each item (#question opens it)"
+msgstr "Liên kết tới từng mục (#cau-hoi mở mục đó)"
+
+msgid "Accordion style"
+msgstr "Kiểu accordion"
+
+msgid "Icon size (px, 0 = default)"
+msgstr "Cỡ icon (px, 0 = mặc định)"
+
+msgid "Question"
+msgstr "Câu hỏi"
+
+msgid "Top and bottom padding (px, -1 = default)"
+msgstr "Khoảng đệm trên và dưới (px, -1 = mặc định)"
+
+msgid "Answer"
+msgstr "Câu trả lời"
+
+msgid "Text size (px, 0 = default)"
+msgstr "Cỡ chữ (px, 0 = mặc định)"
+
+msgid "Title on hover"
+msgstr "Tiêu đề khi rê chuột"
+
+msgid "Answer text"
+msgstr "Chữ câu trả lời"
+
+msgid "Subtitle under the question"
+msgstr "Chữ phụ dưới câu hỏi"
+
+msgid "Label next to the question (e.g. New)"
+msgstr "Nhãn cạnh câu hỏi (vd. Mới)"
+
+msgid "FAQ shadow cards"
+msgstr "FAQ thẻ đổ bóng"
+
+msgid "Soft solid"
+msgstr "Nền nhạt"
+
+msgid "Clean underline"
+msgstr "Gạch chân gọn"
+
+msgid "Numbered steps"
+msgstr "Các bước đánh số"
+
+msgid "Help center"
+msgstr "Trung tâm trợ giúp"
+
+msgid "Pill"
+msgstr "Viên thuốc"
+
+msgid "Split"
+msgstr "Tách rời"
+
+msgid "Icon button"
+msgstr "Nút biểu tượng"
+
+msgid "Hero"
+msgstr "Hero"
+
+msgid "Full-screen overlay"
+msgstr "Phủ toàn màn hình"
+
+msgid "Search box"
+msgstr "Ô tìm kiếm"
+
+msgid "Rotating placeholders (one per line)"
+msgstr "Gợi ý xoay vòng (mỗi dòng một câu)"
+
+msgid "Two or more lines: the hint changes every 3 seconds."
+msgstr "Từ hai dòng trở lên: gợi ý đổi sau mỗi 3 giây."
+
+msgid "Show the button"
+msgstr "Hiện nút"
+
+msgid "Read by screen readers. Empty = “Search”."
+msgstr "Trình đọc màn hình đọc nhãn này. Để trống = “Tìm kiếm”."
+
+msgid "What to search"
+msgstr "Tìm trong"
+
+msgid "Content types (comma separated, empty = all)"
+msgstr "Loại nội dung (cách nhau bằng dấu phẩy, trống = tất cả)"
+
+msgid "For example: post, page, product."
+msgstr "Ví dụ: post, page, product."
+
+msgid "Only in category ID (0 = all)"
+msgstr "Chỉ trong danh mục ID (0 = tất cả)"
+
+msgid "Category drop-down in the box"
+msgstr "Danh sách danh mục trong ô"
+
+msgid "Instant suggestions"
+msgstr "Gợi ý tức thời"
+
+msgid "Show results while typing"
+msgstr "Hiện kết quả khi đang gõ"
+
+msgid "Arrow keys move through results, Escape closes them."
+msgstr "Phím mũi tên để chọn kết quả, Escape để đóng."
+
+msgid "Number of results"
+msgstr "Số kết quả"
+
+msgid "Start after this many letters"
+msgstr "Bắt đầu sau số ký tự"
+
+msgid "Show images"
+msgstr "Hiện ảnh"
+
+msgid "Show prices"
+msgstr "Hiện giá"
+
+msgid "Show the category"
+msgstr "Hiện danh mục"
+
+msgid "Extras"
+msgstr "Tiện ích"
+
+msgid "Popular searches (one per line)"
+msgstr "Từ khoá phổ biến (mỗi dòng một từ)"
+
+msgid "Shown as clickable chips under the box."
+msgstr "Hiện thành nút bấm dưới ô tìm kiếm."
+
+msgid "Text before the chips"
+msgstr "Chữ trước các nút"
+
+msgid "Press “/” to jump to the search box"
+msgstr "Nhấn “/” để tới ô tìm kiếm"
+
+msgid "Search style"
+msgstr "Kiểu ô tìm kiếm"
+
+msgid "Magnifier icon in the box"
+msgstr "Biểu tượng kính lúp trong ô"
+
+msgid "Button shows"
+msgstr "Nút hiển thị"
+
+msgid "Icon and text"
+msgstr "Biểu tượng và chữ"
+
+msgid "Inside the box"
+msgstr "Bên trong ô"
+
+msgid "Next to the box"
+msgstr "Cạnh ô"
+
+msgid "Below the box on phones"
+msgstr "Dưới ô trên điện thoại"
+
+msgid "Size and position"
+msgstr "Kích thước và vị trí"
+
+msgid "Align on phones"
+msgstr "Căn lề trên điện thoại"
+
+msgid "Same as desktop"
+msgstr "Giống máy tính"
+
+msgid "Height on phones (px, 0 = same)"
+msgstr "Chiều cao trên điện thoại (px, 0 = như máy tính)"
+
+msgid "Inner side space (px, -1 = default)"
+msgstr "Khoảng đệm hai bên (px, -1 = mặc định)"
+
+msgid "Border and shadow"
+msgstr "Viền và bóng"
+
+msgid "Button corner radius (px, -1 = default)"
+msgstr "Bo góc nút (px, -1 = mặc định)"
+
+msgid "Glow when focused"
+msgstr "Phát sáng khi được chọn"
+
+msgid "Box colors"
+msgstr "Màu ô"
+
+msgid "Placeholder"
+msgstr "Chữ gợi ý"
+
+msgid "Border when focused"
+msgstr "Viền khi được chọn"
+
+msgid "Button colors"
+msgstr "Màu nút"
+
+msgid "Button on hover"
+msgstr "Nút khi rê chuột"
+
+msgid "Button text on hover"
+msgstr "Chữ nút khi rê chuột"
+
+
+msgid "3D press"
+msgstr "Nhấn nổi 3D"
+
+msgid "Neon"
+msgstr "Neon"
+
+msgid "Dashed border"
+msgstr "Viền nét đứt"
+
+msgid "Slide fill"
+msgstr "Tô nền trượt"
+
+msgid "Arrow in circle"
+msgstr "Mũi tên trong vòng tròn"
+
+msgid "Width on tablet"
+msgstr "Độ rộng trên máy tính bảng"
+
+msgid "Width on mobile"
+msgstr "Độ rộng trên điện thoại"
+
+msgid "Same as tablet"
+msgstr "Như máy tính bảng"
+
+msgid "Icon only (text becomes the screen reader label)"
+msgstr "Chỉ icon (chữ thành nhãn cho trình đọc màn hình)"
+
+msgid "Badge (small label on the corner, e.g. New, -20%)"
+msgstr "Nhãn nhỏ ở góc (ví dụ Mới, -20%)"
+
+msgid "Hover border"
+msgstr "Viền khi rê chuột"
+
+msgid "Hover shadow"
+msgstr "Bóng khi rê chuột"
+
+msgid "Badge background"
+msgstr "Nền nhãn nhỏ"
+
+msgid "Screen reader label"
+msgstr "Nhãn cho trình đọc màn hình"
+
+msgid "Gradient"
+msgstr "Chuyển màu"
+
+msgid "Frosted glass"
+msgstr "Kính mờ"
+
+msgid "Full-width bar"
+msgstr "Thanh ngang toàn chiều rộng"
+
+msgid "Corner toast (floating)"
+msgstr "Thông báo nổi ở góc"
+
+msgid "Toast position"
+msgstr "Vị trí thông báo nổi"
+
+msgid "Bottom right"
+msgstr "Dưới phải"
+
+msgid "Bottom left"
+msgstr "Dưới trái"
+
+msgid "Top right"
+msgstr "Trên phải"
+
+msgid "Top left"
+msgstr "Trên trái"
+
+msgid "Icon name (empty = by type)"
+msgstr "Tên icon (để trống = theo loại)"
+
+msgid "Title tag"
+msgstr "Thẻ tiêu đề"
+
+msgid "Stay closed for (days, 0 = until reload)"
+msgstr "Giữ đóng trong (ngày, 0 = đến khi tải lại)"
+
+msgid "Button & shape"
+msgstr "Nút và hình dạng"
+
+msgid "Button text (optional)"
+msgstr "Chữ trên nút (tuỳ chọn)"
+
+msgid "Bar"
+msgstr "Thanh"
+
+msgid "Half circle"
+msgstr "Nửa vòng tròn"
+
+msgid "Dashed bar"
+msgstr "Thanh nét đứt"
+
+msgid "Number of steps"
+msgstr "Số bậc"
+
+msgid "Circle size (px)"
+msgstr "Cỡ vòng tròn (px)"
+
+msgid "Maximum value"
+msgstr "Giá trị tối đa"
+
+msgid "Value suffix (%, /10, pts…)"
+msgstr "Hậu tố giá trị (%, /10, điểm…)"
+
+msgid "Label below the bar"
+msgstr "Nhãn dưới thanh"
+
+msgid "Gradient end (optional)"
+msgstr "Màu cuối gradient (tuỳ chọn)"
+
+msgid "Look"
+msgstr "Giao diện"
+
+msgid "Box style"
+msgstr "Kiểu khung"
+
+msgid "Plain"
+msgstr "Đơn giản"
+
+msgid "With divider line"
+msgstr "Có đường ngăn"
+
+msgid "Icon beside the number"
+msgstr "Icon cạnh con số"
+
+msgid "Icon name (optional)"
+msgstr "Tên icon (tuỳ chọn)"
+
+msgid "Number weight"
+msgstr "Độ đậm con số"
+
+msgid "Black"
+msgstr "Rất đậm"
+
+msgid "Prefix and suffix size (px, 0 = same as number)"
+msgstr "Cỡ tiền tố và hậu tố (px, 0 = bằng con số)"
+
+msgid "Count again each time it scrolls into view"
+msgstr "Đếm lại mỗi lần cuộn tới"
+
+msgid "Icon and affix colors"
+msgstr "Màu icon và tiền tố/hậu tố"
+
+msgid "Prefix and suffix"
+msgstr "Tiền tố và hậu tố"
+
+msgid "Search the table"
+msgstr "Tìm trong bảng"
+
+msgid "Sort by this column"
+msgstr "Sắp xếp theo cột này"
+
+msgid "Table style"
+msgstr "Kiểu bảng"
+
+msgid "Classic"
+msgstr "Cổ điển"
+
+msgid "Comparison"
+msgstr "So sánh"
+
+msgid "Cell padding (px, 0 = default)"
+msgstr "Khoảng đệm ô (px, 0 = mặc định)"
+
+msgid "Highlight row on hover"
+msgstr "Tô sáng hàng khi rê chuột"
+
+msgid "Highlight column (0 = none)"
+msgstr "Tô nổi cột (0 = không)"
+
+msgid "Column alignment"
+msgstr "Căn lề từng cột"
+
+msgid "Comma separated, e.g. left,center,right"
+msgstr "Cách nhau bằng dấu phẩy, ví dụ left,center,right"
+
+msgid "Column widths"
+msgstr "Độ rộng từng cột"
+
+msgid "Comma separated, e.g. 200,25%,auto"
+msgstr "Cách nhau bằng dấu phẩy, ví dụ 200,25%,auto"
+
+msgid "Turn yes / no / v / x into ✓ and ✗"
+msgstr "Đổi yes / no / v / x thành ✓ và ✗"
+
+msgid "Scrolling & mobile"
+msgstr "Cuộn và điện thoại"
+
+msgid "Sticky header row"
+msgstr "Hàng tiêu đề dính"
+
+msgid "Sticky first column"
+msgstr "Cột đầu dính"
+
+msgid "On phones"
+msgstr "Trên điện thoại"
+
+msgid "Stack rows as cards (needs a header row)"
+msgstr "Xếp mỗi hàng thành thẻ (cần hàng tiêu đề)"
+
+msgid "Visitors can sort columns"
+msgstr "Khách sắp xếp được theo cột"
+
+msgid "Search box above the table"
+msgstr "Ô tìm kiếm phía trên bảng"
+
+msgid "Header background"
+msgstr "Nền tiêu đề"
+
+msgid "Header text"
+msgstr "Chữ tiêu đề"
+
+msgid "Remove row"
+msgstr "Xoá hàng"
+
+msgid "Add row"
+msgstr "Thêm hàng"
+
+msgid "Add column"
+msgstr "Thêm cột"
+
+msgid "Remove last column"
+msgstr "Xoá cột cuối"
+
+msgid "Badge (optional)"
+msgstr "Nhãn nhỏ (tuỳ chọn)"
+
+msgid "Link (optional)"
+msgstr "Liên kết (tuỳ chọn)"
+
+msgid "Button text (needs a link)"
+msgstr "Chữ nút (cần liên kết)"
+
+msgid "All on the right"
+msgstr "Tất cả bên phải"
+
+msgid "Horizontal, scrolls sideways"
+msgstr "Ngang, cuộn sang bên"
+
+msgid "Compact"
+msgstr "Gọn"
+
+msgid "Card with shadow"
+msgstr "Thẻ có bóng"
+
+msgid "Card with arrow"
+msgstr "Thẻ có mũi tên"
+
+msgid "No card"
+msgstr "Không có thẻ"
+
+msgid "Date position"
+msgstr "Vị trí ngày"
+
+msgid "In the card"
+msgstr "Trong thẻ"
+
+msgid "Opposite side of the line"
+msgstr "Phía đối diện đường kẻ"
+
+msgid "Dashed"
+msgstr "Nét đứt"
+
+msgid "Dotted"
+msgstr "Chấm"
+
+msgid "Line fills in as visitors scroll"
+msgstr "Đường kẻ tô dần khi cuộn"
+
+msgid "Divider style"
+msgstr "Kiểu đường ngăn"
+
+msgid "Icons & layout"
+msgstr "Icon và bố cục"
+
+msgid "Icon shape"
+msgstr "Hình icon"
+
+msgid "Plain (or soft circle above)"
+msgstr "Trơn (hoặc vòng tròn nhạt ở trên)"
+
+msgid "With the first line"
+msgstr "Theo dòng đầu"
+
+msgid "Vertically centered"
+msgstr "Giữa theo chiều dọc"
+
+msgid "Number the items instead of icons"
+msgstr "Đánh số thay cho icon"
+
+msgid "Columns on tablet (0 = same)"
+msgstr "Số cột trên máy tính bảng (0 = như máy tính)"
+
+msgid "Columns on mobile (0 = 1)"
+msgstr "Số cột trên điện thoại (0 = 1)"
+
+msgid "Space between columns (px, 0 = default)"
+msgstr "Khoảng cách giữa các cột (px, 0 = mặc định)"
+
+msgid "Separator between items (e.g. • or |)"
+msgstr "Dấu ngăn giữa các mục (ví dụ • hoặc |)"
+
+msgid "Second line"
+msgstr "Dòng phụ"
+
+msgid "Link hover"
+msgstr "Liên kết khi rê chuột"
+
+msgid "Items"
+msgstr "Các mục"
+
+msgid "Link"
+msgstr "Liên kết"
+
+msgid "Second line (optional)"
+msgstr "Dòng phụ (tuỳ chọn)"
+
+msgid "Empty categories and tags"
+msgstr "Danh mục và thẻ rỗng"
+
+msgid "Lists categories and tags with no published content, counting child categories too. Default categories and terms used in a menu are never deleted. Deleted terms are logged here and can be restored with their drafts and trashed posts."
+msgstr "Liệt kê danh mục và thẻ không có nội dung đã xuất bản, tính cả danh mục con. Danh mục mặc định và mục đang dùng trong menu không bao giờ bị xoá. Mục đã xoá được lưu lại ở đây và có thể khôi phục cùng bài nháp và bài trong thùng rác."
+
+msgid "Delete the selected categories and tags? Terms that gained content or are used in a menu are skipped, and you can restore the rest here."
+msgstr "Xoá các danh mục và thẻ đã chọn? Mục vừa có nội dung hoặc đang dùng trong menu sẽ được bỏ qua; phần còn lại có thể khôi phục ở đây."
+
+msgid "Deleted terms"
+msgstr "Danh mục và thẻ đã xoá"
+
+msgid "Forget selected"
+msgstr "Bỏ khỏi danh sách"
+
+msgid "Remove the selected terms from this log? They can no longer be restored."
+msgstr "Bỏ các mục đã chọn khỏi danh sách này? Sau đó không thể khôi phục được nữa."
+
+msgid "%d empty categories and tags."
+msgstr "%d danh mục và thẻ rỗng."
+
+msgid "in %s"
+msgstr "thuộc %s"
+
+msgid "drafts: %d"
+msgstr "bản nháp: %d"
+
+msgid "in trash: %d"
+msgstr "trong thùng rác: %d"
+
+msgid "used in a menu, kept"
+msgstr "đang dùng trong menu, giữ lại"
+
+msgid "1.91.0: A new Search block with eight styles, live suggestions, filters and popular keywords, shared with Listing search. Tabs, Accordion, Table, Timeline, Icon List, Heading, Text, Button, Alert, Progress, Counter and more gain many new styles and options, with Ready styles you pick by picture; existing content looks the same. Auto detect can now find empty categories and tags (listing ones too in BIGSPY AI List mode), delete the ones you select and restore them later. Also: quick-edit labels in the Customizer, developer hooks, optional AI abilities (MCP), keyboard focus kept inside popups and the mobile menu, and Flatsome compatibility as a feature switch."
+msgstr "1.91.0: Khối Search mới với 8 kiểu, gợi ý tức thời, bộ lọc và từ khoá phổ biến, dùng chung với Listing search. Tabs, Accordion, Table, Timeline, Icon List, Heading, Text, Button, Alert, Progress, Counter và nhiều khối khác có thêm nhiều kiểu và tuỳ chọn, kèm Kiểu dựng sẵn chọn bằng hình; nội dung cũ giữ nguyên. Auto detect tìm được danh mục và thẻ rỗng (cả danh mục, thẻ listing ở chế độ BIGSPY AI List), xoá mục đã chọn và khôi phục lại khi cần. Ngoài ra: nhãn sửa nhanh trong Customizer, hook cho nhà phát triển, AI abilities (MCP) tuỳ chọn, giữ focus bàn phím trong popup và menu di động, tương thích Flatsome thành công tắc tính năng."

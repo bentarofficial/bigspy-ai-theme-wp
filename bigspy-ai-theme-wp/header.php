@@ -20,16 +20,19 @@ defined( 'ABSPATH' ) || exit;
 <div id="page" class="bs-site">
 <?php
 if ( bst_show_header() ) {
+	do_action( 'bst_before_header' );
 	bst_header_banner();
 	bst_tb_render( 'before_header' );
 	if ( ! bst_tb_render( 'header', true ) && ! bst_header_design() ) {
 		bst_render_header();
 	}
 	bst_tb_render( 'after_header' );
+	do_action( 'bst_after_header' );
 }
 ?>
 <main id="content" class="bs-main">
 <?php
+do_action( 'bst_before_content' );
 bst_title_bar();
 bst_tb_render( 'before_content' );
 ?>

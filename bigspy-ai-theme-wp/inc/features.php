@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Feature ids; each one has a file of the same name in inc/features/. */
 function bst_feature_ids() {
-	return array( 'webp', 'smtp', 'inline-related', 'code-inject', 'listing' );
+	return array( 'webp', 'smtp', 'inline-related', 'code-inject', 'listing', 'abilities', 'flatsome' );
 }
 
 function bst_feature_catalog() {
@@ -17,6 +17,8 @@ function bst_feature_catalog() {
 		'inline-related' => array( __( 'Related links in posts', 'bigspy-ai-theme-wp' ), __( 'Add a short list of related posts in the middle of each post.', 'bigspy-ai-theme-wp' ) ),
 		'code-inject'    => array( __( 'Header and footer code', 'bigspy-ai-theme-wp' ), __( 'Add tracking or verification code to every front page.', 'bigspy-ai-theme-wp' ) ),
 		'listing'        => array( __( 'BIGSPY AI List mode', 'bigspy-ai-theme-wp' ), __( 'Turn WooCommerce products into directory listings: listing details, facts, pricing, rating, disclosures, schema and the BIGSPY AI List blocks. Turning it off keeps all listing data.', 'bigspy-ai-theme-wp' ) ),
+		'abilities'      => array( __( 'AI abilities (MCP)', 'bigspy-ai-theme-wp' ), __( 'Let outside AI apps read the site and edit pages and theme settings through the WordPress Abilities API and MCP Adapter (WordPress 6.9+). They use the same rights, approvals, block rules and undo as AI Designer.', 'bigspy-ai-theme-wp' ) ),
+		'flatsome'       => array( __( 'Flatsome compatibility', 'bigspy-ai-theme-wp' ), __( 'Shows pages built with Flatsome UX Builder shortcodes, keeps UX Blocks and inherits Flatsome design settings.', 'bigspy-ai-theme-wp' ) ),
 	);
 }
 
@@ -48,6 +50,29 @@ function bst_feature_decrypt( $value ) {
 	$plain = openssl_decrypt( substr( $raw, 16 ), 'aes-256-cbc', hash( 'sha256', wp_salt( 'auth' ), true ), OPENSSL_RAW_DATA, substr( $raw, 0, 16 ) );
 	return false === $plain ? '' : $plain;
 }
+
+/** One-time: sites that already rely on Flatsome content keep the compatibility layer. */
+function bst_feature_flatsome_migrate() {
+	if ( get_option( 'bst_flatsome_checked' ) ) {
+		return;
+	}
+	global $wpdb;
+	$needs = false;
+	foreach ( wp_get_themes() as $stylesheet => $theme ) {
+		if ( 'flatsome' === $theme->get_template() && get_option( 'theme_mods_' . $stylesheet ) ) {
+			$needs = true;
+			break;
+		}
+	}
+	$needs = $needs || (bool) get_option( 'theme_mods_flatsome' )
+		|| (bool) $wpdb->get_var( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'blocks' LIMIT 1" ) // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		|| (bool) $wpdb->get_var( "SELECT ID FROM {$wpdb->posts} WHERE post_status IN ('publish','draft','private','future') AND post_type NOT IN ('revision','nav_menu_item') AND ( post_content LIKE '%[section%' OR post_content LIKE '%[ux\_%' OR post_content LIKE '%[row%' OR post_content LIKE '%[col %' ) LIMIT 1" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	if ( $needs ) {
+		update_option( 'bst_features', array_values( array_unique( array_merge( (array) get_option( 'bst_features', array() ), array( 'flatsome' ) ) ) ) );
+	}
+	update_option( 'bst_flatsome_checked', 1, true );
+}
+bst_feature_flatsome_migrate();
 
 foreach ( bst_feature_ids() as $bst_feature_id ) {
 	if ( bst_feature_on( $bst_feature_id ) ) {
@@ -240,3 +265,15 @@ function bst_features_page() {
 	do_action( 'bst_features_after_form' );
 	echo '</div>';
 }
+
+// Flatsome compatibility registers the UX Blocks post type: rebuild permalinks on the next request after toggling it.
+add_action(
+	'update_option_bst_features',
+	function ( $old, $new ) {
+		if ( in_array( 'flatsome', (array) $old, true ) !== in_array( 'flatsome', (array) $new, true ) ) {
+			delete_option( 'rewrite_rules' );
+		}
+	},
+	10,
+	2
+);

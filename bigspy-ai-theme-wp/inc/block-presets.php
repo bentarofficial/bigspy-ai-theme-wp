@@ -15,6 +15,12 @@ defined( 'ABSPATH' ) || exit;
  * Catalog: block => group key => array( label, exclusive, options( id => array( label, css ) ) ).
  */
 function bst_block_presets() {
+	/** Filter: block => group => (label, exclusive, presets). Add or remove style presets per block. */
+	return (array) apply_filters( 'bst_block_presets', bst_block_presets_base() );
+}
+
+/** Built-in style presets. */
+function bst_block_presets_base() {
 	$t = function ( $s ) {
 		return __( $s, 'bigspy-ai-theme-wp' ); // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
 	};

@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.90.0' );
+define( 'BST_VERSION', '1.91.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -28,6 +28,7 @@ $bst_includes = array(
 	'inc/header-design.php',
 	'inc/header-elements.php',
 	'inc/header-extras.php',
+	'inc/search-block.php',
 	'inc/mega-menu.php',
 	'inc/footer.php',
 	'inc/footer-design.php',
@@ -37,11 +38,13 @@ $bst_includes = array(
 	'inc/portfolio.php',
 	'inc/customizer/customizer.php',
 	'inc/customizer/groups.php',
+	'inc/hooks.php',
 	'inc/blocks.php',
 	'inc/motion-blocks.php',
 	'inc/motion-wave.php',
 	'inc/block-design.php',
 	'inc/block-presets.php',
+	'inc/block-attr-presets.php',
 	'inc/sidebar-options.php',
 	'inc/blog-options.php',
 	'inc/shop-options.php',
@@ -65,11 +68,9 @@ $bst_includes = array(
 	'inc/pattern-studio.php',
 	'inc/auto-detect.php',
 	'inc/media-atnd.php',
+	'inc/ux-blocks.php',
 	'inc/features.php',
 
-	'inc/compat-flatsome.php',
-	'inc/compat-flatsome-elements.php',
-	'inc/compat-flatsome-settings.php',
 	'inc/admin/dashboard.php',
 	'inc/admin/theme-panel.php',
 );

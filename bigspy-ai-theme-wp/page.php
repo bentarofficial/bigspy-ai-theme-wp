@@ -13,6 +13,7 @@ bst_simple_title();
 
 while ( have_posts() ) {
 	the_post();
+	do_action( 'bst_before_page_content' );
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'bs-entry' ); ?>>
 		<div class="bs-entry__content bs-content">
@@ -23,6 +24,7 @@ while ( have_posts() ) {
 		</div>
 	</article>
 	<?php
+	do_action( 'bst_after_page_content' );
 	if ( comments_open() || get_comments_number() ) {
 		comments_template();
 	}

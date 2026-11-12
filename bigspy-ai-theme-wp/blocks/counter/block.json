@@ -60,6 +60,14 @@
 			"type": "number",
 			"default": 0
 		},
+		"style": { "type": "string", "default": "" },
+		"icon": { "type": "string", "default": "" },
+		"iconSize": { "type": "number", "default": 0 },
+		"iconColor": { "type": "string", "default": "" },
+		"affixSize": { "type": "number", "default": 0 },
+		"affixColor": { "type": "string", "default": "" },
+		"weight": { "type": "string", "default": "" },
+		"replay": { "type": "boolean", "default": false },
 		"textColor": {
 			"type": "string",
 			"default": ""
