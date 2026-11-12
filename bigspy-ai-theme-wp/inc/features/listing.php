@@ -23,6 +23,14 @@ if ( class_exists( 'WooCommerce' ) ) {
 	require_once BST_DIR . '/inc/listing/templates.php';
 }
 
+// Auto detect: also report empty listing categories and tags.
+add_filter(
+	'bst_ad_terms_taxonomies',
+	function ( $taxonomies ) {
+		return array_merge( $taxonomies, array( 'product_cat', 'product_tag' ) );
+	}
+);
+
 add_action(
 	'admin_notices',
 	function () {

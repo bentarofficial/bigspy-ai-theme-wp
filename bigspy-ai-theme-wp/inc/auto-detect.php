@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'BST_AD_NS', 'bst-detect/v1' );
 define( 'BST_AD_MAX_ITEMS', 1000 );
 
-foreach ( array( 'keywords', 'h1', 'media', 'links', 'security' ) as $bst_ad_file ) {
+foreach ( array( 'keywords', 'h1', 'media', 'links', 'security', 'terms' ) as $bst_ad_file ) {
 	require_once __DIR__ . '/auto-detect/' . $bst_ad_file . '.php';
 }
 
@@ -227,7 +227,7 @@ add_filter(
 	'bst_aid_tools',
 	function ( $tools ) {
 		$tools['auto_detect_results'] = array(
-			'description' => 'Read the latest Auto detect reports: duplicate focus keywords, H1 tags, unused media, images missing alt text, broken links, security. Read-only. Use it to propose fixes.',
+			'description' => 'Read the latest Auto detect reports: duplicate focus keywords, H1 tags, unused media, images missing alt text, broken links, security, empty categories and tags. Read-only. Use it to propose fixes.',
 			'parameters'  => array( 'type' => 'object', 'properties' => array( 'check' => array( 'type' => 'string', 'enum' => array_keys( bst_ad_modules() ) ) ), 'required' => array() ),
 			'cap'         => 'manage_options',
 			'callback'    => 'bst_aid_tool_auto_detect_results',
@@ -258,7 +258,7 @@ add_action(
 function bst_ad_page() {
 	$modules = array();
 	foreach ( bst_ad_modules() as $id => $module ) {
-		$modules[ $id ] = array( 'label' => $module['label'], 'intro' => $module['intro'] );
+		$modules[ $id ] = array( 'label' => $module['label'], 'intro' => $module['intro'], 'i18n' => $module['i18n'] ?? array() );
 	}
 	wp_enqueue_script( 'bst-auto-detect', BST_URI . '/assets/js/auto-detect.js', array( 'wp-api-fetch' ), BST_VERSION, true );
 	wp_localize_script(

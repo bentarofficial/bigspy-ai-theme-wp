@@ -9310,3 +9310,36 @@ msgstr "Liên kết"
 
 msgid "Second line (optional)"
 msgstr "Dòng phụ (tuỳ chọn)"
+
+msgid "Empty categories and tags"
+msgstr "Danh mục và thẻ rỗng"
+
+msgid "Lists categories and tags with no published content, counting child categories too. Default categories and terms used in a menu are never deleted. Deleted terms are logged here and can be restored with their drafts and trashed posts."
+msgstr "Liệt kê danh mục và thẻ không có nội dung đã xuất bản, tính cả danh mục con. Danh mục mặc định và mục đang dùng trong menu không bao giờ bị xoá. Mục đã xoá được lưu lại ở đây và có thể khôi phục cùng bài nháp và bài trong thùng rác."
+
+msgid "Delete the selected categories and tags? Terms that gained content or are used in a menu are skipped, and you can restore the rest here."
+msgstr "Xoá các danh mục và thẻ đã chọn? Mục vừa có nội dung hoặc đang dùng trong menu sẽ được bỏ qua; phần còn lại có thể khôi phục ở đây."
+
+msgid "Deleted terms"
+msgstr "Danh mục và thẻ đã xoá"
+
+msgid "Forget selected"
+msgstr "Bỏ khỏi danh sách"
+
+msgid "Remove the selected terms from this log? They can no longer be restored."
+msgstr "Bỏ các mục đã chọn khỏi danh sách này? Sau đó không thể khôi phục được nữa."
+
+msgid "%d empty categories and tags."
+msgstr "%d danh mục và thẻ rỗng."
+
+msgid "in %s"
+msgstr "thuộc %s"
+
+msgid "drafts: %d"
+msgstr "bản nháp: %d"
+
+msgid "in trash: %d"
+msgstr "trong thùng rác: %d"
+
+msgid "used in a menu, kept"
+msgstr "đang dùng trong menu, giữ lại"

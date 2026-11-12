@@ -49,7 +49,7 @@
 	function card(id, item, boxClass) {
 		var pick = node('input', { type: 'checkbox', className: boxClass, value: item.select || item.id });
 		var kids = [node('label', { style: 'display:block;cursor:pointer' }, [
-			node('img', { src: safeUrl(item.thumb), alt: '', loading: 'lazy', style: 'display:block;width:100%;height:130px;object-fit:contain;background:#f0f0f1' }),
+			item.thumb && node('img', { src: safeUrl(item.thumb), alt: '', loading: 'lazy', style: 'display:block;width:100%;height:130px;object-fit:contain;background:#f0f0f1' }),
 			pick,
 			' ' + item.title
 		])];
@@ -77,7 +77,7 @@
 
 	var panels = {};
 	function render(id, s) {
-		var box = panels[id], running = s.status === 'running';
+		var box = panels[id], running = s.status === 'running', mt = Object.assign({}, t, cfg.modules[id].i18n || {});
 		box.status.textContent = running ? t.scanning + (s.total ? ' ' + s.done + '/' + s.total : ' ' + s.done) : (s.finished ? t.last + ' ' + new Date(s.finished * 1000).toLocaleString() : t.never);
 		box.button.disabled = running;
 		box.note.textContent = s.note || '';
@@ -89,25 +89,25 @@
 		box.bulk.textContent = '';
 		var extra = s.extra || {};
 		if (s.items.some(function (i) { return i.select; })) {
-			if (cards) { box.bulk.appendChild(selectAll(box.list)); }
-			box.bulk.appendChild(node('button', { type: 'button', className: 'button', textContent: t.deleteBtn, onclick: function () {
+			box.bulk.appendChild(selectAll(box.list));
+			box.bulk.appendChild(node('button', { type: 'button', className: 'button', style: 'margin-left:6px', textContent: mt.deleteBtn, onclick: function () {
 				var ids = picked(box.list, 'bst-ad-pick');
-				if (ids.length && window.confirm(t.deleteAsk)) { action(id, { op: 'delete', ids: ids }); }
+				if (ids.length && window.confirm(mt.deleteAsk)) { action(id, { op: 'delete', ids: ids }); }
 			} }));
 		}
 		box.trash.textContent = '';
 		if ((extra.trashed || []).length) {
 			var bin = node('ul', { style: grid });
 			extra.trashed.forEach(function (item) { bin.appendChild(card(id, item, 'bst-ad-bin')); });
-			box.trash.appendChild(node('h3', { textContent: t.trash + ' (' + extra.trashed.length + ')' }));
+			box.trash.appendChild(node('h3', { textContent: mt.trash + ' (' + extra.trashed.length + ')' }));
 			box.trash.appendChild(bin);
 			box.trash.appendChild(selectAll(bin));
 			box.trash.appendChild(node('button', { type: 'button', className: 'button', style: 'margin:0 6px', textContent: t.restoreBtn, onclick: function () {
 				action(id, { op: 'restore', ids: picked(bin, 'bst-ad-bin') });
 			} }));
-			box.trash.appendChild(node('button', { type: 'button', className: 'button-link button-link-delete', textContent: t.purgeBtn, onclick: function () {
+			box.trash.appendChild(node('button', { type: 'button', className: 'button-link button-link-delete', textContent: mt.purgeBtn, onclick: function () {
 				var ids = picked(bin, 'bst-ad-bin');
-				if (ids.length && window.confirm(t.purgeAsk)) { action(id, { op: 'purge', ids: ids }); }
+				if (ids.length && window.confirm(mt.purgeAsk)) { action(id, { op: 'purge', ids: ids }); }
 			} }));
 		}
 		if (running && !box.busy) { advance(id); }
