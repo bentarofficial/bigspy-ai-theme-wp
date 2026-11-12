@@ -13044,3 +13044,6 @@ msgstr ""
 
 msgid "Strong shadow"
 msgstr ""
+
+msgid "1.93.0: Bento Grid tiles can grow with their content, place text at the top, middle or bottom, fill gaps automatically and skip the hover lift. Stacking Cards gain a Simple list layout with no overlap and a soft shadow. A new Footer scroll effect in Customizer > Footer widgets reveals the footer columns one after another, or slides the page away like a curtain to uncover the footer. Existing content looks the same until you change these options."
+msgstr ""

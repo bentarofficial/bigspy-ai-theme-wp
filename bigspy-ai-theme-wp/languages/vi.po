@@ -9532,3 +9532,6 @@ msgstr "Kéo rèm + hiện dần"
 
 msgid "Strong shadow"
 msgstr "Bóng đậm"
+
+msgid "1.93.0: Bento Grid tiles can grow with their content, place text at the top, middle or bottom, fill gaps automatically and skip the hover lift. Stacking Cards gain a Simple list layout with no overlap and a soft shadow. A new Footer scroll effect in Customizer > Footer widgets reveals the footer columns one after another, or slides the page away like a curtain to uncover the footer. Existing content looks the same until you change these options."
+msgstr "1.93.0: Ô Bento Grid có thể cao theo nội dung, đặt chữ ở trên, giữa hoặc dưới, tự lấp chỗ trống và tắt hiệu ứng nâng khi rê chuột. Stacking Cards có thêm bố cục Danh sách thường không chồng thẻ và bóng nhẹ. Mục mới Hiệu ứng cuộn footer trong Tuỳ biến > Footer widgets cho các cột footer hiện dần lần lượt, hoặc kéo nội dung trang lên như tấm rèm để lộ footer. Nội dung hiện có giữ nguyên cho tới khi bạn đổi các tuỳ chọn này."

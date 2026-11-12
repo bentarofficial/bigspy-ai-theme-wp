@@ -15,6 +15,12 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.93.0 =
+* Bento Grid: Tile height (fixed rows or grow with content), Content position (top, middle, bottom), Fill gaps automatically, and a switch for Lift tiles on hover.
+* Stacking Cards: Layout "Simple list (no overlap)" with no sticky stacking, and Shadow strength (strong or soft).
+* Customizer > Footer widgets: Footer scroll effect: Off, Reveal columns, or Curtain + reveal (the page slides up to uncover the footer when it fits the screen). Loads a small script only when on; visitors who ask for less motion see the footer as usual.
+* Defaults keep the current look.
+
 = 1.92.0 =
 * Listing page sidebar: new "Listing page sidebar" widget area (Appearance > Widgets, List mode). With widgets it replaces the default sidebar; empty, the default Sponsor, Categories and Related resources still show. New Listing sidebar block (bst/listing-sidebar) with three inserter variations and editable titles, and an "Add them as blocks to edit" button that copies the default parts into blocks.
 * Customizer > Layout > Listing design: "Disclosure line on listings" shows sponsorship and affiliate notes (default, as before), only the sponsorship note, or nothing. The Sponsored label on cards is unchanged.
