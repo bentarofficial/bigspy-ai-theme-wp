@@ -15,6 +15,18 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.91.0 =
+* Auto detect: new "Empty categories and tags" check. Lists post categories and tags with no published content (child categories counted), plus listing categories and tags in BIGSPY AI List mode. Select and delete; default categories and terms used in a menu are kept, and every deletion is logged so the term, its parent, meta and attached drafts can be restored.
+* New Search block (bst/search), shared with Listing search: eight styles, live suggestions with images, prices and categories, content type and category filters, popular keyword buttons, rotating placeholder and the / shortcut.
+* Tabs, Accordion, Table, Timeline and Icon List: many new styles, layouts and per-part colors (sticky tab bar, mobile accordion, 2-column accordion with search, table grid editor with sticky header and mobile cards, horizontal timelines, numbered icon lists). Existing content renders as before.
+* Heading, Text, Star rating, Button, Alert, Progress, Counter, Spacer, Buttons and Section Title: new styles and options (kicker, decorative lines, text stroke, list and quote styles, 3D/neon buttons, icon-only buttons, circle progress, counter cards and more).
+* Editor: shared controls and a wider Design layer (per-side borders, per-corner radius, 2-3 color gradients), and a Ready styles panel to pick presets by picture.
+* Customizer: quick-edit labels on the preview open the matching section.
+* Developers: before/after hooks for the main areas and blocks (docs/HOOKS.md). Optional "AI abilities (MCP)" feature, off by default, WordPress 6.9+.
+* BIGSPY AI List: [bigspy_stat] shortcode and stat tokens in widgets, Listing design settings in the Customizer, widgets mapped automatically when switching from the old theme, AI Designer knows the listing blocks.
+* Section background images chosen from the Media Library print as images with srcset; popups, lightbox, video popup and the mobile menu keep keyboard focus inside; Cart and Checkout block buttons match the theme colors; hard-coded Vietnamese strings are now translatable.
+* Flatsome compatibility is now a feature in BIGSPY > Features (turned on once automatically for sites with Flatsome content). After updating, open an old Flatsome page; if you see raw shortcodes, turn it on.
+
 = 1.90.0 =
 * Automatic image load priority: the first large image on a page (Banner, slider's first slide, Zoom hero, Image, Gallery, Before/After, Hotspot, video posters, Scroll story, the single post featured image and Flatsome-compat banners and images) loads at once with fetchpriority high and is preloaded in the head; every later image is lazy-loaded. The logo loads at once but no longer takes the high priority. The per-block Load priority option still overrides it.
 * Sponsored block and Listing elements Sponsored cards: new "Sponsors in the rotation list (0 = all)". Each reload shows the next sponsors by the number of cards and starts over only after the whole list was shown (fixes sponsors repeating between two sets).
