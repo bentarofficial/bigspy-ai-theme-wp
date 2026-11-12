@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.92.0: Listing sidebar, disclosure switch, richer Social, Share and Payment icons
+
+- Listing pages get an editable sidebar: widgets or the new Listing sidebar block, with the default kept when empty.
+- The listing disclosure line can be shown in full, sponsorship only, or hidden.
+- Social, Share and Payment icons gain new networks, layouts, floating bars, NAPAS and custom logos.
+
 ### 1.91.0: Search block, richer blocks and empty term cleanup
 
 - A new Search block with eight styles and live suggestions, shared with Listing search.

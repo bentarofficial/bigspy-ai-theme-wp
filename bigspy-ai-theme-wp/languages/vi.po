@@ -9478,3 +9478,6 @@ msgstr "Tiêu đề (để trống = mặc định)"
 
 msgid "Shows the part for the listing being viewed. Nothing to preview yet: add a listing with this information."
 msgstr "Hiện phần này cho listing đang xem. Chưa có gì để xem trước: hãy thêm listing có thông tin này."
+
+msgid "1.92.0: Listing pages get their own sidebar: add widgets or the new Listing sidebar block (Sponsor, Categories, Related resources), or keep the default one. The listing disclosure line can show sponsorship and affiliate notes, only the sponsorship note, or nothing. Social icons add Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps and custom links, with grid or vertical layouts, hover effects and tooltips; Share adds Telegram, Messenger, Print and floating or bottom bars; Payment icons add NAPAS, card and dark styles and your own logos."
+msgstr "1.92.0: Trang listing có sidebar riêng: thêm widget hoặc khối Listing sidebar mới (Sponsor, Categories, Related resources), hoặc giữ sidebar mặc định. Dòng công bố trên listing có thể hiện cả ghi chú tài trợ và affiliate, chỉ ghi chú tài trợ, hoặc ẩn. Social thêm Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps và liên kết tuỳ chỉnh, bố cục lưới hoặc dọc, hiệu ứng rê chuột và tooltip; Share thêm Telegram, Messenger, In và thanh nổi hoặc thanh đáy; Payment icons thêm NAPAS, kiểu thẻ và nền tối cùng logo riêng."
