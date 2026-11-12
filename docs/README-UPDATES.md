@@ -6,6 +6,10 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.94.1: Script error fix
+
+- Fixes a script error on every page introduced in 1.94.0 that stopped block scripts after the Nav menu code.
+
 ### 1.94.0: Editor-matching block spacing, Banner fit on phones, richer Map, Popup and Nav menu
 
 - Published pages keep the editor's block spacing; Banners on phones grow to fit their content.
