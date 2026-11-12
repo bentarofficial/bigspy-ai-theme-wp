@@ -216,6 +216,31 @@
 		});
 	}
 	['bigspy/listing-grid', 'bigspy/category-grid', 'bigspy/elements', 'bigspy/sponsored'].forEach(ssrBlock); // bigspy/search: search-editor.js
+	/* Listing sidebar: one block, three inserter entries (sponsor, categories, related resources). */
+	var SIDEBAR_PARTS = { sponsor: __('Sponsor', T), categories: __('Categories', T), related: __('Related resources', T) };
+	wp.blocks.registerBlockType('bst/listing-sidebar', {
+		variations: Object.keys(SIDEBAR_PARTS).map(function (part, i) {
+			return { name: part, title: __('Listing sidebar', T) + ': ' + SIDEBAR_PARTS[part], attributes: { part: part }, isDefault: i === 1, scope: ['inserter', 'transform'], isActive: ['part'] };
+		}),
+		edit: function (props) {
+			var a = props.attributes;
+			return el(wp.element.Fragment, null,
+				el(Inspector, null, el(c.PanelBody, { title: __('Listing sidebar', T) },
+					el(c.SelectControl, { label: __('Show', T), value: a.part, options: Object.keys(SIDEBAR_PARTS).map(function (k) { return { value: k, label: SIDEBAR_PARTS[k] }; }), onChange: function (v) { props.setAttributes({ part: v }); }, __nextHasNoMarginBottom: true }),
+					a.part === 'sponsor' ? null : el(c.TextControl, { label: __('Heading (empty = default)', T), value: a.title, onChange: function (v) { props.setAttributes({ title: v }); }, __nextHasNoMarginBottom: true })
+				)),
+				el('div', be.useBlockProps(), el(wp.serverSideRender, {
+					block: 'bst/listing-sidebar',
+					attributes: a,
+					httpMethod: 'POST',
+					EmptyResponsePlaceholder: function () {
+						return el(c.Placeholder, { icon: 'align-pull-right', label: __('Listing sidebar', T) + ': ' + (SIDEBAR_PARTS[a.part] || ''), instructions: __('Shows the part for the listing being viewed. Nothing to preview yet: add a listing with this information.', T) });
+					}
+				}))
+			);
+		},
+		save: function () { return null; }
+	});
 	wp.blocks.registerBlockType('bst/listing-info', {
 		edit: function (props) {
 			var a = props.attributes;

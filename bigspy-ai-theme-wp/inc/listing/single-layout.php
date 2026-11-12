@@ -111,24 +111,130 @@ function bst_listing_facts_html( $post_id ) {
 	return $out . '</dl>';
 }
 
-/** Sidebar: sponsor, categories and related resources. */
-function bst_listing_sidebar_html( $post_id ) {
-	$out = bst_listing_is_ad( $post_id ) ? '' : bst_sponsored_slot( 0, 'single' );
-	$cats = bst_listing_terms( $post_id, 'product_cat' );
-	if ( $cats ) {
-		$out .= '<section class="bst-ls-box"><h3>' . esc_html__( 'Categories', 'bigspy-ai-theme-wp' ) . '</h3><div class="bst-listing-chips">';
+/** The parts of the default listing sidebar, in order. */
+function bst_listing_sidebar_parts() {
+	return array(
+		'sponsor'    => __( 'Sponsor', 'bigspy-ai-theme-wp' ),
+		'categories' => __( 'Categories', 'bigspy-ai-theme-wp' ),
+		'related'    => __( 'Related resources', 'bigspy-ai-theme-wp' ),
+	);
+}
+
+/** One sidebar part for a listing; $title '' keeps the default heading. Empty string when there is nothing to show. */
+function bst_listing_sidebar_part( $post_id, $part, $title = '' ) {
+	$parts = bst_listing_sidebar_parts();
+	$head  = '' !== trim( (string) $title ) ? (string) $title : ( $parts[ $part ] ?? '' );
+	if ( 'sponsor' === $part ) {
+		return bst_listing_is_ad( $post_id ) ? '' : bst_sponsored_slot( 0, 'single' );
+	}
+	if ( 'categories' === $part ) {
+		$cats = bst_listing_terms( $post_id, 'product_cat' );
+		if ( ! $cats ) {
+			return '';
+		}
+		$out = '<section class="bst-ls-box"><h3>' . esc_html( $head ) . '</h3><div class="bst-listing-chips">';
 		foreach ( $cats as $cat ) {
 			$out .= '<a href="' . esc_url( get_term_link( $cat ) ) . '">' . esc_html( $cat->name ) . '</a>';
 		}
-		$out .= '</div></section>';
+		return $out . '</div></section>';
 	}
-	$links = bst_listing_internal_links( $post_id );
-	if ( $links && bst_feature_get( 'listing', 'single_links', 1 ) ) {
-		$out .= '<section class="bst-ls-box bst-listing-links"><h3>' . esc_html__( 'Related resources', 'bigspy-ai-theme-wp' ) . '</h3><div>';
+	if ( 'related' === $part ) {
+		$links = bst_listing_internal_links( $post_id );
+		if ( ! $links || ! bst_feature_get( 'listing', 'single_links', 1 ) ) {
+			return '';
+		}
+		$out = '<section class="bst-ls-box bst-listing-links"><h3>' . esc_html( $head ) . '</h3><div>';
 		foreach ( $links as $link ) {
 			$out .= '<a href="' . esc_url( $link['url'] ) . '">' . esc_html( $link['label'] ) . ' <span aria-hidden="true">→</span></a>';
 		}
-		$out .= '</div></section>';
+		return $out . '</div></section>';
 	}
-	return '' === $out ? '' : '<aside class="bst-ls-sidebar">' . $out . '</aside>';
+	return '';
 }
+
+/**
+ * Sidebar of a listing page. When Appearance > Widgets > "Listing page sidebar" has widgets they
+ * replace the default (sponsor, categories, related resources), so the order and content are editable.
+ */
+function bst_listing_sidebar_html( $post_id ) {
+	if ( is_active_sidebar( 'sidebar-listing' ) ) {
+		$GLOBALS['bst_listing_sidebar_post'] = (int) $post_id;
+		ob_start();
+		dynamic_sidebar( 'sidebar-listing' );
+		$out = (string) ob_get_clean();
+		unset( $GLOBALS['bst_listing_sidebar_post'] );
+	} else {
+		$out = '';
+		foreach ( array_keys( bst_listing_sidebar_parts() ) as $part ) {
+			$out .= bst_listing_sidebar_part( $post_id, $part );
+		}
+	}
+	return '' === trim( $out ) ? '' : '<aside class="bst-ls-sidebar">' . $out . '</aside>';
+}
+
+add_action(
+	'widgets_init',
+	function () {
+		register_sidebar(
+			array(
+				'name'          => __( 'Listing page sidebar', 'bigspy-ai-theme-wp' ),
+				'id'            => 'sidebar-listing',
+				'description'   => __( 'Beside the description on listing pages. Leave it empty to show the default sponsor, categories and related resources; add the "Listing sidebar" blocks and any other widgets to choose what shows and in which order.', 'bigspy-ai-theme-wp' ),
+				'before_widget' => '<div id="%1$s" class="widget bst-ls-widget %2$s">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h3 class="widget-title">',
+				'after_title'   => '</h3>',
+			)
+		);
+	},
+	20
+);
+
+/** Copy the default sidebar into "Listing page sidebar" as editable blocks. Returns the number added. */
+function bst_listing_sidebar_fill_defaults() {
+	$areas = wp_get_sidebars_widgets();
+	if ( ! empty( $areas['sidebar-listing'] ) ) {
+		return 0;
+	}
+	$blocks = get_option( 'widget_block', array() );
+	$blocks = is_array( $blocks ) ? $blocks : array();
+	$keys   = array_filter( array_keys( $blocks ), 'is_int' );
+	$next   = $keys ? max( $keys ) + 1 : 2;
+	$ids    = array();
+	foreach ( array_keys( bst_listing_sidebar_parts() ) as $part ) {
+		$blocks[ $next ] = array( 'content' => '<!-- wp:bst/listing-sidebar {"part":"' . $part . '"} /-->' );
+		$ids[]           = 'block-' . $next;
+		++$next;
+	}
+	$blocks['_multiwidget'] = 1;
+	update_option( 'widget_block', $blocks );
+	$areas['sidebar-listing'] = $ids;
+	wp_set_sidebars_widgets( $areas );
+	return count( $ids );
+}
+
+add_action(
+	'admin_post_bst_listing_sidebar_defaults',
+	function () {
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-ai-theme-wp' ) );
+		}
+		check_admin_referer( 'bst_listing_sidebar_defaults' );
+		bst_listing_sidebar_fill_defaults();
+		wp_safe_redirect( admin_url( 'widgets.php' ) );
+		exit;
+	}
+);
+
+// Widgets screen: offer to turn the default listing sidebar into editable blocks.
+add_action(
+	'admin_notices',
+	function () {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || 'widgets' !== $screen->id || ! current_user_can( 'edit_theme_options' ) || is_active_sidebar( 'sidebar-listing' ) ) {
+			return;
+		}
+		$url = wp_nonce_url( admin_url( 'admin-post.php?action=bst_listing_sidebar_defaults' ), 'bst_listing_sidebar_defaults' );
+		echo '<div class="notice notice-info"><p>' . esc_html__( 'Listing page sidebar is empty, so listing pages show the default sponsor, categories and related resources.', 'bigspy-ai-theme-wp' ) . ' <a class="button" href="' . esc_url( $url ) . '">' . esc_html__( 'Add them as blocks to edit', 'bigspy-ai-theme-wp' ) . '</a></p></div>';
+	}
+);

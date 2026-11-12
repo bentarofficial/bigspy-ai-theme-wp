@@ -377,14 +377,16 @@ input[type="submit"]:hover,
 }
 
 @media (max-width: 849px) {
+	/* Tablet/mobile: the set height is a minimum, so stacked content is never clipped. */
 	.bs-banner {
-		height: var(--bs-banner-ht);
+		height: auto;
+		min-height: var(--bs-banner-ht);
 	}
 }
 
 @media (max-width: 549px) {
 	.bs-banner {
-		height: var(--bs-banner-hm);
+		min-height: var(--bs-banner-hm);
 	}
 }
 

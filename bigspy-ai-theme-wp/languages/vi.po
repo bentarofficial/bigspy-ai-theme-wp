@@ -9448,3 +9448,33 @@ msgstr "Tên (chữ thay thế)"
 
 msgid "Add logo"
 msgstr "Thêm logo"
+
+msgid "Sponsor"
+msgstr "Nhà tài trợ"
+
+msgid "Listing page sidebar"
+msgstr "Sidebar trang listing"
+
+msgid "Beside the description on listing pages. Leave it empty to show the default sponsor, categories and related resources; add the \"Listing sidebar\" blocks and any other widgets to choose what shows and in which order."
+msgstr "Bên cạnh phần mô tả trên trang listing. Để trống thì hiện mặc định: nhà tài trợ, danh mục và tài nguyên liên quan; thêm các khối \"Listing sidebar\" và widget khác để tự chọn nội dung và thứ tự."
+
+msgid "Listing page sidebar is empty, so listing pages show the default sponsor, categories and related resources."
+msgstr "Sidebar trang listing đang trống, nên trang listing hiện phần mặc định: nhà tài trợ, danh mục và tài nguyên liên quan."
+
+msgid "Add them as blocks to edit"
+msgstr "Thêm thành khối để chỉnh sửa"
+
+msgid "Sorry, you are not allowed to do that."
+msgstr "Xin lỗi, bạn không có quyền làm việc này."
+
+msgid "Listing sidebar"
+msgstr "Sidebar listing"
+
+msgid "Show"
+msgstr "Hiển thị"
+
+msgid "Heading (empty = default)"
+msgstr "Tiêu đề (để trống = mặc định)"
+
+msgid "Shows the part for the listing being viewed. Nothing to preview yet: add a listing with this information."
+msgstr "Hiện phần này cho listing đang xem. Chưa có gì để xem trước: hãy thêm listing có thông tin này."

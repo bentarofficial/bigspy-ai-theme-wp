@@ -10,6 +10,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-163 Dòng công bố trên listing bật/tắt:** Customizer → Layout → Listing design → "Disclosure line on listings": hiện cả dòng tài trợ và affiliate (mặc định, như cũ), chỉ dòng tài trợ, hoặc ẩn (khi site đã có trang Affiliate Disclosure riêng). Nhãn Sponsored trên thẻ không đổi. Kiểm thử: 2 ca mới trong features-check đạt; còn FAIL banner có từ trước. Đã dịch vi.
 
+- **G-164 Sidebar trang listing tuỳ chỉnh được:** vùng widget mới "Listing page sidebar" (Appearance → Widgets, chế độ List). Có widget thì thay phần mặc định; trống thì vẫn hiện nhà tài trợ, danh mục, tài nguyên liên quan như cũ. Khối mới `bst/listing-sidebar` với 3 mục trong trình chèn (Sponsor, Categories, Related resources), đổi tiêu đề được; xem trước trong màn hình Widgets dùng listing mới nhất. Màn hình Widgets có nút "Add them as blocks to edit" chép 3 phần mặc định thành khối. Kiểm thử: 3 ca `listing sidebar:` trong woo-check đạt (53 ok); check-block-previews đạt; đã thêm preview, kiến thức AI, bản dịch vi. Chưa thử tay màn hình Widgets.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bst/listing-sidebar",
+	"title": "Listing sidebar",
+	"category": "bigspy-list",
+	"icon": "align-pull-right",
+	"description": "One part of the listing page sidebar for the listing being viewed: the sponsor card, its categories or its related resources. Add it to Appearance > Widgets > Listing page sidebar. Needs BIGSPY AI List mode and WooCommerce.",
+	"keywords": [
+		"listing",
+		"sidebar",
+		"sponsor",
+		"categories",
+		"related",
+		"bigspy ai list"
+	],
+	"textdomain": "bigspy-ai-theme-wp",
+	"usesContext": [
+		"postId"
+	],
+	"attributes": {
+		"part": {
+			"type": "string",
+			"default": "categories"
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "bst-blocks-listing",
+	"render": "file:./render.php"
+}
