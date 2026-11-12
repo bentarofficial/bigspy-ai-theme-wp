@@ -6,7 +6,9 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Không có thay đổi đang chờ.
+Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Đang chờ:
+
+- **G-163 Dòng công bố trên listing bật/tắt:** Customizer → Layout → Listing design → "Disclosure line on listings": hiện cả dòng tài trợ và affiliate (mặc định, như cũ), chỉ dòng tài trợ, hoặc ẩn (khi site đã có trang Affiliate Disclosure riêng). Nhãn Sponsored trên thẻ không đổi. Kiểm thử: 2 ca mới trong features-check đạt; còn FAIL banner có từ trước. Đã dịch vi.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

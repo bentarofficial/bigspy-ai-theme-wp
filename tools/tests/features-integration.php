@@ -425,6 +425,12 @@ function bst_t_listing() {
 	update_post_meta( $id, 'company_name', 'Acme Inc' );
 	$d = bst_listing_disclosure( $id );
 	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false !== strpos( $d, 'commission' ), 'listing: paid and affiliate disclosure' );
+	set_theme_mod( 'ld_disclosure', 'sponsored' );
+	$d = bst_listing_disclosure( $id );
+	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false === strpos( $d, 'commission' ), 'listing: disclosure sponsored line only' );
+	set_theme_mod( 'ld_disclosure', 'none' );
+	bst_test( '' === bst_listing_disclosure( $id ), 'listing: disclosure hidden' );
+	remove_theme_mod( 'ld_disclosure' );
 	update_post_meta( $id, 'rating', '4.6' );
 	update_post_meta( $id, 'faq', "What is it? | A tool.
 Broken line" );

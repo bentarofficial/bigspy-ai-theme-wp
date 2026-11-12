@@ -315,6 +315,12 @@ function bst_listing_faq( $post_id = 0 ) {
 function bst_listing_disclosure( $post_id = 0 ) {
 	$post_id = bst_listing_id( $post_id );
 	$lines   = array();
+	// Customizer > Listing design: '' shows both lines, 'sponsored' only the Sponsored line, 'none' neither
+	// (for sites that publish one disclosure page instead).
+	$show = function_exists( 'bst_mod' ) ? (string) bst_mod( 'ld_disclosure' ) : '';
+	if ( 'none' === $show ) {
+		return '';
+	}
 	if ( bst_listing_is_paid( $post_id ) ) {
 		$sponsor = trim( (string) get_post_meta( $post_id, '_bigspy_sponsor_name', true ) );
 		$sponsor = '' !== $sponsor ? $sponsor : trim( wp_strip_all_tags( (string) bst_listing_field( 'company_name', $post_id, '' ) ) );
@@ -322,7 +328,7 @@ function bst_listing_disclosure( $post_id = 0 ) {
 		/* translators: 1: sponsor name, 2: site name */
 		$lines[] = '<strong>' . esc_html__( 'Sponsored listing.', 'bigspy-ai-theme-wp' ) . '</strong> ' . esc_html( sprintf( __( '%1$s paid to be listed on %2$s. Our editorial rules still apply.', 'bigspy-ai-theme-wp' ), $sponsor, get_bloginfo( 'name' ) ) );
 	}
-	if ( bst_listing_has_affiliate( $post_id ) ) {
+	if ( 'sponsored' !== $show && bst_listing_has_affiliate( $post_id ) ) {
 		$text = esc_html__( 'We may earn a commission if you buy through links on this page, at no extra cost to you. This does not affect our editorial review.', 'bigspy-ai-theme-wp' );
 		$page = get_page_by_path( 'affiliate-disclosure' );
 		if ( $page && 'publish' === $page->post_status ) {
