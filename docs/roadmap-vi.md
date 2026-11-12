@@ -389,6 +389,85 @@ Mức tối thiểu sau khi nâng cấp một khối: 4–6 kiểu khác nhau r�
 
 Đổi mã việc cho các phiên sau. Với phiếu nhóm khối, ghi rõ khối, ví dụ “G-135-a: icon-box, image-box, flip-box”.
 
+## Đề xuất từ project thiết kế site phonglammedia.com 12-11-2026 (G-180 → G-190)
+
+Nguồn: `roadmap-de-xuat-theme.md` của project thiết kế site phonglammedia.com, ghi ngày 12-11-2026 khi site chạy theme 1.94.1. Mã tạm `S-01 → S-11` của đề xuất đổi thành `G-180 → G-190` theo đúng thứ tự (S-01 = G-180, S-02 = G-181, … S-11 = G-190). Mỗi phiếu là một việc độc lập. Mã G-153 → G-179 nằm trong `TASKS.md` của workspace (mục 12, 13), không trùng.
+
+Quy tắc chung cho mọi phiếu: nội dung cũ phải hiển thị y như trước (giá trị mặc định giữ nguyên hành vi hiện tại); có bản dịch tiếng Việt; tôn trọng `prefers-reduced-motion`; trên điện thoại không tràn ngang; kiểm tra ở Playground + Chrome 1440px và 390px; ghi chú `docs/PENDING-RELEASE.md`. Ngoài ra áp dụng mục B và C của “Kế hoạch thực thi 11-11-2026” ở trên.
+
+### Thứ tự đề xuất
+
+**G-180 → G-184 → G-181 → G-182 (dùng lại runtime G-180) → G-187 → G-183 → G-185 → G-189 → G-190 → G-188 → G-186.**
+G-180, G-181, G-184 và G-187 giúp tăng tỷ lệ liên hệ của site dịch vụ rõ nhất.
+
+### G-180 · Marquee (Scrolling text) — nâng cấp toàn diện (ưu tiên cao) — mã cũ S-01
+
+**Hiện trạng:** `blocks/marquee/` có 12 thuộc tính: items (mỗi dòng 1 mục, chỉ chữ), speed, direction, pauseHover, separator, size, weight, color, bgColor, gap, outline, paddingY. Không chỉnh được theo thiết bị, không gắn link, ảnh hay icon cho từng mục, không có kiểu thẻ hoặc pill, không mờ dần ở hai mép, không phản ứng khi cuộn.
+
+**Cần thêm:**
+1. **Nội dung từng mục:** chuyển sang khối con `bigspy/marquee-item` (giữ thuộc tính `items` cũ làm nguồn dự phòng và tự chuyển đổi khi mở trong editor). Mỗi mục gồm chữ, icon (`bst_icon`) hoặc ảnh/logo (attachment ID), link kèm tuỳ chọn mở tab mới, và màu riêng.
+2. **Kiểu hiển thị mục:** chữ thường / chữ viền (outline) / pill có nền / thẻ (card có viền, bo góc, bóng) / logo xám chuyển màu khi rê chuột.
+3. **Nhiều hàng:** 1–3 hàng, mỗi hàng chạy ngược chiều nhau hoặc lệch tốc độ; các hàng dùng chung danh sách mục hoặc mỗi hàng một danh sách.
+4. **Hiệu ứng nâng cao:**
+   - mờ dần ở hai mép (mask-image gradient, chỉnh được độ rộng);
+   - tốc độ tăng theo vận tốc cuộn trang (scroll velocity);
+   - đổi chiều chạy khi người dùng cuộn ngược;
+   - dải nghiêng (xoay −6° đến 6°), có thể xếp hai dải chéo nhau kiểu băng rôn;
+   - chạy dọc (vertical marquee) để làm tường đánh giá.
+5. **Theo thiết bị:** cỡ chữ, khoảng cách, padding và tốc độ riêng cho tablet/mobile (dùng `Resp` của `bstEditor`); có tuỳ chọn ẩn trên điện thoại.
+6. **Điều khiển:** dừng khi rê chuột (đã có), dừng khi focus bàn phím, nút tạm dừng cho trợ năng (WCAG 2.2.2), số lần lặp hoặc chạy một lần.
+7. **Hiệu năng:** chỉ chạy animation khi khối nằm trong viewport (IntersectionObserver đặt `animation-play-state`); dùng `transform: translate3d`.
+
+**Tệp:** `blocks/marquee/*`, khối mới `blocks/marquee-item/`, `assets/css/blocks.css` (họ `bs-marquee`), JS editor ở `assets/js/blocks-editor.js` (chỉ tách phần marquee), runtime nhỏ trong `assets/js/motion-fx.js` cho phần cuộn.
+**Nghiệm thu:** marquee cũ trên phonglammedia.com (trang chủ, ngay dưới slider) hiển thị y như cũ; bản mới có 3 hàng ngược chiều, mục có logo và link, mép mờ; không giật ở 60fps; reduced-motion thì đứng yên và hiện đủ mục.
+
+**Ghi chú khi đưa vào roadmap (đối chiếu mã ở 1.94.1):** khối cha tên thật là `bst/marquee`, nên khối con là `bst/marquee-item`. Editor của Marquee nằm ở `assets/js/blocks-more.js`, không phải `blocks-editor.js`. “Ẩn trên điện thoại” đã có sẵn cho mọi khối (`bsHideMobile`, panel Responsive), không thêm lại.
+
+### G-181 · Testimonial — đánh giá khách hàng theo xu hướng (ưu tiên cao) — mã cũ S-02
+
+**Hiện trạng:** 8 thuộc tính, chỉ hiển thị một lời chứng thực đơn lẻ.
+**Cần thêm:** khối cha `bigspy/reviews` chứa các thẻ đánh giá, với các bố cục: lưới, masonry ("tường đánh giá"), carousel, marquee dọc 2–3 cột chạy ngược chiều, và một thẻ nổi bật lớn. Mỗi thẻ gồm: số sao, tên, chức danh/công ty, ảnh đại diện hoặc chữ cái đầu, logo công ty, ngày, nguồn (Google/Facebook/Zalo kèm icon), ảnh chụp kèm theo, link tới bài gốc. Phần tổng điểm hiển thị điểm trung bình và số lượt. Xuất schema `Review` và `AggregateRating` (có công tắc tắt nếu plugin SEO đã xuất). Có thêm kiểu "video testimonial" (poster + popup).
+**Nghiệm thu:** schema hợp lệ trên Rich Results Test; tường đánh giá chạy mượt, dừng khi rê chuột.
+
+### G-182 · Logos (đối tác/khách hàng) — mã cũ S-03
+
+**Hiện trạng:** 9 thuộc tính.
+**Cần thêm:** chế độ marquee (dùng chung runtime với G-180); logo xám chuyển màu hoặc tăng độ đậm khi rê chuột; chiều cao logo cố định để các logo bằng nhau về thị giác; lưới có viền ô; tooltip tên đối tác; link cho từng logo; số cột theo thiết bị; tiêu đề nhỏ kiểu "Được tin dùng bởi".
+
+### G-183 · Khối mới: Đặt lịch tư vấn (Booking CTA) — mã cũ S-04
+
+**Lý do:** site dịch vụ cần người xem đặt lịch ngay, chứ không chỉ gọi điện. Repo đã có `docs/FORMS-BOOKING-ROADMAP.md` và `BOOKING-PROVIDER-RESEARCH.md`, nên khớp với kế hoạch đó.
+**Cần có:** chọn ngày và khung giờ ngay trên trang (lịch tuần), giờ làm việc và ngày nghỉ cấu hình trong Customizer, chặn trùng lịch, gửi email cho chủ site và cho khách kèm file `.ics`, lưu vào bảng submissions sẵn có của Form. Có tuỳ chọn nhúng Google Calendar appointment hoặc Calendly thay cho lịch nội bộ. Kiểu hiển thị: inline, popup, hoặc nút dính.
+**Nghiệm thu:** đặt lịch end-to-end trong Playground; không đặt được giờ đã có người đặt.
+
+### G-184 · Thanh CTA dính trên điện thoại (Sticky action bar) — mã cũ S-05
+
+**Cần có:** Customizer > Liên hệ nổi, thêm "Thanh hành động dưới màn hình điện thoại" với 2–4 nút (Gọi, Zalo, Messenger, Đặt lịch/neo tới form). Thanh hiện sau khi cuộn X%, ẩn khi bàn phím mở. Được chọn trang ẩn và màu riêng. Có sự kiện `dataLayer` cho mỗi lần bấm để đo chuyển đổi trên Google Ads.
+
+### G-185 · Khối mới: Bảng so sánh (Comparison) — mã cũ S-06
+
+**Cần có:** so sánh 2–4 cột ("Website tự làm / Thuê freelancer / Phong Lâm Media"); dòng có dấu tick/x/chữ; cột nổi bật kèm nhãn "Khuyên dùng"; tiêu đề cột dính khi cuộn; trên điện thoại chuyển thành tab hoặc thẻ.
+
+### G-186 · Counter / số liệu: hiệu ứng theo xu hướng — mã cũ S-07
+
+Counter đã có 22 tuỳ chọn; cần thêm: số chạy khi cuộn tới (đã có) kèm biểu đồ nhỏ (sparkline/vòng tiến độ) bên cạnh; nhóm "dải số liệu" có đường phân cách và nền gradient; hậu tố/tiền tố có màu riêng.
+
+### G-187 · Case study / Dự án tiêu biểu — mã cũ S-08
+
+**Cần có:** khối "Dự án" dạng thẻ: ảnh chụp màn hình trong khung thiết bị (browser/phone mockup dựng bằng CSS, có cuộn ảnh dài khi rê chuột kiểu "scroll screenshot"), lĩnh vực, kết quả (2–3 chỉ số), link xem site. Lọc theo lĩnh vực (tabs). Đây là kiểu trình bày portfolio phổ biến nhất hiện nay cho agency thiết kế web.
+
+### G-188 · Hiệu ứng cuộn dùng chung bằng CSS scroll-driven animations — mã cũ S-09
+
+Trang chủ phonglammedia.com đang tự viết CSS `animation-timeline: view()` để đường kẻ tự vẽ và thẻ trượt vào. Nên đưa vào lớp Motion của theme thành tuỳ chọn cho mọi khối: "Hiệu ứng theo cuộn" gồm trượt vào, phóng to, xoay nhẹ, parallax, đường kẻ tự vẽ, với khoảng range bắt đầu/kết thúc. Trình duyệt chưa hỗ trợ thì fallback sang IntersectionObserver. Không tốn JS trên Chrome/Edge mới.
+
+### G-189 · Stacking Cards: bố cục "dòng thời gian so le" — mã cũ S-10
+
+Trang chủ đang dùng CSS riêng (`plm-steps`) để biến Stacking Cards ở chế độ "Danh sách thường" thành dòng thời gian so le trái/phải, có đường giữa tự vẽ và chấm tròn ở mỗi bước. Nên đưa vào theme thành giá trị `mode: "timeline"` với các tuỳ chọn: màu đường, độ dày, kiểu chấm, so le có/không, cột minh hoạ bên nào. Trên điện thoại đường kẻ nằm bên trái.
+
+### G-190 · Bento Grid: số cột và kiểu thẻ kính mờ — mã cũ S-11
+
+Trang chủ đang dùng CSS riêng (`plm-values`) để Bento chia 3 cột và có thẻ kính mờ. Nên thêm vào khối: số cột (2/3/4, riêng theo tablet/mobile) và kiểu thẻ (đặc / kính mờ / viền gradient) với màu viền khi rê chuột.
+
 ## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-107 → G-124)
 
 Mã G-124 (cổng cú pháp) ban đầu ghi là G-106; đổi vì G-106 đã dùng cho việc Icon List (1c7decc). Sổ việc và trạng thái nằm ở `TASKS.md` thư mục làm việc ngoài repo.
