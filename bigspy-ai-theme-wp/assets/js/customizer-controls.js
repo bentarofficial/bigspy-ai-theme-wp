@@ -474,8 +474,22 @@
 					api.previewer.previewUrl(url);
 				}
 			});
+			/* An open panel or section is laid over the top of the sidebar, so the search box
+			   would sit under its sticky header and poke out over the first controls. */
+			var syncSearch = function () {
+				var open = false;
+				['panel', 'section'].forEach(function (type) {
+					api[type].each(function (obj) {
+						if (obj.expanded()) {
+							open = true;
+						}
+					});
+				});
+				$search.toggleClass('is-covered', open);
+			};
 			var watch = function (type) {
 				return function (obj) {
+					obj.expanded.bind(syncSearch);
 					obj.expanded.bind(function (open) {
 						var k = type + ':' + obj.id;
 						if (!open) {
@@ -492,6 +506,8 @@
 			api.section.each(watch('section'));
 			api.section.bind('add', watch('section'));
 			api.panel.each(watch('panel'));
+			api.panel.bind('add', watch('panel'));
+			syncSearch();
 		})();
 		var $input = $search.find('input');
 		var $results = $search.find('.bst-csearch__results');
