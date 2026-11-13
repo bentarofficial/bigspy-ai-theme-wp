@@ -15,7 +15,7 @@
 	"attributes": {
 		"placeholder": {
 			"type": "string",
-			"default": "Search tools, software and services..."
+			"default": ""
 		},
 		"buttonText": {
 			"type": "string",

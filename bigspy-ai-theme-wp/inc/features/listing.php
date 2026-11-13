@@ -6,6 +6,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 
+require_once BST_DIR . '/inc/listing/texts.php';
 require_once BST_DIR . '/inc/listing/core.php';
 require_once BST_DIR . '/inc/listing/compat.php';
 require_once BST_DIR . '/inc/listing/meta-box.php';

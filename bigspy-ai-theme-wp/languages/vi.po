@@ -9705,3 +9705,334 @@ msgstr "Bóng đậm"
 
 msgid "1.93.0: Bento Grid tiles can grow with their content, place text at the top, middle or bottom, fill gaps automatically and skip the hover lift. Stacking Cards gain a Simple list layout with no overlap and a soft shadow. A new Footer scroll effect in Customizer > Footer widgets reveals the footer columns one after another, or slides the page away like a curtain to uncover the footer. Existing content looks the same until you change these options."
 msgstr "1.93.0: Ô Bento Grid có thể cao theo nội dung, đặt chữ ở trên, giữa hoặc dưới, tự lấp chỗ trống và tắt hiệu ứng nâng khi rê chuột. Stacking Cards có thêm bố cục Danh sách thường không chồng thẻ và bóng nhẹ. Mục mới Hiệu ứng cuộn footer trong Tuỳ biến > Footer widgets cho các cột footer hiện dần lần lượt, hoặc kéo nội dung trang lên như tấm rèm để lộ footer. Nội dung hiện có giữ nguyên cho tới khi bạn đổi các tuỳ chọn này."
+
+msgid "listing"
+msgstr "listing"
+
+msgid "listings"
+msgstr "listing"
+
+msgid "tool"
+msgstr "công cụ"
+
+msgid "tools"
+msgstr "công cụ"
+
+msgid "product"
+msgstr "sản phẩm"
+
+msgid "service"
+msgstr "dịch vụ"
+
+msgid "services"
+msgstr "dịch vụ"
+
+msgid "place"
+msgstr "địa điểm"
+
+msgid "places"
+msgstr "địa điểm"
+
+msgid "company"
+msgstr "công ty"
+
+msgid "companies"
+msgstr "công ty"
+
+msgid "Tools"
+msgstr "Công cụ"
+
+msgid "Places"
+msgstr "Địa điểm"
+
+msgid "Companies"
+msgstr "Công ty"
+
+msgid "Custom"
+msgstr "Tuỳ chỉnh"
+
+msgid "Filter toolbar texts"
+msgstr "Chữ trên thanh lọc"
+
+msgid "Listing card texts"
+msgstr "Chữ trên thẻ listing"
+
+msgid "Listing page texts"
+msgstr "Chữ trên trang listing"
+
+msgid "Sponsored texts"
+msgstr "Chữ phần Sponsored"
+
+msgid "Category texts"
+msgstr "Chữ phần danh mục"
+
+msgid "Search field label"
+msgstr "Nhãn ô tìm kiếm"
+
+msgid "Search %s"
+msgstr "Tìm %s"
+
+msgid "Search field placeholder"
+msgstr "Chữ gợi ý trong ô tìm kiếm"
+
+msgid "%s name or keyword"
+msgstr "Tên %s hoặc từ khóa"
+
+msgid "Category field label"
+msgstr "Nhãn ô danh mục"
+
+msgid "First category choice"
+msgstr "Lựa chọn danh mục đầu tiên"
+
+msgid "Sort field label"
+msgstr "Nhãn ô sắp xếp"
+
+msgid "Sort: newest"
+msgstr "Sắp xếp: mới nhất"
+
+msgid "Sort: popular"
+msgstr "Sắp xếp: phổ biến"
+
+msgid "Sort: rating"
+msgstr "Sắp xếp: đánh giá"
+
+msgid "Sort: name"
+msgstr "Sắp xếp: tên"
+
+msgid "Find %s"
+msgstr "Tìm %s"
+
+msgid "Result count: one result"
+msgstr "Số kết quả: một kết quả"
+
+msgid "1 %s found"
+msgstr "Tìm thấy 1 %s"
+
+msgid "Result count: several results (keep %s for the number)"
+msgstr "Số kết quả: nhiều kết quả (giữ %s cho con số)"
+
+msgid "%1$s %2$s found"
+msgstr "Tìm thấy %1$s %2$s"
+
+msgid "Clear filters link"
+msgstr "Liên kết xoá bộ lọc"
+
+msgid "Listing search block placeholder"
+msgstr "Chữ gợi ý của khối tìm kiếm listing"
+
+msgid "Search %s..."
+msgstr "Tìm %s..."
+
+msgid "Featured badge and heading"
+msgstr "Nhãn và tiêu đề Nổi bật"
+
+msgid "Card button"
+msgstr "Nút trên thẻ"
+
+msgid "View more link"
+msgstr "Liên kết xem thêm"
+
+msgid "View more →"
+msgstr "Xem thêm →"
+
+msgid "Price: from"
+msgstr "Giá: từ"
+
+msgid "Price: contact"
+msgstr "Giá: liên hệ"
+
+msgid "Price: quote"
+msgstr "Giá: báo giá"
+
+msgid "Price: varies"
+msgstr "Giá: thay đổi"
+
+msgid "Price: on website"
+msgstr "Giá: trên website"
+
+msgid "Rating, read by screen readers (keep %s for the number)"
+msgstr "Đánh giá, cho trình đọc màn hình (giữ %s cho con số)"
+
+msgid "Key features heading"
+msgstr "Tiêu đề Tính năng chính"
+
+msgid "Pros & Cons heading"
+msgstr "Tiêu đề Ưu & nhược điểm"
+
+msgid "Pros heading"
+msgstr "Tiêu đề Ưu điểm"
+
+msgid "Cons heading"
+msgstr "Tiêu đề Nhược điểm"
+
+msgid "Integrations heading"
+msgstr "Tiêu đề Tích hợp"
+
+msgid "FAQ heading"
+msgstr "Tiêu đề Câu hỏi thường gặp"
+
+msgid "Related resources heading"
+msgstr "Tiêu đề Tài nguyên liên quan"
+
+msgid "Related listings heading"
+msgstr "Tiêu đề Listing liên quan"
+
+msgid "Related %s"
+msgstr "%s liên quan"
+
+msgid "Categories heading"
+msgstr "Tiêu đề Danh mục"
+
+msgid "Last updated label"
+msgstr "Nhãn Cập nhật lần cuối"
+
+msgid "Fact: pricing"
+msgstr "Thông tin: giá"
+
+msgid "Fact: company"
+msgstr "Thông tin: công ty"
+
+msgid "Fact: founded"
+msgstr "Thông tin: năm thành lập"
+
+msgid "Fact: free trial"
+msgstr "Thông tin: dùng thử miễn phí"
+
+msgid "Fact: API"
+msgstr "Thông tin: API"
+
+msgid "Fact: category"
+msgstr "Thông tin: danh mục"
+
+msgid "Fact: rating"
+msgstr "Thông tin: đánh giá"
+
+msgid "Fact value: yes"
+msgstr "Giá trị: có"
+
+msgid "Fact value: no"
+msgstr "Giá trị: không"
+
+msgid "Sponsored badge and label"
+msgstr "Nhãn Sponsored"
+
+msgid "Sponsored-by pill"
+msgstr "Nhãn \"Sponsored by\""
+
+msgid "Sponsored button"
+msgstr "Nút Sponsored"
+
+msgid "Sponsor heading in the sidebar"
+msgstr "Tiêu đề Nhà tài trợ ở sidebar"
+
+msgid "Disclosure: first words"
+msgstr "Dòng công bố: chữ mở đầu"
+
+msgid "Sponsored %s."
+msgstr "%s được tài trợ."
+
+msgid "Disclosure: sentence (keep %1$s for the sponsor and %2$s for the site name)"
+msgstr "Dòng công bố: câu (giữ %1$s cho nhà tài trợ và %2$s cho tên site)"
+
+msgid "Affiliate disclosure"
+msgstr "Công bố affiliate"
+
+msgid "Affiliate disclosure link"
+msgstr "Liên kết công bố affiliate"
+
+msgid "View all categories link"
+msgstr "Liên kết xem tất cả danh mục"
+
+msgid "View all categories →"
+msgstr "Xem tất cả danh mục →"
+
+msgid "Listings in a category: one"
+msgstr "Số listing trong danh mục: một"
+
+msgid "1 %s"
+msgstr "1 %s"
+
+msgid "Listings in a category: several (keep %s for the number)"
+msgstr "Số listing trong danh mục: nhiều (giữ %s cho con số)"
+
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+msgid "Homepage shortcuts, read by screen readers (keep %s for the site name)"
+msgstr "Lối tắt trang chủ, cho trình đọc màn hình (giữ %s cho tên site)"
+
+msgid "Listing texts"
+msgstr "Chữ hiển thị của listing"
+
+msgid "Every word BIGSPY AI List mode shows to visitors. Choose what the site calls a listing and all texts follow; fill a field only to replace that one text. An empty field uses the text shown in grey."
+msgstr "Mọi chữ chế độ BIGSPY AI List hiển thị cho khách. Chọn cách site gọi một listing, mọi chữ sẽ đổi theo; chỉ điền một ô khi muốn thay riêng chữ đó. Ô trống dùng chữ màu xám đang hiện."
+
+msgid "Call a listing"
+msgstr "Gọi listing là"
+
+msgid "Used in the search field, button, result count and headings. Publish and reload to see the new defaults in the fields below."
+msgstr "Dùng ở ô tìm kiếm, nút, số kết quả và tiêu đề. Bấm Đăng rồi tải lại để thấy chữ mặc định mới trong các ô bên dưới."
+
+msgid "Custom name, singular"
+msgstr "Tên tuỳ chỉnh, số ít"
+
+msgid "Only with \"Custom\". Example: hotel"
+msgstr "Chỉ dùng với \"Tuỳ chỉnh\". Ví dụ: khách sạn"
+
+msgid "Custom name, plural"
+msgstr "Tên tuỳ chỉnh, số nhiều"
+
+msgid "Only with \"Custom\". Example: hotels"
+msgstr "Chỉ dùng với \"Tuỳ chỉnh\". Ví dụ: khách sạn"
+
+msgid "Filter toolbar"
+msgstr "Thanh lọc"
+
+msgid "The bar above listings on the Listings page and category pages. With everything off, no bar is printed."
+msgstr "Thanh phía trên danh sách ở trang Listings và trang danh mục. Tắt hết thì không in thanh này."
+
+msgid "Show the search field"
+msgstr "Hiện ô tìm kiếm"
+
+msgid "Show the category field"
+msgstr "Hiện ô danh mục"
+
+msgid "Categories in the field"
+msgstr "Danh mục trong ô chọn"
+
+msgid "Top level only"
+msgstr "Chỉ cấp 1"
+
+msgid "Top level and subcategories"
+msgstr "Cấp 1 và danh mục con"
+
+msgid "Show the sort field"
+msgstr "Hiện ô sắp xếp"
+
+msgid "Sort choice: newest first"
+msgstr "Kiểu sắp xếp: mới nhất"
+
+msgid "Sort choice: most popular"
+msgstr "Kiểu sắp xếp: phổ biến nhất"
+
+msgid "Sort choice: top rated"
+msgstr "Kiểu sắp xếp: đánh giá cao nhất"
+
+msgid "Sort choice: name A–Z"
+msgstr "Kiểu sắp xếp: tên A–Z"
+
+msgid "Default sort"
+msgstr "Sắp xếp mặc định"
+
+msgid "The order before a visitor picks one."
+msgstr "Thứ tự trước khi khách chọn kiểu sắp xếp."
+
+msgid "Store default"
+msgstr "Mặc định của cửa hàng"
+
+msgid "Show the result count"
+msgstr "Hiện số kết quả"
+
+msgid "Show the \"Clear filters\" link"
+msgstr "Hiện liên kết \"Xoá bộ lọc\""
+

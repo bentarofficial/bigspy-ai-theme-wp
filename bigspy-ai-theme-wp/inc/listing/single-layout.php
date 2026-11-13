@@ -84,7 +84,7 @@ function bst_listing_header_html( $post_id ) {
 	$out     = '<section class="bst-ls-hero">';
 	$out    .= $thumb ? '<span class="bst-ls-hero__mark" aria-hidden="true">' . get_the_post_thumbnail( $post_id, 'medium', array( 'alt' => '', 'loading' => 'lazy' ) ) . '</span><div class="bst-ls-hero__visual">' . $thumb . '</div>' : '';
 	$out    .= '<div class="bst-ls-hero__intro">';
-	$out    .= bst_listing_is_paid( $post_id ) ? '<span class="bst-listing-badge">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>' : '';
+	$out    .= bst_listing_is_paid( $post_id ) ? '<span class="bst-listing-badge">' . esc_html( bst_listing_text( 'sponsored' ) ) . '</span>' : '';
 	$out    .= '' !== $price ? '<p class="bst-ls-hero__eyebrow">' . esc_html( $price ) . '</p>' : '';
 	$out    .= '<h1 class="bst-ls-hero__title">' . esc_html( get_the_title( $post_id ) ) . '</h1>';
 	$out    .= '' !== $tagline ? '<p class="bst-ls-hero__tagline">' . esc_html( $tagline ) . '</p>' : '';
@@ -114,9 +114,9 @@ function bst_listing_facts_html( $post_id ) {
 /** The parts of the default listing sidebar, in order. */
 function bst_listing_sidebar_parts() {
 	return array(
-		'sponsor'    => __( 'Sponsor', 'bigspy-ai-theme-wp' ),
-		'categories' => __( 'Categories', 'bigspy-ai-theme-wp' ),
-		'related'    => __( 'Related resources', 'bigspy-ai-theme-wp' ),
+		'sponsor'    => bst_listing_text( 'sidebar_sponsor' ),
+		'categories' => bst_listing_text( 'categories' ),
+		'related'    => bst_listing_text( 'related_resources' ),
 	);
 }
 

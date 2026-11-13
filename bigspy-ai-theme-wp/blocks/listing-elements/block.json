@@ -142,7 +142,7 @@
 		},
 		"viewMoreText": {
 			"type": "string",
-			"default": "View more →"
+			"default": ""
 		},
 		"viewMoreDestination": {
 			"type": "string",
@@ -282,7 +282,7 @@
 		},
 		"categoryViewMoreText": {
 			"type": "string",
-			"default": "View all categories →"
+			"default": ""
 		},
 		"viewMoreUrl": {
 			"type": "string",
