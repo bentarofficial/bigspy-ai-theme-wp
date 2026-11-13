@@ -15,6 +15,13 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.95.0 =
+* Listing texts (Customizer > Layout, BIGSPY AI List mode): choose what to call a listing (Listings, Tools, Products, Services, Places, Companies or your own singular and plural) and every default text follows; each text of the filter bar, cards, listing page, Sponsored and categories can be overridden. Filter bar parts (search, category, sort, result count, Clear filters), sort choices and default sort, and category depth can be set. Search, Elements, Sponsored and Listing sidebar blocks use these texts when their own fields are empty.
+* Note for sites already in List mode: they are set to "Tools" once on update, so the filter bar reads as before. A few texts now follow the chosen name, e.g. "12 tools found" (was "12 listings found"), "Related tools", "Sponsored tool.", and the Search block placeholder "Search tools...". Pick "Listings" or fill the field to change them. The Sponsored badge with an empty Badge text now shows "Sponsored by".
+* Listing disclosure: the affiliate commission line is off by default ("Sponsored line only"); the new "Sponsored and affiliate lines" choice shows it. Sites that chose a value keep it.
+* Stacking Cards and Flip Box look the same in the editor as on the published page; Stacking Cards has Edit cards / Preview stack, Flip Box has Front / Back toolbar buttons.
+* Fix: the Customizer search box no longer overlaps the first control of an open panel or section.
+
 = 1.94.1 =
 * Fix: a script error on every page ("root is not defined", added with the Nav menu click sub-menus in 1.94.0) stopped the block scripts that run after it.
 
