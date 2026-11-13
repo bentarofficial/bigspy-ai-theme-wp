@@ -219,6 +219,7 @@ li.bst-group-member:has(+ li:not(.bst-group-member)), li.bst-group-member:last-c
 li.bst-group-hidden { display: none !important; }
 /* Search */
 .bst-csearch { position: relative; margin: 10px 12px 6px; }
+.bst-csearch.is-covered { display: none; }
 .bst-csearch .dashicons { position: absolute; top: 8px; left: 9px; color: #8c8f94; }
 .bst-csearch__input { width: 100%; padding: 6px 10px 6px 32px !important; border-radius: 8px !important; }
 .bst-csearch__results { position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 100; max-height: 60vh; margin: 0; padding: 4px; overflow: auto; list-style: none; background: #fff; border: 1px solid #c3c4c7; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, .15); }

@@ -20,7 +20,7 @@
 		},
 		"badgeText": {
 			"type": "string",
-			"default": "Sponsored by"
+			"default": ""
 		},
 		"alignment": {
 			"type": "string",

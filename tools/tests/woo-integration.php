@@ -244,6 +244,115 @@ try {
 	bst_test( '' === $hs || ( str_contains( $hs, 'data-bst-sponsored="0"' ) && str_contains( $hs, 'data-context="home"' ) ), 'listing: homepage Sponsored-by brand joins the rotation' );
 	$bar = bst_shop_toolbar_html();
 	bst_test( str_contains( $bar, 'name="product_cat"' ) && str_contains( $bar, 'name="orderby"' ) && str_contains( $bar, 'name="s"' ), 'listing: shop toolbar has search, category and sort' );
+
+	// G-167 Listing texts: one name for a listing builds every default; each text and toolbar part is editable.
+	global $wp_query;
+	$has = function ( $html, ...$needles ) {
+		foreach ( $needles as $needle ) {
+			if ( false === strpos( $html, $needle ) ) {
+				return false;
+			}
+		}
+		return true;
+	};
+	$clear_lt = function () {
+		foreach ( array_keys( (array) get_theme_mods() ) as $k ) {
+			if ( 0 === strpos( (string) $k, 'lt_' ) ) {
+				remove_theme_mod( $k );
+			}
+		}
+	};
+	$clear_lt();
+	$wp_query->found_posts = 12;
+	$default_bar           = bst_shop_toolbar_html();
+	bst_test( $has( $default_bar, '<span>Search listings</span>', 'placeholder="Listing name or keyword"', '>Find listings</button>', '12 listings found', 'All categories', 'Newest first' ), 'texts: a new site says "listings" everywhere in the toolbar' );
+	set_theme_mod( 'lt_noun', 'tools' );
+	bst_test( $has( bst_shop_toolbar_html(), '<span>Search tools</span>', 'placeholder="Tool name or keyword"', '>Find tools</button>' ), 'texts: "Tools" keeps the words the toolbar used before' );
+	set_theme_mod( 'lt_noun', 'products' );
+	$bar = bst_shop_toolbar_html();
+	bst_test( $has( $bar, '<span>Search products</span>', '>Find products</button>', '12 products found', 'placeholder="Product name or keyword"' ), 'texts: "Products" changes search label, button, placeholder and count' );
+	$wp_query->found_posts = 1;
+	bst_test( $has( bst_shop_toolbar_html(), '1 product found' ), 'texts: one result uses the singular name' );
+	$wp_query->found_posts = 12;
+	bst_test( 'Sponsored product.' === bst_listing_text( 'sponsored_listing' ) && 'Related products' === bst_listing_text( 'related_listings' ) && '3 products' === bst_listing_count_text( 3, 'cat_count' ) && '1 product' === bst_listing_count_text( 1, 'cat_count' ), 'texts: cards, listing page and category counts follow the name' );
+	bst_test( $has( $block( 'bigspy/search' ), 'placeholder="Search products..."' ) && $has( $block( 'bigspy/search', array( 'placeholder' => 'Type here' ) ), 'placeholder="Type here"' ), 'texts: bigspy/search placeholder follows the name unless the block sets one' );
+	set_theme_mod( 'lt_search_button', 'Search' );
+	$bar = bst_shop_toolbar_html();
+	bst_test( $has( $bar, '>Search</button>', '<span>Search products</span>', '12 products found' ) && ! $has( $bar, 'Find products' ), 'texts: overriding the button changes only the button' );
+	set_theme_mod( 'lt_count_many', 'Results' );
+	bst_test( $has( bst_shop_toolbar_html(), '12 products found' ), 'texts: a count override without %s falls back to the default' );
+	set_theme_mod( 'lt_count_many', '%s results' );
+	bst_test( $has( bst_shop_toolbar_html(), '12 results' ), 'texts: a count override keeps the number' );
+	set_theme_mod( 'lt_featured', 'Editor pick' );
+	set_theme_mod( 'lt_card_visit', 'Open' );
+	$grid = $block( 'bigspy/listing-grid', array( 'limit' => 10 ) );
+	bst_test( $has( $grid, 'Editor pick' ) && ! $has( $grid, '>Featured<' ), 'texts: the Featured badge on cards is editable' );
+	set_theme_mod( 'lt_categories', 'Topics' );
+	set_theme_mod( 'lt_key_features', 'Highlights' );
+	bst_test( 'Topics' === bst_listing_sidebar_parts()['categories'] && 'Highlights' === bst_listing_text( 'key_features' ), 'texts: listing page headings are editable' );
+	set_theme_mod( 'lt_search_button', '' );
+	set_theme_mod( 'lt_count_many', '   ' );
+	bst_test( $has( bst_shop_toolbar_html(), '>Find products</button>', '12 products found' ), 'texts: an empty field uses the default again' );
+	$clear_lt();
+	bst_test( bst_shop_toolbar_html() === $default_bar, 'texts: removing the settings restores the default toolbar' );
+	set_theme_mod( 'lt_noun', 'custom' );
+	set_theme_mod( 'lt_noun_singular', 'hotel' );
+	set_theme_mod( 'lt_noun_plural', 'hotels' );
+	bst_test( $has( bst_shop_toolbar_html(), '<span>Search hotels</span>', 'placeholder="Hotel name or keyword"', '12 hotels found' ), 'texts: custom singular and plural names' );
+	$vi = function ( $translation, $text ) {
+		return array( 'Find %s' => 'Tìm %s', 'Clear filters' => 'Xoá bộ lọc' )[ $text ] ?? $translation;
+	};
+	add_filter( 'gettext', $vi, 10, 2 );
+	set_theme_mod( 'lt_noun_plural', 'khách sạn' );
+	bst_test( 'Tìm khách sạn' === bst_listing_text( 'search_button' ) && 'Xoá bộ lọc' === bst_listing_text( 'clear_filters' ), 'texts: templates are still translated, the typed name is printed as typed' );
+	remove_filter( 'gettext', $vi, 10 );
+	$clear_lt();
+
+	set_theme_mod( 'lt_bar_sort', false );
+	$bar = bst_shop_toolbar_html();
+	bst_test( ! $has( $bar, 'name="orderby"' ) && $has( $bar, 'name="s"', 'name="product_cat"' ), 'toolbar: the sort field can be hidden' );
+	remove_theme_mod( 'lt_bar_sort' );
+	set_theme_mod( 'lt_bar_sort_rating', false );
+	set_theme_mod( 'lt_bar_sort_default', 'title' );
+	$bar = bst_shop_toolbar_html();
+	bst_test( ! $has( $bar, 'value="rating"' ) && 1 === preg_match( '/value="title"[^>]*selected/', $bar ) && 'title' === apply_filters( 'woocommerce_default_catalog_orderby', 'menu_order' ), 'toolbar: sort choices and the default sort are selectable' );
+	remove_theme_mod( 'lt_bar_sort_default' );
+	bst_test( 'menu_order' === apply_filters( 'woocommerce_default_catalog_orderby', 'menu_order' ), 'toolbar: without a default sort the store order is kept' );
+	foreach ( array( 'search', 'category', 'sort' ) as $part ) {
+		set_theme_mod( 'lt_bar_' . $part, false );
+	}
+	$bar = bst_shop_toolbar_html();
+	bst_test( ! $has( $bar, '<form' ) && ! $has( $bar, '<button' ) && $has( $bar, '12 listings found' ), 'toolbar: with no field left only the count is printed, without a form' );
+	set_theme_mod( 'lt_bar_count', false );
+	set_theme_mod( 'lt_bar_clear', false );
+	bst_test( '' === bst_shop_toolbar_html(), 'toolbar: everything off prints nothing' );
+	$clear_lt();
+	set_theme_mod( 'lt_bar_count', false );
+	$bar = bst_shop_toolbar_html();
+	bst_test( $has( $bar, '<form' ) && ! $has( $bar, 'bst-shopbar__count' ), 'toolbar: the result count can be hidden' );
+	$clear_lt();
+	$kid = wp_insert_term( 'Copy AI', 'product_cat', array( 'parent' => $cat['term_id'] ) );
+	wp_set_object_terms( $a2, array( (int) $cat['term_id'], (int) $kid['term_id'] ), 'product_cat' );
+	delete_option( 'product_cat_children' );
+	bst_test( ! $has( bst_shop_toolbar_html(), 'Copy AI' ), 'toolbar: the category field lists top categories by default' );
+	set_theme_mod( 'lt_bar_cat_depth', '2' );
+	bst_test( $has( bst_shop_toolbar_html(), '>— Copy AI</option>' ), 'toolbar: subcategories can be listed too' );
+	$clear_lt();
+
+	delete_option( 'bst_listing_texts_init' );
+	bst_listing_texts_migrate();
+	bst_test( 'tools' === get_theme_mod( 'lt_noun' ) && get_option( 'bst_listing_texts_init' ), 'texts: a site already in List mode keeps "tools" on the first update' );
+	set_theme_mod( 'lt_noun', 'services' );
+	bst_listing_texts_migrate();
+	bst_test( 'services' === get_theme_mod( 'lt_noun' ), 'texts: the migration runs once and never overwrites a choice' );
+	$clear_lt();
+	delete_option( 'bst_listing_texts_init' );
+	update_option( 'bst_features', array() );
+	bst_listing_texts_migrate();
+	bst_test( false === get_theme_mod( 'lt_noun', false ), 'texts: a site without List mode starts with "listings"' );
+	update_option( 'bst_features', array( 'listing' ) );
+	$ids = array_column( bst_customizer_fields(), 'id' );
+	bst_test( in_array( 'lt_noun', $ids, true ) && in_array( 'lt_search_button', $ids, true ) && in_array( 'lt_bar_sort', $ids, true ) && isset( bst_customizer_sections()['bst_listing_texts'] ), 'texts: the Customizer has the Listing texts section and fields' );
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }

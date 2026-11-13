@@ -53,7 +53,7 @@ function bst_listing_card( $post_id, $args = array() ) {
 	$out   .= $mark ? '<span class="bst-lcard__watermark" aria-hidden="true">' . $mark . '</span>' : '';
 	$out   .= '<a class="bst-lcard__cover" href="' . esc_url( $link ) . '" aria-label="' . esc_attr( $title ) . '"></a>';
 	if ( $paid || $feat ) {
-		$out .= '<span class="bst-lcard__badge">' . esc_html( $paid ? __( 'Sponsored', 'bigspy-ai-theme-wp' ) : __( 'Featured', 'bigspy-ai-theme-wp' ) ) . '</span>';
+		$out .= '<span class="bst-lcard__badge">' . esc_html( bst_listing_text( $paid ? 'sponsored' : 'featured' ) ) . '</span>';
 	}
 	$out .= '<div class="bst-lcard__in">';
 	$out .= $args['showLogo'] ? '<div class="bst-lcard__brand">' . $logo . '</div>' : '';
@@ -76,7 +76,7 @@ function bst_listing_card( $post_id, $args = array() ) {
 	$cta = '';
 	if ( $args['showCTA'] ) {
 		$url = bst_listing_url( $post_id );
-		$cta = '<a class="bst-lcard__cta" href="' . esc_url( $url ) . '"' . ( $url !== $link ? ' target="_blank" rel="sponsored noopener"' : '' ) . '>' . esc_html__( 'Visit', 'bigspy-ai-theme-wp' ) . '</a>';
+		$cta = '<a class="bst-lcard__cta" href="' . esc_url( $url ) . '"' . ( $url !== $link ? ' target="_blank" rel="sponsored noopener"' : '' ) . '>' . esc_html( bst_listing_text( 'card_visit' ) ) . '</a>';
 	}
 	$top  = 'top' === ( $args['ctaPosition'] ?? 'bottom' );
 	$body .= $top ? '' : $cta;
@@ -175,7 +175,7 @@ function bst_render_category_grid( $a ) {
 		$out .= '<a class="bst-lcat" href="' . esc_url( get_term_link( $term ) ) . '">' . $img . '<span class="bst-lcat__name">' . esc_html( $term->name ) . '</span>';
 		if ( $a['showCount'] ?? true ) {
 			/* translators: %s: number of listings */
-			$out .= '<span class="bst-lcat__count">' . esc_html( sprintf( _n( '%s listing', '%s listings', $term->count, 'bigspy-ai-theme-wp' ), number_format_i18n( $term->count ) ) ) . '</span>';
+			$out .= '<span class="bst-lcat__count">' . esc_html( bst_listing_count_text( $term->count, 'cat_count' ) ) . '</span>';
 		}
 		if ( ! empty( $a['showDescription'] ) && '' !== $term->description ) {
 			$out .= '<span class="bst-lcat__desc">' . esc_html( wp_trim_words( $term->description, 18, '…' ) ) . '</span>';
@@ -258,7 +258,7 @@ function bst_le_view_more_url( $a, $type, $context_terms = array() ) {
 /** View more: a link, or a button that loads the next items in place (assets/js/listing-elements.js). */
 function bst_le_view_more( $a, $type, $shown, $text, $url ) {
 	$align = bst_le_pick( $a, 'seeMoreAlignment', array( 'left', 'center', 'right' ), 'right' );
-	$text  = '' !== trim( (string) $text ) ? $text : __( 'View more →', 'bigspy-ai-theme-wp' );
+	$text  = '' !== trim( (string) $text ) ? $text : bst_listing_text( 'view_more' );
 	if ( 'categories' !== $type && 'load' === ( $a['viewMoreBehavior'] ?? 'redirect' ) ) {
 		$next = $a;
 		unset( $next['className'], $next['style'], $next['lock'], $next['metadata'] );
@@ -368,7 +368,7 @@ function bst_render_listing_elements( $a ) {
 			)
 		);
 		if ( $body && ( $a['categoryShowViewMore'] ?? false ) ) {
-			$more = bst_le_view_more( $a, 'categories', 0, $a['categoryViewMoreText'] ?? __( 'View all categories →', 'bigspy-ai-theme-wp' ), bst_le_view_more_url( array( 'viewMoreDestination' => 'categories' ), 'categories' ) );
+			$more = bst_le_view_more( $a, 'categories', 0, '' !== trim( (string) ( $a['categoryViewMoreText'] ?? '' ) ) ? $a['categoryViewMoreText'] : bst_listing_text( 'view_all_cats' ), bst_le_view_more_url( array( 'viewMoreDestination' => 'categories' ), 'categories' ) );
 		}
 	} elseif ( 'sponsored' === $type ) {
 		// The old [bigspy_sponsored_grid]: rotating Sponsored cards, as a Listing elements option.

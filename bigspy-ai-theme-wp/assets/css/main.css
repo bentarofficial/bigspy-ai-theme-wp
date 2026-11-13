@@ -1092,6 +1092,16 @@ li.is-open > .bs-submenu-toggle svg {
 }
 
 /* ---------------------------------------------------------------- Content */
+/* Same block spacing as the editor (theme.json blockGap), so stacked blocks never touch once published.
+   Zero specificity: any block or author margin still wins; full-width sections stay flush. */
+:where(.bs-content) > * + * {
+	margin-block-start: var(--wp--style--block-gap, 1.2rem);
+}
+
+:where(.bs-content) > .alignfull + .alignfull {
+	margin-block-start: 0;
+}
+
 .bs-content > *:last-child {
 	margin-bottom: 0;
 }

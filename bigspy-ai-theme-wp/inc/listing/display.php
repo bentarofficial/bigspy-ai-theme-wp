@@ -43,7 +43,7 @@ add_action(
 		if ( ! $items ) {
 			return;
 		}
-		echo '<section class="bst-listing-faq"><h2>' . esc_html__( 'Frequently asked questions', 'bigspy-ai-theme-wp' ) . '</h2>';
+		echo '<section class="bst-listing-faq"><h2>' . esc_html( bst_listing_text( 'faq' ) ) . '</h2>';
 		foreach ( $items as $item ) {
 			echo '<details><summary>' . esc_html( $item['question'] ) . '</summary><div>' . wp_kses_post( wpautop( $item['answer'] ) ) . '</div></details>';
 		}

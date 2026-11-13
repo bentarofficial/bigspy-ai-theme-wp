@@ -9482,6 +9482,176 @@ msgstr "Hiện phần này cho listing đang xem. Chưa có gì để xem trư�
 msgid "1.92.0: Listing pages get their own sidebar: add widgets or the new Listing sidebar block (Sponsor, Categories, Related resources), or keep the default one. The listing disclosure line can show sponsorship and affiliate notes, only the sponsorship note, or nothing. Social icons add Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps and custom links, with grid or vertical layouts, hover effects and tooltips; Share adds Telegram, Messenger, Print and floating or bottom bars; Payment icons add NAPAS, card and dark styles and your own logos."
 msgstr "1.92.0: Trang listing có sidebar riêng: thêm widget hoặc khối Listing sidebar mới (Sponsor, Categories, Related resources), hoặc giữ sidebar mặc định. Dòng công bố trên listing có thể hiện cả ghi chú tài trợ và affiliate, chỉ ghi chú tài trợ, hoặc ẩn. Social thêm Telegram, Threads, GitHub, Discord, Shopee, Lazada, Google Maps và liên kết tuỳ chỉnh, bố cục lưới hoặc dọc, hiệu ứng rê chuột và tooltip; Share thêm Telegram, Messenger, In và thanh nổi hoặc thanh đáy; Payment icons thêm NAPAS, kiểu thẻ và nền tối cùng logo riêng."
 
+msgid "Show the map"
+msgstr "Xem bản đồ"
+
+msgid "Sub-menu"
+msgstr "Menu con"
+
+msgid "Separated by lines"
+msgstr "Ngăn bằng vạch"
+
+msgid "Slide-in drawer"
+msgstr "Ngăn kéo trượt vào"
+
+msgid "Stacked, sub-menus fold"
+msgstr "Xếp dọc, menu con gập lại"
+
+msgid "Open sub-menus"
+msgstr "Mở menu con"
+
+msgid "On hover"
+msgstr "Khi rê chuột"
+
+msgid "On click"
+msgstr "Khi bấm"
+
+msgid "Levels shown (0 = default)"
+msgstr "Số cấp hiển thị (0 = mặc định)"
+
+msgid "Space on mobile (px, 0 = default)"
+msgstr "Khoảng cách trên điện thoại (px, 0 = mặc định)"
+
+msgid "Item padding (px, -1 = default)"
+msgstr "Đệm mỗi mục (px, -1 = mặc định)"
+
+msgid "Current page text"
+msgstr "Chữ trang hiện tại"
+
+msgid "Current page background"
+msgstr "Nền trang hiện tại"
+
+msgid "CSS selector that opens it"
+msgstr "Bộ chọn CSS để mở"
+
+msgid "For example .open-offer or #buy-now"
+msgstr "Ví dụ .open-offer hoặc #buy-now"
+
+msgid "Seconds without activity"
+msgstr "Số giây không thao tác"
+
+msgid "Click on any element (CSS selector)"
+msgstr "Bấm vào phần tử bất kỳ (bộ chọn CSS)"
+
+msgid "After no activity"
+msgstr "Sau một lúc không thao tác"
+
+msgid "When this spot is reached (place at the end of the post)"
+msgstr "Khi cuộn tới chỗ này (đặt ở cuối bài)"
+
+msgid "Who sees it"
+msgstr "Ai thấy"
+
+msgid "All devices"
+msgstr "Mọi thiết bị"
+
+msgid "Desktop and tablet only"
+msgstr "Chỉ máy tính và máy tính bảng"
+
+msgid "Phones only"
+msgstr "Chỉ điện thoại"
+
+msgid "Logged-in only"
+msgstr "Chỉ người đã đăng nhập"
+
+msgid "Logged-out only"
+msgstr "Chỉ người chưa đăng nhập"
+
+msgid "Show from (YYYY-MM-DD)"
+msgstr "Hiện từ ngày (YYYY-MM-DD)"
+
+msgid "Show until (YYYY-MM-DD)"
+msgstr "Hiện đến ngày (YYYY-MM-DD)"
+
+msgid "Close a few seconds after a form is sent"
+msgstr "Tự đóng vài giây sau khi gửi form"
+
+msgid "Side panel left"
+msgstr "Bảng bên trái"
+
+msgid "Thin bar at the top (no overlay)"
+msgstr "Thanh mỏng ở trên (không phủ nền)"
+
+msgid "Thin bar at the bottom (no overlay)"
+msgstr "Thanh mỏng ở dưới (không phủ nền)"
+
+msgid "Full screen, content centered"
+msgstr "Toàn màn hình, nội dung ở giữa"
+
+msgid "Opening effect"
+msgstr "Hiệu ứng mở"
+
+msgid "Rise"
+msgstr "Nổi lên"
+
+msgid "Width (px, 0 = by size)"
+msgstr "Bề rộng (px, 0 = theo kích thước)"
+
+msgid "Large"
+msgstr "Lớn"
+
+msgid "Close button"
+msgstr "Nút đóng"
+
+msgid "Plain ×"
+msgstr "× đơn giản"
+
+msgid "× in a circle"
+msgstr "× trong vòng tròn"
+
+msgid "“Close ×” text"
+msgstr "Chữ “Đóng ×”"
+
+msgid "Close button position"
+msgstr "Vị trí nút đóng"
+
+msgid "Outside the corner"
+msgstr "Ngoài góc"
+
+msgid "Overlay color"
+msgstr "Màu lớp phủ"
+
+msgid "Height on tablet (px, 0 = same)"
+msgstr "Chiều cao trên máy tính bảng (px, 0 = như máy tính)"
+
+msgid "Height on mobile (px, 0 = same)"
+msgstr "Chiều cao trên điện thoại (px, 0 = như máy tính)"
+
+msgid "Aspect ratio (instead of height)"
+msgstr "Tỉ lệ khung (thay cho chiều cao)"
+
+msgid "Load the map only after a click"
+msgstr "Chỉ tải bản đồ khi bấm"
+
+msgid "Placeholder image"
+msgstr "Ảnh giữ chỗ"
+
+msgid "Info box beside the map (left)"
+msgstr "Khung thông tin cạnh bản đồ (trái)"
+
+msgid "Info box beside the map (right)"
+msgstr "Khung thông tin cạnh bản đồ (phải)"
+
+msgid "Info box above the map"
+msgstr "Khung thông tin trên bản đồ"
+
+msgid "Info box below the map"
+msgstr "Khung thông tin dưới bản đồ"
+
+msgid "Directions button"
+msgstr "Nút chỉ đường"
+
+msgid "Full width"
+msgstr "Toàn chiều rộng"
+
+msgid "Info box background"
+msgstr "Nền khung thông tin"
+
+msgid "Info box text"
+msgstr "Chữ khung thông tin"
+
+msgid "1.94.0: Blocks keep the same spacing on the published page as in the editor, so stacked blocks no longer touch, and Banners on tablets and phones grow to fit their content instead of cutting it off. Map can load on click, set its height per device and place its info box beside, above or below; Popup opens on a CSS selector, after idle time or at the end of a post, with device, login and date rules, new positions and animations; Nav menu adds dividers, accordions, click-to-open sub-menus and a mobile drawer."
+msgstr "1.94.0: Các khối giữ khoảng cách trên trang đã xuất bản giống trong trình soạn thảo, không còn dính nhau, và Banner trên máy tính bảng, điện thoại tự cao theo nội dung thay vì bị cắt. Map có thể tải khi bấm, chỉnh chiều cao theo thiết bị và đặt khung thông tin bên cạnh, phía trên hoặc dưới; Popup mở theo bộ chọn CSS, sau thời gian không thao tác hoặc cuối bài, với quy tắc thiết bị, đăng nhập, ngày, vị trí và hiệu ứng mới; Nav menu thêm vạch ngăn, accordion, mở menu con khi bấm và ngăn kéo trên điện thoại."
 msgid "Stack on scroll"
 msgstr "Xếp chồng khi cuộn"
 
@@ -9535,3 +9705,355 @@ msgstr "Bóng đậm"
 
 msgid "1.93.0: Bento Grid tiles can grow with their content, place text at the top, middle or bottom, fill gaps automatically and skip the hover lift. Stacking Cards gain a Simple list layout with no overlap and a soft shadow. A new Footer scroll effect in Customizer > Footer widgets reveals the footer columns one after another, or slides the page away like a curtain to uncover the footer. Existing content looks the same until you change these options."
 msgstr "1.93.0: Ô Bento Grid có thể cao theo nội dung, đặt chữ ở trên, giữa hoặc dưới, tự lấp chỗ trống và tắt hiệu ứng nâng khi rê chuột. Stacking Cards có thêm bố cục Danh sách thường không chồng thẻ và bóng nhẹ. Mục mới Hiệu ứng cuộn footer trong Tuỳ biến > Footer widgets cho các cột footer hiện dần lần lượt, hoặc kéo nội dung trang lên như tấm rèm để lộ footer. Nội dung hiện có giữ nguyên cho tới khi bạn đổi các tuỳ chọn này."
+
+msgid "listing"
+msgstr "listing"
+
+msgid "listings"
+msgstr "listing"
+
+msgid "tool"
+msgstr "công cụ"
+
+msgid "tools"
+msgstr "công cụ"
+
+msgid "product"
+msgstr "sản phẩm"
+
+msgid "service"
+msgstr "dịch vụ"
+
+msgid "services"
+msgstr "dịch vụ"
+
+msgid "place"
+msgstr "địa điểm"
+
+msgid "places"
+msgstr "địa điểm"
+
+msgid "company"
+msgstr "công ty"
+
+msgid "companies"
+msgstr "công ty"
+
+msgid "Tools"
+msgstr "Công cụ"
+
+msgid "Places"
+msgstr "Địa điểm"
+
+msgid "Companies"
+msgstr "Công ty"
+
+msgid "Custom"
+msgstr "Tuỳ chỉnh"
+
+msgid "Filter toolbar texts"
+msgstr "Chữ trên thanh lọc"
+
+msgid "Listing card texts"
+msgstr "Chữ trên thẻ listing"
+
+msgid "Listing page texts"
+msgstr "Chữ trên trang listing"
+
+msgid "Sponsored texts"
+msgstr "Chữ phần Sponsored"
+
+msgid "Category texts"
+msgstr "Chữ phần danh mục"
+
+msgid "Search field label"
+msgstr "Nhãn ô tìm kiếm"
+
+msgid "Search %s"
+msgstr "Tìm %s"
+
+msgid "Search field placeholder"
+msgstr "Chữ gợi ý trong ô tìm kiếm"
+
+msgid "%s name or keyword"
+msgstr "Tên %s hoặc từ khóa"
+
+msgid "Category field label"
+msgstr "Nhãn ô danh mục"
+
+msgid "First category choice"
+msgstr "Lựa chọn danh mục đầu tiên"
+
+msgid "Sort field label"
+msgstr "Nhãn ô sắp xếp"
+
+msgid "Sort: newest"
+msgstr "Sắp xếp: mới nhất"
+
+msgid "Sort: popular"
+msgstr "Sắp xếp: phổ biến"
+
+msgid "Sort: rating"
+msgstr "Sắp xếp: đánh giá"
+
+msgid "Sort: name"
+msgstr "Sắp xếp: tên"
+
+msgid "Find %s"
+msgstr "Tìm %s"
+
+msgid "Result count: one result"
+msgstr "Số kết quả: một kết quả"
+
+msgid "1 %s found"
+msgstr "Tìm thấy 1 %s"
+
+msgid "Result count: several results (keep %s for the number)"
+msgstr "Số kết quả: nhiều kết quả (giữ %s cho con số)"
+
+msgid "%1$s %2$s found"
+msgstr "Tìm thấy %1$s %2$s"
+
+msgid "Clear filters link"
+msgstr "Liên kết xoá bộ lọc"
+
+msgid "Listing search block placeholder"
+msgstr "Chữ gợi ý của khối tìm kiếm listing"
+
+msgid "Search %s..."
+msgstr "Tìm %s..."
+
+msgid "Featured badge and heading"
+msgstr "Nhãn và tiêu đề Nổi bật"
+
+msgid "Card button"
+msgstr "Nút trên thẻ"
+
+msgid "View more link"
+msgstr "Liên kết xem thêm"
+
+msgid "View more →"
+msgstr "Xem thêm →"
+
+msgid "Price: from"
+msgstr "Giá: từ"
+
+msgid "Price: contact"
+msgstr "Giá: liên hệ"
+
+msgid "Price: quote"
+msgstr "Giá: báo giá"
+
+msgid "Price: varies"
+msgstr "Giá: thay đổi"
+
+msgid "Price: on website"
+msgstr "Giá: trên website"
+
+msgid "Rating, read by screen readers (keep %s for the number)"
+msgstr "Đánh giá, cho trình đọc màn hình (giữ %s cho con số)"
+
+msgid "Key features heading"
+msgstr "Tiêu đề Tính năng chính"
+
+msgid "Pros & Cons heading"
+msgstr "Tiêu đề Ưu & nhược điểm"
+
+msgid "Pros heading"
+msgstr "Tiêu đề Ưu điểm"
+
+msgid "Cons heading"
+msgstr "Tiêu đề Nhược điểm"
+
+msgid "Integrations heading"
+msgstr "Tiêu đề Tích hợp"
+
+msgid "FAQ heading"
+msgstr "Tiêu đề Câu hỏi thường gặp"
+
+msgid "Related resources heading"
+msgstr "Tiêu đề Tài nguyên liên quan"
+
+msgid "Related listings heading"
+msgstr "Tiêu đề Listing liên quan"
+
+msgid "Related %s"
+msgstr "%s liên quan"
+
+msgid "Categories heading"
+msgstr "Tiêu đề Danh mục"
+
+msgid "Last updated label"
+msgstr "Nhãn Cập nhật lần cuối"
+
+msgid "Fact: pricing"
+msgstr "Thông tin: giá"
+
+msgid "Fact: company"
+msgstr "Thông tin: công ty"
+
+msgid "Fact: founded"
+msgstr "Thông tin: năm thành lập"
+
+msgid "Fact: free trial"
+msgstr "Thông tin: dùng thử miễn phí"
+
+msgid "Fact: API"
+msgstr "Thông tin: API"
+
+msgid "Fact: category"
+msgstr "Thông tin: danh mục"
+
+msgid "Fact: rating"
+msgstr "Thông tin: đánh giá"
+
+msgid "Fact value: yes"
+msgstr "Giá trị: có"
+
+msgid "Fact value: no"
+msgstr "Giá trị: không"
+
+msgid "Sponsored badge and label"
+msgstr "Nhãn Sponsored"
+
+msgid "Sponsored-by pill"
+msgstr "Nhãn \"Sponsored by\""
+
+msgid "Sponsored button"
+msgstr "Nút Sponsored"
+
+msgid "Sponsor heading in the sidebar"
+msgstr "Tiêu đề Nhà tài trợ ở sidebar"
+
+msgid "Disclosure: first words"
+msgstr "Dòng công bố: chữ mở đầu"
+
+msgid "Sponsored %s."
+msgstr "%s được tài trợ."
+
+msgid "Disclosure: sentence (keep %1$s for the sponsor and %2$s for the site name)"
+msgstr "Dòng công bố: câu (giữ %1$s cho nhà tài trợ và %2$s cho tên site)"
+
+msgid "Affiliate disclosure"
+msgstr "Công bố affiliate"
+
+msgid "Affiliate disclosure link"
+msgstr "Liên kết công bố affiliate"
+
+msgid "View all categories link"
+msgstr "Liên kết xem tất cả danh mục"
+
+msgid "View all categories →"
+msgstr "Xem tất cả danh mục →"
+
+msgid "Listings in a category: one"
+msgstr "Số listing trong danh mục: một"
+
+msgid "1 %s"
+msgstr "1 %s"
+
+msgid "Listings in a category: several (keep %s for the number)"
+msgstr "Số listing trong danh mục: nhiều (giữ %s cho con số)"
+
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+msgid "Homepage shortcuts, read by screen readers (keep %s for the site name)"
+msgstr "Lối tắt trang chủ, cho trình đọc màn hình (giữ %s cho tên site)"
+
+msgid "Listing texts"
+msgstr "Chữ hiển thị của listing"
+
+msgid "Every word BIGSPY AI List mode shows to visitors. Choose what the site calls a listing and all texts follow; fill a field only to replace that one text. An empty field uses the text shown in grey."
+msgstr "Mọi chữ chế độ BIGSPY AI List hiển thị cho khách. Chọn cách site gọi một listing, mọi chữ sẽ đổi theo; chỉ điền một ô khi muốn thay riêng chữ đó. Ô trống dùng chữ màu xám đang hiện."
+
+msgid "Call a listing"
+msgstr "Gọi listing là"
+
+msgid "Used in the search field, button, result count and headings. Publish and reload to see the new defaults in the fields below."
+msgstr "Dùng ở ô tìm kiếm, nút, số kết quả và tiêu đề. Bấm Đăng rồi tải lại để thấy chữ mặc định mới trong các ô bên dưới."
+
+msgid "Custom name, singular"
+msgstr "Tên tuỳ chỉnh, số ít"
+
+msgid "Only with \"Custom\". Example: hotel"
+msgstr "Chỉ dùng với \"Tuỳ chỉnh\". Ví dụ: khách sạn"
+
+msgid "Custom name, plural"
+msgstr "Tên tuỳ chỉnh, số nhiều"
+
+msgid "Only with \"Custom\". Example: hotels"
+msgstr "Chỉ dùng với \"Tuỳ chỉnh\". Ví dụ: khách sạn"
+
+msgid "Filter toolbar"
+msgstr "Thanh lọc"
+
+msgid "The bar above listings on the Listings page and category pages. With everything off, no bar is printed."
+msgstr "Thanh phía trên danh sách ở trang Listings và trang danh mục. Tắt hết thì không in thanh này."
+
+msgid "Show the search field"
+msgstr "Hiện ô tìm kiếm"
+
+msgid "Show the category field"
+msgstr "Hiện ô danh mục"
+
+msgid "Categories in the field"
+msgstr "Danh mục trong ô chọn"
+
+msgid "Top level only"
+msgstr "Chỉ cấp 1"
+
+msgid "Top level and subcategories"
+msgstr "Cấp 1 và danh mục con"
+
+msgid "Show the sort field"
+msgstr "Hiện ô sắp xếp"
+
+msgid "Sort choice: newest first"
+msgstr "Kiểu sắp xếp: mới nhất"
+
+msgid "Sort choice: most popular"
+msgstr "Kiểu sắp xếp: phổ biến nhất"
+
+msgid "Sort choice: top rated"
+msgstr "Kiểu sắp xếp: đánh giá cao nhất"
+
+msgid "Sort choice: name A–Z"
+msgstr "Kiểu sắp xếp: tên A–Z"
+
+msgid "Default sort"
+msgstr "Sắp xếp mặc định"
+
+msgid "The order before a visitor picks one."
+msgstr "Thứ tự trước khi khách chọn kiểu sắp xếp."
+
+msgid "Store default"
+msgstr "Mặc định của cửa hàng"
+
+msgid "Show the result count"
+msgstr "Hiện số kết quả"
+
+msgid "Show the \"Clear filters\" link"
+msgstr "Hiện liên kết \"Xoá bộ lọc\""
+
+
+msgid "Show the front"
+msgstr "Xem mặt trước"
+
+msgid "Show the back"
+msgstr "Xem mặt sau"
+
+msgid "Edit cards"
+msgstr "Sửa từng thẻ"
+
+msgid "Preview stack"
+msgstr "Xem hiệu ứng"
+
+msgid "Edit cards one by one"
+msgstr "Mở các thẻ ra để sửa từng thẻ"
+
+msgid "Show the stack as on the site"
+msgstr "Xem thẻ xếp chồng như trên website"
+
+msgid "1.95.0: A new Listing texts panel in Customizer > Layout lets you call your listings Tools, Products, Places or your own word and rewrite every text of the filter bar, cards, listing pages, Sponsored and categories, or turn parts of the filter bar off. Stacking Cards and Flip Box now look the same in the editor as on the site. The affiliate commission line on listings is off by default, and the Customizer search box no longer covers open panels."
+msgstr "1.95.0: Bảng Listing texts mới trong Customizer > Layout cho phép gọi listing là Tools, Products, Places hay tên riêng của bạn và sửa mọi chữ của thanh lọc, thẻ, trang listing, Sponsored và danh mục, hoặc tắt từng phần của thanh lọc. Stacking Cards và Flip Box giờ trong trình soạn thảo trông giống hệt trên trang. Dòng hoa hồng affiliate trên listing mặc định tắt, và ô tìm kiếm Customizer không còn che các panel đang mở."

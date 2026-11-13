@@ -157,15 +157,15 @@ function bst_listing_price_label( $post_id = 0 ) {
 		return $get( 'price_custom_text' );
 	}
 	$types  = array(
-		'starting_at'      => __( 'From', 'bigspy-ai-theme-wp' ),
-		'from'             => __( 'From', 'bigspy-ai-theme-wp' ),
+		'starting_at'      => bst_listing_text( 'price_from' ),
+		'from'             => bst_listing_text( 'price_from' ),
 		'price'            => '',
 		'price_range'      => '',
 		'custom'           => '',
-		'contact'          => __( 'Contact for pricing', 'bigspy-ai-theme-wp' ),
-		'quote'            => __( 'Quote required', 'bigspy-ai-theme-wp' ),
-		'variable'         => __( 'Price varies', 'bigspy-ai-theme-wp' ),
-		'price_on_website' => __( 'Price on website', 'bigspy-ai-theme-wp' ),
+		'contact'          => bst_listing_text( 'price_contact' ),
+		'quote'            => bst_listing_text( 'price_quote' ),
+		'variable'         => bst_listing_text( 'price_varies' ),
+		'price_on_website' => bst_listing_text( 'price_on_website' ),
 	);
 	$type   = sanitize_key( $get( 'pricing_type' ) );
 	$prefix = isset( $types[ $type ] ) ? $types[ $type ] : $get( 'pricing_model' );
@@ -207,19 +207,19 @@ function bst_listing_facts( $post_id = 0 ) {
 				$facts[] = array( 'label' => $label, 'value' => (string) $value );
 			}
 		};
-		$add( __( 'Pricing', 'bigspy-ai-theme-wp' ), bst_listing_price_label( $post_id ) );
-		$add( __( 'Company', 'bigspy-ai-theme-wp' ), bst_listing_field( 'company_name', $post_id, '' ) );
-		$add( __( 'Founded', 'bigspy-ai-theme-wp' ), bst_listing_field( 'founded_year', $post_id, '' ) );
-		foreach ( array( 'free_trial' => __( 'Free trial', 'bigspy-ai-theme-wp' ), 'api_available' => __( 'API', 'bigspy-ai-theme-wp' ) ) as $key => $label ) {
+		$add( bst_listing_text( 'fact_pricing' ), bst_listing_price_label( $post_id ) );
+		$add( bst_listing_text( 'fact_company' ), bst_listing_field( 'company_name', $post_id, '' ) );
+		$add( bst_listing_text( 'fact_founded' ), bst_listing_field( 'founded_year', $post_id, '' ) );
+		foreach ( array( 'free_trial' => bst_listing_text( 'fact_free_trial' ), 'api_available' => bst_listing_text( 'fact_api' ) ) as $key => $label ) {
 			$value = bst_listing_field( $key, $post_id, '' );
-			$add( $label, '' === $value ? '' : ( $value ? __( 'Yes', 'bigspy-ai-theme-wp' ) : __( 'No', 'bigspy-ai-theme-wp' ) ) );
+			$add( $label, '' === $value ? '' : ( $value ? bst_listing_text( 'yes' ) : bst_listing_text( 'no' ) ) );
 		}
 	}
 	if ( $category ) {
-		$facts[] = array( 'label' => __( 'Category', 'bigspy-ai-theme-wp' ), 'value' => $category[0]->name );
+		$facts[] = array( 'label' => bst_listing_text( 'fact_category' ), 'value' => $category[0]->name );
 	}
 	if ( $rating ) {
-		$facts[] = array( 'label' => __( 'Rating', 'bigspy-ai-theme-wp' ), 'value' => number_format_i18n( $rating, 1 ) . ' / 5' );
+		$facts[] = array( 'label' => bst_listing_text( 'fact_rating' ), 'value' => number_format_i18n( $rating, 1 ) . ' / 5' );
 	}
 	return $facts;
 }
@@ -315,8 +315,8 @@ function bst_listing_faq( $post_id = 0 ) {
 function bst_listing_disclosure( $post_id = 0 ) {
 	$post_id = bst_listing_id( $post_id );
 	$lines   = array();
-	// Customizer > Listing design: '' shows both lines, 'sponsored' only the Sponsored line, 'none' neither
-	// (for sites that publish one disclosure page instead).
+	// Customizer > Listing design: '' (default) and 'sponsored' show only the Sponsored line, 'all' adds the
+	// affiliate commission line, 'none' shows neither (for sites that publish one disclosure page instead).
 	$show = function_exists( 'bst_mod' ) ? (string) bst_mod( 'ld_disclosure' ) : '';
 	if ( 'none' === $show ) {
 		return '';
@@ -326,13 +326,13 @@ function bst_listing_disclosure( $post_id = 0 ) {
 		$sponsor = '' !== $sponsor ? $sponsor : trim( wp_strip_all_tags( (string) bst_listing_field( 'company_name', $post_id, '' ) ) );
 		$sponsor = '' !== $sponsor ? $sponsor : wp_strip_all_tags( get_the_title( $post_id ) );
 		/* translators: 1: sponsor name, 2: site name */
-		$lines[] = '<strong>' . esc_html__( 'Sponsored listing.', 'bigspy-ai-theme-wp' ) . '</strong> ' . esc_html( sprintf( __( '%1$s paid to be listed on %2$s. Our editorial rules still apply.', 'bigspy-ai-theme-wp' ), $sponsor, get_bloginfo( 'name' ) ) );
+		$lines[] = '<strong>' . esc_html( bst_listing_text( 'sponsored_listing' ) ) . '</strong> ' . esc_html( bst_listing_text( 'sponsored_paid', $sponsor, get_bloginfo( 'name' ) ) );
 	}
-	if ( 'sponsored' !== $show && bst_listing_has_affiliate( $post_id ) ) {
-		$text = esc_html__( 'We may earn a commission if you buy through links on this page, at no extra cost to you. This does not affect our editorial review.', 'bigspy-ai-theme-wp' );
+	if ( 'all' === $show && bst_listing_has_affiliate( $post_id ) ) {
+		$text = esc_html( bst_listing_text( 'affiliate_line' ) );
 		$page = get_page_by_path( 'affiliate-disclosure' );
 		if ( $page && 'publish' === $page->post_status ) {
-			$text .= ' <a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html__( 'Learn more', 'bigspy-ai-theme-wp' ) . '</a>';
+			$text .= ' <a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html( bst_listing_text( 'learn_more' ) ) . '</a>';
 		}
 		$lines[] = $text;
 	}
@@ -345,7 +345,7 @@ function bst_listing_rating_html( $post_id = 0 ) {
 		return '';
 	}
 	/* translators: %s: rating number */
-	return '<span class="bst-listing-rating" aria-label="' . esc_attr( sprintf( __( 'Rating %s out of 5', 'bigspy-ai-theme-wp' ), number_format_i18n( $rating, 1 ) ) ) . '"><span aria-hidden="true">★</span> ' . esc_html( number_format_i18n( $rating, 1 ) ) . '</span>';
+	return '<span class="bst-listing-rating" aria-label="' . esc_attr( bst_listing_text( 'rating_label', number_format_i18n( $rating, 1 ) ) ) . '"><span aria-hidden="true">★</span> ' . esc_html( number_format_i18n( $rating, 1 ) ) . '</span>';
 }
 
 /** Listing summary: tagline, rating, price, facts, button and disclosure. Used by the block and product pages. */
@@ -360,7 +360,7 @@ function bst_listing_info_html( $post_id = 0, $args = array() ) {
 	$facts   = $args['facts'] ? array_slice( bst_listing_facts( $post_id ), 0, max( 1, (int) $args['limit'] ) ) : array();
 	$out     = '<div class="bst-listing-info">';
 	if ( bst_listing_is_paid( $post_id ) ) {
-		$out .= '<span class="bst-listing-badge">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>';
+		$out .= '<span class="bst-listing-badge">' . esc_html( bst_listing_text( 'sponsored' ) ) . '</span>';
 	}
 	if ( $args['tagline'] && '' !== $tagline ) {
 		$out .= '<p class="bst-listing-tagline">' . esc_html( $tagline ) . '</p>';

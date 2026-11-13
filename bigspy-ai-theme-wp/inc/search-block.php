@@ -48,7 +48,8 @@ function bst_render_search_form( $a, $context = 'site' ) {
 	$id      = wp_unique_id( $listing ? 'bst-lsearch-' : 'bst-search-' );
 	$holder  = (string) ( $a['placeholder'] ?? '' );
 	if ( '' === $holder ) {
-		$holder = $listing && ! array_key_exists( 'placeholder', $a ) ? __( 'Search tools, software and services...', 'bigspy-ai-theme-wp' ) : ( $listing ? '' : __( 'Search…', 'bigspy-ai-theme-wp' ) );
+		// Listing search: an empty placeholder takes the one from Customizer > Listing texts.
+		$holder = $listing && function_exists( 'bst_listing_text' ) ? bst_listing_text( 'search_block' ) : __( 'Search…', 'bigspy-ai-theme-wp' );
 	}
 	$align = in_array( $a['alignment'] ?? 'left', array( 'left', 'center', 'right' ), true ) ? $a['alignment'] : 'left';
 	$width = max( 240, min( 1400, (int) ( $a['maxWidth'] ?? 760 ) ) );
@@ -140,7 +141,7 @@ function bst_render_search_form( $a, $context = 'site' ) {
 	}
 
 	$label = trim( (string) ( $a['ariaLabel'] ?? '' ) );
-	$label = '' !== $label ? $label : ( $listing ? __( 'Search listings', 'bigspy-ai-theme-wp' ) : __( 'Search', 'bigspy-ai-theme-wp' ) );
+	$label = '' !== $label ? $label : ( $listing && function_exists( 'bst_listing_text' ) ? bst_listing_text( 'search_label' ) : __( 'Search', 'bigspy-ai-theme-wp' ) );
 	$text  = (string) ( $a['buttonText'] ?? '' );
 	$text  = '' !== $text || ( $listing && array_key_exists( 'buttonText', $a ) ) ? $text : __( 'Search', 'bigspy-ai-theme-wp' );
 

@@ -76,7 +76,7 @@ function bst_category_directory_html() {
 		$anchor   = 'bst-cat-' . $top->term_id;
 		$nav     .= '<li><a href="#' . esc_attr( $anchor ) . '">' . esc_html( $top->name ) . '</a><span>' . esc_html( number_format_i18n( $top->count ) ) . '</span></li>';
 		$children = get_terms( array( 'taxonomy' => 'product_cat', 'child_of' => $top->term_id, 'hide_empty' => true, 'orderby' => 'name' ) );
-		$dir     .= '<section class="bst-catdir__section" id="' . esc_attr( $anchor ) . '"><header><h2><a href="' . esc_url( get_term_link( $top ) ) . '">' . esc_html( $top->name ) . '</a></h2><span>' . esc_html( 1 === (int) $top->count ? __( '1 listing', 'bigspy-ai-theme-wp' ) : sprintf( /* translators: %s: number */ __( '%s listings', 'bigspy-ai-theme-wp' ), number_format_i18n( $top->count ) ) ) . '</span></header>';
+		$dir     .= '<section class="bst-catdir__section" id="' . esc_attr( $anchor ) . '"><header><h2><a href="' . esc_url( get_term_link( $top ) ) . '">' . esc_html( $top->name ) . '</a></h2><span>' . esc_html( bst_listing_count_text( $top->count, 'cat_count' ) ) . '</span></header>';
 		if ( ! is_wp_error( $children ) && $children ) {
 			$dir .= '<div class="bst-catdir__grid">';
 			foreach ( array_slice( $children, 0, 60 ) as $child ) {
@@ -89,8 +89,8 @@ function bst_category_directory_html() {
 			$dir .= bst_sponsored_slot( $i, 'categories' );
 		}
 	}
-	$featured = function_exists( 'bst_render_listing_elements' ) ? bst_render_listing_elements( array( 'elementType' => 'featured', 'title' => __( 'Featured', 'bigspy-ai-theme-wp' ), 'count' => 4, 'showSponsored' => false, 'orderBy' => bst_category_featured_order() ) ) : '';
-	return '<div class="bst-catdir"><nav class="bst-catdir__nav" aria-label="' . esc_attr__( 'Categories', 'bigspy-ai-theme-wp' ) . '"><ul>' . $nav . '</ul></nav><div class="bst-catdir__main">' . $featured . $dir . '</div></div>';
+	$featured = function_exists( 'bst_render_listing_elements' ) ? bst_render_listing_elements( array( 'elementType' => 'featured', 'title' => bst_listing_text( 'featured' ), 'count' => 4, 'showSponsored' => false, 'orderBy' => bst_category_featured_order() ) ) : '';
+	return '<div class="bst-catdir"><nav class="bst-catdir__nav" aria-label="' . esc_attr( bst_listing_text( 'categories' ) ) . '"><ul>' . $nav . '</ul></nav><div class="bst-catdir__main">' . $featured . $dir . '</div></div>';
 }
 
 add_filter(
@@ -112,34 +112,56 @@ add_shortcode(
 	}
 );
 
-/** Search, category and sort toolbar for listing archives. */
+/**
+ * Search, category and sort toolbar for listing archives. Each part has its own switch and
+ * every text comes from Customizer > Listing texts; with all parts off nothing is printed.
+ */
 function bst_shop_toolbar_html() {
-	$shop = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
-	$cat  = isset( $_GET['product_cat'] ) ? sanitize_title( wp_unslash( $_GET['product_cat'] ) ) : ( is_product_category() ? get_queried_object()->slug : '' ); // phpcs:ignore WordPress.Security.NonceVerification
-	$sort = isset( $_GET['orderby'] ) ? sanitize_key( wp_unslash( $_GET['orderby'] ) ) : 'date'; // phpcs:ignore WordPress.Security.NonceVerification
-	$opts = '<option value="">' . esc_html__( 'All categories', 'bigspy-ai-theme-wp' ) . '</option>';
-	$cats = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true, 'orderby' => 'name', 'parent' => 0 ) );
-	foreach ( is_wp_error( $cats ) ? array() : $cats as $term ) {
-		$opts .= '<option value="' . esc_attr( $term->slug ) . '"' . selected( $cat, $term->slug, false ) . '>' . esc_html( $term->name ) . '</option>';
+	$on    = function ( $part ) {
+		$value = bst_mod( 'lt_bar_' . $part );
+		return null === $value || (bool) $value;
+	};
+	$shop  = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+	$cat   = isset( $_GET['product_cat'] ) ? sanitize_title( wp_unslash( $_GET['product_cat'] ) ) : ( is_product_category() ? get_queried_object()->slug : '' ); // phpcs:ignore WordPress.Security.NonceVerification
+	$sorts = $on( 'sort' ) ? bst_listing_toolbar_sorts() : array();
+	$first = bst_listing_toolbar_default_sort();
+	$first = '' !== $first ? $first : 'date';
+	$sort  = isset( $_GET['orderby'] ) ? sanitize_key( wp_unslash( $_GET['orderby'] ) ) : $first; // phpcs:ignore WordPress.Security.NonceVerification
+	$form  = '';
+	if ( $on( 'search' ) ) {
+		$form .= '<label><span>' . esc_html( bst_listing_text( 'search_label' ) ) . '</span><input type="search" name="s" value="' . esc_attr( get_search_query() ) . '" placeholder="' . esc_attr( bst_listing_text( 'search_placeholder' ) ) . '"></label>';
 	}
-	$sorts = array(
-		'date'       => __( 'Newest first', 'bigspy-ai-theme-wp' ),
-		'popularity' => __( 'Most popular', 'bigspy-ai-theme-wp' ),
-		'rating'     => __( 'Top rated', 'bigspy-ai-theme-wp' ),
-		'title'      => __( 'Name A–Z', 'bigspy-ai-theme-wp' ),
-	);
-	$sort_opts = '';
-	foreach ( $sorts as $value => $label ) {
-		$sort_opts .= '<option value="' . esc_attr( $value ) . '"' . selected( $sort, $value, false ) . '>' . esc_html( $label ) . '</option>';
+	if ( $on( 'category' ) ) {
+		$opts = '<option value="">' . esc_html( bst_listing_text( 'all_categories' ) ) . '</option>';
+		$deep = '2' === (string) bst_mod( 'lt_bar_cat_depth' );
+		$cats = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true, 'orderby' => 'name', 'parent' => 0 ) );
+		foreach ( is_wp_error( $cats ) ? array() : $cats as $term ) {
+			$opts .= '<option value="' . esc_attr( $term->slug ) . '"' . selected( $cat, $term->slug, false ) . '>' . esc_html( $term->name ) . '</option>';
+			$kids  = $deep ? get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => true, 'orderby' => 'name', 'parent' => $term->term_id ) ) : array();
+			foreach ( is_wp_error( $kids ) ? array() : $kids as $kid ) {
+				$opts .= '<option value="' . esc_attr( $kid->slug ) . '"' . selected( $cat, $kid->slug, false ) . '>— ' . esc_html( $kid->name ) . '</option>';
+			}
+		}
+		$form .= '<label><span>' . esc_html( bst_listing_text( 'category_label' ) ) . '</span><select name="product_cat">' . $opts . '</select></label>';
+	}
+	if ( $sorts ) {
+		$sort_opts = '';
+		foreach ( $sorts as $value => $label ) {
+			$sort_opts .= '<option value="' . esc_attr( $value ) . '"' . selected( $sort, $value, false ) . '>' . esc_html( $label ) . '</option>';
+		}
+		$form .= '<label><span>' . esc_html( bst_listing_text( 'sort_label' ) ) . '</span><select name="orderby">' . $sort_opts . '</select></label>';
 	}
 	global $wp_query;
-	$out  = '<form class="bst-shopbar" method="get" action="' . esc_url( $shop ) . '" role="search">';
-	$out .= '<label><span>' . esc_html__( 'Search tools', 'bigspy-ai-theme-wp' ) . '</span><input type="search" name="s" value="' . esc_attr( get_search_query() ) . '" placeholder="' . esc_attr__( 'Tool name or keyword', 'bigspy-ai-theme-wp' ) . '"></label>';
-	$out .= '<label><span>' . esc_html__( 'Category', 'bigspy-ai-theme-wp' ) . '</span><select name="product_cat">' . $opts . '</select></label>';
-	$out .= '<label><span>' . esc_html__( 'Sort by', 'bigspy-ai-theme-wp' ) . '</span><select name="orderby">' . $sort_opts . '</select></label>';
-	$out .= '<input type="hidden" name="post_type" value="product"><button type="submit">' . esc_html__( 'Find tools', 'bigspy-ai-theme-wp' ) . '</button>';
-	$out .= '<p class="bst-shopbar__count">' . esc_html( 1 === (int) $wp_query->found_posts ? __( '1 listing found', 'bigspy-ai-theme-wp' ) : sprintf( /* translators: %s: number */ __( '%s listings found', 'bigspy-ai-theme-wp' ), number_format_i18n( (int) $wp_query->found_posts ) ) ) . ( get_search_query() || $cat ? ' <a href="' . esc_url( $shop ) . '">' . esc_html__( 'Clear filters', 'bigspy-ai-theme-wp' ) . '</a>' : '' ) . '</p>';
-	return $out . '</form>';
+	$count = $on( 'count' ) ? esc_html( bst_listing_count_text( (int) $wp_query->found_posts ) ) : '';
+	$clear = $on( 'clear' ) && ( get_search_query() || $cat ) ? '<a href="' . esc_url( $shop ) . '">' . esc_html( bst_listing_text( 'clear_filters' ) ) . '</a>' : '';
+	$tail  = '' !== $count . $clear ? '<p class="bst-shopbar__count">' . $count . ( '' !== $count && '' !== $clear ? ' ' : '' ) . $clear . '</p>' : '';
+	if ( '' === $form ) {
+		// No field left: only the count line, without a form or button.
+		return '' === $tail ? '' : '<div class="bst-shopbar bst-shopbar--bare">' . $tail . '</div>';
+	}
+	$out  = '<form class="bst-shopbar" method="get" action="' . esc_url( $shop ) . '" role="search">' . $form;
+	$out .= '<input type="hidden" name="post_type" value="product"><button type="submit">' . esc_html( bst_listing_text( 'search_button' ) ) . '</button>';
+	return $out . $tail . '</form>';
 }
 
 add_action(

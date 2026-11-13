@@ -153,8 +153,39 @@
 		);
 	}, save: save });
 
+	/* Stacking Cards: the editor uses the same classes and CSS variables as render.php, so the deck looks
+	   and sticks exactly as on the site (the canvas scrolls like the page). "Edit cards" lays them out flat. */
+	function num(v, d) { return undefined === v || null === v || '' === v ? d : v; }
+	function stackDepth(node, doc) {
+		var win = doc.defaultView, ticking = false;
+		function cards() { return Array.prototype.filter.call(node.children, function (c) { return c.classList.contains('bs-stack__card'); }); }
+		function update() {
+			ticking = false;
+			var list = cards();
+			list.forEach(function (card, i) {
+				card.style.setProperty('--i', i);
+				var next = list[i + 1];
+				if (!next || !node.classList.contains('bs-stack--scale')) { card.style.setProperty('--p', 0); return; }
+				var a = card.getBoundingClientRect(), b = next.getBoundingClientRect();
+				card.style.setProperty('--p', Math.min(1, Math.max(0, (a.bottom - b.top) / Math.max(1, a.height))).toFixed(3));
+			});
+		}
+		function onScroll() { if (!ticking) { ticking = true; win.requestAnimationFrame(update); } }
+		var mo = new win.MutationObserver(onScroll);
+		mo.observe(node, { childList: true, attributes: true, attributeFilter: ['class'] });
+		win.addEventListener('scroll', onScroll, { passive: true });
+		update();
+		return function () { mo.disconnect(); win.removeEventListener('scroll', onScroll); };
+	}
 	wp.blocks.registerBlockType('bigspy/stack-cards', { edit: function (props) {
+		var a = props.attributes, list = a.mode === 'list';
+		var editing = wp.element.useState(false), flat = list || editing[0];
+		var depth = wp.compose.useRefEffect(function (node) { return flat ? undefined : stackDepth(node, node.ownerDocument); }, [flat, a.scaleEffect]);
+		var cls = 'bs-stack' + (flat ? ' bs-stack--list' : '') + (a.shadow ? ' bs-stack--shadow' + (a.shadowSize === 'soft' ? ' bs-stack--shadow-soft' : '') : '') + (a.scaleEffect && !flat ? ' bs-stack--scale' : '') + (editing[0] ? ' bst-stack-editing' : '');
+		var style = { '--bs-stack-top': num(a.top, 90) + 'px', '--bs-stack-step': num(a.step, 24) + 'px', '--bs-stack-min': num(a.minHeight, 320) + 'px', '--bs-stack-radius': num(a.radius, 24) + 'px', '--bs-stack-gap': num(a.gap, 40) + 'px' };
+		var inner = be.useInnerBlocksProps(be.useBlockProps({ className: cls, style: style, ref: depth }), { allowedBlocks: ['bigspy/stack-card'], template: [['bigspy/stack-card'], ['bigspy/stack-card'], ['bigspy/stack-card']] });
 		return el(Fragment, null,
+			list ? null : el(be.BlockControls, null, el(c.ToolbarGroup, null, el(c.ToolbarButton, { isPressed: editing[0], label: editing[0] ? __('Show the stack as on the site', T) : __('Edit cards one by one', T), onClick: function () { editing[1](!editing[0]); } }, editing[0] ? __('Preview stack', T) : __('Edit cards', T)))),
 			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Stacking Cards', T) },
 				control(props, 'mode', __('Layout', T), 'select', [['stack', __('Stack on scroll', T)], ['list', __('Simple list (no overlap)', T)]]),
 				control(props, 'top', __('Distance from the top (px)', T), 'range', [0, 400]),
@@ -167,9 +198,7 @@
 				control(props, 'scaleEffect', __('Shrink and dim cards underneath', T), 'toggle'),
 				control(props, 'label', __('Accessible label', T))
 			)),
-			el('div', be.useBlockProps({ className: 'bst-motion-editor bst-stack-editor' }),
-				el(c.Notice, { status: 'info', isDismissible: false }, __('Cards are listed here one under another. On the site they stack as visitors scroll.', T)),
-				el(be.InnerBlocks, { allowedBlocks: ['bigspy/stack-card'], template: [['bigspy/stack-card'], ['bigspy/stack-card'], ['bigspy/stack-card']] }))
+			el('div', inner)
 		);
 	}, save: save });
 
@@ -177,8 +206,8 @@
 		var a = props.attributes;
 		return el(Fragment, null,
 			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Stack card', T) }, colorRow(props, 'background', __('Card background', T)), colorRow(props, 'textColor', __('Text color', T)))),
-			el('div', be.useBlockProps({ className: 'bst-stack-card', style: { background: a.background || '#fff', color: a.textColor || undefined } }),
-				el(be.InnerBlocks, { template: [['bst/heading', { tag: 'h3', text: __('Card title', T) }], ['bst/text', { html: '<p>' + __('Card content.', T) + '</p>' }]] }))
+			el('div', be.useBlockProps({ className: 'bs-stack__card', style: { '--bs-stack-bg': a.background || undefined, '--bs-stack-fg': a.textColor || undefined } }),
+				el('div', be.useInnerBlocksProps({ className: 'bs-stack__inner' }, { template: [['bst/heading', { tag: 'h3', text: __('Card title', T) }], ['bst/text', { html: '<p>' + __('Card content.', T) + '</p>' }]] })))
 		);
 	}, save: save });
 	/* ------------------------------------------------ Motion wave 2 */

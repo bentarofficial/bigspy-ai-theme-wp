@@ -424,10 +424,13 @@ function bst_t_listing() {
 	update_post_meta( $id, '_bigspy_paid_listing', '1' );
 	update_post_meta( $id, 'company_name', 'Acme Inc' );
 	$d = bst_listing_disclosure( $id );
-	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false !== strpos( $d, 'commission' ), 'listing: paid and affiliate disclosure' );
+	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false === strpos( $d, 'commission' ), 'listing: disclosure default is the sponsored line only' );
 	set_theme_mod( 'ld_disclosure', 'sponsored' );
 	$d = bst_listing_disclosure( $id );
 	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false === strpos( $d, 'commission' ), 'listing: disclosure sponsored line only' );
+	set_theme_mod( 'ld_disclosure', 'all' );
+	$d = bst_listing_disclosure( $id );
+	bst_test( false !== strpos( $d, 'Acme Inc paid' ) && false !== strpos( $d, 'commission' ), 'listing: paid and affiliate disclosure' );
 	set_theme_mod( 'ld_disclosure', 'none' );
 	bst_test( '' === bst_listing_disclosure( $id ), 'listing: disclosure hidden' );
 	remove_theme_mod( 'ld_disclosure' );
@@ -712,3 +715,27 @@ $bst_h = $bst_rb( 'bst/payment-icons', array( 'methods' => array( 'visa', 'cod' 
 bst_test( 0 === strpos( $bst_h, '<ul style="--bs-pay-h:36px" class="bs-pay bs-pay--style-color bs-pay--align-left alignleft wp-block-bst-payment-icons" aria-label' ), 'payment-icons: old attributes render as before' );
 $bst_h = $bst_rb( 'bst/payment-icons', array( 'methods' => array( 'napas' ), 'style' => 'card', 'grayHover' => true, 'label' => 'We accept', 'gap' => 12, 'customImages' => array( array( 'imageUrl' => 'https://example.com/logo.png', 'label' => 'MyPay' ) ) ) );
 bst_test( false !== strpos( $bst_h, 'bs-pay-wrap' ) && false !== strpos( $bst_h, 'bs-pay__label">We accept' ) && false !== strpos( $bst_h, 'bs-pay--style-card' ) && false !== strpos( $bst_h, 'is-gray-hover' ) && false !== strpos( $bst_h, 'NAPAS' ) && false !== strpos( $bst_h, 'alt="MyPay"' ) && false !== strpos( $bst_h, '--bs-pay-gap:12px' ), 'payment-icons: napas, card, gray hover, label, custom logo' );
+
+// G-134-d: Map, Popup, Nav menu options; old attributes keep their HTML.
+$bst_rb = function ( $name, $attrs, $content = '' ) {
+	return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => $content, 'innerContent' => array( $content ) ) );
+};
+$bst_h = $bst_rb( 'bst/map', array( 'address' => 'Hanoi' ) );
+bst_test( false !== strpos( $bst_h, '<iframe src="https://maps.google.com/maps?q=Hanoi' ) && false === strpos( $bst_h, 'bs-map__load' ) && false === strpos( $bst_h, '--bs-map-ht' ), 'map: old attributes render as before' );
+$bst_h = $bst_rb( 'bst/map', array( 'address' => 'Hanoi', 'clickToLoad' => true, 'boxTitle' => 'Shop', 'boxPosition' => 'side', 'btnStyle' => 'link', 'heightMobile' => 260, 'ratio' => '16/9', 'shadow' => true ) );
+bst_test( false === strpos( $bst_h, '<iframe' ) && false !== strpos( $bst_h, 'data-bs-map-src="https://maps.google.com/maps?q=Hanoi' ) && false !== strpos( $bst_h, 'bs-map--box-side' ) && false !== strpos( $bst_h, 'class="bs-map__link"' ) && false !== strpos( $bst_h, '--bs-map-hm:260px' ) && false !== strpos( $bst_h, 'has-ratio' ) && false !== strpos( $bst_h, 'has-shadow' ), 'map: click to load, side box, link button, mobile height, ratio' );
+$bst_h = $bst_rb( 'bst/popup', array( 'popupId' => 'p1', 'trigger' => 'delay' ), '<p>Hi</p>' );
+bst_test( false !== strpos( $bst_h, 'class="bs-popup bs-popup--md bs-popup--center wp-block-bst-popup"' ) && false !== strpos( $bst_h, 'aria-label="Close">&times;</button>' ) && false === strpos( $bst_h, 'data-show-on' ), 'popup: old attributes render as before' );
+$bst_h = $bst_rb( 'bst/popup', array( 'popupId' => 'p2', 'trigger' => 'end', 'position' => 'bar-bottom', 'anim' => 'zoom', 'closeStyle' => 'text', 'closePos' => 'outside', 'showOn' => 'mobile', 'width' => 500, 'overlayColor' => '#112233', 'closeOnSubmit' => true ), '<p>Hi</p>' );
+bst_test( false !== strpos( $bst_h, 'data-bs-popup-end="p2"' ) && false !== strpos( $bst_h, 'bs-popup--bar-bottom bs-popup--anim-zoom bs-popup--close-text bs-popup--close-outside' ) && false !== strpos( $bst_h, 'data-show-on="mobile"' ) && false !== strpos( $bst_h, 'data-close-submit="1"' ) && false !== strpos( $bst_h, '--bs-pop-w:500px' ) && false !== strpos( $bst_h, '--bs-pop-ovc:#112233' ) && false !== strpos( $bst_h, 'Close &times;' ), 'popup: end trigger, bar, anim, close button, device, width, overlay' );
+bst_test( '' === $bst_rb( 'bst/popup', array( 'popupId' => 'p3', 'loginState' => 'in' ), 'x' ) || is_user_logged_in(), 'popup: logged-in only hides for guests' );
+bst_test( '' === $bst_rb( 'bst/popup', array( 'popupId' => 'p4', 'dateTo' => '2000-01-01' ), 'x' ), 'popup: hidden after the end date' );
+$bst_menu = wp_create_nav_menu( 'G134 menu' );
+if ( ! is_wp_error( $bst_menu ) ) {
+	$bst_parent = wp_update_nav_menu_item( $bst_menu, 0, array( 'menu-item-title' => 'Parent', 'menu-item-url' => 'https://example.com/a', 'menu-item-status' => 'publish' ) );
+	wp_update_nav_menu_item( $bst_menu, 0, array( 'menu-item-title' => 'Child', 'menu-item-url' => 'https://example.com/b', 'menu-item-status' => 'publish', 'menu-item-parent-id' => $bst_parent ) );
+	$bst_h = $bst_rb( 'bst/nav-menu', array( 'menuId' => $bst_menu ) );
+	bst_test( false !== strpos( $bst_h, 'bs-navmenu--horizontal bs-navmenu--plain bs-navmenu--m-toggle has-text-align-left' ) && false === strpos( $bst_h, 'is-sub-click' ) && false === strpos( $bst_h, 'bs-navmenu__shade' ) && false !== strpos( $bst_h, 'Child' ), 'nav-menu: old attributes render as before' );
+	$bst_h = $bst_rb( 'bst/nav-menu', array( 'menuId' => $bst_menu, 'style' => 'accordion', 'mobile' => 'drawer', 'depth' => 1, 'activeColor' => '#ff0000', 'weight' => '700' ) );
+	bst_test( false !== strpos( $bst_h, 'bs-navmenu--vertical bs-navmenu--accordion bs-navmenu--m-drawer' ) && false !== strpos( $bst_h, 'is-sub-click' ) && false !== strpos( $bst_h, 'bs-navmenu__shade' ) && false === strpos( $bst_h, 'Child' ) && false !== strpos( $bst_h, '--bs-nm-act:#ff0000' ) && false !== strpos( $bst_h, '--bs-nm-fw:700' ), 'nav-menu: accordion, drawer, depth, active color, weight' );
+}

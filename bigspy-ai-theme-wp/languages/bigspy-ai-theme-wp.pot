@@ -13006,6 +13006,160 @@ msgstr ""
 msgid "Add logo"
 msgstr ""
 
+msgid "Show the map"
+msgstr ""
+
+msgid "Sub-menu"
+msgstr ""
+
+msgid "Separated by lines"
+msgstr ""
+
+msgid "Vertical accordion"
+msgstr ""
+
+msgid "Slide-in drawer"
+msgstr ""
+
+msgid "Stacked, sub-menus fold"
+msgstr ""
+
+msgid "Open sub-menus"
+msgstr ""
+
+msgid "On click"
+msgstr ""
+
+msgid "Levels shown (0 = default)"
+msgstr ""
+
+msgid "Space on mobile (px, 0 = default)"
+msgstr ""
+
+msgid "Item padding (px, -1 = default)"
+msgstr ""
+
+msgid "Current page text"
+msgstr ""
+
+msgid "Current page background"
+msgstr ""
+
+msgid "CSS selector that opens it"
+msgstr ""
+
+msgid "For example .open-offer or #buy-now"
+msgstr ""
+
+msgid "Seconds without activity"
+msgstr ""
+
+msgid "Click on any element (CSS selector)"
+msgstr ""
+
+msgid "After no activity"
+msgstr ""
+
+msgid "When this spot is reached (place at the end of the post)"
+msgstr ""
+
+msgid "Who sees it"
+msgstr ""
+
+msgid "Desktop and tablet only"
+msgstr ""
+
+msgid "Phones only"
+msgstr ""
+
+msgid "Logged-in only"
+msgstr ""
+
+msgid "Logged-out only"
+msgstr ""
+
+msgid "Show from (YYYY-MM-DD)"
+msgstr ""
+
+msgid "Show until (YYYY-MM-DD)"
+msgstr ""
+
+msgid "Close a few seconds after a form is sent"
+msgstr ""
+
+msgid "Side panel left"
+msgstr ""
+
+msgid "Thin bar at the top (no overlay)"
+msgstr ""
+
+msgid "Thin bar at the bottom (no overlay)"
+msgstr ""
+
+msgid "Full screen, content centered"
+msgstr ""
+
+msgid "Opening effect"
+msgstr ""
+
+msgid "Rise"
+msgstr ""
+
+msgid "Slide up"
+msgstr ""
+
+msgid "Width (px, 0 = by size)"
+msgstr ""
+
+msgid "Close button"
+msgstr ""
+
+msgid "Plain ×"
+msgstr ""
+
+msgid "× in a circle"
+msgstr ""
+
+msgid "“Close ×” text"
+msgstr ""
+
+msgid "Close button position"
+msgstr ""
+
+msgid "Outside the corner"
+msgstr ""
+
+msgid "Height on tablet (px, 0 = same)"
+msgstr ""
+
+msgid "Aspect ratio (instead of height)"
+msgstr ""
+
+msgid "Load the map only after a click"
+msgstr ""
+
+msgid "Placeholder image"
+msgstr ""
+
+msgid "Info box beside the map (left)"
+msgstr ""
+
+msgid "Info box beside the map (right)"
+msgstr ""
+
+msgid "Info box above the map"
+msgstr ""
+
+msgid "Info box below the map"
+msgstr ""
+
+msgid "Directions button"
+msgstr ""
+
+msgid "Info box background"
+msgstr ""
+
+msgid "Info box text"
 msgid "Stack on scroll"
 msgstr ""
 
@@ -13047,3 +13201,334 @@ msgstr ""
 
 msgid "1.93.0: Bento Grid tiles can grow with their content, place text at the top, middle or bottom, fill gaps automatically and skip the hover lift. Stacking Cards gain a Simple list layout with no overlap and a soft shadow. A new Footer scroll effect in Customizer > Footer widgets reveals the footer columns one after another, or slides the page away like a curtain to uncover the footer. Existing content looks the same until you change these options."
 msgstr ""
+
+msgid "listing"
+msgstr ""
+
+msgid "listings"
+msgstr ""
+
+msgid "tool"
+msgstr ""
+
+msgid "tools"
+msgstr ""
+
+msgid "product"
+msgstr ""
+
+msgid "products"
+msgstr ""
+
+msgid "service"
+msgstr ""
+
+msgid "services"
+msgstr ""
+
+msgid "place"
+msgstr ""
+
+msgid "places"
+msgstr ""
+
+msgid "company"
+msgstr ""
+
+msgid "companies"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Places"
+msgstr ""
+
+msgid "Companies"
+msgstr ""
+
+msgid "Filter toolbar texts"
+msgstr ""
+
+msgid "Listing card texts"
+msgstr ""
+
+msgid "Listing page texts"
+msgstr ""
+
+msgid "Sponsored texts"
+msgstr ""
+
+msgid "Category texts"
+msgstr ""
+
+msgid "Search field label"
+msgstr ""
+
+msgid "Search %s"
+msgstr ""
+
+msgid "Search field placeholder"
+msgstr ""
+
+msgid "%s name or keyword"
+msgstr ""
+
+msgid "Category field label"
+msgstr ""
+
+msgid "First category choice"
+msgstr ""
+
+msgid "Sort field label"
+msgstr ""
+
+msgid "Sort: newest"
+msgstr ""
+
+msgid "Sort: popular"
+msgstr ""
+
+msgid "Sort: rating"
+msgstr ""
+
+msgid "Sort: name"
+msgstr ""
+
+msgid "Find %s"
+msgstr ""
+
+msgid "Result count: one result"
+msgstr ""
+
+msgid "1 %s found"
+msgstr ""
+
+msgid "Result count: several results (keep %s for the number)"
+msgstr ""
+
+msgid "%1$s %2$s found"
+msgstr ""
+
+msgid "Clear filters link"
+msgstr ""
+
+msgid "Listing search block placeholder"
+msgstr ""
+
+msgid "Search %s..."
+msgstr ""
+
+msgid "Featured badge and heading"
+msgstr ""
+
+msgid "Card button"
+msgstr ""
+
+msgid "View more link"
+msgstr ""
+
+msgid "View more →"
+msgstr ""
+
+msgid "Price: from"
+msgstr ""
+
+msgid "Price: contact"
+msgstr ""
+
+msgid "Price: quote"
+msgstr ""
+
+msgid "Price: varies"
+msgstr ""
+
+msgid "Price: on website"
+msgstr ""
+
+msgid "Rating, read by screen readers (keep %s for the number)"
+msgstr ""
+
+msgid "Key features heading"
+msgstr ""
+
+msgid "Pros & Cons heading"
+msgstr ""
+
+msgid "Pros heading"
+msgstr ""
+
+msgid "Cons heading"
+msgstr ""
+
+msgid "Integrations heading"
+msgstr ""
+
+msgid "FAQ heading"
+msgstr ""
+
+msgid "Related resources heading"
+msgstr ""
+
+msgid "Related listings heading"
+msgstr ""
+
+msgid "Related %s"
+msgstr ""
+
+msgid "Categories heading"
+msgstr ""
+
+msgid "Last updated label"
+msgstr ""
+
+msgid "Fact: pricing"
+msgstr ""
+
+msgid "Fact: company"
+msgstr ""
+
+msgid "Fact: founded"
+msgstr ""
+
+msgid "Fact: free trial"
+msgstr ""
+
+msgid "Fact: API"
+msgstr ""
+
+msgid "Fact: category"
+msgstr ""
+
+msgid "Fact: rating"
+msgstr ""
+
+msgid "Fact value: yes"
+msgstr ""
+
+msgid "Fact value: no"
+msgstr ""
+
+msgid "Sponsored badge and label"
+msgstr ""
+
+msgid "Sponsored-by pill"
+msgstr ""
+
+msgid "Sponsored button"
+msgstr ""
+
+msgid "Sponsor heading in the sidebar"
+msgstr ""
+
+msgid "Disclosure: first words"
+msgstr ""
+
+msgid "Sponsored %s."
+msgstr ""
+
+msgid "Disclosure: sentence (keep %1$s for the sponsor and %2$s for the site name)"
+msgstr ""
+
+msgid "Affiliate disclosure"
+msgstr ""
+
+msgid "Affiliate disclosure link"
+msgstr ""
+
+msgid "View all categories link"
+msgstr ""
+
+msgid "View all categories →"
+msgstr ""
+
+msgid "Listings in a category: one"
+msgstr ""
+
+msgid "1 %s"
+msgstr ""
+
+msgid "Listings in a category: several (keep %s for the number)"
+msgstr ""
+
+msgid "%1$s %2$s"
+msgstr ""
+
+msgid "Homepage shortcuts, read by screen readers (keep %s for the site name)"
+msgstr ""
+
+msgid "Listing texts"
+msgstr ""
+
+msgid "Every word BIGSPY AI List mode shows to visitors. Choose what the site calls a listing and all texts follow; fill a field only to replace that one text. An empty field uses the text shown in grey."
+msgstr ""
+
+msgid "Call a listing"
+msgstr ""
+
+msgid "Used in the search field, button, result count and headings. Publish and reload to see the new defaults in the fields below."
+msgstr ""
+
+msgid "Custom name, singular"
+msgstr ""
+
+msgid "Only with \"Custom\". Example: hotel"
+msgstr ""
+
+msgid "Custom name, plural"
+msgstr ""
+
+msgid "Only with \"Custom\". Example: hotels"
+msgstr ""
+
+msgid "Filter toolbar"
+msgstr ""
+
+msgid "The bar above listings on the Listings page and category pages. With everything off, no bar is printed."
+msgstr ""
+
+msgid "Show the search field"
+msgstr ""
+
+msgid "Show the category field"
+msgstr ""
+
+msgid "Categories in the field"
+msgstr ""
+
+msgid "Top level only"
+msgstr ""
+
+msgid "Top level and subcategories"
+msgstr ""
+
+msgid "Show the sort field"
+msgstr ""
+
+msgid "Sort choice: newest first"
+msgstr ""
+
+msgid "Sort choice: most popular"
+msgstr ""
+
+msgid "Sort choice: top rated"
+msgstr ""
+
+msgid "Sort choice: name A–Z"
+msgstr ""
+
+msgid "Default sort"
+msgstr ""
+
+msgid "The order before a visitor picks one."
+msgstr ""
+
+msgid "Store default"
+msgstr ""
+
+msgid "Show the result count"
+msgstr ""
+
+msgid "Show the \"Clear filters\" link"
+msgstr ""
+

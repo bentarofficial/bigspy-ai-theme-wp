@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.93.0
+Stable tag: 1.95.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,23 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.95.0 =
+* Listing texts (Customizer > Layout, BIGSPY AI List mode): choose what to call a listing (Listings, Tools, Products, Services, Places, Companies or your own singular and plural) and every default text follows; each text of the filter bar, cards, listing page, Sponsored and categories can be overridden. Filter bar parts (search, category, sort, result count, Clear filters), sort choices and default sort, and category depth can be set. Search, Elements, Sponsored and Listing sidebar blocks use these texts when their own fields are empty.
+* Note for sites already in List mode: they are set to "Tools" once on update, so the filter bar reads as before. A few texts now follow the chosen name, e.g. "12 tools found" (was "12 listings found"), "Related tools", "Sponsored tool.", and the Search block placeholder "Search tools...". Pick "Listings" or fill the field to change them. The Sponsored badge with an empty Badge text now shows "Sponsored by".
+* Listing disclosure: the affiliate commission line is off by default ("Sponsored line only"); the new "Sponsored and affiliate lines" choice shows it. Sites that chose a value keep it.
+* Stacking Cards and Flip Box look the same in the editor as on the published page; Stacking Cards has Edit cards / Preview stack, Flip Box has Front / Back toolbar buttons.
+* Fix: the Customizer search box no longer overlaps the first control of an open panel or section.
+
+= 1.94.1 =
+* Fix: a script error on every page ("root is not defined", added with the Nav menu click sub-menus in 1.94.0) stopped the block scripts that run after it.
+
+= 1.94.0 =
+* Block spacing: blocks in page content are spaced by the theme.json block gap on the published page, as in the editor, so stacked blocks no longer touch. Block and author margins still win; full-width sections stay flush.
+* Banner: on tablets and phones the set height is a minimum, so stacked content is never cut off.
+* Map: per-device height or aspect ratio, load on click with a placeholder, info box beside, above or below with its own colors, direction button styles, full width, border and shadow.
+* Popup: open on a CSS selector, after idle time or at the end of a post; show by device, login state and date range; side panel, thin top/bottom bar and full-screen positions; open animations, close button styles, overlay color, width, padding, shadow, border and close after form submit.
+* Nav menu: divider and vertical accordion styles, active item colors, click-to-open sub-menus, depth, mobile drawer and accordion.
 
 = 1.93.0 =
 * Bento Grid: Tile height (fixed rows or grow with content), Content position (top, middle, bottom), Fill gaps automatically, and a switch for Lift tiles on hover.

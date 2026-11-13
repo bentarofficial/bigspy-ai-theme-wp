@@ -49,7 +49,7 @@ add_action(
 			add_action(
 				'woocommerce_after_single_product_summary',
 				function () {
-					echo bst_render_listing_elements( array( 'elementType' => 'related', 'title' => __( 'Related listings', 'bigspy-ai-theme-wp' ), 'count' => 8, 'showSponsored' => false ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
+					echo bst_render_listing_elements( array( 'elementType' => 'related', 'title' => bst_listing_text( 'related_listings' ), 'count' => 8, 'showSponsored' => false ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
 				},
 				20
 			);

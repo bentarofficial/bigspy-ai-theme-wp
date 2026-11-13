@@ -89,6 +89,22 @@ function bst_feature_set( $id, $on ) {
 	update_option( 'bst_features', array_values( $ids ) );
 }
 
+/**
+ * Listing texts (1.95.0): a site already running List mode keeps saying "tools", the word the
+ * toolbar used before; a site that turns List mode on later starts with the neutral "listings".
+ * Runs once, also when List mode is off, so the two cases can be told apart.
+ */
+function bst_listing_texts_migrate() {
+	if ( get_option( 'bst_listing_texts_init' ) ) {
+		return;
+	}
+	update_option( 'bst_listing_texts_init', 1, true );
+	if ( bst_feature_on( 'listing' ) && false === get_theme_mod( 'lt_noun', false ) ) {
+		set_theme_mod( 'lt_noun', 'tools' );
+	}
+}
+add_action( 'init', 'bst_listing_texts_migrate', 5 );
+
 // Coming from the old BIGSPY AI List theme: turn on List mode once, so listings, blocks and shortcodes keep working.
 add_action(
 	'after_switch_theme',

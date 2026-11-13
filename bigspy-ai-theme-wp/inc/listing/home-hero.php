@@ -39,7 +39,7 @@ function bst_legacy_home_destinations() {
 		}
 	}
 	wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
-	return '' === $html ? '' : '<nav class="bigspy-home-hero-destinations" aria-label="' . esc_attr( sprintf( /* translators: %s: site name */ __( 'Explore %s', 'bigspy-ai-theme-wp' ), get_bloginfo( 'name' ) ) ) . '">' . $html . '</nav>';
+	return '' === $html ? '' : '<nav class="bigspy-home-hero-destinations" aria-label="' . esc_attr( bst_listing_text( 'explore', get_bloginfo( 'name' ) ) ) . '">' . $html . '</nav>';
 }
 if ( ! shortcode_exists( 'bigspy_home_destination_buttons' ) ) {
 	add_shortcode( 'bigspy_home_destination_buttons', 'bst_legacy_home_destinations' );

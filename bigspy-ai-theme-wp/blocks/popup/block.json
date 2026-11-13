@@ -59,6 +59,23 @@
 			"type": "string",
 			"default": ""
 		},
+		"selector": { "type": "string", "default": "" },
+		"idle": { "type": "number", "default": 30 },
+		"showOn": { "type": "string", "default": "" },
+		"loginState": { "type": "string", "default": "" },
+		"dateFrom": { "type": "string", "default": "" },
+		"dateTo": { "type": "string", "default": "" },
+		"anim": { "type": "string", "default": "" },
+		"closeStyle": { "type": "string", "default": "" },
+		"closePos": { "type": "string", "default": "" },
+		"closeColor": { "type": "string", "default": "" },
+		"overlayColor": { "type": "string", "default": "" },
+		"width": { "type": "number", "default": 0 },
+		"padding": { "type": "number", "default": -1 },
+		"shadow": { "type": "string", "default": "" },
+		"borderColor": { "type": "string", "default": "" },
+		"borderWidth": { "type": "number", "default": 0 },
+		"closeOnSubmit": { "type": "boolean", "default": false },
 		"closeOutside": {
 			"type": "boolean",
 			"default": true

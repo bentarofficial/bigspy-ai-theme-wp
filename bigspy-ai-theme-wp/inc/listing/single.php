@@ -82,16 +82,16 @@ function bst_listing_sections_html( $post_id = 0 ) {
 	};
 	$out = '';
 	if ( $features ) {
-		$out .= '<section class="bst-listing-section bst-listing-features"><h2>' . esc_html__( 'Key features', 'bigspy-ai-theme-wp' ) . '</h2>' . $list( $features ) . '</section>';
+		$out .= '<section class="bst-listing-section bst-listing-features"><h2>' . esc_html( bst_listing_text( 'key_features' ) ) . '</h2>' . $list( $features ) . '</section>';
 	}
 	if ( $pros || $cons ) {
-		$out .= '<section class="bst-listing-section"><h2>' . esc_html__( 'Pros & Cons', 'bigspy-ai-theme-wp' ) . '</h2><div class="bst-listing-proscons">';
-		$out .= $pros ? '<div class="bst-listing-pros"><h3>' . esc_html__( 'Pros', 'bigspy-ai-theme-wp' ) . '</h3>' . $list( $pros ) . '</div>' : '';
-		$out .= $cons ? '<div class="bst-listing-cons"><h3>' . esc_html__( 'Cons', 'bigspy-ai-theme-wp' ) . '</h3>' . $list( $cons ) . '</div>' : '';
+		$out .= '<section class="bst-listing-section"><h2>' . esc_html( bst_listing_text( 'pros_cons' ) ) . '</h2><div class="bst-listing-proscons">';
+		$out .= $pros ? '<div class="bst-listing-pros"><h3>' . esc_html( bst_listing_text( 'pros' ) ) . '</h3>' . $list( $pros ) . '</div>' : '';
+		$out .= $cons ? '<div class="bst-listing-cons"><h3>' . esc_html( bst_listing_text( 'cons' ) ) . '</h3>' . $list( $cons ) . '</div>' : '';
 		$out .= '</div></section>';
 	}
 	if ( $integr ) {
-		$out .= '<section class="bst-listing-section"><h2>' . esc_html__( 'Integrations', 'bigspy-ai-theme-wp' ) . '</h2><div class="bst-listing-chips">' . implode( '', array_map( fn( $i ) => '<span>' . esc_html( $i ) . '</span>', $integr ) ) . '</div></section>';
+		$out .= '<section class="bst-listing-section"><h2>' . esc_html( bst_listing_text( 'integrations' ) ) . '</h2><div class="bst-listing-chips">' . implode( '', array_map( fn( $i ) => '<span>' . esc_html( $i ) . '</span>', $integr ) ) . '</div></section>';
 	}
 	return $out;
 }
@@ -102,7 +102,7 @@ function bst_listing_links_html( $post_id = 0 ) {
 	if ( ! $links ) {
 		return '';
 	}
-	$out = '<section class="bst-listing-section bst-listing-links"><h2>' . esc_html__( 'Related resources', 'bigspy-ai-theme-wp' ) . '</h2><div>';
+	$out = '<section class="bst-listing-section bst-listing-links"><h2>' . esc_html( bst_listing_text( 'related_resources' ) ) . '</h2><div>';
 	foreach ( $links as $link ) {
 		$out .= '<a href="' . esc_url( $link['url'] ) . '">' . esc_html( $link['label'] ) . ' <span aria-hidden="true">→</span></a>';
 	}
@@ -137,7 +137,7 @@ add_action(
 			echo bst_listing_links_html( get_the_ID() ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped while building.
 		}
 		if ( bst_feature_get( 'listing', 'single_updated', 1 ) ) {
-			echo '<p class="bst-listing-updated">' . esc_html__( 'Last updated:', 'bigspy-ai-theme-wp' ) . ' <time datetime="' . esc_attr( get_the_modified_date( DATE_W3C ) ) . '">' . esc_html( get_the_modified_date() ) . '</time></p>';
+			echo '<p class="bst-listing-updated">' . esc_html( bst_listing_text( 'last_updated' ) ) . ' <time datetime="' . esc_attr( get_the_modified_date( DATE_W3C ) ) . '">' . esc_html( get_the_modified_date() ) . '</time></p>';
 		}
 	},
 	14

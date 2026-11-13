@@ -52,6 +52,19 @@
 			"type": "boolean",
 			"default": true
 		},
+		"heightTablet": { "type": "number", "default": 0 },
+		"heightMobile": { "type": "number", "default": 0 },
+		"ratio": { "type": "string", "default": "" },
+		"clickToLoad": { "type": "boolean", "default": false },
+		"placeholderId": { "type": "number", "default": 0 },
+		"placeholderUrl": { "type": "string", "default": "" },
+		"boxBg": { "type": "string", "default": "" },
+		"boxColor": { "type": "string", "default": "" },
+		"btnStyle": { "type": "string", "default": "" },
+		"fullWidth": { "type": "boolean", "default": false },
+		"borderColor": { "type": "string", "default": "" },
+		"borderWidth": { "type": "number", "default": 0 },
+		"shadow": { "type": "boolean", "default": false },
 		"embed": {
 			"type": "string",
 			"default": ""

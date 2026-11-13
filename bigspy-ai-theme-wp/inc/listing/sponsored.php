@@ -37,7 +37,7 @@ function bst_sponsored_config() {
 	$old = bst_sponsored_old_config();
 	return array(
 		'on'      => (bool) bst_feature_get( 'listing', 'sponsored_on', empty( $old['sponsored_enabled'] ) ? 0 : 1 ),
-		'button'  => (string) bst_feature_get( 'listing', 'sponsored_button', $old['button_text'] ?? __( 'Open site →', 'bigspy-ai-theme-wp' ) ),
+		'button'  => bst_listing_text( 'sponsored_button' ),
 		'style'   => in_array( bst_feature_get( 'listing', 'sponsored_style', 'none' ), array( 'none', 'soft', 'solid' ), true ) ? bst_feature_get( 'listing', 'sponsored_style', 'none' ) : 'none',
 		'tab'     => (bool) bst_feature_get( 'listing', 'sponsored_tab', isset( $old['open_new_tab'] ) && ! $old['open_new_tab'] ? 0 : 1 ),
 		'jump'    => max( 1, min( 20, (int) bst_feature_get( 'listing', 'sponsored_jump', $old['rotation_jump'] ?? 3 ) ) ),
@@ -152,7 +152,7 @@ function bst_sponsored_slot( $slot = 0, $context = 'elements', $opts = array() )
 	$vars    = bst_sponsored_style_vars( $opts );
 	$align   = in_array( $opts['buttonAlign'] ?? '', array( 'left', 'center', 'right', 'full' ), true ) ? ' bst-sponsored--btn-align-' . $opts['buttonAlign'] : '';
 	$out     = '<aside class="bst-sponsored bst-sponsored--btn-' . esc_attr( $style . $align ) . '"' . ( $vars ? ' style="' . esc_attr( $vars ) . '"' : '' ) . ' data-bst-sponsored="' . absint( $slot ) . '" data-context="' . esc_attr( $context ) . '" data-version="' . (int) $config['version'] . '" data-jump="' . ( ! empty( $opts['jump'] ) ? max( 1, min( 50, (int) $opts['jump'] ) ) : (int) $config['jump'] ) . '"' . ( ! empty( $opts['pool'] ) ? ' data-pool="' . (int) $opts['pool'] . '" data-start="' . (int) ( $opts['start'] ?? 0 ) . '"' : '' ) . ' aria-label="' . esc_attr__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '">';
-	$out    .= filter_var( $opts['showLabel'], FILTER_VALIDATE_BOOLEAN ) ? '<span class="bst-sponsored__label">' . esc_html__( 'Sponsored', 'bigspy-ai-theme-wp' ) . '</span>' : '';
+	$out    .= filter_var( $opts['showLabel'], FILTER_VALIDATE_BOOLEAN ) ? '<span class="bst-sponsored__label">' . esc_html( bst_listing_text( 'sponsored' ) ) . '</span>' : '';
 	$out    .= '<a class="bst-sponsored__cover" data-link data-cover href="' . esc_url( $item['url'] ) . '"' . $rel . ' aria-label="' . esc_attr( $item['name'] ) . '"></a>';
 	$out    .= '<div class="bst-sponsored__in"><span class="bst-sponsored__logo" data-logo aria-hidden="true">' . $logo . '</span>';
 	$out    .= '<span class="bst-sponsored__text"><strong data-name>' . esc_html( $item['name'] ) . '</strong>';
@@ -195,7 +195,7 @@ function bst_render_sponsored( $a = array() ) {
 	if ( 'badge' === ( $a['display'] ?? '' ) ) {
 		wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
 		$align = in_array( $a['alignment'] ?? '', array( 'left', 'center', 'right' ), true ) ? $a['alignment'] : 'center';
-		$label = isset( $a['badgeText'] ) ? (string) $a['badgeText'] : __( 'Sponsored by', 'bigspy-ai-theme-wp' );
+		$label = '' !== trim( (string) ( $a['badgeText'] ?? '' ) ) ? (string) $a['badgeText'] : bst_listing_text( 'sponsored_by' );
 		return '<div class="bst-sponsor-badge-wrap" style="text-align:' . esc_attr( $align ) . '"><span class="bst-sponsor-badge">' . ( '' !== trim( $label ) ? '<span class="bst-sponsor-badge__label">' . esc_html( $label ) . '</span>' : '' ) . '<span class="bst-sponsor-badge__brand">' . do_shortcode( '[bigspy_home_sponsor]' ) . '</span></span></div>';
 	}
 	$count = max( 1, min( 6, (int) $a['count'], count( $items ) ) );
