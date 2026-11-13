@@ -10036,3 +10036,21 @@ msgstr "Hiện số kết quả"
 msgid "Show the \"Clear filters\" link"
 msgstr "Hiện liên kết \"Xoá bộ lọc\""
 
+
+msgid "Show the front"
+msgstr "Xem mặt trước"
+
+msgid "Show the back"
+msgstr "Xem mặt sau"
+
+msgid "Edit cards"
+msgstr "Sửa từng thẻ"
+
+msgid "Preview stack"
+msgstr "Xem hiệu ứng"
+
+msgid "Edit cards one by one"
+msgstr "Mở các thẻ ra để sửa từng thẻ"
+
+msgid "Show the stack as on the site"
+msgstr "Xem thẻ xếp chồng như trên website"

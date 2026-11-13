@@ -135,7 +135,7 @@
 				),
 				colors(props, [[__('Front background', T), 'frontBg'], [__('Front text', T), 'frontColor'], [__('Back background', T), 'backBg'], [__('Back text', T), 'backColor']])
 			),
-			el(be.BlockControls, null, el(c.ToolbarGroup, null, el(c.ToolbarButton, { icon: 'image-rotate', label: __('Show the other side', T), isPressed: flip[0], onClick: function () { flip[1](!flip[0]); } }))),
+			el(be.BlockControls, null, el(c.ToolbarGroup, null, el(c.ToolbarButton, { isPressed: !flip[0], label: __('Show the front', T), onClick: function () { flip[1](false); } }, __('Front', T)), el(c.ToolbarButton, { isPressed: flip[0], label: __('Show the back', T), onClick: function () { flip[1](true); } }, __('Back', T)))),
 			preview('bst/flip-box', props, { className: flip[0] ? 'bst-flip-preview-back' : '' })
 		);
 	});

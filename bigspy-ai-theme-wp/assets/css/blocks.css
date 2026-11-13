@@ -3592,6 +3592,11 @@ input[type="submit"]:hover,
 .bs-ptg__amount { color: var(--pa); font-size: min(2.2em, 10vw); font-weight: 800; line-height: 1.1; }
 .bs-ptg__period { color: var(--bs-text-light, #6b7280); font-size: .9em; }
 .bs-ptg__features { flex: 1; margin: 0 0 22px; padding: 0; list-style: none; }
+/* Hide the face that is turned away even where 3D backface culling is not drawn (some editors, screenshots, old browsers). */
+.bs-flip__face { transition: visibility 0s .35s; }
+.bs-flip__back { visibility: hidden; }
+.bs-flip:hover .bs-flip__back, .bs-flip:focus-within .bs-flip__back, .bs-flip:focus .bs-flip__back, .bst-flip-preview-back .bs-flip__back { visibility: visible; }
+.bs-flip:hover .bs-flip__front, .bs-flip:focus-within .bs-flip__front, .bs-flip:focus .bs-flip__front, .bst-flip-preview-back .bs-flip__front { visibility: hidden; }
 .bs-ptg__features li { display: flex; gap: 8px; padding: 5px 0; }
 .bs-ptg__features .bs-icon { flex-shrink: 0; margin-top: 3px; color: var(--pa); }
 .bs-ptg__btn { display: block; padding: 12px 18px; color: var(--pa); background: transparent; border: 2px solid var(--pa); border-radius: 10px; font-weight: 700; text-align: center; text-decoration: none; }
