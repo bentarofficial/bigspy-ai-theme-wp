@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.96.1 =
+* Floating contact: softer look with flat brand colors and a gentle breathing halo instead of glossy gradients and shine; rounded speech-bubble labels; plain phone bar; the All in one menu opens as a white card with one row per channel (icon and name).
+
 = 1.96.0 =
 * Scrolling text (marquee): items are now Marquee item blocks with text, icon or logo image, link and color; several rows with opposite directions and speed shift, item styles (plain, pill, card, logo), edge fade, tilt, vertical orientation, scroll-linked speed, pause on hover and per-device font and image sizes. Old marquees render as before.
 * Floating contact: real Zalo brand mark, an icon picker for each button (the custom button defaults to a form icon), glossy buttons, card labels, ring waves and a phone-bar shine.

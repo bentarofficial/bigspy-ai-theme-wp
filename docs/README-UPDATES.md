@@ -6,6 +6,10 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.96.1: Softer Floating contact buttons
+
+- Flat brand colors with a breathing halo, bubble labels and an All in one menu that opens as a white card.
+
 ### 1.96.0: Marquee strip builder, richer Floating contact, sidebar width per view
 
 - Scrolling text items can be text, icons, logos or cards with links, in multiple rows with fade, tilt and scroll effects.

@@ -6,13 +6,9 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 ## Các thay đổi sản phẩm đang chờ
 
-Đã phát hành ở 1.96.0: marquee nâng cấp, Floating contact, độ rộng sidebar theo trang, nút Add to trong List View. Đã phát hành ở 1.95.0: S-13-a, dòng hoa hồng affiliate mặc định tắt, G-167 Listing texts, sửa ô tìm Customizer. Đã phát hành ở 1.94.0: G-134-d, khoảng cách khối, banner điện thoại. Đã phát hành ở 1.93.0: Bento/Stacking Cards options, Footer scroll effect. Đã phát hành ở 1.92.0: G-163, G-164, G-134-c. Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Đang chờ:
+Đã phát hành ở 1.96.1: giao diện mềm cho Floating contact. Đã phát hành ở 1.96.0: marquee nâng cấp, Floating contact, độ rộng sidebar theo trang, nút Add to trong List View. Đã phát hành ở 1.95.0: S-13-a, dòng hoa hồng affiliate mặc định tắt, G-167 Listing texts, sửa ô tìm Customizer. Đã phát hành ở 1.94.0: G-134-d, khoảng cách khối, banner điện thoại. Đã phát hành ở 1.93.0: Bento/Stacking Cards options, Footer scroll effect. Đã phát hành ở 1.92.0: G-163, G-164, G-134-c. Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Đang chờ:
 
-- **Yêu cầu/tính năng:** nút liên hệ nổi trông tự nhiên hơn, theo phong cách Button Contact VR.
-  - **Đã thay đổi:** `float-contact.css`: bỏ gradient bóng, viền inset và vệt sáng; nút màu phẳng có quầng mờ "thở"; nhãn bong bóng trắng bo tròn; thanh số điện thoại phẳng; menu All-in-one mở thành thẻ trắng có từng dòng (icon + tên), cả desktop và mobile.
-  - **Kiểm thử:** cú pháp CSS hợp lệ; xem bằng trang thử tĩnh trên khung mobile. Chưa thử trong WordPress thật.
-  - **Khi phát hành cần bổ sung:** Có gì mới: giao diện mới cho nút liên hệ nổi.
-  - **Trạng thái:** đã commit và push; chờ owner yêu cầu phát hành.
+- (trống)
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
