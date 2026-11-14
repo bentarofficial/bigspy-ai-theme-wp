@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.95.0
+Stable tag: 1.96.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,12 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.96.0 =
+* Scrolling text (marquee): items are now Marquee item blocks with text, icon or logo image, link and color; several rows with opposite directions and speed shift, item styles (plain, pill, card, logo), edge fade, tilt, vertical orientation, scroll-linked speed, pause on hover and per-device font and image sizes. Old marquees render as before.
+* Floating contact: real Zalo brand mark, an icon picker for each button (the custom button defaults to a form icon), glossy buttons, card labels, ring waves and a phone-bar shine.
+* Sidebar width per view (blog, single post, page, shop, product) in px or %.
+* Editor List View: an "Add to <block>" row under each expanded container opens the inserter at the end of that container.
 
 = 1.95.0 =
 * Listing texts (Customizer > Layout, BIGSPY AI List mode): choose what to call a listing (Listings, Tools, Products, Services, Places, Companies or your own singular and plural) and every default text follows; each text of the filter bar, cards, listing page, Sponsored and categories can be overridden. Filter bar parts (search, category, sort, result count, Clear filters), sort choices and default sort, and category depth can be set. Search, Elements, Sponsored and Listing sidebar blocks use these texts when their own fields are empty.

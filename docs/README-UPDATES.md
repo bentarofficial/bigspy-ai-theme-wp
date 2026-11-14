@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.96.0: Marquee strip builder, richer Floating contact, sidebar width per view
+
+- Scrolling text items can be text, icons, logos or cards with links, in multiple rows with fade, tilt and scroll effects.
+- Floating contact gets the real Zalo mark, per-button icons and glossy styles; sidebar width per view; List View "Add to" rows.
+
 ### 1.95.0: Listing texts, editor-true Stacking Cards and Flip Box
 
 - Customizer > Layout > Listing texts: name your listings and edit every text and part of the filter bar, cards and listing pages.

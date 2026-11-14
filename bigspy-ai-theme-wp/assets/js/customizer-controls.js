@@ -234,7 +234,7 @@
 					html += '<li class="bst-fi__item' + (row.on ? ' is-on' : '') + (open ? ' is-open' : '') + '" data-id="' + esc(row.id) + '">';
 					html += '<div class="bst-fi__head">';
 					html += '<span class="bst-fi__drag dashicons dashicons-menu" title="Drag"></span>';
-					html += '<span class="bst-fi__icon" style="background:' + esc(row.c || m.color) + ';color:' + esc(row.ic || '#fff') + '">' + (m.icon || '') + '</span>';
+					html += '<span class="bst-fi__icon" style="background:' + esc(row.c || m.color) + ';color:' + esc(row.ic || '#fff') + '">' + ((row.i && cfg.icons && cfg.icons[row.i]) || m.icon || '') + '</span>';
 					html += '<button type="button" class="bst-fi__title" aria-expanded="' + (open ? 'true' : 'false') + '"><strong>' + esc(row.l || m.label) + '</strong><small>' + esc(row.v || t.empty) + '</small></button>';
 					html += '<label class="bst-fi__switch"><input type="checkbox" data-toggle' + (row.on ? ' checked' : '') + '><span></span></label>';
 					html += '<span class="bst-fi__chev dashicons dashicons-arrow-down-alt2"></span>';
@@ -245,6 +245,9 @@
 						html += field(t.label, '<input type="text" data-key="l" value="' + esc(row.l) + '" placeholder="' + esc(m.label) + '">');
 						html += field(t.sub, '<input type="text" data-key="s" value="' + esc(row.s) + '">');
 						html += '<div class="bst-fi__row">' + colorField(t.bg, 'c', row.c, m.color) + colorField(t.ic, 'ic', row.ic, '#ffffff') + '</div>';
+						if (cfg.icons) {
+							html += field(t.icon, select('i', row.i, [['', t.iconDef]].concat(Object.keys(cfg.icons).map(function (k) { return [k, k]; }))));
+						}
 						html += field(t.dev, select('dev', row.dev, [['', t.all], ['desktop', t.desk], ['mobile', t.mob]]));
 						html += field(t.fx, select('fx', row.fx, [['', t.fxDef], ['none', t.none], ['ring', t.ring], ['pulse', t.pulse], ['shake', t.shake], ['bounce', t.bounce]]));
 						if (row.k === 'custom' || row.k === 'map' || row.k === 'facebook') {

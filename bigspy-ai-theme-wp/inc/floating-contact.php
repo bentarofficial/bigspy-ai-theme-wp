@@ -18,7 +18,7 @@ function bst_float_buttons() {
 	return array(
 		'phone'     => array( 'phone', __( 'Call now', 'bigspy-ai-theme-wp' ), '#e53935' ),
 		'phone2'    => array( 'phone', __( 'Hotline 2', 'bigspy-ai-theme-wp' ), '#f57c00' ),
-		'zalo'      => array( 'zalo', 'Zalo', '#0068ff' ),
+		'zalo'      => array( 'zalo-brand', 'Zalo', '#0068ff' ),
 		'messenger' => array( 'messenger', 'Messenger', '#0084ff' ),
 		'whatsapp'  => array( 'whatsapp', 'WhatsApp', '#25d366' ),
 		'telegram'  => array( 'telegram', 'Telegram', '#229ed9' ),
@@ -29,7 +29,7 @@ function bst_float_buttons() {
 		'instagram' => array( 'instagram', 'Instagram', '#e4405f' ),
 		'map'       => array( 'pin', __( 'Directions', 'bigspy-ai-theme-wp' ), '#16a34a' ),
 		'email'     => array( 'mail', 'Email', '#64748b' ),
-		'custom'    => array( 'message', __( 'Contact', 'bigspy-ai-theme-wp' ), '#0a4d8c' ),
+		'custom'    => array( 'clipboard', __( 'Contact', 'bigspy-ai-theme-wp' ), '#0a4d8c' ),
 	);
 }
 
@@ -198,6 +198,11 @@ function bst_float_sanitize_items( $value ) {
 	return wp_json_encode( $out );
 }
 
+/** Icons a button may use instead of its default one. */
+function bst_float_icon_choices() {
+	return array( 'clipboard', 'calendar', 'send', 'message', 'phone', 'mail', 'pin', 'cart', 'gift', 'support', 'user', 'home', 'star', 'heart', 'sparkles', 'tag', 'clock', 'link' );
+}
+
 /** Link for one button value. Returns [ url, external ]. */
 function bst_float_url( $key, $value ) {
 	switch ( $key ) {
@@ -258,6 +263,7 @@ function bst_float_items() {
 				'ic'  => sanitize_hex_color( (string) ( $row['ic'] ?? '' ) ),
 				'dev' => (string) ( $row['dev'] ?? '' ),
 				'fx'  => (string) ( $row['fx'] ?? '' ),
+				'own' => (bool) $color,
 			),
 		);
 	}
@@ -410,7 +416,7 @@ function bst_floating_contact() {
 	foreach ( $items as $i => $item ) {
 		list( $key, $icon, $url, $label, $color, $external, $sub ) = $item;
 		$extra = $item[7] ?? array();
-		$more  = ( ! empty( $extra['dev'] ) ? ' bs-fc__btn--only-' . sanitize_html_class( $extra['dev'] ) : '' ) . ( ! empty( $extra['fx'] ) ? ' bs-fc__btn--fx-' . sanitize_html_class( $extra['fx'] ) : '' ) . ( $sub ? ' has-sub' : '' );
+		$more  = ( ! empty( $extra['dev'] ) ? ' bs-fc__btn--only-' . sanitize_html_class( $extra['dev'] ) : '' ) . ( ! empty( $extra['fx'] ) ? ' bs-fc__btn--fx-' . sanitize_html_class( $extra['fx'] ) : '' ) . ( $sub ? ' has-sub' : '' ) . ( empty( $extra['own'] ) ? ' is-brand' : '' );
 		$color = $color . ( ! empty( $extra['ic'] ) ? ';--fc-ic:' . $extra['ic'] : '' );
 		$links .= sprintf(
 			'<a class="bs-fc__btn bs-fc__btn--%1$s%2$s" href="%3$s"%4$s aria-label="%5$s" style="--fc-c:%6$s"><span class="bs-fc__icon">%7$s</span><span class="bs-fc__label">%8$s</span>%9$s</a>',

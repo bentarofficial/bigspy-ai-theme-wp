@@ -13532,3 +13532,6 @@ msgstr ""
 msgid "Show the \"Clear filters\" link"
 msgstr ""
 
+msgid "Default icon"
+msgstr ""
+
