@@ -36,6 +36,12 @@ add_filter(
 			'sidebar_gap'          => 40,
 			'sidebar_mobile'       => 'below',
 			'sidebar_font_size'    => 0,
+			'sidebar_width_unit'   => 'px',
+			'blog_sidebar_width'   => 0,
+			'single_sidebar_width' => 0,
+			'page_sidebar_width'   => 0,
+			'shop_sidebar_width'   => 0,
+			'product_sidebar_width' => 0,
 		);
 	}
 );
@@ -58,7 +64,15 @@ add_filter(
 			__( 'Turn the sidebar on/off and pick left or right per view: <b>Blog &amp; archives</b>, <b>Single posts</b>, <b>Shop</b>, <b>Single product</b> (each in its own section of the Customizer), or per post in the editor. Add, remove and reorder widgets in <b>Widgets</b> (in this Customizer, or <a href="%s" target="_blank">Appearance → Widgets</a>). Each view has its own widget area: Blog, Category &amp; archive, Single post, Shop, Single product.', 'bigspy-ai-theme-wp' ),
 			$widgets
 		) );
-		$fields[] = array( 'id' => 'sidebar_width', 'section' => $s, 'type' => 'number', 'label' => __( 'Sidebar width (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 200, 'max' => 480, 'step' => 10 ) );
+		$fields[] = array( 'id' => 'bst_g_sidebar_size', 'section' => $s, 'type' => 'heading', 'label' => __( 'Width', 'bigspy-ai-theme-wp' ), 'description' => __( 'Default width for every sidebar. Each view below can use its own width (0 = use this default). In %, the width is a share of the content area (10–50).', 'bigspy-ai-theme-wp' ) );
+		$fields[] = array( 'id' => 'sidebar_width_unit', 'section' => $s, 'type' => 'select', 'label' => __( 'Width unit', 'bigspy-ai-theme-wp' ), 'choices' => array(
+			'px' => __( 'Pixels (fixed width)', 'bigspy-ai-theme-wp' ),
+			'%'  => __( 'Percent (grows with the screen)', 'bigspy-ai-theme-wp' ),
+		) );
+		$fields[] = array( 'id' => 'sidebar_width', 'section' => $s, 'type' => 'number', 'label' => __( 'Default sidebar width', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 10, 'max' => 600, 'step' => 1 ) );
+		foreach ( bst_sidebar_width_views() as $key => $label ) {
+			$fields[] = array( 'id' => $key . '_sidebar_width', 'section' => $s, 'type' => 'number', 'label' => $label, 'input_attrs' => array( 'min' => 0, 'max' => 600, 'step' => 1 ) );
+		}
 		$fields[] = array( 'id' => 'bst_g_sidebar_look', 'section' => $s, 'type' => 'heading', 'label' => __( 'Look', 'bigspy-ai-theme-wp' ) );
 		$fields[] = array( 'id' => 'sidebar_style', 'section' => $s, 'type' => 'select', 'label' => __( 'Sidebar style', 'bigspy-ai-theme-wp' ), 'choices' => array(
 			'plain'   => __( 'Plain', 'bigspy-ai-theme-wp' ),
@@ -93,6 +107,48 @@ add_filter(
 	30
 );
 
+/** Views that can have their own sidebar width: key => Customizer label. */
+function bst_sidebar_width_views() {
+	$views = array(
+		'blog'   => __( 'Width: blog & archives (0 = default)', 'bigspy-ai-theme-wp' ),
+		'single' => __( 'Width: single posts (0 = default)', 'bigspy-ai-theme-wp' ),
+		'page'   => __( 'Width: pages (0 = default)', 'bigspy-ai-theme-wp' ),
+	);
+	if ( class_exists( 'WooCommerce' ) ) {
+		$views['shop']    = __( 'Width: shop & product categories (0 = default)', 'bigspy-ai-theme-wp' );
+		$views['product'] = __( 'Width: single product (0 = default)', 'bigspy-ai-theme-wp' );
+	}
+	return $views;
+}
+
+/** Which width view the current request belongs to (mirrors bst_sidebar_position()). */
+function bst_sidebar_width_view() {
+	if ( function_exists( 'is_woocommerce' ) && ( is_shop() || is_product_taxonomy() ) ) {
+		return 'shop';
+	}
+	if ( function_exists( 'is_product' ) && is_product() ) {
+		return 'product';
+	}
+	if ( is_page() ) {
+		return 'page';
+	}
+	if ( is_singular() ) {
+		return 'single';
+	}
+	return 'blog';
+}
+
+/** CSS value for the sidebar column on the current request, e.g. "300px" or "28%". */
+function bst_sidebar_width_css() {
+	$unit  = '%' === bst_mod( 'sidebar_width_unit' ) ? '%' : 'px';
+	$value = (int) bst_mod( bst_sidebar_width_view() . '_sidebar_width' );
+	if ( $value <= 0 ) {
+		$value = (int) bst_mod( 'sidebar_width' );
+	}
+	$value = '%' === $unit ? max( 10, min( 50, $value > 50 ? 25 : $value ) ) : max( 160, min( 600, $value ) );
+	return $value . $unit;
+}
+
 /** Body classes + CSS vars for the sidebar look. */
 add_filter(
 	'body_class',
@@ -114,7 +170,7 @@ add_action(
 	'wp_enqueue_scripts',
 	function () {
 		$size = (int) bst_mod( 'sidebar_font_size' );
-		$css  = ':root{--bs-sb-wgap:' . max( 0, min( 80, (int) bst_mod( 'sidebar_widget_gap' ) ) ) . 'px;--bs-sb-gap:' . max( 0, min( 120, (int) bst_mod( 'sidebar_gap' ) ) ) . 'px' . ( $size ? ';--bs-sb-fs:' . min( 22, $size ) . 'px' : '' ) . '}';
+		$css  = 'body{--bs-sidebar-width:' . bst_sidebar_width_css() . '}:root{--bs-sb-wgap:' . max( 0, min( 80, (int) bst_mod( 'sidebar_widget_gap' ) ) ) . 'px;--bs-sb-gap:' . max( 0, min( 120, (int) bst_mod( 'sidebar_gap' ) ) ) . 'px' . ( $size ? ';--bs-sb-fs:' . min( 22, $size ) . 'px' : '' ) . '}';
 		wp_add_inline_style( 'bst-main', $css );
 	},
 	30
