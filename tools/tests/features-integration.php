@@ -352,6 +352,8 @@ function bst_t_hero() {
 		return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
 	};
 	$url = 'https://example.com/hero.jpg';
+	// Since 1.90.0 the first large auto image of a request becomes the hero; take it so auto means lazy here.
+	bst_image_hero_taken( true );
 	foreach ( array( 'bst/banner', 'bst/image' ) as $b ) {
 		$auto = $r( $b, array( 'imageUrl' => $url ) );
 		bst_test( false !== strpos( $auto, 'loading="lazy"' ) && false === strpos( $auto, 'fetchpriority' ), "$b url auto stays lazy" );
