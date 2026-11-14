@@ -262,3 +262,85 @@
 }
 .bs-fc--d-stack.has-phone-bar .bs-fc__btn:not(.bs-fc__btn--phone) .bs-fc__phone { display: none; }
 @media (prefers-reduced-motion: reduce) { .bs-fc__btn, .bs-fc__btn::before, .bs-fc__btn::after, .bs-fc__icon { animation: none !important; } }
+
+/* ---------------------------------------------------------------- Premium look (glossy buttons, card labels, sheen) */
+.bs-fc__btn,
+.bs-fc__toggle {
+	background:
+		radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, .38), rgba(255, 255, 255, 0) 55%),
+		linear-gradient(150deg, color-mix(in srgb, var(--fc-c, #0a4d8c) 78%, #fff), var(--fc-c, #0a4d8c) 52%, color-mix(in srgb, var(--fc-c, #0a4d8c) 78%, #000));
+	box-shadow:
+		inset 0 0 0 2px rgba(255, 255, 255, .28),
+		inset 0 -3px 6px rgba(0, 0, 0, .14),
+		0 10px 24px -6px color-mix(in srgb, var(--fc-c, #000) 60%, transparent),
+		0 3px 8px rgba(15, 23, 42, .14);
+}
+.bs-fc__btn:hover,
+.bs-fc__toggle:hover { transform: translateY(-3px) scale(1.07); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .4), 0 16px 32px -8px color-mix(in srgb, var(--fc-c, #000) 70%, transparent), 0 4px 10px rgba(15, 23, 42, .16); }
+.bs-fc__icon svg { filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, .22)); }
+/* Zalo: real brand mark – white bubble with the blue wordmark, a bit larger */
+.bs-fc__btn--zalo .bs-fc__icon svg { width: calc(var(--fc-size, 54px) * .62); height: calc(var(--fc-size, 54px) * .62); filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .18)); }
+/* Waves: soft rings instead of filled blobs */
+.bs-fc__btn::before, .bs-fc__btn::after, .bs-fc__toggle::before { background: transparent !important; box-shadow: 0 0 0 2px var(--fc-c, var(--bs-primary)), 0 0 18px 2px color-mix(in srgb, var(--fc-c, #000) 45%, transparent); }
+@keyframes bs-fc-wave { 0% { transform: scale(1); opacity: .85; } 100% { transform: scale(1.65); opacity: 0; } }
+
+/* Labels: white cards with a pointer, colored accent */
+@media (min-width: 550px) {
+	.bs-fc--d-stack .bs-fc__label,
+	.bs-fc--d-aio .bs-fc__label,
+	.bs-fc__toggle-label {
+		padding: 8px 14px;
+		background: #fff;
+		color: #0f172a;
+		border-radius: 10px;
+		font-size: 13.5px;
+		font-weight: 700;
+		box-shadow: 0 10px 28px -8px rgba(15, 23, 42, .35), 0 0 0 1px rgba(15, 23, 42, .06), inset 3px 0 0 var(--fc-c, var(--bs-primary));
+	}
+	.bs-fc--d-stack .bs-fc__label::after,
+	.bs-fc--d-aio .bs-fc__label::after { content: ""; position: absolute; top: 50%; right: -5px; width: 10px; height: 10px; background: #fff; transform: translateY(-50%) rotate(45deg); border-radius: 2px; }
+	.bs-fc--left.bs-fc--d-stack .bs-fc__label::after,
+	.bs-fc--left.bs-fc--d-aio .bs-fc__label::after { right: auto; left: -5px; }
+	.bs-fc--left.bs-fc--d-stack .bs-fc__label,
+	.bs-fc--left.bs-fc--d-aio .bs-fc__label { box-shadow: 0 10px 28px -8px rgba(15, 23, 42, .35), 0 0 0 1px rgba(15, 23, 42, .06), inset -3px 0 0 var(--fc-c, var(--bs-primary)); }
+
+	/* Phone bar: gradient + moving sheen */
+	.bs-fc--d-stack.has-phone-bar .bs-fc__btn--phone .bs-fc__phone {
+		overflow: hidden;
+		background: linear-gradient(90deg, color-mix(in srgb, var(--fc-c) 82%, #fff), var(--fc-c));
+		font-size: 16px;
+		font-weight: 800;
+		letter-spacing: .04em;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	}
+	.bs-fc--d-stack.has-phone-bar .bs-fc__btn--phone .bs-fc__phone::after { content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent); transform: skewX(-20deg); animation: bs-fc-sheen 3.2s ease-in-out infinite; }
+
+	/* Pills: glossy icon chip */
+	.bs-fc--d-pill .bs-fc__icon { background: rgba(255, 255, 255, .22); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); }
+	.bs-fc--d-pill .bs-fc__btn--zalo .bs-fc__icon { background: transparent; box-shadow: none; }
+}
+@media (max-width: 549px) {
+	.bs-fc--m-pill .bs-fc__icon { background: rgba(255, 255, 255, .22); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); }
+	.bs-fc--m-bar .bs-fc__btn { background: var(--fc-c); box-shadow: none; }
+	.bs-fc--m-bar .bs-fc__btn--zalo .bs-fc__icon svg { width: 28px; height: 28px; }
+	.bs-fc--m-bar.bs-fc--bar-light .bs-fc__btn { background: #fff; }
+	.bs-fc--m-bar.bs-fc--bar-dark .bs-fc__btn { background: transparent; }
+}
+@keyframes bs-fc-sheen { 0%, 55% { left: -40%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) { .bs-fc__phone::after { animation: none !important; display: none; } }
+.bs-fc--bar-light .bs-fc__btn--zalo .bs-fc__icon path { fill: #0068ff; }
+.bs-fc--bar-light .bs-fc__btn--zalo .bs-fc__icon text { fill: #fff; }
+
+/* Brand looks – only while the owner has not picked a custom color */
+.bs-fc__btn--messenger.is-brand { background: radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, .3), transparent 55%), linear-gradient(45deg, #0a7cff 0%, #a033ff 55%, #ff5c87 100%); }
+.bs-fc__btn--instagram.is-brand { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.bs-fc__btn--tiktok.is-brand { background: radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, .18), transparent 55%), #111; }
+.bs-fc__btn--tiktok.is-brand .bs-fc__icon svg { filter: drop-shadow(-1.5px -1px 0 #25f4ee) drop-shadow(1.5px 1px 0 #fe2c55); }
+.bs-fc__btn--youtube.is-brand .bs-fc__icon svg { filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .25)); }
+.bs-fc__btn--map.is-brand { background: radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, .35), transparent 55%), linear-gradient(150deg, #34a853, #188038); }
+.bs-fc__btn--email.is-brand { background: radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, .35), transparent 55%), linear-gradient(150deg, #ef5350, #c62828); }
+@media (max-width: 549px) {
+	.bs-fc--m-bar.bs-fc--bar-light .bs-fc__btn.is-brand,
+	.bs-fc--m-bar.bs-fc--bar-dark .bs-fc__btn.is-brand { background: transparent; }
+	.bs-fc--m-bar.bs-fc--bar-light .bs-fc__btn.is-brand { background: #fff; }
+}

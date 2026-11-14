@@ -29,7 +29,7 @@ for (const [key, file] of [['countdown', 'inc/countdown.php'], ['product-part', 
 const kdir = path.join(theme, 'ai-designer', 'knowledge');
 const knowledge = fs.readdirSync(kdir).map((f) => fs.readFileSync(path.join(kdir, f), 'utf8')).join('\n');
 // Child blocks are written by their parent block, so the AI never inserts them alone.
-const childOnly = new Set(['accordion-item', 'bento-cell', 'column', 'hover-reveal-item', 'hscroll-panel', 'stack-card', 'story-step', 'tab', 'ticker-slide']);
+const childOnly = new Set(['accordion-item', 'bento-cell', 'column', 'hover-reveal-item', 'hscroll-panel', 'stack-card', 'story-step', 'tab', 'ticker-slide', 'marquee-item']);
 for (const dir of blocks) {
 	if (childOnly.has(dir)) continue;
 	const name = JSON.parse(fs.readFileSync(path.join(theme, 'blocks', dir, 'block.json'), 'utf8')).name;

@@ -73,6 +73,10 @@ function bst_editor_assets() {
 	// Text / highlight color for selected words in BIGSPY rich text (Heading…).
 	wp_enqueue_script( 'bst-inline-color', BST_URI . '/assets/js/inline-color.js', array( 'wp-rich-text', 'wp-block-editor', 'wp-components', 'wp-element', 'wp-i18n', 'wp-data' ), bst_asset_version( 'assets/js/inline-color.js' ), true );
 	wp_enqueue_script( 'bst-color-input', BST_URI . '/assets/js/color-input.js', array( 'wp-i18n' ), bst_asset_version( 'assets/js/color-input.js' ), true );
+	// "+ Add to <Block>" rows inside List View containers; opens the inserter there.
+	wp_enqueue_script( 'bst-list-view-appender', BST_URI . '/assets/js/list-view-appender.js', array( 'wp-data', 'wp-blocks' ), bst_asset_version( 'assets/js/list-view-appender.js' ), true );
+	/* translators: %s: block name, e.g. "Row". */
+	wp_add_inline_script( 'bst-list-view-appender', 'window.bstListViewAppender=' . wp_json_encode( array( 'label' => __( 'Add to %s', 'bigspy-ai-theme-wp' ) ) ) . ';', 'before' );
 	wp_enqueue_style( 'bst-editor-ui', BST_URI . '/assets/css/editor-ui.css', array(), bst_asset_version( 'assets/css/editor-ui.css' ) );
 	wp_add_inline_style( 'bst-editor-ui', '.bst-btn-styles,.bst-bg-presets,.bst-form-templates{--bst-primary:' . sanitize_hex_color( (string) bst_mod( 'color_primary' ) ) . ';--bst-secondary:' . sanitize_hex_color( (string) bst_mod( 'color_secondary' ) ) . '}' );
 }

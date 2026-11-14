@@ -15,6 +15,12 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.96.0 =
+* Scrolling text (marquee): items are now Marquee item blocks with text, icon or logo image, link and color; several rows with opposite directions and speed shift, item styles (plain, pill, card, logo), edge fade, tilt, vertical orientation, scroll-linked speed, pause on hover and per-device font and image sizes. Old marquees render as before.
+* Floating contact: real Zalo brand mark, an icon picker for each button (the custom button defaults to a form icon), glossy buttons, card labels, ring waves and a phone-bar shine.
+* Sidebar width per view (blog, single post, page, shop, product) in px or %.
+* Editor List View: an "Add to <block>" row under each expanded container opens the inserter at the end of that container.
+
 = 1.95.0 =
 * Listing texts (Customizer > Layout, BIGSPY AI List mode): choose what to call a listing (Listings, Tools, Products, Services, Places, Companies or your own singular and plural) and every default text follows; each text of the filter bar, cards, listing page, Sponsored and categories can be overridden. Filter bar parts (search, category, sort, result count, Clear filters), sort choices and default sort, and category depth can be set. Search, Elements, Sponsored and Listing sidebar blocks use these texts when their own fields are empty.
 * Note for sites already in List mode: they are set to "Tools" once on update, so the filter bar reads as before. A few texts now follow the chosen name, e.g. "12 tools found" (was "12 listings found"), "Related tools", "Sponsored tool.", and the Search block placeholder "Search tools...". Pick "Listings" or fill the field to change them. The Sponsored badge with an empty Badge text now shows "Sponsored by".

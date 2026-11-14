@@ -28,7 +28,7 @@ function bst_block_names() {
 	// Shop blocks are always registered so pages keep working if WooCommerce is
 	// deactivated later; they only appear in the inserter while WooCommerce is active
 	// (see blocks-editor.js) and render nothing without it.
-	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell', 'theme-showcase', 'listing-info', 'listing-sidebar', 'listing-grid', 'category-grid', 'listing-search', 'listing-elements', 'sponsored', 'search' );
+	return array( 'section', 'row', 'column', 'banner', 'slider', 'icon-box', 'title', 'tabs', 'tab', 'accordion', 'accordion-item', 'posts', 'testimonial', 'counter', 'map', 'heading', 'text', 'image', 'gallery', 'video', 'social', 'form', 'team-member', 'price-table', 'video-button', 'share', 'icon-list', 'image-box', 'alert', 'progress', 'star-rating', 'buttons', 'button', 'divider', 'spacer', 'code', 'products', 'products-list', 'product-categories', 'hotspot', 'popup', 'logos', 'widget-area', 'shortcode', 'payment-icons', 'marquee', 'before-after', 'flip-box', 'timeline', 'table', 'pricing-toggle', 'lottie', 'audio', 'nav-menu', 'banner-grid', 'ticker', 'ticker-slide', 'expand-gallery', 'expand-panel', 'animated-text', 'scroll-story', 'story-step', 'stack-cards', 'stack-card', 'hover-reveal', 'hover-reveal-item', 'line-draw', 'horizontal-scroll', 'hscroll-panel', 'zoom-hero', 'video-cards', 'video-card', 'bento', 'bento-cell', 'theme-showcase', 'listing-info', 'listing-sidebar', 'listing-grid', 'category-grid', 'listing-search', 'listing-elements', 'sponsored', 'search', 'marquee-item' );
 }
 
 function bst_register_blocks() {
@@ -42,6 +42,8 @@ function bst_register_blocks() {
 		true
 	);
 	wp_register_script( 'bst-form-quote', BST_URI . '/assets/js/form-quote.js', array(), bst_asset_version( 'assets/js/form-quote.js' ), true );
+	// Marquee runtime: loaded only on pages that print a marquee (blocks/marquee/render.php).
+	wp_register_script( 'bst-marquee', BST_URI . '/assets/js/marquee.js', array(), bst_asset_version( 'assets/js/marquee.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	wp_register_script(
 		'bst-blocks-editor',
 		BST_URI . '/assets/js/blocks-editor.js',

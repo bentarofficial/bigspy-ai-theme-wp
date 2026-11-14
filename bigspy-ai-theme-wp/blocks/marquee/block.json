@@ -5,7 +5,7 @@
 	"title": "Scrolling text (marquee)",
 	"category": "bigspy",
 	"icon": "leftright",
-	"description": "Text or keywords that scroll continuously across the screen, like a news ticker. Set the speed, direction, separator, size, colors and pause on hover.",
+	"description": "Text, icons, logos or cards that scroll continuously across the screen. Each item can have a link. Choose rows, direction, item style, edge fade, tilt, scroll effects and per-device sizes.",
 	"keywords": [
 		"marquee",
 		"ticker",
@@ -61,6 +61,111 @@
 		"paddingY": {
 			"type": "number",
 			"default": 18
+		},
+		"previewItems": {
+			"type": "array",
+			"default": []
+		},
+		"itemStyle": {
+			"type": "string",
+			"default": ""
+		},
+		"itemBg": {
+			"type": "string",
+			"default": ""
+		},
+		"itemBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"itemRadius": {
+			"type": "number"
+		},
+		"imgHeight": {
+			"type": "number"
+		},
+		"rows": {
+			"type": "number",
+			"default": 1
+		},
+		"rowDirection": {
+			"type": "string",
+			"default": ""
+		},
+		"rowSpeedShift": {
+			"type": "number",
+			"default": 0
+		},
+		"rowGap": {
+			"type": "number"
+		},
+		"orientation": {
+			"type": "string",
+			"default": ""
+		},
+		"height": {
+			"type": "number",
+			"default": 420
+		},
+		"fade": {
+			"type": "number",
+			"default": 0
+		},
+		"tilt": {
+			"type": "number",
+			"default": 0
+		},
+		"cross": {
+			"type": "boolean",
+			"default": false
+		},
+		"crossBg": {
+			"type": "string",
+			"default": ""
+		},
+		"crossColor": {
+			"type": "string",
+			"default": ""
+		},
+		"scrollBoost": {
+			"type": "boolean",
+			"default": false
+		},
+		"scrollReverse": {
+			"type": "boolean",
+			"default": false
+		},
+		"pauseButton": {
+			"type": "boolean",
+			"default": false
+		},
+		"loops": {
+			"type": "number",
+			"default": 0
+		},
+		"speedTablet": {
+			"type": "number"
+		},
+		"speedMobile": {
+			"type": "number"
+		},
+		"sizeTablet": {
+			"type": "number"
+		},
+		"sizeMobile": {
+			"type": "number"
+		},
+		"gapTablet": {
+			"type": "number"
+		},
+		"gapMobile": {
+			"type": "number"
+		},
+		"paddingYTablet": {
+			"type": "number"
+		},
+		"paddingYMobile": {
+			"type": "number"
 		}
 	},
 	"supports": {

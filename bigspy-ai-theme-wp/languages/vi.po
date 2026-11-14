@@ -335,6 +335,9 @@ msgstr "Thêm vào giỏ"
 msgid "Add to page"
 msgstr "Thêm vào trang"
 
+msgid "Add to %s"
+msgstr "Thêm vào %s"
+
 msgid "Added as a synced design. Changes to its source update every copy."
 msgstr "Đã thêm dưới dạng mẫu đồng bộ. Khi sửa mẫu gốc, các bản dùng mẫu này cũng được cập nhật."
 
@@ -10057,3 +10060,10 @@ msgstr "Xem thẻ xếp chồng như trên website"
 
 msgid "1.95.0: A new Listing texts panel in Customizer > Layout lets you call your listings Tools, Products, Places or your own word and rewrite every text of the filter bar, cards, listing pages, Sponsored and categories, or turn parts of the filter bar off. Stacking Cards and Flip Box now look the same in the editor as on the site. The affiliate commission line on listings is off by default, and the Customizer search box no longer covers open panels."
 msgstr "1.95.0: Bảng Listing texts mới trong Customizer > Layout cho phép gọi listing là Tools, Products, Places hay tên riêng của bạn và sửa mọi chữ của thanh lọc, thẻ, trang listing, Sponsored và danh mục, hoặc tắt từng phần của thanh lọc. Stacking Cards và Flip Box giờ trong trình soạn thảo trông giống hệt trên trang. Dòng hoa hồng affiliate trên listing mặc định tắt, và ô tìm kiếm Customizer không còn che các panel đang mở."
+
+msgid "Default icon"
+msgstr "Biểu tượng mặc định"
+
+
+msgid "1.96.0: Scrolling text (marquee) becomes a full strip builder: each item can be text, an icon, a logo or a card with its own link and color, in several rows going opposite ways, with item styles, edge fade, tilt, vertical mode, scroll effects and per-device sizes. Floating contact shows the real Zalo mark, lets you pick an icon for each button and adds glossy buttons, card labels, ring waves and a phone-bar shine. The sidebar width can be set for blog, posts, pages, shop and products in px or %, and the editor List View shows an Add to button under each container to insert blocks right there."
+msgstr "1.96.0: Khối Chữ chạy (marquee) thành bộ dựng dải chạy đầy đủ: mỗi mục có thể là chữ, biểu tượng, logo hoặc thẻ với link và màu riêng, chạy nhiều hàng ngược chiều, có kiểu mục, mờ mép, nghiêng, chạy dọc, hiệu ứng cuộn và kích thước theo thiết bị. Liên hệ nổi dùng logo Zalo thật, cho chọn biểu tượng từng nút và thêm nút bóng, nhãn dạng thẻ, sóng lan và ánh sáng trên thanh gọi điện. Độ rộng sidebar đặt riêng cho blog, bài viết, trang, cửa hàng và sản phẩm theo px hoặc %, và List View trong trình soạn thảo có nút Thêm vào dưới mỗi khối chứa để chèn khối đúng chỗ."
