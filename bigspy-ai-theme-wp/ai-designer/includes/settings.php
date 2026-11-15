@@ -335,5 +335,7 @@ function bst_aid_spent_today() {
 /* ------------------------------------------------------------------ Page */
 
 function bst_aid_settings_page() {
-	echo '<div class="wrap bst-aid"><h1>' . esc_html__( 'BIGSPY AI Designer – Settings', 'bigspy-ai-theme-wp' ) . '</h1><div id="bst-aid-settings" class="bst-aid-settings"><p>' . esc_html__( 'Loading…', 'bigspy-ai-theme-wp' ) . '</p></div></div>';
+	bst_aid_shell_open( 'bst-ai-settings', __( 'BIGSPY AI Designer – Settings', 'bigspy-ai-theme-wp' ) );
+	echo '<div id="bst-aid-settings" class="bst-aid-settings"><p>' . esc_html__( 'Loading…', 'bigspy-ai-theme-wp' ) . '</p></div>';
+	bst_aid_shell_close();
 }

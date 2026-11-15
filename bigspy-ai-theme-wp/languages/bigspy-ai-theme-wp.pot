@@ -13535,3 +13535,18 @@ msgstr ""
 msgid "Default icon"
 msgstr ""
 
+msgid "Notices"
+msgstr ""
+
+msgid "No notices."
+msgstr ""
+
+msgid "Full screen (Esc to leave)"
+msgstr ""
+
+msgid "AI Designer screens"
+msgstr ""
+
+msgid "API balance (cached)"
+msgstr ""
+

@@ -130,3 +130,16 @@ add_filter(
 	10,
 	3
 );
+
+/* ?bst_mock_notices=1 adds three admin notices, to check that the AI Designer bell collects them. */
+add_action(
+	'admin_notices',
+	function () {
+		if ( empty( $_GET['bst_mock_notices'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return;
+		}
+		foreach ( array( 'warning', 'error', 'info' ) as $i => $type ) {
+			echo '<div class="notice notice-' . esc_attr( $type ) . ' is-dismissible"><p>Mock plugin notice ' . (int) ( $i + 1 ) . ': this would normally push the layout down.</p></div>';
+		}
+	}
+);

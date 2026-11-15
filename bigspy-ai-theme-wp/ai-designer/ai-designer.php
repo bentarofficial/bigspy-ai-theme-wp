@@ -34,6 +34,7 @@ require_once BST_AID_DIR . '/includes/tools-form.php';
 require_once BST_AID_DIR . '/includes/prompt.php';
 require_once BST_AID_DIR . '/includes/tasks.php';
 require_once BST_AID_DIR . '/includes/attachments.php';
+require_once BST_AID_DIR . '/includes/shell.php';
 require_once BST_AID_DIR . '/includes/workspace.php';
 require_once BST_AID_DIR . '/includes/abilities.php';
 
@@ -58,7 +59,9 @@ add_action(
 
 /** Read-only introduction to the AI workspace and its approval flow. */
 function bst_aid_about_page() {
+	bst_aid_shell_open( 'bst-ai-about', __( 'About BIGSPY AI Designer', 'bigspy-ai-theme-wp' ) );
 	bst_welcome_screen( 'designer' );
+	bst_aid_shell_close();
 }
 
 /** REST namespace shared by settings, guidelines and tasks. */

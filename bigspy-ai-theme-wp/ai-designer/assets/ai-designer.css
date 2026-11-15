@@ -15,6 +15,13 @@
 	--aid-r-lg: 18px;
 	--aid-r: 14px;
 	--aid-r-sm: 10px;
+	--aid-s-1: 4px;
+	--aid-s-2: 8px;
+	--aid-s-3: 12px;
+	--aid-s-4: 16px;
+	--aid-s-5: 24px;
+	--aid-s-6: 32px;
+	--aid-bar-h: 48px;
 	color: var(--aid-ink);
 }
 .bst-aid h1 { font-weight: 700; letter-spacing: -.01em; }
@@ -52,8 +59,7 @@
 .bst-aid .notice.inline { border-radius: var(--aid-r-sm); }
 
 /* Workspace shell */
-.bst-aid--workspace { margin: 10px 20px 0 2px; }
-.bst-aid-ws { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 16px; height: calc(100vh - 32px - 36px); min-height: 540px; }
+.bst-aid-ws { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 16px; height: 100%; min-height: 0; padding: var(--aid-s-4); box-sizing: border-box; }
 .bst-aid-side, .bst-aid-main, .bst-aid-preview { min-height: 0; border-radius: var(--aid-r-lg); box-shadow: var(--aid-shadow); }
 .bst-aid-side { display: flex; flex-direction: column; padding: 14px; color: #cbd5e1; background: radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, .35), transparent 60%), radial-gradient(90% 50% at 100% 100%, rgba(6, 182, 212, .25), transparent 60%), var(--aid-navy); }
 .bst-aid-side a { color: #a5b4fc; }
@@ -161,6 +167,7 @@
 	.bst-aid-main { height: 78vh; }
 	.bst-aid-preview { height: 70vh; }
 	.bst-aid-select { min-width: 0; width: 100%; }
+	.bst-aid-app--designer .bst-aid-body { overflow: auto; }
 }
 
 /* WordPress button and list styles must not override these. */
@@ -174,8 +181,6 @@
 .bst-aid-test-ok img { width: 140px; height: 105px; object-fit: cover; border-radius: 12px; box-shadow: var(--aid-shadow); }
 .bst-aid-test-ok p { margin: 0 0 6px; }
 
-/* Leave room at the bottom for floating chat buttons of other plugins (e.g. a host's AI helper). */
-.bst-aid-ws { height: calc(100vh - 32px - 36px - 64px); }
 
 .bst-aid-approval pre{max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}.bst-aid-approval button{margin:4px}
 .bst-aid-files{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
@@ -187,3 +192,47 @@
 .bst-aid-attach .dashicons{margin-top:3px}
 .bst-aid-saved{margin-left:8px;color:#50575e}
 .bst-aid-saved.is-error{color:#b32d2e}
+
+/* ------------------------------------------------------------ App shell (G-207) */
+/* The shell fills the window below the admin bar; only the regions inside it scroll. */
+html { --aid-top: var(--wp-admin--admin-bar--height, 32px); }
+@media screen and (max-width: 782px) { html { --aid-top: var(--wp-admin--admin-bar--height, 46px); } }
+html.bst-aid-full { --aid-top: 0px; }
+body.bst-aid-screen #wpfooter { display: none; }
+body.bst-aid-screen #wpbody-content { padding-bottom: 0; }
+body.bst-aid-screen #wpcontent { padding-inline-start: 0; }
+body.bst-aid-screen .update-nag { display: none; } /* Core update nag: shown elsewhere in wp-admin. */
+html.bst-aid-full body.bst-aid-screen #adminmenumain, html.bst-aid-full body.bst-aid-screen #wpadminbar { display: none; }
+html.bst-aid-full body.bst-aid-screen #wpcontent, html.bst-aid-full body.bst-aid-screen #wpfooter { margin-inline-start: 0; }
+html.wp-toolbar.bst-aid-full { padding-top: 0; }
+.bst-aid-app.wrap { display: flex; flex-direction: column; height: calc(100vh - var(--aid-top) - var(--aid-safe-bottom, 0px)); height: calc(100dvh - var(--aid-top) - var(--aid-safe-bottom, 0px)); margin: 0; background: var(--aid-bg); }
+.bst-aid-bar { position: relative; z-index: 20; display: flex; flex: none; align-items: center; gap: var(--aid-s-3); height: var(--aid-bar-h); padding-inline: var(--aid-s-4); color: #e2e8f0; background: var(--aid-navy); box-sizing: border-box; }
+.bst-aid-brand { display: inline-flex; flex: none; align-items: center; gap: var(--aid-s-2); font-size: 14px; font-weight: 700; color: #fff; text-decoration: none; white-space: nowrap; }
+.bst-aid-brand:hover, .bst-aid-brand:focus { color: #fff; }
+.bst-aid-brand-mark { width: 22px; height: 22px; border-radius: 7px; background: var(--aid-grad); box-shadow: var(--aid-glow); }
+.bst-aid-tabs { display: flex; gap: var(--aid-s-1); min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.bst-aid-tabs a { flex: none; padding: 6px 12px; font-size: 13px; font-weight: 600; color: #94a3b8; text-decoration: none; border-radius: 999px; }
+.bst-aid-tabs a:hover, .bst-aid-tabs a:focus { color: #fff; background: rgba(255, 255, 255, .08); box-shadow: none; }
+.bst-aid-tabs a.is-active { color: #fff; background: rgba(99, 102, 241, .35); }
+.bst-aid-bar-gap { flex: 1; }
+.bst-aid-bar-balance { flex: none; font-size: 12px; font-weight: 600; color: #cbd5e1; font-variant-numeric: tabular-nums; }
+.bst-aid-bar-balance.is-low { color: #fda4af; }
+.bst-aid-bar-btn { position: relative; display: inline-grid; flex: none; place-items: center; width: 34px; height: 34px; padding: 0; color: #cbd5e1; background: none; border: 0; border-radius: 10px; cursor: pointer; }
+.bst-aid-bar-btn:hover, .bst-aid-bar-btn[aria-expanded="true"], .bst-aid-bar-btn[aria-pressed="true"] { color: #fff; background: rgba(255, 255, 255, .1); }
+.bst-aid-bar-btn:focus-visible, .bst-aid-tabs a:focus-visible, .bst-aid-brand:focus-visible { outline: 2px solid var(--aid-a2); outline-offset: 2px; }
+.bst-aid-bell { position: relative; }
+.bst-aid-bell-count { position: absolute; top: 2px; inset-inline-end: 2px; min-width: 16px; height: 16px; padding: 0 4px; font-size: 10px; font-weight: 700; line-height: 16px; color: #fff; background: #e11d48; border-radius: 999px; box-sizing: border-box; }
+.bst-aid-notices { position: absolute; top: calc(100% + 8px); inset-inline-end: 0; width: min(420px, calc(100vw - 32px)); max-height: 60vh; padding: var(--aid-s-3); overflow: auto; color: var(--aid-ink); background: var(--aid-surface); border: 1px solid var(--aid-line); border-radius: var(--aid-r); box-shadow: 0 20px 50px rgba(15, 23, 42, .25); }
+.bst-aid-notices .notice, .bst-aid-notices div.error, .bst-aid-notices div.updated { margin: 0 0 var(--aid-s-2); }
+.bst-aid-notices .notice:last-of-type { margin-bottom: 0; }
+.bst-aid-notices hr.wp-header-end { display: none; }
+.bst-aid-notices-empty { margin: 0; color: var(--aid-muted); }
+.bst-aid-body { flex: 1; min-height: 0; overflow: auto; }
+.bst-aid-app--designer .bst-aid-body { overflow: hidden; }
+.bst-aid-page { max-width: 1080px; margin: 0 auto; padding: var(--aid-s-5) var(--aid-s-4); box-sizing: border-box; }
+.bst-aid-settings { max-width: 1080px; margin: 0 auto; padding: var(--aid-s-5) var(--aid-s-4); box-sizing: border-box; }
+.bst-aid-app--about .bst-welcome.wrap { max-width: 1080px; margin: 0 auto; padding: var(--aid-s-5) var(--aid-s-4); box-sizing: border-box; }
+@media (max-width: 600px) {
+	.bst-aid-brand span:last-child { display: none; }
+	.bst-aid-bar { gap: var(--aid-s-2); padding-inline: var(--aid-s-3); }
+}

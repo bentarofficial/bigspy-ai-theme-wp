@@ -662,6 +662,47 @@
 		}).catch(function (e) { root.innerHTML = ''; root.appendChild(h('div', { class: 'notice notice-error' }, h('p', { text: e.message }))); });
 	}
 
+	/* ------------------------------------------------------------ App shell (G-207) */
+	(function shell() {
+		var bar = document.querySelector('.bst-aid-bar');
+		if (!bar) { return; }
+		var html = document.documentElement;
+		// Full screen hides the admin menu and toolbar; Esc leaves it.
+		var fullBtn = bar.querySelector('.bst-aid-full-btn');
+		var setFull = function (on) {
+			html.classList.toggle('bst-aid-full', on);
+			fullBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+			try { window.localStorage.setItem('bstAidFull', on ? '1' : '0'); } catch (e) { /* storage blocked */ }
+			window.dispatchEvent(new Event('resize'));
+		};
+		fullBtn.setAttribute('aria-pressed', html.classList.contains('bst-aid-full') ? 'true' : 'false');
+		fullBtn.addEventListener('click', function () { setFull(!html.classList.contains('bst-aid-full')); });
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && html.classList.contains('bst-aid-full') && !document.querySelector('.bst-aid-notices:not([hidden]), .bst-aid-menu:not([hidden]), dialog[open]')) { setFull(false); }
+		});
+		// Admin notices of other plugins: WordPress moves them after .wp-header-end, inside the bell panel.
+		var bell = bar.querySelector('.bst-aid-bell > button'), panel = document.getElementById('bst-aid-notices');
+		var count = bar.querySelector('.bst-aid-bell-count'), empty = panel.querySelector('.bst-aid-notices-empty');
+		var gather = function () {
+			// Notices printed outside the panel (before WordPress moved them, or by late scripts) are moved in too.
+			document.querySelectorAll('#wpbody-content > .notice, #wpbody-content > div.error, #wpbody-content > div.updated, .bst-aid-app > .notice, .bst-aid-body > .notice').forEach(function (n) {
+				if (!n.classList.contains('inline')) { panel.appendChild(n); }
+			});
+			var n = panel.querySelectorAll('.notice, div.error, div.updated').length;
+			count.hidden = !n; count.textContent = n > 9 ? '9+' : String(n); empty.hidden = !!n;
+		};
+		var close = function () { panel.hidden = true; bell.setAttribute('aria-expanded', 'false'); };
+		bell.addEventListener('click', function (e) {
+			e.stopPropagation(); gather();
+			panel.hidden = !panel.hidden; bell.setAttribute('aria-expanded', panel.hidden ? 'false' : 'true');
+		});
+		panel.addEventListener('click', function (e) { e.stopPropagation(); });
+		document.addEventListener('click', close);
+		document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { close(); bell.focus(); } });
+		gather();
+		window.addEventListener('load', gather);
+	})();
+
 	var s = document.getElementById('bst-aid-settings');
 	if (s) { Settings(s); }
 	var w = document.getElementById('bst-aid-workspace');

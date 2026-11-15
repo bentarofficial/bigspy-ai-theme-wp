@@ -75,10 +75,11 @@ add_action(
 
 function bst_aid_guidelines_page() {
 	$g = bst_aid_guidelines();
-	echo '<div class="wrap bst-aid"><h1>' . esc_html__( 'BIGSPY AI Designer – Guidelines', 'bigspy-ai-theme-wp' ) . '</h1>';
+	bst_aid_shell_open( 'bst-ai-guidelines', __( 'BIGSPY AI Designer – Guidelines', 'bigspy-ai-theme-wp' ) );
+	echo '<div class="bst-aid-page">';
 	echo '<p class="bst-aid-lead">' . esc_html__( 'The designer follows these standards in every task. Changes save as you type. When you tell the designer in chat that something applies from now on, it saves it here and you can undo that from the chat.', 'bigspy-ai-theme-wp' ) . '</p>';
 	if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Guidelines saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
+		echo '<div class="notice notice-success inline"><p>' . esc_html__( 'Guidelines saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
 	}
 	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="bst-aid-guides">';
 	wp_nonce_field( 'bst_aid_guidelines' );
@@ -91,4 +92,5 @@ function bst_aid_guidelines_page() {
 	echo '</form>';
 	bst_aid_specialties_form();
 	echo '</div>';
+	bst_aid_shell_close();
 }

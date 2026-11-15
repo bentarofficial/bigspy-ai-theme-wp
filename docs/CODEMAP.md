@@ -19,7 +19,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 
 ## AI Designer (`ai-designer/`)
 - Entry: `ai-designer.php`; loaded by one line in `functions.php`.
-- `includes/`: `client.php` Kyma API, `prompt.php` system prompt, `tasks.php` task loop and REST, `tools.php` tool registry, `tools-site.php`, `tools-design.php`, `tools-images.php`, `permissions.php` approval cards, `clean.php` output cleaning, `settings.php`, `guidelines.php`, `workspace.php`.
+- `includes/`: `client.php` Kyma API, `prompt.php` system prompt, `tasks.php` task loop and REST, `tools.php` tool registry, `tools-site.php`, `tools-design.php`, `tools-images.php`, `permissions.php` approval cards, `clean.php` output cleaning, `settings.php`, `guidelines.php`, `workspace.php`, `shell.php` (app bar shared by the four screens: tabs, balance, notice bell, full screen; `bst_aid_shell_open/close`).
 - UI: `assets/`; knowledge: `knowledge/`; About page: `welcome/`.
 - Form tools (G-59): `includes/tools-form.php` (`form_get`, `form_configure` with dry run, diff, sample quote); policy in `permissions.php`. Test inside WordPress: `tools/tests/form-ai-integration.php` (load after wp-load.php, prints ok/FAIL).
 

@@ -10067,3 +10067,22 @@ msgstr "Biểu tượng mặc định"
 
 msgid "1.96.0: Scrolling text (marquee) becomes a full strip builder: each item can be text, an icon, a logo or a card with its own link and color, in several rows going opposite ways, with item styles, edge fade, tilt, vertical mode, scroll effects and per-device sizes. Floating contact shows the real Zalo mark, lets you pick an icon for each button and adds glossy buttons, card labels, ring waves and a phone-bar shine. The sidebar width can be set for blog, posts, pages, shop and products in px or %, and the editor List View shows an Add to button under each container to insert blocks right there."
 msgstr "1.96.0: Khối Chữ chạy (marquee) thành bộ dựng dải chạy đầy đủ: mỗi mục có thể là chữ, biểu tượng, logo hoặc thẻ với link và màu riêng, chạy nhiều hàng ngược chiều, có kiểu mục, mờ mép, nghiêng, chạy dọc, hiệu ứng cuộn và kích thước theo thiết bị. Liên hệ nổi dùng logo Zalo thật, cho chọn biểu tượng từng nút và thêm nút bóng, nhãn dạng thẻ, sóng lan và ánh sáng trên thanh gọi điện. Độ rộng sidebar đặt riêng cho blog, bài viết, trang, cửa hàng và sản phẩm theo px hoặc %, và List View trong trình soạn thảo có nút Thêm vào dưới mỗi khối chứa để chèn khối đúng chỗ."
+
+msgid "Notices"
+msgstr "Thông báo"
+
+msgid "No notices."
+msgstr "Không có thông báo."
+
+msgid "Full screen (Esc to leave)"
+msgstr "Toàn màn hình (Esc để thoát)"
+
+msgid "Full screen"
+msgstr "Toàn màn hình"
+
+msgid "AI Designer screens"
+msgstr "Các màn hình AI Designer"
+
+msgid "API balance (cached)"
+msgstr "Số dư API (đã lưu tạm)"
+
