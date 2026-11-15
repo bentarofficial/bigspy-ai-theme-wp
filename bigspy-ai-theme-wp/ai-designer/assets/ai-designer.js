@@ -50,28 +50,66 @@
 			.replace(/(^|[\s(])\*(?=[^\s*])([^*\n]+?)(?<=\S)\*(?![\w*])/g, '$1<em>$2</em>')
 			.split('**').join('').split('__').join('');
 	};
+	// Block-level Markdown: headings, rules, nested lists, tables and fenced code (G-192).
 	var md = function (text) {
 		var esc = String(text || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r/g, '');
-		var out = [], list = null, kind = '';
-		var flush = function () { if (list) { out.push('<' + kind + '>' + list.join('') + '</' + kind + '>'); } list = null; kind = ''; };
-		esc.split('\n').forEach(function (line) {
-			var t = line.trim(), m;
-			if (!t) { flush(); return; }
-			if ((m = /^#{1,6}\s+(.+)$/.exec(t))) { flush(); out.push('<h4>' + inline(m[1].replace(/#+\s*$/, '')) + '</h4>'); return; }
-			if (/^(-{3,}|\*{3,}|_{3,})$/.test(t)) { flush(); out.push('<hr>'); return; }
+		var lines = esc.split('\n'), out = [], stack = [];
+		var closeTo = function (indent) {
+			while (stack.length && stack[stack.length - 1].indent > indent) {
+				var top = stack.pop(), html = '<' + top.kind + '>' + top.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</' + top.kind + '>';
+				if (stack.length) { var parent = stack[stack.length - 1]; parent.items[parent.items.length - 1] += html; } else { out.push(html); }
+			}
+		};
+		var flush = function () { closeTo(-1); };
+		var cells = function (row) { return row.replace(/^\|/, '').replace(/\|\s*$/, '').split('|').map(function (c) { return inline(c.trim()); }); };
+		for (var i = 0; i < lines.length; i++) {
+			var line = lines[i], t = line.trim(), m;
+			if (/^```/.test(t)) {
+				flush();
+				var lang = t.slice(3).trim(), code = [];
+				for (i++; i < lines.length && !/^```/.test(lines[i].trim()); i++) { code.push(lines[i]); }
+				out.push('<div class="bst-aid-code"><div class="bst-aid-code-bar"><span>' + (lang || 'code') + '</span><button type="button" class="bst-aid-copy" data-copy-code>' + __('Copy', T) + '</button></div><pre><code>' + code.join('\n') + '</code></pre></div>');
+				continue;
+			}
+			if (/^\|/.test(t) && i + 1 < lines.length && /^\|?\s*:?-{3,}/.test(lines[i + 1].trim())) {
+				flush();
+				var head = cells(t), body = [];
+				for (i += 2; i < lines.length && /^\|/.test(lines[i].trim()); i++) { body.push(cells(lines[i].trim())); }
+				i--;
+				out.push('<div class="bst-aid-table"><table><thead><tr>' + head.map(function (c) { return '<th>' + c + '</th>'; }).join('') + '</tr></thead><tbody>' +
+					body.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>');
+				continue;
+			}
+			if (!t) { flush(); continue; }
+			if ((m = /^#{1,6}\s+(.+)$/.exec(t))) { flush(); out.push('<h4>' + inline(m[1].replace(/#+\s*$/, '')) + '</h4>'); continue; }
+			if (/^(-{3,}|\*{3,}|_{3,})$/.test(t)) { flush(); out.push('<hr>'); continue; }
 			if ((m = /^(?:[-*•+]|(\d+)[.)])\s+(.+)$/.exec(t))) {
-				var k = m[1] ? 'ol' : 'ul';
-				if (kind && kind !== k) { flush(); }
-				if (!list) { list = []; kind = k; }
-				list.push('<li>' + inline(m[2]) + '</li>');
-				return;
+				var kind = m[1] ? 'ol' : 'ul', indent = line.length - line.replace(/^\s+/, '').length;
+				closeTo(indent);
+				var top = stack[stack.length - 1];
+				if (top && top.indent === indent && top.kind !== kind) { closeTo(indent - 1); top = null; }
+				if (!top || top.indent < indent) { stack.push({ kind: kind, indent: indent, items: [] }); top = stack[stack.length - 1]; }
+				top.items.push(inline(m[2]));
+				continue;
 			}
 			flush();
-			out.push('<p>' + inline(t.replace(/^&gt;\s*/, '')) + '</p>');
-		});
+			out.push(/^&gt;\s?/.test(t) ? '<blockquote>' + inline(t.replace(/^&gt;\s?/, '')) + '</blockquote>' : '<p>' + inline(t) + '</p>');
+		}
 		flush();
 		return out.join('');
 	};
+	// Copy buttons in chat answers and code blocks.
+	var copyText = function (text, btn) {
+		var done = function () { var old = btn.textContent; btn.textContent = __('Copied', T); setTimeout(function () { btn.textContent = old; }, 1400); };
+		if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done); return; }
+		var ta = h('textarea', { style: 'position:fixed;opacity:0' }); ta.value = text; document.body.appendChild(ta); ta.select();
+		try { document.execCommand('copy'); done(); } catch (e) { /* nothing to do */ }
+		ta.remove();
+	};
+	document.addEventListener('click', function (e) {
+		var b = e.target.closest && e.target.closest('[data-copy-code]');
+		if (b) { copyText(b.closest('.bst-aid-code').querySelector('code').textContent, b); }
+	});
 
 	/* ------------------------------------------------------------ Guidelines */
 	document.addEventListener('click', function (e) {
@@ -405,7 +443,11 @@
 			}
 			if (ev.kind === 'assistant') {
 				var b = h('div', { class: 'bst-aid-bubble' }); b.innerHTML = md(ev.text);
-				return h('div', { class: 'bst-aid-msg is-ai' }, b);
+				var idx = log.indexOf(ev), asked = '';
+				for (var k = (idx < 0 ? log.length : idx) - 1; k >= 0; k--) { if (log[k].kind === 'user') { asked = log[k].text; break; } }
+				var copyBtn = h('button', { type: 'button', class: 'bst-aid-act', onclick: function () { copyText(ev.text, copyBtn); }, text: __('Copy', T) });
+				var actions = h('div', { class: 'bst-aid-acts' }, [copyBtn, asked ? h('button', { type: 'button', class: 'bst-aid-act', title: __('Send your last message again', T), onclick: function () { sendText(asked); }, text: __('Retry', T) }) : null]);
+				return h('div', { class: 'bst-aid-msg is-ai' }, [h('span', { class: 'bst-aid-avatar', 'aria-hidden': 'true' }), h('div', { class: 'bst-aid-ai-body' }, [b, actions])]);
 			}
 			if (ev.kind === 'tool' || ev.kind === 'tool-error') {
 				var links = (ev.links || []).map(function (l) {
@@ -450,10 +492,29 @@
 			return h('div', { class: 'bst-aid-note' + (ev.kind === 'error' ? ' is-error' : ''), text: ev.text + (ev.approved_by ? ' · #' + ev.approved_by + ' · ' + new Date(ev.t * 1000).toLocaleString() : '') });
 		};
 		var scroll = function () { if (els.chat) { els.chat.scrollTop = els.chat.scrollHeight; } };
+		// Consecutive plain tool rows fold into "Did N things"; cards (plan, palettes, approvals) and errors stay visible.
+		var groupable = function (ev) { return (ev.kind === 'tool' || ev.kind === 'tool-error') && !ev.plan && !ev.palettes && !ev.context_undo; };
+		var place = function (ev) {
+			var node = eventNode(ev), prev = els.working ? els.working.previousElementSibling : els.chat.lastElementChild;
+			if (!groupable(ev)) { els.chat.insertBefore(node, els.working || null); return; }
+			var group = prev && prev.classList.contains('bst-aid-group') ? prev : null;
+			if (!group) {
+				group = h('details', { class: 'bst-aid-group' }, [h('summary'), h('div', { class: 'bst-aid-group-rows' })]);
+				els.chat.insertBefore(group, els.working || null);
+			}
+			group.lastElementChild.appendChild(node);
+			var n = group.lastElementChild.children.length, bad = group.querySelectorAll('.bst-aid-tool.is-error').length;
+			group.classList.toggle('has-error', !!bad);
+			group.classList.toggle('is-single', n === 1);
+			// One row shows as is; from two rows on the group folds, and stays open when something failed.
+			if (n === 1 || bad) { group.open = true; } else if (n === 2 && !group.hasAttribute('data-touched')) { group.open = false; }
+			group.firstElementChild.textContent = sprintf(__('Did %d things', T), n) + (bad ? ' · ' + sprintf(__('%d with a problem', T), bad) : '');
+			group.firstElementChild.onclick = function () { group.setAttribute('data-touched', '1'); };
+		};
 		var addEvents = function (evs) {
 			(evs || []).forEach(function (ev) {
 				log.push(ev);
-				if (els.chat) { els.chat.insertBefore(eventNode(ev), els.working); }
+				if (els.chat) { place(ev); }
 				if (ev.preview) { rememberPreview(ev); syncPreview(); } // Show a page as soon as it is built or changed.
 			});
 			scroll();
@@ -636,7 +697,8 @@
 					}))));
 				}
 			} else {
-				log.forEach(function (ev) { els.chat.appendChild(eventNode(ev)); });
+				els.working = null;
+				log.forEach(place);
 			}
 			els.working = h('div', { class: 'bst-aid-working', hidden: !running }, [h('span', { class: 'spinner is-active' }), h('span', { text: __('Working…', T) })]);
 			els.chat.appendChild(els.working);
@@ -825,6 +887,7 @@
 			});
 			frame.open();
 		};
+		var sendText = function (text) { if (running || !current) { return; } els.input.value = text; send(); };
 		var send = function () {
 			var text = els.input.value.trim();
 			if (!text || running || !current) { return; }

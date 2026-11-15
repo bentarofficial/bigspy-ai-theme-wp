@@ -10245,3 +10245,18 @@ msgstr "Đã sửa so với mặc định"
 msgid "Guideline to edit"
 msgstr "Mục cần sửa"
 
+msgid "Copied"
+msgstr "Đã chép"
+
+msgid "Retry"
+msgstr "Thử lại"
+
+msgid "Send your last message again"
+msgstr "Gửi lại tin nhắn vừa rồi"
+
+msgid "Did %d things"
+msgstr "Đã làm %d việc"
+
+msgid "%d with a problem"
+msgstr "%d việc gặp lỗi"
+

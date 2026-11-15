@@ -13718,3 +13718,18 @@ msgstr ""
 msgid "Guidelines"
 msgstr ""
 
+msgid "Copied"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Send your last message again"
+msgstr ""
+
+msgid "Did %d things"
+msgstr ""
+
+msgid "%d with a problem"
+msgstr ""
+

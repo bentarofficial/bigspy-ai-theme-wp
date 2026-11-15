@@ -79,7 +79,8 @@ const check = (ok, name) => { results.push([!!ok, name]); console.log(`${ok ? 'o
   check(await page.locator('.bst-aid-note.is-error').count() >= 1, 'Provider error is reported in the chat');
 
   await run('Give me a long answer');
-  check(await page.locator('.bst-aid-msg.is-ai table, .bst-aid-msg.is-ai pre, .bst-aid-msg.is-ai ol').count() >= 1 || await page.locator('.bst-aid-msg.is-ai').count() >= 1, 'Long answer renders');
+  check(await page.locator('.bst-aid-msg.is-ai table').count() === 1 && await page.locator('.bst-aid-msg.is-ai .bst-aid-code').count() === 1 && await page.locator('.bst-aid-msg.is-ai li > ul').count() === 1, 'Long answer renders a table, a code block and a nested list');
+  await page.screenshot({ path: path.join(shots, 'long-1440.png') });
 
   for (const [w, h] of [[1024, 768], [390, 844]]) {
     await page.setViewportSize({ width: w, height: h });
