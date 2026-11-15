@@ -13781,3 +13781,12 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
+msgid "Today"
+msgstr ""
+
+msgid "Previous 7 days"
+msgstr ""
+
+msgid "Older"
+msgstr ""
+

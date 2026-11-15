@@ -589,6 +589,8 @@ Owner yêu cầu thêm ngày 15-11-2026: tối ưu cả bố cục, không chỉ
 
 #### G-192 · Giao diện Workspace mới
 
+**Trạng thái 15-11-2026: xong (G-192-a → c).** Chưa làm trong phiếu này: trạng thái từng mục của thẻ kế hoạch (cần tiến trình của G-193-a), chấm “chờ duyệt/lỗi” trong danh sách task (REST chỉ trả `running`), công tắc Design/Advice vẫn nằm ở dải task vì chế độ gắn với lúc tạo task.
+
 - **Mục tiêu:** Workspace trông và dùng như một công cụ AI hiện đại, không còn là trang cài đặt wp-admin.
 - **Tệp:** `ai-designer/assets/ai-designer.js` (hàm `Workspace`), `ai-designer/assets/ai-designer.css`. Không đổi REST.
 - **Bố cục:** theo G-207 (khung, ba trạng thái Workspace, thanh đầu task, ô nhập, khung xem trước). Phiếu này chỉ làm linh kiện và kiểu dáng bên trong.

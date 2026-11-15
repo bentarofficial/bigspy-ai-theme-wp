@@ -442,6 +442,15 @@
 			};
 			return map[name] || name;
 		};
+		// Activity rows show what kind of work a tool did: read, write, image or check.
+		var toolKind = function (name) {
+			name = String(name || '');
+			if (/^(ImageGen|image_status|optimize_image|list_media|set_logo)$/.test(name)) { return 'image'; }
+			if (/^(check_page|render_check|manual_checklist)$/.test(name)) { return 'check'; }
+			if (/^(site_info|overview|list_|get_|block_|section_recipes|style_options|show_palette|page_plan|form_get)/.test(name)) { return 'read'; }
+			return 'write';
+		};
+		var toolIcon = function (name) { return { read: 'dashicons-visibility', write: 'dashicons-edit', image: 'dashicons-format-image', check: 'dashicons-yes-alt' }[toolKind(name)]; };
 		var eventNode = function (ev) {
 			if (ev.kind === 'approval') {
 				var a = ev.approval, taskId = current.id, labels = [__('Agree', T), __('I will do it myself', T), __('Skip', T)];
@@ -504,7 +513,7 @@
 					} });
 					links.push(h('span', { text: ' ' + (ev.context_undo.keys || []).join(', ') + ' ' }), undoBtn);
 				}
-				var row = h('div', { class: 'bst-aid-tool' + (ev.kind === 'tool-error' ? ' is-error' : '') }, [h('span', { class: 'dashicons ' + (ev.kind === 'tool-error' ? 'dashicons-warning' : 'dashicons-yes-alt') }), h('span', { text: toolLabel(ev.tool) + (ev.text ? ': ' + ev.text : '') })].concat(links));
+				var row = h('div', { class: 'bst-aid-tool is-' + toolKind(ev.tool) + (ev.kind === 'tool-error' ? ' is-error' : '') }, [h('span', { class: 'dashicons ' + (ev.kind === 'tool-error' ? 'dashicons-warning' : toolIcon(ev.tool)), 'aria-hidden': 'true' }), h('span', { text: toolLabel(ev.tool) + (ev.text ? ': ' + ev.text : '') })].concat(links));
 				if (ev.plan) {
 					return h('div', null, [row, h('div', { class: 'bst-aid-card bst-aid-plan' }, [
 						h('strong', { text: ev.plan.page || '' }),
@@ -602,7 +611,13 @@
 			els.list.innerHTML = '';
 			var shown = tasks.filter(function (t) { return !q || String(t.title || '').toLowerCase().indexOf(q) > -1; });
 			if (!shown.length) { els.list.appendChild(h('li', { class: 'bst-aid-empty', text: q ? __('No matching tasks.', T) : __('No tasks yet.', T) })); }
+			// Groups by last change: Today, Previous 7 days, Older.
+			var startToday = new Date(); startToday.setHours(0, 0, 0, 0);
+			var weekAgo = startToday.getTime() - 7 * 864e5, lastGroup = '';
+			var when = function (t) { var m = String(t.modified || ''); var d = Date.parse(/Z|[+-]\d\d:?\d\d$/.test(m) ? m : m + 'Z'); return isNaN(d) ? 0 : d; };
 			shown.forEach(function (t) {
+				var d = when(t), g = d >= startToday.getTime() ? __('Today', T) : d >= weekAgo ? __('Previous 7 days', T) : __('Older', T);
+				if (g !== lastGroup) { lastGroup = g; els.list.appendChild(h('li', { class: 'bst-aid-task-group', 'aria-hidden': 'true', text: g })); }
 				var on = current && current.id === t.id;
 				els.list.appendChild(h('li', { class: on ? 'is-active' : '' }, [
 					h('button', { class: 'bst-aid-task', 'aria-current': on ? 'true' : null, onclick: function () { open(t.id); if (narrow()) { openDrawer(false); } }, title: t.title }, [

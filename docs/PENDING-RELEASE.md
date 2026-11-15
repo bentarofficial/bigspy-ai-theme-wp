@@ -15,6 +15,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Sửa lỗi 1.96.0:** khối con `bst/marquee-item` chưa được AI Designer nhận là khối con của `bst/marquee`, làm bài test tích hợp dừng ở “Every top-level block has a catalog profile”. Đã khai báo trong `bst_aid_block_parents()`. Kiểm thử: designer-integration 208/208.
 - **G-192-a · Tin nhắn trong Workspace:** câu trả lời AI không còn bong bóng, có avatar, nút Chép và Thử lại; Markdown thêm bảng, khối mã có nút Chép, danh sách lồng, trích dẫn; các dòng công cụ liên tiếp gộp thành “Đã làm N việc” (mở sẵn khi có lỗi); khung xem trước ẩn thanh admin. Kiểm thử: workspace-browser-check 18/18.
 - **G-192-b · Hộp thoại, thẻ duyệt, chủ đề tối:** mọi `window.confirm` trong AI Designer thay bằng hộp thoại riêng (nút xoá màu đỏ, Esc để huỷ); thẻ duyệt nổi bật, tên công cụ dễ đọc, nút Đồng ý chính, đếm ngược 15 phút và khoá khi hết hạn; thẻ bảng màu có nút “Dùng bảng này”; chủ đề tối theo hệ thống và nút sáng/tối trên thanh ứng dụng (nhớ lựa chọn). Kiểm thử: Playground + mock, sáng/tối ở Workspace và Settings.
+- **G-192-c · Danh sách task và dòng hoạt động:** task nhóm theo Hôm nay / 7 ngày trước / Cũ hơn; dòng công cụ có biểu tượng và màu theo loại việc (đọc, ghi, ảnh, kiểm tra). Kiểm thử: workspace-browser-check 18/18.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

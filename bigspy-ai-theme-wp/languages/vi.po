@@ -10296,3 +10296,12 @@ msgstr "Dùng bảng màu \"%s\"."
 msgid "Use this palette"
 msgstr "Dùng bảng này"
 
+msgid "Today"
+msgstr "Hôm nay"
+
+msgid "Previous 7 days"
+msgstr "7 ngày trước"
+
+msgid "Older"
+msgstr "Cũ hơn"
+

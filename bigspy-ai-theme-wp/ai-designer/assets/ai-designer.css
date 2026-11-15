@@ -515,3 +515,11 @@ html[data-aid-theme="dark"] .bst-aid .notice { color: #1e293b; }
 .bst-aid h1, .bst-aid h2, .bst-aid h3, .bst-aid h4 { color: inherit; }
 .bst-aid .button.bst-aid-danger, .bst-aid .button.bst-aid-danger:hover, .bst-aid .button.bst-aid-danger:focus { color: #fff; background: #e11d48; border: 0; box-shadow: none; }
 .bst-aid select[multiple] { color: var(--aid-ink); background: var(--aid-field); }
+.bst-aid-task-group { margin: var(--aid-s-3) 0 var(--aid-s-1); padding-inline: 10px; font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .06em; pointer-events: none; }
+.bst-aid-tasks li.bst-aid-task-group:hover { background: none; }
+.bst-aid-tasks li.bst-aid-task-group:first-child { margin-top: 0; }
+.bst-aid-tool.is-read .dashicons { color: #6366f1; }
+.bst-aid-tool.is-write .dashicons { color: #10b981; }
+.bst-aid-tool.is-image .dashicons { color: #ec4899; }
+.bst-aid-tool.is-check .dashicons { color: #0ea5e9; }
+.bst-aid-tool.is-error .dashicons { color: #f59e0b; }
