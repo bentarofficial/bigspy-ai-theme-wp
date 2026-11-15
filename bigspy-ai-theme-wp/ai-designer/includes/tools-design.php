@@ -59,6 +59,7 @@ function bst_aid_block_parents() {
 		'bst/tab'            => 'bst/tabs',
 		'bst/accordion-item' => 'bst/accordion',
 		'bst/button'         => 'bst/buttons',
+		'bst/marquee-item'   => 'bst/marquee',
 	);
 }
 
