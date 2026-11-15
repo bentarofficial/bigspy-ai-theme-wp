@@ -468,6 +468,104 @@ Trang chủ đang dùng CSS riêng (`plm-steps`) để biến Stacking Cards ở
 
 Trang chủ đang dùng CSS riêng (`plm-values`) để Bento chia 3 cột và có thẻ kính mờ. Nên thêm vào khối: số cột (2/3/4, riêng theo tablet/mobile) và kiểu thẻ (đặc / kính mờ / viền gradient) với màu viền khi rê chuột.
 
+## Tối ưu SEO / AEO / GEO 15-11-2026 (G-191 → G-199)
+
+Bối cảnh: có ba cách xuất hiện trong tìm kiếm. **SEO** = xếp hạng trang 1 Google. **AEO** = được trích trong AI Overview (Google lấy từ nội dung trả lời thẳng câu hỏi: hỏi đáp, so sánh, “best X for Y”). **GEO** = được ChatGPT/Gemini/Perplexity gọi tên khi người dùng hỏi (AI đề xuất thứ nó đã thấy được đề xuất ở nơi khác: đánh giá, Reddit, tổng hợp chuyên gia). Phạm vi gồm hai repo: theme này và plugin `bentarofficial/plugin-bigspy-ai-list-suite` (viết tắt **[P]**; phiếu không ghi [P] là của theme).
+
+**Đã làm (chờ phát hành, xem `docs/PENDING-RELEASE.md`):** tính năng tùy chọn “AI search (AEO and GEO)” ở `inc/features/ai-search.php`, nhánh `ccr-0d0ad82c-6ej0hg`, commit `c7ffd71`: phục vụ `/llms.txt`; khi không có plugin SEO thì in meta description, Open Graph, Twitter card và schema Organization (sameAs), WebSite, Article (tác giả Person), BreadcrumbList. Có sẵn từ trước: schema trang listing (`inc/listing/schema.php`: ItemPage, BreadcrumbList, Organization của thương hiệu được liệt kê, FAQPage) và FAQPage của khối accordion (`blocks/accordion/render.php`, thuộc tính `faqSchema`).
+
+Quy tắc chung cho mọi phiếu:
+- Một phiếu một phiên. Đọc `AGENTS.md`, `docs/CODEMAP.md` trước; áp dụng mục B và C của “Kế hoạch thực thi 11-11-2026”.
+- Nội dung và listing cũ hiển thị y như trước; thứ gì mới thì mặc định giữ hành vi hiện tại hoặc nằm sau công tắc.
+- Không in trùng với plugin SEO: mọi schema/thẻ mới của theme phải kiểm `bst_ais_seo_plugin()` hoặc gắn vào `rank_math/json_ld` như `inc/listing/schema.php` đang làm. Không thêm schema Product/Review/AggregateRating cho listing (listing là mục danh bạ, không có offer; đánh giá tự chấm vi phạm chính sách Google).
+- AI chỉ viết điều có trong nguồn (website gốc, kết quả web research). Không bịa giá, số liệu, đánh giá.
+- Có bản dịch tiếng Việt (`python tools/add-strings.py`), `python tools/lint.py` sạch, thêm kiểm thử vào `tools/tests/features-integration.php` khi là mã theme, ghi `docs/PENDING-RELEASE.md`. Không bump version, không build ZIP.
+- Với [P]: repo plugin chưa có AGENTS.md; áp dụng cùng quy tắc (commit lên nhánh làm việc, không phát hành). Mã plugin viết kiểu nén một dòng, chỉ sửa đúng đoạn cần, không định dạng lại file. `php -l` mọi file đã sửa.
+- Bộ test Playground cần WordPress cục bộ khi không ra được wordpress.org (xem mục Testing trong CODEMAP: `BST_TEST_WP`). Trên WP 6.5 cục bộ, `social`/`payment-icons: old attributes render as before` và đôi khi `bst/banner url auto stays lazy` FAIL sẵn, không liên quan đợt này.
+
+### Thứ tự đề xuất
+
+**G-191 → G-192 → G-193 → G-194 → G-195 → G-196 → G-197 → G-198 → G-199.**
+G-191 và G-192 đi cùng nhau (plugin sinh dữ liệu, theme hiển thị) và cho hiệu quả AEO rõ nhất trên site danh bạ. G-193 là phần GEO nội dung. G-198 chỉ làm khi owner cần.
+
+### G-191 · [P] Listing Generator sinh “câu trả lời nhanh” và FAQ (ưu tiên cao)
+
+- **Vì sao:** AI Overview trích đoạn trả lời trực tiếp 40–60 từ và cặp hỏi–đáp. Generator hiện sinh `short_description`, `description_html` (1.800–2.200 từ), SEO title/description, từ khóa nhưng không có đoạn trả lời nhanh và không có FAQ có cấu trúc.
+- **Chỗ sửa:** `modules/generator/generator.php`. Danh sách “Requirements” và JSON schema của prompt ở khoảng dòng 1175–1191 (tìm `"Write everything in English. Only return valid JSON`); chỗ lưu meta ở khoảng dòng 1500–1540 (tìm `rank_math_description`). Prompt hệ thống: `bigspy_get_prompt()` dòng 261.
+- **Việc làm:**
+  1. Thêm hai trường vào JSON schema và Requirements: `quick_answer` (một đoạn 40–60 từ, câu đầu trả lời thẳng “<Tên> là gì và dành cho ai”, không quảng cáo, không lặp `short_description`) và `faq` (mảng 4–6 phần tử `{"question":"","answer":""}`; câu hỏi là câu người dùng thật sẽ gõ: giá, bản miễn phí, đối tượng phù hợp, lựa chọn thay thế, tích hợp; câu trả lời 30–80 từ, tự đứng được một mình, chỉ dùng dữ kiện có trong nguồn; thiếu dữ kiện thì bỏ câu đó).
+  2. Yêu cầu `description_html` **không** chứa mục FAQ nữa (tránh trùng với trường riêng), và mỗi H2 mở đầu bằng một câu trả lời thẳng cho ý của tiêu đề.
+  3. Lưu: `faq` vào post meta `faq` theo đúng định dạng theme đọc (`bst_listing_faq()` trong theme `inc/listing/core.php:288`): chuỗi nhiều dòng, mỗi dòng `Câu hỏi | Câu trả lời`; làm sạch bằng `sanitize_text_field`, bỏ ký tự `|` và xuống dòng trong từng vế. `quick_answer` vào meta mới `_bigspy_quick_answer` (`sanitize_textarea_field`).
+  4. Khi làm mới (refresh) một listing đã có: không ghi đè `faq` nếu người dùng đã sửa tay. Cách đơn giản: lưu thêm `_bigspy_faq_ai_hash` = md5 của chuỗi AI đã ghi; chỉ ghi đè khi meta `faq` rỗng hoặc md5 hiện tại trùng hash.
+  5. Trả hai trường mới trong phản hồi AJAX để màn hình generator hiển thị cùng các trường khác (nếu màn hình có bảng xem trước).
+- **Lưu ý:** đang có lỗi đánh số trong prompt (hai mục “3.”); sửa luôn khi chạm vào. Không đổi `BIGSPY_AI_DESC_MIN_WORDS/MAX_WORDS`.
+- **Xong khi:** tạo một listing thử cho ra meta `faq` ≥ 4 dòng đúng định dạng và `_bigspy_quick_answer` 40–60 từ; refresh không ghi đè FAQ đã sửa tay; listing cũ không đổi; `php -l` sạch.
+
+### G-192 · Theme hiển thị “câu trả lời nhanh” trên trang listing (ưu tiên cao, sau G-191)
+
+- **Chỗ sửa:** `inc/listing/core.php` (thêm `quick_answer` vào `bst_listing_fields()` kiểu văn bản nhiều dòng, đọc cả `_bigspy_quick_answer`), `inc/listing/meta-box.php` (ô nhập), `inc/listing/single.php` + `woocommerce/single-listing.php` (hiển thị), `assets/css/listing.css`, `inc/listing/schema.php`.
+- **Việc làm:**
+  1. In một khối `<p class="bst-listing-answer">` ngay dưới H1/tagline, trước bài mô tả; không có dữ liệu thì không in gì.
+  2. Trong `bst_listing_schema_nodes()`: khi có quick answer, dùng nó làm `description` của ItemPage nếu chưa có `rank_math_description`, và thêm `abstract` vào ItemPage.
+  3. Trong `/llms.txt` (`bst_ais_description()` ở `inc/features/ai-search.php`): với `product` ưu tiên quick answer trước excerpt.
+  4. Thêm lựa chọn bật/tắt và nhãn vào Customizer → Listing design nếu mục đó đã có công tắc cho các phần khác của trang listing (xem `inc/listing/design.php`); không thì luôn hiện khi có dữ liệu.
+- **Xong khi:** kiểm thử trong `features-integration.php` (nhóm `listing`): có meta thì có khối và `abstract`; không có meta thì HTML y như cũ. Kiểm 1440px và 390px.
+
+### G-193 · [P] Post Writer: khuôn bài “best X for Y”, so sánh và hỏi đáp
+
+- **Vì sao:** đây đúng ba dạng nội dung AEO nêu trên, và site danh bạ có sẵn dữ liệu listing để viết.
+- **Chỗ sửa:** `modules/writer/writer.php`: prompt ở `bigspy_pw_prompt()` (khoảng dòng 161), giao diện ở khoảng dòng 130, xử lý kết quả khoảng dòng 271.
+- **Việc làm:**
+  1. Thêm ô chọn “Kiểu bài”: Tự do (mặc định, như hiện tại) / Best X for Y / So sánh A vs B / Hướng dẫn hỏi đáp.
+  2. Mỗi kiểu thêm khối chỉ dẫn vào prompt. Chung cho cả ba: đoạn mở đầu 40–60 từ trả lời thẳng câu hỏi của tiêu đề; mỗi H2 là một câu hỏi hoặc một lựa chọn, câu đầu dưới H2 là câu trả lời; cuối bài có H2 “Frequently Asked Questions” với 4–6 cặp H3 + đoạn trả lời. Best X for Y: danh sách xếp hạng, mỗi mục ghi “phù hợp nhất cho ai”, ưu, nhược, giá nếu nguồn có; kèm một bảng tóm tắt HTML. So sánh: bảng tiêu chí × sản phẩm và mục “Chọn cái nào khi nào”.
+  3. Chỉ dùng listing có thật trong site (danh sách `internal` đang truyền vào prompt) cho các mục xếp hạng/so sánh; liên kết nội bộ tới trang listing.
+  4. Sau khi nhận bài: nếu có mục FAQ, giữ nguyên trong nội dung và lưu thêm các cặp hỏi–đáp vào meta `_bigspy_post_faq` (mảng `question`/`answer`) để G-194 dùng.
+- **Xong khi:** kiểu Tự do cho kết quả như cũ; ba kiểu mới cho đúng cấu trúc; bài vẫn là bản nháp như hiện tại.
+
+### G-194 · Schema FAQPage cho bài viết có mục hỏi đáp
+
+- **Chỗ sửa:** `inc/features/ai-search.php` (hoặc file mới `inc/features/ai-search-faq.php` nếu file vượt ~350 dòng), dùng lại cách tách FAQ khỏi nội dung của `bst_listing_faq_from_content()` trong `inc/listing/core.php` (hàm này chỉ nạp khi bật List mode: tách phần dùng chung ra `inc/` nếu cần, không sao chép).
+- **Việc làm:** trên `is_singular('post')`, lấy FAQ từ meta `_bigspy_post_faq`, không có thì tách từ H2 “FAQ”/“Frequently asked”/“Câu hỏi thường gặp” + các H3 bên dưới. Có ≥ 2 cặp thì thêm node FAQPage: vào `@graph` của theme khi không có plugin SEO, vào `rank_math/json_ld` khi có Rank Math và graph chưa có FAQPage. Bỏ qua nếu trang đã có khối accordion bật `faqSchema` (tránh hai FAQPage).
+- **Xong khi:** kiểm thử: bài có mục FAQ ra đúng một FAQPage; bài không có thì không đổi; có accordion `faqSchema` thì không in thêm.
+
+### G-195 · Khối “Trả lời nhanh / Tóm tắt” (Key takeaways)
+
+- **Việc làm:** scaffold bằng `python tools/add-block.py quick-answer "Quick answer" --prefix bs-x`. Khối gồm nhãn (mặc định “Quick answer”), một đoạn trả lời và danh sách ý chính tùy chọn (InnerBlocks: paragraph, list). Đặt đầu bài. HTML ngữ nghĩa, không JS front. Thêm vào `ai-designer/knowledge/theme.md` để AI Designer biết dùng ở đầu bài dạng câu hỏi, và preview trong `assets/js/block-previews.js` (`node tools/check-block-previews.js`).
+- **Lưu ý:** tuân Block rule trong AGENTS.md (khối sửa được trực quan, không `raw`). Sau khi sửa `blocks.css` chạy `python tools/split-blocks-css.py`.
+- **Xong khi:** khối chèn, sửa, lưu được; hiển thị đúng 1440px và 390px; `ai-search` dùng đoạn trả lời của khối làm meta description khi bài không có excerpt.
+
+### G-196 · Tín hiệu tác giả và độ mới (E-E-A-T)
+
+- **Việc làm:** (1) Thêm trường hồ sơ người dùng: chức danh, lĩnh vực chuyên môn, link hồ sơ (LinkedIn, X, website); đưa vào `author` Person của schema Article (`jobTitle`, `knowsAbout`, `sameAs`) trong `bst_ais_schema_nodes()`. (2) Hộp tác giả cuối bài và dòng “Cập nhật: <ngày>” khi ngày sửa khác ngày đăng > 7 ngày; kiểm trước xem theme đã có hộp tác giả/ngày cập nhật trong `inc/blog-options.php` chưa, có rồi thì chỉ nối dữ liệu mới vào, không làm khối thứ hai. (3) Trang tác giả: schema ProfilePage + Person khi không có plugin SEO.
+- **Xong khi:** mặc định tắt hoặc không đổi giao diện site cũ; kiểm thử schema có `jobTitle`/`sameAs` khi đã nhập.
+
+### G-197 · Kiểm soát AI crawler và `/llms-full.txt`
+
+- **Việc làm:** trong tính năng `ai-search` thêm lựa chọn “AI crawler”: Không đổi (mặc định) / Chặn bot huấn luyện, giữ bot tìm kiếm AI. Chế độ chặn thêm vào `robots_txt` các nhóm `Disallow: /` cho bot huấn luyện (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Applebot-Extended, meta-externalagent) và **không** đụng bot tìm kiếm/trả lời (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User). Không làm chế độ “Allow”: một nhóm riêng theo tên bot sẽ khiến bot đó bỏ qua luật `User-agent: *` (ví dụ `Disallow: /wp-admin/`), và mặc định WordPress vốn không chặn. Ghi chú trong phần help rằng chặn bot huấn luyện làm giảm khả năng được AI đề xuất (đi ngược GEO). Tùy chọn thêm `/llms-full.txt`: nội dung văn bản thuần của N bài/listing mới nhất (giới hạn dung lượng, cache như `bst_llms_txt`).
+- **Lưu ý:** kiểm tra lại danh sách user-agent tại thời điểm làm; tên bot thay đổi theo thời gian.
+- **Xong khi:** kiểm thử `apply_filters('robots_txt', …)` cho cả hai chế độ; site `blog_public = 0` không đổi.
+
+### G-198 · Mục lục `llms.txt` theo ý owner (tùy chọn)
+
+- **Việc làm:** ô chọn trang/bài “ghim” lên đầu `/llms.txt` (danh sách ID hoặc URL), ô loại trừ, và loại trang `noindex` của Rank Math/Yoast (`rank_math_robots`, `_yoast_wpseo_meta-robots-noindex`). Hiện đã có filter `bst_llms_txt_sections` cho nhà phát triển; ghi vào `docs/HOOKS.md`.
+- **Chỉ làm khi** owner thấy danh sách tự động chưa đủ.
+
+### G-199 · Việc ngoài mã nguồn cho GEO (checklist cho owner, không cần phiên code)
+
+AI đề xuất thương hiệu nó đã thấy ở nơi khác, nên phần này quyết định GEO nhiều hơn mã nguồn:
+- Điền “Site summary” và “Brand profile links” trong Features → AI search; tên thương hiệu viết giống hệt nhau ở mọi nơi.
+- Có mặt trên nơi AI học: trang đánh giá (G2, Capterra, Trustpilot, Product Hunt tùy ngành), thread Reddit/Quora đúng chủ đề, bài tổng hợp “best X” của bên thứ ba, hồ sơ Wikidata/Crunchbase/LinkedIn.
+- Mỗi listing và bài chính có một câu định nghĩa rõ “<Tên> là <loại> dành cho <ai>, giúp <việc gì>”.
+- Theo dõi: hỏi ChatGPT, Gemini, Perplexity 10–20 câu mục tiêu mỗi tháng, ghi lại có được nhắc tên không và nguồn nào được trích; kiểm AI Overview cho từ khóa chính; kiểm schema bằng Rich Results Test sau mỗi đợt phát hành.
+
+### Prompt mẫu cho từng phiên
+
+```text
+Đọc AGENTS.md rồi làm G-191 theo mục "Tối ưu SEO / AEO / GEO 15-11-2026" trong docs/roadmap-vi.md của repo bigspy-ai-theme-wp (đọc phần quy tắc chung và phiếu G-191). Phiếu [P] sửa trong repo plugin-bigspy-ai-list-suite. Báo ngắn bằng tiếng Việt.
+```
+
+Đổi mã phiếu cho các phiên sau.
+
 ## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-107 → G-124)
 
 Mã G-124 (cổng cú pháp) ban đầu ghi là G-106; đổi vì G-106 đã dùng cho việc Icon List (1c7decc). Sổ việc và trạng thái nằm ở `TASKS.md` thư mục làm việc ngoài repo.
