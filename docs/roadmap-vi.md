@@ -468,7 +468,7 @@ Trang chủ đang dùng CSS riêng (`plm-steps`) để biến Stacking Cards ở
 
 Trang chủ đang dùng CSS riêng (`plm-values`) để Bento chia 3 cột và có thẻ kính mờ. Nên thêm vào khối: số cột (2/3/4, riêng theo tablet/mobile) và kiểu thẻ (đặc / kính mờ / viền gradient) với màu viền khi rê chuột.
 
-## Tối ưu SEO / AEO / GEO 15-11-2026 (G-191 → G-199)
+## Tối ưu SEO / AEO / GEO 15-11-2026 (G-191 → G-200)
 
 Bối cảnh: có ba cách xuất hiện trong tìm kiếm. **SEO** = xếp hạng trang 1 Google. **AEO** = được trích trong AI Overview (Google lấy từ nội dung trả lời thẳng câu hỏi: hỏi đáp, so sánh, “best X for Y”). **GEO** = được ChatGPT/Gemini/Perplexity gọi tên khi người dùng hỏi (AI đề xuất thứ nó đã thấy được đề xuất ở nơi khác: đánh giá, Reddit, tổng hợp chuyên gia). Phạm vi gồm hai repo: theme này và plugin `bentarofficial/plugin-bigspy-ai-list-suite` (viết tắt **[P]**; phiếu không ghi [P] là của theme).
 
@@ -485,8 +485,10 @@ Quy tắc chung cho mọi phiếu:
 
 ### Thứ tự đề xuất
 
-**G-191 → G-192 → G-193 → G-194 → G-195 → G-196 → G-197 → G-198 → G-199.**
-G-191 và G-192 đi cùng nhau (plugin sinh dữ liệu, theme hiển thị) và cho hiệu quả AEO rõ nhất trên site danh bạ. G-193 là phần GEO nội dung. G-198 chỉ làm khi owner cần.
+**G-191 → G-192 → G-200 → G-193 → G-196 → G-194 → G-195 → G-197 → G-198 → G-199.**
+G-191 và G-192 đi cùng nhau (plugin sinh dữ liệu, theme hiển thị) và cho hiệu quả AEO rõ nhất trên site danh bạ. G-200 (prompt mặc định và ô tùy chỉnh) làm trước G-193 vì cùng sửa hàm prompt của Post Writer. G-193 là phần GEO nội dung. G-196 đưa lên trước G-194/G-195: listing đã có FAQ và schema, còn tín hiệu tác giả đang trống hoàn toàn. G-198 chỉ làm khi owner cần.
+
+bigspyai.com đang bật noindex có chủ đích trong lúc cấu hình; owner tự tắt sau cùng. Nên làm xong G-191/G-192 và refresh các listing trước khi tắt, để lần lập chỉ mục đầu đã có bản mới. Trước khi tắt, nối lại Site Kit để có số liệu Search Console.
 
 ### G-191 · [P] Listing Generator sinh “câu trả lời nhanh” và FAQ (ưu tiên cao)
 
@@ -498,11 +500,20 @@ G-191 và G-192 đi cùng nhau (plugin sinh dữ liệu, theme hiển thị) và
   3. Lưu: `faq` vào post meta `faq` theo đúng định dạng theme đọc (`bst_listing_faq()` trong theme `inc/listing/core.php:288`): chuỗi nhiều dòng, mỗi dòng `Câu hỏi | Câu trả lời`; làm sạch bằng `sanitize_text_field`, bỏ ký tự `|` và xuống dòng trong từng vế. `quick_answer` vào meta mới `_bigspy_quick_answer` (`sanitize_textarea_field`).
   4. Khi làm mới (refresh) một listing đã có: không ghi đè `faq` nếu người dùng đã sửa tay. Cách đơn giản: lưu thêm `_bigspy_faq_ai_hash` = md5 của chuỗi AI đã ghi; chỉ ghi đè khi meta `faq` rỗng hoặc md5 hiện tại trùng hash.
   5. Trả hai trường mới trong phản hồi AJAX để màn hình generator hiển thị cùng các trường khác (nếu màn hình có bảng xem trước).
+- **Đối chiếu site thật 15-11-2026 (bigspyai.com, plugin 1.1.0, 19 listing):** system prompt đang lưu (nguyên văn: `docs/prompts/bigspyai-listing-generator.txt`) yêu cầu H2 “Frequently Asked Questions” trước kết luận, câu hỏi là H3, 4–6 câu, và ghi “Use exactly these keys … contains exactly the requested keys” với danh sách không có `faq`/`quick_answer`. Cả 19 listing: H2 “Frequently Asked Questions” (một listing là “… About Musicfy”), câu hỏi H3, câu trả lời là **chữ trần ngay sau `</h3>`, không có `<p>`**; meta `faq` rỗng, theme tự tách; trang công khai có đúng một bộ FAQ (trong bài) và một FAQPage, số câu khớp. Câu trả lời 20–73 từ, khoảng 10 câu dưới 30 từ; vài câu hỏi chung chung về ngành (“SSL vs TLS”, “QR tĩnh vs động”), ít câu về giá/thay thế.
+- **Quyết định owner: phương án A.** Mỗi người dùng có system prompt riêng và prompt được phép yêu cầu FAQ trong bài. **Không** yêu cầu ai sửa prompt; mã phải cho đúng một bộ FAQ với mọi prompt.
 - **System prompt tùy chỉnh có sẵn yêu cầu FAQ:** `bigspy_get_prompt()` trả về prompt người dùng dán ở cài đặt (`generator.system_prompt`), có thể đã yêu cầu “viết mục FAQ trong bài”. Xử lý để không chồng nhau:
   1. Trong user prompt ghi rõ thứ tự ưu tiên: “Nếu chỉ dẫn khác yêu cầu mục FAQ, hãy đặt các câu hỏi đó vào trường `faq`, không đặt trong `description_html`” (cùng kiểu câu đang dùng cho H1: “even if other instructions ask for one”).
   2. Không tin hoàn toàn vào AI, kiểm lại bằng mã sau khi nhận JSON: nếu `description_html` vẫn có mục FAQ (H2 chứa “FAQ”, “Frequently asked”, “Câu hỏi thường gặp”, kèm các H3 hoặc đoạn hỏi–đáp bên dưới) thì: trường `faq` rỗng → tách các cặp hỏi–đáp từ mục đó làm `faq`; trường `faq` có dữ liệu → giữ trường `faq`. Cả hai trường hợp đều cắt mục FAQ khỏi `description_html` trước khi lưu, để bài chỉ còn một bộ FAQ.
   3. Lý do phải cắt lúc lưu chứ không dựa vào theme: theme có `bst_listing_remove_faq_section()` (`inc/listing/display.php:59`) ẩn mục FAQ trong bài khi đã có trường `faq`, nhưng chỉ nhận H2 có chữ “FAQ”/“Frequently asked”; tiêu đề khác (tiếng Việt, “Common questions”, dùng H3) sẽ lọt và hiện hai bộ FAQ. Ngoài ra bộ FAQ bị ẩn vẫn nằm trong nội dung, tốn token và gây lệch nội dung với schema.
   4. Kiểm thử thêm: system prompt tùy chỉnh có câu “include an FAQ section” vẫn cho đúng một bộ FAQ trên trang và một FAQPage trong schema.
+  5. Với prompt như của bigspyai.com, tách FAQ từ bài là **đường chính**, không phải ngoại lệ. Bộ tách phải nhận: câu trả lời là chữ trần sau `</h3>` (không `<p>`), tiêu đề H2 có đuôi (“Frequently Asked Questions About X”), dạng `<details><summary>`. Dùng đúng luật của `bst_listing_faq_from_content()` (theme `inc/listing/core.php`) để plugin và theme cho cùng kết quả.
+  6. User prompt của mã ghi rõ `quick_answer` và `faq` là khóa bắt buộc “even if other instructions list a fixed set of keys”. Prompt người dùng ghi “exactly these keys” vẫn có thể làm AI bỏ hai khóa này, nên cần đường lui cho `quick_answer`: lấy đoạn văn đầu dưới H2 đầu tiên của `description_html`, cắt ≤ 60 từ ở ranh giới câu; không có thì để meta rỗng, không báo lỗi cả lượt tạo.
+  7. Chất lượng FAQ nằm ở user prompt của mã (áp cho mọi prompt người dùng): câu hỏi về chính thực thể (giá, bản miễn phí, phù hợp với ai, lựa chọn thay thế, tích hợp), không hỏi chung về ngành; trả lời 30–80 từ, nêu tên thực thể, tự đứng được.
+  8. Nút Update của theme: hộp “BIGSPY FAQ & FAQ Schema” lưu các dòng tách từ bài vào meta `faq` mà không có `_bigspy_faq_ai_hash`. Khi refresh, nếu meta `faq` có dữ liệu nhưng chưa có hash thì so với FAQ tách từ `post_content` hiện tại; trùng thì coi là của AI và cho ghi đè, khác thì coi là sửa tay và giữ.
+  9. Số từ: mục FAQ chiếm khoảng 200–300 từ của bài. Kiểm `BIGSPY_AI_DESC_MIN_WORDS` được đếm trước hay sau khi cắt FAQ; đếm **trước** khi cắt để không sinh lượt viết lại.
+  10. Ca kiểm thử bắt buộc: chạy với nguyên văn `docs/prompts/bigspyai-listing-generator.txt`; kết quả đúng một bộ FAQ trên trang, một FAQPage, có `quick_answer`.
+  11. Ghi chú hiển thị: listing mới hiện FAQ ở khối `<details>` dưới bài (`bst-listing-faq`) thay vì H3 trong bài, và FAQ không còn trong mục lục. Listing cũ giữ nguyên cho tới khi refresh hoặc bấm Update.
 - **Lưu ý:** đang có lỗi đánh số trong prompt (hai mục “3.”); sửa luôn khi chạm vào. Không đổi `BIGSPY_AI_DESC_MIN_WORDS/MAX_WORDS`.
 - **Xong khi:** tạo một listing thử cho ra meta `faq` ≥ 4 dòng đúng định dạng và `_bigspy_quick_answer` 40–60 từ; refresh không ghi đè FAQ đã sửa tay; listing cũ không đổi; `php -l` sạch.
 
@@ -526,6 +537,21 @@ G-191 và G-192 đi cùng nhau (plugin sinh dữ liệu, theme hiển thị) và
   3. Chỉ dùng listing có thật trong site (danh sách `internal` đang truyền vào prompt) cho các mục xếp hạng/so sánh; liên kết nội bộ tới trang listing.
   4. Sau khi nhận bài: nếu có mục FAQ, giữ nguyên trong nội dung và lưu thêm các cặp hỏi–đáp vào meta `_bigspy_post_faq` (mảng `question`/`answer`) để G-194 dùng.
 - **Xong khi:** kiểu Tự do cho kết quả như cũ; ba kiểu mới cho đúng cấu trúc; bài vẫn là bản nháp như hiện tại.
+
+### G-200 · [P] Prompt mặc định của owner và ô tùy chỉnh cho cả hai module (ưu tiên cao, sau G-191, trước G-193)
+
+- **Vì sao:** cài plugin xong phải dùng được ngay với prompt đã chạy thật trên bigspyai.com; ai muốn khác thì tự sửa ô prompt và bấm lưu. Hiện Listing Generator có ô prompt nhưng mặc định là bản cũ trong mã; Post Writer không có ô nào, prompt viết cứng trong `bigspy_pw_prompt()` (`modules/writer/writer.php:158`).
+- **Nguyên tắc:**
+  1. Prompt mặc định nằm **trong mã**, không ghi vào cơ sở dữ liệu lúc kích hoạt. Ô cài đặt hiện sẵn nội dung mặc định; chỉ khi người dùng sửa và bấm lưu mới ghi vào cài đặt. Ô trống hoặc trùng mặc định thì không lưu (để người chưa sửa nhận prompt mới khi cập nhật plugin). Có nút “Khôi phục mặc định”.
+  2. Người dùng sửa tự do toàn bộ ô. Mã luôn nối thêm phần **hợp đồng kỹ thuật** sau prompt người dùng, không hiện trong ô: danh sách khóa JSON bắt buộc (gồm `quick_answer`, `faq` của G-191), quy tắc `rel`/`target` cho liên kết affiliate, cấm H1, chỉ trả JSON. Nhờ vậy thêm trường mới không bắt ai sửa prompt.
+  3. Dữ liệu từng lượt (yêu cầu bài, URL, từ khóa, danh sách anchor ngoài/nội bộ, tài liệu nghiên cứu, số từ) vẫn do mã chèn như hiện nay, không nằm trong ô.
+- **Việc làm:**
+  1. Listing Generator: thay nội dung `bigspy_default_prompt()` bằng prompt của owner (`docs/prompts/bigspyai-listing-generator.txt` trong repo theme), chỉnh: `&lt;=` → “at most” (viết chữ, tránh WordPress mã hóa ký tự khi lưu); “BIGSPY AI LIST” → tên site (`get_bloginfo('name')` như bản cũ); bỏ khối OUTPUT FORMAT/danh sách khóa và dòng “exactly the requested keys” khỏi phần hiện trong ô (chuyển sang hợp đồng kỹ thuật ở nguyên tắc 2); giữ mục FAQ trong bài (G-191 tự chuyển sang trường riêng).
+  2. Post Writer: thêm ô “Post Writer prompt” ở trang cài đặt (`bsl[writer][system_prompt]`). Tách `bigspy_pw_prompt()` thành: phần quy tắc viết (vai trò, giọng văn, heading, đoạn văn, từ khóa, độ dài tiêu đề/SEO) làm mặc định của ô; phần dữ liệu từng lượt và danh sách khóa JSON giữ trong mã. Thay `{site}` bằng tên site lúc chạy.
+  3. Ngôn ngữ: prompt hiện ghi cứng tiếng Anh (“Never write Vietnamese”, “LANGUAGE IS NON-NEGOTIABLE”). Thêm ô “Ngôn ngữ nội dung” (mặc định: theo `get_locale()` của site); mã nối câu chỉ dẫn ngôn ngữ vào hợp đồng kỹ thuật. Prompt mặc định bỏ câu cấm tiếng Việt, thay bằng “Write in the content language given below”. bigspyai.com (locale tiếng Anh) vẫn ra tiếng Anh.
+  4. Lưu: `sanitize_textarea_field` giữ nguyên `<`, `>`, `&` (không `esc_html` trước khi lưu); hiển thị trong ô bằng `esc_textarea`. Kiểm: lưu một prompt có `<=` và `&` hai lần liên tiếp, đọc lại giống hệt.
+  5. Không ghi đè prompt người dùng đã lưu (bigspyai.com đang có bản lưu trong `generator.system_prompt`).
+- **Xong khi:** cài mới: ô Listing và Post Writer hiện sẵn prompt của owner, tạo listing và bài viết chạy ngay; sửa ô + lưu thì lượt sau dùng bản mới; Khôi phục mặc định đưa về bản trong mã; prompt người dùng thiếu danh sách khóa vẫn ra JSON đủ khóa; lưu nhiều lần không biến `<` thành `&lt;`; `php -l` sạch.
 
 ### G-194 · Schema FAQPage cho bài viết có mục hỏi đáp
 
