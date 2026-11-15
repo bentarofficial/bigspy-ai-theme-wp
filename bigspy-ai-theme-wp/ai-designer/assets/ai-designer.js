@@ -111,7 +111,7 @@
 
 	/* ------------------------------------------------------------ Settings */
 	function Settings(root) {
-		var state = null, busy = false, msg = '', msgType = 'info';
+		var state = null, busy = false, msg = '', msgType = 'info', saveBar = null;
 		var load = function (refresh) {
 			return api('/settings' + (refresh ? '?refresh=1' : '')).then(function (s) { state = s; render(); }).catch(function (e) { msg = e.message; msgType = 'error'; render(); });
 		};
@@ -141,14 +141,14 @@
 			return opts;
 		};
 		var render = function () {
-			root.innerHTML = '';
+			root.innerHTML = ''; saveBar = null;
 			if (!state) { root.appendChild(h('p', { text: msg || __('Loading…', T) })); return; }
 			var kids = [];
 			if (msg) { kids.push(h('div', { class: 'notice notice-' + msgType + ' inline' }, h('p', { text: msg }))); }
 			if (!state.hasKey) {
 				var input = h('input', { type: 'password', class: 'regular-text', placeholder: 'kyma-…', autocomplete: 'off', 'aria-label': __('API key', T) });
-				kids.push(h('div', { class: 'bst-aid-card' }, [
-					h('h2', { text: __('1. Connect the API', T) }),
+				kids.push(h('div', { class: 'bst-aid-card', id: 'bst-aid-s-connect' }, [
+					h('h2', { text: __('Connect the API', T) }),
 					h('p', { class: 'description', text: __('Paste your Kyma API key, then press Connect. The key is checked, encrypted and kept on the server only; it is never shown again in full.', T) }),
 					h('p', { class: 'bst-aid-row' }, [input, h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/connect', { key: input.value }); } , text: busy ? __('Connecting…', T) : __('Connect', T) })]),
 					h('p', { class: 'description' }, [__('No key yet? Create one at ', T), h('a', { href: 'https://kymaapi.com/?aff=BIGSPY-AI-Connect', target: '_blank', rel: 'noopener sponsored', text: 'kymaapi.com' }), '.'])
@@ -158,8 +158,8 @@
 					? h('span', { class: 'bst-aid-status is-on', text: __('Connected', T) })
 					: h('span', { class: 'bst-aid-status is-off', text: __('Disconnected', T) });
 				var bal = state.balance ? h('span', { class: 'bst-aid-balance' + (state.balance.low ? ' is-low' : ''), text: sprintf(__('Balance: %s', T), money(state.balance.balance)) }) : null;
-				kids.push(h('div', { class: 'bst-aid-card' }, [
-					h('h2', { text: __('1. API connection', T) }),
+				kids.push(h('div', { class: 'bst-aid-card', id: 'bst-aid-s-connect' }, [
+					h('h2', { text: __('API connection', T) }),
 					h('p', { class: 'bst-aid-row' }, [h('code', { class: 'bst-aid-key', text: state.keyMasked }), status, bal]),
 					h('p', { class: 'bst-aid-row' }, [
 						state.connected
@@ -204,12 +204,18 @@
 					var permissionInputs = {};
 					var groupLabels = { content: __('Content', T), images: __('Images', T), design: __('Global design', T), site: __('WordPress settings', T), publish: __('Publishing', T), seo: __('SEO metadata', T), plugins: __('Plugins', T), budget: __('Budget extensions', T) };
 					var permissionRows = Object.keys(groupLabels).map(function (group) {
-						var select = h('select', null, [1, 2, 3].map(function (level) { return h('option', { value: level, selected: level === Number((state.permissions || {})[group] || 1), text: [__('Automatic (mandatory approvals still apply)', T), __('Always ask', T), __('Guidance only', T)][level - 1] }); }));
+						var select = h('select', { 'data-save': '1' }, [1, 2, 3].map(function (level) { return h('option', { value: level, selected: level === Number((state.permissions || {})[group] || 1), text: [__('Automatic (mandatory approvals still apply)', T), __('Always ask', T), __('Guidance only', T)][level - 1] }); }));
 						permissionInputs[group] = select; return h('p', null, [h('label', { text: groupLabels[group] + ': ' }), select]);
 					});
-					kids.push(h('div', { class: 'bst-aid-card' }, [h('h2', { text: __('Tool permissions', T) })].concat(permissionRows)));
-					kids.push(h('div', { class: 'bst-aid-card' }, [
-						h('h2', { text: __('2. Models and budget', T) }),
+					var saveAll = function () { act('/settings', { textModel: text.value, fastModel: fast.value, allowedModels: Array.prototype.filter.call(allowed.options, function (o) { return o.selected; }).map(function (o) { return o.value; }), imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); };
+					[text, image, fast, allowed, bTask, bDay].forEach(function (el) { el.setAttribute('data-save', '1'); });
+					saveBar = h('div', { class: 'bst-aid-savebar', hidden: true, role: 'region', 'aria-label': __('Unsaved changes', T) }, [
+						h('span', { text: __('You have unsaved changes.', T) }),
+						h('button', { type: 'button', class: 'button', disabled: busy, onclick: function () { render(); }, text: __('Discard', T) }),
+						h('button', { type: 'button', class: 'button button-primary', disabled: busy, onclick: saveAll, text: __('Save changes', T) })
+					]);
+					kids.push(h('div', { class: 'bst-aid-card', id: 'bst-aid-s-models' }, [
+						h('h2', { text: __('Models', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Text model (writes, designs and calls the tools)', T) }), text]),
 						h('p', { class: 'description', text: __('Only models that can call tools are listed. Prices are per million input / output tokens. Start with a recommended model; switch to a most capable one if results are not good enough.', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Fast model (Effort Low: lookups and small edits)', T) }), fast]),
@@ -217,11 +223,7 @@
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Models users may pick in the chat', T) }), allowed]),
 						h('p', { class: 'description', text: __('Select none to offer every text model. Ctrl/Cmd-click to select several. Auto always stays available.', T) }),
 						h('p', null, [h('label', { class: 'bst-aid-label', text: __('Image model (used by ImageGen)', T) }), image]),
-						h('p', { class: 'bst-aid-row' }, [h('label', null, [__('Budget per task (USD, 0 = no limit) ', T), bTask]), h('label', null, [__('Budget per day (USD, 0 = no limit) ', T), bDay])]),
-						h('p', { class: 'description', text: sprintf(__('Spent today: %s', T), money(state.spentToday)) }),
 						h('p', null, [
-							h('button', { class: 'button button-primary', disabled: busy, onclick: function () { act('/settings', { textModel: text.value, fastModel: fast.value, allowedModels: Array.prototype.filter.call(allowed.options, function (o) { return o.selected; }).map(function (o) { return o.value; }), imageModel: image.value, budgetTask: bTask.value, budgetDay: bDay.value, permissions: Object.keys(permissionInputs).reduce(function (out, key) { out[key] = Number(permissionInputs[key].value); return out; }, {}) }); }, text: __('Save', T) }),
-							' ',
 							h('button', { class: 'button', disabled: busy, onclick: function () { load(true); }, text: __('Refresh model list', T) }),
 							' ',
 							testBtn
@@ -229,6 +231,12 @@
 						h('p', { class: 'description', text: __('Test ImageGen creates one low-quality image with the saved image model (a few cents at most) and adds it to the Media Library, so you can check the whole image path before a real task.', T) }),
 						testBox
 					]));
+					kids.push(h('div', { class: 'bst-aid-card', id: 'bst-aid-s-budget' }, [
+						h('h2', { text: __('Budget', T) }),
+						h('p', { class: 'bst-aid-row' }, [h('label', null, [__('Budget per task (USD, 0 = no limit) ', T), bTask]), h('label', null, [__('Budget per day (USD, 0 = no limit) ', T), bDay])]),
+						h('p', { class: 'description', text: sprintf(__('Spent today: %s', T), money(state.spentToday)) })
+					]));
+					kids.push(h('div', { class: 'bst-aid-card', id: 'bst-aid-s-permissions' }, [h('h2', { text: __('Tool permissions', T) })].concat(permissionRows)));
 				}
 			}
 			if (state.hasKey) {
@@ -242,18 +250,47 @@
 						})));
 					}).catch(function (e) { unusedBox.textContent = e.message; });
 				}, text: __('Find unused AI images', T) }));
-				kids.push(h('div', { class: 'bst-aid-card' }, [
+				kids.push(h('div', { class: 'bst-aid-card', id: 'bst-aid-s-images' }, [
 					h('h2', { text: __('AI images', T) }),
 					h('p', { class: 'description', text: __('ImageGen never deletes media. Find generated images that no page, post, product or setting uses, open them and delete the ones you do not need.', T) }),
 					unusedBox
 				]));
 			}
-			kids.push(h('div', { class: 'bst-aid-card bst-aid-card--danger' }, [
-				h('h2', { text: __('Remove AI Designer data', T) }),
+			kids.push(h('details', { class: 'bst-aid-card bst-aid-card--danger', id: 'bst-aid-s-data' }, [
+				h('summary', null, h('h2', { text: __('Remove AI Designer data', T) })),
 				h('p', { class: 'description', text: __('Deletes the API key, settings, guidelines and all task history. Pages, posts and products already created stay.', T) }),
 				h('button', { class: 'button button-link-delete', disabled: busy, onclick: function () { act('/data/delete', null, __('Delete all AI Designer data? This cannot be undone.', T)); }, text: __('Delete AI Designer data', T) })
 			]));
-			kids.forEach(function (k) { root.appendChild(k); });
+			// Two columns: a sticky table of contents and the cards, with a summary strip on top (G-207).
+			var cards = kids.filter(function (k) { return k.id; });
+			var summary = h('div', { class: 'bst-aid-summary' }, [
+				[__('Connection', T), state.hasKey ? (state.connected ? __('Connected', T) : __('Disconnected', T)) : __('Not set up', T), state.hasKey && state.connected ? 'is-on' : 'is-off'],
+				[__('Balance', T), state.balance ? money(state.balance.balance) : '—', state.balance && state.balance.low ? 'is-off' : ''],
+				[__('Text model', T), state.textModel || '—', ''],
+				[__('Spent today', T), money(state.spentToday) + (Number(state.budgetDay) ? ' / ' + money(state.budgetDay) : ''), '']
+			].map(function (c) { return h('div', { class: 'bst-aid-summary-item ' + c[2] }, [h('span', { text: c[0] }), h('strong', { text: c[1], title: c[1] })]); }));
+			var toc = h('nav', { class: 'bst-aid-toc', 'aria-label': __('Settings sections', T) }, cards.map(function (c) {
+				return h('a', { href: '#' + c.id, onclick: function (e) {
+					e.preventDefault();
+					if (c.tagName === 'DETAILS') { c.open = true; }
+					c.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+				}, text: c.querySelector('h2').textContent });
+			}));
+			var main = h('div', { class: 'bst-aid-settings-main' }, [summary].concat(kids, saveBar ? [saveBar] : []));
+			root.appendChild(h('div', { class: 'bst-aid-settings-grid' }, [toc, main]));
+			if (saveBar) {
+				var dirty = function (e) { if (e.target.getAttribute && e.target.getAttribute('data-save')) { saveBar.hidden = false; } };
+				main.addEventListener('input', dirty);
+				main.addEventListener('change', dirty);
+			}
+			// Highlight the section in view.
+			if (window.IntersectionObserver) {
+				var links = toc.querySelectorAll('a');
+				var io = new window.IntersectionObserver(function (entries) {
+					entries.forEach(function (en) { if (en.isIntersecting) { links.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id); }); } });
+				}, { root: root.closest('.bst-aid-body'), rootMargin: '0px 0px -70% 0px' });
+				cards.forEach(function (c) { io.observe(c); });
+			}
 		};
 		render();
 		load();

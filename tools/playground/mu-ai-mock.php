@@ -34,7 +34,7 @@ add_filter(
 			return array( 'headers' => array(), 'response' => array( 'code' => 200, 'message' => 'OK' ), 'body' => wp_json_encode( $data ) );
 		};
 		if ( false !== strpos( $url, '/credits/balance' ) ) {
-			return $ok( array( 'balance' => 12.5 ) );
+			return $ok( array( 'balance' => 12.5, 'read_ok' => true, 'low_balance' => false ) );
 		}
 		if ( false === strpos( $url, '/chat/completions' ) ) {
 			return $ok( array( 'data' => array() ) );

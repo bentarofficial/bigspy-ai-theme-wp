@@ -13661,3 +13661,42 @@ msgstr ""
 msgid "Open in the editor"
 msgstr ""
 
+msgid "Connect the API"
+msgstr ""
+
+msgid "API connection"
+msgstr ""
+
+msgid "Unsaved changes"
+msgstr ""
+
+msgid "You have unsaved changes."
+msgstr ""
+
+msgid "Discard"
+msgstr ""
+
+msgid "Models"
+msgstr ""
+
+msgid "Budget"
+msgstr ""
+
+msgid "Connection"
+msgstr ""
+
+msgid "Not set up"
+msgstr ""
+
+msgid "Balance"
+msgstr ""
+
+msgid "Text model"
+msgstr ""
+
+msgid "Spent today"
+msgstr ""
+
+msgid "Settings sections"
+msgstr ""
+

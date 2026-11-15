@@ -10191,3 +10191,42 @@ msgstr "Mở trong tab mới"
 msgid "Open in the editor"
 msgstr "Mở trong trình soạn thảo"
 
+msgid "Connect the API"
+msgstr "Kết nối API"
+
+msgid "API connection"
+msgstr "Kết nối API"
+
+msgid "Unsaved changes"
+msgstr "Thay đổi chưa lưu"
+
+msgid "You have unsaved changes."
+msgstr "Bạn có thay đổi chưa lưu."
+
+msgid "Discard"
+msgstr "Bỏ thay đổi"
+
+msgid "Models"
+msgstr "Model"
+
+msgid "Budget"
+msgstr "Ngân sách"
+
+msgid "Connection"
+msgstr "Kết nối"
+
+msgid "Not set up"
+msgstr "Chưa thiết lập"
+
+msgid "Balance"
+msgstr "Số dư"
+
+msgid "Text model"
+msgstr "Model văn bản"
+
+msgid "Spent today"
+msgstr "Đã tiêu hôm nay"
+
+msgid "Settings sections"
+msgstr "Các mục cài đặt"
+
