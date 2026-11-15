@@ -513,6 +513,8 @@ Lý do: G-191 cho phép mọi phiếu sau thử không tốn phí. G-207 dựng 
 
 #### G-191 · Nhà cung cấp AI giả lập để thử Workspace
 
+**Trạng thái 15-11-2026: xong.** Mock chạy được, có 4 kịch bản theo từ khoá; `workspace-browser-check.cjs` đạt 12/12 ở 1440, 1024, 390px. Cách chạy trong `docs/DEV-RULES.md`. Chưa có chế độ SSE (làm cùng G-193-b).
+
 - **Mục tiêu:** mở và thao tác Workspace trong Playground mà không cần khoá thật, không tốn phí.
 - **Đã có bản nháp (chưa chạy thử):** `tools/playground/mu-ai-mock.php` và tuỳ chọn `--mock-ai` của `tools/playground-page.cjs`. Bản nháp kết nối AI Designer bằng khoá giả, chặn mọi yêu cầu tới `kymaapi.com` bằng `pre_http_request` và trả kịch bản 5 lượt: `site_info` → `show_palette` → `page_plan` → `create_page` → câu trả lời Markdown. Môi trường của phiên viết phiếu không tải được WordPress nên **chưa xác nhận nó chạy**; việc đầu tiên của phiếu là chạy thử và sửa.
 - **Làm thêm:** chọn kịch bản bằng từ khoá trong tin nhắn người dùng: `approval` (gọi `site_settings` để sinh thẻ duyệt), `error` (trả HTTP 500), `long` (câu trả lời dài có bảng và danh sách), `budget` (trả `usage.cost` lớn để chạm ngân sách task). Với phiếu G-193-b thêm chế độ trả SSE.

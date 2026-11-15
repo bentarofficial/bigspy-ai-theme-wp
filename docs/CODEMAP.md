@@ -43,7 +43,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 - `inc/performance.php`: per-page CSS, self-hosted fonts, generated CSS written to files in `uploads/bigspy/`.
 
 ## Testing
-- `node tools/playground-page.cjs` serves the theme on port 9418. Open `/?bst_autologin=1`; a test-only mu-plugin logs in, no password. Options: `--port=N`, `--woo=<plugin dir>`, `--mock-ai` (mounts `tools/playground/mu-ai-mock.php`: AI Designer connected to a local scripted provider, no key or charges; draft, see G-191).
+- `node tools/playground-page.cjs` serves the theme on port 9418. Open `/?bst_autologin=1`; a test-only mu-plugin logs in, no password. Options: `--port=N`, `--woo=<plugin dir>`, `--mock-ai` (mounts `tools/playground/mu-ai-mock.php`: AI Designer connected to a local scripted provider, no key or charges). Workspace browser test: `node tools/tests/workspace-browser-check.cjs`.
 - Designer tests: `node tools/playground-check.cjs`; see `docs/DEV-RULES.md`.
 - Without wordpress.org access: `npm pack @wp-playground/wordpress-builds@0.9.19`, serve its `src/wordpress/wp-6.5.zip` on localhost and set `BST_TEST_WP` to that URL. PHP and the front end work; wp-admin static JS/CSS are missing, so the block editor cannot be tested this way.
 - The test machine forces prefers-reduced-motion. The browser pane must be visible for animations to run.

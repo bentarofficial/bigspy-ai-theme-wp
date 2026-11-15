@@ -41,10 +41,21 @@ add_filter(
 		}
 		$body  = json_decode( (string) ( $args['body'] ?? '' ), true );
 		$msgs  = (array) ( $body['messages'] ?? array() );
-		$turns = 0; // Assistant messages since the last user message.
+		// Tool calls the model already made since the last user message pick the next scripted reply.
+		$called = array();
+		$ask    = '';
 		foreach ( $msgs as $m ) {
-			$role  = $m['role'] ?? '';
-			$turns = 'user' === $role ? 0 : ( 'assistant' === $role ? $turns + 1 : $turns );
+			if ( 'user' === ( $m['role'] ?? '' ) ) {
+				$called = array();
+				$ask    = strtolower( (string) ( is_string( $m['content'] ?? null ) ? $m['content'] : '' ) );
+			}
+			foreach ( (array) ( $m['tool_calls'] ?? array() ) as $c ) {
+				$called[] = (string) ( $c['function']['name'] ?? '' );
+			}
+		}
+		$turns = count( $called );
+		if ( defined( 'BST_AI_MOCK_LOG' ) ) {
+			error_log( 'mock ' . wp_json_encode( array( 'model' => $body['model'] ?? '', 'called' => $called ) ) . "\n", 3, BST_AI_MOCK_LOG );
 		}
 		$call = function ( $name, $params ) use ( $ok, $turns ) {
 			return $ok(
@@ -55,6 +66,22 @@ add_filter(
 			);
 		};
 		usleep( 600000 ); // A little latency so progress states are visible.
+		$says = function ( $text, $cost = 0.003 ) use ( $ok ) {
+			return $ok( array( 'choices' => array( array( 'message' => array( 'role' => 'assistant', 'content' => $text ) ) ), 'usage' => array( 'cost' => $cost ) ) );
+		};
+		// Scenarios picked by a keyword in the user's message.
+		if ( false !== strpos( $ask, 'error' ) ) {
+			return array( 'headers' => array(), 'response' => array( 'code' => 500, 'message' => 'Error' ), 'body' => '{"error":{"message":"Mock provider error"}}' );
+		}
+		if ( false !== strpos( $ask, 'approval' ) ) {
+			return $turns ? $says( 'The tagline change is waiting for your approval.' ) : $call( 'site_settings', array( 'values' => array( 'blogdescription' => 'Tagline written by the mock AI' ) ) );
+		}
+		if ( false !== strpos( $ask, 'budget' ) ) {
+			return $ok( array( 'choices' => array( array( 'message' => array( 'role' => 'assistant', 'content' => null, 'tool_calls' => array( array( 'id' => 'mock-b' . $turns, 'type' => 'function', 'function' => array( 'name' => 'site_info', 'arguments' => '{}' ) ) ) ) ) ), 'usage' => array( 'cost' => 1.5 ) ) );
+		}
+		if ( false !== strpos( $ask, 'long' ) ) {
+			return $says( "## A long answer\n\nThis reply checks how the chat shows **long** content.\n\n| Section | Purpose | Blocks |\n| --- | --- | --- |\n| Hero | First impression | banner, button |\n| Services | What you offer | icon-box ×3 |\n| Contact | Next step | form, map |\n\n1. First step\n   - nested point\n   - another point\n2. Second step\n\n```css\n.hero { min-height: 80vh; }\n```\n\n" . str_repeat( 'A sentence that makes the answer longer so the chat has to scroll. ', 40 ) );
+		}
 		switch ( $turns ) {
 			case 0:
 				return $call( 'site_info', new stdClass() );
@@ -88,7 +115,7 @@ add_filter(
 						'title'  => 'Mock home page',
 						'blocks' => array(
 							array( 'name' => 'bst/heading', 'attrs' => array( 'text' => 'A page built by the mock AI', 'tag' => 'h1' ) ),
-							array( 'name' => 'bst/text', 'attrs' => array( 'text' => 'This draft exists so the Workspace preview has something to show.' ) ),
+							array( 'name' => 'bst/text', 'attrs' => array( 'html' => '<p>This draft exists so the Workspace preview has something to show.</p>' ) ),
 						),
 					)
 				);
