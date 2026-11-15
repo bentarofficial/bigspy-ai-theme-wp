@@ -10260,3 +10260,39 @@ msgstr "Đã làm %d việc"
 msgid "%d with a problem"
 msgstr "%d việc gặp lỗi"
 
+msgid "Light or dark theme"
+msgstr "Giao diện sáng hoặc tối"
+
+msgid "OK"
+msgstr "Đồng ý"
+
+msgid "Are you sure?"
+msgstr "Bạn chắc chứ?"
+
+msgid "Cancel"
+msgstr "Huỷ"
+
+msgid "Replace"
+msgstr "Thay"
+
+msgid "Delete"
+msgstr "Xoá"
+
+msgid "Delete this task?"
+msgstr "Xoá task này?"
+
+msgid "Undo this task?"
+msgstr "Hoàn tác task này?"
+
+msgid "Expired"
+msgstr "Đã hết hạn"
+
+msgid "%s left"
+msgstr "Còn %s"
+
+msgid "Use the \"%s\" palette."
+msgstr "Dùng bảng màu \"%s\"."
+
+msgid "Use this palette"
+msgstr "Dùng bảng này"
+

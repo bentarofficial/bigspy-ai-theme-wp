@@ -76,6 +76,7 @@ function bst_aid_shell_open( $page, $title ) {
 	// WordPress moves admin notices right after .wp-header-end, so they land in this panel instead of pushing the layout.
 	echo '<div id="bst-aid-notices" class="bst-aid-notices" hidden><p class="bst-aid-notices-empty">' . esc_html__( 'No notices.', 'bigspy-ai-theme-wp' ) . '</p><hr class="wp-header-end"></div>';
 	echo '</div>';
+	echo '<button type="button" class="bst-aid-bar-btn bst-aid-theme-btn" title="' . esc_attr__( 'Light or dark theme', 'bigspy-ai-theme-wp' ) . '"><span class="dashicons dashicons-lightbulb" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html__( 'Light or dark theme', 'bigspy-ai-theme-wp' ) . '</span></button>';
 	echo '<button type="button" class="bst-aid-bar-btn bst-aid-full-btn" aria-pressed="false" title="' . esc_attr__( 'Full screen (Esc to leave)', 'bigspy-ai-theme-wp' ) . '"><span class="dashicons dashicons-editor-expand" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html__( 'Full screen', 'bigspy-ai-theme-wp' ) . '</span></button>';
 	echo '</header>';
 	echo '<div class="bst-aid-body">';
@@ -85,12 +86,12 @@ function bst_aid_shell_close() {
 	echo '</div></div>';
 }
 
-/* Full screen is applied before the page paints, so it does not flash. */
+/* Full screen and the chosen theme are applied before the page paints, so they do not flash. */
 add_action(
 	'admin_head',
 	function () {
 		if ( bst_aid_is_screen() ) {
-			echo "<script>try{if(localStorage.getItem('bstAidFull')==='1'){document.documentElement.classList.add('bst-aid-full');}}catch(e){}</script>\n";
+			echo "<script>try{var d=document.documentElement;if(localStorage.getItem('bstAidFull')==='1'){d.classList.add('bst-aid-full');}var t=localStorage.getItem('bstAidTheme');if(t==='dark'||t==='light'){d.setAttribute('data-aid-theme',t);}}catch(e){}</script>\n";
 		}
 	}
 );

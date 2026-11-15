@@ -106,6 +106,22 @@
 		try { document.execCommand('copy'); done(); } catch (e) { /* nothing to do */ }
 		ta.remove();
 	};
+	// A styled confirm dialog: ask({ title, text, ok, danger }) resolves true or false. Falls back to window.confirm.
+	var ask = function (o) {
+		if (typeof window.HTMLDialogElement !== 'function') { return Promise.resolve(window.confirm(o.text || o.title)); }
+		return new Promise(function (resolve) {
+			var okBtn = h('button', { type: 'submit', value: 'ok', class: 'button ' + (o.danger ? 'bst-aid-danger' : 'button-primary'), text: o.ok || __('OK', T) });
+			var dlg = h('dialog', { class: 'bst-aid-dialog bst-aid', 'aria-labelledby': 'bst-aid-dlg-title' }, h('form', { method: 'dialog' }, [
+				h('h2', { id: 'bst-aid-dlg-title', text: o.title || __('Are you sure?', T) }),
+				o.text ? h('p', { text: o.text }) : null,
+				h('div', { class: 'bst-aid-dialog-acts' }, [h('button', { type: 'submit', value: 'cancel', class: 'button', text: __('Cancel', T) }), okBtn])
+			]));
+			dlg.addEventListener('close', function () { resolve(dlg.returnValue === 'ok'); dlg.remove(); });
+			document.body.appendChild(dlg);
+			dlg.showModal();
+			(o.danger ? dlg.querySelector('[value="cancel"]') : okBtn).focus();
+		});
+	};
 	document.addEventListener('click', function (e) {
 		var b = e.target.closest && e.target.closest('[data-copy-code]');
 		if (b) { copyText(b.closest('.bst-aid-code').querySelector('code').textContent, b); }
@@ -116,11 +132,13 @@
 		var b = e.target.closest && e.target.closest('[data-bst-aid-template]');
 		if (!b) { return; }
 		var area = document.getElementById(b.getAttribute('data-bst-aid-template'));
-		if (area && (!area.value.trim() || window.confirm(__('Replace the current text with the template?', T)))) {
+		if (!area) { return; }
+		(area.value.trim() ? ask({ title: __('Replace the current text with the template?', T), ok: __('Replace', T) }) : Promise.resolve(true)).then(function (yes) {
+			if (!yes) { return; }
 			area.value = b.getAttribute('data-template');
 			area.focus();
 			saveContext(area, 0);
-		}
+		});
 	});
 
 	// Guidelines and specialty boxes save as you type; a version guards against overwriting an AI change.
@@ -144,7 +162,7 @@
 		var b = e.target.closest && e.target.closest('[data-bst-aid-reset]');
 		if (!b) { return; }
 		var area = document.getElementById(b.getAttribute('data-bst-aid-reset'));
-		if (area && window.confirm(__('Restore the default context for this specialty?', T))) { area.value = ''; saveContext(area, 0); }
+		if (area) { ask({ title: __('Restore the default context for this specialty?', T), ok: __('Restore default', T) }).then(function (yes) { if (yes) { area.value = ''; saveContext(area, 0); } }); }
 	});
 
 	// Two panes (G-207): a list of standards and specialties on the left, one editor on the right.
@@ -204,10 +222,13 @@
 			return api('/settings' + (refresh ? '?refresh=1' : '')).then(function (s) { state = s; render(); }).catch(function (e) { msg = e.message; msgType = 'error'; render(); });
 		};
 		var act = function (path, body, confirmText) {
-			if (confirmText && !window.confirm(confirmText)) { return; }
-			busy = true; msg = ''; render();
-			api(path, 'POST', body).then(function (s) { state = s; busy = false; msg = __('Done.', T); msgType = 'success'; render(); })
-				.catch(function (e) { busy = false; msg = e.message; msgType = 'error'; render(); });
+			var run = function () {
+				busy = true; msg = ''; render();
+				api(path, 'POST', body).then(function (s) { state = s; busy = false; msg = __('Done.', T); msgType = 'success'; render(); })
+					.catch(function (e) { busy = false; msg = e.message; msgType = 'error'; render(); });
+			};
+			if (!confirmText) { run(); return; }
+			ask({ title: confirmText, ok: __('Delete', T), danger: true }).then(function (yes) { if (yes) { run(); } });
 		};
 		var modelOptions = function (list, value, showPrice) {
 			var opts = [h('option', { value: '', text: __('— Choose a model —', T) })];
@@ -422,22 +443,38 @@
 			return map[name] || name;
 		};
 		var eventNode = function (ev) {
-            if (ev.kind === 'approval') {
-                var a = ev.approval, taskId = current.id;
-                var resolved = log.some(function (event) { return event.approval_id === a.id; });
-                var box = h('div', { class: 'bst-aid-card bst-aid-approval' }, [h('h3', { text: __('Approval required', T) + ': ' + a.tool }), h('p', { text: a.scope }), h('p', { text: a.cost }), h('p', { text: a.undo }), h('details', null, [h('summary', { text: __('Before / after', T) }), h('pre', { text: JSON.stringify({ before: a.before, after: a.after }, null, 2) })])]);
-                if (a.preview) { box.appendChild(h('a', { href: a.preview, target: '_blank', rel: 'noopener', text: __('Preview', T) })); }
-                ['approve', 'manual', 'skip'].forEach(function (decision, index) {
-                    box.appendChild(h('button', { class: 'button', disabled: resolved || a.expires * 1000 <= Date.now(), text: [__('Agree', T), __('I will do it myself', T), __('Skip', T)][index], onclick: function () {
-                        box.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
-                        api('/tasks/' + taskId + '/approval', 'POST', { approval_id: a.id, decision: decision }).then(function (r) {
-                            box.appendChild(h('p', { text: r.result.instructions || r.result.error || [__('Agree', T), __('I will do it myself', T), __('Skip', T)][index] }));
-                            if (current && current.id === taskId) { addEvents(r.events); updateTask(r.task); }
-                        }).catch(function (e) { box.appendChild(h('p', { text: e.message })); box.querySelectorAll('button').forEach(function (b) { b.disabled = false; }); });
-                    } }));
-                });
-                return box;
-            }
+			if (ev.kind === 'approval') {
+				var a = ev.approval, taskId = current.id, labels = [__('Agree', T), __('I will do it myself', T), __('Skip', T)];
+				var resolved = log.some(function (event) { return event.approval_id === a.id; });
+				var countdown = h('span', { class: 'bst-aid-countdown', 'aria-live': 'off' });
+				var buttons = ['approve', 'manual', 'skip'].map(function (decision, index) {
+					return h('button', { type: 'button', class: 'button' + (index === 0 ? ' button-primary' : ''), text: labels[index], onclick: function () {
+						buttons.forEach(function (b) { b.disabled = true; });
+						api('/tasks/' + taskId + '/approval', 'POST', { approval_id: a.id, decision: decision }).then(function (r) {
+							box.appendChild(h('p', { text: r.result.instructions || r.result.error || labels[index] }));
+							resolved = true; tick();
+							if (current && current.id === taskId) { addEvents(r.events); updateTask(r.task); }
+						}).catch(function (e) { box.appendChild(h('p', { text: e.message })); buttons.forEach(function (b) { b.disabled = false; }); });
+					} });
+				});
+				var box = h('div', { class: 'bst-aid-card bst-aid-approval' }, [
+					h('h3', { text: __('Approval required', T) + ': ' + toolLabel(a.tool) }),
+					h('div', { class: 'bst-aid-approval-meta' }, [a.scope ? h('p', { text: a.scope }) : null, a.cost ? h('p', { text: a.cost }) : null, a.undo ? h('p', { class: 'description', text: a.undo }) : null]),
+					h('details', null, [h('summary', { text: __('Before / after', T) }), h('pre', { text: JSON.stringify({ before: a.before, after: a.after }, null, 2) })]),
+					a.preview ? h('p', null, h('a', { href: a.preview, target: '_blank', rel: 'noopener', text: __('Preview', T) })) : null,
+					h('div', { class: 'bst-aid-approval-acts' }, buttons.concat([countdown]))
+				]);
+				// Approvals expire after 15 minutes: show the time left and lock the buttons when it runs out.
+				var timer = null, tick = function () {
+					var left = Math.round(a.expires - Date.now() / 1000);
+					if (resolved) { countdown.textContent = ''; buttons.forEach(function (b) { b.disabled = true; }); clearInterval(timer); return; }
+					if (left <= 0) { countdown.textContent = __('Expired', T); box.classList.add('is-expired'); buttons.forEach(function (b) { b.disabled = true; }); clearInterval(timer); return; }
+					countdown.textContent = sprintf(__('%s left', T), Math.floor(left / 60) + ':' + ('0' + (left % 60)).slice(-2));
+					if (!document.body.contains(box) && timer) { clearInterval(timer); }
+				};
+				tick(); timer = setInterval(tick, 1000);
+				return box;
+			}
 			if (ev.kind === 'user') {
 				return h('div', { class: 'bst-aid-msg is-user' }, h('div', { class: 'bst-aid-bubble' }, [h('span', { text: ev.text }), (ev.files || []).length ? h('div', { class: 'bst-aid-files' }, ev.files.map(fileChip)) : null]));
 			}
@@ -485,7 +522,8 @@
 							return h('span', { class: 'bst-aid-swatch', title: role + ' ' + p.colors[role] }, [h('i', { style: 'background:' + p.colors[role] }), h('small', { text: role }), h('code', { text: p.colors[role] })]);
 						})),
 						p.fonts && (p.fonts.heading || p.fonts.body) ? h('p', { class: 'bst-aid-fonts', text: [p.fonts.heading, p.fonts.body].filter(Boolean).join(' / ') }) : null,
-						p.note ? h('p', { class: 'description', text: p.note }) : null
+						p.note ? h('p', { class: 'description', text: p.note }) : null,
+						h('button', { type: 'button', class: 'button button-small', onclick: function () { els.input.value = sprintf(__('Use the "%s" palette.', T), p.name || ''); autoGrow(); els.input.focus(); }, text: __('Use this palette', T) })
 					]);
 				}))]);
 			}
@@ -594,16 +632,21 @@
 		};
 		var deleteTask = function () {
 			var t = current;
-			if (!t || !window.confirm(__('Delete this task and its chat history? Pages, posts and products it created stay.', T))) { return; }
-			api('/tasks/' + t.id, 'DELETE').then(function () {
-				tasks = tasks.filter(function (x) { return x.id !== t.id; });
-				current = null; log = []; previewUrl = ''; previews = [];
-				renderTasks(); renderHead(); renderChat(); syncPreview();
+			if (!t) { return; }
+			ask({ title: __('Delete this task?', T), text: __('Delete this task and its chat history? Pages, posts and products it created stay.', T), ok: __('Delete task', T), danger: true }).then(function (yes) {
+				if (!yes) { return; }
+				api('/tasks/' + t.id, 'DELETE').then(function () {
+					tasks = tasks.filter(function (x) { return x.id !== t.id; });
+					current = null; log = []; previewUrl = ''; previews = [];
+					renderTasks(); renderHead(); renderChat(); syncPreview();
+				});
 			});
 		};
 		var undoTask = function () {
-			if (!window.confirm(__('Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash.', T))) { return; }
-			api('/tasks/' + current.id + '/undo', 'POST').then(function (r) { addEvents(r.events); updateTask(r.task); }).catch(function (e) { addEvents([{ kind: 'error', text: e.message }]); });
+			ask({ title: __('Undo this task?', T), text: __('Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash.', T), ok: __('Undo task', T), danger: true }).then(function (yes) {
+				if (!yes) { return; }
+				api('/tasks/' + current.id + '/undo', 'POST').then(function (r) { addEvents(r.events); updateTask(r.task); }).catch(function (e) { addEvents([{ kind: 'error', text: e.message }]); });
+			});
 		};
 		var showDetails = function () {
 			if (!current) { return; }
@@ -1042,6 +1085,17 @@
 		document.addEventListener('keydown', function (e) {
 			if (e.key === 'Escape' && html.classList.contains('bst-aid-full') && !document.querySelector('.bst-aid-notices:not([hidden]), .bst-aid-menu:not([hidden]), dialog[open]')) { setFull(false); }
 		});
+		// Light / dark: the first press picks the opposite of what shows now; the choice is remembered.
+		var themeBtn = bar.querySelector('.bst-aid-theme-btn');
+		var isDark = function () { var t = html.getAttribute('data-aid-theme'); return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; };
+		var syncTheme = function () { themeBtn.setAttribute('aria-pressed', isDark() ? 'true' : 'false'); };
+		themeBtn.addEventListener('click', function () {
+			var next = isDark() ? 'light' : 'dark';
+			html.setAttribute('data-aid-theme', next);
+			try { window.localStorage.setItem('bstAidTheme', next); } catch (e) { /* storage blocked */ }
+			syncTheme();
+		});
+		syncTheme();
 		// Admin notices of other plugins: WordPress moves them after .wp-header-end, inside the bell panel.
 		var bell = bar.querySelector('.bst-aid-bell > button'), panel = document.getElementById('bst-aid-notices');
 		var count = bar.querySelector('.bst-aid-bell-count'), empty = panel.querySelector('.bst-aid-notices-empty');

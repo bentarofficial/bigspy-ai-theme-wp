@@ -13733,3 +13733,51 @@ msgstr ""
 msgid "%d with a problem"
 msgstr ""
 
+msgid "Light or dark theme"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Replace the current text with the template?"
+msgstr ""
+
+msgid "Delete this task?"
+msgstr ""
+
+msgid "Undo this task?"
+msgstr ""
+
+msgid "Approval required"
+msgstr ""
+
+msgid "Before / after"
+msgstr ""
+
+msgid "Expired"
+msgstr ""
+
+msgid "%s left"
+msgstr ""
+
+msgid "Use the \"%s\" palette."
+msgstr ""
+
+msgid "Use this palette"
+msgstr ""
+
+msgid "Agree"
+msgstr ""
+
+msgid "I will do it myself"
+msgstr ""
+
+msgid "Skip"
+msgstr ""
+
