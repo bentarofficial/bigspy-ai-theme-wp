@@ -12,7 +12,7 @@ try {
 		bst_t_off();
 		update_option( 'bst_features', bst_feature_ids() );
 	} else {
-		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design', 'flatsome', 'accordion' ) as $test ) {
+		foreach ( array( 'on', 'webp', 'smtp', 'related', 'code', 'forms', 'cf7', 'aid', 'hero', 'listing', 'design', 'flatsome', 'accordion', 'aisearch' ) as $test ) {
 			if ( function_exists( 'bst_t_' . $test ) ) {
 				call_user_func( 'bst_t_' . $test );
 			}
@@ -20,6 +20,36 @@ try {
 	}
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
+}
+
+function bst_t_aisearch() {
+	update_option( 'blogname', 'Acme [Tools]' );
+	update_option( 'blogdescription', 'Tagline here' );
+	update_option( 'bst_feature_ai-search', array( 'summary' => 'We review <b>AI tools</b>.', 'same_as' => 'https://x.com/acme, javascript:alert(1) https://www.linkedin.com/company/acme', 'count' => 5 ) );
+	$post = wp_insert_post( array( 'post_title' => 'Best [X] for Y', 'post_status' => 'publish', 'post_excerpt' => 'Short answer first.', 'post_content' => '<!-- wp:paragraph --><p>Body</p><!-- /wp:paragraph -->' ) );
+	wp_insert_post( array( 'post_title' => 'Hidden draft', 'post_status' => 'draft' ) );
+	wp_insert_post( array( 'post_title' => 'Locked', 'post_status' => 'publish', 'post_password' => 'x' ) );
+	$txt = bst_ais_llms_txt();
+	bst_test( 0 === strpos( $txt, "# Acme [Tools]\n\n> We review AI tools.\n" ), 'ai-search: llms.txt starts with name and summary' );
+	bst_test( false !== strpos( $txt, '- [Best (X) for Y](' . get_permalink( $post ) . '): Short answer first.' ) && false !== strpos( $txt, '## Articles' ) && false !== strpos( $txt, '## Optional' ), 'ai-search: llms.txt lists posts with description' );
+	bst_test( false === strpos( $txt, 'Hidden draft' ) && false === strpos( $txt, 'Locked' ), 'ai-search: llms.txt leaves out drafts and protected posts' );
+	bst_test( array( 'https://x.com/acme', 'https://www.linkedin.com/company/acme' ) === bst_ais_same_as(), 'ai-search: profile links keep http(s) URLs only' );
+	set_transient( 'bst_llms_txt', 'old', 60 );
+	wp_update_post( array( 'ID' => $post, 'post_title' => 'Best [X] for Y' ) );
+	bst_test( false === get_transient( 'bst_llms_txt' ), 'ai-search: cache cleared when content changes' );
+	$GLOBALS['wp_query'] = new WP_Query( array( 'p' => $post ) );
+	ob_start();
+	bst_ais_head();
+	$head = ob_get_clean();
+	bst_test( false !== strpos( $head, '<meta name="description" content="Short answer first.">' ) && false !== strpos( $head, 'property="og:type" content="article"' ), 'ai-search: meta description and sharing tags on a post' );
+	$json = preg_match( '#<script type="application/ld\+json">(.*?)</script>#s', $head, $m ) ? json_decode( $m[1], true ) : null;
+	$types = is_array( $json ) ? array_column( $json['@graph'], '@type' ) : array();
+	bst_test( array( 'Organization', 'WebSite', 'Article', 'BreadcrumbList' ) === $types && 'Person' === $json['@graph'][2]['author']['@type'] && 2 === count( $json['@graph'][0]['sameAs'] ), 'ai-search: Organization, WebSite, Article with author, breadcrumb schema' );
+	define( 'WPSEO_VERSION', 'test' );
+	ob_start();
+	bst_ais_head();
+	bst_test( '' === ob_get_clean(), 'ai-search: prints nothing while an SEO plugin is active' );
+	wp_reset_query();
 }
 
 function bst_t_flatsome() {
@@ -47,7 +77,7 @@ function bst_t_off() {
 	bst_features_page();
 	$html = ob_get_clean();
 	$listed = substr_count( $html, 'name="bst_on[]"' );
-	bst_test( 7 === $listed && false === strpos( $html, 'checked' ), 'page lists 7 unticked features (' . $listed . ')' );
+	bst_test( 8 === $listed && false === strpos( $html, 'checked' ), 'page lists 8 unticked features (' . $listed . ')' );
 	bst_test( ! bst_feature_on( 'flatsome' ) && ! shortcode_exists( 'ux_text' ) && post_type_exists( 'blocks' ) && ! wp_style_is( 'bst-legacy', 'registered' ), 'flatsome: off on a new site, UX Blocks post type kept' );
 	delete_option( 'bst_flatsome_checked' );
 	$fs = wp_insert_post( array( 'post_title' => 'fs', 'post_status' => 'publish', 'post_type' => 'page', 'post_content' => '[section][ux_text]x[/ux_text][/section]' ) );

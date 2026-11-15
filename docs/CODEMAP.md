@@ -30,6 +30,7 @@ Theme root: `bigspy-ai-theme-wp/`. Paths below are relative to it unless they st
 ## Other
 - Version: `style.css` and `BST_VERSION` in `functions.php`. Readiness: `python tools/release.py`.
 - Optional features: `inc/features.php` (page, toggles, field types), one file per feature in `inc/features/`. Test: `node tools/features-check.cjs`.
+- AI search (AEO/GEO): `inc/features/ai-search.php` serves `/llms.txt` (cached in the `bst_llms_txt` transient, sections filterable with `bst_llms_txt_sections`) and prints meta description, Open Graph and Organization/WebSite/Article/BreadcrumbList schema only when no SEO plugin is active. Listing page schema stays in `inc/listing/schema.php`.
 - Theme panel: `inc/admin/`. Updater: `inc/updater.php`. Patterns: `patterns/`.
 - Built-in Form: engine `inc/form-native.php`; schema (field IDs, conditions, dependency checks) `inc/form-schema.php`; front JS in `assets/js/blocks.js` (`bsNfApply`); editor `NativeFormPanels` in `blocks-editor.js`. Price quote (G-58): `inc/form-quote.php` (formula, quote, snapshot, `[_quote]` tags), shared JS engine `assets/js/form-quote.js` (`window.bsQuote`, loaded only with priced forms and in the editor). Tests: `php tools/tests/form-schema-check.php`, `php tools/tests/form-quote-check.php`, `node tools/tests/form-quote-parity.cjs`.
 

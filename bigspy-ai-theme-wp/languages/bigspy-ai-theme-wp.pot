@@ -13535,3 +13535,54 @@ msgstr ""
 msgid "Default icon"
 msgstr ""
 
+msgid "AI search (AEO and GEO)"
+msgstr ""
+
+msgid "Help AI Overviews, ChatGPT and other assistants read and recommend the site: serves /llms.txt and, on sites without an SEO plugin, adds a meta description, sharing tags and Organization, Article and breadcrumb schema."
+msgstr ""
+
+msgid "Main pages"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Articles"
+msgstr ""
+
+msgid "Topics"
+msgstr ""
+
+msgid "XML sitemap"
+msgstr ""
+
+msgid "RSS feed"
+msgstr ""
+
+msgid "Serve /llms.txt"
+msgstr ""
+
+msgid "A plain-text map of your main pages, categories and newest content for AI assistants. Rebuilt when content changes."
+msgstr ""
+
+msgid "Site summary (empty = tagline)"
+msgstr ""
+
+msgid "One or two sentences saying what the site offers and for whom. AI assistants quote it."
+msgstr ""
+
+msgid "Newest items per list in llms.txt"
+msgstr ""
+
+msgid "Basic SEO tags and schema"
+msgstr ""
+
+msgid "Meta description, social sharing tags and Organization, WebSite, Article and breadcrumb schema. Only printed while no SEO plugin is active."
+msgstr ""
+
+msgid "Brand profile links"
+msgstr ""
+
+msgid "Comma-separated URLs of your official profiles (Facebook, LinkedIn, X, YouTube, review pages). They tell AI which brand the site belongs to."
+msgstr ""
+

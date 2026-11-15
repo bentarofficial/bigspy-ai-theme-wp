@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Feature ids; each one has a file of the same name in inc/features/. */
 function bst_feature_ids() {
-	return array( 'webp', 'smtp', 'inline-related', 'code-inject', 'listing', 'abilities', 'flatsome' );
+	return array( 'webp', 'smtp', 'inline-related', 'code-inject', 'listing', 'abilities', 'flatsome', 'ai-search' );
 }
 
 function bst_feature_catalog() {
@@ -19,6 +19,7 @@ function bst_feature_catalog() {
 		'listing'        => array( __( 'BIGSPY AI List mode', 'bigspy-ai-theme-wp' ), __( 'Turn WooCommerce products into directory listings: listing details, facts, pricing, rating, disclosures, schema and the BIGSPY AI List blocks. Turning it off keeps all listing data.', 'bigspy-ai-theme-wp' ) ),
 		'abilities'      => array( __( 'AI abilities (MCP)', 'bigspy-ai-theme-wp' ), __( 'Let outside AI apps read the site and edit pages and theme settings through the WordPress Abilities API and MCP Adapter (WordPress 6.9+). They use the same rights, approvals, block rules and undo as AI Designer.', 'bigspy-ai-theme-wp' ) ),
 		'flatsome'       => array( __( 'Flatsome compatibility', 'bigspy-ai-theme-wp' ), __( 'Shows pages built with Flatsome UX Builder shortcodes, keeps UX Blocks and inherits Flatsome design settings.', 'bigspy-ai-theme-wp' ) ),
+		'ai-search'      => array( __( 'AI search (AEO and GEO)', 'bigspy-ai-theme-wp' ), __( 'Help AI Overviews, ChatGPT and other assistants read and recommend the site: serves /llms.txt and, on sites without an SEO plugin, adds a meta description, sharing tags and Organization, Article and breadcrumb schema.', 'bigspy-ai-theme-wp' ) ),
 	);
 }
 

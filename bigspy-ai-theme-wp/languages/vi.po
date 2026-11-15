@@ -10067,3 +10067,55 @@ msgstr "Biểu tượng mặc định"
 
 msgid "1.96.0: Scrolling text (marquee) becomes a full strip builder: each item can be text, an icon, a logo or a card with its own link and color, in several rows going opposite ways, with item styles, edge fade, tilt, vertical mode, scroll effects and per-device sizes. Floating contact shows the real Zalo mark, lets you pick an icon for each button and adds glossy buttons, card labels, ring waves and a phone-bar shine. The sidebar width can be set for blog, posts, pages, shop and products in px or %, and the editor List View shows an Add to button under each container to insert blocks right there."
 msgstr "1.96.0: Khối Chữ chạy (marquee) thành bộ dựng dải chạy đầy đủ: mỗi mục có thể là chữ, biểu tượng, logo hoặc thẻ với link và màu riêng, chạy nhiều hàng ngược chiều, có kiểu mục, mờ mép, nghiêng, chạy dọc, hiệu ứng cuộn và kích thước theo thiết bị. Liên hệ nổi dùng logo Zalo thật, cho chọn biểu tượng từng nút và thêm nút bóng, nhãn dạng thẻ, sóng lan và ánh sáng trên thanh gọi điện. Độ rộng sidebar đặt riêng cho blog, bài viết, trang, cửa hàng và sản phẩm theo px hoặc %, và List View trong trình soạn thảo có nút Thêm vào dưới mỗi khối chứa để chèn khối đúng chỗ."
+
+msgid "AI search (AEO and GEO)"
+msgstr "Tìm kiếm AI (AEO và GEO)"
+
+msgid "Help AI Overviews, ChatGPT and other assistants read and recommend the site: serves /llms.txt and, on sites without an SEO plugin, adds a meta description, sharing tags and Organization, Article and breadcrumb schema."
+msgstr "Giúp AI Overviews, ChatGPT và các trợ lý AI khác đọc và đề xuất website: phục vụ /llms.txt và, trên site không có plugin SEO, thêm meta description, thẻ chia sẻ cùng schema Organization, Article và breadcrumb."
+
+msgid "Main pages"
+msgstr "Trang chính"
+
+msgid "Product categories"
+msgstr "Danh mục sản phẩm"
+
+msgid "Articles"
+msgstr "Bài viết"
+
+msgid "Topics"
+msgstr "Chủ đề"
+
+msgid "XML sitemap"
+msgstr "Sơ đồ trang XML"
+
+msgid "RSS feed"
+msgstr "Nguồn cấp RSS"
+
+msgid "Serve /llms.txt"
+msgstr "Phục vụ /llms.txt"
+
+msgid "A plain-text map of your main pages, categories and newest content for AI assistants. Rebuilt when content changes."
+msgstr "Bản đồ dạng văn bản thuần gồm các trang chính, danh mục và nội dung mới nhất dành cho trợ lý AI. Tự dựng lại khi nội dung thay đổi."
+
+msgid "Site summary (empty = tagline)"
+msgstr "Tóm tắt website (để trống = khẩu hiệu)"
+
+msgid "One or two sentences saying what the site offers and for whom. AI assistants quote it."
+msgstr "Một hai câu nói rõ website cung cấp gì và cho ai. Trợ lý AI sẽ trích dẫn câu này."
+
+msgid "Newest items per list in llms.txt"
+msgstr "Số mục mới nhất mỗi danh sách trong llms.txt"
+
+msgid "Basic SEO tags and schema"
+msgstr "Thẻ SEO và schema cơ bản"
+
+msgid "Meta description, social sharing tags and Organization, WebSite, Article and breadcrumb schema. Only printed while no SEO plugin is active."
+msgstr "Meta description, thẻ chia sẻ mạng xã hội và schema Organization, WebSite, Article, breadcrumb. Chỉ in ra khi không có plugin SEO nào đang bật."
+
+msgid "Brand profile links"
+msgstr "Liên kết hồ sơ thương hiệu"
+
+msgid "Comma-separated URLs of your official profiles (Facebook, LinkedIn, X, YouTube, review pages). They tell AI which brand the site belongs to."
+msgstr "Các URL hồ sơ chính thức, cách nhau bằng dấu phẩy (Facebook, LinkedIn, X, YouTube, trang đánh giá). Chúng cho AI biết website thuộc thương hiệu nào."
+
