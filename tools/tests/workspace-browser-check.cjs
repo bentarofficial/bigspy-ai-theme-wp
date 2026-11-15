@@ -46,12 +46,17 @@ const check = (ok, name) => { results.push([!!ok, name]); console.log(`${ok ? 'o
         if (state !== 'running' && state !== 'busy') { return state; }
       }
     })();
+    const seen = new Set();
+    const sample = setInterval(() => { page.evaluate(() => { const w = document.querySelector('.bst-aid-working'); return w && !w.hidden ? w.querySelector('.bst-aid-working-text').textContent : ''; }).then(t => { if (t) { seen.add(t); } }).catch(() => {}); }, 200);
     await page.keyboard.press('Enter');
     await end.catch(() => {});
+    clearInterval(sample);
+    return seen;
     await page.waitForTimeout(800);
   };
 
-  await run('Build a home page');
+  const live = await run('Build a home page');
+  check(live.has('Reading the site…') && live.has('Building the page…'), `Live status names the upcoming tools (${[...live].join(' | ')})`);
   check(await page.locator('.bst-aid-palette').count() === 2, 'Palette card shows two palettes');
   check(await page.locator('.bst-aid-plan li').count() === 4, 'Page plan card lists four sections');
   check(await page.locator('.bst-aid-tool').count() >= 4, 'Tool activity rows are shown');

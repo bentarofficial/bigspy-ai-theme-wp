@@ -605,7 +605,7 @@ Owner yêu cầu thêm ngày 15-11-2026: tối ưu cả bố cục, không chỉ
 
 #### G-193 · Tiến trình trực tiếp và streaming
 
-- **G-193-a (không phụ thuộc nhà cung cấp):**
+- **G-193-a (không phụ thuộc nhà cung cấp):** **xong 15-11-2026**; thẻ kế hoạch chưa tự đánh dấu từng mục (công cụ dựng trang không trả số section đã dựng).
   - Server: mỗi lần `/step` trả thêm trường `activity` mô tả việc sắp làm ở bước kế (ví dụ lệnh công cụ model vừa yêu cầu nhưng chưa chạy), bằng cách tách “gọi model” và “chạy công cụ” thành hai lần `/step` khi câu trả lời có `tool_calls`. Giữ nguyên lease và kiểm tra Stop hiện có.
   - Client: dòng trạng thái sống thay cho “Working…”: “Đang nghĩ…”, “Đang đọc site…”, “Đang dựng section 2/5…” (nhãn lấy từ `toolLabel`), kèm thời gian đã chạy và chi phí cộng dồn. Thẻ kế hoạch tự đánh dấu mục khi `build_sections`/`create_page` trả về. Câu trả lời cuối hiện dần theo từ (tắt khi giảm chuyển động).
   - Khung xem trước tải lại sau mỗi lần ghi, giữ vị trí cuộn.

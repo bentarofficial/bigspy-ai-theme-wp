@@ -417,7 +417,7 @@
 		} catch (e) { /* The URL still provides the prompt when session storage is unavailable. */ }
 		var effort = 'medium', chatModel = '', specialty = 'auto';
 		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; chatModel = window.localStorage.getItem('bstAidModel') || ''; specialty = window.localStorage.getItem('bstAidSpecialty') || 'auto'; } catch (e) { /* storage blocked */ }
-		var previewOn = true, previewUrl = '', previews = [], previewDevice = 'fit', chatWidth = 400, railMin = null, mobileView = 'chat';
+		var previewOn = true, previewDirty = false, previewUrl = '', previews = [], previewDevice = 'fit', chatWidth = 400, railMin = null, mobileView = 'chat';
 		try {
 			previewOn = window.localStorage.getItem('bstAidPreview') !== '0';
 			var dev = window.localStorage.getItem('bstAidDevice');
@@ -558,11 +558,30 @@
 			group.firstElementChild.textContent = sprintf(__('Did %d things', T), n) + (bad ? ' · ' + sprintf(__('%d with a problem', T), bad) : '');
 			group.firstElementChild.onclick = function () { group.setAttribute('data-touched', '1'); };
 		};
-		var addEvents = function (evs) {
+		var reveal = function (bubble) {
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+			var walker = document.createTreeWalker(bubble, NodeFilter.SHOW_TEXT), nodes = [], n;
+			while ((n = walker.nextNode())) { if (n.nodeValue.trim()) { nodes.push([n, n.nodeValue]); n.nodeValue = ''; } }
+			var i = 0, j = 0, words = nodes.map(function (x) { return x[1].split(/(\s+)/); });
+			var tick = function () {
+				for (var k = 0; k < 6 && i < nodes.length; k++) {
+					nodes[i][0].nodeValue += words[i][j++];
+					if (j >= words[i].length) { i++; j = 0; }
+				}
+				if (i < nodes.length) { window.requestAnimationFrame(tick); } else { scroll(); }
+			};
+			tick();
+		};
+		var addEvents = function (evs, live) {
+			// The start screen leaves as soon as the conversation begins.
+			if (els.chat && (evs || []).length) { els.chat.querySelectorAll('.bst-aid-welcome, .bst-aid-suggest, .bst-aid-recent').forEach(function (n) { n.remove(); }); }
 			(evs || []).forEach(function (ev) {
 				log.push(ev);
-				if (els.chat) { place(ev); }
-				if (ev.preview) { rememberPreview(ev); syncPreview(); } // Show a page as soon as it is built or changed.
+				if (els.chat) {
+					place(ev);
+					if (live && ev.kind === 'assistant') { var last = els.chat.querySelectorAll('.bst-aid-msg.is-ai .bst-aid-bubble'); if (last.length) { reveal(last[last.length - 1]); } }
+				}
+				if (ev.preview) { previewDirty = ev.preview === previewUrl; rememberPreview(ev); syncPreview(); } // Show a page as soon as it is built or changed.
 			});
 			scroll();
 		};
@@ -570,7 +589,7 @@
 			if (!t) { return; }
 			tasks = tasks.map(function (x) { return x.id === t.id ? t : x; });
 			if (current && current.id === t.id) { current = t; }
-			renderTasks(); renderHead();
+			renderTasks(); renderHead(); syncCost(); syncLive();
 		};
 
 		/* Layout (G-207): rail with tasks, conversation, preview. States: empty, chat, chat + preview. */
@@ -758,21 +777,26 @@
 				els.working = null;
 				log.forEach(place);
 			}
-			els.working = h('div', { class: 'bst-aid-working', hidden: !running }, [h('span', { class: 'spinner is-active' }), h('span', { text: __('Working…', T) })]);
+			els.workText = h('span', { class: 'bst-aid-working-text', text: liveText || __('Working…', T) });
+			els.workMeta = h('span', { class: 'bst-aid-working-meta' });
+			els.working = h('div', { class: 'bst-aid-working', hidden: !running, role: 'status' }, [h('span', { class: 'bst-aid-pulse', 'aria-hidden': 'true' }), els.workText, els.workMeta]);
 			els.chat.appendChild(els.working);
 			scroll();
 			syncComposer();
 		};
 		var syncComposer = function () {
 			if (!els.send) { return; }
+			if (!running && liveTimer) { setLive(false); }
 			els.send.hidden = running; els.stop.hidden = !running;
 			els.input.disabled = running;
 			els.working.hidden = !running;
-			if (els.costLine) {
-				var balInfo = (settings && settings.balance) || cfg.balance; var bal = balInfo ? money(balInfo.balance) : '';
-				els.costLine.textContent = current ? money(current.cost) + (bal ? ' · ' + bal : '') : bal;
-			}
+			syncCost();
 			renderHead(); // The status chip follows the run.
+		};
+		var syncCost = function () {
+			if (!els.costLine) { return; }
+			var balInfo = (settings && settings.balance) || cfg.balance, bal = balInfo ? money(balInfo.balance) : '';
+			els.costLine.textContent = current ? money(current.cost) + (bal ? ' · ' + bal : '') : bal;
 		};
 		var autoGrow = function () {
 			if (!els.input) { return; }
@@ -819,6 +843,14 @@
 			els.pageLabel.hidden = previews.length > 1;
 			els.pageLabel.textContent = previews.length ? previews[previews.length - 1].label : '';
 			if (show && els.frame.getAttribute('src') !== previewUrl) { els.frame.src = previewUrl; }
+			else if (show && previewDirty) {
+				try {
+					var win = els.frame.contentWindow, y = win.scrollY;
+					els.frame.addEventListener('load', function keep() { els.frame.removeEventListener('load', keep); try { els.frame.contentWindow.scrollTo(0, y); } catch (e) { /* ignore */ } });
+					win.location.reload();
+				} catch (e) { els.frame.src = previewUrl; }
+			}
+			previewDirty = false;
 			if (show && narrow() && mobileView === 'chat') { els.viewTabs.classList.add('has-news'); }
 			renderHead();
 		};
@@ -883,15 +915,48 @@
 		var newTask = function () {
 			return api('/tasks', 'POST', { mode: els.mode ? els.mode.value : 'design' }).then(function (t) { tasks.unshift(t); open(t.id); return t; });
 		};
+		/* G-193-a: a live status line says what the run is doing, with elapsed time and cost. */
+		var doingLabel = function (name) {
+			var map = {
+				site_info: __('Reading the site…', T), list_content: __('Looking through your content…', T), get_post: __('Reading the content…', T), get_page: __('Reading the page…', T),
+				create_post: __('Writing the post…', T), update_post: __('Updating the post…', T), create_product: __('Creating the product…', T), update_product: __('Updating the product…', T),
+				block_catalog: __('Choosing blocks…', T), section_recipes: __('Choosing section recipes…', T), block_schema: __('Reading block options…', T), page_plan: __('Outlining the page…', T),
+				build_sections: __('Building sections…', T), create_page: __('Building the page…', T), update_page: __('Updating the page…', T), page_sections: __('Updating page sections…', T),
+				show_palette: __('Preparing color options…', T), update_settings: __('Changing theme settings…', T), set_menu: __('Saving the menu…', T), header_layout: __('Arranging the header…', T),
+				ImageGen: __('Creating an image…', T), image_status: __('Waiting for the image…', T), optimize_image: __('Optimizing an image…', T), list_media: __('Looking in the Media Library…', T),
+				check_page: __('Checking the page…', T), seo_meta: __('Writing SEO fields…', T)
+			};
+			return map[name] || sprintf(__('Running %s…', T), toolLabel(name));
+		};
+		var liveText = '', liveStart = 0, liveCost = 0, liveTimer = null;
+		var syncLive = function () {
+			if (!els.workText) { return; }
+			els.workText.textContent = liveText || __('Thinking…', T);
+			var secs = liveStart ? Math.round((Date.now() - liveStart) / 1000) : 0;
+			var spent = current ? (Number(current.cost) || 0) - liveCost : 0;
+			els.workMeta.textContent = secs ? sprintf(__('%s s', T), secs) + (spent > 0 ? ' · ' + money(spent) : '') : '';
+		};
+		var setLive = function (on) {
+			clearInterval(liveTimer); liveTimer = null;
+			if (on) { liveStart = Date.now(); liveCost = current ? Number(current.cost) || 0 : 0; liveText = ''; liveTimer = setInterval(syncLive, 1000); }
+			else { liveText = ''; liveStart = 0; }
+			syncLive();
+		};
 		var loop = function () {
 			running = true; stopFlag = false; syncComposer();
+			setLive(true);
 			var busy = 0;
 			var step = function () {
 				if (stopFlag || !current) { running = false; syncComposer(); return; }
 				var id = current.id;
 				api('/tasks/' + id + '/step', 'POST').then(function (r) {
 					if (!current || current.id !== id) { return; }
-					addEvents(r.events); updateTask(r.task);
+					addEvents(r.events, true); updateTask(r.task);
+					if (r.state !== 'busy') {
+						// A step with 'activity' chose tools that run next; a step without it ran them, so the model thinks again.
+						liveText = r.activity && r.activity.length ? r.activity.map(function (a) { return doingLabel(a.tool); }).join(' ') : __('Thinking…', T);
+						syncLive();
+					}
 					busy = r.state === 'busy' ? busy + 1 : 0;
 					if (busy > 80) { // About two minutes: the previous step probably failed on the server.
 						addEvents([{ kind: 'error', text: __('The previous step is still locked. Wait a few minutes, then send "continue".', T) }]);

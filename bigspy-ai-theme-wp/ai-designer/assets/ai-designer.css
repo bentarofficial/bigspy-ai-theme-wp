@@ -523,3 +523,12 @@ html[data-aid-theme="dark"] .bst-aid .notice { color: #1e293b; }
 .bst-aid-tool.is-image .dashicons { color: #ec4899; }
 .bst-aid-tool.is-check .dashicons { color: #0ea5e9; }
 .bst-aid-tool.is-error .dashicons { color: #f59e0b; }
+
+/* Live status line (G-193-a) */
+.bst-aid-working { gap: 10px; padding: 8px 14px; color: var(--aid-ink); background: var(--aid-surface); border: 1px solid var(--aid-line); box-shadow: var(--aid-shadow); }
+.bst-aid-working-text { font-size: 13px; font-weight: 600; }
+.bst-aid-working-meta { font-size: 11px; color: var(--aid-muted); font-variant-numeric: tabular-nums; }
+.bst-aid-pulse { position: relative; width: 10px; height: 10px; border-radius: 50%; background: var(--aid-a2); }
+.bst-aid-pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--aid-a2); opacity: 0; animation: bstAidPulse 1.4s ease-out infinite; }
+@keyframes bstAidPulse { 0% { transform: scale(.5); opacity: .8; } 100% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .bst-aid-pulse::after { animation: none; } }

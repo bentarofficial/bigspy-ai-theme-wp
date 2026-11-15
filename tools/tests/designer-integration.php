@@ -108,12 +108,19 @@ add_filter( 'pre_http_request', function ( $result, $args, $url ) {
 $GLOBALS['bst_test_run_task'] = $run_task;
 $request = new WP_REST_Request( 'POST' ); $request['id'] = $run_task;
 $request->set_param( 'text', 'Build the test draft.' ); $request->set_param( 'effort', 'high' );
+// G-193-a: a step that gets tool calls returns 'activity'; the tools run in the following step.
+function bst_test_full_step( $request ) {
+    $data = bst_aid_rest_task_step( $request )->get_data();
+    return empty( $data['activity'] ) || 'running' !== $data['state'] ? $data : bst_aid_rest_task_step( $request )->get_data();
+}
 bst_aid_rest_task_send( $request );
+$phase = bst_aid_rest_task_step( $request )->get_data();
+bst_test( 'running' === $phase['state'] && 'create_page' === ( $phase['activity'][0]['tool'] ?? '' ) && ! bst_aid_task_get( $run_task, '_bst_aid_created' ), 'Model step announces the tool it will run and runs nothing yet' );
 $response = bst_aid_rest_task_step( $request )->get_data();
 bst_test( 'running' === $response['state'] && count( bst_aid_task_get( $run_task, '_bst_aid_created' ) ) === 1, 'Mock Kyma step creates one draft via dispatcher' );
 $GLOBALS['bst_test_kyma_mode'] = 'approval';
 $old_tagline = get_option( 'blogdescription' );
-$response = bst_aid_rest_task_step( $request )->get_data();
+$response = bst_test_full_step( $request );
 bst_test( 'stopped' === $response['state'] && 'approval' === end( $response['events'] )['kind'] && get_option( 'blogdescription' ) === $old_tagline, 'Mock model cannot bypass level 2 with confirmed true' );
 $card = end( $response['events'] )['approval'];
 $approve = new WP_REST_Request( 'POST' ); $approve['id'] = $run_task; $approve->set_param( 'approval_id', $card['id'] ); $approve->set_param( 'decision', 'approve' );
@@ -124,7 +131,11 @@ bst_test( 2 === $metrics['last']['model_calls'] && 2 === $metrics['last']['tool_
 $GLOBALS['bst_test_kyma_mode'] = 'stop';
 bst_aid_rest_task_send( $request );
 $response = bst_aid_rest_task_step( $request )->get_data();
-bst_test( 'stopped' === $response['state'] && 'tool-error' === end( $response['events'] )['kind'], 'Stop during mock provider response blocks late tool write' );
+$stop_tagline = get_option( 'blogdescription' );
+bst_aid_rest_task_step( $request );
+$stop_msgs = bst_aid_task_get( $run_task, '_bst_aid_messages' );
+$last_msg  = end( $stop_msgs );
+bst_test( 'stopped' === $response['state'] && $stop_tagline === get_option( 'blogdescription' ) && 'tool' === ( $last_msg['role'] ?? '' ) && false !== strpos( (string) $last_msg['content'], 'skipped' ) && empty( bst_aid_task_get( $run_task, '_bst_aid_run' )['pending'] ), 'Stop during mock provider response: the tool never runs and the history gets a skipped answer' );
 $metrics = bst_aid_metrics_summary( $run_task );
 bst_test( 2 === $metrics['total']['runs'] && 'replaced' === bst_aid_task_get( $run_task, '_bst_aid_metrics' )[0]['state'] && 3 === $metrics['total']['model_calls'] && isset( bst_aid_task_summary( get_post( $run_task ) )['metrics']['last'] ), 'Each message starts a new measured run and totals add up' );
 $GLOBALS['bst_test_kyma_mode'] = 'draft';
@@ -138,8 +149,8 @@ bst_test( array( 'fast-model' ) === $GLOBALS['bst_test_kyma_models'] && 'fast-mo
 bst_aid_save_settings( array( 'fast_model' => 'broken-fast' ) );
 $GLOBALS['bst_test_kyma_models'] = array();
 bst_aid_rest_task_send( $request );
-bst_aid_rest_task_step( $request );
-bst_aid_rest_task_step( $request );
+bst_test_full_step( $request );
+bst_test_full_step( $request );
 bst_test( array( 'broken-fast', 'test-model', 'test-model' ) === $GLOBALS['bst_test_kyma_models'] && 'test-model' === bst_aid_metrics_summary( $run_task )['last']['model'], 'Failed fast model falls back to the main model for the rest of the run: ' . implode( ',', $GLOBALS['bst_test_kyma_models'] ) );
 bst_aid_save_settings( array( 'fast_model' => '' ) );
 bst_aid_rest_task_stop( $request );

@@ -13790,3 +13790,90 @@ msgstr ""
 msgid "Older"
 msgstr ""
 
+msgid "Reading the site…"
+msgstr ""
+
+msgid "Looking through your content…"
+msgstr ""
+
+msgid "Reading the content…"
+msgstr ""
+
+msgid "Reading the page…"
+msgstr ""
+
+msgid "Writing the post…"
+msgstr ""
+
+msgid "Updating the post…"
+msgstr ""
+
+msgid "Creating the product…"
+msgstr ""
+
+msgid "Updating the product…"
+msgstr ""
+
+msgid "Choosing blocks…"
+msgstr ""
+
+msgid "Choosing section recipes…"
+msgstr ""
+
+msgid "Reading block options…"
+msgstr ""
+
+msgid "Outlining the page…"
+msgstr ""
+
+msgid "Building sections…"
+msgstr ""
+
+msgid "Building the page…"
+msgstr ""
+
+msgid "Updating the page…"
+msgstr ""
+
+msgid "Updating page sections…"
+msgstr ""
+
+msgid "Preparing color options…"
+msgstr ""
+
+msgid "Changing theme settings…"
+msgstr ""
+
+msgid "Saving the menu…"
+msgstr ""
+
+msgid "Arranging the header…"
+msgstr ""
+
+msgid "Creating an image…"
+msgstr ""
+
+msgid "Waiting for the image…"
+msgstr ""
+
+msgid "Optimizing an image…"
+msgstr ""
+
+msgid "Looking in the Media Library…"
+msgstr ""
+
+msgid "Checking the page…"
+msgstr ""
+
+msgid "Writing SEO fields…"
+msgstr ""
+
+msgid "Running %s…"
+msgstr ""
+
+msgid "Thinking…"
+msgstr ""
+
+msgid "%s s"
+msgstr ""
+

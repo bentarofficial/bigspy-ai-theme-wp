@@ -241,6 +241,7 @@ function bst_aid_rest_task_send( WP_REST_Request $r ) {
 	if ( '' !== $chosen && ! in_array( $chosen, wp_list_pluck( bst_aid_chat_models(), 'id' ), true ) ) {
 		return new WP_Error( 'bst_aid_model', __( 'This model is not available here. Choose another model or Auto.', 'bigspy-ai-theme-wp' ), array( 'status' => 400 ) );
 	}
+	bst_aid_drop_pending( $p->ID, 'Not run: the user sent a new message first.' );
 	$msgs   = bst_aid_task_get( $p->ID, '_bst_aid_messages' );
 	$msgs[] = array( 'role' => 'user', 'content' => bst_aid_redact( $text ) . $attach['text'] );
 	bst_aid_task_set( $p->ID, '_bst_aid_messages', $msgs );
@@ -263,6 +264,9 @@ function bst_aid_rest_task_stop( WP_REST_Request $r ) {
 	$run           = bst_aid_task_get( $p->ID, '_bst_aid_run' );
 	$run['active'] = false;
 	bst_aid_task_set( $p->ID, '_bst_aid_run', $run );
+	if ( ! get_transient( 'bst_aid_lock_' . $p->ID ) ) {
+		bst_aid_drop_pending( $p->ID, 'Stopped by the user before this tool ran.' );
+	}
 	bst_aid_task_set( $p->ID, '_bst_aid_approvals', array() );
 	bst_aid_metrics_end( $p->ID, 'stopped' );
 	$event = bst_aid_task_log( $p->ID, array( 'kind' => 'info', 'text' => __( 'Stopped.', 'bigspy-ai-theme-wp' ) ) );
@@ -319,6 +323,9 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	$id  = $p->ID;
 	$run = bst_aid_task_get( $id, '_bst_aid_run' );
 	if ( empty( $run['active'] ) ) {
+		if ( ! empty( $run['pending'] ) && ! get_transient( 'bst_aid_lock_' . $id ) ) {
+			bst_aid_drop_pending( $id, 'Stopped by the user before this tool ran.' );
+		}
 		return rest_ensure_response( array( 'state' => 'done', 'events' => array(), 'task' => bst_aid_task_summary( $p ) ) );
 	}
 	if ( get_transient( 'bst_aid_lock_' . $id ) ) {
@@ -327,6 +334,9 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	if ( ! bst_aid_execution_lock( $id ) ) { return rest_ensure_response( array( 'state' => 'busy', 'events' => array() ) ); }
 	set_transient( 'bst_aid_lock_' . $id, 1, 180 );
 	@set_time_limit( 170 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	if ( ! empty( $run['pending'] ) ) {
+		return bst_aid_run_pending( $id, $run );
+	}
 
 	$s      = bst_aid_effective_budgets( $id );
 	$events = array();
@@ -432,6 +442,33 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 		return bst_aid_finish( $id, 'done', $events );
 	}
 
+	// G-193-a: the tools run in the next /step, so the Workspace can say what is about to happen in between.
+	bst_aid_task_set( $id, '_bst_aid_messages', $msgs );
+	$now                 = bst_aid_task_get( $id, '_bst_aid_run' );
+	$now['pending']      = $calls;
+	$now['steps_left']   = (int) ( $now['steps_left'] ?? $run['steps_left'] ) - 1;
+	bst_aid_task_set( $id, '_bst_aid_run', $now );
+	delete_transient( 'bst_aid_lock_' . $id );
+	bst_aid_execution_unlock( $id );
+	return rest_ensure_response( array( 'state' => empty( $now['active'] ) ? 'stopped' : 'running', 'events' => $events, 'activity' => bst_aid_activity( $calls ), 'task' => bst_aid_task_summary( get_post( $id ) ) ) );
+}
+
+/** What the next step will do, for the live status line: tool names in call order. */
+function bst_aid_activity( $calls ) {
+	return array_values( array_map( function ( $c ) { return array( 'tool' => (string) ( $c['function']['name'] ?? '' ) ); }, (array) $calls ) );
+}
+
+/**
+ * Phase 2 of a step: run the tool calls the model asked for in the previous step.
+ *
+ * @param int   $id    Task ID.
+ * @param array $run   Run state with 'pending' calls.
+ * @return WP_REST_Response
+ */
+function bst_aid_run_pending( $id, $run ) {
+	$calls  = (array) $run['pending'];
+	$msgs   = bst_aid_task_get( $id, '_bst_aid_messages' );
+	$events = array();
 	$GLOBALS['bst_aid_task_id'] = $id; // Tools record snapshots and spending on this task.
 	$awaiting = false;
 	foreach ( $calls as $call ) {
@@ -480,10 +517,28 @@ function bst_aid_rest_task_step( WP_REST_Request $r ) {
 	bst_aid_task_set( $id, '_bst_aid_messages', $msgs );
 	wp_cache_delete( $id, 'post_meta' );
 	$now = bst_aid_task_get( $id, '_bst_aid_run' ); // Stop may have been pressed while this step ran.
+	unset( $now['pending'] );
 	if ( $awaiting ) { $now['active'] = false; }
-	$now['steps_left'] = (int) ( $now['steps_left'] ?? $run['steps_left'] ) - 1;
 	bst_aid_task_set( $id, '_bst_aid_run', $now );
 	delete_transient( 'bst_aid_lock_' . $id );
 	bst_aid_execution_unlock( $id );
 	return rest_ensure_response( array( 'state' => empty( $now['active'] ) ? 'stopped' : 'running', 'events' => $events, 'task' => bst_aid_task_summary( get_post( $id ) ) ) );
+}
+
+/**
+ * Tool calls that will not run (Stop, or a new message) still need an answer in the history,
+ * or the provider rejects the next request.
+ */
+function bst_aid_drop_pending( $id, $reason ) {
+	$run = bst_aid_task_get( $id, '_bst_aid_run' );
+	if ( empty( $run['pending'] ) ) {
+		return;
+	}
+	$msgs = bst_aid_task_get( $id, '_bst_aid_messages' );
+	foreach ( (array) $run['pending'] as $call ) {
+		$msgs[] = array( 'role' => 'tool', 'tool_call_id' => (string) ( $call['id'] ?? '' ), 'content' => wp_json_encode( array( 'status' => 'skipped', 'message' => $reason ) ) );
+	}
+	bst_aid_task_set( $id, '_bst_aid_messages', $msgs );
+	unset( $run['pending'] );
+	bst_aid_task_set( $id, '_bst_aid_run', $run );
 }

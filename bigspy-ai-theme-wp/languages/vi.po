@@ -10305,3 +10305,90 @@ msgstr "7 ngày trước"
 msgid "Older"
 msgstr "Cũ hơn"
 
+msgid "Reading the site…"
+msgstr "Đang đọc site…"
+
+msgid "Looking through your content…"
+msgstr "Đang xem nội dung…"
+
+msgid "Reading the content…"
+msgstr "Đang đọc nội dung…"
+
+msgid "Reading the page…"
+msgstr "Đang đọc trang…"
+
+msgid "Writing the post…"
+msgstr "Đang viết bài…"
+
+msgid "Updating the post…"
+msgstr "Đang cập nhật bài…"
+
+msgid "Creating the product…"
+msgstr "Đang tạo sản phẩm…"
+
+msgid "Updating the product…"
+msgstr "Đang cập nhật sản phẩm…"
+
+msgid "Choosing blocks…"
+msgstr "Đang chọn khối…"
+
+msgid "Choosing section recipes…"
+msgstr "Đang chọn mẫu section…"
+
+msgid "Reading block options…"
+msgstr "Đang đọc tuỳ chọn khối…"
+
+msgid "Outlining the page…"
+msgstr "Đang lên dàn ý trang…"
+
+msgid "Building sections…"
+msgstr "Đang dựng các section…"
+
+msgid "Building the page…"
+msgstr "Đang dựng trang…"
+
+msgid "Updating the page…"
+msgstr "Đang cập nhật trang…"
+
+msgid "Updating page sections…"
+msgstr "Đang cập nhật section…"
+
+msgid "Preparing color options…"
+msgstr "Đang chuẩn bị phương án màu…"
+
+msgid "Changing theme settings…"
+msgstr "Đang đổi cài đặt theme…"
+
+msgid "Saving the menu…"
+msgstr "Đang lưu menu…"
+
+msgid "Arranging the header…"
+msgstr "Đang sắp xếp header…"
+
+msgid "Creating an image…"
+msgstr "Đang tạo ảnh…"
+
+msgid "Waiting for the image…"
+msgstr "Đang chờ ảnh…"
+
+msgid "Optimizing an image…"
+msgstr "Đang tối ưu ảnh…"
+
+msgid "Looking in the Media Library…"
+msgstr "Đang xem Thư viện media…"
+
+msgid "Checking the page…"
+msgstr "Đang kiểm tra trang…"
+
+msgid "Writing SEO fields…"
+msgstr "Đang viết trường SEO…"
+
+msgid "Running %s…"
+msgstr "Đang chạy %s…"
+
+msgid "Thinking…"
+msgstr "Đang suy nghĩ…"
+
+msgid "%s s"
+msgstr "%s giây"
+
