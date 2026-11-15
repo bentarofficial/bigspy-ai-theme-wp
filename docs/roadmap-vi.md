@@ -6,7 +6,7 @@ Quy tắc phát triển, phát hành và ma trận kiểm tra: xem [DEV-RULES.md
 
 Lấy từ `TASKS.md` của workspace và `git log --grep "G-"`; bảng chụp tại thời điểm ghi, nguồn đúng là sổ nhận việc.
 
-**Ghi chú 15-11-2026:** bảng đã cũ. `git log` và `PENDING-RELEASE.md` cho thấy G-113, G-117, G-118, G-119, G-120, G-132, G-133, G-134 đã có commit và đã phát hành từ 1.91.0 dù bảng ghi “chưa làm”. G-191 → G-206 (AI Designer) chưa làm, xem mục “Kế hoạch nâng cấp BIGSPY AI Designer 15-11-2026”.
+**Ghi chú 15-11-2026:** bảng đã cũ. `git log` và `PENDING-RELEASE.md` cho thấy G-113, G-117, G-118, G-119, G-120, G-132, G-133, G-134 đã có commit và đã phát hành từ 1.91.0 dù bảng ghi “chưa làm”. G-191 → G-207 (AI Designer) chưa làm, xem mục “Kế hoạch nâng cấp BIGSPY AI Designer 15-11-2026”.
 
 | Mã | Trạng thái |
 | --- | --- |
@@ -470,7 +470,7 @@ Trang chủ đang dùng CSS riêng (`plm-steps`) để biến Stacking Cards ở
 
 Trang chủ đang dùng CSS riêng (`plm-values`) để Bento chia 3 cột và có thẻ kính mờ. Nên thêm vào khối: số cột (2/3/4, riêng theo tablet/mobile) và kiểu thẻ (đặc / kính mờ / viền gradient) với màu viền khi rê chuột.
 
-## Kế hoạch nâng cấp BIGSPY AI Designer 15-11-2026 (G-191 → G-206)
+## Kế hoạch nâng cấp BIGSPY AI Designer 15-11-2026 (G-191 → G-207)
 
 Owner chốt ngày 15-11-2026: **hoàn thiện AI Designer trước**, việc đưa AI vào mọi bề mặt của theme (nút AI trong Customizer, form, WooCommerce, Listing…) làm sau và chưa có phiếu. Người viết phiếu: phiên rà soát 15-11 trên bản 1.96.0. Người thực hiện: Claude Opus 5.5, mỗi phiếu một phiên.
 
@@ -505,9 +505,9 @@ Phần an toàn của AI Designer (duyệt thao tác, hoàn tác, ngân sách, l
 
 ### C. Thứ tự
 
-**G-191 → G-192 → G-193-a → G-197 → G-194 → G-195 → G-193-b → G-196 → G-198 → G-199 → G-200 → G-201 → G-205 → G-202 → G-204 → G-203 → G-206.**
+**G-191 → G-207 → G-192 → G-193-a → G-197 → G-194 → G-195 → G-193-b → G-196 → G-198 → G-199 → G-200 → G-201 → G-205 → G-202 → G-204 → G-203 → G-206.**
 
-Lý do: G-191 cho phép mọi phiếu sau thử không tốn phí. G-192, G-193-a, G-197 thay đổi cảm nhận nhiều nhất và không phụ thuộc nhà cung cấp. G-194 và G-193-b chờ xác minh Kyma. G-196 làm sau khi giao diện và tiến trình đã ổn vì dùng lại cùng thành phần.
+Lý do: G-191 cho phép mọi phiếu sau thử không tốn phí. G-207 dựng khung bố cục để G-192 đặt linh kiện vào. G-192, G-193-a, G-197 thay đổi cảm nhận nhiều nhất và không phụ thuộc nhà cung cấp. G-194 và G-193-b chờ xác minh Kyma. G-196 làm sau khi giao diện và tiến trình đã ổn vì dùng lại cùng thành phần.
 
 ### D. Phiếu việc
 
@@ -519,18 +519,81 @@ Lý do: G-191 cho phép mọi phiếu sau thử không tốn phí. G-192, G-193-
 - **Test mới:** `tools/tests/workspace-browser-check.cjs` (Playwright): tạo task, gửi tin, chờ xong, kiểm tra có thẻ bảng màu, thẻ kế hoạch, iframe xem trước có `src`, không có lỗi console. Thêm cách chạy vào `docs/DEV-RULES.md`.
 - **Nghiệm thu:** test chạy đạt trên máy có Playground; mu-plugin chỉ hoạt động trên `127.0.0.1`/`localhost`; không tệp nào trong thư mục theme thay đổi.
 
+#### G-207 · Bố cục toàn bộ AI Designer (khung ứng dụng)
+
+Owner yêu cầu thêm ngày 15-11-2026: tối ưu cả bố cục, không chỉ kiểu dáng. Phiếu này lo **khung và vị trí** cho cả bốn màn hình (Workspace, Guidelines, Settings, About); G-192 lo **linh kiện và kiểu dáng** bên trong khung. Làm G-207 trước G-192.
+
+- **Vấn đề bố cục hiện tại (đã đọc từ mã):**
+
+| Vấn đề | Bằng chứng |
+| --- | --- |
+| Chiều cao Workspace tính bằng số cứng `calc(100vh - 32px - 36px - 64px)`; thông báo của plugin khác, thanh admin 46px trên điện thoại hay footer wp-admin đều làm lệch, sinh thanh cuộn kép | `assets/ai-designer.css:56` và `:178` |
+| Hai thanh bên nằm cạnh nhau: menu wp-admin (160px) và thanh task (270px) chiếm khoảng 430px trước khi tới nội dung | `ai-designer.css:56`, `:58` |
+| Khi có xem trước và màn hình ≤ 1280px, thanh task bị ẩn hẳn (`display: none`), không còn cách đổi task hay tạo task mới | `ai-designer.css:152` → `:155`, `:127` |
+| Khung xem trước rộng bằng đúng thiết bị đang mô phỏng, nên xem ở bề rộng máy tính thì cột chat bị ép còn 280px | `fitPreview` trong `ai-designer.js`, `ai-designer.css:124` |
+| Thanh đầu task là một hàng `flex-wrap` chứa mọi thứ: tên, chi phí, số liệu lần chạy, nút Undo, công tắc xem trước, gợi ý, nhãn Advice, các ô checklist, tên model; xuống dòng lộn xộn | `renderHead` trong `ai-designer.js` |
+| Thanh dưới ô nhập có ba `select` kèm nhãn, nút đính kèm, nút gửi; xuống dòng ở cột hẹp | `build` trong `ai-designer.js`, `ai-designer.css:109` |
+| Dưới 960px xếp chồng ba khối: thanh task 240px, chat 78vh, xem trước 70vh; phải cuộn qua cả trang, ô nhập trôi khỏi màn hình | `ai-designer.css:156` → `:162` |
+| Chỉ xem trước được trang cuối cùng task chạm tới | `previewUrl` trong `ai-designer.js` |
+| Settings là một cột thẻ dài, đánh số không đều (“1. API connection”, “Tool permissions”, “2. Models and budget”), nút Save nằm giữa trang | hàm `Settings` trong `ai-designer.js` |
+| Guidelines là chuỗi ô nhập 9 dòng xếp dọc, kèm form chuyên môn bên dưới: cuộn rất dài | `includes/guidelines.php:78` → `:92` |
+| Bốn màn hình là bốn trang wp-admin rời, mỗi trang một tiêu đề `h1` khác kiểu, không có điều hướng chung | `ai-designer.php:50` → `:54` |
+
+- **Khung chung cho bốn màn hình:**
+  - Một thanh ứng dụng cao 48px ở trên cùng, giống nhau trên cả bốn trang: tên sản phẩm, bốn tab (Workspace, Guidelines, Settings, About; tab nào người dùng không có quyền thì ẩn), bên phải là số dư, nút chủ đề sáng/tối, nút toàn màn hình. Bỏ các `h1` nhìn thấy được (giữ `h1` cho trình đọc màn hình). Vẫn giữ bốn mục menu wp-admin và bốn URL hiện có; không gộp thành một trang trong phiếu này.
+  - Trong các trang này: bỏ lề của `.wrap`, ẩn `#wpfooter`, bỏ `padding-bottom` của `#wpbody-content`. Thông báo wp-admin của plugin khác: gom vào một nút chuông trên thanh ứng dụng (dời các phần tử `.notice` vào một bảng thả xuống bằng JS), không để chúng đẩy bố cục.
+  - Chiều cao: vùng nội dung dùng `100dvh` trừ chiều cao thanh admin (biến `--wp-admin--admin-bar--height` của WordPress, dự phòng 32px và 46px dưới 782px) trừ 48px. Không còn số cứng. Chừa đáy cho nút chat nổi của plugin khác bằng biến `--aid-safe-bottom` (mặc định 0, đổi được bằng filter) thay cho 64px cố định.
+  - Chế độ toàn màn hình: thêm class vào `body` để ẩn `#adminmenumain` và thanh admin, `#wpcontent` hết lề trái; Esc để thoát; lưu `localStorage`.
+  - Chỉ vùng hội thoại, danh sách task và khung xem trước được cuộn; trang không cuộn.
+  - Thang khoảng cách 4/8/12/16/24/32px qua biến `--aid-s-*`; dùng thuộc tính logic (`margin-inline`, `inset-inline`) để sẵn sàng cho RTL.
+
+- **Workspace: ba trạng thái bố cục**
+  1. **Chưa có nội dung** (không có task, hoặc task chưa có tin nhắn): một cột giữa rộng tối đa 720px, ô nhập đặt giữa màn hình, bên dưới là lưới thẻ gợi ý (3 cột, 2 cột dưới 900px, 1 cột dưới 560px) và một hàng task gần đây.
+  2. **Chỉ hội thoại:** dải task bên trái + cột hội thoại căn giữa rộng tối đa 760px; ô nhập gắn đáy cột.
+  3. **Hội thoại + xem trước:** cột hội thoại rộng cố định 400px (kéo được 340 → 560px, lưu `localStorage`), khung xem trước chiếm phần còn lại. Xem trước là phần chính vì đây là công cụ dựng trang.
+  - **Dải task:** hai mức, mở 264px và thu gọn 56px (chỉ biểu tượng: tạo task, tìm, danh sách, Guidelines, Settings). Tự thu gọn khi vào trạng thái 3 hoặc khi vùng nội dung dưới 1.200px; **không bao giờ ẩn hẳn**. Dưới 1.024px thành ngăn kéo mở từ nút trên thanh ứng dụng.
+  - **Dưới 1.024px:** hội thoại và xem trước là hai tab (nút chọn hai ngăn trên đầu), mỗi lần hiện một; có chấm báo khi xem trước vừa cập nhật. Ô nhập dính đáy màn hình, tính `env(safe-area-inset-bottom)`.
+
+- **Thanh đầu task (một hàng 48px, không xuống dòng):** tên task (sửa tại chỗ), chip trạng thái (đang chạy, chờ duyệt, xong, lỗi, Advice), nút bật/tắt xem trước, menu “⋯” (Hoàn tác task, Đổi tên, Xoá, Chi tiết). Chuyển đi nơi khác:
+  - Chi phí task và số liệu lần chạy → bảng “Chi tiết” trong menu “⋯”; chi phí rút gọn hiện ở chân ô nhập.
+  - Checklist việc thủ công → thẻ thu gọn được ghim ngay trên ô nhập (“Việc bạn cần làm: 2/5”).
+  - Tên model → bỏ khỏi thanh đầu vì đã có trong ô nhập.
+
+- **Ô nhập (một khối, hai hàng):** hàng trên là ô chữ tự giãn (tối đa 40% chiều cao cột). Hàng dưới: bên trái nút đính kèm và ba nút dạng viên Chuyên môn / Model / Mức độ; bên phải chi phí · số dư và nút Gửi/Dừng. Cột hẹp hơn 420px: ba nút viên gộp thành một nút “Tuỳ chọn” mở bảng. Chip tệp đính kèm nằm trong khối, phía trên ô chữ.
+
+- **Khung xem trước:**
+  - Thanh công cụ 40px: chọn trang (danh sách mọi trang task đã tạo hoặc sửa, lấy từ các sự kiện có `preview` trong log), ba nút thiết bị (1280, 768, 390), số đo bề rộng, tải lại, mở tab mới, mở trình soạn thảo.
+  - **Khung không đổi bề rộng theo thiết bị nữa.** Iframe được đặt đúng bề rộng thiết bị, căn giữa trên nền xám; khi thiết bị rộng hơn khung thì thu nhỏ bằng `transform: scale()` và hiện tỉ lệ (ví dụ “1280 · 62%”). Nhờ vậy xem bản máy tính không ép cột hội thoại. Giữ tay kéo hiện có cho bề rộng tuỳ ý; kéo đổi bề rộng iframe, không đổi bề rộng khung.
+  - Nút phóng to xem trước toàn vùng (ẩn cột hội thoại, còn một ô nhập nổi thu gọn ở đáy).
+
+- **Settings:** hai cột. Trái: mục lục dính (Kết nối, Model, Ngân sách, Quyền công cụ, Ảnh AI, Dữ liệu) đánh dấu mục đang xem. Phải: nội dung rộng tối đa 760px. Trên cùng là dải tóm tắt bốn ô: trạng thái kết nối, số dư, model chính, chi tiêu hôm nay so với ngân sách. Bỏ số thứ tự trong tiêu đề thẻ. Thanh Lưu dính đáy, chỉ hiện khi có thay đổi chưa lưu. Vùng nguy hiểm thu gọn ở cuối. Dưới 900px mục lục thành hàng tab cuộn ngang.
+
+- **Guidelines:** hai ngăn. Trái: danh sách các tiêu chuẩn và các chuyên môn (tên, số ký tự, chấm “đã sửa so với mặc định”). Phải: một trình soạn cho mục đang chọn, cao bằng vùng nội dung, có đếm ký tự trên 6.000, trạng thái “Đã lưu”, nút chèn mẫu và khôi phục mặc định. Giữ cơ chế tự lưu và các trường `name` hiện có để form vẫn gửi được khi không có JS. Dưới 900px danh sách thành ô chọn phía trên.
+
+- **About:** giữ nội dung của `bst_welcome_screen( 'designer' )`, chỉ đặt vào trong khung chung (thanh ứng dụng, bề rộng nội dung tối đa 1.080px).
+
+- **Tệp:** `ai-designer/assets/ai-designer.css`, `ai-designer/assets/ai-designer.js` (`Workspace`, `Settings`), `includes/workspace.php`, `includes/guidelines.php`, `includes/settings.php` (phần `bst_aid_settings_page`), `ai-designer.php` (hàm in thanh ứng dụng dùng chung). Không đổi REST, không đổi dữ liệu lưu.
+
+- **Nghiệm thu:**
+  - Không có thanh cuộn cấp trang ở 1440×900, 1280×720, 1024×768; ở 390×844 ô nhập luôn thấy mà không cần cuộn.
+  - Thêm ba thông báo wp-admin giả vào trang: bố cục không lệch, chuông hiện số 3.
+  - Ở mọi bề rộng đều tạo được task mới và đổi task trong tối đa hai lần bấm.
+  - Xem trước 1280 trong khung rộng 800px: iframe có bề rộng bố cục 1.280px (kiểm tra `contentWindow.innerWidth`), cột hội thoại giữ nguyên bề rộng.
+  - Thanh đầu task không xuống dòng ở cột 340px.
+  - Thứ tự Tab hợp lý: thanh ứng dụng → dải task → hội thoại → ô nhập → xem trước; có liên kết “bỏ qua tới ô nhập”.
+  - Thêm các kiểm tra này vào `tools/tests/workspace-browser-check.cjs` của G-191.
+
 #### G-192 · Giao diện Workspace mới
 
 - **Mục tiêu:** Workspace trông và dùng như một công cụ AI hiện đại, không còn là trang cài đặt wp-admin.
 - **Tệp:** `ai-designer/assets/ai-designer.js` (hàm `Workspace`), `ai-designer/assets/ai-designer.css`. Không đổi REST.
-- **Bố cục:** ba cột co giãn: thanh task (thu gọn được), cột hội thoại (rộng tối đa khoảng 760px, căn giữa khi không có xem trước), khung xem trước. Dưới 900px: thanh task thành ngăn kéo, xem trước thành tab chuyển qua lại với hội thoại. Thêm nút toàn màn hình ẩn menu wp-admin (class trên `body`, lưu `localStorage`).
+- **Bố cục:** theo G-207 (khung, ba trạng thái Workspace, thanh đầu task, ô nhập, khung xem trước). Phiếu này chỉ làm linh kiện và kiểu dáng bên trong.
 - **Thanh task:** nhóm theo Hôm nay / 7 ngày / Cũ hơn; ô tìm; trạng thái (đang chạy, chờ duyệt, lỗi) bằng chấm màu; đổi tên tại chỗ thay cho `window.prompt`; xoá bằng hộp thoại riêng thay cho `window.confirm`.
 - **Màn hình bắt đầu:** lời chào, ô nhập lớn ở giữa, 6–8 thẻ gợi ý theo việc (trang chủ, trang dịch vụ, bảng màu và font, bài viết, sản phẩm, kiểm tra SEO). Bấm thẻ thì điền vào ô nhập, không gửi. Lấy gợi ý từ `ai-designer/welcome/data.php` nếu đã có sẵn dữ liệu prompt mẫu; không chép chuỗi thành hai nơi.
 - **Tin nhắn:** bỏ bong bóng cho AI (chữ trên nền, có avatar nhỏ), giữ bong bóng cho người dùng. Markdown thêm: bảng, khối mã có nút chép, danh sách lồng. Nút chép và “thử lại” trên mỗi câu trả lời.
 - **Hoạt động công cụ:** gộp các dòng công cụ liên tiếp thành một nhóm thu gọn “Đã làm N việc”, mở ra thấy từng dòng với biểu tượng theo loại (đọc, ghi, ảnh, kiểm tra), thời gian, liên kết xem/sửa. Lỗi công cụ luôn hiện.
 - **Thẻ:** kế hoạch trang thành danh sách có số, mỗi mục có trạng thái (chờ, đang dựng, xong) để G-193-a cập nhật; thẻ bảng màu có nút “Dùng bảng này” (điền câu trả lời vào ô nhập); thẻ duyệt nổi bật hơn, ba nút rõ ràng, có đếm ngược 15 phút.
 - **Ô nhập:** tự giãn chiều cao; các lựa chọn Chuyên môn, Model, Mức độ thành nút dạng viên có menu thay cho ba `select`; hiện chi phí task và số dư ngay cạnh; chế độ Design/Advice thành công tắc trong ô nhập.
-- **Xem trước:** thanh công cụ có nút Máy tính / Tablet / Điện thoại (1280, 768, 390), tải lại, mở tab mới, mở trình soạn thảo. Giữ thanh kéo đổi rộng hiện có.
 - **Chủ đề tối:** theo `prefers-color-scheme` và có nút chuyển, lưu `localStorage`. Mọi màu qua biến `--aid-*` đã có.
 - **Nghiệm thu:** log của task tạo ở 1.96.0 hiển thị đủ; không còn `window.prompt`/`window.confirm`; dùng được hoàn toàn bằng bàn phím; không tràn ngang ở 390px; G-191 đạt.
 
