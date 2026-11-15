@@ -6,6 +6,8 @@ Quy tắc phát triển, phát hành và ma trận kiểm tra: xem [DEV-RULES.md
 
 Lấy từ `TASKS.md` của workspace và `git log --grep "G-"`; bảng chụp tại thời điểm ghi, nguồn đúng là sổ nhận việc.
 
+**Ghi chú 15-11-2026:** bảng đã cũ. `git log` và `PENDING-RELEASE.md` cho thấy G-113, G-117, G-118, G-119, G-120, G-132, G-133, G-134 đã có commit và đã phát hành từ 1.91.0 dù bảng ghi “chưa làm”. G-191 → G-206 (AI Designer) chưa làm, xem mục “Kế hoạch nâng cấp BIGSPY AI Designer 15-11-2026”.
+
 | Mã | Trạng thái |
 | --- | --- |
 | G-57 | xong |
@@ -467,6 +469,187 @@ Trang chủ đang dùng CSS riêng (`plm-steps`) để biến Stacking Cards ở
 ### G-190 · Bento Grid: số cột và kiểu thẻ kính mờ — mã cũ S-11
 
 Trang chủ đang dùng CSS riêng (`plm-values`) để Bento chia 3 cột và có thẻ kính mờ. Nên thêm vào khối: số cột (2/3/4, riêng theo tablet/mobile) và kiểu thẻ (đặc / kính mờ / viền gradient) với màu viền khi rê chuột.
+
+## Kế hoạch nâng cấp BIGSPY AI Designer 15-11-2026 (G-191 → G-206)
+
+Owner chốt ngày 15-11-2026: **hoàn thiện AI Designer trước**, việc đưa AI vào mọi bề mặt của theme (nút AI trong Customizer, form, WooCommerce, Listing…) làm sau và chưa có phiếu. Người viết phiếu: phiên rà soát 15-11 trên bản 1.96.0. Người thực hiện: Claude Opus 5.5, mỗi phiếu một phiên.
+
+### A. Vì sao làm
+
+Phần an toàn của AI Designer (duyệt thao tác, hoàn tác, ngân sách, luật block) đã tốt. Phần trải nghiệm còn ở mức “chat trong trang admin”, owner nhận xét giao diện quá basic. Hiện trạng đã đọc từ mã:
+
+| Hiện trạng | Bằng chứng trong mã |
+| --- | --- |
+| Workspace là trang wp-admin riêng: danh sách task, chat, iframe xem trước. Không có trong trình soạn thảo khối | `ai-designer/ai-designer.php:50`; không có `enqueue_block_editor_assets` trong `ai-designer/` |
+| Giao diện dựng từ linh kiện wp-admin (`button`, `dashicons`, `spinner`, `notice`), đổi tên bằng `window.prompt`, xác nhận bằng `window.confirm` | `ai-designer/assets/ai-designer.js` hàm `Workspace` (dòng 263 → 668) |
+| Không streaming: mỗi bước là một POST `/step` chờ model xong (timeout 150 giây), người dùng chỉ thấy “Working…” | `includes/client.php:90` `bst_aid_chat`; `includes/tasks.php:314` `bst_aid_rest_task_step` |
+| Trình duyệt điều khiển vòng lặp: đóng tab là task dừng | hàm `loop` trong `ai-designer.js` |
+| AI không nhìn được ảnh: tệp đính kèm chỉ thành dòng chữ (tên, kích thước, alt) | `includes/attachments.php` `bst_aid_message_files`; không có `image_url` trong `includes/` |
+| `check_page` chỉ đọc markup, không đo hiển thị thật | `includes/tools-site.php:260`; `docs/AI-DESIGNER.md` mục Undo and checks |
+| Mỗi lượt một lệnh công cụ | `'parallel_tool_calls' => false` trong `bst_aid_chat` |
+| Một nhà cung cấp (Kyma, định dạng OpenAI), URL gốc đổi được bằng filter `bst_aid_api_base` | `includes/client.php:10` |
+| Không có công cụ đọc web | không có `fetch_url`/`web_search` trong `includes/tools*.php` |
+| Hoàn tác theo cả task, không theo bước | `bst_aid_rest_task_undo`, `tasks.php:185` |
+
+### B. Quy tắc bắt buộc cho mọi phiếu
+
+1. **Luật block không đổi.** Không sửa phần luật ở cuối `includes/prompt.php` và phần cưỡng chế trong `includes/tools-design.php`. Tính năng mới không mở đường ghi nào vòng qua `bst_aid_run_tool`, lớp quyền (`permissions.php`), hoàn tác và ngân sách.
+2. **Không gọi nhà cung cấp khi người dùng chưa bấm.** Mở trang, đổi task, xem trước không được tốn tiền.
+3. **Không thêm bước build, không thêm thư viện ngoài, không CDN.** Giữ JS thuần với hàm `h()` hiện có. Khi `ai-designer.js` vượt khoảng 1.200 dòng thì tách tệp theo màn hình (`workspace.js`, `settings.js`), đăng ký trong `ai-designer.php`. Phiếu nào cần thư viện phải hỏi owner trước.
+4. **Việc phụ thuộc nhà cung cấp phải xác minh trước** bằng tài liệu Kyma hoặc một lần gọi thật do owner cho phép (streaming, đầu vào ảnh, gọi công cụ song song). Chưa xác minh thì chỉ làm phần không phụ thuộc và ghi rõ trong báo cáo.
+5. **Dữ liệu task cũ vẫn mở được.** Sự kiện trong `_bst_aid_log` chỉ thêm trường, không đổi nghĩa trường cũ; giao diện mới phải hiển thị được log của bản 1.96.0.
+6. **Trợ năng:** dùng được bằng bàn phím, có nhãn `aria`, vùng `aria-live` cho tiến trình, tôn trọng `prefers-reduced-motion`, tương phản đạt AA.
+7. **Chuỗi giao diện:** msgid tiếng Anh, thêm tiếng Việt bằng `python tools/add-strings.py strings.json`.
+8. **Kiểm tra:** `python tools/lint.py`; `node tools/playground-check.cjs` (chạy `tools/tests/designer-integration.php`); mở `node tools/playground-page.cjs --mock-ai` và xem Workspace ở 1440, 1024, 390px. Ghi `docs/PENDING-RELEASE.md`, commit theo phiếu, push nhánh làm việc. Không phát hành.
+9. Cập nhật `docs/AI-DESIGNER.md` và `docs/CODEMAP.md` khi thêm tệp, endpoint hoặc công cụ.
+
+### C. Thứ tự
+
+**G-191 → G-192 → G-193-a → G-197 → G-194 → G-195 → G-193-b → G-196 → G-198 → G-199 → G-200 → G-201 → G-205 → G-202 → G-204 → G-203 → G-206.**
+
+Lý do: G-191 cho phép mọi phiếu sau thử không tốn phí. G-192, G-193-a, G-197 thay đổi cảm nhận nhiều nhất và không phụ thuộc nhà cung cấp. G-194 và G-193-b chờ xác minh Kyma. G-196 làm sau khi giao diện và tiến trình đã ổn vì dùng lại cùng thành phần.
+
+### D. Phiếu việc
+
+#### G-191 · Nhà cung cấp AI giả lập để thử Workspace
+
+- **Mục tiêu:** mở và thao tác Workspace trong Playground mà không cần khoá thật, không tốn phí.
+- **Đã có bản nháp (chưa chạy thử):** `tools/playground/mu-ai-mock.php` và tuỳ chọn `--mock-ai` của `tools/playground-page.cjs`. Bản nháp kết nối AI Designer bằng khoá giả, chặn mọi yêu cầu tới `kymaapi.com` bằng `pre_http_request` và trả kịch bản 5 lượt: `site_info` → `show_palette` → `page_plan` → `create_page` → câu trả lời Markdown. Môi trường của phiên viết phiếu không tải được WordPress nên **chưa xác nhận nó chạy**; việc đầu tiên của phiếu là chạy thử và sửa.
+- **Làm thêm:** chọn kịch bản bằng từ khoá trong tin nhắn người dùng: `approval` (gọi `site_settings` để sinh thẻ duyệt), `error` (trả HTTP 500), `long` (câu trả lời dài có bảng và danh sách), `budget` (trả `usage.cost` lớn để chạm ngân sách task). Với phiếu G-193-b thêm chế độ trả SSE.
+- **Test mới:** `tools/tests/workspace-browser-check.cjs` (Playwright): tạo task, gửi tin, chờ xong, kiểm tra có thẻ bảng màu, thẻ kế hoạch, iframe xem trước có `src`, không có lỗi console. Thêm cách chạy vào `docs/DEV-RULES.md`.
+- **Nghiệm thu:** test chạy đạt trên máy có Playground; mu-plugin chỉ hoạt động trên `127.0.0.1`/`localhost`; không tệp nào trong thư mục theme thay đổi.
+
+#### G-192 · Giao diện Workspace mới
+
+- **Mục tiêu:** Workspace trông và dùng như một công cụ AI hiện đại, không còn là trang cài đặt wp-admin.
+- **Tệp:** `ai-designer/assets/ai-designer.js` (hàm `Workspace`), `ai-designer/assets/ai-designer.css`. Không đổi REST.
+- **Bố cục:** ba cột co giãn: thanh task (thu gọn được), cột hội thoại (rộng tối đa khoảng 760px, căn giữa khi không có xem trước), khung xem trước. Dưới 900px: thanh task thành ngăn kéo, xem trước thành tab chuyển qua lại với hội thoại. Thêm nút toàn màn hình ẩn menu wp-admin (class trên `body`, lưu `localStorage`).
+- **Thanh task:** nhóm theo Hôm nay / 7 ngày / Cũ hơn; ô tìm; trạng thái (đang chạy, chờ duyệt, lỗi) bằng chấm màu; đổi tên tại chỗ thay cho `window.prompt`; xoá bằng hộp thoại riêng thay cho `window.confirm`.
+- **Màn hình bắt đầu:** lời chào, ô nhập lớn ở giữa, 6–8 thẻ gợi ý theo việc (trang chủ, trang dịch vụ, bảng màu và font, bài viết, sản phẩm, kiểm tra SEO). Bấm thẻ thì điền vào ô nhập, không gửi. Lấy gợi ý từ `ai-designer/welcome/data.php` nếu đã có sẵn dữ liệu prompt mẫu; không chép chuỗi thành hai nơi.
+- **Tin nhắn:** bỏ bong bóng cho AI (chữ trên nền, có avatar nhỏ), giữ bong bóng cho người dùng. Markdown thêm: bảng, khối mã có nút chép, danh sách lồng. Nút chép và “thử lại” trên mỗi câu trả lời.
+- **Hoạt động công cụ:** gộp các dòng công cụ liên tiếp thành một nhóm thu gọn “Đã làm N việc”, mở ra thấy từng dòng với biểu tượng theo loại (đọc, ghi, ảnh, kiểm tra), thời gian, liên kết xem/sửa. Lỗi công cụ luôn hiện.
+- **Thẻ:** kế hoạch trang thành danh sách có số, mỗi mục có trạng thái (chờ, đang dựng, xong) để G-193-a cập nhật; thẻ bảng màu có nút “Dùng bảng này” (điền câu trả lời vào ô nhập); thẻ duyệt nổi bật hơn, ba nút rõ ràng, có đếm ngược 15 phút.
+- **Ô nhập:** tự giãn chiều cao; các lựa chọn Chuyên môn, Model, Mức độ thành nút dạng viên có menu thay cho ba `select`; hiện chi phí task và số dư ngay cạnh; chế độ Design/Advice thành công tắc trong ô nhập.
+- **Xem trước:** thanh công cụ có nút Máy tính / Tablet / Điện thoại (1280, 768, 390), tải lại, mở tab mới, mở trình soạn thảo. Giữ thanh kéo đổi rộng hiện có.
+- **Chủ đề tối:** theo `prefers-color-scheme` và có nút chuyển, lưu `localStorage`. Mọi màu qua biến `--aid-*` đã có.
+- **Nghiệm thu:** log của task tạo ở 1.96.0 hiển thị đủ; không còn `window.prompt`/`window.confirm`; dùng được hoàn toàn bằng bàn phím; không tràn ngang ở 390px; G-191 đạt.
+
+#### G-193 · Tiến trình trực tiếp và streaming
+
+- **G-193-a (không phụ thuộc nhà cung cấp):**
+  - Server: mỗi lần `/step` trả thêm trường `activity` mô tả việc sắp làm ở bước kế (ví dụ lệnh công cụ model vừa yêu cầu nhưng chưa chạy), bằng cách tách “gọi model” và “chạy công cụ” thành hai lần `/step` khi câu trả lời có `tool_calls`. Giữ nguyên lease và kiểm tra Stop hiện có.
+  - Client: dòng trạng thái sống thay cho “Working…”: “Đang nghĩ…”, “Đang đọc site…”, “Đang dựng section 2/5…” (nhãn lấy từ `toolLabel`), kèm thời gian đã chạy và chi phí cộng dồn. Thẻ kế hoạch tự đánh dấu mục khi `build_sections`/`create_page` trả về. Câu trả lời cuối hiện dần theo từ (tắt khi giảm chuyển động).
+  - Khung xem trước tải lại sau mỗi lần ghi, giữ vị trí cuộn.
+- **G-193-b (cần xác minh Kyma hỗ trợ `stream: true` kèm `tools`):**
+  - Endpoint mới `POST /tasks/<id>/stream` trả `text/event-stream`: đọc luồng từ nhà cung cấp bằng cURL (`CURLOPT_WRITEFUNCTION` gắn qua hook `http_api_curl`), đẩy từng mẩu chữ ra trình duyệt, ghép `tool_calls` từ các delta rồi chạy công cụ như `/step`.
+  - Client đọc bằng `fetch` + `ReadableStream`. Tự chuyển về `/step` khi: máy chủ không có cURL, phản hồi bị đệm (không nhận mẩu nào trong 5 giây), hoặc lỗi kết nối. Ghi nhớ lựa chọn trong phiên.
+  - Tắt nén và đệm cho phản hồi này (`X-Accel-Buffering: no`, xả bộ đệm PHP). Ghi rõ trong tài liệu các máy chủ không stream được.
+- **Nghiệm thu:** với mock, người dùng luôn thấy việc đang làm trong vòng 1 giây sau mỗi bước; Stop có hiệu lực giữa hai bước; chi phí và số bước không đổi so với trước (G-193-a tách bước nhưng không gọi model thêm).
+
+#### G-197 · Mốc phiên bản và so sánh trước/sau
+
+- **Mục tiêu:** quay về bất kỳ bước ghi nào của task, và nhìn thấy trước/sau.
+- **Hiện có:** snapshot theo task (bài, meta, theme mod, option, menu, CSS, header/footer) và revision cho mỗi lần sửa bài (`tools-design.php:636`).
+- **Làm:** gắn mỗi snapshot với số thứ tự bước ghi; endpoint `POST /tasks/<id>/undo` nhận thêm `to` (hoàn tác các bước sau mốc đó, theo thứ tự ngược). Trong chat, mỗi nhóm thao tác ghi có nút “Quay về trước bước này”. Khung xem trước có công tắc Trước/Sau: “Trước” tải bản xem trước của revision gần nhất trước task (dùng cơ chế xem trước revision của WordPress, cần quyền `edit_post`).
+- **Giới hạn giữ nguyên:** media đã tạo và phí đã tiêu không hoàn lại; ảnh đã tối ưu không khôi phục byte gốc.
+- **Nghiệm thu:** thêm ca vào `designer-integration.php`: ba bước ghi, quay về sau bước 1, kiểm tra trạng thái đúng; hoàn tác cả task vẫn chạy như cũ.
+
+#### G-194 · AI nhìn được ảnh đính kèm
+
+- **Điều kiện:** xác minh Kyma nhận `image_url` trong `messages` và danh sách model cho biết model nào có thị giác. Chưa xác minh thì dừng phiếu và báo owner.
+- **Làm:** trong `bst_aid_message_files` (`includes/attachments.php`), khi model đang chọn có thị giác thì thêm phần ảnh vào tin nhắn người dùng (ảnh thu nhỏ cạnh dài tối đa 1.568px, JPEG/WebP, tối đa 4 ảnh mỗi tin, mã hoá base64 hoặc URL công khai tuỳ nhà cung cấp chấp nhận). Model không có thị giác: giữ dòng chữ như hiện tại và hiện ghi chú “model này không xem được ảnh”.
+- **Lịch sử:** `bst_aid_history` chỉ giữ ảnh của 2 lượt gần nhất, lượt cũ thay bằng dòng chữ để không tốn token.
+- **Giao diện:** chip tệp có biểu tượng “AI xem được”; ô chọn Model đánh dấu model có thị giác.
+- **Nghiệm thu:** mock nhận đúng cấu trúc tin nhắn có ảnh; model không thị giác không nhận ảnh; chi phí ước tính hiển thị trước khi gửi nếu nhà cung cấp cho giá ảnh.
+
+#### G-195 · Tự kiểm hiển thị thật qua iframe (nối với G-142)
+
+- **Mục tiêu:** AI biết trang vỡ trên điện thoại mà không cần chụp ảnh.
+- **Cách làm:** công cụ mới `render_check( id )` là “công cụ phía trình duyệt”. Server trả `state: client_tool` kèm URL xem trước; Workspace mở iframe ẩn cùng nguồn ở 1280, 768, 375px, đo rồi POST kết quả về `/tasks/<id>/client-result`; server đưa vào lịch sử như kết quả công cụ. Hết 30 giây không có kết quả thì trả lỗi có hướng dẫn.
+- **Đo:** tràn ngang (phần tử rộng hơn viewport, kèm selector), vùng bấm nhỏ hơn 44px, cỡ chữ dưới 12px, tương phản chữ/nền dưới 4,5:1 (màu tính toán, bỏ qua chữ trên ảnh), ảnh hỏng hoặc méo tỉ lệ, CLS thô (so vị trí sau 1 giây), section rỗng. Trả tối đa 20 mục, mỗi mục có `clientId`/thứ tự khối nếu tìm được.
+- **Prompt:** sau `create_page`/`update_page`/`build_sections`, AI gọi `render_check` một lần và phải báo kết quả; sửa tối đa hai vòng.
+- **Dùng chung:** viết phần đo thành `assets/js/render-check.js` để G-142 (Auto Detect trong editor) dùng lại.
+- **Ảnh chụp thật** (cần thư viện vẽ DOM ra canvas hoặc dịch vụ ngoài): chưa làm, cần owner quyết.
+- **Nghiệm thu:** trang fixture có một hàng rộng 1.400px cố định bị báo tràn ở 375px; trang sạch trả danh sách rỗng; không chạy khi Workspace không mở (trả lỗi rõ ràng).
+
+#### G-196 · AI Designer trong trình soạn thảo khối
+
+- **Mục tiêu:** chọn một khối hoặc section rồi yêu cầu AI sửa đúng phần đó, không rời trình soạn thảo.
+- **Làm:**
+  - Tệp mới `ai-designer/assets/editor-panel.js`, nạp bằng `enqueue_block_editor_assets` cho người có `edit_pages` khi AI Designer đã kết nối. Đăng ký `PluginSidebar` “BIGSPY AI” và nút “Hỏi AI” trên thanh công cụ của khối `bst/*`.
+  - Dùng lại REST của task; `POST /tasks` nhận thêm `context: { post_id, block_index, block_name }`. `includes/context.php` thêm vào tin nhắn đầu: bài đang sửa và khối được chọn (tên, thuộc tính, vị trí trong cây).
+  - Bài phải được lưu trước khi gửi (nếu đang có thay đổi chưa lưu thì hỏi lưu). Sau mỗi lần công cụ ghi vào bài, panel tải nội dung mới bằng REST và `resetBlocks( parse( content ) )`, rồi chọn lại khối theo vị trí.
+  - Thẻ duyệt, hoàn tác, ngân sách hiển thị trong panel bằng cùng thành phần với Workspace (tách phần dựng sự kiện của G-192 thành mô-đun dùng chung).
+- **Không làm trong phiếu này:** sửa trực tiếp trên trang ngoài (front-end), Customizer.
+- **Nghiệm thu:** `tools/tests/block-manager-editor.cjs` hoặc test mới: mở trang, chọn khối tiêu đề, gửi yêu cầu với mock, khối đổi nội dung trong editor không cần tải lại trang; luật block vẫn từ chối ghi dưới 90% `editable_percent`.
+
+#### G-198 · Chạy nền
+
+- **Mục tiêu:** đóng tab task vẫn chạy tiếp; quay lại thấy kết quả.
+- **Làm:** sau mỗi `/step` còn `running`, server tự gọi bước kế bằng yêu cầu loopback không chờ (`wp_remote_post` với `blocking => false`, có nonce nội bộ gắn task và người dùng); dự phòng bằng WP-Cron mỗi phút cho task đang chạy mà quá 60 giây không có bước mới. Trình duyệt chuyển sang đọc `GET /tasks/<id>?since=<n>` thay vì tự gọi `/step`. Dùng lease hiện có để không chạy trùng.
+- **Dừng an toàn:** task chờ duyệt thì dừng vòng lặp; Stop, ngân sách, giới hạn bước theo mức độ giữ nguyên; thêm trần thời gian chạy nền (mặc định 20 phút) có cài đặt.
+- **Thông báo:** huy hiệu số task chờ duyệt trên mục menu AI Designer; tuỳ chọn gửi email khi task xong hoặc cần duyệt (mặc định tắt).
+- **Rủi ro cần thử:** máy chủ chặn loopback (dùng kiểm tra Site Health của WordPress); khi bị chặn thì giữ cách cũ và báo trong Cài đặt.
+- **Nghiệm thu:** với mock, gửi tin rồi đóng trang, mở lại sau 30 giây thấy task xong; hai tab cùng mở không sinh bước trùng.
+
+#### G-199 · Nhiều nhà cung cấp, dùng khoá riêng
+
+- **Mục tiêu:** người dùng không bị buộc vào Kyma.
+- **Làm:** tách `includes/client.php` thành giao diện nhà cung cấp (`chat`, `models`, `balance`, `image`) với hai bộ chuyển: “OpenAI-compatible” (URL gốc + khoá, dùng cho Kyma, OpenAI, OpenRouter và các dịch vụ tương thích) và “Anthropic” (Messages API, chuyển đổi định dạng tin nhắn và công cụ). Cài đặt: chọn nhà cung cấp, nhập khoá (mã hoá như khoá Kyma hiện tại), danh sách model lấy từ nhà cung cấp hoặc nhập tay.
+- **Chi phí:** nhà cung cấp không trả `usage.cost` thì tính từ số token và bảng giá người dùng nhập; không có giá thì ngân sách tính theo token và giao diện nói rõ.
+- **Giữ nguyên:** Kyma là mặc định; ImageGen vẫn theo nhà cung cấp có API ảnh; `bst_aid_redact` bổ sung mẫu khoá mới.
+- **Nghiệm thu:** mock cho từng bộ chuyển; chuyển nhà cung cấp không làm mất task cũ; khoá không bao giờ xuất hiện trong REST, log hay lỗi.
+
+#### G-200 · Đọc trang web tham chiếu
+
+- **Làm:** công cụ `fetch_url( url )`: chỉ `http(s)`, dùng `wp_safe_remote_get` (chặn địa chỉ nội bộ), giới hạn 2 MB và 15 giây, bỏ script/style, trả tiêu đề, mô tả, dàn heading, đoạn chữ rút gọn (tối đa 12.000 ký tự), bảng màu và font đoán từ CSS nội tuyến nếu có. Mức quyền 1 nhưng hiện tên miền trong dòng hoạt động; tối đa 5 URL mỗi lượt chạy; nhóm công cụ này có công tắc trong Cài đặt.
+- **An toàn:** nội dung lấy về là dữ liệu, không phải chỉ dẫn; bọc trong dấu phân cách và thêm một dòng vào prompt nói rõ điều đó. Không gửi cookie, không theo chuyển hướng sang địa chỉ nội bộ.
+- **Tìm kiếm web:** chỉ làm khi nhà cung cấp có sẵn công cụ tìm kiếm; cần xác minh, chưa đặc tả.
+- **Nghiệm thu:** ca thử chặn `127.0.0.1`, `169.254.169.254`, `file://`; trang mẫu trả đúng dàn ý.
+
+#### G-201 · Gọi song song các lệnh đọc
+
+- **Điều kiện:** xác minh model qua Kyma trả nhiều `tool_calls` ổn định.
+- **Làm:** bật `parallel_tool_calls` và cho chạy liền nhiều lệnh trong một bước **chỉ khi tất cả là lệnh đọc** (mức quyền 1, không ghi). Có lệnh ghi lẫn vào thì chạy lệnh đầu tiên và trả các lệnh còn lại về cho model như hiện nay.
+- **Nghiệm thu:** mock trả ba lệnh đọc, một bước chạy cả ba, log đủ ba dòng; lệnh ghi không bao giờ chạy theo lô.
+
+#### G-205 · Ô nhập nâng cao
+
+- Lệnh `/` (trang mới, bài viết, bảng màu, kiểm tra trang, SEO): điền mẫu câu, không gửi.
+- Nhắc `@` để chọn trang, bài, sản phẩm, pattern (tìm bằng `list_content` qua REST riêng, không gọi model); gửi kèm ID.
+- Thư viện prompt theo ngành, lưu prompt của riêng mình (user meta).
+- Phím tắt: Ctrl/Cmd+K mở tìm task và lệnh, Esc dừng, mũi tên lên sửa tin vừa gửi.
+- Nhập giọng nói bằng Web Speech API khi trình duyệt có; ẩn nút khi không có.
+
+#### G-202 · Dựng cả site từ một bản mô tả
+
+- Công cụ `site_plan` hiện thẻ: sơ đồ trang, menu, bảng màu/font, danh sách section mỗi trang. Sau khi người dùng đồng ý, dựng từng trang bằng `build_sections`, mỗi trang là một mốc phiên bản (G-197), có thanh tiến độ theo trang (G-193-a).
+- Dùng các pattern `page-starter-*` hiện có làm điểm xuất phát theo ngành.
+- Đặt menu, trang chủ, footer vẫn qua thẻ duyệt hiện có. Cần G-198 để không phải giữ tab.
+
+#### G-204 · Phương án để chọn
+
+- Với hero, bảng màu, bố cục section: AI dựng 2–3 phương án thành bản nháp riêng (UX Block nháp), Workspace hiện cạnh nhau bằng iframe thu nhỏ; người dùng chọn một, các phương án còn lại vào Thùng rác. Giới hạn 3 phương án, hiện chi phí ước tính trước.
+
+#### G-203 · Bộ nhớ thương hiệu
+
+- Khi người dùng sửa cùng một kiểu yêu cầu từ hai lần trở lên (giọng văn, màu, cách xưng hô), AI đề xuất thêm một dòng vào Guidelines qua thẻ duyệt; không tự ghi. Trang Guidelines có mục “AI đã học” với nút xoá từng dòng. Dùng lại `includes/guidelines.php`.
+
+#### G-206 · MCP đầy đủ cho AI bên ngoài
+
+- Rà `ai-designer/includes/abilities.php` và `inc/features/abilities.php`: liệt kê công cụ nào đã thành ability, công cụ nào chưa. Bổ sung phần thiếu theo kiểu gộp (ít ability, mỗi cái một schema), giữ nguyên lớp quyền và thẻ duyệt: AI bên ngoài gọi lệnh ghi thì sinh thẻ duyệt trong Workspace chứ không tự chạy. Viết hướng dẫn kết nối Claude/ChatGPT trong `docs/README-AI-DESIGNER.md`.
+
+### E. Để sau, chưa có phiếu
+
+Từ ảnh chụp hoặc Figma ra trang bằng khối (cần G-194); tối ưu cho tìm kiếm bằng AI (schema, `llms.txt`); đề xuất thử nghiệm A/B sau xuất bản; trợ lý cho khách truy cập; dịch cả trang (đi cùng G-148); đưa nút AI vào Customizer, form, WooCommerce, Listing, Media, thanh lệnh toàn admin.
+
+### F. Prompt mẫu cho từng phiên
+
+```text
+Đọc AGENTS.md rồi làm G-191 theo mục "Kế hoạch nâng cấp BIGSPY AI Designer 15-11-2026" trong docs/roadmap-vi.md (đọc mục A, B và phiếu G-191). Báo ngắn bằng tiếng Việt.
+```
+
+Đổi mã việc cho các phiên sau. Phiếu có điều kiện xác minh nhà cung cấp (G-193-b, G-194, G-201): nêu kết quả xác minh trước khi lập trình.
 
 ## Đợt tối ưu sau rà soát mã nguồn 10-11-2026 (G-107 → G-124)
 

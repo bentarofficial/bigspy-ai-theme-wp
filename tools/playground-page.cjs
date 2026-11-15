@@ -1,5 +1,5 @@
 /* Serve the working theme in Playground for browser checks. Log in by opening /?bst_autologin=1.
-   Options: --port=9418 --woo=<unpacked plugin dir>. Uses the same runtime as playground-check.cjs. */
+   Options: --port=9418 --woo=<unpacked plugin dir> --mock-ai (AI Designer connected to a local scripted provider). Uses the same runtime as playground-check.cjs. */
 const path = require('path');
 const base = require('./lib/env.cjs').modules();
 const arg = name => (process.argv.find(a => a.startsWith(`--${name}=`)) || '').split('=').slice(1).join('=');
@@ -19,6 +19,7 @@ const { runCLI } = require(path.join(base, '@wp-playground/cli'));
     { hostPath: path.join(repo, 'bigspy-ai-theme-wp'), vfsPath: '/wordpress/wp-content/themes/bigspy-ai-theme-wp' },
     { hostPath: path.join(__dirname, 'playground/mu-autologin.php'), vfsPath: '/wordpress/wp-content/mu-plugins/bst-autologin.php' },
   ];
+  if (process.argv.includes('--mock-ai')) mount.push({ hostPath: path.join(__dirname, 'playground/mu-ai-mock.php'), vfsPath: '/wordpress/wp-content/mu-plugins/bst-ai-mock.php' });
   if (woo) mount.push({ hostPath: woo, vfsPath: '/wordpress/wp-content/plugins/woocommerce' });
   const steps = [{ step: 'activateTheme', themeFolderName: 'bigspy-ai-theme-wp' }];
   if (woo) steps.push({ step: 'activatePlugin', pluginPath: 'woocommerce/woocommerce.php' });
