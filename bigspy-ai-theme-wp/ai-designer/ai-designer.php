@@ -57,6 +57,21 @@ add_action(
 	9
 );
 
+/** Starter cards for an empty Workspace: title and first sample prompt of the About guides that build something. */
+function bst_aid_suggestions() {
+	$out = array();
+	if ( ! function_exists( 'bst_welcome_data' ) ) {
+		return $out;
+	}
+	$data = bst_welcome_data( 'designer' );
+	foreach ( array_slice( (array) ( $data['features'] ?? array() ), 3 ) as $f ) {
+		if ( ! empty( $f['prompts'][0] ) && 'available' === ( $f['status'] ?? '' ) ) {
+			$out[] = array( 'title' => (string) $f['title'], 'prompt' => (string) $f['prompts'][0], 'mode' => (string) ( $f['task_mode'] ?? 'design' ) );
+		}
+	}
+	return array_slice( $out, 0, 6 );
+}
+
 /** Read-only introduction to the AI workspace and its approval flow. */
 function bst_aid_about_page() {
 	bst_aid_shell_open( 'bst-ai-about', __( 'About BIGSPY AI Designer', 'bigspy-ai-theme-wp' ) );
@@ -99,6 +114,9 @@ add_action(
 				'settingsUrl' => admin_url( 'admin.php?page=bst-ai-settings' ),
 				'guidesUrl'   => admin_url( 'admin.php?page=bst-ai-guidelines' ),
 				'canManage'   => current_user_can( 'manage_options' ),
+				'adminUrl'    => admin_url(),
+				'balance'     => is_array( get_transient( 'bst_aid_balance' ) ) ? get_transient( 'bst_aid_balance' ) : null, // Cached only; no provider call.
+				'suggestions' => bst_aid_suggestions(),
 			)
 		);
 	}

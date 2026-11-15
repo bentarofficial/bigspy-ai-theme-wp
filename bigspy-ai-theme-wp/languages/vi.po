@@ -10086,3 +10086,108 @@ msgstr "Các màn hình AI Designer"
 msgid "API balance (cached)"
 msgstr "Số dư API (đã lưu tạm)"
 
+msgid "No matching tasks."
+msgstr "Không có task phù hợp."
+
+msgid "Task cost"
+msgstr "Chi phí task"
+
+msgid "Last run"
+msgstr "Lần chạy gần nhất"
+
+msgid "%1$s s, %2$s model calls, %3$s tool calls"
+msgstr "%1$s giây, %2$s lần gọi model, %3$s lần gọi công cụ"
+
+msgid "Working"
+msgstr "Đang chạy"
+
+msgid "Waiting for approval"
+msgstr "Chờ duyệt"
+
+msgid "Error"
+msgstr "Lỗi"
+
+msgid "Double-click to rename"
+msgstr "Bấm đúp để đổi tên"
+
+msgid "Details"
+msgstr "Chi tiết"
+
+msgid "Task actions"
+msgstr "Thao tác với task"
+
+msgid "Your to-do list: %1$d/%2$d done"
+msgstr "Việc bạn cần làm: xong %1$d/%2$d"
+
+msgid "What should we build today?"
+msgstr "Hôm nay mình dựng gì?"
+
+msgid "Describe a page, a set of posts, products, colors or a fix. I ask what is missing, show a plan, then build drafts with editable BIGSPY AI blocks."
+msgstr "Mô tả một trang, loạt bài viết, sản phẩm, màu sắc hoặc một chỗ cần sửa. Tôi sẽ hỏi phần còn thiếu, đưa kế hoạch, rồi dựng bản nháp bằng khối BIGSPY AI sửa tay được."
+
+msgid "Recent tasks"
+msgstr "Task gần đây"
+
+msgid "Search tasks"
+msgstr "Tìm task"
+
+msgid "Show or hide the task list"
+msgstr "Hiện hoặc ẩn danh sách task"
+
+msgid "Tasks"
+msgstr "Task"
+
+msgid "Chat"
+msgstr "Trò chuyện"
+
+msgid "Show or hide the preview"
+msgstr "Hiện hoặc ẩn xem trước"
+
+msgid "Message"
+msgstr "Tin nhắn"
+
+msgid "Options"
+msgstr "Tuỳ chọn"
+
+msgid "Task cost · API balance"
+msgstr "Chi phí task · số dư API"
+
+msgid "Conversation"
+msgstr "Hội thoại"
+
+msgid "Skip to the message box"
+msgstr "Bỏ qua tới ô nhập tin nhắn"
+
+msgid "Resize the conversation"
+msgstr "Đổi độ rộng hội thoại"
+
+msgid "Drag to change the width of the conversation. Double-click to reset."
+msgstr "Kéo để đổi độ rộng hội thoại. Bấm đúp để đặt lại."
+
+msgid "Page to preview"
+msgstr "Trang xem trước"
+
+msgid "Preview width"
+msgstr "Độ rộng xem trước"
+
+msgid "Fit the panel"
+msgstr "Vừa khung"
+
+msgid "Desktop 1280 px"
+msgstr "Máy tính 1280 px"
+
+msgid "Tablet 768 px"
+msgstr "Máy tính bảng 768 px"
+
+msgid "Phone 390 px"
+msgstr "Điện thoại 390 px"
+
+msgid "Reload"
+msgstr "Tải lại"
+
+msgid "Open in a new tab"
+msgstr "Mở trong tab mới"
+
+msgid "Open in the editor"
+msgstr "Mở trong trình soạn thảo"
+

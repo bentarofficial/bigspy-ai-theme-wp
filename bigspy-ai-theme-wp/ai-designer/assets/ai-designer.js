@@ -271,10 +271,14 @@
 		} catch (e) { /* The URL still provides the prompt when session storage is unavailable. */ }
 		var effort = 'medium', chatModel = '', specialty = 'auto';
 		try { effort = window.localStorage.getItem('bstAidEffort') || 'medium'; chatModel = window.localStorage.getItem('bstAidModel') || ''; specialty = window.localStorage.getItem('bstAidSpecialty') || 'auto'; } catch (e) { /* storage blocked */ }
-		var previewOn = true, previewUrl = '', previewWidth = 0, previewHint = false;
+		var previewOn = true, previewUrl = '', previews = [], previewDevice = 'fit', chatWidth = 400, railMin = null, mobileView = 'chat';
 		try {
 			previewOn = window.localStorage.getItem('bstAidPreview') !== '0';
-			previewWidth = parseInt(window.localStorage.getItem('bstAidPreviewWidth'), 10) || 0;
+			var dev = window.localStorage.getItem('bstAidDevice');
+			previewDevice = ['1280', '768', '390'].indexOf(dev) > -1 ? Number(dev) : 'fit';
+			chatWidth = Math.min(560, Math.max(340, parseInt(window.localStorage.getItem('bstAidChatW'), 10) || 400));
+			var rail = window.localStorage.getItem('bstAidRail');
+			railMin = rail === null ? null : rail === '1';
 		} catch (e) { /* storage blocked */ }
 		var els = {};
 
@@ -363,7 +367,7 @@
 			(evs || []).forEach(function (ev) {
 				log.push(ev);
 				if (els.chat) { els.chat.insertBefore(eventNode(ev), els.working); }
-				if (ev.preview) { previewUrl = ev.preview; previewHint = false; syncPreview(); } // Show a page as soon as it is built or changed.
+				if (ev.preview) { rememberPreview(ev); syncPreview(); } // Show a page as soon as it is built or changed.
 			});
 			scroll();
 		};
@@ -374,59 +378,176 @@
 			renderTasks(); renderHead();
 		};
 
+		/* Layout (G-207): rail with tasks, conversation, preview. States: empty, chat, chat + preview. */
+		var narrow = function () { return root.clientWidth < 1024 || window.innerWidth < 1024; };
+		var setRail = function (min) {
+			railMin = min;
+			try { window.localStorage.setItem('bstAidRail', min ? '1' : '0'); } catch (e) { /* storage blocked */ }
+			syncLayout();
+		};
+		var openDrawer = function (on) {
+			root.classList.toggle('is-drawer', on);
+			if (els.drawerBtn) { els.drawerBtn.setAttribute('aria-expanded', on ? 'true' : 'false'); }
+			if (on && els.search) { els.search.focus(); }
+		};
+		var syncLayout = function () {
+			var hasPreview = previewOn && !!previewUrl;
+			var empty = !current || !log.length;
+			root.classList.toggle('has-preview', hasPreview);
+			root.classList.toggle('is-empty', empty && !running);
+			// The rail folds to icons beside a preview or in a narrow area; it never disappears.
+			var autoMin = hasPreview || root.clientWidth < 1200;
+			root.classList.toggle('is-rail-min', railMin === null ? autoMin : railMin);
+			root.classList.toggle('is-narrow', narrow());
+			root.classList.toggle('show-preview', hasPreview && mobileView === 'preview' && narrow());
+			if (els.railBtn) { els.railBtn.setAttribute('aria-expanded', root.classList.contains('is-rail-min') ? 'false' : 'true'); }
+			if (els.viewTabs) {
+				els.viewTabs.hidden = !(hasPreview && narrow());
+				els.viewTabs.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === mobileView ? 'true' : 'false'); });
+			}
+			if (els.previewToggle) { els.previewToggle.setAttribute('aria-pressed', previewOn ? 'true' : 'false'); els.previewToggle.disabled = !previewUrl; }
+			root.style.setProperty('--aid-chat-w', chatWidth + 'px');
+			fitFrame();
+		};
+
 		var renderTasks = function () {
 			if (!els.list) { return; }
+			var q = els.search ? els.search.value.trim().toLowerCase() : '';
 			els.list.innerHTML = '';
-			if (!tasks.length) { els.list.appendChild(h('li', { class: 'bst-aid-empty', text: __('No tasks yet.', T) })); }
-			tasks.forEach(function (t) {
-				els.list.appendChild(h('li', { class: current && current.id === t.id ? 'is-active' : '' }, [
-					h('button', { class: 'bst-aid-task', onclick: function () { open(t.id); }, title: t.title, text: t.title }),
-					h('button', { class: 'bst-aid-icon', title: __('Rename', T), 'aria-label': __('Rename', T), onclick: function () {
-						var name = window.prompt(__('Task name', T), t.title);
-						if (name) { api('/tasks/' + t.id, 'POST', { title: name }).then(updateTask); }
-					} }, h('span', { class: 'dashicons dashicons-edit' })),
-					h('button', { class: 'bst-aid-icon', title: __('Delete task', T), 'aria-label': __('Delete task', T), onclick: function () {
-						if (!window.confirm(__('Delete this task and its chat history? Pages, posts and products it created stay.', T))) { return; }
-						api('/tasks/' + t.id, 'DELETE').then(function () {
-							tasks = tasks.filter(function (x) { return x.id !== t.id; });
-							if (current && current.id === t.id) { current = null; log = []; previewUrl = ''; syncPreview(); renderChat(); }
-							renderTasks();
-						});
-					} }, h('span', { class: 'dashicons dashicons-trash' }))
+			var shown = tasks.filter(function (t) { return !q || String(t.title || '').toLowerCase().indexOf(q) > -1; });
+			if (!shown.length) { els.list.appendChild(h('li', { class: 'bst-aid-empty', text: q ? __('No matching tasks.', T) : __('No tasks yet.', T) })); }
+			shown.forEach(function (t) {
+				var on = current && current.id === t.id;
+				els.list.appendChild(h('li', { class: on ? 'is-active' : '' }, [
+					h('button', { class: 'bst-aid-task', 'aria-current': on ? 'true' : null, onclick: function () { open(t.id); if (narrow()) { openDrawer(false); } }, title: t.title }, [
+						h('span', { class: 'bst-aid-task-dot' + (t.running ? ' is-running' : ''), 'aria-hidden': 'true' }),
+						h('span', { class: 'bst-aid-task-name', text: t.title })
+					])
 				]));
 			});
+		};
+		var menuItem = function (label, fn, danger) {
+			return h('button', { type: 'button', role: 'menuitem', class: danger ? 'is-danger' : '', onclick: function () { closeMenu(); fn(); }, text: label });
+		};
+		var closeMenu = function () { if (els.menu) { els.menu.hidden = true; els.menuBtn.setAttribute('aria-expanded', 'false'); } };
+		var renameTask = function () {
+			if (!current) { return; }
+			var t = current, input = h('input', { type: 'text', class: 'bst-aid-title-input', value: t.title, 'aria-label': __('Task name', T) });
+			var done = false, finish = function (save) {
+				if (done) { return; }
+				done = true;
+				var name = input.value.trim();
+				if (save && name && name !== t.title) { api('/tasks/' + t.id, 'POST', { title: name }).then(updateTask); }
+				renderHead();
+			};
+			input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); finish(true); } else if (e.key === 'Escape') { e.preventDefault(); finish(false); } });
+			input.addEventListener('blur', function () { finish(true); });
+			els.title.replaceWith(input); input.focus(); input.select();
+		};
+		var deleteTask = function () {
+			var t = current;
+			if (!t || !window.confirm(__('Delete this task and its chat history? Pages, posts and products it created stay.', T))) { return; }
+			api('/tasks/' + t.id, 'DELETE').then(function () {
+				tasks = tasks.filter(function (x) { return x.id !== t.id; });
+				current = null; log = []; previewUrl = ''; previews = [];
+				renderTasks(); renderHead(); renderChat(); syncPreview();
+			});
+		};
+		var undoTask = function () {
+			if (!window.confirm(__('Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash.', T))) { return; }
+			api('/tasks/' + current.id + '/undo', 'POST').then(function (r) { addEvents(r.events); updateTask(r.task); }).catch(function (e) { addEvents([{ kind: 'error', text: e.message }]); });
+		};
+		var showDetails = function () {
+			if (!current) { return; }
+			var rows = [[__('Task cost', T), money(current.cost)], [__('Model', T), (settings && settings.textModel) || '']];
+			if (current.metrics && current.metrics.last) {
+				var ml = current.metrics.last;
+				rows.push([__('Last run', T), sprintf(__('%1$s s, %2$s model calls, %3$s tool calls', T), ml.seconds, ml.model_calls, ml.tool_calls)]);
+			}
+			els.details.innerHTML = '';
+			els.details.appendChild(h('dl', null, [].concat.apply([], rows.map(function (r) { return [h('dt', { text: r[0] }), h('dd', { text: r[1] })]; }))));
+			els.details.hidden = false;
+		};
+		var statusChip = function () {
+			if (!current) { return null; }
+			var pending = log.some(function (ev) { return ev.kind === 'approval' && !log.some(function (x) { return x.approval_id === ev.approval.id; }) && ev.approval.expires * 1000 > Date.now(); });
+			var last = log.length ? log[log.length - 1] : null;
+			var s = running ? ['is-running', __('Working', T)] : pending ? ['is-wait', __('Waiting for approval', T)] : (last && last.kind === 'error') ? ['is-error', __('Error', T)] : null;
+			var chips = [];
+			if (s) { chips.push(h('span', { class: 'bst-aid-chip ' + s[0], text: s[1] })); }
+			if (current.mode === 'advice') { chips.push(h('span', { class: 'bst-aid-chip', text: __('Advice only', T) })); }
+			return chips;
 		};
 		var renderHead = function () {
 			if (!els.head) { return; }
 			els.head.innerHTML = '';
-			els.head.appendChild(h('strong', { class: 'bst-aid-title', text: current ? current.title : __('BIGSPY AI Designer', T) }));
-			if (current) { els.head.appendChild(h('span', { class: 'bst-aid-cost', text: sprintf(__('Task cost: %s', T), money(current.cost)) })); }
-			if (current && current.metrics) {
-				var ml = current.metrics.last;
-				els.head.appendChild(h('span', { class: 'bst-aid-cost', title: JSON.stringify(current.metrics.total), text: sprintf(__('Last run: %1$s s, %2$s model calls, %3$s tool calls', T), ml.seconds, ml.model_calls, ml.tool_calls) }));
+			els.head.appendChild(els.drawerBtn);
+			els.title = h('strong', { class: 'bst-aid-title', text: current ? current.title : __('BIGSPY AI Designer', T), title: current ? __('Double-click to rename', T) : null, ondblclick: renameTask });
+			els.head.appendChild(els.title);
+			(statusChip() || []).forEach(function (c) { els.head.appendChild(c); });
+			els.head.appendChild(h('span', { class: 'bst-aid-spacer' }));
+			els.head.appendChild(els.viewTabs);
+			els.head.appendChild(els.previewToggle);
+			if (current) {
+				els.menu = h('div', { class: 'bst-aid-menu', role: 'menu', hidden: true }, [
+					current.canUndo && !running ? menuItem(__('Undo task', T), undoTask) : null,
+					menuItem(__('Rename', T), renameTask),
+					menuItem(__('Details', T), showDetails),
+					menuItem(__('Delete task', T), deleteTask, true)
+				]);
+				els.menuBtn = h('button', { type: 'button', class: 'bst-aid-icon-btn', 'aria-haspopup': 'menu', 'aria-expanded': 'false', title: __('Task actions', T), onclick: function (e) {
+					e.stopPropagation(); els.details.hidden = true;
+					els.menu.hidden = !els.menu.hidden; els.menuBtn.setAttribute('aria-expanded', els.menu.hidden ? 'false' : 'true');
+					if (!els.menu.hidden) { var first = els.menu.querySelector('button'); if (first) { first.focus(); } }
+				} }, [h('span', { class: 'dashicons dashicons-ellipsis', 'aria-hidden': 'true' }), h('span', { class: 'screen-reader-text', text: __('Task actions', T) })]);
+				els.head.appendChild(h('div', { class: 'bst-aid-menu-wrap' }, [els.menuBtn, els.menu, els.details]));
 			}
-			if (current && current.canUndo) {
-				els.head.appendChild(h('button', { type: 'button', class: 'button button-small', disabled: running, onclick: function () {
-					if (!window.confirm(__('Undo everything this task changed? Theme settings, CSS, logo, menus, header and edited pages go back to how they were; pages, posts and products it created move to the trash.', T))) { return; }
-					api('/tasks/' + current.id + '/undo', 'POST').then(function (r) { addEvents(r.events); updateTask(r.task); }).catch(function (e) { addEvents([{ kind: 'error', text: e.message }]); });
-				}, text: __('Undo task', T) }));
-			}
-			if (els.previewSwitch) { els.head.appendChild(els.previewSwitch); }
-			if (previewHint) { els.head.appendChild(h('span', { class: 'bst-aid-preview-hint', role: 'status', text: __('No page to preview yet', T) })); }
-			if (current && current.mode === 'advice') { els.head.appendChild(h('span', { text: __('Advice only', T) })); }
-			((current && current.checklist) || []).forEach(function (item, index) {
-				els.head.appendChild(h('label', null, [h('input', { type: 'checkbox', checked: item.done, onchange: function (e) { api('/tasks/' + current.id + '/checklist', 'POST', { index: index, done: e.target.checked }).catch(function (er) { addEvents([{ kind: 'error', text: er.message }]); }); } }), item.text]));
-			});
-			if (settings) { els.head.appendChild(h('span', { class: 'bst-aid-model', text: settings.textModel || '' })); }
+			renderPins();
+			syncLayout();
+		};
+		// Manual checklist pinned above the composer instead of crowding the header.
+		var renderPins = function () {
+			if (!els.pins) { return; }
+			els.pins.innerHTML = '';
+			var items = (current && current.checklist) || [];
+			els.pins.hidden = !items.length;
+			if (!items.length) { return; }
+			var done = items.filter(function (i) { return i.done; }).length;
+			els.pins.appendChild(h('details', { class: 'bst-aid-checklist' }, [
+				h('summary', { text: sprintf(__('Your to-do list: %1$d/%2$d done', T), done, items.length) }),
+				h('div', null, items.map(function (item, index) {
+					return h('label', null, [h('input', { type: 'checkbox', checked: item.done, onchange: function (e) {
+						item.done = e.target.checked;
+						api('/tasks/' + current.id + '/checklist', 'POST', { index: index, done: e.target.checked }).catch(function (er) { addEvents([{ kind: 'error', text: er.message }]); });
+						renderPins();
+					} }), ' ' + item.text]);
+				}))
+			]));
+		};
+		var useSuggestion = function (s) {
+			els.input.value = s.prompt;
+			if (els.mode) { els.mode.value = s.mode === 'advice' ? 'advice' : 'design'; }
+			autoGrow(); els.input.focus();
 		};
 		var renderChat = function () {
 			els.chat.innerHTML = '';
-			if (!current) {
+			if (!current || !log.length) {
+				var sugg = (cfg.suggestions || []).slice(0, 6);
 				els.chat.appendChild(h('div', { class: 'bst-aid-welcome' }, [
-					h('h2', { text: __('Hello! I am your website designer.', T) }),
-					h('p', { text: __('Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY AI blocks.', T) }),
-					h('button', { class: 'button button-primary', onclick: function () { newTask(); }, text: __('Start a new task', T) })
+					h('h2', { text: __('What should we build today?', T) }),
+					h('p', { text: __('Describe a page, a set of posts, products, colors or a fix. I ask what is missing, show a plan, then build drafts with editable BIGSPY AI blocks.', T) })
 				]));
+				if (sugg.length) {
+					els.chat.appendChild(h('div', { class: 'bst-aid-suggest' }, sugg.map(function (s) {
+						return h('button', { type: 'button', class: 'bst-aid-suggest-card', onclick: function () { useSuggestion(s); } }, [h('strong', { text: s.title }), h('span', { text: s.prompt })]);
+					})));
+				}
+				var recent = tasks.filter(function (t) { return !current || t.id !== current.id; }).slice(0, 4);
+				if (recent.length) {
+					els.chat.appendChild(h('div', { class: 'bst-aid-recent' }, [h('span', { text: __('Recent tasks', T) })].concat(recent.map(function (t) {
+						return h('button', { type: 'button', class: 'bst-aid-chip-btn', onclick: function () { open(t.id); }, text: t.title });
+					}))));
+				}
 			} else {
 				log.forEach(function (ev) { els.chat.appendChild(eventNode(ev)); });
 			}
@@ -438,8 +559,18 @@
 		var syncComposer = function () {
 			if (!els.send) { return; }
 			els.send.hidden = running; els.stop.hidden = !running;
-			els.input.disabled = running || !current;
+			els.input.disabled = running;
 			els.working.hidden = !running;
+			if (els.costLine) {
+				var balInfo = (settings && settings.balance) || cfg.balance; var bal = balInfo ? money(balInfo.balance) : '';
+				els.costLine.textContent = current ? money(current.cost) + (bal ? ' · ' + bal : '') : bal;
+			}
+			renderHead(); // The status chip follows the run.
+		};
+		var autoGrow = function () {
+			if (!els.input) { return; }
+			els.input.style.height = 'auto';
+			els.input.style.height = Math.min(els.input.scrollHeight + 2, Math.max(120, Math.round(els.main.clientHeight * 0.4))) + 'px';
 		};
 
 		var open = function (id) {
@@ -450,67 +581,85 @@
 				if (els.effort) { els.effort.value = effort; }
 				if (d.specialty && els.specialty) { specialty = d.specialty; els.specialty.value = specialty; }
 				if (d.model && els.model && Array.prototype.some.call(els.model.options, function (o) { return o.value === d.model; })) { chatModel = d.model; els.model.value = chatModel; }
-				previewUrl = ''; previewHint = false;
-				log.forEach(function (ev) { if (ev.preview) { previewUrl = ev.preview; } });
-				renderTasks(); renderChat(); syncPreview();
+				previewUrl = ''; previews = [];
+				log.forEach(rememberPreview);
+				renderTasks(); renderHead(); renderChat(); syncPreview();
 				if (welcomePrompt) {
 					els.input.value = welcomePrompt; welcomePrompt = '';
 					try { window.sessionStorage.removeItem('bstAidWelcomePrompt'); window.sessionStorage.removeItem('bstAidWelcomeMode'); } catch (e) { /* ignore */ }
 					var cleanUrl = new URL(window.location.href); cleanUrl.searchParams.delete('bst_prompt'); cleanUrl.searchParams.delete('bst_mode'); window.history.replaceState(null, '', cleanUrl);
+					autoGrow();
 				}
 				if (d.task.running) { loop(); }
 				els.input.focus();
 			});
 		};
+		// Every page the task built or changed can be previewed, not only the last one.
+		var rememberPreview = function (ev) {
+			if (!ev.preview) { return; }
+			var label = ((ev.links || [])[0] || {}).label || toolLabel(ev.tool);
+			previews = previews.filter(function (p) { return p.url !== ev.preview; });
+			previews.push({ url: ev.preview, label: label });
+			previewUrl = ev.preview;
+		};
 		var syncPreview = function () {
 			if (!els.previewWrap) { return; }
 			var show = previewOn && !!previewUrl;
 			els.previewWrap.hidden = els.previewHandle.hidden = !show;
-			els.previewCheck.checked = previewOn;
-			root.classList.toggle('has-preview', show);
-			if (show) { fitPreview(previewWidth); els.preview.src = previewUrl; }
+			els.pageSel.innerHTML = '';
+			previews.slice().reverse().forEach(function (p) { els.pageSel.appendChild(h('option', { value: p.url, selected: p.url === previewUrl, text: p.label })); });
+			els.pageSel.hidden = previews.length < 2;
+			els.pageLabel.hidden = previews.length > 1;
+			els.pageLabel.textContent = previews.length ? previews[previews.length - 1].label : '';
+			if (show && els.frame.getAttribute('src') !== previewUrl) { els.frame.src = previewUrl; }
+			if (show && narrow() && mobileView === 'chat') { els.viewTabs.classList.add('has-news'); }
 			renderHead();
 		};
 		var setPreviewOn = function (on) {
 			previewOn = on;
-			previewHint = on && !previewUrl;
 			try { window.localStorage.setItem('bstAidPreview', on ? '1' : '0'); } catch (e) { /* ignore */ }
+			if (on && narrow()) { mobileView = 'preview'; els.viewTabs.classList.remove('has-news'); }
 			syncPreview();
 		};
-		// The frame's own media queries follow its width, so resizing it shows the page's breakpoints.
-		var fitPreview = function (width) {
-			if (!width) {
-				root.style.removeProperty('--aid-preview-w');
-				root.classList.remove('is-wide');
-				return 0;
-			}
-			var chat = 280, gutter = 16, side = 246, min = 320;
-			var max = Math.max(min, root.clientWidth - chat - gutter);
-			var fitted = Math.round(Math.min(Math.max(width, min), max));
-			root.classList.toggle('is-wide', fitted > root.clientWidth - chat - gutter - side); // Give the task list's space to the preview.
-			root.style.setProperty('--aid-preview-w', fitted + 'px');
-			els.previewSize.textContent = fitted + ' px';
-			els.previewHandle.setAttribute('aria-valuenow', fitted);
-			return fitted;
+		// The frame keeps the device width and is scaled down to fit, so a desktop preview never squeezes the chat.
+		var fitFrame = function () {
+			if (!els.stage || els.previewWrap.hidden) { return; }
+			var sw = els.stage.clientWidth, sh = els.stage.clientHeight;
+			if (!sw || !sh) { return; }
+			// On a phone only Fit and Phone are offered; a saved desktop or tablet width falls back to Fit.
+			var w = previewDevice === 'fit' || (window.innerWidth < 560 && previewDevice > 390) ? sw : previewDevice;
+			var scale = Math.min(1, sw / w);
+			els.frame.style.width = w + 'px';
+			els.frame.style.height = Math.round(sh / scale) + 'px';
+			els.frame.style.transform = scale < 1 ? 'scale(' + scale + ')' : '';
+			els.frameBox.style.width = Math.round(w * scale) + 'px';
+			els.frameBox.style.height = sh + 'px';
+			els.previewSize.textContent = w + ' px' + (scale < 1 ? ' · ' + Math.round(scale * 100) + '%' : '');
+			els.devices.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-w')) === String(previewDevice) ? 'true' : 'false'); });
 		};
-		var savePreviewWidth = function (width) {
-			previewWidth = width;
-			try {
-				if (width) { window.localStorage.setItem('bstAidPreviewWidth', width); }
-				else { window.localStorage.removeItem('bstAidPreviewWidth'); }
-			} catch (e) { /* ignore */ }
+		var setDevice = function (w) {
+			previewDevice = w;
+			try { window.localStorage.setItem('bstAidDevice', String(w)); } catch (e) { /* ignore */ }
+			fitFrame();
 		};
+		var setChatWidth = function (w) {
+			chatWidth = Math.round(Math.min(560, Math.max(340, w)));
+			root.style.setProperty('--aid-chat-w', chatWidth + 'px');
+			els.previewHandle.setAttribute('aria-valuenow', chatWidth);
+			fitFrame();
+		};
+		var saveChatWidth = function () { try { window.localStorage.setItem('bstAidChatW', chatWidth); } catch (e) { /* ignore */ } };
 		var startPreviewDrag = function (e) {
 			if (e.button) { return; }
 			e.preventDefault();
-			var startX = e.clientX, startWidth = els.previewWrap.getBoundingClientRect().width, width = fitPreview(startWidth);
-			var move = function (ev) { width = fitPreview(startWidth + startX - ev.clientX); };
+			var startX = e.clientX, startW = chatWidth, rtl = document.documentElement.dir === 'rtl';
+			var move = function (ev) { setChatWidth(startW + (rtl ? startX - ev.clientX : ev.clientX - startX)); };
 			var end = function () {
 				els.previewHandle.removeEventListener('pointermove', move);
 				els.previewHandle.removeEventListener('pointerup', end);
 				els.previewHandle.removeEventListener('pointercancel', end);
 				root.classList.remove('is-resizing');
-				savePreviewWidth(width);
+				saveChatWidth();
 			};
 			els.previewHandle.setPointerCapture(e.pointerId);
 			els.previewHandle.addEventListener('pointermove', move);
@@ -521,8 +670,8 @@
 		var nudgePreview = function (e) {
 			if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') { return; }
 			e.preventDefault();
-			var step = (e.key === 'ArrowLeft' ? 1 : -1) * (e.shiftKey ? 80 : 16);
-			savePreviewWidth(fitPreview(els.previewWrap.getBoundingClientRect().width + step));
+			setChatWidth(chatWidth + (e.key === 'ArrowRight' ? 1 : -1) * (e.shiftKey ? 80 : 16));
+			saveChatWidth();
 		};
 		var newTask = function () {
 			return api('/tasks', 'POST', { mode: els.mode ? els.mode.value : 'design' }).then(function (t) { tasks.unshift(t); open(t.id); return t; });
@@ -604,6 +753,7 @@
 		var build = function () {
 			root.innerHTML = '';
 			if (!settings.ready) {
+				root.classList.add('is-setup');
 				root.appendChild(h('div', { class: 'bst-aid-card bst-aid-setup' }, [
 					h('h2', { text: __('The API is not connected yet', T) }),
 					h('p', { text: settings.hasKey && !settings.connected ? __('The AI Designer is disconnected. Reconnect it in Settings to continue.', T) : __('Connect your API key and choose a text model in Settings, then come back here.', T) }),
@@ -611,47 +761,109 @@
 				]));
 				return;
 			}
+			var icon = function (name) { return h('span', { class: 'dashicons dashicons-' + name, 'aria-hidden': 'true' }); };
+			var iconBtn = function (name, label, onclick, extra) {
+				return h('button', Object.assign({ type: 'button', class: 'bst-aid-icon-btn', title: label, onclick: onclick }, extra || {}), [icon(name), h('span', { class: 'screen-reader-text', text: label })]);
+			};
+
+			/* Rail */
 			els.list = h('ul', { class: 'bst-aid-tasks' });
+			els.mode = h('select', { class: 'bst-aid-mode', 'aria-label': __('Task mode', T) }, [h('option', { value: 'design', text: __('Design', T) }), h('option', { value: 'advice', text: __('Advice only', T) })]);
+			if (welcomePrompt) { els.mode.value = welcomeMode; }
+			els.search = h('input', { type: 'search', class: 'bst-aid-search', placeholder: __('Search tasks', T), 'aria-label': __('Search tasks', T), oninput: renderTasks });
+			els.railBtn = iconBtn('menu-alt3', __('Show or hide the task list', T), function () { setRail(!root.classList.contains('is-rail-min')); }, { class: 'bst-aid-icon-btn bst-aid-rail-btn', 'aria-expanded': 'true' });
+			var newBtn = h('button', { type: 'button', class: 'button button-primary bst-aid-new', title: __('New task', T), onclick: function () { newTask(); if (narrow()) { openDrawer(false); } } }, [icon('plus-alt2'), h('span', { class: 'bst-aid-new-label', text: __('New task', T) })]);
+			root.appendChild(h('aside', { class: 'bst-aid-side', 'aria-label': __('Tasks', T) }, [
+				h('div', { class: 'bst-aid-side-top' }, [els.railBtn, newBtn]),
+				h('div', { class: 'bst-aid-side-tools' }, [els.search, els.mode]),
+				els.list
+			]));
+			root.appendChild(h('div', { class: 'bst-aid-scrim', 'aria-hidden': 'true', onclick: function () { openDrawer(false); } }));
+
+			/* Conversation */
+			els.drawerBtn = iconBtn('menu-alt3', __('Tasks', T), function () { openDrawer(!root.classList.contains('is-drawer')); }, { class: 'bst-aid-icon-btn bst-aid-drawer-btn', 'aria-expanded': 'false' });
+			els.viewTabs = h('div', { class: 'bst-aid-viewtabs', role: 'group', 'aria-label': __('View', T), hidden: true }, [['chat', __('Chat', T)], ['preview', __('Preview', T)]].map(function (v) {
+				return h('button', { type: 'button', 'data-view': v[0], 'aria-pressed': 'false', onclick: function () { mobileView = v[0]; if (v[0] === 'preview') { els.viewTabs.classList.remove('has-news'); } syncLayout(); }, text: v[1] });
+			}));
+			els.previewToggle = iconBtn('visibility', __('Show or hide the preview', T), function () { setPreviewOn(!previewOn); }, { class: 'bst-aid-icon-btn bst-aid-preview-toggle', 'aria-pressed': 'true' });
+			els.details = h('div', { class: 'bst-aid-details', hidden: true, onclick: function (e) { e.stopPropagation(); } });
 			els.head = h('div', { class: 'bst-aid-head' });
 			els.chat = h('div', { class: 'bst-aid-chat', 'aria-live': 'polite' });
-			els.mode = h('select', { 'aria-label': __('Task mode', T) }, [h('option', { value: 'design', text: __('Design', T) }), h('option', { value: 'advice', text: __('Advice only', T) })]);
-			if (welcomePrompt) { els.mode.value = welcomeMode; }
-			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } },
+			els.pins = h('div', { class: 'bst-aid-pins', hidden: true });
+			els.input = h('textarea', { id: 'bst-aid-input', class: 'bst-aid-input', rows: '1', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), 'aria-label': __('Message', T),
+				oninput: autoGrow,
+				onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } },
 				onpaste: function (e) { var f = e.clipboardData && e.clipboardData.files; if (f && f.length) { e.preventDefault(); uploadFiles(f); } },
 				ondragover: function (e) { e.preventDefault(); }, ondrop: function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { e.preventDefault(); uploadFiles(e.dataTransfer.files); } } });
 			els.files = h('div', { class: 'bst-aid-files', hidden: true });
-			els.attach = h('button', { type: 'button', class: 'button bst-aid-attach', title: __('Attach files from the Media Library, or drop or paste them into the message box', T), 'aria-label': __('Attach files', T), onclick: pickMedia }, h('span', { class: 'dashicons dashicons-paperclip' }));
-			els.send = h('button', { class: 'button button-primary', onclick: send, text: __('Send', T) });
-			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
-			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
+			els.attach = iconBtn('paperclip', __('Attach files from the Media Library, or drop or paste them into the message box', T), pickMedia, { class: 'bst-aid-icon-btn bst-aid-attach' });
+			els.send = h('button', { type: 'button', class: 'button button-primary bst-aid-send', onclick: send, text: __('Send', T) });
+			els.stop = h('button', { type: 'button', class: 'button bst-aid-send', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
+			els.effort = h('select', { class: 'bst-aid-pill', 'aria-label': __('Effort', T), title: __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
 				[['low', __('Low – quick answers', T)], ['medium', __('Medium – balanced', T)], ['high', __('High – more careful', T)], ['max', __('Max – deepest work', T)]].map(function (o) { return h('option', { value: o[0], selected: o[0] === effort, text: o[1] }); }));
 			var specialties = (settings && settings.specialties) || [];
 			if (!specialties.some(function (sp) { return sp.key === specialty; })) { specialty = 'auto'; }
-			var specialtySel = els.specialty = h('select', { class: 'bst-aid-effort', 'aria-label': __('Specialty', T), title: __('Adds a ready context for this kind of work. Edit it under Guidelines.', T), onchange: function (e) { specialty = e.target.value; try { window.localStorage.setItem('bstAidSpecialty', specialty); } catch (er) { /* ignore */ } } },
+			els.specialty = h('select', { class: 'bst-aid-pill', 'aria-label': __('Specialty', T), title: __('Adds a ready context for this kind of work. Edit it under Guidelines.', T), onchange: function (e) { specialty = e.target.value; try { window.localStorage.setItem('bstAidSpecialty', specialty); } catch (er) { /* ignore */ } } },
 				specialties.map(function (sp) { return h('option', { value: sp.key, selected: sp.key === specialty, text: sp.label }); }));
 			var models = (settings && settings.chatModels) || [];
 			if (chatModel && !models.some(function (m) { return m.id === chatModel; })) { chatModel = ''; }
-			var modelSel = els.model = h('select', { class: 'bst-aid-effort', 'aria-label': __('Model', T), title: __('Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise.', T), onchange: function (e) { chatModel = e.target.value; try { window.localStorage.setItem('bstAidModel', chatModel); } catch (er) { /* ignore */ } } },
+			els.model = h('select', { class: 'bst-aid-pill', 'aria-label': __('Model', T), title: __('Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise.', T), onchange: function (e) { chatModel = e.target.value; try { window.localStorage.setItem('bstAidModel', chatModel); } catch (er) { /* ignore */ } } },
 				[h('option', { value: '', text: __('Auto (Settings)', T) })].concat(models.map(function (m) { return h('option', { value: m.id, selected: m.id === chatModel, text: m.name + ((m.input || m.output) ? ' – $' + m.input + ' / $' + m.output : '') }); })));
-			root.appendChild(h('aside', { class: 'bst-aid-side' }, [
-				els.mode, h('button', { class: 'button button-primary bst-aid-new', onclick: function () { newTask(); }, text: '+ ' + __('New task', T) }),
-				els.list,
-				h('p', { class: 'bst-aid-side-links' }, [h('a', { href: cfg.guidesUrl, text: __('Guidelines', T) }), cfg.canManage ? ' · ' : '', cfg.canManage ? h('a', { href: cfg.settingsUrl, text: __('Settings', T) }) : null])
-			]));
-			root.appendChild(h('section', { class: 'bst-aid-main' }, [
-				els.head, els.chat,
-				h('div', { class: 'bst-aid-composer' }, [els.files, els.input, h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, specialties.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Specialty', T) + ' ', specialtySel]) : null, models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
-			]));
-			els.previewCheck = h('input', { type: 'checkbox', role: 'switch', checked: previewOn, onchange: function (e) { setPreviewOn(e.target.checked); } });
-			els.previewSwitch = h('label', { class: 'bst-aid-switch' }, [els.previewCheck, h('span', { class: 'bst-aid-switch-track' }), __('Preview', T)]);
-			els.previewHandle = h('div', { class: 'bst-aid-preview-handle', role: 'separator', tabindex: '0', hidden: true, 'aria-orientation': 'vertical', 'aria-label': __('Resize preview', T), 'aria-valuemin': '320', title: __('Drag to change the preview width. Double-click to reset.', T), onpointerdown: startPreviewDrag, onkeydown: nudgePreview, ondblclick: function () { savePreviewWidth(0); fitPreview(0); } });
-			els.preview = h('iframe', { class: 'bst-aid-frame', title: __('Preview', T) });
-			els.previewSize = h('span', { class: 'bst-aid-preview-size' });
-			els.previewWrap = h('section', { class: 'bst-aid-preview', hidden: true }, [els.preview, els.previewSize]);
+			els.opts = h('div', { class: 'bst-aid-opts' }, [specialties.length ? els.specialty : null, models.length ? els.model : null, els.effort]);
+			els.optsBtn = iconBtn('admin-settings', __('Options', T), function () { var on = !composer.classList.contains('is-opts-open'); composer.classList.toggle('is-opts-open', on); els.optsBtn.setAttribute('aria-expanded', on ? 'true' : 'false'); }, { class: 'bst-aid-icon-btn bst-aid-opts-btn', 'aria-expanded': 'false' });
+			els.costLine = h('span', { class: 'bst-aid-costline', title: __('Task cost · API balance', T) });
+			var composer = h('div', { class: 'bst-aid-composer' }, [
+				h('div', { class: 'bst-aid-composer-box' }, [els.files, els.input,
+					h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, els.optsBtn, els.opts, h('span', { class: 'bst-aid-spacer' }), els.costLine, els.send, els.stop])])
+			]);
+			els.main = h('section', { class: 'bst-aid-main', 'aria-label': __('Conversation', T) }, [
+				h('a', { class: 'bst-aid-skip screen-reader-text', href: '#bst-aid-input', text: __('Skip to the message box', T) }),
+				els.head, els.chat, h('div', { class: 'bst-aid-dock' }, [els.pins, composer])
+			]);
+			root.appendChild(els.main);
+			if (window.ResizeObserver) {
+				new window.ResizeObserver(function () { composer.classList.toggle('is-narrow', composer.clientWidth < 420); }).observe(composer);
+				new window.ResizeObserver(function () { syncLayout(); }).observe(root);
+			}
+
+			/* Preview */
+			els.previewHandle = h('div', { class: 'bst-aid-preview-handle', role: 'separator', tabindex: '0', hidden: true, 'aria-orientation': 'vertical', 'aria-label': __('Resize the conversation', T), 'aria-valuemin': '340', 'aria-valuemax': '560', 'aria-valuenow': chatWidth, title: __('Drag to change the width of the conversation. Double-click to reset.', T),
+				onpointerdown: startPreviewDrag, onkeydown: nudgePreview, ondblclick: function () { setChatWidth(400); saveChatWidth(); } });
+			// The preview is same-origin: hide the WordPress toolbar inside it so the page shows as visitors see it.
+			els.frame = h('iframe', { class: 'bst-aid-frame', title: __('Preview', T), onload: function () {
+				try {
+					var d = els.frame.contentDocument;
+					if (d && d.head && !d.getElementById('bst-aid-frame-css')) { d.head.appendChild(h('style', { id: 'bst-aid-frame-css', text: '#wpadminbar{display:none!important}html{margin-top:0!important}' })); }
+				} catch (e) { /* another origin: leave it */ }
+			} });
+			els.frameBox = h('div', { class: 'bst-aid-framebox' }, els.frame);
+			els.stage = h('div', { class: 'bst-aid-stage' }, els.frameBox);
+			els.previewSize = h('span', { class: 'bst-aid-preview-size', 'aria-live': 'polite' });
+			els.pageSel = h('select', { class: 'bst-aid-pill', 'aria-label': __('Page to preview', T), onchange: function (e) { previewUrl = e.target.value; syncPreview(); } });
+			els.pageLabel = h('span', { class: 'bst-aid-page-label' });
+			els.devices = h('div', { class: 'bst-aid-devices', role: 'group', 'aria-label': __('Preview width', T) }, [
+				['fit', 'editor-expand', __('Fit the panel', T)], [1280, 'desktop', __('Desktop 1280 px', T)], [768, 'tablet', __('Tablet 768 px', T)], [390, 'smartphone', __('Phone 390 px', T)]
+			].map(function (d) { return iconBtn(d[1], d[2], function () { setDevice(d[0]); }, { 'data-w': d[0], 'aria-pressed': 'false' }); }));
+			var editUrl = function () { var m = /[?&](?:page_id|p)=(\d+)/.exec(previewUrl) || /[?&]preview_id=(\d+)/.exec(previewUrl); return m ? cfg.adminUrl + 'post.php?post=' + m[1] + '&action=edit' : ''; };
+			els.previewWrap = h('section', { class: 'bst-aid-preview', hidden: true, 'aria-label': __('Preview', T) }, [
+				h('div', { class: 'bst-aid-preview-bar' }, [
+					els.pageSel, els.pageLabel, h('span', { class: 'bst-aid-spacer' }), els.devices, els.previewSize,
+					iconBtn('update', __('Reload', T), function () { try { els.frame.contentWindow.location.reload(); } catch (e) { els.frame.src = previewUrl; } }),
+					iconBtn('external', __('Open in a new tab', T), function () { window.open(previewUrl, '_blank', 'noopener'); }),
+					iconBtn('edit', __('Open in the editor', T), function () { var u = editUrl(); if (u) { window.open(u, '_blank', 'noopener'); } })
+				]),
+				els.stage
+			]);
 			root.appendChild(els.previewHandle);
 			root.appendChild(els.previewWrap);
-			window.addEventListener('resize', function () { if (!els.previewWrap.hidden) { fitPreview(previewWidth); } });
-			renderTasks(); renderHead(); renderChat();
+			document.addEventListener('click', function () { closeMenu(); if (els.details) { els.details.hidden = true; } });
+			document.addEventListener('keydown', function (e) {
+				if (e.key !== 'Escape') { return; }
+				if (els.menu && !els.menu.hidden) { closeMenu(); els.menuBtn.focus(); }
+				else if (root.classList.contains('is-drawer')) { openDrawer(false); els.drawerBtn.focus(); }
+			});
+			window.addEventListener('resize', syncLayout);
+			renderTasks(); renderHead(); renderChat(); autoGrow();
 		};
 
 		Promise.all([api('/settings?lite=1'), api('/tasks')]).then(function (r) {

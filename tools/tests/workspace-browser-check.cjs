@@ -60,6 +60,18 @@ const check = (ok, name) => { results.push([!!ok, name]); console.log(`${ok ? 'o
   check(!!src && /preview|page_id|\?p=/.test(src), 'Preview frame points at the new draft');
   await page.screenshot({ path: path.join(shots, 'run-1440.png') });
 
+  // G-207 layout: one-row header, the rail folds beside the preview, a desktop preview is scaled, not squeezing the chat.
+  const head = await page.evaluate(() => document.querySelector('.bst-aid-head').clientHeight);
+  check(head <= 56, `Task header stays on one row (${head}px)`);
+  check(await page.locator('.bst-aid-ws.is-rail-min').count() === 1, 'Task rail folds to icons beside the preview');
+  const chatBefore = await page.evaluate(() => document.querySelector('.bst-aid-main').clientWidth);
+  await page.click('.bst-aid-devices [data-w="1280"]');
+  await page.waitForTimeout(400);
+  const dev = await page.evaluate(() => ({ chat: document.querySelector('.bst-aid-main').clientWidth, inner: document.querySelector('.bst-aid-frame').contentWindow.innerWidth }));
+  check(dev.inner === 1280 && dev.chat === chatBefore, `Desktop preview renders 1280px wide without changing the chat (${dev.inner}px, chat ${dev.chat}px)`);
+  await page.click('.bst-aid-devices [data-w="fit"]');
+  check(await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight) <= 1, 'No page-level vertical scroll at 1440px');
+
   await run('Ask for approval please');
   check(await page.locator('.bst-aid-approval').count() === 1, 'Approval card appears for a site setting');
 
@@ -74,6 +86,8 @@ const check = (ok, name) => { results.push([!!ok, name]); console.log(`${ok ? 'o
     await page.waitForTimeout(400);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     check(overflow <= 1, `No horizontal page scroll at ${w}px (${overflow}px)`);
+    const box = await page.evaluate(() => { const r = document.querySelector('.bst-aid-input').getBoundingClientRect(); return r.bottom <= window.innerHeight && r.top >= 0; });
+    check(box, `Message box is visible without scrolling at ${w}px`);
     await page.screenshot({ path: path.join(shots, `run-${w}.png`) });
   }
 

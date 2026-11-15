@@ -13550,3 +13550,114 @@ msgstr ""
 msgid "API balance (cached)"
 msgstr ""
 
+msgid "No matching tasks."
+msgstr ""
+
+msgid "Task name"
+msgstr ""
+
+msgid "Task cost"
+msgstr ""
+
+msgid "Last run"
+msgstr ""
+
+msgid "%1$s s, %2$s model calls, %3$s tool calls"
+msgstr ""
+
+msgid "Working"
+msgstr ""
+
+msgid "Waiting for approval"
+msgstr ""
+
+msgid "Double-click to rename"
+msgstr ""
+
+msgid "Undo task"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Delete task"
+msgstr ""
+
+msgid "Task actions"
+msgstr ""
+
+msgid "Your to-do list: %1$d/%2$d done"
+msgstr ""
+
+msgid "What should we build today?"
+msgstr ""
+
+msgid "Describe a page, a set of posts, products, colors or a fix. I ask what is missing, show a plan, then build drafts with editable BIGSPY AI blocks."
+msgstr ""
+
+msgid "Recent tasks"
+msgstr ""
+
+msgid "Search tasks"
+msgstr ""
+
+msgid "Show or hide the task list"
+msgstr ""
+
+msgid "New task"
+msgstr ""
+
+msgid "Tasks"
+msgstr ""
+
+msgid "Chat"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Show or hide the preview"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Task cost · API balance"
+msgstr ""
+
+msgid "Conversation"
+msgstr ""
+
+msgid "Skip to the message box"
+msgstr ""
+
+msgid "Resize the conversation"
+msgstr ""
+
+msgid "Drag to change the width of the conversation. Double-click to reset."
+msgstr ""
+
+msgid "Page to preview"
+msgstr ""
+
+msgid "Preview width"
+msgstr ""
+
+msgid "Fit the panel"
+msgstr ""
+
+msgid "Desktop 1280 px"
+msgstr ""
+
+msgid "Tablet 768 px"
+msgstr ""
+
+msgid "Phone 390 px"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Open in the editor"
+msgstr ""
+

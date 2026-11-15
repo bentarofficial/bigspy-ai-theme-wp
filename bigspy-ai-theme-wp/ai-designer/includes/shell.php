@@ -57,8 +57,13 @@ function bst_aid_shell_open( $page, $title ) {
 		if ( ! current_user_can( $s[1] ) ) {
 			continue;
 		}
-		$on = $slug === $page;
-		echo '<a href="' . esc_url( admin_url( 'admin.php?page=' . $slug ) ) . '"' . ( $on ? ' class="is-active" aria-current="page"' : '' ) . '>' . esc_html( $s[0] ) . '</a>';
+		$on    = $slug === $page;
+		$badge = '';
+		if ( 'bst-ai-about' === $slug && ! $on && function_exists( 'bst_welcome_data' ) ) {
+			$news  = bst_welcome_data( 'designer' )['news_version'] ?? '0';
+			$badge = version_compare( (string) get_user_meta( get_current_user_id(), 'bst_welcome_seen_designer', true ), $news, '<' ) ? ' <span class="bst-aid-tab-badge" aria-label="' . esc_attr__( 'New', 'bigspy-ai-theme-wp' ) . '">1</span>' : '';
+		}
+		echo '<a href="' . esc_url( admin_url( 'admin.php?page=' . $slug ) ) . '"' . ( $on ? ' class="is-active" aria-current="page"' : '' ) . '>' . esc_html( $s[0] ) . $badge . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $badge is built above from escaped parts.
 	}
 	echo '</nav><span class="bst-aid-bar-gap"></span>';
 	// Cached value only: opening a screen never calls the provider.
@@ -87,5 +92,16 @@ add_action(
 		if ( bst_aid_is_screen() ) {
 			echo "<script>try{if(localStorage.getItem('bstAidFull')==='1'){document.documentElement.classList.add('bst-aid-full');}}catch(e){}</script>\n";
 		}
+	}
+);
+
+/*
+ * The tabs replace the sub-items in the WordPress menu: only the main "BIGSPY AI Designer" item shows.
+ * The sub-pages stay registered, so their URLs, capabilities and menu highlighting keep working.
+ */
+add_action(
+	'admin_head',
+	function () {
+		echo '<style id="bst-aid-menu">#toplevel_page_bst-ai-designer .wp-submenu{display:none!important}#toplevel_page_bst-ai-designer>a .wp-menu-name .update-plugins{display:none}</style>' . "\n";
 	}
 );
