@@ -10230,3 +10230,18 @@ msgstr "Đã tiêu hôm nay"
 msgid "Settings sections"
 msgstr "Các mục cài đặt"
 
+msgid "Standards"
+msgstr "Tiêu chuẩn"
+
+msgid "%1$s / %2$s characters"
+msgstr "%1$s / %2$s ký tự"
+
+msgid "Filled in"
+msgstr "Đã điền"
+
+msgid "Changed from the default"
+msgstr "Đã sửa so với mặc định"
+
+msgid "Guideline to edit"
+msgstr "Mục cần sửa"
+

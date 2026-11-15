@@ -109,6 +109,56 @@
 		if (area && window.confirm(__('Restore the default context for this specialty?', T))) { area.value = ''; saveContext(area, 0); }
 	});
 
+	// Two panes (G-207): a list of standards and specialties on the left, one editor on the right.
+	// The forms stay in the page as printed, so they still work without this script.
+	(function guidesPanes() {
+		var page = document.querySelector('.bst-aid-app--guidelines .bst-aid-page');
+		if (!page) { return; }
+		var cards = Array.prototype.filter.call(page.querySelectorAll('.bst-aid-card'), function (c) { return c.querySelector('textarea[data-bst-aid-context]'); });
+		if (!cards.length) { return; }
+		var items = [];
+		var nav = h('nav', { class: 'bst-aid-gnav', 'aria-label': __('Guidelines', T) });
+		var group = '';
+		cards.forEach(function (card, i) {
+			var area = card.querySelector('textarea'), key = area.getAttribute('data-bst-aid-context');
+			var g = key.indexOf('sp_') === 0 ? __('Specialties', T) : __('Standards', T);
+			if (g !== group) { group = g; nav.appendChild(h('p', { class: 'bst-aid-gnav-group', text: g })); }
+			var title = (card.querySelector('h2, h3') || {}).textContent || key;
+			var count = h('small', { class: 'bst-aid-gnav-count' });
+			var dot = h('span', { class: 'bst-aid-gnav-dot', 'aria-hidden': 'true' });
+			var btn = h('button', { type: 'button', class: 'bst-aid-gnav-item', 'aria-controls': card.id || (card.id = 'bst-aid-g-' + i), onclick: function () { select(i, true); } }, [dot, h('span', { class: 'bst-aid-gnav-title', text: title }), count]);
+			var counter = h('span', { class: 'bst-aid-counter', 'aria-live': 'off' });
+			area.parentNode.insertBefore(counter, area.nextSibling);
+			var sync = function () {
+				var n = area.value.length, def = area.getAttribute('data-default');
+				var edited = def === null ? n > 0 : area.value.trim() !== def.trim();
+				count.textContent = n ? n.toLocaleString() : '';
+				counter.textContent = sprintf(__('%1$s / %2$s characters', T), n.toLocaleString(), (6000).toLocaleString());
+				counter.classList.toggle('is-near', n > 5400);
+				dot.classList.toggle('is-on', edited);
+				dot.title = edited ? (def === null ? __('Filled in', T) : __('Changed from the default', T)) : '';
+			};
+			area.addEventListener('input', sync);
+			new window.MutationObserver(sync).observe(area, { attributes: true }); // A template or reset changes the value then the version.
+			sync();
+			items.push({ card: card, btn: btn, area: area });
+			nav.appendChild(btn);
+		});
+		var select = function (i, focus) {
+			items.forEach(function (it, j) { it.card.classList.toggle('is-shown', i === j); it.btn.setAttribute('aria-current', i === j ? 'true' : 'false'); });
+			try { window.localStorage.setItem('bstAidGuide', String(i)); } catch (e) { /* storage blocked */ }
+			if (focus) { items[i].area.focus(); }
+		};
+		var picker = h('select', { class: 'bst-aid-gpick', 'aria-label': __('Guideline to edit', T), onchange: function (e) { select(Number(e.target.value), false); } }, items.map(function (it, i) { return h('option', { value: i, text: it.btn.querySelector('.bst-aid-gnav-title').textContent }); }));
+		var start = 0;
+		try { start = Math.min(items.length - 1, Math.max(0, parseInt(window.localStorage.getItem('bstAidGuide'), 10) || 0)); } catch (e) { /* storage blocked */ }
+		page.classList.add('is-panes');
+		page.insertBefore(h('div', { class: 'bst-aid-gside' }, [nav, picker]), page.firstChild);
+		picker.value = String(start);
+		nav.addEventListener('click', function () { picker.value = String(items.findIndex(function (it) { return it.card.classList.contains('is-shown'); })); });
+		select(start, false);
+	})();
+
 	/* ------------------------------------------------------------ Settings */
 	function Settings(root) {
 		var state = null, busy = false, msg = '', msgType = 'info', saveBar = null;

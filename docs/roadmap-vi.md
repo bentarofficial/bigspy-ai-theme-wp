@@ -523,6 +523,8 @@ Lý do: G-191 cho phép mọi phiếu sau thử không tốn phí. G-207 dựng 
 
 #### G-207 · Bố cục toàn bộ AI Designer (khung ứng dụng)
 
+**Trạng thái 15-11-2026: xong (G-207-a → d).** Khác đặc tả: tay kéo đổi độ rộng cột hội thoại (340 → 560px), còn bề rộng iframe chọn bằng nút Vừa khung / 1280 / 768 / 390 thay vì kéo tự do; thông báo của plugin khác trên các trang con vẫn bị ẩn theo quy tắc sẵn có của theme (`inc/admin/theme-panel.php`), chuông gom phần còn lại. Theo owner: menu trái WordPress chỉ hiện mục chính, các tab thay cho mục con. Chưa làm nút chủ đề sáng/tối (thuộc G-192). Kiểm thử: `workspace-browser-check.cjs` 18/18.
+
 Owner yêu cầu thêm ngày 15-11-2026: tối ưu cả bố cục, không chỉ kiểu dáng. Phiếu này lo **khung và vị trí** cho cả bốn màn hình (Workspace, Guidelines, Settings, About); G-192 lo **linh kiện và kiểu dáng** bên trong khung. Làm G-207 trước G-192.
 
 - **Vấn đề bố cục hiện tại (đã đọc từ mã):**

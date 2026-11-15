@@ -93,7 +93,7 @@ function bst_aid_specialties_form() {
 	echo '<div class="bst-aid-guides">';
 	foreach ( bst_aid_specialty_defaults() as $key => $d ) {
 		echo '<div class="bst-aid-card"><h3>' . esc_html( $d[0] ) . '</h3>';
-		echo '<textarea id="bst-aid-sp-' . esc_attr( $key ) . '" rows="6" maxlength="6000" class="large-text" data-bst-aid-context="sp_' . esc_attr( $key ) . '" data-version="' . (int) bst_aid_context_version( 'sp_' . $key ) . '">' . esc_textarea( bst_aid_specialty_context( $key ) ) . '</textarea>';
+		echo '<textarea id="bst-aid-sp-' . esc_attr( $key ) . '" rows="6" maxlength="6000" class="large-text" data-bst-aid-context="sp_' . esc_attr( $key ) . '" data-version="' . (int) bst_aid_context_version( 'sp_' . $key ) . '" data-default="' . esc_attr( $d[1] ) . '">' . esc_textarea( bst_aid_specialty_context( $key ) ) . '</textarea>';
 		echo '<p><button type="button" class="button" data-bst-aid-reset="bst-aid-sp-' . esc_attr( $key ) . '">' . esc_html__( 'Restore default', 'bigspy-ai-theme-wp' ) . '</button> <span class="bst-aid-saved" aria-live="polite"></span></p></div>';
 	}
 	echo '</div>';

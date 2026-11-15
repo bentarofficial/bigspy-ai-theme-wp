@@ -13700,3 +13700,21 @@ msgstr ""
 msgid "Settings sections"
 msgstr ""
 
+msgid "Standards"
+msgstr ""
+
+msgid "%1$s / %2$s characters"
+msgstr ""
+
+msgid "Filled in"
+msgstr ""
+
+msgid "Changed from the default"
+msgstr ""
+
+msgid "Guideline to edit"
+msgstr ""
+
+msgid "Guidelines"
+msgstr ""
+
