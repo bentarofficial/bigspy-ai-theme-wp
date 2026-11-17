@@ -68,7 +68,7 @@
 		showFeatured: { 'default': __('Site default', T), show: __('Show', T), hide: __('Hide', T) },
 		buttonStyle: { 'default': __('Site default', T), none: __('No button: the whole card is the link', T), soft: __('Soft outline button', T), solid: __('Solid button', T) },
 		openNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },
-		popularSource: { clicks: __('Clicks to the tool on this site', T), traffic: __('Website traffic (Site Insights)', T), blend: __('Both: clicks + website traffic', T) },
+		popularSource: { site: __('Site default (Theme → Features)', T), clicks: __('Clicks to the tool on this site', T), traffic: __('Website traffic (Site Insights)', T), blend: __('Both: clicks + website traffic', T) },
 		buttonAlign: { '': __('Default', T), left: __('Left', T), center: __('Center', T), right: __('Right', T), full: __('Full width', T) },
 		buttonFontWeight: { '': __('Default', T), 400: __('Regular', T), 500: __('Medium', T), 600: __('Semibold', T), 700: __('Bold', T), 800: __('Extra bold', T) },
 		sponsoredOpenNewTab: { 'default': __('Site default', T), yes: __('New tab', T), no: __('Same tab', T) },

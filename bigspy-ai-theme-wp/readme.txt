@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.97.0 =
+* Popular ranking: a site-wide setting in Features (clicks on this site, website traffic from Site Insights, or both; both by default). Popular blocks default to "Site default"; blocks that chose a source keep it.
+* Customizer quick-edit labels for the listing sidebar (Widgets), listing cards (Listing design), listing texts, Sponsored slots, Popular lists, and an Edit this listing label on listing pages.
+
 = 1.96.1 =
 * Floating contact: softer look with flat brand colors and a gentle breathing halo instead of glossy gradients and shine; rounded speech-bubble labels; plain phone bar; the All in one menu opens as a white card with one row per channel (icon and name).
 

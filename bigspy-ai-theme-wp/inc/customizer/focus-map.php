@@ -82,6 +82,15 @@ function bst_customize_focus_map_raw() {
 			$map[] = array( 'selector' => '.bs-layout__content > .bs-entry > .bs-entry__content', 'type' => 'url', 'id' => $edit, 'label' => __( 'Edit page content', 'bigspy-ai-theme-wp' ) );
 		}
 	}
+	// Listing mode (BIGSPY AI List): cards, Sponsored, texts and Popular ranking.
+	if ( function_exists( 'bst_listing_text' ) ) {
+		$features = admin_url( 'admin.php?page=bigspy-features#bst-feature-listing' );
+		$map[]    = array( 'selector' => '.bst-lcard', 'type' => 'section', 'id' => 'bst_listing_design' );
+		$map[]    = array( 'selector' => '.bst-ls, .bst-lelements, .bst-ls-sidebar .bst-ls-box', 'type' => 'section', 'id' => 'bst_listing_texts' );
+		$map[]    = array( 'selector' => '.bst-sponsored, .bst-sponsored-grid', 'type' => 'url', 'id' => $features, 'label' => __( 'Sponsored settings', 'bigspy-ai-theme-wp' ) );
+		$map[]    = array( 'selector' => '.bst-sponsored, .bst-sponsored-grid', 'type' => 'url', 'id' => admin_url( 'edit.php?post_type=product' ), 'label' => __( 'Choose AD listings', 'bigspy-ai-theme-wp' ) );
+		$map[]    = array( 'selector' => '.bst-lelements--popular', 'type' => 'url', 'id' => $features, 'label' => __( 'Popular ranking', 'bigspy-ai-theme-wp' ) );
+	}
 	// Listing page: its own data (description, facts, links) lives in the product editor.
 	if ( is_singular( 'product' ) ) {
 		$edit = get_edit_post_link( get_queried_object_id(), 'raw' );

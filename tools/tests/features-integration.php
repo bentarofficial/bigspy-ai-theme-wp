@@ -592,7 +592,7 @@ $bst_raw  = bst_customize_focus_map_raw();
 $bst_map  = bst_customize_focus_map();
 $bst_miss = array();
 foreach ( $bst_raw as $bst_it ) {
-	if ( 'url' !== $bst_it['type'] && '' === bst_customize_target_title( $bst_it['type'], $bst_it['id'] ) && ! in_array( $bst_it['id'], array( 'bst_shop', 'bst_product', 'bst_catalog', 'bst_checkout', 'bst_listing_single', 'bst_home_sidebar', 'sidebar-widgets-sidebar-listing' ), true ) ) {
+	if ( 'url' !== $bst_it['type'] && '' === bst_customize_target_title( $bst_it['type'], $bst_it['id'] ) && ! in_array( $bst_it['id'], array( 'bst_shop', 'bst_product', 'bst_catalog', 'bst_checkout', 'bst_listing_single', 'bst_home_sidebar', 'sidebar-widgets-sidebar-listing', 'bst_listing_design', 'bst_listing_texts' ), true ) ) {
 		$bst_miss[] = $bst_it['id'];
 	}
 }

@@ -266,7 +266,7 @@ function bst_features_page() {
 	wp_nonce_field( 'bst_features_save' );
 	echo '<input type="hidden" name="action" value="bst_features_save">';
 	foreach ( bst_feature_catalog() as $id => $info ) {
-		echo '<h2><label><input type="checkbox" name="bst_on[]" value="' . esc_attr( $id ) . '"' . checked( bst_feature_on( $id ), true, false ) . '> ' . esc_html( $info[0] ) . '</label></h2>';
+		echo '<h2 id="bst-feature-' . esc_attr( $id ) . '"><label><input type="checkbox" name="bst_on[]" value="' . esc_attr( $id ) . '"' . checked( bst_feature_on( $id ), true, false ) . '> ' . esc_html( $info[0] ) . '</label></h2>';
 		echo '<p>' . esc_html( $info[1] ) . '</p>';
 		if ( ! empty( $fields[ $id ] ) ) {
 			echo '<table class="form-table" role="presentation">';

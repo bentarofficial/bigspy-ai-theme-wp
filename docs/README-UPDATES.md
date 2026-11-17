@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.97.0: Popular by website traffic, more quick-edit labels
+
+- Popular lists rank by Site Insights traffic, clicks or both, set once in Features.
+- Quick-edit labels for the listing sidebar, cards, texts, Sponsored and Popular lists.
+
 ### 1.96.1: Softer Floating contact buttons
 
 - Flat brand colors with a breathing halo, bubble labels and an All in one menu that opens as a white card.

@@ -378,7 +378,7 @@
 		},
 		"popularSource": {
 			"type": "string",
-			"default": "clicks"
+			"default": "site"
 		}
 	},
 	"supports": {

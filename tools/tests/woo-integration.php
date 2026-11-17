@@ -162,6 +162,12 @@ try {
 	bst_test( 'ItemPage' === $nodes['bigspy_listing_webpage']['@type'] && 'Writing AI' === $nodes['bigspy_listing_breadcrumb']['itemListElement'][2]['name'], 'listing: schema breadcrumb through the category' );
 	update_post_meta( $a2, '_bigspy_ad', '1' );
 	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1 ) );
+	bst_test( 'blend' === bst_popular_source_default(), 'popular: site default ranks by clicks + website traffic' );
+	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1, 'popular_source' => 'traffic' ) );
+	bst_test( 'traffic' === bst_popular_source_default(), 'popular: site default follows Features' );
+	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1, 'popular_source' => 'bad' ) );
+	bst_test( 'blend' === bst_popular_source_default(), 'popular: unknown source falls back to blend' );
+	update_option( 'bst_feature_listing', array( 'sponsored_on' => 1 ) );
 	bst_test( false !== strpos( do_shortcode( '[bigspy_home_sponsor]' ), 'beta-writer.test' ), 'listing: home sponsor is the first AD listing' );
 	// Templates: patterns use registered blocks only; shop loops use listing cards.
 	bst_listing_patterns();
