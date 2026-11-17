@@ -352,6 +352,8 @@ function bst_t_hero() {
 		return render_block( array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
 	};
 	$url = 'https://example.com/hero.jpg';
+	// Since 1.90.0 the first large auto image of a request becomes the hero; take it so auto means lazy here.
+	bst_image_hero_taken( true );
 	foreach ( array( 'bst/banner', 'bst/image' ) as $b ) {
 		$auto = $r( $b, array( 'imageUrl' => $url ) );
 		bst_test( false !== strpos( $auto, 'loading="lazy"' ) && false === strpos( $auto, 'fetchpriority' ), "$b url auto stays lazy" );
@@ -590,7 +592,7 @@ $bst_raw  = bst_customize_focus_map_raw();
 $bst_map  = bst_customize_focus_map();
 $bst_miss = array();
 foreach ( $bst_raw as $bst_it ) {
-	if ( 'url' !== $bst_it['type'] && '' === bst_customize_target_title( $bst_it['type'], $bst_it['id'] ) && ! in_array( $bst_it['id'], array( 'bst_shop', 'bst_product', 'bst_catalog', 'bst_checkout', 'bst_listing_single', 'bst_home_sidebar' ), true ) ) {
+	if ( 'url' !== $bst_it['type'] && '' === bst_customize_target_title( $bst_it['type'], $bst_it['id'] ) && ! in_array( $bst_it['id'], array( 'bst_shop', 'bst_product', 'bst_catalog', 'bst_checkout', 'bst_listing_single', 'bst_home_sidebar', 'sidebar-widgets-sidebar-listing', 'bst_listing_design', 'bst_listing_texts' ), true ) ) {
 		$bst_miss[] = $bst_it['id'];
 	}
 }

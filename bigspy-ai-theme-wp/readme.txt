@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.96.0
+Stable tag: 1.97.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,13 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.97.0 =
+* Popular ranking: a site-wide setting in Features (clicks on this site, website traffic from Site Insights, or both; both by default). Popular blocks default to "Site default"; blocks that chose a source keep it.
+* Customizer quick-edit labels for the listing sidebar (Widgets), listing cards (Listing design), listing texts, Sponsored slots, Popular lists, and an Edit this listing label on listing pages.
+
+= 1.96.1 =
+* Floating contact: softer look with flat brand colors and a gentle breathing halo instead of glossy gradients and shine; rounded speech-bubble labels; plain phone bar; the All in one menu opens as a white card with one row per channel (icon and name).
 
 = 1.96.0 =
 * Scrolling text (marquee): items are now Marquee item blocks with text, icon or logo image, link and color; several rows with opposite directions and speed shift, item styles (plain, pill, card, logo), edge fade, tilt, vertical orientation, scroll-linked speed, pause on hover and per-device font and image sizes. Old marquees render as before.

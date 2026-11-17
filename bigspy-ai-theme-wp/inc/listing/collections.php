@@ -14,6 +14,17 @@ add_filter(
 	function ( $fields ) {
 		$fields['listing']['category_dir']  = array( 'type' => 'checkbox', 'label' => __( 'Category directory on the Categories page (when the page has no content)', 'bigspy-ai-theme-wp' ), 'default' => 1 );
 		$fields['listing']['shop_toolbar']  = array( 'type' => 'checkbox', 'label' => __( 'Search, category and sort toolbar on listing archives', 'bigspy-ai-theme-wp' ), 'default' => 1 );
+		$fields['listing']['popular_source'] = array(
+			'type'    => 'select',
+			'label'   => __( 'Rank Popular listings by', 'bigspy-ai-theme-wp' ),
+			'default' => 'blend',
+			'choices' => array(
+				'clicks'  => __( 'Clicks to the tool on this site', 'bigspy-ai-theme-wp' ),
+				'traffic' => __( 'Website traffic (Site Insights)', 'bigspy-ai-theme-wp' ),
+				'blend'   => __( 'Both: clicks + website traffic', 'bigspy-ai-theme-wp' ),
+			),
+			'help'    => __( 'Used by every Popular list whose block is set to "Site default". Website traffic needs the Site Insights module of BIGSPY AI List Suite.', 'bigspy-ai-theme-wp' ),
+		);
 		return $fields;
 	}
 );
@@ -191,3 +202,9 @@ add_action(
 		wp_enqueue_style( 'bst-listing', BST_URI . '/assets/css/listing.css', array(), bst_asset_version( 'assets/css/listing.css' ) );
 	}
 );
+
+/** Site-wide ranking source of Popular lists: clicks, traffic or blend. */
+function bst_popular_source_default() {
+	$source = (string) bst_feature_get( 'listing', 'popular_source', 'blend' );
+	return in_array( $source, array( 'clicks', 'traffic', 'blend' ), true ) ? $source : 'blend';
+}
