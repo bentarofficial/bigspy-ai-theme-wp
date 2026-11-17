@@ -8,7 +8,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 Đã phát hành ở 1.96.1: giao diện mềm cho Floating contact. Đã phát hành ở 1.96.0: marquee nâng cấp, Floating contact, độ rộng sidebar theo trang, nút Add to trong List View. Đã phát hành ở 1.95.0: S-13-a, dòng hoa hồng affiliate mặc định tắt, G-167 Listing texts, sửa ô tìm Customizer. Đã phát hành ở 1.94.0: G-134-d, khoảng cách khối, banner điện thoại. Đã phát hành ở 1.93.0: Bento/Stacking Cards options, Footer scroll effect. Đã phát hành ở 1.92.0: G-163, G-164, G-134-c. Đã phát hành ở 1.91.0: G-162, G-134-a, G-133-a/b/c, G-132-a/b/c/d, G-129, G-130, G-131, G-141, G-147, G-151, G-94, G-100, G-103, G-113, G-117, G-118, G-119, G-120, G-123. Đang chờ:
 
-- (trống)
+- **G-184 Nhãn chỉnh nhanh cho trang listing.** Customizer: sidebar trang listing có nhãn mở mục Widgets "Listing page sidebar"; cả trang listing có thêm nhãn "Edit this listing" mở trình sửa sản phẩm. Plugin Suite (repo riêng) đăng ký nhãn cho khối Insights (cài đặt Site Insights, dữ liệu Insights của listing) và Badge (cài đặt Badge) qua filter `bst_customize_focus_map`. Kiểm thử: features-check, auto-detect-check, playground-check, check-block-previews đạt; lint PHP đạt. Khi phát hành: thêm vào Có gì mới.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

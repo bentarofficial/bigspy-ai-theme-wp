@@ -66,6 +66,7 @@ function bst_customize_focus_map_raw() {
 		array( 'selector' => '.bs-product__contact', 'type' => 'section', 'id' => 'bst_catalog' ),
 		array( 'selector' => '.woocommerce-cart-form, .cart-collaterals, form.woocommerce-checkout', 'type' => 'section', 'id' => 'bst_checkout', 'preview_url' => $cart ? $cart : $checkout ),
 		array( 'selector' => '.bst-ls', 'type' => 'section', 'id' => 'bst_listing_single' ),
+		array( 'selector' => '.bst-ls-sidebar', 'type' => 'section', 'id' => 'sidebar-widgets-sidebar-listing' ),
 		array( 'selector' => '.bs-footer', 'type' => 'panel', 'id' => 'bst_footer' ),
 		array( 'selector' => '.bs-footer-cta', 'type' => 'section', 'id' => 'bst_footer_cta' ),
 		array( 'selector' => '.bs-footer-widgets', 'type' => 'section', 'id' => 'bst_footer_widgets' ),
@@ -79,6 +80,13 @@ function bst_customize_focus_map_raw() {
 		$edit = get_edit_post_link( get_queried_object_id(), 'raw' );
 		if ( $edit ) {
 			$map[] = array( 'selector' => '.bs-layout__content > .bs-entry > .bs-entry__content', 'type' => 'url', 'id' => $edit, 'label' => __( 'Edit page content', 'bigspy-ai-theme-wp' ) );
+		}
+	}
+	// Listing page: its own data (description, facts, links) lives in the product editor.
+	if ( is_singular( 'product' ) ) {
+		$edit = get_edit_post_link( get_queried_object_id(), 'raw' );
+		if ( $edit ) {
+			$map[] = array( 'selector' => '.bst-ls', 'type' => 'url', 'id' => $edit, 'label' => __( 'Edit this listing', 'bigspy-ai-theme-wp' ) );
 		}
 	}
 	return $map;
