@@ -20,6 +20,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-202 Typography đầy đủ:** H5/H6 theo thiết bị; line-height và letter-spacing cho heading; letter-spacing body; chữ meta nhỏ (cỡ, chữ hoa, giãn chữ); letter-spacing menu; cỡ chữ và giãn chữ nút; 4 **màu thêm có tên** vào palette editor và biến `--bs-custom-1…4`. Mọi tuỳ chọn để trống = không in CSS, giao diện cũ giữ nguyên. Host Google Fonts nội bộ đã có sẵn (Advanced → Performance), không làm lại. Màu nút để G-169. Kiểm thử: lint, features-check 3 test G-202 đạt. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-204 Header nâng cao (phần 1):** **Sticky style** bằng hình: Slide in (mặc định, như cũ), **Hide on scroll down** (ẩn khi cuộn xuống, hiện khi cuộn lên), **Shrink** (thu nhỏ mượt, không trượt); màu nền/chữ khi dính. **Mobile menu style** bằng hình: Side panel (mặc định), Full screen, Drop-down; độ rộng panel, màu nền/chữ menu mobile. Tuỳ chọn phụ tự ẩn khi không liên quan. Header trong suốt theo trang đã có sẵn (hộp Page layout). Chưa làm: logo riêng khi dính, mega menu (cột/ảnh/độ rộng). Kiểm thử: lint PHP/JS, features-check 4 test G-204 đạt, toàn bộ features-check không lỗi. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

@@ -763,6 +763,31 @@ bst_test( false !== strpos( $bst_css1, '--bs-custom-1:#123456' ) && false !== st
 foreach ( array( 'h5_size', 'h6_size_mobile', 'heading_letter_spacing', 'meta_transform', 'button_font_size', 'color_custom_1', 'color_custom_1_name' ) as $bst_k ) {
 	remove_theme_mod( $bst_k );
 }
+// G-204: advanced header.
+$bst_css0 = bst_dynamic_css();
+bst_test( false === strpos( $bst_css0, '--bs-offcanvas-w' ) && false === strpos( $bst_css0, '.bs-header.is-stuck .bs-header__sticky,' ), 'G-204: nothing printed until set' );
+ob_start();
+bst_render_header();
+bst_render_offcanvas();
+$bst_h = ob_get_clean();
+bst_test( false !== strpos( $bst_h, 'sticky-slide' ) && false !== strpos( $bst_h, 'bs-offcanvas--panel' ), 'G-204: default classes keep old look' );
+set_theme_mod( 'header_sticky_style', 'smart' );
+set_theme_mod( 'offcanvas_style', 'dropdown' );
+set_theme_mod( 'offcanvas_width', 400 );
+set_theme_mod( 'header_sticky_bg', '#112233' );
+ob_start();
+bst_render_header();
+bst_render_offcanvas();
+$bst_h = ob_get_clean();
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_h, 'sticky-smart' ) && false !== strpos( $bst_h, 'bs-offcanvas--dropdown' ) && false !== strpos( $bst_css1, '--bs-offcanvas-w:400px' ) && false !== strpos( $bst_css1, 'background:#112233' ), 'G-204: sticky style, menu style, width, sticky color' );
+set_theme_mod( 'header_sticky_style', 'bogus' );
+ob_start();
+bst_render_header();
+bst_test( false !== strpos( ob_get_clean(), 'sticky-slide' ), 'G-204: unknown sticky style falls back' );
+foreach ( array( 'header_sticky_style', 'offcanvas_style', 'offcanvas_width', 'header_sticky_bg' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
 // G-214: Customizer tree.
 $bst_sec = bst_customizer_sections();
 $bst_pan = bst_customizer_panels();

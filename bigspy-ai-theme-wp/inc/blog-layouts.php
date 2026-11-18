@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 function bst_layout_pictures() {
 	$side_r = array( array( 2, 2, 40, 36, 0 ), array( 45, 2, 13, 36, 1 ) );
 	$side_l = array( array( 2, 2, 13, 36, 1 ), array( 18, 2, 40, 36, 0 ) );
-	return array(
+	return apply_filters( 'bst_layout_pictures', array(
 		'sidebar' => array(
 			'right' => $side_r,
 			'left'  => $side_l,
@@ -51,7 +51,7 @@ function bst_layout_pictures() {
 			'slider' => array( array( 2, 4, 8, 28, 0 ), array( 12, 2, 36, 32, 1 ), array( 50, 4, 8, 28, 0 ), array( 26, 36, 3, 2, 1 ), array( 31, 36, 3, 2, 0 ) ),
 			'row'    => array( array( 2, 8, 17, 24, 1 ), array( 21, 8, 17, 24, 1 ), array( 40, 8, 18, 24, 1 ) ),
 		),
-	);
+	) );
 }
 
 /** Inline SVG for one picture. */
@@ -65,7 +65,7 @@ function bst_layout_svg( array $rects ) {
 
 /** Choice values that turn into picture pickers, and which picture set they use. */
 function bst_layout_picker_map() {
-	return array(
+	return apply_filters( 'bst_layout_picker_map', array(
 		'blog_layout'     => 'blog',
 		'archive_layout'  => 'blog',
 		'blog_sidebar'    => 'sidebar',
@@ -74,7 +74,7 @@ function bst_layout_picker_map() {
 		'page_sidebar'    => 'sidebar',
 		'single_layout'   => 'single',
 		'blog_featured'   => 'featured',
-	);
+	) );
 }
 
 add_action(
