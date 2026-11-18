@@ -26,6 +26,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-204-b Header nâng cao (phần 2):** **logo riêng khi header dính** (Header → Logo, chỉ hiện sau khi cuộn khi bật sticky); **mega menu trong Customizer** (Header → Navigation): độ rộng, số cột (tự động/2–6), khoảng cách cột, màu và chữ hoa tiêu đề cột. Để trống = như cũ (960px, cột tự động, 20px). Kiểm thử: lint, features-check 4 test G-204-b đạt (chạy cổng 9437 vì 9421 bận). Chưa xem trên trình duyệt. Chưa làm: ảnh trong mega menu. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-205-b Footer builder: ẩn từng phần tử theo thiết bị:** mục "Show elements on" trong Footer builder, mỗi phần tử chọn Tất cả / Chỉ desktop / Chỉ mobile & tablet (mốc 849px). Mặc định tất cả = như cũ. Kiểm thử: lint, features-check 2 test G-205-b + 5 test G-205 đạt. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

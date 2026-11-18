@@ -172,6 +172,11 @@ add_filter(
 			$add[] = array( 'id' => 'fb_' . $row . '_bg', 'section' => $s, 'type' => 'color', 'label' => __( 'Background', 'bigspy-ai-theme-wp' ) );
 			$add[] = array( 'id' => 'fb_' . $row . '_color', 'section' => $s, 'type' => 'color', 'label' => __( 'Text color', 'bigspy-ai-theme-wp' ) );
 		}
+		// G-205-b: show each element on all devices, desktop only or mobile only.
+		$add[] = array( 'id' => 'bst_fb_h_devices', 'section' => $s, 'type' => 'heading', 'label' => __( 'Show elements on', 'bigspy-ai-theme-wp' ), 'description' => __( 'Desktop = wider than 849px; mobile and tablet = 849px and narrower.', 'bigspy-ai-theme-wp' ) );
+		foreach ( bst_fb_elements() as $key => $label ) {
+			$add[] = array( 'id' => 'fb_show_' . $key, 'section' => $s, 'type' => 'select', 'label' => $label, 'choices' => bst_fb_device_choices() );
+		}
 		$add[] = array( 'id' => 'bst_fb_h_content', 'section' => $s, 'type' => 'heading', 'label' => __( 'Element content', 'bigspy-ai-theme-wp' ), 'description' => __( 'Copyright and Payment / badges use the fields in Footer bottom; widget areas 1–8 are Footer 1/2 columns in Widgets.', 'bigspy-ai-theme-wp' ) );
 		$add[] = array( 'id' => 'fb_about', 'section' => $s, 'type' => 'html', 'label' => __( 'Text 1', 'bigspy-ai-theme-wp' ) );
 		$add[] = array( 'id' => 'fb_html_2', 'section' => $s, 'type' => 'html', 'label' => __( 'Text 2', 'bigspy-ai-theme-wp' ) );
@@ -293,6 +298,27 @@ function bst_fb_element( $key ) {
 	return (string) apply_filters( 'bst_fb_element_html', '', $key );
 }
 
+/** G-205-b: device choices for one element. */
+function bst_fb_device_choices() {
+	return array(
+		''        => __( 'All devices', 'bigspy-ai-theme-wp' ),
+		'desktop' => __( 'Desktop only', 'bigspy-ai-theme-wp' ),
+		'mobile'  => __( 'Mobile & tablet only', 'bigspy-ai-theme-wp' ),
+	);
+}
+
+/** Wrap an element when it shows on one kind of device only. */
+function bst_fb_device_wrap( $key, $html ) {
+	if ( '' === $html ) {
+		return '';
+	}
+	$show = (string) get_theme_mod( 'fb_show_' . $key, '' );
+	if ( 'desktop' !== $show && 'mobile' !== $show ) {
+		return $html;
+	}
+	return '<div class="bs-fb-only-' . $show . '">' . $html . '</div>';
+}
+
 /** Print the builder footer rows. */
 function bst_fb_render() {
 	$layout = bst_fb_normalize_layout( get_theme_mod( 'footer_layout', '' ) );
@@ -306,7 +332,7 @@ function bst_fb_render() {
 		for ( $c = 0; $c < $count; $c++ ) {
 			$html = '';
 			foreach ( $layout[ $row ][ $c ] as $key ) {
-				$html .= bst_fb_element( $key );
+				$html .= bst_fb_device_wrap( $key, bst_fb_element( $key ) );
 			}
 			$any     = $any || '' !== $html;
 			$cells[] = '<div class="bs-fb-col">' . $html . '</div>';
@@ -337,6 +363,7 @@ function bst_fb_css() {
 			$css .= '.bs-fb-row--' . $row . '{' . $d . '}';
 		}
 	}
+	$css .= '@media (max-width:849px){.bs-fb-only-desktop{display:none}}@media (min-width:850px){.bs-fb-only-mobile{display:none}}';
 	$w = get_theme_mod( 'fb_logo_width', '' );
 	if ( '' !== $w && is_numeric( $w ) ) {
 		$css .= '.bs-fb-row .bs-logo__img{max-width:' . max( 40, min( 400, (int) $w ) ) . 'px}';

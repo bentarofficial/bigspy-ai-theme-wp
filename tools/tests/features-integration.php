@@ -803,6 +803,12 @@ bst_test( false !== strpos( ob_get_clean(), 'sticky-slide' ), 'G-204: unknown st
 foreach ( array( 'header_sticky_style', 'offcanvas_style', 'offcanvas_width', 'header_sticky_bg' ) as $bst_k ) {
 	remove_theme_mod( $bst_k );
 }
+// G-205-b: element shown on one device only.
+set_theme_mod( 'fb_show_about', 'mobile' );
+bst_test( '<div class="bs-fb-only-mobile"><p>x</p></div>' === bst_fb_device_wrap( 'about', '<p>x</p>' ) && '<p>y</p>' === bst_fb_device_wrap( 'menu', '<p>y</p>' ) && '' === bst_fb_device_wrap( 'about', '' ), 'G-205-b: device wrap only when set and not empty' );
+set_theme_mod( 'fb_show_about', 'bogus' );
+bst_test( '<p>x</p>' === bst_fb_device_wrap( 'about', '<p>x</p>' ), 'G-205-b: unknown value shows on all devices' );
+remove_theme_mod( 'fb_show_about' );
 // G-205: footer builder.
 ob_start();
 bst_render_footer();
