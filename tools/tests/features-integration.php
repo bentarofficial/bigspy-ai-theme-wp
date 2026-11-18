@@ -745,6 +745,21 @@ bst_test( '' === bst_sanitize_spacing( '{"unit":"bad","desktop":["","","",""]}' 
 remove_theme_mod( 'h1_size_tablet' );
 remove_theme_mod( 'h2_size_mobile' );
 remove_theme_mod( 'title_bar_padding' );
+// G-204-b: sticky logo and mega menu options.
+bst_test( false === strpos( bst_dynamic_css(), '--bs-mega' ) && false === strpos( bst_dynamic_css(), 'bs-logo__sticky' ), 'G-204-b: nothing printed until set' );
+set_theme_mod( 'mega_width', 1200 );
+set_theme_mod( 'mega_columns', '4' );
+set_theme_mod( 'mega_heading_color', '#aa0000' );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, '--bs-mega-w:1200px' ) && false !== strpos( $bst_css1, '--bs-mega-cols:repeat(4,minmax(0,1fr))' ) && false !== strpos( $bst_css1, '--bs-mega-head:#aa0000' ), 'G-204-b: mega menu width, columns, heading color' );
+set_theme_mod( 'header_sticky', true );
+set_theme_mod( 'logo_sticky', 'https://example.com/sticky.png' );
+bst_test( false !== strpos( bst_sticky_logo_html(), 'bs-logo__sticky' ) && false !== strpos( bst_dynamic_css(), '.bs-header.is-stuck .bs-logo .bs-logo__sticky{display:block}' ), 'G-204-b: sticky logo markup and CSS' );
+set_theme_mod( 'header_sticky', false );
+bst_test( '' === bst_sticky_logo_html(), 'G-204-b: no sticky logo when sticky header is off' );
+foreach ( array( 'mega_width', 'mega_columns', 'mega_heading_color', 'header_sticky', 'logo_sticky' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
 // G-202: typography and extra colors.
 $bst_css0 = bst_dynamic_css();
 bst_test( false === strpos( $bst_css0, 'h1,h2,h3,h4,h5,h6{' ) && false === strpos( $bst_css0, '.bs-meta{' ) && false === strpos( $bst_css0, '--bs-custom-1' ) && false === strpos( $bst_css0, '--bs-h5' ), 'G-202: nothing printed until set' );
@@ -786,6 +801,34 @@ ob_start();
 bst_render_header();
 bst_test( false !== strpos( ob_get_clean(), 'sticky-slide' ), 'G-204: unknown sticky style falls back' );
 foreach ( array( 'header_sticky_style', 'offcanvas_style', 'offcanvas_width', 'header_sticky_bg' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
+// G-205: footer builder.
+ob_start();
+bst_render_footer();
+$bst_h = ob_get_clean();
+bst_test( false === strpos( $bst_h, 'bs-fb-row' ) && '' === bst_fb_css(), 'G-205: classic footer by default' );
+$bst_l = bst_fb_normalize_layout( '{"main":[["logo","bogus","logo"],["about"]],"nope":[["menu"]]}' );
+bst_test( array( 'logo' ) === $bst_l['main'][0] && array( 'about' ) === $bst_l['main'][1] && 6 === count( $bst_l['top'] ) && ! isset( $bst_l['nope'] ), 'G-205: layout normalised (unknown, duplicate dropped)' );
+bst_test( array( 2.0, 1.0, 1.0 ) === bst_fb_widths( '2, 1', 3 ) && array( 0.25 ) === bst_fb_widths( '0', 1 ), 'G-205: column widths parsed and clamped' );
+set_theme_mod( 'footer_type', 'builder' );
+set_theme_mod( 'footer_layout', wp_json_encode( array( 'main' => array( array( 'about' ), array( 'button' ) ), 'bottom' => array( array( 'copyright' ) ) ) ) );
+set_theme_mod( 'fb_main_cols', 2 );
+set_theme_mod( 'fb_main_widths', '2,1' );
+set_theme_mod( 'fb_bottom_cols', 1 );
+set_theme_mod( 'fb_about', 'Hello footer [year]' );
+set_theme_mod( 'fb_button_text', 'Call us' );
+set_theme_mod( 'fb_button_url', 'https://example.com/c' );
+set_theme_mod( 'fb_main_bg', '#223344' );
+ob_start();
+bst_render_footer();
+$bst_h = ob_get_clean();
+bst_test( false !== strpos( $bst_h, 'bs-fb-row--main' ) && false !== strpos( $bst_h, 'Hello footer ' . gmdate( 'Y' ) ) && false !== strpos( $bst_h, 'minmax(0,2fr) minmax(0,1fr)' ) && false !== strpos( $bst_h, 'Call us' ) && false !== strpos( $bst_h, 'bs-copyright' ) && false === strpos( $bst_h, 'bs-footer-widgets' ) && false !== strpos( bst_fb_css(), '.bs-fb-row--main{background:#223344' ), 'G-205: builder renders rows, widths, elements, colors' );
+set_theme_mod( 'fb_main_cols', 1 );
+ob_start();
+bst_render_footer();
+bst_test( false === strpos( ob_get_clean(), 'Call us' ), 'G-205: elements past the column count are not shown' );
+foreach ( array( 'footer_type', 'footer_layout', 'fb_main_cols', 'fb_main_widths', 'fb_bottom_cols', 'fb_about', 'fb_button_text', 'fb_button_url', 'fb_main_bg' ) as $bst_k ) {
 	remove_theme_mod( $bst_k );
 }
 // G-214: Customizer tree.

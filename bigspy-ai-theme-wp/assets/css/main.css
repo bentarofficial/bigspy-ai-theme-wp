@@ -2308,3 +2308,99 @@ a.page-numbers:hover {
 .bs-header.has-round-bottom .bs-header-row.is-last { border-radius: 0 0 var(--bs-header-r, 16px) var(--bs-header-r, 16px); }
 .bs-header.has-round-bottom.has-shadow .bs-header__sticky { box-shadow: none; }
 .bs-header.has-round-bottom.has-shadow .bs-header-row.is-last { box-shadow: 0 6px 18px rgba(15, 23, 42, .08); }
+
+/* G-205 footer builder */
+.bs-fb-row {
+	padding: 40px 0;
+	background: var(--bs-f1-bg);
+	color: var(--bs-f1-color);
+}
+
+.bs-fb-row--top {
+	padding: 30px 0;
+	background: var(--bs-f2-bg);
+	color: var(--bs-f2-color);
+}
+
+.bs-fb-row--main {
+	padding: 60px 0 30px;
+}
+
+.bs-fb-row--bottom {
+	padding: 18px 0;
+	background: var(--bs-fb-bg);
+	color: var(--bs-fb-color);
+	font-size: .9rem;
+}
+
+.bs-fb-grid {
+	display: grid;
+	grid-template-columns: var(--bs-fb-cols, repeat(var(--bs-fb-n, 1), minmax(0, 1fr)));
+	gap: 24px 30px;
+	align-items: start;
+}
+
+.bs-fb-col {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	min-width: 0;
+}
+
+.bs-fb-row--bottom .bs-fb-col {
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 20px;
+}
+
+.bs-fb-row--bottom .bs-fb-grid {
+	align-items: center;
+}
+
+.bs-fb-row--center .bs-fb-col {
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.bs-fb-row--spread .bs-fb-col:last-child:not(:first-child) {
+	align-items: flex-end;
+	justify-content: flex-end;
+	text-align: right;
+}
+
+.bs-fb-col .widget-title {
+	color: var(--bs-f1-heading, inherit);
+}
+
+.bs-fb-col .bs-logo__img {
+	max-width: 160px;
+	height: auto;
+}
+
+@media (max-width: 849px) {
+	.bs-fb-grid {
+		grid-template-columns: repeat(min(var(--bs-fb-n, 1), 2), minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 549px) {
+	.bs-fb-row--m-stack .bs-fb-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.bs-fb-row--m-two .bs-fb-grid {
+		grid-template-columns: repeat(min(var(--bs-fb-n, 1), 2), minmax(0, 1fr));
+	}
+
+	.bs-fb-row--m-hide {
+		display: none;
+	}
+
+	.bs-fb-row--spread .bs-fb-col:last-child:not(:first-child) {
+		align-items: flex-start;
+		justify-content: flex-start;
+		text-align: left;
+	}
+}

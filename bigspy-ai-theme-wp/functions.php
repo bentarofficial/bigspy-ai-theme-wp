@@ -32,6 +32,7 @@ $bst_includes = array(
 	'inc/mega-menu.php',
 	'inc/footer.php',
 	'inc/footer-design.php',
+	'inc/footer-builder.php',
 	'inc/floating-contact.php',
 	'inc/meta-boxes.php',
 	'inc/site-tools.php',

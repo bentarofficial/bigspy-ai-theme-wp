@@ -266,3 +266,10 @@ li.bst-group-hidden { display: none !important; }
 /* G-214 */
 .bst-sample-link { margin: 6px 12px 10px; }
 .bst-sample-link .dashicons { font-size: 16px; width: 16px; height: 16px; vertical-align: text-bottom; }
+
+/* G-205 footer builder: up to 6 columns wrap in rows of 3. */
+.bst-fb .bst-fb__cols {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 6px;
+}
