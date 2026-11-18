@@ -22,6 +22,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-204 Header nâng cao (phần 1):** **Sticky style** bằng hình: Slide in (mặc định, như cũ), **Hide on scroll down** (ẩn khi cuộn xuống, hiện khi cuộn lên), **Shrink** (thu nhỏ mượt, không trượt); màu nền/chữ khi dính. **Mobile menu style** bằng hình: Side panel (mặc định), Full screen, Drop-down; độ rộng panel, màu nền/chữ menu mobile. Tuỳ chọn phụ tự ẩn khi không liên quan. Header trong suốt theo trang đã có sẵn (hộp Page layout). Chưa làm: logo riêng khi dính, mega menu (cột/ảnh/độ rộng). Kiểm thử: lint PHP/JS, features-check 4 test G-204 đạt, toàn bộ features-check không lỗi. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-205 Footer builder kéo thả:** mục mới Footer → **Footer builder**, chọn **Footer type**: Classic (mặc định, footer cũ giữ nguyên) hoặc Builder. Builder: 3 hàng (trên, chính, dưới) × 0–6 cột, kéo thả phần tử vào cột; mỗi hàng có số cột, độ rộng tương đối (vd 2,1,1), căn lề (trái/giữa/cột cuối bên phải), trên mobile (xếp chồng/2 cột/ẩn hàng), màu nền/chữ. Phần tử: logo (độ rộng riêng), Text 1/2, menu footer, social, contact, nút, copyright, HTML thanh toán/huy hiệu, 8 vùng widget (dùng lại Footer 1/2 – Column 1–4 nên nội dung cũ giữ nguyên). Mặc định Builder giống footer cũ (4 cột widget + thanh copyright). Footer thiết kế bằng khối vẫn ưu tiên. Newsletter dùng vùng widget hoặc Text. Kiểm thử: lint PHP/JS, features-check (xem kết quả bên dưới). Chưa xem UI Customizer trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
@@ -30,3 +32,5 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** mục Giới thiệu/Có gì mới/tài liệu/kiến thức AI liên quan, hoặc “không cần”.
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+
+- **Export/Import theme options đáng tin cậy:** export/import lấy danh sách từ chính các field Customizer (thêm giá trị Responsive tablet/mobile, Spacing và mọi field mới), mang theo logo, site icon và ảnh Customizer (tự chép vào Media của site mới), giữ đúng kiểu số và giá trị "-1 = kế thừa", header layout rỗng vẫn rỗng. Trước khi import/reset tự lưu bản backup, thêm nút **Undo last import or reset**. Báo lỗi rõ (file quá lớn, hỏng JSON, chưa chọn file, server không nhận file), báo số mục đã áp dụng/bỏ qua/ảnh. Giới hạn file 10 MB (hoặc thấp hơn theo server). Kiểm thử: lint, `node tools/options-transfer-check.cjs` 21/21 đạt (export → import → export giống hệt, undo, reset). Chưa thử trên site thật; chưa thử tải ảnh từ site khác qua mạng. Khi phát hành: chuỗi dịch vi.

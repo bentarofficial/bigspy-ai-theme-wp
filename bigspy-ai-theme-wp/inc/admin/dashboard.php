@@ -125,10 +125,34 @@ function bst_dashboard_page() {
 
 	$notice = isset( $_GET['bst-notice'] ) ? sanitize_key( $_GET['bst-notice'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$notices = array(
-		'imported' => array( 'success', __( 'Theme options imported.', 'bigspy-ai-theme-wp' ) ),
-		'reset'    => array( 'success', __( 'Theme options reset to defaults.', 'bigspy-ai-theme-wp' ) ),
-		'invalid'  => array( 'error', __( 'The file is not a valid BIGSPY AI Theme WP export.', 'bigspy-ai-theme-wp' ) ),
+		'imported'      => array( 'success', __( 'Theme options imported.', 'bigspy-ai-theme-wp' ) ),
+		'reset'         => array( 'success', __( 'Theme options reset to defaults.', 'bigspy-ai-theme-wp' ) ),
+		'restored'      => array( 'success', __( 'The previous theme options are back.', 'bigspy-ai-theme-wp' ) ),
+		'no-backup'     => array( 'error', __( 'There is no saved backup to restore.', 'bigspy-ai-theme-wp' ) ),
+		'invalid'       => array( 'error', __( 'The file is not a valid BIGSPY AI Theme WP export.', 'bigspy-ai-theme-wp' ) ),
+		'bad-json'      => array( 'error', __( 'The file is damaged or is not a JSON file. Download a new export file and try again.', 'bigspy-ai-theme-wp' ) ),
+		'no-file'       => array( 'error', __( 'Choose an export file first.', 'bigspy-ai-theme-wp' ) ),
+		'upload-failed' => array( 'error', __( 'The server could not receive the file. Try again, or ask your host to check the upload temp folder.', 'bigspy-ai-theme-wp' ) ),
+		/* translators: %s: maximum file size. */
+		'too-big'       => array( 'error', sprintf( __( 'The file is larger than this server accepts (%s).', 'bigspy-ai-theme-wp' ), size_format( min( bst_import_max_bytes(), wp_max_upload_size() ) ) ) ),
 	);
+	if ( 'imported' === $notice ) {
+		$count = static function ( $name ) {
+			return isset( $_GET[ $name ] ) ? absint( $_GET[ $name ] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		};
+		/* translators: 1: number of options applied, 2: number of images copied. */
+		$message = sprintf( __( 'Theme options imported: %1$d settings applied, %2$d images copied to the Media Library.', 'bigspy-ai-theme-wp' ), $count( 'bst-applied' ), $count( 'bst-media' ) );
+		if ( $count( 'bst-skipped' ) ) {
+			/* translators: %d: number of skipped settings. */
+			$message .= ' ' . sprintf( __( '%d settings were skipped because this theme version does not have them or your account may not edit code.', 'bigspy-ai-theme-wp' ), $count( 'bst-skipped' ) );
+		}
+		if ( $count( 'bst-mfail' ) ) {
+			/* translators: %d: number of images. */
+			$message .= ' ' . sprintf( __( '%d images could not be downloaded from the old website; upload them again in the Customizer.', 'bigspy-ai-theme-wp' ), $count( 'bst-mfail' ) );
+		}
+		$notices['imported'] = array( $count( 'bst-mfail' ) ? 'warning' : 'success', $message );
+	}
+	$backup = get_option( 'bst_options_backup' );
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'BIGSPY AI Studio', 'bigspy-ai-theme-wp' ); ?> <small style="font-size:13px;color:#646970">v<?php echo esc_html( BST_VERSION ); ?></small></h1>
@@ -225,6 +249,7 @@ function bst_dashboard_page() {
 		<div class="card" style="max-width:none">
 			<h2><?php esc_html_e( 'Export theme options', 'bigspy-ai-theme-wp' ); ?></h2>
 			<p><?php esc_html_e( 'Download all Customizer settings (colors, fonts, header layout, footer, blog, shop, Additional CSS) as a JSON file. Import it on another website to start from the same design.', 'bigspy-ai-theme-wp' ); ?></p>
+			<p class="description"><?php esc_html_e( 'The file also links the logo, site icon and Customizer images; importing copies them into the new Media Library. Posts, pages, menus, widgets and plugins are not included – use a full backup plugin for those.', 'bigspy-ai-theme-wp' ); ?></p>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="bst_export">
 				<?php wp_nonce_field( 'bst_export' ); ?>
@@ -235,12 +260,31 @@ function bst_dashboard_page() {
 		<div class="card" style="max-width:none">
 			<h2><?php esc_html_e( 'Import theme options', 'bigspy-ai-theme-wp' ); ?></h2>
 			<p><?php esc_html_e( 'Upload a file exported from BIGSPY AI Theme WP. Current settings will be overwritten.', 'bigspy-ai-theme-wp' ); ?></p>
+			<p class="description">
+				<?php
+				/* translators: %s: maximum file size. */
+				echo esc_html( sprintf( __( 'Current settings are saved first, so you can undo the import. Maximum file size: %s.', 'bigspy-ai-theme-wp' ), size_format( min( bst_import_max_bytes(), wp_max_upload_size() ) ) ) );
+				?>
+			</p>
 			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="bst_import">
 				<?php wp_nonce_field( 'bst_import' ); ?>
 				<input type="file" name="bst_file" accept=".json,application/json" required>
 				<?php submit_button( __( 'Import', 'bigspy-ai-theme-wp' ), 'secondary', 'submit', false ); ?>
 			</form>
+			<?php if ( is_array( $backup ) && ! empty( $backup['date'] ) ) : ?>
+				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin-top:12px" onsubmit="return confirm('<?php echo esc_js( __( 'Restore the theme options saved before the last import or reset?', 'bigspy-ai-theme-wp' ) ); ?>');">
+					<input type="hidden" name="action" value="bst_undo">
+					<?php wp_nonce_field( 'bst_undo' ); ?>
+					<?php submit_button( __( 'Undo last import or reset', 'bigspy-ai-theme-wp' ), 'secondary', 'submit', false ); ?>
+					<span class="description">
+						<?php
+						/* translators: %s: date and time. */
+						echo esc_html( sprintf( __( 'Backup saved %s.', 'bigspy-ai-theme-wp' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $backup['date'] ) ) );
+						?>
+					</span>
+				</form>
+			<?php endif; ?>
 		</div>
 
 		<div class="card" style="max-width:none">
@@ -256,66 +300,123 @@ function bst_dashboard_page() {
 	<?php
 }
 
-function bst_dashboard_redirect( $notice ) {
-	wp_safe_redirect( add_query_arg( 'bst-notice', $notice, admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) );
+function bst_dashboard_redirect( $notice, $args = array() ) {
+	$args['bst-notice'] = $notice;
+	wp_safe_redirect( add_query_arg( $args, admin_url( 'admin.php?page=bigspy-ai-theme-wp' ) ) );
 	exit;
 }
-
-function bst_handle_export() {
-	if ( ! current_user_can( 'edit_theme_options' ) ) {
-		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-ai-theme-wp' ) );
-	}
-	check_admin_referer( 'bst_export' );
-
-	// Export the value each option really has on this site: saved, or its default (which can
-	// come from imported Flatsome settings). Saved-only exports missed colors, fonts and more.
-	$options = array();
-	foreach ( bst_defaults() as $key => $default ) {
-		$value = get_theme_mod( $key, $default );
-		if ( null !== $value ) {
-			$options[ $key ] = $value;
-		}
-	}
-
-	$data = array(
-		'theme'   => 'bigspy-ai-theme-wp',
-		'version' => BST_VERSION,
-		'site'    => home_url( '/' ),
-		'date'    => gmdate( 'c' ),
-		'options' => $options,
-		'css'     => wp_get_custom_css(),
-	);
-
-	nocache_headers();
-	header( 'Content-Type: application/json; charset=utf-8' );
-	header( 'Content-Disposition: attachment; filename=bigspy-ai-theme-wp-options-' . gmdate( 'Y-m-d' ) . '.json' );
-	echo wp_json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
-	exit;
-}
-add_action( 'admin_post_bst_export', 'bst_handle_export' );
 
 /**
- * Sanitize one imported value according to the type of its default.
+ * Every theme option that export, import, undo and reset handle, with the field that edits it.
+ * Built from bst_defaults() plus every Customizer field, so new fields (responsive tablet and
+ * mobile values, spacing…) are included automatically.
+ *
+ * @return array<string, array> key => field definition (empty array when the key has no field).
  */
-function bst_sanitize_imported( $key, $value, $default ) {
+function bst_transfer_keys() {
+	static $keys = null;
+	if ( null !== $keys ) {
+		return $keys;
+	}
+	$keys = array_fill_keys( array_keys( bst_defaults() ), array() );
+	foreach ( bst_customizer_fields() as $field ) {
+		$id   = $field['id'] ?? '';
+		$type = $field['type'] ?? '';
+		if ( '' === $id || in_array( $type, array( 'heading', 'layout_presets' ), true ) ) {
+			continue;
+		}
+		$keys[ $id ] = $field;
+		if ( 'responsive' === $type ) {
+			foreach ( array( 'tablet', 'mobile' ) as $device ) {
+				$keys[ $id . '_' . $device ] = array( 'id' => $id . '_' . $device, 'type' => 'responsive_device', 'input_attrs' => $field['input_attrs'] ?? array() );
+			}
+		}
+	}
+	return $keys;
+}
+
+/** Clamp a number to a field's min / max. */
+function bst_transfer_clamp( $value, $field ) {
+	$attrs = (array) ( $field['input_attrs'] ?? array() );
+	if ( isset( $attrs['min'] ) && is_numeric( $attrs['min'] ) ) {
+		$value = max( $attrs['min'] + 0, $value );
+	}
+	if ( isset( $attrs['max'] ) && is_numeric( $attrs['max'] ) ) {
+		$value = min( $attrs['max'] + 0, $value );
+	}
+	return $value;
+}
+
+/**
+ * Sanitize one imported value the same way the Customizer would.
+ *
+ * @return mixed Clean value, or null to skip the key.
+ */
+function bst_sanitize_imported( $key, $value, $default, $field = array() ) {
 	if ( 'css_presets' === $key ) {
 		return bst_sanitize_css_presets( $value );
 	}
-	if ( 'header_layout' === $key ) {
-		return wp_json_encode( bst_normalize_header_layout( $value ) );
+	if ( 'header_layout' === $key || 'header_builder' === ( $field['type'] ?? '' ) ) {
+		// Empty means "use the default layout"; keep it empty instead of freezing today's default.
+		return ( '' === $value || null === $value ) ? '' : wp_json_encode( bst_normalize_header_layout( $value ) );
 	}
 	if ( 0 === strpos( $key, 'scripts_' ) ) {
-		return current_user_can( 'unfiltered_html' ) ? (string) $value : null;
+		return current_user_can( 'unfiltered_html' ) && is_scalar( $value ) ? (string) $value : null;
 	}
-	// Code fields (banner code, HTML blocks…) keep <style> and <script> like the Customizer does.
-	if ( in_array( $key, bst_code_option_keys(), true ) ) {
+	$type = $field['type'] ?? '';
+	switch ( $type ) {
+		case 'responsive':
+		case 'number':
+			if ( ! is_numeric( $value ) ) {
+				return $default;
+			}
+			// The default may sit outside min / max on purpose (-1 = inherit).
+			return ( $value + 0 ) == $default ? $default : bst_transfer_clamp( $value + 0, $field ); // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+		case 'responsive_device':
+			return ( is_numeric( $value ) && '' !== $value ) ? bst_transfer_clamp( $value + 0, $field ) : '';
+		case 'spacing':
+			return bst_sanitize_spacing( $value );
+		case 'checkbox':
+			return ! empty( $value ) && 'false' !== $value;
+		case 'select':
+		case 'radio':
+		case 'image_radio':
+			$choices = (array) ( $field['choices'] ?? array() );
+			if ( ! is_scalar( $value ) || ( $choices && ! array_key_exists( (string) $value, $choices ) ) ) {
+				return $default;
+			}
+			// Keep the default's type: numeric choices (columns…) stay numbers.
+			return ( is_int( $default ) && is_numeric( $value ) ) ? (int) $value : (string) $value;
+		case 'color':
+			if ( '' === $value ) {
+				return '';
+			}
+			return is_scalar( $value ) && sanitize_hex_color( (string) $value ) ? sanitize_hex_color( (string) $value ) : $default;
+		case 'dropdown-pages':
+			$page = absint( $value );
+			return ( $page && get_post( $page ) ) ? $page : 0;
+		case 'url':
+		case 'image':
+			return is_scalar( $value ) ? esc_url_raw( (string) $value ) : $default;
+		case 'email':
+			return is_scalar( $value ) ? sanitize_email( (string) $value ) : $default;
+		case 'html':
+			return is_scalar( $value ) ? wp_kses_post( (string) $value ) : $default;
+		case 'code':
+			return current_user_can( 'unfiltered_html' ) && is_scalar( $value ) ? bst_sanitize_code( (string) $value ) : null;
+	}
+	// Keys without a field: decide from the default's type.
+	if ( in_array( $key, array( 'header_banner_desktop', 'header_banner_mobile' ), true ) ) {
 		return is_scalar( $value ) ? bst_sanitize_code( (string) $value ) : $default;
 	}
 	if ( is_bool( $default ) ) {
-		return (bool) $value;
+		return ! empty( $value ) && 'false' !== $value;
 	}
 	if ( is_int( $default ) || is_float( $default ) ) {
 		return is_numeric( $value ) ? $value + 0 : $default;
+	}
+	if ( is_array( $default ) ) {
+		return is_array( $value ) ? map_deep( $value, 'wp_kses_post' ) : $default;
 	}
 	if ( ! is_scalar( $value ) ) {
 		return $default;
@@ -338,30 +439,176 @@ function bst_code_option_keys() {
 	return $keys;
 }
 
-function bst_handle_import() {
+/** Current state of every theme option, logo, site icon and Additional CSS, for undo. */
+function bst_options_snapshot() {
+	$mods = get_theme_mods();
+	$mods = is_array( $mods ) ? $mods : array();
+	$keep = array_intersect_key( $mods, bst_transfer_keys() + array( 'custom_logo' => 1 ) );
+	return array(
+		'date'      => time(),
+		'mods'      => $keep,
+		'css'       => wp_get_custom_css(),
+		'site_icon' => (int) get_option( 'site_icon' ),
+	);
+}
+
+/** Save the current state so the next change can be undone. */
+function bst_options_save_backup() {
+	update_option( 'bst_options_backup', bst_options_snapshot(), false );
+}
+
+/** URL of an attachment by id ('' when missing). */
+function bst_transfer_media_url( $id ) {
+	$url = $id ? wp_get_attachment_url( (int) $id ) : '';
+	return $url ? $url : '';
+}
+
+/**
+ * Bring an image from another site into this Media Library. Images already on this site are reused.
+ *
+ * @return int Attachment id, or 0 on failure.
+ */
+function bst_transfer_fetch_image( $url ) {
+	$url = esc_url_raw( (string) $url );
+	if ( '' === $url || ! wp_http_validate_url( $url ) ) {
+		return 0;
+	}
+	$local = attachment_url_to_postid( $url );
+	if ( $local ) {
+		return (int) $local;
+	}
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	$id = media_sideload_image( $url, 0, null, 'id' );
+	return is_wp_error( $id ) ? 0 : (int) $id;
+}
+
+/** True when a URL points to another website. */
+function bst_transfer_is_foreign( $url ) {
+	$host = wp_parse_url( (string) $url, PHP_URL_HOST );
+	return $host && strtolower( $host ) !== strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) );
+}
+
+/** Everything the export file holds. */
+function bst_export_options_data() {
+	// Export the value each option really has on this site: saved, or its default (which can
+	// come from imported Flatsome settings). Fields without a default are exported when saved.
+	$defaults = bst_defaults();
+	$saved    = get_theme_mods();
+	$saved    = is_array( $saved ) ? $saved : array();
+	$options  = array();
+	foreach ( bst_transfer_keys() as $key => $field ) {
+		if ( array_key_exists( $key, $defaults ) ) {
+			$value = get_theme_mod( $key, $defaults[ $key ] );
+		} elseif ( array_key_exists( $key, $saved ) ) {
+			$value = $saved[ $key ];
+		} else {
+			continue;
+		}
+		if ( null !== $value ) {
+			$options[ $key ] = $value;
+		}
+	}
+
+	$data = array(
+		'theme'   => 'bigspy-ai-theme-wp',
+		'format'  => 2,
+		'version' => BST_VERSION,
+		'site'    => home_url( '/' ),
+		'date'    => gmdate( 'c' ),
+		'options' => $options,
+		'media'   => array(
+			'custom_logo' => bst_transfer_media_url( get_theme_mod( 'custom_logo' ) ),
+			'site_icon'   => bst_transfer_media_url( get_option( 'site_icon' ) ),
+		),
+		'css'     => wp_get_custom_css(),
+	);
+	return $data;
+}
+
+function bst_handle_export() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
 		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-ai-theme-wp' ) );
 	}
-	check_admin_referer( 'bst_import' );
+	check_admin_referer( 'bst_export' );
 
-	$file = $_FILES['bst_file'] ?? null; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	if ( ! $file || ! empty( $file['error'] ) || empty( $file['tmp_name'] ) || ! is_uploaded_file( $file['tmp_name'] ) || $file['size'] > 2 * MB_IN_BYTES ) {
-		bst_dashboard_redirect( 'invalid' );
+	$json = wp_json_encode( bst_export_options_data(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE );
+	if ( false === $json ) {
+		wp_die( esc_html__( 'The export file could not be created.', 'bigspy-ai-theme-wp' ) );
 	}
+	while ( ob_get_level() ) {
+		ob_end_clean();
+	}
+	nocache_headers();
+	header( 'Content-Type: application/json; charset=utf-8' );
+	header( 'Content-Disposition: attachment; filename="bigspy-ai-theme-wp-options-' . sanitize_file_name( (string) wp_parse_url( home_url(), PHP_URL_HOST ) ) . '-' . gmdate( 'Y-m-d' ) . '.json"' );
+	header( 'Content-Length: ' . strlen( $json ) );
+	echo $json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON download.
+	exit;
+}
+add_action( 'admin_post_bst_export', 'bst_handle_export' );
 
-	$data = json_decode( (string) file_get_contents( $file['tmp_name'] ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-	if ( ! is_array( $data ) || ! in_array( $data['theme'] ?? '', array( 'bigspy-ai-theme-wp', 'bigspy-theme' ), true ) || ! is_array( $data['options'] ?? null ) ) {
-		bst_dashboard_redirect( 'invalid' );
-	}
+/** Largest accepted import file. */
+function bst_import_max_bytes() {
+	return 10 * MB_IN_BYTES;
+}
+
+/**
+ * Apply an export array to this site. Saves a backup first.
+ *
+ * @return array{applied:int,skipped:int,media:int,media_failed:int}
+ */
+function bst_import_options_data( $data ) {
+	bst_options_save_backup();
 
 	$defaults = bst_defaults();
+	$keys     = bst_transfer_keys();
+	$result   = array( 'applied' => 0, 'skipped' => 0, 'media' => 0, 'media_failed' => 0 );
+
 	foreach ( $data['options'] as $key => $value ) {
-		if ( ! array_key_exists( $key, $defaults ) ) {
+		$key = (string) $key;
+		if ( ! array_key_exists( $key, $keys ) ) {
+			$result['skipped']++;
 			continue;
 		}
-		$clean = bst_sanitize_imported( $key, $value, $defaults[ $key ] );
-		if ( null !== $clean ) {
-			set_theme_mod( $key, $clean );
+		$field = $keys[ $key ];
+		$clean = bst_sanitize_imported( $key, $value, $defaults[ $key ] ?? '', $field );
+		if ( null === $clean ) {
+			$result['skipped']++;
+			continue;
+		}
+		// Images that live on the exporting site are copied into this Media Library.
+		if ( 'image' === ( $field['type'] ?? '' ) && is_string( $clean ) && bst_transfer_is_foreign( $clean ) ) {
+			$id = bst_transfer_fetch_image( $clean );
+			if ( $id ) {
+				$clean = (string) wp_get_attachment_url( $id );
+				$result['media']++;
+			} else {
+				$result['media_failed']++;
+			}
+		}
+		set_theme_mod( $key, $clean );
+		$result['applied']++;
+	}
+
+	$media = is_array( $data['media'] ?? null ) ? $data['media'] : array();
+	if ( ! empty( $media['custom_logo'] ) && is_string( $media['custom_logo'] ) ) {
+		$id = bst_transfer_fetch_image( $media['custom_logo'] );
+		if ( $id ) {
+			set_theme_mod( 'custom_logo', $id );
+			$result['media']++;
+		} else {
+			$result['media_failed']++;
+		}
+	}
+	if ( ! empty( $media['site_icon'] ) && is_string( $media['site_icon'] ) && current_user_can( 'manage_options' ) ) {
+		$id = bst_transfer_fetch_image( $media['site_icon'] );
+		if ( $id ) {
+			update_option( 'site_icon', $id );
+			$result['media']++;
+		} else {
+			$result['media_failed']++;
 		}
 	}
 
@@ -369,16 +616,105 @@ function bst_handle_import() {
 		wp_update_custom_css_post( wp_strip_all_tags( $data['css'] ) );
 	}
 
-	bst_dashboard_redirect( 'imported' );
+	return $result;
+}
+
+/**
+ * Read and validate an uploaded export file.
+ *
+ * @return array|string Data array, or an error notice key.
+ */
+function bst_import_read_upload( $file ) {
+	if ( ! is_array( $file ) || ! isset( $file['error'] ) ) {
+		return 'no-file';
+	}
+	if ( in_array( (int) $file['error'], array( UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE ), true ) ) {
+		return 'too-big';
+	}
+	if ( UPLOAD_ERR_NO_FILE === (int) $file['error'] ) {
+		return 'no-file';
+	}
+	if ( UPLOAD_ERR_OK !== (int) $file['error'] || empty( $file['tmp_name'] ) || ! is_uploaded_file( $file['tmp_name'] ) ) {
+		return 'upload-failed';
+	}
+	if ( (int) $file['size'] > bst_import_max_bytes() ) {
+		return 'too-big';
+	}
+	$raw = (string) file_get_contents( $file['tmp_name'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	$raw = preg_replace( '/^\xEF\xBB\xBF/', '', $raw ); // Files saved by some editors start with a BOM.
+	$data = json_decode( $raw, true );
+	if ( ! is_array( $data ) ) {
+		return 'bad-json';
+	}
+	if ( ! in_array( $data['theme'] ?? '', array( 'bigspy-ai-theme-wp', 'bigspy-theme' ), true ) || ! is_array( $data['options'] ?? null ) ) {
+		return 'invalid';
+	}
+	return $data;
+}
+
+function bst_handle_import() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-ai-theme-wp' ) );
+	}
+	check_admin_referer( 'bst_import' );
+
+	// A file larger than post_max_size empties $_FILES and $_POST, so the nonce check above would
+	// already have failed; this covers every other case.
+	$data = bst_import_read_upload( $_FILES['bst_file'] ?? null ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	if ( ! is_array( $data ) ) {
+		bst_dashboard_redirect( $data );
+	}
+
+	if ( function_exists( 'set_time_limit' ) ) {
+		@set_time_limit( 300 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- copying images can take a while.
+	}
+	$result = bst_import_options_data( $data );
+	bst_dashboard_redirect(
+		'imported',
+		array(
+			'bst-applied' => $result['applied'],
+			'bst-skipped' => $result['skipped'],
+			'bst-media'   => $result['media'],
+			'bst-mfail'   => $result['media_failed'],
+		)
+	);
 }
 add_action( 'admin_post_bst_import', 'bst_handle_import' );
+
+/** Restore the state saved before the last import or reset. */
+function bst_handle_undo() {
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
+		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-ai-theme-wp' ) );
+	}
+	check_admin_referer( 'bst_undo' );
+	$backup = get_option( 'bst_options_backup' );
+	if ( ! is_array( $backup ) || ! is_array( $backup['mods'] ?? null ) ) {
+		bst_dashboard_redirect( 'no-backup' );
+	}
+	$current = bst_options_snapshot();
+	foreach ( array_keys( bst_transfer_keys() + array( 'custom_logo' => 1 ) ) as $key ) {
+		remove_theme_mod( $key );
+	}
+	foreach ( $backup['mods'] as $key => $value ) {
+		set_theme_mod( $key, $value );
+	}
+	wp_update_custom_css_post( (string) ( $backup['css'] ?? '' ) );
+	if ( current_user_can( 'manage_options' ) ) {
+		update_option( 'site_icon', (int) ( $backup['site_icon'] ?? 0 ) );
+	}
+	// Undo can itself be undone.
+	update_option( 'bst_options_backup', $current, false );
+	bst_dashboard_redirect( 'restored' );
+}
+add_action( 'admin_post_bst_undo', 'bst_handle_undo' );
 
 function bst_handle_reset() {
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
 		wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'bigspy-ai-theme-wp' ) );
 	}
 	check_admin_referer( 'bst_reset' );
-	foreach ( array_keys( bst_defaults() ) as $key ) {
+	bst_options_save_backup();
+	foreach ( array_keys( bst_transfer_keys() ) as $key ) {
 		remove_theme_mod( $key );
 	}
 	bst_dashboard_redirect( 'reset' );
