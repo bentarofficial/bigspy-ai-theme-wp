@@ -95,10 +95,16 @@ function bst_title_bar() {
 		bst_page_crumbs_only();
 		return;
 	}
-	echo '<div class="bs-title-bar' . ( bst_mod( 'title_bar_image' ) ? ' has-image' : '' ) . '"><div class="bs-container bs-title-bar__inner">';
+	$above = bst_breadcrumb_above( 'bar' );
+	echo bst_title_bar_open() . '<div class="bs-container bs-title-bar__inner">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in bst_title_bar_open().
+	if ( $above ) {
+		bst_breadcrumbs();
+	}
 	echo '<h1 class="bs-title-bar__title">' . wp_kses_post( bst_get_title() ) . '</h1>';
 	bst_archive_description();
-	bst_breadcrumbs();
+	if ( ! $above ) {
+		bst_breadcrumbs();
+	}
 	echo '</div></div>';
 }
 
@@ -113,10 +119,16 @@ function bst_simple_title() {
 		bst_page_crumbs_only();
 		return;
 	}
+	$above = bst_breadcrumb_above( 'simple' );
 	echo '<header class="bs-page-header">';
-	bst_breadcrumbs();
+	if ( $above ) {
+		bst_breadcrumbs();
+	}
 	echo '<h1 class="bs-page-title">' . wp_kses_post( bst_get_title() ) . '</h1>';
 	bst_archive_description();
+	if ( ! $above ) {
+		bst_breadcrumbs();
+	}
 	echo '</header>';
 }
 
@@ -171,7 +183,7 @@ function bst_breadcrumbs() {
 		}
 	}
 	if ( function_exists( 'woocommerce_breadcrumb' ) && function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
-		woocommerce_breadcrumb( array( 'wrap_before' => '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">', 'wrap_after' => '</nav>', 'delimiter' => '<span class="bs-breadcrumbs__sep">/</span>' ) );
+		woocommerce_breadcrumb( array( 'wrap_before' => '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">', 'wrap_after' => '</nav>', 'delimiter' => '<span class="bs-breadcrumbs__sep" aria-hidden="true">' . esc_html( bst_breadcrumb_sep() ) . '</span>' ) );
 		return;
 	}
 
@@ -209,7 +221,7 @@ function bst_breadcrumbs() {
 	foreach ( $crumbs as $crumb ) {
 		$items[] = $crumb[0] ? '<a href="' . esc_url( $crumb[0] ) . '">' . esc_html( $crumb[1] ) . '</a>' : '<span aria-current="page">' . esc_html( $crumb[1] ) . '</span>';
 	}
-	echo '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">' . implode( '<span class="bs-breadcrumbs__sep">/</span>', $items ) . '</nav>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">' . implode( '<span class="bs-breadcrumbs__sep" aria-hidden="true">' . esc_html( bst_breadcrumb_sep() ) . '</span>', $items ) . '</nav>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**

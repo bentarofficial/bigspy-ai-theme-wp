@@ -1070,7 +1070,28 @@ li.is-open > .bs-submenu-toggle svg {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: rgba(0, 0, 0, .45);
+	background: var(--bs-titlebar-overlay, rgba(0, 0, 0, .45));
+}
+
+.bs-title-bar {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: var(--bs-titlebar-min-h, 0);
+}
+
+.bs-title-bar--left { text-align: left; }
+.bs-title-bar--right { text-align: right; }
+.bs-title-bar.bs-title-bar--left .bs-breadcrumbs { justify-content: flex-start; }
+.bs-title-bar.bs-title-bar--right .bs-breadcrumbs { justify-content: flex-end; }
+.bs-title-bar--left .bs-archive-description { margin-left: 0; }
+.bs-title-bar--right .bs-archive-description { margin-right: 0; }
+.bs-title-bar__inner { width: 100%; }
+.bs-title-bar .bs-title-bar__inner > .bs-breadcrumbs:first-child { margin-bottom: .6em; }
+.bs-title-bar.is-parallax { background-attachment: fixed; }
+
+@media (max-width: 1024px), (prefers-reduced-motion: reduce) {
+	.bs-title-bar.is-parallax { background-attachment: scroll; }
 }
 
 .bs-title-bar__inner {

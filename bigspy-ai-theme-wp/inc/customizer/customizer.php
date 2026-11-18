@@ -18,6 +18,7 @@ require_once __DIR__ . '/design-tokens.php';
 require_once __DIR__ . '/tree.php';
 require_once __DIR__ . '/typography.php';
 require_once __DIR__ . '/header-advanced.php';
+require_once __DIR__ . '/title-bar.php';
 require_once __DIR__ . '/style-kits.php';
 
 function bst_customize_register( $wp_customize ) {
