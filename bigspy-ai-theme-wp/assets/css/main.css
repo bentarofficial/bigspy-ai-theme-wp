@@ -66,8 +66,8 @@ h1 { font-size: clamp(calc(var(--bs-h1) * .7), 5vw, var(--bs-h1)); }
 h2 { font-size: clamp(calc(var(--bs-h2) * .75), 4vw, var(--bs-h2)); }
 h3 { font-size: clamp(calc(var(--bs-h3) * .85), 3vw, var(--bs-h3)); }
 h4 { font-size: var(--bs-h4); }
-h5 { font-size: 1.1em; }
-h6 { font-size: 1em; }
+h5 { font-size: var(--bs-h5, 1.1em); }
+h6 { font-size: var(--bs-h6, 1em); }
 
 p,
 ul,

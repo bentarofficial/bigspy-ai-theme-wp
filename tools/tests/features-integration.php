@@ -745,6 +745,24 @@ bst_test( '' === bst_sanitize_spacing( '{"unit":"bad","desktop":["","","",""]}' 
 remove_theme_mod( 'h1_size_tablet' );
 remove_theme_mod( 'h2_size_mobile' );
 remove_theme_mod( 'title_bar_padding' );
+// G-202: typography and extra colors.
+$bst_css0 = bst_dynamic_css();
+bst_test( false === strpos( $bst_css0, 'h1,h2,h3,h4,h5,h6{' ) && false === strpos( $bst_css0, '.bs-meta{' ) && false === strpos( $bst_css0, '--bs-custom-1' ) && false === strpos( $bst_css0, '--bs-h5' ), 'G-202: nothing printed until set' );
+set_theme_mod( 'h5_size', 18 );
+set_theme_mod( 'h6_size_mobile', 13 );
+set_theme_mod( 'heading_letter_spacing', -0.5 );
+set_theme_mod( 'meta_transform', 'uppercase' );
+set_theme_mod( 'button_font_size', 15 );
+set_theme_mod( 'color_custom_1', '#123456' );
+set_theme_mod( 'color_custom_1_name', 'Brand teal' );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, '--bs-h5:18px' ) && false !== strpos( $bst_css1, '@media (max-width:549px){:root{--bs-h6:13px}}' ) && false !== strpos( $bst_css1, 'h1,h2,h3,h4,h5,h6{letter-spacing:-0.5px}' ) && false !== strpos( $bst_css1, '.bs-meta{text-transform:uppercase}' ) && false !== strpos( $bst_css1, 'font-size:15px' ), 'G-202: H5/H6, heading spacing, meta, button size' );
+wp_clean_theme_json_cache();
+$bst_pal = wp_json_encode( wp_get_global_settings( array( 'color', 'palette' ) ) );
+bst_test( false !== strpos( $bst_css1, '--bs-custom-1:#123456' ) && false !== strpos( $bst_pal, 'Brand teal' ) && false !== strpos( $bst_pal, '"primary"' ), 'G-202: extra color in CSS and editor palette' );
+foreach ( array( 'h5_size', 'h6_size_mobile', 'heading_letter_spacing', 'meta_transform', 'button_font_size', 'color_custom_1', 'color_custom_1_name' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
 // G-214: Customizer tree.
 $bst_sec = bst_customizer_sections();
 $bst_pan = bst_customizer_panels();

@@ -38,6 +38,8 @@ function bst_css_var_map() {
 		'h2_size'                => array( '--bs-h2', 'px' ),
 		'h3_size'                => array( '--bs-h3', 'px' ),
 		'h4_size'                => array( '--bs-h4', 'px' ),
+		'h5_size'                => array( '--bs-h5', 'px' ),
+		'h6_size'                => array( '--bs-h6', 'px' ),
 		'nav_size'               => array( '--bs-nav-size', 'px' ),
 		'nav_weight'             => array( '--bs-nav-weight', '' ),
 		'nav_transform'          => array( '--bs-nav-transform', '' ),

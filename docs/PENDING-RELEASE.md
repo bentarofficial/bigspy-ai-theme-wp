@@ -16,6 +16,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-214 Cây Customizer mới:** Global style (Global style, Colors, Typography, Buttons) · Header (có Announcement bar) · Footer (có Floating contact) · Pages & title (Site layout, Title bar, Sidebar) · Blog · WooCommerce · **Listing (List mode)** (Listing design, Listing page, Homepage sidebar, Listing texts; trước nằm trong Layout) · Advanced. **Contact info & social** ra cấp ngoài cùng (G-193). Mỗi panel và section có mô tả 1 dòng (ô tìm kiếm đã tìm cả mô tả); section blog/trang/listing/shop/404 có nút **View on a sample page** mở preview đúng trang. Giữ nguyên id section/panel nên nhãn sửa nhanh, link dashboard, giá trị đã lưu không đổi. Kiểm thử: lint, features-check 2 test G-214 đạt. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-202 Typography đầy đủ:** H5/H6 theo thiết bị; line-height và letter-spacing cho heading; letter-spacing body; chữ meta nhỏ (cỡ, chữ hoa, giãn chữ); letter-spacing menu; cỡ chữ và giãn chữ nút; 4 **màu thêm có tên** vào palette editor và biến `--bs-custom-1…4`. Mọi tuỳ chọn để trống = không in CSS, giao diện cũ giữ nguyên. Host Google Fonts nội bộ đã có sẵn (Advanced → Performance), không làm lại. Màu nút để G-169. Kiểm thử: lint, features-check 3 test G-202 đạt. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
