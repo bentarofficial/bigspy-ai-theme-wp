@@ -732,6 +732,215 @@ $bst_h = $bst_rb( 'bst/popup', array( 'popupId' => 'p2', 'trigger' => 'end', 'po
 bst_test( false !== strpos( $bst_h, 'data-bs-popup-end="p2"' ) && false !== strpos( $bst_h, 'bs-popup--bar-bottom bs-popup--anim-zoom bs-popup--close-text bs-popup--close-outside' ) && false !== strpos( $bst_h, 'data-show-on="mobile"' ) && false !== strpos( $bst_h, 'data-close-submit="1"' ) && false !== strpos( $bst_h, '--bs-pop-w:500px' ) && false !== strpos( $bst_h, '--bs-pop-ovc:#112233' ) && false !== strpos( $bst_h, 'Close &times;' ), 'popup: end trigger, bar, anim, close button, device, width, overlay' );
 bst_test( '' === $bst_rb( 'bst/popup', array( 'popupId' => 'p3', 'loginState' => 'in' ), 'x' ) || is_user_logged_in(), 'popup: logged-in only hides for guests' );
 bst_test( '' === $bst_rb( 'bst/popup', array( 'popupId' => 'p4', 'dateTo' => '2000-01-01' ), 'x' ), 'popup: hidden after the end date' );
+// G-199: responsive and spacing options.
+$bst_css0 = bst_dynamic_css();
+bst_test( false === strpos( $bst_css0, '@media (max-width:849px){:root{--bs-h1' ) && false === strpos( $bst_css0, '--bs-titlebar-pad' ), 'G-199: no device CSS until a value is set' );
+set_theme_mod( 'h1_size_tablet', 30 );
+set_theme_mod( 'h2_size_mobile', 22 );
+set_theme_mod( 'title_bar_padding', bst_sanitize_spacing( '{"unit":"px","desktop":["60","0","60","0"],"mobile":["20","","20",""]}' ) );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, '@media (max-width:849px){:root{--bs-h1:30px}}' ) && false !== strpos( $bst_css1, '--bs-h2:22px' ) && false !== strpos( $bst_css1, 'h2{font-size:var(--bs-h2)}' ) && false !== strpos( $bst_css1, '--bs-h1:40px' ), 'G-199: tablet/mobile heading sizes, desktop kept' );
+bst_test( false !== strpos( $bst_css1, '--bs-titlebar-pad:60px 0 60px 0' ) && false !== strpos( $bst_css1, '@media (max-width:549px){:root{--bs-h2:22px;--bs-titlebar-pad:20px 0 20px 0}}' ), 'G-199: spacing per device' );
+bst_test( '' === bst_sanitize_spacing( '{"unit":"bad","desktop":["","","",""]}' ) && false !== strpos( bst_sanitize_spacing( '{"unit":"bad","desktop":["x","5","",""]}' ), '"unit":"px"' ), 'G-199: spacing sanitize' );
+remove_theme_mod( 'h1_size_tablet' );
+remove_theme_mod( 'h2_size_mobile' );
+remove_theme_mod( 'title_bar_padding' );
+// G-204-b: sticky logo and mega menu options.
+bst_test( false === strpos( bst_dynamic_css(), '--bs-mega' ) && false === strpos( bst_dynamic_css(), 'bs-logo__sticky' ), 'G-204-b: nothing printed until set' );
+set_theme_mod( 'mega_width', 1200 );
+set_theme_mod( 'mega_columns', '4' );
+set_theme_mod( 'mega_heading_color', '#aa0000' );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, '--bs-mega-w:1200px' ) && false !== strpos( $bst_css1, '--bs-mega-cols:repeat(4,minmax(0,1fr))' ) && false !== strpos( $bst_css1, '--bs-mega-head:#aa0000' ), 'G-204-b: mega menu width, columns, heading color' );
+set_theme_mod( 'header_sticky', true );
+set_theme_mod( 'logo_sticky', 'https://example.com/sticky.png' );
+bst_test( false !== strpos( bst_sticky_logo_html(), 'bs-logo__sticky' ) && false !== strpos( bst_dynamic_css(), '.bs-header.is-stuck .bs-logo .bs-logo__sticky{display:block}' ), 'G-204-b: sticky logo markup and CSS' );
+set_theme_mod( 'header_sticky', false );
+bst_test( '' === bst_sticky_logo_html(), 'G-204-b: no sticky logo when sticky header is off' );
+foreach ( array( 'mega_width', 'mega_columns', 'mega_heading_color', 'header_sticky', 'logo_sticky' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
+// G-202: typography and extra colors.
+$bst_css0 = bst_dynamic_css();
+bst_test( false === strpos( $bst_css0, 'h1,h2,h3,h4,h5,h6{' ) && false === strpos( $bst_css0, '.bs-meta{' ) && false === strpos( $bst_css0, '--bs-custom-1' ) && false === strpos( $bst_css0, '--bs-h5' ), 'G-202: nothing printed until set' );
+set_theme_mod( 'h5_size', 18 );
+set_theme_mod( 'h6_size_mobile', 13 );
+set_theme_mod( 'heading_letter_spacing', -0.5 );
+set_theme_mod( 'meta_transform', 'uppercase' );
+set_theme_mod( 'button_font_size', 15 );
+set_theme_mod( 'color_custom_1', '#123456' );
+set_theme_mod( 'color_custom_1_name', 'Brand teal' );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, '--bs-h5:18px' ) && false !== strpos( $bst_css1, '@media (max-width:549px){:root{--bs-h6:13px}}' ) && false !== strpos( $bst_css1, 'h1,h2,h3,h4,h5,h6{letter-spacing:-0.5px}' ) && false !== strpos( $bst_css1, '.bs-meta{text-transform:uppercase}' ) && false !== strpos( $bst_css1, 'font-size:15px' ), 'G-202: H5/H6, heading spacing, meta, button size' );
+wp_clean_theme_json_cache();
+$bst_pal = wp_json_encode( wp_get_global_settings( array( 'color', 'palette' ) ) );
+bst_test( false !== strpos( $bst_css1, '--bs-custom-1:#123456' ) && false !== strpos( $bst_pal, 'Brand teal' ) && false !== strpos( $bst_pal, '"primary"' ), 'G-202: extra color in CSS and editor palette' );
+foreach ( array( 'h5_size', 'h6_size_mobile', 'heading_letter_spacing', 'meta_transform', 'button_font_size', 'color_custom_1', 'color_custom_1_name' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
+// G-204: advanced header.
+$bst_css0 = bst_dynamic_css();
+bst_test( false === strpos( $bst_css0, '--bs-offcanvas-w' ) && false === strpos( $bst_css0, '.bs-header.is-stuck .bs-header__sticky,' ), 'G-204: nothing printed until set' );
+ob_start();
+bst_render_header();
+bst_render_offcanvas();
+$bst_h = ob_get_clean();
+bst_test( false !== strpos( $bst_h, 'sticky-slide' ) && false !== strpos( $bst_h, 'bs-offcanvas--panel' ), 'G-204: default classes keep old look' );
+set_theme_mod( 'header_sticky_style', 'smart' );
+set_theme_mod( 'offcanvas_style', 'dropdown' );
+set_theme_mod( 'offcanvas_width', 400 );
+set_theme_mod( 'header_sticky_bg', '#112233' );
+ob_start();
+bst_render_header();
+bst_render_offcanvas();
+$bst_h = ob_get_clean();
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_h, 'sticky-smart' ) && false !== strpos( $bst_h, 'bs-offcanvas--dropdown' ) && false !== strpos( $bst_css1, '--bs-offcanvas-w:400px' ) && false !== strpos( $bst_css1, 'background:#112233' ), 'G-204: sticky style, menu style, width, sticky color' );
+set_theme_mod( 'header_sticky_style', 'bogus' );
+ob_start();
+bst_render_header();
+bst_test( false !== strpos( ob_get_clean(), 'sticky-slide' ), 'G-204: unknown sticky style falls back' );
+foreach ( array( 'header_sticky_style', 'offcanvas_style', 'offcanvas_width', 'header_sticky_bg' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
+// G-205-b: element shown on one device only.
+set_theme_mod( 'fb_show_about', 'mobile' );
+bst_test( '<div class="bs-fb-only-mobile"><p>x</p></div>' === bst_fb_device_wrap( 'about', '<p>x</p>' ) && '<p>y</p>' === bst_fb_device_wrap( 'menu', '<p>y</p>' ) && '' === bst_fb_device_wrap( 'about', '' ), 'G-205-b: device wrap only when set and not empty' );
+set_theme_mod( 'fb_show_about', 'bogus' );
+bst_test( '<p>x</p>' === bst_fb_device_wrap( 'about', '<p>x</p>' ), 'G-205-b: unknown value shows on all devices' );
+remove_theme_mod( 'fb_show_about' );
+// G-205: footer builder.
+ob_start();
+bst_render_footer();
+$bst_h = ob_get_clean();
+bst_test( false === strpos( $bst_h, 'bs-fb-row' ) && '' === bst_fb_css(), 'G-205: classic footer by default' );
+$bst_l = bst_fb_normalize_layout( '{"main":[["logo","bogus","logo"],["about"]],"nope":[["menu"]]}' );
+bst_test( array( 'logo' ) === $bst_l['main'][0] && array( 'about' ) === $bst_l['main'][1] && 6 === count( $bst_l['top'] ) && ! isset( $bst_l['nope'] ), 'G-205: layout normalised (unknown, duplicate dropped)' );
+bst_test( array( 2.0, 1.0, 1.0 ) === bst_fb_widths( '2, 1', 3 ) && array( 0.25 ) === bst_fb_widths( '0', 1 ), 'G-205: column widths parsed and clamped' );
+set_theme_mod( 'footer_type', 'builder' );
+set_theme_mod( 'footer_layout', wp_json_encode( array( 'main' => array( array( 'about' ), array( 'button' ) ), 'bottom' => array( array( 'copyright' ) ) ) ) );
+set_theme_mod( 'fb_main_cols', 2 );
+set_theme_mod( 'fb_main_widths', '2,1' );
+set_theme_mod( 'fb_bottom_cols', 1 );
+set_theme_mod( 'fb_about', 'Hello footer [year]' );
+set_theme_mod( 'fb_button_text', 'Call us' );
+set_theme_mod( 'fb_button_url', 'https://example.com/c' );
+set_theme_mod( 'fb_main_bg', '#223344' );
+ob_start();
+bst_render_footer();
+$bst_h = ob_get_clean();
+bst_test( false !== strpos( $bst_h, 'bs-fb-row--main' ) && false !== strpos( $bst_h, 'Hello footer ' . gmdate( 'Y' ) ) && false !== strpos( $bst_h, 'minmax(0,2fr) minmax(0,1fr)' ) && false !== strpos( $bst_h, 'Call us' ) && false !== strpos( $bst_h, 'bs-copyright' ) && false === strpos( $bst_h, 'bs-footer-widgets' ) && false !== strpos( bst_fb_css(), '.bs-fb-row--main{background:#223344' ), 'G-205: builder renders rows, widths, elements, colors' );
+set_theme_mod( 'fb_main_cols', 1 );
+ob_start();
+bst_render_footer();
+bst_test( false === strpos( ob_get_clean(), 'Call us' ), 'G-205: elements past the column count are not shown' );
+foreach ( array( 'footer_type', 'footer_layout', 'fb_main_cols', 'fb_main_widths', 'fb_bottom_cols', 'fb_about', 'fb_button_text', 'fb_button_url', 'fb_main_bg' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
+// G-200: style kits and per-section reset.
+$bst_kf = array();
+foreach ( bst_customizer_fields() as $bst_f ) {
+	$bst_kf[ $bst_f['id'] ] = $bst_f;
+}
+$bst_bad = array();
+foreach ( bst_style_kits() as $bst_kk => $bst_kit ) {
+	foreach ( $bst_kit['settings'] as $bst_id => $bst_v ) {
+		$bst_f = $bst_kf[ $bst_id ] ?? null;
+		if ( ! $bst_f ) {
+			$bst_bad[] = $bst_kk . ':' . $bst_id;
+		} elseif ( isset( $bst_f['choices'] ) && ! isset( $bst_f['choices'][ $bst_v ] ) ) {
+			$bst_bad[] = $bst_kk . ':' . $bst_id . '=' . $bst_v;
+		} elseif ( 'color' === $bst_f['type'] && ! sanitize_hex_color( $bst_v ) ) {
+			$bst_bad[] = $bst_kk . ':' . $bst_id;
+		}
+	}
+}
+bst_test( 8 === count( bst_style_kits() ) && ! $bst_bad && 'layout_presets' === $bst_kf['style_kit_presets']['type'], 'G-200: 8 style kits, every setting exists with a valid value ' . implode( ',', $bst_bad ) );
+require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
+$bst_wpc = new WP_Customize_Manager();
+do_action( 'customize_register', $bst_wpc );
+$bst_rm = bst_section_reset_map( $bst_wpc );
+bst_test( isset( $bst_rm['bst_colors']['color_primary'], $bst_rm['bst_typography']['h1_size_mobile'] ) && '#0a4d8c' === $bst_rm['bst_colors']['color_primary'] && ! isset( $bst_rm['title_tagline'] ), 'G-200: reset map has defaults per BIGSPY section, incl. device settings' );
+// G-208: more blog options.
+$bst_pid = wp_insert_post( array( 'post_title' => 'Share test', 'post_content' => 'Body text here', 'post_status' => 'publish' ) );
+$GLOBALS['post'] = get_post( $bst_pid );
+setup_postdata( $GLOBALS['post'] );
+set_theme_mod( 'single_share', true );
+ob_start();
+bst_share_buttons();
+$bst_h = ob_get_clean();
+bst_test( false !== strpos( $bst_h, 'bs-share__link--facebook' ) && false !== strpos( $bst_h, 'bs-share__copy' ) && false !== strpos( $bst_h, 'bs-share--default' ), 'G-208: default share buttons unchanged' );
+set_theme_mod( 'share_networks', 'zalo, bogus, x, copy' );
+set_theme_mod( 'share_style', 'brand' );
+bst_test( array( 'zalo', 'x', 'copy' ) === array_keys( bst_share_links() ), 'G-208: networks in chosen order, unknown dropped' );
+set_theme_mod( 'share_position', 'top' );
+ob_start();
+bst_share_buttons();
+bst_test( '' === ob_get_clean(), 'G-208: bottom share hidden when position is top' );
+ob_start();
+bst_share_buttons( 'top' );
+$bst_h = ob_get_clean();
+bst_test( false !== strpos( $bst_h, 'bs-share--brand' ) && false !== strpos( $bst_h, 'sp.zalo.me' ) && strpos( $bst_h, 'zalo' ) < strpos( $bst_h, 'twitter' ), 'G-208: top share with brand style and order' );
+foreach ( array( 'share_networks', 'share_style', 'share_position', 'single_share' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
+wp_reset_postdata();
+set_theme_mod( 'comment_hide_url', true );
+$bst_cf = apply_filters( 'comment_form_default_fields', array( 'author' => 'a', 'email' => 'e', 'url' => 'u' ) );
+remove_theme_mod( 'comment_hide_url' );
+bst_test( ! isset( $bst_cf['url'] ) && isset( $bst_cf['email'] ), 'G-208: website field removed from comment form' );
+$GLOBALS['wp_the_query']->query( array( 's' => 'Share' ) );
+$GLOBALS['wp_query'] = $GLOBALS['wp_the_query'];
+$bst_before = bst_mod( 'blog_layout' );
+set_theme_mod( 'search_layout', 'list' );
+set_theme_mod( 'search_sidebar', 'none' );
+bst_test( 'list' === bst_mod( 'blog_layout' ) && 'none' === bst_mod( 'blog_sidebar' ), 'G-208: search page uses its own layout and sidebar' );
+set_theme_mod( 'search_layout', 'inherit' );
+bst_test( $bst_before === bst_mod( 'blog_layout' ), 'G-208: inherit keeps the blog layout' );
+remove_theme_mod( 'search_layout' );
+remove_theme_mod( 'search_sidebar' );
+$GLOBALS['wp_the_query']->query( array( 'author' => 1 ) );
+$GLOBALS['wp_query'] = $GLOBALS['wp_the_query'];
+ob_start();
+bst_author_header();
+$bst_a0 = ob_get_clean();
+set_theme_mod( 'author_header', true );
+ob_start();
+bst_author_header();
+$bst_a1 = ob_get_clean();
+remove_theme_mod( 'author_header' );
+bst_test( '' === $bst_a0 && false !== strpos( $bst_a1, 'bs-author-header' ) && false !== strpos( $bst_a1, 'post' ), 'G-208: author card only when enabled' );
+wp_delete_post( $bst_pid, true );
+wp_reset_query();
+// G-214: Customizer tree.
+$bst_sec = bst_customizer_sections();
+$bst_pan = bst_customizer_panels();
+bst_test( 'bst_style' === $bst_sec['bst_global_style']['panel'] && 'bst_layout' === $bst_sec['bst_sidebar']['panel'] && '' === $bst_sec['bst_contact']['panel'] && 'bst_advanced' === $bst_sec['bst_site_tools']['panel'] && 'Global style' === $bst_pan['bst_style'][0], 'G-214: sections sit in the new tree, contact on top level' );
+$bst_bad = array();
+foreach ( $bst_sec as $bst_id => $bst_s ) {
+	if ( '' !== ( $bst_s['panel'] ?? '' ) && 'woocommerce' !== $bst_s['panel'] && ! isset( $bst_pan[ $bst_s['panel'] ] ) ) {
+		$bst_bad[] = $bst_id;
+	}
+	if ( '' === trim( (string) ( $bst_s['description'] ?? '' ) ) ) {
+		$bst_bad[] = $bst_id . ':nodesc';
+	}
+}
+bst_test( ! $bst_bad, 'G-214: every section has a known panel and a description ' . implode( ',', $bst_bad ) );
+// G-201: design tokens.
+$bst_css0 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css0, '--bs-shadow-md:' ) && false === strpos( $bst_css0, 'html .bs-card' ) && false === strpos( $bst_css0, '--bs-gs-sec' ), 'G-201: nothing changes until a token is set' );
+$bst_h = $bst_rb( 'bst/section', array() );
+bst_test( false !== strpos( $bst_h, '--bs-sec-pd:var(--bs-gs-sec,80px)' ) && false !== strpos( $bst_rb( 'bst/section', array( 'paddingDesktop' => 120 ) ), '--bs-sec-pd:120px' ), 'G-201: section default padding reads the token, custom padding kept' );
+set_theme_mod( 'gs_radius', 6 );
+set_theme_mod( 'gs_shadow', 'lg' );
+set_theme_mod( 'gs_section_space', 100 );
+set_theme_mod( 'gs_section_space_mobile', 30 );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, 'html .bs-card,' ) && false !== strpos( $bst_css1, '{border-radius:6px}' ) && false !== strpos( $bst_css1, 'html .bs-product{--bs-card-radius:6px}' ) && false !== strpos( $bst_css1, 'box-shadow:var(--bs-shadow-lg)' ), 'G-201: radius and shadow reach blog, product, listing cards' );
+bst_test( false !== strpos( $bst_css1, '--bs-gs-sec:100px' ) && false !== strpos( $bst_css1, '--bs-gs-sec-m:30px' ) && false === strpos( $bst_css1, '--bs-gs-sec-t' ), 'G-201: section spacing per device' );
+foreach ( array( 'gs_radius', 'gs_shadow', 'gs_section_space', 'gs_section_space_mobile' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
 $bst_menu = wp_create_nav_menu( 'G134 menu' );
 if ( ! is_wp_error( $bst_menu ) ) {
 	$bst_parent = wp_update_nav_menu_item( $bst_menu, 0, array( 'menu-item-title' => 'Parent', 'menu-item-url' => 'https://example.com/a', 'menu-item-status' => 'publish' ) );

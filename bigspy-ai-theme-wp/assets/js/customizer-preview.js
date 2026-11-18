@@ -256,3 +256,69 @@
 		api.preview.send('bst-labels-ready');
 	});
 })(wp.customize);
+
+/* G-199: live tablet/mobile values and spacing variables. */
+(function (api) {
+	'use strict';
+
+	var cfg = window.bstPreviewResponsive || { vars: {}, spacing: {}, devices: {} };
+	var state = {};
+	var tag = null;
+
+	function spacing(json, device) {
+		var data;
+		try { data = JSON.parse(json || '{}') || {}; } catch (e) { return ''; }
+		var vals = data[device];
+		if (!vals || vals.join('') === '') { return ''; }
+		return vals.map(function (v) { return (v === '' || +v === 0) ? '0' : v + (data.unit || 'px'); }).join(' ');
+	}
+
+	function render() {
+		var css = { desktop: [], tablet: [], mobile: [] };
+		Object.keys(state).forEach(function (k) {
+			var s = state[k];
+			if (s.value !== '' && s.value !== null && s.value !== undefined) {
+				css[s.device].push(s.prop + ':' + s.value);
+			}
+		});
+		var out = css.desktop.length ? ':root{' + css.desktop.join(';') + '}' : '';
+		['tablet', 'mobile'].forEach(function (d) {
+			if (css[d].length) {
+				out += '@media (max-width:' + cfg.devices[d].max + 'px){:root{' + css[d].join(';') + '}';
+				if (d !== 'desktop') {
+					['h1', 'h2', 'h3'].forEach(function (h) {
+						if (state[h + '_size_' + d] && state[h + '_size_' + d].value !== '') { out += h + '{font-size:var(--bs-' + h + ')}'; }
+					});
+				}
+				out += '}';
+			}
+		});
+		if (!tag) {
+			tag = document.createElement('style');
+			tag.id = 'bst-responsive-live';
+			document.head.appendChild(tag);
+		}
+		tag.textContent = out;
+	}
+
+	Object.keys(cfg.vars || {}).forEach(function (id) {
+		['tablet', 'mobile'].forEach(function (d) {
+			api(id + '_' + d, function (setting) {
+				setting.bind(function (v) {
+					state[id + '_' + d] = { device: d, prop: cfg.vars[id][0], value: (v === '' || v === null) ? '' : v + cfg.vars[id][1] };
+					render();
+				});
+			});
+		});
+	});
+	Object.keys(cfg.spacing || {}).forEach(function (id) {
+		api(id, function (setting) {
+			setting.bind(function (json) {
+				['desktop', 'tablet', 'mobile'].forEach(function (d) {
+					state[id + ':' + d] = { device: d, prop: cfg.spacing[id], value: spacing(json, d) };
+				});
+				render();
+			});
+		});
+	});
+})(wp.customize);

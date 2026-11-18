@@ -42,6 +42,8 @@
 		var isTransparent = header.classList.contains('is-transparent');
 		var threshold = 0;
 		var stuck = false;
+		var isSmart = header.classList.contains('sticky-smart');
+		var lastY = window.pageYOffset;
 
 		var measure = function () {
 			if (stuck) {
@@ -55,7 +57,18 @@
 			if (!sticky || !sticky.children.length) {
 				return;
 			}
-			var shouldStick = window.pageYOffset > threshold;
+			var y = window.pageYOffset;
+			var shouldStick = y > threshold;
+			if (isSmart) {
+				var hide = shouldStick && y > lastY && y > threshold + 120;
+				if (y < lastY || !shouldStick) {
+					hide = false;
+				}
+				if (Math.abs(y - lastY) > 4) {
+					header.classList.toggle('is-sticky-hidden', hide);
+					lastY = y;
+				}
+			}
 			if (shouldStick === stuck) {
 				return;
 			}

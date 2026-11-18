@@ -34,6 +34,14 @@ function bst_layout_meta_fields() {
 				'none' => __( 'None (content touches header / footer)', 'bigspy-ai-theme-wp' ),
 			),
 		),
+		'title_image'     => array(
+			'label'   => __( 'Title bar image', 'bigspy-ai-theme-wp' ),
+			'choices' => array(
+				''         => __( 'Default', 'bigspy-ai-theme-wp' ),
+				'featured' => __( 'Featured image', 'bigspy-ai-theme-wp' ),
+				'none'     => __( 'No image', 'bigspy-ai-theme-wp' ),
+			),
+		),
 		'hide_title'      => array( 'label' => __( 'Hide page title', 'bigspy-ai-theme-wp' ), 'checkbox' => true ),
 		'hide_footer'     => array( 'label' => __( 'Hide footer', 'bigspy-ai-theme-wp' ), 'checkbox' => true ),
 	);

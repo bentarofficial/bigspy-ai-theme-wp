@@ -1,0 +1,26 @@
+/* Run tools/tests/options-transfer-integration.php in Playground; results land in the result file. */
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const base = require('./lib/env.cjs').modules();
+const nativeFetch = global.fetch;
+global.fetch = async (input, options) => {
+  const url = String(input.url || input);
+  if (url.includes('api.wordpress.org/core/version-check')) {
+    return Response.json({ offers: [{ response: 'autoupdate', version: '7.1.3', download: 'https://wordpress.org/wordpress-7.1.3.zip' }] });
+  }
+  return nativeFetch(input, options);
+};
+const { runCLI } = require(path.join(base, '@wp-playground/cli'));
+(async () => {
+  const repo = path.resolve(__dirname, '..');
+  const out = fs.mkdtempSync(path.join(os.tmpdir(), 'bst-ot-'));
+  const code = fs.readFileSync(path.join(__dirname, 'tests/options-transfer-integration.php'), 'utf8');
+  const server = await runCLI({ command: 'server', port: 9431, php: '8.3', wp: process.env.BST_TEST_WP || '7.1.3', workers: Number(process.env.BST_TEST_WORKERS || 2),
+    mount: [{ hostPath: path.join(repo, 'bigspy-ai-theme-wp'), vfsPath: '/wordpress/wp-content/themes/bigspy-ai-theme-wp' }, { hostPath: out, vfsPath: '/adt' }],
+    blueprint: { steps: [{ step: 'activateTheme', themeFolderName: 'bigspy-ai-theme-wp' }, { step: 'runPHP', code }] },
+    skipBrowser: true, verbosity: 'quiet' });
+  console.log(fs.readFileSync(path.join(out, 'result.txt'), 'utf8'));
+  await server[Symbol.asyncDispose]();
+  process.exit(0);
+})().catch(e => { console.error(e.messages || e.message); process.exit(1); });

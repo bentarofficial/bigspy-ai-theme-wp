@@ -13535,3 +13535,666 @@ msgstr ""
 msgid "Default icon"
 msgstr ""
 
+msgid "Pages & title"
+msgstr ""
+
+msgid "The previous theme options are back."
+msgstr ""
+
+msgid "There is no saved backup to restore."
+msgstr ""
+
+msgid "The file is damaged or is not a JSON file. Download a new export file and try again."
+msgstr ""
+
+msgid "Choose an export file first."
+msgstr ""
+
+msgid "The server could not receive the file. Try again, or ask your host to check the upload temp folder."
+msgstr ""
+
+msgid "The file is larger than this server accepts (%s)."
+msgstr ""
+
+msgid "Theme options imported: %1$d settings applied, %2$d images copied to the Media Library."
+msgstr ""
+
+msgid "%d settings were skipped because this theme version does not have them or your account may not edit code."
+msgstr ""
+
+msgid "%d images could not be downloaded from the old website; upload them again in the Customizer."
+msgstr ""
+
+msgid "Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY AI – Sections” (or the full “Homepage – business” pattern)."
+msgstr ""
+
+msgid "Patterns: “BIGSPY AI – Shop” sections and the full “Homepage – online shop”."
+msgstr ""
+
+msgid "Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY AI."
+msgstr ""
+
+msgid "The file also links the logo, site icon and Customizer images; importing copies them into the new Media Library. Posts, pages, menus, widgets and plugins are not included – use a full backup plugin for those."
+msgstr ""
+
+msgid "Current settings are saved first, so you can undo the import. Maximum file size: %s."
+msgstr ""
+
+msgid "Restore the theme options saved before the last import or reset?"
+msgstr ""
+
+msgid "Undo last import or reset"
+msgstr ""
+
+msgid "Backup saved %s."
+msgstr ""
+
+msgid "The export file could not be created."
+msgstr ""
+
+msgid "BIGSPY AI elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually."
+msgstr ""
+
+msgid "BIGSPY AI Theme"
+msgstr ""
+
+msgid "— Choose a category —"
+msgstr ""
+
+msgid "Big first post"
+msgstr ""
+
+msgid "Titles only"
+msgstr ""
+
+msgid "Blog layout (posts page)"
+msgstr ""
+
+msgid "Featured posts"
+msgstr ""
+
+msgid "A large eye-catching area at the top of the posts page: one big story, a 1+2 or 1+4 grid, a row or a slider."
+msgstr ""
+
+msgid "Category & tag pages"
+msgstr ""
+
+msgid "By default category, tag, author and date pages look like the posts page. Pick a different look here. Each category can also have its own layout: Posts → Categories → Edit."
+msgstr ""
+
+msgid "Same as posts page"
+msgstr ""
+
+msgid "Category description"
+msgstr ""
+
+msgid "Above the posts"
+msgstr ""
+
+msgid "Below the posts (good for long SEO text)"
+msgstr ""
+
+msgid "Show the Featured posts area on category pages too"
+msgstr ""
+
+msgid "Uses the newest posts of that category."
+msgstr ""
+
+msgid "One big story"
+msgstr ""
+
+msgid "1 big + 2"
+msgstr ""
+
+msgid "1 big + 4"
+msgstr ""
+
+msgid "Row of 3"
+msgstr ""
+
+msgid "Posts to feature"
+msgstr ""
+
+msgid "Sticky posts (newest if none)"
+msgstr ""
+
+msgid "Newest posts"
+msgstr ""
+
+msgid "From one category"
+msgstr ""
+
+msgid "With a tag"
+msgstr ""
+
+msgid "Tag slug"
+msgstr ""
+
+msgid "For example: editors-pick"
+msgstr ""
+
+msgid "Posts in the slider"
+msgstr ""
+
+msgid "Height of the big story (px)"
+msgstr ""
+
+msgid "Show the excerpt on the big story"
+msgstr ""
+
+msgid "Do not repeat featured posts in the list below"
+msgstr ""
+
+msgid "Title layout"
+msgstr ""
+
+msgid "Title beside image"
+msgstr ""
+
+msgid "Title on image"
+msgstr ""
+
+msgid "Full-width banner"
+msgstr ""
+
+msgid "Same as Customizer"
+msgstr ""
+
+msgid "Post layout"
+msgstr ""
+
+msgid "Featured posts area"
+msgstr ""
+
+msgid "Layout of this page (BIGSPY AI theme)"
+msgstr ""
+
+msgid "Featured posts: no posts with a featured image match the chosen source yet."
+msgstr ""
+
+msgid "Unit"
+msgstr ""
+
+msgid "Link all four sides"
+msgstr ""
+
+msgid "Empty = theme default. Tablet and mobile follow the larger screen until you type a value."
+msgstr ""
+
+msgid "Global style (radius, shadow, spacing)"
+msgstr ""
+
+msgid "Change once, applies to blog cards, product cards, listing cards, boxed sidebar widgets and Section blocks. Empty = keep the theme default. Options in Shop or Listing design still override these."
+msgstr ""
+
+msgid "Card corner radius (px)"
+msgstr ""
+
+msgid "Card shadow"
+msgstr ""
+
+msgid "Section block spacing, top and bottom (px)"
+msgstr ""
+
+msgid "Used by Section blocks that keep the default padding (80 / 60 / 40 px)."
+msgstr ""
+
+msgid "BIGSPY AI: shop layout"
+msgstr ""
+
+msgid "BIGSPY AI: product cards & page"
+msgstr ""
+
+msgid "BIGSPY AI: catalog mode"
+msgstr ""
+
+msgid "Can also be enabled per page in the “BIGSPY AI – Page layout” box."
+msgstr ""
+
+msgid "Title bar padding"
+msgstr ""
+
+msgid "Full-width title bar only. Default: 48px top and bottom."
+msgstr ""
+
+msgid "Show breadcrumbs on pages whose H1 is off"
+msgstr ""
+
+msgid "Pages and the Listings page print no title when \"Show the page name as H1\" is off. Turn this on to still show the breadcrumb trail above their content."
+msgstr ""
+
+msgid "Sticky style"
+msgstr ""
+
+msgid "Slide in"
+msgstr ""
+
+msgid "Hide on scroll down"
+msgstr ""
+
+msgid "Shrink"
+msgstr ""
+
+msgid "“Hide on scroll down” shows the header again as soon as the visitor scrolls up."
+msgstr ""
+
+msgid "Sticky header background"
+msgstr ""
+
+msgid "Sticky header text color"
+msgstr ""
+
+msgid "Mobile menu style"
+msgstr ""
+
+msgid "Side panel"
+msgstr ""
+
+msgid "Drop-down"
+msgstr ""
+
+msgid "Side panel width (px)"
+msgstr ""
+
+msgid "Mobile menu background"
+msgstr ""
+
+msgid "Mobile menu text color"
+msgstr ""
+
+msgid "Logo while the header is sticky"
+msgstr ""
+
+msgid "Optional, e.g. a smaller or dark version. Shown only after scrolling when the sticky header is on."
+msgstr ""
+
+msgid "Mega menu"
+msgstr ""
+
+msgid "Turn it on per top-level item in Appearance → Menus (“BIGSPY AI: Mega menu”). Child items become columns on desktop."
+msgstr ""
+
+msgid "Mega menu width (px)"
+msgstr ""
+
+msgid "Mega menu columns"
+msgstr ""
+
+msgid "Space between columns (px)"
+msgstr ""
+
+msgid "Column heading color"
+msgstr ""
+
+msgid "Column heading case"
+msgstr ""
+
+msgid "Corporate"
+msgstr ""
+
+msgid "Navy and orange, clean sans-serif."
+msgstr ""
+
+msgid "Startup"
+msgstr ""
+
+msgid "Violet, rounded, soft shadows."
+msgstr ""
+
+msgid "Serif headings, warm neutrals, gold."
+msgstr ""
+
+msgid "Fresh"
+msgstr ""
+
+msgid "Green and lime for food, health, nature."
+msgstr ""
+
+msgid "Black, red, tall condensed headings."
+msgstr ""
+
+msgid "Pastel pink and peach, friendly shapes."
+msgstr ""
+
+msgid "Tech"
+msgstr ""
+
+msgid "Blue and cyan, geometric font, sharp cards."
+msgstr ""
+
+msgid "Black and white, lots of space."
+msgstr ""
+
+msgid "Style kits"
+msgstr ""
+
+msgid "One click sets colors, fonts, buttons, cards, header and footer colors together. See it in the preview, fine-tune, then Publish. Close without publishing to drop it."
+msgstr ""
+
+msgid "Reset this section"
+msgstr ""
+
+msgid "Put every option in this section back to the theme default? Nothing is saved until you Publish."
+msgstr ""
+
+msgid "Section reset in the preview. Publish to keep it."
+msgstr ""
+
+msgid "Categories and tags can have their own cover image (Posts → Categories → Edit). Pages can use their featured image (page layout box)."
+msgstr ""
+
+msgid "Minimum height (px)"
+msgstr ""
+
+msgid "Image overlay color"
+msgstr ""
+
+msgid "Only when the bar has an image. Default: black."
+msgstr ""
+
+msgid "Image overlay strength (%)"
+msgstr ""
+
+msgid "Parallax background image"
+msgstr ""
+
+msgid "Desktop only; phones and visitors who prefer less motion get a still image."
+msgstr ""
+
+msgid "Breadcrumb style"
+msgstr ""
+
+msgid "The separator applies to the theme and WooCommerce trail; Rank Math and Yoast use the separator set in their own settings."
+msgstr ""
+
+msgid "Automatic (above the simple title, below the title bar heading)"
+msgstr ""
+
+msgid "Above the title"
+msgstr ""
+
+msgid "Below the title"
+msgstr ""
+
+msgid "Breadcrumb text color"
+msgstr ""
+
+msgid "Breadcrumb link color"
+msgstr ""
+
+msgid "Background of the full-width title bar on this archive (Customizer → Page title & breadcrumbs)."
+msgstr ""
+
+msgid "Global style"
+msgstr ""
+
+msgid "Colors, fonts, buttons and the radius, shadow and spacing every card and section shares."
+msgstr ""
+
+msgid "Header builder, logo, menu, search, buttons and the announcement bar."
+msgstr ""
+
+msgid "Call-to-action band, widget columns, copyright and floating contact buttons."
+msgstr ""
+
+msgid "Site width, page title bar, breadcrumbs and sidebars."
+msgstr ""
+
+msgid "Posts page, featured posts, category pages and single posts."
+msgstr ""
+
+msgid "Listing (List mode)"
+msgstr ""
+
+msgid "Listing cards, the listing page, homepage sidebar and every listing text."
+msgstr ""
+
+msgid "Scripts, performance, site tools, block list and WordPress tweaks."
+msgstr ""
+
+msgid "Fonts, weights, body size and heading sizes per device."
+msgstr ""
+
+msgid "Shape and text of buttons across the site."
+msgstr ""
+
+msgid "Call-to-action buttons in the header."
+msgstr ""
+
+msgid "Search icon or box, live results and what it searches."
+msgstr ""
+
+msgid "Menu font, size, colors and dropdowns."
+msgstr ""
+
+msgid "Height and colors of the top, main, bottom and mobile rows."
+msgstr ""
+
+msgid "Full-width or boxed header, sticky and transparent header."
+msgstr ""
+
+msgid "A thin bar above the header for news or offers."
+msgstr ""
+
+msgid "Copyright line, footer menu and social icons."
+msgstr ""
+
+msgid "Call, Zalo, Messenger… buttons fixed to the screen corner."
+msgstr ""
+
+msgid "Full or boxed site, container and sidebar width."
+msgstr ""
+
+msgid "Title above pages and archives, and the breadcrumb trail."
+msgstr ""
+
+msgid "Sidebar style, sticky sidebar, widget spacing and mobile behavior."
+msgstr ""
+
+msgid "Layout, columns, card details and pagination of the posts page."
+msgstr ""
+
+msgid "Header style, table of contents, author box and related posts."
+msgstr ""
+
+msgid "Where the homepage sidebar starts and ends (List mode)."
+msgstr ""
+
+msgid "Speed options, lazy loading and site-wide effects."
+msgstr ""
+
+msgid "404 page and maintenance mode."
+msgstr ""
+
+msgid "Cookie notice, reading progress bar and other small extras."
+msgstr ""
+
+msgid "Turn off WordPress features you do not use and the page loader."
+msgstr ""
+
+msgid "View on a sample page"
+msgstr ""
+
+msgid "H5 size (px)"
+msgstr ""
+
+msgid "H6 size (px)"
+msgstr ""
+
+msgid "Heading line height"
+msgstr ""
+
+msgid "Heading letter spacing (px)"
+msgstr ""
+
+msgid "Body letter spacing (px)"
+msgstr ""
+
+msgid "Small meta text size (px)"
+msgstr ""
+
+msgid "Date, author, category and reading time under post titles."
+msgstr ""
+
+msgid "Small meta text case"
+msgstr ""
+
+msgid "Small meta letter spacing (px)"
+msgstr ""
+
+msgid "Menu letter spacing (px)"
+msgstr ""
+
+msgid "Extra color %d"
+msgstr ""
+
+msgid "Extra colors join the block editor palette and the CSS variables --bs-custom-1 … --bs-custom-4."
+msgstr ""
+
+msgid "Extra color %d name"
+msgstr ""
+
+msgid "Text 1"
+msgstr ""
+
+msgid "Text 2"
+msgstr ""
+
+msgid "Footer menu"
+msgstr ""
+
+msgid "Copyright"
+msgstr ""
+
+msgid "Payment / badges HTML"
+msgstr ""
+
+msgid "Widget area %d"
+msgstr ""
+
+msgid "Footer builder"
+msgstr ""
+
+msgid "Drag logo, menus, text, widgets, social icons and copyright into up to 3 rows × 6 columns."
+msgstr ""
+
+msgid "Row off"
+msgstr ""
+
+msgid "Top row"
+msgstr ""
+
+msgid "Main row"
+msgstr ""
+
+msgid "Bottom row"
+msgstr ""
+
+msgid "Footer type"
+msgstr ""
+
+msgid "Classic (widget rows + copyright bar)"
+msgstr ""
+
+msgid "Builder (drag & drop below)"
+msgstr ""
+
+msgid "A footer designed with blocks (Footer → Footer design) is shown instead of both."
+msgstr ""
+
+msgid "Relative widths, e.g. 2,1,1,1. Empty = equal."
+msgstr ""
+
+msgid "Last column on the right"
+msgstr ""
+
+msgid "On mobile"
+msgstr ""
+
+msgid "Stack columns"
+msgstr ""
+
+msgid "Hide row"
+msgstr ""
+
+msgid "Show elements on"
+msgstr ""
+
+msgid "Desktop = wider than 849px; mobile and tablet = 849px and narrower."
+msgstr ""
+
+msgid "Element content"
+msgstr ""
+
+msgid "Copyright and Payment / badges use the fields in Footer bottom; widget areas 1–8 are Footer 1/2 columns in Widgets."
+msgstr ""
+
+msgid "Logo width (px)"
+msgstr ""
+
+msgid "Footer layout"
+msgstr ""
+
+msgid "Available elements (drag into a column)"
+msgstr ""
+
+msgid "Row off: choose columns below to use it."
+msgstr ""
+
+msgid "Reset the footer layout?"
+msgstr ""
+
+msgid "Mobile & tablet only"
+msgstr ""
+
+msgid "Title bar image"
+msgstr ""
+
+msgid "Featured image"
+msgstr ""
+
+msgid "BIGSPY AI – Page layout"
+msgstr ""
+
+msgid "Shop & category header"
+msgstr ""
+
+msgid "Cover uses the category thumbnail (Products → Categories) or the Shop page featured image."
+msgstr ""
+
+msgid "Cover height (px)"
+msgstr ""
+
+msgid "Cover darkness (%)"
+msgstr ""
+
+msgid "Above products"
+msgstr ""
+
+msgid "Below products"
+msgstr ""
+
+msgid "Grid / list and products per page"
+msgstr ""
+
+msgid "Show grid / list switch"
+msgstr ""
+
+msgid "Default view"
+msgstr ""
+
+msgid "Products per page choices"
+msgstr ""
+
+msgid "E.g. 12,24,48 shows a \"Show\" dropdown. Empty = no dropdown."
+msgstr ""
+
+msgid "Product view"
+msgstr ""
+
+msgid "Grid view"
+msgstr ""
+
+msgid "List view"
+msgstr ""
+

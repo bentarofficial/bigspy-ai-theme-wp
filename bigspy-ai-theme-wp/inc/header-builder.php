@@ -34,6 +34,7 @@ function bst_render_header() {
 	}
 	if ( bst_mod( 'header_sticky' ) ) {
 		$classes[] = 'has-sticky';
+		$classes[] = 'sticky-' . bst_choice( get_theme_mod( 'header_sticky_style', 'slide' ), array( 'slide', 'smart', 'shrink' ), 'slide' );
 	}
 	if ( bst_mod( 'header_shadow' ) ) {
 		$classes[] = 'has-shadow';
@@ -228,7 +229,8 @@ function bst_logo() {
 		$inner = '<span class="bs-logo__text">' . esc_html( $name ) . '</span>';
 	}
 	$tagline = function_exists( 'bst_he' ) && bst_he( 'logo', 'tagline' ) ? trim( (string) get_bloginfo( 'description' ) ) : '';
-	return '<a class="bs-logo" href="' . $home . '" rel="home">' . $inner . ( '' !== $tagline ? '<span class="bs-logo__tagline">' . esc_html( $tagline ) . '</span>' : '' ) . '</a>';
+	$sticky = ( $logo && function_exists( 'bst_sticky_logo_html' ) ) ? bst_sticky_logo_html() : '';
+	return '<a class="bs-logo' . ( '' !== $sticky ? ' has-sticky-logo' : '' ) . '" href="' . $home . '" rel="home">' . $inner . $sticky . ( '' !== $tagline ? '<span class="bs-logo__tagline">' . esc_html( $tagline ) . '</span>' : '' ) . '</a>';
 }
 
 function bst_header_button( $prefix ) {
@@ -357,9 +359,10 @@ function bst_search_panel() {
  */
 function bst_render_offcanvas() {
 	$side     = bst_choice( bst_mod( 'offcanvas_side' ), array( 'left', 'right' ), 'left' );
+	$style    = bst_choice( get_theme_mod( 'offcanvas_style', 'panel' ), array( 'panel', 'fullscreen', 'dropdown' ), 'panel' );
 	$location = has_nav_menu( 'mobile' ) ? 'mobile' : 'primary';
 	?>
-	<div id="bs-offcanvas" class="bs-offcanvas bs-offcanvas--<?php echo esc_attr( $side ); ?>" hidden>
+	<div id="bs-offcanvas" class="bs-offcanvas bs-offcanvas--<?php echo esc_attr( $side ); ?> bs-offcanvas--<?php echo esc_attr( $style ); ?>" hidden>
 		<div class="bs-offcanvas__backdrop" data-bs-offcanvas-close></div>
 		<div class="bs-offcanvas__panel" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Menu', 'bigspy-ai-theme-wp' ); ?>">
 			<div class="bs-offcanvas__head">

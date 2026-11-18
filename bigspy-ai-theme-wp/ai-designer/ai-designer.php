@@ -56,6 +56,26 @@ add_action(
 	9
 );
 
+/**
+ * The Workspace is a full-screen app: other plugins' admin notices (review
+ * requests, SEO warnings…) are pushed into its chat area by WordPress, so
+ * drop them on this one screen only. They still show everywhere else.
+ */
+add_action(
+	'in_admin_header',
+	function () {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( ! $screen || 'toplevel_page_bst-ai-designer' !== $screen->id ) {
+			return;
+		}
+		remove_all_actions( 'admin_notices' );
+		remove_all_actions( 'all_admin_notices' );
+		remove_all_actions( 'network_admin_notices' );
+		remove_all_actions( 'user_admin_notices' );
+	},
+	1000
+);
+
 /** Read-only introduction to the AI workspace and its approval flow. */
 function bst_aid_about_page() {
 	bst_welcome_screen( 'designer' );

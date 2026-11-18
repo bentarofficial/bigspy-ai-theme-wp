@@ -131,7 +131,7 @@ function bst_print_user_scripts( $where ) {
 		echo "\n" . $code . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- saved only by users with unfiltered_html.
 	}
 }
-add_action( 'wp_head', function () { bst_print_user_scripts( 'head' ); }, 99 );
+add_action( 'wp_head', function () { bst_print_user_scripts( 'head' ); }, 1 ); // First in <head>, as Google tag and GTM require.
 add_action( 'wp_body_open', function () { bst_print_user_scripts( 'body' ); }, 1 );
 add_action( 'wp_footer', function () { bst_print_user_scripts( 'footer' ); }, 99 );
 

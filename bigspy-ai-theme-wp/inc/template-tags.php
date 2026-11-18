@@ -95,10 +95,16 @@ function bst_title_bar() {
 		bst_page_crumbs_only();
 		return;
 	}
-	echo '<div class="bs-title-bar' . ( bst_mod( 'title_bar_image' ) ? ' has-image' : '' ) . '"><div class="bs-container bs-title-bar__inner">';
+	$above = bst_breadcrumb_above( 'bar' );
+	echo bst_title_bar_open() . '<div class="bs-container bs-title-bar__inner">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in bst_title_bar_open().
+	if ( $above ) {
+		bst_breadcrumbs();
+	}
 	echo '<h1 class="bs-title-bar__title">' . wp_kses_post( bst_get_title() ) . '</h1>';
 	bst_archive_description();
-	bst_breadcrumbs();
+	if ( ! $above ) {
+		bst_breadcrumbs();
+	}
 	echo '</div></div>';
 }
 
@@ -113,10 +119,16 @@ function bst_simple_title() {
 		bst_page_crumbs_only();
 		return;
 	}
+	$above = bst_breadcrumb_above( 'simple' );
 	echo '<header class="bs-page-header">';
-	bst_breadcrumbs();
+	if ( $above ) {
+		bst_breadcrumbs();
+	}
 	echo '<h1 class="bs-page-title">' . wp_kses_post( bst_get_title() ) . '</h1>';
 	bst_archive_description();
+	if ( ! $above ) {
+		bst_breadcrumbs();
+	}
 	echo '</header>';
 }
 
@@ -171,7 +183,7 @@ function bst_breadcrumbs() {
 		}
 	}
 	if ( function_exists( 'woocommerce_breadcrumb' ) && function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
-		woocommerce_breadcrumb( array( 'wrap_before' => '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">', 'wrap_after' => '</nav>', 'delimiter' => '<span class="bs-breadcrumbs__sep">/</span>' ) );
+		woocommerce_breadcrumb( array( 'wrap_before' => '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">', 'wrap_after' => '</nav>', 'delimiter' => '<span class="bs-breadcrumbs__sep" aria-hidden="true">' . esc_html( bst_breadcrumb_sep() ) . '</span>' ) );
 		return;
 	}
 
@@ -209,7 +221,7 @@ function bst_breadcrumbs() {
 	foreach ( $crumbs as $crumb ) {
 		$items[] = $crumb[0] ? '<a href="' . esc_url( $crumb[0] ) . '">' . esc_html( $crumb[1] ) . '</a>' : '<span aria-current="page">' . esc_html( $crumb[1] ) . '</span>';
 	}
-	echo '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">' . implode( '<span class="bs-breadcrumbs__sep">/</span>', $items ) . '</nav>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<nav class="bs-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', 'bigspy-ai-theme-wp' ) . '">' . implode( '<span class="bs-breadcrumbs__sep" aria-hidden="true">' . esc_html( bst_breadcrumb_sep() ) . '</span>', $items ) . '</nav>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
@@ -331,24 +343,28 @@ function bst_pagination() {
 	);
 }
 
-function bst_share_buttons() {
+/**
+ * @param string $where 'bottom' (template call), 'top' or 'float' (G-208 positions).
+ */
+function bst_share_buttons( $where = 'bottom' ) {
 	if ( ! bst_mod( 'single_share' ) ) {
 		return;
 	}
-	$url   = rawurlencode( get_permalink() );
-	$title = rawurlencode( get_the_title() );
-	$links = array(
-		'facebook'  => 'https://www.facebook.com/sharer/sharer.php?u=' . $url,
-		'x'         => 'https://twitter.com/intent/tweet?url=' . $url . '&text=' . $title,
-		'linkedin'  => 'https://www.linkedin.com/sharing/share-offsite/?url=' . $url,
-		'pinterest' => 'https://pinterest.com/pin/create/button/?url=' . $url . '&description=' . $title,
-		'mail'      => 'mailto:?subject=' . $title . '&body=' . $url,
-	);
-	echo '<div class="bs-share"><span class="bs-share__label">' . esc_html__( 'Share:', 'bigspy-ai-theme-wp' ) . '</span>';
-	foreach ( $links as $network => $link ) {
-		echo '<a class="bs-share__link bs-share__link--' . esc_attr( $network ) . '" href="' . esc_url( $link, array( 'https', 'mailto' ) ) . '" target="_blank" rel="noopener nofollow" aria-label="' . esc_attr( ucfirst( $network ) ) . '">' . bst_icon( $network, 16 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	$position = function_exists( 'bst_share_position' ) ? bst_share_position() : 'bottom';
+	if ( 'bottom' === $where && ! in_array( $position, array( 'bottom', 'both' ), true ) ) {
+		return;
 	}
-	echo '<button type="button" class="bs-share__link bs-share__copy" data-bs-copy="' . esc_attr( get_permalink() ) . '" aria-label="' . esc_attr__( 'Copy link', 'bigspy-ai-theme-wp' ) . '">' . bst_icon( 'check', 16 ) . '<span>' . esc_html__( 'Copy link', 'bigspy-ai-theme-wp' ) . '</span></button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	$links = function_exists( 'bst_share_links' ) ? bst_share_links() : array();
+	$style = bst_choice( (string) get_theme_mod( 'share_style', 'default' ), array( 'default', 'round', 'brand' ), 'default' );
+	echo '<div class="bs-share bs-share--' . esc_attr( $style ) . ' bs-share--at-' . esc_attr( $where ) . '"><span class="bs-share__label">' . esc_html__( 'Share:', 'bigspy-ai-theme-wp' ) . '</span>';
+	foreach ( $links as $network => $link ) {
+		if ( 'copy' === $network ) {
+			echo '<button type="button" class="bs-share__link bs-share__copy" data-bs-copy="' . esc_attr( $link ) . '" aria-label="' . esc_attr__( 'Copy link', 'bigspy-ai-theme-wp' ) . '">' . bst_icon( 'check', 16 ) . '<span>' . esc_html__( 'Copy link', 'bigspy-ai-theme-wp' ) . '</span></button>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			continue;
+		}
+		$icon = bst_icon( $network, 16 );
+		echo '<a class="bs-share__link bs-share__link--' . esc_attr( $network ) . '" href="' . esc_url( $link, array( 'https', 'mailto' ) ) . '" target="_blank" rel="noopener nofollow" aria-label="' . esc_attr( ucfirst( $network ) ) . '">' . ( $icon ? $icon : '<span class="bs-share__text">' . esc_html( ucfirst( $network ) ) . '</span>' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
 	echo '</div>';
 }
 

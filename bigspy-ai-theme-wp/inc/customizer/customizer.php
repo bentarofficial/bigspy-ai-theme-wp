@@ -13,20 +13,19 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/sanitize.php';
 require_once __DIR__ . '/fields.php';
 require_once __DIR__ . '/focus-map.php';
+require_once __DIR__ . '/responsive.php';
+require_once __DIR__ . '/design-tokens.php';
+require_once __DIR__ . '/tree.php';
+require_once __DIR__ . '/typography.php';
+require_once __DIR__ . '/header-advanced.php';
+require_once __DIR__ . '/title-bar.php';
+require_once __DIR__ . '/style-kits.php';
 
 function bst_customize_register( $wp_customize ) {
 	require_once __DIR__ . '/controls.php';
 
-	$panels = array(
-		'bst_header'   => array( __( 'Header', 'bigspy-ai-theme-wp' ), 21 ),
-		'bst_style'    => array( __( 'Style: colors & typography', 'bigspy-ai-theme-wp' ), 22 ),
-		'bst_layout'   => array( __( 'Layout', 'bigspy-ai-theme-wp' ), 23 ),
-		'bst_blog'     => array( __( 'Blog', 'bigspy-ai-theme-wp' ), 24 ),
-		'bst_footer'   => array( __( 'Footer', 'bigspy-ai-theme-wp' ), 26 ),
-		'bst_advanced' => array( __( 'Advanced', 'bigspy-ai-theme-wp' ), 200 ),
-	);
-	foreach ( $panels as $id => $panel ) {
-		$wp_customize->add_panel( $id, array( 'title' => $panel[0], 'priority' => $panel[1] ) );
+	foreach ( bst_customizer_panels() as $id => $panel ) {
+		$wp_customize->add_panel( $id, array( 'title' => $panel[0], 'priority' => $panel[1], 'description' => $panel[2] ) );
 	}
 
 	foreach ( bst_customizer_sections() as $id => $section ) {
@@ -71,6 +70,24 @@ function bst_customize_register( $wp_customize ) {
 			continue;
 		}
 
+		if ( 'responsive' === $type ) {
+			$transport = isset( $css_vars[ $id ] ) ? 'postMessage' : 'refresh';
+			$settings  = array( 'default' => $id );
+			$wp_customize->add_setting( $id, array( 'default' => $defaults[ $id ] ?? '', 'transport' => $transport, 'sanitize_callback' => 'bst_sanitize_number' ) );
+			foreach ( array( 'tablet', 'mobile' ) as $device ) {
+				$wp_customize->add_setting( $id . '_' . $device, array( 'default' => '', 'transport' => $transport, 'sanitize_callback' => 'bst_sanitize_number_or_empty' ) );
+				$settings[ $device ] = $id . '_' . $device;
+			}
+			$wp_customize->add_control( new BST_Responsive_Control( $wp_customize, $id, array( 'section' => $field['section'], 'label' => $field['label'] ?? '', 'description' => $field['description'] ?? '', 'priority' => $field['priority'] ?? 10, 'settings' => $settings, 'input_attrs' => $field['input_attrs'] ?? array(), 'unit' => $field['unit'] ?? 'px' ) ) );
+			continue;
+		}
+
+		if ( 'spacing' === $type ) {
+			$wp_customize->add_setting( $id, array( 'default' => '', 'transport' => isset( bst_spacing_var_map()[ $id ] ) ? 'postMessage' : 'refresh', 'sanitize_callback' => 'bst_sanitize_spacing' ) );
+			$wp_customize->add_control( new BST_Spacing_Control( $wp_customize, $id, array( 'section' => $field['section'], 'label' => $field['label'] ?? '', 'description' => $field['description'] ?? '', 'priority' => $field['priority'] ?? 10, 'responsive' => $field['responsive'] ?? true ) ) );
+			continue;
+		}
+
 		if ( 'code' === $type && ! current_user_can( 'unfiltered_html' ) ) {
 			continue;
 		}
@@ -97,6 +114,11 @@ function bst_customize_register( $wp_customize ) {
 				break;
 			case 'image':
 				$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $id, $args ) );
+				break;
+			case 'image_radio':
+				$args['choices']  = $field['choices'] ?? array();
+				$args['pictures'] = function_exists( 'bst_layout_picker_pictures' ) ? bst_layout_picker_pictures( $id ) : array();
+				$wp_customize->add_control( new BST_Image_Radio_Control( $wp_customize, $id, $args ) );
 				break;
 			case 'header_builder':
 				$wp_customize->add_control( new BST_Header_Builder_Control( $wp_customize, $id, $args ) );
@@ -199,6 +221,7 @@ add_action( 'customize_controls_enqueue_scripts', 'bst_customize_controls_assets
 function bst_customize_preview_assets() {
 	wp_enqueue_script( 'bst-customizer-preview', BST_URI . '/assets/js/customizer-preview.js', array( 'customize-preview' ), bst_asset_version( 'assets/js/customizer-preview.js' ), true );
 	wp_localize_script( 'bst-customizer-preview', 'bstPreviewVars', bst_css_var_map() );
+	wp_localize_script( 'bst-customizer-preview', 'bstPreviewResponsive', array( 'vars' => bst_responsive_var_map(), 'spacing' => bst_spacing_var_map(), 'devices' => bst_responsive_devices() ) );
 	wp_enqueue_script( 'bst-css-presets-preview', BST_URI . '/assets/js/css-presets-preview.js', array( 'customize-preview' ), bst_asset_version( 'assets/js/css-presets-preview.js' ), true );
 	$recipes = array();
 	foreach ( bst_css_presets() as $id => $recipe ) {

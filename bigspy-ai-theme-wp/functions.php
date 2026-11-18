@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.97.0' );
+define( 'BST_VERSION', '1.98.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -32,6 +32,7 @@ $bst_includes = array(
 	'inc/mega-menu.php',
 	'inc/footer.php',
 	'inc/footer-design.php',
+	'inc/footer-builder.php',
 	'inc/floating-contact.php',
 	'inc/meta-boxes.php',
 	'inc/site-tools.php',
@@ -47,6 +48,8 @@ $bst_includes = array(
 	'inc/block-attr-presets.php',
 	'inc/sidebar-options.php',
 	'inc/blog-options.php',
+	'inc/blog-layouts.php',
+	'inc/blog-extras.php',
 	'inc/shop-options.php',
 	'inc/author-options.php',
 	'inc/theme-builder.php',
@@ -81,6 +84,7 @@ foreach ( $bst_includes as $bst_file ) {
 
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once BST_DIR . '/inc/woocommerce.php';
+	require_once BST_DIR . '/inc/shop-archive.php';
 }
 
 // BIGSPY AI Designer: optional, self-contained. Delete the ai-designer folder to remove it.

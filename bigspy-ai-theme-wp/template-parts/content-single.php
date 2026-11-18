@@ -9,19 +9,24 @@ defined( 'ABSPATH' ) || exit;
 
 $bst_is_post = 'post' === get_post_type();
 $bst_thumb   = has_post_thumbnail() && bst_mod( 'single_featured_image' );
-$bst_layout  = $bst_is_post ? bst_choice( bst_mod( 'single_layout' ), array( 'standard', 'image-first', 'overlay', 'centered' ), 'standard' ) : 'standard';
-if ( 'overlay' === $bst_layout && ( ! $bst_thumb || '1' === bst_post_option( 'hide_title' ) ) ) {
-	$bst_layout = 'image-first';
+$bst_layout  = $bst_is_post ? bst_choice( bst_mod( 'single_layout' ), array( 'standard', 'image-first', 'overlay', 'centered', 'hero-full', 'split' ), 'standard' ) : 'standard';
+if ( in_array( $bst_layout, array( 'overlay', 'hero-full', 'split' ), true ) && ( ! $bst_thumb || '1' === bst_post_option( 'hide_title' ) ) ) {
+	$bst_layout = 'split' === $bst_layout ? 'standard' : 'image-first';
 }
+// The full-width banner is the "title on image" header stretched to the screen edges.
+$bst_extra  = 'hero-full' === $bst_layout ? ' bs-entry--hero-full' : '';
+$bst_layout = 'hero-full' === $bst_layout ? 'overlay' : $bst_layout;
 $bst_ratio   = bst_choice( bst_mod( 'single_image_ratio' ), array( 'auto', '16-9', '21-9', '4-3' ), 'auto' );
 $bst_width   = $bst_is_post ? (int) bst_mod( 'single_width' ) : 0;
-$bst_classes = 'bs-entry bs-entry--single bs-entry--' . $bst_layout . ( $bst_is_post && bst_mod( 'single_dropcap' ) ? ' has-dropcap' : '' ) . ( $bst_width > 0 ? ' has-width' : '' );
+$bst_classes = 'bs-entry bs-entry--single bs-entry--' . $bst_layout . $bst_extra . ( $bst_is_post && bst_mod( 'single_dropcap' ) ? ' has-dropcap' : '' ) . ( $bst_width > 0 ? ' has-width' : '' );
 $bst_figure  = $bst_thumb ? '<figure class="bs-entry__thumb' . ( 'auto' !== $bst_ratio ? ' bs-ratio bs-ratio--' . $bst_ratio : '' ) . '">' . get_the_post_thumbnail( null, 'large', bst_image_load_attrs( bst_image_priority() ) ) . '</figure>' : '';
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( $bst_classes ); ?><?php echo $bst_width > 0 ? ' style="--bs-single-w:' . (int) $bst_width . 'px"' : ''; ?>>
 	<?php
 	if ( 'overlay' === $bst_layout ) {
 		echo '<div class="bs-entry__hero">';
+	} elseif ( 'split' === $bst_layout ) {
+		echo '<div class="bs-entry__split">';
 	}
 	if ( 'image-first' === $bst_layout || 'overlay' === $bst_layout ) {
 		echo $bst_figure; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core thumbnail markup.
@@ -43,6 +48,9 @@ $bst_figure  = $bst_thumb ? '<figure class="bs-entry__thumb' . ( 'auto' !== $bst
 		echo '</div>';
 	} elseif ( 'image-first' !== $bst_layout ) {
 		echo $bst_figure; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core thumbnail markup.
+	}
+	if ( 'split' === $bst_layout ) {
+		echo '</div>';
 	}
 	?>
 

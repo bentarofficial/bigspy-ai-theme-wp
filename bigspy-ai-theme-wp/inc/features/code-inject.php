@@ -14,7 +14,7 @@ add_action(
 	function () {
 		bst_code_print( 'head' );
 	},
-	99
+	1
 );
 add_action(
 	'wp_body_open',
