@@ -11,6 +11,7 @@
 		if (loading || !button.dataset.bstMore) return;
 		loading = true;
 		button.disabled = true;
+		list.classList.add('is-loading');
 		button.textContent = button.dataset.loading || label;
 		fetch(button.dataset.bstMore, { credentials: 'same-origin' })
 			.then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
@@ -29,7 +30,7 @@
 				}
 			})
 			.catch(function () { location.assign(button.dataset.bstMore); })
-			.then(function () { loading = false; button.disabled = false; button.textContent = label; });
+			.then(function () { loading = false; list.classList.remove('is-loading'); button.disabled = false; button.textContent = label; });
 	}
 
 	button.addEventListener('click', load);

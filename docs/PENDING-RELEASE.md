@@ -32,6 +32,9 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-200 Style kits và reset theo mục:** Global style → **Style kits**: 8 bộ phối sẵn (Corporate, Startup, Elegant, Fresh, Bold, Soft, Tech, Minimal), mỗi bộ đặt cùng lúc màu, font tiêu đề/nội dung, bo góc nút, bo góc và bóng thẻ, màu header/footer, kiểu thẻ sản phẩm (khi có Woo). Chỉ đổi trong xem trước; Publish mới lưu, đóng không Publish là bỏ. Mỗi mục Customizer của theme có link **Reset this section** đưa các tuỳ chọn về mặc định (cũng chỉ trong xem trước). Xuất/nhập/đặt lại toàn bộ có hoàn tác đã có (Appearance → BIGSPY AI Theme WP, commit 3b19fb8). Kiểm thử: lint, features-check 345 ok (2 test G-200). Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-208 Blog bổ sung:** kiểu số trang bằng hình (khung, tròn, ô đặc, gạch dưới); **trang kết quả tìm kiếm** có layout/cột/sidebar riêng (mặc định giống trang blog); **thẻ tác giả** trên trang tác giả (ảnh, tên, số bài, tiểu sử, website; tắt mặc định); nút chia sẻ: chọn mạng và thứ tự (thêm Telegram, WhatsApp, Zalo), kiểu (viền / tròn / màu thương hiệu), vị trí (dưới / trên / cả hai / nổi bên trái trên desktop); bình luận: kiểu thẻ hoặc tối giản, ẩn avatar, bỏ ô Website; khung skeleton khi Load more đang tải. Kiểm thử: lint, features-check 361 ok; xem trình duyệt: chia sẻ trên+dưới kiểu brand, bình luận dạng thẻ. Nhánh `feature/g-197-blog-customizer`, chưa push.
+- **Sửa sau khi xem trình duyệt (G-205, G-209):** footer builder trống trong xem trước Customizer khi chưa lưu số cột (giờ dùng mặc định), khung kéo thả cột gọn lại và đặt dưới Footer type; breadcrumb trên ảnh bìa shop đọc được.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
