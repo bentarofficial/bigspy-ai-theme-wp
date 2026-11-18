@@ -1,4 +1,4 @@
-/* Blog layouts (G-197): Featured posts area, post title layouts, reading progress. */
+/* Blog layouts (G-197): Featured posts area, post title layouts. */
 
 /* Featured posts ---------------------------------------------------------- */
 .bs-feat { position: relative; margin: 0 0 36px; --bs-feat-h: 420px; }
@@ -60,9 +60,3 @@
 .bs-entry--hero-full .bs-entry__hero::after { content: ""; grid-area: 1 / 1; background: linear-gradient(transparent 30%, rgba(0, 0, 0, .75)); }
 .bs-entry--hero-full .bs-entry__hero .bs-entry__header { z-index: 2; }
 .bs-entry--hero-full .bs-entry__title { font-size: clamp(28px, 4.5vw, 52px); }
-
-/* Reading progress --------------------------------------------------------- */
-.bs-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; height: 3px; pointer-events: none; }
-.admin-bar .bs-progress { top: 32px; }
-.bs-progress span { display: block; height: 100%; background: var(--bs-progress, var(--bs-primary, #2563eb)); transform: scaleX(0); transform-origin: 0 50%; }
-@media (max-width: 782px) { .admin-bar .bs-progress { top: 46px; } }

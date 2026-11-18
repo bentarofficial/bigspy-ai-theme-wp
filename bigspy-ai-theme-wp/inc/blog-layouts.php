@@ -2,7 +2,7 @@
 /**
  * Blog layouts (G-197): picture pickers for layout options, a Featured posts area,
  * separate layouts for category / tag pages, per-category overrides, more post
- * header styles and a reading progress bar.
+ * header styles.
  *
  * @package BigspyTheme
  */
@@ -193,8 +193,6 @@ add_filter(
 				'blog_featured_hide'   => true,
 				'blog_featured_height' => 420,
 				'blog_featured_excerpt' => false,
-				'single_progress'      => false,
-				'single_progress_color' => '',
 			)
 		);
 	}
@@ -244,9 +242,6 @@ add_filter(
 		$f[] = array( 'id' => 'blog_featured_excerpt', 'section' => $fe, 'type' => 'checkbox', 'label' => __( 'Show the excerpt on the big story', 'bigspy-ai-theme-wp' ) );
 		$f[] = array( 'id' => 'blog_featured_hide', 'section' => $fe, 'type' => 'checkbox', 'label' => __( 'Do not repeat featured posts in the list below', 'bigspy-ai-theme-wp' ) );
 
-		$f[] = array( 'id' => 'bst_g_single_progress', 'section' => $s, 'type' => 'heading', 'label' => __( 'Reading', 'bigspy-ai-theme-wp' ) );
-		$f[] = array( 'id' => 'single_progress', 'section' => $s, 'type' => 'checkbox', 'label' => __( 'Reading progress bar at the top', 'bigspy-ai-theme-wp' ) );
-		$f[] = array( 'id' => 'single_progress_color', 'section' => $s, 'type' => 'color', 'label' => __( 'Progress bar color (empty = primary color)', 'bigspy-ai-theme-wp' ) );
 
 		foreach ( $fields as $i => $field ) {
 			if ( 'single_layout' === $field['id'] ) {
@@ -280,7 +275,6 @@ function bst_blog_layout_dependencies() {
 		'blog_featured_excerpt' => array( 'blog_featured', '!=', 'off' ),
 		'blog_featured_hide'    => array( 'blog_featured', '!=', 'off' ),
 		'archive_columns'       => array( 'archive_layout', 'in', array( 'inherit', 'grid', 'masonry', 'featured', 'overlay' ) ),
-		'single_progress_color' => array( 'single_progress', '==', true ),
 	);
 }
 
@@ -530,20 +524,6 @@ function bst_featured_render() {
 	echo '</section>';
 }
 add_action( 'bst_before_posts_loop', 'bst_featured_render', 5 );
-
-/* ------------------------------------------------- Reading progress bar */
-
-add_action(
-	'wp_footer',
-	function () {
-		if ( ! is_singular( 'post' ) || ! bst_mod( 'single_progress' ) ) {
-			return;
-		}
-		$color = sanitize_hex_color( (string) bst_mod( 'single_progress_color' ) );
-		echo '<div class="bs-progress" aria-hidden="true"' . ( $color ? ' style="--bs-progress:' . esc_attr( $color ) . '"' : '' ) . '><span></span></div>';
-		echo "<script>(function(){var b=document.querySelector('.bs-progress span'),a=document.querySelector('.bs-entry--single')||document.body;if(!b)return;function u(){var r=a.getBoundingClientRect(),t=a.offsetHeight-window.innerHeight,p=t>0?Math.min(1,Math.max(0,-r.top/t)):1;b.style.transform='scaleX('+p+')';}addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();})();</script>";
-	}
-);
 
 /* ---------------------------------------------------------------- Assets */
 
