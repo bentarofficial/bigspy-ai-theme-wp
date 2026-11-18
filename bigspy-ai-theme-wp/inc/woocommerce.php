@@ -117,6 +117,9 @@ function bst_wc_archive_header() {
 		}
 		return;
 	}
+	if ( function_exists( 'bst_shop_cover_done' ) && bst_shop_cover_done() ) {
+		return;
+	}
 	bst_simple_title();
 }
 add_action( 'woocommerce_before_main_content', 'bst_wc_archive_header', 20 );

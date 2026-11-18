@@ -28,6 +28,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-205-b Footer builder: ẩn từng phần tử theo thiết bị:** mục "Show elements on" trong Footer builder, mỗi phần tử chọn Tất cả / Chỉ desktop / Chỉ mobile & tablet (mốc 849px). Mặc định tất cả = như cũ. Kiểm thử: lint, features-check 2 test G-205-b + 5 test G-205 đạt. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-209 Trang shop & danh mục sản phẩm:** Shop sidebar chọn bằng hình; **Header style** (Tiêu đề như cũ / **Ảnh bìa**: lấy ảnh đại diện danh mục Woo hoặc ảnh đại diện trang Shop, có chiều cao, độ tối, breadcrumb, tiêu đề, mô tả); **Category description** trên/dưới sản phẩm/ẩn; toolbar thêm **nút lưới/danh sách** (mặc định chọn bằng hình, trình duyệt nhớ lựa chọn) và **dropdown số sản phẩm mỗi trang** (vd 12,24,48; chỉ nhận số trong danh sách). Đã có từ trước: ảnh thứ 2 khi hover, bộ lọc off-canvas trên mobile, sắp xếp, đếm kết quả. Không làm wishlist/so sánh (để plugin). Kiểm thử: lint, woo-check 88 ok (5 test G-209). Chưa xem trên trình duyệt; giao diện danh sách mới thử bằng CSS. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

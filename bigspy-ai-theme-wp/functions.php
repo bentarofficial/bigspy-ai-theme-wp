@@ -83,6 +83,7 @@ foreach ( $bst_includes as $bst_file ) {
 
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once BST_DIR . '/inc/woocommerce.php';
+	require_once BST_DIR . '/inc/shop-archive.php';
 }
 
 // BIGSPY AI Designer: optional, self-contained. Delete the ai-designer folder to remove it.

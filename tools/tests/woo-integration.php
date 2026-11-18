@@ -359,6 +359,46 @@ try {
 	update_option( 'bst_features', array( 'listing' ) );
 	$ids = array_column( bst_customizer_fields(), 'id' );
 	bst_test( in_array( 'lt_noun', $ids, true ) && in_array( 'lt_search_button', $ids, true ) && in_array( 'lt_bar_sort', $ids, true ) && isset( bst_customizer_sections()['bst_listing_texts'] ), 'texts: the Customizer has the Listing texts section and fields' );
+
+	// G-209: shop & category pages.
+	$f209 = array();
+	foreach ( bst_customizer_fields() as $f ) {
+		$f209[ $f['id'] ] = $f;
+	}
+	bst_test( 'image_radio' === $f209['shop_sidebar']['type'] && isset( $f209['shop_cat_header'], $f209['shop_per_page_choices'] ) && isset( bst_layout_picker_pictures( 'shop_cat_header' )['cover'] ), 'G-209: Customizer fields and pictures' );
+	set_theme_mod( 'shop_per_page_choices', '24, 12, 999, x, 24' );
+	bst_test( array( 24, 12 ) === bst_shop_per_page_choices(), 'G-209: per-page choices parsed' );
+	$_GET['per_page'] = '24';
+	$pp_ok = 24 === (int) apply_filters( 'loop_shop_per_page', 12 );
+	$_GET['per_page'] = '500';
+	$pp_ok = $pp_ok && 24 !== (int) apply_filters( 'loop_shop_per_page', 12 );
+	unset( $_GET['per_page'] );
+	bst_test( $pp_ok, 'G-209: per_page only accepts listed numbers' );
+	remove_theme_mod( 'shop_per_page_choices' );
+	$cov = wp_insert_term( 'Cover cat', 'product_cat', array( 'description' => 'Cover desc text' ) );
+	$cp  = new WC_Product_Simple();
+	$cp->set_name( 'Cover product' );
+	$cp->set_regular_price( '5' );
+	$cp->set_status( 'publish' );
+	$cp->save();
+	wp_set_object_terms( $cp->get_id(), array( (int) $cov['term_id'] ), 'product_cat' );
+	$go = function () use ( $cov ) {
+		$GLOBALS['wp_the_query']->query( array( 'product_cat' => get_term( $cov['term_id'] )->slug ) );
+		$GLOBALS['wp_query'] = $GLOBALS['wp_the_query'];
+		bst_shop_cover_done( false );
+		ob_start();
+		bst_shop_cover();
+		bst_wc_archive_header();
+		return ob_get_clean();
+	};
+	$h = $go();
+	bst_test( false === strpos( $h, 'bs-shop-cover' ), 'G-209: title header by default' );
+	set_theme_mod( 'shop_cat_header', 'cover' );
+	set_theme_mod( 'shop_cover_height', 333 );
+	$h = $go();
+	bst_test( false !== strpos( $h, 'bs-shop-cover' ) && false !== strpos( $h, 'Cover cat' ) && false !== strpos( $h, 'Cover desc text' ) && false !== strpos( $h, '--bs-shop-cover-h:333px' ) && 1 === substr_count( $h, '<h1' ), 'G-209: cover header with title and description, one H1' );
+	remove_theme_mod( 'shop_cat_header' );
+	remove_theme_mod( 'shop_cover_height' );
 } catch ( Throwable $e ) {
 	bst_test( false, get_class( $e ) . ' ' . $e->getMessage() . ' @' . $e->getLine() );
 }
