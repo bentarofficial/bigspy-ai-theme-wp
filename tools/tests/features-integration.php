@@ -837,6 +837,30 @@ bst_test( false === strpos( ob_get_clean(), 'Call us' ), 'G-205: elements past t
 foreach ( array( 'footer_type', 'footer_layout', 'fb_main_cols', 'fb_main_widths', 'fb_bottom_cols', 'fb_about', 'fb_button_text', 'fb_button_url', 'fb_main_bg' ) as $bst_k ) {
 	remove_theme_mod( $bst_k );
 }
+// G-200: style kits and per-section reset.
+$bst_kf = array();
+foreach ( bst_customizer_fields() as $bst_f ) {
+	$bst_kf[ $bst_f['id'] ] = $bst_f;
+}
+$bst_bad = array();
+foreach ( bst_style_kits() as $bst_kk => $bst_kit ) {
+	foreach ( $bst_kit['settings'] as $bst_id => $bst_v ) {
+		$bst_f = $bst_kf[ $bst_id ] ?? null;
+		if ( ! $bst_f ) {
+			$bst_bad[] = $bst_kk . ':' . $bst_id;
+		} elseif ( isset( $bst_f['choices'] ) && ! isset( $bst_f['choices'][ $bst_v ] ) ) {
+			$bst_bad[] = $bst_kk . ':' . $bst_id . '=' . $bst_v;
+		} elseif ( 'color' === $bst_f['type'] && ! sanitize_hex_color( $bst_v ) ) {
+			$bst_bad[] = $bst_kk . ':' . $bst_id;
+		}
+	}
+}
+bst_test( 8 === count( bst_style_kits() ) && ! $bst_bad && 'layout_presets' === $bst_kf['style_kit_presets']['type'], 'G-200: 8 style kits, every setting exists with a valid value ' . implode( ',', $bst_bad ) );
+require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
+$bst_wpc = new WP_Customize_Manager();
+do_action( 'customize_register', $bst_wpc );
+$bst_rm = bst_section_reset_map( $bst_wpc );
+bst_test( isset( $bst_rm['bst_colors']['color_primary'], $bst_rm['bst_typography']['h1_size_mobile'] ) && '#0a4d8c' === $bst_rm['bst_colors']['color_primary'] && ! isset( $bst_rm['title_tagline'] ), 'G-200: reset map has defaults per BIGSPY section, incl. device settings' );
 // G-214: Customizer tree.
 $bst_sec = bst_customizer_sections();
 $bst_pan = bst_customizer_panels();

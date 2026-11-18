@@ -30,6 +30,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-209 Trang shop & danh mục sản phẩm:** Shop sidebar chọn bằng hình; **Header style** (Tiêu đề như cũ / **Ảnh bìa**: lấy ảnh đại diện danh mục Woo hoặc ảnh đại diện trang Shop, có chiều cao, độ tối, breadcrumb, tiêu đề, mô tả); **Category description** trên/dưới sản phẩm/ẩn; toolbar thêm **nút lưới/danh sách** (mặc định chọn bằng hình, trình duyệt nhớ lựa chọn) và **dropdown số sản phẩm mỗi trang** (vd 12,24,48; chỉ nhận số trong danh sách). Đã có từ trước: ảnh thứ 2 khi hover, bộ lọc off-canvas trên mobile, sắp xếp, đếm kết quả. Không làm wishlist/so sánh (để plugin). Kiểm thử: lint, woo-check 88 ok (5 test G-209). Chưa xem trên trình duyệt; giao diện danh sách mới thử bằng CSS. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-200 Style kits và reset theo mục:** Global style → **Style kits**: 8 bộ phối sẵn (Corporate, Startup, Elegant, Fresh, Bold, Soft, Tech, Minimal), mỗi bộ đặt cùng lúc màu, font tiêu đề/nội dung, bo góc nút, bo góc và bóng thẻ, màu header/footer, kiểu thẻ sản phẩm (khi có Woo). Chỉ đổi trong xem trước; Publish mới lưu, đóng không Publish là bỏ. Mỗi mục Customizer của theme có link **Reset this section** đưa các tuỳ chọn về mặc định (cũng chỉ trong xem trước). Xuất/nhập/đặt lại toàn bộ có hoàn tác đã có (Appearance → BIGSPY AI Theme WP, commit 3b19fb8). Kiểm thử: lint, features-check 345 ok (2 test G-200). Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
