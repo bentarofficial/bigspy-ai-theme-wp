@@ -36,9 +36,10 @@ if ( $image && ! empty( $a['bgFixed'] ) ) {
 
 $style = bst_style_vars(
 	array(
-		'--bs-sec-pd' => bst_block_num( $a, 'paddingDesktop', 80, 0, 400 ) . 'px',
-		'--bs-sec-pt' => bst_block_num( $a, 'paddingTablet', 60, 0, 400 ) . 'px',
-		'--bs-sec-pm' => bst_block_num( $a, 'paddingMobile', 40, 0, 400 ) . 'px',
+		// G-201: default padding follows Style → Global style when set.
+		'--bs-sec-pd' => 80 === (int) bst_block_num( $a, 'paddingDesktop', 80, 0, 400 ) ? 'var(--bs-gs-sec,80px)' : bst_block_num( $a, 'paddingDesktop', 80, 0, 400 ) . 'px',
+		'--bs-sec-pt' => 60 === (int) bst_block_num( $a, 'paddingTablet', 60, 0, 400 ) ? 'var(--bs-gs-sec-t,var(--bs-gs-sec,60px))' : bst_block_num( $a, 'paddingTablet', 60, 0, 400 ) . 'px',
+		'--bs-sec-pm' => 40 === (int) bst_block_num( $a, 'paddingMobile', 40, 0, 400 ) ? 'var(--bs-gs-sec-m,var(--bs-gs-sec-t,var(--bs-gs-sec,40px)))' : bst_block_num( $a, 'paddingMobile', 40, 0, 400 ) . 'px',
 		'--bs-sec-min' => $min ? $min . $unit : '',
 		'--bs-shape-top' => ! empty( $a['dividerTop'] ) ? bst_block_num( $a, 'dividerTopHeight', 80, 10, 400 ) . 'px' : '',
 		'--bs-shape-bottom' => ! empty( $a['dividerBottom'] ) ? bst_block_num( $a, 'dividerBottomHeight', 80, 10, 400 ) . 'px' : '',

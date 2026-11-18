@@ -12,6 +12,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-199 Control Responsive và Spacing dùng chung (Customizer):** loại trường `responsive` (giá trị desktop giữ id cũ, thêm `<id>_tablet`, `<id>_mobile`, để trống = theo màn lớn hơn; tab thiết bị đồng bộ nút thiết bị Customizer) và `spacing` (4 cạnh, khoá liên kết, đơn vị px/em/rem/%, theo thiết bị, lưu JSON). CSS biến in theo breakpoint 849px/549px của theme; xem trước tức thì. Đã chuyển H1–H4 sang Responsive; thêm **Title bar padding** (mặc định giữ 48px 0). AI Designer vẫn sửa được H1–H4 (desktop). Kiểm thử: lint PHP/JS, features-check 4 test G-199 đạt. Chưa xem UI Customizer trên trình duyệt. playground-check báo lỗi cũ `bst/marquee-item` thiếu catalog profile (không do đợt này). Khi phát hành: chuỗi dịch vi, Có gì mới. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-201 Design tokens (Style → Global style):** bo góc thẻ, bóng đổ 3 mức (`--bs-shadow-sm/md/lg` luôn có để khối và CSS riêng dùng), khoảng cách section theo thiết bị. Áp cho thẻ blog `.bs-card`, thẻ sản phẩm, thẻ listing, widget sidebar dạng box; khối Section để padding mặc định (80/60/40) sẽ đọc token. Để trống = giữ giao diện cũ; Shop card radius và Listing design radius/shadow vẫn ghi đè. Độ rộng nội dung đọc không thêm vì đã có `single_width`. Kiểm thử: lint, features-check 4 test G-201 đạt. Chưa xem trên trình duyệt; editor chưa đọc token khoảng cách section. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.

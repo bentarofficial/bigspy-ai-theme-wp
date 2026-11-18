@@ -14,6 +14,7 @@ require_once __DIR__ . '/sanitize.php';
 require_once __DIR__ . '/fields.php';
 require_once __DIR__ . '/focus-map.php';
 require_once __DIR__ . '/responsive.php';
+require_once __DIR__ . '/design-tokens.php';
 
 function bst_customize_register( $wp_customize ) {
 	require_once __DIR__ . '/controls.php';

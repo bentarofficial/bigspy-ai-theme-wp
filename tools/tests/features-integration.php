@@ -745,6 +745,21 @@ bst_test( '' === bst_sanitize_spacing( '{"unit":"bad","desktop":["","","",""]}' 
 remove_theme_mod( 'h1_size_tablet' );
 remove_theme_mod( 'h2_size_mobile' );
 remove_theme_mod( 'title_bar_padding' );
+// G-201: design tokens.
+$bst_css0 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css0, '--bs-shadow-md:' ) && false === strpos( $bst_css0, 'html .bs-card' ) && false === strpos( $bst_css0, '--bs-gs-sec' ), 'G-201: nothing changes until a token is set' );
+$bst_h = $bst_rb( 'bst/section', array() );
+bst_test( false !== strpos( $bst_h, '--bs-sec-pd:var(--bs-gs-sec,80px)' ) && false !== strpos( $bst_rb( 'bst/section', array( 'paddingDesktop' => 120 ) ), '--bs-sec-pd:120px' ), 'G-201: section default padding reads the token, custom padding kept' );
+set_theme_mod( 'gs_radius', 6 );
+set_theme_mod( 'gs_shadow', 'lg' );
+set_theme_mod( 'gs_section_space', 100 );
+set_theme_mod( 'gs_section_space_mobile', 30 );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, 'html .bs-card,' ) && false !== strpos( $bst_css1, '{border-radius:6px}' ) && false !== strpos( $bst_css1, 'html .bs-product{--bs-card-radius:6px}' ) && false !== strpos( $bst_css1, 'box-shadow:var(--bs-shadow-lg)' ), 'G-201: radius and shadow reach blog, product, listing cards' );
+bst_test( false !== strpos( $bst_css1, '--bs-gs-sec:100px' ) && false !== strpos( $bst_css1, '--bs-gs-sec-m:30px' ) && false === strpos( $bst_css1, '--bs-gs-sec-t' ), 'G-201: section spacing per device' );
+foreach ( array( 'gs_radius', 'gs_shadow', 'gs_section_space', 'gs_section_space_mobile' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}
 $bst_menu = wp_create_nav_menu( 'G134 menu' );
 if ( ! is_wp_error( $bst_menu ) ) {
 	$bst_parent = wp_update_nav_menu_item( $bst_menu, 0, array( 'menu-item-title' => 'Parent', 'menu-item-url' => 'https://example.com/a', 'menu-item-status' => 'publish' ) );
