@@ -1326,8 +1326,14 @@ ul.products.bs-slider__track {
 }
 
 .bs-shop-cover a,
-.bs-shop-cover .bs-shop-cover__title {
+.bs-shop-cover .bs-shop-cover__title,
+.bs-shop-cover .bs-breadcrumbs,
+.bs-shop-cover .bs-breadcrumbs * {
 	color: inherit;
+}
+
+.bs-shop-cover .bs-breadcrumbs {
+	opacity: .85;
 }
 
 .bs-shop-cover__title {

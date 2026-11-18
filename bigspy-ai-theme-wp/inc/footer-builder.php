@@ -117,11 +117,29 @@ function bst_fb_enabled() {
 }
 
 function bst_fb_cols( $row ) {
-	$v = get_theme_mod( 'fb_' . $row . '_cols', bst_fb_default_cols( $row ) );
+	$v = get_theme_mod( 'fb_' . $row . '_cols', '' );
+	if ( '' === $v || null === $v || ! is_numeric( $v ) ) {
+		// Unsaved (the Customizer preview returns '' for it): use the row default.
+		$v = bst_fb_default_cols( $row );
+	}
 	return max( 0, min( bst_fb_max_cols(), (int) $v ) );
 }
 
 /* ---------------------------------------------------------------- Customizer */
+
+/** Register row defaults so the Customizer selects show the real values. */
+add_filter(
+	'bst_defaults',
+	function ( $defaults ) {
+		foreach ( bst_fb_rows() as $row ) {
+			$defaults[ 'fb_' . $row . '_cols' ]   = (string) bst_fb_default_cols( $row );
+			$defaults[ 'fb_' . $row . '_align' ]  = 'bottom' === $row ? 'spread' : 'left';
+			$defaults[ 'fb_' . $row . '_mobile' ] = 'stack';
+		}
+		$defaults['footer_type'] = 'classic';
+		return $defaults;
+	}
+);
 
 add_filter(
 	'bst_customizer_sections',
@@ -150,7 +168,7 @@ add_filter(
 			'bottom' => __( 'Bottom row', 'bigspy-ai-theme-wp' ),
 		);
 		$add = array(
-			array( 'id' => 'footer_type', 'section' => $s, 'type' => 'radio', 'label' => __( 'Footer type', 'bigspy-ai-theme-wp' ), 'choices' => array(
+			array( 'id' => 'footer_type', 'section' => $s, 'priority' => 1, 'type' => 'radio', 'label' => __( 'Footer type', 'bigspy-ai-theme-wp' ), 'choices' => array(
 				'classic' => __( 'Classic (widget rows + copyright bar)', 'bigspy-ai-theme-wp' ),
 				'builder' => __( 'Builder (drag & drop below)', 'bigspy-ai-theme-wp' ),
 			), 'description' => __( 'A footer designed with blocks (Footer → Footer design) is shown instead of both.', 'bigspy-ai-theme-wp' ) ),
@@ -210,7 +228,7 @@ add_action(
 				array(
 					'label'           => __( 'Footer layout', 'bigspy-ai-theme-wp' ),
 					'section'         => 'bst_footer_builder',
-					'priority'        => 1,
+					'priority'        => 2,
 					'active_callback' => 'bst_fb_enabled',
 				)
 			)
