@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.98.0: Customizer upgrade: style kits, blog, header, footer builder
+
+- Style kits, section reset, global radius/shadow/spacing, per-device sizes and fuller typography.
+- Blog featured posts and category layouts; sticky/mobile/mega menu header options; drag & drop footer builder.
+- Title bar and breadcrumb styling, shop cover and grid/list, theme options export/import with undo.
+
 ### 1.97.0: Popular by website traffic, more quick-edit labels
 
 - Popular lists rank by Site Insights traffic, clicks or both, set once in Features.

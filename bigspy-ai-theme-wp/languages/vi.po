@@ -10104,3 +10104,1429 @@ msgstr "Xếp hạng Popular"
 
 msgid "Site default (Theme → Features)"
 msgstr "Mặc định của site (Theme → Features)"
+
+msgid "Logo & site identity"
+msgstr "Logo & nhận diện site"
+
+msgid "Colors"
+msgstr "Màu sắc"
+
+msgid "Pages & title"
+msgstr "Trang & tiêu đề"
+
+msgid "Widgets (sidebar & footer)"
+msgstr "Widget (sidebar & chân trang)"
+
+msgid "Shop layout"
+msgstr "Bố cục cửa hàng"
+
+msgid "Theme options imported."
+msgstr "Đã nhập tuỳ chọn theme."
+
+msgid "Theme options reset to defaults."
+msgstr "Đã đặt lại tuỳ chọn theme về mặc định."
+
+msgid "The previous theme options are back."
+msgstr "Đã khôi phục tuỳ chọn theme trước đó."
+
+msgid "There is no saved backup to restore."
+msgstr "Không có bản sao lưu nào để khôi phục."
+
+msgid "The file is not a valid BIGSPY AI Theme WP export."
+msgstr "Tệp không phải bản xuất hợp lệ của BIGSPY AI Theme WP."
+
+msgid "The file is damaged or is not a JSON file. Download a new export file and try again."
+msgstr "Tệp bị hỏng hoặc không phải tệp JSON. Hãy tải tệp xuất mới và thử lại."
+
+msgid "Choose an export file first."
+msgstr "Hãy chọn tệp xuất trước."
+
+msgid "The server could not receive the file. Try again, or ask your host to check the upload temp folder."
+msgstr "Máy chủ không nhận được tệp. Hãy thử lại hoặc nhờ nhà cung cấp hosting kiểm tra thư mục tạm khi tải lên."
+
+msgid "The file is larger than this server accepts (%s)."
+msgstr "Tệp lớn hơn mức máy chủ này cho phép (%s)."
+
+msgid "Theme options imported: %1$d settings applied, %2$d images copied to the Media Library."
+msgstr "Đã nhập tuỳ chọn theme: áp dụng %1$d thiết lập, chép %2$d ảnh vào Thư viện Media."
+
+msgid "%d settings were skipped because this theme version does not have them or your account may not edit code."
+msgstr "Bỏ qua %d thiết lập vì phiên bản theme này không có hoặc tài khoản của bạn không được sửa mã."
+
+msgid "%d images could not be downloaded from the old website; upload them again in the Customizer."
+msgstr "Không tải được %d ảnh từ website cũ; hãy tải lại trong Customizer."
+
+msgid "Upload your logo and choose colors & fonts in the Customizer."
+msgstr "Tải logo lên và chọn màu, font trong Customizer."
+
+msgid "Arrange the header with the drag & drop Header builder."
+msgstr "Sắp xếp đầu trang bằng Header builder kéo thả."
+
+msgid "Create a page, choose the “Full width” template, then insert ready-made sections from Patterns → “BIGSPY AI – Sections” (or the full “Homepage – business” pattern)."
+msgstr "Tạo một trang, chọn mẫu “Full width”, rồi chèn các section dựng sẵn từ Patterns → “BIGSPY AI – Sections” (hoặc pattern đầy đủ “Homepage – business”)."
+
+msgid "Every block has “Visibility & animation” settings to hide it per device or animate it on scroll."
+msgstr "Mỗi khối có thiết lập “Hiển thị & hiệu ứng” để ẩn theo thiết bị hoặc tạo hiệu ứng khi cuộn."
+
+msgid "Service website or online shop"
+msgstr "Website dịch vụ hoặc cửa hàng online"
+
+msgid "WooCommerce is active – shop mode is on."
+msgstr "WooCommerce đang bật – chế độ cửa hàng đã bật."
+
+msgid "Blocks: “Products” (latest, featured, sale, best selling, top rated – grid or slider) and “Product Categories”."
+msgstr "Khối: “Products” (mới nhất, nổi bật, giảm giá, bán chạy, đánh giá cao – lưới hoặc slider) và “Product Categories”."
+
+msgid "Patterns: “BIGSPY AI – Shop” sections and the full “Homepage – online shop”."
+msgstr "Pattern: các section “BIGSPY AI – Shop” và trang đầy đủ “Homepage – online shop”."
+
+msgid "Header builder: add the “Cart” and “Account” elements. Shop options: Customizer → WooCommerce → BIGSPY AI."
+msgstr "Header builder: thêm phần tử “Giỏ hàng” và “Tài khoản”. Tuỳ chọn cửa hàng: Customizer → WooCommerce → BIGSPY AI."
+
+msgid "The theme works as a service / business website without any plugin."
+msgstr "Theme dùng được làm website dịch vụ / doanh nghiệp mà không cần plugin nào."
+
+msgid "To build an online shop, install WooCommerce. The “Products” and “Product Categories” blocks, the shop patterns, the header cart and all shop options then appear automatically – nothing else to set up."
+msgstr "Để làm cửa hàng online, hãy cài WooCommerce. Khối “Products”, “Product Categories”, pattern cửa hàng, giỏ hàng trên đầu trang và mọi tuỳ chọn cửa hàng sẽ tự xuất hiện – không cần thiết lập thêm."
+
+msgid "Install WooCommerce"
+msgstr "Cài WooCommerce"
+
+msgid "Export theme options"
+msgstr "Xuất tuỳ chọn theme"
+
+msgid "Download all Customizer settings (colors, fonts, header layout, footer, blog, shop, Additional CSS) as a JSON file. Import it on another website to start from the same design."
+msgstr "Tải mọi thiết lập Customizer (màu, font, bố cục đầu trang, chân trang, blog, cửa hàng, CSS bổ sung) thành tệp JSON. Nhập vào website khác để bắt đầu từ cùng thiết kế."
+
+msgid "The file also links the logo, site icon and Customizer images; importing copies them into the new Media Library. Posts, pages, menus, widgets and plugins are not included – use a full backup plugin for those."
+msgstr "Tệp cũng kèm liên kết logo, biểu tượng site và ảnh Customizer; khi nhập sẽ chép chúng vào Thư viện Media mới. Bài viết, trang, menu, widget và plugin không có trong tệp – hãy dùng plugin sao lưu đầy đủ cho các phần đó."
+
+msgid "Download export file"
+msgstr "Tải tệp xuất"
+
+msgid "Import theme options"
+msgstr "Nhập tuỳ chọn theme"
+
+msgid "Upload a file exported from BIGSPY AI Theme WP. Current settings will be overwritten."
+msgstr "Tải lên tệp xuất từ BIGSPY AI Theme WP. Thiết lập hiện tại sẽ bị ghi đè."
+
+msgid "Current settings are saved first, so you can undo the import. Maximum file size: %s."
+msgstr "Thiết lập hiện tại được lưu trước nên bạn có thể hoàn tác việc nhập. Dung lượng tối đa: %s."
+
+msgid "Import"
+msgstr "Nhập"
+
+msgid "Restore the theme options saved before the last import or reset?"
+msgstr "Khôi phục tuỳ chọn theme đã lưu trước lần nhập hoặc đặt lại gần nhất?"
+
+msgid "Undo last import or reset"
+msgstr "Hoàn tác lần nhập hoặc đặt lại gần nhất"
+
+msgid "Backup saved %s."
+msgstr "Đã lưu bản sao lưu %s."
+
+msgid "Reset"
+msgstr "Đặt lại"
+
+msgid "Restore every theme option to its default value. Menus, widgets, logo and content are not affected."
+msgstr "Đưa mọi tuỳ chọn theme về mặc định. Menu, widget, logo và nội dung không bị ảnh hưởng."
+
+msgid "Reset all theme options?"
+msgstr "Đặt lại toàn bộ tuỳ chọn theme?"
+
+msgid "Reset theme options"
+msgstr "Đặt lại tuỳ chọn theme"
+
+msgid "The export file could not be created."
+msgstr "Không tạo được tệp xuất."
+
+msgid "BIGSPY AI Theme WP is active."
+msgstr "BIGSPY AI Theme WP đang hoạt động."
+
+msgid "Open the quick start guide"
+msgstr "Mở hướng dẫn bắt đầu nhanh"
+
+msgid "BIGSPY AI elements use the WordPress block editor. Classic Editor is currently the default; choose the block editor in Writing settings to edit layouts visually."
+msgstr "Các phần tử BIGSPY AI dùng trình soạn thảo khối của WordPress. Classic Editor đang là mặc định; hãy chọn trình soạn thảo khối trong cài đặt Viết để chỉnh bố cục trực quan."
+
+msgid "Writing settings"
+msgstr "Cài đặt Viết"
+
+msgid "BIGSPY AI Theme"
+msgstr "BIGSPY AI Theme"
+
+msgid "PHP"
+msgstr "PHP"
+
+msgid "— Choose a category —"
+msgstr "— Chọn danh mục —"
+
+msgid "Big first post"
+msgstr "Bài đầu lớn"
+
+msgid "Text on image"
+msgstr "Chữ trên ảnh"
+
+msgid "Titles only"
+msgstr "Chỉ tiêu đề"
+
+msgid "Right sidebar"
+msgstr "Sidebar phải"
+
+msgid "Left sidebar"
+msgstr "Sidebar trái"
+
+msgid "No sidebar"
+msgstr "Không sidebar"
+
+msgid "Blog layout (posts page)"
+msgstr "Bố cục blog (trang bài viết)"
+
+msgid "Featured posts"
+msgstr "Bài nổi bật"
+
+msgid "A large eye-catching area at the top of the posts page: one big story, a 1+2 or 1+4 grid, a row or a slider."
+msgstr "Vùng lớn bắt mắt ở đầu trang bài viết: một bài lớn, lưới 1+2 hoặc 1+4, một hàng hoặc slider."
+
+msgid "Category & tag pages"
+msgstr "Trang danh mục & tag"
+
+msgid "By default category, tag, author and date pages look like the posts page. Pick a different look here. Each category can also have its own layout: Posts → Categories → Edit."
+msgstr "Mặc định trang danh mục, tag, tác giả và ngày giống trang bài viết. Chọn giao diện khác ở đây. Mỗi danh mục cũng có thể có bố cục riêng: Bài viết → Danh mục → Sửa."
+
+msgid "Same as posts page"
+msgstr "Giống trang bài viết"
+
+msgid "Grid columns"
+msgstr "Số cột lưới"
+
+msgid "Category description"
+msgstr "Mô tả danh mục"
+
+msgid "Above the posts"
+msgstr "Trên danh sách bài"
+
+msgid "Below the posts (good for long SEO text)"
+msgstr "Dưới danh sách bài (hợp với nội dung SEO dài)"
+
+msgid "Show the Featured posts area on category pages too"
+msgstr "Hiện cả vùng Bài nổi bật trên trang danh mục"
+
+msgid "Uses the newest posts of that category."
+msgstr "Dùng các bài mới nhất của danh mục đó."
+
+msgid "Style"
+msgstr "Kiểu"
+
+msgid "One big story"
+msgstr "Một bài lớn"
+
+msgid "1 big + 2"
+msgstr "1 lớn + 2"
+
+msgid "1 big + 4"
+msgstr "1 lớn + 4"
+
+msgid "Row of 3"
+msgstr "Hàng 3 bài"
+
+msgid "Posts to feature"
+msgstr "Bài được chọn"
+
+msgid "Sticky posts (newest if none)"
+msgstr "Bài ghim (bài mới nhất nếu không có)"
+
+msgid "Newest posts"
+msgstr "Bài mới nhất"
+
+msgid "From one category"
+msgstr "Từ một danh mục"
+
+msgid "With a tag"
+msgstr "Có một tag"
+
+msgid "Most commented"
+msgstr "Nhiều bình luận nhất"
+
+msgid "Tag slug"
+msgstr "Slug của tag"
+
+msgid "For example: editors-pick"
+msgstr "Ví dụ: editors-pick"
+
+msgid "Posts in the slider"
+msgstr "Số bài trong slider"
+
+msgid "Height of the big story (px)"
+msgstr "Chiều cao bài lớn (px)"
+
+msgid "Show the excerpt on the big story"
+msgstr "Hiện tóm tắt trên bài lớn"
+
+msgid "Do not repeat featured posts in the list below"
+msgstr "Không lặp lại bài nổi bật trong danh sách bên dưới"
+
+msgid "Title layout"
+msgstr "Bố cục tiêu đề"
+
+msgid "Centered"
+msgstr "Căn giữa"
+
+msgid "Title beside image"
+msgstr "Tiêu đề cạnh ảnh"
+
+msgid "Title on image"
+msgstr "Tiêu đề trên ảnh"
+
+msgid "Full-width banner"
+msgstr "Banner tràn ngang"
+
+msgid "Same as Customizer"
+msgstr "Giống Customizer"
+
+msgid "Post layout"
+msgstr "Bố cục bài viết"
+
+msgid "Featured posts area"
+msgstr "Vùng bài nổi bật"
+
+msgid "Layout of this page (BIGSPY AI theme)"
+msgstr "Bố cục trang này (theme BIGSPY AI)"
+
+msgid "Featured posts: no posts with a featured image match the chosen source yet."
+msgstr "Bài nổi bật: chưa có bài nào có ảnh đại diện khớp nguồn đã chọn."
+
+msgid "Unit"
+msgstr "Đơn vị"
+
+msgid "Link all four sides"
+msgstr "Liên kết cả bốn cạnh"
+
+msgid "Empty = theme default. Tablet and mobile follow the larger screen until you type a value."
+msgstr "Để trống = mặc định của theme. Tablet và mobile theo màn lớn hơn cho đến khi bạn nhập giá trị."
+
+msgid "Top bar"
+msgstr "Thanh trên cùng"
+
+msgid "Main header"
+msgstr "Đầu trang chính"
+
+msgid "Bottom header"
+msgstr "Đầu trang dưới"
+
+msgid "Available elements (drag into a row)"
+msgstr "Phần tử có sẵn (kéo vào một hàng)"
+
+msgid "Reset to default layout"
+msgstr "Đặt lại bố cục mặc định"
+
+msgid "Reset the header layout for this device?"
+msgstr "Đặt lại bố cục đầu trang cho thiết bị này?"
+
+msgid "Layout applied. Preview it, then Publish to save."
+msgstr "Đã áp dụng bố cục. Xem trước rồi bấm Publish để lưu."
+
+msgid "Global style (radius, shadow, spacing)"
+msgstr "Kiểu chung (bo góc, bóng, khoảng cách)"
+
+msgid "Change once, applies to blog cards, product cards, listing cards, boxed sidebar widgets and Section blocks. Empty = keep the theme default. Options in Shop or Listing design still override these."
+msgstr "Đổi một lần, áp dụng cho thẻ blog, thẻ sản phẩm, thẻ listing, widget sidebar dạng hộp và khối Section. Để trống = giữ mặc định của theme. Tuỳ chọn trong Shop hoặc Listing design vẫn ghi đè các giá trị này."
+
+msgid "Card corner radius (px)"
+msgstr "Bo góc thẻ (px)"
+
+msgid "Card shadow"
+msgstr "Bóng thẻ"
+
+msgid "Small"
+msgstr "Nhỏ"
+
+msgid "Medium"
+msgstr "Vừa"
+
+msgid "Section block spacing, top and bottom (px)"
+msgstr "Khoảng cách trên và dưới của khối Section (px)"
+
+msgid "Used by Section blocks that keep the default padding (80 / 60 / 40 px)."
+msgstr "Dùng cho khối Section giữ padding mặc định (80 / 60 / 40 px)."
+
+msgid "Start with a ready-made layout or drag elements between rows. Click the gear on an element to edit it. Preview desktop and mobile separately, then press Publish to save."
+msgstr "Bắt đầu từ bố cục dựng sẵn hoặc kéo phần tử giữa các hàng. Bấm bánh răng trên phần tử để sửa. Xem trước riêng desktop và mobile rồi bấm Publish để lưu."
+
+msgid "Header layout & sticky"
+msgstr "Bố cục đầu trang & dính"
+
+msgid "Rows: height & colors"
+msgstr "Hàng: chiều cao & màu"
+
+msgid "Upload the logo in Site Identity."
+msgstr "Tải logo trong Nhận diện site."
+
+msgid "Navigation"
+msgstr "Điều hướng"
+
+msgid "HTML blocks"
+msgstr "Khối HTML"
+
+msgid "HTML and shortcodes are allowed. Tokens: [year], [site_title], [phone], [email]."
+msgstr "Cho phép HTML và shortcode. Mã thay thế: [year], [site_title], [phone], [email]."
+
+msgid "Contact info & social"
+msgstr "Thông tin liên hệ & mạng xã hội"
+
+msgid "Used by the header, the mobile menu and the footer."
+msgstr "Dùng cho đầu trang, menu mobile và chân trang."
+
+msgid "These colors also appear in the block editor color palette."
+msgstr "Các màu này cũng xuất hiện trong bảng màu của trình soạn thảo khối."
+
+msgid "Site layout"
+msgstr "Bố cục site"
+
+msgid "Blog archive"
+msgstr "Trang lưu trữ blog"
+
+msgid "Single post"
+msgstr "Bài viết đơn"
+
+msgid "Call-to-action band"
+msgstr "Dải kêu gọi hành động"
+
+msgid "A colored band shown above the footer on every page, e.g. “Ready to start? → Contact us”."
+msgstr "Dải màu hiện phía trên chân trang ở mọi trang, ví dụ “Sẵn sàng bắt đầu? → Liên hệ”."
+
+msgid "Footer widgets"
+msgstr "Widget chân trang"
+
+msgid "Choose a column layout here, then add content to each column in Widgets. Your existing widget content is kept when changing a layout."
+msgstr "Chọn bố cục cột ở đây rồi thêm nội dung cho từng cột trong Widget. Nội dung widget hiện có được giữ khi đổi bố cục."
+
+msgid "Footer bottom (copyright)"
+msgstr "Chân trang dưới cùng (bản quyền)"
+
+msgid "Custom scripts"
+msgstr "Mã tuỳ chỉnh"
+
+msgid "Google Analytics, Facebook Pixel, chat widgets… Custom CSS goes in “Additional CSS”."
+msgstr "Google Analytics, Facebook Pixel, widget chat… CSS tuỳ chỉnh đặt trong “CSS bổ sung”."
+
+msgid "Performance & effects"
+msgstr "Hiệu năng & hiệu ứng"
+
+msgid "BIGSPY AI: shop layout"
+msgstr "BIGSPY AI: bố cục cửa hàng"
+
+msgid "BIGSPY AI: product cards & page"
+msgstr "BIGSPY AI: thẻ & trang sản phẩm"
+
+msgid "BIGSPY AI: catalog mode"
+msgstr "BIGSPY AI: chế độ catalog"
+
+msgid "Hide prices and add-to-cart buttons, show a contact button instead. Useful for showroom / quotation websites."
+msgstr "Ẩn giá và nút thêm vào giỏ, thay bằng nút liên hệ. Hợp với website showroom / báo giá."
+
+msgid "UPPERCASE"
+msgstr "CHỮ HOA"
+
+msgid "Capitalize"
+msgstr "Viết hoa chữ đầu"
+
+msgid "Primary"
+msgstr "Chính"
+
+msgid "Secondary"
+msgstr "Phụ"
+
+msgid "White"
+msgstr "Trắng"
+
+msgid "Plain link"
+msgstr "Liên kết thường"
+
+msgid "Start with a header layout"
+msgstr "Bắt đầu với một bố cục đầu trang"
+
+msgid "Choose a starting layout. It changes only the arrangement of header items; logo, menus, colors and button text stay yours. You can still drag every item below."
+msgstr "Chọn bố cục khởi đầu. Chỉ đổi cách sắp xếp phần tử đầu trang; logo, menu, màu và chữ nút vẫn giữ nguyên. Bạn vẫn kéo được mọi phần tử bên dưới."
+
+msgid "Set logo and site title"
+msgstr "Đặt logo và tên site"
+
+msgid "Create and assign menus"
+msgstr "Tạo và gán menu"
+
+msgid "Online store"
+msgstr "Cửa hàng online"
+
+msgid "Logo, search, account, cart and navigation."
+msgstr "Logo, tìm kiếm, tài khoản, giỏ hàng và điều hướng."
+
+msgid "Contact details, social links and clear navigation."
+msgstr "Thông tin liên hệ, liên kết mạng xã hội và điều hướng rõ ràng."
+
+msgid "Logo, menu and search with fewer rows."
+msgstr "Logo, menu và tìm kiếm với ít hàng hơn."
+
+msgid "Full-width header"
+msgstr "Đầu trang tràn ngang"
+
+msgid "Logo, menu and the text of full-width banners / sections line up on the same side spacing."
+msgstr "Logo, menu và chữ của banner / section tràn ngang thẳng hàng theo cùng khoảng cách hai bên."
+
+msgid "Side spacing for full-width header & blocks (px, 0 = auto)"
+msgstr "Khoảng cách hai bên cho đầu trang & khối tràn ngang (px, 0 = tự động)"
+
+msgid "Shadow under header"
+msgstr "Bóng dưới đầu trang"
+
+msgid "Sticky header"
+msgstr "Đầu trang dính"
+
+msgid "The main and bottom rows stay on screen while scrolling."
+msgstr "Hàng chính và hàng dưới luôn hiện khi cuộn."
+
+msgid "Sticky main row height (px)"
+msgstr "Chiều cao hàng chính khi dính (px)"
+
+msgid "Transparent header"
+msgstr "Đầu trang trong suốt"
+
+msgid "Can also be enabled per page in the “BIGSPY AI – Page layout” box."
+msgstr "Cũng có thể bật cho từng trang trong hộp “BIGSPY AI – Page layout”."
+
+msgid "Transparent header on the homepage"
+msgstr "Đầu trang trong suốt ở trang chủ"
+
+msgid "Text color on transparent header"
+msgstr "Màu chữ trên đầu trang trong suốt"
+
+msgid "Mobile main row height (px)"
+msgstr "Chiều cao hàng chính trên mobile (px)"
+
+msgid "Logo max width – desktop (px)"
+msgstr "Độ rộng tối đa logo – desktop (px)"
+
+msgid "Logo max width – mobile (px)"
+msgstr "Độ rộng tối đa logo – mobile (px)"
+
+msgid "Main menu style"
+msgstr "Kiểu menu chính"
+
+msgid "Menu font"
+msgstr "Font menu"
+
+msgid "Menu font size (px)"
+msgstr "Cỡ chữ menu (px)"
+
+msgid "Menu font weight"
+msgstr "Độ đậm chữ menu"
+
+msgid "Menu text case"
+msgstr "Kiểu chữ hoa/thường của menu"
+
+msgid "Off-canvas (mobile) menu opens from"
+msgstr "Menu mobile mở từ"
+
+msgid "Search icon opens"
+msgstr "Biểu tượng tìm kiếm mở"
+
+msgid "Dropdown under header"
+msgstr "Hộp thả dưới đầu trang"
+
+msgid "Full-screen lightbox"
+msgstr "Lightbox toàn màn hình"
+
+msgid "Force products-only search (overrides scope)"
+msgstr "Chỉ tìm sản phẩm (ghi đè phạm vi tìm)"
+
+msgid "For older settings and sites that always want product results."
+msgstr "Cho thiết lập cũ và site luôn muốn kết quả là sản phẩm."
+
+msgid "Button 1"
+msgstr "Nút 1"
+
+msgid "URL, tel:+15551234567 or mailto:…"
+msgstr "URL, tel:+15551234567 hoặc mailto:…"
+
+msgid "Button 2"
+msgstr "Nút 2"
+
+msgid "HTML 1"
+msgstr "HTML 1"
+
+msgid "HTML 2"
+msgstr "HTML 2"
+
+msgid "HTML 3"
+msgstr "HTML 3"
+
+msgid "Phone / hotline"
+msgstr "Điện thoại / hotline"
+
+msgid "Social profiles (full URLs)"
+msgstr "Trang mạng xã hội (URL đầy đủ)"
+
+msgid "For Zalo you can enter just the phone number."
+msgstr "Với Zalo, bạn chỉ cần nhập số điện thoại."
+
+msgid "Success"
+msgstr "Thành công"
+
+msgid "Alert / sale"
+msgstr "Cảnh báo / giảm giá"
+
+msgid "Body text"
+msgstr "Chữ nội dung"
+
+msgid "Headings"
+msgstr "Tiêu đề"
+
+msgid "Links"
+msgstr "Liên kết"
+
+msgid "Borders"
+msgstr "Viền"
+
+msgid "Light background (cards, boxes)"
+msgstr "Nền nhạt (thẻ, hộp)"
+
+msgid "Page background"
+msgstr "Nền trang"
+
+msgid "Body font"
+msgstr "Font nội dung"
+
+msgid "All Google fonts in this list support Vietnamese."
+msgstr "Mọi Google font trong danh sách này đều hỗ trợ tiếng Việt."
+
+msgid "Body font weight"
+msgstr "Độ đậm font nội dung"
+
+msgid "Body font size – desktop (px)"
+msgstr "Cỡ chữ nội dung – desktop (px)"
+
+msgid "Body font size – mobile (px)"
+msgstr "Cỡ chữ nội dung – mobile (px)"
+
+msgid "Heading font"
+msgstr "Font tiêu đề"
+
+msgid "Heading font weight"
+msgstr "Độ đậm font tiêu đề"
+
+msgid "Heading text case"
+msgstr "Kiểu chữ hoa/thường của tiêu đề"
+
+msgid "H1 size (px)"
+msgstr "Cỡ H1 (px)"
+
+msgid "H2 size (px)"
+msgstr "Cỡ H2 (px)"
+
+msgid "H3 size (px)"
+msgstr "Cỡ H3 (px)"
+
+msgid "H4 size (px)"
+msgstr "Cỡ H4 (px)"
+
+msgid "Font weight"
+msgstr "Độ đậm chữ"
+
+msgid "Text case"
+msgstr "Chữ hoa/thường"
+
+msgid "Boxed"
+msgstr "Đóng hộp"
+
+msgid "Outside background (boxed layout)"
+msgstr "Nền bên ngoài (bố cục đóng hộp)"
+
+msgid "Container width (px)"
+msgstr "Độ rộng khung (px)"
+
+msgid "Sidebar width (px)"
+msgstr "Độ rộng sidebar (px)"
+
+msgid "Default sidebar on pages"
+msgstr "Sidebar mặc định trên trang"
+
+msgid "Page title style"
+msgstr "Kiểu tiêu đề trang"
+
+msgid "Simple (inside content)"
+msgstr "Đơn giản (trong nội dung)"
+
+msgid "Full-width title bar"
+msgstr "Thanh tiêu đề tràn ngang"
+
+msgid "Title bar background"
+msgstr "Nền thanh tiêu đề"
+
+msgid "Title bar text color"
+msgstr "Màu chữ thanh tiêu đề"
+
+msgid "Title bar background image"
+msgstr "Ảnh nền thanh tiêu đề"
+
+msgid "Title bar padding"
+msgstr "Padding thanh tiêu đề"
+
+msgid "Full-width title bar only. Default: 48px top and bottom."
+msgstr "Chỉ cho thanh tiêu đề tràn ngang. Mặc định: 48px trên và dưới."
+
+msgid "Show breadcrumbs on pages whose H1 is off"
+msgstr "Hiện breadcrumb trên trang đã tắt H1"
+
+msgid "Pages and the Listings page print no title when \"Show the page name as H1\" is off. Turn this on to still show the breadcrumb trail above their content."
+msgstr "Trang và trang Listings không in tiêu đề khi tắt \"Show the page name as H1\". Bật mục này để vẫn hiện breadcrumb phía trên nội dung."
+
+msgid "Card style"
+msgstr "Kiểu thẻ"
+
+msgid "Show excerpt"
+msgstr "Hiện tóm tắt"
+
+msgid "Excerpt length (words)"
+msgstr "Độ dài tóm tắt (từ)"
+
+msgid "“Read more” text (empty to hide)"
+msgstr "Chữ “Xem thêm” (để trống để ẩn)"
+
+msgid "Show featured image"
+msgstr "Hiện ảnh đại diện"
+
+msgid "Author box (when the author has a bio)"
+msgstr "Hộp tác giả (khi tác giả có tiểu sử)"
+
+msgid "Previous / next post links"
+msgstr "Liên kết bài trước / sau"
+
+msgid "Choose a footer layout"
+msgstr "Chọn bố cục chân trang"
+
+msgid "A preset changes column counts and display toggles only. It does not delete or rewrite your widgets, text, links or colors."
+msgstr "Bố cục mẫu chỉ đổi số cột và các công tắc hiển thị. Không xoá hay viết lại widget, chữ, liên kết hoặc màu của bạn."
+
+msgid "Add or edit footer content in Widgets"
+msgstr "Thêm hoặc sửa nội dung chân trang trong Widget"
+
+msgid "Store"
+msgstr "Cửa hàng"
+
+msgid "Four columns for help, policies, contact and payments."
+msgstr "Bốn cột cho hỗ trợ, chính sách, liên hệ và thanh toán."
+
+msgid "Three content columns; keeps your current contact-band setting."
+msgstr "Ba cột nội dung; giữ thiết lập dải liên hệ hiện tại."
+
+msgid "Two columns and a simple copyright bar."
+msgstr "Hai cột và thanh bản quyền đơn giản."
+
+msgid "Show call-to-action band"
+msgstr "Hiện dải kêu gọi hành động"
+
+msgid "Second button text (optional)"
+msgstr "Chữ nút thứ hai (không bắt buộc)"
+
+msgid "Second button link"
+msgstr "Liên kết nút thứ hai"
+
+msgid "Hide on pages (IDs or slugs, comma separated)"
+msgstr "Ẩn trên các trang (ID hoặc slug, cách nhau bằng dấu phẩy)"
+
+msgid "Example: contact, 42"
+msgstr "Ví dụ: contact, 42"
+
+msgid "Footer 1 columns"
+msgstr "Số cột Footer 1"
+
+msgid "Disabled"
+msgstr "Tắt"
+
+msgid "Footer 1 background"
+msgstr "Nền Footer 1"
+
+msgid "Footer 1 text"
+msgstr "Chữ Footer 1"
+
+msgid "Footer 1 widget titles"
+msgstr "Tiêu đề widget Footer 1"
+
+msgid "Footer 2 columns"
+msgstr "Số cột Footer 2"
+
+msgid "Footer 2 background"
+msgstr "Nền Footer 2"
+
+msgid "Footer 2 text"
+msgstr "Chữ Footer 2"
+
+msgid "Show footer bottom bar"
+msgstr "Hiện thanh dưới cùng chân trang"
+
+msgid "Left / right"
+msgstr "Trái / phải"
+
+msgid "Copyright text"
+msgstr "Dòng bản quyền"
+
+msgid "Tokens: [year], [site_title]"
+msgstr "Mã thay thế: [year], [site_title]"
+
+msgid "Right side HTML (payment icons, badges…)"
+msgstr "HTML bên phải (biểu tượng thanh toán, huy hiệu…)"
+
+msgid "Show social icons"
+msgstr "Hiện biểu tượng mạng xã hội"
+
+msgid "Back-to-top button"
+msgstr "Nút lên đầu trang"
+
+msgid "Scripts in <head>"
+msgstr "Mã trong <head>"
+
+msgid "Scripts after <body>"
+msgstr "Mã sau <body>"
+
+msgid "Scripts before </body>"
+msgstr "Mã trước </body>"
+
+msgid "Disable WordPress emoji script"
+msgstr "Tắt script emoji của WordPress"
+
+msgid "Enable scroll animations on blocks"
+msgstr "Bật hiệu ứng cuộn cho khối"
+
+msgid "Products per row – desktop"
+msgstr "Sản phẩm mỗi hàng – desktop"
+
+msgid "Products per row – tablet"
+msgstr "Sản phẩm mỗi hàng – tablet"
+
+msgid "Products per row – mobile"
+msgstr "Sản phẩm mỗi hàng – mobile"
+
+msgid "Products per page"
+msgstr "Sản phẩm mỗi trang"
+
+msgid "Shop sidebar"
+msgstr "Sidebar cửa hàng"
+
+msgid "Header cart icon"
+msgstr "Biểu tượng giỏ hàng trên đầu trang"
+
+msgid "Bag"
+msgstr "Túi"
+
+msgid "Mini cart dropdown on hover (desktop)"
+msgstr "Giỏ hàng mini khi rê chuột (desktop)"
+
+msgid "Product card style"
+msgstr "Kiểu thẻ sản phẩm"
+
+msgid "Shadow on hover"
+msgstr "Bóng khi rê chuột"
+
+msgid "Image hover effect"
+msgstr "Hiệu ứng ảnh khi rê chuột"
+
+msgid "Show second gallery image"
+msgstr "Hiện ảnh thứ hai trong thư viện"
+
+msgid "Product title max lines"
+msgstr "Số dòng tối đa của tên sản phẩm"
+
+msgid "Unlimited"
+msgstr "Không giới hạn"
+
+msgid "Product image ratio"
+msgstr "Tỉ lệ ảnh sản phẩm"
+
+msgid "Add to cart button"
+msgstr "Nút thêm vào giỏ"
+
+msgid "Always visible"
+msgstr "Luôn hiện"
+
+msgid "Show on hover (desktop)"
+msgstr "Hiện khi rê chuột (desktop)"
+
+msgid "Round icon on the image"
+msgstr "Biểu tượng tròn trên ảnh"
+
+msgid "Show category above the title"
+msgstr "Hiện danh mục phía trên tên"
+
+msgid "Badge shape"
+msgstr "Hình dạng nhãn"
+
+msgid "Square"
+msgstr "Vuông"
+
+msgid "Show discount percentage on sale badge"
+msgstr "Hiện phần trăm giảm trên nhãn giảm giá"
+
+msgid "“New” badge for products added in the last N days (0 = off)"
+msgstr "Nhãn “Mới” cho sản phẩm thêm trong N ngày gần đây (0 = tắt)"
+
+msgid "“Hot” badge on featured products"
+msgstr "Nhãn “Hot” cho sản phẩm nổi bật"
+
+msgid "Product page sidebar"
+msgstr "Sidebar trang sản phẩm"
+
+msgid "Product gallery layout"
+msgstr "Bố cục thư viện ảnh sản phẩm"
+
+msgid "Stacked images"
+msgstr "Ảnh xếp chồng"
+
+msgid "Thumbnails on the left"
+msgstr "Ảnh nhỏ bên trái"
+
+msgid "Keep purchase details visible while scrolling (desktop)"
+msgstr "Giữ thông tin mua hàng khi cuộn (desktop)"
+
+msgid "Show a quick purchase bar on mobile"
+msgstr "Hiện thanh mua nhanh trên mobile"
+
+msgid "Related products per row"
+msgstr "Sản phẩm liên quan mỗi hàng"
+
+msgid "Enable catalog mode"
+msgstr "Bật chế độ catalog"
+
+msgid "Button link (empty = phone number from Contact info)"
+msgstr "Liên kết nút (để trống = số điện thoại trong Thông tin liên hệ)"
+
+msgid "Sticky style"
+msgstr "Kiểu dính"
+
+msgid "Slide in"
+msgstr "Trượt vào"
+
+msgid "Hide on scroll down"
+msgstr "Ẩn khi cuộn xuống"
+
+msgid "Shrink"
+msgstr "Thu nhỏ"
+
+msgid "“Hide on scroll down” shows the header again as soon as the visitor scrolls up."
+msgstr "“Ẩn khi cuộn xuống” hiện lại đầu trang ngay khi khách cuộn lên."
+
+msgid "Sticky header background"
+msgstr "Nền đầu trang khi dính"
+
+msgid "Sticky header text color"
+msgstr "Màu chữ đầu trang khi dính"
+
+msgid "Mobile menu style"
+msgstr "Kiểu menu mobile"
+
+msgid "Side panel"
+msgstr "Bảng bên"
+
+msgid "Full screen"
+msgstr "Toàn màn hình"
+
+msgid "Drop-down"
+msgstr "Thả xuống"
+
+msgid "Side panel width (px)"
+msgstr "Độ rộng bảng bên (px)"
+
+msgid "Mobile menu background"
+msgstr "Nền menu mobile"
+
+msgid "Mobile menu text color"
+msgstr "Màu chữ menu mobile"
+
+msgid "Logo while the header is sticky"
+msgstr "Logo khi đầu trang dính"
+
+msgid "Optional, e.g. a smaller or dark version. Shown only after scrolling when the sticky header is on."
+msgstr "Không bắt buộc, ví dụ bản nhỏ hơn hoặc bản tối. Chỉ hiện sau khi cuộn khi đã bật đầu trang dính."
+
+msgid "Mega menu"
+msgstr "Mega menu"
+
+msgid "Turn it on per top-level item in Appearance → Menus (“BIGSPY AI: Mega menu”). Child items become columns on desktop."
+msgstr "Bật cho từng mục cấp đầu trong Giao diện → Menu (“BIGSPY AI: Mega menu”). Mục con thành các cột trên desktop."
+
+msgid "Mega menu width (px)"
+msgstr "Độ rộng mega menu (px)"
+
+msgid "Mega menu columns"
+msgstr "Số cột mega menu"
+
+msgid "Space between columns (px)"
+msgstr "Khoảng cách giữa các cột (px)"
+
+msgid "Column heading color"
+msgstr "Màu tiêu đề cột"
+
+msgid "Column heading case"
+msgstr "Chữ hoa/thường của tiêu đề cột"
+
+msgid "Corporate"
+msgstr "Doanh nghiệp"
+
+msgid "Navy and orange, clean sans-serif."
+msgstr "Xanh navy và cam, font không chân gọn gàng."
+
+msgid "Startup"
+msgstr "Startup"
+
+msgid "Violet, rounded, soft shadows."
+msgstr "Tím, bo tròn, bóng mềm."
+
+msgid "Serif headings, warm neutrals, gold."
+msgstr "Tiêu đề có chân, màu trung tính ấm, vàng ánh kim."
+
+msgid "Fresh"
+msgstr "Tươi mới"
+
+msgid "Green and lime for food, health, nature."
+msgstr "Xanh lá và xanh chanh cho ẩm thực, sức khoẻ, thiên nhiên."
+
+msgid "Bold"
+msgstr "Mạnh mẽ"
+
+msgid "Black, red, tall condensed headings."
+msgstr "Đen, đỏ, tiêu đề cao và hẹp."
+
+msgid "Pastel pink and peach, friendly shapes."
+msgstr "Hồng pastel và màu đào, hình khối thân thiện."
+
+msgid "Tech"
+msgstr "Công nghệ"
+
+msgid "Blue and cyan, geometric font, sharp cards."
+msgstr "Xanh dương và xanh ngọc, font hình học, thẻ góc cạnh."
+
+msgid "Black and white, lots of space."
+msgstr "Đen trắng, nhiều khoảng trống."
+
+msgid "Style kits"
+msgstr "Bộ phong cách"
+
+msgid "One click sets colors, fonts, buttons, cards, header and footer colors together. See it in the preview, fine-tune, then Publish. Close without publishing to drop it."
+msgstr "Một cú bấm đặt cùng lúc màu, font, nút, thẻ và màu đầu/chân trang. Xem trong bản xem trước, chỉnh thêm rồi Publish. Đóng mà không Publish để bỏ."
+
+msgid "Reset this section"
+msgstr "Đặt lại mục này"
+
+msgid "Put every option in this section back to the theme default? Nothing is saved until you Publish."
+msgstr "Đưa mọi tuỳ chọn trong mục này về mặc định của theme? Chưa có gì được lưu cho đến khi bạn Publish."
+
+msgid "Section reset in the preview. Publish to keep it."
+msgstr "Đã đặt lại mục trong bản xem trước. Bấm Publish để giữ."
+
+msgid "Categories and tags can have their own cover image (Posts → Categories → Edit). Pages can use their featured image (page layout box)."
+msgstr "Danh mục và tag có thể có ảnh bìa riêng (Bài viết → Danh mục → Sửa). Trang có thể dùng ảnh đại diện (hộp bố cục trang)."
+
+msgid "Minimum height (px)"
+msgstr "Chiều cao tối thiểu (px)"
+
+msgid "Image overlay color"
+msgstr "Màu phủ ảnh"
+
+msgid "Only when the bar has an image. Default: black."
+msgstr "Chỉ khi thanh có ảnh. Mặc định: đen."
+
+msgid "Image overlay strength (%)"
+msgstr "Độ đậm lớp phủ ảnh (%)"
+
+msgid "Parallax background image"
+msgstr "Ảnh nền parallax"
+
+msgid "Desktop only; phones and visitors who prefer less motion get a still image."
+msgstr "Chỉ trên desktop; điện thoại và khách chọn giảm chuyển động sẽ thấy ảnh tĩnh."
+
+msgid "Breadcrumb style"
+msgstr "Kiểu breadcrumb"
+
+msgid "The separator applies to the theme and WooCommerce trail; Rank Math and Yoast use the separator set in their own settings."
+msgstr "Dấu phân cách áp dụng cho breadcrumb của theme và WooCommerce; Rank Math và Yoast dùng dấu phân cách trong cài đặt riêng của chúng."
+
+msgid "Separator"
+msgstr "Dấu phân cách"
+
+msgid "Automatic (above the simple title, below the title bar heading)"
+msgstr "Tự động (trên tiêu đề đơn giản, dưới tiêu đề thanh tiêu đề)"
+
+msgid "Above the title"
+msgstr "Trên tiêu đề"
+
+msgid "Below the title"
+msgstr "Dưới tiêu đề"
+
+msgid "Breadcrumb text color"
+msgstr "Màu chữ breadcrumb"
+
+msgid "Breadcrumb link color"
+msgstr "Màu liên kết breadcrumb"
+
+msgid "Background of the full-width title bar on this archive (Customizer → Page title & breadcrumbs)."
+msgstr "Nền thanh tiêu đề tràn ngang trên trang lưu trữ này (Customizer → Page title & breadcrumbs)."
+
+msgid "Cover image"
+msgstr "Ảnh bìa"
+
+msgid "Global style"
+msgstr "Kiểu chung"
+
+msgid "Colors, fonts, buttons and the radius, shadow and spacing every card and section shares."
+msgstr "Màu, font, nút cùng bo góc, bóng và khoảng cách dùng chung cho mọi thẻ và section."
+
+msgid "Header"
+msgstr "Đầu trang"
+
+msgid "Header builder, logo, menu, search, buttons and the announcement bar."
+msgstr "Header builder, logo, menu, tìm kiếm, nút và thanh thông báo."
+
+msgid "Call-to-action band, widget columns, copyright and floating contact buttons."
+msgstr "Dải kêu gọi hành động, cột widget, bản quyền và nút liên hệ nổi."
+
+msgid "Site width, page title bar, breadcrumbs and sidebars."
+msgstr "Độ rộng site, thanh tiêu đề trang, breadcrumb và sidebar."
+
+msgid "Posts page, featured posts, category pages and single posts."
+msgstr "Trang bài viết, bài nổi bật, trang danh mục và bài viết đơn."
+
+msgid "Listing (List mode)"
+msgstr "Listing (Chế độ danh sách)"
+
+msgid "Listing cards, the listing page, homepage sidebar and every listing text."
+msgstr "Thẻ listing, trang listing, sidebar trang chủ và mọi chữ của listing."
+
+msgid "Advanced"
+msgstr "Nâng cao"
+
+msgid "Scripts, performance, site tools, block list and WordPress tweaks."
+msgstr "Mã, hiệu năng, công cụ site, danh sách khối và tinh chỉnh WordPress."
+
+msgid "Fonts, weights, body size and heading sizes per device."
+msgstr "Font, độ đậm, cỡ chữ nội dung và tiêu đề theo thiết bị."
+
+msgid "Shape and text of buttons across the site."
+msgstr "Hình dạng và chữ của nút trên toàn site."
+
+msgid "Call-to-action buttons in the header."
+msgstr "Nút kêu gọi hành động trên đầu trang."
+
+msgid "Search icon or box, live results and what it searches."
+msgstr "Biểu tượng hoặc ô tìm kiếm, kết quả tức thì và phạm vi tìm."
+
+msgid "Menu font, size, colors and dropdowns."
+msgstr "Font, cỡ, màu menu và menu thả xuống."
+
+msgid "Height and colors of the top, main, bottom and mobile rows."
+msgstr "Chiều cao và màu của hàng trên, chính, dưới và mobile."
+
+msgid "Full-width or boxed header, sticky and transparent header."
+msgstr "Đầu trang tràn ngang hoặc đóng hộp, dính và trong suốt."
+
+msgid "A thin bar above the header for news or offers."
+msgstr "Thanh mỏng phía trên đầu trang cho tin tức hoặc ưu đãi."
+
+msgid "Copyright line, footer menu and social icons."
+msgstr "Dòng bản quyền, menu chân trang và biểu tượng mạng xã hội."
+
+msgid "Call, Zalo, Messenger… buttons fixed to the screen corner."
+msgstr "Nút Gọi, Zalo, Messenger… cố định ở góc màn hình."
+
+msgid "Full or boxed site, container and sidebar width."
+msgstr "Site tràn hoặc đóng hộp, độ rộng khung và sidebar."
+
+msgid "Title above pages and archives, and the breadcrumb trail."
+msgstr "Tiêu đề trên trang và trang lưu trữ, cùng breadcrumb."
+
+msgid "Sidebar style, sticky sidebar, widget spacing and mobile behavior."
+msgstr "Kiểu sidebar, sidebar dính, khoảng cách widget và cách hiển thị trên mobile."
+
+msgid "Layout, columns, card details and pagination of the posts page."
+msgstr "Bố cục, cột, chi tiết thẻ và phân trang của trang bài viết."
+
+msgid "Header style, table of contents, author box and related posts."
+msgstr "Kiểu đầu bài, mục lục, hộp tác giả và bài liên quan."
+
+msgid "Where the homepage sidebar starts and ends (List mode)."
+msgstr "Nơi sidebar trang chủ bắt đầu và kết thúc (Chế độ danh sách)."
+
+msgid "Speed options, lazy loading and site-wide effects."
+msgstr "Tuỳ chọn tốc độ, tải lười và hiệu ứng toàn site."
+
+msgid "404 page and maintenance mode."
+msgstr "Trang 404 và chế độ bảo trì."
+
+msgid "Cookie notice, reading progress bar and other small extras."
+msgstr "Thông báo cookie, thanh tiến độ đọc và các tiện ích nhỏ khác."
+
+msgid "Turn off WordPress features you do not use and the page loader."
+msgstr "Tắt các tính năng WordPress không dùng và hiệu ứng tải trang."
+
+msgid "View on a sample page"
+msgstr "Xem trên trang mẫu"
+
+msgid "H5 size (px)"
+msgstr "Cỡ H5 (px)"
+
+msgid "H6 size (px)"
+msgstr "Cỡ H6 (px)"
+
+msgid "Heading line height"
+msgstr "Chiều cao dòng tiêu đề"
+
+msgid "Heading letter spacing (px)"
+msgstr "Giãn chữ tiêu đề (px)"
+
+msgid "Body letter spacing (px)"
+msgstr "Giãn chữ nội dung (px)"
+
+msgid "Small meta text size (px)"
+msgstr "Cỡ chữ meta nhỏ (px)"
+
+msgid "Date, author, category and reading time under post titles."
+msgstr "Ngày, tác giả, danh mục và thời gian đọc dưới tiêu đề bài."
+
+msgid "Small meta text case"
+msgstr "Chữ hoa/thường của meta nhỏ"
+
+msgid "Small meta letter spacing (px)"
+msgstr "Giãn chữ meta nhỏ (px)"
+
+msgid "Menu letter spacing (px)"
+msgstr "Giãn chữ menu (px)"
+
+msgid "Extra color %d"
+msgstr "Màu thêm %d"
+
+msgid "Extra colors join the block editor palette and the CSS variables --bs-custom-1 … --bs-custom-4."
+msgstr "Màu thêm được đưa vào bảng màu trình soạn thảo khối và biến CSS --bs-custom-1 … --bs-custom-4."
+
+msgid "Extra color %d name"
+msgstr "Tên màu thêm %d"
+
+msgid "Text 1"
+msgstr "Chữ 1"
+
+msgid "Text 2"
+msgstr "Chữ 2"
+
+msgid "Footer menu"
+msgstr "Menu chân trang"
+
+msgid "Social icons"
+msgstr "Biểu tượng mạng xã hội"
+
+msgid "Contact info"
+msgstr "Thông tin liên hệ"
+
+msgid "Copyright"
+msgstr "Bản quyền"
+
+msgid "Payment / badges HTML"
+msgstr "HTML thanh toán / huy hiệu"
+
+msgid "Widget area %d"
+msgstr "Vùng widget %d"
+
+msgid "Footer builder"
+msgstr "Footer builder"
+
+msgid "Drag logo, menus, text, widgets, social icons and copyright into up to 3 rows × 6 columns."
+msgstr "Kéo logo, menu, chữ, widget, biểu tượng mạng xã hội và bản quyền vào tối đa 3 hàng × 6 cột."
+
+msgid "Row off"
+msgstr "Hàng tắt"
+
+msgid "Top row"
+msgstr "Hàng trên"
+
+msgid "Main row"
+msgstr "Hàng chính"
+
+msgid "Bottom row"
+msgstr "Hàng dưới"
+
+msgid "Footer type"
+msgstr "Loại chân trang"
+
+msgid "Classic (widget rows + copyright bar)"
+msgstr "Cổ điển (hàng widget + thanh bản quyền)"
+
+msgid "Builder (drag & drop below)"
+msgstr "Builder (kéo thả bên dưới)"
+
+msgid "A footer designed with blocks (Footer → Footer design) is shown instead of both."
+msgstr "Chân trang thiết kế bằng khối (Footer → Footer design) sẽ được hiện thay cho cả hai."
+
+msgid "Relative widths, e.g. 2,1,1,1. Empty = equal."
+msgstr "Độ rộng tương đối, ví dụ 2,1,1,1. Để trống = bằng nhau."
+
+msgid "Last column on the right"
+msgstr "Cột cuối bên phải"
+
+msgid "On mobile"
+msgstr "Trên mobile"
+
+msgid "Stack columns"
+msgstr "Xếp chồng cột"
+
+msgid "2 columns"
+msgstr "2 cột"
+
+msgid "Hide row"
+msgstr "Ẩn hàng"
+
+msgid "Show elements on"
+msgstr "Hiện phần tử trên"
+
+msgid "Desktop = wider than 849px; mobile and tablet = 849px and narrower."
+msgstr "Desktop = rộng hơn 849px; mobile và tablet = từ 849px trở xuống."
+
+msgid "Element content"
+msgstr "Nội dung phần tử"
+
+msgid "Copyright and Payment / badges use the fields in Footer bottom; widget areas 1–8 are Footer 1/2 columns in Widgets."
+msgstr "Bản quyền và Thanh toán / huy hiệu dùng các trường trong Footer bottom; vùng widget 1–8 là các cột Footer 1/2 trong Widget."
+
+msgid "Logo width (px)"
+msgstr "Độ rộng logo (px)"
+
+msgid "Footer layout"
+msgstr "Bố cục chân trang"
+
+msgid "Available elements (drag into a column)"
+msgstr "Phần tử có sẵn (kéo vào một cột)"
+
+msgid "Row off: choose columns below to use it."
+msgstr "Hàng đang tắt: chọn số cột bên dưới để dùng."
+
+msgid "Reset the footer layout?"
+msgstr "Đặt lại bố cục chân trang?"
+
+msgid "Mobile & tablet only"
+msgstr "Chỉ mobile & tablet"
+
+msgid "Main menu"
+msgstr "Menu chính"
+
+msgid "Top bar menu"
+msgstr "Menu thanh trên cùng"
+
+msgid "Assign a menu to “Main menu”"
+msgstr "Gán một menu cho “Menu chính”"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Transparent (overlaps first section)"
+msgstr "Trong suốt (đè lên section đầu)"
+
+msgid "Top / bottom content spacing"
+msgstr "Khoảng cách nội dung trên / dưới"
+
+msgid "None (content touches header / footer)"
+msgstr "Không (nội dung sát đầu / chân trang)"
+
+msgid "Title bar image"
+msgstr "Ảnh thanh tiêu đề"
+
+msgid "Featured image"
+msgstr "Ảnh đại diện"
+
+msgid "Hide page title"
+msgstr "Ẩn tiêu đề trang"
+
+msgid "Hide footer"
+msgstr "Ẩn chân trang"
+
+msgid "BIGSPY AI – Page layout"
+msgstr "BIGSPY AI – Bố cục trang"
+
+msgid "Tip: for landing pages choose the “Full width” or “Blank canvas” template and build with Section blocks."
+msgstr "Mẹo: với landing page, chọn mẫu “Full width” hoặc “Blank canvas” và dựng bằng khối Section."
+
+msgid "Mobile menu (falls back to Main menu)"
+msgstr "Menu mobile (dùng Menu chính nếu trống)"
+
+msgid "Footer bottom menu"
+msgstr "Menu dưới cùng chân trang"
+
+msgid "Blog sidebar"
+msgstr "Sidebar blog"
+
+msgid "Page sidebar"
+msgstr "Sidebar trang"
+
+msgid "Off-canvas menu (below menu)"
+msgstr "Menu trượt (dưới menu)"
+
+msgid "Footer 1 – Column %d"
+msgstr "Footer 1 – Cột %d"
+
+msgid "Footer 2 – Column %d"
+msgstr "Footer 2 – Cột %d"
+
+msgid "Shop & category header"
+msgstr "Đầu trang cửa hàng & danh mục"
+
+msgid "Cover uses the category thumbnail (Products → Categories) or the Shop page featured image."
+msgstr "Ảnh bìa dùng ảnh danh mục (Sản phẩm → Danh mục) hoặc ảnh đại diện trang Cửa hàng."
+
+msgid "Cover height (px)"
+msgstr "Chiều cao ảnh bìa (px)"
+
+msgid "Cover darkness (%)"
+msgstr "Độ tối ảnh bìa (%)"
+
+msgid "Above products"
+msgstr "Trên sản phẩm"
+
+msgid "Below products"
+msgstr "Dưới sản phẩm"
+
+msgid "Grid / list and products per page"
+msgstr "Lưới / danh sách và số sản phẩm mỗi trang"
+
+msgid "Show grid / list switch"
+msgstr "Hiện nút chuyển lưới / danh sách"
+
+msgid "Default view"
+msgstr "Kiểu xem mặc định"
+
+msgid "Products per page choices"
+msgstr "Các lựa chọn số sản phẩm mỗi trang"
+
+msgid "E.g. 12,24,48 shows a \"Show\" dropdown. Empty = no dropdown."
+msgstr "Ví dụ 12,24,48 sẽ hiện hộp chọn \"Hiện\". Để trống = không có hộp chọn."
+
+msgid "Product view"
+msgstr "Kiểu xem sản phẩm"
+
+msgid "Grid view"
+msgstr "Xem dạng lưới"
+
+msgid "List view"
+msgstr "Xem dạng danh sách"
+
+msgid "Product filters and shop widgets"
+msgstr "Bộ lọc sản phẩm và widget cửa hàng"
+
+msgid "Add widgets to this sidebar"
+msgstr "Thêm widget vào sidebar này"
+
+msgid "%s min read"
+msgstr "%s phút đọc"
+
+msgid "Close filters"
+msgstr "Đóng bộ lọc"
+
+msgid "Filters"
+msgstr "Bộ lọc"
+
+msgid "Choose options"
+msgstr "Chọn tuỳ chọn"
+

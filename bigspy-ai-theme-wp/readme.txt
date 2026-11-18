@@ -15,6 +15,18 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.98.0 =
+* Customizer reorganised: Global style, Header, Footer, Pages & title, Blog, WooCommerce, Listing (List mode), Advanced; one-line descriptions and View on a sample page buttons.
+* Style kits (8 presets) and Reset this section; global card radius, shadow and section spacing tokens.
+* Responsive and Spacing controls (desktop/tablet/mobile); H5/H6, line height, letter spacing, small meta text and 4 named extra colors.
+* Blog: picture layouts, Featured posts area, category & tag page layouts and per-category overrides, new title layouts.
+* Header: Hide on scroll down and Shrink sticky styles, sticky logo, mobile menu styles, mega menu options.
+* Footer builder: drag & drop, 3 rows x 6 columns, per-device elements.
+* Title bar alignment, height, overlay, parallax, category cover and per-page image; breadcrumb style.
+* Shop: cover header, category description position, grid/list switch, products-per-page dropdown.
+* Theme options export/import with images, backup and undo.
+* Tracking scripts print at the top of <head>.
+
 = 1.97.0 =
 * Popular ranking: a site-wide setting in Features (clicks on this site, website traffic from Site Insights, or both; both by default). Popular blocks default to "Site default"; blocks that chose a source keep it.
 * Customizer quick-edit labels for the listing sidebar (Widgets), listing cards (Listing design), listing texts, Sponsored slots, Popular lists, and an Edit this listing label on listing pages.
