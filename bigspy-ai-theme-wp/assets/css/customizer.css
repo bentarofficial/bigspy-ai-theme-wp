@@ -262,3 +262,7 @@ li.bst-group-hidden { display: none !important; }
 .bst-spacing__link { height: 30px; padding: 0; border: 1px solid #c3c4c7; border-radius: 3px; background: #fff; color: #50575e; cursor: pointer; }
 .bst-spacing__link.is-on { border-color: #2271b1; background: #2271b1; color: #fff; }
 .bst-spacing__hint { margin-top: 6px; }
+
+/* G-214 */
+.bst-sample-link { margin: 6px 12px 10px; }
+.bst-sample-link .dashicons { font-size: 16px; width: 16px; height: 16px; vertical-align: text-bottom; }

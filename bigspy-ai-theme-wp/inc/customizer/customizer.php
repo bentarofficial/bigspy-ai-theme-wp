@@ -15,20 +15,13 @@ require_once __DIR__ . '/fields.php';
 require_once __DIR__ . '/focus-map.php';
 require_once __DIR__ . '/responsive.php';
 require_once __DIR__ . '/design-tokens.php';
+require_once __DIR__ . '/tree.php';
 
 function bst_customize_register( $wp_customize ) {
 	require_once __DIR__ . '/controls.php';
 
-	$panels = array(
-		'bst_header'   => array( __( 'Header', 'bigspy-ai-theme-wp' ), 21 ),
-		'bst_style'    => array( __( 'Style: colors & typography', 'bigspy-ai-theme-wp' ), 22 ),
-		'bst_layout'   => array( __( 'Layout', 'bigspy-ai-theme-wp' ), 23 ),
-		'bst_blog'     => array( __( 'Blog', 'bigspy-ai-theme-wp' ), 24 ),
-		'bst_footer'   => array( __( 'Footer', 'bigspy-ai-theme-wp' ), 26 ),
-		'bst_advanced' => array( __( 'Advanced', 'bigspy-ai-theme-wp' ), 200 ),
-	);
-	foreach ( $panels as $id => $panel ) {
-		$wp_customize->add_panel( $id, array( 'title' => $panel[0], 'priority' => $panel[1] ) );
+	foreach ( bst_customizer_panels() as $id => $panel ) {
+		$wp_customize->add_panel( $id, array( 'title' => $panel[0], 'priority' => $panel[1], 'description' => $panel[2] ) );
 	}
 
 	foreach ( bst_customizer_sections() as $id => $section ) {

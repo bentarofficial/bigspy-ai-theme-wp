@@ -745,6 +745,20 @@ bst_test( '' === bst_sanitize_spacing( '{"unit":"bad","desktop":["","","",""]}' 
 remove_theme_mod( 'h1_size_tablet' );
 remove_theme_mod( 'h2_size_mobile' );
 remove_theme_mod( 'title_bar_padding' );
+// G-214: Customizer tree.
+$bst_sec = bst_customizer_sections();
+$bst_pan = bst_customizer_panels();
+bst_test( 'bst_style' === $bst_sec['bst_global_style']['panel'] && 'bst_layout' === $bst_sec['bst_sidebar']['panel'] && '' === $bst_sec['bst_contact']['panel'] && 'bst_advanced' === $bst_sec['bst_site_tools']['panel'] && 'Global style' === $bst_pan['bst_style'][0], 'G-214: sections sit in the new tree, contact on top level' );
+$bst_bad = array();
+foreach ( $bst_sec as $bst_id => $bst_s ) {
+	if ( '' !== ( $bst_s['panel'] ?? '' ) && 'woocommerce' !== $bst_s['panel'] && ! isset( $bst_pan[ $bst_s['panel'] ] ) ) {
+		$bst_bad[] = $bst_id;
+	}
+	if ( '' === trim( (string) ( $bst_s['description'] ?? '' ) ) ) {
+		$bst_bad[] = $bst_id . ':nodesc';
+	}
+}
+bst_test( ! $bst_bad, 'G-214: every section has a known panel and a description ' . implode( ',', $bst_bad ) );
 // G-201: design tokens.
 $bst_css0 = bst_dynamic_css();
 bst_test( false !== strpos( $bst_css0, '--bs-shadow-md:' ) && false === strpos( $bst_css0, 'html .bs-card' ) && false === strpos( $bst_css0, '--bs-gs-sec' ), 'G-201: nothing changes until a token is set' );

@@ -761,3 +761,25 @@
 		syncAll(api.previewedDevice.get() || 'desktop');
 	});
 })(wp.customize, jQuery);
+
+/* G-214: "View on a sample page" at the top of sections that have one. */
+(function (api, $) {
+	'use strict';
+
+	var cfg = window.bstTree || { urls: {}, label: 'View on a sample page' };
+	api.bind('ready', function () {
+		Object.keys(cfg.urls || {}).forEach(function (id) {
+			api.section(id, function (section) {
+				var $head = section.contentContainer.find('.customize-section-description-container').first();
+				if (!$head.length || $head.find('.bst-sample-link').length) {
+					return;
+				}
+				$('<p class="bst-sample-link"><button type="button" class="button-link"><span class="dashicons dashicons-visibility" aria-hidden="true"></span> ' + $('<i>').text(cfg.label).html() + '</button></p>')
+					.appendTo($head)
+					.on('click', 'button', function () {
+						api.previewer.previewUrl.set(cfg.urls[id]);
+					});
+			});
+		});
+	});
+})(wp.customize, jQuery);

@@ -14,6 +14,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-201 Design tokens (Style → Global style):** bo góc thẻ, bóng đổ 3 mức (`--bs-shadow-sm/md/lg` luôn có để khối và CSS riêng dùng), khoảng cách section theo thiết bị. Áp cho thẻ blog `.bs-card`, thẻ sản phẩm, thẻ listing, widget sidebar dạng box; khối Section để padding mặc định (80/60/40) sẽ đọc token. Để trống = giữ giao diện cũ; Shop card radius và Listing design radius/shadow vẫn ghi đè. Độ rộng nội dung đọc không thêm vì đã có `single_width`. Kiểm thử: lint, features-check 4 test G-201 đạt. Chưa xem trên trình duyệt; editor chưa đọc token khoảng cách section. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-214 Cây Customizer mới:** Global style (Global style, Colors, Typography, Buttons) · Header (có Announcement bar) · Footer (có Floating contact) · Pages & title (Site layout, Title bar, Sidebar) · Blog · WooCommerce · **Listing (List mode)** (Listing design, Listing page, Homepage sidebar, Listing texts; trước nằm trong Layout) · Advanced. **Contact info & social** ra cấp ngoài cùng (G-193). Mỗi panel và section có mô tả 1 dòng (ô tìm kiếm đã tìm cả mô tả); section blog/trang/listing/shop/404 có nút **View on a sample page** mở preview đúng trang. Giữ nguyên id section/panel nên nhãn sửa nhanh, link dashboard, giá trị đã lưu không đổi. Kiểm thử: lint, features-check 2 test G-214 đạt. Chưa xem trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
