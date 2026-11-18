@@ -142,13 +142,9 @@ add_action(
 		add_submenu_page( $main, __( 'BIGSPY AI Studio', 'bigspy-ai-theme-wp' ), __( 'Studio', 'bigspy-ai-theme-wp' ), $cap, $main, 'bst_dashboard_page' );
 		add_submenu_page( $main, __( 'Theme Options', 'bigspy-ai-theme-wp' ), __( 'Theme Options', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-options', 'bst_panel_options_page' );
 		add_submenu_page( $main, __( 'Customize', 'bigspy-ai-theme-wp' ), __( 'Customize', 'bigspy-ai-theme-wp' ), $cap, 'customize.php' );
-		add_submenu_page( $main, __( 'Header builder', 'bigspy-ai-theme-wp' ), __( 'Header builder', 'bigspy-ai-theme-wp' ), $cap, 'customize.php?autofocus[section]=bst_header_builder' );
-		add_submenu_page( $main, __( 'Additional CSS', 'bigspy-ai-theme-wp' ), __( 'Custom CSS', 'bigspy-ai-theme-wp' ), $cap, 'customize.php?autofocus[section]=custom_css' );
-		add_submenu_page( $main, __( 'Floating contact buttons', 'bigspy-ai-theme-wp' ), __( 'Floating contact buttons', 'bigspy-ai-theme-wp' ), $cap, 'customize.php?autofocus[section]=bst_float' );
 		add_submenu_page( $main, __( 'UX Blocks', 'bigspy-ai-theme-wp' ), __( 'UX Blocks', 'bigspy-ai-theme-wp' ), $cap, 'edit.php?post_type=blocks' );
 		add_submenu_page( $main, __( 'Settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-settings', 'bst_panel_settings_page' );
 		add_submenu_page( $main, __( 'System status', 'bigspy-ai-theme-wp' ), __( 'System status', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-status', 'bst_panel_status_page' );
-		add_submenu_page( $main, __( 'Help & guides', 'bigspy-ai-theme-wp' ), __( 'Help & guides', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-help', 'bst_panel_help_page' );
 		add_submenu_page( $main, __( 'About BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), bst_welcome_label( 'theme' ), $cap, 'bigspy-about', 'bst_panel_about_page' );
 		if ( ! post_type_exists( 'blocks' ) ) {
 			remove_submenu_page( $main, 'edit.php?post_type=blocks' );
