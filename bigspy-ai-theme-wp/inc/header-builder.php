@@ -229,7 +229,8 @@ function bst_logo() {
 		$inner = '<span class="bs-logo__text">' . esc_html( $name ) . '</span>';
 	}
 	$tagline = function_exists( 'bst_he' ) && bst_he( 'logo', 'tagline' ) ? trim( (string) get_bloginfo( 'description' ) ) : '';
-	return '<a class="bs-logo" href="' . $home . '" rel="home">' . $inner . ( '' !== $tagline ? '<span class="bs-logo__tagline">' . esc_html( $tagline ) . '</span>' : '' ) . '</a>';
+	$sticky = ( $logo && function_exists( 'bst_sticky_logo_html' ) ) ? bst_sticky_logo_html() : '';
+	return '<a class="bs-logo' . ( '' !== $sticky ? ' has-sticky-logo' : '' ) . '" href="' . $home . '" rel="home">' . $inner . $sticky . ( '' !== $tagline ? '<span class="bs-logo__tagline">' . esc_html( $tagline ) . '</span>' : '' ) . '</a>';
 }
 
 function bst_header_button( $prefix ) {

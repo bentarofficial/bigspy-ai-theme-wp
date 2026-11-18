@@ -125,3 +125,79 @@ add_filter(
 		return $css . bst_header_advanced_css();
 	}
 );
+
+/*
+ * G-204-b: logo shown while the header is stuck, and mega menu options.
+ * Empty = as before (same logo; mega menu 960px, automatic columns, 20px gap).
+ */
+add_filter(
+	'bst_customizer_fields',
+	function ( $fields ) {
+		$fields[] = array( 'id' => 'logo_sticky', 'section' => 'bst_header_logo', 'type' => 'image', 'label' => __( 'Logo while the header is sticky', 'bigspy-ai-theme-wp' ), 'description' => __( 'Optional, e.g. a smaller or dark version. Shown only after scrolling when the sticky header is on.', 'bigspy-ai-theme-wp' ) );
+		$n        = 'bst_header_nav';
+		$fields[] = array( 'id' => 'bst_h_mega', 'section' => $n, 'type' => 'heading', 'label' => __( 'Mega menu', 'bigspy-ai-theme-wp' ), 'description' => __( 'Turn it on per top-level item in Appearance → Menus (“BIGSPY AI: Mega menu”). Child items become columns on desktop.', 'bigspy-ai-theme-wp' ) );
+		$fields[] = array( 'id' => 'mega_width', 'section' => $n, 'type' => 'number', 'label' => __( 'Mega menu width (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 400, 'max' => 1600, 'step' => 10, 'placeholder' => '960' ) );
+		$fields[] = array(
+			'id'      => 'mega_columns',
+			'section' => $n,
+			'type'    => 'select',
+			'label'   => __( 'Mega menu columns', 'bigspy-ai-theme-wp' ),
+			'choices' => array( '' => __( 'Automatic', 'bigspy-ai-theme-wp' ), '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ),
+		);
+		$fields[] = array( 'id' => 'mega_gap', 'section' => $n, 'type' => 'number', 'label' => __( 'Space between columns (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 0, 'max' => 80, 'placeholder' => '20' ) );
+		$fields[] = array( 'id' => 'mega_heading_color', 'section' => $n, 'type' => 'color', 'label' => __( 'Column heading color', 'bigspy-ai-theme-wp' ) );
+		$fields[] = array( 'id' => 'mega_heading_case', 'section' => $n, 'type' => 'select', 'label' => __( 'Column heading case', 'bigspy-ai-theme-wp' ), 'choices' => array( '' => __( 'Theme default', 'bigspy-ai-theme-wp' ), 'uppercase' => __( 'UPPERCASE', 'bigspy-ai-theme-wp' ) ) );
+		return $fields;
+	}
+);
+
+/** Sticky logo image (empty when unset or sticky is off). */
+function bst_sticky_logo_html() {
+	$url = (string) get_theme_mod( 'logo_sticky', '' );
+	if ( '' === $url || ! bst_mod( 'header_sticky' ) ) {
+		return '';
+	}
+	$id = attachment_url_to_postid( $url );
+	if ( $id ) {
+		return (string) wp_get_attachment_image( $id, 'full', false, array( 'class' => 'bs-logo__img bs-logo__sticky', 'alt' => get_bloginfo( 'name' ), 'loading' => 'lazy' ) );
+	}
+	return '<img class="bs-logo__img bs-logo__sticky" src="' . esc_url( $url ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" loading="lazy">';
+}
+
+/** CSS for the sticky logo and mega menu; '' while nothing is set. */
+function bst_header_extra_css() {
+	$css = '';
+	if ( '' !== bst_sticky_logo_html() ) {
+		$css .= '.bs-logo .bs-logo__sticky{display:none}.bs-header.is-stuck .bs-logo.has-sticky-logo>.bs-logo__img:not(.bs-logo__sticky){display:none}.bs-header.is-stuck .bs-logo .bs-logo__sticky{display:block}';
+	}
+	$vars = array();
+	$w    = get_theme_mod( 'mega_width', '' );
+	if ( is_numeric( $w ) ) {
+		$vars[] = '--bs-mega-w:' . max( 400, min( 1600, (int) $w ) ) . 'px';
+	}
+	$c = (string) get_theme_mod( 'mega_columns', '' );
+	if ( in_array( $c, array( '2', '3', '4', '5', '6' ), true ) ) {
+		$vars[] = '--bs-mega-cols:repeat(' . $c . ',minmax(0,1fr))';
+	}
+	$g = get_theme_mod( 'mega_gap', '' );
+	if ( is_numeric( $g ) ) {
+		$vars[] = '--bs-mega-gap:' . max( 0, min( 80, (int) $g ) ) . 'px';
+	}
+	$hc = sanitize_hex_color( (string) get_theme_mod( 'mega_heading_color', '' ) );
+	if ( $hc ) {
+		$vars[] = '--bs-mega-head:' . $hc;
+	}
+	if ( 'uppercase' === get_theme_mod( 'mega_heading_case', '' ) ) {
+		$vars[] = '--bs-mega-head-case:uppercase';
+	}
+	if ( $vars ) {
+		$css .= ':root{' . implode( ';', $vars ) . '}';
+	}
+	return wp_strip_all_tags( $css );
+}
+add_filter(
+	'bst_dynamic_css',
+	function ( $css ) {
+		return $css . bst_header_extra_css();
+	}
+);

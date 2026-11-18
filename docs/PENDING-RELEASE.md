@@ -24,6 +24,8 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - **G-205 Footer builder kéo thả:** mục mới Footer → **Footer builder**, chọn **Footer type**: Classic (mặc định, footer cũ giữ nguyên) hoặc Builder. Builder: 3 hàng (trên, chính, dưới) × 0–6 cột, kéo thả phần tử vào cột; mỗi hàng có số cột, độ rộng tương đối (vd 2,1,1), căn lề (trái/giữa/cột cuối bên phải), trên mobile (xếp chồng/2 cột/ẩn hàng), màu nền/chữ. Phần tử: logo (độ rộng riêng), Text 1/2, menu footer, social, contact, nút, copyright, HTML thanh toán/huy hiệu, 8 vùng widget (dùng lại Footer 1/2 – Column 1–4 nên nội dung cũ giữ nguyên). Mặc định Builder giống footer cũ (4 cột widget + thanh copyright). Footer thiết kế bằng khối vẫn ưu tiên. Newsletter dùng vùng widget hoặc Text. Kiểm thử: lint PHP/JS, features-check 5 test G-205 đạt, toàn bộ 337 ok. Chưa xem UI Customizer trên trình duyệt. Nhánh `feature/g-197-blog-customizer`, chưa push.
 
+- **G-204-b Header nâng cao (phần 2):** **logo riêng khi header dính** (Header → Logo, chỉ hiện sau khi cuộn khi bật sticky); **mega menu trong Customizer** (Header → Navigation): độ rộng, số cột (tự động/2–6), khoảng cách cột, màu và chữ hoa tiêu đề cột. Để trống = như cũ (960px, cột tự động, 20px). Kiểm thử: lint, features-check 4 test G-204-b đạt (chạy cổng 9437 vì 9421 bận). Chưa xem trên trình duyệt. Chưa làm: ảnh trong mega menu. Nhánh `feature/g-197-blog-customizer`, chưa push.
+
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 
 - **Yêu cầu/tính năng:** mô tả ngắn.
