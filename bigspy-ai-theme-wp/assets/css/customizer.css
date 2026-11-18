@@ -246,3 +246,19 @@ li.bst-group-hidden { display: none !important; }
 .bst-hb__banner .description { margin: 6px 0 0; font-size: 12px; }
 .bst-qe-toggle { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; color: #50575e; cursor: pointer; }
 .bst-qe-toggle input { margin: 0 !important; }
+
+/* G-199: Responsive and Spacing controls. */
+.bst-resp__tabs { display: flex; gap: 2px; align-items: center; margin: 0 0 6px; }
+.bst-resp__tab { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 26px; padding: 0; border: 1px solid #c3c4c7; border-radius: 3px; background: #fff; color: #50575e; cursor: pointer; }
+.bst-resp__tab .dashicons { font-size: 16px; width: 16px; height: 16px; }
+.bst-resp__tab.is-active { border-color: #2271b1; background: #2271b1; color: #fff; }
+.bst-resp__field { display: flex; align-items: center; gap: 6px; }
+.bst-resp__field input { flex: 1; min-width: 0; }
+.bst-resp__field em { font-style: normal; color: #646970; }
+.bst-spacing__unit { margin-left: auto; min-height: 26px; padding: 0 20px 0 6px; font-size: 12px; }
+.bst-spacing__row { display: grid; grid-template-columns: repeat(4, 1fr) 30px; gap: 4px; align-items: start; }
+.bst-spacing__row label { display: flex; flex-direction: column; gap: 2px; text-align: center; font-size: 11px; color: #646970; }
+.bst-spacing__row input { width: 100%; min-width: 0; padding: 0 4px; text-align: center; }
+.bst-spacing__link { height: 30px; padding: 0; border: 1px solid #c3c4c7; border-radius: 3px; background: #fff; color: #50575e; cursor: pointer; }
+.bst-spacing__link.is-on { border-color: #2271b1; background: #2271b1; color: #fff; }
+.bst-spacing__hint { margin-top: 6px; }

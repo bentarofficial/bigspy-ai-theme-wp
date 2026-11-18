@@ -657,7 +657,7 @@ function bst_aid_blocked_setting( $field ) {
 	if ( preg_match( '/^(perf_|scripts_|tweak_|maintenance_|custom_404|block_off_)/', $id ) ) {
 		return true;
 	}
-	return ! in_array( $type, array( 'color', 'number', 'select', 'radio', 'checkbox', 'text', 'url', 'image', 'html', 'dropdown-pages' ), true );
+	return ! in_array( $type, array( 'color', 'number', 'responsive', 'select', 'radio', 'checkbox', 'text', 'url', 'image', 'html', 'dropdown-pages' ), true );
 }
 
 /** Design settings the AI may read and change: id => field. */
@@ -680,6 +680,7 @@ function bst_aid_sanitize_setting( $field, $value ) {
 			$v = sanitize_hex_color( (string) $value );
 			return $v ? $v : new WP_Error( 'color', 'Use a HEX color like #1a73e8.' );
 		case 'number':
+		case 'responsive':
 			if ( ! is_numeric( $value ) ) {
 				return new WP_Error( 'number', 'Not a number.' );
 			}

@@ -13,6 +13,7 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/sanitize.php';
 require_once __DIR__ . '/fields.php';
 require_once __DIR__ . '/focus-map.php';
+require_once __DIR__ . '/responsive.php';
 
 function bst_customize_register( $wp_customize ) {
 	require_once __DIR__ . '/controls.php';
@@ -68,6 +69,24 @@ function bst_customize_register( $wp_customize ) {
 		if ( 'heading' === $type ) {
 			$wp_customize->add_setting( $id, array( 'sanitize_callback' => '__return_empty_string' ) );
 			$wp_customize->add_control( new BST_Heading_Control( $wp_customize, $id, array( 'section' => $field['section'], 'label' => $field['label'], 'description' => $field['description'] ?? '', 'priority' => $field['priority'] ?? 10 ) ) );
+			continue;
+		}
+
+		if ( 'responsive' === $type ) {
+			$transport = isset( $css_vars[ $id ] ) ? 'postMessage' : 'refresh';
+			$settings  = array( 'default' => $id );
+			$wp_customize->add_setting( $id, array( 'default' => $defaults[ $id ] ?? '', 'transport' => $transport, 'sanitize_callback' => 'bst_sanitize_number' ) );
+			foreach ( array( 'tablet', 'mobile' ) as $device ) {
+				$wp_customize->add_setting( $id . '_' . $device, array( 'default' => '', 'transport' => $transport, 'sanitize_callback' => 'bst_sanitize_number_or_empty' ) );
+				$settings[ $device ] = $id . '_' . $device;
+			}
+			$wp_customize->add_control( new BST_Responsive_Control( $wp_customize, $id, array( 'section' => $field['section'], 'label' => $field['label'] ?? '', 'description' => $field['description'] ?? '', 'priority' => $field['priority'] ?? 10, 'settings' => $settings, 'input_attrs' => $field['input_attrs'] ?? array(), 'unit' => $field['unit'] ?? 'px' ) ) );
+			continue;
+		}
+
+		if ( 'spacing' === $type ) {
+			$wp_customize->add_setting( $id, array( 'default' => '', 'transport' => isset( bst_spacing_var_map()[ $id ] ) ? 'postMessage' : 'refresh', 'sanitize_callback' => 'bst_sanitize_spacing' ) );
+			$wp_customize->add_control( new BST_Spacing_Control( $wp_customize, $id, array( 'section' => $field['section'], 'label' => $field['label'] ?? '', 'description' => $field['description'] ?? '', 'priority' => $field['priority'] ?? 10, 'responsive' => $field['responsive'] ?? true ) ) );
 			continue;
 		}
 
@@ -204,6 +223,7 @@ add_action( 'customize_controls_enqueue_scripts', 'bst_customize_controls_assets
 function bst_customize_preview_assets() {
 	wp_enqueue_script( 'bst-customizer-preview', BST_URI . '/assets/js/customizer-preview.js', array( 'customize-preview' ), bst_asset_version( 'assets/js/customizer-preview.js' ), true );
 	wp_localize_script( 'bst-customizer-preview', 'bstPreviewVars', bst_css_var_map() );
+	wp_localize_script( 'bst-customizer-preview', 'bstPreviewResponsive', array( 'vars' => bst_responsive_var_map(), 'spacing' => bst_spacing_var_map(), 'devices' => bst_responsive_devices() ) );
 	wp_enqueue_script( 'bst-css-presets-preview', BST_URI . '/assets/js/css-presets-preview.js', array( 'customize-preview' ), bst_asset_version( 'assets/js/css-presets-preview.js' ), true );
 	$recipes = array();
 	foreach ( bst_css_presets() as $id => $recipe ) {

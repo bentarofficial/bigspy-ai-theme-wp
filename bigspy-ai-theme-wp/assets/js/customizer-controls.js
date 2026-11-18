@@ -681,3 +681,83 @@
 		});
 	});
 })(jQuery, wp.customize);
+
+/* G-199: Responsive and Spacing controls follow the Customizer device buttons. */
+(function (api, $) {
+	'use strict';
+
+	function showDevice($wrap, device) {
+		$wrap.find('.bst-resp__tab').each(function () {
+			var on = this.getAttribute('data-device') === device;
+			this.classList.toggle('is-active', on);
+			this.setAttribute('aria-selected', on ? 'true' : 'false');
+		});
+		var $rows = $wrap.find('[data-device]').not('.bst-resp__tab');
+		if (!$rows.filter('[data-device="' + device + '"]').length) {
+			device = 'desktop';
+		}
+		$rows.each(function () {
+			this.hidden = this.getAttribute('data-device') !== device;
+		});
+	}
+
+	function syncAll(device) {
+		$('[data-bst-responsive], [data-bst-spacing]').each(function () {
+			showDevice($(this), device);
+		});
+	}
+
+	function initSpacing(wrap) {
+		var $wrap = $(wrap);
+		var $value = $wrap.find('.bst-spacing__value');
+		var data = {};
+		try { data = JSON.parse($value.val() || '{}') || {}; } catch (e) { data = {}; }
+		$wrap.find('.bst-spacing__unit').val(data.unit || 'px');
+		$wrap.find('.bst-spacing__row').each(function () {
+			var key = this.getAttribute('data-key');
+			var vals = data[key] || [];
+			$(this).find('input').each(function (i) { this.value = vals[i] !== undefined ? vals[i] : ''; });
+			var linked = vals.length === 4 && vals[0] !== '' && vals.every(function (v) { return v === vals[0]; });
+			$(this).find('.bst-spacing__link').attr('aria-pressed', linked ? 'true' : 'false').toggleClass('is-on', linked);
+		});
+
+		function save() {
+			var out = { unit: $wrap.find('.bst-spacing__unit').val() };
+			$wrap.find('.bst-spacing__row').each(function () {
+				var vals = $(this).find('input').map(function () { return this.value; }).get();
+				if (vals.join('') !== '') { out[this.getAttribute('data-key')] = vals; }
+			});
+			var json = Object.keys(out).length > 1 ? JSON.stringify(out) : '';
+			$value.val(json).trigger('change');
+		}
+
+		$wrap.on('input', '.bst-spacing__row input', function () {
+			var $row = $(this).closest('.bst-spacing__row');
+			if ($row.find('.bst-spacing__link').attr('aria-pressed') === 'true') {
+				$row.find('input').val(this.value);
+			}
+			save();
+		});
+		$wrap.on('change', '.bst-spacing__unit', save);
+		$wrap.on('click', '.bst-spacing__link', function () {
+			var on = this.getAttribute('aria-pressed') !== 'true';
+			this.setAttribute('aria-pressed', on ? 'true' : 'false');
+			this.classList.toggle('is-on', on);
+			if (on) {
+				var $inputs = $(this).closest('.bst-spacing__row').find('input');
+				var first = $inputs.filter(function () { return this.value !== ''; }).first().val() || '';
+				$inputs.val(first);
+				save();
+			}
+		});
+	}
+
+	api.bind('ready', function () {
+		$('[data-bst-spacing]').each(function () { initSpacing(this); });
+		$(document).on('click', '.bst-resp__tab', function () {
+			api.previewedDevice.set(this.getAttribute('data-device'));
+		});
+		api.previewedDevice.bind(syncAll);
+		syncAll(api.previewedDevice.get() || 'desktop');
+	});
+})(wp.customize, jQuery);

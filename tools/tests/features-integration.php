@@ -732,6 +732,19 @@ $bst_h = $bst_rb( 'bst/popup', array( 'popupId' => 'p2', 'trigger' => 'end', 'po
 bst_test( false !== strpos( $bst_h, 'data-bs-popup-end="p2"' ) && false !== strpos( $bst_h, 'bs-popup--bar-bottom bs-popup--anim-zoom bs-popup--close-text bs-popup--close-outside' ) && false !== strpos( $bst_h, 'data-show-on="mobile"' ) && false !== strpos( $bst_h, 'data-close-submit="1"' ) && false !== strpos( $bst_h, '--bs-pop-w:500px' ) && false !== strpos( $bst_h, '--bs-pop-ovc:#112233' ) && false !== strpos( $bst_h, 'Close &times;' ), 'popup: end trigger, bar, anim, close button, device, width, overlay' );
 bst_test( '' === $bst_rb( 'bst/popup', array( 'popupId' => 'p3', 'loginState' => 'in' ), 'x' ) || is_user_logged_in(), 'popup: logged-in only hides for guests' );
 bst_test( '' === $bst_rb( 'bst/popup', array( 'popupId' => 'p4', 'dateTo' => '2000-01-01' ), 'x' ), 'popup: hidden after the end date' );
+// G-199: responsive and spacing options.
+$bst_css0 = bst_dynamic_css();
+bst_test( false === strpos( $bst_css0, '@media (max-width:849px){:root{--bs-h1' ) && false === strpos( $bst_css0, '--bs-titlebar-pad' ), 'G-199: no device CSS until a value is set' );
+set_theme_mod( 'h1_size_tablet', 30 );
+set_theme_mod( 'h2_size_mobile', 22 );
+set_theme_mod( 'title_bar_padding', bst_sanitize_spacing( '{"unit":"px","desktop":["60","0","60","0"],"mobile":["20","","20",""]}' ) );
+$bst_css1 = bst_dynamic_css();
+bst_test( false !== strpos( $bst_css1, '@media (max-width:849px){:root{--bs-h1:30px}}' ) && false !== strpos( $bst_css1, '--bs-h2:22px' ) && false !== strpos( $bst_css1, 'h2{font-size:var(--bs-h2)}' ) && false !== strpos( $bst_css1, '--bs-h1:40px' ), 'G-199: tablet/mobile heading sizes, desktop kept' );
+bst_test( false !== strpos( $bst_css1, '--bs-titlebar-pad:60px 0 60px 0' ) && false !== strpos( $bst_css1, '@media (max-width:549px){:root{--bs-h2:22px;--bs-titlebar-pad:20px 0 20px 0}}' ), 'G-199: spacing per device' );
+bst_test( '' === bst_sanitize_spacing( '{"unit":"bad","desktop":["","","",""]}' ) && false !== strpos( bst_sanitize_spacing( '{"unit":"bad","desktop":["x","5","",""]}' ), '"unit":"px"' ), 'G-199: spacing sanitize' );
+remove_theme_mod( 'h1_size_tablet' );
+remove_theme_mod( 'h2_size_mobile' );
+remove_theme_mod( 'title_bar_padding' );
 $bst_menu = wp_create_nav_menu( 'G134 menu' );
 if ( ! is_wp_error( $bst_menu ) ) {
 	$bst_parent = wp_update_nav_menu_item( $bst_menu, 0, array( 'menu-item-title' => 'Parent', 'menu-item-url' => 'https://example.com/a', 'menu-item-status' => 'publish' ) );

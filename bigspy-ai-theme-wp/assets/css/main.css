@@ -1012,7 +1012,7 @@ li.is-open > .bs-submenu-toggle svg {
 /* ---------------------------------------------------------------- Title bar & breadcrumbs */
 .bs-title-bar {
 	position: relative;
-	padding: 48px 0;
+	padding: var(--bs-titlebar-pad, 48px 0);
 	background-color: var(--bs-titlebar-bg);
 	background-image: var(--bs-titlebar-image, none);
 	background-size: cover;

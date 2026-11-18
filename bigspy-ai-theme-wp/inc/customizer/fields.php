@@ -198,10 +198,10 @@ function bst_customizer_fields() {
 			array( 'id' => 'font_heading', 'section' => 'bst_typography', 'type' => 'select', 'label' => __( 'Heading font', 'bigspy-ai-theme-wp' ), 'choices' => $fonts ),
 			array( 'id' => 'font_weight_heading', 'section' => 'bst_typography', 'type' => 'select', 'label' => __( 'Heading font weight', 'bigspy-ai-theme-wp' ), 'choices' => $weights ),
 			array( 'id' => 'heading_transform', 'section' => 'bst_typography', 'type' => 'select', 'label' => __( 'Heading text case', 'bigspy-ai-theme-wp' ), 'choices' => $transform ),
-			array( 'id' => 'h1_size', 'section' => 'bst_typography', 'type' => 'number', 'label' => __( 'H1 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 20, 90 ) ),
-			array( 'id' => 'h2_size', 'section' => 'bst_typography', 'type' => 'number', 'label' => __( 'H2 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 18, 72 ) ),
-			array( 'id' => 'h3_size', 'section' => 'bst_typography', 'type' => 'number', 'label' => __( 'H3 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 16, 56 ) ),
-			array( 'id' => 'h4_size', 'section' => 'bst_typography', 'type' => 'number', 'label' => __( 'H4 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 14, 40 ) ),
+			array( 'id' => 'h1_size', 'section' => 'bst_typography', 'type' => 'responsive', 'label' => __( 'H1 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 20, 90 ) ),
+			array( 'id' => 'h2_size', 'section' => 'bst_typography', 'type' => 'responsive', 'label' => __( 'H2 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 18, 72 ) ),
+			array( 'id' => 'h3_size', 'section' => 'bst_typography', 'type' => 'responsive', 'label' => __( 'H3 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 16, 56 ) ),
+			array( 'id' => 'h4_size', 'section' => 'bst_typography', 'type' => 'responsive', 'label' => __( 'H4 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 14, 40 ) ),
 
 			// Buttons.
 			array( 'id' => 'button_radius', 'section' => 'bst_buttons', 'type' => 'number', 'label' => __( 'Corner radius (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 0, 60 ) ),
@@ -221,6 +221,7 @@ function bst_customizer_fields() {
 			array( 'id' => 'title_bar_bg', 'section' => 'bst_title_bar', 'type' => 'color', 'label' => __( 'Title bar background', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'title_bar_color', 'section' => 'bst_title_bar', 'type' => 'color', 'label' => __( 'Title bar text color', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'title_bar_image', 'section' => 'bst_title_bar', 'type' => 'image', 'label' => __( 'Title bar background image', 'bigspy-ai-theme-wp' ) ),
+			array( 'id' => 'title_bar_padding', 'section' => 'bst_title_bar', 'type' => 'spacing', 'label' => __( 'Title bar padding', 'bigspy-ai-theme-wp' ), 'description' => __( 'Full-width title bar only. Default: 48px top and bottom.', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'breadcrumbs', 'section' => 'bst_title_bar', 'type' => 'checkbox', 'label' => __( 'Show breadcrumbs', 'bigspy-ai-theme-wp' ), 'description' => __( 'Uses Rank Math / Yoast breadcrumbs when those plugins are active, and the theme\'s own trail when their breadcrumb module is off.', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'breadcrumbs_pages', 'section' => 'bst_title_bar', 'type' => 'checkbox', 'label' => __( 'Show breadcrumbs on pages whose H1 is off', 'bigspy-ai-theme-wp' ), 'description' => __( 'Pages and the Listings page print no title when "Show the page name as H1" is off. Turn this on to still show the breadcrumb trail above their content.', 'bigspy-ai-theme-wp' ) ),
 

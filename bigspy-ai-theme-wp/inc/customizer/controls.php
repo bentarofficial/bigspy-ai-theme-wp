@@ -115,3 +115,93 @@ class BST_CSS_Presets_Control extends WP_Customize_Control {
 		<?php
 	}
 }
+
+/**
+ * G-199: one value per device (desktop / tablet / mobile). Linked settings:
+ * 'default' = desktop (the original option id, so old values stay as desktop),
+ * 'tablet' and 'mobile' = "<id>_tablet" / "<id>_mobile", empty = inherit.
+ * The device tabs follow the Customizer's own device buttons.
+ */
+class BST_Responsive_Control extends WP_Customize_Control {
+	public $type = 'bst-responsive';
+	public $unit = 'px';
+
+	public function render_content() {
+		$devices = bst_responsive_devices();
+		echo '<span class="customize-control-title">' . esc_html( $this->label ) . '</span>';
+		if ( $this->description ) {
+			echo '<span class="description customize-control-description">' . wp_kses_post( $this->description ) . '</span>';
+		}
+		echo '<div class="bst-resp" data-bst-responsive>';
+		echo '<div class="bst-resp__tabs" role="tablist">';
+		foreach ( $devices as $key => $device ) {
+			echo '<button type="button" role="tab" class="bst-resp__tab" data-device="' . esc_attr( $device['preview'] ) . '" title="' . esc_attr( $device['label'] ) . '" aria-label="' . esc_attr( $device['label'] ) . '"><span class="dashicons ' . esc_attr( $device['icon'] ) . '" aria-hidden="true"></span></button>';
+		}
+		echo '</div>';
+		foreach ( $devices as $key => $device ) {
+			$setting_key = 'desktop' === $key ? 'default' : $key;
+			if ( ! isset( $this->settings[ $setting_key ] ) ) {
+				continue;
+			}
+			$placeholder = 'desktop' === $key ? '' : __( 'Same as larger screen', 'bigspy-ai-theme-wp' );
+			echo '<label class="bst-resp__field" data-device="' . esc_attr( $device['preview'] ) . '"><span class="screen-reader-text">' . esc_html( $this->label . ' – ' . $device['label'] ) . '</span>';
+			echo '<input type="number"';
+			foreach ( (array) $this->input_attrs as $attr => $val ) {
+				echo ' ' . esc_attr( $attr ) . '="' . esc_attr( $val ) . '"';
+			}
+			echo ' placeholder="' . esc_attr( $placeholder ) . '" value="' . esc_attr( $this->value( $setting_key ) ) . '" ';
+			$this->link( $setting_key );
+			echo '><em>' . esc_html( $this->unit ) . '</em></label>';
+		}
+		echo '</div>';
+	}
+}
+
+/**
+ * G-199: four sides (top right bottom left) with a link lock, a unit and
+ * optional per-device values. Stored as one JSON string, see bst_sanitize_spacing().
+ */
+class BST_Spacing_Control extends WP_Customize_Control {
+	public $type = 'bst-spacing';
+	public $responsive = true;
+	public $units = array( 'px', 'em', 'rem', '%' );
+
+	public function render_content() {
+		$devices = $this->responsive ? bst_responsive_devices() : array_slice( bst_responsive_devices(), 0, 1, true );
+		$sides   = array(
+			__( 'Top', 'bigspy-ai-theme-wp' ),
+			__( 'Right', 'bigspy-ai-theme-wp' ),
+			__( 'Bottom', 'bigspy-ai-theme-wp' ),
+			__( 'Left', 'bigspy-ai-theme-wp' ),
+		);
+		echo '<span class="customize-control-title">' . esc_html( $this->label ) . '</span>';
+		if ( $this->description ) {
+			echo '<span class="description customize-control-description">' . wp_kses_post( $this->description ) . '</span>';
+		}
+		echo '<div class="bst-spacing" data-bst-spacing data-units="' . esc_attr( wp_json_encode( array_values( $this->units ) ) ) . '">';
+		echo '<input type="hidden" class="bst-spacing__value" value="' . esc_attr( (string) $this->value() ) . '" ';
+		$this->link();
+		echo '>';
+		echo '<div class="bst-resp__tabs" role="tablist">';
+		if ( count( $devices ) > 1 ) {
+			foreach ( $devices as $device ) {
+				echo '<button type="button" role="tab" class="bst-resp__tab" data-device="' . esc_attr( $device['preview'] ) . '" title="' . esc_attr( $device['label'] ) . '" aria-label="' . esc_attr( $device['label'] ) . '"><span class="dashicons ' . esc_attr( $device['icon'] ) . '" aria-hidden="true"></span></button>';
+			}
+		}
+		echo '<select class="bst-spacing__unit" aria-label="' . esc_attr__( 'Unit', 'bigspy-ai-theme-wp' ) . '">';
+		foreach ( $this->units as $unit ) {
+			echo '<option value="' . esc_attr( $unit ) . '">' . esc_html( $unit ) . '</option>';
+		}
+		echo '</select></div>';
+		foreach ( $devices as $key => $device ) {
+			echo '<div class="bst-spacing__row" data-device="' . esc_attr( $device['preview'] ) . '" data-key="' . esc_attr( $key ) . '">';
+			foreach ( $sides as $i => $side ) {
+				echo '<label><input type="number" step="any" data-side="' . (int) $i . '" placeholder="' . ( 'desktop' === $key ? '' : '–' ) . '"><span>' . esc_html( $side ) . '</span></label>';
+			}
+			echo '<button type="button" class="bst-spacing__link" aria-pressed="false" title="' . esc_attr__( 'Link all four sides', 'bigspy-ai-theme-wp' ) . '"><span class="dashicons dashicons-admin-links" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html__( 'Link all four sides', 'bigspy-ai-theme-wp' ) . '</span></button>';
+			echo '</div>';
+		}
+		echo '<p class="description bst-spacing__hint">' . esc_html__( 'Empty = theme default. Tablet and mobile follow the larger screen until you type a value.', 'bigspy-ai-theme-wp' ) . '</p>';
+		echo '</div>';
+	}
+}
