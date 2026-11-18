@@ -47,6 +47,7 @@ $bst_includes = array(
 	'inc/block-attr-presets.php',
 	'inc/sidebar-options.php',
 	'inc/blog-options.php',
+	'inc/blog-layouts.php',
 	'inc/shop-options.php',
 	'inc/author-options.php',
 	'inc/theme-builder.php',

@@ -98,6 +98,11 @@ function bst_customize_register( $wp_customize ) {
 			case 'image':
 				$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $id, $args ) );
 				break;
+			case 'image_radio':
+				$args['choices']  = $field['choices'] ?? array();
+				$args['pictures'] = function_exists( 'bst_layout_picker_pictures' ) ? bst_layout_picker_pictures( $id ) : array();
+				$wp_customize->add_control( new BST_Image_Radio_Control( $wp_customize, $id, $args ) );
+				break;
 			case 'header_builder':
 				$wp_customize->add_control( new BST_Header_Builder_Control( $wp_customize, $id, $args ) );
 				break;

@@ -16,6 +16,9 @@ if ( have_posts() ) {
 	bst_blog_wrap_open();
 	while ( have_posts() ) {
 		the_post();
+		if ( function_exists( 'bst_featured_skip' ) && bst_featured_skip( get_the_ID() ) ) {
+			continue;
+		}
 		get_template_part( 'template-parts/content', get_post_type() );
 	}
 	echo '</div>';

@@ -14,6 +14,7 @@ function bst_sanitize_callback_for( $type ) {
 		'dropdown-pages' => 'absint',
 		'select'         => 'bst_sanitize_choice',
 		'radio'          => 'bst_sanitize_choice',
+		'image_radio'    => 'bst_sanitize_choice',
 		'checkbox'       => 'bst_sanitize_checkbox',
 		'text'           => 'sanitize_text_field',
 		'url'            => 'esc_url_raw',

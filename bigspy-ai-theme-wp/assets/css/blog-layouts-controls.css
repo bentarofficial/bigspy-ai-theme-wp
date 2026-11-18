@@ -1,0 +1,12 @@
+/* Picture pickers in the Customizer (G-197). */
+.bst-pick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 6px; }
+.bst-pick__item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 4px; border: 1px solid #dcdcde; border-radius: 6px; background: #fff; cursor: pointer; text-align: center; transition: border-color .15s, box-shadow .15s; }
+.bst-pick__item:hover { border-color: #2271b1; }
+.bst-pick__item:has(input:checked) { border-color: #2271b1; box-shadow: 0 0 0 2px #2271b1; }
+.bst-pick__item:has(input:focus-visible) { outline: 2px solid #2271b1; outline-offset: 2px; }
+.bst-pick__img svg { display: block; width: 60px; height: 40px; }
+.bst-pick__img .is-base { fill: #e2e8f0; }
+.bst-pick__img .is-accent { fill: #93c5fd; }
+.bst-pick__item:has(input:checked) .is-accent { fill: #2271b1; }
+.bst-pick__label { font-size: 11px; line-height: 1.25; color: #50575e; }
+.bst-pick__item:has(input:checked) .bst-pick__label { color: #1d2327; font-weight: 600; }
