@@ -1163,6 +1163,11 @@ li.is-open > .bs-submenu-toggle svg {
 :where(.bs-content) > * + * {
 	margin-block-start: var(--wp--style--block-gap, 1.2rem);
 }
+/* A <style>/<script> at the top (e.g. inside a Custom HTML block) is invisible, so the block after it is still the first one. */
+:where(.bs-content) > :is(style, script, link, meta):first-child + *,
+:where(.bs-content) > :is(style, script, link, meta):first-child + :is(style, script, link, meta) + * {
+	margin-block-start: 0;
+}
 
 :where(.bs-content) > .alignfull + .alignfull {
 	margin-block-start: 0;
