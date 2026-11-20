@@ -178,16 +178,16 @@
 		return function () { mo.disconnect(); win.removeEventListener('scroll', onScroll); };
 	}
 	wp.blocks.registerBlockType('bigspy/stack-cards', { edit: function (props) {
-		var a = props.attributes, list = a.mode === 'list';
+		var a = props.attributes, grid = a.mode === 'grid', list = grid || a.mode === 'list';
 		var editing = wp.element.useState(false), flat = list || editing[0];
 		var depth = wp.compose.useRefEffect(function (node) { return flat ? undefined : stackDepth(node, node.ownerDocument); }, [flat, a.scaleEffect]);
-		var cls = 'bs-stack' + (flat ? ' bs-stack--list' : '') + (a.shadow ? ' bs-stack--shadow' + (a.shadowSize === 'soft' ? ' bs-stack--shadow-soft' : '') : '') + (a.scaleEffect && !flat ? ' bs-stack--scale' : '') + (editing[0] ? ' bst-stack-editing' : '');
+		var cls = 'bs-stack' + (flat ? ' bs-stack--list' : '') + (grid ? ' bs-stack--grid' : '') + (a.shadow ? ' bs-stack--shadow' + (a.shadowSize === 'soft' ? ' bs-stack--shadow-soft' : '') : '') + (a.scaleEffect && !flat ? ' bs-stack--scale' : '') + (editing[0] ? ' bst-stack-editing' : '');
 		var style = { '--bs-stack-top': num(a.top, 90) + 'px', '--bs-stack-step': num(a.step, 24) + 'px', '--bs-stack-min': num(a.minHeight, 320) + 'px', '--bs-stack-radius': num(a.radius, 24) + 'px', '--bs-stack-gap': num(a.gap, 40) + 'px' };
 		var inner = be.useInnerBlocksProps(be.useBlockProps({ className: cls, style: style, ref: depth }), { allowedBlocks: ['bigspy/stack-card'], template: [['bigspy/stack-card'], ['bigspy/stack-card'], ['bigspy/stack-card']] });
 		return el(Fragment, null,
 			list ? null : el(be.BlockControls, null, el(c.ToolbarGroup, null, el(c.ToolbarButton, { isPressed: editing[0], label: editing[0] ? __('Show the stack as on the site', T) : __('Edit cards one by one', T), onClick: function () { editing[1](!editing[0]); } }, editing[0] ? __('Preview stack', T) : __('Edit cards', T)))),
 			el(be.InspectorControls, null, el(c.PanelBody, { title: __('Stacking Cards', T) },
-				control(props, 'mode', __('Layout', T), 'select', [['stack', __('Stack on scroll', T)], ['list', __('Simple list (no overlap)', T)]]),
+				control(props, 'mode', __('Layout', T), 'select', [['stack', __('Stack on scroll', T)], ['list', __('Simple list (no overlap)', T)], ['grid', __('Compact grid (cards side by side)', T)]]),
 				control(props, 'top', __('Distance from the top (px)', T), 'range', [0, 400]),
 				control(props, 'step', __('Offset between stacked cards (px)', T), 'range', [0, 80]),
 				control(props, 'minHeight', __('Card minimum height (px)', T), 'range', [120, 1200]),

@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BST_VERSION', '1.98.0' );
+define( 'BST_VERSION', '1.99.0' );
 define( 'BST_DIR', get_template_directory() );
 define( 'BST_URI', get_template_directory_uri() );
 
@@ -73,6 +73,7 @@ $bst_includes = array(
 	'inc/media-atnd.php',
 	'inc/ux-blocks.php',
 	'inc/features.php',
+	'inc/ai-profile.php',
 
 	'inc/admin/dashboard.php',
 	'inc/admin/theme-panel.php',

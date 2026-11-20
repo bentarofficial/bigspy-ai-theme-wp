@@ -3550,13 +3550,9 @@ input[type="submit"]:hover,
 .bs-marquee--edit { flex-wrap: wrap; white-space: normal; }
 .bs-marquee--edit .bs-marquee__track { flex-wrap: wrap; flex-shrink: 1; row-gap: .5em; padding-right: 0; animation: none; }
 .bs-marquee--edit .bs-marquee__item { min-width: 1em; }
+/* Reduced motion: the strip is the content the owner chose, so it keeps moving, at half speed; hover, focus and the pause button still stop it. */
 @media (prefers-reduced-motion: reduce) {
-	.bs-marquee, .bs-marquee__row { flex-wrap: wrap; white-space: normal; -webkit-mask-image: none; mask-image: none; }
-	.bs-marquee__track { flex-wrap: wrap; flex-shrink: 1; justify-content: center; row-gap: .5em; padding-right: 0; animation: none; }
-	.bs-marquee__track[aria-hidden], .bs-marquee__toggle { display: none; }
-	.bs-marquee--vertical { height: auto; }
-	.bs-marquee--vertical .bs-marquee__track { padding-bottom: 0; }
-	.bs-marquee--fade .bs-marquee__band { -webkit-mask-image: none; mask-image: none; }
+	.bs-marquee .bs-marquee__track { animation-duration: calc(var(--bs-mq-dur) * var(--bs-mq-k, 1) * 2); }
 }
 
 /* Before / after */
@@ -3847,6 +3843,13 @@ input[type="submit"]:hover,
 .bs-stack__inner > :last-child { margin-bottom: 0; }
 .bs-stack--shadow-soft .bs-stack__card { box-shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 8px 24px rgba(15, 23, 42, .06); }
 .bs-stack--list .bs-stack__card { position: relative; top: auto; transform: none; filter: none; }
+/* Compact grid: every card in one row on desktop (2 per row on tablet and phone); a card's own row of columns stacks, and on phones only its first column (the text) shows. */
+.bs-stack--grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: min(var(--bs-stack-gap, 40px), 24px); }
+.bs-stack--grid .bs-stack__card { min-height: 0; padding: clamp(18px, 2.4vw, 28px); }
+.bs-stack--grid .bs-stack__inner > .bs-row { display: flex; flex-direction: column; flex-wrap: nowrap; gap: 16px; margin: 0; }
+.bs-stack--grid .bs-stack__inner > .bs-row > * { flex: none; order: 0; width: 100%; max-width: 100%; margin: 0; }
+@media (max-width: 849px) { .bs-stack--grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 549px) { .bs-stack--grid { gap: 12px; } .bs-stack--grid .bs-stack__card { padding: 16px; border-radius: min(var(--bs-stack-radius, 24px), 16px); } .bs-stack--grid .bs-stack__inner > .bs-row > :not(:first-child) { display: none; } }
 /* overflow:hidden on Section would stop sticky children from sticking. */
 .bs-section:has(.bs-stack, .bs-story, .bs-hscroll, .bs-zhero) { overflow: clip; }
 @media (prefers-reduced-motion: reduce) { .bs-stack--scale .bs-stack__card { transform: none; filter: none; } }
