@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.99.0: Marquee under reduced motion, compact Stacking Cards grid
+
+- Marquee keeps moving (half speed) when the device asks for reduced motion and always fills the strip.
+- Stacking Cards Compact grid layout; no header gap after a style/script Custom HTML block; public AI profile (/llms.txt).
+
 ### 1.98.0: Customizer upgrade: style kits, blog, header, footer builder
 
 - Style kits, section reset, global radius/shadow/spacing, per-device sizes and fuller typography.

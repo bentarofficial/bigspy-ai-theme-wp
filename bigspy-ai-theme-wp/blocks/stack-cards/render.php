@@ -3,7 +3,9 @@
 defined( 'ABSPATH' ) || exit;
 $a     = $attributes;
 $style = '--bs-stack-top:' . bst_block_num( $a, 'top', 90, 0, 400 ) . 'px;--bs-stack-step:' . bst_block_num( $a, 'step', 24, 0, 80 ) . 'px;--bs-stack-min:' . bst_block_num( $a, 'minHeight', 320, 120, 1200 ) . 'px;--bs-stack-radius:' . bst_block_num( $a, 'radius', 24, 0, 80 ) . 'px;--bs-stack-gap:' . bst_block_num( $a, 'gap', 40, 0, 200 ) . 'px';
-$list  = 'list' === ( $a['mode'] ?? 'stack' );
-$class = 'bs-stack' . ( $list ? ' bs-stack--list' : '' ) . ( ! empty( $a['shadow'] ) ? ' bs-stack--shadow' . ( 'soft' === ( $a['shadowSize'] ?? 'strong' ) ? ' bs-stack--shadow-soft' : '' ) : '' ) . ( ! empty( $a['scaleEffect'] ) && ! $list ? ' bs-stack--scale' : '' );
+$mode  = (string) ( $a['mode'] ?? 'stack' );
+$grid  = 'grid' === $mode;
+$list  = $grid || 'list' === $mode;
+$class = 'bs-stack' . ( $list ? ' bs-stack--list' : '' ) . ( $grid ? ' bs-stack--grid' : '' ) . ( ! empty( $a['shadow'] ) ? ' bs-stack--shadow' . ( 'soft' === ( $a['shadowSize'] ?? 'strong' ) ? ' bs-stack--shadow-soft' : '' ) : '' ) . ( ! empty( $a['scaleEffect'] ) && ! $list ? ' bs-stack--scale' : '' );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => $class, 'style' => $style, 'data-bs-stack' => '1', 'role' => 'region', 'aria-label' => '' !== trim( (string) ( $a['label'] ?? '' ) ) ? trim( (string) $a['label'] ) : __( 'Stacking Cards', 'bigspy-ai-theme-wp' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

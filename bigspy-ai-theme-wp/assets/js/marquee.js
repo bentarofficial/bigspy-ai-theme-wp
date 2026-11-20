@@ -2,13 +2,14 @@
  * Marquee runtime (bst/marquee; reusable by any strip that uses the bs-marquee markup).
  * - pauses the CSS animation while the strip is off screen;
  * - pause / play button;
- * - repeats the items of a short row until it fills the strip (new markup only);
+ * - repeats the items of a short row until it fills the strip;
  * - optional scroll effects: faster with scroll speed, reversed while scrolling up.
- * Content is complete without it, and reduced motion keeps everything static.
+ * Content is complete without it. Reduced motion halves the speed (CSS and the scroll-driven runtime).
  */
 (function () {
 	'use strict';
-	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+	var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (!('IntersectionObserver' in window)) {
 		return;
 	}
 	var driven = [];
@@ -54,9 +55,7 @@
 	function setup(m) {
 		var vertical = m.classList.contains('bs-marquee--vertical');
 		var lanes = lanesOf(m);
-		if (m.classList.contains('bs-marquee--fill')) {
-			lanes.forEach(function (lane) { fill(lane, vertical); });
-		}
+		lanes.forEach(function (lane) { fill(lane, vertical); });
 
 		var button = m.querySelector('.bs-marquee__toggle');
 		if (button) {
@@ -81,7 +80,7 @@
 					return;
 				}
 				// Seconds per loop as the CSS resolved it (device value and row multiplier included).
-				var seconds = parseFloat(getComputedStyle(t[0]).animationDuration) || 30;
+				var seconds = parseFloat(getComputedStyle(t[0]).animationDuration) || (calm ? 60 : 30);
 				var rev = lane === m ? m.classList.contains('bs-marquee--right') : lane.classList.contains('is-rev');
 				state.lanes.push({ tracks: t, seconds: seconds, dir: rev ? -1 : 1, pos: 0 });
 			});

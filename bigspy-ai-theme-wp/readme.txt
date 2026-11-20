@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.98.0
+Stable tag: 1.99.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,12 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.99.0 =
+* Scrolling text (marquee) keeps moving under reduced motion (half speed) and fills the whole strip.
+* Stacking Cards: new Compact grid layout (side by side on desktop, 2 per row on tablet and phone).
+* No gap under the header when the page starts with a Custom HTML style/script block.
+* Public AI profile: /llms.txt, REST bigspy/v1/ai-profile and a head link.
 
 = 1.98.0 =
 * Customizer reorganised: Global style, Header, Footer, Pages & title, Blog, WooCommerce, Listing (List mode), Advanced; one-line descriptions and View on a sample page buttons.
