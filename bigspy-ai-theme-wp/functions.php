@@ -73,6 +73,7 @@ $bst_includes = array(
 	'inc/media-atnd.php',
 	'inc/ux-blocks.php',
 	'inc/features.php',
+	'inc/ai-profile.php',
 
 	'inc/admin/dashboard.php',
 	'inc/admin/theme-panel.php',
