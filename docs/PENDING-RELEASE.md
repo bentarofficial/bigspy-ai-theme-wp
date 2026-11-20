@@ -10,6 +10,7 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 
 - Sửa khoảng trống dưới header khi trang mở đầu bằng khối Custom HTML có thẻ `<style>`/`<script>`: khối hiển thị đầu tiên không còn bị cộng block gap (main.css).
 - Hồ sơ AI công khai (inc/ai-profile.php): `/llms.txt`, REST `bigspy/v1/ai-profile` và `<link rel="help">` cho mọi công cụ AI/coding agent: dựng bằng block theme, không core/html, hero Banner/Slider full width, ưu tiên block động + animation. Lấy chung nguồn ai-designer/knowledge. Khi phát hành: cần bổ sung Có gì mới.
+- Giao diện AI Designer mới (ai-designer/assets): tông đen trắng, sidebar có logo, nút gạt Design/Advice, tìm task; màn chào có 4 thẻ gợi ý; khung soạn tin nổi, nút gửi tròn; avatar AI; gõ gửi được ngay không cần bấm New task. Đã xem trên trang thử, chưa thử trên WordPress. Khi phát hành: cần bổ sung Có gì mới và bản dịch tiếng Việt cho chuỗi mới.
 
 ## Mẫu ghi chú cho mỗi đợt cập nhật
 

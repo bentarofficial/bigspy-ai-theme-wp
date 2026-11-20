@@ -314,7 +314,7 @@
 			}
 			if (ev.kind === 'assistant') {
 				var b = h('div', { class: 'bst-aid-bubble' }); b.innerHTML = md(ev.text);
-				return h('div', { class: 'bst-aid-msg is-ai' }, b);
+				return h('div', { class: 'bst-aid-msg is-ai' }, [h('span', { class: 'bst-aid-avatar', 'aria-hidden': 'true' }, h('span', { class: 'dashicons dashicons-art' })), b]);
 			}
 			if (ev.kind === 'tool' || ev.kind === 'tool-error') {
 				var links = (ev.links || []).map(function (l) {
@@ -378,9 +378,11 @@
 			if (!els.list) { return; }
 			els.list.innerHTML = '';
 			if (!tasks.length) { els.list.appendChild(h('li', { class: 'bst-aid-empty', text: __('No tasks yet.', T) })); }
+			var q = (els.search && els.search.value || '').toLowerCase();
 			tasks.forEach(function (t) {
+				if (q && String(t.title || '').toLowerCase().indexOf(q) === -1) { return; }
 				els.list.appendChild(h('li', { class: current && current.id === t.id ? 'is-active' : '' }, [
-					h('button', { class: 'bst-aid-task', onclick: function () { open(t.id); }, title: t.title, text: t.title }),
+					h('button', { class: 'bst-aid-task', onclick: function () { open(t.id); }, title: t.title }, [h('span', { class: 'dashicons ' + (t.mode === 'advice' ? 'dashicons-lightbulb' : 'dashicons-layout') }), h('span', { class: 'bst-aid-task-name', text: t.title })]),
 					h('button', { class: 'bst-aid-icon', title: __('Rename', T), 'aria-label': __('Rename', T), onclick: function () {
 						var name = window.prompt(__('Task name', T), t.title);
 						if (name) { api('/tasks/' + t.id, 'POST', { title: name }).then(updateTask); }
@@ -423,28 +425,36 @@
 			els.chat.innerHTML = '';
 			if (!current) {
 				els.chat.appendChild(h('div', { class: 'bst-aid-welcome' }, [
+					h('span', { class: 'bst-aid-orb', 'aria-hidden': 'true' }, h('span', { class: 'dashicons dashicons-art' })),
 					h('h2', { text: __('Hello! I am your website designer.', T) }),
 					h('p', { text: __('Tell me what you need: a new website or page, colors and logo, posts, products, images… I will ask a few questions, show you the plan, then build it as drafts with BIGSPY AI blocks.', T) }),
-					h('button', { class: 'button button-primary', onclick: function () { newTask(); }, text: __('Start a new task', T) })
+					h('div', { class: 'bst-aid-ideas' }, [
+						['dashicons-admin-home', __('Design a homepage', T), __('Design a modern homepage for my business with a hero, services, testimonials and a call to action.', T)],
+						['dashicons-art', __('Colors and logo', T), __('Suggest three color palettes and fonts that fit my brand, then apply the one I pick.', T)],
+						['dashicons-media-document', __('Landing page', T), __('Build a landing page that sells one product, with features, pricing and FAQ.', T)],
+						['dashicons-edit-page', __('Write blog posts', T), __('Write three SEO-friendly blog post drafts for my site.', T)]
+					].map(function (i) {
+						return h('button', { type: 'button', class: 'bst-aid-idea', onclick: function () { els.input.value = i[2]; els.input.focus(); } }, [h('span', { class: 'dashicons ' + i[0] }), h('strong', { text: i[1] }), h('small', { text: i[2] })]);
+					}))
 				]));
 			} else {
 				log.forEach(function (ev) { els.chat.appendChild(eventNode(ev)); });
 			}
 			els.working = h('div', { class: 'bst-aid-working', hidden: !running }, [h('span', { class: 'spinner is-active' }), h('span', { text: __('Working…', T) })]);
 			els.chat.appendChild(els.working);
-			scroll();
+			if (current) { scroll(); } else { els.chat.scrollTop = 0; }
 			syncComposer();
 		};
 		var syncComposer = function () {
 			if (!els.send) { return; }
 			els.send.hidden = running; els.stop.hidden = !running;
-			els.input.disabled = running || !current;
+			els.input.disabled = running;
 			els.working.hidden = !running;
 		};
 
 		var open = function (id) {
 			running = false; stopFlag = true;
-			api('/tasks/' + id).then(function (d) {
+			return api('/tasks/' + id).then(function (d) {
 				current = d.task; log = d.log || []; stopFlag = false;
 				effort = d.effort || effort;
 				if (els.effort) { els.effort.value = effort; }
@@ -525,7 +535,7 @@
 			savePreviewWidth(fitPreview(els.previewWrap.getBoundingClientRect().width + step));
 		};
 		var newTask = function () {
-			return api('/tasks', 'POST', { mode: els.mode ? els.mode.value : 'design' }).then(function (t) { tasks.unshift(t); open(t.id); return t; });
+			return api('/tasks', 'POST', { mode: els.mode ? els.mode.value : 'design' }).then(function (t) { tasks.unshift(t); return open(t.id).then(function () { return t; }); });
 		};
 		var loop = function () {
 			running = true; stopFlag = false; syncComposer();
@@ -591,7 +601,8 @@
 		};
 		var send = function () {
 			var text = els.input.value.trim();
-			if (!text || running || !current) { return; }
+			if (!text || running) { return; }
+			if (!current) { newTask().then(function () { els.input.value = text; send(); }); return; }
 			if (attached.some(function (f) { return !f.id; })) { addEvents([{ kind: 'error', text: __('Wait for the uploads to finish.', T) }]); return; }
 			var files = attached.map(function (f) { return { id: f.id, type: f.type }; });
 			var keep = attached;
@@ -614,14 +625,20 @@
 			els.list = h('ul', { class: 'bst-aid-tasks' });
 			els.head = h('div', { class: 'bst-aid-head' });
 			els.chat = h('div', { class: 'bst-aid-chat', 'aria-live': 'polite' });
-			els.mode = h('select', { 'aria-label': __('Task mode', T) }, [h('option', { value: 'design', text: __('Design', T) }), h('option', { value: 'advice', text: __('Advice only', T) })]);
-			if (welcomePrompt) { els.mode.value = welcomeMode; }
-			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Message the designer… (Enter to send, Shift+Enter for a new line)', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } },
+			els.mode = { value: welcomePrompt ? welcomeMode : 'design' };
+			var modeBtns = [['design', __('Design', T)], ['advice', __('Advice only', T)]].map(function (m) {
+				return h('button', { type: 'button', class: 'bst-aid-seg-btn', 'aria-pressed': String(els.mode.value === m[0]), text: m[1], onclick: function () {
+					els.mode.value = m[0];
+					modeBtns.forEach(function (b, i) { b.setAttribute('aria-pressed', String(i === (m[0] === 'design' ? 0 : 1))); });
+				} });
+			});
+			els.search = h('input', { type: 'search', class: 'bst-aid-search', placeholder: __('Search tasks', T), 'aria-label': __('Search tasks', T), oninput: function () { renderTasks(); } });
+			els.input = h('textarea', { class: 'bst-aid-input', rows: '3', placeholder: __('Describe what you want to build…', T), onkeydown: function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } },
 				onpaste: function (e) { var f = e.clipboardData && e.clipboardData.files; if (f && f.length) { e.preventDefault(); uploadFiles(f); } },
 				ondragover: function (e) { e.preventDefault(); }, ondrop: function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { e.preventDefault(); uploadFiles(e.dataTransfer.files); } } });
 			els.files = h('div', { class: 'bst-aid-files', hidden: true });
 			els.attach = h('button', { type: 'button', class: 'button bst-aid-attach', title: __('Attach files from the Media Library, or drop or paste them into the message box', T), 'aria-label': __('Attach files', T), onclick: pickMedia }, h('span', { class: 'dashicons dashicons-paperclip' }));
-			els.send = h('button', { class: 'button button-primary', onclick: send, text: __('Send', T) });
+			els.send = h('button', { class: 'button button-primary bst-aid-send', onclick: send, 'aria-label': __('Send', T), title: __('Send (Enter)', T) }, h('span', { class: 'dashicons dashicons-arrow-up-alt' }));
 			els.stop = h('button', { class: 'button', hidden: true, onclick: function () { stopFlag = true; running = false; syncComposer(); if (current) { api('/tasks/' + current.id + '/stop', 'POST').then(function (r) { addEvents(r.events); }); } }, text: __('Stop', T) });
 			var effortSel = els.effort = h('select', { class: 'bst-aid-effort', 'aria-label': __('Effort', T), onchange: function (e) { effort = e.target.value; try { window.localStorage.setItem('bstAidEffort', effort); } catch (er) { /* ignore */ } } },
 				[['low', __('Low – quick answers', T)], ['medium', __('Medium – balanced', T)], ['high', __('High – more careful', T)], ['max', __('Max – deepest work', T)]].map(function (o) { return h('option', { value: o[0], selected: o[0] === effort, text: o[1] }); }));
@@ -634,13 +651,17 @@
 			var modelSel = els.model = h('select', { class: 'bst-aid-effort', 'aria-label': __('Model', T), title: __('Auto uses the models from Settings: the fast model for Effort Low, the text model otherwise.', T), onchange: function (e) { chatModel = e.target.value; try { window.localStorage.setItem('bstAidModel', chatModel); } catch (er) { /* ignore */ } } },
 				[h('option', { value: '', text: __('Auto (Settings)', T) })].concat(models.map(function (m) { return h('option', { value: m.id, selected: m.id === chatModel, text: m.name + ((m.input || m.output) ? ' – $' + m.input + ' / $' + m.output : '') }); })));
 			root.appendChild(h('aside', { class: 'bst-aid-side' }, [
-				els.mode, h('button', { class: 'button button-primary bst-aid-new', onclick: function () { newTask(); }, text: '+ ' + __('New task', T) }),
+				h('div', { class: 'bst-aid-brand' }, [h('span', { class: 'bst-aid-logo', 'aria-hidden': 'true' }, h('span', { class: 'dashicons dashicons-art' })), h('span', null, [h('strong', { text: 'BIGSPY AI' }), h('small', { text: __('Designer', T) })])]),
+				h('div', { class: 'bst-aid-seg', role: 'group', 'aria-label': __('Task mode', T) }, modeBtns),
+				h('button', { class: 'button button-primary bst-aid-new', onclick: function () { newTask(); }, text: '+ ' + __('New task', T) }),
+				els.search,
+				h('p', { class: 'bst-aid-side-title', text: __('Recent tasks', T) }),
 				els.list,
 				h('p', { class: 'bst-aid-side-links' }, [h('a', { href: cfg.guidesUrl, text: __('Guidelines', T) }), cfg.canManage ? ' · ' : '', cfg.canManage ? h('a', { href: cfg.settingsUrl, text: __('Settings', T) }) : null])
 			]));
 			root.appendChild(h('section', { class: 'bst-aid-main' }, [
 				els.head, els.chat,
-				h('div', { class: 'bst-aid-composer' }, [els.files, els.input, h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, specialties.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Specialty', T) + ' ', specialtySel]) : null, models.length ? h('label', { class: 'bst-aid-effort-label' }, [__('Model', T) + ' ', modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [__('Effort', T) + ' ', effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])])
+				h('div', { class: 'bst-aid-composer' }, [h('div', { class: 'bst-aid-box' }, [els.files, els.input, h('div', { class: 'bst-aid-composer-bar' }, [window.wp && wp.media ? els.attach : null, specialties.length ? h('label', { class: 'bst-aid-effort-label' }, [h('span', { class: 'dashicons dashicons-welcome-learn-more', title: __('Specialty', T) }), specialtySel]) : null, models.length ? h('label', { class: 'bst-aid-effort-label' }, [h('span', { class: 'dashicons dashicons-admin-generic', title: __('Model', T) }), modelSel]) : null, h('label', { class: 'bst-aid-effort-label' }, [h('span', { class: 'dashicons dashicons-performance', title: __('Effort', T) }), effortSel]), h('span', { class: 'bst-aid-spacer' }), els.stop, els.send])]), h('p', { class: 'bst-aid-hint', text: __('Enter to send · Shift+Enter for a new line · Drop or paste files to attach', T) })])
 			]));
 			els.previewCheck = h('input', { type: 'checkbox', role: 'switch', checked: previewOn, onchange: function (e) { setPreviewOn(e.target.checked); } });
 			els.previewSwitch = h('label', { class: 'bst-aid-switch' }, [els.previewCheck, h('span', { class: 'bst-aid-switch-track' }), __('Preview', T)]);
