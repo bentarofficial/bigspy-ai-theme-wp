@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.99.0
+Stable tag: 1.99.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,10 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.99.1 =
+* Editor: rows and blocks no longer overflow the tablet/phone preview; the last column's resize handle stays visible.
+* Column resize handle uses a hand (grab) cursor.
 
 = 1.99.0 =
 * Scrolling text (marquee) keeps moving under reduced motion (half speed) and fills the whole strip.

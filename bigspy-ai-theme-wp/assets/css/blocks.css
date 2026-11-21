@@ -246,6 +246,7 @@ input[type="submit"]:hover,
 
 .bs-section__inner {
 	position: relative;
+	box-sizing: border-box;
 	width: 100%;
 	max-width: calc(var(--bs-container, 1200px) + 30px);
 	margin: 0 auto;

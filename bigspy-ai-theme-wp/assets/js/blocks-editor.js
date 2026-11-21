@@ -933,8 +933,36 @@
 			drag[1](String(start));
 		};
 		var label = drag[0] ? drag[0].split(' | ').map(function (n) { return n + '/12'; }).join('  ·  ') : current + '/12';
+		// A column touching the row's / canvas's right edge keeps its handle inside, so it is never clipped.
+		var ref = wp.element.useRef(null);
+		var edge = wp.element.useState(false);
+		wp.element.useEffect(function () {
+			var h = ref.current;
+			var col = h && h.closest('.bs-column');
+			var row = col && col.parentElement;
+			if (!row) {
+				return;
+			}
+			var doc = h.ownerDocument;
+			var check = function () {
+				var c = col.getBoundingClientRect();
+				var r = row.getBoundingClientRect();
+				var w = doc.documentElement.clientWidth;
+				edge[1](c.right >= r.right - 4 || c.right + 14 >= w);
+			};
+			check();
+			var win = doc.defaultView;
+			var ro = win && win.ResizeObserver ? new win.ResizeObserver(check) : null;
+			if (ro) {
+				ro.observe(row);
+				ro.observe(col);
+				ro.observe(doc.documentElement);
+			}
+			return function () { if (ro) { ro.disconnect(); } };
+		}, [device, current]);
 		return el('div', {
-			className: 'bst-col-resizer' + (drag[0] ? ' is-dragging' : ''),
+			ref: ref,
+			className: 'bst-col-resizer' + (drag[0] ? ' is-dragging' : '') + (edge[0] ? ' is-edge' : ''),
 			onPointerDown: onDown,
 			onDoubleClick: function (e) {
 				e.stopPropagation();
