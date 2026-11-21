@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.99.1 =
+* Editor: rows and blocks no longer overflow the tablet/phone preview; the last column's resize handle stays visible.
+* Column resize handle uses a hand (grab) cursor.
+
 = 1.99.0 =
 * Scrolling text (marquee) keeps moving under reduced motion (half speed) and fills the whole strip.
 * Stacking Cards: new Compact grid layout (side by side on desktop, 2 per row on tablet and phone).

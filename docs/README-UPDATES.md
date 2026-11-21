@@ -6,6 +6,10 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.99.1: Editor mobile preview fixes
+
+- Rows and blocks no longer overflow the tablet/phone preview; edge column resize handles stay visible with a grab cursor.
+
 ### 1.99.0: Marquee under reduced motion, compact Stacking Cards grid
 
 - Marquee keeps moving (half speed) when the device asks for reduced motion and always fills the strip.

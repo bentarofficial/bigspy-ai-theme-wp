@@ -11536,3 +11536,6 @@ msgstr "Bộ lọc"
 msgid "Choose options"
 msgstr "Chọn tuỳ chọn"
 
+
+msgid "1.99.1: Fixes in the block editor. In tablet and phone preview, rows, columns and every block inside a section no longer stick out past the right edge of the canvas, so the resize handle and size label of the last column are always visible and easy to grab. The handle now shows a hand cursor: hold the left mouse button and drag left or right to change the column width."
+msgstr "1.99.1: Sửa lỗi trong trình soạn thảo khối. Khi xem trước dạng máy tính bảng và điện thoại, hàng, cột và mọi khối trong section không còn tràn ra ngoài mép phải khung soạn thảo, nên thanh kéo và nhãn độ rộng của cột cuối luôn hiện rõ, dễ nắm. Thanh kéo hiện con trỏ bàn tay: giữ chuột trái và kéo sang trái hoặc phải để đổi độ rộng cột."
