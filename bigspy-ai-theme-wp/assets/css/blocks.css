@@ -2546,7 +2546,7 @@ input[type="submit"]:hover,
 .bs-form {
 	--fa: var(--bs-form-accent, var(--bs-primary));
 	--fa2: var(--bs-form-accent2, var(--bs-secondary, #7c3aed));
-	--fr: var(--bs-form-radius, 8px);
+	--fr: var(--bs-form-radius, var(--bs-field-radius, 10px));
 	--fb: var(--bs-form-field, #fff);
 	--fbc: var(--bs-form-border, var(--bs-border, #d1d5db));
 	--fbw: var(--bs-form-bw, 1px);

@@ -71,7 +71,7 @@ function bst_native_form_settings( $a ) {
 
 /** Field types the engine renders. */
 function bst_native_field_types() {
-	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file' );
+	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'time', 'datetime', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file' );
 }
 
 /** Choices of a select, radio or checkbox field. */
@@ -119,6 +119,10 @@ function bst_native_field_error( $f, $v, $s ) {
 		$ok = is_numeric( $v );
 	} elseif ( 'date' === $type ) {
 		$ok = (bool) preg_match( '/^\d{4}-\d{2}-\d{2}$/', $v );
+	} elseif ( 'time' === $type ) {
+		$ok = (bool) preg_match( '/^\d{2}:\d{2}(:\d{2})?$/', $v );
+	} elseif ( 'datetime' === $type ) {
+		$ok = (bool) preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/', $v );
 	} elseif ( in_array( $type, array( 'select', 'radio', 'checkbox' ), true ) && bst_native_field_options( $f ) ) {
 		$ok = ! array_diff( explode( ', ', $v ), bst_native_field_options( $f ) );
 	}
@@ -192,7 +196,7 @@ function bst_native_form_markup( $a ) {
 				$lab     = '';
 				break;
 			default:
-				$control = '<input type="' . esc_attr( $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . '>';
+				$control = '<input type="' . esc_attr( 'datetime' === $type ? 'datetime-local' : $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . '>';
 		}
 		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $cond . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
 	}

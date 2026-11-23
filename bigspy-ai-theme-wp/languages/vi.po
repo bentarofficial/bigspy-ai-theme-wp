@@ -11539,3 +11539,153 @@ msgstr "Chọn tuỳ chọn"
 
 msgid "1.99.1: Fixes in the block editor. In tablet and phone preview, rows, columns and every block inside a section no longer stick out past the right edge of the canvas, so the resize handle and size label of the last column are always visible and easy to grab. The handle now shows a hand cursor: hold the left mouse button and drag left or right to change the column width."
 msgstr "1.99.1: Sửa lỗi trong trình soạn thảo khối. Khi xem trước dạng máy tính bảng và điện thoại, hàng, cột và mọi khối trong section không còn tràn ra ngoài mép phải khung soạn thảo, nên thanh kéo và nhãn độ rộng của cột cuối luôn hiện rõ, dễ nắm. Thanh kéo hiện con trỏ bàn tay: giữ chuột trái và kéo sang trái hoặc phải để đổi độ rộng cột."
+
+msgid "Time"
+msgstr "Giờ"
+
+msgid "Date and time"
+msgstr "Ngày và giờ"
+
+msgid "Dropdown"
+msgstr "Menu thả xuống"
+
+msgid "Radio buttons"
+msgstr "Chọn một (radio)"
+
+msgid "Checkboxes"
+msgstr "Chọn nhiều (checkbox)"
+
+msgid "Consent checkbox"
+msgstr "Ô đồng ý"
+
+msgid "Number"
+msgstr "Số"
+
+msgid "URL"
+msgstr "Đường dẫn"
+
+msgid "Add field"
+msgstr "Thêm trường"
+
+msgid "Option 1"
+msgstr "Lựa chọn 1"
+
+msgid "Option 2"
+msgstr "Lựa chọn 2"
+
+msgid "Email to you"
+msgstr "Email gửi bạn"
+
+msgid "Auto-reply"
+msgstr "Tự động trả lời"
+
+msgid "Messages"
+msgstr "Thông báo"
+
+msgid "Fields & email"
+msgstr "Trường & email"
+
+msgid "Email notification"
+msgstr "Email thông báo"
+
+msgid "After sending"
+msgstr "Sau khi gửi"
+
+msgid "When the visitor sends the form"
+msgstr "Khi khách gửi form"
+
+msgid "Show a thank-you message"
+msgstr "Hiện lời cảm ơn"
+
+msgid "Go to a thank-you page"
+msgstr "Chuyển sang trang cảm ơn"
+
+msgid "Thank-you page"
+msgstr "Trang cảm ơn"
+
+msgid "Type to search your pages. A thank-you page lets Google Ads, Analytics or the Facebook Pixel count conversions."
+msgstr "Gõ để tìm trang trên site. Trang cảm ơn giúp Google Ads, Analytics hay Facebook Pixel đếm chuyển đổi."
+
+msgid "Or a link"
+msgstr "Hoặc nhập đường dẫn"
+
+msgid "Create a thank-you page"
+msgstr "Tạo trang cảm ơn"
+
+msgid "Thank you"
+msgstr "Cảm ơn"
+
+msgid "Thank you!"
+msgstr "Cảm ơn bạn!"
+
+msgid "We have received your information and will contact you shortly."
+msgstr "Chúng tôi đã nhận được thông tin và sẽ liên hệ với bạn sớm nhất."
+
+msgid "Wait before going (seconds)"
+msgstr "Chờ trước khi chuyển (giây)"
+
+msgid "Open in a new tab"
+msgstr "Mở trong tab mới"
+
+msgid "Send the answers to the page in the link (for a personal greeting)"
+msgstr "Gửi kèm câu trả lời sang trang qua đường dẫn (để chào đúng tên khách)"
+
+msgid "Thank-you message"
+msgstr "Lời cảm ơn"
+
+msgid "Hide the form after sending"
+msgstr "Ẩn form sau khi gửi"
+
+msgid "Save every entry in Form entries"
+msgstr "Lưu mọi lượt gửi vào Form entries"
+
+msgid "Open Form entries"
+msgstr "Mở Form entries"
+
+msgid "Thanks! We will call you back shortly."
+msgstr "Cảm ơn bạn! Chúng tôi sẽ gọi lại sớm."
+
+msgid "Ready-made looks"
+msgstr "Mẫu có sẵn"
+
+msgid "Click a look to apply it, then fine-tune below."
+msgstr "Bấm một mẫu để áp dụng, rồi tinh chỉnh bên dưới."
+
+msgid "Input fields"
+msgstr "Ô nhập"
+
+msgid "Field colors"
+msgstr "Màu ô nhập"
+
+msgid "Submit button"
+msgstr "Nút gửi"
+
+msgid "Layout, box & image"
+msgstr "Bố cục, khung & ảnh"
+
+msgid "Box & text colors"
+msgstr "Màu khung & chữ"
+
+msgid "Heading & text"
+msgstr "Tiêu đề & mô tả"
+
+msgid "Field style"
+msgstr "Kiểu ô nhập"
+
+msgid "Corner radius (px, -1 = style default)"
+msgstr "Bo góc (px, -1 = theo kiểu)"
+
+msgid "Field size"
+msgstr "Cỡ ô"
+
+msgid "Labels"
+msgstr "Nhãn"
+
+msgid "Space between fields (px, -1 = default)"
+msgstr "Khoảng cách giữa các ô (px, -1 = mặc định)"
+
+msgid "Form field corner radius (px)"
+msgstr "Bo góc ô nhập của form (px)"
+
+msgid "For the input fields of every Form block. A form with its own corner radius keeps it."
+msgstr "Áp dụng cho ô nhập của mọi khối Form. Form nào đã đặt bo góc riêng thì giữ nguyên."
