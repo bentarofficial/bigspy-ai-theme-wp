@@ -16,8 +16,8 @@ defined( 'ABSPATH' ) || exit;
 /** Button keys in default order => [ icon, default label, default color ]. */
 function bst_float_buttons() {
 	return array(
-		'phone'     => array( 'phone', __( 'Call now', 'bigspy-ai-theme-wp' ), '#e53935' ),
-		'phone2'    => array( 'phone', __( 'Hotline 2', 'bigspy-ai-theme-wp' ), '#f57c00' ),
+		'phone'     => array( 'phone-solid', __( 'Call now', 'bigspy-ai-theme-wp' ), '#e53935' ),
+		'phone2'    => array( 'phone-solid', __( 'Hotline 2', 'bigspy-ai-theme-wp' ), '#f57c00' ),
 		'zalo'      => array( 'zalo-brand', 'Zalo', '#0068ff' ),
 		'messenger' => array( 'messenger', 'Messenger', '#0084ff' ),
 		'whatsapp'  => array( 'whatsapp', 'WhatsApp', '#25d366' ),
@@ -27,8 +27,8 @@ function bst_float_buttons() {
 		'tiktok'    => array( 'tiktok', 'TikTok', '#111111' ),
 		'youtube'   => array( 'youtube', 'YouTube', '#ff0000' ),
 		'instagram' => array( 'instagram', 'Instagram', '#e4405f' ),
-		'map'       => array( 'pin', __( 'Directions', 'bigspy-ai-theme-wp' ), '#16a34a' ),
-		'email'     => array( 'mail', 'Email', '#64748b' ),
+		'map'       => array( 'gmaps', __( 'Directions', 'bigspy-ai-theme-wp' ), '#16a34a' ),
+		'email'     => array( 'gmail', 'Email', '#64748b' ),
 		'custom'    => array( 'clipboard', __( 'Contact', 'bigspy-ai-theme-wp' ), '#0a4d8c' ),
 	);
 }

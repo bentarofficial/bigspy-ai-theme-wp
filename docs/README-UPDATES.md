@@ -6,6 +6,14 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.100.0: Form block Settings/Styles layout, new field types, thank-you page; floating contact logos
+
+- Form block sidebar split into Settings (form, fields and emails, after sending, heading) and Styles (looks, input fields, button, layout, colors).
+- Add field opens a menu of field types; new Time and Date and time fields.
+- After sending: thank-you message or thank-you page picked from your pages, or created with one click.
+- Global style: one corner radius for every form's input fields.
+- Floating contact: real brand logos, clearer hotline icon, flat look.
+
 ### 1.99.1: Editor mobile preview fixes
 
 - Rows and blocks no longer overflow the tablet/phone preview; edge column resize handles stay visible with a grab cursor.

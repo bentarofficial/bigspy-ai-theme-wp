@@ -3327,7 +3327,7 @@
 	 * Built-in form (provider "bigspy"): Contact Form 7 style tabs inside the block –
 	 * Fields, Mail, Mail (2), Messages, Actions. Empty texts fall back to the defaults.
 	 */
-	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['url', 'URL'], ['file', 'File upload']];
+	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['time', 'Time'], ['datetime', 'Date and time'], ['url', 'URL'], ['file', 'File upload']];
 	function nfSlug(label, taken) {
 		var base = String(label || 'field').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'field';
 		var n = base, i = 2;
@@ -3498,8 +3498,9 @@
 		};
 		var tog = function (key, label) { return el(c.ToggleControl, { label: label, checked: a[key] === undefined ? !!D[key] : !!a[key], onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true }); };
 		var tags = '[all-fields] ' + fields.map(function (f) { return '[' + f.name + ']'; }).join(' ') + ' [_site_title] [_site_url] [_site_admin_email] [_date] [_time] [_url] [_remote_ip]' + (pricing.enabled ? ' [_quote] [_quote_total]' : '');
-		var TABS = [['fields', __('Fields', T)], ['pricing', __('Price', T)], ['mail', __('Mail', T)], ['mail2', __('Mail (2)', T)], ['messages', __('Messages', T)], ['actions', __('Actions', T)]];
+		var TABS = [['fields', __('Fields', T)], ['pricing', __('Price', T)], ['mail', __('Email to you', T)], ['mail2', __('Auto-reply', T)], ['messages', __('Messages', T)]];
 		var body;
+		if (['fields', 'pricing', 'mail', 'mail2', 'messages'].indexOf(tab[0]) === -1) { tab[0] = 'fields'; }
 		if (tab[0] === 'fields') {
 			body = el(Fragment, null,
 				fields.map(function (f, i) {
@@ -3507,12 +3508,12 @@
 					var needsOpts = ['select', 'radio', 'checkbox', 'file'].indexOf(f.type) !== -1;
 					return el('div', { key: i, className: 'bst-nf-item' + (open ? ' is-open' : '') },
 						el('div', { className: 'bst-nf-item__head' },
-							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, (NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1] + (f.required ? ' · ' + __('required', T) : '') + (f.show ? ' · ' + __('conditional', T) : '')), problems[f.id] ? el('small', { className: 'bst-nf-item__error' }, '⚠ ' + problems[f.id].join(' ')) : null),
+							el('button', { type: 'button', className: 'bst-nf-item__title', onClick: function () { openField[1](open ? -1 : i); } }, el('strong', null, f.label || f.name), el('small', null, __((NF_TYPES.filter(function (t) { return t[0] === f.type; })[0] || ['', f.type])[1], T) + (f.required ? ' · ' + __('required', T) : '') + (f.show ? ' · ' + __('conditional', T) : '')), problems[f.id] ? el('small', { className: 'bst-nf-item__error' }, '⚠ ' + problems[f.id].join(' ')) : null),
 							el(c.Button, { size: 'small', icon: 'arrow-up-alt2', label: __('Move up', T), disabled: i === 0, onClick: function () { move(i, -1); } }),
 							el(c.Button, { size: 'small', icon: 'arrow-down-alt2', label: __('Move down', T), disabled: i === fields.length - 1, onClick: function () { move(i, 1); } })
 						),
 						open ? el('div', { className: 'bst-nf-item__body' },
-							el(c.SelectControl, { label: __('Type', T), value: f.type, options: NF_TYPES.map(function (t) { return { value: t[0], label: t[1] }; }), onChange: function (v) { upd(i, 'type', v); }, __nextHasNoMarginBottom: true }),
+							el(c.SelectControl, { label: __('Type', T), value: f.type, options: NF_TYPES.map(function (t) { return { value: t[0], label: __(t[1], T) }; }), onChange: function (v) { upd(i, 'type', v); }, __nextHasNoMarginBottom: true }),
 							el(c.TextControl, { label: __('Label', T), value: f.label || '', onChange: function (v) { upd(i, 'label', v); }, __nextHasNoMarginBottom: true }),
 							el(c.TextControl, { label: f.type === 'acceptance' ? __('Consent text', T) : __('Placeholder', T), value: f.placeholder || '', onChange: function (v) { upd(i, 'placeholder', v); }, __nextHasNoMarginBottom: true }),
 							needsOpts ? el(c.TextareaControl, { label: __('Options (one per line)', T), value: f.options || '', rows: 4, onChange: function (v) { upd(i, 'options', v); }, __nextHasNoMarginBottom: true }) : null,
@@ -3533,7 +3534,21 @@
 						) : null
 					);
 				}),
-				el(c.Button, { variant: 'secondary', icon: 'plus', onClick: function () { var n = fields.concat([{ id: 'f_' + Math.random().toString(36).slice(2, 10), type: 'text', label: __('New field', T), name: nfSlug('new field', fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' }]); setFields(n); openField[1](n.length - 1); } }, __('Add field', T)),
+				el(c.DropdownMenu, {
+					icon: 'plus',
+					text: __('Add field', T),
+					label: __('Add field', T),
+					className: 'bst-nf-add',
+					toggleProps: { variant: 'secondary' },
+					controls: NF_TYPES.map(function (t) {
+						return { title: __(t[1], T), onClick: function () {
+							var label = __(t[1], T);
+							var nf = { id: 'f_' + Math.random().toString(36).slice(2, 10), type: t[0], label: label, name: nfSlug(label, fields.map(function (x) { return x.name; })), placeholder: '', required: false, width: 'full' };
+							if (['select', 'radio', 'checkbox'].indexOf(t[0]) !== -1) { nf.options = __('Option 1', T) + '\n' + __('Option 2', T); }
+							var n = fields.concat([nf]); setFields(n); openField[1](n.length - 1);
+						} };
+					})
+				}),
 				txt('submitText', __('Send button text', T)),
 				txt('formName', __('Form name (shown in Form entries)', T))
 			);
@@ -3621,20 +3636,9 @@
 				txt('msgTel', __('Telephone number that the sender entered is invalid', T)),
 				txt('msgSpam', __('Submission was referred to as spam', T))
 			);
-		} else {
-			body = el(Fragment, null,
-				el(c.TextControl, { label: __('Redirect to (URL or /page/)', T), value: a.redirectUrl || '', placeholder: '/cam-on/', onChange: function (v) { props.setAttributes({ redirectUrl: v }); }, __nextHasNoMarginBottom: true }),
-				a.redirectUrl ? el(c.RangeControl, { label: __('Delay before redirect (seconds)', T), min: 0, max: 30, value: a.redirectDelay || 0, onChange: function (v) { props.setAttributes({ redirectDelay: v || 0 }); }, __nextHasNoMarginBottom: true }) : null,
-				a.redirectUrl ? tog('redirectNewTab', __('Open in a new tab', T)) : null,
-				a.redirectUrl ? tog('redirectPass', __('Pass the fields as URL query parameters', T)) : null,
-				el(c.TextControl, { label: __('Thank-you message under the form (optional)', T), value: a.successText || '', onChange: function (v) { props.setAttributes({ successText: v }); }, __nextHasNoMarginBottom: true }),
-				el(c.ToggleControl, { label: __('Hide the form after sending', T), checked: !!a.hideOnSuccess, onChange: function (v) { props.setAttributes({ hideOnSuccess: v }); }, __nextHasNoMarginBottom: true }),
-				tog('saveEntries', __('Save every entry in Form entries', T)),
-				el(c.ExternalLink, { href: B.formEntries }, __('Open Form entries', T))
-			);
 		}
 		var smtpOk = mail.smtp && mail.mailer && mail.mailer !== 'mail';
-		return el(Panel, { title: __('Built-in form settings', T), initialOpen: true, className: 'bst-nf-panel' },
+		return el(Panel, { title: __('Fields & email', T), initialOpen: true, className: 'bst-nf-panel' },
 			el('div', { className: 'bst-nf-tabs', role: 'tablist' }, TABS.map(function (t) { return el('button', { key: t[0], type: 'button', role: 'tab', 'aria-selected': tab[0] === t[0], className: 'bst-nf-tab' + (tab[0] === t[0] ? ' is-active' : ''), onClick: function () { tab[1](t[0]); } }, t[1]); })),
 			body,
 			el('div', { className: 'bst-form-send__smtp ' + (smtpOk ? 'is-ok' : 'is-warn'), style: { marginTop: 14 } },
@@ -3673,7 +3677,7 @@
 		};
 		var mailerNames = { mail: __('PHP mail (default, may land in spam)', T), smtp: 'Other SMTP', gmail: 'Google / Gmail', outlook: 'Microsoft 365 / Outlook', sendlayer: 'SendLayer', smtpcom: 'SMTP.com', sendinblue: 'Brevo', mailgun: 'Mailgun', sendgrid: 'SendGrid', postmark: 'Postmark', sparkpost: 'SparkPost', amazonses: 'Amazon SES', zoho: 'Zoho Mail', elasticemail: 'Elastic Email', mailjet: 'Mailjet', smtp2go: 'SMTP2GO', resend: 'Resend' };
 		var smtpOk = mail.smtp && mail.mailer && mail.mailer !== 'mail';
-		return el(Panel, { title: __('Sending & after submit', T), initialOpen: !!a.formId },
+		return el(Panel, { title: __('Email notification', T), initialOpen: !!a.formId },
 			!a.formId ? el('p', { className: 'description' }, __('Choose a form first.', T)) : null,
 			isCf7 ? el(Fragment, null,
 				el('p', { className: 'bst-form-send__label' }, __('Email notification', T)),
@@ -3687,11 +3691,6 @@
 				),
 				s.msg ? el('p', { className: 'bst-form-send__msg' }, s.msg) : null
 			) : (a.formId ? el(c.ExternalLink, { href: B.formNewUrl }, __('Edit this form in WPForms', T)) : null),
-			el('p', { className: 'bst-form-send__label' }, __('After a successful send', T)),
-			el(c.TextControl, { label: __('Redirect to (URL, optional)', T), value: a.redirectUrl || '', placeholder: '/cam-on/', type: 'url', onChange: function (v) { props.setAttributes({ redirectUrl: v }); }, help: __('e.g. a thank-you page, useful for Google Ads / Analytics conversions.', T), __nextHasNoMarginBottom: true }),
-			a.redirectUrl ? el(c.RangeControl, { label: __('Wait before redirect (seconds)', T), min: 0, max: 30, value: a.redirectDelay || 0, onChange: function (v) { props.setAttributes({ redirectDelay: v || 0 }); }, __nextHasNoMarginBottom: true }) : null,
-			el(c.TextControl, { label: __('Thank-you message (optional)', T), value: a.successText || '', placeholder: __('Thanks! We will call you back shortly.', T), onChange: function (v) { props.setAttributes({ successText: v }); }, __nextHasNoMarginBottom: true }),
-			el(c.ToggleControl, { label: __('Hide the form after sending', T), checked: !!a.hideOnSuccess, onChange: function (v) { props.setAttributes({ hideOnSuccess: v }); }, __nextHasNoMarginBottom: true }),
 			el('p', { className: 'bst-form-send__label' }, __('Email delivery (SMTP)', T)),
 			el('div', { className: 'bst-form-send__smtp ' + (smtpOk ? 'is-ok' : 'is-warn') },
 				el('strong', null, smtpOk ? __('Sending through WP Mail SMTP', T) : (mail.smtp ? __('WP Mail SMTP is active but not set up', T) : __('No SMTP plugin', T))),
@@ -3699,6 +3698,45 @@
 				mail.smtp ? el('span', { className: 'bst-form-send__links' }, el(c.ExternalLink, { href: mail.settings }, __('SMTP settings', T)), ' · ', el(c.ExternalLink, { href: mail.test }, __('Send a test email', T)))
 					: el(c.ExternalLink, { href: mail.install }, __('Install WP Mail SMTP (recommended)', T))
 			)
+		);
+	}
+
+	/* After sending: show a thank-you message, or go to a thank-you page picked from the site's pages. */
+	function FormAfterSend(props) {
+		var a = props.attributes;
+		var T = 'bigspy-ai-theme-wp';
+		var D = B.formNative || {};
+		var native = a.provider === 'bigspy';
+		var mode = useState(a.redirectUrl ? 'page' : 'message');
+		var search = useState('');
+		var busy = useState(false);
+		var pages = wp.data.useSelect(function (sel) {
+			return sel('core').getEntityRecords('postType', 'page', { per_page: 20, search: search[0] || undefined, status: 'publish', _fields: 'id,title,link' }) || [];
+		}, [search[0]]);
+		var path = function (link) { try { var u = new URL(link); return u.origin === window.location.origin ? u.pathname : link; } catch (e) { return link; } };
+		var opts = pages.map(function (pg) { return { value: path(pg.link), label: (pg.title && pg.title.rendered ? pg.title.rendered.replace(/<[^>]+>/g, '') : '#' + pg.id) + ' — ' + path(pg.link) }; });
+		if (a.redirectUrl && !opts.some(function (o) { return o.value === a.redirectUrl; })) { opts.unshift({ value: a.redirectUrl, label: a.redirectUrl }); }
+		var tog = function (key, label) { return el(c.ToggleControl, { label: label, checked: a[key] === undefined ? !!D[key] : !!a[key], onChange: function (v) { var o = {}; o[key] = v; props.setAttributes(o); }, __nextHasNoMarginBottom: true }); };
+		var makePage = function () {
+			busy[1](true);
+			wp.apiFetch({ path: '/wp/v2/pages', method: 'POST', data: { title: __('Thank you', T), status: 'publish', content: '<!-- wp:heading {"textAlign":"center"} --><h2 class="wp-block-heading has-text-align-center">' + __('Thank you!', T) + '</h2><!-- /wp:heading --><!-- wp:paragraph {"align":"center"} --><p class="has-text-align-center">' + __('We have received your information and will contact you shortly.', T) + '</p><!-- /wp:paragraph -->' } })
+				.then(function (pg) { busy[1](false); props.setAttributes({ redirectUrl: path(pg.link) }); })
+				.catch(function () { busy[1](false); });
+		};
+		return el(Panel, { title: __('After sending', T), initialOpen: false },
+			el(c.RadioControl, { label: __('When the visitor sends the form', T), selected: mode[0], options: [{ value: 'message', label: __('Show a thank-you message', T) }, { value: 'page', label: __('Go to a thank-you page', T) }], onChange: function (v) { mode[1](v); if (v === 'message') { props.setAttributes({ redirectUrl: '' }); } } }),
+			mode[0] === 'page' ? el(Fragment, null,
+				el(c.ComboboxControl, { label: __('Thank-you page', T), help: __('Type to search your pages. A thank-you page lets Google Ads, Analytics or the Facebook Pixel count conversions.', T), value: a.redirectUrl || '', options: opts, onFilterValueChange: function (v) { search[1](v); }, onChange: function (v) { props.setAttributes({ redirectUrl: v || '' }); }, __nextHasNoMarginBottom: true }),
+				el(c.TextControl, { label: __('Or a link', T), value: a.redirectUrl || '', placeholder: '/cam-on/', onChange: function (v) { props.setAttributes({ redirectUrl: v }); }, __nextHasNoMarginBottom: true }),
+				el(c.Button, { variant: 'secondary', size: 'small', isBusy: busy[0], disabled: busy[0], onClick: makePage }, __('Create a thank-you page', T)),
+				a.redirectUrl ? el(c.RangeControl, { label: __('Wait before going (seconds)', T), min: 0, max: 30, value: a.redirectDelay || 0, onChange: function (v) { props.setAttributes({ redirectDelay: v || 0 }); }, __nextHasNoMarginBottom: true }) : null,
+				a.redirectUrl && native ? tog('redirectNewTab', __('Open in a new tab', T)) : null,
+				a.redirectUrl && native ? tog('redirectPass', __('Send the answers to the page in the link (for a personal greeting)', T)) : null
+			) : null,
+			el(c.TextControl, { label: __('Thank-you message', T), value: a.successText || '', placeholder: native ? (D.msgSuccess || '') : __('Thanks! We will call you back shortly.', T), onChange: function (v) { props.setAttributes({ successText: v }); }, __nextHasNoMarginBottom: true }),
+			el(c.ToggleControl, { label: __('Hide the form after sending', T), checked: !!a.hideOnSuccess, onChange: function (v) { props.setAttributes({ hideOnSuccess: v }); }, __nextHasNoMarginBottom: true }),
+			native ? tog('saveEntries', __('Save every entry in Form entries', T)) : null,
+			native ? el(c.ExternalLink, { href: B.formEntries }, __('Open Form entries', T)) : null
 		);
 	}
 
@@ -3769,29 +3807,36 @@
 					el(c.ExternalLink, { href: B.formNewUrl }, noPlugin ? __('Install Contact Form 7', 'bigspy-ai-theme-wp') : __('Create a new form', 'bigspy-ai-theme-wp'))
 				),
 				a.provider === 'bigspy' ? el(NativeFormPanels, props) : el(FormSending, props),
-				el(Panel, { title: __('Ready-made looks', 'bigspy-ai-theme-wp') },
-					el('p', { className: 'description' }, __('Click a look to apply it, then fine-tune below.', 'bigspy-ai-theme-wp')),
-					el('div', { className: 'bst-form-templates' }, FORM_TEMPLATES.map(function (t) {
-						return el('button', { key: t[0], type: 'button', className: 'bst-form-templates__item', onClick: function () { applyTemplate(t); } }, el(FormThumb, { template: t }), el('em', null, t[1]));
-					}))
-				),
+				el(FormAfterSend, props),
 				el(Panel, { title: __('Heading & text', 'bigspy-ai-theme-wp'), initialOpen: false },
 					el(Text, Object.assign({ label: __('Small label above the title', 'bigspy-ai-theme-wp') }, bind('kicker'))),
 					el(Text, Object.assign({ label: __('Title', 'bigspy-ai-theme-wp') }, bind('title'))),
 					el(c.TextareaControl, { label: __('Description', 'bigspy-ai-theme-wp'), value: a.description, onChange: function (v) { props.setAttributes({ description: v }); }, __nextHasNoMarginBottom: true }),
 					el(Text, Object.assign({ label: __('Note under the form (e.g. "We never share your phone number")', 'bigspy-ai-theme-wp') }, bind('note'))),
 					el(Select, Object.assign({ label: __('Heading align', 'bigspy-ai-theme-wp'), options: { left: __('Left', 'bigspy-ai-theme-wp'), center: __('Center', 'bigspy-ai-theme-wp') } }, bind('align')))
+				)
+			),
+			el(be.InspectorControls, { group: 'styles' },
+				el(Panel, { title: __('Ready-made looks', 'bigspy-ai-theme-wp') },
+					el('p', { className: 'description' }, __('Click a look to apply it, then fine-tune below.', 'bigspy-ai-theme-wp')),
+					el('div', { className: 'bst-form-templates' }, FORM_TEMPLATES.map(function (t) {
+						return el('button', { key: t[0], type: 'button', className: 'bst-form-templates__item', onClick: function () { applyTemplate(t); } }, el(FormThumb, { template: t }), el('em', null, t[1]));
+					}))
 				),
-				el(Panel, { title: __('Layout & fields', 'bigspy-ai-theme-wp'), initialOpen: false },
-					choice(__('Layout', 'bigspy-ai-theme-wp'), 'layout', [['stack', __('Stacked', 'bigspy-ai-theme-wp')], ['2col', __('2 columns', 'bigspy-ai-theme-wp')], ['inline', __('One line', 'bigspy-ai-theme-wp')]]),
+				el(Panel, { title: __('Input fields', 'bigspy-ai-theme-wp'), initialOpen: false },
 					choice(__('Field style', 'bigspy-ai-theme-wp'), 'formStyle', [['default', __('Theme', 'bigspy-ai-theme-wp')], ['outline', __('Outline', 'bigspy-ai-theme-wp')], ['underline', __('Line', 'bigspy-ai-theme-wp')], ['filled', __('Filled', 'bigspy-ai-theme-wp')], ['rounded', __('Pill', 'bigspy-ai-theme-wp')], ['shadow', __('Shadow', 'bigspy-ai-theme-wp')]]),
+					el(Range, Object.assign({ label: __('Corner radius (px, -1 = style default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('radius'))),
 					choice(__('Field size', 'bigspy-ai-theme-wp'), 'fieldSize', [['sm', 'S'], ['md', 'M'], ['lg', 'L']]),
 					choice(__('Labels', 'bigspy-ai-theme-wp'), 'labelStyle', [['top', __('Above', 'bigspy-ai-theme-wp')], ['small', __('Small caps', 'bigspy-ai-theme-wp')], ['hidden', __('Hidden', 'bigspy-ai-theme-wp')]]),
-					el(Range, Object.assign({ label: __('Space between fields (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('gap'))),
-					el(Range, Object.assign({ label: __('Corner radius (px, -1 = style default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('radius'))),
 					el(Range, Object.assign({ label: __('Border width (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 4 }, bind('borderWidth'))),
-					el(Range, Object.assign({ label: __('Max width (px, 0 = full)', 'bigspy-ai-theme-wp'), max: 1400, step: 10 }, bind('maxWidth')))
+					el(Range, Object.assign({ label: __('Space between fields (px, -1 = default)', 'bigspy-ai-theme-wp'), min: -1, max: 40 }, bind('gap')))
 				),
+				el(B.ColorPanel, { title: __('Field colors', 'bigspy-ai-theme-wp'), settings: [
+					{ label: __('Field background', 'bigspy-ai-theme-wp'), value: a.fieldBg, onChange: function (v) { props.setAttributes({ fieldBg: v || '' }); } },
+					{ label: __('Field border', 'bigspy-ai-theme-wp'), value: a.borderColor, onChange: function (v) { props.setAttributes({ borderColor: v || '' }); } },
+					{ label: __('Field focus ring', 'bigspy-ai-theme-wp'), value: a.focusColor, onChange: function (v) { props.setAttributes({ focusColor: v || '' }); } },
+					{ label: __('Labels', 'bigspy-ai-theme-wp'), value: a.labelColor, onChange: function (v) { props.setAttributes({ labelColor: v || '' }); } }
+				] }),
 				el(Panel, { title: __('Submit button', 'bigspy-ai-theme-wp'), initialOpen: false },
 					choice(__('Style', 'bigspy-ai-theme-wp'), 'buttonStyle', [['solid', __('Solid', 'bigspy-ai-theme-wp')], ['gradient', __('Gradient', 'bigspy-ai-theme-wp')], ['pill', __('Pill', 'bigspy-ai-theme-wp')], ['outline', __('Outline', 'bigspy-ai-theme-wp')], ['shade', '3D'], ['glow', __('Glow', 'bigspy-ai-theme-wp')]]),
 					choice(__('Position', 'bigspy-ai-theme-wp'), 'buttonAlign', [['left', __('Left', 'bigspy-ai-theme-wp')], ['center', __('Center', 'bigspy-ai-theme-wp')], ['right', __('Right', 'bigspy-ai-theme-wp')], ['full', __('Full', 'bigspy-ai-theme-wp')]]),
@@ -3804,7 +3849,9 @@
 					{ label: __('Button on hover', 'bigspy-ai-theme-wp'), value: a.buttonHoverBg, onChange: function (v) { props.setAttributes({ buttonHoverBg: v || '' }); } },
 					{ label: __('Button text on hover', 'bigspy-ai-theme-wp'), value: a.buttonHoverText, onChange: function (v) { props.setAttributes({ buttonHoverText: v || '' }); } }
 				] }),
-				el(Panel, { title: __('Box & image', 'bigspy-ai-theme-wp'), initialOpen: false },
+				el(Panel, { title: __('Layout, box & image', 'bigspy-ai-theme-wp'), initialOpen: false },
+					choice(__('Layout', 'bigspy-ai-theme-wp'), 'layout', [['stack', __('Stacked', 'bigspy-ai-theme-wp')], ['2col', __('2 columns', 'bigspy-ai-theme-wp')], ['inline', __('One line', 'bigspy-ai-theme-wp')]]),
+					el(Range, Object.assign({ label: __('Max width (px, 0 = full)', 'bigspy-ai-theme-wp'), max: 1400, step: 10 }, bind('maxWidth'))),
 					choice(__('Box', 'bigspy-ai-theme-wp'), 'boxStyle', [['none', __('None', 'bigspy-ai-theme-wp')], ['card', __('Card', 'bigspy-ai-theme-wp')], ['soft', __('Soft', 'bigspy-ai-theme-wp')], ['gradient', __('Gradient', 'bigspy-ai-theme-wp')], ['gradient-border', __('Gradient border', 'bigspy-ai-theme-wp')], ['glass', __('Glass', 'bigspy-ai-theme-wp')], ['dark', __('Dark', 'bigspy-ai-theme-wp')]]),
 					el(B.MediaPicker, { label: __('Image (side or background)', 'bigspy-ai-theme-wp'), id: a.imageId, url: a.imageUrl, onChange: function (m) { props.setAttributes({ imageId: m.id || 0, imageUrl: m.url || '', imageAlt: m.alt || '' }); } }),
 					a.imageUrl ? choice(__('Image position', 'bigspy-ai-theme-wp'), 'imagePosition', [['left', __('Left', 'bigspy-ai-theme-wp')], ['right', __('Right', 'bigspy-ai-theme-wp')], ['background', __('Background', 'bigspy-ai-theme-wp')]]) : null,
@@ -3812,15 +3859,11 @@
 					el(Range, Object.assign({ label: __('Box shadow (-1 = style default, 0 = none)', 'bigspy-ai-theme-wp'), min: -1, max: 5 }, bind('boxShadow'))),
 					el(Range, Object.assign({ label: __('Box padding (px, -1 = auto)', 'bigspy-ai-theme-wp'), min: -1, max: 100 }, bind('boxPadding')))
 				),
-				el(B.ColorPanel, { title: __('Form colors', 'bigspy-ai-theme-wp'), settings: [
+				el(B.ColorPanel, { title: __('Box & text colors', 'bigspy-ai-theme-wp'), settings: [
 					{ label: __('Accent (button, focus)', 'bigspy-ai-theme-wp'), value: a.accent, onChange: function (v) { props.setAttributes({ accent: v || '' }); } },
 					{ label: __('Second accent (gradients)', 'bigspy-ai-theme-wp'), value: a.accent2, onChange: function (v) { props.setAttributes({ accent2: v || '' }); } },
 					{ label: __('Box background', 'bigspy-ai-theme-wp'), value: a.boxBg, onChange: function (v) { props.setAttributes({ boxBg: v || '' }); } },
-					{ label: __('Field background', 'bigspy-ai-theme-wp'), value: a.fieldBg, onChange: function (v) { props.setAttributes({ fieldBg: v || '' }); } },
-					{ label: __('Field border', 'bigspy-ai-theme-wp'), value: a.borderColor, onChange: function (v) { props.setAttributes({ borderColor: v || '' }); } },
-					{ label: __('Field focus ring', 'bigspy-ai-theme-wp'), value: a.focusColor, onChange: function (v) { props.setAttributes({ focusColor: v || '' }); } },
 					{ label: __('Box border', 'bigspy-ai-theme-wp'), value: a.boxBorderColor, onChange: function (v) { props.setAttributes({ boxBorderColor: v || '' }); } },
-					{ label: __('Labels', 'bigspy-ai-theme-wp'), value: a.labelColor, onChange: function (v) { props.setAttributes({ labelColor: v || '' }); } },
 					{ label: __('Text', 'bigspy-ai-theme-wp'), value: a.textColor, onChange: function (v) { props.setAttributes({ textColor: v || '' }); } }
 				] })
 			),

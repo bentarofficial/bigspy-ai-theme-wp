@@ -38,6 +38,7 @@ add_filter(
 	'bst_customizer_fields',
 	function ( $fields ) {
 		$s        = 'bst_global_style';
+		$fields[] = array( 'id' => 'gs_field_radius', 'section' => $s, 'type' => 'number', 'label' => __( 'Form field corner radius (px)', 'bigspy-ai-theme-wp' ), 'description' => __( 'For the input fields of every Form block. A form with its own corner radius keeps it.', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 0, 'max' => 40, 'step' => 1, 'placeholder' => __( 'Theme default', 'bigspy-ai-theme-wp' ) ) );
 		$fields[] = array( 'id' => 'gs_radius', 'section' => $s, 'type' => 'number', 'label' => __( 'Card corner radius (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 0, 'max' => 40, 'step' => 1, 'placeholder' => __( 'Theme default', 'bigspy-ai-theme-wp' ) ) );
 		$fields[] = array(
 			'id'      => 'gs_shadow',
@@ -84,6 +85,10 @@ function bst_design_tokens_css() {
 		if ( ! $listing_own( 'ld_radius' ) ) {
 			$css .= 'html .bst-lcard{border-radius:' . $r . '}';
 		}
+	}
+	$fr = get_theme_mod( 'gs_field_radius', '' );
+	if ( '' !== $fr && null !== $fr && is_numeric( $fr ) ) {
+		$css .= ':root{--bs-field-radius:' . max( 0, min( 40, (int) $fr ) ) . 'px}';
 	}
 	$shadow = (string) get_theme_mod( 'gs_shadow', '' );
 	if ( 'none' === $shadow || isset( $shadows[ $shadow ] ) ) {

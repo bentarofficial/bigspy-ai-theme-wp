@@ -373,3 +373,15 @@
 	.bs-fc--m-bar.bs-fc--bar-dark .bs-fc__btn.is-brand { background: transparent; }
 	.bs-fc--m-bar.bs-fc--bar-light .bs-fc__btn.is-brand { background: #fff; }
 }
+
+/* Style B: flat brand color, thin light border, soft colored drop shadow (no halo) */
+.bs-fc__btn,
+.bs-fc__toggle {
+	border: 2px solid rgba(255, 255, 255, .35);
+	box-shadow: 0 8px 18px -6px color-mix(in srgb, var(--fc-c, #000) 70%, transparent);
+	animation: none;
+}
+.bs-fc__btn:hover,
+.bs-fc__toggle:hover { box-shadow: 0 10px 22px -6px color-mix(in srgb, var(--fc-c, #000) 75%, transparent); }
+.bs-fc__btn--zalo .bs-fc__icon svg { width: calc(var(--fc-size, 54px) * .62); height: calc(var(--fc-size, 54px) * .62); }
+@media (max-width: 549px) { .bs-fc--m-bar .bs-fc__btn { border: 0; } }
