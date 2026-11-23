@@ -15,6 +15,13 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.100.0 =
+* Form block: Settings tab (form, fields and emails, after sending, heading) and Styles tab (looks, input fields, button, layout, colors).
+* Form block: Add field menu of field types; new Time and Date and time fields.
+* Form block: After sending panel with thank-you message or thank-you page (page search, one-click page creation).
+* Global style: corner radius for the input fields of every form.
+* Floating contact: real brand logos, phone-in-talk hotline icon, flat look with light border and soft shadow.
+
 = 1.99.1 =
 * Editor: rows and blocks no longer overflow the tablet/phone preview; the last column's resize handle stays visible.
 * Column resize handle uses a hand (grab) cursor.
