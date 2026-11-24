@@ -17,6 +17,7 @@ $bst_includes = array(
 	'inc/legacy-list-blocks.php',
 	'inc/css-presets.php',
 	'inc/setup.php',
+	'inc/tracking.php',
 	'inc/updater.php',
 	'inc/welcome/welcome.php',
 	'inc/fonts.php',

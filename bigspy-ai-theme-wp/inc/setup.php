@@ -131,6 +131,53 @@ function bst_print_user_scripts( $where ) {
 		echo "\n" . $code . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- saved only by users with unfiltered_html.
 	}
 }
+/**
+ * Google tags from plain IDs (Customizer > Advanced > Custom scripts), so no
+ * pasted code is needed. Invalid IDs are ignored. Skipped in the Customizer preview.
+ */
+function bst_google_tag_ids() {
+	$ids = array();
+	foreach ( array( 'gtag_ga4' => '/^G-[A-Z0-9]{4,20}$/', 'gtag_ads' => '/^AW-[0-9]{5,20}$/', 'gtag_gtm' => '/^GTM-[A-Z0-9]{4,12}$/' ) as $key => $pattern ) {
+		$id = strtoupper( trim( (string) bst_mod( $key ) ) );
+		if ( preg_match( $pattern, $id ) ) {
+			$ids[ $key ] = $id;
+		}
+	}
+	return ( is_customize_preview() || is_admin() ) ? array() : $ids;
+}
+function bst_print_google_tags_head() {
+	$ids = bst_google_tag_ids();
+	if ( ! empty( $ids['gtag_gtm'] ) ) {
+		echo "
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','" . esc_js( $ids['gtag_gtm'] ) . "');</script>
+";
+	}
+	$gtag = array_values( array_intersect_key( $ids, array_flip( array( 'gtag_ga4', 'gtag_ads' ) ) ) );
+	if ( $gtag ) {
+		echo "
+<!-- Google tag (gtag.js) -->
+<script async src=\"" . esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . $gtag[0] ) . "\"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());";
+		foreach ( $gtag as $id ) {
+			echo "gtag('config','" . esc_js( $id ) . "');";
+		}
+		echo "</script>
+";
+	}
+}
+add_action( 'wp_head', 'bst_print_google_tags_head', 0 );
+add_action(
+	'wp_body_open',
+	function () {
+		$ids = bst_google_tag_ids();
+		if ( ! empty( $ids['gtag_gtm'] ) ) {
+			echo '<noscript><iframe src="' . esc_url( 'https://www.googletagmanager.com/ns.html?id=' . $ids['gtag_gtm'] ) . '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' . "
+";
+		}
+	},
+	0
+);
 add_action( 'wp_head', function () { bst_print_user_scripts( 'head' ); }, 1 ); // First in <head>, as Google tag and GTM require.
 add_action( 'wp_body_open', function () { bst_print_user_scripts( 'body' ); }, 1 );
 add_action( 'wp_footer', function () { bst_print_user_scripts( 'footer' ); }, 99 );

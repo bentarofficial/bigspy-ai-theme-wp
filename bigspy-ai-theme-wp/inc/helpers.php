@@ -213,6 +213,9 @@ function bst_defaults() {
 		'product_mobile_bar'     => false,
 
 		// Advanced.
+		'gtag_ga4'               => '',
+		'gtag_ads'               => '',
+		'gtag_gtm'               => '',
 		'scripts_head'           => '',
 		'scripts_body'           => '',
 		'scripts_footer'         => '',
