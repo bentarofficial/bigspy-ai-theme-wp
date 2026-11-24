@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.101.0 =
+* Customizer > Advanced > Custom scripts: ID fields for Google Analytics 4, Google Ads and Google Tag Manager; the theme prints the official Google tag.
+* ID fields for Meta, TikTok, Microsoft Ads (Bing UET) and LinkedIn pixels and Microsoft Clarity.
+* Site verification for Google Search Console, Bing, Facebook, Pinterest and Yandex (whole meta tag or code).
+
 = 1.100.0 =
 * Form block: Settings tab (form, fields and emails, after sending, heading) and Styles tab (looks, input fields, button, layout, colors).
 * Form block: Add field menu of field types; new Time and Date and time fields.

@@ -11692,3 +11692,81 @@ msgstr "Áp dụng cho ô nhập của mọi khối Form. Form nào đã đặt 
 
 msgid "1.100.0: The Form block is easier to set up. Its sidebar now has a Settings tab for what the form does (form, fields and emails, after sending, heading) and a Styles tab for how it looks (ready-made looks, input fields, button, layout and colors). Add field opens a menu of field types, with new Time and Date and time fields. After sending, show a thank-you message or go to a thank-you page: search your pages, or create one with a click. Global style gets one corner radius for the input fields of every form. Floating contact buttons use the real logos of Zalo, Messenger, WhatsApp, Telegram, Viber, TikTok, YouTube, Instagram, Google Maps and Gmail, a clearer hotline icon and a flat look with a light border and soft shadow."
 msgstr "1.100.0: Khối Form dễ thiết lập hơn. Thanh bên có tab Cài đặt cho hoạt động của form (form, trường và email, sau khi gửi, tiêu đề) và tab Giao diện cho thiết kế (mẫu có sẵn, ô nhập, nút, bố cục và màu). Nút Thêm trường mở menu chọn kiểu trường, có thêm trường Giờ và Ngày và giờ. Sau khi gửi, chọn hiện lời cảm ơn hoặc chuyển sang trang cảm ơn: tìm trong các trang của site hoặc tạo trang mới chỉ với một cú bấm. Global style có mục bo góc chung cho ô nhập của mọi form. Nút liên hệ nổi dùng logo thật của Zalo, Messenger, WhatsApp, Telegram, Viber, TikTok, YouTube, Instagram, Google Maps và Gmail, icon hotline rõ hơn và kiểu phẳng với viền sáng, bóng đổ nhẹ."
+
+msgid "1.101.0: Add Google and marketing tags by ID instead of pasting code. Under Appearance > Customize > Advanced > Custom scripts, enter your Google Analytics 4, Google Ads or Google Tag Manager ID, a Meta (Facebook), TikTok, Microsoft Ads (Bing) or LinkedIn pixel ID, or a Microsoft Clarity project ID, and the theme prints the official code at the top of every page. Site verification for Google Search Console, Bing, Facebook, Pinterest and Yandex takes the whole meta tag or just its code. IDs in the wrong format are ignored, and nothing is blocked by hosting firewalls that reject pasted scripts."
+msgstr "1.101.0: Gắn mã Google và mã quảng cáo bằng ID, không cần dán code. Vào Giao diện > Tùy biến > Nâng cao > Custom scripts, nhập ID Google Analytics 4, Google Ads hoặc Google Tag Manager, ID pixel Meta (Facebook), TikTok, Microsoft Ads (Bing), LinkedIn hoặc ID dự án Microsoft Clarity, theme tự chèn mã chuẩn lên đầu mọi trang. Xác minh website cho Google Search Console, Bing, Facebook, Pinterest và Yandex: dán cả thẻ meta hoặc chỉ phần mã. ID sai định dạng bị bỏ qua, và không còn bị tường lửa hosting chặn như khi dán script."
+
+msgid "Google Analytics 4 ID"
+msgstr "ID Google Analytics 4"
+
+msgid "Only the ID, e.g. G-XXXXXXXXXX. The theme adds the Google tag code itself."
+msgstr "Chỉ nhập ID, ví dụ G-XXXXXXXXXX. Theme tự chèn mã Google tag."
+
+msgid "Google Ads ID"
+msgstr "ID Google Ads"
+
+msgid "e.g. AW-123456789. Shares one Google tag with GA4."
+msgstr "Ví dụ AW-123456789. Dùng chung một Google tag với GA4."
+
+msgid "Google Tag Manager ID"
+msgstr "ID Google Tag Manager"
+
+msgid "e.g. GTM-XXXXXXX. If GA4 is already set up inside GTM, leave the GA4 box empty to avoid counting twice."
+msgstr "Ví dụ GTM-XXXXXXX. Nếu GA4 đã cài trong GTM thì để trống ô GA4 để không bị đếm hai lần."
+
+msgid "Meta (Facebook) Pixel ID"
+msgstr "ID Meta (Facebook) Pixel"
+
+msgid "Numbers only, e.g. 1234567890123456."
+msgstr "Chỉ gồm số, ví dụ 1234567890123456."
+
+msgid "TikTok Pixel ID"
+msgstr "ID TikTok Pixel"
+
+msgid "e.g. C4ABCDEF1234567890AB."
+msgstr "Ví dụ C4ABCDEF1234567890AB."
+
+msgid "Microsoft Clarity project ID"
+msgstr "ID dự án Microsoft Clarity"
+
+msgid "Free heatmaps and session recordings. e.g. abcd1234ef."
+msgstr "Heatmap và ghi lại phiên truy cập miễn phí. Ví dụ abcd1234ef."
+
+msgid "Microsoft Ads (Bing UET) tag ID"
+msgstr "ID thẻ Microsoft Ads (Bing UET)"
+
+msgid "Numbers only."
+msgstr "Chỉ gồm số."
+
+msgid "LinkedIn Insight partner ID"
+msgstr "Partner ID LinkedIn Insight"
+
+msgid "Google Search Console verification"
+msgstr "Xác minh Google Search Console"
+
+msgid "Choose the “HTML tag” method and paste the whole <meta> tag or just its content value."
+msgstr "Chọn cách xác minh “Thẻ HTML”, dán nguyên thẻ <meta> hoặc chỉ giá trị content."
+
+msgid "Bing Webmaster verification"
+msgstr "Xác minh Bing Webmaster"
+
+msgid "msvalidate.01 tag or its content value."
+msgstr "Thẻ msvalidate.01 hoặc giá trị content của nó."
+
+msgid "Facebook domain verification"
+msgstr "Xác minh tên miền Facebook"
+
+msgid "facebook-domain-verification tag or its content value."
+msgstr "Thẻ facebook-domain-verification hoặc giá trị content của nó."
+
+msgid "Pinterest verification"
+msgstr "Xác minh Pinterest"
+
+msgid "p:domain_verify tag or its content value."
+msgstr "Thẻ p:domain_verify hoặc giá trị content của nó."
+
+msgid "Yandex verification"
+msgstr "Xác minh Yandex"
+
+msgid "yandex-verification tag or its content value."
+msgstr "Thẻ yandex-verification hoặc giá trị content của nó."

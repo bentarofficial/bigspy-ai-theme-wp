@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.101.0: Tracking and verification codes by ID
+
+- Customizer > Advanced > Custom scripts: GA4, Google Ads, GTM, Meta, TikTok, Bing UET, LinkedIn and Clarity by ID; the theme prints the official snippets.
+- Site verification for Google Search Console, Bing, Facebook, Pinterest and Yandex.
+- No pasted script needed, so hosting firewalls and missing unfiltered_html no longer block it.
+
 ### 1.100.0: Form block Settings/Styles layout, new field types, thank-you page; floating contact logos
 
 - Form block sidebar split into Settings (form, fields and emails, after sending, heading) and Styles (looks, input fields, button, layout, colors).
