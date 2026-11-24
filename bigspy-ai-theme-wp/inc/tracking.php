@@ -8,6 +8,9 @@ defined( 'ABSPATH' ) || exit;
 /** Settings: key => array( label, help, pattern the cleaned value must match ). */
 function bst_tracking_fields() {
 	return array(
+		'gtag_ga4'       => array( __( 'Google Analytics 4 ID', 'bigspy-ai-theme-wp' ), __( 'Only the ID, e.g. G-XXXXXXXXXX. The theme adds the Google tag code itself.', 'bigspy-ai-theme-wp' ), '/^G-[A-Z0-9]{4,20}$/' ),
+		'gtag_ads'       => array( __( 'Google Ads ID', 'bigspy-ai-theme-wp' ), __( 'e.g. AW-123456789. Shares one Google tag with GA4.', 'bigspy-ai-theme-wp' ), '/^AW-[0-9]{5,20}$/' ),
+		'gtag_gtm'       => array( __( 'Google Tag Manager ID', 'bigspy-ai-theme-wp' ), __( 'e.g. GTM-XXXXXXX. If GA4 is already set up inside GTM, leave the GA4 box empty to avoid counting twice.', 'bigspy-ai-theme-wp' ), '/^GTM-[A-Z0-9]{4,12}$/' ),
 		'pixel_meta'     => array( __( 'Meta (Facebook) Pixel ID', 'bigspy-ai-theme-wp' ), __( 'Numbers only, e.g. 1234567890123456.', 'bigspy-ai-theme-wp' ), '/^[0-9]{10,20}$/' ),
 		'pixel_tiktok'   => array( __( 'TikTok Pixel ID', 'bigspy-ai-theme-wp' ), __( 'e.g. C4ABCDEF1234567890AB.', 'bigspy-ai-theme-wp' ), '/^[A-Z0-9]{10,30}$/' ),
 		'pixel_clarity'  => array( __( 'Microsoft Clarity project ID', 'bigspy-ai-theme-wp' ), __( 'Free heatmaps and session recordings. e.g. abcd1234ef.', 'bigspy-ai-theme-wp' ), '/^[a-z0-9]{6,20}$/' ),
@@ -29,7 +32,7 @@ function bst_tracking_clean( $value, $key ) {
 	}
 	$value  = trim( wp_strip_all_tags( $value ) );
 	$fields = bst_tracking_fields();
-	if ( 'pixel_tiktok' === $key ) {
+	if ( in_array( $key, array( 'pixel_tiktok', 'gtag_ga4', 'gtag_ads', 'gtag_gtm' ), true ) ) {
 		$value = strtoupper( $value );
 	} elseif ( 'pixel_clarity' === $key ) {
 		$value = strtolower( $value );
@@ -37,24 +40,23 @@ function bst_tracking_clean( $value, $key ) {
 	return ( isset( $fields[ $key ] ) && preg_match( $fields[ $key ][2], $value ) ) ? $value : '';
 }
 
-add_action(
-	'customize_register',
-	function ( $wp_customize ) {
-		$priority = 4;
+/** Fields live in the shared Customizer list: Customizer > Advanced and BIGSPY > Tracking codes. */
+add_filter(
+	'bst_customizer_fields',
+	function ( $fields ) {
+		$groups = array(
+			'gtag_ga4'      => __( 'Google', 'bigspy-ai-theme-wp' ),
+			'pixel_meta'    => __( 'Ad pixels and analytics', 'bigspy-ai-theme-wp' ),
+			'verify_google' => __( 'Site verification', 'bigspy-ai-theme-wp' ),
+		);
 		foreach ( bst_tracking_fields() as $key => $field ) {
-			$wp_customize->add_setting(
-				$key,
-				array(
-					'default'           => '',
-					'sanitize_callback' => function ( $value ) use ( $key ) {
-						return bst_tracking_clean( $value, $key );
-					},
-				)
-			);
-			$wp_customize->add_control( $key, array( 'section' => 'bst_scripts', 'type' => 'text', 'label' => $field[0], 'description' => $field[1], 'priority' => $priority++ ) );
+			if ( isset( $groups[ $key ] ) ) {
+				$fields[] = array( 'id' => 'bst_tracking_h_' . $key, 'section' => 'bst_tracking', 'type' => 'heading', 'label' => $groups[ $key ] );
+			}
+			$fields[] = array( 'id' => $key, 'section' => 'bst_tracking', 'type' => 'tracking', 'label' => $field[0], 'description' => $field[1] );
 		}
-	},
-	20
+		return $fields;
+	}
 );
 
 function bst_tracking_id( $key ) {

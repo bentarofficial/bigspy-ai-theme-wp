@@ -22,6 +22,7 @@ function bst_sanitize_callback_for( $type ) {
 		'image'          => 'esc_url_raw',
 		'html'           => 'wp_kses_post',
 		'code'           => 'bst_sanitize_code',
+		'tracking'       => 'bst_sanitize_tracking',
 		'header_builder' => 'bst_sanitize_header_layout',
 	);
 	return $map[ $type ] ?? 'sanitize_text_field';
@@ -68,4 +69,8 @@ function bst_sanitize_code( $value ) {
 
 function bst_sanitize_header_layout( $value ) {
 	return wp_json_encode( bst_normalize_header_layout( $value ) );
+}
+
+function bst_sanitize_tracking( $value, $setting ) {
+	return bst_tracking_clean( $value, $setting->id );
 }

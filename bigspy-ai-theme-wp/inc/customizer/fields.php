@@ -40,6 +40,7 @@ function bst_customizer_sections() {
 		'bst_float'          => array( 'title' => __( 'Floating contact buttons', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_footer', 'priority' => 3 ),
 
 		// Advanced.
+		'bst_tracking'       => array( 'title' => __( 'Tracking & verification', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_advanced', 'priority' => 0, 'description' => __( 'Google Analytics, Tag Manager, Ads, pixels and site verification by ID. No code to paste.', 'bigspy-ai-theme-wp' ) ),
 		'bst_scripts'        => array( 'title' => __( 'Custom scripts', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_advanced', 'priority' => 1, 'description' => __( 'Google Analytics, Facebook Pixel, chat widgets… Custom CSS goes in “Additional CSS”.', 'bigspy-ai-theme-wp' ) ),
 		'bst_performance'    => array( 'title' => __( 'Performance & effects', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_advanced', 'priority' => 2 ),
 	);
@@ -283,9 +284,6 @@ function bst_customizer_fields() {
 
 
 			// ---------------------------------------------------------------- Advanced.
-			array( 'id' => 'gtag_ga4', 'section' => 'bst_scripts', 'type' => 'text', 'priority' => 1, 'label' => __( 'Google Analytics 4 ID', 'bigspy-ai-theme-wp' ), 'description' => __( 'Only the ID, e.g. G-XXXXXXXXXX. The theme adds the Google tag code itself.', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'gtag_ads', 'section' => 'bst_scripts', 'type' => 'text', 'priority' => 2, 'label' => __( 'Google Ads ID', 'bigspy-ai-theme-wp' ), 'description' => __( 'e.g. AW-123456789. Shares one Google tag with GA4.', 'bigspy-ai-theme-wp' ) ),
-			array( 'id' => 'gtag_gtm', 'section' => 'bst_scripts', 'type' => 'text', 'priority' => 3, 'label' => __( 'Google Tag Manager ID', 'bigspy-ai-theme-wp' ), 'description' => __( 'e.g. GTM-XXXXXXX. If GA4 is already set up inside GTM, leave the GA4 box empty to avoid counting twice.', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'scripts_head', 'section' => 'bst_scripts', 'type' => 'code', 'label' => __( 'Scripts in <head>', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'scripts_body', 'section' => 'bst_scripts', 'type' => 'code', 'label' => __( 'Scripts after <body>', 'bigspy-ai-theme-wp' ) ),
 			array( 'id' => 'scripts_footer', 'section' => 'bst_scripts', 'type' => 'code', 'label' => __( 'Scripts before </body>', 'bigspy-ai-theme-wp' ) ),

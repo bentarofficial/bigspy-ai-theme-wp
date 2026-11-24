@@ -950,3 +950,19 @@ if ( ! is_wp_error( $bst_menu ) ) {
 	$bst_h = $bst_rb( 'bst/nav-menu', array( 'menuId' => $bst_menu, 'style' => 'accordion', 'mobile' => 'drawer', 'depth' => 1, 'activeColor' => '#ff0000', 'weight' => '700' ) );
 	bst_test( false !== strpos( $bst_h, 'bs-navmenu--vertical bs-navmenu--accordion bs-navmenu--m-drawer' ) && false !== strpos( $bst_h, 'is-sub-click' ) && false !== strpos( $bst_h, 'bs-navmenu__shade' ) && false === strpos( $bst_h, 'Child' ) && false !== strpos( $bst_h, '--bs-nm-act:#ff0000' ) && false !== strpos( $bst_h, '--bs-nm-fw:700' ), 'nav-menu: accordion, drawer, depth, active color, weight' );
 }
+
+// Tracking codes by ID: validation, pasted meta tags, head output, own admin page.
+bst_test( 'G-W0CQZWLG90' === bst_tracking_clean( ' g-w0cqzwlg90 ', 'gtag_ga4' ) && '' === bst_tracking_clean( '<script>x</script>', 'gtag_ga4' ) && 'abc123XYZ_-abc' === bst_tracking_clean( '<meta name="google-site-verification" content="abc123XYZ_-abc" />', 'verify_google' ), 'tracking: IDs validated, meta tag content extracted' );
+set_theme_mod( 'gtag_ga4', 'G-W0CQZWLG90' );
+set_theme_mod( 'gtag_gtm', 'GTM-ABC1234' );
+set_theme_mod( 'pixel_clarity', 'abcd1234ef' );
+set_theme_mod( 'verify_google', 'abc123XYZ_-abc' );
+ob_start();
+do_action( 'wp_head' );
+$bst_h = ob_get_clean();
+bst_test( false !== strpos( $bst_h, 'gtag/js?id=G-W0CQZWLG90' ) && false !== strpos( $bst_h, "gtag('config','G-W0CQZWLG90')" ) && false !== strpos( $bst_h, "'GTM-ABC1234'" ) && false !== strpos( $bst_h, 'clarity.ms/tag/' ) && false !== strpos( $bst_h, 'name="google-site-verification" content="abc123XYZ_-abc"' ), 'tracking: GA4, GTM, Clarity and verification printed in head' );
+$bst_ids = wp_list_pluck( bst_panel_fields_for( array( 'bst_tracking' ) ), 'id' );
+bst_test( in_array( 'gtag_ga4', $bst_ids, true ) && in_array( 'verify_yandex', $bst_ids, true ) && isset( bst_panel_tabs()['tracking'] ) && 'G-W0CQZWLG90' === bst_panel_sanitize( array( 'id' => 'gtag_ga4', 'type' => 'tracking' ), 'g-w0cqzwlg90' ), 'tracking: fields on the BIGSPY Tracking codes page' );
+foreach ( array( 'gtag_ga4', 'gtag_gtm', 'pixel_clarity', 'verify_google' ) as $bst_k ) {
+	remove_theme_mod( $bst_k );
+}

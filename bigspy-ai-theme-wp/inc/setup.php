@@ -137,9 +137,9 @@ function bst_print_user_scripts( $where ) {
  */
 function bst_google_tag_ids() {
 	$ids = array();
-	foreach ( array( 'gtag_ga4' => '/^G-[A-Z0-9]{4,20}$/', 'gtag_ads' => '/^AW-[0-9]{5,20}$/', 'gtag_gtm' => '/^GTM-[A-Z0-9]{4,12}$/' ) as $key => $pattern ) {
-		$id = strtoupper( trim( (string) bst_mod( $key ) ) );
-		if ( preg_match( $pattern, $id ) ) {
+	foreach ( array( 'gtag_ga4', 'gtag_ads', 'gtag_gtm' ) as $key ) {
+		$id = bst_tracking_id( $key );
+		if ( $id ) {
 			$ids[ $key ] = $id;
 		}
 	}

@@ -124,6 +124,8 @@ function bst_panel_icon() {
 
 function bst_panel_tabs() {
 	return array(
+		// Own page: BIGSPY → Tracking codes.
+		'tracking' => array( __( 'Tracking codes', 'bigspy-ai-theme-wp' ), array( 'bst_tracking' ) ),
 		'scripts'  => array( __( 'Scripts & code', 'bigspy-ai-theme-wp' ), array( 'bst_scripts' ) ),
 		'speed'    => array( __( 'Performance', 'bigspy-ai-theme-wp' ), array( 'bst_performance', 'bst_tweaks' ) ),
 		'tools'    => array( __( '404 & maintenance', 'bigspy-ai-theme-wp' ), array( 'bst_site_tools' ) ),
@@ -144,6 +146,7 @@ add_action(
 		add_submenu_page( $main, __( 'Customize', 'bigspy-ai-theme-wp' ), __( 'Customize', 'bigspy-ai-theme-wp' ), $cap, 'customize.php' );
 		add_submenu_page( $main, __( 'UX Blocks', 'bigspy-ai-theme-wp' ), __( 'UX Blocks', 'bigspy-ai-theme-wp' ), $cap, 'edit.php?post_type=blocks' );
 		add_submenu_page( $main, __( 'Settings', 'bigspy-ai-theme-wp' ), __( 'Settings', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-settings', 'bst_panel_settings_page' );
+		add_submenu_page( $main, __( 'Tracking codes', 'bigspy-ai-theme-wp' ), __( 'Tracking codes', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-tracking', 'bst_panel_tracking_page' );
 		add_submenu_page( $main, __( 'System status', 'bigspy-ai-theme-wp' ), __( 'System status', 'bigspy-ai-theme-wp' ), $cap, 'bigspy-status', 'bst_panel_status_page' );
 		add_submenu_page( $main, __( 'About BIGSPY AI Theme', 'bigspy-ai-theme-wp' ), bst_welcome_label( 'theme' ), $cap, 'bigspy-about', 'bst_panel_about_page' );
 		if ( ! post_type_exists( 'blocks' ) ) {
@@ -230,6 +233,8 @@ function bst_panel_sanitize( $field, $raw ) {
 			return wp_kses_post( (string) $raw );
 		case 'code':
 			return bst_sanitize_code( (string) $raw );
+		case 'tracking':
+			return bst_tracking_clean( (string) $raw, $field['id'] );
 		default:
 			return sanitize_text_field( (string) $raw );
 	}
@@ -258,7 +263,8 @@ add_action(
 		if ( 'settings' === $tab && isset( $_POST['bst_listing_mode_shown'] ) && current_user_can( 'manage_options' ) && function_exists( 'bst_feature_set' ) ) {
 			bst_feature_set( 'listing', ! empty( $_POST['bst_listing_mode'] ) );
 		}
-		$page = 'settings' === $tab ? 'bigspy-settings' : 'bigspy-options';
+		$pages = array( 'settings' => 'bigspy-settings', 'tracking' => 'bigspy-tracking' );
+		$page  = $pages[ $tab ] ?? 'bigspy-options';
 		wp_safe_redirect( add_query_arg( array( 'page' => $page, 'tab' => $tab, 'saved' => 1 ), admin_url( 'admin.php' ) ) );
 		exit;
 	}
@@ -325,13 +331,13 @@ function bst_panel_about_page() {
 function bst_panel_options_page() {
 	$tabs = bst_panel_tabs();
 	$tab  = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'scripts'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$tab  = ( isset( $tabs[ $tab ] ) && 'settings' !== $tab ) ? $tab : 'scripts';
+	$tab  = ( isset( $tabs[ $tab ] ) && ! in_array( $tab, array( 'settings', 'tracking' ), true ) ) ? $tab : 'scripts';
 	bst_panel_header( __( 'Theme Options', 'bigspy-ai-theme-wp' ), __( 'Site-wide settings that do not need a live preview. They are the same settings as in Appearance → Customize → Advanced.', 'bigspy-ai-theme-wp' ) );
 	if ( ! empty( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
 	}
 	echo '<nav class="nav-tab-wrapper">';
-	unset( $tabs['settings'] );
+	unset( $tabs['settings'], $tabs['tracking'] );
 	foreach ( $tabs as $key => $t ) {
 		echo '<a class="nav-tab' . ( $key === $tab ? ' nav-tab-active' : '' ) . '" href="' . esc_url( add_query_arg( array( 'page' => 'bigspy-options', 'tab' => $key ), admin_url( 'admin.php' ) ) ) . '">' . esc_html( $t[0] ) . '</a>';
 	}
@@ -339,6 +345,23 @@ function bst_panel_options_page() {
 	wp_nonce_field( 'bst_panel_save' );
 	echo '<input type="hidden" name="action" value="bst_panel_save"><input type="hidden" name="tab" value="' . esc_attr( $tab ) . '"><table class="form-table" role="presentation"><tbody>';
 	foreach ( bst_panel_fields_for( $tabs[ $tab ][1] ) as $field ) {
+		bst_panel_field_html( $field );
+	}
+	echo '</tbody></table>';
+	submit_button( __( 'Save changes', 'bigspy-ai-theme-wp' ) );
+	echo '</form></div>';
+}
+
+/* ---------------------------------------------------------------- Tracking codes */
+function bst_panel_tracking_page() {
+	bst_panel_header( __( 'Tracking codes', 'bigspy-ai-theme-wp' ), __( 'Enter only the IDs; the theme adds the official code to every page. IDs in the wrong format are ignored. Other scripts go in Theme Options → Scripts & code.', 'bigspy-ai-theme-wp' ) );
+	if ( ! empty( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Settings saved.', 'bigspy-ai-theme-wp' ) . '</p></div>';
+	}
+	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+	wp_nonce_field( 'bst_panel_save' );
+	echo '<input type="hidden" name="action" value="bst_panel_save"><input type="hidden" name="tab" value="tracking"><table class="form-table" role="presentation"><tbody>';
+	foreach ( bst_panel_fields_for( array( 'bst_tracking' ) ) as $field ) {
 		bst_panel_field_html( $field );
 	}
 	echo '</tbody></table>';

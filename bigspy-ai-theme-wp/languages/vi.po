@@ -11770,3 +11770,24 @@ msgstr "Xác minh Yandex"
 
 msgid "yandex-verification tag or its content value."
 msgstr "Thẻ yandex-verification hoặc giá trị content của nó."
+
+msgid "Tracking & verification"
+msgstr "Mã theo dõi & xác minh"
+
+msgid "Google Analytics, Tag Manager, Ads, pixels and site verification by ID. No code to paste."
+msgstr "Google Analytics, Tag Manager, Ads, pixel và xác minh website bằng ID. Không cần dán code."
+
+msgid "Tracking codes"
+msgstr "Mã theo dõi"
+
+msgid "Enter only the IDs; the theme adds the official code to every page. IDs in the wrong format are ignored. Other scripts go in Theme Options → Scripts & code."
+msgstr "Chỉ cần nhập ID, theme tự chèn mã chuẩn vào mọi trang. ID sai định dạng sẽ bị bỏ qua. Các đoạn script khác đặt ở Theme Options → Scripts & code."
+
+msgid "Google"
+msgstr "Google"
+
+msgid "Ad pixels and analytics"
+msgstr "Pixel quảng cáo và phân tích"
+
+msgid "Site verification"
+msgstr "Xác minh website"

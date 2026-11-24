@@ -60,6 +60,7 @@ function bst_customizer_tree() {
 		'bst_home_sidebar'   => array( 'bst_listing', 3, __( 'Where the homepage sidebar starts and ends (List mode).', 'bigspy-ai-theme-wp' ) ),
 		'bst_listing_texts'  => array( 'bst_listing', 4 ),
 		// Advanced.
+		'bst_tracking'       => array( 'bst_advanced', 0 ),
 		'bst_scripts'        => array( 'bst_advanced', 1 ),
 		'bst_performance'    => array( 'bst_advanced', 2, __( 'Speed options, lazy loading and site-wide effects.', 'bigspy-ai-theme-wp' ) ),
 		'bst_site_tools'     => array( 'bst_advanced', 3, __( '404 page and maintenance mode.', 'bigspy-ai-theme-wp' ) ),

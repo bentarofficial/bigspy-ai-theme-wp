@@ -123,6 +123,10 @@ function bst_customize_register( $wp_customize ) {
 			case 'header_builder':
 				$wp_customize->add_control( new BST_Header_Builder_Control( $wp_customize, $id, $args ) );
 				break;
+			case 'tracking':
+				$args['type'] = 'text';
+				$wp_customize->add_control( $id, $args );
+				break;
 			case 'number':
 				$args['type']        = 'number';
 				$args['input_attrs'] = $field['input_attrs'] ?? array();
