@@ -11965,3 +11965,6 @@ msgstr "Mọi khung cùng độ rộng"
 
 msgid "Every panel is as wide as the longest dropdown needs."
 msgstr "Mọi khung rộng bằng khung của menu dài nhất."
+
+msgid "1.105.0: All dropdowns can now look the same. In Appearance > Customize > Header > Navigation, tick Every dropdown uses the same panel and short and long dropdowns share one panel, position, look and intro. Items fill each column from top to bottom (set Items per column, 6 by default), sub-items show indented under their item, and Same width for every panel keeps the panel the same size as you move across the menu."
+msgstr "1.105.0: Mọi menu thả xuống giờ có thể đồng bộ. Vào Giao diện > Tùy biến > Đầu trang > Điều hướng, tick Mọi menu thả xuống dùng cùng một khung, menu ít mục hay nhiều mục đều dùng chung một khung, vị trí, giao diện và khung giới thiệu. Các mục xếp từ trên xuống trong từng cột (chỉnh Số mục mỗi cột, mặc định 6), mục con hiện thụt vào dưới mục của nó, và Mọi khung cùng độ rộng giữ khung không đổi kích thước khi rê chuột qua các mục menu."

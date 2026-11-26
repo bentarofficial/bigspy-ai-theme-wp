@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.105.0 =
+* Header > Navigation: Every dropdown uses the same panel, Items per column and Same width for every panel.
+* Sub-items show indented inside the panel columns.
+
 = 1.104.0 =
 * Dropdown looks now apply to every dropdown of the main menu.
 * Dropdown panel shapes: joined to the menu item, full width, frosted glass, dark, square.

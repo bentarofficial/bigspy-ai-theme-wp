@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.105.0: One panel for every dropdown
+
+- Every dropdown can use the same panel, position, look and intro.
+- Items per column and same width for every panel.
+
 ### 1.104.0: Dropdown shapes, effects and colors
 
 - Looks apply to every dropdown of the main menu.
