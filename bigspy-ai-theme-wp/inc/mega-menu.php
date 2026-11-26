@@ -17,3 +17,42 @@ add_filter( 'nav_menu_css_class', function ( $classes, $item, $args, $depth ) {
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'bst-mega-menu', BST_URI . '/assets/css/mega-menu.css', array( 'bst-main' ), bst_asset_version( 'assets/css/mega-menu.css' ) );
 } );
+
+/*
+ * Multi-column dropdown for flat lists: a top-level item whose children have no
+ * children of their own is split into evenly filled columns when it is ticked as
+ * mega menu or has at least "mega_auto" children. Empty mega_auto = off.
+ */
+add_filter( 'wp_nav_menu_objects', function ( $items ) {
+	$kids = array();
+	$deep = array();
+	foreach ( $items as $it ) {
+		$p = (int) $it->menu_item_parent;
+		if ( $p ) { $kids[ $p ] = isset( $kids[ $p ] ) ? $kids[ $p ] + 1 : 1; }
+	}
+	$by_id = array();
+	foreach ( $items as $it ) { $by_id[ (int) $it->ID ] = $it; }
+	foreach ( $items as $it ) {
+		$p = (int) $it->menu_item_parent;
+		if ( $p && isset( $by_id[ $p ] ) && ! (int) $by_id[ $p ]->menu_item_parent && ! empty( $kids[ (int) $it->ID ] ) ) { $deep[ $p ] = true; }
+	}
+	$auto  = (int) get_theme_mod( 'mega_auto', 0 );
+	$cols  = (string) get_theme_mod( 'mega_columns', '' );
+	$align = (string) get_theme_mod( 'mega_align', '' );
+	foreach ( $items as $it ) {
+		$id = (int) $it->ID;
+		if ( (int) $it->menu_item_parent || empty( $kids[ $id ] ) ) { continue; }
+		$n      = $kids[ $id ];
+		$ticked = '1' === get_post_meta( $id, '_bst_mega_menu', true );
+		$add    = array();
+		if ( empty( $deep[ $id ] ) && ( $ticked || ( $auto > 1 && $n >= $auto ) ) ) {
+			$c     = in_array( $cols, array( '2', '3', '4', '5', '6' ), true ) ? (int) $cols : ( $n <= 8 ? 2 : ( $n <= 18 ? 3 : 4 ) );
+			$add[] = 'bs-mega-menu';
+			$add[] = 'bs-mega-flat';
+			$add[] = 'bs-mega-n-' . min( $c, $n );
+		}
+		if ( in_array( $align, array( 'left', 'center', 'right' ), true ) && ( $add || $ticked ) ) { $add[] = 'bs-mega-align-' . $align; }
+		if ( $add ) { $it->classes = array_unique( array_merge( (array) $it->classes, $add ) ); }
+	}
+	return $items;
+} );

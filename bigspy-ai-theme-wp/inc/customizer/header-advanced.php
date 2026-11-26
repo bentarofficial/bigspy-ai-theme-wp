@@ -136,6 +136,9 @@ add_filter(
 		$fields[] = array( 'id' => 'logo_sticky', 'section' => 'bst_header_logo', 'type' => 'image', 'label' => __( 'Logo while the header is sticky', 'bigspy-ai-theme-wp' ), 'description' => __( 'Optional, e.g. a smaller or dark version. Shown only after scrolling when the sticky header is on.', 'bigspy-ai-theme-wp' ) );
 		$n        = 'bst_header_nav';
 		$fields[] = array( 'id' => 'bst_h_mega', 'section' => $n, 'type' => 'heading', 'label' => __( 'Mega menu', 'bigspy-ai-theme-wp' ), 'description' => __( 'Turn it on per top-level item in Appearance → Menus (“BIGSPY AI: Mega menu”). Child items become columns on desktop.', 'bigspy-ai-theme-wp' ) );
+		$fields[] = array( 'id' => 'mega_auto', 'section' => $n, 'type' => 'number', 'label' => __( 'Split long dropdowns into columns from (items)', 'bigspy-ai-theme-wp' ), 'description' => __( 'A dropdown with at least this many items becomes a multi-column panel on desktop, filled evenly. Empty = off. To group items under headings, nest them under a parent item and tick Mega menu.', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 2, 'max' => 60, 'placeholder' => '8' ) );
+		$fields[] = array( 'id' => 'mega_align', 'section' => $n, 'type' => 'select', 'label' => __( 'Mega menu position', 'bigspy-ai-theme-wp' ), 'choices' => array( '' => __( 'Automatic', 'bigspy-ai-theme-wp' ), 'left' => __( 'Left of the menu', 'bigspy-ai-theme-wp' ), 'center' => __( 'Centered under the menu', 'bigspy-ai-theme-wp' ), 'right' => __( 'Right of the menu', 'bigspy-ai-theme-wp' ) ) );
+		$fields[] = array( 'id' => 'mega_col_width', 'section' => $n, 'type' => 'number', 'label' => __( 'Column width for split dropdowns (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 140, 'max' => 400, 'placeholder' => '220' ) );
 		$fields[] = array( 'id' => 'mega_width', 'section' => $n, 'type' => 'number', 'label' => __( 'Mega menu width (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => array( 'min' => 400, 'max' => 1600, 'step' => 10, 'placeholder' => '960' ) );
 		$fields[] = array(
 			'id'      => 'mega_columns',
@@ -182,6 +185,10 @@ function bst_header_extra_css() {
 	$g = get_theme_mod( 'mega_gap', '' );
 	if ( is_numeric( $g ) ) {
 		$vars[] = '--bs-mega-gap:' . max( 0, min( 80, (int) $g ) ) . 'px';
+	}
+	$cw = get_theme_mod( 'mega_col_width', '' );
+	if ( is_numeric( $cw ) ) {
+		$vars[] = '--bs-mega-colw:' . max( 140, min( 400, (int) $cw ) ) . 'px';
 	}
 	$hc = sanitize_hex_color( (string) get_theme_mod( 'mega_heading_color', '' ) );
 	if ( $hc ) {
