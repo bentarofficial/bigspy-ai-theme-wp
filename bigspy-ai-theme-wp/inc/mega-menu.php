@@ -40,7 +40,6 @@ add_filter( 'wp_nav_menu_objects', function ( $items ) {
 	$auto  = (int) get_theme_mod( 'mega_auto', 0 );
 	$cols  = (string) get_theme_mod( 'mega_columns', '' );
 	$align = (string) get_theme_mod( 'mega_align', '' );
-	$style = (string) get_theme_mod( 'mega_style', '' );
 	$intro = (bool) get_theme_mod( 'mega_intro', false );
 	foreach ( $items as $it ) {
 		$id = (int) $it->ID;
@@ -55,7 +54,6 @@ add_filter( 'wp_nav_menu_objects', function ( $items ) {
 			$add[] = 'bs-mega-n-' . min( $c, $n );
 		}
 		if ( in_array( $align, array( 'left', 'center', 'right' ), true ) && ( $add || $ticked ) ) { $add[] = 'bs-mega-align-' . $align; }
-		if ( ( $add || $ticked ) && in_array( $style, array( 'icons', 'cards', 'divided', 'accent' ), true ) ) { $add[] = 'bs-mega-s-' . $style; }
 		if ( $add && $intro ) { $add[] = 'bs-mega-has-intro'; }
 		if ( $add ) { $it->classes = array_unique( array_merge( (array) $it->classes, $add ) ); }
 	}
@@ -80,3 +78,35 @@ add_filter( 'walker_nav_menu_start_el', function ( $output, $item, $depth, $args
 function bst_mod_on( $id ) {
 	return (bool) get_theme_mod( $id, false );
 }
+
+/* Dropdown look and panel shape apply to every dropdown of the main menu (body classes). */
+add_filter( 'body_class', function ( $classes ) {
+	$style = (string) get_theme_mod( 'mega_style', '' );
+	if ( in_array( $style, array( 'icons', 'cards', 'divided', 'accent' ), true ) ) { $classes[] = 'bs-dd-s-' . $style; }
+	$shape = (string) get_theme_mod( 'dd_shape', '' );
+	if ( in_array( $shape, array( 'full', 'tab', 'dark', 'glass', 'flat' ), true ) ) { $classes[] = 'bs-dd-shape-' . $shape; }
+	foreach ( array( 'dd_anim' => array( 'slide', 'zoom', 'flip', 'reveal', 'none' ), 'dd_hover' => array( 'underline', 'pill', 'shift', 'color' ), 'dd_marker' => array( 'dot', 'check', 'dash', 'number', 'plus' ), 'dd_shadow' => array( 'none', 'strong' ) ) as $mod => $allowed ) {
+		$v = (string) get_theme_mod( $mod, '' );
+		if ( in_array( $v, $allowed, true ) ) { $classes[] = 'bs-' . str_replace( '_', '-', $mod ) . '-' . $v; }
+	}
+	if ( get_theme_mod( 'dd_pointer', false ) ) { $classes[] = 'bs-dd-pointer'; }
+	return $classes;
+} );
+
+/* Dropdown colors and corner radius as CSS variables; '' while unset. */
+add_filter( 'bst_dynamic_css', function ( $css ) {
+	$vars = array();
+	foreach ( array( 'dd_bg' => '--bs-dd-bg', 'dd_text' => '--bs-dd-text', 'dd_hover_color' => '--bs-dd-accent' ) as $mod => $var ) {
+		$c = sanitize_hex_color( (string) get_theme_mod( $mod, '' ) );
+		if ( $c ) { $vars[] = $var . ':' . $c; }
+	}
+	$r = get_theme_mod( 'dd_radius', '' );
+	if ( is_numeric( $r ) ) { $vars[] = '--bs-dd-radius:' . max( 0, min( 32, (int) $r ) ) . 'px'; }
+	return $vars ? $css . '@media(min-width:850px){body.bs-dd-custom,body[class*=bs-dd-]{' . implode( ';', $vars ) . '}}' : $css;
+} );
+add_filter( 'body_class', function ( $classes ) {
+	foreach ( array( 'dd_bg', 'dd_text', 'dd_hover_color', 'dd_radius' ) as $mod ) {
+		if ( '' !== (string) get_theme_mod( $mod, '' ) ) { $classes[] = 'bs-dd-custom'; break; }
+	}
+	return $classes;
+} );

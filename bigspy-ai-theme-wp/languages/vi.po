@@ -11848,3 +11848,102 @@ msgstr "Một dòng chữ xám ngắn dưới mỗi mục con, lấy từ phần
 
 msgid "1.103.0: Mega menus get real looks. In Appearance > Customize > Header > Navigation, pick Arrow icons, Cards, Divided columns or Accent bar, add an intro panel on the left with the parent item name, its description and a See all link, and show a short grey description under each item (from the Description field in Appearance > Menus). Wide panels now move back inside the window instead of running past the edge."
 msgstr "1.103.0: Mega menu có nhiều kiểu đẹp hơn. Vào Giao diện > Tùy biến > Đầu trang > Điều hướng, chọn Icon mũi tên, Dạng thẻ, Cột có đường chia hoặc Thanh nhấn màu, bật khung giới thiệu bên trái với tên mục cha, mô tả và liên kết Xem tất cả, và hiện dòng mô tả xám dưới từng mục (lấy từ ô Mô tả trong Giao diện > Menu). Khung rộng tự dịch vào trong màn hình, không còn tràn ra mép."
+
+msgid "Dropdown look"
+msgstr "Kiểu menu thả xuống"
+
+msgid "Applies to every dropdown of the main menu, not only mega menus."
+msgstr "Áp dụng cho mọi menu thả xuống của menu chính, không chỉ mega menu."
+
+msgid "Dropdown panel shape"
+msgstr "Hình dạng khung menu thả xuống"
+
+msgid "For every dropdown of the main menu. Full width spreads multi-column panels across the whole window."
+msgstr "Áp dụng cho mọi menu thả xuống của menu chính. Toàn chiều rộng: khung nhiều cột trải hết bề ngang màn hình."
+
+msgid "Rounded card"
+msgstr "Thẻ bo góc"
+
+msgid "Joined to the menu item"
+msgstr "Nối liền với mục menu"
+
+msgid "Square, thin border"
+msgstr "Vuông, viền mảnh"
+
+msgid "Dropdown opening effect"
+msgstr "Hiệu ứng mở menu thả xuống"
+
+msgid "Fade up"
+msgstr "Hiện dần lên"
+
+msgid "Slide down, items one by one"
+msgstr "Trượt xuống, từng mục lần lượt"
+
+msgid "Zoom in"
+msgstr "Phóng to"
+
+msgid "3D flip"
+msgstr "Lật 3D"
+
+msgid "Curtain reveal"
+msgstr "Kéo rèm"
+
+msgid "Item hover effect"
+msgstr "Hiệu ứng khi rê chuột vào mục"
+
+msgid "Light background"
+msgstr "Nền nhạt"
+
+msgid "Growing underline"
+msgstr "Gạch chân chạy dài"
+
+msgid "Colored pill"
+msgstr "Viên thuốc màu"
+
+msgid "Slide right"
+msgstr "Trượt sang phải"
+
+msgid "Color only"
+msgstr "Chỉ đổi màu"
+
+msgid "Mark before each item"
+msgstr "Ký hiệu trước mỗi mục"
+
+msgid "None (or arrows from the look)"
+msgstr "Không (hoặc mũi tên theo kiểu)"
+
+msgid "Dot"
+msgstr "Chấm tròn"
+
+msgid "Check mark"
+msgstr "Dấu tích"
+
+msgid "Dash"
+msgstr "Gạch ngang"
+
+msgid "Plus"
+msgstr "Dấu cộng"
+
+msgid "Numbers 01, 02…"
+msgstr "Số 01, 02…"
+
+msgid "Small pointer above the panel"
+msgstr "Mũi nhọn nhỏ phía trên khung"
+
+msgid "Panel shadow"
+msgstr "Đổ bóng khung"
+
+msgid "None, thin border"
+msgstr "Không, viền mảnh"
+
+msgid "Panel corner radius (px)"
+msgstr "Bo góc khung (px)"
+
+msgid "Panel background"
+msgstr "Màu nền khung"
+
+msgid "Panel text color"
+msgstr "Màu chữ trong khung"
+
+msgid "Hover and mark color"
+msgstr "Màu khi rê chuột và ký hiệu"
