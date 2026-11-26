@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.102.0 =
+* Header > Menu: split long dropdowns into evenly filled columns from a chosen number of items; panel position and column width options.
+* Mega menu ticked on a flat dropdown now shows columns instead of one long list.
+* Tracking and verification IDs moved to BIGSPY AI Theme > Tracking codes and Customizer > Advanced > Tracking & verification.
+
 = 1.101.0 =
 * Customizer > Advanced > Custom scripts: ID fields for Google Analytics 4, Google Ads and Google Tag Manager; the theme prints the official Google tag.
 * ID fields for Meta, TikTok, Microsoft Ads (Bing UET) and LinkedIn pixels and Microsoft Clarity.

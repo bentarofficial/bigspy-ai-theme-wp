@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.102.0: Multi-column dropdowns, Tracking codes page
+
+- Long dropdown menus split into evenly filled columns on desktop (Header > Menu), with position and column width options.
+- Ticking Mega menu on a flat dropdown shows columns too.
+- Tracking and verification IDs have their own admin page and Customizer section.
+
 ### 1.101.0: Tracking and verification codes by ID
 
 - Customizer > Advanced > Custom scripts: GA4, Google Ads, GTM, Meta, TikTok, Bing UET, LinkedIn and Clarity by ID; the theme prints the official snippets.
