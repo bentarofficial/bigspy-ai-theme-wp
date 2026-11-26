@@ -41,13 +41,23 @@ add_filter( 'wp_nav_menu_objects', function ( $items ) {
 	$cols  = (string) get_theme_mod( 'mega_columns', '' );
 	$align = (string) get_theme_mod( 'mega_align', '' );
 	$intro = (bool) get_theme_mod( 'mega_intro', false );
+	$same  = (bool) get_theme_mod( 'dd_unified', false );
+	$per   = max( 3, min( 12, (int) get_theme_mod( 'dd_per_col', 6 ) ?: 6 ) );
+	$max_c = 1;
+	foreach ( $kids as $pid => $cnt ) {
+		if ( isset( $by_id[ $pid ] ) && ! (int) $by_id[ $pid ]->menu_item_parent ) { $max_c = max( $max_c, (int) ceil( $cnt / $per ) ); }
+	}
+	$max_c = min( 4, $max_c );
 	foreach ( $items as $it ) {
 		$id = (int) $it->ID;
 		if ( (int) $it->menu_item_parent || empty( $kids[ $id ] ) ) { continue; }
 		$n      = $kids[ $id ];
 		$ticked = '1' === get_post_meta( $id, '_bst_mega_menu', true );
 		$add    = array();
-		if ( empty( $deep[ $id ] ) && ( $ticked || ( $auto > 1 && $n >= $auto ) ) ) {
+		if ( $same ) {
+			$c     = get_theme_mod( 'dd_same_width', false ) ? $max_c : min( 4, (int) ceil( $n / $per ) );
+			$add   = array( 'bs-mega-menu', 'bs-mega-flat', 'bs-mega-unified', 'bs-mega-n-' . max( 1, $c ) );
+		} elseif ( empty( $deep[ $id ] ) && ( $ticked || ( $auto > 1 && $n >= $auto ) ) ) {
 			$c     = in_array( $cols, array( '2', '3', '4', '5', '6' ), true ) ? (int) $cols : ( $n <= 8 ? 2 : ( $n <= 18 ? 3 : 4 ) );
 			$add[] = 'bs-mega-menu';
 			$add[] = 'bs-mega-flat';
@@ -100,12 +110,13 @@ add_filter( 'bst_dynamic_css', function ( $css ) {
 		$c = sanitize_hex_color( (string) get_theme_mod( $mod, '' ) );
 		if ( $c ) { $vars[] = $var . ':' . $c; }
 	}
+	if ( get_theme_mod( 'dd_unified', false ) ) { $vars[] = '--bs-mega-rows:' . max( 3, min( 12, (int) get_theme_mod( 'dd_per_col', 6 ) ?: 6 ) ); }
 	$r = get_theme_mod( 'dd_radius', '' );
 	if ( is_numeric( $r ) ) { $vars[] = '--bs-dd-radius:' . max( 0, min( 32, (int) $r ) ) . 'px'; }
 	return $vars ? $css . '@media(min-width:850px){body.bs-dd-custom,body[class*=bs-dd-]{' . implode( ';', $vars ) . '}}' : $css;
 } );
 add_filter( 'body_class', function ( $classes ) {
-	foreach ( array( 'dd_bg', 'dd_text', 'dd_hover_color', 'dd_radius' ) as $mod ) {
+	foreach ( array( 'dd_bg', 'dd_text', 'dd_hover_color', 'dd_radius', 'dd_unified' ) as $mod ) {
 		if ( '' !== (string) get_theme_mod( $mod, '' ) ) { $classes[] = 'bs-dd-custom'; break; }
 	}
 	return $classes;

@@ -11950,3 +11950,18 @@ msgstr "Màu khi rê chuột và ký hiệu"
 
 msgid "1.104.0: Dropdown menus get many more styles, and they now apply to every dropdown of the main menu, not only mega menus. In Appearance > Customize > Header > Navigation choose the panel shape (rounded card, joined to the menu item, full width, frosted glass, dark or square), how it opens (fade, slide with items one by one, zoom, 3D flip or curtain reveal), the hover effect (light background, growing underline, colored pill, slide right or color only) and a mark before each item (dot, check, dash, plus or numbers 01, 02). Add a small pointer above the panel, pick the shadow and corner radius, and set the panel background, text and hover colors."
 msgstr "1.104.0: Menu thả xuống có nhiều kiểu hơn và giờ áp dụng cho mọi menu thả xuống của menu chính, không chỉ mega menu. Vào Giao diện > Tùy biến > Đầu trang > Điều hướng, chọn hình dạng khung (thẻ bo góc, nối liền với mục menu, toàn chiều rộng, kính mờ, tối hoặc vuông), hiệu ứng mở (hiện dần, trượt từng mục, phóng to, lật 3D hoặc kéo rèm), hiệu ứng rê chuột (nền nhạt, gạch chân chạy dài, viên thuốc màu, trượt sang phải hoặc chỉ đổi màu) và ký hiệu trước mỗi mục (chấm, dấu tích, gạch ngang, dấu cộng hoặc số 01, 02). Thêm mũi nhọn nhỏ phía trên khung, chọn đổ bóng, bo góc, màu nền, màu chữ và màu khi rê chuột."
+
+msgid "Every dropdown uses the same panel"
+msgstr "Mọi menu thả xuống dùng cùng một khung"
+
+msgid "Short and long dropdowns get the same panel, position, look and intro. Items fill each column from top to bottom; sub-items show indented under their item."
+msgstr "Menu ít mục hay nhiều mục đều dùng chung một kiểu khung, vị trí, giao diện và khung giới thiệu. Các mục xếp từ trên xuống trong từng cột; mục con hiện thụt vào dưới mục của nó."
+
+msgid "Items per column"
+msgstr "Số mục mỗi cột"
+
+msgid "Same width for every panel"
+msgstr "Mọi khung cùng độ rộng"
+
+msgid "Every panel is as wide as the longest dropdown needs."
+msgstr "Mọi khung rộng bằng khung của menu dài nhất."
