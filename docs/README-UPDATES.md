@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.103.0: Mega menu looks
+
+- Header > Navigation: arrow icons, cards, divided columns or accent bar for mega menus.
+- Optional intro panel with the parent name, description and See all link; short descriptions under items.
+- Wide panels move back inside the window.
+
 ### 1.102.0: Multi-column dropdowns, Tracking codes page
 
 - Long dropdown menus split into evenly filled columns on desktop (Header > Menu), with position and column width options.

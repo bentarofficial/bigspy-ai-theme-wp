@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.103.0 =
+* Mega menu looks: arrow icons, cards, divided columns, accent bar.
+* Mega menu intro panel (parent name, description, See all link) and item descriptions.
+* Wide mega menu panels stay inside the window.
+
 = 1.102.0 =
 * Header > Menu: split long dropdowns into evenly filled columns from a chosen number of items; panel position and column width options.
 * Mega menu ticked on a flat dropdown now shows columns instead of one long list.

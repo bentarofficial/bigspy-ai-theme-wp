@@ -11845,3 +11845,6 @@ msgstr "Hiện mô tả từng mục"
 
 msgid "A short grey line under each child item, from its Description in Appearance → Menus."
 msgstr "Một dòng chữ xám ngắn dưới mỗi mục con, lấy từ phần Mô tả trong Giao diện → Menu."
+
+msgid "1.103.0: Mega menus get real looks. In Appearance > Customize > Header > Navigation, pick Arrow icons, Cards, Divided columns or Accent bar, add an intro panel on the left with the parent item name, its description and a See all link, and show a short grey description under each item (from the Description field in Appearance > Menus). Wide panels now move back inside the window instead of running past the edge."
+msgstr "1.103.0: Mega menu có nhiều kiểu đẹp hơn. Vào Giao diện > Tùy biến > Đầu trang > Điều hướng, chọn Icon mũi tên, Dạng thẻ, Cột có đường chia hoặc Thanh nhấn màu, bật khung giới thiệu bên trái với tên mục cha, mô tả và liên kết Xem tất cả, và hiện dòng mô tả xám dưới từng mục (lấy từ ô Mô tả trong Giao diện > Menu). Khung rộng tự dịch vào trong màn hình, không còn tràn ra mép."
