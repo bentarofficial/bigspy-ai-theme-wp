@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.104.0: Dropdown shapes, effects and colors
+
+- Looks apply to every dropdown of the main menu.
+- Panel shapes: joined tab, full width, frosted glass, dark, square.
+- Opening effects, hover effects, item marks, pointer, shadow, radius and colors.
+
 ### 1.103.0: Mega menu looks
 
 - Header > Navigation: arrow icons, cards, divided columns or accent bar for mega menus.

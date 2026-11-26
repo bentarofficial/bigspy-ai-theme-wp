@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.104.0 =
+* Dropdown looks now apply to every dropdown of the main menu.
+* Dropdown panel shapes: joined to the menu item, full width, frosted glass, dark, square.
+* Opening effects, item hover effects, item marks, pointer, shadow, radius and panel colors.
+
 = 1.103.0 =
 * Mega menu looks: arrow icons, cards, divided columns, accent bar.
 * Mega menu intro panel (parent name, description, See all link) and item descriptions.
