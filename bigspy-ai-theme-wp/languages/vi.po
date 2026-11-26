@@ -11815,3 +11815,33 @@ msgstr "Canh phải menu"
 
 msgid "Column width for split dropdowns (px)"
 msgstr "Độ rộng mỗi cột khi chia (px)"
+
+msgid "See all"
+msgstr "Xem tất cả"
+
+msgid "Mega menu look"
+msgstr "Kiểu mega menu"
+
+msgid "Simple"
+msgstr "Đơn giản"
+
+msgid "Arrow icons"
+msgstr "Icon mũi tên"
+
+msgid "Divided columns"
+msgstr "Cột có đường chia"
+
+msgid "Accent bar"
+msgstr "Thanh nhấn màu"
+
+msgid "Intro panel on the left"
+msgstr "Khung giới thiệu bên trái"
+
+msgid "Shows the parent item name, its Description (Appearance → Menus → Screen Options → Description) and a See all link."
+msgstr "Hiện tên mục cha, phần Mô tả của nó (Giao diện → Menu → Tùy chọn hiển thị → Mô tả) và liên kết Xem tất cả."
+
+msgid "Show item descriptions"
+msgstr "Hiện mô tả từng mục"
+
+msgid "A short grey line under each child item, from its Description in Appearance → Menus."
+msgstr "Một dòng chữ xám ngắn dưới mỗi mục con, lấy từ phần Mô tả trong Giao diện → Menu."
