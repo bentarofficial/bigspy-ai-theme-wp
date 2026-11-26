@@ -242,10 +242,18 @@ function bst_header_button( $prefix ) {
 	$style  = bst_choice( bst_mod( $prefix . '_style' ), array( 'primary', 'secondary', 'outline', 'white', 'link', 'gradient', 'soft' ), 'primary' );
 	$target = bst_mod( $prefix . '_new_tab' ) ? ' target="_blank" rel="noopener"' : '';
 	$key    = str_replace( 'header_', '', $prefix );
-	$size   = function_exists( 'bst_he' ) ? bst_choice( (string) bst_he( $key, 'size' ), array( 'sm', 'md', 'lg' ), 'sm' ) : 'sm';
+	$size   = function_exists( 'bst_he' ) ? bst_choice( (string) bst_he( $key, 'size' ), array( 'xxs', 'xs', 'sm', 'md', 'lg', 'xl' ), 'sm' ) : 'sm';
 	$icon   = function_exists( 'bst_he' ) ? sanitize_key( (string) bst_he( $key, 'icon' ) ) : '';
+	$pos    = function_exists( 'bst_he' ) ? bst_choice( (string) bst_he( $key, 'icon_pos' ), array( '', 'after', 'only' ), '' ) : '';
 	$extra  = in_array( $style, array( 'gradient', 'soft' ), true ) ? ' has-custom-colors' : '';
-	return '<a class="bs-btn bs-btn--' . esc_attr( $style ) . ( 'md' !== $size ? ' bs-btn--' . esc_attr( $size ) : '' ) . $extra . '" href="' . esc_url( $url ) . '"' . $target . '>' . ( $icon ? bst_icon( $icon, 'lg' === $size ? 20 : 17 ) : '' ) . '<span>' . esc_html( $text ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	$isz    = array( 'xxs' => 13, 'xs' => 15, 'sm' => 17, 'md' => 17, 'lg' => 20, 'xl' => 22 );
+	$svg    = $icon ? bst_icon( $icon, $isz[ $size ] ) : '';
+	if ( 'only' === $pos && $svg ) {
+		$extra .= ' is-icon-only';
+	}
+	$label = '<span>' . esc_html( $text ) . '</span>';
+	$inner = 'after' === $pos ? $label . $svg : $svg . $label;
+	return '<a class="bs-btn bs-btn--' . esc_attr( $style ) . ( 'md' !== $size ? ' bs-btn--' . esc_attr( $size ) : '' ) . $extra . '" href="' . esc_url( $url ) . '"' . $target . ( 'only' === $pos && $svg ? ' aria-label="' . esc_attr( $text ) . '"' : '' ) . '>' . $inner . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 function bst_account_link() {

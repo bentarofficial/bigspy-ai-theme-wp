@@ -153,8 +153,20 @@ function bst_he_schema() {
 				array( 'id' => 'header_' . $b . '_style', 'type' => 'select', 'label' => __( 'Style', 'bigspy-ai-theme-wp' ), 'choices' => array( 'primary' => __( 'Primary', 'bigspy-ai-theme-wp' ), 'secondary' => __( 'Secondary', 'bigspy-ai-theme-wp' ), 'outline' => __( 'Outline', 'bigspy-ai-theme-wp' ), 'white' => __( 'White', 'bigspy-ai-theme-wp' ), 'link' => __( 'Text link', 'bigspy-ai-theme-wp' ), 'gradient' => __( 'Gradient', 'bigspy-ai-theme-wp' ), 'soft' => __( 'Soft', 'bigspy-ai-theme-wp' ) ) ),
 				array( 'id' => 'header_' . $b . '_new_tab', 'type' => 'checkbox', 'label' => __( 'Open in new tab', 'bigspy-ai-theme-wp' ) ),
 				$o( $b, 'icon', 'select', __( 'Icon', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'None', 'bigspy-ai-theme-wp' ), 'phone' => 'Phone', 'zalo' => 'Zalo', 'cart' => 'Cart', 'mail' => 'Mail', 'arrow-right' => 'Arrow', 'message' => 'Message', 'pin' => 'Pin' ) ) ),
-				$o( $b, 'size', 'select', __( 'Size', 'bigspy-ai-theme-wp' ), array( 'choices' => array( 'sm' => __( 'Small', 'bigspy-ai-theme-wp' ), 'md' => __( 'Medium', 'bigspy-ai-theme-wp' ), 'lg' => __( 'Large', 'bigspy-ai-theme-wp' ) ) ) ),
-				$o( $b, 'radius', 'number', __( 'Corner radius (px, -1 = theme)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => -1, 'max' => 50 ) ) ),
+				$o( $b, 'icon_pos', 'select', __( 'Icon position', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Before the text', 'bigspy-ai-theme-wp' ), 'after' => __( 'After the text', 'bigspy-ai-theme-wp' ), 'only' => __( 'Icon only (text hidden)', 'bigspy-ai-theme-wp' ) ) ) ),
+				$o( $b, 'size', 'select', __( 'Size', 'bigspy-ai-theme-wp' ), array( 'choices' => array( 'xxs' => __( 'Extra extra small', 'bigspy-ai-theme-wp' ), 'xs' => __( 'Extra small', 'bigspy-ai-theme-wp' ), 'sm' => __( 'Small', 'bigspy-ai-theme-wp' ), 'md' => __( 'Medium', 'bigspy-ai-theme-wp' ), 'lg' => __( 'Large', 'bigspy-ai-theme-wp' ), 'xl' => __( 'Extra large', 'bigspy-ai-theme-wp' ) ) ) ),
+				$o( $b, 'shape', 'select', __( 'Shape', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Theme default', 'bigspy-ai-theme-wp' ), 'square' => __( 'Square', 'bigspy-ai-theme-wp' ), 'rounded' => __( 'Rounded', 'bigspy-ai-theme-wp' ), 'pill' => __( 'Pill (fully round)', 'bigspy-ai-theme-wp' ), 'leaf' => __( 'Leaf (two opposite corners)', 'bigspy-ai-theme-wp' ) ) ) ),
+				$o( $b, 'radius', 'number', __( 'Corner radius (px, -1 = use Shape)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => -1, 'max' => 50 ) ) ),
+				$o( $b, 'h_custom', 'heading', __( 'Custom size (overrides Size)', 'bigspy-ai-theme-wp' ) ),
+				$o( $b, 'font_size', 'number', __( 'Font size (px, 0 = from Size)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 30 ) ) ),
+				$o( $b, 'height', 'number', __( 'Height (px, 0 = auto)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 80 ) ) ),
+				$o( $b, 'pad_x', 'number', __( 'Padding left/right (px, 0 = from Size)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 60 ) ) ),
+				$o( $b, 'pad_y', 'number', __( 'Padding top/bottom (px, 0 = from Size)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 30 ) ) ),
+				$o( $b, 'weight', 'select', __( 'Font weight', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Default', 'bigspy-ai-theme-wp' ), '400' => '400', '500' => '500', '600' => '600', '700' => '700', '800' => '800' ) ) ),
+				$o( $b, 'transform', 'select', __( 'Letter case', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'Default', 'bigspy-ai-theme-wp' ), 'none' => __( 'As typed', 'bigspy-ai-theme-wp' ), 'uppercase' => __( 'UPPERCASE', 'bigspy-ai-theme-wp' ) ) ) ),
+				$o( $b, 'border_w', 'number', __( 'Border width (px, 0 = style default)', 'bigspy-ai-theme-wp' ), array( 'input_attrs' => array( 'min' => 0, 'max' => 6 ) ) ),
+				$o( $b, 'border_c', 'color', __( 'Border color', 'bigspy-ai-theme-wp' ) ),
+				$o( $b, 'shadow', 'select', __( 'Shadow', 'bigspy-ai-theme-wp' ), array( 'choices' => array( '' => __( 'None / style default', 'bigspy-ai-theme-wp' ), 'sm' => __( 'Small', 'bigspy-ai-theme-wp' ), 'md' => __( 'Medium', 'bigspy-ai-theme-wp' ), 'lg' => __( 'Large', 'bigspy-ai-theme-wp' ) ) ) ),
 				$o( $b, 'pulse', 'checkbox', __( 'Pulse animation (draws attention)', 'bigspy-ai-theme-wp' ) ),
 				$o( $b, 'h_colors', 'heading', __( 'Colors', 'bigspy-ai-theme-wp' ) ),
 				$o( $b, 'bg', 'color', __( 'Background', 'bigspy-ai-theme-wp' ) ),
@@ -471,6 +483,43 @@ function bst_he_css() {
 		}
 		if ( is_numeric( bst_he( $b, 'radius' ) ) && (int) bst_he( $b, 'radius' ) >= 0 ) {
 			$bb[] = 'border-radius: ' . (int) bst_he( $b, 'radius' ) . 'px';
+		} else {
+			$shapes = array( 'square' => '0', 'rounded' => '8px', 'pill' => '999px', 'leaf' => '14px 0' );
+			$shape  = (string) bst_he( $b, 'shape' );
+			if ( isset( $shapes[ $shape ] ) ) {
+				$bb[] = 'border-radius: ' . $shapes[ $shape ];
+			}
+		}
+		if ( $v = $px( bst_he( $b, 'font_size' ) ) ) {
+			$bb[] = "font-size: $v";
+		}
+		$hgt = $px( bst_he( $b, 'height' ) );
+		if ( $hgt ) {
+			$bb[] = "height: $hgt; min-height: $hgt; padding-top: 0; padding-bottom: 0";
+		}
+		if ( $v = $px( bst_he( $b, 'pad_x' ) ) ) {
+			$bb[] = "padding-left: $v; padding-right: $v";
+		}
+		if ( ( $v = $px( bst_he( $b, 'pad_y' ) ) ) && ! $hgt ) {
+			$bb[] = "padding-top: $v; padding-bottom: $v";
+		}
+		if ( $v = (string) bst_he( $b, 'weight' ) ) {
+			$bb[] = 'font-weight: ' . (int) $v;
+		}
+		if ( $v = (string) bst_he( $b, 'transform' ) ) {
+			$bb[] = 'text-transform: ' . sanitize_key( $v );
+		}
+		$bw = bst_he( $b, 'border_w' );
+		if ( is_numeric( $bw ) && (int) $bw > 0 ) {
+			$bb[] = 'border-width: ' . max( 0, (int) $bw ) . 'px; border-style: solid';
+		}
+		if ( $c = $col( bst_he( $b, 'border_c' ) ) ) {
+			$bb[] = "border-color: $c";
+		}
+		$shadows = array( 'sm' => '0 1px 3px rgba(0,0,0,.15)', 'md' => '0 4px 12px rgba(0,0,0,.18)', 'lg' => '0 10px 28px rgba(0,0,0,.22)' );
+		$sh      = (string) bst_he( $b, 'shadow' );
+		if ( isset( $shadows[ $sh ] ) ) {
+			$bb[] = 'box-shadow: ' . $shadows[ $sh ];
 		}
 		if ( $bb ) {
 			$r[] = "$sel { " . implode( ';', $bb ) . ' }';
@@ -486,6 +535,7 @@ function bst_he_css() {
 			$r[] = "$sel:hover { " . implode( ';', $bh ) . ' }';
 		}
 	}
+	$r[] = '.bs-header .bs-btn--xxs{padding:.25em .6em;font-size:.72em;min-height:0;line-height:1.3}.bs-header .bs-btn--xs{padding:.4em .85em;font-size:.8em;min-height:0}.bs-header .bs-btn--xl{padding:1.05em 2.2em;font-size:1.15em}.bs-header .bs-btn.is-icon-only span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.bs-header .bs-btn.is-icon-only{padding-left:.7em;padding-right:.7em}';
 	$gutter = (int) bst_mod( 'fluid_gutter' );
 	if ( $gutter > 0 ) {
 		$r[] = '@media (min-width:550px){:root{--bs-gutter-fluid:' . min( 200, $gutter ) . 'px}}';

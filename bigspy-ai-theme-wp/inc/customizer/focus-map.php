@@ -157,7 +157,7 @@ function bst_edit_attr( $entries ) {
 /** Fallback section of each header element when it has no own section. */
 function bst_header_element_edit_attr( $element ) {
 	$fallback = array(
-		'logo'          => 'bst_header_logo',
+		'logo'          => 'bst_he_logo',
 		'nav'           => 'bst_header_nav',
 		'nav_secondary' => 'bst_header_nav',
 		'nav_icon'      => 'bst_header_nav',

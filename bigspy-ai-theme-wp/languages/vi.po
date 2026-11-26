@@ -11968,3 +11968,61 @@ msgstr "Mọi khung rộng bằng khung của menu dài nhất."
 
 msgid "1.105.0: All dropdowns can now look the same. In Appearance > Customize > Header > Navigation, tick Every dropdown uses the same panel and short and long dropdowns share one panel, position, look and intro. Items fill each column from top to bottom (set Items per column, 6 by default), sub-items show indented under their item, and Same width for every panel keeps the panel the same size as you move across the menu."
 msgstr "1.105.0: Mọi menu thả xuống giờ có thể đồng bộ. Vào Giao diện > Tùy biến > Đầu trang > Điều hướng, tick Mọi menu thả xuống dùng cùng một khung, menu ít mục hay nhiều mục đều dùng chung một khung, vị trí, giao diện và khung giới thiệu. Các mục xếp từ trên xuống trong từng cột (chỉnh Số mục mỗi cột, mặc định 6), mục con hiện thụt vào dưới mục của nó, và Mọi khung cùng độ rộng giữ khung không đổi kích thước khi rê chuột qua các mục menu."
+
+msgid "Header builder, layout, rows, announcement bar, menu, search and buttons. Logo, buttons and other elements open from the gear in the builder."
+msgstr "Trình dựng header, bố cục, các hàng, thanh thông báo, menu, tìm kiếm và nút. Logo, nút và các phần tử khác mở bằng bánh răng trong trình dựng."
+
+msgid "Before the text"
+msgstr "Trước chữ"
+
+msgid "After the text"
+msgstr "Sau chữ"
+
+msgid "Icon only (text hidden)"
+msgstr "Chỉ icon (ẩn chữ)"
+
+msgid "Extra extra small"
+msgstr "Rất rất nhỏ"
+
+msgid "Extra small"
+msgstr "Rất nhỏ"
+
+msgid "Extra large"
+msgstr "Rất lớn"
+
+msgid "Rounded"
+msgstr "Bo góc"
+
+msgid "Pill (fully round)"
+msgstr "Viên thuốc (bo tròn hẳn)"
+
+msgid "Leaf (two opposite corners)"
+msgstr "Chiếc lá (bo 2 góc chéo)"
+
+msgid "Corner radius (px, -1 = use Shape)"
+msgstr "Bo góc (px, -1 = theo Hình dạng)"
+
+msgid "Custom size (overrides Size)"
+msgstr "Kích thước tùy chỉnh (ghi đè Kích thước)"
+
+msgid "Font size (px, 0 = from Size)"
+msgstr "Cỡ chữ (px, 0 = theo Kích thước)"
+
+msgid "Height (px, 0 = auto)"
+msgstr "Chiều cao (px, 0 = tự động)"
+
+msgid "Padding left/right (px, 0 = from Size)"
+msgstr "Khoảng đệm trái/phải (px, 0 = theo Kích thước)"
+
+msgid "Padding top/bottom (px, 0 = from Size)"
+msgstr "Khoảng đệm trên/dưới (px, 0 = theo Kích thước)"
+
+msgid "Border width (px, 0 = style default)"
+msgstr "Độ dày viền (px, 0 = theo kiểu)"
+
+msgid "None / style default"
+msgstr "Không / theo kiểu"
+
+msgid "1.106.0: Header buttons get many more options. In Appearance > Customize > Header, open Button 1 or Button 2 from the gear and choose six sizes from extra extra small to extra large, a shape (square, rounded, pill or leaf), your own font size, height and padding in px, font weight, letter case, border, shadow and where the icon sits (before, after or icon only). The separate Logo section is gone: the sticky logo now sits in the Logo element with the other logo options."
+msgstr "1.106.0: Nút trên header có thêm nhiều tùy chọn. Vào Giao diện > Tùy biến > Đầu trang, mở Nút 1 hoặc Nút 2 bằng bánh răng và chọn 6 kích thước từ rất rất nhỏ đến rất lớn, hình dạng (vuông, bo góc, viên thuốc hoặc chiếc lá), cỡ chữ, chiều cao và khoảng đệm theo px, độ đậm chữ, kiểu chữ hoa, viền, đổ bóng và vị trí icon (trước, sau hoặc chỉ icon). Mục Logo riêng đã được bỏ: logo khi header dính giờ nằm trong phần tử Logo cùng các tùy chọn logo khác."
+

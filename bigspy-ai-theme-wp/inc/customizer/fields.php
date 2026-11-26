@@ -13,7 +13,6 @@ function bst_customizer_sections() {
 		'bst_header_builder' => array( 'title' => __( 'Header builder', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_header', 'priority' => 1, 'description' => __( 'Start with a ready-made layout or drag elements between rows. Click the gear on an element to edit it. Preview desktop and mobile separately, then press Publish to save.', 'bigspy-ai-theme-wp' ) ),
 		'bst_header_general' => array( 'title' => __( 'Header layout & sticky', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_header', 'priority' => 2 ),
 		'bst_header_rows'    => array( 'title' => __( 'Rows: height & colors', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_header', 'priority' => 3 ),
-		'bst_header_logo'    => array( 'title' => __( 'Logo', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_header', 'priority' => 4, 'description' => __( 'Upload the logo in Site Identity.', 'bigspy-ai-theme-wp' ) ),
 		'bst_header_nav'     => array( 'title' => __( 'Navigation', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_header', 'priority' => 5 ),
 		'bst_header_search'  => array( 'title' => __( 'Search', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_header', 'priority' => 6 ),
 		'bst_header_buttons' => array( 'title' => __( 'Buttons', 'bigspy-ai-theme-wp' ), 'panel' => 'bst_header', 'priority' => 7 ),
@@ -130,8 +129,8 @@ function bst_customizer_fields() {
 		array( 'id' => 'header_mobile_height', 'section' => 'bst_header_rows', 'type' => 'number', 'label' => __( 'Mobile main row height (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 120 ) ),
 
 		// Logo.
-		array( 'id' => 'logo_width', 'section' => 'bst_header_logo', 'type' => 'number', 'label' => __( 'Logo max width – desktop (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 600 ) ),
-		array( 'id' => 'logo_width_mobile', 'section' => 'bst_header_logo', 'type' => 'number', 'label' => __( 'Logo max width – mobile (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 400 ) ),
+		array( 'id' => 'logo_width', 'section' => 'bst_he_logo', 'type' => 'number', 'label' => __( 'Logo max width – desktop (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 600 ) ),
+		array( 'id' => 'logo_width_mobile', 'section' => 'bst_he_logo', 'type' => 'number', 'label' => __( 'Logo max width – mobile (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 40, 400 ) ),
 
 		// Navigation.
 		array( 'id' => 'nav_style', 'section' => 'bst_header_nav', 'type' => 'select', 'label' => __( 'Main menu style', 'bigspy-ai-theme-wp' ), 'choices' => bst_nav_styles() ),

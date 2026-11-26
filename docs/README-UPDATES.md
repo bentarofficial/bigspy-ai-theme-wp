@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.106.0: More header button options
+
+- Six sizes, shape, custom size and padding, border, shadow and icon position for header buttons.
+- Logo section removed from the Customizer; sticky logo moved into the Logo element.
+
 ### 1.105.0: One panel for every dropdown
 
 - Every dropdown can use the same panel, position, look and intro.

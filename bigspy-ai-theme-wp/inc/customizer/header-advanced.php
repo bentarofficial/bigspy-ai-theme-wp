@@ -133,7 +133,7 @@ add_filter(
 add_filter(
 	'bst_customizer_fields',
 	function ( $fields ) {
-		$fields[] = array( 'id' => 'logo_sticky', 'section' => 'bst_header_logo', 'type' => 'image', 'label' => __( 'Logo while the header is sticky', 'bigspy-ai-theme-wp' ), 'description' => __( 'Optional, e.g. a smaller or dark version. Shown only after scrolling when the sticky header is on.', 'bigspy-ai-theme-wp' ) );
+		$fields[] = array( 'id' => 'logo_sticky', 'section' => 'bst_he_logo', 'priority' => 3, 'type' => 'image', 'label' => __( 'Logo while the header is sticky', 'bigspy-ai-theme-wp' ), 'description' => __( 'Optional, e.g. a smaller or dark version. Shown only after scrolling when the sticky header is on.', 'bigspy-ai-theme-wp' ) );
 		$n        = 'bst_header_nav';
 		$fields[] = array( 'id' => 'bst_h_mega', 'section' => $n, 'type' => 'heading', 'label' => __( 'Mega menu', 'bigspy-ai-theme-wp' ), 'description' => __( 'Turn it on per top-level item in Appearance → Menus (“BIGSPY AI: Mega menu”). Child items become columns on desktop.', 'bigspy-ai-theme-wp' ) );
 		$fields[] = array( 'id' => 'dd_unified', 'section' => $n, 'type' => 'checkbox', 'label' => __( 'Every dropdown uses the same panel', 'bigspy-ai-theme-wp' ), 'description' => __( 'Short and long dropdowns get the same panel, position, look and intro. Items fill each column from top to bottom; sub-items show indented under their item.', 'bigspy-ai-theme-wp' ) );

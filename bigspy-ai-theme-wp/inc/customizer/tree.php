@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 function bst_customizer_panels() {
 	$panels = array(
 		'bst_style'    => array( __( 'Global style', 'bigspy-ai-theme-wp' ), 21, __( 'Colors, fonts, buttons and the radius, shadow and spacing every card and section shares.', 'bigspy-ai-theme-wp' ) ),
-		'bst_header'   => array( __( 'Header', 'bigspy-ai-theme-wp' ), 22, __( 'Header builder, logo, menu, search, buttons and the announcement bar.', 'bigspy-ai-theme-wp' ) ),
+		'bst_header'   => array( __( 'Header', 'bigspy-ai-theme-wp' ), 22, __( 'Header builder, layout, rows, announcement bar, menu, search and buttons. Logo, buttons and other elements open from the gear in the builder.', 'bigspy-ai-theme-wp' ) ),
 		'bst_footer'   => array( __( 'Footer', 'bigspy-ai-theme-wp' ), 23, __( 'Call-to-action band, widget columns, copyright and floating contact buttons.', 'bigspy-ai-theme-wp' ) ),
 		'bst_layout'   => array( __( 'Pages & title', 'bigspy-ai-theme-wp' ), 24, __( 'Site width, page title bar, breadcrumbs and sidebars.', 'bigspy-ai-theme-wp' ) ),
 		'bst_blog'     => array( __( 'Blog', 'bigspy-ai-theme-wp' ), 25, __( 'Posts page, featured posts, category pages and single posts.', 'bigspy-ai-theme-wp' ) ),
@@ -41,7 +41,7 @@ function bst_customizer_tree() {
 		'bst_header_nav' => array( 'bst_header', 5, __( 'Menu font, size, colors and dropdowns.', 'bigspy-ai-theme-wp' ) ),
 		'bst_header_rows' => array( 'bst_header', 3, __( 'Height and colors of the top, main, bottom and mobile rows.', 'bigspy-ai-theme-wp' ) ),
 		'bst_header_general' => array( 'bst_header', 2, __( 'Full-width or boxed header, sticky and transparent header.', 'bigspy-ai-theme-wp' ) ),
-		'bst_announcement'   => array( 'bst_header', 0, __( 'A thin bar above the header for news or offers.', 'bigspy-ai-theme-wp' ) ),
+		'bst_announcement'   => array( 'bst_header', 4, __( 'A thin bar above the header for news or offers.', 'bigspy-ai-theme-wp' ) ),
 		// Footer.
 		'bst_footer_bottom' => array( 'bst_footer', 3, __( 'Copyright line, footer menu and social icons.', 'bigspy-ai-theme-wp' ) ),
 		'bst_float'          => array( 'bst_footer', 4, __( 'Call, Zalo, Messenger… buttons fixed to the screen corner.', 'bigspy-ai-theme-wp' ) ),

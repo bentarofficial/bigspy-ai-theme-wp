@@ -14198,3 +14198,48 @@ msgstr ""
 msgid "List view"
 msgstr ""
 
+msgid "Header builder, layout, rows, announcement bar, menu, search and buttons. Logo, buttons and other elements open from the gear in the builder."
+msgstr ""
+
+msgid "Before the text"
+msgstr ""
+
+msgid "After the text"
+msgstr ""
+
+msgid "Icon only (text hidden)"
+msgstr ""
+
+msgid "Extra extra small"
+msgstr ""
+
+msgid "Pill (fully round)"
+msgstr ""
+
+msgid "Leaf (two opposite corners)"
+msgstr ""
+
+msgid "Corner radius (px, -1 = use Shape)"
+msgstr ""
+
+msgid "Custom size (overrides Size)"
+msgstr ""
+
+msgid "Font size (px, 0 = from Size)"
+msgstr ""
+
+msgid "Padding left/right (px, 0 = from Size)"
+msgstr ""
+
+msgid "Padding top/bottom (px, 0 = from Size)"
+msgstr ""
+
+msgid "Border width (px, 0 = style default)"
+msgstr ""
+
+msgid "None / style default"
+msgstr ""
+
+msgid "1.106.0: Header buttons get many more options. In Appearance > Customize > Header, open Button 1 or Button 2 from the gear and choose six sizes from extra extra small to extra large, a shape (square, rounded, pill or leaf), your own font size, height and padding in px, font weight, letter case, border, shadow and where the icon sits (before, after or icon only). The separate Logo section is gone: the sticky logo now sits in the Logo element with the other logo options."
+msgstr ""
+
