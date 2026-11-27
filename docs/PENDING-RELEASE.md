@@ -19,3 +19,4 @@ Chỉ khi owner đồng ý đóng gói và phát hành mới tổng hợp các m
 - **Khi phát hành cần bổ sung:** mục Giới thiệu/Có gì mới/tài liệu/kiến thức AI liên quan, hoặc “không cần”.
 - **Git:** nhánh và commit/link đã xác minh trên remote; ghi rõ trở ngại nếu chưa push được.
 - **Trạng thái:** đã triển khai, kiểm thử, commit và push; chờ owner yêu cầu phát hành.
+- G-220: form CF7 và form có sẵn gọn, thẳng hàng (chiều cao ô, ô chọn, checkbox/radio, cột lựa chọn, hàng 2–3 cột, tự co theo khung); bo góc ô tách khỏi nút; màu chữ nút tự tương phản, kích thước nút mặc định, nút viên thuốc; sửa Table bị float, Icon box kéo giãn, màu tiêu đề form box-card.

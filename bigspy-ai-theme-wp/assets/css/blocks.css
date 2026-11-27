@@ -12,9 +12,9 @@ input[type="submit"],
 	align-items: center;
 	justify-content: center;
 	gap: .5em;
-	padding: .75em 1.5em;
+	padding: var(--bs-btn-pad, .75em 1.5em);
 	background: var(--bs-primary);
-	color: #fff;
+	color: var(--bs-on-primary, #fff);
 	font-family: inherit;
 	font-size: 1em;
 	font-weight: var(--bs-btn-weight);
@@ -33,7 +33,7 @@ input[type="submit"]:hover,
 .wp-block-button__link:hover,
 .wp-element-button:hover {
 	background: color-mix(in srgb, var(--bs-primary) 85%, #000);
-	color: #fff;
+	color: var(--bs-on-primary, #fff);
 }
 
 .bs-btn--sm {
@@ -64,7 +64,7 @@ input[type="submit"]:hover,
 .bs-btn--outline:hover,
 .is-style-outline > .wp-block-button__link:hover {
 	background: var(--bs-primary);
-	color: #fff;
+	color: var(--bs-on-primary, #fff);
 	border-color: var(--bs-primary);
 }
 
@@ -3365,7 +3365,7 @@ input[type="submit"]:hover,
 .bs-form__success svg { flex: none; color: #059669; }
 
 /* Contact Form 7 anywhere (core CF7 block, shortcode, widgets): clean theme look (1.51) */
-.wpcf7-form { --cf7-r: var(--bs-btn-radius, 8px); }
+.wpcf7-form { --cf7-r: var(--bs-field-radius, min(var(--bs-btn-radius, 8px), 12px)); }
 .wpcf7-form p { margin: 0 0 14px; }
 .wpcf7-form p > br, .wpcf7-form label > br { display: none; }
 .wpcf7-form label { display: block; margin-bottom: 4px; font-weight: 600; font-size: .95em; }
@@ -3435,6 +3435,48 @@ input[type="submit"]:hover,
 .bs-form--labels-small .wpcf7-list-item label, .bs-form--labels-small .wpforms-field-label-inline { font-size: inherit; letter-spacing: normal; text-transform: none; opacity: 1; }
 /* Space between a heading / text and a Form block that follows it in the same column. */
 :is(.bs-heading, .bs-text, .bs-title, .wp-block-heading, p) + .bs-form { margin-top: 18px; }
+
+/* G-220 (A): fixes many sites patched by hand. Fields, choices and layout helpers for Contact Form 7 and the built-in form. */
+.wpcf7-form :is(input[type=submit], button[type=submit]) { border-radius: var(--bs-btn-radius, 8px); color: var(--bs-on-primary, #fff); }
+:is(.wpcf7-form, .bs-native-form) :is(input[type=text], input[type=email], input[type=tel], input[type=url], input[type=number], input[type=date], input[type=time], input[type=password], input[type=search], select) { height: var(--bs-field-h, 46px); min-height: 0; padding-top: 0; padding-bottom: 0; line-height: normal; }
+:is(.wpcf7-form, .bs-native-form) select:has(option[value=""]:checked) { color: var(--bs-text-light, #8a94a6); }
+:is(.wpcf7-form, .bs-native-form) select option { color: var(--bs-text, #1f2937); }
+/* Radio and checkbox boxes: never stretched by global input styles. */
+:is(.wpcf7-form, .bs-native-form) input:is([type=radio], [type=checkbox]) { flex: none; width: 18px; height: 18px; min-height: 0; margin: 0; padding: 0; vertical-align: middle; position: static; accent-color: var(--bs-primary); }
+:is(.wpcf7-form, .bs-native-form) .wpcf7-list-item { display: inline-flex; align-items: center; gap: 7px; margin: 0; }
+:is(.wpcf7-form, .bs-native-form) .wpcf7-list-item label { display: inline-flex; align-items: center; gap: 7px; margin: 0; line-height: 1.3; }
+.wpcf7-form .wpcf7-submit { margin-top: 4px; }
+/* Built-in form: choices line up in columns. */
+.bs-native-form :is(.wpcf7-radio, .wpcf7-checkbox) { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap: 10px 16px; }
+/* Choice columns on any form: add class:bs-choices-2 (1, 3, 4) to a CF7 radio or checkbox tag. */
+:is(.wpcf7-form, .bs-native-form) :is(.wpcf7-radio, .wpcf7-checkbox):is(.bs-choices-1, .bs-choices-2, .bs-choices-3, .bs-choices-4) { display: grid; gap: 10px 16px; grid-template-columns: repeat(var(--bs-cc, 2), minmax(0, 1fr)); }
+.bs-choices-1 { --bs-cc: 1; }
+.bs-choices-3 { --bs-cc: 3; }
+.bs-choices-4 { --bs-cc: 4; }
+/* Field rows in a CF7 template: <div class="bs-f-row">…</div> gives 2 columns, "bs-f-row bs-f-3" 3 columns, bs-f-full spans the row. */
+.wpcf7-form .bs-f-row { display: grid; grid-template-columns: repeat(var(--bs-fc, 2), minmax(0, 1fr)); gap: 0 14px; }
+.wpcf7-form .bs-f-row.bs-f-3 { --bs-fc: 3; }
+.wpcf7-form .bs-f-row > p:only-child { display: contents; }
+.wpcf7-form .bs-f-full { grid-column: 1 / -1; }
+.wpcf7-form .bs-f-submit-full :is(.wpcf7-submit, [type=submit]) { width: 100%; }
+/* Forms follow the width they are placed in (a narrow column on desktop too), not only the screen width. */
+.bs-form { min-width: 0; }
+.bs-form__body { container-type: inline-size; width: 100%; }
+@container (max-width: 520px) {
+	.wpcf7-form .bs-f-row { grid-template-columns: minmax(0, 1fr); }
+	.bs-native-form > .bs-nf-half { flex-basis: 100%; }
+	:is(.wpcf7-form, .bs-native-form) :is(.bs-choices-3, .bs-choices-4) { --bs-cc: 2; }
+}
+@media (max-width: 520px) {
+	.wpcf7-form .bs-f-row { grid-template-columns: minmax(0, 1fr); }
+}
+/* Box card form: dark text on its light box, also inside dark sections. */
+.bs-form--box-card .bs-form__title { color: var(--bs-heading); }
+.bs-form--box-card :is(.bs-form__desc, .bs-form__kicker) { color: var(--bs-text); }
+/* Table block: its "align" option is text alignment; never float the table. */
+.bs-table:is(.alignleft, .alignright) { float: none; margin-left: 0; margin-right: 0; }
+/* Icon box fills its column only when it is alone there; stacked boxes keep their own height. */
+.bs-column > .bs-icon-box:not(:only-child) { height: auto; }
 
 /* ---- Blog archive layouts (Customizer → Blog archive) ---- */
 .bs-posts .bs-card { border-radius: var(--bs-blog-r, 10px); }

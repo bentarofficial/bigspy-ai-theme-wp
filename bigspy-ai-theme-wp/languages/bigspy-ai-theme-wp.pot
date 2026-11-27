@@ -14273,3 +14273,21 @@ msgstr ""
 msgid "1.106.0: Header buttons get many more options. In Appearance > Customize > Header, open Button 1 or Button 2 from the gear and choose six sizes from extra extra small to extra large, a shape (square, rounded, pill or leaf), your own font size, height and padding in px, font weight, letter case, border, shadow and where the icon sits (before, after or icon only). The separate Logo section is gone: the sticky logo now sits in the Logo element with the other logo options."
 msgstr ""
 
+msgid "100 gives pill-shaped buttons. Applies to theme buttons, WordPress buttons and form send buttons."
+msgstr ""
+
+msgid "Default size"
+msgstr ""
+
+msgid "Text color on primary buttons"
+msgstr ""
+
+msgid "Empty: white or dark, whichever reads better on the primary color."
+msgstr ""
+
+msgid "Form field height (px)"
+msgstr ""
+
+msgid "Text boxes and dropdowns in Contact Form 7 and the built-in form get the same height."
+msgstr ""
+

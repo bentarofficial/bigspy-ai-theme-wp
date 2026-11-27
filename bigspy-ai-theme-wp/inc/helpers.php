@@ -63,6 +63,9 @@ function bst_defaults() {
 		'button_radius'          => 6,
 		'button_transform'       => 'none',
 		'button_weight'          => '600',
+		'button_text_color'      => '',
+		'button_size'            => 'md',
+		'field_height'           => 46,
 
 		// Header.
 		'header_layout'          => '',

@@ -12151,3 +12151,22 @@ msgstr "Không có lựa chọn phù hợp"
 
 msgid "Type to search…"
 msgstr "Gõ để tìm…"
+
+msgid "100 gives pill-shaped buttons. Applies to theme buttons, WordPress buttons and form send buttons."
+msgstr "Đặt 100 để nút bo tròn kiểu viên thuốc. Áp dụng cho nút của theme, nút WordPress và nút gửi form."
+
+msgid "Default size"
+msgstr "Kích thước mặc định"
+
+msgid "Text color on primary buttons"
+msgstr "Màu chữ trên nút chính"
+
+msgid "Empty: white or dark, whichever reads better on the primary color."
+msgstr "Để trống: tự chọn trắng hoặc tối, màu nào dễ đọc hơn trên màu chính."
+
+msgid "Form field height (px)"
+msgstr "Chiều cao ô nhập form (px)"
+
+msgid "Text boxes and dropdowns in Contact Form 7 and the built-in form get the same height."
+msgstr "Ô nhập và ô chọn trong Contact Form 7 và form có sẵn của theme cao bằng nhau."
+

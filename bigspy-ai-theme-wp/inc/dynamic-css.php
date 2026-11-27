@@ -46,6 +46,7 @@ function bst_css_var_map() {
 		'button_radius'          => array( '--bs-btn-radius', 'px' ),
 		'button_transform'       => array( '--bs-btn-transform', '' ),
 		'button_weight'          => array( '--bs-btn-weight', '' ),
+		'field_height'           => array( '--bs-field-h', 'px' ),
 		'header_top_height'      => array( '--bs-top-h', 'px' ),
 		'header_top_bg'          => array( '--bs-top-bg', '' ),
 		'header_top_color'       => array( '--bs-top-color', '' ),
@@ -77,6 +78,30 @@ function bst_css_var_map() {
 	);
 }
 
+/**
+ * Text color for primary buttons: the user's choice, else white or near-black by contrast with the primary color.
+ */
+function bst_button_text_color() {
+	$set = sanitize_hex_color( (string) bst_mod( 'button_text_color' ) );
+	if ( $set ) {
+		return $set;
+	}
+	$hex = ltrim( (string) sanitize_hex_color( (string) bst_mod( 'color_primary' ) ), '#' );
+	if ( 3 === strlen( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+	if ( 6 !== strlen( $hex ) ) {
+		return '#fff';
+	}
+	$lum = 0;
+	foreach ( array( 0.2126, 0.7152, 0.0722 ) as $i => $w ) {
+		$c    = hexdec( substr( $hex, $i * 2, 2 ) ) / 255;
+		$lum += $w * ( $c <= 0.03928 ? $c / 12.92 : pow( ( $c + 0.055 ) / 1.055, 2.4 ) );
+	}
+	// White wins unless dark text has clearly better contrast (keeps mid oranges and blues white, as most brands expect).
+	return ( 1.05 / ( $lum + 0.05 ) ) >= 2.5 ? '#fff' : '#111827';
+}
+
 function bst_dynamic_css() {
 	$vars = array();
 	foreach ( bst_css_var_map() as $key => $def ) {
@@ -89,6 +114,13 @@ function bst_dynamic_css() {
 	$vars[] = '--bs-font-body:' . bst_font_stack( bst_mod( 'font_body' ) );
 	$vars[] = '--bs-font-heading:' . bst_font_stack( bst_mod( 'font_heading' ) );
 	$vars[] = '--bs-font-nav:' . bst_font_stack( bst_mod( 'font_nav' ) );
+
+	$vars[] = '--bs-on-primary:' . bst_button_text_color();
+	$pads   = array( 'sm' => '.55em 1.1em', 'md' => '.75em 1.5em', 'lg' => '.95em 2em' );
+	$size   = (string) bst_mod( 'button_size' );
+	if ( isset( $pads[ $size ] ) && 'md' !== $size ) {
+		$vars[] = '--bs-btn-pad:' . $pads[ $size ];
+	}
 
 	$image = bst_mod( 'title_bar_image' );
 	if ( $image ) {

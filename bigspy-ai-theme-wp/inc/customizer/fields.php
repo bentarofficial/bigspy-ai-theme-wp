@@ -204,7 +204,10 @@ function bst_customizer_fields() {
 			array( 'id' => 'h4_size', 'section' => 'bst_typography', 'type' => 'responsive', 'label' => __( 'H4 size (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 14, 40 ) ),
 
 			// Buttons.
-			array( 'id' => 'button_radius', 'section' => 'bst_buttons', 'type' => 'number', 'label' => __( 'Corner radius (px)', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 0, 60 ) ),
+			array( 'id' => 'button_radius', 'section' => 'bst_buttons', 'type' => 'number', 'label' => __( 'Corner radius (px)', 'bigspy-ai-theme-wp' ), 'description' => __( '100 gives pill-shaped buttons. Applies to theme buttons, WordPress buttons and form send buttons.', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 0, 100 ) ),
+			array( 'id' => 'button_size', 'section' => 'bst_buttons', 'type' => 'select', 'label' => __( 'Default size', 'bigspy-ai-theme-wp' ), 'choices' => array( 'sm' => __( 'Small', 'bigspy-ai-theme-wp' ), 'md' => __( 'Medium', 'bigspy-ai-theme-wp' ), 'lg' => __( 'Large', 'bigspy-ai-theme-wp' ) ) ),
+			array( 'id' => 'button_text_color', 'section' => 'bst_buttons', 'type' => 'color', 'label' => __( 'Text color on primary buttons', 'bigspy-ai-theme-wp' ), 'description' => __( 'Empty: white or dark, whichever reads better on the primary color.', 'bigspy-ai-theme-wp' ) ),
+			array( 'id' => 'field_height', 'section' => 'bst_buttons', 'type' => 'number', 'label' => __( 'Form field height (px)', 'bigspy-ai-theme-wp' ), 'description' => __( 'Text boxes and dropdowns in Contact Form 7 and the built-in form get the same height.', 'bigspy-ai-theme-wp' ), 'input_attrs' => $px( 32, 64 ) ),
 			array( 'id' => 'button_weight', 'section' => 'bst_buttons', 'type' => 'select', 'label' => __( 'Font weight', 'bigspy-ai-theme-wp' ), 'choices' => $weights ),
 			array( 'id' => 'button_transform', 'section' => 'bst_buttons', 'type' => 'select', 'label' => __( 'Text case', 'bigspy-ai-theme-wp' ), 'choices' => $transform ),
 
