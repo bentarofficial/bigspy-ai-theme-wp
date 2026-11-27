@@ -381,7 +381,7 @@ function bst_quote_compute( $pricing, $fields, $values ) {
 		}
 		$v = (string) ( $values[ sanitize_key( $f['name'] ) ] ?? '' );
 		if ( '' === $v ) {
-			$incomplete = $incomplete || $state[ $id ]['required'];
+			$incomplete = $incomplete || $state[ $id ]['required'] || 'distance' === ( $f['type'] ?? '' ); // Not measured yet: never price it as 0 km.
 			return 0.0;
 		}
 		$picked = in_array( $f['type'] ?? '', array( 'select', 'radio', 'checkbox' ), true ) ? array_map( 'trim', explode( ', ', $v ) ) : array( $v );

@@ -33,6 +33,10 @@ add_filter( 'bst_aid_tools', function ( $tools ) {
 			'default'      => array( 'type' => 'string' ),
 			'required'     => array( 'type' => 'boolean' ),
 			'width'        => array( 'type' => 'string', 'enum' => array( 'full', 'half' ) ),
+			'from'         => array( 'type' => 'string', 'description' => 'Distance only: id of the start address field (a text field).' ),
+			'to'           => array( 'type' => 'string', 'description' => 'Distance only: id of the end address field.' ),
+			'geocoder'     => array( 'type' => 'string', 'description' => 'Distance only: the user\'s own Photon geocoder URL. Never invent one: ask.' ),
+			'router'       => array( 'type' => 'string', 'description' => 'Distance only: the user\'s own OSRM router URL. Never invent one: ask.' ),
 			'search'       => array( 'type' => 'boolean', 'description' => 'Select only: a type-to-filter box, for long lists (routes, zones, branches).' ),
 			'show'         => $cond,
 			'requiredWhen' => $cond,
@@ -195,7 +199,7 @@ function bst_aid_form_diff( $old_f, $new_f, $old_p, $new_p ) {
 
 /** Clean what the model sent into stored field objects (unknown keys dropped). */
 function bst_aid_form_clean_fields( $in, $old ) {
-	$keep  = array( 'id', 'type', 'name', 'label', 'placeholder', 'options', 'prices', 'default', 'required', 'width', 'search', 'show', 'requiredWhen' );
+	$keep  = array( 'id', 'type', 'name', 'label', 'placeholder', 'options', 'prices', 'default', 'required', 'width', 'search', 'from', 'to', 'geocoder', 'router', 'show', 'requiredWhen' );
 	$names = array();
 	$out   = array();
 	$old   = array_column( $old, null, 'id' );

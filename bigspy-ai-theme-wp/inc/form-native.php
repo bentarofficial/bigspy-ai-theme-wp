@@ -71,7 +71,7 @@ function bst_native_form_settings( $a ) {
 
 /** Field types the engine renders. */
 function bst_native_field_types() {
-	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'time', 'datetime', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file' );
+	return array( 'text', 'email', 'tel', 'url', 'number', 'date', 'time', 'datetime', 'textarea', 'select', 'radio', 'checkbox', 'acceptance', 'file', 'distance' );
 }
 
 /** Choices of a select, radio or checkbox field. */
@@ -100,6 +100,9 @@ function bst_native_file_check( $f, $path, $name, $size ) {
 /** Server check of one value by field type. Returns the message, or '' when it is valid. */
 function bst_native_field_error( $f, $v, $s ) {
 	$type = $f['type'] ?? 'text';
+	if ( 'distance' === $type ) {
+		return '' === $v || is_numeric( $v ) ? '' : $s['msgInvalid'];
+	}
 	if ( ! empty( $f['required'] ) && '' === $v ) {
 		return $s['msgRequired'];
 	}
@@ -190,6 +193,10 @@ function bst_native_form_markup( $a ) {
 					$control .= '<span class="wpcf7-list-item"><label><input type="' . $type . '" name="' . esc_attr( $name ) . ( 'checkbox' === $type ? '[]' : '' ) . '" value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) || ( ! $picks && 'radio' === $type && 0 === $i ) ? ' checked' : '' ) . ( $st['visible'] ? '' : ' disabled' ) . '> <span class="wpcf7-list-item-label">' . esc_html( $o ) . '</span></label></span>';
 				}
 				$control .= '</span>';
+				break;
+			case 'distance':
+				// Read-only: the site measures it from the two address fields (inc/form-distance.php).
+				$control = '<input type="text" class="wpcf7-form-control wpcf7-text bs-nf-distance" name="' . esc_attr( $name ) . '" readonly tabindex="-1" placeholder="' . esc_attr( $ph ? $ph : __( 'Measured from the addresses', 'bigspy-ai-theme-wp' ) ) . '" data-bs-distance="' . esc_attr( wp_json_encode( array( 'from' => (string) ( $f['from'] ?? '' ), 'to' => (string) ( $f['to'] ?? '' ) ) ) ) . '" aria-live="polite">';
 				break;
 			case 'acceptance':
 				$control = '<span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><label><input type="checkbox" name="' . esc_attr( $name ) . '" value="1"' . ( $req ? ' required' : '' ) . ( $st['visible'] ? '' : ' disabled' ) . '> <span class="wpcf7-list-item-label">' . wp_kses_post( $ph ? $ph : $label ) . '</span></label></span></span>';
@@ -371,6 +378,9 @@ function bst_native_form_submit() {
 		}
 		$values[ $n ] = $v;
 	}
+
+	// Distance fields (G-219-c): measured here from the address fields.
+	$values = bst_form_distance_fill( $s['fields'], $values );
 
 	// Conditions (G-57): hidden fields send nothing and are never required.
 	$state = bst_form_schema_state( $s['fields'], $values );

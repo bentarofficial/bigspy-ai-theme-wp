@@ -12170,3 +12170,29 @@ msgstr "Chiều cao ô nhập form (px)"
 msgid "Text boxes and dropdowns in Contact Form 7 and the built-in form get the same height."
 msgstr "Ô nhập và ô chọn trong Contact Form 7 và form có sẵn của theme cao bằng nhau."
 
+msgid "Distance (km)"
+msgstr "Quãng đường (km)"
+
+msgid "Measured from the addresses"
+msgstr "Tự đo từ hai địa chỉ"
+
+msgid "Driving distance between two address fields, measured by your own free OpenStreetMap services (Photon and OSRM). No paid API. Use this field in a price formula as"
+msgstr "Quãng đường lái xe giữa hai ô địa chỉ, đo bằng dịch vụ OpenStreetMap miễn phí do bạn tự cài (Photon và OSRM). Không dùng API trả phí. Dùng trường này trong công thức giá bằng"
+
+msgid "Start address field"
+msgstr "Ô địa chỉ đi"
+
+msgid "End address field"
+msgstr "Ô địa chỉ đến"
+
+msgid "Geocoder URL (Photon)"
+msgstr "Địa chỉ máy chủ tìm tọa độ (Photon)"
+
+msgid "For example https://photon.example.com – your own server."
+msgstr "Ví dụ https://photon.example.com – máy chủ của bạn."
+
+msgid "Router URL (OSRM)"
+msgstr "Địa chỉ máy chủ tính đường (OSRM)"
+
+msgid "For example https://osrm.example.com – your own server. If it cannot measure, no price is shown and the visitor can still send the form."
+msgstr "Ví dụ https://osrm.example.com – máy chủ của bạn. Nếu không đo được, form không hiện giá nhưng khách vẫn gửi được."

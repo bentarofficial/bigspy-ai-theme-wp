@@ -3418,6 +3418,9 @@ input[type="submit"]:hover,
 .bs-native-form .bs-nf-combo__opt.is-picked { font-weight: 600; }
 .bs-native-form .bs-nf-combo__opt.is-active, .bs-native-form .bs-nf-combo__opt:hover { background: color-mix(in srgb, var(--bs-primary) 10%, transparent); }
 .bs-native-form .bs-nf-combo__none { opacity: .7; }
+.bs-native-form .bs-nf-distance { cursor: default; background-color: color-mix(in srgb, var(--bs-primary) 4%, #fff); }
+.bs-native-form [data-state="busy"] .bs-nf-distance { opacity: .6; }
+.bs-native-form [data-state="fail"] .bs-nf-distance { border-color: #f59e0b; }
 .bs-native-form .wpcf7-not-valid-tip { display: block; margin-top: 4px; color: #dc2626; font-size: .85em; }
 
 /* Form spacing (1.54.3): no trailing gap under the last row, no empty first line from CF7 templates */

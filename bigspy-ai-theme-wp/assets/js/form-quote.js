@@ -90,7 +90,7 @@
 			if (trees[id] && opt === null) { return line(id); }
 			if (!ctx.visible(id)) { return 0; }
 			var v = ctx.value(id);
-			if (v === '') { incomplete = incomplete || ctx.required(id); return 0; }
+			if (v === '') { incomplete = incomplete || ctx.required(id) || cfg.types[id] === 'distance'; return 0; }
 			var type = cfg.types[id] || 'text';
 			var picked = ['select', 'radio', 'checkbox'].indexOf(type) !== -1 ? v.split(', ') : [v];
 			if (opt !== null) { return picked.indexOf(opt) !== -1 ? 1 : 0; }

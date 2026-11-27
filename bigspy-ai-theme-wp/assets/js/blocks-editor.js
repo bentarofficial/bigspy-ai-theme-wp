@@ -3336,7 +3336,7 @@
 	 * Built-in form (provider "bigspy"): Contact Form 7 style tabs inside the block –
 	 * Fields, Mail, Mail (2), Messages, Actions. Empty texts fall back to the defaults.
 	 */
-	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['time', 'Time'], ['datetime', 'Date and time'], ['url', 'URL'], ['file', 'File upload']];
+	var NF_TYPES = [['text', 'Text'], ['email', 'Email'], ['tel', 'Phone'], ['textarea', 'Paragraph'], ['select', 'Dropdown'], ['radio', 'Radio buttons'], ['checkbox', 'Checkboxes'], ['acceptance', 'Consent checkbox'], ['number', 'Number'], ['date', 'Date'], ['time', 'Time'], ['datetime', 'Date and time'], ['url', 'URL'], ['file', 'File upload'], ['distance', 'Distance (km)']];
 	function nfSlug(label, taken) {
 		var base = String(label || 'field').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'field';
 		var n = base, i = 2;
@@ -3571,6 +3571,12 @@
 								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
 								el(c.ToggleControl, { label: __('Half width', T), checked: f.width === 'half', onChange: function (v) { upd(i, 'width', v ? 'half' : 'full'); }, __nextHasNoMarginBottom: true })
 							),
+							f.type === 'distance' ? el('div', { className: 'bst-nf-distance-set' },
+								el('p', { className: 'description' }, __('Driving distance between two address fields, measured by your own free OpenStreetMap services (Photon and OSRM). No paid API. Use this field in a price formula as', T) + ' {' + f.id + '}'),
+								[['from', __('Start address field', T)], ['to', __('End address field', T)]].map(function (p) { return el(c.SelectControl, { key: p[0], label: p[1], value: f[p[0]] || '', options: [{ value: '', label: '—' }].concat(fields.filter(function (x) { return x.id !== f.id && ['text', 'textarea', 'select'].indexOf(x.type) !== -1; }).map(function (x) { return { value: x.id, label: x.label || x.name }; })), onChange: function (v) { upd(i, p[0], v); }, __nextHasNoMarginBottom: true }); }),
+								el(c.TextControl, { label: __('Geocoder URL (Photon)', T), help: __('For example https://photon.example.com – your own server.', T), value: f.geocoder || '', onChange: function (v) { upd(i, 'geocoder', v); }, __nextHasNoMarginBottom: true }),
+								el(c.TextControl, { label: __('Router URL (OSRM)', T), help: __('For example https://osrm.example.com – your own server. If it cannot measure, no price is shown and the visitor can still send the form.', T), value: f.router || '', onChange: function (v) { upd(i, 'router', v); }, __nextHasNoMarginBottom: true })
+							) : null,
 							f.type === 'select' ? el(c.ToggleControl, { label: __('Search box', T), help: __('Visitors type to filter the options. Good for long lists such as routes, zones or branches.', T), checked: !!f.search, onChange: function (v) { upd(i, 'search', v); }, __nextHasNoMarginBottom: true }) : null,
 							el(NfCondition, { title: __('Show this field', T), addLabel: __('Only show when…', T), self: f.id, fields: fields, value: f.show, onChange: function (v) { upd(i, 'show', v); } }),
 							f.required ? null : el(NfCondition, { title: __('Required', T), addLabel: __('Required only when…', T), self: f.id, fields: fields, value: f.requiredWhen, onChange: function (v) { upd(i, 'requiredWhen', v); } }),

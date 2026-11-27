@@ -610,6 +610,18 @@ Rà soát ở bản 1.86.1, nhánh `main` tại `c4d154b`. Mỗi mục là một
 - **AI Designer sau proxy:** một bước tác vụ giữ request tới 150–170 giây (`ai-designer/includes/tasks.php:329`, `client.php` timeout 150). Cloudflare và nhiều hosting cắt kết nối sớm hơn trong khi PHP vẫn chạy. Cần thử trên hosting thật xem giao diện có tự nối lại qua trạng thái `busy` hay báo lỗi; chỉ mở mã G mới nếu tái hiện được.
 - **Không đề xuất lúc này:** tách `blocks-editor.js` (234 KB) hay `tools-design.php` (1.719 dòng). AGENTS.md đã quy định chỉ tách phần đang sửa.
 
+### Form tính giá miễn phí — việc còn lại sau G-219 (27-11-2026)
+
+Đã xong: `tier()` bậc thang, mẫu Đặt xe theo tuyến và Giao hàng theo khu vực, Dropdown có ô tìm kiếm, trường Quãng đường (km) đo bằng Photon + OSRM tự host (máy chủ đo lại khi gửi, lưu đệm 30 ngày). Còn lại, làm sau:
+
+- **G-219-d Thử với máy chủ Photon/OSRM thật:** mới thử bằng dịch vụ giả (test PHP) và câu trả lời giả trong trình duyệt. Cần dựng Photon + OSRM (dữ liệu Việt Nam) để thử, rồi viết hướng dẫn cài cho người dùng (Docker, RAM cần, cập nhật dữ liệu).
+- **G-219-e Báo rõ khi không đo được:** hiện form chỉ ghi "chọn thêm thông tin"; nên có dòng "Không tìm thấy địa chỉ, kiểm tra lại" dưới ô Quãng đường và gợi ý địa chỉ khi gõ (Photon có sẵn).
+- **G-219-f Chặn xoá ô địa chỉ đang được Quãng đường dùng** trong editor (như đã chặn với điều kiện và công thức), và báo lỗi khi chưa chọn hai ô địa chỉ hoặc thiếu URL.
+- **G-219-g Mẫu "Giao hàng theo quãng đường"** dùng trường Quãng đường, bật khi đã có URL máy chủ.
+- **G-219-h Thử tay trong editor:** các bảng Ô tìm kiếm, Quãng đường và hai mẫu mới mới được kiểm qua mã và trang thử, chưa bấm tay trong trình soạn thảo.
+- **Gửi mail trong Playground:** gửi form ở Playground báo lỗi vì không có máy chủ mail (không phải lỗi theme); thử gửi thật trên site nháp khi owner cho phép.
+- **Runner PHP:** test PHP chạy bằng php-wasm qua script tạm; nên đưa một runner `tools/php-wasm.cjs` vào repo để agent sau dùng lại.
+
 ## Lịch sử
 
 Roadmap cũ (bối cảnh, những gì có đến 1.18.1, ưu tiên cũ, phạm vi chưa cam kết): [archive/roadmap-1.18.md](archive/roadmap-1.18.md).

@@ -1528,6 +1528,60 @@ function bsNfCombo(sel) {
 	sync();
 }
 document.querySelectorAll('select[data-bs-search]').forEach(bsNfCombo);
+/* Distance field (G-219-c): asks this site for the km between two address fields; the site asks
+   the owner's own Photon/OSRM servers and measures again when the form is sent. */
+function bsNfDistance(input) {
+	var form = input.closest('[data-bs-native-form]');
+	var box = input.closest('[data-bs-field]');
+	var cfg;
+	try { cfg = JSON.parse(input.getAttribute('data-bs-distance')); } catch (e) { return; }
+	if (!form || !box || !cfg.from || !cfg.to) { return; }
+	var ctl = function (id) { var b = form.querySelector('[data-bs-field="' + id + '"]'); return b ? b.querySelector('input:not([data-bs-skip]), select, textarea') : null; };
+	var timer = 0, last = '', seq = 0;
+	var set = function (v) {
+		if (input.value === v) { return; }
+		input.value = v;
+		input.dispatchEvent(new Event('input', { bubbles: true }));
+	};
+	var measure = function () {
+		var a = ctl(cfg.from), b = ctl(cfg.to);
+		var from = a ? a.value.trim() : '', to = b ? b.value.trim() : '';
+		var key = from + '\n' + to;
+		if (key === last) { return; }
+		last = key;
+		set('');
+		if (from.length < 3 || to.length < 3) { box.removeAttribute('data-state'); return; }
+		var mine = ++seq;
+		box.setAttribute('data-state', 'busy');
+		var data = new FormData();
+		data.append('action', 'bst_form_distance');
+		data.append('key', form.getAttribute('data-key') || '');
+		data.append('post', form.getAttribute('data-post') || '0');
+		data.append('field', box.getAttribute('data-bs-field'));
+		data.append('from', from);
+		data.append('to', to);
+		fetch(form.getAttribute('action'), { method: 'POST', body: data, credentials: 'same-origin' })
+			.then(function (r) { return r.json(); })
+			.then(function (j) {
+				if (mine !== seq) { return; }
+				box.setAttribute('data-state', j && j.ok ? 'ok' : 'fail');
+				set(j && j.ok ? String(j.km) : '');
+			})
+			.catch(function () { if (mine === seq) { box.setAttribute('data-state', 'fail'); } });
+	};
+	var later = function (e) {
+		var t = e.target;
+		if (t === input || !t.closest) { return; }
+		var b = t.closest('[data-bs-field]');
+		if (!b || [cfg.from, cfg.to].indexOf(b.getAttribute('data-bs-field')) === -1) { return; }
+		clearTimeout(timer);
+		timer = setTimeout(measure, e.type === 'change' ? 0 : 900);
+	};
+	form.addEventListener('input', later);
+	form.addEventListener('change', later);
+	form.addEventListener('reset', function () { last = ''; setTimeout(function () { input.value = ''; box.removeAttribute('data-state'); }, 0); });
+}
+document.querySelectorAll('input[data-bs-distance]').forEach(bsNfDistance);
 
 /* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */
 document.addEventListener('submit', function (e) {
