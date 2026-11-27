@@ -706,9 +706,18 @@
 		particles: __('Particles network (canvas)', 'bigspy-ai-theme-wp'),
 		waves: __('Flowing lines (canvas)', 'bigspy-ai-theme-wp'),
 		stars: __('Starfield (canvas)', 'bigspy-ai-theme-wp'),
+		snow: __('Snow falling (canvas)', 'bigspy-ai-theme-wp'),
+		dust: __('Floating dust / sparkles (canvas)', 'bigspy-ai-theme-wp'),
+		wind: __('Gentle wind streaks (canvas)', 'bigspy-ai-theme-wp'),
+		fireflies: __('Fireflies (canvas)', 'bigspy-ai-theme-wp'),
+		bubbles: __('Rising bubbles (canvas)', 'bigspy-ai-theme-wp'),
+		rain: __('Rain (canvas)', 'bigspy-ai-theme-wp'),
+		petals: __('Falling petals / leaves (canvas)', 'bigspy-ai-theme-wp'),
+		confetti: __('Confetti (canvas)', 'bigspy-ai-theme-wp'),
+		meteors: __('Shooting stars (canvas)', 'bigspy-ai-theme-wp'),
 		custom: __('Custom code (CSS + HTML/SVG)', 'bigspy-ai-theme-wp')
 	};
-	var CODE_BG_CANVAS = ['particles', 'waves', 'stars'];
+	var CODE_BG_CANVAS = ['particles', 'waves', 'stars', 'snow', 'dust', 'wind', 'fireflies', 'bubbles', 'rain', 'petals', 'confetti', 'meteors'];
 	function codeBgPanels(a, props, bind) {
 		var set = function (k) { return function (v) { var o = {}; o[k] = v || ''; props.setAttributes(o); }; };
 		var on = !!a.codeBg;
@@ -717,7 +726,7 @@
 			el(Panel, { key: 'cbg', title: __('Code background (animated)', 'bigspy-ai-theme-wp'), initialOpen: on },
 				el(Select, Object.assign({ label: __('Style', 'bigspy-ai-theme-wp'), help: __('Drawn with code, no image or video needed. Sits above the background image and below the overlay. Stops animating for visitors who prefer reduced motion.', 'bigspy-ai-theme-wp'), options: CODE_BG }, bind('codeBg'))),
 				on && a.codeBg !== 'custom' ? el(Range, Object.assign({ label: __('Speed (%)', 'bigspy-ai-theme-wp'), min: 10, max: 400, reset: 100 }, bind('codeBgSpeed'))) : null,
-				on && ['grid', 'dots', 'particles', 'waves', 'stars'].indexOf(a.codeBg) !== -1 ? el(Range, Object.assign({ label: __('Density', 'bigspy-ai-theme-wp'), min: 5, max: 100, reset: 50 }, bind('codeBgDensity'))) : null,
+				on && ['grid', 'dots'].concat(CODE_BG_CANVAS).indexOf(a.codeBg) !== -1 ? el(Range, Object.assign({ label: __('Density', 'bigspy-ai-theme-wp'), min: 5, max: 100, reset: 50 }, bind('codeBgDensity'))) : null,
 				on ? el(Range, Object.assign({ label: __('Layer opacity (%)', 'bigspy-ai-theme-wp'), max: 100, reset: 100 }, bind('codeBgOpacity'))) : null,
 				on ? el(Toggle, Object.assign({ label: __('Show on mobile', 'bigspy-ai-theme-wp') }, bind('codeBgMobile', true))) : null,
 				a.codeBg === 'custom' ? el(c.TextareaControl, { label: __('Custom CSS', 'bigspy-ai-theme-wp'), help: __('Scoped to this layer: use :scope for the layer itself and @keyframes for animation. Colors: var(--cbg-c1), var(--cbg-c2), var(--cbg-c3).', 'bigspy-ai-theme-wp'), rows: 8, value: a.codeBgCss || '', onChange: set('codeBgCss'), style: mono }) : null,

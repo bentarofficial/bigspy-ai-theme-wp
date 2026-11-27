@@ -7756,6 +7756,36 @@ msgstr "Mạng hạt (canvas)"
 msgid "Flowing lines (canvas)"
 msgstr "Đường sóng (canvas)"
 
+msgid "Snow falling (canvas)"
+msgstr "Tuyết rơi (canvas)"
+
+msgid "Floating dust / sparkles (canvas)"
+msgstr "Bụi lấp lánh lơ lửng (canvas)"
+
+msgid "Gentle wind streaks (canvas)"
+msgstr "Gió thổi nhè nhẹ (canvas)"
+
+msgid "Fireflies (canvas)"
+msgstr "Đom đóm (canvas)"
+
+msgid "Rising bubbles (canvas)"
+msgstr "Bong bóng nổi lên (canvas)"
+
+msgid "Rain (canvas)"
+msgstr "Mưa rơi (canvas)"
+
+msgid "Falling petals / leaves (canvas)"
+msgstr "Cánh hoa / lá rơi (canvas)"
+
+msgid "Confetti (canvas)"
+msgstr "Pháo giấy (canvas)"
+
+msgid "Shooting stars (canvas)"
+msgstr "Sao băng (canvas)"
+
+msgid "1.107.0: Sections and banners get nine new animated backgrounds. In the Code background panel of a Section or Banner block choose Snow falling, Floating dust / sparkles, Gentle wind streaks, Fireflies, Rising bubbles, Rain, Falling petals / leaves, Confetti or Shooting stars. They are transparent, so they sit on top of a color or image background, and they follow the speed, density, opacity and color settings."
+msgstr "1.107.0: Section và Banner có thêm 9 nền động mới. Trong bảng Nền bằng code của block Section hoặc Banner, chọn Tuyết rơi, Bụi lấp lánh lơ lửng, Gió thổi nhè nhẹ, Đom đóm, Bong bóng nổi lên, Mưa rơi, Cánh hoa / lá rơi, Pháo giấy hoặc Sao băng. Các hiệu ứng trong suốt nên nằm chồng lên nền màu hoặc ảnh, và dùng chung các tùy chọn tốc độ, mật độ, độ mờ và màu."
+
 msgid "Starfield (canvas)"
 msgstr "Bầu trời sao (canvas)"
 

@@ -3,7 +3,7 @@ Contributors: bentar
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.106.0
+Stable tag: 1.107.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,9 @@ Multipurpose, fully customizable theme with a drag & drop header builder and a l
 See README.md in the source repository for the full feature list and the site-building workflow.
 
 == Changelog ==
+
+= 1.107.0 =
+* Section / Banner code backgrounds: snow, floating dust, wind streaks, fireflies, bubbles, rain, falling petals, confetti and shooting stars.
 
 = 1.106.0 =
 * Header buttons: six sizes, shape, custom font size, height, padding, weight, letter case, border, shadow and icon position.

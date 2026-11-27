@@ -22,6 +22,15 @@ function bst_code_bg_presets() {
 		'particles' => 'canvas',
 		'waves'     => 'canvas',
 		'stars'     => 'canvas',
+		'snow'      => 'canvas',
+		'dust'      => 'canvas',
+		'wind'      => 'canvas',
+		'fireflies' => 'canvas',
+		'bubbles'   => 'canvas',
+		'rain'      => 'canvas',
+		'petals'    => 'canvas',
+		'confetti'  => 'canvas',
+		'meteors'   => 'canvas',
 		'custom'    => 'custom',
 	);
 }

@@ -11553,6 +11553,36 @@ msgstr ""
 msgid "Flowing lines (canvas)"
 msgstr ""
 
+msgid "Snow falling (canvas)"
+msgstr ""
+
+msgid "Floating dust / sparkles (canvas)"
+msgstr ""
+
+msgid "Gentle wind streaks (canvas)"
+msgstr ""
+
+msgid "Fireflies (canvas)"
+msgstr ""
+
+msgid "Rising bubbles (canvas)"
+msgstr ""
+
+msgid "Rain (canvas)"
+msgstr ""
+
+msgid "Falling petals / leaves (canvas)"
+msgstr ""
+
+msgid "Confetti (canvas)"
+msgstr ""
+
+msgid "Shooting stars (canvas)"
+msgstr ""
+
+msgid "1.107.0: Sections and banners get nine new animated backgrounds. In the Code background panel of a Section or Banner block choose Snow falling, Floating dust / sparkles, Gentle wind streaks, Fireflies, Rising bubbles, Rain, Falling petals / leaves, Confetti or Shooting stars. They are transparent, so they sit on top of a color or image background, and they follow the speed, density, opacity and color settings."
+msgstr ""
+
 msgid "Starfield (canvas)"
 msgstr ""
 

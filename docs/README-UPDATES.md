@@ -6,6 +6,10 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.107.0: Nine new animated section backgrounds
+
+- Snow, floating dust, wind streaks, fireflies, bubbles, rain, falling petals, confetti and shooting stars in the Code background panel of Section and Banner.
+
 ### 1.106.0: More header button options
 
 - Six sizes, shape, custom size and padding, border, shadow and icon position for header buttons.
