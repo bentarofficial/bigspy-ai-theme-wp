@@ -7990,8 +7990,8 @@ msgstr "Các dòng giá dùng lẫn nhau thành vòng lặp."
 msgid "Option prices"
 msgstr "Giá theo lựa chọn"
 
-msgid "One per line: Option = amount. Use the field in a price formula as"
-msgstr "Mỗi dòng: Lựa chọn = số tiền. Dùng trường này trong công thức giá bằng"
+msgid "One per line: Option = number (a price, a distance in km or a multiplier). Use the field in a price formula as"
+msgstr "Mỗi dòng: Lựa chọn = số (giá tiền, số km hoặc hệ số nhân). Dùng trường này trong công thức giá bằng"
 
 msgid "Insert a field or line…"
 msgstr "Chèn trường hoặc dòng giá…"
@@ -8023,8 +8023,8 @@ msgstr "Ký hiệu tiền tệ"
 msgid "Decimals"
 msgstr "Số chữ số thập phân"
 
-msgid "Formulas: + − × ÷ ( ), min(), max(), round(x, digits), ceil(), floor(), if(condition, then, else), comparisons > < >= <= == !=. {f_…} is a field (its number, or the price of the picked options), {f_…=Option} is 1 when that option is picked, {l_…} is another line."
-msgstr "Công thức: + − × ÷ ( ), min(), max(), round(x, số chữ số), ceil(), floor(), if(điều kiện, đúng, sai), so sánh > < >= <= == !=. {f_…} là một trường (số đã nhập, hoặc giá của lựa chọn), {f_…=Lựa chọn} bằng 1 khi lựa chọn đó được chọn, {l_…} là một dòng giá khác."
+msgid "Formulas: + − × ÷ ( ), min(), max(), round(x, digits), ceil(), floor(), if(condition, then, else), tier(x, below, value, …, otherwise), comparisons > < >= <= == !=. {f_…} is a field (its number, or the price of the picked options), {f_…=Option} is 1 when that option is picked, {l_…} is another line."
+msgstr "Công thức: + − × ÷ ( ), min(), max(), round(x, số chữ số), ceil(), floor(), if(điều kiện, đúng, sai), tier(x, dưới mức, giá trị, …, còn lại) – lấy giá trị của bậc đầu tiên mà x nhỏ hơn mức, so sánh > < >= <= == !=. {f_…} là một trường (số đã nhập, hoặc giá của lựa chọn), {f_…=Lựa chọn} bằng 1 khi lựa chọn đó được chọn, {l_…} là một dòng giá khác."
 
 msgid "Line label"
 msgstr "Tên dòng"
@@ -12056,3 +12056,89 @@ msgstr "Không / theo kiểu"
 msgid "1.106.0: Header buttons get many more options. In Appearance > Customize > Header, open Button 1 or Button 2 from the gear and choose six sizes from extra extra small to extra large, a shape (square, rounded, pill or leaf), your own font size, height and padding in px, font weight, letter case, border, shadow and where the icon sits (before, after or icon only). The separate Logo section is gone: the sticky logo now sits in the Logo element with the other logo options."
 msgstr "1.106.0: Nút trên header có thêm nhiều tùy chọn. Vào Giao diện > Tùy biến > Đầu trang, mở Nút 1 hoặc Nút 2 bằng bánh răng và chọn 6 kích thước từ rất rất nhỏ đến rất lớn, hình dạng (vuông, bo góc, viên thuốc hoặc chiếc lá), cỡ chữ, chiều cao và khoảng đệm theo px, độ đậm chữ, kiểu chữ hoa, viền, đổ bóng và vị trí icon (trước, sau hoặc chỉ icon). Mục Logo riêng đã được bỏ: logo khi header dính giờ nằm trong phần tử Logo cùng các tùy chọn logo khác."
 
+msgid "City centre → Airport"
+msgstr "Trung tâm → Sân bay"
+
+msgid "City → Beach town"
+msgstr "Thành phố → Thị trấn biển"
+
+msgid "City → Mountain town"
+msgstr "Thành phố → Thị trấn vùng núi"
+
+msgid "4-seat car"
+msgstr "Xe 4 chỗ"
+
+msgid "7-seat car"
+msgstr "Xe 7 chỗ"
+
+msgid "16-seat van"
+msgstr "Xe 16 chỗ"
+
+msgid "One way"
+msgstr "Một chiều"
+
+msgid "Round trip"
+msgstr "Khứ hồi"
+
+msgid "Car booking by route (demo prices)"
+msgstr "Đặt xe theo tuyến (giá demo)"
+
+msgid "Route"
+msgstr "Tuyến"
+
+msgid "Choose a route"
+msgstr "Chọn tuyến"
+
+msgid "Vehicle"
+msgstr "Loại xe"
+
+msgid "Trip"
+msgstr "Chiều đi"
+
+msgid "Pickup time"
+msgstr "Thời gian đón"
+
+msgid "Pickup address"
+msgstr "Địa chỉ đón"
+
+msgid "Demo prices: replace them with your own before publishing. Route option values are kilometres; tolls not included."
+msgstr "Giá demo: hãy thay bằng giá của bạn trước khi công khai. Giá trị của mỗi tuyến là số km; chưa gồm phí cầu đường."
+
+msgid "Fare (minimum 300.000)"
+msgstr "Cước (tối thiểu 300.000)"
+
+msgid "Inner city (up to 5 km)"
+msgstr "Nội thành (đến 5 km)"
+
+msgid "Suburbs (about 15 km)"
+msgstr "Ngoại thành (khoảng 15 km)"
+
+msgid "Neighbouring province (about 60 km)"
+msgstr "Tỉnh lân cận (khoảng 60 km)"
+
+msgid "Delivery by zone and weight (demo prices)"
+msgstr "Giao hàng theo khu vực và cân nặng (giá demo)"
+
+msgid "Delivery zone"
+msgstr "Khu vực giao"
+
+msgid "Choose a zone"
+msgstr "Chọn khu vực"
+
+msgid "Cash on delivery"
+msgstr "Thu hộ (COD)"
+
+msgid "Collect cash on delivery"
+msgstr "Thu tiền hộ khi giao"
+
+msgid "Delivery address"
+msgstr "Địa chỉ giao"
+
+msgid "Demo prices: replace them with your own before publishing. Zone option values are kilometres."
+msgstr "Giá demo: hãy thay bằng giá của bạn trước khi công khai. Giá trị của mỗi khu vực là số km."
+
+msgid "Distance"
+msgstr "Quãng đường"
+
+msgid "Weight surcharge"
+msgstr "Phụ phí cân nặng"

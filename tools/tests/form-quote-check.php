@@ -79,7 +79,7 @@ $q = bst_quote_compute( $pricing, $fields, array( 'kg' => '3', 'ship' => 'Free s
 t( 54000.0 === $q['total'], 'unknown option adds nothing' );
 $div = array( 'enabled' => true, 'lines' => array( array( 'id' => 'l_a', 'label' => 'A', 'expr' => '100 / ({f_kg} - 3)' ) ) );
 t( 'error' === bst_quote_compute( $div, $fields, array( 'kg' => '3' ) )['status'], 'division by zero needs confirmation' );
-foreach ( array( 'system("x")', '{f_kg} ; 1', '`ls`', '1 +', 'max()', 'if(1,2)', '$x', '{f_kg}.constructor' ) as $bad ) {
+foreach ( array( 'system("x")', '{f_kg} ; 1', '`ls`', '1 +', 'max()', 'if(1,2)', 'tier(1, 2)', 'tier(1, 2, 3)', '$x', '{f_kg}.constructor' ) as $bad ) {
 	$p = array( 'enabled' => true, 'lines' => array( array( 'id' => 'l_a', 'label' => 'A', 'expr' => $bad ) ) );
 	t( 'syntax' === ( bst_quote_validate( $p, $fields )[0]['code'] ?? '' ) && 'error' === bst_quote_compute( $p, $fields, array( 'kg' => '1' ) )['status'], 'rejects ' . $bad );
 }
@@ -96,6 +96,12 @@ t( 'error' === bst_quote_compute( $neg, $fields, array() )['status'], 'negative 
 $fn = array( 'enabled' => true, 'lines' => array( array( 'id' => 'l_a', 'label' => 'A', 'expr' => 'max({f_kg} * 15000, 300000) + if({f_kg} >= 10, -min(50000, 20000), 0) + round(1234.5, -2) + ceil(1.2) + floor(1.8)' ) ) );
 t( 300000 + 1200 + 2 + 1 === (int) bst_quote_compute( $fn, $fields, array( 'kg' => '5' ) )['total'], 'max/min/if/round/ceil/floor' );
 t( 300000 - 20000 + 1200 + 3 === (int) bst_quote_compute( $fn, $fields, array( 'kg' => '10' ) )['total'], 'if branch' );
+
+// tier(): first band where x < below, else the last value; the boundary goes to the next band.
+$tier = array( 'enabled' => true, 'lines' => array( array( 'id' => 'l_a', 'label' => 'A', 'expr' => '{f_kg} * tier({f_kg}, 10, 18000, 30, 16000, 14000)' ) ) );
+t( 9 * 18000 === (int) bst_quote_compute( $tier, $fields, array( 'kg' => '9' ) )['total'], 'tier first band' );
+t( 10 * 16000 === (int) bst_quote_compute( $tier, $fields, array( 'kg' => '10' ) )['total'], 'tier boundary goes up' );
+t( 100 * 14000 === (int) bst_quote_compute( $tier, $fields, array( 'kg' => '100' ) )['total'], 'tier otherwise' );
 
 // Revision changes with any price and is stable otherwise; off by default.
 $r1 = bst_quote_revision( $pricing, $fields );

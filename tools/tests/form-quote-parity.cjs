@@ -10,7 +10,7 @@ const fields = [
   { id: 'f_ship', type: 'checkbox', name: 'ship', options: 'A\nB', prices: 'A = 25000\nB = 1.234,5' },
   { id: 'f_speed', type: 'radio', name: 'speed', options: 'Slow\nFast' },
 ];
-const exprs = ['{f_kg} * 18000', '{l_a} * 0.2 * {f_speed=Fast}', '{f_ship}', 'max({f_kg} * 1.005, 2.5)', 'round({f_kg} / 3, 2)', 'if({f_kg} >= 10, -min(50, {f_kg}), 0) + ceil({f_kg} / 4) + floor(1.999)', '100 / ({f_kg} - 3)', '1 +', '{f_kg} * 1e3'];
+const exprs = ['{f_kg} * 18000', '{l_a} * 0.2 * {f_speed=Fast}', '{f_ship}', 'max({f_kg} * 1.005, 2.5)', 'round({f_kg} / 3, 2)', 'if({f_kg} >= 10, -min(50, {f_kg}), 0) + ceil({f_kg} / 4) + floor(1.999)', '100 / ({f_kg} - 3)', '1 +', '{f_kg} * 1e3', '{f_kg} * tier({f_kg}, 3, 18000, 12, 16000, 14000)', 'tier({f_kg}, 1.5, {f_ship}, 0)', 'tier({f_kg}, 2)'];
 const inputs = [{ kg: '3', ship: 'A', speed: 'Fast' }, { kg: '1,5', ship: 'A, B', speed: 'Slow' }, { kg: '12' }, { kg: '' }, { kg: '-1' }, { kg: '99999999999' }, { kg: '0' }];
 const cases = [];
 for (const decimals of [0, 2]) for (const e of exprs) for (const v of inputs) {

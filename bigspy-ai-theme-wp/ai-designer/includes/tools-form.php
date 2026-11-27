@@ -45,7 +45,7 @@ add_filter( 'bst_aid_tools', function ( $tools ) {
 		'callback'    => 'bst_aid_tool_form_get',
 	);
 	$tools['form_configure'] = array(
-		'description' => 'Change one built-in Form block: the full field list and/or price quote settings. Send the complete list you want (existing fields keep their id and name). Price formula language: numbers, + - * / ( ), > < >= <= == !=, min(), max(), round(x, digits), ceil(), floor(), if(cond, a, b); {f_id} is a field (number, or summed option prices), {f_id=Option} is 1 when picked, {l_id} is another line. Never invent prices, routes, availability or taxes: ask the user. Run with dry_run: true first and show the user the diff and sample quote; save only after they agree. Turns the form into the built-in provider. Not for booking or payment.',
+		'description' => 'Change one built-in Form block: the full field list and/or price quote settings. Send the complete list you want (existing fields keep their id and name). Price formula language: numbers, + - * / ( ), > < >= <= == !=, min(), max(), round(x, digits), ceil(), floor(), if(cond, a, b), tier(x, below1, value1, ..., otherwise) = value of the first band where x < below; {f_id} is a field (number, or summed option prices), {f_id=Option} is 1 when picked, {l_id} is another line. Never invent prices, routes, availability or taxes: ask the user. Run with dry_run: true first and show the user the diff and sample quote; save only after they agree. Turns the form into the built-in provider. Not for booking or payment.',
 		'parameters'  => array(
 			'type'       => 'object',
 			'properties' => array(

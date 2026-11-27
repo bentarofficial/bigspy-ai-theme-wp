@@ -34,12 +34,12 @@
 			if (++depth > 40) { throw new Error('syntax'); }
 			var p = peek(), r;
 			i++;
-			if (p[0] === 'op' && p[1] === '-') { r = ['neg', unary()]; } else if (p[0] === 'num') { r = p; } else if (p[0] === 'ref') { r = p; } else if (p[0] === 'op' && p[1] === '(') { r = cmp(); eat(')'); } else if (p[0] === 'fn' && ['min', 'max', 'round', 'ceil', 'floor', 'if'].indexOf(p[1]) !== -1) {
+			if (p[0] === 'op' && p[1] === '-') { r = ['neg', unary()]; } else if (p[0] === 'num') { r = p; } else if (p[0] === 'ref') { r = p; } else if (p[0] === 'op' && p[1] === '(') { r = cmp(); eat(')'); } else if (p[0] === 'fn' && ['min', 'max', 'round', 'ceil', 'floor', 'if', 'tier'].indexOf(p[1]) !== -1) {
 				eat('(');
 				var args = [cmp()];
 				while (isOp([','])) { i++; args.push(cmp()); }
 				eat(')');
-				if ((p[1] === 'if' && args.length !== 3) || ((p[1] === 'ceil' || p[1] === 'floor') && args.length !== 1) || (p[1] === 'round' && args.length > 2)) { throw new Error('syntax'); }
+				if ((p[1] === 'if' && args.length !== 3) || ((p[1] === 'ceil' || p[1] === 'floor') && args.length !== 1) || (p[1] === 'round' && args.length > 2) || (p[1] === 'tier' && (args.length < 4 || args.length % 2 === 1))) { throw new Error('syntax'); }
 				r = ['fn', p[1], args];
 			} else { throw new Error('syntax'); }
 			depth--;
@@ -48,6 +48,11 @@
 		var tree = cmp();
 		if (peek()[0] !== 'end') { throw new Error('syntax'); }
 		return tree;
+	}
+	// tier(x, below1, value1, ..., otherwise): value of the first band where x < below.
+	function bsQTier(v) {
+		for (var k = 1; k < v.length - 1; k += 2) { if (v[0] < v[k] - 1e-9) { return v[k + 1]; } }
+		return v[v.length - 1];
 	}
 	function bsQEval(n, ref) {
 		var r, a, b;
@@ -68,7 +73,7 @@
 			return bsQEval(n[2][0], ref) !== 0 ? bsQEval(n[2][1], ref) : bsQEval(n[2][2], ref);
 		} else {
 			var v = n[2].map(function (x) { return bsQEval(x, ref); });
-			r = n[1] === 'min' ? Math.min.apply(null, v) : n[1] === 'max' ? Math.max.apply(null, v) : n[1] === 'ceil' ? Math.ceil(v[0] - 1e-9) : n[1] === 'floor' ? Math.floor(v[0] + 1e-9) : bsQRound(v[0], Math.max(-6, Math.min(6, Math.trunc(v[1] || 0))));
+			r = n[1] === 'tier' ? bsQTier(v) : n[1] === 'min' ? Math.min.apply(null, v) : n[1] === 'max' ? Math.max.apply(null, v) : n[1] === 'ceil' ? Math.ceil(v[0] - 1e-9) : n[1] === 'floor' ? Math.floor(v[0] + 1e-9) : bsQRound(v[0], Math.max(-6, Math.min(6, Math.trunc(v[1] || 0))));
 		}
 		if (!isFinite(r) || Math.abs(r) > 1e12) { throw new Error('range'); }
 		return r;

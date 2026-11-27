@@ -3442,7 +3442,46 @@
 				pricing: { enabled: true, symbol: '₫', decimals: 0, note: __('Demo prices: replace them with your own before publishing.', T), lines: [
 					{ id: 'l_clean', label: __('Cleaning (minimum 300.000)', T), expr: 'max({f_area} * {f_package}, 300000)' }
 				] }
-			}
+			},
+			ride: (function () {
+				// Free: route distances typed by the owner, no map service or API key.
+				var r = [[__('City centre → Airport', T), 30], [__('City → Beach town', T), 120], [__('City → Mountain town', T), 300]];
+				var car = [[__('4-seat car', T), 1], [__('7-seat car', T), 1.15], [__('16-seat van', T), 1.4]];
+				var trip = [[__('One way', T), 1], [__('Round trip', T), 1.6]];
+				var opts = function (a) { return a.map(function (x) { return x[0]; }).join('\n'); };
+				var vals = function (a) { return a.map(function (x) { return x[0] + ' = ' + x[1]; }).join('\n'); };
+				return {
+					label: __('Car booking by route (demo prices)', T),
+					fields: contact.concat([
+						{ id: 'f_route', type: 'select', name: 'route', label: __('Route', T), options: opts(r), prices: vals(r), placeholder: __('Choose a route', T), required: true, width: 'full' },
+						{ id: 'f_car', type: 'radio', name: 'car', label: __('Vehicle', T), options: opts(car), prices: vals(car), required: true, width: 'half' },
+						{ id: 'f_trip', type: 'radio', name: 'trip', label: __('Trip', T), options: opts(trip), prices: vals(trip), required: true, width: 'half' },
+						{ id: 'f_pickup', type: 'datetime', name: 'pickup', label: __('Pickup time', T), required: true, width: 'full' },
+						{ id: 'f_address', type: 'text', name: 'address', label: __('Pickup address', T), required: false, width: 'full' }
+					]),
+					pricing: { enabled: true, symbol: '₫', decimals: 0, note: __('Demo prices: replace them with your own before publishing. Route option values are kilometres; tolls not included.', T), lines: [
+						{ id: 'l_fare', label: __('Fare (minimum 300.000)', T), expr: 'max({f_route} * tier({f_route}, 50, 18000, 150, 15000, 12000) * {f_car} * {f_trip}, 300000)' }
+					] }
+				};
+			}()),
+			delivery: (function () {
+				// Same idea for shipping: zones with a distance, weight bands with tier().
+				var z = [[__('Inner city (up to 5 km)', T), 5], [__('Suburbs (about 15 km)', T), 15], [__('Neighbouring province (about 60 km)', T), 60]];
+				return {
+					label: __('Delivery by zone and weight (demo prices)', T),
+					fields: contact.concat([
+						{ id: 'f_zone', type: 'select', name: 'zone', label: __('Delivery zone', T), options: z.map(function (x) { return x[0]; }).join('\n'), prices: z.map(function (x) { return x[0] + ' = ' + x[1]; }).join('\n'), placeholder: __('Choose a zone', T), required: true, width: 'half' },
+						{ id: 'f_weight', type: 'number', name: 'weight', label: __('Weight (kg)', T), placeholder: '2', required: true, width: 'half' },
+						{ id: 'f_cod', type: 'checkbox', name: 'cod', label: __('Cash on delivery', T), options: __('Collect cash on delivery', T), prices: __('Collect cash on delivery', T) + ' = 10000', required: false, width: 'full' },
+						{ id: 'f_address', type: 'text', name: 'address', label: __('Delivery address', T), required: true, width: 'full' }
+					]),
+					pricing: { enabled: true, symbol: '₫', decimals: 0, note: __('Demo prices: replace them with your own before publishing. Zone option values are kilometres.', T), lines: [
+						{ id: 'l_distance', label: __('Distance', T), expr: 'max(15000, {f_zone} * tier({f_zone}, 10, 4000, 30, 3500, 3000))' },
+						{ id: 'l_weight', label: __('Weight surcharge', T), expr: 'tier({f_weight}, 3, 0, 10, 10000, 20000 + ceil({f_weight} - 10) * 2000)' },
+						{ id: 'l_cod', label: __('Cash on delivery', T), expr: '{f_cod}' }
+					] }
+				};
+			}())
 		};
 	}
 	/* Pricing problems per line, same codes as bst_quote_validate(). */
@@ -3526,7 +3565,7 @@
 							el(c.TextControl, { label: __('Label', T), value: f.label || '', onChange: function (v) { upd(i, 'label', v); }, __nextHasNoMarginBottom: true }),
 							el(c.TextControl, { label: f.type === 'acceptance' ? __('Consent text', T) : __('Placeholder', T), value: f.placeholder || '', onChange: function (v) { upd(i, 'placeholder', v); }, __nextHasNoMarginBottom: true }),
 							needsOpts ? el(c.TextareaControl, { label: __('Options (one per line)', T), value: f.options || '', rows: 4, onChange: function (v) { upd(i, 'options', v); }, __nextHasNoMarginBottom: true }) : null,
-							pricing.enabled && ['select', 'radio', 'checkbox'].indexOf(f.type) !== -1 ? el(c.TextareaControl, { label: __('Option prices', T), help: __('One per line: Option = amount. Use the field in a price formula as', T) + ' {' + f.id + '}', value: f.prices || '', rows: 3, onChange: function (v) { upd(i, 'prices', v); }, __nextHasNoMarginBottom: true }) : null,
+							pricing.enabled && ['select', 'radio', 'checkbox'].indexOf(f.type) !== -1 ? el(c.TextareaControl, { label: __('Option prices', T), help: __('One per line: Option = number (a price, a distance in km or a multiplier). Use the field in a price formula as', T) + ' {' + f.id + '}', value: f.prices || '', rows: 3, onChange: function (v) { upd(i, 'prices', v); }, __nextHasNoMarginBottom: true }) : null,
 							el(c.TextControl, { label: __('Field name (mail tag)', T), help: '[' + f.name + ']', value: f.name, onChange: function (v) { var n = fields.slice(); n[i] = Object.assign({}, f, { name: nfSlug(v, []), lockName: true }); setFields(n); }, __nextHasNoMarginBottom: true }),
 							el('div', { className: 'bst-nf-row' },
 								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
@@ -3591,7 +3630,7 @@
 						el(c.TextControl, { label: __('Currency symbol', T), value: pricing.symbol === undefined ? '₫' : pricing.symbol, onChange: function (v) { setPricing({ symbol: v }); }, __nextHasNoMarginBottom: true }),
 						el(c.SelectControl, { label: __('Decimals', T), value: String(pricing.decimals || 0), options: [0, 1, 2, 3].map(function (n) { return { value: String(n), label: String(n) }; }), onChange: function (v) { setPricing({ decimals: parseInt(v, 10) }); }, __nextHasNoMarginBottom: true })
 					),
-					el('p', { className: 'description' }, __('Formulas: + − × ÷ ( ), min(), max(), round(x, digits), ceil(), floor(), if(condition, then, else), comparisons > < >= <= == !=. {f_…} is a field (its number, or the price of the picked options), {f_…=Option} is 1 when that option is picked, {l_…} is another line.', T)),
+					el('p', { className: 'description' }, __('Formulas: + − × ÷ ( ), min(), max(), round(x, digits), ceil(), floor(), if(condition, then, else), tier(x, below, value, …, otherwise), comparisons > < >= <= == !=. {f_…} is a field (its number, or the price of the picked options), {f_…=Option} is 1 when that option is picked, {l_…} is another line.', T)),
 					lines.map(function (l, j) {
 						return el('div', { key: l.id || j, className: 'bst-nf-item is-open' },
 							el('div', { className: 'bst-nf-item__body' },

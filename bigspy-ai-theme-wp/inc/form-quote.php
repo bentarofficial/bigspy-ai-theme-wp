@@ -5,7 +5,8 @@
  * for the live preview; the server always computes again from the saved block.
  *
  * Formula: numbers, + - * / ( ), comparisons (> < >= <= == !=), min(), max(),
- * round(x[, digits]), ceil(), floor(), if(cond, a, b) and references:
+ * round(x[, digits]), ceil(), floor(), if(cond, a, b),
+ * tier(x, below1, value1, ..., otherwise) (first band where x < below) and references:
  *   {f_kg}        a field: number value, or the summed prices of the picked options
  *   {f_speed=Fast} 1 when that option is picked, else 0
  *   {l_wash}      the amount of another line
@@ -169,7 +170,7 @@ function bst_quote_parse( $s ) {
 		} elseif ( 'op' === $p[0] && '(' === $p[1] ) {
 			$r = $cmp();
 			$eat( ')' );
-		} elseif ( 'fn' === $p[0] && in_array( $p[1], array( 'min', 'max', 'round', 'ceil', 'floor', 'if' ), true ) ) {
+		} elseif ( 'fn' === $p[0] && in_array( $p[1], array( 'min', 'max', 'round', 'ceil', 'floor', 'if', 'tier' ), true ) ) {
 			$eat( '(' );
 			$args = array( $cmp() );
 			while ( 'op' === $peek()[0] && ',' === $peek()[1] ) {
@@ -178,7 +179,7 @@ function bst_quote_parse( $s ) {
 			}
 			$eat( ')' );
 			$n = count( $args );
-			if ( ( 'if' === $p[1] && 3 !== $n ) || ( in_array( $p[1], array( 'ceil', 'floor' ), true ) && 1 !== $n ) || ( 'round' === $p[1] && $n > 2 ) ) {
+			if ( ( 'if' === $p[1] && 3 !== $n ) || ( in_array( $p[1], array( 'ceil', 'floor' ), true ) && 1 !== $n ) || ( 'round' === $p[1] && $n > 2 ) || ( 'tier' === $p[1] && ( $n < 4 || 1 === $n % 2 ) ) ) {
 				throw new Exception( 'syntax' );
 			}
 			$r = array( 'fn', $p[1], $args );
@@ -265,6 +266,16 @@ function bst_quote_eval( $n, $ref ) {
 					break;
 				case 'max':
 					$r = max( $v );
+					break;
+				case 'tier':
+					// tier(x, below1, value1, below2, value2, ..., otherwise): first band with x < below.
+					$r = $v[ count( $v ) - 1 ];
+					for ( $k = 1; $k < count( $v ) - 1; $k += 2 ) {
+						if ( $v[0] < $v[ $k ] - 1e-9 ) {
+							$r = $v[ $k + 1 ];
+							break;
+						}
+					}
 					break;
 				case 'ceil':
 					$r = ceil( $v[0] - 1e-9 );
