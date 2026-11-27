@@ -177,7 +177,7 @@ function bst_native_form_markup( $a ) {
 				$control = '<textarea class="wpcf7-form-control wpcf7-textarea"' . $attr . ' rows="5" maxlength="5000" placeholder="' . esc_attr( $ph ) . '"></textarea>';
 				break;
 			case 'select':
-				$control = '<select class="wpcf7-form-control wpcf7-select"' . $attr . '>' . ( $ph ? '<option value="">' . esc_html( $ph ) . '</option>' : '' );
+				$control = '<select class="wpcf7-form-control wpcf7-select"' . $attr . ( empty( $f['search'] ) ? '' : ' data-bs-search="1"' ) . '>' . ( $ph ? '<option value="">' . esc_html( $ph ) . '</option>' : '' );
 				foreach ( $opts as $o ) {
 					$control .= '<option value="' . esc_attr( $o ) . '"' . ( in_array( $o, $picks, true ) ? ' selected' : '' ) . '>' . esc_html( $o ) . '</option>';
 				}

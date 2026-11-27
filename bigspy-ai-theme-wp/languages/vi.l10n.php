@@ -2149,6 +2149,7 @@ Giá hoặc gói dịch vụ (nếu có):',
 		'No image' => 'Chưa có ảnh',
 		'No industrial MSG' => 'Không dùng bột ngọt công nghiệp',
 		'No key yet? Create one at ' => 'Chưa có key? Tạo tại ',
+		'No matching option' => 'Không có lựa chọn phù hợp',
 		'No model selected' => 'Chưa chọn model',
 		'No page to preview yet' => 'Chưa có trang để xem',
 		'No posts found.' => 'Chưa có bài viết.',
@@ -3523,6 +3524,7 @@ Tránh: người nổi tiếng có thật, logo thương hiệu khác, watermark
 		'Two tea breaks' => 'Tea-break 2 buổi',
 		'Two to six panels that expand on hover, touch or keyboard focus.' => 'Từ hai đến sáu ô mở rộng khi rê chuột, chạm hoặc chọn bằng bàn phím.',
 		'Type to search your pages. A thank-you page lets Google Ads, Analytics or the Facebook Pixel count conversions.' => 'Gõ để tìm trang trên site. Trang cảm ơn giúp Google Ads, Analytics hay Facebook Pixel đếm chuyển đổi.',
+		'Type to search…' => 'Gõ để tìm…',
 		'Typewriter' => 'Gõ chữ',
 		'Typewriter · rotate · scramble · gradient' => 'Gõ chữ · thay phiên · xáo chữ · gradient',
 		'Typography' => 'Kiểu chữ',
@@ -3656,6 +3658,7 @@ Tránh: người nổi tiếng có thật, logo thương hiệu khác, watermark
 		'Visitors' => 'Người xem',
 		'Visitors can sort columns' => 'Khách sắp xếp được theo cột',
 		'Visitors only see it after you add widgets to the "Shop sidebar" area in Appearance → Widgets.' => 'Khách chỉ thấy sidebar sau khi bạn thêm widget vào vùng "Shop sidebar" ở Giao diện → Widget.',
+		'Visitors type to filter the options. Good for long lists such as routes, zones or branches.' => 'Khách gõ để lọc lựa chọn. Hợp với danh sách dài như tuyến, khu vực hoặc chi nhánh.',
 		'Voice, how to address readers, length, headings, words to avoid, SEO rules. Used for every page, post and product text.' => 'Giọng văn, cách xưng hô, độ dài, heading, từ cần tránh, quy tắc SEO. Áp dụng cho mọi nội dung trang, bài viết và sản phẩm.',
 		'Voice: friendly, clear, professional; write like a real person, no hype.
 Address the reader as: you.

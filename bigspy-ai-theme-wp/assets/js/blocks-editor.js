@@ -3453,7 +3453,7 @@
 				return {
 					label: __('Car booking by route (demo prices)', T),
 					fields: contact.concat([
-						{ id: 'f_route', type: 'select', name: 'route', label: __('Route', T), options: opts(r), prices: vals(r), placeholder: __('Choose a route', T), required: true, width: 'full' },
+						{ id: 'f_route', type: 'select', name: 'route', label: __('Route', T), options: opts(r), prices: vals(r), placeholder: __('Choose a route', T), search: true, required: true, width: 'full' },
 						{ id: 'f_car', type: 'radio', name: 'car', label: __('Vehicle', T), options: opts(car), prices: vals(car), required: true, width: 'half' },
 						{ id: 'f_trip', type: 'radio', name: 'trip', label: __('Trip', T), options: opts(trip), prices: vals(trip), required: true, width: 'half' },
 						{ id: 'f_pickup', type: 'datetime', name: 'pickup', label: __('Pickup time', T), required: true, width: 'full' },
@@ -3470,7 +3470,7 @@
 				return {
 					label: __('Delivery by zone and weight (demo prices)', T),
 					fields: contact.concat([
-						{ id: 'f_zone', type: 'select', name: 'zone', label: __('Delivery zone', T), options: z.map(function (x) { return x[0]; }).join('\n'), prices: z.map(function (x) { return x[0] + ' = ' + x[1]; }).join('\n'), placeholder: __('Choose a zone', T), required: true, width: 'half' },
+						{ id: 'f_zone', type: 'select', name: 'zone', label: __('Delivery zone', T), options: z.map(function (x) { return x[0]; }).join('\n'), prices: z.map(function (x) { return x[0] + ' = ' + x[1]; }).join('\n'), placeholder: __('Choose a zone', T), search: true, required: true, width: 'half' },
 						{ id: 'f_weight', type: 'number', name: 'weight', label: __('Weight (kg)', T), placeholder: '2', required: true, width: 'half' },
 						{ id: 'f_cod', type: 'checkbox', name: 'cod', label: __('Cash on delivery', T), options: __('Collect cash on delivery', T), prices: __('Collect cash on delivery', T) + ' = 10000', required: false, width: 'full' },
 						{ id: 'f_address', type: 'text', name: 'address', label: __('Delivery address', T), required: true, width: 'full' }
@@ -3571,6 +3571,7 @@
 								el(c.ToggleControl, { label: __('Required', T), checked: !!f.required, onChange: function (v) { upd(i, 'required', v); }, __nextHasNoMarginBottom: true }),
 								el(c.ToggleControl, { label: __('Half width', T), checked: f.width === 'half', onChange: function (v) { upd(i, 'width', v ? 'half' : 'full'); }, __nextHasNoMarginBottom: true })
 							),
+							f.type === 'select' ? el(c.ToggleControl, { label: __('Search box', T), help: __('Visitors type to filter the options. Good for long lists such as routes, zones or branches.', T), checked: !!f.search, onChange: function (v) { upd(i, 'search', v); }, __nextHasNoMarginBottom: true }) : null,
 							el(NfCondition, { title: __('Show this field', T), addLabel: __('Only show when…', T), self: f.id, fields: fields, value: f.show, onChange: function (v) { upd(i, 'show', v); } }),
 							f.required ? null : el(NfCondition, { title: __('Required', T), addLabel: __('Required only when…', T), self: f.id, fields: fields, value: f.requiredWhen, onChange: function (v) { upd(i, 'requiredWhen', v); } }),
 							(function () {

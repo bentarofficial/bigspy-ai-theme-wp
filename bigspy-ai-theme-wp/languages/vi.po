@@ -12142,3 +12142,12 @@ msgstr "Quãng đường"
 
 msgid "Weight surcharge"
 msgstr "Phụ phí cân nặng"
+
+msgid "Visitors type to filter the options. Good for long lists such as routes, zones or branches."
+msgstr "Khách gõ để lọc lựa chọn. Hợp với danh sách dài như tuyến, khu vực hoặc chi nhánh."
+
+msgid "No matching option"
+msgstr "Không có lựa chọn phù hợp"
+
+msgid "Type to search…"
+msgstr "Gõ để tìm…"

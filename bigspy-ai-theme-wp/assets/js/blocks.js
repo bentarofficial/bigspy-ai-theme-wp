@@ -30,8 +30,52 @@
 		var pages = function () {
 			return Math.max(1, slides().length - perView() + 1);
 		};
+		/* Glide: our own eased scroll instead of the browser's 'smooth', which
+		 * starts abruptly and has a fixed speed. Snap is paused while gliding
+		 * so it cannot fight the animation; a new drag or wheel stops it. */
+		var glide = null;
+		var stopGlide = function () {
+			if (glide) {
+				cancelAnimationFrame(glide.raf);
+				glide = null;
+				root.classList.remove('is-gliding');
+			}
+		};
+		var glideTo = function (left, index) {
+			stopGlide();
+			var from = track.scrollLeft;
+			var dist = left - from;
+			if (reduceMotion || Math.abs(dist) < 2) {
+				track.scrollLeft = left;
+				return;
+			}
+			var dur = Math.min(1100, 600 + Math.abs(dist) * 0.2);
+			var t0 = null;
+			glide = { index: index };
+			root.classList.add('is-gliding');
+			var frame = function (now) {
+				if (!glide) {
+					return;
+				}
+				if (t0 === null) {
+					t0 = now;
+				}
+				var p = Math.min(1, (now - t0) / dur);
+				/* easeInOutCubic: soft start, soft landing. */
+				var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+				track.scrollLeft = from + dist * e;
+				if (p < 1) {
+					glide.raf = requestAnimationFrame(frame);
+				} else {
+					stopGlide();
+				}
+			};
+			glide.raf = requestAnimationFrame(frame);
+		};
+		track.addEventListener('wheel', stopGlide, { passive: true });
+		track.addEventListener('touchstart', stopGlide, { passive: true });
 		var current = function () {
-			return Math.round(track.scrollLeft / step());
+			return glide ? glide.index : Math.round(track.scrollLeft / step());
 		};
 		var goTo = function (index) {
 			var max = pages() - 1;
@@ -41,7 +85,7 @@
 			if (index < 0) {
 				index = root.dataset.loop === '1' ? max : 0;
 			}
-			track.scrollTo({ left: index * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+			glideTo(index * step(), index);
 		};
 
 		/* Fade effect: slides are stacked, the active one is shown. */
@@ -57,9 +101,21 @@
 			goTo = function (index) {
 				var items = slides();
 				var max = items.length - 1;
+				var from = fadeIndex;
+				/* Direction before wrapping: next from the last slide still moves forward. */
+				var dir = index < from ? -1 : 1;
 				fadeIndex = index > max ? 0 : (index < 0 ? max : index);
+				if (fadeIndex === from) {
+					return;
+				}
+				/* Set the direction and let waiting slides take their start
+				 * position first, so the new slide always enters from the side
+				 * it is coming from. */
+				root.style.setProperty('--bs-dir', dir);
+				void track.offsetWidth;
 				items.forEach(function (el, i) {
 					el.classList.toggle('is-active', i === fadeIndex);
+					el.classList.toggle('is-leaving', i === from);
 					el.setAttribute('aria-hidden', i === fadeIndex ? 'false' : 'true');
 				});
 				if (typeof syncDots === 'function') {
@@ -78,6 +134,7 @@
 			if (event.button !== 0 || (!fade && event.pointerType !== 'mouse') || event.target.closest('input, select, textarea, iframe, video')) {
 				return;
 			}
+			stopGlide();
 			swipe = { x: event.clientX, y: event.clientY, left: track.scrollLeft, id: event.pointerId };
 			dragged = false;
 		});
@@ -1300,7 +1357,7 @@ function bsNfApply(form) {
 	var byId = {}, memo = {};
 	boxes.forEach(function (b) { byId[b.getAttribute('data-bs-field')] = b; });
 	var value = function (b) {
-		var ctls = b.querySelectorAll('input, select, textarea');
+		var ctls = b.querySelectorAll('input:not([data-bs-skip]), select, textarea');
 		var out = [];
 		Array.prototype.forEach.call(ctls, function (c) {
 			if ((c.type === 'checkbox' || c.type === 'radio') ? c.checked : c.value.trim() !== '') {
@@ -1331,7 +1388,7 @@ function bsNfApply(form) {
 		var rw = b.getAttribute('data-bs-req-when');
 		var req = on && (b.getAttribute('data-bs-req') === '1' || (rw ? met(JSON.parse(rw)) : false));
 		b.hidden = !on;
-		b.querySelectorAll('input, select, textarea').forEach(function (c) {
+		b.querySelectorAll('input:not([data-bs-skip]), select, textarea').forEach(function (c) {
 			c.disabled = !on;
 			if (c.type !== 'radio' && !(c.type === 'checkbox' && /\[\]$/.test(c.name))) {
 				c.required = req;
@@ -1356,6 +1413,121 @@ document.addEventListener('input', function (e) { var f = e.target.closest && e.
 document.addEventListener('change', function (e) { var f = e.target.closest && e.target.closest('[data-bs-native-form]'); if (f) { bsNfApply(f); } });
 window.bsNfApply = bsNfApply;
 document.querySelectorAll('[data-bs-native-form]').forEach(bsNfApply);
+
+/* Searchable dropdown (G-219): a type-to-filter box over a normal select. The select keeps the
+   value, so sending, conditions and the price quote work as before, and also without JS. */
+function bsNfFold(s) {
+	return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd');
+}
+function bsNfCombo(sel) {
+	if (sel.getAttribute('data-bs-combo')) {
+		return;
+	}
+	sel.setAttribute('data-bs-combo', '1');
+	var L = window.bstBlocksL10n || {};
+	var uid = 'bs-nf-combo-' + Math.random().toString(36).slice(2, 9);
+	var first = sel.options[0] && sel.options[0].value === '' ? sel.options[0].text : '';
+	var wrap = document.createElement('span');
+	wrap.className = 'bs-nf-combo';
+	var input = document.createElement('input');
+	input.type = 'text';
+	input.className = 'wpcf7-form-control wpcf7-text bs-nf-combo__input';
+	input.setAttribute('data-bs-skip', '1');
+	input.setAttribute('role', 'combobox');
+	input.setAttribute('aria-autocomplete', 'list');
+	input.setAttribute('aria-expanded', 'false');
+	input.setAttribute('aria-controls', uid);
+	input.setAttribute('autocomplete', 'off');
+	input.placeholder = first || L.typeToSearch || '';
+	var list = document.createElement('ul');
+	list.className = 'bs-nf-combo__list';
+	list.id = uid;
+	list.setAttribute('role', 'listbox');
+	list.hidden = true;
+	sel.parentNode.insertBefore(wrap, sel);
+	wrap.appendChild(input);
+	wrap.appendChild(sel);
+	wrap.appendChild(list);
+	sel.classList.add('bs-nf-combo__native');
+	sel.tabIndex = -1;
+	sel.setAttribute('aria-hidden', 'true');
+	var items = [], active = -1;
+	var picked = function () { var o = sel.options[sel.selectedIndex]; return o && o.value !== '' ? o.text : ''; };
+	var sync = function () { input.value = picked(); input.disabled = sel.disabled; };
+	var close = function () { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1; };
+	var mark = function (n) {
+		items.forEach(function (li, k) { li.setAttribute('aria-selected', k === n ? 'true' : 'false'); li.classList.toggle('is-active', k === n); });
+		active = n;
+		if (items[n]) { input.setAttribute('aria-activedescendant', items[n].id); items[n].scrollIntoView({ block: 'nearest' }); } else { input.removeAttribute('aria-activedescendant'); }
+	};
+	var open = function (all) {
+		var words = all ? [] : bsNfFold(input.value).split(/\s+/).filter(Boolean);
+		list.textContent = '';
+		items = [];
+		Array.prototype.forEach.call(sel.options, function (o, k) {
+			if (o.value === '' || o.disabled) { return; }
+			var t = bsNfFold(o.text);
+			if (words.some(function (w) { return t.indexOf(w) === -1; })) { return; }
+			var li = document.createElement('li');
+			li.id = uid + '-' + k;
+			li.setAttribute('role', 'option');
+			li.className = 'bs-nf-combo__opt' + (o.selected ? ' is-picked' : '');
+			li.textContent = o.text;
+			li.setAttribute('data-value', o.value);
+			li.addEventListener('mousedown', function (e) { e.preventDefault(); choose(li); });
+			list.appendChild(li);
+			items.push(li);
+		});
+		if (!items.length) {
+			var none = document.createElement('li');
+			none.className = 'bs-nf-combo__none';
+			none.textContent = L.noMatch || '';
+			list.appendChild(none);
+		}
+		list.hidden = false;
+		input.setAttribute('aria-expanded', 'true');
+		mark(items.length ? 0 : -1);
+	};
+	var choose = function (li) {
+		sel.value = li.getAttribute('data-value');
+		input.value = li.textContent;
+		input.classList.remove('wpcf7-not-valid');
+		close();
+		sel.dispatchEvent(new Event('change', { bubbles: true }));
+	};
+	input.addEventListener('focus', function () { if (input.value === picked()) { input.select(); } });
+	input.addEventListener('click', function () { if (list.hidden) { open(true); } });
+	input.addEventListener('input', function () { open(false); });
+	input.addEventListener('keydown', function (e) {
+		if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+			e.preventDefault();
+			if (list.hidden) { open(true); return; }
+			if (items.length) { mark((active + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length); }
+		} else if (e.key === 'Enter' && !list.hidden) {
+			e.preventDefault();
+			if (items[active]) { choose(items[active]); }
+		} else if (e.key === 'Escape' && !list.hidden) {
+			e.preventDefault();
+			close();
+			sync();
+		}
+	});
+	input.addEventListener('blur', function () {
+		close();
+		if (input.value.trim() === '' && sel.value !== '') {
+			sel.value = '';
+			sel.dispatchEvent(new Event('change', { bubbles: true }));
+		}
+		sync();
+	});
+	sel.addEventListener('change', sync);
+	sel.addEventListener('invalid', function () { input.classList.add('wpcf7-not-valid'); setTimeout(function () { input.focus(); }, 0); });
+	if (sel.form) { sel.form.addEventListener('reset', function () { setTimeout(sync, 0); }); }
+	// Conditions switch the select on and off.
+	new MutationObserver(sync).observe(sel, { attributes: true, attributeFilter: ['disabled'] });
+	sync();
+}
+document.querySelectorAll('select[data-bs-search]').forEach(bsNfCombo);
 
 /* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */
 document.addEventListener('submit', function (e) {

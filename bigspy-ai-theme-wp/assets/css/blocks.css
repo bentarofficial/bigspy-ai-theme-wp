@@ -2707,8 +2707,12 @@ input[type="submit"]:hover,
 .bs-slider[style*="--bs-slider-min"] .bs-slider__track > * { min-height: var(--bs-slider-min); }
 .bs-slider[style*="--bs-slide-radius"] .bs-slider__track > * { overflow: hidden; border-radius: var(--bs-slide-radius); }
 .bs-slider--fade .bs-slider__track { grid-auto-flow: row; grid-auto-columns: auto; grid-template-areas: "slide"; overflow: hidden; scroll-snap-type: none; }
-.bs-slider--fade .bs-slider__track > * { grid-area: slide; opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility .7s; }
-.bs-slider--fade .bs-slider__track > .is-active { opacity: 1; visibility: visible; }
+/* Fade family: the new slide fades in on top while the old one fades out a
+ * moment later underneath, so the picture never dips to the background.
+ * Waiting slides have no transition so they snap to their start pose. */
+.bs-slider--fade .bs-slider__track > * { grid-area: slide; z-index: 0; opacity: 0; visibility: hidden; transition: none; }
+.bs-slider--fade .bs-slider__track > .is-leaving { z-index: 1; transition: opacity .75s cubic-bezier(.4, 0, 1, 1) .3s, visibility 0s linear 1.05s, transform 1.05s cubic-bezier(.45, 0, .55, 1); }
+.bs-slider--fade .bs-slider__track > .is-active { z-index: 2; opacity: 1; visibility: visible; transform: none; transition: opacity .85s cubic-bezier(0, 0, .2, 1), visibility 0s, transform 1.1s cubic-bezier(.22, .61, .36, 1); }
 .bs-slider--arrows-always .bs-slider__arrow { opacity: 1; }
 .bs-slider--arrows-dark .bs-slider__arrow { background: rgba(17, 24, 39, .82); color: #fff; }
 .bs-slider--arrows-brand .bs-slider__arrow { background: var(--bs-primary); color: #fff; }
@@ -3404,6 +3408,16 @@ input[type="submit"]:hover,
 .bs-native-form.sent .wpcf7-response-output { color: #065f46; background: #ecfdf3; border-color: #a7f3d0; }
 .bs-native-form.invalid .wpcf7-response-output { color: #92400e; background: #fffbeb; border-color: #fcd34d; }
 .bs-native-form.failed .wpcf7-response-output { color: #991b1b; background: #fef2f2; border-color: #fecaca; }
+.bs-native-form .bs-nf-combo { position: relative; display: block; }
+.bs-native-form .bs-nf-combo__native { position: absolute !important; left: 0; bottom: 0; width: 100% !important; height: 1px !important; min-height: 0 !important; padding: 0 !important; border: 0 !important; opacity: 0; pointer-events: none; }
+.bs-native-form .bs-nf-combo__input { padding-right: 36px; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(-45deg, transparent 50%, currentColor 50%); background-position: calc(100% - 19px) 50%, calc(100% - 14px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.bs-native-form .bs-nf-combo__list { position: absolute; z-index: 30; top: calc(100% + 4px); left: 0; right: 0; max-height: 260px; margin: 0; padding: 4px; overflow-y: auto; list-style: none; color: var(--bs-text); background: #fff; border: 1px solid var(--bs-border, #dcdfe4); border-radius: var(--bs-form-radius, 8px); box-shadow: 0 10px 28px rgba(15, 23, 42, .14); }
+.bs-native-form .bs-nf-combo__list[hidden] { display: none; }
+.bs-native-form .bs-nf-combo__opt, .bs-native-form .bs-nf-combo__none { margin: 0; padding: 9px 12px; border-radius: 6px; font-weight: 400; line-height: 1.35; }
+.bs-native-form .bs-nf-combo__opt { cursor: pointer; }
+.bs-native-form .bs-nf-combo__opt.is-picked { font-weight: 600; }
+.bs-native-form .bs-nf-combo__opt.is-active, .bs-native-form .bs-nf-combo__opt:hover { background: color-mix(in srgb, var(--bs-primary) 10%, transparent); }
+.bs-native-form .bs-nf-combo__none { opacity: .7; }
 .bs-native-form .wpcf7-not-valid-tip { display: block; margin-top: 4px; color: #dc2626; font-size: .85em; }
 
 /* Form spacing (1.54.3): no trailing gap under the last row, no empty first line from CF7 templates */
@@ -3927,14 +3941,16 @@ body.bs-has-scroll-bg .bs-section[data-bs-scroll-bg] { background-color: transpa
 .bs-mx-stagger.is-staggered .bs-gallery__item { opacity: 1; transform: none; }
 
 /* Slider transitions */
-.bs-slider--fx-zoom .bs-slider__track > * { transform: scale(1.08); transition: opacity .8s ease, visibility .8s, transform 1.2s cubic-bezier(.2, .7, .2, 1); }
-.bs-slider--fx-zoom .bs-slider__track > .is-active { transform: none; }
-.bs-slider--fx-flip .bs-slider__track { perspective: 1400px; }
-.bs-slider--fx-flip .bs-slider__track > * { transform: rotateY(-35deg) scale(.92); transform-origin: left center; transition: opacity .7s ease, visibility .7s, transform .9s cubic-bezier(.2, .7, .2, 1); }
-.bs-slider--fx-flip .bs-slider__track > .is-active { transform: none; }
+.bs-slider--fx-zoom .bs-slider__track > * { transform: scale(.97); }
+.bs-slider--fx-zoom .bs-slider__track > .is-leaving { transform: scale(1.04); }
+.bs-slider--fx-flip .bs-slider__track { perspective: 1800px; }
+.bs-slider--fx-flip .bs-slider__track > * { transform-origin: 50% 50%; transform: translateX(calc(var(--bs-dir, 1) * 7%)) rotateY(calc(var(--bs-dir, 1) * -14deg)) scale(.95); backface-visibility: hidden; }
+.bs-slider--fx-flip .bs-slider__track > .is-leaving { transform: translateX(calc(var(--bs-dir, 1) * -7%)) rotateY(calc(var(--bs-dir, 1) * 14deg)) scale(.95); }
+.bs-slider.is-gliding .bs-slider__track { scroll-snap-type: none; scroll-behavior: auto; }
 @supports (animation-timeline: view()) {
+	.bs-slider--fx-coverflow .bs-slider__track { perspective: 1600px; }
 	.bs-slider--fx-coverflow .bs-slider__track > * { animation: bs-coverflow linear both; animation-timeline: view(inline); }
-	@keyframes bs-coverflow { 0% { transform: scale(.82) rotateY(18deg); opacity: .55; } 50% { transform: none; opacity: 1; } 100% { transform: scale(.82) rotateY(-18deg); opacity: .55; } }
+	@keyframes bs-coverflow { 0% { transform: scale(.9) rotateY(10deg); opacity: .6; } 50% { transform: none; opacity: 1; } 100% { transform: scale(.9) rotateY(-10deg); opacity: .6; } }
 }
 @media (prefers-reduced-motion: reduce) {
 	.bs-hreveal__float, .bs-line path, [class*="bs-mx-reveal-"], .bs-mx-reveal-kenburns img, .bs-mx-draw svg *, .bs-mx-stagger .bs-gallery__item, .bs-slider--fx-zoom .bs-slider__track > *, .bs-slider--fx-flip .bs-slider__track > *, .bs-slider--fx-coverflow .bs-slider__track > * { animation: none !important; transition: none !important; }

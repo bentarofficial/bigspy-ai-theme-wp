@@ -33,6 +33,7 @@ add_filter( 'bst_aid_tools', function ( $tools ) {
 			'default'      => array( 'type' => 'string' ),
 			'required'     => array( 'type' => 'boolean' ),
 			'width'        => array( 'type' => 'string', 'enum' => array( 'full', 'half' ) ),
+			'search'       => array( 'type' => 'boolean', 'description' => 'Select only: a type-to-filter box, for long lists (routes, zones, branches).' ),
 			'show'         => $cond,
 			'requiredWhen' => $cond,
 		),
@@ -194,7 +195,7 @@ function bst_aid_form_diff( $old_f, $new_f, $old_p, $new_p ) {
 
 /** Clean what the model sent into stored field objects (unknown keys dropped). */
 function bst_aid_form_clean_fields( $in, $old ) {
-	$keep  = array( 'id', 'type', 'name', 'label', 'placeholder', 'options', 'prices', 'default', 'required', 'width', 'show', 'requiredWhen' );
+	$keep  = array( 'id', 'type', 'name', 'label', 'placeholder', 'options', 'prices', 'default', 'required', 'width', 'search', 'show', 'requiredWhen' );
 	$names = array();
 	$out   = array();
 	$old   = array_column( $old, null, 'id' );
@@ -218,6 +219,11 @@ function bst_aid_form_clean_fields( $in, $old ) {
 		$f['type']     = in_array( $f['type'] ?? '', bst_native_field_types(), true ) ? $f['type'] : 'text';
 		$f['required'] = ! empty( $f['required'] );
 		$f['width']    = 'half' === ( $f['width'] ?? '' ) ? 'half' : 'full';
+		if ( 'select' === $f['type'] && ! empty( $f['search'] ) ) {
+			$f['search'] = true;
+		} else {
+			unset( $f['search'] );
+		}
 		$name          = sanitize_key( $f['name'] ?? ( $prev['name'] ?? '' ) );
 		if ( '' === $name ) {
 			$name = sanitize_key( remove_accents( str_replace( ' ', '-', strtolower( (string) $f['label'] ) ) ) );
