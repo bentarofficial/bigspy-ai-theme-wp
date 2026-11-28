@@ -77,6 +77,9 @@ function bst_editor_assets() {
 	wp_enqueue_script( 'bst-list-view-appender', BST_URI . '/assets/js/list-view-appender.js', array( 'wp-data', 'wp-blocks' ), bst_asset_version( 'assets/js/list-view-appender.js' ), true );
 	/* translators: %s: block name, e.g. "Row". */
 	wp_add_inline_script( 'bst-list-view-appender', 'window.bstListViewAppender=' . wp_json_encode( array( 'label' => __( 'Add to %s', 'bigspy-ai-theme-wp' ), 'after' => __( 'Add section or element', 'bigspy-ai-theme-wp' ) ) ) . ';', 'before' );
+	// Round "+" on the line between top-level sections in the canvas.
+	wp_enqueue_script( 'bst-section-adder', BST_URI . '/assets/js/section-adder.js', array( 'wp-hooks', 'wp-element', 'wp-compose', 'wp-data' ), bst_asset_version( 'assets/js/section-adder.js' ), true );
+	wp_add_inline_script( 'bst-section-adder', 'window.bstSectionAdder=' . wp_json_encode( array( 'label' => __( 'Add section or element', 'bigspy-ai-theme-wp' ) ) ) . ';', 'before' );
 	wp_enqueue_style( 'bst-editor-ui', BST_URI . '/assets/css/editor-ui.css', array(), bst_asset_version( 'assets/css/editor-ui.css' ) );
 	wp_add_inline_style( 'bst-editor-ui', '.bst-btn-styles,.bst-bg-presets,.bst-form-templates{--bst-primary:' . sanitize_hex_color( (string) bst_mod( 'color_primary' ) ) . ';--bst-secondary:' . sanitize_hex_color( (string) bst_mod( 'color_secondary' ) ) . '}' );
 }
