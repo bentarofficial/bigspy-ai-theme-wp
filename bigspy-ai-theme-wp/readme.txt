@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.111.0 =
+* Editor: hover any block for a + on its nearest edge (left/right for side-by-side blocks and buttons, top/bottom for stacked blocks).
+* Every + (toolbar, inside blocks, between blocks, List View) opens the centred block library instead of the left panel.
+
 = 1.110.1 =
 * Block library dialog: wider, hover preview and block description fill its right half.
 

@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.111.0: + on every block edge
+
+- Hover any block for a + on its nearest edge, with the block name.
+- Every + opens the same large block library in the middle of the screen.
+
 ### 1.110.0: Multi-step forms, + between sections
 
 - Form block: split a form into steps with a progress bar and Next/Back.
