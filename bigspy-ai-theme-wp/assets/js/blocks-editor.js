@@ -53,10 +53,16 @@
 	 */
 	function VisualHtml(props) {
 		var ref = wp.element.useRef(null);
+		// Last markup this editor emitted. A value equal to it is our own typing
+		// echoed back (leave the DOM alone so the caret and IME composition stay
+		// put); any other value came from outside – undo/redo, AI, sidebar – and
+		// must be shown even while the editor has focus.
+		var emitted = wp.element.useRef(null);
 		wp.element.useEffect(function () {
 			var node = ref.current;
-			if (node && node.innerHTML !== (props.value || '') && node.ownerDocument.activeElement !== node) {
-				node.innerHTML = props.value || '';
+			var value = props.value || '';
+			if (node && node.innerHTML !== value && value !== emitted.current) {
+				node.innerHTML = value;
 			}
 		}, [props.value]);
 		wp.element.useEffect(function () {
@@ -78,10 +84,28 @@
 				}
 			};
 			doc.addEventListener('selectionchange', remember);
-			return function () { doc.removeEventListener('selectionchange', remember); };
+			// Vietnamese IMEs (Unikey/EVKey Telex: "aa" -> "â") replace the last
+			// letter by sending Shift+Left or Backspace before the accented one.
+			// Bubbling to the block editor, Shift+Left multi-selected the block
+			// above and dropped focus mid-word. Plain typing/caret keys stay inside
+			// this editor; Ctrl/Cmd/Alt shortcuts (undo, save...), Escape and Tab
+			// still reach Gutenberg.
+			var keep = function (e) {
+				if (!e.ctrlKey && !e.metaKey && !e.altKey && 'Escape' !== e.key && 'Tab' !== e.key) {
+					e.stopPropagation();
+				}
+			};
+			node.addEventListener('keydown', keep);
+			node.addEventListener('keypress', keep);
+			return function () {
+				doc.removeEventListener('selectionchange', remember);
+				node.removeEventListener('keydown', keep);
+				node.removeEventListener('keypress', keep);
+			};
 		}, []);
 		var sync = function (e) {
-			props.onChange(e.currentTarget.innerHTML);
+			emitted.current = e.currentTarget.innerHTML;
+			props.onChange(emitted.current);
 		};
 		var paste = function (e) {
 			if (!props.plainPaste) {

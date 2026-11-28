@@ -6,6 +6,12 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.108.0: Route and distance pricing in forms, Vietnamese typing fix
+
+- Form block: tier() price bands, route/zone templates, searchable Dropdown and a Distance (km) field using your own Photon + OSRM.
+- Contact Form 7 and built-in forms line up neatly.
+- Typing Vietnamese with Unikey/EVKey in Text blocks no longer jumps to another block.
+
 ### 1.107.0: Nine new animated section backgrounds
 
 - Snow, floating dust, wind streaks, fireflies, bubbles, rain, falling petals, confetti and shooting stars in the Code background panel of Section and Banner.

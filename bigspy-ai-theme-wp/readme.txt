@@ -15,6 +15,11 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.108.0 =
+* Form: tier() price bands, route and zone price templates, searchable Dropdown, Distance (km) field with self-hosted Photon + OSRM.
+* Forms: Contact Form 7 and built-in forms line up (field heights, choices, columns, button colors); Table and Icon box fixes.
+* Editor: typing Vietnamese with Unikey/EVKey in Text blocks no longer jumps to another block; Undo updates the box while typing.
+
 = 1.107.0 =
 * Section / Banner code backgrounds: snow, floating dust, wind streaks, fireflies, bubbles, rain, falling petals, confetti and shooting stars.
 
