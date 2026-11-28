@@ -654,13 +654,19 @@ tr.bst-lv-appender td { padding: 2px 0 6px; }
 .bst-lv-appender__btn:hover, .bst-lv-appender__btn:focus-visible { opacity: 1; color: var(--wp-admin-theme-color, #3858e9); }
 
 /* Centred block library opened by the List View / canvas + buttons. */
-.bst-insert-dialog.components-modal__frame { width: min(1100px, 94vw); max-width: none; height: min(780px, 88vh); max-height: none; }
+.bst-insert-dialog.components-modal__frame { width: min(1440px, 96vw); max-width: none; height: min(780px, 88vh); max-height: none; }
 .bst-insert-dialog .components-modal__content { padding: 0; display: flex; flex-direction: column; }
 .bst-insert-dialog .components-modal__content > div:not(.components-modal__header) { flex: 1; min-height: 0; }
 .bst-insert-dialog .block-editor-inserter__menu { height: 100%; }
 .bst-insert-dialog .block-editor-inserter__main-area { width: auto; }
-.bst-insert-dialog .block-editor-tabbed-sidebar { width: min(700px, 64%); flex: 0 0 auto; border-inline-end: 1px solid #e0e0e0; }
-.bst-insert-dialog .block-editor-inserter__preview-container { display: block; position: static; flex: 1; margin: 16px; }
+.bst-insert-dialog .block-editor-tabbed-sidebar { width: min(720px, 56%); flex: 0 0 auto; border-inline-end: 1px solid #e0e0e0; }
+/* Hover preview + description fill the right half of the dialog. */
+body.bst-insert-open .block-editor-inserter__preview-container__popover { position: fixed !important; inset: var(--bst-pv-top) auto auto var(--bst-pv-left) !important; transform: none !important; width: var(--bst-pv-w) !important; max-width: none !important; z-index: 100001; box-shadow: none; border: 0; background: transparent; }
+body.bst-insert-open .block-editor-inserter__preview-container__popover .components-popover__content { width: 100%; max-height: var(--bst-pv-h); overflow: auto; box-shadow: none; border: 0; background: transparent; }
+body.bst-insert-open .block-editor-inserter__preview-container__popover .block-editor-inserter__preview-container { width: 100%; }
+body.bst-insert-open .block-editor-inserter__preview-container__popover .block-editor-inserter__preview { min-height: 340px; border-radius: 8px; }
+body.bst-insert-open .block-editor-inserter__preview-container__popover .block-editor-block-card { padding: 20px 4px 0; font-size: 14px; line-height: 1.6; }
+body.bst-insert-open .block-editor-inserter__preview-container__popover .block-editor-block-card__title { font-size: 18px; }
 .bst-insert-dialog .block-editor-block-types-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 4px; }
 .bst-insert-dialog .block-editor-block-types-list > [role="presentation"] { display: contents; }
 .bst-insert-dialog .block-editor-block-types-list__list-item { width: auto; }

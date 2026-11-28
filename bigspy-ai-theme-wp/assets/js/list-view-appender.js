@@ -45,7 +45,26 @@
 	var host = null;
 	var hostRoot = null;
 
+	// The hover preview is a floating popover; while the dialog is open it is
+	// pinned into the empty right half of the dialog (see editor-ui.css).
+	function placePreview() {
+		var frame = document.querySelector( '.bst-insert-dialog' );
+		var side = frame && frame.querySelector( '.block-editor-tabbed-sidebar' );
+		if ( ! frame || ! side ) {
+			return;
+		}
+		var f = frame.getBoundingClientRect();
+		var sb = side.getBoundingClientRect();
+		var st = document.body.style;
+		st.setProperty( '--bst-pv-left', ( sb.right + 24 ) + 'px' );
+		st.setProperty( '--bst-pv-top', ( sb.top + 16 ) + 'px' );
+		st.setProperty( '--bst-pv-w', Math.max( 240, f.right - sb.right - 48 ) + 'px' );
+		st.setProperty( '--bst-pv-h', Math.max( 200, f.bottom - sb.top - 32 ) + 'px' );
+	}
+
 	function closeQuick() {
+		document.body.classList.remove( 'bst-insert-open' );
+		window.removeEventListener( 'resize', placePreview );
 		if ( hostRoot ) {
 			hostRoot.unmount();
 			hostRoot = null;
@@ -79,6 +98,9 @@
 		document.body.appendChild( host );
 		hostRoot = wp.element.createRoot( host );
 		var done = function () { window.setTimeout( closeQuick, 0 ); };
+		document.body.classList.add( 'bst-insert-open' );
+		window.addEventListener( 'resize', placePreview );
+		[ 50, 300, 800 ].forEach( function ( t ) { window.setTimeout( placePreview, t ); } );
 		hostRoot.render( el( cmp.Modal, {
 			title: cfg.dialog || 'Add a block',
 			className: 'bst-insert-dialog',
@@ -88,7 +110,7 @@
 			rootClientId: root,
 			__experimentalInsertionIndex: index,
 			isAppender: ! opts.clientId,
-			showInserterHelpPanel: false,
+			showInserterHelpPanel: true,
 			shouldFocusBlock: true,
 			onSelect: done
 		} ) ) );
