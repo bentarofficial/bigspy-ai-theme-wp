@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.111.1 =
+* Editor: one + only. The square WordPress + between blocks and the old Add-above button are hidden; the hover + covers both.
+* Hover +: fixed at the lower end of column edges (clear of the width handle), centred beside buttons and short blocks.
+
 = 1.111.0 =
 * Editor: hover any block for a + on its nearest edge (left/right for side-by-side blocks and buttons, top/bottom for stacked blocks).
 * Every + (toolbar, inside blocks, between blocks, List View) opens the centred block library instead of the left panel.
