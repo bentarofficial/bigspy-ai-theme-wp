@@ -670,3 +670,6 @@ body.bst-insert-open .block-editor-inserter__preview-container__popover .block-e
 .bst-insert-dialog .block-editor-block-types-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 4px; }
 .bst-insert-dialog .block-editor-block-types-list > [role="presentation"] { display: contents; }
 .bst-insert-dialog .block-editor-block-types-list__list-item { width: auto; }
+
+/* The hover "+" (hover-adder.js) replaces the square WordPress "+" between blocks. */
+.block-editor-block-list__insertion-point-inserter { display: none !important; }

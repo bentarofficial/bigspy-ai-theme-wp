@@ -69,6 +69,11 @@
 			return;
 		}
 		doc.bstHoverAdder = true;
+		// One "+" only: hide the square WordPress "+" between blocks and the older
+		// "Add a block above" button; the hover "+" covers both places.
+		var css = doc.createElement( 'style' );
+		css.textContent = '.block-editor-block-list__insertion-point-inserter,.bst-top-ins{display:none!important}';
+		( doc.head || doc.body ).appendChild( css );
 		var win = doc.defaultView;
 		var box = doc.createElement( 'div' );
 		box.className = 'bst-hover-adder';
@@ -136,6 +141,8 @@
 				btn.style.left = ( r.width / 2 - 12 ) + 'px';
 				btn.style.top = ( y - 11 ) + 'px';
 			}
+			// Under a top-level section the fixed round "+" (section-adder.js) is already there.
+			btn.style.display = ! side && after && ! root ? 'none' : 'block';
 			tag.textContent = blockTitle( id );
 			tag.style.left = '0';
 			tag.style.top = '-22px';
