@@ -46,6 +46,10 @@
 		if ( set && set.orientation === 'horizontal' ) {
 			return true;
 		}
+		// Buttons sit inline: a "+" beside them adds the next button on the same line.
+		if ( /button/.test( be().getBlockName( id ) || '' ) ) {
+			return true;
+		}
 		var order = be().getBlockOrder( root || undefined );
 		var i = order.indexOf( id );
 		var doc = el.ownerDocument;
