@@ -77,6 +77,9 @@ function bst_editor_assets() {
 	wp_enqueue_script( 'bst-list-view-appender', BST_URI . '/assets/js/list-view-appender.js', array( 'wp-data', 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components' ), bst_asset_version( 'assets/js/list-view-appender.js' ), true );
 	/* translators: %s: block name, e.g. "Row". */
 	wp_add_inline_script( 'bst-list-view-appender', 'window.bstListViewAppender=' . wp_json_encode( array( 'label' => __( 'Add to %s', 'bigspy-ai-theme-wp' ), 'after' => __( 'Add section or element', 'bigspy-ai-theme-wp' ), 'dialog' => __( 'Add a block', 'bigspy-ai-theme-wp' ) ) ) . ';', 'before' );
+	// "+" on the nearest edge of any hovered block in the canvas.
+	wp_enqueue_script( 'bst-hover-adder', BST_URI . '/assets/js/hover-adder.js', array( 'wp-data', 'wp-blocks', 'bst-list-view-appender' ), bst_asset_version( 'assets/js/hover-adder.js' ), true );
+	wp_add_inline_script( 'bst-hover-adder', 'window.bstHoverAdder=' . wp_json_encode( array( 'label' => __( 'Add a block here', 'bigspy-ai-theme-wp' ) ) ) . ';', 'before' );
 	// Round "+" on the line between top-level sections in the canvas.
 	wp_enqueue_script( 'bst-section-adder', BST_URI . '/assets/js/section-adder.js', array( 'wp-hooks', 'wp-element', 'wp-compose', 'wp-data', 'bst-list-view-appender' ), bst_asset_version( 'assets/js/section-adder.js' ), true );
 	wp_add_inline_script( 'bst-section-adder', 'window.bstSectionAdder=' . wp_json_encode( array( 'label' => __( 'Add section or element', 'bigspy-ai-theme-wp' ) ) ) . ';', 'before' );

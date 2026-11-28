@@ -356,6 +356,9 @@ msgstr "Hiện trên thanh tiến trình ở đầu form."
 msgid "New step"
 msgstr "Bước mới"
 
+msgid "Add a block here"
+msgstr "Thêm khối vào đây"
+
 msgid "Add a block"
 msgstr "Thêm khối"
 
