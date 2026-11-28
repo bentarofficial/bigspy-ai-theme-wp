@@ -124,7 +124,8 @@
 				pos( line, x, 0, 3, r.height );
 				btn.style.left = ( x - 11 ) + 'px';
 				// Fixed at the lower end of the edge: the column width handle sits in the middle.
-				btn.style.top = ( Math.max( 0, r.height - 30 ) ) + 'px';
+				// Short blocks (a button, an icon) have no width handle: centre the "+" on the edge.
+				btn.style.top = ( r.height < 90 ? r.height / 2 - 12 : r.height - 30 ) + 'px';
 			} else {
 				var y = after ? r.height - 2 : -2;
 				pos( line, 0, y, r.width, 3 );
