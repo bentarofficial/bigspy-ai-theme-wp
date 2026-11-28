@@ -79,6 +79,20 @@
 		return tr;
 	}
 
+	// WordPress 6.6+ marks open rows with data-expanded, older versions with aria-expanded.
+	function isOpen( row ) {
+		return row.getAttribute( 'data-expanded' ) === 'true' || row.getAttribute( 'aria-expanded' ) === 'true';
+	}
+
+	// A block that renders InnerBlocks registers list settings for itself.
+	function holdsBlocks( id ) {
+		return !! ( be().getBlockListSettings && be().getBlockListSettings( id ) );
+	}
+
+	function locked( id ) {
+		return !! ( be().getTemplateLock && be().getTemplateLock( id ) );
+	}
+
 	function render() {
 		queued = false;
 		busy = true;
@@ -105,8 +119,7 @@
 					}
 					var anchor = last;
 					// "+ Add to <Block>" at the end of an expanded container.
-					if ( row.getAttribute( 'aria-expanded' ) === 'true' && be().canInsertBlocks && be().canInsertBlocks( id ) &&
-						! ( be().getTemplateLock && be().getTemplateLock( id ) ) ) {
+					if ( isOpen( row ) && holdsBlocks( id ) && ! locked( id ) ) {
 						var inner = makeRow( id, level );
 						anchor.parentNode.insertBefore( inner, anchor.nextSibling );
 						anchor = inner;
@@ -114,9 +127,7 @@
 					// "+ Add section / element" after every top-level block.
 					if ( level === 1 ) {
 						var root = be().getBlockRootClientId( id ) || '';
-						var canRoot = ! be().canInsertBlocks || be().canInsertBlocks( root || undefined );
-						var locked = be().getTemplateLock && be().getTemplateLock( root || undefined );
-						if ( canRoot && ! locked ) {
+						if ( ! locked( root || undefined ) ) {
 							var after = makeRow( id, 0, AFTER, root, be().getBlockIndex( id ) + 1 );
 							anchor.parentNode.insertBefore( after, anchor.nextSibling );
 						}
@@ -129,12 +140,21 @@
 		busy = false;
 	}
 
+	// Mutations made by render() itself must not schedule another render.
+	function own( m ) {
+		var nodes = Array.prototype.slice.call( m.addedNodes ).concat( Array.prototype.slice.call( m.removedNodes ) );
+		return m.type === 'childList' && nodes.length > 0 && nodes.every( function ( n ) {
+			return n.nodeType === 1 && n.classList && n.classList.contains( ROW );
+		} );
+	}
+
 	function schedule() {
 		if ( busy || queued ) {
 			return;
 		}
 		queued = true;
-		window.requestAnimationFrame( render );
+		// A timer, not requestAnimationFrame: it also runs when the window is in the background.
+		window.setTimeout( render, 30 );
 	}
 
 	function start() {
@@ -143,6 +163,9 @@
 				return;
 			}
 			for ( var i = 0; i < list.length; i++ ) {
+				if ( own( list[ i ] ) ) {
+					continue;
+				}
 				var t = list[ i ].target;
 				if ( t.closest && t.closest( '.block-editor-list-view-tree, .editor-list-view-sidebar, .edit-post-editor__list-view-panel' ) ) {
 					schedule();
@@ -156,7 +179,7 @@
 					}
 				}
 			}
-		} ).observe( document.body, { childList: true, subtree: true, attributes: true, attributeFilter: [ 'aria-expanded' ] } );
+		} ).observe( document.body, { childList: true, subtree: true, attributes: true, attributeFilter: [ 'aria-expanded', 'data-expanded' ] } );
 		// Block renames / moves that do not touch the visible DOM.
 		wp.data.subscribe( schedule );
 	}

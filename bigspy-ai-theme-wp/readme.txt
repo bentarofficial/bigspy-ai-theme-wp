@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.109.1 =
+* List View + buttons now show on current WordPress (6.6 and newer); 1.96-1.109.0 never showed them there.
+
 = 1.109.0 =
 * List View: + Add section or element after every section, + Add to at the end of every open container block (Accordion, Tabs, Row and more).
 
