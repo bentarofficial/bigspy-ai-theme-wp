@@ -86,7 +86,7 @@
 		var cmp = wp.components;
 		var el = wp.element && wp.element.createElement;
 		var root = opts.rootClientId || undefined;
-		var index = opts.clientId ? be().getBlockIndex( opts.clientId ) + 1 : be().getBlockCount( root );
+		var index = typeof opts.index === 'number' ? opts.index : ( opts.clientId ? be().getBlockIndex( opts.clientId ) + 1 : be().getBlockCount( root ) );
 		var Library = bed && ( bed.__experimentalLibrary || bed.InserterLibrary );
 		if ( ! Library || ! cmp || ! cmp.Modal || ! el || ! wp.element.createRoot ) {
 			openPanel( root, index );
@@ -109,13 +109,131 @@
 		}, el( Library, {
 			rootClientId: root,
 			__experimentalInsertionIndex: index,
-			isAppender: ! opts.clientId,
+			isAppender: ! opts.clientId && typeof opts.index !== 'number',
 			showInserterHelpPanel: true,
 			shouldFocusBlock: true,
 			onSelect: done
 		} ) ) );
 	}
 	window.bstQuickInsert = quickInsert;
+
+	/*
+	 * Every "+" in the editor opens the same centred library:
+	 * - the "+" in the top toolbar, "Browse all" and anything else that opens
+	 *   the left inserter panel (the panel is closed again at once);
+	 * - the black "+" inside empty containers and the "+" between blocks,
+	 *   which would otherwise open the small search popup.
+	 */
+	var routing = false;
+	function editorStore() {
+		var names = [ 'core/editor', 'core/edit-post', 'core/edit-site' ];
+		for ( var i = 0; i < names.length; i++ ) {
+			var sel = wp.data.select( names[ i ] );
+			if ( sel && typeof sel.isInserterOpened === 'function' ) {
+				return names[ i ];
+			}
+		}
+		return '';
+	}
+	function targetFromSelection() {
+		var sel = be().getSelectedBlockClientId && be().getSelectedBlockClientId();
+		if ( sel ) {
+			return { rootClientId: be().getBlockRootClientId( sel ) || '', clientId: sel };
+		}
+		return { rootClientId: '' };
+	}
+	function routePanel() {
+		var name = editorStore();
+		if ( routing || ! name || ! wp.blockEditor || ! ( wp.blockEditor.__experimentalLibrary || wp.blockEditor.InserterLibrary ) ) {
+			return;
+		}
+		var open = wp.data.select( name ).isInserterOpened();
+		if ( ! open ) {
+			return;
+		}
+		routing = true;
+		var t = targetFromSelection();
+		var ip = be().getBlockInsertionPoint && be().getBlockInsertionPoint();
+		if ( open && typeof open === 'object' && open.insertionIndex !== undefined ) {
+			t = { rootClientId: open.rootClientId || '', index: open.insertionIndex };
+		} else if ( ip && be().isBlockInsertionPointVisible && be().isBlockInsertionPointVisible() ) {
+			t = { rootClientId: ip.rootClientId || '', index: ip.index };
+		}
+		wp.data.dispatch( name ).setIsInserterOpened( false );
+		window.setTimeout( function () {
+			quickInsert( null, t );
+			routing = false;
+		}, 0 );
+	}
+	wp.data.subscribe( routePanel );
+
+	// Catch the open request itself, so its target (container + index) is kept.
+	[ 'core/editor', 'core/edit-post', 'core/edit-site' ].forEach( function ( name ) {
+		var d = wp.data.dispatch( name );
+		if ( ! d || typeof d.setIsInserterOpened !== 'function' || d.setIsInserterOpened.bstRouted ) {
+			return;
+		}
+		var orig = d.setIsInserterOpened;
+		var routed = function ( value ) {
+			if ( value && ! routing && wp.blockEditor && ( wp.blockEditor.__experimentalLibrary || wp.blockEditor.InserterLibrary ) ) {
+				var t = targetFromSelection();
+				if ( typeof value === 'object' && value.insertionIndex !== undefined ) {
+					t = { rootClientId: value.rootClientId || '', index: value.insertionIndex };
+				} else if ( typeof value === 'object' && value.rootClientId !== undefined ) {
+					t = { rootClientId: value.rootClientId || '' };
+				}
+				quickInsert( null, t );
+				return orig( false );
+			}
+			return orig( value );
+		};
+		routed.bstRouted = true;
+		try {
+			d.setIsInserterOpened = routed;
+		} catch ( err ) {}
+	} );
+
+	// Clicks on the canvas "+" buttons (they live inside the editor iframe).
+	function onPlus( e ) {
+		var btn = e.target.closest && e.target.closest( '.block-editor-button-block-appender, .block-list-appender__toggle, .block-editor-block-list__insertion-point-inserter button, .block-editor-block-list__insertion-point-inserter, .block-editor-block-list__layout .block-editor-inserter__toggle' );
+		if ( ! btn || btn.closest( '.bst-insert-dialog' ) ) {
+			return;
+		}
+		var t;
+		if ( btn.closest( '.block-editor-block-list__insertion-point-inserter' ) ) {
+			var ip = be().getBlockInsertionPoint();
+			t = { rootClientId: ip.rootClientId || '', index: ip.index };
+		} else {
+			// The container block that holds this "+" (the appender row itself also carries data-block).
+			var holder = btn.closest( '[data-block]' );
+			while ( holder && ! be().getBlockName( holder.getAttribute( 'data-block' ) ) ) {
+				holder = holder.parentElement && holder.parentElement.closest( '[data-block]' );
+			}
+			t = { rootClientId: holder ? holder.getAttribute( 'data-block' ) : '' };
+		}
+		e.preventDefault();
+		e.stopPropagation();
+		quickInsert( btn, t );
+	}
+	function hook( doc ) {
+		if ( doc && ! doc.bstPlusHooked ) {
+			doc.bstPlusHooked = true;
+			doc.addEventListener( 'click', onPlus, true );
+			doc.addEventListener( 'mousedown', function ( e ) {
+				if ( e.target.closest && e.target.closest( '.block-editor-button-block-appender, .block-list-appender__toggle, .block-editor-block-list__insertion-point-inserter, .block-editor-block-list__layout .block-editor-inserter__toggle' ) ) {
+					e.stopPropagation();
+				}
+			}, true );
+		}
+	}
+	hook( document );
+	window.setInterval( function () {
+		document.querySelectorAll( 'iframe[name="editor-canvas"]' ).forEach( function ( f ) {
+			try {
+				hook( f.contentDocument );
+			} catch ( err ) {}
+		} );
+	}, 1000 );
 
 	function title( clientId ) {
 		var name = be().getBlockName( clientId );
