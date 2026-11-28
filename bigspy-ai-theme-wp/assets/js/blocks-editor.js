@@ -3632,7 +3632,15 @@
 					})
 				}),
 				txt('submitText', __('Send button text', T)),
-				txt('formName', __('Form name (shown in Form entries)', T))
+				txt('formName', __('Form name (shown in Form entries)', T)),
+				a.formKey ? el(c.TextControl, {
+					label: __('Shortcode of this form', T),
+					help: __('Copy it to show this same form on another page, post or product (paste in a Shortcode/Code block, or in "Import form" of another Form block to copy it as a new form). The page holding this form must be published.', T),
+					value: '[bst_form id="' + a.formKey + '"]',
+					readOnly: true,
+					onFocus: function (e) { e.target.select(); if (navigator.clipboard) { navigator.clipboard.writeText(e.target.value); } },
+					__nextHasNoMarginBottom: true
+				}) : null
 			);
 		} else if (tab[0] === 'pricing') {
 			var lines = pricing.lines || [];
@@ -3727,6 +3735,31 @@
 				el('strong', null, smtpOk ? __('Emails go through WP Mail SMTP', T) : __('Install / set up WP Mail SMTP so emails are delivered', T)),
 				mail.smtp ? el('span', { className: 'bst-form-send__links' }, el(c.ExternalLink, { href: mail.settings }, __('SMTP settings', T)), ' · ', el(c.ExternalLink, { href: mail.test }, __('Send a test email', T))) : el(c.ExternalLink, { href: mail.install }, __('Install WP Mail SMTP', T))
 			)
+		);
+	}
+
+	// Import form: copy fields, mail, messages and price of a form made before into this block; it becomes its own form.
+	function FormImport(props) {
+		var T = 'bigspy-ai-theme-wp';
+		var st = useState({ code: '', busy: false, msg: '', ok: false });
+		var s = st[0];
+		var set = function (p) { st[1](Object.assign({}, s, p)); };
+		var run = function () {
+			var m = /id\s*=\s*["']?([a-z0-9_-]+)/i.exec(s.code);
+			var key = (m ? m[1] : s.code.trim()).toLowerCase();
+			if (!key) { return; }
+			if (key === props.attributes.formKey) { set({ msg: __('That is this form.', T), ok: false }); return; }
+			set({ busy: true, msg: '' });
+			wp.apiFetch({ path: '/bst-form/v1/source?id=' + encodeURIComponent(key) }).then(function (src) {
+				src.formKey = 'f' + Math.random().toString(36).slice(2, 10);
+				props.setAttributes(src);
+				st[1]({ code: '', busy: false, ok: true, msg: __('Imported. This is now its own form with a new shortcode: edit it freely, the original stays as it was.', T) });
+			}, function (e) { set({ busy: false, ok: false, msg: (e && e.message) || __('Form not found.', T) }); });
+		};
+		return el(Panel, { title: __('Import form', T), initialOpen: false },
+			el(c.TextControl, { label: __('Paste a form shortcode', T), help: __('Copies the fields, emails, messages and price of a form you made before into this block. To show the same form unchanged, paste the shortcode in a Shortcode or Code block instead.', T), value: s.code, placeholder: '[bst_form id="…"]', onChange: function (v) { set({ code: v, msg: '' }); }, __nextHasNoMarginBottom: true }),
+			el(c.Button, { variant: 'primary', isBusy: s.busy, disabled: s.busy || !s.code.trim(), onClick: run, style: { marginTop: 8 } }, __('Import', T)),
+			s.msg ? el(c.Notice, { status: s.ok ? 'success' : 'error', isDismissible: false }, s.msg) : null
 		);
 	}
 
@@ -3888,6 +3921,7 @@
 					noPlugin ? el('p', null, __('Install and activate Contact Form 7 (or WPForms) to use this block.', 'bigspy-ai-theme-wp')) : pick,
 					el(c.ExternalLink, { href: B.formNewUrl }, noPlugin ? __('Install Contact Form 7', 'bigspy-ai-theme-wp') : __('Create a new form', 'bigspy-ai-theme-wp'))
 				),
+				a.provider === 'bigspy' ? el(FormImport, props) : null,
 				a.provider === 'bigspy' ? el(NativeFormPanels, props) : el(FormSending, props),
 				el(FormAfterSend, props),
 				el(Panel, { title: __('Heading & text', 'bigspy-ai-theme-wp'), initialOpen: false },

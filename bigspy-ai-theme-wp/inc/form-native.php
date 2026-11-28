@@ -280,6 +280,57 @@ function bst_native_form_find( $key, $post_id = 0 ) {
 	return null;
 }
 
+/** Editor "Import form": the content of a saved form (fields, mail, messages, price) to copy into a new block. */
+add_action(
+	'rest_api_init',
+	function () {
+		register_rest_route(
+			'bst-form/v1',
+			'/source',
+			array(
+				'methods'             => 'GET',
+				'permission_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
+				'callback'            => function ( WP_REST_Request $r ) {
+					$key = sanitize_key( bst_native_form_key_from( $r['id'] ) );
+					$src = $key ? bst_native_form_find( $key ) : null;
+					if ( ! $src ) {
+						return new WP_Error( 'bst_form_missing', __( 'Form not found. The page holding this form must be published.', 'bigspy-ai-theme-wp' ), array( 'status' => 404 ) );
+					}
+					$out = array();
+					foreach ( array_merge( array_keys( bst_native_form_defaults() ), array( 'pricing', 'formSchema' ) ) as $k ) {
+						if ( isset( $src[ $k ] ) ) {
+							$out[ $k ] = $src[ $k ];
+						}
+					}
+					return rest_ensure_response( $out );
+				},
+			)
+		);
+	}
+);
+
+/** Form key from a pasted [bst_form id="…"] shortcode or the bare key. */
+function bst_native_form_key_from( $text ) {
+	$text = trim( (string) $text );
+	return preg_match( '/id\s*=\s*["\']?([a-z0-9_-]+)/i', $text, $m ) ? strtolower( $m[1] ) : strtolower( $text );
+}
+
+/** [bst_form id="KEY"]: show a form made with the Form block anywhere (post, product, Code/Shortcode block). */
+add_shortcode(
+	'bst_form',
+	function ( $atts ) {
+		$key = sanitize_key( bst_native_form_key_from( $atts['id'] ?? '' ) );
+		$src = $key ? bst_native_form_find( $key ) : null;
+		if ( ! $src ) {
+			return current_user_can( 'edit_posts' ) ? '<p class="bs-form__empty">' . esc_html__( 'Form not found. The page holding this form must be published.', 'bigspy-ai-theme-wp' ) . '</p>' : '';
+		}
+		unset( $src['__post'] );
+		return render_block( array( 'blockName' => 'bst/form', 'attrs' => $src, 'innerBlocks' => array(), 'innerHTML' => '', 'innerContent' => array() ) );
+	}
+);
+
 /** Replace [tags] in a mail template. */
 function bst_native_form_tags( $text, $values, $fields, $exclude_blank, $html = false ) {
 	$host = wp_parse_url( home_url(), PHP_URL_HOST );

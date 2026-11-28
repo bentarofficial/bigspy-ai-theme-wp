@@ -15,6 +15,10 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.112.0 =
+* Form block: every built-in form shows its shortcode [bst_form id="..."] under Form name. Paste it in a Shortcode or Code block, post or product to show the same form anywhere; entries and emails use the original form.
+* Form block: new Import form panel. Paste a form shortcode and press Import to copy its fields, emails, messages and price into this block as a new, separately editable form with its own shortcode.
+
 = 1.111.1 =
 * Editor: one + only. The square WordPress + between blocks and the old Add-above button are hidden; the hover + covers both.
 * Hover +: fixed at the lower end of column edges (clear of the width handle), centred beside buttons and short blocks.
