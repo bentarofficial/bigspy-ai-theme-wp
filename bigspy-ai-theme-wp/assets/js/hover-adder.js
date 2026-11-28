@@ -123,7 +123,8 @@
 				var x = after ? r.width - 2 : -2;
 				pos( line, x, 0, 3, r.height );
 				btn.style.left = ( x - 11 ) + 'px';
-				btn.style.top = ( Math.min( r.height, Math.max( 0, ev.clientY - r.top ) ) - 12 ) + 'px';
+				// Fixed at the lower end of the edge: the column width handle sits in the middle.
+				btn.style.top = ( Math.max( 0, r.height - 30 ) ) + 'px';
 			} else {
 				var y = after ? r.height - 2 : -2;
 				pos( line, 0, y, r.width, 3 );
