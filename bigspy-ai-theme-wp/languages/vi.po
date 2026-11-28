@@ -335,6 +335,9 @@ msgstr "Thêm vào giỏ"
 msgid "Add to page"
 msgstr "Thêm vào trang"
 
+msgid "Add a block"
+msgstr "Thêm khối"
+
 msgid "Add section or element"
 msgstr "Thêm section hoặc phần tử"
 

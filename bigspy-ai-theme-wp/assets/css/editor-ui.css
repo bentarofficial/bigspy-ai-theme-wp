@@ -652,3 +652,15 @@ tr.bst-lv-appender td { padding: 2px 0 6px; }
 .bst-lv-appender__btn { display: inline-flex; align-items: center; gap: 4px; padding: 3px 12px; border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; opacity: .7; font-size: 12px; line-height: 1.6; cursor: pointer; }
 .bst-lv-appender--after .bst-lv-appender__btn { border-style: dashed; opacity: .55; }
 .bst-lv-appender__btn:hover, .bst-lv-appender__btn:focus-visible { opacity: 1; color: var(--wp-admin-theme-color, #3858e9); }
+
+/* Centred block library opened by the List View / canvas + buttons. */
+.bst-insert-dialog.components-modal__frame { width: min(1100px, 94vw); max-width: none; height: min(780px, 88vh); max-height: none; }
+.bst-insert-dialog .components-modal__content { padding: 0; display: flex; flex-direction: column; }
+.bst-insert-dialog .components-modal__content > div:not(.components-modal__header) { flex: 1; min-height: 0; }
+.bst-insert-dialog .block-editor-inserter__menu { height: 100%; }
+.bst-insert-dialog .block-editor-inserter__main-area { width: auto; }
+.bst-insert-dialog .block-editor-tabbed-sidebar { width: min(700px, 64%); flex: 0 0 auto; border-inline-end: 1px solid #e0e0e0; }
+.bst-insert-dialog .block-editor-inserter__preview-container { display: block; position: static; flex: 1; margin: 16px; }
+.bst-insert-dialog .block-editor-block-types-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 4px; }
+.bst-insert-dialog .block-editor-block-types-list > [role="presentation"] { display: contents; }
+.bst-insert-dialog .block-editor-block-types-list__list-item { width: auto; }

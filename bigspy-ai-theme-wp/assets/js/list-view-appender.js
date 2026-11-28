@@ -25,7 +25,8 @@
 		return wp.data.select( 'core/block-editor' );
 	}
 
-	function openInserter( rootClientId, index ) {
+	// Full inserter panel: fallback when the quick popup is not available.
+	function openPanel( rootClientId, index ) {
 		if ( typeof index !== 'number' ) {
 			index = be().getBlockCount( rootClientId );
 		}
@@ -34,13 +35,65 @@
 		for ( var i = 0; i < stores.length; i++ ) {
 			var d = wp.data.dispatch( stores[ i ] );
 			if ( d && typeof d.setIsInserterOpened === 'function' ) {
-				// Close first so a re-click retargets an already open inserter.
 				d.setIsInserterOpened( false );
 				d.setIsInserterOpened( target );
 				return;
 			}
 		}
 	}
+
+	var host = null;
+	var hostRoot = null;
+
+	function closeQuick() {
+		if ( hostRoot ) {
+			hostRoot.unmount();
+			hostRoot = null;
+		}
+		if ( host ) {
+			host.remove();
+			host = null;
+		}
+	}
+
+	/*
+	 * Large block library in a dialog at the centre of the screen: search,
+	 * block categories, patterns and media, like the left inserter panel but
+	 * roomier. opts.rootClientId: container to insert into; opts.clientId:
+	 * insert right after this block (else at the end of the container).
+	 */
+	function quickInsert( anchor, opts ) {
+		var bed = wp.blockEditor;
+		var cmp = wp.components;
+		var el = wp.element && wp.element.createElement;
+		var root = opts.rootClientId || undefined;
+		var index = opts.clientId ? be().getBlockIndex( opts.clientId ) + 1 : be().getBlockCount( root );
+		var Library = bed && ( bed.__experimentalLibrary || bed.InserterLibrary );
+		if ( ! Library || ! cmp || ! cmp.Modal || ! el || ! wp.element.createRoot ) {
+			openPanel( root, index );
+			return;
+		}
+		closeQuick();
+		host = document.createElement( 'div' );
+		host.className = 'bst-quick-insert';
+		document.body.appendChild( host );
+		hostRoot = wp.element.createRoot( host );
+		var done = function () { window.setTimeout( closeQuick, 0 ); };
+		hostRoot.render( el( cmp.Modal, {
+			title: cfg.dialog || 'Add a block',
+			className: 'bst-insert-dialog',
+			onRequestClose: done,
+			size: 'large'
+		}, el( Library, {
+			rootClientId: root,
+			__experimentalInsertionIndex: index,
+			isAppender: ! opts.clientId,
+			showInserterHelpPanel: false,
+			shouldFocusBlock: true,
+			onSelect: done
+		} ) ) );
+	}
+	window.bstQuickInsert = quickInsert;
 
 	function title( clientId ) {
 		var name = be().getBlockName( clientId );
@@ -53,7 +106,7 @@
 		return t;
 	}
 
-	function makeRow( clientId, level, label, root, index ) {
+	function makeRow( clientId, level, label, root ) {
 		var tr = document.createElement( 'tr' );
 		tr.className = ROW + ( label ? ' ' + ROW + '--after' : '' );
 		tr.setAttribute( 'data-bst-root', clientId );
@@ -69,9 +122,9 @@
 			e.preventDefault();
 			e.stopPropagation();
 			if ( label ) {
-				openInserter( root, index );
+				quickInsert( btn, { rootClientId: root, clientId: clientId } );
 			} else {
-				openInserter( clientId );
+				quickInsert( btn, { rootClientId: clientId } );
 			}
 		} );
 		td.appendChild( btn );
@@ -128,7 +181,7 @@
 					if ( level === 1 ) {
 						var root = be().getBlockRootClientId( id ) || '';
 						if ( ! locked( root || undefined ) ) {
-							var after = makeRow( id, 0, AFTER, root, be().getBlockIndex( id ) + 1 );
+							var after = makeRow( id, 0, AFTER, root );
 							anchor.parentNode.insertBefore( after, anchor.nextSibling );
 						}
 					}

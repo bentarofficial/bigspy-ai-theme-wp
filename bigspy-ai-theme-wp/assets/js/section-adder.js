@@ -53,7 +53,11 @@
 				e.preventDefault();
 				e.stopPropagation();
 				var root = be().getBlockRootClientId( props.clientId ) || '';
-				openInserter( root, be().getBlockIndex( props.clientId ) + 1 );
+				if ( window.bstQuickInsert ) {
+					window.bstQuickInsert( e.currentTarget, { rootClientId: root, clientId: props.clientId } );
+				} else {
+					openInserter( root, be().getBlockIndex( props.clientId ) + 1 );
+				}
 			},
 			style: {
 				position: 'absolute', top: '-15px', width: '30px', height: '30px', padding: 0, borderRadius: '50%',

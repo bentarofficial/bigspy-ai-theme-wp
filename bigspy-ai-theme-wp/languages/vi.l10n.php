@@ -245,6 +245,7 @@ return array(
 		'Activities' => 'Hoạt động',
 		'Ad pixels and analytics' => 'Pixel quảng cáo và phân tích',
 		'Add %s more to get free shipping.' => 'Mua thêm %s để được miễn phí vận chuyển.',
+		'Add a block' => 'Thêm khối',
 		'Add a page and insert BIGSPY AI blocks or a starter page pattern.' => 'Thêm trang và chèn khối BIGSPY AI hoặc mẫu trang có sẵn.',
 		'Add a short list of related posts in the middle of each post.' => 'Chèn danh sách ngắn các bài liên quan vào giữa mỗi bài viết.',
 		'Add column' => 'Thêm cột',
