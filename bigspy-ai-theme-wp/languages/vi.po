@@ -335,6 +335,27 @@ msgstr "Thêm vào giỏ"
 msgid "Add to page"
 msgstr "Thêm vào trang"
 
+msgid "Form steps"
+msgstr "Các bước của form"
+
+msgid "Step %d"
+msgstr "Bước %d"
+
+msgid "Start a new step here"
+msgstr "Bắt đầu bước mới từ đây"
+
+msgid "Splits the form into steps with Next and Back buttons. This field and the ones below it, up to the next step, show on one screen."
+msgstr "Chia form thành nhiều bước có nút Tiếp và Quay lại. Trường này và các trường bên dưới, tới bước kế tiếp, hiện trên cùng một màn hình."
+
+msgid "First step title"
+msgstr "Tên bước đầu tiên"
+
+msgid "Shown in the progress bar at the top of the form."
+msgstr "Hiện trên thanh tiến trình ở đầu form."
+
+msgid "New step"
+msgstr "Bước mới"
+
 msgid "Add a block"
 msgstr "Thêm khối"
 
@@ -12203,6 +12224,9 @@ msgstr "Địa chỉ máy chủ tính đường (OSRM)"
 
 msgid "For example https://osrm.example.com – your own server. If it cannot measure, no price is shown and the visitor can still send the form."
 msgstr "Ví dụ https://osrm.example.com – máy chủ của bạn. Nếu không đo được, form không hiện giá nhưng khách vẫn gửi được."
+
+msgid "1.110.0: Multi-step forms and faster block adding. In the built-in Form block open a field and tick Start a new step here: the form shows one step at a time with a progress bar, Next and Back buttons, and checks required fields before moving on. In the editor, a round + sits on the line between sections, and every + button (in the canvas and in the List View) opens a large block library in the middle of the screen and adds the block exactly there."
+msgstr "1.110.0: Form nhiều bước và thêm khối nhanh hơn. Trong khối Form có sẵn, mở một trường và bật Bắt đầu bước mới từ đây: form hiện từng bước với thanh tiến trình, nút Tiếp và Quay lại, kiểm tra trường bắt buộc trước khi sang bước sau. Trong trình soạn thảo có nút + tròn trên đường ranh giới giữa các section, và mọi nút + (trên khung soạn thảo và trong bảng Cấu trúc nội dung) mở thư viện khối lớn giữa màn hình, chèn khối đúng vị trí."
 
 msgid "1.109.0: Adding blocks from the List View is quicker. Open the Document Overview (List View) and a dashed + Add section or element button sits after every section, adding a new section or block right below it. Every open block that holds other blocks (Section, Row, Column, Accordion, Accordion Panel, Tabs, Slider, Buttons and more) ends with a + Add to button that adds inside that block, at the same level as its items."
 msgstr "1.109.0: Thêm khối từ bảng Cấu trúc nội dung nhanh hơn. Sau mỗi section có nút nét đứt + Thêm section hoặc phần tử để thêm section hoặc khối mới ngay bên dưới. Mọi khối đang mở có chứa khối con (Section, Row, Column, Accordion, Accordion Panel, Tabs, Slider, Buttons...) đều có nút + Thêm vào ở cuối để thêm vào bên trong khối đó, ngang cấp với các phần tử của nó."

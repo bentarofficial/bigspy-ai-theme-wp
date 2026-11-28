@@ -148,7 +148,8 @@ function bst_native_form_markup( $a ) {
 		$p     = ! $p && 'radio' === ( $f['type'] ?? '' ) && $o ? array( $o[0] ) : $p;
 		$init[ sanitize_key( $f['name'] ) ] = in_array( $f['type'] ?? '', array( 'select', 'radio', 'checkbox' ), true ) ? implode( ', ', $p ) : '';
 	}
-	$init = bst_form_schema_state( $s['fields'], $init );
+	$init      = bst_form_schema_state( $s['fields'], $init );
+	$out_steps = array();
 	foreach ( $s['fields'] as $f ) {
 		$type  = in_array( $f['type'] ?? 'text', bst_native_field_types(), true ) ? $f['type'] : 'text';
 		$name  = sanitize_key( $f['name'] );
@@ -205,13 +206,38 @@ function bst_native_form_markup( $a ) {
 			default:
 				$control = '<input type="' . esc_attr( 'datetime' === $type ? 'datetime-local' : $type ) . '" class="wpcf7-form-control wpcf7-' . esc_attr( $type ) . '"' . $attr . ' maxlength="400" placeholder="' . esc_attr( $ph ) . '"' . ( 'tel' === $type ? ' inputmode="tel" autocomplete="tel"' : ( 'email' === $type ? ' autocomplete="email"' : '' ) ) . '>';
 		}
-		$out .= '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $cond . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+		$html = '<p class="bs-nf-field bs-nf-' . esc_attr( $type ) . $width . '"' . $cond . '><label>' . $lab . '<span class="wpcf7-form-control-wrap" data-name="' . esc_attr( $name ) . '">' . $control . '</span></label></p>';
+		// Multi-step: a field marked "Start a new step here" opens the next step.
+		if ( $out_steps && isset( $f['step'] ) && false !== $f['step'] && null !== $f['step'] ) {
+			$out_steps[] = array( 'title' => (string) $f['step'], 'html' => '' );
+		}
+		if ( ! $out_steps ) {
+			$out_steps[] = array( 'title' => (string) ( $f['step'] ?? '' ), 'html' => '' );
+		}
+		$out_steps[ count( $out_steps ) - 1 ]['html'] .= $html;
 	}
-	$out .= bst_quote_markup( $s );
-	$out .= '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
-	$out .= '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
+	$submit = '<p class="bs-nf-submit"><button type="submit" class="wpcf7-form-control wpcf7-submit">' . esc_html( $s['submitText'] ) . '</button><span class="wpcf7-spinner"></span></p>';
+	$tail   = bst_quote_markup( $s ) . '<p class="bs-nf-hp" aria-hidden="true"><label>Website<input type="text" name="bst_hp" tabindex="-1" autocomplete="off"></label></p>';
+	if ( count( $out_steps ) > 1 ) {
+		$n    = count( $out_steps );
+		$back = '<button type="button" class="bs-nf-back" data-bs-back>' . esc_html__( 'Back', 'bigspy-ai-theme-wp' ) . '</button>';
+		$bar  = '<ol class="bs-nf-progress" aria-label="' . esc_attr__( 'Form steps', 'bigspy-ai-theme-wp' ) . '">';
+		foreach ( $out_steps as $i => $step ) {
+			/* translators: %d: step number. */
+			$title = '' !== trim( $step['title'] ) ? $step['title'] : sprintf( __( 'Step %d', 'bigspy-ai-theme-wp' ), $i + 1 );
+			$bar  .= '<li' . ( 0 === $i ? ' class="is-current" aria-current="step"' : '' ) . '><span class="bs-nf-progress__n">' . ( $i + 1 ) . '</span><span class="bs-nf-progress__t">' . esc_html( $title ) . '</span></li>';
+		}
+		$out .= $bar . '</ol>';
+		foreach ( $out_steps as $i => $step ) {
+			$last = $i === $n - 1;
+			$nav  = '<p class="bs-nf-nav">' . ( $i > 0 ? $back : '' ) . ( $last ? '' : '<button type="button" class="wpcf7-form-control wpcf7-submit bs-nf-next" data-bs-next>' . esc_html__( 'Next', 'bigspy-ai-theme-wp' ) . '</button>' ) . '</p>';
+			$out .= '<div class="bs-nf-step" data-bs-step="' . $i . '"' . ( $i > 0 ? ' hidden' : '' ) . '>' . $step['html'] . ( $last ? $tail . $submit : '' ) . $nav . '</div>';
+		}
+	} else {
+		$out .= ( $out_steps ? $out_steps[0]['html'] : '' ) . $tail . $submit;
+	}
 	$out .= '<div class="wpcf7-response-output" aria-live="polite" hidden></div>';
-	return '<form class="wpcf7-form bs-native-form" method="post" action="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" novalidate data-bs-native-form data-key="' . esc_attr( $key ) . '" data-post="' . esc_attr( (string) get_queried_object_id() ) . '" data-ts="' . esc_attr( (string) time() ) . '" data-msg-required="' . esc_attr( $s['msgRequired'] ) . '" data-msg-email="' . esc_attr( $s['msgEmail'] ) . '" data-msg-tel="' . esc_attr( $s['msgTel'] ) . '"' . ( $s['redirectNewTab'] ? ' data-new-tab="1"' : '' ) . '>' . $out . '</form>';
+	return '<form class="wpcf7-form bs-native-form" method="post" action="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" novalidate data-bs-native-form data-key="' . esc_attr( $key ) . '" data-post="' . esc_attr( (string) get_queried_object_id() ) . '" data-ts="' . esc_attr( (string) time() ) . '" data-msg-required="' . esc_attr( $s['msgRequired'] ) . '" data-msg-email="' . esc_attr( $s['msgEmail'] ) . '" data-msg-tel="' . esc_attr( $s['msgTel'] ) . '"' . ( count( $out_steps ) > 1 ? ' data-bs-steps="' . count( $out_steps ) . '"' : '' ) . ( $s['redirectNewTab'] ? ' data-new-tab="1"' : '' ) . '>' . $out . '</form>';
 }
 
 /** Find the saved Form block with this key (the page shown, then any post that contains it). */

@@ -2591,12 +2591,12 @@ input[type="submit"]:hover,
 .bs-form--shadow input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]), .bs-form--shadow select, .bs-form--shadow textarea { border-color: var(--bs-form-border, transparent); box-shadow: 0 2px 10px rgba(15, 23, 42, .08); }
 
 /* Submit button */
-.bs-form input[type="submit"], .bs-form button[type="submit"], .bs-form .wpforms-submit {
+.bs-form input[type="submit"], .bs-form button[type="submit"], .bs-form .wpforms-submit, .bs-form .bs-nf-next {
 	padding: calc(var(--fpy) + 1px) 28px; color: #fff; font: inherit; font-weight: 700; font-size: var(--ffs); background: var(--fa); border: 2px solid var(--fa); border-radius: var(--fr); cursor: pointer;
 	transition: filter .2s ease, transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
 }
-.bs-form input[type="submit"]:hover, .bs-form button[type="submit"]:hover, .bs-form .wpforms-submit:hover { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 8px 18px color-mix(in srgb, var(--fa) 35%, transparent); }
-.bs-form.bs-form--btn-gradient input[type="submit"], .bs-form.bs-form--btn-gradient button[type="submit"], .bs-form--btn-gradient .wpforms-submit { background: linear-gradient(135deg, var(--fa), var(--fa2)); border-color: transparent; }
+.bs-form input[type="submit"]:hover, .bs-form button[type="submit"]:hover, .bs-form .wpforms-submit:hover, .bs-form .bs-nf-next:hover { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 8px 18px color-mix(in srgb, var(--fa) 35%, transparent); }
+.bs-form.bs-form--btn-gradient input[type="submit"], .bs-form.bs-form--btn-gradient button[type="submit"], .bs-form--btn-gradient .wpforms-submit, .bs-form--btn-gradient .bs-nf-next { background: linear-gradient(135deg, var(--fa), var(--fa2)); border-color: transparent; }
 .bs-form.bs-form--btn-pill input[type="submit"], .bs-form.bs-form--btn-pill button[type="submit"], .bs-form--btn-pill .wpforms-submit { border-radius: 999px; padding-left: 34px; padding-right: 34px; }
 .bs-form.bs-form--btn-outline input[type="submit"], .bs-form.bs-form--btn-outline button[type="submit"], .bs-form--btn-outline .wpforms-submit { background: transparent; color: var(--fa); }
 .bs-form.bs-form--btn-outline input[type="submit"]:hover, .bs-form.bs-form--btn-outline button[type="submit"]:hover, .bs-form--btn-outline .wpforms-submit:hover { background: var(--fa); color: #fff; }
@@ -2610,6 +2610,7 @@ input[type="submit"]:hover,
 /* Layouts */
 @media (min-width: 850px) {
 	.bs-form--layout-2col .wpcf7-form { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; }
+	.bs-form--layout-2col .wpcf7-form > .bs-nf-progress, .bs-form--layout-2col .wpcf7-form > .bs-nf-step > :is(p:has(textarea), p:has([type="submit"]), p:has([type="checkbox"]), .bs-nf-nav, div) { grid-column: 1 / -1; }
 	.bs-form--layout-2col .wpcf7-form > p:has(textarea), .bs-form--layout-2col .wpcf7-form > p:has([type="submit"]), .bs-form--layout-2col .wpcf7-form > p:has([type="checkbox"]), .bs-form--layout-2col .wpcf7-form > .wpcf7-response-output, .bs-form--layout-2col .wpcf7-form > fieldset, .bs-form--layout-2col .wpcf7-form > div { grid-column: 1 / -1; }
 }
 @media (min-width: 550px) {
@@ -3389,8 +3390,22 @@ input[type="submit"]:hover,
 
 /* Built-in form (1.54) */
 .bs-native-form { display: flex; flex-wrap: wrap; gap: 0 16px; }
-.bs-native-form > * { flex: 1 1 100%; }
-.bs-native-form > .bs-nf-half { flex: 1 1 calc(50% - 8px); min-width: 200px; }
+.bs-native-form > *, .bs-native-form > .bs-nf-step > * { flex: 1 1 100%; }
+.bs-native-form > .bs-nf-half, .bs-native-form > .bs-nf-step > .bs-nf-half { flex: 1 1 calc(50% - 8px); min-width: 200px; }
+/* Multi-step form: the open step joins the form's own row layout. */
+.bs-native-form > .bs-nf-step { display: contents; }
+.bs-native-form > .bs-nf-step[hidden] { display: none; }
+.bs-native-form .bs-nf-progress { display: flex; gap: 8px; list-style: none; margin: 0 0 20px; padding: 0; counter-reset: none; }
+.bs-native-form .bs-nf-progress li { flex: 1 1 0; display: flex; align-items: center; gap: 8px; min-width: 0; margin: 0; padding: 0 0 10px; border-bottom: 3px solid color-mix(in srgb, currentColor 15%, transparent); font-size: .9em; opacity: .6; }
+.bs-native-form .bs-nf-progress li.is-current, .bs-native-form .bs-nf-progress li.is-done { border-color: var(--bs-primary, var(--wp--preset--color--primary, #3858e9)); opacity: 1; }
+.bs-native-form .bs-nf-progress__n { flex: none; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: color-mix(in srgb, currentColor 12%, transparent); font-weight: 600; font-size: .85em; }
+.bs-native-form .bs-nf-progress li.is-current .bs-nf-progress__n, .bs-native-form .bs-nf-progress li.is-done .bs-nf-progress__n { background: var(--bs-primary, var(--wp--preset--color--primary, #3858e9)); color: #fff; }
+.bs-native-form .bs-nf-progress__t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.bs-native-form .bs-nf-nav { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.bs-native-form .bs-nf-nav:empty { display: none; }
+.bs-native-form .bs-nf-next { margin-inline-start: auto; }
+.bs-native-form .bs-nf-back { padding: calc(var(--fpy, .6em) + 1px) 24px; border: 2px solid var(--fa, currentColor); border-radius: var(--fr, 6px); font: inherit; font-weight: 600; color: var(--fa, inherit); background: transparent; cursor: pointer; opacity: .85; }
+.bs-native-form .bs-nf-back:hover { opacity: 1; }
 .bs-native-form .bs-nf-label { display: block; margin-bottom: 6px; font-weight: 600; font-size: .95em; }
 .bs-form--labels-hidden .bs-native-form .bs-nf-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .bs-native-form .bs-nf-req { color: #dc2626; }
@@ -3467,7 +3482,9 @@ input[type="submit"]:hover,
 .bs-form__body { container-type: inline-size; width: 100%; }
 @container (max-width: 520px) {
 	.wpcf7-form .bs-f-row { grid-template-columns: minmax(0, 1fr); }
-	.bs-native-form > .bs-nf-half { flex-basis: 100%; }
+	.bs-native-form > .bs-nf-half, .bs-native-form > .bs-nf-step > .bs-nf-half { flex-basis: 100%; }
+	.bs-native-form .bs-nf-progress__t { display: none; }
+	.bs-native-form .bs-nf-progress li.is-current .bs-nf-progress__t { display: block; }
 	:is(.wpcf7-form, .bs-native-form) :is(.bs-choices-3, .bs-choices-4) { --bs-cc: 2; }
 }
 @media (max-width: 520px) {

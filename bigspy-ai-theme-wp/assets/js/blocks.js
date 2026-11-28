@@ -1583,6 +1583,86 @@ function bsNfDistance(input) {
 }
 document.querySelectorAll('input[data-bs-distance]').forEach(bsNfDistance);
 
+/* Multi-step built-in form: one step on screen, Next checks that step first. */
+function bsNfStep(form, i) {
+	var steps = form.querySelectorAll('[data-bs-step]');
+	if (!steps.length) {
+		return;
+	}
+	i = Math.max(0, Math.min(steps.length - 1, i));
+	steps.forEach(function (st, k) { st.hidden = k !== i; });
+	form.querySelectorAll('.bs-nf-progress li').forEach(function (li, k) {
+		li.classList.toggle('is-current', k === i);
+		li.classList.toggle('is-done', k < i);
+		if (k === i) { li.setAttribute('aria-current', 'step'); } else { li.removeAttribute('aria-current'); }
+	});
+	form.setAttribute('data-bs-at', i);
+	var top = form.getBoundingClientRect().top;
+	if (top < 0 && form.scrollIntoView) {
+		form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+	var first = steps[i].querySelector('input:not([type="hidden"]):not(:disabled), select:not(:disabled), textarea:not(:disabled)');
+	if (first && first.focus) {
+		first.focus({ preventScroll: true });
+	}
+}
+function bsNfStepValid(form, step) {
+	step.querySelectorAll('.wpcf7-not-valid-tip').forEach(function (n) { n.remove(); });
+	step.querySelectorAll('.wpcf7-not-valid').forEach(function (n) { n.classList.remove('wpcf7-not-valid'); });
+	var ok = true;
+	var tip = function (ctl, msg) {
+		var wrap = ctl.closest('.wpcf7-form-control-wrap');
+		ctl.classList.add('wpcf7-not-valid');
+		if (wrap && !wrap.querySelector('.wpcf7-not-valid-tip')) {
+			var t = document.createElement('span');
+			t.className = 'wpcf7-not-valid-tip';
+			t.textContent = msg;
+			wrap.appendChild(t);
+		}
+		ok = false;
+	};
+	step.querySelectorAll('[required]:not(:disabled)').forEach(function (ctl) {
+		if (ctl.type === 'checkbox' ? !ctl.checked : !String(ctl.value).trim()) {
+			tip(ctl, form.getAttribute('data-msg-required'));
+		}
+	});
+	step.querySelectorAll('input[type="email"]:not(:disabled)').forEach(function (ctl) {
+		if (ctl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ctl.value)) {
+			tip(ctl, form.getAttribute('data-msg-email'));
+		}
+	});
+	return ok;
+}
+document.addEventListener('click', function (e) {
+	var b = e.target.closest && e.target.closest('[data-bs-next], [data-bs-back]');
+	var form = b && b.closest('[data-bs-native-form]');
+	if (!form) {
+		return;
+	}
+	e.preventDefault();
+	var at = +(form.getAttribute('data-bs-at') || 0);
+	if (b.hasAttribute('data-bs-back')) {
+		bsNfStep(form, at - 1);
+		return;
+	}
+	var step = form.querySelector('[data-bs-step="' + at + '"]');
+	if (step && bsNfStepValid(form, step)) {
+		bsNfStep(form, at + 1);
+	}
+});
+// Enter in a text box moves to the next step instead of sending a half-filled form.
+document.addEventListener('keydown', function (e) {
+	if (e.key !== 'Enter' || !e.target.matches || !e.target.matches('input:not([type="checkbox"]):not([type="radio"]):not([type="file"])')) {
+		return;
+	}
+	var step = e.target.closest('[data-bs-step]');
+	var next = step && step.querySelector('[data-bs-next]');
+	if (next) {
+		e.preventDefault();
+		next.click();
+	}
+});
+
 /* Built-in form submit (1.54): AJAX send, inline errors, success / redirect like Contact Form 7. */
 document.addEventListener('submit', function (e) {
 	var form = e.target;
@@ -1629,6 +1709,12 @@ document.addEventListener('submit', function (e) {
 		form.classList.add(ok ? 'sent' : (ok === null ? 'invalid' : 'failed'));
 	};
 	if (bad) {
+		// Multi-step form: show the step that holds the first error.
+		var firstBad = form.querySelector('.wpcf7-not-valid');
+		var badStep = firstBad && firstBad.closest('[data-bs-step]');
+		if (badStep) {
+			bsNfStep(form, +badStep.getAttribute('data-bs-step'));
+		}
 		return;
 	}
 	var data = new FormData(form);
