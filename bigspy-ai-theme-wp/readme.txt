@@ -15,6 +15,9 @@ See README.md in the source repository for the full feature list and the site-bu
 
 == Changelog ==
 
+= 1.109.0 =
+* List View: + Add section or element after every section, + Add to at the end of every open container block (Accordion, Tabs, Row and more).
+
 = 1.108.0 =
 * Form: tier() price bands, route and zone price templates, searchable Dropdown, Distance (km) field with self-hosted Photon + OSRM.
 * Forms: Contact Form 7 and built-in forms line up (field heights, choices, columns, button colors); Table and Icon box fixes.

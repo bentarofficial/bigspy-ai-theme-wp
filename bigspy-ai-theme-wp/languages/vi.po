@@ -335,6 +335,10 @@ msgstr "Thêm vào giỏ"
 msgid "Add to page"
 msgstr "Thêm vào trang"
 
+msgid "Add section or element"
+msgstr "Thêm section hoặc phần tử"
+
+#. translators: %s: block name, e.g. "Row".
 msgid "Add to %s"
 msgstr "Thêm vào %s"
 
@@ -12196,6 +12200,9 @@ msgstr "Địa chỉ máy chủ tính đường (OSRM)"
 
 msgid "For example https://osrm.example.com – your own server. If it cannot measure, no price is shown and the visitor can still send the form."
 msgstr "Ví dụ https://osrm.example.com – máy chủ của bạn. Nếu không đo được, form không hiện giá nhưng khách vẫn gửi được."
+
+msgid "1.109.0: Adding blocks from the List View is quicker. Open the Document Overview (List View) and a dashed + Add section or element button sits after every section, adding a new section or block right below it. Every open block that holds other blocks (Section, Row, Column, Accordion, Accordion Panel, Tabs, Slider, Buttons and more) ends with a + Add to button that adds inside that block, at the same level as its items."
+msgstr "1.109.0: Thêm khối từ bảng Cấu trúc nội dung nhanh hơn. Sau mỗi section có nút nét đứt + Thêm section hoặc phần tử để thêm section hoặc khối mới ngay bên dưới. Mọi khối đang mở có chứa khối con (Section, Row, Column, Accordion, Accordion Panel, Tabs, Slider, Buttons...) đều có nút + Thêm vào ở cuối để thêm vào bên trong khối đó, ngang cấp với các phần tử của nó."
 
 msgid "1.108.0: Forms can quote prices by route, zone and distance, and typing Vietnamese works smoothly in the editor. In the Form block use tier() in a price formula for price bands, start from the new Car booking by route or Delivery by zone and weight templates, turn on Search box for a Dropdown so visitors can type to filter it, and add a Distance (km) field that measures the trip between two address fields with your own free Photon and OSRM servers. Contact Form 7 and other built-in forms line up neatly with matching field heights, choices and button colors. Typing accented letters with Unikey or EVKey (Telex, VNI) in Text blocks no longer jumps to another block, and Undo now shows up while you are still typing in the box."
 msgstr "1.108.0: Form tính giá theo tuyến, khu vực và quãng đường, gõ tiếng Việt mượt trong trình soạn thảo. Trong khối Form dùng tier() trong công thức để tính giá theo bậc, bắt đầu từ mẫu Đặt xe theo tuyến hoặc Giao hàng theo khu vực và cân nặng, bật Ô tìm kiếm cho Dropdown để khách gõ lọc lựa chọn, và thêm trường Quãng đường (km) đo đường đi giữa hai ô địa chỉ bằng máy chủ Photon và OSRM miễn phí của chính bạn. Form Contact Form 7 và các form có sẵn thẳng hàng, ô nhập, lựa chọn và màu nút đồng đều. Gõ chữ có dấu bằng Unikey hoặc EVKey (Telex, VNI) trong khối Text không còn nhảy sang khối khác, và Hoàn tác hiện ngay khi bạn vẫn đang gõ trong ô."

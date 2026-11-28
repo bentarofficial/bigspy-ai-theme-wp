@@ -16,6 +16,7 @@
 	}
 	var cfg = window.bstListViewAppender || {};
 	var LABEL = cfg.label || 'Add to %s';
+	var AFTER = cfg.after || 'Add section or element';
 	var ROW = 'bst-lv-appender';
 	var busy = false;
 	var queued = false;
@@ -24,9 +25,11 @@
 		return wp.data.select( 'core/block-editor' );
 	}
 
-	function openInserter( rootClientId ) {
-		var index = be().getBlockCount( rootClientId );
-		var target = { rootClientId: rootClientId, insertionIndex: index };
+	function openInserter( rootClientId, index ) {
+		if ( typeof index !== 'number' ) {
+			index = be().getBlockCount( rootClientId );
+		}
+		var target = { rootClientId: rootClientId || undefined, insertionIndex: index };
 		var stores = [ 'core/editor', 'core/edit-post', 'core/edit-site' ];
 		for ( var i = 0; i < stores.length; i++ ) {
 			var d = wp.data.dispatch( stores[ i ] );
@@ -50,9 +53,9 @@
 		return t;
 	}
 
-	function makeRow( clientId, level ) {
+	function makeRow( clientId, level, label, root, index ) {
 		var tr = document.createElement( 'tr' );
-		tr.className = ROW;
+		tr.className = ROW + ( label ? ' ' + ROW + '--after' : '' );
 		tr.setAttribute( 'data-bst-root', clientId );
 		var td = document.createElement( 'td' );
 		td.colSpan = 3;
@@ -61,11 +64,15 @@
 		btn.className = ROW + '__btn';
 		btn.style.marginInlineStart = ( level * 16 + 8 ) + 'px';
 		btn.innerHTML = '<span aria-hidden="true">+</span> ';
-		btn.appendChild( document.createTextNode( LABEL.replace( '%s', title( clientId ) ) ) );
+		btn.appendChild( document.createTextNode( label || LABEL.replace( '%s', title( clientId ) ) ) );
 		btn.addEventListener( 'click', function ( e ) {
 			e.preventDefault();
 			e.stopPropagation();
-			openInserter( clientId );
+			if ( label ) {
+				openInserter( root, index );
+			} else {
+				openInserter( clientId );
+			}
 		} );
 		td.appendChild( btn );
 		tr.appendChild( td );
@@ -82,15 +89,9 @@
 			document.querySelectorAll( '.block-editor-list-view-tree' ).forEach( function ( tree ) {
 				var rows = Array.prototype.slice.call( tree.querySelectorAll( 'tr.block-editor-list-view-leaf' ) );
 				rows.forEach( function ( row, i ) {
-					if ( row.getAttribute( 'aria-expanded' ) !== 'true' ) {
-						return;
-					}
 					var id = row.getAttribute( 'data-block' );
 					var level = parseInt( row.getAttribute( 'aria-level' ), 10 ) || 1;
-					if ( ! id || ! be().canInsertBlocks || ! be().canInsertBlocks( id ) ) {
-						return;
-					}
-					if ( be().getTemplateLock && be().getTemplateLock( id ) ) {
+					if ( ! id ) {
 						return;
 					}
 					// Last row that is a descendant of this one.
@@ -102,7 +103,24 @@
 						}
 						last = rows[ j ];
 					}
-					last.parentNode.insertBefore( makeRow( id, level ), last.nextSibling );
+					var anchor = last;
+					// "+ Add to <Block>" at the end of an expanded container.
+					if ( row.getAttribute( 'aria-expanded' ) === 'true' && be().canInsertBlocks && be().canInsertBlocks( id ) &&
+						! ( be().getTemplateLock && be().getTemplateLock( id ) ) ) {
+						var inner = makeRow( id, level );
+						anchor.parentNode.insertBefore( inner, anchor.nextSibling );
+						anchor = inner;
+					}
+					// "+ Add section / element" after every top-level block.
+					if ( level === 1 ) {
+						var root = be().getBlockRootClientId( id ) || '';
+						var canRoot = ! be().canInsertBlocks || be().canInsertBlocks( root || undefined );
+						var locked = be().getTemplateLock && be().getTemplateLock( root || undefined );
+						if ( canRoot && ! locked ) {
+							var after = makeRow( id, 0, AFTER, root, be().getBlockIndex( id ) + 1 );
+							anchor.parentNode.insertBefore( after, anchor.nextSibling );
+						}
+					}
 				} );
 			} );
 		} catch ( err ) {

@@ -6,6 +6,11 @@
 
 Download the installable ZIP from [GitHub Releases](https://github.com/bentarofficial/bigspy-ai-theme-wp/releases/latest). The entries below summarize major changes; see individual releases for their assets and notes.
 
+### 1.109.0: Plus buttons everywhere in the List View
+
+- A + Add section or element button after every section.
+- A + Add to button at the end of every open block that holds other blocks.
+
 ### 1.108.0: Route and distance pricing in forms, Vietnamese typing fix
 
 - Form block: tier() price bands, route/zone templates, searchable Dropdown and a Distance (km) field using your own Photon + OSRM.
